@@ -3,8 +3,7 @@
 
 #include "../pcap/Frame.hpp"
 #include "../pcap/PcapFile.hpp"
-#include "cpp/modern/iex/iexequities/deep/iextp/v1.06/structs/IextpHeader.hpp"
-#include "cpp/modern/iex/iexequities/deep/iextp/v1.06/structs/MessageHeader.hpp"
+#include "cpp/modern/iex/iexequities/deep/iextp/v1.06/definitions.hpp"
 #include "../protocol/Branches.hpp"
 
 #include <cstddef>
@@ -170,19 +169,26 @@ inline int sample(const fs::path& in_path, const fs::path& out_dir) {
     while (pcap.advance()) {
         packet::Frame frame(pcap.data(), pcap.length());
         if (!frame.valid() || !frame.is_udp()) { continue; }
-        if (frame.payload_len < sizeof(iex::iexequities::deep::iextp::v1_06::IextpHeader) + sizeof(iex::iexequities::deep::iextp::v1_06::MessageHeader)) { continue; }
 
-        const auto* header = iex::iexequities::deep::iextp::v1_06::IextpHeader::parse(frame.payload);
-        const auto count = header->message_count.get();
+        // The generated Modern iterator walks the frame's messages, so the framing
+        // is read from the model rather than stepped over by size here.
+        iex::iexequities::deep::iextp::v1_06::MessageIterator messages;
+        messages.initialize(frame.payload, frame.payload_len);
+
+        std::size_t count = 0;
+        std::uint64_t first = 0;
+
+        while (messages.next()) {
+            if (count == 0) { first = static_cast<std::uint64_t>(messages.message_type); }
+            ++count;
+        }
+
         if (count == 0) { continue; }
 
         if (count == 1) {
-            const std::byte* msg = frame.payload + sizeof(iex::iexequities::deep::iextp::v1_06::IextpHeader);
-            const auto id = iex::iexequities::deep::iextp::v1_06::MessageHeader::parse(msg)->message_type.get();
-            const auto key = static_cast<std::uint64_t>(id);
-            const auto it = smallest.find(key);
+            const auto it = smallest.find(first);
             if (it == smallest.end() || pcap.length() < it->second.total_bytes) {
-                smallest[key] = sample_of_one(capture_of(pcap));
+                smallest[first] = sample_of_one(capture_of(pcap));
             }
         } else if (!multiple_messages) {
             multiple_messages = capture_of(pcap);
