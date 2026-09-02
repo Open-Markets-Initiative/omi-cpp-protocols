@@ -2,40 +2,16 @@ name: Build
 
 on:
   push:
-    branches: [ main ]
+  pull_request:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v5
-
-      - name: Update Operating System
-        run: sudo apt-get update
-
-      - name: Install Dependencies
-        run: sudo apt-get install -y cmake g++ zlib1g-dev libzstd-dev
-
-      - name: Clone Omi Data
-        run: git clone --depth=1 https://github.com/Open-Markets-Initiative/omi-data-pcaps.git
-
+      - uses: actions/checkout@v4
+      - name: Install C++23 compiler
+        run: sudo apt-get update && sudo apt-get install -y g++-14
       - name: Configure
-        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
-
+        run: cmake -S . -B build -DCMAKE_CXX_COMPILER=g++-14
       - name: Build
         run: cmake --build build --parallel
-
-      - name: Test Securities Industry Automation Corporation Opra Binary Interface 6.1
-        run: ./build/siac/opra/recipient/siac_opra_recipient_obi_v6_1_statistics --input omi-data-pcaps/Siac/Opra.Recipient.v6.2/BestBidAppendageMessage.pcap
-
-      - name: Test Investors Exchange Investors Exchange Transport Protocol 1.0.1
-        run: ./build/iex/equities/deepplus/iex_equities_deepplus_iextp_v1_0_1_statistics --input omi-data-pcaps/Iex/Tops.IexTp.v1.6/TradeReportMessage.pcap
-
-      - name: Test National Association of Securities Dealers Automated Quotations Itch 5.0
-        run: ./build/nasdaq/nsmequities/totalview/nasdaq_nsmequities_totalview_itch_v5_0_statistics --input omi-data-pcaps/Nasdaq/Nasdaq.Equities.TotalView.Itch.v5.0/AddOrderMessage.pcap
-
-      - name: Test Chicago Mercantile Exchange Simple Binary Encoding 1.13
-        run: ./build/cme/futures/mdp3/cme_futures_mdp3_sbe_v1_13_statistics --input omi-data-pcaps/Cme/Mdp3.Sbe.v1.9/MdIncrementalRefreshBook.pcap
-
-

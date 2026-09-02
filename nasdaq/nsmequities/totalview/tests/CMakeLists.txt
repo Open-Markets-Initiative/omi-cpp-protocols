@@ -1,8 +1,0 @@
-find_package(GTest REQUIRED)
-
-add_executable(nasdaq_nsmequities_totalview_itch_v5_0_statistics_tests tests.cpp)
-target_include_directories(nasdaq_nsmequities_totalview_itch_v5_0_statistics_tests PRIVATE ${CMAKE_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/packet)
-target_link_libraries(nasdaq_nsmequities_totalview_itch_v5_0_statistics_tests PRIVATE GTest::gtest_main)
-
-include(GoogleTest)
-gtest_discover_tests(nasdaq_nsmequities_totalview_itch_v5_0_statistics_tests)

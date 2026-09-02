@@ -1,0 +1,138 @@
+#pragma once
+
+#include <cstdint>
+#include <iostream>
+#include <iomanip>
+
+#include "Settings.hpp"
+#include "../pcap/Parser.hpp"
+#include "cpp/modern/iex/iexequities/deep/snap/v1.6/definitions.hpp"
+
+namespace statistics {
+
+// Iex Snap C++ statistics
+struct Statistics {
+
+    iex::iexequities::deep::snap::v1_6::MessageIterator message;
+    packet::Parser& parser;
+    const statistics::Options& options;
+
+    // counters
+    uint64_t total_packets = 0;
+    uint64_t unknown_packets = 0;
+    uint64_t total_messages = 0;
+    uint64_t unknown_messages = 0;
+    uint64_t heartbeats = 0;
+
+    // message counters
+    uint64_t system_event_message = 0;
+    uint64_t security_directory_message = 0;
+    uint64_t trading_status_message = 0;
+    uint64_t retail_liquidity_indicator_message = 0;
+    uint64_t operational_halt_status_message = 0;
+    uint64_t short_sale_price_test_status_message = 0;
+    uint64_t security_event_message = 0;
+    uint64_t price_level_buy_update_message = 0;
+    uint64_t price_level_sell_update_message = 0;
+    uint64_t trade_report_message = 0;
+    uint64_t official_price_message = 0;
+    uint64_t trade_break_message = 0;
+    uint64_t auction_information_message = 0;
+
+    explicit Statistics(const statistics::Options& options, packet::Parser& parser)
+     : parser{ parser }, options{ options } {}
+
+    // process udp packet
+    void udp() {
+        const auto& frame = parser.frame();
+        message.initialize(frame.payload, frame.payload_len);
+
+        while (message.next()) {
+            process(message.message, message.message_type);
+        }
+    }
+
+    // process message
+    void process(const std::byte* pointer, const char message_type) {
+        ++total_messages;
+
+        switch (message_type) {
+            case 'S':
+                ++system_event_message;
+                break;
+            case 'D':
+                ++security_directory_message;
+                break;
+            case 'H':
+                ++trading_status_message;
+                break;
+            case 'I':
+                ++retail_liquidity_indicator_message;
+                break;
+            case 'O':
+                ++operational_halt_status_message;
+                break;
+            case 'P':
+                ++short_sale_price_test_status_message;
+                break;
+            case 'E':
+                ++security_event_message;
+                break;
+            case '8':
+                ++price_level_buy_update_message;
+                break;
+            case '5':
+                ++price_level_sell_update_message;
+                break;
+            case 'T':
+                ++trade_report_message;
+                break;
+            case 'X':
+                ++official_price_message;
+                break;
+            case 'B':
+                ++trade_break_message;
+                break;
+            case 'A':
+                ++auction_information_message;
+                break;
+
+            default:
+                ++unknown_messages;
+                if (options.verbose) {
+                    std::cerr << "Unknown message_type: " << static_cast<int>(message_type) << std::endl;
+                }
+                break;
+        }
+    }
+
+    // report statistics
+    void report() {
+        std::cout << std::endl;
+        std::cout << "Statistics Report" << std::endl;
+        std::cout << "=================" << std::endl;
+        std::cout << "Total packets:   " << total_packets << std::endl;
+        std::cout << "Unknown packets: " << unknown_packets << std::endl;
+        std::cout << "Total messages:  " << total_messages << std::endl;
+        std::cout << "Unknown types:   " << unknown_messages << std::endl;
+        std::cout << "Heartbeats:      " << heartbeats << std::endl;
+
+        std::cout << std::endl;
+        std::cout << "Message Counts:" << std::endl;
+        std::cout << "--------------" << std::endl;
+        std::cout << "  SystemEventMessage (S)               " << system_event_message << std::endl;
+        std::cout << "  SecurityDirectoryMessage (D)         " << security_directory_message << std::endl;
+        std::cout << "  TradingStatusMessage (H)             " << trading_status_message << std::endl;
+        std::cout << "  RetailLiquidityIndicatorMessage (I)  " << retail_liquidity_indicator_message << std::endl;
+        std::cout << "  OperationalHaltStatusMessage (O)     " << operational_halt_status_message << std::endl;
+        std::cout << "  ShortSalePriceTestStatusMessage (P)  " << short_sale_price_test_status_message << std::endl;
+        std::cout << "  SecurityEventMessage (E)             " << security_event_message << std::endl;
+        std::cout << "  PriceLevelBuyUpdateMessage (8)       " << price_level_buy_update_message << std::endl;
+        std::cout << "  PriceLevelSellUpdateMessage (5)      " << price_level_sell_update_message << std::endl;
+        std::cout << "  TradeReportMessage (T)               " << trade_report_message << std::endl;
+        std::cout << "  OfficialPriceMessage (X)             " << official_price_message << std::endl;
+        std::cout << "  TradeBreakMessage (B)                " << trade_break_message << std::endl;
+        std::cout << "  AuctionInformationMessage (A)        " << auction_information_message << std::endl;
+    }
+};
+}

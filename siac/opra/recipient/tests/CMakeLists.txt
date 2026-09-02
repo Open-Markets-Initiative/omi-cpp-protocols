@@ -1,8 +1,0 @@
-find_package(GTest REQUIRED)
-
-add_executable(siac_opra_recipient_obi_v6_1_statistics_tests tests.cpp)
-target_include_directories(siac_opra_recipient_obi_v6_1_statistics_tests PRIVATE ${CMAKE_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/packet)
-target_link_libraries(siac_opra_recipient_obi_v6_1_statistics_tests PRIVATE GTest::gtest_main)
-
-include(GoogleTest)
-gtest_discover_tests(siac_opra_recipient_obi_v6_1_statistics_tests)

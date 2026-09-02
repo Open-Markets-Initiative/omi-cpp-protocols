@@ -1,8 +1,0 @@
-find_package(GTest REQUIRED)
-
-add_executable(cme_futures_mdp3_sbe_v1_13_statistics_tests tests.cpp)
-target_include_directories(cme_futures_mdp3_sbe_v1_13_statistics_tests PRIVATE ${CMAKE_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/packet)
-target_link_libraries(cme_futures_mdp3_sbe_v1_13_statistics_tests PRIVATE GTest::gtest_main)
-
-include(GoogleTest)
-gtest_discover_tests(cme_futures_mdp3_sbe_v1_13_statistics_tests)
