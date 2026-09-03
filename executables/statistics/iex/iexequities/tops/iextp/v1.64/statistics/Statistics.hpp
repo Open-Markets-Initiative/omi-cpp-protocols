@@ -6,14 +6,13 @@
 
 #include "Settings.hpp"
 #include "../pcap/Parser.hpp"
-#include "cpp/modern/iex/iexequities/tops/iextp/v1.64/definitions.hpp"
+#include "cpp/advanced/iex/iexequities/tops/iextp/v1.64/messages/session.hpp"
 
 namespace statistics {
 
 // Iex IexTp C++ statistics
 struct Statistics {
 
-    iex::iexequities::tops::iextp::v1_64::MessageIterator message;
     packet::Parser& parser;
     const statistics::Options& options;
 
@@ -23,6 +22,8 @@ struct Statistics {
     uint64_t total_messages = 0;
     uint64_t unknown_messages = 0;
     uint64_t heartbeats = 0;
+    // messages dispatch recognised; the rest of total_messages is unknown
+    uint64_t matched_messages = 0;
 
     // message counters
     uint64_t system_event_message = 0;
@@ -40,68 +41,52 @@ struct Statistics {
     explicit Statistics(const statistics::Options& options, packet::Parser& parser)
      : parser{ parser }, options{ options } {}
 
-    // process udp packet
+    // process udp packet: the session layer walks the segment and dispatches
+    // each message back to this handler
     void udp() {
         const auto& frame = parser.frame();
-        message.initialize(frame.payload, frame.payload_len);
 
-        if (message.message_count == 0) {
+        iex::iexequities::tops::iextp::v1_64::process_segment(*this, frame.payload, frame.payload_len, parser.source.timestamp_ns(), frame);
+
+        // whatever dispatch did not recognise is unknown
+        unknown_messages = total_messages - matched_messages;
+    }
+
+    // called once per segment, before any message is dispatched
+    iex::iexequities::tops::iextp::v1_64::seq_action on_transport_header(const iex::iexequities::tops::iextp::v1_64::iextp_header& transport, const packet::Frame&) {
+        if (transport.message_count.get().value() == 0) {
             ++heartbeats;
-            return;
+            return iex::iexequities::tops::iextp::v1_64::seq_action::skip;
         }
 
-        while (message.next()) {
-            process(message.message, message.message_type);
-        }
+        total_messages += transport.message_count.get().value();
+
+        return iex::iexequities::tops::iextp::v1_64::seq_action::process;
     }
 
-    // process message
-    void process(const std::byte* pointer, const char message_type) {
-        ++total_messages;
-
-        switch (message_type) {
-            case 'S':
-                ++system_event_message;
-                break;
-            case 'D':
-                ++security_directory_message;
-                break;
-            case 'H':
-                ++trading_status_message;
-                break;
-            case 'O':
-                ++operational_halt_status_message;
-                break;
-            case 'P':
-                ++short_sale_price_test_status_message;
-                break;
-            case 'E':
-                ++security_event_message;
-                break;
-            case 'Q':
-                ++quote_update_message;
-                break;
-            case 'T':
-                ++trade_report_message;
-                break;
-            case 'X':
-                ++official_price_message;
-                break;
-            case 'B':
-                ++trade_break_message;
-                break;
-            case 'A':
-                ++auction_information_message;
-                break;
-
-            default:
-                ++unknown_messages;
-                if (options.verbose) {
-                    std::cerr << "Unknown message_type: " << static_cast<int>(message_type) << std::endl;
-                }
-                break;
-        }
-    }
+    // one overload per dispatched message
+    void on_message(const iex::iexequities::tops::iextp::v1_64::system_event_message&, std::uint64_t, const iex::iexequities::tops::iextp::v1_64::iextp_header&)
+        { ++system_event_message; ++matched_messages; }
+    void on_message(const iex::iexequities::tops::iextp::v1_64::security_directory_message&, std::uint64_t, const iex::iexequities::tops::iextp::v1_64::iextp_header&)
+        { ++security_directory_message; ++matched_messages; }
+    void on_message(const iex::iexequities::tops::iextp::v1_64::trading_status_message&, std::uint64_t, const iex::iexequities::tops::iextp::v1_64::iextp_header&)
+        { ++trading_status_message; ++matched_messages; }
+    void on_message(const iex::iexequities::tops::iextp::v1_64::operational_halt_status_message&, std::uint64_t, const iex::iexequities::tops::iextp::v1_64::iextp_header&)
+        { ++operational_halt_status_message; ++matched_messages; }
+    void on_message(const iex::iexequities::tops::iextp::v1_64::short_sale_price_test_status_message&, std::uint64_t, const iex::iexequities::tops::iextp::v1_64::iextp_header&)
+        { ++short_sale_price_test_status_message; ++matched_messages; }
+    void on_message(const iex::iexequities::tops::iextp::v1_64::security_event_message&, std::uint64_t, const iex::iexequities::tops::iextp::v1_64::iextp_header&)
+        { ++security_event_message; ++matched_messages; }
+    void on_message(const iex::iexequities::tops::iextp::v1_64::quote_update_message&, std::uint64_t, const iex::iexequities::tops::iextp::v1_64::iextp_header&)
+        { ++quote_update_message; ++matched_messages; }
+    void on_message(const iex::iexequities::tops::iextp::v1_64::trade_report_message&, std::uint64_t, const iex::iexequities::tops::iextp::v1_64::iextp_header&)
+        { ++trade_report_message; ++matched_messages; }
+    void on_message(const iex::iexequities::tops::iextp::v1_64::official_price_message&, std::uint64_t, const iex::iexequities::tops::iextp::v1_64::iextp_header&)
+        { ++official_price_message; ++matched_messages; }
+    void on_message(const iex::iexequities::tops::iextp::v1_64::trade_break_message&, std::uint64_t, const iex::iexequities::tops::iextp::v1_64::iextp_header&)
+        { ++trade_break_message; ++matched_messages; }
+    void on_message(const iex::iexequities::tops::iextp::v1_64::auction_information_message&, std::uint64_t, const iex::iexequities::tops::iextp::v1_64::iextp_header&)
+        { ++auction_information_message; ++matched_messages; }
 
     // report statistics
     void report() {

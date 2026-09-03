@@ -6,14 +6,13 @@
 
 #include "Settings.hpp"
 #include "../pcap/Parser.hpp"
-#include "cpp/modern/iex/iexequities/deepplus/iextp/v1.04/definitions.hpp"
+#include "cpp/advanced/iex/iexequities/deepplus/iextp/v1.04/messages/session.hpp"
 
 namespace statistics {
 
 // Iex IexTp C++ statistics
 struct Statistics {
 
-    iex::iexequities::deepplus::iextp::v1_04::MessageIterator message;
     packet::Parser& parser;
     const statistics::Options& options;
 
@@ -23,6 +22,8 @@ struct Statistics {
     uint64_t total_messages = 0;
     uint64_t unknown_messages = 0;
     uint64_t heartbeats = 0;
+    // messages dispatch recognised; the rest of total_messages is unknown
+    uint64_t matched_messages = 0;
 
     // message counters
     uint64_t system_event_message = 0;
@@ -43,77 +44,58 @@ struct Statistics {
     explicit Statistics(const statistics::Options& options, packet::Parser& parser)
      : parser{ parser }, options{ options } {}
 
-    // process udp packet
+    // process udp packet: the session layer walks the segment and dispatches
+    // each message back to this handler
     void udp() {
         const auto& frame = parser.frame();
-        message.initialize(frame.payload, frame.payload_len);
 
-        if (message.message_count == 0) {
+        iex::iexequities::deepplus::iextp::v1_04::process_segment(*this, frame.payload, frame.payload_len, parser.source.timestamp_ns(), frame);
+
+        // whatever dispatch did not recognise is unknown
+        unknown_messages = total_messages - matched_messages;
+    }
+
+    // called once per segment, before any message is dispatched
+    iex::iexequities::deepplus::iextp::v1_04::seq_action on_transport_header(const iex::iexequities::deepplus::iextp::v1_04::iextp_header& transport, const packet::Frame&) {
+        if (transport.message_count.get().value() == 0) {
             ++heartbeats;
-            return;
+            return iex::iexequities::deepplus::iextp::v1_04::seq_action::skip;
         }
 
-        while (message.next()) {
-            process(message.message, message.message_type);
-        }
+        total_messages += transport.message_count.get().value();
+
+        return iex::iexequities::deepplus::iextp::v1_04::seq_action::process;
     }
 
-    // process message
-    void process(const std::byte* pointer, const char message_type) {
-        ++total_messages;
-
-        switch (message_type) {
-            case 'S':
-                ++system_event_message;
-                break;
-            case 'D':
-                ++security_directory_message;
-                break;
-            case 'H':
-                ++trading_status_message;
-                break;
-            case 'I':
-                ++retail_liquidity_indicator_message;
-                break;
-            case 'O':
-                ++operational_halt_status_message;
-                break;
-            case 'P':
-                ++short_sale_price_test_status_message;
-                break;
-            case 'E':
-                ++security_event_message;
-                break;
-            case 'a':
-                ++add_order_message;
-                break;
-            case 'M':
-                ++order_modify_message;
-                break;
-            case 'R':
-                ++order_delete_message;
-                break;
-            case 'L':
-                ++order_executed_message;
-                break;
-            case 'T':
-                ++trade_message;
-                break;
-            case 'B':
-                ++trade_break_message;
-                break;
-            case 'C':
-                ++clear_book_message;
-                break;
-
-            default:
-                ++unknown_messages;
-                if (options.verbose) {
-                    std::cerr << "Unknown message_type: " << static_cast<int>(message_type) << std::endl;
-                }
-                break;
-        }
-    }
+    // one overload per dispatched message
+    void on_message(const iex::iexequities::deepplus::iextp::v1_04::system_event_message&, std::uint64_t, const iex::iexequities::deepplus::iextp::v1_04::iextp_header&)
+        { ++system_event_message; ++matched_messages; }
+    void on_message(const iex::iexequities::deepplus::iextp::v1_04::security_directory_message&, std::uint64_t, const iex::iexequities::deepplus::iextp::v1_04::iextp_header&)
+        { ++security_directory_message; ++matched_messages; }
+    void on_message(const iex::iexequities::deepplus::iextp::v1_04::trading_status_message&, std::uint64_t, const iex::iexequities::deepplus::iextp::v1_04::iextp_header&)
+        { ++trading_status_message; ++matched_messages; }
+    void on_message(const iex::iexequities::deepplus::iextp::v1_04::retail_liquidity_indicator_message&, std::uint64_t, const iex::iexequities::deepplus::iextp::v1_04::iextp_header&)
+        { ++retail_liquidity_indicator_message; ++matched_messages; }
+    void on_message(const iex::iexequities::deepplus::iextp::v1_04::operational_halt_status_message&, std::uint64_t, const iex::iexequities::deepplus::iextp::v1_04::iextp_header&)
+        { ++operational_halt_status_message; ++matched_messages; }
+    void on_message(const iex::iexequities::deepplus::iextp::v1_04::short_sale_price_test_status_message&, std::uint64_t, const iex::iexequities::deepplus::iextp::v1_04::iextp_header&)
+        { ++short_sale_price_test_status_message; ++matched_messages; }
+    void on_message(const iex::iexequities::deepplus::iextp::v1_04::security_event_message&, std::uint64_t, const iex::iexequities::deepplus::iextp::v1_04::iextp_header&)
+        { ++security_event_message; ++matched_messages; }
+    void on_message(const iex::iexequities::deepplus::iextp::v1_04::add_order_message&, std::uint64_t, const iex::iexequities::deepplus::iextp::v1_04::iextp_header&)
+        { ++add_order_message; ++matched_messages; }
+    void on_message(const iex::iexequities::deepplus::iextp::v1_04::order_modify_message&, std::uint64_t, const iex::iexequities::deepplus::iextp::v1_04::iextp_header&)
+        { ++order_modify_message; ++matched_messages; }
+    void on_message(const iex::iexequities::deepplus::iextp::v1_04::order_delete_message&, std::uint64_t, const iex::iexequities::deepplus::iextp::v1_04::iextp_header&)
+        { ++order_delete_message; ++matched_messages; }
+    void on_message(const iex::iexequities::deepplus::iextp::v1_04::order_executed_message&, std::uint64_t, const iex::iexequities::deepplus::iextp::v1_04::iextp_header&)
+        { ++order_executed_message; ++matched_messages; }
+    void on_message(const iex::iexequities::deepplus::iextp::v1_04::trade_message&, std::uint64_t, const iex::iexequities::deepplus::iextp::v1_04::iextp_header&)
+        { ++trade_message; ++matched_messages; }
+    void on_message(const iex::iexequities::deepplus::iextp::v1_04::trade_break_message&, std::uint64_t, const iex::iexequities::deepplus::iextp::v1_04::iextp_header&)
+        { ++trade_break_message; ++matched_messages; }
+    void on_message(const iex::iexequities::deepplus::iextp::v1_04::clear_book_message&, std::uint64_t, const iex::iexequities::deepplus::iextp::v1_04::iextp_header&)
+        { ++clear_book_message; ++matched_messages; }
 
     // report statistics
     void report() {
