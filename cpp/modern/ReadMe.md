@@ -16,7 +16,7 @@ Within a protocol:
 - `iterators/` — the packet walker: `initialize(data, length)` then `next()` per message
 - `definitions.hpp` — every header above in one include
 
-The programs under `executables/` and the tests under `tests/` are written against these.
+The extractor and the tests under `tests/modern/` are written against these.
 
 ## Protocols (10)
 

@@ -19,20 +19,25 @@ namespace packet {
         PcapIterator source;
         packet::Frame current_frame;
 
+        // packets read so far: 1 at the first, which is what a record cites
+        std::uint64_t packet_number = 0;
+
         const packet::Options& options;
 
         explicit Parser(const packet::Options& options)
           : source{ specs_from(options) }, options{ options } {}
 
-        // load next pcap frame
+        // load the next pcap frame: after this, frame() is the frame advanced to
         bool next() {
-            return source.advance();
+            if (!source.advance()) { return false; }
+
+            packet_number++;
+            current_frame = packet::Frame{ source.data(), source.length() };
+            return true;
         }
 
-        // parse frame and identify protocol
+        // identify the loaded frame's protocol
         result identify() {
-            current_frame = packet::Frame{ source.data(), source.length() };
-
             if (current_frame.is_udp()) {
                 return result::iex_iexequities_deep_iextp_v1_06;
             }

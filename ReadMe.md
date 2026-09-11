@@ -1,13 +1,14 @@
 # Omi C++ Protocols
 
-Generated C++ binary-protocol parsers, one directory tree per generation flavor under
+Generated C++ binary-protocol parsers, one directory tree per generation format under
 `cpp/`:
 
 - `cpp/advanced/` — packed structs, types, messages and dispatch (the Advanced parser)
 - `cpp/modern/` — the Modern parser
+- `cpp/classes/` — the Classes library: owning classes that decode once and encode back
 
 Every parser is compile-verified: `checks/` holds one translation unit per protocol and
-flavor that includes the aggregating headers, and `CMakeLists.txt` compiles them all —
+format that includes the aggregating headers, and `CMakeLists.txt` compiles them all —
 so a clean build fires the generated layout `static_assert`s across every protocol.
 
 ```sh
@@ -18,11 +19,12 @@ cmake -S . -B build && cmake --build build
 
 `executables/` holds the programs, one directory per protocol under each. They read the
 parsers published under `cpp/` by a repository-root-relative include, so a protocol's parser
-exists in exactly one place:
+exists in exactly one place. Each program reads through one format:
 
-- `executables/dump/` — prints every message's fields as `name=value`
-- `executables/extractor/` — samples a capture down to one packet per message type
-- `executables/statistics/` — counts packets and messages by type
+- `executables/dump/` — prints every message as its class and fields, through Classes
+- `executables/extractor/` — samples a capture down to one packet per message type, through Modern
+- `executables/statistics/` — counts packets and messages by type, through Advanced where the
+  protocol has a transport sequence and Modern where it does not
 
 The pcap reader they all share is `executables/pcap/`.
 
@@ -32,17 +34,37 @@ The pcap reader they all share is `executables/pcap/`.
 ./build/statistics_<protocol> -i capture.pcap
 ```
 
-## Packet tests
+## Tests
 
-`tests/messages/` holds a packet-driven test per protocol (4 of them). Each reads the
-captures its protocol declares, reduces every frame to its transport payload, walks the
-payload with the generated Modern iterator, and requires the message the capture is named
-for to appear. They build and run only when pointed at a packet corpus checkout:
+`tests/` holds a test per protocol and format (12 of them), each written against the
+surface that format's program uses, plus one run of each program on its protocol's first
+declared capture (12 of them):
+
+- `tests/modern/` walks every payload with the Modern iterator and requires the declared
+  message — what extractor reads through
+- `tests/advanced/` walks every segment with the session layer's `process_segment` and
+  requires the declared message to be dispatched — what statistics reads through
+- `tests/classes/` decodes every datagram into the `Packet`, requires the declared message
+  through the `Visitor`, and requires each datagram to encode back to its own bytes — what
+  dump reads through
+- the program runs require dump to print the message's class, statistics to count it, and
+  extractor to write a sample
+
+Every build compiles them, so a test that does not build fails the build like anything under
+`checks/`. Running them reads the captures each protocol declares, which takes a packet
+corpus checkout:
 
 ```sh
-cmake -S . -B build -DOMI_PACKETS_DIR=/path/to/ScaledPackets
+cmake -S . -B build -DOMI_PACKETS_DIR=/path/to/packets
 cmake --build build --parallel && ctest --test-dir build
 ```
+
+A protocol a format's generator refuses is left out of that format, and out of the programs
+and tests that read through it:
+
+- Iex.IexEquities.Deep.Snap.v1.6, Classes: 'packet.message' is reassembled from a stream; reassembled (TCP) models are not yet supported by the Classes generator
+- Iex.IexEquities.DeepPlus.Snap.v1.05, Classes: 'packet.message' is reassembled from a stream; reassembled (TCP) models are not yet supported by the Classes generator
+- Iex.IexEquities.Tops.Snap.v1.6, Classes: 'packet.message' is reassembled from a stream; reassembled (TCP) models are not yet supported by the Classes generator
 
 ## Protocols (10)
 

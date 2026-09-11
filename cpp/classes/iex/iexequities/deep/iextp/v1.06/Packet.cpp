@@ -1,0 +1,185 @@
+#include "Packet.hpp"
+
+#include "Factory.hpp"
+#include "Visitor.hpp"
+#include "common/Print.hpp"
+#include "common/Wire.hpp"
+
+namespace iex::iexequities::deep::iextp::v1_06 {
+
+Frame::Frame(std::unique_ptr<Message> message) : message_(std::move(message)) {}
+
+Frame::Frame(const Frame& other)
+  : message_header_(other.message_header_), message_(other.message_ ? other.message_->clone() : nullptr) {}
+
+Frame& Frame::operator=(const Frame& other) {
+    if (this != &other) {
+        message_header_ = other.message_header_;
+        message_ = other.message_ ? other.message_->clone() : nullptr;
+    }
+    return *this;
+}
+
+const MessageHeader& Frame::message_header() const { return message_header_; }
+MessageHeader& Frame::message_header() { return message_header_; }
+void Frame::set_message_header(const MessageHeader& value) { message_header_ = value; }
+
+const Message* Frame::message() const { return message_.get(); }
+Message* Frame::message() { return message_.get(); }
+void Frame::set_message(std::unique_ptr<Message> message) { message_ = std::move(message); }
+std::unique_ptr<Message> Frame::release() { return std::move(message_); }
+
+std::size_t Frame::decode(const std::byte* data, std::size_t length) {
+    std::size_t offset = 0;
+
+    offset += message_header_.decode(data + offset, length - offset);
+
+    return offset;
+}
+
+std::size_t Frame::encode(std::byte* data, std::size_t capacity) const {
+    std::size_t offset = 0;
+    wire::require_capacity("Frame", encoded_size(), capacity);
+
+    offset += message_header_.encode(data + offset, capacity - offset);
+
+    return offset;
+}
+
+std::size_t Frame::encoded_size() const {
+    return message_header_.encoded_size();
+}
+
+void Frame::print(std::ostream& out) const {
+    out << "Frame{";
+    out << "message_header=";
+    message_header_.print(out);
+    out << ", ";
+    out << "message=";
+    if (message_) { message_->print(out); } else { out << "null"; }
+    out << '}';
+}
+
+bool Frame::operator==(const Frame& other) const {
+    if (!(message_header_ == other.message_header_)) { return false; }
+    if (!message_ || !other.message_) { return !message_ && !other.message_; }
+    return message_->equals(*other.message_);
+}
+
+bool Frame::operator!=(const Frame& other) const { return !(*this == other); }
+
+const IextpHeader& Packet::iextp_header() const { return iextp_header_; }
+IextpHeader& Packet::iextp_header() { return iextp_header_; }
+void Packet::set_iextp_header(const IextpHeader& value) { iextp_header_ = value; }
+
+Packet::Kind Packet::kind() const { return kind_; }
+void Packet::set_kind(Kind value) { kind_ = value; }
+
+const std::vector<Frame>& Packet::frames() const { return frames_; }
+std::vector<Frame>& Packet::frames() { return frames_; }
+void Packet::add(std::unique_ptr<Message> message) { frames_.emplace_back(std::move(message)); }
+
+std::size_t Packet::decode(const std::byte* data, std::size_t length) {
+    std::size_t offset = 0;
+    frames_.clear();
+
+    offset += iextp_header_.decode(data + offset, length - offset);
+
+    if (iextp_header_.message_count() == 0) {
+        kind_ = Kind::Heartbeat;
+        return offset;
+    }
+
+    kind_ = Kind::Messages;
+
+    const std::size_t count = static_cast<std::size_t>(iextp_header_.message_count());
+
+    for (std::size_t index = 0; index < count; ++index) {
+        Frame frame;
+        const std::size_t start = offset;
+        offset += frame.decode(data + offset, length - offset);
+        const std::size_t frame_size = static_cast<std::size_t>(frame.message_header().message_length()) + 2;
+        wire::require("Packet", start + frame_size, length);
+        const std::size_t body = start + frame_size - offset;
+        std::unique_ptr<Message> message = Factory::create(frame.message_header().message_type());
+        message->decode(data + offset, body);
+        offset = start + frame_size;
+        frame.set_message(std::move(message));
+        frames_.push_back(std::move(frame));
+    }
+
+    return offset;
+}
+
+std::size_t Packet::encode(std::byte* data, std::size_t capacity) const {
+    std::size_t offset = 0;
+    wire::require_capacity("Packet", encoded_size(), capacity);
+
+    auto iextp_header = iextp_header_;
+    if (kind_ == Kind::Messages) { iextp_header.set_message_count(static_cast<std::uint16_t>(frames_.size())); }
+    if (kind_ == Kind::Heartbeat) { iextp_header.set_message_count(0); }
+
+    offset += iextp_header.encode(data + offset, capacity - offset);
+
+    if (kind_ != Kind::Messages) { return offset; }
+
+    for (const Frame& frame : frames_) {
+        if (frame.message() == nullptr) { throw EncodeError("Packet", "a frame holds no message"); }
+        const std::size_t frame_size = frame.encoded_size() + frame.message()->encoded_size();
+
+        auto message_header = frame.message_header();
+        message_header.set_message_length(static_cast<std::uint16_t>(frame_size - 2));
+        message_header.set_message_type(frame.message()->type());
+
+        offset += message_header.encode(data + offset, capacity - offset);
+
+        offset += frame.message()->encode(data + offset, capacity - offset);
+    }
+
+    return offset;
+}
+
+std::size_t Packet::encoded_size() const {
+    std::size_t total = iextp_header_.encoded_size();
+    if (kind_ == Kind::Messages) {
+        for (const Frame& frame : frames_) {
+            total += frame.encoded_size() + (frame.message() ? frame.message()->encoded_size() : 0);
+        }
+    }
+    return total;
+}
+
+void Packet::accept(Visitor& visitor) const {
+    for (const Frame& frame : frames_) {
+        if (frame.message()) { frame.message()->accept(visitor); }
+    }
+}
+
+void Packet::print(std::ostream& out) const {
+    out << "Packet{kind=" << kind_;
+    out << ", iextp_header=";
+    iextp_header_.print(out);
+    out << ", frames=";
+    print::sequence(out, frames_);
+    out << '}';
+}
+
+bool Packet::operator==(const Packet& other) const {
+    return kind_ == other.kind_ && iextp_header_ == other.iextp_header_ && frames_ == other.frames_;
+}
+
+bool Packet::operator!=(const Packet& other) const { return !(*this == other); }
+
+std::string_view to_string(Packet::Kind kind) {
+    switch (kind) {
+        case Packet::Kind::Messages: return "Messages";
+        case Packet::Kind::Heartbeat: return "Heartbeat";
+        default: return "?";
+    }
+}
+
+std::ostream& operator<<(std::ostream& out, Packet::Kind kind) { return out << to_string(kind); }
+std::ostream& operator<<(std::ostream& out, const Frame& frame) { frame.print(out); return out; }
+std::ostream& operator<<(std::ostream& out, const Packet& packet) { packet.print(out); return out; }
+
+} // namespace iex::iexequities::deep::iextp::v1_06

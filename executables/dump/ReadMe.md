@@ -1,26 +1,24 @@
 # Dump Programs
 
-Prints every message in a capture as `name=value`, one line per message. Nothing is
-aggregated and nothing is filtered — it is the plain view of what is on the wire, for
-eyeballing a capture or diffing two of them.
+Prints every message in a capture, one line per message: the message's class and each of
+its fields as `name=value`, through the Classes library's own `print`. Nothing is aggregated
+and nothing is filtered — it is the plain view of what is on the wire, for eyeballing a
+capture or diffing two of them. A datagram that does not decode is reported on stderr.
 
 ```sh
 ./build/dump_<protocol> capture.pcap
 ```
 
 ```
-Quote Update Message Quote Update Flags.MarketSession=0,Timestamp=1517065700930439360,
-Symbol="ATSG",Bid Size=18773,Bid Price=24.19,Ask Price=24.25,Ask Size=60677
+QuoteUpdateMessage{quote_update_flags=QuoteUpdateFlags{market_session=false, symbol_availability=false},
+timestamp=1517065700930439360, symbol="ATSG", bid_size=18773, bid_price=24.1900, ...}
 ```
-
-Byte-wide fields are printed readably: a `std::uint8_t` as a number, a `char` quoted, and a
-bitfield as its named flags.
 
 Each protocol has its own directory, named for its identifier with the version as the last
 segment — `Iex.IexEquities.Tops.IexTp.v1.64` becomes `iex/iexequities/tops/iextp/v1.64` —
 matching the C++ namespace the code declares.
 
-Each directory holds only the program: it includes its protocol's parser from `cpp/modern/`
+Each directory holds only the program: it includes its protocol's parser from `cpp/classes/`
 and the capture reader from `executables/pcap/`, both resolved from the repository root, so
 no program carries a copy of either.
 
