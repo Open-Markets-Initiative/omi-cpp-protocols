@@ -19,7 +19,7 @@ class ClearBookMessage;
 class UnknownMessage;
 
 // What a packet's messages are dispatched to. Derive from it, override the visits you
-// care about, and hand it to Packet::accept or Message::accept; the others do nothing.
+// care about, and hand it to the packet's accept or a message's; the others do nothing.
 class Visitor {
   public:
     virtual ~Visitor() = default;

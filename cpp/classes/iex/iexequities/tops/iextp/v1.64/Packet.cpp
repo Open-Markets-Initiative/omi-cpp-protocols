@@ -77,11 +77,14 @@ void Packet::set_kind(Kind value) { kind_ = value; }
 
 const std::vector<Frame>& Packet::frames() const { return frames_; }
 std::vector<Frame>& Packet::frames() { return frames_; }
+const std::vector<std::byte>& Packet::trailer() const { return trailer_; }
+std::vector<std::byte>& Packet::trailer() { return trailer_; }
 void Packet::add(std::unique_ptr<Message> message) { frames_.emplace_back(std::move(message)); }
 
 std::size_t Packet::decode(const std::byte* data, std::size_t length) {
     std::size_t offset = 0;
     frames_.clear();
+    trailer_.clear();
 
     offset += iextp_header_.decode(data + offset, length - offset);
 
@@ -95,8 +98,8 @@ std::size_t Packet::decode(const std::byte* data, std::size_t length) {
     const std::size_t count = static_cast<std::size_t>(iextp_header_.message_count());
 
     for (std::size_t index = 0; index < count; ++index) {
-        Frame frame;
         const std::size_t start = offset;
+        Frame frame;
         offset += frame.decode(data + offset, length - offset);
         const std::size_t frame_size = static_cast<std::size_t>(frame.message_header().message_length()) + 2;
         wire::require("Packet", start + frame_size, length);
@@ -107,6 +110,11 @@ std::size_t Packet::decode(const std::byte* data, std::size_t length) {
         frame.set_message(std::move(message));
         frames_.push_back(std::move(frame));
     }
+
+    // What the frames left behind: a pad or trailer the model does not describe, kept
+    // as it came so the packet still encodes back to the bytes it was read from.
+    trailer_.assign(data + offset, data + length);
+    offset = length;
 
     return offset;
 }
@@ -136,6 +144,9 @@ std::size_t Packet::encode(std::byte* data, std::size_t capacity) const {
         offset += frame.message()->encode(data + offset, capacity - offset);
     }
 
+    wire::write_bytes(data + offset, trailer_.data(), trailer_.size());
+    offset += trailer_.size();
+
     return offset;
 }
 
@@ -145,6 +156,7 @@ std::size_t Packet::encoded_size() const {
         for (const Frame& frame : frames_) {
             total += frame.encoded_size() + (frame.message() ? frame.message()->encoded_size() : 0);
         }
+        total += trailer_.size();
     }
     return total;
 }
@@ -161,11 +173,12 @@ void Packet::print(std::ostream& out) const {
     iextp_header_.print(out);
     out << ", frames=";
     print::sequence(out, frames_);
+    if (!trailer_.empty()) { out << ", trailer="; print::hex(out, trailer_.data(), trailer_.size()); }
     out << '}';
 }
 
 bool Packet::operator==(const Packet& other) const {
-    return kind_ == other.kind_ && iextp_header_ == other.iextp_header_ && frames_ == other.frames_;
+    return kind_ == other.kind_ && iextp_header_ == other.iextp_header_ && frames_ == other.frames_ && trailer_ == other.trailer_;
 }
 
 bool Packet::operator!=(const Packet& other) const { return !(*this == other); }

@@ -59,13 +59,6 @@ cmake -S . -B build -DOMI_PACKETS_DIR=/path/to/packets
 cmake --build build --parallel && ctest --test-dir build
 ```
 
-A protocol a format's generator refuses is left out of that format, and out of the programs
-and tests that read through it:
-
-- Iex.IexEquities.Deep.Snap.v1.6, Classes: 'packet.message' is reassembled from a stream; reassembled (TCP) models are not yet supported by the Classes generator
-- Iex.IexEquities.DeepPlus.Snap.v1.05, Classes: 'packet.message' is reassembled from a stream; reassembled (TCP) models are not yet supported by the Classes generator
-- Iex.IexEquities.Tops.Snap.v1.6, Classes: 'packet.message' is reassembled from a stream; reassembled (TCP) models are not yet supported by the Classes generator
-
 ## Protocols (10)
 
 - `Iex.IexEquities.Deep.IexTp.v1.06`

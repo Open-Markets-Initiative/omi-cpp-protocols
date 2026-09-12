@@ -12,7 +12,7 @@ namespace iex::iexequities::tops::iextp::v1_64 {
 
 class Visitor;
 
-// The code that selects a message: the frame's Message Type
+// The code that selects a message here: the Message Type
 using MessageCode = MessageType;
 
 // One decoded message. A message owns its fields: it is decoded once from the wire, and

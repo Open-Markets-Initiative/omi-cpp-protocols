@@ -76,6 +76,12 @@ class Packet {
     // The frames, each holding one message
     const std::vector<Frame>& frames() const;
     std::vector<Frame>& frames();
+
+    // Bytes after the last frame that the model does not account for — a pad or a
+    // trailer the specification leaves out. They are kept as they came and written
+    // back, so a packet carrying one still encodes to the bytes it was read from.
+    const std::vector<std::byte>& trailer() const;
+    std::vector<std::byte>& trailer();
     // Append a frame holding this message; the frame headers are derived on encode
     void add(std::unique_ptr<Message> message);
 
@@ -95,6 +101,7 @@ class Packet {
     IextpHeader iextp_header_{};
     Kind kind_{ Kind::Messages };
     std::vector<Frame> frames_;
+    std::vector<std::byte> trailer_;
 };
 
 std::string_view to_string(Packet::Kind kind);

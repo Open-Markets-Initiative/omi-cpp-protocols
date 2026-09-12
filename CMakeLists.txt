@@ -17,6 +17,7 @@ add_library(protocols_check OBJECT
   checks/iex_iexequities_deep_iextp_v1.08_classes.cpp
   checks/iex_iexequities_deep_snap_v1.6_advanced.cpp
   checks/iex_iexequities_deep_snap_v1.6_modern.cpp
+  checks/iex_iexequities_deep_snap_v1.6_classes.cpp
   checks/iex_iexequities_deepplus_iextp_v1.01_advanced.cpp
   checks/iex_iexequities_deepplus_iextp_v1.01_modern.cpp
   checks/iex_iexequities_deepplus_iextp_v1.01_classes.cpp
@@ -25,6 +26,7 @@ add_library(protocols_check OBJECT
   checks/iex_iexequities_deepplus_iextp_v1.04_classes.cpp
   checks/iex_iexequities_deepplus_snap_v1.05_advanced.cpp
   checks/iex_iexequities_deepplus_snap_v1.05_modern.cpp
+  checks/iex_iexequities_deepplus_snap_v1.05_classes.cpp
   checks/iex_iexequities_tops_iextp_v1.56_advanced.cpp
   checks/iex_iexequities_tops_iextp_v1.56_modern.cpp
   checks/iex_iexequities_tops_iextp_v1.56_classes.cpp
@@ -36,6 +38,7 @@ add_library(protocols_check OBJECT
   checks/iex_iexequities_tops_iextp_v1.66_classes.cpp
   checks/iex_iexequities_tops_snap_v1.6_advanced.cpp
   checks/iex_iexequities_tops_snap_v1.6_modern.cpp
+  checks/iex_iexequities_tops_snap_v1.6_classes.cpp
 )
 # The Classes libraries under cpp/classes/ — one static library per protocol, linked by the
 # dump program and the classes test that decode through it.
@@ -109,6 +112,49 @@ add_library(classes_iex_iexequities_deep_iextp_v1.08 STATIC
   cpp/classes/iex/iexequities/deep/iextp/v1.08/Packet.cpp
 )
 target_include_directories(classes_iex_iexequities_deep_iextp_v1.08 PUBLIC ${CMAKE_SOURCE_DIR})
+add_library(classes_iex_iexequities_deep_snap_v1.6 STATIC
+  cpp/classes/iex/iexequities/deep/snap/v1.6/enums/MessageType.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/enums/RejectReasonCode.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/enums/IexTpMessageType.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/enums/SystemEvent.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/enums/LuldTier.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/enums/TradingStatus.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/enums/RetailLiquidityIndicator.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/enums/OperationalHaltStatus.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/enums/ShortSalePriceTestStatus.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/enums/Detail.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/enums/SecurityEvent.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/enums/EventFlags.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/enums/PriceType.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/enums/AuctionType.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/enums/ImbalanceSide.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/structs/MessageHeader.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/messages/SnapshotRequestMessage.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/messages/ErrorResponseMessage.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/messages/SnapshotStartMessage.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/messages/SystemEventMessage.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/bitfields/SecurityDirectoryFlags.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/messages/SecurityDirectoryMessage.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/messages/TradingStatusMessage.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/messages/RetailLiquidityIndicatorMessage.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/messages/OperationalHaltStatusMessage.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/messages/ShortSalePriceTestStatusMessage.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/messages/SecurityEventMessage.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/messages/PriceLevelBuyUpdateMessage.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/messages/PriceLevelSellUpdateMessage.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/bitfields/SaleConditionFlags.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/messages/TradeReportMessage.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/messages/OfficialPriceMessage.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/messages/TradeBreakMessage.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/messages/AuctionInformationMessage.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/messages/SnapshotDataMessage.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/messages/SnapshotEndMessage.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/messages/UnknownMessage.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/messages/UnknownIexTpMessageData.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/Factory.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/Stream.cpp
+)
+target_include_directories(classes_iex_iexequities_deep_snap_v1.6 PUBLIC ${CMAKE_SOURCE_DIR})
 add_library(classes_iex_iexequities_deepplus_iextp_v1.01 STATIC
   cpp/classes/iex/iexequities/deepplus/iextp/v1.01/enums/MessageType.cpp
   cpp/classes/iex/iexequities/deepplus/iextp/v1.01/enums/SystemEvent.cpp
@@ -179,6 +225,48 @@ add_library(classes_iex_iexequities_deepplus_iextp_v1.04 STATIC
   cpp/classes/iex/iexequities/deepplus/iextp/v1.04/Packet.cpp
 )
 target_include_directories(classes_iex_iexequities_deepplus_iextp_v1.04 PUBLIC ${CMAKE_SOURCE_DIR})
+add_library(classes_iex_iexequities_deepplus_snap_v1.05 STATIC
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/enums/MessageType.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/enums/RejectReasonCode.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/enums/IexTpMessageType.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/enums/SystemEvent.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/enums/LuldTier.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/enums/TradingStatus.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/enums/RetailLiquidityIndicator.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/enums/OperationalHaltStatus.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/enums/ShortSalePriceTestStatus.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/enums/Detail.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/enums/SecurityEvent.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/enums/Side.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/structs/MessageHeader.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/SnapshotRequestMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/ErrorResponseMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/SnapshotStartMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/SystemEventMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/bitfields/SecurityDirectoryFlags.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/SecurityDirectoryMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/TradingStatusMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/RetailLiquidityIndicatorMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/OperationalHaltStatusMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/ShortSalePriceTestStatusMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/SecurityEventMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/AddOrderMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/bitfields/ModifyFlags.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/OrderModifyMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/OrderDeleteMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/bitfields/SaleConditionFlags.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/OrderExecutedMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/TradeMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/TradeBreakMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/ClearBookMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/SnapshotDataMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/SnapshotEndMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/UnknownMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/UnknownIexTpMessageData.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/Factory.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.05/Stream.cpp
+)
+target_include_directories(classes_iex_iexequities_deepplus_snap_v1.05 PUBLIC ${CMAKE_SOURCE_DIR})
 add_library(classes_iex_iexequities_tops_iextp_v1.56 STATIC
   cpp/classes/iex/iexequities/tops/iextp/v1.56/enums/MessageType.cpp
   cpp/classes/iex/iexequities/tops/iextp/v1.56/enums/SystemEvent.cpp
@@ -278,6 +366,46 @@ add_library(classes_iex_iexequities_tops_iextp_v1.66 STATIC
   cpp/classes/iex/iexequities/tops/iextp/v1.66/Packet.cpp
 )
 target_include_directories(classes_iex_iexequities_tops_iextp_v1.66 PUBLIC ${CMAKE_SOURCE_DIR})
+add_library(classes_iex_iexequities_tops_snap_v1.6 STATIC
+  cpp/classes/iex/iexequities/tops/snap/v1.6/enums/MessageType.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/enums/RejectReasonCode.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/enums/IexTpMessageType.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/enums/SystemEvent.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/enums/LuldTier.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/enums/TradingStatus.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/enums/RetailLiquidityIndicator.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/enums/OperationalHaltStatus.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/enums/ShortSalePriceTestStatus.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/enums/Detail.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/enums/PriceType.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/enums/AuctionType.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/enums/ImbalanceSide.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/structs/MessageHeader.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/messages/SnapshotRequestMessage.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/messages/ErrorResponseMessage.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/messages/SnapshotStartMessage.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/messages/SystemEventMessage.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/bitfields/SecurityDirectoryFlags.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/messages/SecurityDirectoryMessage.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/messages/TradingStatusMessage.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/messages/RetailLiquidityIndicatorMessage.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/messages/OperationalHaltStatusMessage.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/messages/ShortSalePriceTestStatusMessage.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/bitfields/QuoteUpdateFlags.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/messages/QuoteUpdateMessage.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/bitfields/SaleConditionFlags.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/messages/TradeReportMessage.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/messages/OfficialPriceMessage.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/messages/TradeBreakMessage.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/messages/AuctionInformationMessage.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/messages/SnapshotDataMessage.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/messages/SnapshotEndMessage.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/messages/UnknownMessage.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/messages/UnknownIexTpMessageData.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/Factory.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/Stream.cpp
+)
+target_include_directories(classes_iex_iexequities_tops_snap_v1.6 PUBLIC ${CMAKE_SOURCE_DIR})
 # Programs under executables/ — one per protocol. Each reads the parser published under
 # cpp/, included by a repository-root-relative path, so there is only ever one copy of a
 # protocol's parser in the tree.
@@ -299,6 +427,9 @@ add_executable(statistics_iex_iexequities_deep_snap_v1.6 executables/statistics/
 target_include_directories(statistics_iex_iexequities_deep_snap_v1.6 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/iex/iexequities/deep/snap/v1.6)
 add_executable(extractor_iex_iexequities_deep_snap_v1.6 executables/extractor/iex/iexequities/deep/snap/v1.6/main.cpp)
 target_include_directories(extractor_iex_iexequities_deep_snap_v1.6 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/extractor/iex/iexequities/deep/snap/v1.6)
+add_executable(dump_iex_iexequities_deep_snap_v1.6 executables/dump/iex/iexequities/deep/snap/v1.6/main.cpp)
+target_include_directories(dump_iex_iexequities_deep_snap_v1.6 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/dump/iex/iexequities/deep/snap/v1.6)
+target_link_libraries(dump_iex_iexequities_deep_snap_v1.6 PRIVATE classes_iex_iexequities_deep_snap_v1.6)
 add_executable(statistics_iex_iexequities_deepplus_iextp_v1.01 executables/statistics/iex/iexequities/deepplus/iextp/v1.01/main.cpp)
 target_include_directories(statistics_iex_iexequities_deepplus_iextp_v1.01 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/iex/iexequities/deepplus/iextp/v1.01)
 add_executable(extractor_iex_iexequities_deepplus_iextp_v1.01 executables/extractor/iex/iexequities/deepplus/iextp/v1.01/main.cpp)
@@ -317,6 +448,9 @@ add_executable(statistics_iex_iexequities_deepplus_snap_v1.05 executables/statis
 target_include_directories(statistics_iex_iexequities_deepplus_snap_v1.05 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/iex/iexequities/deepplus/snap/v1.05)
 add_executable(extractor_iex_iexequities_deepplus_snap_v1.05 executables/extractor/iex/iexequities/deepplus/snap/v1.05/main.cpp)
 target_include_directories(extractor_iex_iexequities_deepplus_snap_v1.05 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/extractor/iex/iexequities/deepplus/snap/v1.05)
+add_executable(dump_iex_iexequities_deepplus_snap_v1.05 executables/dump/iex/iexequities/deepplus/snap/v1.05/main.cpp)
+target_include_directories(dump_iex_iexequities_deepplus_snap_v1.05 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/dump/iex/iexequities/deepplus/snap/v1.05)
+target_link_libraries(dump_iex_iexequities_deepplus_snap_v1.05 PRIVATE classes_iex_iexequities_deepplus_snap_v1.05)
 add_executable(statistics_iex_iexequities_tops_iextp_v1.56 executables/statistics/iex/iexequities/tops/iextp/v1.56/main.cpp)
 target_include_directories(statistics_iex_iexequities_tops_iextp_v1.56 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/iex/iexequities/tops/iextp/v1.56)
 add_executable(extractor_iex_iexequities_tops_iextp_v1.56 executables/extractor/iex/iexequities/tops/iextp/v1.56/main.cpp)
@@ -342,6 +476,9 @@ add_executable(statistics_iex_iexequities_tops_snap_v1.6 executables/statistics/
 target_include_directories(statistics_iex_iexequities_tops_snap_v1.6 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/iex/iexequities/tops/snap/v1.6)
 add_executable(extractor_iex_iexequities_tops_snap_v1.6 executables/extractor/iex/iexequities/tops/snap/v1.6/main.cpp)
 target_include_directories(extractor_iex_iexequities_tops_snap_v1.6 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/extractor/iex/iexequities/tops/snap/v1.6)
+add_executable(dump_iex_iexequities_tops_snap_v1.6 executables/dump/iex/iexequities/tops/snap/v1.6/main.cpp)
+target_include_directories(dump_iex_iexequities_tops_snap_v1.6 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/dump/iex/iexequities/tops/snap/v1.6)
+target_link_libraries(dump_iex_iexequities_tops_snap_v1.6 PRIVATE classes_iex_iexequities_tops_snap_v1.6)
 # Corpus-driven tests, one family per format under tests/, each through the surface that
 # format's program uses: modern through the packet iterator, advanced through the session
 # layer, classes through the Packet's decode and encode. The test programs are built by
