@@ -14,6 +14,7 @@ struct BestOffer {
     static constexpr std::size_t precision = 4;
     static constexpr double denominator = 10000;
     using type = std::uint64_t;
+static const type no_value = 0;
 
     // default constructor
     constexpr BestOffer()
@@ -26,6 +27,11 @@ struct BestOffer {
     // get underlying integer of BestOffer field
     [[nodiscard]] std::uint64_t integer() const {
         return std::byteswap(value);
+    }
+
+    // does BestOffer hold a value, rather than the one reserved for none
+    [[nodiscard]] bool has_value() const {
+        return integer() != no_value;
     }
 
     // decimal value of BestOffer field

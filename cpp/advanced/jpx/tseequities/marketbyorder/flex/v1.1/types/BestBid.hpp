@@ -2,6 +2,7 @@
 
 #include <cstddef>
 #include <cstdint>
+#include <optional>
 #include "../cache/Required.hpp"
 
 namespace jpx::tseequities::marketbyorder::flex::v1_1 {
@@ -11,10 +12,11 @@ struct best_bid {
 
     static constexpr const char* name = "best_bid";
     static constexpr std::size_t size = 8;
-    static constexpr bool is_optional = false;
+    static constexpr bool is_optional = true;
+    static constexpr std::uint64_t null_value = 0ULL;
     static constexpr int exponent = -4;
 
-    using result_type = required<std::uint64_t>;
+    using result_type = std::optional<std::uint64_t>;
     using storage_type = result_type;
 
     constexpr best_bid()
@@ -24,7 +26,8 @@ struct best_bid {
      : value{ static_cast<std::uint64_t>(__builtin_bswap64(v)) } {}
 
     [[nodiscard]] result_type get() const {
-        return result_type{static_cast<std::uint64_t>(__builtin_bswap64(value))};
+        auto host = static_cast<std::uint64_t>(__builtin_bswap64(value));
+        return host == null_value ? std::nullopt : result_type{host};
     }
 
     void set(std::uint64_t v) {
@@ -35,7 +38,11 @@ struct best_bid {
         if (value.has_value())
             set(value.value());
         else
-            set(0);
+            set(null_value);
+    }
+
+    constexpr void set_null() {
+        value = null_value;
     }
 
   protected:

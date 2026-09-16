@@ -11,6 +11,7 @@ struct MessageProtocolId {
     static constexpr const char* name = "Message Protocol Id";
     static constexpr std::size_t size =  2;
     using type = std::uint16_t;
+static const type static_value = 32771;
 
     // default constructor
     constexpr MessageProtocolId()

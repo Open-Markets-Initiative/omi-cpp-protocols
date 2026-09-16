@@ -74,8 +74,8 @@ inline std::ostream& operator<<(std::ostream& os, const execution_summary_messag
        << ",total_invalidation=" << msg.fields.total_invalidation.get().value()
        << ",last_price=" << msg.fields.last_price.get().value()
        << ",match_id=" << msg.fields.match_id.get().value()
-       << ",best_offer=" << msg.fields.best_offer.get().value()
-       << ",best_bid=" << msg.fields.best_bid.get().value()
+       << ",best_offer=" << (msg.fields.best_offer.get().has_value() ? std::to_string(msg.fields.best_offer.get().value()) : std::string_view("null"))
+       << ",best_bid=" << (msg.fields.best_bid.get().has_value() ? std::to_string(msg.fields.best_bid.get().value()) : std::string_view("null"))
        ;
     return os;
 }
@@ -85,7 +85,7 @@ inline std::ostream& operator<<(std::ostream& os, const add_order_message& msg) 
        << ",order_id=" << msg.fields.order_id.get().value()
        << ",side=\"" << flex_marketbyorder::side::to_string(msg.fields.side.get().value()) << '"'
        << ",quantity=" << msg.fields.quantity.get().value()
-       << ",price=" << msg.fields.price.get().value()
+       << ",price=" << (msg.fields.price.get().has_value() ? std::to_string(msg.fields.price.get().value()) : std::string_view("null"))
        << ",order_condition=\"" << flex_marketbyorder::order_condition::to_string(msg.fields.order_condition.get().value()) << '"'
        << ",modification_flag=\"" << flex_marketbyorder::modification_flag::to_string(msg.fields.modification_flag.get().value()) << '"'
        ;
