@@ -16,6 +16,10 @@
 #include "../types/CollarReferencePrice.hpp"
 #include "../types/LowerAuctionCollar.hpp"
 #include "../types/UpperAuctionCollar.hpp"
+#include "../types/IexTpHeader.hpp"
+#include "../types/IexTpMessageBlockLength.hpp"
+#include "../types/IexTpMessageLength.hpp"
+#include "../types/IexTpMessageType.hpp"
 
 namespace iex::iexequities::deep::snap::v1_6 {
 
@@ -43,7 +47,11 @@ struct auction_information_message {
         snap_deep::upper_auction_collar upper_auction_collar;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 2), {}};
+    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) + sizeof(snap_deep::iex_tp_header) + sizeof(snap_deep::iex_tp_message_block_length) + sizeof(snap_deep::iex_tp_message_length) + sizeof(snap_deep::iex_tp_message_type) - 2), message_type::enum_type::snapshot_data_message};
+    snap_deep::iex_tp_header iex_tp_header;
+    snap_deep::iex_tp_message_block_length iex_tp_message_block_length;
+    snap_deep::iex_tp_message_length iex_tp_message_length;
+    snap_deep::iex_tp_message_type iex_tp_message_type = snap_deep::iex_tp_message_type::enum_type::auction_information_message;
 
     fields_type fields;
 
@@ -75,7 +83,7 @@ static_assert(offsetof(auction_information_message::fields_type, collar_referenc
 static_assert(offsetof(auction_information_message::fields_type, lower_auction_collar) == 63, "unexpected offset of auction_information_message::fields_type::lower_auction_collar");
 static_assert(offsetof(auction_information_message::fields_type, upper_auction_collar) == 71, "unexpected offset of auction_information_message::fields_type::upper_auction_collar");
 static_assert(sizeof(auction_information_message::fields_type) == 79, "unexpected sizeof auction_information_message::fields_type");
-static_assert(sizeof(auction_information_message) == sizeof(message_header) + 79, "unexpected sizeof auction_information_message");
+static_assert(sizeof(auction_information_message) == sizeof(message_header) + sizeof(snap_deep::iex_tp_header) + sizeof(snap_deep::iex_tp_message_block_length) + sizeof(snap_deep::iex_tp_message_length) + sizeof(snap_deep::iex_tp_message_type) + 79, "unexpected sizeof auction_information_message");
 
 #pragma pack(pop)
 }

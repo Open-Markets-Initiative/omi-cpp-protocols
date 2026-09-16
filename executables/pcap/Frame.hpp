@@ -1,7 +1,7 @@
 #pragma once
 
 // Zero-copy ethernet frame dissector
-// Parses: Ethernet II -> optional 802.1Q VLAN -> IPv4 -> UDP/TCP
+// Parses: Ethernet II -> optional VLAN tags (802.1ad, 802.1Q, stacked) -> IPv4 -> UDP/TCP
 // All pointers reference the original buffer — no copies
 // Self-contained byte-order helpers via memcpy + shift-or
 
@@ -21,7 +21,7 @@ struct Frame {
     std::uint16_t src_port = 0;          // Host byte order
     std::uint16_t dst_port = 0;          // Host byte order
     std::uint8_t  ip_protocol = 0;       // 6=TCP, 17=UDP
-    std::uint16_t vlan_id = 0;           // 0 if no VLAN, else 12-bit VID
+    std::uint16_t vlan_id = 0;           // 0 if no VLAN, else the innermost tag's 12-bit VID
     std::uint32_t src_ip = 0;            // Network byte order
     std::uint32_t dst_ip = 0;            // Network byte order
     std::uint32_t tcp_seq = 0;           // Host byte order, TCP only (0 otherwise)
@@ -134,6 +134,10 @@ private:
 
     // --- Parse logic ---
 
+    static constexpr bool is_vlan_tag(std::uint16_t ethertype) {
+        return ethertype == 0x8100 || ethertype == 0x88A8 || ethertype == 0x9100;
+    }
+
     void parse() {
         // Minimum ethernet frame: 14 bytes (6 dst + 6 src + 2 ethertype)
         if (!data_ || len_ < 14) return;
@@ -144,15 +148,16 @@ private:
 
         // Linux SLL (cooked capture, 16-byte link header) detection: addr_len at
         // offset 4-5 is typically 6 for ARPHRD_ETHER, ethertype is at offset 14.
-        if (ethertype != 0x0800 && ethertype != 0x86DD && ethertype != 0x8100 && ethertype != 0x0806) {
+        if (ethertype != 0x0800 && ethertype != 0x86DD && !is_vlan_tag(ethertype) && ethertype != 0x0806) {
             if (len_ >= 16 && read_u16(data_ + 4) == 6) {
                 ethertype = read_u16(data_ + 14);
                 offset = 16;
             }
         }
 
-        // 802.1Q VLAN tag
-        if (ethertype == 0x8100) {
+        // VLAN tags: 802.1ad service tags (0x88A8, or 0x9100 from older QinQ gear) stacked
+        // before 802.1Q customer tags (0x8100); vlan_id keeps the innermost tag's VID
+        while (is_vlan_tag(ethertype)) {
             if (len_ < offset + 4) return;
             auto tci = read_u16(data_ + offset);
             vlan_id = tci & 0x0FFF;

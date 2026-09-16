@@ -32,9 +32,9 @@ std::string root() {
     return std::string{value};
 }
 
-// Walk every frame in a capture and require the expected message to appear in it.
-template <typename Message>
-void expect(const char* name, const char* relative) {
+// Walk every frame in a capture with the iterator and require the expected message to appear in it.
+template <typename Iterator, typename Matches>
+void expect(const char* name, const char* relative, Matches matches) {
     std::vector<std::pair<std::string, std::int64_t>> sources;
     sources.emplace_back(root() + "/" + relative, 0);
 
@@ -51,13 +51,13 @@ void expect(const char* name, const char* relative) {
 
         ++frames;
 
-        protocol::MessageIterator iterator;
+        Iterator iterator;
         iterator.initialize(frame.payload, frame.payload_len);
 
         while (iterator.next()) {
             ++messages;
 
-            if (iterator.message_type == Message::message_type) { ++matched; }
+            if (matches(iterator)) { ++matched; }
         }
     }
 
@@ -86,6 +86,6 @@ void expect(const char* name, const char* relative) {
 
 int main() {
     std::printf("== Iex.IexEquities.Tops.IexTp.v1.64 (modern)\n");
-    expect<protocol::QuoteUpdateMessage>("QuoteUpdateMessage", "Iex/IexEquities.Tops.IexTp.v1.64/QuoteUpdateMessage.pcap");
+    expect<protocol::MessageIterator>("QuoteUpdateMessage", "Iex/IexEquities.Tops.IexTp.v1.64/QuoteUpdateMessage.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::QuoteUpdateMessage::message_type; });
     return failures == 0 ? 0 : 1;
 }

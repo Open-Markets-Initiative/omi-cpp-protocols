@@ -1,6 +1,6 @@
 # Protocol Tests
 
-One test per protocol and format (12 of them), each written against the surface that
+One test per protocol and format (24 of them), each written against the surface that
 format's program reads through, so a format is exercised the way its consumer uses it rather
 than through whichever surface was easiest to write against. Every test reads the captures
 its protocol declares in the repository's configuration and requires the declared message to
@@ -19,7 +19,7 @@ a failure rather than a pass.
 
 Beside them the repository's `CMakeLists.txt` runs each program on its protocol's first
 declared capture, and requires what that program is for: dump to print the message's class,
-statistics to count it, extractor to write a sample.
+statistics to count it, extractor to write a sample, verify to pass the whole capture.
 
 The test programs are built by every build, so one that does not compile fails the build the
 way anything under `checks/` does. Running them needs the captures:

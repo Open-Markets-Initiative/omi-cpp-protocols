@@ -32,9 +32,9 @@ std::string root() {
     return std::string{value};
 }
 
-// Walk every frame in a capture and require the expected message to appear in it.
-template <typename Message>
-void expect(const char* name, const char* relative) {
+// Walk every frame in a capture with the iterator and require the expected message to appear in it.
+template <typename Iterator, typename Matches>
+void expect(const char* name, const char* relative, Matches matches) {
     std::vector<std::pair<std::string, std::int64_t>> sources;
     sources.emplace_back(root() + "/" + relative, 0);
 
@@ -51,13 +51,13 @@ void expect(const char* name, const char* relative) {
 
         ++frames;
 
-        protocol::MessageIterator iterator;
+        Iterator iterator;
         iterator.initialize(frame.payload, frame.payload_len);
 
         while (iterator.next()) {
             ++messages;
 
-            if (iterator.message_type == Message::message_type) { ++matched; }
+            if (matches(iterator)) { ++matched; }
         }
     }
 
@@ -86,7 +86,7 @@ void expect(const char* name, const char* relative) {
 
 int main() {
     std::printf("== Iex.IexEquities.Deep.IexTp.v1.06 (modern)\n");
-    expect<protocol::PriceLevelBuyUpdateMessage>("PriceLevelBuyUpdateMessage", "Iex/IexEquities.Deep.IexTp.v1.06/PriceLevelBuyUpdateMessage.pcap");
-    expect<protocol::PriceLevelSellUpdateMessage>("PriceLevelSellUpdateMessage", "Iex/IexEquities.Deep.IexTp.v1.06/PriceLevelSellUpdateMessage.pcap");
+    expect<protocol::MessageIterator>("PriceLevelBuyUpdateMessage", "Iex/IexEquities.Deep.IexTp.v1.06/PriceLevelBuyUpdateMessage.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::PriceLevelBuyUpdateMessage::message_type; });
+    expect<protocol::MessageIterator>("PriceLevelSellUpdateMessage", "Iex/IexEquities.Deep.IexTp.v1.06/PriceLevelSellUpdateMessage.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::PriceLevelSellUpdateMessage::message_type; });
     return failures == 0 ? 0 : 1;
 }

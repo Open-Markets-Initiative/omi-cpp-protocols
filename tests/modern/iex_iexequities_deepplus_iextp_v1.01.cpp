@@ -32,9 +32,9 @@ std::string root() {
     return std::string{value};
 }
 
-// Walk every frame in a capture and require the expected message to appear in it.
-template <typename Message>
-void expect(const char* name, const char* relative) {
+// Walk every frame in a capture with the iterator and require the expected message to appear in it.
+template <typename Iterator, typename Matches>
+void expect(const char* name, const char* relative, Matches matches) {
     std::vector<std::pair<std::string, std::int64_t>> sources;
     sources.emplace_back(root() + "/" + relative, 0);
 
@@ -51,13 +51,13 @@ void expect(const char* name, const char* relative) {
 
         ++frames;
 
-        protocol::MessageIterator iterator;
+        Iterator iterator;
         iterator.initialize(frame.payload, frame.payload_len);
 
         while (iterator.next()) {
             ++messages;
 
-            if (iterator.message_type == Message::message_type) { ++matched; }
+            if (matches(iterator)) { ++matched; }
         }
     }
 
@@ -86,18 +86,18 @@ void expect(const char* name, const char* relative) {
 
 int main() {
     std::printf("== Iex.IexEquities.DeepPlus.IexTp.v1.01 (modern)\n");
-    expect<protocol::AddOrderMessage>("AddOrderMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/a_AddOrder.pcap");
-    expect<protocol::OrderModifyMessage>("OrderModifyMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/M_OrderModify.pcap");
-    expect<protocol::OrderDeleteMessage>("OrderDeleteMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/R_OrderDelete.pcap");
-    expect<protocol::OrderExecutedMessage>("OrderExecutedMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/L_OrderExecuted.pcap");
-    expect<protocol::TradeMessage>("TradeMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/T_Trade.pcap");
-    expect<protocol::TradeBreakMessage>("TradeBreakMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/B_TradeBreak.pcap");
-    expect<protocol::SecurityDirectoryMessage>("SecurityDirectoryMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/D_SecurityDirectory.pcap");
-    expect<protocol::SecurityEventMessage>("SecurityEventMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/E_SecurityEvent.pcap");
-    expect<protocol::TradingStatusMessage>("TradingStatusMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/H_TradingStatus.pcap");
-    expect<protocol::OperationalHaltStatusMessage>("OperationalHaltStatusMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/O_OperationalHaltStatus.pcap");
-    expect<protocol::ShortSalePriceTestStatusMessage>("ShortSalePriceTestStatusMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/P_ShortSalePriceTestStatus.pcap");
-    expect<protocol::RetailLiquidityIndicatorMessage>("RetailLiquidityIndicatorMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/I_RetailLiquidityIndicator.pcap");
-    expect<protocol::SystemEventMessage>("SystemEventMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/S_SystemEvent.pcap");
+    expect<protocol::MessageIterator>("AddOrderMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/a_AddOrder.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::AddOrderMessage::message_type; });
+    expect<protocol::MessageIterator>("OrderModifyMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/M_OrderModify.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::OrderModifyMessage::message_type; });
+    expect<protocol::MessageIterator>("OrderDeleteMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/R_OrderDelete.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::OrderDeleteMessage::message_type; });
+    expect<protocol::MessageIterator>("OrderExecutedMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/L_OrderExecuted.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::OrderExecutedMessage::message_type; });
+    expect<protocol::MessageIterator>("TradeMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/T_Trade.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::TradeMessage::message_type; });
+    expect<protocol::MessageIterator>("TradeBreakMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/B_TradeBreak.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::TradeBreakMessage::message_type; });
+    expect<protocol::MessageIterator>("SecurityDirectoryMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/D_SecurityDirectory.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::SecurityDirectoryMessage::message_type; });
+    expect<protocol::MessageIterator>("SecurityEventMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/E_SecurityEvent.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::SecurityEventMessage::message_type; });
+    expect<protocol::MessageIterator>("TradingStatusMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/H_TradingStatus.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::TradingStatusMessage::message_type; });
+    expect<protocol::MessageIterator>("OperationalHaltStatusMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/O_OperationalHaltStatus.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::OperationalHaltStatusMessage::message_type; });
+    expect<protocol::MessageIterator>("ShortSalePriceTestStatusMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/P_ShortSalePriceTestStatus.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::ShortSalePriceTestStatusMessage::message_type; });
+    expect<protocol::MessageIterator>("RetailLiquidityIndicatorMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/I_RetailLiquidityIndicator.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::RetailLiquidityIndicatorMessage::message_type; });
+    expect<protocol::MessageIterator>("SystemEventMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/S_SystemEvent.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::SystemEventMessage::message_type; });
     return failures == 0 ? 0 : 1;
 }

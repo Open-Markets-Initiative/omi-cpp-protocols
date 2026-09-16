@@ -4,6 +4,10 @@
 #include "../structs/MessageHeader.hpp"
 #include "../types/SystemEvent.hpp"
 #include "../types/Timestamp.hpp"
+#include "../types/IexTpHeader.hpp"
+#include "../types/IexTpMessageBlockLength.hpp"
+#include "../types/IexTpMessageLength.hpp"
+#include "../types/IexTpMessageType.hpp"
 
 namespace iex::iexequities::deep::snap::v1_6 {
 
@@ -19,7 +23,11 @@ struct system_event_message {
         snap_deep::timestamp timestamp;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 2), {}};
+    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) + sizeof(snap_deep::iex_tp_header) + sizeof(snap_deep::iex_tp_message_block_length) + sizeof(snap_deep::iex_tp_message_length) + sizeof(snap_deep::iex_tp_message_type) - 2), message_type::enum_type::snapshot_data_message};
+    snap_deep::iex_tp_header iex_tp_header;
+    snap_deep::iex_tp_message_block_length iex_tp_message_block_length;
+    snap_deep::iex_tp_message_length iex_tp_message_length;
+    snap_deep::iex_tp_message_type iex_tp_message_type = snap_deep::iex_tp_message_type::enum_type::system_event_message;
 
     fields_type fields;
 
@@ -39,7 +47,7 @@ struct system_event_message {
 static_assert(offsetof(system_event_message::fields_type, system_event) == 0, "unexpected offset of system_event_message::fields_type::system_event");
 static_assert(offsetof(system_event_message::fields_type, timestamp) == 1, "unexpected offset of system_event_message::fields_type::timestamp");
 static_assert(sizeof(system_event_message::fields_type) == 9, "unexpected sizeof system_event_message::fields_type");
-static_assert(sizeof(system_event_message) == sizeof(message_header) + 9, "unexpected sizeof system_event_message");
+static_assert(sizeof(system_event_message) == sizeof(message_header) + sizeof(snap_deep::iex_tp_header) + sizeof(snap_deep::iex_tp_message_block_length) + sizeof(snap_deep::iex_tp_message_length) + sizeof(snap_deep::iex_tp_message_type) + 9, "unexpected sizeof system_event_message");
 
 #pragma pack(pop)
 }

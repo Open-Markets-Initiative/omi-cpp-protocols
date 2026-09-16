@@ -8,25 +8,25 @@ namespace protocol::Branches {
 // discriminator value -> short message name (PascalCase, suitable for filenames).
 inline const char* name(std::uint64_t id) {
     switch (id) {
-        case 100: return "SnapshotDataMessage";
-        case 101: return "ErrorResponseMessage";
-        case 114: return "SnapshotRequestMessage";
-        case 115: return "SnapshotStartMessage";
-        case 120: return "SnapshotEndMessage";
-        case 25666: return "TradeBreakMessage";
-        case 25667: return "ClearBookMessage";
-        case 25668: return "SecurityDirectoryMessage";
-        case 25669: return "SecurityEventMessage";
-        case 25672: return "TradingStatusMessage";
-        case 25673: return "RetailLiquidityIndicatorMessage";
-        case 25676: return "OrderExecutedMessage";
-        case 25677: return "OrderModifyMessage";
-        case 25679: return "OperationalHaltStatusMessage";
-        case 25680: return "ShortSalePriceTestStatusMessage";
-        case 25682: return "OrderDeleteMessage";
-        case 25683: return "SystemEventMessage";
-        case 25684: return "TradeMessage";
-        case 25697: return "AddOrderMessage";
+        case 100ull: return "SnapshotDataMessage";
+        case 101ull: return "ErrorResponseMessage";
+        case 114ull: return "SnapshotRequestMessage";
+        case 115ull: return "SnapshotStartMessage";
+        case 120ull: return "SnapshotEndMessage";
+        case 429496729666ull: return "TradeBreakMessage";
+        case 429496729667ull: return "ClearBookMessage";
+        case 429496729668ull: return "SecurityDirectoryMessage";
+        case 429496729669ull: return "SecurityEventMessage";
+        case 429496729672ull: return "TradingStatusMessage";
+        case 429496729673ull: return "RetailLiquidityIndicatorMessage";
+        case 429496729676ull: return "OrderExecutedMessage";
+        case 429496729677ull: return "OrderModifyMessage";
+        case 429496729679ull: return "OperationalHaltStatusMessage";
+        case 429496729680ull: return "ShortSalePriceTestStatusMessage";
+        case 429496729682ull: return "OrderDeleteMessage";
+        case 429496729683ull: return "SystemEventMessage";
+        case 429496729684ull: return "TradeMessage";
+        case 429496729697ull: return "AddOrderMessage";
         default: return nullptr;
     }
 }

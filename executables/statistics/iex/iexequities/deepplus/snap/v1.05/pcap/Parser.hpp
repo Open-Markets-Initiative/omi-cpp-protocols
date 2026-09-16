@@ -38,10 +38,9 @@ namespace packet {
 
         // identify the loaded frame's protocol
         result identify() {
-            if (current_frame.is_udp()) {
+            if (current_frame.is_tcp()) {
                 return result::iex_iexequities_deepplus_snap_v1_05;
             }
-
             return result::unknown;
         }
 

@@ -8,7 +8,17 @@ namespace protocol::Branches {
 // discriminator value -> short message name (PascalCase, suitable for filenames).
 inline const char* name(std::uint64_t id) {
     switch (id) {
-        case 0: return "Heartbeat";
+        case 65ull: return "AuctionInformationMessage";
+        case 66ull: return "TradeBreakMessage";
+        case 68ull: return "SecurityDirectoryMessage";
+        case 72ull: return "TradingStatusMessage";
+        case 73ull: return "RetailLiquidityIndicatorMessage";
+        case 79ull: return "OperationalHaltStatusMessage";
+        case 80ull: return "ShortSalePriceTestStatusMessage";
+        case 81ull: return "QuoteUpdateMessage";
+        case 83ull: return "SystemEventMessage";
+        case 84ull: return "TradeReportMessage";
+        case 88ull: return "OfficialPriceMessage";
         default: return nullptr;
     }
 }

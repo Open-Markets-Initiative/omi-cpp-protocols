@@ -4,6 +4,7 @@
 #include "../pcap/Frame.hpp"
 #include "../pcap/PcapFile.hpp"
 #include "../pcap/TcpReassembler.hpp"
+#include "cpp/modern/iex/iexequities/deepplus/snap/v1.05/definitions.hpp"
 #include "../protocol/Branches.hpp"
 
 #include <cstddef>
@@ -14,6 +15,7 @@
 #include <map>
 #include <optional>
 #include <string>
+#include <type_traits>
 #include <vector>
 #include <deque>
 #include <unordered_map>
@@ -163,10 +165,10 @@ inline void write_samples(const fs::path& out_dir,
     }
 }
 
-// Per-flow accumulator. The reassembler delivers in-order chunks; a SoupBin packet may
-// straddle chunk boundaries, so we hold a leftover-bytes buffer per flow and parse packets
-// out of it greedily. The wire_log records which wire frame each leftover byte came from —
-// when a SoupBin packet's bytes span more than one wire frame, that's a reassembly example.
+// Per-flow accumulator. The reassembler delivers in-order chunks; a packet may straddle chunk
+// boundaries, so each flow holds its leftover bytes and packets are walked out of them greedily.
+// The wire_log records which wire frame each leftover byte came from — when a packet's bytes
+// span more than one wire frame, that's a reassembly example.
 struct FlowBuffer {
     std::vector<std::uint8_t> bytes;
     // (wire_frame, byte_count) entries, front-to-back, parallel to `bytes`.
@@ -174,27 +176,31 @@ struct FlowBuffer {
     std::deque<std::pair<Captured, std::size_t>> wire_log;
 };
 
+// A discriminator value as a key: its bits, never sign-extended.
+template <typename Value>
+inline std::uint64_t key_of(Value value) {
+    return static_cast<std::uint64_t>(static_cast<std::make_unsigned_t<Value>>(value));
+}
+
 inline int sample(const fs::path& in_path, const fs::path& out_dir) {
     packet::PcapFile pcap(in_path.string());
 
-    std::map<std::uint64_t, PacketSample> smallest;   // smallest synthetic wire frame per discriminator key
-    std::optional<Captured> multiple_messages;        // first wire frame whose chunk produced >1 SoupBin packet
-    std::vector<Captured> reassembly_frames;          // wire frames that together delivered one reassembled SoupBin packet
-    Captured current_wire;                            // wire frame driving the reassembler's current process() call
+    std::map<std::uint64_t, PacketSample> smallest;   // smallest sample per key
+    std::optional<Captured> multiple_messages;        // first wire frame carrying more than one message
+    std::vector<Captured> reassembly_frames;          // wire frames that together delivered one reassembled packet
+    Captured current_wire;                            // wire frame being walked
 
-    std::unordered_map<packet::TcpFlowKey, FlowBuffer, packet::TcpFlowKey::hash> flows;
-
-    // outer packet types whose body holds a nested application-message dispatch
-    auto is_data_bearing = [](std::uint8_t outer) -> bool {
-        switch (outer) {
-            case 100: return true;
-            default: return false;
-        }
+    // Keep a sample for a key when it is the first or smaller than the one kept.
+    auto keep = [&](std::uint64_t id, std::size_t size, auto make) {
+        const auto it = smallest.find(id);
+        if (it == smallest.end() || size < it->second.total_bytes) { smallest[id] = sample_of_one(make()); }
     };
 
-    packet::TcpReassembler reassembler;
-    reassembler.on_data = [&](const packet::TcpFlowKey& key, const std::byte* data, std::size_t len) {
-        auto& flow = flows[key];
+    // The Packet tree: MessageIterator walks each flow's reassembled bytes.
+    std::unordered_map<packet::TcpFlowKey, FlowBuffer, packet::TcpFlowKey::hash> flows_message;
+    packet::TcpReassembler reassembler_message;
+    reassembler_message.on_data = [&](const packet::TcpFlowKey& key, const std::byte* data, std::size_t len) {
+        auto& flow = flows_message[key];
 
         // Append bytes + record contribution. Merge with the trailing log entry when it's
         // the same wire frame (out-of-order drains can trigger multiple on_data per process()).
@@ -208,58 +214,54 @@ inline int sample(const fs::path& in_path, const fs::path& out_dir) {
             flow.wire_log.emplace_back(current_wire, len);
         }
 
+        const auto* base = reinterpret_cast<const std::byte*>(flow.bytes.data());
+        iex::iexequities::deepplus::snap::v1_05::MessageIterator packets;
+        packets.initialize(base, flow.bytes.size());
+
         std::size_t pos = 0;
-        std::size_t soupbin_packets_in_chunk = 0;
-        while (pos + 3 <= flow.bytes.size()) {
-            // SoupBin packet header: 2-byte big-endian length, 1-byte packet type, then payload.
-            const std::uint16_t packet_length =
-                static_cast<std::uint16_t>((std::uint16_t(flow.bytes[pos]) << 8) | flow.bytes[pos + 1]);
-            if (packet_length == 0) { pos += 2; continue; }   // skip null sentinel
-            const std::size_t span = static_cast<std::size_t>(2) + packet_length;
-            if (pos + span > flow.bytes.size()) { break; } // need more bytes
+        std::size_t packets_in_chunk = 0;
+        while (packets.next()) {
+            if (packets.current > packets.end) { break; }   // need more bytes
 
-            const std::uint8_t outer = flow.bytes[pos + 2];
-            std::uint64_t id;
-            if (is_data_bearing(outer) && packet_length >= 2) {
-                const std::uint8_t inner = flow.bytes[pos + 3];
-                id = (static_cast<std::uint64_t>(outer) << 8) | inner;
-            } else {
-                id = outer;
+            const std::size_t begin = pos;
+            pos = static_cast<std::size_t>(packets.current - base);
+            const std::size_t span = pos - begin;
+            if (packets.message > packets.current) { continue; }   // shorter than its header (a null sentinel)
+
+            std::uint64_t id = key_of(packets.message_type);
+            switch (id) {
+                case 100:
+                    if (packets.message + sizeof(iex::iexequities::deepplus::snap::v1_05::SnapshotDataMessage) <= packets.current) {
+                        id = (id << 32) | key_of(iex::iexequities::deepplus::snap::v1_05::SnapshotDataMessage::parse(packets.message)->iex_tp_message_type.get());
+                    }
+                    break;
+                default:
+                    break;
             }
 
-            // Per-key sample: build a synthetic wire frame around the SoupBin packet's raw bytes
-            // so the per-message pcap is self-contained — SoupBin packet at TCP-payload-offset 0,
-            // replayable through any parser pipeline. Real wire frames here usually start mid-packet
-            // (after preceding SoupBin packets) or carry only a fragment, which a from-scratch parser
-            // can't make sense of.
-            auto synth = synthesize_wire_frame(current_wire.timestamp_ns,
-                                               flow.bytes.data() + pos, span);
-            const auto it = smallest.find(id);
-            if (it == smallest.end() || synth.bytes.size() < it->second.total_bytes) {
-                smallest[id] = sample_of_one(std::move(synth));
-            }
+            // Per-key sample: a synthetic wire frame around the packet's raw bytes, so the packet sits
+            // at TCP-payload offset 0 and the per-message pcap replays standalone.
+            const auto* bytes = flow.bytes.data() + begin;
+            keep(id, 14 + 20 + 20 + span, [&] { return synthesize_wire_frame(current_wire.timestamp_ns, bytes, span); });
 
-            // Reassembly example: when the SoupBin packet's bytes spanned more than one wire frame,
-            // capture the original wire-frame sequence (preserves real TCP segmentation — useful
-            // for testing reassembler behavior, not the message parser).
+            // Reassembly example: the original wire frames of the first packet spanning more than one.
             if (reassembly_frames.empty()) {
                 std::vector<Captured> contributors;
                 std::size_t walked = 0;
                 for (const auto& [frame, count] : flow.wire_log) {
-                    if (walked >= pos + span) { break; }
-                    if (walked + count > pos) { contributors.push_back(frame); }
+                    if (walked >= begin + span) { break; }
+                    if (walked + count > begin) { contributors.push_back(frame); }
                     walked += count;
                 }
                 if (contributors.size() > 1) { reassembly_frames = std::move(contributors); }
             }
 
-            pos += span;
-            soupbin_packets_in_chunk++;
+            ++packets_in_chunk;
         }
 
         // Drop consumed bytes from both buffer and contribution log in lock-step.
         if (pos > 0) {
-            flow.bytes.erase(flow.bytes.begin(), flow.bytes.begin() + pos);
+            flow.bytes.erase(flow.bytes.begin(), flow.bytes.begin() + static_cast<std::ptrdiff_t>(pos));
             std::size_t remaining = pos;
             while (remaining > 0 && !flow.wire_log.empty()) {
                 auto& [frame, count] = flow.wire_log.front();
@@ -268,14 +270,17 @@ inline int sample(const fs::path& in_path, const fs::path& out_dir) {
             }
         }
 
-        if (soupbin_packets_in_chunk > 1 && !multiple_messages) { multiple_messages = current_wire; }
+        if (packets_in_chunk > 1 && !multiple_messages) { multiple_messages = current_wire; }
     };
 
     while (pcap.advance()) {
         packet::Frame frame(pcap.data(), pcap.length());
-        if (!frame.valid() || !frame.is_tcp()) { continue; }
-        current_wire = capture_of(pcap);
-        reassembler.process(frame);
+        if (!frame.valid()) { continue; }
+
+        if (frame.is_tcp()) {
+            current_wire = capture_of(pcap);
+            reassembler_message.process(frame);
+        }
     }
 
     write_samples(out_dir, smallest, multiple_messages, reassembly_frames);

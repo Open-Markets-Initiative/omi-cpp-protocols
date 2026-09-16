@@ -1,0 +1,66 @@
+#pragma once
+
+#include <cstddef>
+#include "../structs/MessageHeader.hpp"
+#include "../types/StockLocate.hpp"
+#include "../types/TrackingNumber.hpp"
+#include "../types/Timestamp.hpp"
+#include "../types/OrderReferenceNumber.hpp"
+#include "../types/BuySellIndicator.hpp"
+#include "../types/Shares.hpp"
+#include "../types/Stock.hpp"
+#include "../types/Price.hpp"
+#include "../types/Attribution.hpp"
+
+namespace nasdaq::nsmequities::totalview::itch::v5_0_2023 {
+
+namespace itch_totalview = ::nasdaq::nsmequities::totalview::itch::v5_0_2023;
+
+#pragma pack(push, 1)
+
+// Add Order With Mpid Attribution Message
+struct add_order_with_mpid_attribution_message {
+
+    struct fields_type {
+        itch_totalview::stock_locate stock_locate;
+        itch_totalview::tracking_number tracking_number;
+        itch_totalview::timestamp timestamp;
+        itch_totalview::order_reference_number order_reference_number;
+        itch_totalview::buy_sell_indicator buy_sell_indicator;
+        itch_totalview::shares shares;
+        itch_totalview::stock stock;
+        itch_totalview::price price;
+        itch_totalview::attribution attribution;
+    };
+
+    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 2), message_type::enum_type::add_order_with_mpid_attribution_message};
+
+    fields_type fields;
+
+    // parse method
+    static add_order_with_mpid_attribution_message* parse(std::byte* buffer) {
+        return reinterpret_cast<add_order_with_mpid_attribution_message*>(buffer);
+    }
+
+    // parse method const
+    static const add_order_with_mpid_attribution_message* parse(const std::byte* buffer) {
+        return reinterpret_cast<const add_order_with_mpid_attribution_message*>(buffer);
+    }
+
+};
+
+// layout verification
+static_assert(offsetof(add_order_with_mpid_attribution_message::fields_type, stock_locate) == 0, "unexpected offset of add_order_with_mpid_attribution_message::fields_type::stock_locate");
+static_assert(offsetof(add_order_with_mpid_attribution_message::fields_type, tracking_number) == 2, "unexpected offset of add_order_with_mpid_attribution_message::fields_type::tracking_number");
+static_assert(offsetof(add_order_with_mpid_attribution_message::fields_type, timestamp) == 4, "unexpected offset of add_order_with_mpid_attribution_message::fields_type::timestamp");
+static_assert(offsetof(add_order_with_mpid_attribution_message::fields_type, order_reference_number) == 10, "unexpected offset of add_order_with_mpid_attribution_message::fields_type::order_reference_number");
+static_assert(offsetof(add_order_with_mpid_attribution_message::fields_type, buy_sell_indicator) == 18, "unexpected offset of add_order_with_mpid_attribution_message::fields_type::buy_sell_indicator");
+static_assert(offsetof(add_order_with_mpid_attribution_message::fields_type, shares) == 19, "unexpected offset of add_order_with_mpid_attribution_message::fields_type::shares");
+static_assert(offsetof(add_order_with_mpid_attribution_message::fields_type, stock) == 23, "unexpected offset of add_order_with_mpid_attribution_message::fields_type::stock");
+static_assert(offsetof(add_order_with_mpid_attribution_message::fields_type, price) == 31, "unexpected offset of add_order_with_mpid_attribution_message::fields_type::price");
+static_assert(offsetof(add_order_with_mpid_attribution_message::fields_type, attribution) == 35, "unexpected offset of add_order_with_mpid_attribution_message::fields_type::attribution");
+static_assert(sizeof(add_order_with_mpid_attribution_message::fields_type) == 39, "unexpected sizeof add_order_with_mpid_attribution_message::fields_type");
+static_assert(sizeof(add_order_with_mpid_attribution_message) == sizeof(message_header) + 39, "unexpected sizeof add_order_with_mpid_attribution_message");
+
+#pragma pack(pop)
+}

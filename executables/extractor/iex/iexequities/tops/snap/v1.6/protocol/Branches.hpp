@@ -8,22 +8,22 @@ namespace protocol::Branches {
 // discriminator value -> short message name (PascalCase, suitable for filenames).
 inline const char* name(std::uint64_t id) {
     switch (id) {
-        case 100: return "SnapshotDataMessage";
-        case 101: return "ErrorResponseMessage";
-        case 114: return "SnapshotRequestMessage";
-        case 115: return "SnapshotStartMessage";
-        case 120: return "SnapshotEndMessage";
-        case 25665: return "AuctionInformationMessage";
-        case 25666: return "TradeBreakMessage";
-        case 25668: return "SecurityDirectoryMessage";
-        case 25672: return "TradingStatusMessage";
-        case 25673: return "RetailLiquidityIndicatorMessage";
-        case 25679: return "OperationalHaltStatusMessage";
-        case 25680: return "ShortSalePriceTestStatusMessage";
-        case 25681: return "QuoteUpdateMessage";
-        case 25683: return "SystemEventMessage";
-        case 25684: return "TradeReportMessage";
-        case 25688: return "OfficialPriceMessage";
+        case 100ull: return "SnapshotDataMessage";
+        case 101ull: return "ErrorResponseMessage";
+        case 114ull: return "SnapshotRequestMessage";
+        case 115ull: return "SnapshotStartMessage";
+        case 120ull: return "SnapshotEndMessage";
+        case 429496729665ull: return "AuctionInformationMessage";
+        case 429496729666ull: return "TradeBreakMessage";
+        case 429496729668ull: return "SecurityDirectoryMessage";
+        case 429496729672ull: return "TradingStatusMessage";
+        case 429496729673ull: return "RetailLiquidityIndicatorMessage";
+        case 429496729679ull: return "OperationalHaltStatusMessage";
+        case 429496729680ull: return "ShortSalePriceTestStatusMessage";
+        case 429496729681ull: return "QuoteUpdateMessage";
+        case 429496729683ull: return "SystemEventMessage";
+        case 429496729684ull: return "TradeReportMessage";
+        case 429496729688ull: return "OfficialPriceMessage";
         default: return nullptr;
     }
 }

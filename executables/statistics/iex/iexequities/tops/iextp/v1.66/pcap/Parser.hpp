@@ -41,7 +41,6 @@ namespace packet {
             if (current_frame.is_udp()) {
                 return result::iex_iexequities_tops_iextp_v1_66;
             }
-
             return result::unknown;
         }
 

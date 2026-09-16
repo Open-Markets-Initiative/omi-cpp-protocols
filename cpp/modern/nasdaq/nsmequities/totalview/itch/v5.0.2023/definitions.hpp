@@ -1,0 +1,33 @@
+#pragma once
+
+#include "structs/PacketHeader.hpp"
+#include "structs/MessageHeader.hpp"
+
+#include "messages/SystemEventMessage.hpp"
+#include "messages/StockDirectoryMessage.hpp"
+#include "messages/StockTradingActionMessage.hpp"
+#include "messages/RegShoShortSalePriceTestRestrictedIndicatorMessage.hpp"
+#include "messages/MarketParticipantPositionMessage.hpp"
+#include "messages/MwcbDeclineLevelMessage.hpp"
+#include "messages/MwcbStatusLevelMessage.hpp"
+#include "messages/IpoQuotingPeriodUpdate.hpp"
+#include "messages/LuldAuctionCollarMessage.hpp"
+#include "messages/OperationalHaltMessage.hpp"
+#include "messages/AddOrderNoMpidAttributionMessage.hpp"
+#include "messages/AddOrderWithMpidAttributionMessage.hpp"
+#include "messages/OrderExecutedMessage.hpp"
+#include "messages/OrderExecutedWithPriceMessage.hpp"
+#include "messages/OrderCancelMessage.hpp"
+#include "messages/OrderDeleteMessage.hpp"
+#include "messages/OrderReplaceMessage.hpp"
+#include "messages/NonCrossTradeMessage.hpp"
+#include "messages/CrossTradeMessage.hpp"
+#include "messages/BrokenTradeMessage.hpp"
+#include "messages/NetOrderImbalanceIndicatorMessage.hpp"
+#include "messages/RetailPriceImprovementIndicatorMessage.hpp"
+#include "messages/DirectListingWithCapitalRaisePriceDiscoveryMessage.hpp"
+
+#include "actions/Heartbeat.hpp"
+#include "actions/EndOfSession.hpp"
+
+#include "iterators/MessageIterator.hpp"

@@ -14,6 +14,7 @@
 #include <map>
 #include <optional>
 #include <string>
+#include <type_traits>
 #include <vector>
 
 namespace extractor {
@@ -160,18 +161,28 @@ inline void write_samples(const fs::path& out_dir,
     }
 }
 
+// A discriminator value as a key: its bits, never sign-extended.
+template <typename Value>
+inline std::uint64_t key_of(Value value) {
+    return static_cast<std::uint64_t>(static_cast<std::make_unsigned_t<Value>>(value));
+}
+
 inline int sample(const fs::path& in_path, const fs::path& out_dir) {
     packet::PcapFile pcap(in_path.string());
 
-    std::map<std::uint64_t, PacketSample> smallest;   // smallest single-message frame per discriminator value
-    std::optional<Captured> multiple_messages;        // first frame carrying more than one message
+    std::map<std::uint64_t, PacketSample> smallest;   // smallest sample per key
+    std::optional<Captured> multiple_messages;        // first wire frame carrying more than one message
+    std::vector<Captured> reassembly_frames;          // wire frames that together delivered one reassembled packet
+    Captured current_wire;                            // wire frame being walked
 
-    while (pcap.advance()) {
-        packet::Frame frame(pcap.data(), pcap.length());
-        if (!frame.valid() || !frame.is_udp()) { continue; }
+    // Keep a sample for a key when it is the first or smaller than the one kept.
+    auto keep = [&](std::uint64_t id, std::size_t size, auto make) {
+        const auto it = smallest.find(id);
+        if (it == smallest.end() || size < it->second.total_bytes) { smallest[id] = sample_of_one(make()); }
+    };
 
-        // The generated Modern iterator walks the frame's messages, so the framing
-        // is read from the model rather than stepped over by size here.
+    // The Packet tree: MessageIterator walks each datagram's messages.
+    auto walk_message = [&](const packet::Frame& frame) {
         iex::iexequities::deep::iextp::v1_08::MessageIterator messages;
         messages.initialize(frame.payload, frame.payload_len);
 
@@ -179,26 +190,33 @@ inline int sample(const fs::path& in_path, const fs::path& out_dir) {
         std::uint64_t first = 0;
 
         while (messages.next()) {
-            if (count == 0) { first = static_cast<std::uint64_t>(messages.message_type); }
+            if (count == 0) {
+                first = key_of(messages.message_type);
+            }
             ++count;
         }
 
-        if (count == 0) { continue; }
+        if (count == 0) { return; }
 
         if (count == 1) {
-            const auto it = smallest.find(first);
-            if (it == smallest.end() || pcap.length() < it->second.total_bytes) {
-                smallest[first] = sample_of_one(capture_of(pcap));
-            }
+            keep(first, pcap.length(), [&] { return capture_of(pcap); });
         } else if (!multiple_messages) {
             multiple_messages = capture_of(pcap);
         }
+    };
+
+    while (pcap.advance()) {
+        packet::Frame frame(pcap.data(), pcap.length());
+        if (!frame.valid()) { continue; }
+
+        if (frame.is_udp()) {
+            walk_message(frame);
+        }
     }
 
-    // UDP / counted protocols don't fragment messages across wire frames — no reassembly example.
-    write_samples(out_dir, smallest, multiple_messages, /*reassembly_frames=*/ {});
+    write_samples(out_dir, smallest, multiple_messages, reassembly_frames);
 
-    std::fprintf(stderr, "sampled %zu unique branches from %s -> %s\n",
+    std::fprintf(stderr, "sampled %zu unique keys from %s -> %s\n",
                  smallest.size(), in_path.string().c_str(), out_dir.string().c_str());
     return 0;
 }

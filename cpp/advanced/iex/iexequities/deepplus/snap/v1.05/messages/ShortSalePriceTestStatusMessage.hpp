@@ -6,6 +6,10 @@
 #include "../types/Timestamp.hpp"
 #include "../types/Symbol.hpp"
 #include "../types/Detail.hpp"
+#include "../types/IexTpHeader.hpp"
+#include "../types/IexTpMessageBlockLength.hpp"
+#include "../types/IexTpMessageLength.hpp"
+#include "../types/IexTpMessageType.hpp"
 
 namespace iex::iexequities::deepplus::snap::v1_05 {
 
@@ -23,7 +27,11 @@ struct short_sale_price_test_status_message {
         snap_deepplus::detail detail;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 2), {}};
+    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) + sizeof(snap_deepplus::iex_tp_header) + sizeof(snap_deepplus::iex_tp_message_block_length) + sizeof(snap_deepplus::iex_tp_message_length) + sizeof(snap_deepplus::iex_tp_message_type) - 2), message_type::enum_type::snapshot_data_message};
+    snap_deepplus::iex_tp_header iex_tp_header;
+    snap_deepplus::iex_tp_message_block_length iex_tp_message_block_length;
+    snap_deepplus::iex_tp_message_length iex_tp_message_length;
+    snap_deepplus::iex_tp_message_type iex_tp_message_type = snap_deepplus::iex_tp_message_type::enum_type::short_sale_price_test_status_message;
 
     fields_type fields;
 
@@ -45,7 +53,7 @@ static_assert(offsetof(short_sale_price_test_status_message::fields_type, timest
 static_assert(offsetof(short_sale_price_test_status_message::fields_type, symbol) == 9, "unexpected offset of short_sale_price_test_status_message::fields_type::symbol");
 static_assert(offsetof(short_sale_price_test_status_message::fields_type, detail) == 17, "unexpected offset of short_sale_price_test_status_message::fields_type::detail");
 static_assert(sizeof(short_sale_price_test_status_message::fields_type) == 18, "unexpected sizeof short_sale_price_test_status_message::fields_type");
-static_assert(sizeof(short_sale_price_test_status_message) == sizeof(message_header) + 18, "unexpected sizeof short_sale_price_test_status_message");
+static_assert(sizeof(short_sale_price_test_status_message) == sizeof(message_header) + sizeof(snap_deepplus::iex_tp_header) + sizeof(snap_deepplus::iex_tp_message_block_length) + sizeof(snap_deepplus::iex_tp_message_length) + sizeof(snap_deepplus::iex_tp_message_type) + 18, "unexpected sizeof short_sale_price_test_status_message");
 
 #pragma pack(pop)
 }
