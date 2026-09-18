@@ -71,6 +71,21 @@ inline std::int32_t read_i32_le(const std::byte* data) { return static_cast<std:
 inline std::int64_t read_i64_be(const std::byte* data) { return static_cast<std::int64_t>(read_u64_be(data)); }
 inline std::int64_t read_i64_le(const std::byte* data) { return static_cast<std::int64_t>(read_u64_le(data)); }
 
+inline std::uint32_t read_u24_be(const std::byte* data) {
+    std::uint32_t value = 0;
+    for (std::size_t index = 0; index < 3; ++index) { value = (value << 8) | std::to_integer<std::uint32_t>(data[index]); }
+    return value;
+}
+
+inline std::uint32_t read_u24_le(const std::byte* data) {
+    std::uint32_t value = 0;
+    for (std::size_t index = 3; index > 0; --index) { value = (value << 8) | std::to_integer<std::uint32_t>(data[index - 1]); }
+    return value;
+}
+
+inline std::int32_t read_i24_be(const std::byte* data) { return static_cast<std::int32_t>(read_u24_be(data) << 8) >> 8; }
+inline std::int32_t read_i24_le(const std::byte* data) { return static_cast<std::int32_t>(read_u24_le(data) << 8) >> 8; }
+
 inline std::uint64_t read_u48_be(const std::byte* data) {
     std::uint64_t value = 0;
     for (std::size_t index = 0; index < 6; ++index) { value = (value << 8) | std::to_integer<std::uint64_t>(data[index]); }
@@ -110,6 +125,17 @@ inline void write_i32_be(std::byte* data, std::int32_t value) { write_u32_be(dat
 inline void write_i32_le(std::byte* data, std::int32_t value) { write_u32_le(data, static_cast<std::uint32_t>(value)); }
 inline void write_i64_be(std::byte* data, std::int64_t value) { write_u64_be(data, static_cast<std::uint64_t>(value)); }
 inline void write_i64_le(std::byte* data, std::int64_t value) { write_u64_le(data, static_cast<std::uint64_t>(value)); }
+
+inline void write_u24_be(std::byte* data, std::uint32_t value) {
+    for (std::size_t index = 3; index > 0; --index) { data[index - 1] = static_cast<std::byte>(value & 0xFF); value >>= 8; }
+}
+
+inline void write_u24_le(std::byte* data, std::uint32_t value) {
+    for (std::size_t index = 0; index < 3; ++index) { data[index] = static_cast<std::byte>(value & 0xFF); value >>= 8; }
+}
+
+inline void write_i24_be(std::byte* data, std::int32_t value) { write_u24_be(data, static_cast<std::uint32_t>(value)); }
+inline void write_i24_le(std::byte* data, std::int32_t value) { write_u24_le(data, static_cast<std::uint32_t>(value)); }
 
 inline void write_u48_be(std::byte* data, std::uint64_t value) {
     for (std::size_t index = 6; index > 0; --index) { data[index - 1] = static_cast<std::byte>(value & 0xFF); value >>= 8; }

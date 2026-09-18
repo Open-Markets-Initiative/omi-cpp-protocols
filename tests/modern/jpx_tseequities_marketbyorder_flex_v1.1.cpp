@@ -86,9 +86,9 @@ void expect(const char* name, const char* relative, Matches matches) {
 
 int main() {
     std::printf("== Jpx.TseEquities.MarketByOrder.Flex.v1.1 (modern)\n");
-    expect<protocol::MessageIterator>("CommunicationControlMessage", "Jpx/TseEquities.MarketByOrder.v1.1/CommunicationControlMessage.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::CommunicationControlMessage::message_type; });
-    expect<protocol::MessageIterator>("AddOrderMessage", "Jpx/TseEquities.MarketByOrder.v1.1/AddOrderMessage.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::AddOrderMessage::message_type; });
-    expect<protocol::MessageIterator>("OrderDeleteMessage", "Jpx/TseEquities.MarketByOrder.v1.1/OrderDeleteMessage.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::OrderDeleteMessage::message_type; });
-    expect<protocol::MessageIterator>("TradingStatusMessage", "Jpx/TseEquities.MarketByOrder.v1.1/TradingStatusMessage.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::TradingStatusMessage::message_type; });
+    expect<protocol::MessageIterator>("CommunicationControlMessage", "Jpx/TseEquities.MarketByOrder.Flex.v1.1/CommunicationControlMessage.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::CommunicationControlMessage::message_type; });
+    expect<protocol::MessageIterator>("AddOrderMessage", "Jpx/TseEquities.MarketByOrder.Flex.v1.1/AddOrderMessage.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::AddOrderMessage::message_type; });
+    expect<protocol::MessageIterator>("OrderDeleteMessage", "Jpx/TseEquities.MarketByOrder.Flex.v1.1/OrderDeleteMessage.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::OrderDeleteMessage::message_type; });
+    expect<protocol::MessageIterator>("TradingStatusMessage", "Jpx/TseEquities.MarketByOrder.Flex.v1.1/TradingStatusMessage.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::TradingStatusMessage::message_type; });
     return failures == 0 ? 0 : 1;
 }
