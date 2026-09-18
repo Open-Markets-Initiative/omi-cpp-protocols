@@ -123,7 +123,15 @@ void expect(const char* name, const char* relative) {
 
 int main() {
     std::printf("== Iex.IexEquities.Deep.IexTp.v1.08 (classes)\n");
-    expect<protocol::PriceLevelBuyUpdateMessage>("PriceLevelBuyUpdateMessage", "Iex/IexEquities.Deep.IexTp.v1.06/PriceLevelBuyUpdateMessage.pcap");
-    expect<protocol::PriceLevelSellUpdateMessage>("PriceLevelSellUpdateMessage", "Iex/IexEquities.Deep.IexTp.v1.06/PriceLevelSellUpdateMessage.pcap");
+    expect<protocol::AuctionInformationMessage>("AuctionInformationMessage", "Iex/IexEquities.Deep.IexTp.v1.08/AuctionInformationMessage.pcap");
+    expect<protocol::OperationalHaltStatusMessage>("OperationalHaltStatusMessage", "Iex/IexEquities.Deep.IexTp.v1.08/OperationalHaltStatusMessage.pcap");
+    expect<protocol::PriceLevelBuyUpdateMessage>("PriceLevelBuyUpdateMessage", "Iex/IexEquities.Deep.IexTp.v1.08/PriceLevelBuyUpdateMessage.pcap");
+    expect<protocol::PriceLevelSellUpdateMessage>("PriceLevelSellUpdateMessage", "Iex/IexEquities.Deep.IexTp.v1.08/PriceLevelSellUpdateMessage.pcap");
+    expect<protocol::RetailLiquidityIndicatorMessage>("RetailLiquidityIndicatorMessage", "Iex/IexEquities.Deep.IexTp.v1.08/RetailLiquidityIndicatorMessage.pcap");
+    expect<protocol::SecurityEventMessage>("SecurityEventMessage", "Iex/IexEquities.Deep.IexTp.v1.08/SecurityEventMessage.pcap");
+    expect<protocol::ShortSalePriceTestStatusMessage>("ShortSalePriceTestStatusMessage", "Iex/IexEquities.Deep.IexTp.v1.08/ShortSalePriceTestStatusMessage.pcap");
+    expect<protocol::SystemEventMessage>("SystemEventMessage", "Iex/IexEquities.Deep.IexTp.v1.08/SystemEventMessage.pcap");
+    expect<protocol::TradeReportMessage>("TradeReportMessage", "Iex/IexEquities.Deep.IexTp.v1.08/TradeReportMessage.pcap");
+    expect<protocol::TradingStatusMessage>("TradingStatusMessage", "Iex/IexEquities.Deep.IexTp.v1.08/TradingStatusMessage.pcap");
     return failures == 0 ? 0 : 1;
 }

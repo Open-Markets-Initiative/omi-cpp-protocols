@@ -8,17 +8,9 @@ namespace iex::iexequities::tops::iextp::v1_56 {
 
 // Code identifying this message type
 enum class MessageType : char {
-    SystemEventMessage = 'S',              // System Event Message
-    SecurityDirectoryMessage = 'D',        // Security Directory Message
-    TradingStatusMessage = 'H',            // Trading Status Message
-    OperationalHaltStatusMessage = 'O',    // Operational Halt Status Message
-    ShortSalePriceTestStatusMessage = 'P', // Short Sale Price Test Status Message
-    SecurityEventMessage = 'E',            // Security Event Message
-    QuoteUpdateMessage = 'Q',              // Quote Update Message
-    TradeReportMessage = 'T',              // Trade Report Message
-    OfficialPriceMessage = 'X',            // Official Price Message
-    TradeBreakMessage = 'B',               // Trade Break Message
-    AuctionInformationMessage = 'A',       // Auction Information Message
+    QuoteUpdateMessage = 'Q', // Quote Update Message
+    TradeReportMessage = 'T', // Trade Report Message
+    TradeBreakMessage = 'B',  // Trade Break Message
 };
 
 // The documented name of a code, or empty for one the specification does not list

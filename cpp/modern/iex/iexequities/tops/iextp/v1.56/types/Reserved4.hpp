@@ -5,22 +5,22 @@
 
 namespace iex::iexequities::tops::iextp::v1_56 {
 
-// Projected time of the auction match
-struct ScheduledAuctionTime {
+// Reserved bytes
+struct Reserved4 {
 
-    static constexpr const char* name = "Scheduled Auction Time";
+    static constexpr const char* name = "Reserved 4";
     static constexpr std::size_t size =  4;
     using type = std::uint32_t;
 
     // default constructor
-    constexpr ScheduledAuctionTime()
+    constexpr Reserved4()
      : value{ 0 } {}
 
     // standard constructor
-    constexpr explicit ScheduledAuctionTime(const std::uint32_t value)
+    constexpr explicit Reserved4(const std::uint32_t value)
      : value{ value } {}
 
-    // get value of ScheduledAuctionTime field
+    // get value of Reserved4 field
     [[nodiscard]] std::uint32_t get() const {
         return value;
     }

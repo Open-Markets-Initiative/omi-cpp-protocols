@@ -6,6 +6,7 @@
 #include "../types/Size.hpp"
 #include "../types/Price.hpp"
 #include "../types/TradeId.hpp"
+#include "../types/Reserved4.hpp"
 #include "../structs/MessageHeader.hpp"
 
 namespace iex::iexequities::tops::iextp::v1_56 {
@@ -21,6 +22,7 @@ struct TradeReportMessage {
     Size size;
     Price price;
     TradeId trade_id;
+    Reserved4 reserved_4;
 
     // the type code that selects this message in the dispatch switch
     static constexpr char message_type = 'T';

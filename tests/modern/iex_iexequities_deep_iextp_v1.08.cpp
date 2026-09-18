@@ -86,7 +86,15 @@ void expect(const char* name, const char* relative, Matches matches) {
 
 int main() {
     std::printf("== Iex.IexEquities.Deep.IexTp.v1.08 (modern)\n");
-    expect<protocol::MessageIterator>("PriceLevelBuyUpdateMessage", "Iex/IexEquities.Deep.IexTp.v1.06/PriceLevelBuyUpdateMessage.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::PriceLevelBuyUpdateMessage::message_type; });
-    expect<protocol::MessageIterator>("PriceLevelSellUpdateMessage", "Iex/IexEquities.Deep.IexTp.v1.06/PriceLevelSellUpdateMessage.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::PriceLevelSellUpdateMessage::message_type; });
+    expect<protocol::MessageIterator>("AuctionInformationMessage", "Iex/IexEquities.Deep.IexTp.v1.08/AuctionInformationMessage.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::AuctionInformationMessage::message_type; });
+    expect<protocol::MessageIterator>("OperationalHaltStatusMessage", "Iex/IexEquities.Deep.IexTp.v1.08/OperationalHaltStatusMessage.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::OperationalHaltStatusMessage::message_type; });
+    expect<protocol::MessageIterator>("PriceLevelBuyUpdateMessage", "Iex/IexEquities.Deep.IexTp.v1.08/PriceLevelBuyUpdateMessage.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::PriceLevelBuyUpdateMessage::message_type; });
+    expect<protocol::MessageIterator>("PriceLevelSellUpdateMessage", "Iex/IexEquities.Deep.IexTp.v1.08/PriceLevelSellUpdateMessage.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::PriceLevelSellUpdateMessage::message_type; });
+    expect<protocol::MessageIterator>("RetailLiquidityIndicatorMessage", "Iex/IexEquities.Deep.IexTp.v1.08/RetailLiquidityIndicatorMessage.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::RetailLiquidityIndicatorMessage::message_type; });
+    expect<protocol::MessageIterator>("SecurityEventMessage", "Iex/IexEquities.Deep.IexTp.v1.08/SecurityEventMessage.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::SecurityEventMessage::message_type; });
+    expect<protocol::MessageIterator>("ShortSalePriceTestStatusMessage", "Iex/IexEquities.Deep.IexTp.v1.08/ShortSalePriceTestStatusMessage.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::ShortSalePriceTestStatusMessage::message_type; });
+    expect<protocol::MessageIterator>("SystemEventMessage", "Iex/IexEquities.Deep.IexTp.v1.08/SystemEventMessage.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::SystemEventMessage::message_type; });
+    expect<protocol::MessageIterator>("TradeReportMessage", "Iex/IexEquities.Deep.IexTp.v1.08/TradeReportMessage.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::TradeReportMessage::message_type; });
+    expect<protocol::MessageIterator>("TradingStatusMessage", "Iex/IexEquities.Deep.IexTp.v1.08/TradingStatusMessage.pcap", [](const protocol::MessageIterator& iterator) { return iterator.message_type == protocol::TradingStatusMessage::message_type; });
     return failures == 0 ? 0 : 1;
 }

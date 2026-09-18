@@ -26,17 +26,9 @@ struct Statistics {
     uint64_t matched_messages = 0;
 
     // message counters
-    uint64_t system_event_message = 0;
-    uint64_t security_directory_message = 0;
-    uint64_t trading_status_message = 0;
-    uint64_t operational_halt_status_message = 0;
-    uint64_t short_sale_price_test_status_message = 0;
-    uint64_t security_event_message = 0;
     uint64_t quote_update_message = 0;
     uint64_t trade_report_message = 0;
-    uint64_t official_price_message = 0;
     uint64_t trade_break_message = 0;
-    uint64_t auction_information_message = 0;
 
     explicit Statistics(const statistics::Options& options, packet::Parser& parser)
      : parser{ parser }, options{ options } {}
@@ -65,28 +57,12 @@ struct Statistics {
     }
 
     // one overload per dispatched message
-    void on_message(const iex::iexequities::tops::iextp::v1_56::system_event_message&, std::uint64_t, const iex::iexequities::tops::iextp::v1_56::iextp_header&)
-        { ++system_event_message; ++matched_messages; }
-    void on_message(const iex::iexequities::tops::iextp::v1_56::security_directory_message&, std::uint64_t, const iex::iexequities::tops::iextp::v1_56::iextp_header&)
-        { ++security_directory_message; ++matched_messages; }
-    void on_message(const iex::iexequities::tops::iextp::v1_56::trading_status_message&, std::uint64_t, const iex::iexequities::tops::iextp::v1_56::iextp_header&)
-        { ++trading_status_message; ++matched_messages; }
-    void on_message(const iex::iexequities::tops::iextp::v1_56::operational_halt_status_message&, std::uint64_t, const iex::iexequities::tops::iextp::v1_56::iextp_header&)
-        { ++operational_halt_status_message; ++matched_messages; }
-    void on_message(const iex::iexequities::tops::iextp::v1_56::short_sale_price_test_status_message&, std::uint64_t, const iex::iexequities::tops::iextp::v1_56::iextp_header&)
-        { ++short_sale_price_test_status_message; ++matched_messages; }
-    void on_message(const iex::iexequities::tops::iextp::v1_56::security_event_message&, std::uint64_t, const iex::iexequities::tops::iextp::v1_56::iextp_header&)
-        { ++security_event_message; ++matched_messages; }
     void on_message(const iex::iexequities::tops::iextp::v1_56::quote_update_message&, std::uint64_t, const iex::iexequities::tops::iextp::v1_56::iextp_header&)
         { ++quote_update_message; ++matched_messages; }
     void on_message(const iex::iexequities::tops::iextp::v1_56::trade_report_message&, std::uint64_t, const iex::iexequities::tops::iextp::v1_56::iextp_header&)
         { ++trade_report_message; ++matched_messages; }
-    void on_message(const iex::iexequities::tops::iextp::v1_56::official_price_message&, std::uint64_t, const iex::iexequities::tops::iextp::v1_56::iextp_header&)
-        { ++official_price_message; ++matched_messages; }
     void on_message(const iex::iexequities::tops::iextp::v1_56::trade_break_message&, std::uint64_t, const iex::iexequities::tops::iextp::v1_56::iextp_header&)
         { ++trade_break_message; ++matched_messages; }
-    void on_message(const iex::iexequities::tops::iextp::v1_56::auction_information_message&, std::uint64_t, const iex::iexequities::tops::iextp::v1_56::iextp_header&)
-        { ++auction_information_message; ++matched_messages; }
 
     // report statistics
     void report() {
@@ -102,17 +78,9 @@ struct Statistics {
         std::cout << std::endl;
         std::cout << "Message Counts:" << std::endl;
         std::cout << "--------------" << std::endl;
-        std::cout << "  SystemEventMessage (S)               " << system_event_message << std::endl;
-        std::cout << "  SecurityDirectoryMessage (D)         " << security_directory_message << std::endl;
-        std::cout << "  TradingStatusMessage (H)             " << trading_status_message << std::endl;
-        std::cout << "  OperationalHaltStatusMessage (O)     " << operational_halt_status_message << std::endl;
-        std::cout << "  ShortSalePriceTestStatusMessage (P)  " << short_sale_price_test_status_message << std::endl;
-        std::cout << "  SecurityEventMessage (E)             " << security_event_message << std::endl;
-        std::cout << "  QuoteUpdateMessage (Q)               " << quote_update_message << std::endl;
-        std::cout << "  TradeReportMessage (T)               " << trade_report_message << std::endl;
-        std::cout << "  OfficialPriceMessage (X)             " << official_price_message << std::endl;
-        std::cout << "  TradeBreakMessage (B)                " << trade_break_message << std::endl;
-        std::cout << "  AuctionInformationMessage (A)        " << auction_information_message << std::endl;
+        std::cout << "  QuoteUpdateMessage (Q)  " << quote_update_message << std::endl;
+        std::cout << "  TradeReportMessage (T)  " << trade_report_message << std::endl;
+        std::cout << "  TradeBreakMessage (B)   " << trade_break_message << std::endl;
     }
 };
 }

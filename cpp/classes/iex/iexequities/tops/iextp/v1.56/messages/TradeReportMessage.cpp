@@ -6,8 +6,8 @@
 
 namespace iex::iexequities::tops::iextp::v1_56 {
 
-TradeReportMessage::TradeReportMessage(const SaleConditionFlags& sale_condition_flags, std::chrono::nanoseconds timestamp, const std::string& symbol, std::uint32_t size, Decimal price, std::uint64_t trade_id)
-  : sale_condition_flags_(sale_condition_flags), timestamp_(timestamp), symbol_(symbol), size_(size), price_(price), trade_id_(trade_id) {}
+TradeReportMessage::TradeReportMessage(const SaleConditionFlags& sale_condition_flags, std::chrono::nanoseconds timestamp, const std::string& symbol, std::uint32_t size, Decimal price, std::uint64_t trade_id, std::uint32_t reserved_4)
+  : sale_condition_flags_(sale_condition_flags), timestamp_(timestamp), symbol_(symbol), size_(size), price_(price), trade_id_(trade_id), reserved_4_(reserved_4) {}
 
 const SaleConditionFlags& TradeReportMessage::sale_condition_flags() const { return sale_condition_flags_; }
 SaleConditionFlags& TradeReportMessage::sale_condition_flags() { return sale_condition_flags_; }
@@ -28,6 +28,9 @@ void TradeReportMessage::set_price(Decimal value) { price_ = value; }
 
 std::uint64_t TradeReportMessage::trade_id() const { return trade_id_; }
 void TradeReportMessage::set_trade_id(std::uint64_t value) { trade_id_ = value; }
+
+std::uint32_t TradeReportMessage::reserved_4() const { return reserved_4_; }
+void TradeReportMessage::set_reserved_4(std::uint32_t value) { reserved_4_ = value; }
 
 MessageCode TradeReportMessage::type() const { return message_type; }
 
@@ -54,6 +57,9 @@ std::size_t TradeReportMessage::decode(const std::byte* data, std::size_t length
     trade_id_ = wire::read_u64_le(data + offset);
     offset += 8;
 
+    reserved_4_ = wire::read_u32_le(data + offset);
+    offset += 4;
+
     return offset;
 }
 
@@ -77,6 +83,9 @@ std::size_t TradeReportMessage::encode(std::byte* data, std::size_t capacity) co
 
     wire::write_u64_le(data + offset, static_cast<std::uint64_t>(trade_id_));
     offset += 8;
+
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(reserved_4_));
+    offset += 4;
 
     return offset;
 }
@@ -107,6 +116,8 @@ void TradeReportMessage::print(std::ostream& out) const {
     out << price_;
     out << ", trade_id=";
     out << trade_id_;
+    out << ", reserved_4=";
+    out << reserved_4_;
     out << '}';
 }
 
@@ -121,7 +132,8 @@ bool TradeReportMessage::operator==(const TradeReportMessage& other) const {
         && symbol_ == other.symbol_
         && size_ == other.size_
         && price_ == other.price_
-        && trade_id_ == other.trade_id_;
+        && trade_id_ == other.trade_id_
+        && reserved_4_ == other.reserved_4_;
 }
 
 bool TradeReportMessage::operator!=(const TradeReportMessage& other) const {

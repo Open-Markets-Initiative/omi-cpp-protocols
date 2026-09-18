@@ -123,18 +123,18 @@ void expect(const char* name, const char* relative) {
 
 int main() {
     std::printf("== Iex.IexEquities.DeepPlus.IexTp.v1.01 (classes)\n");
-    expect<protocol::AddOrderMessage>("AddOrderMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/a_AddOrder.pcap");
-    expect<protocol::OrderModifyMessage>("OrderModifyMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/M_OrderModify.pcap");
-    expect<protocol::OrderDeleteMessage>("OrderDeleteMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/R_OrderDelete.pcap");
-    expect<protocol::OrderExecutedMessage>("OrderExecutedMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/L_OrderExecuted.pcap");
-    expect<protocol::TradeMessage>("TradeMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/T_Trade.pcap");
-    expect<protocol::TradeBreakMessage>("TradeBreakMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/B_TradeBreak.pcap");
-    expect<protocol::SecurityDirectoryMessage>("SecurityDirectoryMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/D_SecurityDirectory.pcap");
-    expect<protocol::SecurityEventMessage>("SecurityEventMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/E_SecurityEvent.pcap");
-    expect<protocol::TradingStatusMessage>("TradingStatusMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/H_TradingStatus.pcap");
-    expect<protocol::OperationalHaltStatusMessage>("OperationalHaltStatusMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/O_OperationalHaltStatus.pcap");
-    expect<protocol::ShortSalePriceTestStatusMessage>("ShortSalePriceTestStatusMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/P_ShortSalePriceTestStatus.pcap");
-    expect<protocol::RetailLiquidityIndicatorMessage>("RetailLiquidityIndicatorMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/I_RetailLiquidityIndicator.pcap");
-    expect<protocol::SystemEventMessage>("SystemEventMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.0.2/S_SystemEvent.pcap");
+    expect<protocol::TradeBreakMessage>("TradeBreakMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.01/B_TradeBreak.pcap");
+    expect<protocol::SecurityDirectoryMessage>("SecurityDirectoryMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.01/D_SecurityDirectory.pcap");
+    expect<protocol::SecurityEventMessage>("SecurityEventMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.01/E_SecurityEvent.pcap");
+    expect<protocol::TradingStatusMessage>("TradingStatusMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.01/H_TradingStatus.pcap");
+    expect<protocol::RetailLiquidityIndicatorMessage>("RetailLiquidityIndicatorMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.01/I_RetailLiquidityIndicator.pcap");
+    expect<protocol::OrderExecutedMessage>("OrderExecutedMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.01/L_OrderExecuted.pcap");
+    expect<protocol::OrderModifyMessage>("OrderModifyMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.01/M_OrderModify.pcap");
+    expect<protocol::OperationalHaltStatusMessage>("OperationalHaltStatusMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.01/O_OperationalHaltStatus.pcap");
+    expect<protocol::ShortSalePriceTestStatusMessage>("ShortSalePriceTestStatusMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.01/P_ShortSalePriceTestStatus.pcap");
+    expect<protocol::OrderDeleteMessage>("OrderDeleteMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.01/R_OrderDelete.pcap");
+    expect<protocol::SystemEventMessage>("SystemEventMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.01/S_SystemEvent.pcap");
+    expect<protocol::TradeMessage>("TradeMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.01/T_Trade.pcap");
+    expect<protocol::AddOrderMessage>("AddOrderMessage", "Iex/IexEquities.DeepPlus.IexTp.v1.01/a_AddOrder.pcap");
     return failures == 0 ? 0 : 1;
 }

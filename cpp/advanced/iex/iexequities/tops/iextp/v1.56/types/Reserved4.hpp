@@ -6,28 +6,27 @@
 
 namespace iex::iexequities::tops::iextp::v1_56 {
 
-// lower_auction_collar
-struct lower_auction_collar {
+// reserved_4
+struct reserved_4 {
 
-    static constexpr const char* name = "lower_auction_collar";
-    static constexpr std::size_t size = 8;
+    static constexpr const char* name = "reserved_4";
+    static constexpr std::size_t size = 4;
     static constexpr bool is_optional = false;
-    static constexpr int exponent = -4;
 
-    using result_type = required<std::int64_t>;
+    using result_type = required<std::uint32_t>;
     using storage_type = result_type;
 
-    constexpr lower_auction_collar()
+    constexpr reserved_4()
      : value{ 0 } {}
 
-    constexpr lower_auction_collar(std::int64_t v)
+    constexpr reserved_4(std::uint32_t v)
      : value{ v } {}
 
     [[nodiscard]] constexpr result_type get() const {
         return result_type{value};
     }
 
-    constexpr void set(std::int64_t v) {
+    constexpr void set(std::uint32_t v) {
         value = v;
     }
 
@@ -39,6 +38,6 @@ struct lower_auction_collar {
     }
 
   protected:
-    std::int64_t value;
+    std::uint32_t value;
 };
 }

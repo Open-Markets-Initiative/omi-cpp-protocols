@@ -123,6 +123,14 @@ void expect(const char* name, const char* relative) {
 
 int main() {
     std::printf("== Iex.IexEquities.Tops.IexTp.v1.64 (classes)\n");
+    expect<protocol::AuctionInformationMessage>("AuctionInformationMessage", "Iex/IexEquities.Tops.IexTp.v1.64/AuctionInformationMessage.pcap");
+    expect<protocol::OfficialPriceMessage>("OfficialPriceMessage", "Iex/IexEquities.Tops.IexTp.v1.64/OfficialPriceMessage.pcap");
+    expect<protocol::OperationalHaltStatusMessage>("OperationalHaltStatusMessage", "Iex/IexEquities.Tops.IexTp.v1.64/OperationalHaltStatusMessage.pcap");
     expect<protocol::QuoteUpdateMessage>("QuoteUpdateMessage", "Iex/IexEquities.Tops.IexTp.v1.64/QuoteUpdateMessage.pcap");
+    expect<protocol::SecurityDirectoryMessage>("SecurityDirectoryMessage", "Iex/IexEquities.Tops.IexTp.v1.64/SecurityDirectoryMessage.pcap");
+    expect<protocol::ShortSalePriceTestStatusMessage>("ShortSalePriceTestStatusMessage", "Iex/IexEquities.Tops.IexTp.v1.64/ShortSalePriceTestStatusMessage.pcap");
+    expect<protocol::SystemEventMessage>("SystemEventMessage", "Iex/IexEquities.Tops.IexTp.v1.64/SystemEventMessage.pcap");
+    expect<protocol::TradeReportMessage>("TradeReportMessage", "Iex/IexEquities.Tops.IexTp.v1.64/TradeReportMessage.pcap");
+    expect<protocol::TradingStatusMessage>("TradingStatusMessage", "Iex/IexEquities.Tops.IexTp.v1.64/TradingStatusMessage.pcap");
     return failures == 0 ? 0 : 1;
 }

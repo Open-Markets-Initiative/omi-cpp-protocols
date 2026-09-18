@@ -13,46 +13,22 @@ namespace iex::iexequities::tops::iextp::v1_56 {
 struct message_type {
 
     enum class enum_type : char {
-        system_event_message = 'S',
-        security_directory_message = 'D',
-        trading_status_message = 'H',
-        operational_halt_status_message = 'O',
-        short_sale_price_test_status_message = 'P',
-        security_event_message = 'E',
         quote_update_message = 'Q',
         trade_report_message = 'T',
-        official_price_message = 'X',
-        trade_break_message = 'B',
-        auction_information_message = 'A'
+        trade_break_message = 'B'
     };
 
-    static constexpr std::array<std::pair<std::string_view, enum_type>, 11> from_string_map = {{
-        {"Auction Information Message", enum_type::auction_information_message},
-        {"Official Price Message", enum_type::official_price_message},
-        {"Operational Halt Status Message", enum_type::operational_halt_status_message},
+    static constexpr std::array<std::pair<std::string_view, enum_type>, 3> from_string_map = {{
         {"Quote Update Message", enum_type::quote_update_message},
-        {"Security Directory Message", enum_type::security_directory_message},
-        {"Security Event Message", enum_type::security_event_message},
-        {"Short Sale Price Test Status Message", enum_type::short_sale_price_test_status_message},
-        {"System Event Message", enum_type::system_event_message},
         {"Trade Break Message", enum_type::trade_break_message},
-        {"Trade Report Message", enum_type::trade_report_message},
-        {"Trading Status Message", enum_type::trading_status_message}
+        {"Trade Report Message", enum_type::trade_report_message}
     }};
 
     static constexpr std::string_view to_string(enum_type value) {
         switch (value) {
-            case enum_type::system_event_message: return "System Event Message";
-            case enum_type::security_directory_message: return "Security Directory Message";
-            case enum_type::trading_status_message: return "Trading Status Message";
-            case enum_type::operational_halt_status_message: return "Operational Halt Status Message";
-            case enum_type::short_sale_price_test_status_message: return "Short Sale Price Test Status Message";
-            case enum_type::security_event_message: return "Security Event Message";
             case enum_type::quote_update_message: return "Quote Update Message";
             case enum_type::trade_report_message: return "Trade Report Message";
-            case enum_type::official_price_message: return "Official Price Message";
             case enum_type::trade_break_message: return "Trade Break Message";
-            case enum_type::auction_information_message: return "Auction Information Message";
             default: return "unknown";
         }
     }
@@ -78,7 +54,7 @@ struct message_type {
     using storage_type = result_type;
 
     constexpr message_type()
-     : value{ enum_type::system_event_message } {}
+     : value{ enum_type::quote_update_message } {}
 
     constexpr message_type(enum_type v)
      : value{ v } {}
@@ -95,7 +71,7 @@ struct message_type {
         if (value.has_value())
             set(value.value());
         else
-            set(enum_type::auction_information_message);
+            set(enum_type::trade_break_message);
     }
 
   protected:

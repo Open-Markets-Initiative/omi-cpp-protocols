@@ -4,17 +4,9 @@ namespace iex::iexequities::tops::iextp::v1_56 {
 
 std::string_view to_string(MessageType value) {
     switch (value) {
-        case MessageType::SystemEventMessage: return "System Event Message";
-        case MessageType::SecurityDirectoryMessage: return "Security Directory Message";
-        case MessageType::TradingStatusMessage: return "Trading Status Message";
-        case MessageType::OperationalHaltStatusMessage: return "Operational Halt Status Message";
-        case MessageType::ShortSalePriceTestStatusMessage: return "Short Sale Price Test Status Message";
-        case MessageType::SecurityEventMessage: return "Security Event Message";
         case MessageType::QuoteUpdateMessage: return "Quote Update Message";
         case MessageType::TradeReportMessage: return "Trade Report Message";
-        case MessageType::OfficialPriceMessage: return "Official Price Message";
         case MessageType::TradeBreakMessage: return "Trade Break Message";
-        case MessageType::AuctionInformationMessage: return "Auction Information Message";
         default: return {};
     }
 }

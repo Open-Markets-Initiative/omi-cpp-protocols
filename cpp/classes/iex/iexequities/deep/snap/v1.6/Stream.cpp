@@ -10,12 +10,13 @@ namespace iex::iexequities::deep::snap::v1_6 {
 Frame::Frame(std::unique_ptr<Message> message) : message_(std::move(message)) {}
 
 Frame::Frame(const Frame& other)
-  : message_header_(other.message_header_), message_(other.message_ ? other.message_->clone() : nullptr) {}
+  : message_header_(other.message_header_), message_(other.message_ ? other.message_->clone() : nullptr), trailer_(other.trailer_) {}
 
 Frame& Frame::operator=(const Frame& other) {
     if (this != &other) {
         message_header_ = other.message_header_;
         message_ = other.message_ ? other.message_->clone() : nullptr;
+        trailer_ = other.trailer_;
     }
     return *this;
 }
@@ -28,6 +29,8 @@ const Message* Frame::message() const { return message_.get(); }
 Message* Frame::message() { return message_.get(); }
 void Frame::set_message(std::unique_ptr<Message> message) { message_ = std::move(message); }
 std::unique_ptr<Message> Frame::release() { return std::move(message_); }
+const std::vector<std::byte>& Frame::trailer() const { return trailer_; }
+std::vector<std::byte>& Frame::trailer() { return trailer_; }
 
 std::size_t Frame::decode(const std::byte* data, std::size_t length) {
     std::size_t offset = 0;
@@ -57,11 +60,13 @@ void Frame::print(std::ostream& out) const {
     out << ", ";
     out << "message=";
     if (message_) { message_->print(out); } else { out << "null"; }
+    if (!trailer_.empty()) { out << ", trailer="; print::hex(out, trailer_.data(), trailer_.size()); }
     out << '}';
 }
 
 bool Frame::operator==(const Frame& other) const {
     if (!(message_header_ == other.message_header_)) { return false; }
+    if (!(trailer_ == other.trailer_)) { return false; }
     if (!message_ || !other.message_) { return !message_ && !other.message_; }
     return message_->equals(*other.message_);
 }
@@ -90,7 +95,9 @@ std::size_t Stream::decode(const std::byte* data, std::size_t length) {
         if (start + frame_size > length) { offset = start; break; }
         const std::size_t body = start + frame_size - offset;
         std::unique_ptr<Message> message = Factory::create(frame.message_header().message_type());
-        message->decode(data + offset, body);
+        // What the message left of its frame: bytes the model does not describe, kept as they came
+        const std::size_t used = message->decode(data + offset, body);
+        frame.trailer().assign(data + offset + used, data + start + frame_size);
         offset = start + frame_size;
         frame.set_message(std::move(message));
         frames_.push_back(std::move(frame));
@@ -106,7 +113,7 @@ std::size_t Stream::encode(std::byte* data, std::size_t capacity) const {
 
     for (const Frame& frame : frames_) {
         if (frame.message() == nullptr) { throw EncodeError("Stream", "a frame holds no message"); }
-        const std::size_t frame_size = frame.encoded_size() + frame.message()->encoded_size();
+        const std::size_t frame_size = frame.encoded_size() + frame.message()->encoded_size() + frame.trailer().size();
 
         auto message_header = frame.message_header();
         message_header.set_message_length(static_cast<std::uint16_t>(frame_size - 2));
@@ -115,6 +122,8 @@ std::size_t Stream::encode(std::byte* data, std::size_t capacity) const {
         offset += message_header.encode(data + offset, capacity - offset);
 
         offset += frame.message()->encode(data + offset, capacity - offset);
+        wire::write_bytes(data + offset, frame.trailer().data(), frame.trailer().size());
+        offset += frame.trailer().size();
     }
 
     return offset;
@@ -123,7 +132,7 @@ std::size_t Stream::encode(std::byte* data, std::size_t capacity) const {
 std::size_t Stream::encoded_size() const {
     std::size_t total = 0;
     for (const Frame& frame : frames_) {
-        total += frame.encoded_size() + (frame.message() ? frame.message()->encoded_size() : 0);
+        total += frame.encoded_size() + (frame.message() ? frame.message()->encoded_size() : 0) + frame.trailer().size();
     }
     return total;
 }

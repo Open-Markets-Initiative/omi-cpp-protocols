@@ -37,19 +37,26 @@ class Frame {
     void set_message(std::unique_ptr<Message> message);
     std::unique_ptr<Message> release();
 
+    // Bytes inside the frame's declared size after its message ends, which the model does not
+    // describe. They are kept as they came and written back, so the frame still encodes to the
+    // bytes it was read from.
+    const std::vector<std::byte>& trailer() const;
+    std::vector<std::byte>& trailer();
+
     // The frame headers only
     std::size_t decode(const std::byte* data, std::size_t length);
     std::size_t encode(std::byte* data, std::size_t capacity) const;
     std::size_t encoded_size() const;
     void print(std::ostream& out) const;
 
-    // Same headers and, both present, the same message
+    // Same headers, the same trailer and, both present, the same message
     bool operator==(const Frame& other) const;
     bool operator!=(const Frame& other) const;
 
   private:
     MessageHeader message_header_{};
     std::unique_ptr<Message> message_;
+    std::vector<std::byte> trailer_;
 };
 
 // A packet: the packet header, then either its messages, each in a frame, or one
