@@ -17,7 +17,7 @@
 #include "../types/EtpFlag.hpp"
 #include "../types/EtpLeverageFactor.hpp"
 #include "../types/InverseIndicator.hpp"
-#include "../structs/MessageHeader.hpp"
+#include "../messages/SequencedDataPacket.hpp"
 
 namespace nasdaq::nsmequities::totalview::itch::v5_0_2023 {
 
@@ -58,8 +58,8 @@ struct StockDirectoryMessage {
     }
 
     // parse the overlaid body from its selecting header
-    static const StockDirectoryMessage* parse(const MessageHeader* header) {
-        return reinterpret_cast<const StockDirectoryMessage*>(reinterpret_cast<const std::byte*>(header) + sizeof(MessageHeader));
+    static const StockDirectoryMessage* parse(const SequencedDataPacket* header) {
+        return reinterpret_cast<const StockDirectoryMessage*>(reinterpret_cast<const std::byte*>(header) + sizeof(SequencedDataPacket));
     }
 };
 

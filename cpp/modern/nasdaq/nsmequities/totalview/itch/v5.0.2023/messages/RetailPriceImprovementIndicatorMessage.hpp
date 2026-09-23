@@ -5,7 +5,7 @@
 #include "../types/Timestamp.hpp"
 #include "../types/Stock.hpp"
 #include "../types/InterestFlag.hpp"
-#include "../structs/MessageHeader.hpp"
+#include "../messages/SequencedDataPacket.hpp"
 
 namespace nasdaq::nsmequities::totalview::itch::v5_0_2023 {
 
@@ -34,8 +34,8 @@ struct RetailPriceImprovementIndicatorMessage {
     }
 
     // parse the overlaid body from its selecting header
-    static const RetailPriceImprovementIndicatorMessage* parse(const MessageHeader* header) {
-        return reinterpret_cast<const RetailPriceImprovementIndicatorMessage*>(reinterpret_cast<const std::byte*>(header) + sizeof(MessageHeader));
+    static const RetailPriceImprovementIndicatorMessage* parse(const SequencedDataPacket* header) {
+        return reinterpret_cast<const RetailPriceImprovementIndicatorMessage*>(reinterpret_cast<const std::byte*>(header) + sizeof(SequencedDataPacket));
     }
 };
 

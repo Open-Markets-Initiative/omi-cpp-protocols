@@ -26,6 +26,12 @@ struct Statistics {
     uint64_t matched_messages = 0;
 
     // message counters
+    uint64_t debug_packet = 0;
+    uint64_t login_request_packet = 0;
+    uint64_t unsequenced_data_packet = 0;
+    uint64_t login_accepted_packet = 0;
+    uint64_t login_rejected_packet = 0;
+    uint64_t sequenced_data_packet = 0;
     uint64_t system_event_message = 0;
     uint64_t stock_directory_message = 0;
     uint64_t stock_trading_action_message = 0;
@@ -82,6 +88,18 @@ struct Statistics {
     }
 
     // one overload per dispatched message
+    void on_message(const nasdaq::nsmequities::totalview::itch::v5_0_2023::debug_packet&, std::uint64_t, const nasdaq::nsmequities::totalview::itch::v5_0_2023::packet_header&)
+        { ++debug_packet; ++matched_messages; }
+    void on_message(const nasdaq::nsmequities::totalview::itch::v5_0_2023::login_request_packet&, std::uint64_t, const nasdaq::nsmequities::totalview::itch::v5_0_2023::packet_header&)
+        { ++login_request_packet; ++matched_messages; }
+    void on_message(const nasdaq::nsmequities::totalview::itch::v5_0_2023::unsequenced_data_packet&, std::uint64_t, const nasdaq::nsmequities::totalview::itch::v5_0_2023::packet_header&)
+        { ++unsequenced_data_packet; ++matched_messages; }
+    void on_message(const nasdaq::nsmequities::totalview::itch::v5_0_2023::login_accepted_packet&, std::uint64_t, const nasdaq::nsmequities::totalview::itch::v5_0_2023::packet_header&)
+        { ++login_accepted_packet; ++matched_messages; }
+    void on_message(const nasdaq::nsmequities::totalview::itch::v5_0_2023::login_rejected_packet&, std::uint64_t, const nasdaq::nsmequities::totalview::itch::v5_0_2023::packet_header&)
+        { ++login_rejected_packet; ++matched_messages; }
+    void on_message(const nasdaq::nsmequities::totalview::itch::v5_0_2023::sequenced_data_packet&, std::uint64_t, const nasdaq::nsmequities::totalview::itch::v5_0_2023::packet_header&)
+        { ++sequenced_data_packet; ++matched_messages; }
     void on_message(const nasdaq::nsmequities::totalview::itch::v5_0_2023::system_event_message&, std::uint64_t, const nasdaq::nsmequities::totalview::itch::v5_0_2023::packet_header&)
         { ++system_event_message; ++matched_messages; }
     void on_message(const nasdaq::nsmequities::totalview::itch::v5_0_2023::stock_directory_message&, std::uint64_t, const nasdaq::nsmequities::totalview::itch::v5_0_2023::packet_header&)
@@ -143,6 +161,12 @@ struct Statistics {
         std::cout << std::endl;
         std::cout << "Message Counts:" << std::endl;
         std::cout << "--------------" << std::endl;
+        std::cout << "  DebugPacket                                             " << debug_packet << std::endl;
+        std::cout << "  LoginRequestPacket (L)                                  " << login_request_packet << std::endl;
+        std::cout << "  UnsequencedDataPacket                                   " << unsequenced_data_packet << std::endl;
+        std::cout << "  LoginAcceptedPacket                                     " << login_accepted_packet << std::endl;
+        std::cout << "  LoginRejectedPacket                                     " << login_rejected_packet << std::endl;
+        std::cout << "  SequencedDataPacket                                     " << sequenced_data_packet << std::endl;
         std::cout << "  SystemEventMessage (S)                                  " << system_event_message << std::endl;
         std::cout << "  StockDirectoryMessage (R)                               " << stock_directory_message << std::endl;
         std::cout << "  StockTradingActionMessage (H)                           " << stock_trading_action_message << std::endl;

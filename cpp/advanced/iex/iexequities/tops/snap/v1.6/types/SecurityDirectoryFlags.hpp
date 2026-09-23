@@ -2,6 +2,7 @@
 
 #include <cstddef>
 #include <cstdint>
+#include <cstdint>
 #include "../cache/Required.hpp"
 
 namespace iex::iexequities::tops::snap::v1_6 {

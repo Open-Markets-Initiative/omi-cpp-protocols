@@ -6,7 +6,7 @@
 #include "../types/OrderReferenceNumber.hpp"
 #include "../types/ExecutedShares.hpp"
 #include "../types/MatchNumber.hpp"
-#include "../structs/MessageHeader.hpp"
+#include "../messages/SequencedDataPacket.hpp"
 
 namespace nasdaq::nsmequities::totalview::itch::v5_0_2023 {
 
@@ -36,8 +36,8 @@ struct OrderExecutedMessage {
     }
 
     // parse the overlaid body from its selecting header
-    static const OrderExecutedMessage* parse(const MessageHeader* header) {
-        return reinterpret_cast<const OrderExecutedMessage*>(reinterpret_cast<const std::byte*>(header) + sizeof(MessageHeader));
+    static const OrderExecutedMessage* parse(const SequencedDataPacket* header) {
+        return reinterpret_cast<const OrderExecutedMessage*>(reinterpret_cast<const std::byte*>(header) + sizeof(SequencedDataPacket));
     }
 };
 

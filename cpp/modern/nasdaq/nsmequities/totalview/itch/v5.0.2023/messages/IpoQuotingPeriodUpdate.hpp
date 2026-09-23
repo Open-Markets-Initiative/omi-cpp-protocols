@@ -7,7 +7,7 @@
 #include "../types/IpoQuotationReleaseTime.hpp"
 #include "../types/IpoQuotationReleaseQualifier.hpp"
 #include "../types/IpoPrice.hpp"
-#include "../structs/MessageHeader.hpp"
+#include "../messages/SequencedDataPacket.hpp"
 
 namespace nasdaq::nsmequities::totalview::itch::v5_0_2023 {
 
@@ -38,8 +38,8 @@ struct IpoQuotingPeriodUpdate {
     }
 
     // parse the overlaid body from its selecting header
-    static const IpoQuotingPeriodUpdate* parse(const MessageHeader* header) {
-        return reinterpret_cast<const IpoQuotingPeriodUpdate*>(reinterpret_cast<const std::byte*>(header) + sizeof(MessageHeader));
+    static const IpoQuotingPeriodUpdate* parse(const SequencedDataPacket* header) {
+        return reinterpret_cast<const IpoQuotingPeriodUpdate*>(reinterpret_cast<const std::byte*>(header) + sizeof(SequencedDataPacket));
     }
 };
 

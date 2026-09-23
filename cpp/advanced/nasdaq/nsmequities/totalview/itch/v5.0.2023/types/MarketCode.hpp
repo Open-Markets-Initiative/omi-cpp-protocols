@@ -14,20 +14,20 @@ struct market_code {
 
     enum class enum_type : char {
         nasdaq = 'Q',
-        nasdaq_texas = 'B',
+        bx = 'B',
         psx = 'X'
     };
 
     static constexpr std::array<std::pair<std::string_view, enum_type>, 3> from_string_map = {{
+        {"Bx", enum_type::bx},
         {"Nasdaq", enum_type::nasdaq},
-        {"Nasdaq Texas", enum_type::nasdaq_texas},
         {"Psx", enum_type::psx}
     }};
 
     static constexpr std::string_view to_string(enum_type value) {
         switch (value) {
             case enum_type::nasdaq: return "Nasdaq";
-            case enum_type::nasdaq_texas: return "Nasdaq Texas";
+            case enum_type::bx: return "Bx";
             case enum_type::psx: return "Psx";
             default: return "unknown";
         }

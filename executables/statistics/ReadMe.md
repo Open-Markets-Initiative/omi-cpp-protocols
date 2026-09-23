@@ -22,8 +22,8 @@ no program carries a copy of either. It counts through the Advanced session laye
 - `Iex.IexEquities.Deep.IexTp.v1.08`
 - `Iex.IexEquities.Deep.Snap.v1.6`
 - `Iex.IexEquities.DeepPlus.IexTp.v1.01`
-- `Iex.IexEquities.DeepPlus.IexTp.v1.04`
-- `Iex.IexEquities.DeepPlus.Snap.v1.05`
+- `Iex.IexEquities.DeepPlus.IexTp.v1.05`
+- `Iex.IexEquities.DeepPlus.Snap.v1.06`
 - `Iex.IexEquities.Tops.IexTp.v1.56`
 - `Iex.IexEquities.Tops.IexTp.v1.64`
 - `Iex.IexEquities.Tops.IexTp.v1.66`

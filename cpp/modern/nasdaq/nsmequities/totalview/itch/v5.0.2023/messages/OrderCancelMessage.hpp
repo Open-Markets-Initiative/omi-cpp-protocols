@@ -5,7 +5,7 @@
 #include "../types/Timestamp.hpp"
 #include "../types/OrderReferenceNumber.hpp"
 #include "../types/CanceledShares.hpp"
-#include "../structs/MessageHeader.hpp"
+#include "../messages/SequencedDataPacket.hpp"
 
 namespace nasdaq::nsmequities::totalview::itch::v5_0_2023 {
 
@@ -34,8 +34,8 @@ struct OrderCancelMessage {
     }
 
     // parse the overlaid body from its selecting header
-    static const OrderCancelMessage* parse(const MessageHeader* header) {
-        return reinterpret_cast<const OrderCancelMessage*>(reinterpret_cast<const std::byte*>(header) + sizeof(MessageHeader));
+    static const OrderCancelMessage* parse(const SequencedDataPacket* header) {
+        return reinterpret_cast<const OrderCancelMessage*>(reinterpret_cast<const std::byte*>(header) + sizeof(SequencedDataPacket));
     }
 };
 

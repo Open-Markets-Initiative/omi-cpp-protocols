@@ -8,7 +8,7 @@
 #include "../cache/Required.hpp"
 #include <array>
 #include <string_view>
-#include <cstring>
+#include <algorithm>
 #include "../cache/Required.hpp"
 
 namespace nasdaq::nsmequities::totalview::itch::v5_0_2023 {
@@ -46,10 +46,10 @@ struct issue_sub_type {
         return result_type{trim(value.value())};
     }
 
-    void set(std::string_view str) {
+    constexpr void set(std::string_view str) {
         value.fill(fill_char);
         auto len = std::min(str.size(), value.size());
-        std::memcpy(value.data(), str.data(), len);
+        std::copy_n(str.data(), len, value.data());
     }
 
     constexpr void set(result_type value) {

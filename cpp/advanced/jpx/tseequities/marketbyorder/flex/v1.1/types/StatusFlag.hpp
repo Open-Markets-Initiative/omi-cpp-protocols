@@ -8,7 +8,7 @@
 #include "../cache/Required.hpp"
 #include <array>
 #include <string_view>
-#include <cstring>
+#include <algorithm>
 #include "../cache/Required.hpp"
 
 namespace jpx::tseequities::marketbyorder::flex::v1_1 {
@@ -18,7 +18,7 @@ struct status_flag {
 
     static constexpr const char* name = "status_flag";
     static constexpr std::size_t size = 2;
-    static constexpr char fill_char = '\0';
+    static constexpr char fill_char = ' ';
     static constexpr bool is_optional = false;
 
     using result_type = required<std::string_view>;
@@ -46,10 +46,10 @@ struct status_flag {
         return result_type{trim(value.value())};
     }
 
-    void set(std::string_view str) {
+    constexpr void set(std::string_view str) {
         value.fill(fill_char);
         auto len = std::min(str.size(), value.size());
-        std::memcpy(value.data(), str.data(), len);
+        std::copy_n(str.data(), len, value.data());
     }
 
     constexpr void set(result_type value) {

@@ -8,7 +8,7 @@
 #include "../types/Shares.hpp"
 #include "../types/Stock.hpp"
 #include "../types/Price.hpp"
-#include "../structs/MessageHeader.hpp"
+#include "../messages/SequencedDataPacket.hpp"
 
 namespace nasdaq::nsmequities::totalview::itch::v5_0_2023 {
 
@@ -40,8 +40,8 @@ struct AddOrderNoMpidAttributionMessage {
     }
 
     // parse the overlaid body from its selecting header
-    static const AddOrderNoMpidAttributionMessage* parse(const MessageHeader* header) {
-        return reinterpret_cast<const AddOrderNoMpidAttributionMessage*>(reinterpret_cast<const std::byte*>(header) + sizeof(MessageHeader));
+    static const AddOrderNoMpidAttributionMessage* parse(const SequencedDataPacket* header) {
+        return reinterpret_cast<const AddOrderNoMpidAttributionMessage*>(reinterpret_cast<const std::byte*>(header) + sizeof(SequencedDataPacket));
     }
 };
 

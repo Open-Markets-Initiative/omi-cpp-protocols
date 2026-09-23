@@ -6,7 +6,7 @@
 #include "../types/Level1.hpp"
 #include "../types/Level2.hpp"
 #include "../types/Level3.hpp"
-#include "../structs/MessageHeader.hpp"
+#include "../messages/SequencedDataPacket.hpp"
 
 namespace nasdaq::nsmequities::totalview::itch::v5_0_2023 {
 
@@ -36,8 +36,8 @@ struct MwcbDeclineLevelMessage {
     }
 
     // parse the overlaid body from its selecting header
-    static const MwcbDeclineLevelMessage* parse(const MessageHeader* header) {
-        return reinterpret_cast<const MwcbDeclineLevelMessage*>(reinterpret_cast<const std::byte*>(header) + sizeof(MessageHeader));
+    static const MwcbDeclineLevelMessage* parse(const SequencedDataPacket* header) {
+        return reinterpret_cast<const MwcbDeclineLevelMessage*>(reinterpret_cast<const std::byte*>(header) + sizeof(SequencedDataPacket));
     }
 };
 

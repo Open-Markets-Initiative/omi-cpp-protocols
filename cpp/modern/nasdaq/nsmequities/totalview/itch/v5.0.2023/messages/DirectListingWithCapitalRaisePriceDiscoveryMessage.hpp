@@ -11,7 +11,7 @@
 #include "../types/NearExecutionTime.hpp"
 #include "../types/LowerPriceRangeCollar.hpp"
 #include "../types/UpperPriceRangeCollar.hpp"
-#include "../structs/MessageHeader.hpp"
+#include "../messages/SequencedDataPacket.hpp"
 
 namespace nasdaq::nsmequities::totalview::itch::v5_0_2023 {
 
@@ -46,8 +46,8 @@ struct DirectListingWithCapitalRaisePriceDiscoveryMessage {
     }
 
     // parse the overlaid body from its selecting header
-    static const DirectListingWithCapitalRaisePriceDiscoveryMessage* parse(const MessageHeader* header) {
-        return reinterpret_cast<const DirectListingWithCapitalRaisePriceDiscoveryMessage*>(reinterpret_cast<const std::byte*>(header) + sizeof(MessageHeader));
+    static const DirectListingWithCapitalRaisePriceDiscoveryMessage* parse(const SequencedDataPacket* header) {
+        return reinterpret_cast<const DirectListingWithCapitalRaisePriceDiscoveryMessage*>(reinterpret_cast<const std::byte*>(header) + sizeof(SequencedDataPacket));
     }
 };
 

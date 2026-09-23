@@ -4,7 +4,7 @@
 #include "../types/TrackingNumber.hpp"
 #include "../types/Timestamp.hpp"
 #include "../types/BreachedLevel.hpp"
-#include "../structs/MessageHeader.hpp"
+#include "../messages/SequencedDataPacket.hpp"
 
 namespace nasdaq::nsmequities::totalview::itch::v5_0_2023 {
 
@@ -32,8 +32,8 @@ struct MwcbStatusLevelMessage {
     }
 
     // parse the overlaid body from its selecting header
-    static const MwcbStatusLevelMessage* parse(const MessageHeader* header) {
-        return reinterpret_cast<const MwcbStatusLevelMessage*>(reinterpret_cast<const std::byte*>(header) + sizeof(MessageHeader));
+    static const MwcbStatusLevelMessage* parse(const SequencedDataPacket* header) {
+        return reinterpret_cast<const MwcbStatusLevelMessage*>(reinterpret_cast<const std::byte*>(header) + sizeof(SequencedDataPacket));
     }
 };
 

@@ -21,12 +21,12 @@ add_library(protocols_check OBJECT
   checks/iex_iexequities_deepplus_iextp_v1.01_advanced.cpp
   checks/iex_iexequities_deepplus_iextp_v1.01_modern.cpp
   checks/iex_iexequities_deepplus_iextp_v1.01_classes.cpp
-  checks/iex_iexequities_deepplus_iextp_v1.04_advanced.cpp
-  checks/iex_iexequities_deepplus_iextp_v1.04_modern.cpp
-  checks/iex_iexequities_deepplus_iextp_v1.04_classes.cpp
-  checks/iex_iexequities_deepplus_snap_v1.05_advanced.cpp
-  checks/iex_iexequities_deepplus_snap_v1.05_modern.cpp
-  checks/iex_iexequities_deepplus_snap_v1.05_classes.cpp
+  checks/iex_iexequities_deepplus_iextp_v1.05_advanced.cpp
+  checks/iex_iexequities_deepplus_iextp_v1.05_modern.cpp
+  checks/iex_iexequities_deepplus_iextp_v1.05_classes.cpp
+  checks/iex_iexequities_deepplus_snap_v1.06_advanced.cpp
+  checks/iex_iexequities_deepplus_snap_v1.06_modern.cpp
+  checks/iex_iexequities_deepplus_snap_v1.06_classes.cpp
   checks/iex_iexequities_tops_iextp_v1.56_advanced.cpp
   checks/iex_iexequities_tops_iextp_v1.56_modern.cpp
   checks/iex_iexequities_tops_iextp_v1.56_classes.cpp
@@ -44,7 +44,6 @@ add_library(protocols_check OBJECT
   checks/jpx_tseequities_marketbyorder_flex_v1.1_classes.cpp
   checks/nasdaq_nsmequities_totalview_itch_v5.0.2023_advanced.cpp
   checks/nasdaq_nsmequities_totalview_itch_v5.0.2023_modern.cpp
-  checks/nasdaq_nsmequities_totalview_itch_v5.0.2023_classes.cpp
 )
 # The Classes libraries under cpp/classes/ — one static library per protocol, linked by the
 # dump program and the classes test that decode through it. Each library precompiles the
@@ -201,85 +200,85 @@ add_library(classes_iex_iexequities_deepplus_iextp_v1.01 STATIC
 )
 target_include_directories(classes_iex_iexequities_deepplus_iextp_v1.01 PUBLIC ${CMAKE_SOURCE_DIR})
 target_precompile_headers(classes_iex_iexequities_deepplus_iextp_v1.01 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
-add_library(classes_iex_iexequities_deepplus_iextp_v1.04 STATIC
-  cpp/classes/iex/iexequities/deepplus/iextp/v1.04/enums/MessageType.cpp
-  cpp/classes/iex/iexequities/deepplus/iextp/v1.04/enums/SystemEvent.cpp
-  cpp/classes/iex/iexequities/deepplus/iextp/v1.04/enums/LuldTier.cpp
-  cpp/classes/iex/iexequities/deepplus/iextp/v1.04/enums/TradingStatus.cpp
-  cpp/classes/iex/iexequities/deepplus/iextp/v1.04/enums/RetailLiquidityIndicator.cpp
-  cpp/classes/iex/iexequities/deepplus/iextp/v1.04/enums/OperationalHaltStatus.cpp
-  cpp/classes/iex/iexequities/deepplus/iextp/v1.04/enums/ShortSalePriceTestStatus.cpp
-  cpp/classes/iex/iexequities/deepplus/iextp/v1.04/enums/Detail.cpp
-  cpp/classes/iex/iexequities/deepplus/iextp/v1.04/enums/SecurityEvent.cpp
-  cpp/classes/iex/iexequities/deepplus/iextp/v1.04/enums/Side.cpp
-  cpp/classes/iex/iexequities/deepplus/iextp/v1.04/structs/IextpHeader.cpp
-  cpp/classes/iex/iexequities/deepplus/iextp/v1.04/structs/MessageHeader.cpp
-  cpp/classes/iex/iexequities/deepplus/iextp/v1.04/messages/SystemEventMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/iextp/v1.04/bitfields/SecurityDirectoryFlags.cpp
-  cpp/classes/iex/iexequities/deepplus/iextp/v1.04/messages/SecurityDirectoryMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/iextp/v1.04/messages/TradingStatusMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/iextp/v1.04/messages/RetailLiquidityIndicatorMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/iextp/v1.04/messages/OperationalHaltStatusMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/iextp/v1.04/messages/ShortSalePriceTestStatusMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/iextp/v1.04/messages/SecurityEventMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/iextp/v1.04/messages/AddOrderMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/iextp/v1.04/bitfields/ModifyFlags.cpp
-  cpp/classes/iex/iexequities/deepplus/iextp/v1.04/messages/OrderModifyMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/iextp/v1.04/messages/OrderDeleteMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/iextp/v1.04/bitfields/SaleConditionFlags.cpp
-  cpp/classes/iex/iexequities/deepplus/iextp/v1.04/messages/OrderExecutedMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/iextp/v1.04/messages/TradeMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/iextp/v1.04/messages/TradeBreakMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/iextp/v1.04/messages/ClearBookMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/iextp/v1.04/messages/UnknownMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/iextp/v1.04/Factory.cpp
-  cpp/classes/iex/iexequities/deepplus/iextp/v1.04/Packet.cpp
+add_library(classes_iex_iexequities_deepplus_iextp_v1.05 STATIC
+  cpp/classes/iex/iexequities/deepplus/iextp/v1.05/enums/MessageType.cpp
+  cpp/classes/iex/iexequities/deepplus/iextp/v1.05/enums/SystemEvent.cpp
+  cpp/classes/iex/iexequities/deepplus/iextp/v1.05/enums/LuldTier.cpp
+  cpp/classes/iex/iexequities/deepplus/iextp/v1.05/enums/TradingStatus.cpp
+  cpp/classes/iex/iexequities/deepplus/iextp/v1.05/enums/RetailLiquidityIndicator.cpp
+  cpp/classes/iex/iexequities/deepplus/iextp/v1.05/enums/OperationalHaltStatus.cpp
+  cpp/classes/iex/iexequities/deepplus/iextp/v1.05/enums/ShortSalePriceTestStatus.cpp
+  cpp/classes/iex/iexequities/deepplus/iextp/v1.05/enums/Detail.cpp
+  cpp/classes/iex/iexequities/deepplus/iextp/v1.05/enums/SecurityEvent.cpp
+  cpp/classes/iex/iexequities/deepplus/iextp/v1.05/enums/Side.cpp
+  cpp/classes/iex/iexequities/deepplus/iextp/v1.05/structs/IextpHeader.cpp
+  cpp/classes/iex/iexequities/deepplus/iextp/v1.05/structs/MessageHeader.cpp
+  cpp/classes/iex/iexequities/deepplus/iextp/v1.05/messages/SystemEventMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/iextp/v1.05/bitfields/SecurityDirectoryFlags.cpp
+  cpp/classes/iex/iexequities/deepplus/iextp/v1.05/messages/SecurityDirectoryMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/iextp/v1.05/messages/TradingStatusMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/iextp/v1.05/messages/RetailLiquidityIndicatorMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/iextp/v1.05/messages/OperationalHaltStatusMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/iextp/v1.05/messages/ShortSalePriceTestStatusMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/iextp/v1.05/messages/SecurityEventMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/iextp/v1.05/messages/AddOrderMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/iextp/v1.05/bitfields/ModifyFlags.cpp
+  cpp/classes/iex/iexequities/deepplus/iextp/v1.05/messages/OrderModifyMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/iextp/v1.05/messages/OrderDeleteMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/iextp/v1.05/bitfields/SaleConditionFlags.cpp
+  cpp/classes/iex/iexequities/deepplus/iextp/v1.05/messages/OrderExecutedMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/iextp/v1.05/messages/TradeMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/iextp/v1.05/messages/TradeBreakMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/iextp/v1.05/messages/ClearBookMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/iextp/v1.05/messages/UnknownMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/iextp/v1.05/Factory.cpp
+  cpp/classes/iex/iexequities/deepplus/iextp/v1.05/Packet.cpp
 )
-target_include_directories(classes_iex_iexequities_deepplus_iextp_v1.04 PUBLIC ${CMAKE_SOURCE_DIR})
-target_precompile_headers(classes_iex_iexequities_deepplus_iextp_v1.04 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
-add_library(classes_iex_iexequities_deepplus_snap_v1.05 STATIC
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/enums/MessageType.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/enums/RejectReasonCode.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/enums/IexTpMessageType.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/enums/SystemEvent.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/enums/LuldTier.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/enums/TradingStatus.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/enums/RetailLiquidityIndicator.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/enums/OperationalHaltStatus.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/enums/ShortSalePriceTestStatus.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/enums/Detail.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/enums/SecurityEvent.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/enums/Side.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/structs/MessageHeader.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/SnapshotRequestMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/ErrorResponseMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/SnapshotStartMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/SystemEventMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/bitfields/SecurityDirectoryFlags.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/SecurityDirectoryMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/TradingStatusMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/RetailLiquidityIndicatorMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/OperationalHaltStatusMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/ShortSalePriceTestStatusMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/SecurityEventMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/AddOrderMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/bitfields/ModifyFlags.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/OrderModifyMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/OrderDeleteMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/bitfields/SaleConditionFlags.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/OrderExecutedMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/TradeMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/TradeBreakMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/ClearBookMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/SnapshotDataMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/SnapshotEndMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/UnknownMessage.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/messages/UnknownIexTpMessageData.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/Factory.cpp
-  cpp/classes/iex/iexequities/deepplus/snap/v1.05/Stream.cpp
+target_include_directories(classes_iex_iexequities_deepplus_iextp_v1.05 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(classes_iex_iexequities_deepplus_iextp_v1.05 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(classes_iex_iexequities_deepplus_snap_v1.06 STATIC
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/enums/MessageType.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/enums/RejectReasonCode.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/enums/IexTpMessageType.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/enums/SystemEvent.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/enums/LuldTier.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/enums/TradingStatus.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/enums/RetailLiquidityIndicator.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/enums/OperationalHaltStatus.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/enums/ShortSalePriceTestStatus.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/enums/Detail.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/enums/SecurityEvent.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/enums/Side.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/structs/MessageHeader.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/messages/SnapshotRequestMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/messages/ErrorResponseMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/messages/SnapshotStartMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/messages/SystemEventMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/bitfields/SecurityDirectoryFlags.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/messages/SecurityDirectoryMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/messages/TradingStatusMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/messages/RetailLiquidityIndicatorMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/messages/OperationalHaltStatusMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/messages/ShortSalePriceTestStatusMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/messages/SecurityEventMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/messages/AddOrderMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/bitfields/ModifyFlags.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/messages/OrderModifyMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/messages/OrderDeleteMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/bitfields/SaleConditionFlags.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/messages/OrderExecutedMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/messages/TradeMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/messages/TradeBreakMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/messages/ClearBookMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/messages/SnapshotDataMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/messages/SnapshotEndMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/messages/UnknownMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/messages/UnknownIexTpMessageData.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/Factory.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/Stream.cpp
 )
-target_include_directories(classes_iex_iexequities_deepplus_snap_v1.05 PUBLIC ${CMAKE_SOURCE_DIR})
-target_precompile_headers(classes_iex_iexequities_deepplus_snap_v1.05 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+target_include_directories(classes_iex_iexequities_deepplus_snap_v1.06 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(classes_iex_iexequities_deepplus_snap_v1.06 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
 add_library(classes_iex_iexequities_tops_iextp_v1.56 STATIC
   cpp/classes/iex/iexequities/tops/iextp/v1.56/enums/MessageType.cpp
   cpp/classes/iex/iexequities/tops/iextp/v1.56/structs/IextpHeader.cpp
@@ -443,66 +442,6 @@ add_library(classes_jpx_tseequities_marketbyorder_flex_v1.1 STATIC
 )
 target_include_directories(classes_jpx_tseequities_marketbyorder_flex_v1.1 PUBLIC ${CMAKE_SOURCE_DIR})
 target_precompile_headers(classes_jpx_tseequities_marketbyorder_flex_v1.1 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
-add_library(classes_nasdaq_nsmequities_totalview_itch_v5.0.2023 STATIC
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/MessageType.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/EventCode.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/MarketCategory.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/FinancialStatusIndicator.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/RoundLotsOnly.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/IssueClassification.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/Authenticity.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/ShortSaleThresholdIndicator.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/IpoFlag.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/LuldReferencePriceTier.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/EtpFlag.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/InverseIndicator.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/TradingState.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/RegShoAction.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/PrimaryMarketMaker.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/MarketMakerMode.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/MarketParticipantState.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/BreachedLevel.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/IpoQuotationReleaseQualifier.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/MarketCode.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/OperationalHaltAction.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/BuySellIndicator.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/Printable.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/CrossType.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/ImbalanceDirection.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/PriceVariationIndicator.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/InterestFlag.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/OpenEligibilityStatus.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/structs/PacketHeader.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/structs/MessageHeader.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/SystemEventMessage.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/StockDirectoryMessage.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/StockTradingActionMessage.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/RegShoShortSalePriceTestRestrictedIndicatorMessage.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/MarketParticipantPositionMessage.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/MwcbDeclineLevelMessage.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/MwcbStatusLevelMessage.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/IpoQuotingPeriodUpdate.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/LuldAuctionCollarMessage.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/OperationalHaltMessage.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/AddOrderNoMpidAttributionMessage.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/AddOrderWithMpidAttributionMessage.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/OrderExecutedMessage.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/OrderExecutedWithPriceMessage.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/OrderCancelMessage.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/OrderDeleteMessage.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/OrderReplaceMessage.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/NonCrossTradeMessage.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/CrossTradeMessage.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/BrokenTradeMessage.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/NetOrderImbalanceIndicatorMessage.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/RetailPriceImprovementIndicatorMessage.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/DirectListingWithCapitalRaisePriceDiscoveryMessage.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/UnknownMessage.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/Factory.cpp
-  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/Packet.cpp
-)
-target_include_directories(classes_nasdaq_nsmequities_totalview_itch_v5.0.2023 PUBLIC ${CMAKE_SOURCE_DIR})
-target_precompile_headers(classes_nasdaq_nsmequities_totalview_itch_v5.0.2023 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
 # Programs under executables/ — one per protocol. Each reads the parser published under
 # cpp/, included by a repository-root-relative path, so there is only ever one copy of a
 # protocol's parser in the tree.
@@ -546,26 +485,26 @@ target_link_libraries(dump_iex_iexequities_deepplus_iextp_v1.01 PRIVATE classes_
 add_executable(verify_iex_iexequities_deepplus_iextp_v1.01 executables/verify/iex/iexequities/deepplus/iextp/v1.01/main.cpp)
 target_include_directories(verify_iex_iexequities_deepplus_iextp_v1.01 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/iex/iexequities/deepplus/iextp/v1.01)
 target_link_libraries(verify_iex_iexequities_deepplus_iextp_v1.01 PRIVATE classes_iex_iexequities_deepplus_iextp_v1.01)
-add_executable(statistics_iex_iexequities_deepplus_iextp_v1.04 executables/statistics/iex/iexequities/deepplus/iextp/v1.04/main.cpp)
-target_include_directories(statistics_iex_iexequities_deepplus_iextp_v1.04 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/iex/iexequities/deepplus/iextp/v1.04)
-add_executable(extractor_iex_iexequities_deepplus_iextp_v1.04 executables/extractor/iex/iexequities/deepplus/iextp/v1.04/main.cpp)
-target_include_directories(extractor_iex_iexequities_deepplus_iextp_v1.04 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/extractor/iex/iexequities/deepplus/iextp/v1.04)
-add_executable(dump_iex_iexequities_deepplus_iextp_v1.04 executables/dump/iex/iexequities/deepplus/iextp/v1.04/main.cpp)
-target_include_directories(dump_iex_iexequities_deepplus_iextp_v1.04 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/dump/iex/iexequities/deepplus/iextp/v1.04)
-target_link_libraries(dump_iex_iexequities_deepplus_iextp_v1.04 PRIVATE classes_iex_iexequities_deepplus_iextp_v1.04)
-add_executable(verify_iex_iexequities_deepplus_iextp_v1.04 executables/verify/iex/iexequities/deepplus/iextp/v1.04/main.cpp)
-target_include_directories(verify_iex_iexequities_deepplus_iextp_v1.04 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/iex/iexequities/deepplus/iextp/v1.04)
-target_link_libraries(verify_iex_iexequities_deepplus_iextp_v1.04 PRIVATE classes_iex_iexequities_deepplus_iextp_v1.04)
-add_executable(statistics_iex_iexequities_deepplus_snap_v1.05 executables/statistics/iex/iexequities/deepplus/snap/v1.05/main.cpp)
-target_include_directories(statistics_iex_iexequities_deepplus_snap_v1.05 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/iex/iexequities/deepplus/snap/v1.05)
-add_executable(extractor_iex_iexequities_deepplus_snap_v1.05 executables/extractor/iex/iexequities/deepplus/snap/v1.05/main.cpp)
-target_include_directories(extractor_iex_iexequities_deepplus_snap_v1.05 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/extractor/iex/iexequities/deepplus/snap/v1.05)
-add_executable(dump_iex_iexequities_deepplus_snap_v1.05 executables/dump/iex/iexequities/deepplus/snap/v1.05/main.cpp)
-target_include_directories(dump_iex_iexequities_deepplus_snap_v1.05 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/dump/iex/iexequities/deepplus/snap/v1.05)
-target_link_libraries(dump_iex_iexequities_deepplus_snap_v1.05 PRIVATE classes_iex_iexequities_deepplus_snap_v1.05)
-add_executable(verify_iex_iexequities_deepplus_snap_v1.05 executables/verify/iex/iexequities/deepplus/snap/v1.05/main.cpp)
-target_include_directories(verify_iex_iexequities_deepplus_snap_v1.05 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/iex/iexequities/deepplus/snap/v1.05)
-target_link_libraries(verify_iex_iexequities_deepplus_snap_v1.05 PRIVATE classes_iex_iexequities_deepplus_snap_v1.05)
+add_executable(statistics_iex_iexequities_deepplus_iextp_v1.05 executables/statistics/iex/iexequities/deepplus/iextp/v1.05/main.cpp)
+target_include_directories(statistics_iex_iexequities_deepplus_iextp_v1.05 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/iex/iexequities/deepplus/iextp/v1.05)
+add_executable(extractor_iex_iexequities_deepplus_iextp_v1.05 executables/extractor/iex/iexequities/deepplus/iextp/v1.05/main.cpp)
+target_include_directories(extractor_iex_iexequities_deepplus_iextp_v1.05 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/extractor/iex/iexequities/deepplus/iextp/v1.05)
+add_executable(dump_iex_iexequities_deepplus_iextp_v1.05 executables/dump/iex/iexequities/deepplus/iextp/v1.05/main.cpp)
+target_include_directories(dump_iex_iexequities_deepplus_iextp_v1.05 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/dump/iex/iexequities/deepplus/iextp/v1.05)
+target_link_libraries(dump_iex_iexequities_deepplus_iextp_v1.05 PRIVATE classes_iex_iexequities_deepplus_iextp_v1.05)
+add_executable(verify_iex_iexequities_deepplus_iextp_v1.05 executables/verify/iex/iexequities/deepplus/iextp/v1.05/main.cpp)
+target_include_directories(verify_iex_iexequities_deepplus_iextp_v1.05 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/iex/iexequities/deepplus/iextp/v1.05)
+target_link_libraries(verify_iex_iexequities_deepplus_iextp_v1.05 PRIVATE classes_iex_iexequities_deepplus_iextp_v1.05)
+add_executable(statistics_iex_iexequities_deepplus_snap_v1.06 executables/statistics/iex/iexequities/deepplus/snap/v1.06/main.cpp)
+target_include_directories(statistics_iex_iexequities_deepplus_snap_v1.06 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/iex/iexequities/deepplus/snap/v1.06)
+add_executable(extractor_iex_iexequities_deepplus_snap_v1.06 executables/extractor/iex/iexequities/deepplus/snap/v1.06/main.cpp)
+target_include_directories(extractor_iex_iexequities_deepplus_snap_v1.06 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/extractor/iex/iexequities/deepplus/snap/v1.06)
+add_executable(dump_iex_iexequities_deepplus_snap_v1.06 executables/dump/iex/iexequities/deepplus/snap/v1.06/main.cpp)
+target_include_directories(dump_iex_iexequities_deepplus_snap_v1.06 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/dump/iex/iexequities/deepplus/snap/v1.06)
+target_link_libraries(dump_iex_iexequities_deepplus_snap_v1.06 PRIVATE classes_iex_iexequities_deepplus_snap_v1.06)
+add_executable(verify_iex_iexequities_deepplus_snap_v1.06 executables/verify/iex/iexequities/deepplus/snap/v1.06/main.cpp)
+target_include_directories(verify_iex_iexequities_deepplus_snap_v1.06 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/iex/iexequities/deepplus/snap/v1.06)
+target_link_libraries(verify_iex_iexequities_deepplus_snap_v1.06 PRIVATE classes_iex_iexequities_deepplus_snap_v1.06)
 add_executable(statistics_iex_iexequities_tops_iextp_v1.56 executables/statistics/iex/iexequities/tops/iextp/v1.56/main.cpp)
 target_include_directories(statistics_iex_iexequities_tops_iextp_v1.56 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/iex/iexequities/tops/iextp/v1.56)
 add_executable(extractor_iex_iexequities_tops_iextp_v1.56 executables/extractor/iex/iexequities/tops/iextp/v1.56/main.cpp)
@@ -620,12 +559,6 @@ add_executable(statistics_nasdaq_nsmequities_totalview_itch_v5.0.2023 executable
 target_include_directories(statistics_nasdaq_nsmequities_totalview_itch_v5.0.2023 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/nasdaq/nsmequities/totalview/itch/v5.0.2023)
 add_executable(extractor_nasdaq_nsmequities_totalview_itch_v5.0.2023 executables/extractor/nasdaq/nsmequities/totalview/itch/v5.0.2023/main.cpp)
 target_include_directories(extractor_nasdaq_nsmequities_totalview_itch_v5.0.2023 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/extractor/nasdaq/nsmequities/totalview/itch/v5.0.2023)
-add_executable(dump_nasdaq_nsmequities_totalview_itch_v5.0.2023 executables/dump/nasdaq/nsmequities/totalview/itch/v5.0.2023/main.cpp)
-target_include_directories(dump_nasdaq_nsmequities_totalview_itch_v5.0.2023 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/dump/nasdaq/nsmequities/totalview/itch/v5.0.2023)
-target_link_libraries(dump_nasdaq_nsmequities_totalview_itch_v5.0.2023 PRIVATE classes_nasdaq_nsmequities_totalview_itch_v5.0.2023)
-add_executable(verify_nasdaq_nsmequities_totalview_itch_v5.0.2023 executables/verify/nasdaq/nsmequities/totalview/itch/v5.0.2023/main.cpp)
-target_include_directories(verify_nasdaq_nsmequities_totalview_itch_v5.0.2023 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/nasdaq/nsmequities/totalview/itch/v5.0.2023)
-target_link_libraries(verify_nasdaq_nsmequities_totalview_itch_v5.0.2023 PRIVATE classes_nasdaq_nsmequities_totalview_itch_v5.0.2023)
 # Corpus-driven tests, one family per format under tests/, each through the surface that
 # format's program uses: modern through the packet iterator, advanced through the session
 # layer, classes through the Packet's decode and encode. The test programs are built by
@@ -652,13 +585,13 @@ target_include_directories(advanced_iex_iexequities_deepplus_iextp_v1.01_test PR
 add_executable(classes_iex_iexequities_deepplus_iextp_v1.01_test tests/classes/iex_iexequities_deepplus_iextp_v1.01.cpp)
 target_include_directories(classes_iex_iexequities_deepplus_iextp_v1.01_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(classes_iex_iexequities_deepplus_iextp_v1.01_test PRIVATE classes_iex_iexequities_deepplus_iextp_v1.01)
-add_executable(modern_iex_iexequities_deepplus_iextp_v1.04_test tests/modern/iex_iexequities_deepplus_iextp_v1.04.cpp)
-target_include_directories(modern_iex_iexequities_deepplus_iextp_v1.04_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
-add_executable(advanced_iex_iexequities_deepplus_iextp_v1.04_test tests/advanced/iex_iexequities_deepplus_iextp_v1.04.cpp)
-target_include_directories(advanced_iex_iexequities_deepplus_iextp_v1.04_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
-add_executable(classes_iex_iexequities_deepplus_iextp_v1.04_test tests/classes/iex_iexequities_deepplus_iextp_v1.04.cpp)
-target_include_directories(classes_iex_iexequities_deepplus_iextp_v1.04_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
-target_link_libraries(classes_iex_iexequities_deepplus_iextp_v1.04_test PRIVATE classes_iex_iexequities_deepplus_iextp_v1.04)
+add_executable(modern_iex_iexequities_deepplus_iextp_v1.05_test tests/modern/iex_iexequities_deepplus_iextp_v1.05.cpp)
+target_include_directories(modern_iex_iexequities_deepplus_iextp_v1.05_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(advanced_iex_iexequities_deepplus_iextp_v1.05_test tests/advanced/iex_iexequities_deepplus_iextp_v1.05.cpp)
+target_include_directories(advanced_iex_iexequities_deepplus_iextp_v1.05_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(classes_iex_iexequities_deepplus_iextp_v1.05_test tests/classes/iex_iexequities_deepplus_iextp_v1.05.cpp)
+target_include_directories(classes_iex_iexequities_deepplus_iextp_v1.05_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+target_link_libraries(classes_iex_iexequities_deepplus_iextp_v1.05_test PRIVATE classes_iex_iexequities_deepplus_iextp_v1.05)
 add_executable(modern_iex_iexequities_tops_iextp_v1.56_test tests/modern/iex_iexequities_tops_iextp_v1.56.cpp)
 target_include_directories(modern_iex_iexequities_tops_iextp_v1.56_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(advanced_iex_iexequities_tops_iextp_v1.56_test tests/advanced/iex_iexequities_tops_iextp_v1.56.cpp)
@@ -689,9 +622,6 @@ add_executable(modern_nasdaq_nsmequities_totalview_itch_v5.0.2023_test tests/mod
 target_include_directories(modern_nasdaq_nsmequities_totalview_itch_v5.0.2023_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(advanced_nasdaq_nsmequities_totalview_itch_v5.0.2023_test tests/advanced/nasdaq_nsmequities_totalview_itch_v5.0.2023.cpp)
 target_include_directories(advanced_nasdaq_nsmequities_totalview_itch_v5.0.2023_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
-add_executable(classes_nasdaq_nsmequities_totalview_itch_v5.0.2023_test tests/classes/nasdaq_nsmequities_totalview_itch_v5.0.2023.cpp)
-target_include_directories(classes_nasdaq_nsmequities_totalview_itch_v5.0.2023_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
-target_link_libraries(classes_nasdaq_nsmequities_totalview_itch_v5.0.2023_test PRIVATE classes_nasdaq_nsmequities_totalview_itch_v5.0.2023)
 
 # Running them reads the captures each protocol declares, and each program is run on its
 # protocol's first declared capture. Point OMI_PACKETS_DIR at the corpus checkout:
@@ -730,14 +660,14 @@ if(OMI_PACKETS_DIR)
   add_test(NAME classes_iex_iexequities_deepplus_iextp_v1.01 COMMAND classes_iex_iexequities_deepplus_iextp_v1.01_test)
   set_tests_properties(classes_iex_iexequities_deepplus_iextp_v1.01 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR}")
 
-  add_test(NAME modern_iex_iexequities_deepplus_iextp_v1.04 COMMAND modern_iex_iexequities_deepplus_iextp_v1.04_test)
-  set_tests_properties(modern_iex_iexequities_deepplus_iextp_v1.04 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR}")
+  add_test(NAME modern_iex_iexequities_deepplus_iextp_v1.05 COMMAND modern_iex_iexequities_deepplus_iextp_v1.05_test)
+  set_tests_properties(modern_iex_iexequities_deepplus_iextp_v1.05 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR}")
 
-  add_test(NAME advanced_iex_iexequities_deepplus_iextp_v1.04 COMMAND advanced_iex_iexequities_deepplus_iextp_v1.04_test)
-  set_tests_properties(advanced_iex_iexequities_deepplus_iextp_v1.04 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR}")
+  add_test(NAME advanced_iex_iexequities_deepplus_iextp_v1.05 COMMAND advanced_iex_iexequities_deepplus_iextp_v1.05_test)
+  set_tests_properties(advanced_iex_iexequities_deepplus_iextp_v1.05 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR}")
 
-  add_test(NAME classes_iex_iexequities_deepplus_iextp_v1.04 COMMAND classes_iex_iexequities_deepplus_iextp_v1.04_test)
-  set_tests_properties(classes_iex_iexequities_deepplus_iextp_v1.04 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR}")
+  add_test(NAME classes_iex_iexequities_deepplus_iextp_v1.05 COMMAND classes_iex_iexequities_deepplus_iextp_v1.05_test)
+  set_tests_properties(classes_iex_iexequities_deepplus_iextp_v1.05 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR}")
 
   add_test(NAME modern_iex_iexequities_tops_iextp_v1.56 COMMAND modern_iex_iexequities_tops_iextp_v1.56_test)
   set_tests_properties(modern_iex_iexequities_tops_iextp_v1.56 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR}")
@@ -777,9 +707,6 @@ if(OMI_PACKETS_DIR)
 
   add_test(NAME advanced_nasdaq_nsmequities_totalview_itch_v5.0.2023 COMMAND advanced_nasdaq_nsmequities_totalview_itch_v5.0.2023_test)
   set_tests_properties(advanced_nasdaq_nsmequities_totalview_itch_v5.0.2023 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR}")
-
-  add_test(NAME classes_nasdaq_nsmequities_totalview_itch_v5.0.2023 COMMAND classes_nasdaq_nsmequities_totalview_itch_v5.0.2023_test)
-  set_tests_properties(classes_nasdaq_nsmequities_totalview_itch_v5.0.2023 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR}")
 
   add_test(NAME statistics_iex_iexequities_deep_iextp_v1.06 COMMAND statistics_iex_iexequities_deep_iextp_v1.06 -i ${OMI_PACKETS_DIR}/Iex/IexEquities.Deep.IexTp.v1.06/AuctionInformationMessage.pcap)
   set_tests_properties(statistics_iex_iexequities_deep_iextp_v1.06 PROPERTIES PASS_REGULAR_EXPRESSION "AuctionInformationMessage \\([^)]*\\) +[1-9]")
@@ -823,19 +750,19 @@ if(OMI_PACKETS_DIR)
   add_test(NAME verify_iex_iexequities_deepplus_iextp_v1.01 COMMAND verify_iex_iexequities_deepplus_iextp_v1.01 ${OMI_PACKETS_DIR}/Iex/IexEquities.DeepPlus.IexTp.v1.01/B_TradeBreak.pcap)
   set_tests_properties(verify_iex_iexequities_deepplus_iextp_v1.01 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
-  add_test(NAME statistics_iex_iexequities_deepplus_iextp_v1.04 COMMAND statistics_iex_iexequities_deepplus_iextp_v1.04 -i ${OMI_PACKETS_DIR}/Iex/IexEquities.DeepPlus.IexTp.v1.04/AddOrderMessage.pcap)
-  set_tests_properties(statistics_iex_iexequities_deepplus_iextp_v1.04 PROPERTIES PASS_REGULAR_EXPRESSION "AddOrderMessage \\([^)]*\\) +[1-9]")
+  add_test(NAME statistics_iex_iexequities_deepplus_iextp_v1.05 COMMAND statistics_iex_iexequities_deepplus_iextp_v1.05 -i ${OMI_PACKETS_DIR}/Iex/IexEquities.DeepPlus.IexTp.v1.05/AddOrderMessage.pcap)
+  set_tests_properties(statistics_iex_iexequities_deepplus_iextp_v1.05 PROPERTIES PASS_REGULAR_EXPRESSION "AddOrderMessage \\([^)]*\\) +[1-9]")
 
-  add_test(NAME extractor_iex_iexequities_deepplus_iextp_v1.04_directory COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/samples/extractor_iex_iexequities_deepplus_iextp_v1.04)
-  set_tests_properties(extractor_iex_iexequities_deepplus_iextp_v1.04_directory PROPERTIES FIXTURES_SETUP extractor_iex_iexequities_deepplus_iextp_v1.04_samples)
-  add_test(NAME extractor_iex_iexequities_deepplus_iextp_v1.04 COMMAND extractor_iex_iexequities_deepplus_iextp_v1.04 ${OMI_PACKETS_DIR}/Iex/IexEquities.DeepPlus.IexTp.v1.04/AddOrderMessage.pcap ${CMAKE_BINARY_DIR}/samples/iex_iexequities_deepplus_iextp_v1.04)
-  set_tests_properties(extractor_iex_iexequities_deepplus_iextp_v1.04 PROPERTIES PASS_REGULAR_EXPRESSION "sampled [1-9]" FIXTURES_REQUIRED extractor_iex_iexequities_deepplus_iextp_v1.04_samples)
+  add_test(NAME extractor_iex_iexequities_deepplus_iextp_v1.05_directory COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/samples/extractor_iex_iexequities_deepplus_iextp_v1.05)
+  set_tests_properties(extractor_iex_iexequities_deepplus_iextp_v1.05_directory PROPERTIES FIXTURES_SETUP extractor_iex_iexequities_deepplus_iextp_v1.05_samples)
+  add_test(NAME extractor_iex_iexequities_deepplus_iextp_v1.05 COMMAND extractor_iex_iexequities_deepplus_iextp_v1.05 ${OMI_PACKETS_DIR}/Iex/IexEquities.DeepPlus.IexTp.v1.05/AddOrderMessage.pcap ${CMAKE_BINARY_DIR}/samples/iex_iexequities_deepplus_iextp_v1.05)
+  set_tests_properties(extractor_iex_iexequities_deepplus_iextp_v1.05 PROPERTIES PASS_REGULAR_EXPRESSION "sampled [1-9]" FIXTURES_REQUIRED extractor_iex_iexequities_deepplus_iextp_v1.05_samples)
 
-  add_test(NAME dump_iex_iexequities_deepplus_iextp_v1.04 COMMAND dump_iex_iexequities_deepplus_iextp_v1.04 ${OMI_PACKETS_DIR}/Iex/IexEquities.DeepPlus.IexTp.v1.04/AddOrderMessage.pcap)
-  set_tests_properties(dump_iex_iexequities_deepplus_iextp_v1.04 PROPERTIES PASS_REGULAR_EXPRESSION "AddOrderMessage")
+  add_test(NAME dump_iex_iexequities_deepplus_iextp_v1.05 COMMAND dump_iex_iexequities_deepplus_iextp_v1.05 ${OMI_PACKETS_DIR}/Iex/IexEquities.DeepPlus.IexTp.v1.05/AddOrderMessage.pcap)
+  set_tests_properties(dump_iex_iexequities_deepplus_iextp_v1.05 PROPERTIES PASS_REGULAR_EXPRESSION "AddOrderMessage")
 
-  add_test(NAME verify_iex_iexequities_deepplus_iextp_v1.04 COMMAND verify_iex_iexequities_deepplus_iextp_v1.04 ${OMI_PACKETS_DIR}/Iex/IexEquities.DeepPlus.IexTp.v1.04/AddOrderMessage.pcap)
-  set_tests_properties(verify_iex_iexequities_deepplus_iextp_v1.04 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+  add_test(NAME verify_iex_iexequities_deepplus_iextp_v1.05 COMMAND verify_iex_iexequities_deepplus_iextp_v1.05 ${OMI_PACKETS_DIR}/Iex/IexEquities.DeepPlus.IexTp.v1.05/AddOrderMessage.pcap)
+  set_tests_properties(verify_iex_iexequities_deepplus_iextp_v1.05 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
   add_test(NAME statistics_iex_iexequities_tops_iextp_v1.56 COMMAND statistics_iex_iexequities_tops_iextp_v1.56 -i ${OMI_PACKETS_DIR}/Iex/IexEquities.Tops.IexTp.v1.56/QuoteUpdateMessage.pcap)
   set_tests_properties(statistics_iex_iexequities_tops_iextp_v1.56 PROPERTIES PASS_REGULAR_EXPRESSION "QuoteUpdateMessage \\([^)]*\\) +[1-9]")
@@ -900,10 +827,4 @@ if(OMI_PACKETS_DIR)
   set_tests_properties(extractor_nasdaq_nsmequities_totalview_itch_v5.0.2023_directory PROPERTIES FIXTURES_SETUP extractor_nasdaq_nsmequities_totalview_itch_v5.0.2023_samples)
   add_test(NAME extractor_nasdaq_nsmequities_totalview_itch_v5.0.2023 COMMAND extractor_nasdaq_nsmequities_totalview_itch_v5.0.2023 ${OMI_PACKETS_DIR}/Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/AddOrderNoMPID.pcap ${CMAKE_BINARY_DIR}/samples/nasdaq_nsmequities_totalview_itch_v5.0.2023)
   set_tests_properties(extractor_nasdaq_nsmequities_totalview_itch_v5.0.2023 PROPERTIES PASS_REGULAR_EXPRESSION "sampled [1-9]" FIXTURES_REQUIRED extractor_nasdaq_nsmequities_totalview_itch_v5.0.2023_samples)
-
-  add_test(NAME dump_nasdaq_nsmequities_totalview_itch_v5.0.2023 COMMAND dump_nasdaq_nsmequities_totalview_itch_v5.0.2023 ${OMI_PACKETS_DIR}/Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/AddOrderNoMPID.pcap)
-  set_tests_properties(dump_nasdaq_nsmequities_totalview_itch_v5.0.2023 PROPERTIES PASS_REGULAR_EXPRESSION "AddOrderNoMpidAttributionMessage")
-
-  add_test(NAME verify_nasdaq_nsmequities_totalview_itch_v5.0.2023 COMMAND verify_nasdaq_nsmequities_totalview_itch_v5.0.2023 ${OMI_PACKETS_DIR}/Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/AddOrderNoMPID.pcap)
-  set_tests_properties(verify_nasdaq_nsmequities_totalview_itch_v5.0.2023 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 endif()

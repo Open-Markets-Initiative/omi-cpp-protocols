@@ -15,12 +15,10 @@ struct ipo_flag {
     enum class enum_type : char {
         set_up_for_ipo_release = 'Y',
         not_set_up_for_ipo_release = 'N',
-        non_ipo_new_listed_security = 'Z',
         not_available = ' '
     };
 
-    static constexpr std::array<std::pair<std::string_view, enum_type>, 4> from_string_map = {{
-        {"Non Ipo New Listed Security", enum_type::non_ipo_new_listed_security},
+    static constexpr std::array<std::pair<std::string_view, enum_type>, 3> from_string_map = {{
         {"Not Available", enum_type::not_available},
         {"Not Set Up For Ipo Release", enum_type::not_set_up_for_ipo_release},
         {"Set Up For Ipo Release", enum_type::set_up_for_ipo_release}
@@ -30,7 +28,6 @@ struct ipo_flag {
         switch (value) {
             case enum_type::set_up_for_ipo_release: return "Set Up For Ipo Release";
             case enum_type::not_set_up_for_ipo_release: return "Not Set Up For Ipo Release";
-            case enum_type::non_ipo_new_listed_security: return "Non Ipo New Listed Security";
             case enum_type::not_available: return "Not Available";
             default: return "unknown";
         }

@@ -41,6 +41,10 @@ namespace packet {
             if (current_frame.is_udp()) {
                 return result::nasdaq_nsmequities_totalview_itch_v5_0_2023;
             }
+
+            if (current_frame.is_tcp()) {
+                return result::nasdaq_nsmequities_totalview_itch_v5_0_2023;
+            }
             return result::unknown;
         }
 
