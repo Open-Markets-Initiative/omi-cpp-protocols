@@ -25,10 +25,10 @@ struct snapshot_data_message {
         snap_deepplus::iex_tp_message_type iex_tp_message_type;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 2), message_type::enum_type::snapshot_data_message};
+    snap_deepplus::message_header header = {std::uint16_t(sizeof(snap_deepplus::message_header) + sizeof(fields_type) - 2), message_type::enum_type::snapshot_data_message};
 
     static constexpr std::size_t max_message_size = 1280;
-    static constexpr std::size_t tail_capacity = max_message_size - sizeof(message_header) - sizeof(fields_type);
+    static constexpr std::size_t tail_capacity = max_message_size - sizeof(snap_deepplus::message_header) - sizeof(fields_type);
 
     fields_type fields;
     std::byte tail[tail_capacity];
@@ -37,9 +37,9 @@ struct snapshot_data_message {
     const std::byte* tail_begin() const { return tail; }
     const std::byte* tail_end() const {
         auto sz = header.message_length.get().value();
-        return (sz + 2) == sizeof(message_header) + sizeof(fields_type)
+        return (sz + 2) == sizeof(snap_deepplus::message_header) + sizeof(fields_type)
             ? tail + tail_capacity
-            : tail + ((sz + 2) - sizeof(message_header) - sizeof(fields_type));
+            : tail + ((sz + 2) - sizeof(snap_deepplus::message_header) - sizeof(fields_type));
     }
 
     // sequential access to variable-length regions

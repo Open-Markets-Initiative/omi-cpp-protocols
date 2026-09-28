@@ -33,7 +33,7 @@ struct quote_update_message {
         snap_tops::ask_size ask_size;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) + sizeof(snap_tops::iex_tp_header) + sizeof(snap_tops::iex_tp_message_block_length) + sizeof(snap_tops::iex_tp_message_length) + sizeof(snap_tops::iex_tp_message_type) - 2), message_type::enum_type::snapshot_data_message};
+    snap_tops::message_header header = {std::uint16_t(sizeof(snap_tops::message_header) + sizeof(fields_type) + sizeof(snap_tops::iex_tp_header) + sizeof(snap_tops::iex_tp_message_block_length) + sizeof(snap_tops::iex_tp_message_length) + sizeof(snap_tops::iex_tp_message_type) - 2), message_type::enum_type::snapshot_data_message};
     snap_tops::iex_tp_header iex_tp_header;
     snap_tops::iex_tp_message_block_length iex_tp_message_block_length;
     snap_tops::iex_tp_message_length iex_tp_message_length;
@@ -62,7 +62,7 @@ static_assert(offsetof(quote_update_message::fields_type, bid_price) == 21, "une
 static_assert(offsetof(quote_update_message::fields_type, ask_price) == 29, "unexpected offset of quote_update_message::fields_type::ask_price");
 static_assert(offsetof(quote_update_message::fields_type, ask_size) == 37, "unexpected offset of quote_update_message::fields_type::ask_size");
 static_assert(sizeof(quote_update_message::fields_type) == 41, "unexpected sizeof quote_update_message::fields_type");
-static_assert(sizeof(quote_update_message) == sizeof(message_header) + sizeof(snap_tops::iex_tp_header) + sizeof(snap_tops::iex_tp_message_block_length) + sizeof(snap_tops::iex_tp_message_length) + sizeof(snap_tops::iex_tp_message_type) + 41, "unexpected sizeof quote_update_message");
+static_assert(sizeof(quote_update_message) == sizeof(snap_tops::message_header) + sizeof(snap_tops::iex_tp_header) + sizeof(snap_tops::iex_tp_message_block_length) + sizeof(snap_tops::iex_tp_message_length) + sizeof(snap_tops::iex_tp_message_type) + 41, "unexpected sizeof quote_update_message");
 
 #pragma pack(pop)
 }

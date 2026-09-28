@@ -2,7 +2,7 @@
 
 #include <cstddef>
 #include "../structs/ClientPacketHeader.hpp"
-#include "../types/Text.hpp"
+#include "../types/DebugText.hpp"
 
 namespace nasdaq::nsmequities::totalview::itch::v5_0_2023 {
 
@@ -14,10 +14,10 @@ namespace itch_totalview = ::nasdaq::nsmequities::totalview::itch::v5_0_2023;
 struct debug_packet {
 
     struct fields_type {
-        itch_totalview::text text;
+        itch_totalview::debug_text debug_text;
     };
 
-    client_packet_header header = {std::uint16_t(sizeof(client_packet_header) + sizeof(fields_type) - 2), client_packet_type::enum_type::debug_packet};
+    itch_totalview::client_packet_header header = {std::uint16_t(sizeof(itch_totalview::client_packet_header) + sizeof(fields_type) - 2), client_packet_type::enum_type::debug_packet};
 
     fields_type fields;
 
@@ -34,9 +34,9 @@ struct debug_packet {
 };
 
 // layout verification
-static_assert(offsetof(debug_packet::fields_type, text) == 0, "unexpected offset of debug_packet::fields_type::text");
+static_assert(offsetof(debug_packet::fields_type, debug_text) == 0, "unexpected offset of debug_packet::fields_type::debug_text");
 static_assert(sizeof(debug_packet::fields_type) == 1, "unexpected sizeof debug_packet::fields_type");
-static_assert(sizeof(debug_packet) == sizeof(client_packet_header) + 1, "unexpected sizeof debug_packet");
+static_assert(sizeof(debug_packet) == sizeof(itch_totalview::client_packet_header) + 1, "unexpected sizeof debug_packet");
 
 #pragma pack(pop)
 }

@@ -21,7 +21,7 @@ struct end_of_message_message {
         flex_marketbyorder::next_sequence_number next_sequence_number;
     };
 
-    tcp_packet_header header = {std::uint16_t(sizeof(tcp_packet_header) + sizeof(fields_type)), packet_type::enum_type::end_of_message_message};
+    flex_marketbyorder::tcp_packet_header header = {std::uint16_t(sizeof(flex_marketbyorder::tcp_packet_header) + sizeof(fields_type)), packet_type::enum_type::end_of_message_message};
 
     fields_type fields;
 
@@ -42,7 +42,7 @@ static_assert(offsetof(end_of_message_message::fields_type, multicast_group_numb
 static_assert(offsetof(end_of_message_message::fields_type, number_of_system_reboots) == 1, "unexpected offset of end_of_message_message::fields_type::number_of_system_reboots");
 static_assert(offsetof(end_of_message_message::fields_type, next_sequence_number) == 2, "unexpected offset of end_of_message_message::fields_type::next_sequence_number");
 static_assert(sizeof(end_of_message_message::fields_type) == 6, "unexpected sizeof end_of_message_message::fields_type");
-static_assert(sizeof(end_of_message_message) == sizeof(tcp_packet_header) + 6, "unexpected sizeof end_of_message_message");
+static_assert(sizeof(end_of_message_message) == sizeof(flex_marketbyorder::tcp_packet_header) + 6, "unexpected sizeof end_of_message_message");
 
 #pragma pack(pop)
 }

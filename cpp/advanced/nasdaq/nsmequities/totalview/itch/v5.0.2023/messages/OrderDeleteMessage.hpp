@@ -23,7 +23,7 @@ struct order_delete_message {
         itch_totalview::order_reference_number order_reference_number;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 2), message_type::enum_type::order_delete_message};
+    itch_totalview::message_header header = {std::uint16_t(sizeof(itch_totalview::message_header) + sizeof(fields_type) - 2), message_type::enum_type::order_delete_message};
 
     fields_type fields;
 
@@ -45,7 +45,7 @@ static_assert(offsetof(order_delete_message::fields_type, tracking_number) == 2,
 static_assert(offsetof(order_delete_message::fields_type, timestamp) == 4, "unexpected offset of order_delete_message::fields_type::timestamp");
 static_assert(offsetof(order_delete_message::fields_type, order_reference_number) == 10, "unexpected offset of order_delete_message::fields_type::order_reference_number");
 static_assert(sizeof(order_delete_message::fields_type) == 18, "unexpected sizeof order_delete_message::fields_type");
-static_assert(sizeof(order_delete_message) == sizeof(message_header) + 18, "unexpected sizeof order_delete_message");
+static_assert(sizeof(order_delete_message) == sizeof(itch_totalview::message_header) + 18, "unexpected sizeof order_delete_message");
 
 #pragma pack(pop)
 }

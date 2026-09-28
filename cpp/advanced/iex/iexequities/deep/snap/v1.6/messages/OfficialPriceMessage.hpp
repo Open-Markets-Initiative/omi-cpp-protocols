@@ -27,7 +27,7 @@ struct official_price_message {
         snap_deep::official_price official_price;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) + sizeof(snap_deep::iex_tp_header) + sizeof(snap_deep::iex_tp_message_block_length) + sizeof(snap_deep::iex_tp_message_length) + sizeof(snap_deep::iex_tp_message_type) - 2), message_type::enum_type::snapshot_data_message};
+    snap_deep::message_header header = {std::uint16_t(sizeof(snap_deep::message_header) + sizeof(fields_type) + sizeof(snap_deep::iex_tp_header) + sizeof(snap_deep::iex_tp_message_block_length) + sizeof(snap_deep::iex_tp_message_length) + sizeof(snap_deep::iex_tp_message_type) - 2), message_type::enum_type::snapshot_data_message};
     snap_deep::iex_tp_header iex_tp_header;
     snap_deep::iex_tp_message_block_length iex_tp_message_block_length;
     snap_deep::iex_tp_message_length iex_tp_message_length;
@@ -53,7 +53,7 @@ static_assert(offsetof(official_price_message::fields_type, timestamp) == 1, "un
 static_assert(offsetof(official_price_message::fields_type, symbol) == 9, "unexpected offset of official_price_message::fields_type::symbol");
 static_assert(offsetof(official_price_message::fields_type, official_price) == 17, "unexpected offset of official_price_message::fields_type::official_price");
 static_assert(sizeof(official_price_message::fields_type) == 25, "unexpected sizeof official_price_message::fields_type");
-static_assert(sizeof(official_price_message) == sizeof(message_header) + sizeof(snap_deep::iex_tp_header) + sizeof(snap_deep::iex_tp_message_block_length) + sizeof(snap_deep::iex_tp_message_length) + sizeof(snap_deep::iex_tp_message_type) + 25, "unexpected sizeof official_price_message");
+static_assert(sizeof(official_price_message) == sizeof(snap_deep::message_header) + sizeof(snap_deep::iex_tp_header) + sizeof(snap_deep::iex_tp_message_block_length) + sizeof(snap_deep::iex_tp_message_length) + sizeof(snap_deep::iex_tp_message_type) + 25, "unexpected sizeof official_price_message");
 
 #pragma pack(pop)
 }

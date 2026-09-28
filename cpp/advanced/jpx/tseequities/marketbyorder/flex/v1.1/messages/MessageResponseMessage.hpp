@@ -17,10 +17,10 @@ struct message_response_message {
     struct fields_type {
     };
 
-    tcp_packet_header header = {std::uint16_t(sizeof(tcp_packet_header) + sizeof(fields_type)), packet_type::enum_type::message_response_message};
+    flex_marketbyorder::tcp_packet_header header = {std::uint16_t(sizeof(flex_marketbyorder::tcp_packet_header) + sizeof(fields_type)), packet_type::enum_type::message_response_message};
 
     static constexpr std::size_t max_message_size = 1280;
-    static constexpr std::size_t tail_capacity = max_message_size - sizeof(tcp_packet_header) - sizeof(fields_type);
+    static constexpr std::size_t tail_capacity = max_message_size - sizeof(flex_marketbyorder::tcp_packet_header) - sizeof(fields_type);
 
     fields_type fields;
     std::byte tail[tail_capacity];
@@ -29,9 +29,9 @@ struct message_response_message {
     const std::byte* tail_begin() const { return tail; }
     const std::byte* tail_end() const {
         auto sz = header.packet_length.get().value();
-        return sz == sizeof(tcp_packet_header) + sizeof(fields_type)
+        return sz == sizeof(flex_marketbyorder::tcp_packet_header) + sizeof(fields_type)
             ? tail + tail_capacity
-            : tail + (sz - sizeof(tcp_packet_header) - sizeof(fields_type));
+            : tail + (sz - sizeof(flex_marketbyorder::tcp_packet_header) - sizeof(fields_type));
     }
 
     // sequential access to variable-length regions

@@ -19,8 +19,15 @@ Each directory holds only the program: it includes its protocol's parser from `c
 and the capture reader from `executables/pcap/`, both resolved from the repository root, so
 no program carries a copy of either.
 
-## Protocols (12)
+## Protocols (19)
 
+- `B3.B3Derivatives.BinaryUmdf.Sbe.v1.6`
+- `B3.B3Derivatives.BinaryUmdf.Sbe.v1.7`
+- `B3.B3Derivatives.BinaryUmdf.Sbe.v1.8`
+- `B3.B3Derivatives.BinaryUmdf.Sbe.v1.9`
+- `B3.B3Derivatives.BinaryUmdf.Sbe.v2.1`
+- `B3.B3Derivatives.BinaryUmdf.Sbe.v2.2`
+- `B3.B3Derivatives.BinaryUmdf.Sbe.v2.3`
 - `Iex.IexEquities.Deep.IexTp.v1.06`
 - `Iex.IexEquities.Deep.IexTp.v1.08`
 - `Iex.IexEquities.Deep.Snap.v1.6`

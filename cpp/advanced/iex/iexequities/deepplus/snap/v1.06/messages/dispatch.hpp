@@ -80,7 +80,10 @@ void dispatch(Handler& handler, const std::byte* buffer, std::size_t length) {
             handler.on_message(*snapshot_end_message::parse(buffer));
             break;
         default:
-            // Unknown message type - handler should implement on_unknown if needed
+            // a code none of the messages answer to: the handler is told when it wants to be
+            if constexpr (requires { handler.on_unknown(buffer, length); }) {
+                handler.on_unknown(buffer, length);
+            }
             break;
     }
 }

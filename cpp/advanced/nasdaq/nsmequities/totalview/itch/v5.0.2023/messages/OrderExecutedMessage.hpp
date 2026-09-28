@@ -27,7 +27,7 @@ struct order_executed_message {
         itch_totalview::match_number match_number;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 2), message_type::enum_type::order_executed_message};
+    itch_totalview::message_header header = {std::uint16_t(sizeof(itch_totalview::message_header) + sizeof(fields_type) - 2), message_type::enum_type::order_executed_message};
 
     fields_type fields;
 
@@ -51,7 +51,7 @@ static_assert(offsetof(order_executed_message::fields_type, order_reference_numb
 static_assert(offsetof(order_executed_message::fields_type, executed_shares) == 18, "unexpected offset of order_executed_message::fields_type::executed_shares");
 static_assert(offsetof(order_executed_message::fields_type, match_number) == 22, "unexpected offset of order_executed_message::fields_type::match_number");
 static_assert(sizeof(order_executed_message::fields_type) == 30, "unexpected sizeof order_executed_message::fields_type");
-static_assert(sizeof(order_executed_message) == sizeof(message_header) + 30, "unexpected sizeof order_executed_message");
+static_assert(sizeof(order_executed_message) == sizeof(itch_totalview::message_header) + 30, "unexpected sizeof order_executed_message");
 
 #pragma pack(pop)
 }

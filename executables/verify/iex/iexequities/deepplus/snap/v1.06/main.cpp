@@ -55,16 +55,19 @@ std::uint64_t code_value(Code code) {
     }
 }
 
-// The bytes one frame takes on the wire: its headers and the message they carry.
-std::size_t frame_size(const protocol::Frame& frame) {
+// The bytes one frame takes on the wire: its headers and the message they carry. A tree's frame
+// class is its own, so every helper here takes whichever frame class it is handed.
+template <typename Frame>
+std::size_t frame_size(const Frame& frame) {
     return frame.encoded_size() + (frame.message() != nullptr ? frame.message()->encoded_size() : 0);
 }
 
 // Where the frames begin, given where they end: whatever precedes them is packet header.
-[[maybe_unused]] std::size_t frames_begin(const std::vector<protocol::Frame>& frames, std::size_t end) {
+template <typename Frame>
+std::size_t frames_begin(const std::vector<Frame>& frames, std::size_t end) {
     std::size_t total = 0;
 
-    for (const protocol::Frame& frame : frames) { total += frame_size(frame); }
+    for (const Frame& frame : frames) { total += frame_size(frame); }
 
     return end >= total ? end - total : 0;
 }
@@ -80,14 +83,15 @@ std::size_t first_difference(const std::byte* wire, std::size_t wire_length, con
     return common;
 }
 
-// Which part of a packet an offset lies in: its header, one of its frames, or past them.
-std::string place(const std::vector<protocol::Frame>& frames, std::size_t begin, std::size_t offset) {
+// Which part of a read an offset lies in: its packet header, one of its frames, or past them.
+template <typename Frame>
+std::string place(const std::vector<Frame>& frames, std::size_t begin, std::size_t offset) {
     if (offset < begin) { return "in the packet header"; }
 
     std::size_t start = begin;
     std::size_t index = 0;
 
-    for (const protocol::Frame& frame : frames) {
+    for (const Frame& frame : frames) {
         ++index;
         const std::size_t size = frame_size(frame);
 
@@ -128,6 +132,85 @@ void summarize(const Tally& tally) {
     std::printf("%s\n", tally.failed() ? "FAIL" : "PASS");
 }
 
+// Packet: a connection's bytes, as far as they amount to whole frames.
+void read_packet(std::vector<std::byte>& buffer, Tally& tally, std::vector<std::byte>& encoded) {
+    protocol::Stream decoded;
+    std::size_t consumed = 0;
+
+    try {
+        consumed = decoded.decode(buffer.data(), buffer.size());
+    } catch (const protocol::DecodeError& error) {
+        const std::size_t number = ++tally.packets;
+
+        if (++tally.undecodable <= shown) {
+            std::cerr << "read " << number << ": does not decode: " << error.what() << '\n';
+        }
+        buffer.clear();
+        return;
+    }
+
+    if (consumed == 0) { return; }
+
+    const std::size_t number = ++tally.packets;
+
+    std::size_t index = 0;
+
+    for (const auto& held : decoded.frames()) {
+        ++index;
+        const protocol::Message* message = held.message();
+
+        if (message == nullptr) { continue; }
+
+        ++tally.messages;
+
+        // The size rule: the length the frame's header declares against what the model reads.
+        const std::size_t declared = static_cast<std::size_t>(held.message_header().message_length()) + 2;
+        const std::size_t derived = frame_size(held);
+
+        if (declared != derived && ++tally.sizes <= shown) {
+            std::cerr << "read " << number << " frame " << index << " (" << message->name() << "): declares "
+                      << declared << " bytes, the model reads " << derived << '\n';
+        }
+
+        // The dispatch: a code the specification does not list, or one that selected
+        // a message whose own code is another.
+        if (const auto* stranger = dynamic_cast<const protocol::UnknownMessage*>(message)) {
+            const std::uint64_t value = code_value(stranger->type());
+
+            ++tally.codes[value];
+
+            if (++tally.unknown <= shown) {
+                std::cerr << "read " << number << " frame " << index << ": unknown message code " << value << '\n';
+            }
+        } else if (message->type() != held.message_header().message_type()) {
+            if (++tally.dispatches <= shown) {
+                std::cerr << "read " << number << " frame " << index << ": code " << code_value(held.message_header().message_type())
+                          << " decoded as " << message->name() << ", whose code is " << code_value(message->type()) << '\n';
+            }
+        }
+    }
+
+    // The round trip. Encode derives the count, every length and every code again from the
+    // messages, so the bytes agree with the wire only when every rule does.
+    try {
+        encoded.assign(decoded.encoded_size(), std::byte{ 0 });
+        const std::size_t written = decoded.encode(encoded.data(), encoded.size());
+        const std::size_t offset = first_difference(buffer.data(), consumed, encoded.data(), written);
+
+        if ((written != consumed || offset < written) && ++tally.mismatched <= shown) {
+            std::cerr << "read " << number << ": encodes to " << written << " bytes against " << consumed
+                      << " read, first difference at byte " << offset << ' '
+                      << place(decoded.frames(), 0, offset) << '\n';
+        }
+    } catch (const protocol::EncodeError& error) {
+        if (++tally.mismatched <= shown) {
+            std::cerr << "read " << number << ": does not encode: " << error.what() << '\n';
+        }
+    }
+
+    buffer.erase(buffer.begin(), buffer.begin() + static_cast<std::ptrdiff_t>(consumed));
+}
+
 } // namespace
 
 int main(int argc, char** argv) {
@@ -141,11 +224,12 @@ int main(int argc, char** argv) {
 
     packet::PcapIterator captures(sources);
 
+    std::vector<std::byte> encoded;
+    Tally tally;
+
     // One buffer per connection: the reassembler hands over the bytes in order, and what
     // does not yet amount to a whole frame waits here for the bytes behind it.
     std::unordered_map<packet::TcpFlowKey, std::vector<std::byte>, packet::TcpFlowKey::hash> buffers;
-    std::vector<std::byte> encoded;
-    Tally tally;
 
     packet::TcpReassembler reassembler;
 
@@ -154,88 +238,18 @@ int main(int argc, char** argv) {
 
         buffer.insert(buffer.end(), data, data + length);
 
-        protocol::Stream decoded;
-        std::size_t consumed = 0;
-
-        try {
-            consumed = decoded.decode(buffer.data(), buffer.size());
-        } catch (const protocol::DecodeError& error) {
-            const std::size_t number = ++tally.packets;
-
-            if (++tally.undecodable <= shown) {
-                std::cerr << "read " << number << ": does not decode: " << error.what() << '\n';
-            }
-            buffer.clear();
-            return;
-        }
-
-        if (consumed == 0) { return; }
-
-        const std::size_t number = ++tally.packets;
-
-        std::size_t index = 0;
-
-        for (const protocol::Frame& held : decoded.frames()) {
-            ++index;
-            const protocol::Message* message = held.message();
-
-            if (message == nullptr) { continue; }
-
-            ++tally.messages;
-
-            // The size rule: the length the frame's header declares against what the model reads.
-            const std::size_t declared = static_cast<std::size_t>(held.message_header().message_length()) + 2;
-            const std::size_t derived = frame_size(held);
-
-            if (declared != derived && ++tally.sizes <= shown) {
-                std::cerr << "read " << number << " frame " << index << " (" << message->name() << "): declares "
-                          << declared << " bytes, the model reads " << derived << '\n';
-            }
-
-            // The dispatch: a code the specification does not list, or one that selected
-            // a message whose own code is another.
-            if (const auto* stranger = dynamic_cast<const protocol::UnknownMessage*>(message)) {
-                const std::uint64_t value = code_value(stranger->type());
-
-                ++tally.codes[value];
-
-                if (++tally.unknown <= shown) {
-                    std::cerr << "read " << number << " frame " << index << ": unknown message code " << value << '\n';
-                }
-            } else if (message->type() != held.message_header().message_type()) {
-                if (++tally.dispatches <= shown) {
-                    std::cerr << "read " << number << " frame " << index << ": code " << code_value(held.message_header().message_type())
-                              << " decoded as " << message->name() << ", whose code is " << code_value(message->type()) << '\n';
-                }
-            }
-        }
-
-        // The round trip. Encode derives the count, every length and every code again from the
-        // messages, so the bytes agree with the wire only when every rule does.
-        try {
-            encoded.assign(decoded.encoded_size(), std::byte{ 0 });
-            const std::size_t written = decoded.encode(encoded.data(), encoded.size());
-            const std::size_t offset = first_difference(buffer.data(), consumed, encoded.data(), written);
-
-            if ((written != consumed || offset < written) && ++tally.mismatched <= shown) {
-                std::cerr << "read " << number << ": encodes to " << written << " bytes against " << consumed
-                          << " read, first difference at byte " << offset << ' '
-                          << place(decoded.frames(), 0, offset) << '\n';
-            }
-        } catch (const protocol::EncodeError& error) {
-            if (++tally.mismatched <= shown) {
-                std::cerr << "read " << number << ": does not encode: " << error.what() << '\n';
-            }
-        }
-        buffer.erase(buffer.begin(), buffer.begin() + static_cast<std::ptrdiff_t>(consumed));
+        read_packet(buffer, tally, encoded);
     };
 
     while (captures.advance()) {
         const packet::Frame frame(captures.data(), captures.length());
 
-        if (!frame.valid() || !frame.is_tcp()) { continue; }
+        if (!frame.valid()) { continue; }
 
-        reassembler.process(frame);
+        if (frame.is_tcp()) {
+            reassembler.process(frame);
+        }
+
     }
 
     // A capture that ends mid-frame leaves bytes behind: not a failure, but reported.

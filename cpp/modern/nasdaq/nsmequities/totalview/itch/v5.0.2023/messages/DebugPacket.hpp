@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../types/Text.hpp"
+#include "../types/DebugText.hpp"
 
 namespace nasdaq::nsmequities::totalview::itch::v5_0_2023 {
 
@@ -9,7 +9,7 @@ namespace nasdaq::nsmequities::totalview::itch::v5_0_2023 {
 // Debug packets are intended to provide human readable text that may aid in debugging problems
 struct DebugPacket {
 
-    Text text;
+    DebugText debug_text;
 
     // parse method
     static DebugPacket* parse(std::byte* buffer) {

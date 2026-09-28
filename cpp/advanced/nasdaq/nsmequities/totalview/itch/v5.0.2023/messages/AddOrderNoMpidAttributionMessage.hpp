@@ -31,7 +31,7 @@ struct add_order_no_mpid_attribution_message {
         itch_totalview::price price;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 2), message_type::enum_type::add_order_no_mpid_attribution_message};
+    itch_totalview::message_header header = {std::uint16_t(sizeof(itch_totalview::message_header) + sizeof(fields_type) - 2), message_type::enum_type::add_order_no_mpid_attribution_message};
 
     fields_type fields;
 
@@ -57,7 +57,7 @@ static_assert(offsetof(add_order_no_mpid_attribution_message::fields_type, share
 static_assert(offsetof(add_order_no_mpid_attribution_message::fields_type, stock) == 23, "unexpected offset of add_order_no_mpid_attribution_message::fields_type::stock");
 static_assert(offsetof(add_order_no_mpid_attribution_message::fields_type, price) == 31, "unexpected offset of add_order_no_mpid_attribution_message::fields_type::price");
 static_assert(sizeof(add_order_no_mpid_attribution_message::fields_type) == 35, "unexpected sizeof add_order_no_mpid_attribution_message::fields_type");
-static_assert(sizeof(add_order_no_mpid_attribution_message) == sizeof(message_header) + 35, "unexpected sizeof add_order_no_mpid_attribution_message");
+static_assert(sizeof(add_order_no_mpid_attribution_message) == sizeof(itch_totalview::message_header) + 35, "unexpected sizeof add_order_no_mpid_attribution_message");
 
 #pragma pack(pop)
 }

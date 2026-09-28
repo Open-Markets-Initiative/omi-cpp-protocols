@@ -23,7 +23,7 @@ struct mwcb_status_level_message {
         itch_totalview::breached_level breached_level;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 2), message_type::enum_type::mwcb_status_level_message};
+    itch_totalview::message_header header = {std::uint16_t(sizeof(itch_totalview::message_header) + sizeof(fields_type) - 2), message_type::enum_type::mwcb_status_level_message};
 
     fields_type fields;
 
@@ -45,7 +45,7 @@ static_assert(offsetof(mwcb_status_level_message::fields_type, tracking_number) 
 static_assert(offsetof(mwcb_status_level_message::fields_type, timestamp) == 4, "unexpected offset of mwcb_status_level_message::fields_type::timestamp");
 static_assert(offsetof(mwcb_status_level_message::fields_type, breached_level) == 10, "unexpected offset of mwcb_status_level_message::fields_type::breached_level");
 static_assert(sizeof(mwcb_status_level_message::fields_type) == 11, "unexpected sizeof mwcb_status_level_message::fields_type");
-static_assert(sizeof(mwcb_status_level_message) == sizeof(message_header) + 11, "unexpected sizeof mwcb_status_level_message");
+static_assert(sizeof(mwcb_status_level_message) == sizeof(itch_totalview::message_header) + 11, "unexpected sizeof mwcb_status_level_message");
 
 #pragma pack(pop)
 }

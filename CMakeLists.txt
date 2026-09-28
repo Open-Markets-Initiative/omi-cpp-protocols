@@ -9,6 +9,27 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # compiling it fires the generated layout static_asserts. A clean build is the gate:
 # it proves every parser (structs, types, messages) is well-formed and self-consistent.
 add_library(protocols_check OBJECT
+  checks/b3_b3derivatives_binaryumdf_sbe_v1.6_advanced.cpp
+  checks/b3_b3derivatives_binaryumdf_sbe_v1.6_modern.cpp
+  checks/b3_b3derivatives_binaryumdf_sbe_v1.6_classes.cpp
+  checks/b3_b3derivatives_binaryumdf_sbe_v1.7_advanced.cpp
+  checks/b3_b3derivatives_binaryumdf_sbe_v1.7_modern.cpp
+  checks/b3_b3derivatives_binaryumdf_sbe_v1.7_classes.cpp
+  checks/b3_b3derivatives_binaryumdf_sbe_v1.8_advanced.cpp
+  checks/b3_b3derivatives_binaryumdf_sbe_v1.8_modern.cpp
+  checks/b3_b3derivatives_binaryumdf_sbe_v1.8_classes.cpp
+  checks/b3_b3derivatives_binaryumdf_sbe_v1.9_advanced.cpp
+  checks/b3_b3derivatives_binaryumdf_sbe_v1.9_modern.cpp
+  checks/b3_b3derivatives_binaryumdf_sbe_v1.9_classes.cpp
+  checks/b3_b3derivatives_binaryumdf_sbe_v2.1_advanced.cpp
+  checks/b3_b3derivatives_binaryumdf_sbe_v2.1_modern.cpp
+  checks/b3_b3derivatives_binaryumdf_sbe_v2.1_classes.cpp
+  checks/b3_b3derivatives_binaryumdf_sbe_v2.2_advanced.cpp
+  checks/b3_b3derivatives_binaryumdf_sbe_v2.2_modern.cpp
+  checks/b3_b3derivatives_binaryumdf_sbe_v2.2_classes.cpp
+  checks/b3_b3derivatives_binaryumdf_sbe_v2.3_advanced.cpp
+  checks/b3_b3derivatives_binaryumdf_sbe_v2.3_modern.cpp
+  checks/b3_b3derivatives_binaryumdf_sbe_v2.3_classes.cpp
   checks/iex_iexequities_deep_iextp_v1.06_advanced.cpp
   checks/iex_iexequities_deep_iextp_v1.06_modern.cpp
   checks/iex_iexequities_deep_iextp_v1.06_classes.cpp
@@ -44,10 +65,650 @@ add_library(protocols_check OBJECT
   checks/jpx_tseequities_marketbyorder_flex_v1.1_classes.cpp
   checks/nasdaq_nsmequities_totalview_itch_v5.0.2023_advanced.cpp
   checks/nasdaq_nsmequities_totalview_itch_v5.0.2023_modern.cpp
+  checks/nasdaq_nsmequities_totalview_itch_v5.0.2023_classes.cpp
 )
 # The Classes libraries under cpp/classes/ — one static library per protocol, linked by the
 # dump program and the classes test that decode through it. Each library precompiles the
 # standard headers every one of its many small sources parses.
+add_library(classes_b3_b3derivatives_binaryumdf_sbe_v1.6 STATIC
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/TemplateId.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/TradingSessionId.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/SecurityTradingStatus.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/SecurityTradingEvent.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/TradingSessionSubId.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/SecurityIdSource.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/SecurityUpdateAction.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/SecurityType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/LotType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/Product.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/ExerciseStyle.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/PutOrCall.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/PriceType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/GovernanceIndicator.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/SecurityMatchType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/LastFragment.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/MultiLegModel.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/MultiLegPriceMethod.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/LegSecurityType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/LegSide.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/InstrAttribType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/InstrAttribValue.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/NewsSource.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/MdUpdateAction.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/OpenCloseSettlFlag.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/PriceBandType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/PriceLimitType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/PriceBandMidpointPriceType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/TrdSubType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/MdEntryType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/AggressorSide.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/structs/PacketHeader.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/structs/FramingHeader.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/structs/MessageHeader.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/messages/SequenceMessage.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/bitfields/MatchEventIndicator.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/messages/SecurityStatus3Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/messages/SecurityGroupPhase10Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/structs/MaturityMonthYear.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/structs/ContractSettlMonth.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/structs/GroupSizeEncoding.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/groups/DeprecatedUnderlyingsGroup.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/structs/DeprecatedUnderlyingsGroups.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/groups/DeprecatedLegsGroup.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/structs/DeprecatedLegsGroups.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/groups/DeprecatedInstrAttribsGroup.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/structs/DeprecatedInstrAttribsGroups.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/structs/SecurityDesc.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/messages/DeprecatedSecurityDefinitionMessage.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/structs/Headline.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/structs/Text.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/structs/UrlLink.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/messages/News5Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/messages/EmptyBookMessage.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/messages/ChannelReset11Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/messages/OpeningPrice15Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/messages/TheoreticalOpeningPrice16Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/messages/ClosingPrice17Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/bitfields/ImbalanceCondition.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/messages/AuctionImbalance19Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/messages/PriceBand20Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/messages/QuantityBand21Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/messages/HighPrice24Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/messages/LowPrice25Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/bitfields/TradeCondition.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/messages/LastTradePrice27Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/messages/SnapshotFullRefreshHeader30Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/messages/OrderMbO50Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/messages/DeleteOrderMbO51Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/messages/MassDeleteOrdersMbO52Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/messages/Trade53Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/messages/ForwardTrade54Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/messages/ExecutionSummary55Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/messages/ExecutionStatistics56Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/messages/TradeBust57Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/groups/SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/structs/SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroups.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/messages/SnapshotFullRefreshOrdersMbO71Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/messages/UnknownMessage.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/Factory.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/Packet.cpp
+)
+target_include_directories(classes_b3_b3derivatives_binaryumdf_sbe_v1.6 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(classes_b3_b3derivatives_binaryumdf_sbe_v1.6 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(classes_b3_b3derivatives_binaryumdf_sbe_v1.7 STATIC
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/TemplateId.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/TradingSessionId.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/SecurityTradingStatus.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/SecurityTradingEvent.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/TradingSessionSubId.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/SecurityIdSource.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/SecurityUpdateAction.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/SecurityType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/LotType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/Product.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/ExerciseStyle.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/PutOrCall.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/PriceType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/GovernanceIndicator.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/SecurityMatchType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/LastFragment.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/MultiLegModel.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/MultiLegPriceMethod.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/LegSecurityType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/LegSide.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/InstrAttribType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/InstrAttribValue.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/NewsSource.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/MdUpdateAction.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/OpenCloseSettlFlag.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/PriceBandType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/PriceLimitType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/PriceBandMidpointPriceType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/TrdSubType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/MdEntryType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/AggressorSide.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/structs/PacketHeader.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/structs/FramingHeader.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/structs/MessageHeader.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/messages/SequenceMessage.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/bitfields/MatchEventIndicator.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/messages/EmptyBookMessage.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/messages/ChannelReset11Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/messages/SecurityStatus3Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/messages/SecurityGroupPhase10Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/structs/MaturityMonthYear.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/structs/ContractSettlMonth.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/structs/GroupSizeEncoding.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/groups/DeprecatedUnderlyingsGroup.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/structs/DeprecatedUnderlyingsGroups.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/groups/DeprecatedLegsGroup.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/structs/DeprecatedLegsGroups.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/groups/DeprecatedInstrAttribsGroup.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/structs/DeprecatedInstrAttribsGroups.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/structs/SecurityDesc.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/messages/DeprecatedSecurityDefinitionMessage.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/groups/UnderlyingsGroup.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/structs/UnderlyingsGroups.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/groups/LegsGroup.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/structs/LegsGroups.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/groups/InstrAttribsGroup.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/structs/InstrAttribsGroups.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/messages/SecurityDefinitionMessage.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/structs/Headline.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/structs/Text.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/structs/UrlLink.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/messages/News5Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/messages/OpeningPrice15Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/messages/TheoreticalOpeningPrice16Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/messages/ClosingPrice17Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/bitfields/ImbalanceCondition.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/messages/AuctionImbalance19Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/messages/PriceBand20Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/messages/QuantityBand21Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/messages/PriceBand22Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/messages/HighPrice24Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/messages/LowPrice25Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/bitfields/TradeCondition.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/messages/LastTradePrice27Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/messages/SnapshotFullRefreshHeader30Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/messages/OrderMbO50Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/messages/DeleteOrderMbO51Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/messages/MassDeleteOrdersMbO52Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/messages/Trade53Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/messages/ForwardTrade54Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/messages/ExecutionSummary55Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/messages/ExecutionStatistics56Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/messages/TradeBust57Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/groups/SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/structs/SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroups.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/messages/SnapshotFullRefreshOrdersMbO71Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/messages/UnknownMessage.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/Factory.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/Packet.cpp
+)
+target_include_directories(classes_b3_b3derivatives_binaryumdf_sbe_v1.7 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(classes_b3_b3derivatives_binaryumdf_sbe_v1.7 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(classes_b3_b3derivatives_binaryumdf_sbe_v1.8 STATIC
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/TemplateId.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/TradingSessionId.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/SecurityTradingStatus.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/SecurityTradingEvent.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/TradingSessionSubId.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/SecurityIdSource.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/SecurityUpdateAction.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/SecurityType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/LotType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/Product.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/ExerciseStyle.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/PutOrCall.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/PriceTypeOptional.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/GovernanceIndicator.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/SecurityMatchType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/LastFragment.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/MultiLegModel.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/MultiLegPriceMethod.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/LegSecurityType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/LegSide.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/InstrAttribType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/InstrAttribValue.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/NewsSource.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/MdUpdateAction.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/OpenCloseSettlFlag.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/PriceBandType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/PriceLimitType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/PriceBandMidpointPriceType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/TrdSubType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/PriceType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/SettlPriceType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/MdEntryType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/AggressorSide.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/structs/PacketHeader.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/structs/FramingHeader.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/structs/MessageHeader.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/messages/SequenceMessage.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/bitfields/MatchEventIndicator.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/messages/EmptyBookMessage.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/messages/ChannelReset11Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/messages/SecurityStatus3Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/messages/SecurityGroupPhase10Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/structs/MaturityMonthYear.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/structs/ContractSettlMonth.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/structs/GroupSizeEncoding.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/groups/DeprecatedUnderlyingsGroup.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/structs/DeprecatedUnderlyingsGroups.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/groups/DeprecatedLegsGroup.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/structs/DeprecatedLegsGroups.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/groups/DeprecatedInstrAttribsGroup.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/structs/DeprecatedInstrAttribsGroups.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/structs/SecurityDesc.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/messages/DeprecatedSecurityDefinitionMessage.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/groups/UnderlyingsGroup.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/structs/UnderlyingsGroups.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/groups/LegsGroup.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/structs/LegsGroups.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/groups/InstrAttribsGroup.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/structs/InstrAttribsGroups.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/messages/SecurityDefinitionMessage.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/structs/Headline.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/structs/Text.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/structs/UrlLink.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/messages/News5Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/messages/OpeningPrice15Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/messages/TheoreticalOpeningPrice16Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/messages/ClosingPrice17Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/bitfields/ImbalanceCondition.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/messages/AuctionImbalance19Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/messages/PriceBand20Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/messages/QuantityBand21Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/messages/PriceBand22Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/messages/HighPrice24Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/messages/LowPrice25Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/bitfields/TradeCondition.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/messages/LastTradePrice27Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/messages/SettlementPrice28Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/messages/OpenInterest29Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/messages/SnapshotFullRefreshHeader30Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/messages/OrderMbO50Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/messages/DeleteOrderMbO51Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/messages/MassDeleteOrdersMbO52Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/messages/Trade53Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/messages/ForwardTrade54Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/messages/ExecutionSummary55Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/messages/ExecutionStatistics56Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/messages/TradeBust57Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/groups/SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/structs/SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroups.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/messages/SnapshotFullRefreshOrdersMbO71Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/messages/UnknownMessage.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/Factory.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/Packet.cpp
+)
+target_include_directories(classes_b3_b3derivatives_binaryumdf_sbe_v1.8 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(classes_b3_b3derivatives_binaryumdf_sbe_v1.8 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(classes_b3_b3derivatives_binaryumdf_sbe_v1.9 STATIC
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/TemplateId.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/TradingSessionId.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/SecurityTradingStatus.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/SecurityTradingEvent.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/TradingSessionSubId.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/SecurityIdSource.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/SecurityUpdateAction.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/SecurityType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/LotType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/Product.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/ExerciseStyle.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/PutOrCall.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/PriceTypeOptional.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/GovernanceIndicator.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/SecurityMatchType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/LastFragment.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/MultiLegModel.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/MultiLegPriceMethod.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/ImpliedMarketIndicator.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/LegSecurityType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/LegSide.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/InstrAttribType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/InstrAttribValue.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/NewsSource.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/MdUpdateAction.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/OpenCloseSettlFlag.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/PriceBandType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/PriceLimitType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/PriceBandMidpointPriceType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/TrdSubType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/PriceType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/SettlPriceType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/MdEntryType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/AggressorSide.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/structs/PacketHeader.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/structs/FramingHeader.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/structs/MessageHeader.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/messages/SequenceMessage.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/bitfields/MatchEventIndicator.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/messages/EmptyBookMessage.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/messages/ChannelReset11Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/messages/SecurityStatus3Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/messages/SecurityGroupPhase10Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/structs/MaturityMonthYear.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/structs/ContractSettlMonth.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/structs/GroupSizeEncoding.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/groups/UnderlyingsGroup.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/structs/UnderlyingsGroups.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/groups/LegsGroup.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/structs/LegsGroups.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/groups/InstrAttribsGroup.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/structs/InstrAttribsGroups.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/structs/SecurityDesc.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/messages/SecurityDefinitionMessage.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/structs/Headline.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/structs/Text.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/structs/UrlLink.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/messages/News5Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/messages/OpeningPrice15Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/messages/TheoreticalOpeningPrice16Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/messages/ClosingPrice17Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/bitfields/ImbalanceCondition.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/messages/AuctionImbalance19Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/messages/QuantityBand21Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/messages/PriceBand22Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/messages/HighPrice24Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/messages/LowPrice25Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/bitfields/TradeCondition.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/messages/LastTradePrice27Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/messages/SettlementPrice28Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/messages/OpenInterest29Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/messages/SnapshotFullRefreshHeader30Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/messages/OrderMbO50Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/messages/DeleteOrderMbO51Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/messages/MassDeleteOrdersMbO52Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/messages/Trade53Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/messages/ForwardTrade54Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/messages/ExecutionSummary55Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/messages/ExecutionStatistics56Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/messages/TradeBust57Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/bitfields/MatchEventIndicatorOptional.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/groups/SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/structs/SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroups.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/messages/SnapshotFullRefreshOrdersMbO71Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/messages/UnknownMessage.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/Factory.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/Packet.cpp
+)
+target_include_directories(classes_b3_b3derivatives_binaryumdf_sbe_v1.9 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(classes_b3_b3derivatives_binaryumdf_sbe_v1.9 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(classes_b3_b3derivatives_binaryumdf_sbe_v2.1 STATIC
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/TemplateId.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/TradingSessionId.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/SecurityTradingStatus.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/SecurityTradingEvent.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/TradingSessionSubId.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/SecurityIdSource.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/SecurityUpdateAction.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/SecurityType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/LotType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/Product.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/ExerciseStyle.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/PutOrCall.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/PriceTypeOptional.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/GovernanceIndicator.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/SecurityMatchType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/LastFragment.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/MultiLegModel.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/MultiLegPriceMethod.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/ImpliedMarketIndicator.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/LegSecurityType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/LegSide.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/InstrAttribType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/InstrAttribValue.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/NewsSource.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/MdUpdateAction.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/OpenCloseSettlFlag.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/PriceBandType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/PriceLimitType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/PriceBandMidpointPriceType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/TrdSubType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/PriceType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/SettlPriceType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/MdEntryType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/AggressorSide.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/structs/PacketHeader.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/structs/FramingHeader.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/structs/MessageHeader.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/messages/SequenceMessage.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/bitfields/MatchEventIndicator.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/messages/EmptyBookMessage.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/messages/ChannelReset11Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/messages/SecurityStatus3Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/messages/SecurityGroupPhase10Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/structs/MaturityMonthYear.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/structs/ContractSettlMonth.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/structs/GroupSizeEncoding.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/groups/UnderlyingsGroup.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/structs/UnderlyingsGroups.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/groups/LegsGroup.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/structs/LegsGroups.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/groups/InstrAttribsGroup.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/structs/InstrAttribsGroups.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/structs/SecurityDesc.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/messages/SecurityDefinitionMessage.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/structs/Headline.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/structs/Text.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/structs/UrlLink.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/messages/News5Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/messages/OpeningPrice15Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/messages/TheoreticalOpeningPrice16Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/messages/ClosingPrice17Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/bitfields/ImbalanceCondition.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/messages/AuctionImbalance19Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/messages/QuantityBand21Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/messages/PriceBand22Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/messages/HighPrice24Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/messages/LowPrice25Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/bitfields/TradeCondition.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/messages/LastTradePrice27Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/messages/SettlementPrice28Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/messages/OpenInterest29Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/messages/SnapshotFullRefreshHeader30Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/messages/OrderMbO50Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/messages/DeleteOrderMbO51Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/messages/MassDeleteOrdersMbO52Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/messages/Trade53Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/messages/ForwardTrade54Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/messages/ExecutionSummary55Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/messages/ExecutionStatistics56Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/messages/TradeBust57Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/groups/SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/structs/SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroups.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/messages/SnapshotFullRefreshOrdersMbO71Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/messages/UnknownMessage.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/Factory.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/Packet.cpp
+)
+target_include_directories(classes_b3_b3derivatives_binaryumdf_sbe_v2.1 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(classes_b3_b3derivatives_binaryumdf_sbe_v2.1 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(classes_b3_b3derivatives_binaryumdf_sbe_v2.2 STATIC
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/TemplateId.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/TradingSessionId.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/SecurityTradingStatus.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/SecurityTradingEvent.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/TradingSessionSubId.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/SecurityIdSource.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/SecurityUpdateAction.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/SecurityType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/LotType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/Product.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/ExerciseStyle.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/PutOrCall.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/PriceTypeOptional.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/GovernanceIndicator.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/SecurityMatchType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/LastFragment.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/MultiLegModel.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/MultiLegPriceMethod.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/ImpliedMarketIndicator.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/OptPayoutType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/LegSecurityType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/LegSide.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/InstrAttribType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/InstrAttribValue.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/NewsSource.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/MdUpdateAction.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/OpenCloseSettlFlag.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/PriceBandType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/PriceLimitType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/PriceBandMidpointPriceType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/TrdSubType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/PriceType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/SettlPriceType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/MdEntryType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/AggressorSide.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/structs/PacketHeader.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/structs/FramingHeader.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/structs/MessageHeader.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/messages/SequenceMessage.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/bitfields/MatchEventIndicator.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/messages/EmptyBookMessage.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/messages/ChannelReset11Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/messages/SecurityStatus3Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/messages/SecurityGroupPhase10Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/structs/MaturityMonthYear.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/structs/ContractSettlMonth.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/structs/GroupSizeEncoding.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/groups/UnderlyingsGroup.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/structs/UnderlyingsGroups.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/groups/LegsGroup.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/structs/LegsGroups.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/groups/InstrAttribsGroup.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/structs/InstrAttribsGroups.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/structs/SecurityDesc.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/messages/SecurityDefinitionMessage.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/structs/Headline.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/structs/Text.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/structs/UrlLink.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/messages/News5Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/messages/OpeningPrice15Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/messages/TheoreticalOpeningPrice16Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/messages/ClosingPrice17Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/bitfields/ImbalanceCondition.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/messages/AuctionImbalance19Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/messages/QuantityBand21Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/messages/PriceBand22Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/messages/HighPrice24Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/messages/LowPrice25Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/bitfields/TradeCondition.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/messages/LastTradePrice27Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/messages/SettlementPrice28Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/messages/OpenInterest29Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/messages/SnapshotFullRefreshHeader30Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/messages/OrderMbO50Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/messages/DeleteOrderMbO51Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/messages/MassDeleteOrdersMbO52Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/messages/Trade53Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/messages/ForwardTrade54Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/messages/ExecutionSummary55Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/messages/ExecutionStatistics56Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/messages/TradeBust57Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/groups/SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/structs/SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroups.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/messages/SnapshotFullRefreshOrdersMbO71Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/messages/UnknownMessage.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/Factory.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/Packet.cpp
+)
+target_include_directories(classes_b3_b3derivatives_binaryumdf_sbe_v2.2 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(classes_b3_b3derivatives_binaryumdf_sbe_v2.2 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(classes_b3_b3derivatives_binaryumdf_sbe_v2.3 STATIC
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/TemplateId.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/TradingSessionId.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/SecurityTradingStatus.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/SecurityTradingEvent.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/TradingSessionSubId.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/SecurityIdSource.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/SecurityUpdateAction.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/SecurityType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/LotType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/Product.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/ExerciseStyle.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/PutOrCall.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/PriceTypeOptional.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/GovernanceIndicator.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/SecurityMatchType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/LastFragment.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/MultiLegModel.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/MultiLegPriceMethod.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/ImpliedMarketIndicator.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/OptPayoutType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/LegSecurityType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/LegSide.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/InstrAttribType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/InstrAttribValue.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/NewsSource.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/MdUpdateAction.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/OpenCloseSettlFlag.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/PriceBandType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/PriceLimitType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/PriceBandMidpointPriceType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/TrdSubType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/OpenCloseSettlFlagOptional.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/PriceType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/SettlPriceType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/MdEntryType.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/AggressorSide.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/structs/PacketHeader.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/structs/FramingHeader.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/structs/MessageHeader.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/messages/SequenceMessage.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/bitfields/MatchEventIndicator.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/messages/EmptyBookMessage.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/messages/ChannelReset11Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/messages/SecurityStatus3Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/messages/SecurityGroupPhase10Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/structs/MaturityMonthYear.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/structs/ContractSettlMonth.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/structs/GroupSizeEncoding.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/groups/UnderlyingsGroup.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/structs/UnderlyingsGroups.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/groups/LegsGroup.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/structs/LegsGroups.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/groups/InstrAttribsGroup.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/structs/InstrAttribsGroups.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/structs/SecurityDesc.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/messages/SecurityDefinitionMessage.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/structs/Headline.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/structs/Text.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/structs/UrlLink.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/messages/News5Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/messages/OpeningPrice15Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/messages/TheoreticalOpeningPrice16Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/messages/ClosingPrice17Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/bitfields/ImbalanceCondition.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/messages/AuctionImbalance19Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/messages/QuantityBand21Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/messages/PriceBand22Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/messages/HighPrice24Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/messages/LowPrice25Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/bitfields/TradeCondition.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/messages/LastTradePrice27Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/messages/SettlementPrice28Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/messages/OpenInterest29Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/messages/SnapshotFullRefreshHeader30Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/messages/OrderMbO50Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/messages/DeleteOrderMbO51Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/messages/MassDeleteOrdersMbO52Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/messages/Trade53Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/messages/ForwardTrade54Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/messages/ExecutionSummary55Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/messages/ExecutionStatistics56Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/messages/TradeBust57Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/groups/SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/structs/SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroups.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/messages/SnapshotFullRefreshOrdersMbO71Message.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/messages/UnknownMessage.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/Factory.cpp
+  cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/Packet.cpp
+)
+target_include_directories(classes_b3_b3derivatives_binaryumdf_sbe_v2.3 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(classes_b3_b3derivatives_binaryumdf_sbe_v2.3 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
 add_library(classes_iex_iexequities_deep_iextp_v1.06 STATIC
   cpp/classes/iex/iexequities/deep/iextp/v1.06/enums/MessageType.cpp
   cpp/classes/iex/iexequities/deep/iextp/v1.06/enums/SystemEvent.cpp
@@ -442,9 +1103,179 @@ add_library(classes_jpx_tseequities_marketbyorder_flex_v1.1 STATIC
 )
 target_include_directories(classes_jpx_tseequities_marketbyorder_flex_v1.1 PUBLIC ${CMAKE_SOURCE_DIR})
 target_precompile_headers(classes_jpx_tseequities_marketbyorder_flex_v1.1 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(classes_nasdaq_nsmequities_totalview_itch_v5.0.2023 STATIC
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/ClientPacketType.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/ServerPacketType.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/RejectReasonCode.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/EventCode.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/MarketCategory.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/FinancialStatusIndicator.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/RoundLotsOnly.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/IssueClassification.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/Authenticity.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/ShortSaleThresholdIndicator.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/IpoFlag.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/LuldReferencePriceTier.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/EtpFlag.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/InverseIndicator.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/TradingState.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/RegShoAction.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/PrimaryMarketMaker.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/MarketMakerMode.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/MarketParticipantState.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/BreachedLevel.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/IpoQuotationReleaseQualifier.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/MarketCode.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/OperationalHaltAction.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/BuySellIndicator.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/Printable.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/CrossType.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/ImbalanceDirection.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/PriceVariationIndicator.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/InterestFlag.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/OpenEligibilityStatus.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/MessageType.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/structs/ClientPacketHeader.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/DebugPacket.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/LoginRequestPacket.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/UnsequencedDataPacket.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/structs/ServerPacketHeader.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/ServerPayloadDebugPacket.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/LoginAcceptedPacket.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/LoginRejectedPacket.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/SystemEventMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/StockDirectoryMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/StockTradingActionMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/RegShoShortSalePriceTestRestrictedIndicatorMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/MarketParticipantPositionMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/MwcbDeclineLevelMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/MwcbStatusLevelMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/IpoQuotingPeriodUpdate.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/LuldAuctionCollarMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/OperationalHaltMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/AddOrderNoMpidAttributionMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/AddOrderWithMpidAttributionMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/OrderExecutedMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/OrderExecutedWithPriceMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/OrderCancelMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/OrderDeleteMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/OrderReplaceMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/NonCrossTradeMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/CrossTradeMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/BrokenTradeMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/NetOrderImbalanceIndicatorMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/RetailPriceImprovementIndicatorMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/DirectListingWithCapitalRaisePriceDiscoveryMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/SequencedDataPacket.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/structs/PacketHeader.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/structs/MessageHeader.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/PayloadSystemEventMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/PayloadStockDirectoryMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/PayloadStockTradingActionMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/PayloadRegShoShortSalePriceTestRestrictedIndicatorMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/PayloadMarketParticipantPositionMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/PayloadMwcbDeclineLevelMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/PayloadMwcbStatusLevelMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/PayloadIpoQuotingPeriodUpdate.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/PayloadLuldAuctionCollarMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/PayloadOperationalHaltMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/PayloadAddOrderNoMpidAttributionMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/PayloadAddOrderWithMpidAttributionMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/PayloadOrderExecutedMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/PayloadOrderExecutedWithPriceMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/PayloadOrderCancelMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/PayloadOrderDeleteMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/PayloadOrderReplaceMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/PayloadNonCrossTradeMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/PayloadCrossTradeMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/PayloadBrokenTradeMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/PayloadNetOrderImbalanceIndicatorMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/PayloadRetailPriceImprovementIndicatorMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/PayloadDirectListingWithCapitalRaisePriceDiscoveryMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/UnknownMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/UnknownServerMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/UnknownSequencedMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/messages/UnknownPacketMessage.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/Factory.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/ClientPacket.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/ServerPacket.cpp
+  cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/Packet.cpp
+)
+target_include_directories(classes_nasdaq_nsmequities_totalview_itch_v5.0.2023 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(classes_nasdaq_nsmequities_totalview_itch_v5.0.2023 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
 # Programs under executables/ — one per protocol. Each reads the parser published under
 # cpp/, included by a repository-root-relative path, so there is only ever one copy of a
 # protocol's parser in the tree.
+add_executable(statistics_b3_b3derivatives_binaryumdf_sbe_v1.6 executables/statistics/b3/b3derivatives/binaryumdf/sbe/v1.6/main.cpp)
+target_include_directories(statistics_b3_b3derivatives_binaryumdf_sbe_v1.6 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/b3/b3derivatives/binaryumdf/sbe/v1.6)
+add_executable(extractor_b3_b3derivatives_binaryumdf_sbe_v1.6 executables/extractor/b3/b3derivatives/binaryumdf/sbe/v1.6/main.cpp)
+target_include_directories(extractor_b3_b3derivatives_binaryumdf_sbe_v1.6 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/extractor/b3/b3derivatives/binaryumdf/sbe/v1.6)
+add_executable(dump_b3_b3derivatives_binaryumdf_sbe_v1.6 executables/dump/b3/b3derivatives/binaryumdf/sbe/v1.6/main.cpp)
+target_include_directories(dump_b3_b3derivatives_binaryumdf_sbe_v1.6 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/dump/b3/b3derivatives/binaryumdf/sbe/v1.6)
+target_link_libraries(dump_b3_b3derivatives_binaryumdf_sbe_v1.6 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v1.6)
+add_executable(verify_b3_b3derivatives_binaryumdf_sbe_v1.6 executables/verify/b3/b3derivatives/binaryumdf/sbe/v1.6/main.cpp)
+target_include_directories(verify_b3_b3derivatives_binaryumdf_sbe_v1.6 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/b3/b3derivatives/binaryumdf/sbe/v1.6)
+target_link_libraries(verify_b3_b3derivatives_binaryumdf_sbe_v1.6 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v1.6)
+add_executable(statistics_b3_b3derivatives_binaryumdf_sbe_v1.7 executables/statistics/b3/b3derivatives/binaryumdf/sbe/v1.7/main.cpp)
+target_include_directories(statistics_b3_b3derivatives_binaryumdf_sbe_v1.7 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/b3/b3derivatives/binaryumdf/sbe/v1.7)
+add_executable(extractor_b3_b3derivatives_binaryumdf_sbe_v1.7 executables/extractor/b3/b3derivatives/binaryumdf/sbe/v1.7/main.cpp)
+target_include_directories(extractor_b3_b3derivatives_binaryumdf_sbe_v1.7 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/extractor/b3/b3derivatives/binaryumdf/sbe/v1.7)
+add_executable(dump_b3_b3derivatives_binaryumdf_sbe_v1.7 executables/dump/b3/b3derivatives/binaryumdf/sbe/v1.7/main.cpp)
+target_include_directories(dump_b3_b3derivatives_binaryumdf_sbe_v1.7 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/dump/b3/b3derivatives/binaryumdf/sbe/v1.7)
+target_link_libraries(dump_b3_b3derivatives_binaryumdf_sbe_v1.7 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v1.7)
+add_executable(verify_b3_b3derivatives_binaryumdf_sbe_v1.7 executables/verify/b3/b3derivatives/binaryumdf/sbe/v1.7/main.cpp)
+target_include_directories(verify_b3_b3derivatives_binaryumdf_sbe_v1.7 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/b3/b3derivatives/binaryumdf/sbe/v1.7)
+target_link_libraries(verify_b3_b3derivatives_binaryumdf_sbe_v1.7 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v1.7)
+add_executable(statistics_b3_b3derivatives_binaryumdf_sbe_v1.8 executables/statistics/b3/b3derivatives/binaryumdf/sbe/v1.8/main.cpp)
+target_include_directories(statistics_b3_b3derivatives_binaryumdf_sbe_v1.8 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/b3/b3derivatives/binaryumdf/sbe/v1.8)
+add_executable(extractor_b3_b3derivatives_binaryumdf_sbe_v1.8 executables/extractor/b3/b3derivatives/binaryumdf/sbe/v1.8/main.cpp)
+target_include_directories(extractor_b3_b3derivatives_binaryumdf_sbe_v1.8 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/extractor/b3/b3derivatives/binaryumdf/sbe/v1.8)
+add_executable(dump_b3_b3derivatives_binaryumdf_sbe_v1.8 executables/dump/b3/b3derivatives/binaryumdf/sbe/v1.8/main.cpp)
+target_include_directories(dump_b3_b3derivatives_binaryumdf_sbe_v1.8 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/dump/b3/b3derivatives/binaryumdf/sbe/v1.8)
+target_link_libraries(dump_b3_b3derivatives_binaryumdf_sbe_v1.8 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v1.8)
+add_executable(verify_b3_b3derivatives_binaryumdf_sbe_v1.8 executables/verify/b3/b3derivatives/binaryumdf/sbe/v1.8/main.cpp)
+target_include_directories(verify_b3_b3derivatives_binaryumdf_sbe_v1.8 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/b3/b3derivatives/binaryumdf/sbe/v1.8)
+target_link_libraries(verify_b3_b3derivatives_binaryumdf_sbe_v1.8 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v1.8)
+add_executable(statistics_b3_b3derivatives_binaryumdf_sbe_v1.9 executables/statistics/b3/b3derivatives/binaryumdf/sbe/v1.9/main.cpp)
+target_include_directories(statistics_b3_b3derivatives_binaryumdf_sbe_v1.9 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/b3/b3derivatives/binaryumdf/sbe/v1.9)
+add_executable(extractor_b3_b3derivatives_binaryumdf_sbe_v1.9 executables/extractor/b3/b3derivatives/binaryumdf/sbe/v1.9/main.cpp)
+target_include_directories(extractor_b3_b3derivatives_binaryumdf_sbe_v1.9 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/extractor/b3/b3derivatives/binaryumdf/sbe/v1.9)
+add_executable(dump_b3_b3derivatives_binaryumdf_sbe_v1.9 executables/dump/b3/b3derivatives/binaryumdf/sbe/v1.9/main.cpp)
+target_include_directories(dump_b3_b3derivatives_binaryumdf_sbe_v1.9 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/dump/b3/b3derivatives/binaryumdf/sbe/v1.9)
+target_link_libraries(dump_b3_b3derivatives_binaryumdf_sbe_v1.9 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v1.9)
+add_executable(verify_b3_b3derivatives_binaryumdf_sbe_v1.9 executables/verify/b3/b3derivatives/binaryumdf/sbe/v1.9/main.cpp)
+target_include_directories(verify_b3_b3derivatives_binaryumdf_sbe_v1.9 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/b3/b3derivatives/binaryumdf/sbe/v1.9)
+target_link_libraries(verify_b3_b3derivatives_binaryumdf_sbe_v1.9 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v1.9)
+add_executable(statistics_b3_b3derivatives_binaryumdf_sbe_v2.1 executables/statistics/b3/b3derivatives/binaryumdf/sbe/v2.1/main.cpp)
+target_include_directories(statistics_b3_b3derivatives_binaryumdf_sbe_v2.1 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/b3/b3derivatives/binaryumdf/sbe/v2.1)
+add_executable(extractor_b3_b3derivatives_binaryumdf_sbe_v2.1 executables/extractor/b3/b3derivatives/binaryumdf/sbe/v2.1/main.cpp)
+target_include_directories(extractor_b3_b3derivatives_binaryumdf_sbe_v2.1 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/extractor/b3/b3derivatives/binaryumdf/sbe/v2.1)
+add_executable(dump_b3_b3derivatives_binaryumdf_sbe_v2.1 executables/dump/b3/b3derivatives/binaryumdf/sbe/v2.1/main.cpp)
+target_include_directories(dump_b3_b3derivatives_binaryumdf_sbe_v2.1 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/dump/b3/b3derivatives/binaryumdf/sbe/v2.1)
+target_link_libraries(dump_b3_b3derivatives_binaryumdf_sbe_v2.1 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v2.1)
+add_executable(verify_b3_b3derivatives_binaryumdf_sbe_v2.1 executables/verify/b3/b3derivatives/binaryumdf/sbe/v2.1/main.cpp)
+target_include_directories(verify_b3_b3derivatives_binaryumdf_sbe_v2.1 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/b3/b3derivatives/binaryumdf/sbe/v2.1)
+target_link_libraries(verify_b3_b3derivatives_binaryumdf_sbe_v2.1 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v2.1)
+add_executable(statistics_b3_b3derivatives_binaryumdf_sbe_v2.2 executables/statistics/b3/b3derivatives/binaryumdf/sbe/v2.2/main.cpp)
+target_include_directories(statistics_b3_b3derivatives_binaryumdf_sbe_v2.2 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/b3/b3derivatives/binaryumdf/sbe/v2.2)
+add_executable(extractor_b3_b3derivatives_binaryumdf_sbe_v2.2 executables/extractor/b3/b3derivatives/binaryumdf/sbe/v2.2/main.cpp)
+target_include_directories(extractor_b3_b3derivatives_binaryumdf_sbe_v2.2 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/extractor/b3/b3derivatives/binaryumdf/sbe/v2.2)
+add_executable(dump_b3_b3derivatives_binaryumdf_sbe_v2.2 executables/dump/b3/b3derivatives/binaryumdf/sbe/v2.2/main.cpp)
+target_include_directories(dump_b3_b3derivatives_binaryumdf_sbe_v2.2 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/dump/b3/b3derivatives/binaryumdf/sbe/v2.2)
+target_link_libraries(dump_b3_b3derivatives_binaryumdf_sbe_v2.2 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v2.2)
+add_executable(verify_b3_b3derivatives_binaryumdf_sbe_v2.2 executables/verify/b3/b3derivatives/binaryumdf/sbe/v2.2/main.cpp)
+target_include_directories(verify_b3_b3derivatives_binaryumdf_sbe_v2.2 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/b3/b3derivatives/binaryumdf/sbe/v2.2)
+target_link_libraries(verify_b3_b3derivatives_binaryumdf_sbe_v2.2 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v2.2)
+add_executable(statistics_b3_b3derivatives_binaryumdf_sbe_v2.3 executables/statistics/b3/b3derivatives/binaryumdf/sbe/v2.3/main.cpp)
+target_include_directories(statistics_b3_b3derivatives_binaryumdf_sbe_v2.3 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/b3/b3derivatives/binaryumdf/sbe/v2.3)
+add_executable(extractor_b3_b3derivatives_binaryumdf_sbe_v2.3 executables/extractor/b3/b3derivatives/binaryumdf/sbe/v2.3/main.cpp)
+target_include_directories(extractor_b3_b3derivatives_binaryumdf_sbe_v2.3 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/extractor/b3/b3derivatives/binaryumdf/sbe/v2.3)
+add_executable(dump_b3_b3derivatives_binaryumdf_sbe_v2.3 executables/dump/b3/b3derivatives/binaryumdf/sbe/v2.3/main.cpp)
+target_include_directories(dump_b3_b3derivatives_binaryumdf_sbe_v2.3 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/dump/b3/b3derivatives/binaryumdf/sbe/v2.3)
+target_link_libraries(dump_b3_b3derivatives_binaryumdf_sbe_v2.3 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v2.3)
+add_executable(verify_b3_b3derivatives_binaryumdf_sbe_v2.3 executables/verify/b3/b3derivatives/binaryumdf/sbe/v2.3/main.cpp)
+target_include_directories(verify_b3_b3derivatives_binaryumdf_sbe_v2.3 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/b3/b3derivatives/binaryumdf/sbe/v2.3)
+target_link_libraries(verify_b3_b3derivatives_binaryumdf_sbe_v2.3 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v2.3)
 add_executable(statistics_iex_iexequities_deep_iextp_v1.06 executables/statistics/iex/iexequities/deep/iextp/v1.06/main.cpp)
 target_include_directories(statistics_iex_iexequities_deep_iextp_v1.06 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/iex/iexequities/deep/iextp/v1.06)
 add_executable(extractor_iex_iexequities_deep_iextp_v1.06 executables/extractor/iex/iexequities/deep/iextp/v1.06/main.cpp)
@@ -559,6 +1390,12 @@ add_executable(statistics_nasdaq_nsmequities_totalview_itch_v5.0.2023 executable
 target_include_directories(statistics_nasdaq_nsmequities_totalview_itch_v5.0.2023 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/nasdaq/nsmequities/totalview/itch/v5.0.2023)
 add_executable(extractor_nasdaq_nsmequities_totalview_itch_v5.0.2023 executables/extractor/nasdaq/nsmequities/totalview/itch/v5.0.2023/main.cpp)
 target_include_directories(extractor_nasdaq_nsmequities_totalview_itch_v5.0.2023 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/extractor/nasdaq/nsmequities/totalview/itch/v5.0.2023)
+add_executable(dump_nasdaq_nsmequities_totalview_itch_v5.0.2023 executables/dump/nasdaq/nsmequities/totalview/itch/v5.0.2023/main.cpp)
+target_include_directories(dump_nasdaq_nsmequities_totalview_itch_v5.0.2023 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/dump/nasdaq/nsmequities/totalview/itch/v5.0.2023)
+target_link_libraries(dump_nasdaq_nsmequities_totalview_itch_v5.0.2023 PRIVATE classes_nasdaq_nsmequities_totalview_itch_v5.0.2023)
+add_executable(verify_nasdaq_nsmequities_totalview_itch_v5.0.2023 executables/verify/nasdaq/nsmequities/totalview/itch/v5.0.2023/main.cpp)
+target_include_directories(verify_nasdaq_nsmequities_totalview_itch_v5.0.2023 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/nasdaq/nsmequities/totalview/itch/v5.0.2023)
+target_link_libraries(verify_nasdaq_nsmequities_totalview_itch_v5.0.2023 PRIVATE classes_nasdaq_nsmequities_totalview_itch_v5.0.2023)
 # Corpus-driven tests, one family per format under tests/, each through the surface that
 # format's program uses: modern through the packet iterator, advanced through the session
 # layer, classes through the Packet's decode and encode. The test programs are built by
@@ -622,6 +1459,9 @@ add_executable(modern_nasdaq_nsmequities_totalview_itch_v5.0.2023_test tests/mod
 target_include_directories(modern_nasdaq_nsmequities_totalview_itch_v5.0.2023_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(advanced_nasdaq_nsmequities_totalview_itch_v5.0.2023_test tests/advanced/nasdaq_nsmequities_totalview_itch_v5.0.2023.cpp)
 target_include_directories(advanced_nasdaq_nsmequities_totalview_itch_v5.0.2023_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(classes_nasdaq_nsmequities_totalview_itch_v5.0.2023_test tests/classes/nasdaq_nsmequities_totalview_itch_v5.0.2023.cpp)
+target_include_directories(classes_nasdaq_nsmequities_totalview_itch_v5.0.2023_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+target_link_libraries(classes_nasdaq_nsmequities_totalview_itch_v5.0.2023_test PRIVATE classes_nasdaq_nsmequities_totalview_itch_v5.0.2023)
 
 # Running them reads the captures each protocol declares, and each program is run on its
 # protocol's first declared capture. Point OMI_PACKETS_DIR at the corpus checkout:
@@ -707,6 +1547,9 @@ if(OMI_PACKETS_DIR)
 
   add_test(NAME advanced_nasdaq_nsmequities_totalview_itch_v5.0.2023 COMMAND advanced_nasdaq_nsmequities_totalview_itch_v5.0.2023_test)
   set_tests_properties(advanced_nasdaq_nsmequities_totalview_itch_v5.0.2023 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR}")
+
+  add_test(NAME classes_nasdaq_nsmequities_totalview_itch_v5.0.2023 COMMAND classes_nasdaq_nsmequities_totalview_itch_v5.0.2023_test)
+  set_tests_properties(classes_nasdaq_nsmequities_totalview_itch_v5.0.2023 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR}")
 
   add_test(NAME statistics_iex_iexequities_deep_iextp_v1.06 COMMAND statistics_iex_iexequities_deep_iextp_v1.06 -i ${OMI_PACKETS_DIR}/Iex/IexEquities.Deep.IexTp.v1.06/AuctionInformationMessage.pcap)
   set_tests_properties(statistics_iex_iexequities_deep_iextp_v1.06 PROPERTIES PASS_REGULAR_EXPRESSION "AuctionInformationMessage \\([^)]*\\) +[1-9]")
@@ -827,4 +1670,10 @@ if(OMI_PACKETS_DIR)
   set_tests_properties(extractor_nasdaq_nsmequities_totalview_itch_v5.0.2023_directory PROPERTIES FIXTURES_SETUP extractor_nasdaq_nsmequities_totalview_itch_v5.0.2023_samples)
   add_test(NAME extractor_nasdaq_nsmequities_totalview_itch_v5.0.2023 COMMAND extractor_nasdaq_nsmequities_totalview_itch_v5.0.2023 ${OMI_PACKETS_DIR}/Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/AddOrderNoMPID.pcap ${CMAKE_BINARY_DIR}/samples/nasdaq_nsmequities_totalview_itch_v5.0.2023)
   set_tests_properties(extractor_nasdaq_nsmequities_totalview_itch_v5.0.2023 PROPERTIES PASS_REGULAR_EXPRESSION "sampled [1-9]" FIXTURES_REQUIRED extractor_nasdaq_nsmequities_totalview_itch_v5.0.2023_samples)
+
+  add_test(NAME dump_nasdaq_nsmequities_totalview_itch_v5.0.2023 COMMAND dump_nasdaq_nsmequities_totalview_itch_v5.0.2023 ${OMI_PACKETS_DIR}/Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/AddOrderNoMPID.pcap)
+  set_tests_properties(dump_nasdaq_nsmequities_totalview_itch_v5.0.2023 PROPERTIES PASS_REGULAR_EXPRESSION "AddOrderNoMpidAttributionMessage")
+
+  add_test(NAME verify_nasdaq_nsmequities_totalview_itch_v5.0.2023 COMMAND verify_nasdaq_nsmequities_totalview_itch_v5.0.2023 ${OMI_PACKETS_DIR}/Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/AddOrderNoMPID.pcap)
+  set_tests_properties(verify_nasdaq_nsmequities_totalview_itch_v5.0.2023 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 endif()

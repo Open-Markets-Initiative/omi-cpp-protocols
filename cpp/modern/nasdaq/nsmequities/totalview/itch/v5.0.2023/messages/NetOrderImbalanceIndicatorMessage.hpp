@@ -12,7 +12,7 @@
 #include "../types/CurrentReferencePrice.hpp"
 #include "../types/CrossType.hpp"
 #include "../types/PriceVariationIndicator.hpp"
-#include "../messages/SequencedDataPacket.hpp"
+#include "../structs/MessageHeader.hpp"
 
 namespace nasdaq::nsmequities::totalview::itch::v5_0_2023 {
 
@@ -48,8 +48,8 @@ struct NetOrderImbalanceIndicatorMessage {
     }
 
     // parse the overlaid body from its selecting header
-    static const NetOrderImbalanceIndicatorMessage* parse(const SequencedDataPacket* header) {
-        return reinterpret_cast<const NetOrderImbalanceIndicatorMessage*>(reinterpret_cast<const std::byte*>(header) + sizeof(SequencedDataPacket));
+    static const NetOrderImbalanceIndicatorMessage* parse(const MessageHeader* header) {
+        return reinterpret_cast<const NetOrderImbalanceIndicatorMessage*>(reinterpret_cast<const std::byte*>(header) + sizeof(MessageHeader));
     }
 };
 

@@ -23,7 +23,7 @@ struct order_delete_message {
         flex_marketbyorder::modification_flag modification_flag;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 1), message_type::enum_type::order_delete_message};
+    flex_marketbyorder::message_header header = {std::uint16_t(sizeof(flex_marketbyorder::message_header) + sizeof(fields_type) - 1), message_type::enum_type::order_delete_message};
 
     fields_type fields;
 
@@ -45,7 +45,7 @@ static_assert(offsetof(order_delete_message::fields_type, order_id) == 4, "unexp
 static_assert(offsetof(order_delete_message::fields_type, side) == 8, "unexpected offset of order_delete_message::fields_type::side");
 static_assert(offsetof(order_delete_message::fields_type, modification_flag) == 9, "unexpected offset of order_delete_message::fields_type::modification_flag");
 static_assert(sizeof(order_delete_message::fields_type) == 10, "unexpected sizeof order_delete_message::fields_type");
-static_assert(sizeof(order_delete_message) == sizeof(message_header) + 10, "unexpected sizeof order_delete_message");
+static_assert(sizeof(order_delete_message) == sizeof(flex_marketbyorder::message_header) + 10, "unexpected sizeof order_delete_message");
 
 #pragma pack(pop)
 }

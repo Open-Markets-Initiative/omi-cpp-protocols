@@ -29,7 +29,7 @@ struct order_executed_message {
         iextp_deepplus::trade_id trade_id;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 2), message_type::enum_type::order_executed_message};
+    iextp_deepplus::message_header header = {std::uint16_t(sizeof(iextp_deepplus::message_header) + sizeof(fields_type) - 2), message_type::enum_type::order_executed_message};
 
     fields_type fields;
 
@@ -54,7 +54,7 @@ static_assert(offsetof(order_executed_message::fields_type, size) == 25, "unexpe
 static_assert(offsetof(order_executed_message::fields_type, price) == 29, "unexpected offset of order_executed_message::fields_type::price");
 static_assert(offsetof(order_executed_message::fields_type, trade_id) == 37, "unexpected offset of order_executed_message::fields_type::trade_id");
 static_assert(sizeof(order_executed_message::fields_type) == 45, "unexpected sizeof order_executed_message::fields_type");
-static_assert(sizeof(order_executed_message) == sizeof(message_header) + 45, "unexpected sizeof order_executed_message");
+static_assert(sizeof(order_executed_message) == sizeof(iextp_deepplus::message_header) + 45, "unexpected sizeof order_executed_message");
 
 #pragma pack(pop)
 }

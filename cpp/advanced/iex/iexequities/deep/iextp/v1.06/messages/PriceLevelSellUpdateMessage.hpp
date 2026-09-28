@@ -25,7 +25,7 @@ struct price_level_sell_update_message {
         iextp_deep::price price;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 2), message_type::enum_type::price_level_sell_update_message};
+    iextp_deep::message_header header = {std::uint16_t(sizeof(iextp_deep::message_header) + sizeof(fields_type) - 2), message_type::enum_type::price_level_sell_update_message};
 
     fields_type fields;
 
@@ -48,7 +48,7 @@ static_assert(offsetof(price_level_sell_update_message::fields_type, symbol) == 
 static_assert(offsetof(price_level_sell_update_message::fields_type, size) == 17, "unexpected offset of price_level_sell_update_message::fields_type::size");
 static_assert(offsetof(price_level_sell_update_message::fields_type, price) == 21, "unexpected offset of price_level_sell_update_message::fields_type::price");
 static_assert(sizeof(price_level_sell_update_message::fields_type) == 29, "unexpected sizeof price_level_sell_update_message::fields_type");
-static_assert(sizeof(price_level_sell_update_message) == sizeof(message_header) + 29, "unexpected sizeof price_level_sell_update_message");
+static_assert(sizeof(price_level_sell_update_message) == sizeof(iextp_deep::message_header) + 29, "unexpected sizeof price_level_sell_update_message");
 
 #pragma pack(pop)
 }

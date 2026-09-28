@@ -17,7 +17,7 @@ struct login_rejected_packet {
         itch_totalview::reject_reason_code reject_reason_code;
     };
 
-    server_packet_header header = {std::uint16_t(sizeof(server_packet_header) + sizeof(fields_type) - 2), server_packet_type::enum_type::login_rejected_packet};
+    itch_totalview::server_packet_header header = {std::uint16_t(sizeof(itch_totalview::server_packet_header) + sizeof(fields_type) - 2), server_packet_type::enum_type::login_rejected_packet};
 
     fields_type fields;
 
@@ -36,7 +36,7 @@ struct login_rejected_packet {
 // layout verification
 static_assert(offsetof(login_rejected_packet::fields_type, reject_reason_code) == 0, "unexpected offset of login_rejected_packet::fields_type::reject_reason_code");
 static_assert(sizeof(login_rejected_packet::fields_type) == 1, "unexpected sizeof login_rejected_packet::fields_type");
-static_assert(sizeof(login_rejected_packet) == sizeof(server_packet_header) + 1, "unexpected sizeof login_rejected_packet");
+static_assert(sizeof(login_rejected_packet) == sizeof(itch_totalview::server_packet_header) + 1, "unexpected sizeof login_rejected_packet");
 
 #pragma pack(pop)
 }

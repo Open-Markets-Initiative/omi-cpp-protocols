@@ -33,7 +33,7 @@ struct non_cross_trade_message {
         itch_totalview::match_number match_number;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 2), message_type::enum_type::non_cross_trade_message};
+    itch_totalview::message_header header = {std::uint16_t(sizeof(itch_totalview::message_header) + sizeof(fields_type) - 2), message_type::enum_type::non_cross_trade_message};
 
     fields_type fields;
 
@@ -60,7 +60,7 @@ static_assert(offsetof(non_cross_trade_message::fields_type, stock) == 23, "unex
 static_assert(offsetof(non_cross_trade_message::fields_type, price) == 31, "unexpected offset of non_cross_trade_message::fields_type::price");
 static_assert(offsetof(non_cross_trade_message::fields_type, match_number) == 35, "unexpected offset of non_cross_trade_message::fields_type::match_number");
 static_assert(sizeof(non_cross_trade_message::fields_type) == 43, "unexpected sizeof non_cross_trade_message::fields_type");
-static_assert(sizeof(non_cross_trade_message) == sizeof(message_header) + 43, "unexpected sizeof non_cross_trade_message");
+static_assert(sizeof(non_cross_trade_message) == sizeof(itch_totalview::message_header) + 43, "unexpected sizeof non_cross_trade_message");
 
 #pragma pack(pop)
 }

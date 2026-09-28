@@ -43,7 +43,7 @@ struct auction_information_message {
         iextp_deep::upper_auction_collar upper_auction_collar;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 2), message_type::enum_type::auction_information_message};
+    iextp_deep::message_header header = {std::uint16_t(sizeof(iextp_deep::message_header) + sizeof(fields_type) - 2), message_type::enum_type::auction_information_message};
 
     fields_type fields;
 
@@ -75,7 +75,7 @@ static_assert(offsetof(auction_information_message::fields_type, collar_referenc
 static_assert(offsetof(auction_information_message::fields_type, lower_auction_collar) == 63, "unexpected offset of auction_information_message::fields_type::lower_auction_collar");
 static_assert(offsetof(auction_information_message::fields_type, upper_auction_collar) == 71, "unexpected offset of auction_information_message::fields_type::upper_auction_collar");
 static_assert(sizeof(auction_information_message::fields_type) == 79, "unexpected sizeof auction_information_message::fields_type");
-static_assert(sizeof(auction_information_message) == sizeof(message_header) + 79, "unexpected sizeof auction_information_message");
+static_assert(sizeof(auction_information_message) == sizeof(iextp_deep::message_header) + 79, "unexpected sizeof auction_information_message");
 
 #pragma pack(pop)
 }

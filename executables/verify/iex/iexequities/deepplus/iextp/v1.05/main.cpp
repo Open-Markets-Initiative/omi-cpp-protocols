@@ -53,16 +53,19 @@ std::uint64_t code_value(Code code) {
     }
 }
 
-// The bytes one frame takes on the wire: its headers and the message they carry.
-std::size_t frame_size(const protocol::Frame& frame) {
+// The bytes one frame takes on the wire: its headers and the message they carry. A tree's frame
+// class is its own, so every helper here takes whichever frame class it is handed.
+template <typename Frame>
+std::size_t frame_size(const Frame& frame) {
     return frame.encoded_size() + (frame.message() != nullptr ? frame.message()->encoded_size() : 0);
 }
 
 // Where the frames begin, given where they end: whatever precedes them is packet header.
-[[maybe_unused]] std::size_t frames_begin(const std::vector<protocol::Frame>& frames, std::size_t end) {
+template <typename Frame>
+std::size_t frames_begin(const std::vector<Frame>& frames, std::size_t end) {
     std::size_t total = 0;
 
-    for (const protocol::Frame& frame : frames) { total += frame_size(frame); }
+    for (const Frame& frame : frames) { total += frame_size(frame); }
 
     return end >= total ? end - total : 0;
 }
@@ -78,14 +81,15 @@ std::size_t first_difference(const std::byte* wire, std::size_t wire_length, con
     return common;
 }
 
-// Which part of a packet an offset lies in: its header, one of its frames, or past them.
-std::string place(const std::vector<protocol::Frame>& frames, std::size_t begin, std::size_t offset) {
+// Which part of a read an offset lies in: its packet header, one of its frames, or past them.
+template <typename Frame>
+std::string place(const std::vector<Frame>& frames, std::size_t begin, std::size_t offset) {
     if (offset < begin) { return "in the packet header"; }
 
     std::size_t start = begin;
     std::size_t index = 0;
 
-    for (const protocol::Frame& frame : frames) {
+    for (const Frame& frame : frames) {
         ++index;
         const std::size_t size = frame_size(frame);
 
@@ -103,7 +107,7 @@ std::string place(const std::vector<protocol::Frame>& frames, std::size_t begin,
 // The tally, one line each, then the verdict.
 void summarize(const Tally& tally) {
     std::printf("== Iex.IexEquities.DeepPlus.IexTp.v1.05 verify\n");
-    std::printf("%-12s %zu\n", "packets", tally.packets);
+    std::printf("%-12s %zu\n", "reads", tally.packets);
     std::printf("%-12s %zu\n", "messages", tally.messages);
     std::printf("%-12s %zu\n", "undecodable", tally.undecodable);
     std::printf("%-12s %zu\n", "mismatched", tally.mismatched);
@@ -127,6 +131,83 @@ void summarize(const Tally& tally) {
     std::printf("%s\n", tally.failed() ? "FAIL" : "PASS");
 }
 
+// Packet: a frame of its transport is a whole packet of its own.
+void read_packet(protocol::Packet& decoded, const packet::Frame& frame, Tally& tally, std::vector<std::byte>& encoded) {
+    const std::size_t number = ++tally.packets;
+
+    try {
+        decoded.decode(frame.payload, frame.payload_len);
+    } catch (const protocol::DecodeError& error) {
+        if (++tally.undecodable <= shown) {
+            std::cerr << "read " << number << ": does not decode: " << error.what() << '\n';
+        }
+        return;
+    }
+
+    ++tally.kinds[std::string(protocol::to_string(decoded.kind()))];
+
+    std::size_t index = 0;
+
+    for (const auto& held : decoded.frames()) {
+        ++index;
+        const protocol::Message* message = held.message();
+
+        if (message == nullptr) { continue; }
+
+        ++tally.messages;
+
+        // The size rule: the length the frame's header declares against what the model reads.
+        const std::size_t declared = static_cast<std::size_t>(held.message_header().message_length()) + 2;
+        const std::size_t derived = frame_size(held);
+
+        if (declared != derived && ++tally.sizes <= shown) {
+            std::cerr << "read " << number << " frame " << index << " (" << message->name() << "): declares "
+                      << declared << " bytes, the model reads " << derived << '\n';
+        }
+
+        // The dispatch: a code the specification does not list, or one that selected
+        // a message whose own code is another.
+        if (const auto* stranger = dynamic_cast<const protocol::UnknownMessage*>(message)) {
+            const std::uint64_t value = code_value(stranger->type());
+
+            ++tally.codes[value];
+
+            if (++tally.unknown <= shown) {
+                std::cerr << "read " << number << " frame " << index << ": unknown message code " << value << '\n';
+            }
+        } else if (message->type() != held.message_header().message_type()) {
+            if (++tally.dispatches <= shown) {
+                std::cerr << "read " << number << " frame " << index << ": code " << code_value(held.message_header().message_type())
+                          << " decoded as " << message->name() << ", whose code is " << code_value(message->type()) << '\n';
+            }
+        }
+    }
+
+    // Bytes after the last frame the model reads: a pad or a trailer the specification
+    // leaves out. Kept and written back, so not a failure, but worth knowing about.
+    if (!decoded.trailer().empty() && ++tally.trailing <= shown) {
+        std::cerr << "read " << number << ": " << decoded.trailer().size() << " bytes after the last frame\n";
+    }
+
+    // The round trip. Encode derives the count, every length and every code again from the
+    // messages, so the bytes agree with the wire only when every rule does.
+    try {
+        encoded.assign(decoded.encoded_size(), std::byte{ 0 });
+        const std::size_t written = decoded.encode(encoded.data(), encoded.size());
+        const std::size_t offset = first_difference(frame.payload, frame.payload_len, encoded.data(), written);
+
+        if ((written != frame.payload_len || offset < written) && ++tally.mismatched <= shown) {
+            std::cerr << "read " << number << ": encodes to " << written << " bytes against " << frame.payload_len
+                      << " read, first difference at byte " << offset << ' '
+                      << place(decoded.frames(), frames_begin(decoded.frames(), written - decoded.trailer().size()), offset) << '\n';
+        }
+    } catch (const protocol::EncodeError& error) {
+        if (++tally.mismatched <= shown) {
+            std::cerr << "read " << number << ": does not encode: " << error.what() << '\n';
+        }
+    }
+}
+
 } // namespace
 
 int main(int argc, char** argv) {
@@ -140,90 +221,23 @@ int main(int argc, char** argv) {
 
     packet::PcapIterator captures(sources);
 
-    // One packet for the whole capture, reused the way a program reads one, so state a
-    // decode fails to reset shows up here too.
-    protocol::Packet decoded;
     std::vector<std::byte> encoded;
     Tally tally;
+
+    // One read per tree for the whole capture, reused the way a program reads one, so
+    // state a failed decode leaves behind shows up here too.
+    protocol::Packet packet_read;
 
     while (captures.advance()) {
         const packet::Frame frame(captures.data(), captures.length());
 
         if (!frame.valid()) { continue; }
 
-        const std::size_t number = ++tally.packets;
-
-        try {
-            decoded.decode(frame.payload, frame.payload_len);
-        } catch (const protocol::DecodeError& error) {
-            if (++tally.undecodable <= shown) {
-                std::cerr << "packet " << number << ": does not decode: " << error.what() << '\n';
-            }
+        if (frame.is_udp()) {
+            read_packet(packet_read, frame, tally, encoded);
             continue;
         }
 
-        ++tally.kinds[std::string(protocol::to_string(decoded.kind()))];
-
-        std::size_t index = 0;
-
-        for (const protocol::Frame& held : decoded.frames()) {
-            ++index;
-            const protocol::Message* message = held.message();
-
-            if (message == nullptr) { continue; }
-
-            ++tally.messages;
-
-            // The size rule: the length the frame's header declares against what the model reads.
-            const std::size_t declared = static_cast<std::size_t>(held.message_header().message_length()) + 2;
-            const std::size_t derived = frame_size(held);
-
-            if (declared != derived && ++tally.sizes <= shown) {
-                std::cerr << "packet " << number << " frame " << index << " (" << message->name() << "): declares "
-                          << declared << " bytes, the model reads " << derived << '\n';
-            }
-
-            // The dispatch: a code the specification does not list, or one that selected
-            // a message whose own code is another.
-            if (const auto* stranger = dynamic_cast<const protocol::UnknownMessage*>(message)) {
-                const std::uint64_t value = code_value(stranger->type());
-
-                ++tally.codes[value];
-
-                if (++tally.unknown <= shown) {
-                    std::cerr << "packet " << number << " frame " << index << ": unknown message code " << value << '\n';
-                }
-            } else if (message->type() != held.message_header().message_type()) {
-                if (++tally.dispatches <= shown) {
-                    std::cerr << "packet " << number << " frame " << index << ": code " << code_value(held.message_header().message_type())
-                              << " decoded as " << message->name() << ", whose code is " << code_value(message->type()) << '\n';
-                }
-            }
-        }
-
-        // Bytes after the last frame the model reads: a pad or a trailer the specification
-        // leaves out. Kept and written back, so not a failure, but worth knowing about.
-        if (!decoded.trailer().empty() && ++tally.trailing <= shown) {
-            std::cerr << "packet " << number << ": " << decoded.trailer().size() << " bytes after the last frame\n";
-        }
-
-        // The round trip. Encode derives the count, every length and every code again from the
-        // messages, so the bytes agree with the wire only when every rule does.
-        try {
-            encoded.assign(decoded.encoded_size(), std::byte{ 0 });
-            const std::size_t written = decoded.encode(encoded.data(), encoded.size());
-            const std::size_t offset = first_difference(frame.payload, frame.payload_len, encoded.data(), written);
-
-            if ((written != frame.payload_len || offset < written) && ++tally.mismatched <= shown) {
-                std::cerr << "packet " << number << ": encodes to " << written << " bytes against " << frame.payload_len
-                          << " read, first difference at byte " << offset << ' '
-                          << place(decoded.frames(), frames_begin(decoded.frames(), written - decoded.trailer().size()), offset) << '\n';
-            }
-        } catch (const protocol::EncodeError& error) {
-            if (++tally.mismatched <= shown) {
-                std::cerr << "packet " << number << ": does not encode: " << error.what() << '\n';
-            }
-        }
     }
 
     summarize(tally);

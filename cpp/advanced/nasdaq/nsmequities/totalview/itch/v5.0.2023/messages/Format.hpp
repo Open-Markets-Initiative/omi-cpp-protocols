@@ -69,7 +69,7 @@ inline std::ostream& operator<<(std::ostream& os, const message_header& value) {
 }
 
 inline std::ostream& operator<<(std::ostream& os, const debug_packet& msg) {
-    os << "text=\"" << msg.fields.text.get().value() << '"'
+    os << "debug_text=\"" << msg.fields.debug_text.get().value() << '"'
        ;
     return os;
 }

@@ -31,7 +31,7 @@ struct security_directory_message {
         snap_deep::luld_tier luld_tier;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) + sizeof(snap_deep::iex_tp_header) + sizeof(snap_deep::iex_tp_message_block_length) + sizeof(snap_deep::iex_tp_message_length) + sizeof(snap_deep::iex_tp_message_type) - 2), message_type::enum_type::snapshot_data_message};
+    snap_deep::message_header header = {std::uint16_t(sizeof(snap_deep::message_header) + sizeof(fields_type) + sizeof(snap_deep::iex_tp_header) + sizeof(snap_deep::iex_tp_message_block_length) + sizeof(snap_deep::iex_tp_message_length) + sizeof(snap_deep::iex_tp_message_type) - 2), message_type::enum_type::snapshot_data_message};
     snap_deep::iex_tp_header iex_tp_header;
     snap_deep::iex_tp_message_block_length iex_tp_message_block_length;
     snap_deep::iex_tp_message_length iex_tp_message_length;
@@ -59,7 +59,7 @@ static_assert(offsetof(security_directory_message::fields_type, round_lot_size) 
 static_assert(offsetof(security_directory_message::fields_type, adjusted_poc_price) == 21, "unexpected offset of security_directory_message::fields_type::adjusted_poc_price");
 static_assert(offsetof(security_directory_message::fields_type, luld_tier) == 29, "unexpected offset of security_directory_message::fields_type::luld_tier");
 static_assert(sizeof(security_directory_message::fields_type) == 30, "unexpected sizeof security_directory_message::fields_type");
-static_assert(sizeof(security_directory_message) == sizeof(message_header) + sizeof(snap_deep::iex_tp_header) + sizeof(snap_deep::iex_tp_message_block_length) + sizeof(snap_deep::iex_tp_message_length) + sizeof(snap_deep::iex_tp_message_type) + 30, "unexpected sizeof security_directory_message");
+static_assert(sizeof(security_directory_message) == sizeof(snap_deep::message_header) + sizeof(snap_deep::iex_tp_header) + sizeof(snap_deep::iex_tp_message_block_length) + sizeof(snap_deep::iex_tp_message_length) + sizeof(snap_deep::iex_tp_message_type) + 30, "unexpected sizeof security_directory_message");
 
 #pragma pack(pop)
 }

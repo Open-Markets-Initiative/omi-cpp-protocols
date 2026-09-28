@@ -25,7 +25,7 @@ struct security_event_message {
         snap_deep::symbol symbol;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) + sizeof(snap_deep::iex_tp_header) + sizeof(snap_deep::iex_tp_message_block_length) + sizeof(snap_deep::iex_tp_message_length) + sizeof(snap_deep::iex_tp_message_type) - 2), message_type::enum_type::snapshot_data_message};
+    snap_deep::message_header header = {std::uint16_t(sizeof(snap_deep::message_header) + sizeof(fields_type) + sizeof(snap_deep::iex_tp_header) + sizeof(snap_deep::iex_tp_message_block_length) + sizeof(snap_deep::iex_tp_message_length) + sizeof(snap_deep::iex_tp_message_type) - 2), message_type::enum_type::snapshot_data_message};
     snap_deep::iex_tp_header iex_tp_header;
     snap_deep::iex_tp_message_block_length iex_tp_message_block_length;
     snap_deep::iex_tp_message_length iex_tp_message_length;
@@ -50,7 +50,7 @@ static_assert(offsetof(security_event_message::fields_type, security_event) == 0
 static_assert(offsetof(security_event_message::fields_type, timestamp) == 1, "unexpected offset of security_event_message::fields_type::timestamp");
 static_assert(offsetof(security_event_message::fields_type, symbol) == 9, "unexpected offset of security_event_message::fields_type::symbol");
 static_assert(sizeof(security_event_message::fields_type) == 17, "unexpected sizeof security_event_message::fields_type");
-static_assert(sizeof(security_event_message) == sizeof(message_header) + sizeof(snap_deep::iex_tp_header) + sizeof(snap_deep::iex_tp_message_block_length) + sizeof(snap_deep::iex_tp_message_length) + sizeof(snap_deep::iex_tp_message_type) + 17, "unexpected sizeof security_event_message");
+static_assert(sizeof(security_event_message) == sizeof(snap_deep::message_header) + sizeof(snap_deep::iex_tp_header) + sizeof(snap_deep::iex_tp_message_block_length) + sizeof(snap_deep::iex_tp_message_length) + sizeof(snap_deep::iex_tp_message_type) + 17, "unexpected sizeof security_event_message");
 
 #pragma pack(pop)
 }

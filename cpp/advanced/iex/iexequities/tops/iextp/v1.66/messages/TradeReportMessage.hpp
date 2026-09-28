@@ -27,7 +27,7 @@ struct trade_report_message {
         iextp_tops::trade_id trade_id;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 2), message_type::enum_type::trade_report_message};
+    iextp_tops::message_header header = {std::uint16_t(sizeof(iextp_tops::message_header) + sizeof(fields_type) - 2), message_type::enum_type::trade_report_message};
 
     fields_type fields;
 
@@ -51,7 +51,7 @@ static_assert(offsetof(trade_report_message::fields_type, size) == 17, "unexpect
 static_assert(offsetof(trade_report_message::fields_type, price) == 21, "unexpected offset of trade_report_message::fields_type::price");
 static_assert(offsetof(trade_report_message::fields_type, trade_id) == 29, "unexpected offset of trade_report_message::fields_type::trade_id");
 static_assert(sizeof(trade_report_message::fields_type) == 37, "unexpected sizeof trade_report_message::fields_type");
-static_assert(sizeof(trade_report_message) == sizeof(message_header) + 37, "unexpected sizeof trade_report_message");
+static_assert(sizeof(trade_report_message) == sizeof(iextp_tops::message_header) + 37, "unexpected sizeof trade_report_message");
 
 #pragma pack(pop)
 }

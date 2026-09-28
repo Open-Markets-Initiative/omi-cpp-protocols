@@ -31,7 +31,7 @@ struct order_modify_message {
         snap_deepplus::price price;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) + sizeof(snap_deepplus::iex_tp_header) + sizeof(snap_deepplus::iex_tp_message_block_length) + sizeof(snap_deepplus::iex_tp_message_length) + sizeof(snap_deepplus::iex_tp_message_type) - 2), message_type::enum_type::snapshot_data_message};
+    snap_deepplus::message_header header = {std::uint16_t(sizeof(snap_deepplus::message_header) + sizeof(fields_type) + sizeof(snap_deepplus::iex_tp_header) + sizeof(snap_deepplus::iex_tp_message_block_length) + sizeof(snap_deepplus::iex_tp_message_length) + sizeof(snap_deepplus::iex_tp_message_type) - 2), message_type::enum_type::snapshot_data_message};
     snap_deepplus::iex_tp_header iex_tp_header;
     snap_deepplus::iex_tp_message_block_length iex_tp_message_block_length;
     snap_deepplus::iex_tp_message_length iex_tp_message_length;
@@ -59,7 +59,7 @@ static_assert(offsetof(order_modify_message::fields_type, order_id_reference) ==
 static_assert(offsetof(order_modify_message::fields_type, size) == 25, "unexpected offset of order_modify_message::fields_type::size");
 static_assert(offsetof(order_modify_message::fields_type, price) == 29, "unexpected offset of order_modify_message::fields_type::price");
 static_assert(sizeof(order_modify_message::fields_type) == 37, "unexpected sizeof order_modify_message::fields_type");
-static_assert(sizeof(order_modify_message) == sizeof(message_header) + sizeof(snap_deepplus::iex_tp_header) + sizeof(snap_deepplus::iex_tp_message_block_length) + sizeof(snap_deepplus::iex_tp_message_length) + sizeof(snap_deepplus::iex_tp_message_type) + 37, "unexpected sizeof order_modify_message");
+static_assert(sizeof(order_modify_message) == sizeof(snap_deepplus::message_header) + sizeof(snap_deepplus::iex_tp_header) + sizeof(snap_deepplus::iex_tp_message_block_length) + sizeof(snap_deepplus::iex_tp_message_length) + sizeof(snap_deepplus::iex_tp_message_type) + 37, "unexpected sizeof order_modify_message");
 
 #pragma pack(pop)
 }

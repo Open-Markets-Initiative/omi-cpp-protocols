@@ -1,0 +1,38 @@
+#pragma once
+
+#include "../types/SecurityId.hpp"
+#include "../bitfields/MatchEventIndicator.hpp"
+#include "../types/MdUpdateAction.hpp"
+#include "../types/TradeDate.hpp"
+#include "../types/MdFuturePrice.hpp"
+#include "../types/MdEntryTimestamp.hpp"
+#include "../types/RptSeq.hpp"
+
+namespace b3::b3derivatives::binaryumdf::sbe::v2_2 {
+
+#pragma pack(push, 1)
+
+// LowPrice_25Message
+struct LowPrice25Message {
+
+    SecurityId security_id;
+    MatchEventIndicator match_event_indicator;
+    MdUpdateAction md_update_action;
+    TradeDate trade_date;
+    MdFuturePrice md_future_price;
+    MdEntryTimestamp md_entry_timestamp;
+    RptSeq rpt_seq;
+
+    // parse method
+    static LowPrice25Message* parse(std::byte* buffer) {
+        return reinterpret_cast<LowPrice25Message*>(buffer);
+    }
+
+    // parse method const
+    static const LowPrice25Message* parse(const std::byte* buffer) {
+        return reinterpret_cast<const LowPrice25Message*>(buffer);
+    }
+};
+
+#pragma pack(pop)
+}

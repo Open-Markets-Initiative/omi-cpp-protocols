@@ -23,7 +23,7 @@ struct short_sale_price_test_status_message {
         iextp_deep::detail detail;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 2), message_type::enum_type::short_sale_price_test_status_message};
+    iextp_deep::message_header header = {std::uint16_t(sizeof(iextp_deep::message_header) + sizeof(fields_type) - 2), message_type::enum_type::short_sale_price_test_status_message};
 
     fields_type fields;
 
@@ -45,7 +45,7 @@ static_assert(offsetof(short_sale_price_test_status_message::fields_type, timest
 static_assert(offsetof(short_sale_price_test_status_message::fields_type, symbol) == 9, "unexpected offset of short_sale_price_test_status_message::fields_type::symbol");
 static_assert(offsetof(short_sale_price_test_status_message::fields_type, detail) == 17, "unexpected offset of short_sale_price_test_status_message::fields_type::detail");
 static_assert(sizeof(short_sale_price_test_status_message::fields_type) == 18, "unexpected sizeof short_sale_price_test_status_message::fields_type");
-static_assert(sizeof(short_sale_price_test_status_message) == sizeof(message_header) + 18, "unexpected sizeof short_sale_price_test_status_message");
+static_assert(sizeof(short_sale_price_test_status_message) == sizeof(iextp_deep::message_header) + 18, "unexpected sizeof short_sale_price_test_status_message");
 
 #pragma pack(pop)
 }

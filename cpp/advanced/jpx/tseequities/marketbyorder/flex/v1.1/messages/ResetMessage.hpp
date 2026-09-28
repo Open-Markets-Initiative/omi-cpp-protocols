@@ -17,7 +17,7 @@ struct reset_message {
         flex_marketbyorder::reset_start_end_flag reset_start_end_flag;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 1), message_type::enum_type::reset_message};
+    flex_marketbyorder::message_header header = {std::uint16_t(sizeof(flex_marketbyorder::message_header) + sizeof(fields_type) - 1), message_type::enum_type::reset_message};
 
     fields_type fields;
 
@@ -36,7 +36,7 @@ struct reset_message {
 // layout verification
 static_assert(offsetof(reset_message::fields_type, reset_start_end_flag) == 0, "unexpected offset of reset_message::fields_type::reset_start_end_flag");
 static_assert(sizeof(reset_message::fields_type) == 1, "unexpected sizeof reset_message::fields_type");
-static_assert(sizeof(reset_message) == sizeof(message_header) + 1, "unexpected sizeof reset_message");
+static_assert(sizeof(reset_message) == sizeof(flex_marketbyorder::message_header) + 1, "unexpected sizeof reset_message");
 
 #pragma pack(pop)
 }

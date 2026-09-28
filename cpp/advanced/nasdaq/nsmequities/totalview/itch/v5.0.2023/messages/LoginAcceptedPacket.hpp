@@ -19,7 +19,7 @@ struct login_accepted_packet {
         itch_totalview::accepted_sequence_number accepted_sequence_number;
     };
 
-    server_packet_header header = {std::uint16_t(sizeof(server_packet_header) + sizeof(fields_type) - 2), server_packet_type::enum_type::login_accepted_packet};
+    itch_totalview::server_packet_header header = {std::uint16_t(sizeof(itch_totalview::server_packet_header) + sizeof(fields_type) - 2), server_packet_type::enum_type::login_accepted_packet};
 
     fields_type fields;
 
@@ -39,7 +39,7 @@ struct login_accepted_packet {
 static_assert(offsetof(login_accepted_packet::fields_type, accepted_session) == 0, "unexpected offset of login_accepted_packet::fields_type::accepted_session");
 static_assert(offsetof(login_accepted_packet::fields_type, accepted_sequence_number) == 10, "unexpected offset of login_accepted_packet::fields_type::accepted_sequence_number");
 static_assert(sizeof(login_accepted_packet::fields_type) == 30, "unexpected sizeof login_accepted_packet::fields_type");
-static_assert(sizeof(login_accepted_packet) == sizeof(server_packet_header) + 30, "unexpected sizeof login_accepted_packet");
+static_assert(sizeof(login_accepted_packet) == sizeof(itch_totalview::server_packet_header) + 30, "unexpected sizeof login_accepted_packet");
 
 #pragma pack(pop)
 }

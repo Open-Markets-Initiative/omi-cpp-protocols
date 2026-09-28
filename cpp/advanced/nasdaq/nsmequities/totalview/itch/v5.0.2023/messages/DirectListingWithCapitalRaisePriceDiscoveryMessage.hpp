@@ -37,7 +37,7 @@ struct direct_listing_with_capital_raise_price_discovery_message {
         itch_totalview::upper_price_range_collar upper_price_range_collar;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 2), message_type::enum_type::direct_listing_with_capital_raise_price_discovery_message};
+    itch_totalview::message_header header = {std::uint16_t(sizeof(itch_totalview::message_header) + sizeof(fields_type) - 2), message_type::enum_type::direct_listing_with_capital_raise_price_discovery_message};
 
     fields_type fields;
 
@@ -66,7 +66,7 @@ static_assert(offsetof(direct_listing_with_capital_raise_price_discovery_message
 static_assert(offsetof(direct_listing_with_capital_raise_price_discovery_message::fields_type, lower_price_range_collar) == 39, "unexpected offset of direct_listing_with_capital_raise_price_discovery_message::fields_type::lower_price_range_collar");
 static_assert(offsetof(direct_listing_with_capital_raise_price_discovery_message::fields_type, upper_price_range_collar) == 43, "unexpected offset of direct_listing_with_capital_raise_price_discovery_message::fields_type::upper_price_range_collar");
 static_assert(sizeof(direct_listing_with_capital_raise_price_discovery_message::fields_type) == 47, "unexpected sizeof direct_listing_with_capital_raise_price_discovery_message::fields_type");
-static_assert(sizeof(direct_listing_with_capital_raise_price_discovery_message) == sizeof(message_header) + 47, "unexpected sizeof direct_listing_with_capital_raise_price_discovery_message");
+static_assert(sizeof(direct_listing_with_capital_raise_price_discovery_message) == sizeof(itch_totalview::message_header) + 47, "unexpected sizeof direct_listing_with_capital_raise_price_discovery_message");
 
 #pragma pack(pop)
 }

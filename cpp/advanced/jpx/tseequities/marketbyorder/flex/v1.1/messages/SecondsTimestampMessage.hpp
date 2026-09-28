@@ -17,7 +17,7 @@ struct seconds_timestamp_message {
         flex_marketbyorder::time_seconds time_seconds;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 1), message_type::enum_type::seconds_timestamp_message};
+    flex_marketbyorder::message_header header = {std::uint16_t(sizeof(flex_marketbyorder::message_header) + sizeof(fields_type) - 1), message_type::enum_type::seconds_timestamp_message};
 
     fields_type fields;
 
@@ -36,7 +36,7 @@ struct seconds_timestamp_message {
 // layout verification
 static_assert(offsetof(seconds_timestamp_message::fields_type, time_seconds) == 0, "unexpected offset of seconds_timestamp_message::fields_type::time_seconds");
 static_assert(sizeof(seconds_timestamp_message::fields_type) == 4, "unexpected sizeof seconds_timestamp_message::fields_type");
-static_assert(sizeof(seconds_timestamp_message) == sizeof(message_header) + 4, "unexpected sizeof seconds_timestamp_message");
+static_assert(sizeof(seconds_timestamp_message) == sizeof(flex_marketbyorder::message_header) + 4, "unexpected sizeof seconds_timestamp_message");
 
 #pragma pack(pop)
 }

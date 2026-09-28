@@ -33,9 +33,9 @@ std::string root() {
     return std::string{value};
 }
 
-// Counts the visits of one message class.
-template <typename Expected>
-struct Seen : protocol::Visitor {
+// Counts the visits of one message class, through the visitor its own dispatch is seen by.
+template <typename Visitor, typename Expected>
+struct Seen : Visitor {
     std::size_t matched = 0;
 
     void visit(const Expected&) override { ++matched; }
@@ -43,13 +43,13 @@ struct Seen : protocol::Visitor {
 
 // Decode every datagram in a capture, require the expected message to be visited, and
 // require every datagram to encode back to the bytes it came from.
-template <typename Message>
+template <typename Packet, typename Visitor, typename Message>
 void expect(const char* name, const char* relative) {
     std::vector<std::pair<std::string, std::int64_t>> sources;
     sources.emplace_back(root() + "/" + relative, 0);
 
     packet::PcapIterator captures(sources);
-    Seen<Message> seen;
+    Seen<Visitor, Message> seen;
     std::vector<std::byte> buffer;
 
     std::size_t frames = 0;
@@ -63,7 +63,7 @@ void expect(const char* name, const char* relative) {
         if (!frame.valid()) { continue; }
 
         ++frames;
-        protocol::UdpPacket decoded;
+        Packet decoded;
 
         try {
             decoded.decode(frame.payload, frame.payload_len);
@@ -123,9 +123,9 @@ void expect(const char* name, const char* relative) {
 
 int main() {
     std::printf("== Jpx.TseEquities.MarketByOrder.Flex.v1.1 (classes)\n");
-    expect<protocol::CommunicationControlMessage>("CommunicationControlMessage", "Jpx/TseEquities.MarketByOrder.Flex.v1.1/CommunicationControlMessage.pcap");
-    expect<protocol::AddOrderMessage>("AddOrderMessage", "Jpx/TseEquities.MarketByOrder.Flex.v1.1/AddOrderMessage.pcap");
-    expect<protocol::OrderDeleteMessage>("OrderDeleteMessage", "Jpx/TseEquities.MarketByOrder.Flex.v1.1/OrderDeleteMessage.pcap");
-    expect<protocol::TradingStatusMessage>("TradingStatusMessage", "Jpx/TseEquities.MarketByOrder.Flex.v1.1/TradingStatusMessage.pcap");
+    expect<protocol::UdpPacket, protocol::Visitor, protocol::CommunicationControlMessage>("CommunicationControlMessage", "Jpx/TseEquities.MarketByOrder.Flex.v1.1/CommunicationControlMessage.pcap");
+    expect<protocol::UdpPacket, protocol::Visitor, protocol::AddOrderMessage>("AddOrderMessage", "Jpx/TseEquities.MarketByOrder.Flex.v1.1/AddOrderMessage.pcap");
+    expect<protocol::UdpPacket, protocol::Visitor, protocol::OrderDeleteMessage>("OrderDeleteMessage", "Jpx/TseEquities.MarketByOrder.Flex.v1.1/OrderDeleteMessage.pcap");
+    expect<protocol::UdpPacket, protocol::Visitor, protocol::TradingStatusMessage>("TradingStatusMessage", "Jpx/TseEquities.MarketByOrder.Flex.v1.1/TradingStatusMessage.pcap");
     return failures == 0 ? 0 : 1;
 }

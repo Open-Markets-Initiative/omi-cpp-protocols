@@ -7,7 +7,7 @@
 #include "../types/NewOrderReferenceNumber.hpp"
 #include "../types/Shares.hpp"
 #include "../types/Price.hpp"
-#include "../messages/SequencedDataPacket.hpp"
+#include "../structs/MessageHeader.hpp"
 
 namespace nasdaq::nsmequities::totalview::itch::v5_0_2023 {
 
@@ -38,8 +38,8 @@ struct OrderReplaceMessage {
     }
 
     // parse the overlaid body from its selecting header
-    static const OrderReplaceMessage* parse(const SequencedDataPacket* header) {
-        return reinterpret_cast<const OrderReplaceMessage*>(reinterpret_cast<const std::byte*>(header) + sizeof(SequencedDataPacket));
+    static const OrderReplaceMessage* parse(const MessageHeader* header) {
+        return reinterpret_cast<const OrderReplaceMessage*>(reinterpret_cast<const std::byte*>(header) + sizeof(MessageHeader));
     }
 };
 

@@ -9,7 +9,7 @@
 #include "../types/Stock.hpp"
 #include "../types/Price.hpp"
 #include "../types/MatchNumber.hpp"
-#include "../messages/SequencedDataPacket.hpp"
+#include "../structs/MessageHeader.hpp"
 
 namespace nasdaq::nsmequities::totalview::itch::v5_0_2023 {
 
@@ -42,8 +42,8 @@ struct NonCrossTradeMessage {
     }
 
     // parse the overlaid body from its selecting header
-    static const NonCrossTradeMessage* parse(const SequencedDataPacket* header) {
-        return reinterpret_cast<const NonCrossTradeMessage*>(reinterpret_cast<const std::byte*>(header) + sizeof(SequencedDataPacket));
+    static const NonCrossTradeMessage* parse(const MessageHeader* header) {
+        return reinterpret_cast<const NonCrossTradeMessage*>(reinterpret_cast<const std::byte*>(header) + sizeof(MessageHeader));
     }
 };
 

@@ -21,7 +21,7 @@ struct operational_halt_status_message {
         iextp_tops::symbol symbol;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 2), message_type::enum_type::operational_halt_status_message};
+    iextp_tops::message_header header = {std::uint16_t(sizeof(iextp_tops::message_header) + sizeof(fields_type) - 2), message_type::enum_type::operational_halt_status_message};
 
     fields_type fields;
 
@@ -42,7 +42,7 @@ static_assert(offsetof(operational_halt_status_message::fields_type, operational
 static_assert(offsetof(operational_halt_status_message::fields_type, timestamp) == 1, "unexpected offset of operational_halt_status_message::fields_type::timestamp");
 static_assert(offsetof(operational_halt_status_message::fields_type, symbol) == 9, "unexpected offset of operational_halt_status_message::fields_type::symbol");
 static_assert(sizeof(operational_halt_status_message::fields_type) == 17, "unexpected sizeof operational_halt_status_message::fields_type");
-static_assert(sizeof(operational_halt_status_message) == sizeof(message_header) + 17, "unexpected sizeof operational_halt_status_message");
+static_assert(sizeof(operational_halt_status_message) == sizeof(iextp_tops::message_header) + 17, "unexpected sizeof operational_halt_status_message");
 
 #pragma pack(pop)
 }

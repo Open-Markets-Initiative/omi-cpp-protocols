@@ -23,7 +23,7 @@ struct snapshot_request_message {
         snap_deep::minimum_sequence_number minimum_sequence_number;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 2), message_type::enum_type::snapshot_request_message};
+    snap_deep::message_header header = {std::uint16_t(sizeof(snap_deep::message_header) + sizeof(fields_type) - 2), message_type::enum_type::snapshot_request_message};
 
     fields_type fields;
 
@@ -45,7 +45,7 @@ static_assert(offsetof(snapshot_request_message::fields_type, channel_id) == 40,
 static_assert(offsetof(snapshot_request_message::fields_type, session_id) == 44, "unexpected offset of snapshot_request_message::fields_type::session_id");
 static_assert(offsetof(snapshot_request_message::fields_type, minimum_sequence_number) == 48, "unexpected offset of snapshot_request_message::fields_type::minimum_sequence_number");
 static_assert(sizeof(snapshot_request_message::fields_type) == 56, "unexpected sizeof snapshot_request_message::fields_type");
-static_assert(sizeof(snapshot_request_message) == sizeof(message_header) + 56, "unexpected sizeof snapshot_request_message");
+static_assert(sizeof(snapshot_request_message) == sizeof(snap_deep::message_header) + 56, "unexpected sizeof snapshot_request_message");
 
 #pragma pack(pop)
 }

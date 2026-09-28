@@ -31,7 +31,7 @@ struct market_participant_position_message {
         itch_totalview::market_participant_state market_participant_state;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 2), message_type::enum_type::market_participant_position_message};
+    itch_totalview::message_header header = {std::uint16_t(sizeof(itch_totalview::message_header) + sizeof(fields_type) - 2), message_type::enum_type::market_participant_position_message};
 
     fields_type fields;
 
@@ -57,7 +57,7 @@ static_assert(offsetof(market_participant_position_message::fields_type, primary
 static_assert(offsetof(market_participant_position_message::fields_type, market_maker_mode) == 23, "unexpected offset of market_participant_position_message::fields_type::market_maker_mode");
 static_assert(offsetof(market_participant_position_message::fields_type, market_participant_state) == 24, "unexpected offset of market_participant_position_message::fields_type::market_participant_state");
 static_assert(sizeof(market_participant_position_message::fields_type) == 25, "unexpected sizeof market_participant_position_message::fields_type");
-static_assert(sizeof(market_participant_position_message) == sizeof(message_header) + 25, "unexpected sizeof market_participant_position_message");
+static_assert(sizeof(market_participant_position_message) == sizeof(itch_totalview::message_header) + 25, "unexpected sizeof market_participant_position_message");
 
 #pragma pack(pop)
 }

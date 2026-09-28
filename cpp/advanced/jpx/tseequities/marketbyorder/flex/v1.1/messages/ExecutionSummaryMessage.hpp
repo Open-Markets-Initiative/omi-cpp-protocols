@@ -31,7 +31,7 @@ struct execution_summary_message {
         flex_marketbyorder::best_bid best_bid;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 1), message_type::enum_type::execution_summary_message};
+    flex_marketbyorder::message_header header = {std::uint16_t(sizeof(flex_marketbyorder::message_header) + sizeof(fields_type) - 1), message_type::enum_type::execution_summary_message};
 
     fields_type fields;
 
@@ -57,7 +57,7 @@ static_assert(offsetof(execution_summary_message::fields_type, match_id) == 25, 
 static_assert(offsetof(execution_summary_message::fields_type, best_offer) == 29, "unexpected offset of execution_summary_message::fields_type::best_offer");
 static_assert(offsetof(execution_summary_message::fields_type, best_bid) == 37, "unexpected offset of execution_summary_message::fields_type::best_bid");
 static_assert(sizeof(execution_summary_message::fields_type) == 45, "unexpected sizeof execution_summary_message::fields_type");
-static_assert(sizeof(execution_summary_message) == sizeof(message_header) + 45, "unexpected sizeof execution_summary_message");
+static_assert(sizeof(execution_summary_message) == sizeof(flex_marketbyorder::message_header) + 45, "unexpected sizeof execution_summary_message");
 
 #pragma pack(pop)
 }

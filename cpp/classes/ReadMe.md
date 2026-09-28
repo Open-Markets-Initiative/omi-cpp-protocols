@@ -22,8 +22,15 @@ Within a protocol:
 Each library is compiled as `classes_<protocol>` by the repository's `CMakeLists.txt`. The
 dump program and the tests under `tests/classes/` are written against these.
 
-## Protocols (12)
+## Protocols (19)
 
+- `B3.B3Derivatives.BinaryUmdf.Sbe.v1.6`
+- `B3.B3Derivatives.BinaryUmdf.Sbe.v1.7`
+- `B3.B3Derivatives.BinaryUmdf.Sbe.v1.8`
+- `B3.B3Derivatives.BinaryUmdf.Sbe.v1.9`
+- `B3.B3Derivatives.BinaryUmdf.Sbe.v2.1`
+- `B3.B3Derivatives.BinaryUmdf.Sbe.v2.2`
+- `B3.B3Derivatives.BinaryUmdf.Sbe.v2.3`
 - `Iex.IexEquities.Deep.IexTp.v1.06`
 - `Iex.IexEquities.Deep.IexTp.v1.08`
 - `Iex.IexEquities.Deep.Snap.v1.6`

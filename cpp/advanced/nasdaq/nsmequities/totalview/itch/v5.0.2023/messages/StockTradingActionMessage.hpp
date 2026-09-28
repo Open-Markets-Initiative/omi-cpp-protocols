@@ -29,7 +29,7 @@ struct stock_trading_action_message {
         itch_totalview::reason_code reason_code;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 2), message_type::enum_type::stock_trading_action_message};
+    itch_totalview::message_header header = {std::uint16_t(sizeof(itch_totalview::message_header) + sizeof(fields_type) - 2), message_type::enum_type::stock_trading_action_message};
 
     fields_type fields;
 
@@ -54,7 +54,7 @@ static_assert(offsetof(stock_trading_action_message::fields_type, trading_state)
 static_assert(offsetof(stock_trading_action_message::fields_type, reserved) == 19, "unexpected offset of stock_trading_action_message::fields_type::reserved");
 static_assert(offsetof(stock_trading_action_message::fields_type, reason_code) == 20, "unexpected offset of stock_trading_action_message::fields_type::reason_code");
 static_assert(sizeof(stock_trading_action_message::fields_type) == 24, "unexpected sizeof stock_trading_action_message::fields_type");
-static_assert(sizeof(stock_trading_action_message) == sizeof(message_header) + 24, "unexpected sizeof stock_trading_action_message");
+static_assert(sizeof(stock_trading_action_message) == sizeof(itch_totalview::message_header) + 24, "unexpected sizeof stock_trading_action_message");
 
 #pragma pack(pop)
 }

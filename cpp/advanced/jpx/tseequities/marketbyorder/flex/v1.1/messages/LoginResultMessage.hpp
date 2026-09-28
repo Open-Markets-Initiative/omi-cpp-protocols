@@ -19,7 +19,7 @@ struct login_result_message {
         flex_marketbyorder::result_code result_code;
     };
 
-    tcp_packet_header header = {std::uint16_t(sizeof(tcp_packet_header) + sizeof(fields_type)), packet_type::enum_type::login_result_message};
+    flex_marketbyorder::tcp_packet_header header = {std::uint16_t(sizeof(flex_marketbyorder::tcp_packet_header) + sizeof(fields_type)), packet_type::enum_type::login_result_message};
 
     fields_type fields;
 
@@ -39,7 +39,7 @@ struct login_result_message {
 static_assert(offsetof(login_result_message::fields_type, multicast_group_number) == 0, "unexpected offset of login_result_message::fields_type::multicast_group_number");
 static_assert(offsetof(login_result_message::fields_type, result_code) == 1, "unexpected offset of login_result_message::fields_type::result_code");
 static_assert(sizeof(login_result_message::fields_type) == 2, "unexpected sizeof login_result_message::fields_type");
-static_assert(sizeof(login_result_message) == sizeof(tcp_packet_header) + 2, "unexpected sizeof login_result_message");
+static_assert(sizeof(login_result_message) == sizeof(flex_marketbyorder::tcp_packet_header) + 2, "unexpected sizeof login_result_message");
 
 #pragma pack(pop)
 }

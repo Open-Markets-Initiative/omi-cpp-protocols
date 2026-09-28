@@ -23,7 +23,7 @@ struct official_price_message {
         iextp_deep::official_price official_price;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 2), message_type::enum_type::official_price_message};
+    iextp_deep::message_header header = {std::uint16_t(sizeof(iextp_deep::message_header) + sizeof(fields_type) - 2), message_type::enum_type::official_price_message};
 
     fields_type fields;
 
@@ -45,7 +45,7 @@ static_assert(offsetof(official_price_message::fields_type, timestamp) == 1, "un
 static_assert(offsetof(official_price_message::fields_type, symbol) == 9, "unexpected offset of official_price_message::fields_type::symbol");
 static_assert(offsetof(official_price_message::fields_type, official_price) == 17, "unexpected offset of official_price_message::fields_type::official_price");
 static_assert(sizeof(official_price_message::fields_type) == 25, "unexpected sizeof official_price_message::fields_type");
-static_assert(sizeof(official_price_message) == sizeof(message_header) + 25, "unexpected sizeof official_price_message");
+static_assert(sizeof(official_price_message) == sizeof(iextp_deep::message_header) + 25, "unexpected sizeof official_price_message");
 
 #pragma pack(pop)
 }

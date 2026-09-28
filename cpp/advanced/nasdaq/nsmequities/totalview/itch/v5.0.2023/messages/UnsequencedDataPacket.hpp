@@ -19,10 +19,10 @@ struct unsequenced_data_packet {
         itch_totalview::unsequenced_message_type unsequenced_message_type;
     };
 
-    client_packet_header header = {std::uint16_t(sizeof(client_packet_header) + sizeof(fields_type) - 2), client_packet_type::enum_type::unsequenced_data_packet};
+    itch_totalview::client_packet_header header = {std::uint16_t(sizeof(itch_totalview::client_packet_header) + sizeof(fields_type) - 2), client_packet_type::enum_type::unsequenced_data_packet};
 
     static constexpr std::size_t max_message_size = 1280;
-    static constexpr std::size_t tail_capacity = max_message_size - sizeof(client_packet_header) - sizeof(fields_type);
+    static constexpr std::size_t tail_capacity = max_message_size - sizeof(itch_totalview::client_packet_header) - sizeof(fields_type);
 
     fields_type fields;
     std::byte tail[tail_capacity];
@@ -31,9 +31,9 @@ struct unsequenced_data_packet {
     const std::byte* tail_begin() const { return tail; }
     const std::byte* tail_end() const {
         auto sz = header.packet_length.get().value();
-        return (sz + 2) == sizeof(client_packet_header) + sizeof(fields_type)
+        return (sz + 2) == sizeof(itch_totalview::client_packet_header) + sizeof(fields_type)
             ? tail + tail_capacity
-            : tail + ((sz + 2) - sizeof(client_packet_header) - sizeof(fields_type));
+            : tail + ((sz + 2) - sizeof(itch_totalview::client_packet_header) - sizeof(fields_type));
     }
 
     // sequential access to variable-length regions

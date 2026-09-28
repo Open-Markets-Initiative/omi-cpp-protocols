@@ -25,7 +25,7 @@ struct order_executed_message {
         flex_marketbyorder::match_id match_id;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 1), message_type::enum_type::order_executed_message};
+    flex_marketbyorder::message_header header = {std::uint16_t(sizeof(flex_marketbyorder::message_header) + sizeof(fields_type) - 1), message_type::enum_type::order_executed_message};
 
     fields_type fields;
 
@@ -48,7 +48,7 @@ static_assert(offsetof(order_executed_message::fields_type, side) == 8, "unexpec
 static_assert(offsetof(order_executed_message::fields_type, volume) == 9, "unexpected offset of order_executed_message::fields_type::volume");
 static_assert(offsetof(order_executed_message::fields_type, match_id) == 15, "unexpected offset of order_executed_message::fields_type::match_id");
 static_assert(sizeof(order_executed_message::fields_type) == 19, "unexpected sizeof order_executed_message::fields_type");
-static_assert(sizeof(order_executed_message) == sizeof(message_header) + 19, "unexpected sizeof order_executed_message");
+static_assert(sizeof(order_executed_message) == sizeof(flex_marketbyorder::message_header) + 19, "unexpected sizeof order_executed_message");
 
 #pragma pack(pop)
 }

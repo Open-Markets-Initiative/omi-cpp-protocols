@@ -17,7 +17,7 @@ struct snapshot_start_message {
         snap_deepplus::snapshot_length snapshot_length;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 2), message_type::enum_type::snapshot_start_message};
+    snap_deepplus::message_header header = {std::uint16_t(sizeof(snap_deepplus::message_header) + sizeof(fields_type) - 2), message_type::enum_type::snapshot_start_message};
 
     fields_type fields;
 
@@ -36,7 +36,7 @@ struct snapshot_start_message {
 // layout verification
 static_assert(offsetof(snapshot_start_message::fields_type, snapshot_length) == 0, "unexpected offset of snapshot_start_message::fields_type::snapshot_length");
 static_assert(sizeof(snapshot_start_message::fields_type) == 8, "unexpected sizeof snapshot_start_message::fields_type");
-static_assert(sizeof(snapshot_start_message) == sizeof(message_header) + 8, "unexpected sizeof snapshot_start_message");
+static_assert(sizeof(snapshot_start_message) == sizeof(snap_deepplus::message_header) + 8, "unexpected sizeof snapshot_start_message");
 
 #pragma pack(pop)
 }

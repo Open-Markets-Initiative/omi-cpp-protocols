@@ -29,7 +29,7 @@ struct order_executed_with_price_message {
         flex_marketbyorder::adopted_pricing_method adopted_pricing_method;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 1), message_type::enum_type::order_executed_with_price_message};
+    flex_marketbyorder::message_header header = {std::uint16_t(sizeof(flex_marketbyorder::message_header) + sizeof(fields_type) - 1), message_type::enum_type::order_executed_with_price_message};
 
     fields_type fields;
 
@@ -54,7 +54,7 @@ static_assert(offsetof(order_executed_with_price_message::fields_type, match_id)
 static_assert(offsetof(order_executed_with_price_message::fields_type, execution_price) == 19, "unexpected offset of order_executed_with_price_message::fields_type::execution_price");
 static_assert(offsetof(order_executed_with_price_message::fields_type, adopted_pricing_method) == 27, "unexpected offset of order_executed_with_price_message::fields_type::adopted_pricing_method");
 static_assert(sizeof(order_executed_with_price_message::fields_type) == 28, "unexpected sizeof order_executed_with_price_message::fields_type");
-static_assert(sizeof(order_executed_with_price_message) == sizeof(message_header) + 28, "unexpected sizeof order_executed_with_price_message");
+static_assert(sizeof(order_executed_with_price_message) == sizeof(flex_marketbyorder::message_header) + 28, "unexpected sizeof order_executed_with_price_message");
 
 #pragma pack(pop)
 }

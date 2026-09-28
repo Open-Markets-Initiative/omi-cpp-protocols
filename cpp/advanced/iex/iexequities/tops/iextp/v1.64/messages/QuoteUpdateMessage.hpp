@@ -29,7 +29,7 @@ struct quote_update_message {
         iextp_tops::ask_size ask_size;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 2), message_type::enum_type::quote_update_message};
+    iextp_tops::message_header header = {std::uint16_t(sizeof(iextp_tops::message_header) + sizeof(fields_type) - 2), message_type::enum_type::quote_update_message};
 
     fields_type fields;
 
@@ -54,7 +54,7 @@ static_assert(offsetof(quote_update_message::fields_type, bid_price) == 21, "une
 static_assert(offsetof(quote_update_message::fields_type, ask_price) == 29, "unexpected offset of quote_update_message::fields_type::ask_price");
 static_assert(offsetof(quote_update_message::fields_type, ask_size) == 37, "unexpected offset of quote_update_message::fields_type::ask_size");
 static_assert(sizeof(quote_update_message::fields_type) == 41, "unexpected sizeof quote_update_message::fields_type");
-static_assert(sizeof(quote_update_message) == sizeof(message_header) + 41, "unexpected sizeof quote_update_message");
+static_assert(sizeof(quote_update_message) == sizeof(iextp_tops::message_header) + 41, "unexpected sizeof quote_update_message");
 
 #pragma pack(pop)
 }

@@ -33,9 +33,9 @@ std::string root() {
     return std::string{value};
 }
 
-// Counts the visits of one message class.
-template <typename Expected>
-struct Seen : protocol::Visitor {
+// Counts the visits of one message class, through the visitor its own dispatch is seen by.
+template <typename Visitor, typename Expected>
+struct Seen : Visitor {
     std::size_t matched = 0;
 
     void visit(const Expected&) override { ++matched; }
@@ -43,13 +43,13 @@ struct Seen : protocol::Visitor {
 
 // Decode every datagram in a capture, require the expected message to be visited, and
 // require every datagram to encode back to the bytes it came from.
-template <typename Message>
+template <typename Packet, typename Visitor, typename Message>
 void expect(const char* name, const char* relative) {
     std::vector<std::pair<std::string, std::int64_t>> sources;
     sources.emplace_back(root() + "/" + relative, 0);
 
     packet::PcapIterator captures(sources);
-    Seen<Message> seen;
+    Seen<Visitor, Message> seen;
     std::vector<std::byte> buffer;
 
     std::size_t frames = 0;
@@ -63,7 +63,7 @@ void expect(const char* name, const char* relative) {
         if (!frame.valid()) { continue; }
 
         ++frames;
-        protocol::Packet decoded;
+        Packet decoded;
 
         try {
             decoded.decode(frame.payload, frame.payload_len);
@@ -123,14 +123,14 @@ void expect(const char* name, const char* relative) {
 
 int main() {
     std::printf("== Iex.IexEquities.Deep.IexTp.v1.06 (classes)\n");
-    expect<protocol::AuctionInformationMessage>("AuctionInformationMessage", "Iex/IexEquities.Deep.IexTp.v1.06/AuctionInformationMessage.pcap");
-    expect<protocol::OfficialPriceMessage>("OfficialPriceMessage", "Iex/IexEquities.Deep.IexTp.v1.06/OfficialPriceMessage.pcap");
-    expect<protocol::PriceLevelBuyUpdateMessage>("PriceLevelBuyUpdateMessage", "Iex/IexEquities.Deep.IexTp.v1.06/PriceLevelBuyUpdateMessage.pcap");
-    expect<protocol::PriceLevelSellUpdateMessage>("PriceLevelSellUpdateMessage", "Iex/IexEquities.Deep.IexTp.v1.06/PriceLevelSellUpdateMessage.pcap");
-    expect<protocol::SecurityEventMessage>("SecurityEventMessage", "Iex/IexEquities.Deep.IexTp.v1.06/SecurityEventMessage.pcap");
-    expect<protocol::ShortSalePriceTestStatusMessage>("ShortSalePriceTestStatusMessage", "Iex/IexEquities.Deep.IexTp.v1.06/ShortSalePriceTestStatusMessage.pcap");
-    expect<protocol::SystemEventMessage>("SystemEventMessage", "Iex/IexEquities.Deep.IexTp.v1.06/SystemEventMessage.pcap");
-    expect<protocol::TradeReportMessage>("TradeReportMessage", "Iex/IexEquities.Deep.IexTp.v1.06/TradeReportMessage.pcap");
-    expect<protocol::TradingStatusMessage>("TradingStatusMessage", "Iex/IexEquities.Deep.IexTp.v1.06/TradingStatusMessage.pcap");
+    expect<protocol::Packet, protocol::Visitor, protocol::AuctionInformationMessage>("AuctionInformationMessage", "Iex/IexEquities.Deep.IexTp.v1.06/AuctionInformationMessage.pcap");
+    expect<protocol::Packet, protocol::Visitor, protocol::OfficialPriceMessage>("OfficialPriceMessage", "Iex/IexEquities.Deep.IexTp.v1.06/OfficialPriceMessage.pcap");
+    expect<protocol::Packet, protocol::Visitor, protocol::PriceLevelBuyUpdateMessage>("PriceLevelBuyUpdateMessage", "Iex/IexEquities.Deep.IexTp.v1.06/PriceLevelBuyUpdateMessage.pcap");
+    expect<protocol::Packet, protocol::Visitor, protocol::PriceLevelSellUpdateMessage>("PriceLevelSellUpdateMessage", "Iex/IexEquities.Deep.IexTp.v1.06/PriceLevelSellUpdateMessage.pcap");
+    expect<protocol::Packet, protocol::Visitor, protocol::SecurityEventMessage>("SecurityEventMessage", "Iex/IexEquities.Deep.IexTp.v1.06/SecurityEventMessage.pcap");
+    expect<protocol::Packet, protocol::Visitor, protocol::ShortSalePriceTestStatusMessage>("ShortSalePriceTestStatusMessage", "Iex/IexEquities.Deep.IexTp.v1.06/ShortSalePriceTestStatusMessage.pcap");
+    expect<protocol::Packet, protocol::Visitor, protocol::SystemEventMessage>("SystemEventMessage", "Iex/IexEquities.Deep.IexTp.v1.06/SystemEventMessage.pcap");
+    expect<protocol::Packet, protocol::Visitor, protocol::TradeReportMessage>("TradeReportMessage", "Iex/IexEquities.Deep.IexTp.v1.06/TradeReportMessage.pcap");
+    expect<protocol::Packet, protocol::Visitor, protocol::TradingStatusMessage>("TradingStatusMessage", "Iex/IexEquities.Deep.IexTp.v1.06/TradingStatusMessage.pcap");
     return failures == 0 ? 0 : 1;
 }

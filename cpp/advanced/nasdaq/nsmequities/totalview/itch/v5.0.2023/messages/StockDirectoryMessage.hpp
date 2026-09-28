@@ -49,7 +49,7 @@ struct stock_directory_message {
         itch_totalview::inverse_indicator inverse_indicator;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 2), message_type::enum_type::stock_directory_message};
+    itch_totalview::message_header header = {std::uint16_t(sizeof(itch_totalview::message_header) + sizeof(fields_type) - 2), message_type::enum_type::stock_directory_message};
 
     fields_type fields;
 
@@ -84,7 +84,7 @@ static_assert(offsetof(stock_directory_message::fields_type, etp_flag) == 32, "u
 static_assert(offsetof(stock_directory_message::fields_type, etp_leverage_factor) == 33, "unexpected offset of stock_directory_message::fields_type::etp_leverage_factor");
 static_assert(offsetof(stock_directory_message::fields_type, inverse_indicator) == 37, "unexpected offset of stock_directory_message::fields_type::inverse_indicator");
 static_assert(sizeof(stock_directory_message::fields_type) == 38, "unexpected sizeof stock_directory_message::fields_type");
-static_assert(sizeof(stock_directory_message) == sizeof(message_header) + 38, "unexpected sizeof stock_directory_message");
+static_assert(sizeof(stock_directory_message) == sizeof(itch_totalview::message_header) + 38, "unexpected sizeof stock_directory_message");
 
 #pragma pack(pop)
 }

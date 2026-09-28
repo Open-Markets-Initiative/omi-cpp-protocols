@@ -27,7 +27,7 @@ struct trading_status_message {
         flex_marketbyorder::book_center_price book_center_price;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 1), message_type::enum_type::trading_status_message};
+    flex_marketbyorder::message_header header = {std::uint16_t(sizeof(flex_marketbyorder::message_header) + sizeof(fields_type) - 1), message_type::enum_type::trading_status_message};
 
     fields_type fields;
 
@@ -51,7 +51,7 @@ static_assert(offsetof(trading_status_message::fields_type, short_selling_status
 static_assert(offsetof(trading_status_message::fields_type, pricing_method) == 8, "unexpected offset of trading_status_message::fields_type::pricing_method");
 static_assert(offsetof(trading_status_message::fields_type, book_center_price) == 9, "unexpected offset of trading_status_message::fields_type::book_center_price");
 static_assert(sizeof(trading_status_message::fields_type) == 17, "unexpected sizeof trading_status_message::fields_type");
-static_assert(sizeof(trading_status_message) == sizeof(message_header) + 17, "unexpected sizeof trading_status_message");
+static_assert(sizeof(trading_status_message) == sizeof(flex_marketbyorder::message_header) + 17, "unexpected sizeof trading_status_message");
 
 #pragma pack(pop)
 }

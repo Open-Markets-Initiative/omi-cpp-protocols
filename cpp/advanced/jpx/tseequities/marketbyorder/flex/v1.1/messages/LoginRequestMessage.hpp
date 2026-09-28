@@ -25,7 +25,7 @@ struct login_request_message {
         flex_marketbyorder::requested_message_count requested_message_count;
     };
 
-    tcp_packet_header header = {std::uint16_t(sizeof(tcp_packet_header) + sizeof(fields_type)), packet_type::enum_type::login_request_message};
+    flex_marketbyorder::tcp_packet_header header = {std::uint16_t(sizeof(flex_marketbyorder::tcp_packet_header) + sizeof(fields_type)), packet_type::enum_type::login_request_message};
 
     fields_type fields;
 
@@ -48,7 +48,7 @@ static_assert(offsetof(login_request_message::fields_type, number_of_system_rebo
 static_assert(offsetof(login_request_message::fields_type, sequence_number) == 8, "unexpected offset of login_request_message::fields_type::sequence_number");
 static_assert(offsetof(login_request_message::fields_type, requested_message_count) == 12, "unexpected offset of login_request_message::fields_type::requested_message_count");
 static_assert(sizeof(login_request_message::fields_type) == 15, "unexpected sizeof login_request_message::fields_type");
-static_assert(sizeof(login_request_message) == sizeof(tcp_packet_header) + 15, "unexpected sizeof login_request_message");
+static_assert(sizeof(login_request_message) == sizeof(flex_marketbyorder::tcp_packet_header) + 15, "unexpected sizeof login_request_message");
 
 #pragma pack(pop)
 }

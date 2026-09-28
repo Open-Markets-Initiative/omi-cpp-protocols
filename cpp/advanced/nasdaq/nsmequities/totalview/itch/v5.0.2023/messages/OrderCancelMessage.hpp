@@ -25,7 +25,7 @@ struct order_cancel_message {
         itch_totalview::canceled_shares canceled_shares;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 2), message_type::enum_type::order_cancel_message};
+    itch_totalview::message_header header = {std::uint16_t(sizeof(itch_totalview::message_header) + sizeof(fields_type) - 2), message_type::enum_type::order_cancel_message};
 
     fields_type fields;
 
@@ -48,7 +48,7 @@ static_assert(offsetof(order_cancel_message::fields_type, timestamp) == 4, "unex
 static_assert(offsetof(order_cancel_message::fields_type, order_reference_number) == 10, "unexpected offset of order_cancel_message::fields_type::order_reference_number");
 static_assert(offsetof(order_cancel_message::fields_type, canceled_shares) == 18, "unexpected offset of order_cancel_message::fields_type::canceled_shares");
 static_assert(sizeof(order_cancel_message::fields_type) == 22, "unexpected sizeof order_cancel_message::fields_type");
-static_assert(sizeof(order_cancel_message) == sizeof(message_header) + 22, "unexpected sizeof order_cancel_message");
+static_assert(sizeof(order_cancel_message) == sizeof(itch_totalview::message_header) + 22, "unexpected sizeof order_cancel_message");
 
 #pragma pack(pop)
 }

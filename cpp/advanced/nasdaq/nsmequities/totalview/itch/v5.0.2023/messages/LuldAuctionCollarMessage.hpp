@@ -31,7 +31,7 @@ struct luld_auction_collar_message {
         itch_totalview::auction_collar_extension auction_collar_extension;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 2), message_type::enum_type::luld_auction_collar_message};
+    itch_totalview::message_header header = {std::uint16_t(sizeof(itch_totalview::message_header) + sizeof(fields_type) - 2), message_type::enum_type::luld_auction_collar_message};
 
     fields_type fields;
 
@@ -57,7 +57,7 @@ static_assert(offsetof(luld_auction_collar_message::fields_type, upper_auction_c
 static_assert(offsetof(luld_auction_collar_message::fields_type, lower_auction_collar_price) == 26, "unexpected offset of luld_auction_collar_message::fields_type::lower_auction_collar_price");
 static_assert(offsetof(luld_auction_collar_message::fields_type, auction_collar_extension) == 30, "unexpected offset of luld_auction_collar_message::fields_type::auction_collar_extension");
 static_assert(sizeof(luld_auction_collar_message::fields_type) == 34, "unexpected sizeof luld_auction_collar_message::fields_type");
-static_assert(sizeof(luld_auction_collar_message) == sizeof(message_header) + 34, "unexpected sizeof luld_auction_collar_message");
+static_assert(sizeof(luld_auction_collar_message) == sizeof(itch_totalview::message_header) + 34, "unexpected sizeof luld_auction_collar_message");
 
 #pragma pack(pop)
 }

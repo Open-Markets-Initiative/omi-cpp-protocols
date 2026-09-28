@@ -21,7 +21,7 @@ struct retail_liquidity_indicator_message {
         iextp_deepplus::symbol symbol;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 2), message_type::enum_type::retail_liquidity_indicator_message};
+    iextp_deepplus::message_header header = {std::uint16_t(sizeof(iextp_deepplus::message_header) + sizeof(fields_type) - 2), message_type::enum_type::retail_liquidity_indicator_message};
 
     fields_type fields;
 
@@ -42,7 +42,7 @@ static_assert(offsetof(retail_liquidity_indicator_message::fields_type, retail_l
 static_assert(offsetof(retail_liquidity_indicator_message::fields_type, timestamp) == 1, "unexpected offset of retail_liquidity_indicator_message::fields_type::timestamp");
 static_assert(offsetof(retail_liquidity_indicator_message::fields_type, symbol) == 9, "unexpected offset of retail_liquidity_indicator_message::fields_type::symbol");
 static_assert(sizeof(retail_liquidity_indicator_message::fields_type) == 17, "unexpected sizeof retail_liquidity_indicator_message::fields_type");
-static_assert(sizeof(retail_liquidity_indicator_message) == sizeof(message_header) + 17, "unexpected sizeof retail_liquidity_indicator_message");
+static_assert(sizeof(retail_liquidity_indicator_message) == sizeof(iextp_deepplus::message_header) + 17, "unexpected sizeof retail_liquidity_indicator_message");
 
 #pragma pack(pop)
 }

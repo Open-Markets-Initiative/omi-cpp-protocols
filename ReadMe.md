@@ -39,9 +39,9 @@ The pcap reader they all share is `executables/pcap/`.
 
 ## Tests
 
-`tests/` holds a test per protocol and format (25 of them), each written against the
+`tests/` holds a test per protocol and format (26 of them), each written against the
 surface that format's program uses, plus one run of each program on its protocol's first
-declared capture (34 of them):
+declared capture (36 of them):
 
 - `tests/modern/` walks every payload with the Modern iterator and requires the declared
   message — what extractor reads through
@@ -62,13 +62,15 @@ cmake -S . -B build -DOMI_PACKETS_DIR=/path/to/packets
 cmake --build build --parallel && ctest --test-dir build
 ```
 
-A protocol a format's generator refuses is left out of that format, and out of the programs
-and tests that read through it:
+## Protocols (19)
 
-- Nasdaq.NsmEquities.TotalView.Itch.v5.0.2023, Classes: 'serverpacket' repeats frames like the tree before it, and the Classes generator emits one Frame class per library, so the two would collide
-
-## Protocols (12)
-
+- `B3.B3Derivatives.BinaryUmdf.Sbe.v1.6`
+- `B3.B3Derivatives.BinaryUmdf.Sbe.v1.7`
+- `B3.B3Derivatives.BinaryUmdf.Sbe.v1.8`
+- `B3.B3Derivatives.BinaryUmdf.Sbe.v1.9`
+- `B3.B3Derivatives.BinaryUmdf.Sbe.v2.1`
+- `B3.B3Derivatives.BinaryUmdf.Sbe.v2.2`
+- `B3.B3Derivatives.BinaryUmdf.Sbe.v2.3`
 - `Iex.IexEquities.Deep.IexTp.v1.06`
 - `Iex.IexEquities.Deep.IexTp.v1.08`
 - `Iex.IexEquities.Deep.Snap.v1.6`

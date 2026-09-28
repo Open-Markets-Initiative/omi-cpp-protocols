@@ -29,7 +29,7 @@ struct add_order_message {
         flex_marketbyorder::modification_flag modification_flag;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 1), message_type::enum_type::add_order_message};
+    flex_marketbyorder::message_header header = {std::uint16_t(sizeof(flex_marketbyorder::message_header) + sizeof(fields_type) - 1), message_type::enum_type::add_order_message};
 
     fields_type fields;
 
@@ -54,7 +54,7 @@ static_assert(offsetof(add_order_message::fields_type, price) == 15, "unexpected
 static_assert(offsetof(add_order_message::fields_type, order_condition) == 23, "unexpected offset of add_order_message::fields_type::order_condition");
 static_assert(offsetof(add_order_message::fields_type, modification_flag) == 24, "unexpected offset of add_order_message::fields_type::modification_flag");
 static_assert(sizeof(add_order_message::fields_type) == 25, "unexpected sizeof add_order_message::fields_type");
-static_assert(sizeof(add_order_message) == sizeof(message_header) + 25, "unexpected sizeof add_order_message");
+static_assert(sizeof(add_order_message) == sizeof(flex_marketbyorder::message_header) + 25, "unexpected sizeof add_order_message");
 
 #pragma pack(pop)
 }

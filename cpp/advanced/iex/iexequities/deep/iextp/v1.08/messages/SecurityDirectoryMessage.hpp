@@ -27,7 +27,7 @@ struct security_directory_message {
         iextp_deep::luld_tier luld_tier;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) - 2), message_type::enum_type::security_directory_message};
+    iextp_deep::message_header header = {std::uint16_t(sizeof(iextp_deep::message_header) + sizeof(fields_type) - 2), message_type::enum_type::security_directory_message};
 
     fields_type fields;
 
@@ -51,7 +51,7 @@ static_assert(offsetof(security_directory_message::fields_type, round_lot_size) 
 static_assert(offsetof(security_directory_message::fields_type, adjusted_poc_price) == 21, "unexpected offset of security_directory_message::fields_type::adjusted_poc_price");
 static_assert(offsetof(security_directory_message::fields_type, luld_tier) == 29, "unexpected offset of security_directory_message::fields_type::luld_tier");
 static_assert(sizeof(security_directory_message::fields_type) == 30, "unexpected sizeof security_directory_message::fields_type");
-static_assert(sizeof(security_directory_message) == sizeof(message_header) + 30, "unexpected sizeof security_directory_message");
+static_assert(sizeof(security_directory_message) == sizeof(iextp_deep::message_header) + 30, "unexpected sizeof security_directory_message");
 
 #pragma pack(pop)
 }

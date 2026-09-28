@@ -31,7 +31,7 @@ struct trade_message {
         snap_deepplus::trade_id trade_id;
     };
 
-    message_header header = {std::uint16_t(sizeof(message_header) + sizeof(fields_type) + sizeof(snap_deepplus::iex_tp_header) + sizeof(snap_deepplus::iex_tp_message_block_length) + sizeof(snap_deepplus::iex_tp_message_length) + sizeof(snap_deepplus::iex_tp_message_type) - 2), message_type::enum_type::snapshot_data_message};
+    snap_deepplus::message_header header = {std::uint16_t(sizeof(snap_deepplus::message_header) + sizeof(fields_type) + sizeof(snap_deepplus::iex_tp_header) + sizeof(snap_deepplus::iex_tp_message_block_length) + sizeof(snap_deepplus::iex_tp_message_length) + sizeof(snap_deepplus::iex_tp_message_type) - 2), message_type::enum_type::snapshot_data_message};
     snap_deepplus::iex_tp_header iex_tp_header;
     snap_deepplus::iex_tp_message_block_length iex_tp_message_block_length;
     snap_deepplus::iex_tp_message_length iex_tp_message_length;
@@ -59,7 +59,7 @@ static_assert(offsetof(trade_message::fields_type, size) == 17, "unexpected offs
 static_assert(offsetof(trade_message::fields_type, price) == 21, "unexpected offset of trade_message::fields_type::price");
 static_assert(offsetof(trade_message::fields_type, trade_id) == 29, "unexpected offset of trade_message::fields_type::trade_id");
 static_assert(sizeof(trade_message::fields_type) == 37, "unexpected sizeof trade_message::fields_type");
-static_assert(sizeof(trade_message) == sizeof(message_header) + sizeof(snap_deepplus::iex_tp_header) + sizeof(snap_deepplus::iex_tp_message_block_length) + sizeof(snap_deepplus::iex_tp_message_length) + sizeof(snap_deepplus::iex_tp_message_type) + 37, "unexpected sizeof trade_message");
+static_assert(sizeof(trade_message) == sizeof(snap_deepplus::message_header) + sizeof(snap_deepplus::iex_tp_header) + sizeof(snap_deepplus::iex_tp_message_block_length) + sizeof(snap_deepplus::iex_tp_message_length) + sizeof(snap_deepplus::iex_tp_message_type) + 37, "unexpected sizeof trade_message");
 
 #pragma pack(pop)
 }

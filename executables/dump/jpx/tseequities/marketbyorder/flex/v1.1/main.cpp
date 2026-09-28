@@ -16,6 +16,50 @@
 
 namespace protocol = ::jpx::tseequities::marketbyorder::flex::v1_1;
 
+namespace {
+
+// Every message a read frames, printed through the message's own print. A tree's frame class
+// is its own, so the frames are taken as they come rather than by naming their type.
+constexpr auto framed = [](const auto& read) {
+    std::size_t messages = 0;
+
+    for (const auto& held : read.frames()) {
+        if (held.message() == nullptr) { continue; }
+
+        ++messages;
+        std::cout << *held.message() << '\n';
+    }
+
+    return messages;
+};
+
+// The one message a packet declared around a single message carries.
+constexpr auto alone = [](const auto& read) -> std::size_t {
+    if (read.message() == nullptr) { return 0; }
+
+    std::cout << *read.message() << '\n';
+
+    return 1;
+};
+
+// A frame that arrives whole is a whole packet: what it does not hold belongs to no other frame.
+template <typename Read, typename Printer>
+std::size_t whole(const packet::Frame& frame, std::size_t& undecodable, Printer printer) {
+    Read decoded;
+
+    try {
+        decoded.decode(frame.payload, frame.payload_len);
+    } catch (const protocol::DecodeError& error) {
+        ++undecodable;
+        std::cerr << "undecodable frame: " << error.what() << '\n';
+        return 0;
+    }
+
+    return printer(decoded);
+}
+
+}
+
 int main(int argc, char** argv) {
     if (argc < 2) {
         std::fprintf(stderr, "usage: %s <capture.pcap>\n", argv[0]);
@@ -26,7 +70,7 @@ int main(int argc, char** argv) {
     sources.emplace_back(argv[1], 0);
 
     packet::PcapIterator captures(sources);
-    protocol::UdpPacket decoded;
+
     std::size_t messages = 0;
     std::size_t undecodable = 0;
 
@@ -35,25 +79,21 @@ int main(int argc, char** argv) {
 
         if (!frame.valid()) { continue; }
 
-        try {
-            decoded.decode(frame.payload, frame.payload_len);
-        } catch (const protocol::DecodeError& error) {
-            ++undecodable;
-            std::cerr << "undecodable datagram: " << error.what() << '\n';
+        if (frame.is_udp()) {
+            messages += whole<protocol::UdpPacket>(frame, undecodable, framed);
             continue;
         }
 
-        for (const protocol::Frame& held : decoded.frames()) {
-            if (held.message() == nullptr) { continue; }
-            ++messages;
-            std::cout << *held.message() << '\n';
+        if (frame.is_tcp()) {
+            messages += whole<protocol::TcpPacket>(frame, undecodable, alone);
+            continue;
         }
     }
 
     std::fprintf(stderr, "%zu messages\n", messages);
 
     if (undecodable > 0) {
-        std::fprintf(stderr, "%zu undecodable datagrams\n", undecodable);
+        std::fprintf(stderr, "%zu reads did not decode\n", undecodable);
     }
 
     return 0;
