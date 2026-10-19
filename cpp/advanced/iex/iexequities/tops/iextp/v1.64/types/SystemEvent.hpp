@@ -60,7 +60,7 @@ struct system_event {
     using storage_type = result_type;
 
     constexpr system_event()
-     : value{ enum_type::start_of_system_hours } {}
+     : value{ enum_type{} } {}
 
     constexpr system_event(enum_type v)
      : value{ v } {}

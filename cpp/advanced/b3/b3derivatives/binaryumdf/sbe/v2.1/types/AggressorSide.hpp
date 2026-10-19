@@ -55,7 +55,7 @@ struct aggressor_side {
     using storage_type = result_type;
 
     constexpr aggressor_side()
-     : value{ enum_type::no_aggressor } {}
+     : value{ enum_type{} } {}
 
     constexpr aggressor_side(enum_type v)
      : value{ v } {}

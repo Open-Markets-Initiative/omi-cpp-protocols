@@ -3,7 +3,7 @@
 #include <cstddef>
 #include "../structs/MessageHeader.hpp"
 #include "../structs/SbeGroupSupport.hpp"
-#include "../types/IexTpHeader.hpp"
+#include "../structs/IextpHeader.hpp"
 #include "../types/IexTpMessageBlockLength.hpp"
 #include "../types/IexTpMessageLength.hpp"
 #include "../types/IexTpMessageType.hpp"
@@ -19,7 +19,7 @@ namespace snap_deepplus = ::iex::iexequities::deepplus::snap::v1_06;
 struct snapshot_data_message {
 
     struct fields_type {
-        snap_deepplus::iex_tp_header iex_tp_header;
+        snap_deepplus::iextp_header iextp_header;
         snap_deepplus::iex_tp_message_block_length iex_tp_message_block_length;
         snap_deepplus::iex_tp_message_length iex_tp_message_length;
         snap_deepplus::iex_tp_message_type iex_tp_message_type;
@@ -43,8 +43,8 @@ struct snapshot_data_message {
     }
 
     // sequential access to variable-length regions
-    sbe_var_data iex_tp_message_data() const {
-        return { tail_begin(), tail_end() };
+    external_var_data iex_tp_message_data() const {
+        return { tail_begin(), static_cast<std::size_t>(fields.iex_tp_message_length.get().value() - 1), tail_end() };
     }
 
 
@@ -61,11 +61,11 @@ struct snapshot_data_message {
 };
 
 // layout verification
-static_assert(offsetof(snapshot_data_message::fields_type, iex_tp_header) == 0, "unexpected offset of snapshot_data_message::fields_type::iex_tp_header");
-static_assert(offsetof(snapshot_data_message::fields_type, iex_tp_message_block_length) == 1, "unexpected offset of snapshot_data_message::fields_type::iex_tp_message_block_length");
-static_assert(offsetof(snapshot_data_message::fields_type, iex_tp_message_length) == 3, "unexpected offset of snapshot_data_message::fields_type::iex_tp_message_length");
-static_assert(offsetof(snapshot_data_message::fields_type, iex_tp_message_type) == 5, "unexpected offset of snapshot_data_message::fields_type::iex_tp_message_type");
-static_assert(sizeof(snapshot_data_message::fields_type) == 6, "unexpected sizeof snapshot_data_message::fields_type");
+static_assert(offsetof(snapshot_data_message::fields_type, iextp_header) == 0, "unexpected offset of snapshot_data_message::fields_type::iextp_header");
+static_assert(offsetof(snapshot_data_message::fields_type, iex_tp_message_block_length) == 40, "unexpected offset of snapshot_data_message::fields_type::iex_tp_message_block_length");
+static_assert(offsetof(snapshot_data_message::fields_type, iex_tp_message_length) == 42, "unexpected offset of snapshot_data_message::fields_type::iex_tp_message_length");
+static_assert(offsetof(snapshot_data_message::fields_type, iex_tp_message_type) == 44, "unexpected offset of snapshot_data_message::fields_type::iex_tp_message_type");
+static_assert(sizeof(snapshot_data_message::fields_type) == 45, "unexpected sizeof snapshot_data_message::fields_type");
 
 #pragma pack(pop)
 }

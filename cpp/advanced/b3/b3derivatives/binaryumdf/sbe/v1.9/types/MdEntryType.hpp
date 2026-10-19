@@ -108,7 +108,7 @@ struct md_entry_type {
     using storage_type = result_type;
 
     constexpr md_entry_type()
-     : value{ enum_type::bid } {}
+     : value{ enum_type{} } {}
 
     constexpr md_entry_type(enum_type v)
      : value{ v } {}

@@ -51,7 +51,7 @@ struct buy_sell_indicator {
     using storage_type = result_type;
 
     constexpr buy_sell_indicator()
-     : value{ enum_type::buy } {}
+     : value{ enum_type{} } {}
 
     constexpr buy_sell_indicator(enum_type v)
      : value{ v } {}

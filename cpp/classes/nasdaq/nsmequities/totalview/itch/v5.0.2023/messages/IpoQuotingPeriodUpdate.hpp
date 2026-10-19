@@ -25,7 +25,7 @@ class IpoQuotingPeriodUpdate : public SequencedMessage {
     static constexpr std::size_t wire_size = 27;
 
     IpoQuotingPeriodUpdate() = default;
-    IpoQuotingPeriodUpdate(std::uint16_t stock_locate, std::uint16_t tracking_number, std::chrono::nanoseconds timestamp, const std::string& stock, std::uint32_t ipo_quotation_release_time, IpoQuotationReleaseQualifier ipo_quotation_release_qualifier, Decimal ipo_price);
+    IpoQuotingPeriodUpdate(std::uint16_t stock_locate, std::uint16_t tracking_number, std::chrono::nanoseconds timestamp, const std::string& stock, std::chrono::seconds ipo_quotation_release_time, IpoQuotationReleaseQualifier ipo_quotation_release_qualifier, Decimal ipo_price);
 
     // Stock Locate: Locate Code uniquely assigned to the security symbol for the day
     std::uint16_t stock_locate() const;
@@ -46,8 +46,8 @@ class IpoQuotingPeriodUpdate : public SequencedMessage {
 
     // Ipo Quotation Release Time: Denotes the IPO release time, in seconds since midnight, for
     // quotation to the nearest second
-    std::uint32_t ipo_quotation_release_time() const;
-    void set_ipo_quotation_release_time(std::uint32_t value);
+    std::chrono::seconds ipo_quotation_release_time() const;
+    void set_ipo_quotation_release_time(std::chrono::seconds value);
 
     // Ipo Quotation Release Qualifier: IPO Quotation Release Qualifier
     IpoQuotationReleaseQualifier ipo_quotation_release_qualifier() const;
@@ -76,7 +76,7 @@ class IpoQuotingPeriodUpdate : public SequencedMessage {
     std::uint16_t tracking_number_{};
     std::chrono::nanoseconds timestamp_{};
     std::string stock_{};
-    std::uint32_t ipo_quotation_release_time_{};
+    std::chrono::seconds ipo_quotation_release_time_{};
     IpoQuotationReleaseQualifier ipo_quotation_release_qualifier_{};
     Decimal ipo_price_{ 0, -4 };
 };

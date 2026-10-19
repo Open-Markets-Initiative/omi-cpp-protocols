@@ -51,7 +51,7 @@ struct reject_reason_code {
     using storage_type = result_type;
 
     constexpr reject_reason_code()
-     : value{ enum_type::not_authorized } {}
+     : value{ enum_type{} } {}
 
     constexpr reject_reason_code(enum_type v)
      : value{ v } {}

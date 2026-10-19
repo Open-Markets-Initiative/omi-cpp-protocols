@@ -51,7 +51,7 @@ struct primary_market_maker {
     using storage_type = result_type;
 
     constexpr primary_market_maker()
-     : value{ enum_type::primary } {}
+     : value{ enum_type{} } {}
 
     constexpr primary_market_maker(enum_type v)
      : value{ v } {}

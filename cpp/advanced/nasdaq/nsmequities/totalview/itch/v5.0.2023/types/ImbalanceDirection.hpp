@@ -60,7 +60,7 @@ struct imbalance_direction {
     using storage_type = result_type;
 
     constexpr imbalance_direction()
-     : value{ enum_type::buy } {}
+     : value{ enum_type{} } {}
 
     constexpr imbalance_direction(enum_type v)
      : value{ v } {}

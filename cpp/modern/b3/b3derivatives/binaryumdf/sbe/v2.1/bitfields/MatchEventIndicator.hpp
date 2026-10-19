@@ -69,6 +69,11 @@ struct MatchEventIndicator {
         return value & mask::EndOfEvent;
     }
 
+    // all bits
+    [[nodiscard]] constexpr type get() const {
+        return value;
+    }
+
   protected:
     type value;
 };

@@ -58,7 +58,7 @@ struct security_trading_event {
     using storage_type = result_type;
 
     constexpr security_trading_event()
-     : value{ enum_type::trading_session_change } {}
+     : value{ enum_type{} } {}
 
     constexpr security_trading_event(enum_type v)
      : value{ v } {}

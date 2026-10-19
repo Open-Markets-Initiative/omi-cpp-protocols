@@ -33,6 +33,11 @@ struct QuoteUpdateFlags {
         return value & mask::SymbolAvailability;
     }
 
+    // all bits
+    [[nodiscard]] constexpr type get() const {
+        return value;
+    }
+
   protected:
     type value;
 };

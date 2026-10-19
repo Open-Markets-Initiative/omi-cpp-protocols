@@ -93,7 +93,7 @@ struct issue_classification {
     using storage_type = result_type;
 
     constexpr issue_classification()
-     : value{ enum_type::american_depositary_share } {}
+     : value{ enum_type{} } {}
 
     constexpr issue_classification(enum_type v)
      : value{ v } {}

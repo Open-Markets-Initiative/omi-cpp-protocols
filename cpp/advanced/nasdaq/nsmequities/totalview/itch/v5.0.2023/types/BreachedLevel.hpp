@@ -54,7 +54,7 @@ struct breached_level {
     using storage_type = result_type;
 
     constexpr breached_level()
-     : value{ enum_type::level_1 } {}
+     : value{ enum_type{} } {}
 
     constexpr breached_level(enum_type v)
      : value{ v } {}

@@ -55,7 +55,7 @@ struct put_or_call {
     using storage_type = result_type;
 
     constexpr put_or_call()
-     : value{ enum_type::put } {}
+     : value{ enum_type{} } {}
 
     constexpr put_or_call(enum_type v)
      : value{ v } {}

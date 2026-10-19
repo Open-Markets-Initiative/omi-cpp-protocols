@@ -67,7 +67,7 @@ struct trading_session_sub_id {
     using storage_type = result_type;
 
     constexpr trading_session_sub_id()
-     : value{ enum_type::pause } {}
+     : value{ enum_type{} } {}
 
     constexpr trading_session_sub_id(enum_type v)
      : value{ v } {}

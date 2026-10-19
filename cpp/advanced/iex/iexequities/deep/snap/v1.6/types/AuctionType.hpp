@@ -60,7 +60,7 @@ struct auction_type {
     using storage_type = result_type;
 
     constexpr auction_type()
-     : value{ enum_type::opening_auction } {}
+     : value{ enum_type{} } {}
 
     constexpr auction_type(enum_type v)
      : value{ v } {}

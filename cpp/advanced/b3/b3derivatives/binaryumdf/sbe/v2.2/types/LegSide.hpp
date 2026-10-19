@@ -52,7 +52,7 @@ struct leg_side {
     using storage_type = result_type;
 
     constexpr leg_side()
-     : value{ enum_type::buy } {}
+     : value{ enum_type{} } {}
 
     constexpr leg_side(enum_type v)
      : value{ v } {}

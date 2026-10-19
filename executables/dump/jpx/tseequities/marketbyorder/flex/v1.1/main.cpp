@@ -7,11 +7,13 @@
 #include <cstdio>
 #include <iostream>
 #include <string>
+#include <unordered_map>
 #include <utility>
 #include <vector>
 
 #include "PcapIterator.hpp"
 #include "Frame.hpp"
+#include "TcpReassembler.hpp"
 #include "cpp/classes/jpx/tseequities/marketbyorder/flex/v1.1/definitions.hpp"
 
 namespace protocol = ::jpx::tseequities::marketbyorder::flex::v1_1;
@@ -58,6 +60,29 @@ std::size_t whole(const packet::Frame& frame, std::size_t& undecodable, Printer 
     return printer(decoded);
 }
 
+// A connection's bytes: whatever whole frames they hold are read out, and what does not yet
+// amount to a frame waits in the buffer for the bytes behind it.
+template <typename Read, typename Printer>
+std::size_t reassembled(std::vector<std::byte>& buffer, std::size_t& undecodable, Printer printer) {
+    Read decoded;
+    std::size_t consumed = 0;
+
+    try {
+        consumed = decoded.decode(buffer.data(), buffer.size());
+    } catch (const protocol::DecodeError& error) {
+        ++undecodable;
+        std::cerr << "undecodable stream: " << error.what() << '\n';
+        buffer.clear();
+        return 0;
+    }
+
+    const std::size_t messages = printer(decoded);
+
+    buffer.erase(buffer.begin(), buffer.begin() + static_cast<std::ptrdiff_t>(consumed));
+
+    return messages;
+}
+
 }
 
 int main(int argc, char** argv) {
@@ -74,6 +99,20 @@ int main(int argc, char** argv) {
     std::size_t messages = 0;
     std::size_t undecodable = 0;
 
+    // One buffer per connection: the reassembler hands over the bytes in order, and what
+    // does not yet amount to a whole frame waits here for the bytes behind it.
+    std::unordered_map<packet::TcpFlowKey, std::vector<std::byte>, packet::TcpFlowKey::hash> buffers;
+
+    packet::TcpReassembler reassembler;
+
+    reassembler.on_data = [&](const packet::TcpFlowKey& key, const std::byte* data, std::size_t length) {
+        std::vector<std::byte>& buffer = buffers[key];
+
+        buffer.insert(buffer.end(), data, data + length);
+
+        messages += reassembled<protocol::TcpPacket>(buffer, undecodable, alone);
+    };
+
     while (captures.advance()) {
         const packet::Frame frame(captures.data(), captures.length());
 
@@ -85,12 +124,17 @@ int main(int argc, char** argv) {
         }
 
         if (frame.is_tcp()) {
-            messages += whole<protocol::TcpPacket>(frame, undecodable, alone);
-            continue;
+            reassembler.process(frame);
         }
     }
 
     std::fprintf(stderr, "%zu messages\n", messages);
+
+    for (const auto& [key, buffer] : buffers) {
+        if (!buffer.empty()) {
+            std::fprintf(stderr, "%zu bytes left unread on a connection\n", buffer.size());
+        }
+    }
 
     if (undecodable > 0) {
         std::fprintf(stderr, "%zu reads did not decode\n", undecodable);

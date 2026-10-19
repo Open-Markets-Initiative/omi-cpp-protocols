@@ -97,7 +97,7 @@ struct leg_security_type {
     using storage_type = result_type;
 
     constexpr leg_security_type()
-     : value{ enum_type::cash } {}
+     : value{ enum_type{} } {}
 
     constexpr leg_security_type(enum_type v)
      : value{ v } {}

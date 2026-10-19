@@ -52,7 +52,7 @@ struct trading_session_id {
     using storage_type = result_type;
 
     constexpr trading_session_id()
-     : value{ enum_type::regular_trading_session } {}
+     : value{ enum_type{} } {}
 
     constexpr trading_session_id(enum_type v)
      : value{ v } {}

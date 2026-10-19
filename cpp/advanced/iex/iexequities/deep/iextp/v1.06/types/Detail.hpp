@@ -60,7 +60,7 @@ struct detail {
     using storage_type = result_type;
 
     constexpr detail()
-     : value{ enum_type::no_price_test_in_place } {}
+     : value{ enum_type{} } {}
 
     constexpr detail(enum_type v)
      : value{ v } {}

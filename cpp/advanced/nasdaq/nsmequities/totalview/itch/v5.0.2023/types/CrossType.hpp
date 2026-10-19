@@ -57,7 +57,7 @@ struct cross_type {
     using storage_type = result_type;
 
     constexpr cross_type()
-     : value{ enum_type::opening } {}
+     : value{ enum_type{} } {}
 
     constexpr cross_type(enum_type v)
      : value{ v } {}

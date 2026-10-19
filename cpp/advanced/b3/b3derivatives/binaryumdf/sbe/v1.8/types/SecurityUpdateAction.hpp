@@ -54,7 +54,7 @@ struct security_update_action {
     using storage_type = result_type;
 
     constexpr security_update_action()
-     : value{ enum_type::add } {}
+     : value{ enum_type{} } {}
 
     constexpr security_update_action(enum_type v)
      : value{ v } {}

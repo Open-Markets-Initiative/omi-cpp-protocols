@@ -22,6 +22,7 @@
 #include "bitfields/SaleConditionFlags.hpp"
 #include "bitfields/SecurityDirectoryFlags.hpp"
 
+#include "structs/IextpHeader.hpp"
 #include "structs/MessageHeader.hpp"
 
 #include "messages/AddOrderMessage.hpp"

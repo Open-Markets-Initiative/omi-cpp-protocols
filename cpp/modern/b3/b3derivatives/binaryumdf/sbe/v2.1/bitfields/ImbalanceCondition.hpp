@@ -87,6 +87,11 @@ struct ImbalanceCondition {
         return value & mask::Reserved6;
     }
 
+    // all bits
+    [[nodiscard]] constexpr type get() const {
+        return value;
+    }
+
   protected:
     type value;
 };

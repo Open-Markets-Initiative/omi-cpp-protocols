@@ -67,7 +67,7 @@ struct multi_leg_price_method {
     using storage_type = result_type;
 
     constexpr multi_leg_price_method()
-     : value{ enum_type::net_price } {}
+     : value{ enum_type{} } {}
 
     constexpr multi_leg_price_method(enum_type v)
      : value{ v } {}

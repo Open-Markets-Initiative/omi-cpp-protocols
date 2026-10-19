@@ -144,7 +144,7 @@ inline std::ostream& operator<<(std::ostream& os, const auction_information_mess
        << ",indicative_clearing_price=" << msg.fields.indicative_clearing_price.get().value()
        << ",imbalance_shares=" << msg.fields.imbalance_shares.get().value()
        << ",imbalance_side=\"" << iextp_tops::imbalance_side::to_string(msg.fields.imbalance_side.get().value()) << '"'
-       << ",extension_number=\"" << msg.fields.extension_number.get().value() << '"'
+       << ",extension_number=" << static_cast<unsigned>(msg.fields.extension_number.get().value())
        << ",scheduled_auction_time=" << msg.fields.scheduled_auction_time.get().value()
        << ",auction_book_clearing_price=" << msg.fields.auction_book_clearing_price.get().value()
        << ",collar_reference_price=" << msg.fields.collar_reference_price.get().value()

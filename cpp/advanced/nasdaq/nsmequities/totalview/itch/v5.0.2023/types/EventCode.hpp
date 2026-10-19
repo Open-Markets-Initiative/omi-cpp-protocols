@@ -63,7 +63,7 @@ struct event_code {
     using storage_type = result_type;
 
     constexpr event_code()
-     : value{ enum_type::start_of_messages } {}
+     : value{ enum_type{} } {}
 
     constexpr event_code(enum_type v)
      : value{ v } {}

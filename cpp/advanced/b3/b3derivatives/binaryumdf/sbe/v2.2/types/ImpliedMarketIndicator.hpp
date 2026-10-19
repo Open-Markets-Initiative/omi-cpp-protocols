@@ -55,7 +55,7 @@ struct implied_market_indicator {
     using storage_type = result_type;
 
     constexpr implied_market_indicator()
-     : value{ enum_type::not_implied } {}
+     : value{ enum_type{} } {}
 
     constexpr implied_market_indicator(enum_type v)
      : value{ v } {}

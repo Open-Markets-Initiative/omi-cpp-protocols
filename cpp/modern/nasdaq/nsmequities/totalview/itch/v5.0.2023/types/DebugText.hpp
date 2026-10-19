@@ -9,22 +9,35 @@ namespace nasdaq::nsmequities::totalview::itch::v5_0_2023 {
 struct DebugText {
 
     static constexpr auto name = "Debug Text";
-    static constexpr std::size_t size = 1;
+    static constexpr std::size_t size = 0;
+
+    // underlying type
+    using type = std::array<char, size>;
 
     // default constructor
     constexpr DebugText()
      : value{ 0 } {}
 
     // standard constructor
-    constexpr explicit DebugText(const char &value)
+    constexpr explicit DebugText(const type &value)
      : value{ value } {}
 
     // get value of DebugText field
-    [[nodiscard]] char get() const {
-        return value;
+    [[nodiscard]] std::string get() const {
+        return std::string{value.data(), length()};
+    }
+
+    // runtime length of field
+    [[nodiscard]] std::size_t length() const {
+        std::size_t index = 0;
+        for (; index < size; ++index) {
+            if (value[index] == ' ') { break; }
+        }
+
+        return index;
     }
 
   protected:
-    char value;
+    type value;
 };
 }

@@ -45,6 +45,11 @@ struct SaleConditionFlags {
         return value & mask::IntermarketSweep;
     }
 
+    // all bits
+    [[nodiscard]] constexpr type get() const {
+        return value;
+    }
+
   protected:
     type value;
 };

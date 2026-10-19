@@ -58,7 +58,7 @@ struct order_condition {
     using storage_type = result_type;
 
     constexpr order_condition()
-     : value{ enum_type::nonconditional } {}
+     : value{ enum_type{} } {}
 
     constexpr order_condition(enum_type v)
      : value{ v } {}

@@ -51,7 +51,7 @@ struct security_id_source {
     using storage_type = result_type;
 
     constexpr security_id_source()
-     : value{ enum_type::isin } {}
+     : value{ enum_type{} } {}
 
     constexpr security_id_source(enum_type v)
      : value{ v } {}

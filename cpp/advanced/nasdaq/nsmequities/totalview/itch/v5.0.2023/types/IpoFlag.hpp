@@ -54,7 +54,7 @@ struct ipo_flag {
     using storage_type = result_type;
 
     constexpr ipo_flag()
-     : value{ enum_type::set_up_for_ipo_release } {}
+     : value{ enum_type{} } {}
 
     constexpr ipo_flag(enum_type v)
      : value{ v } {}

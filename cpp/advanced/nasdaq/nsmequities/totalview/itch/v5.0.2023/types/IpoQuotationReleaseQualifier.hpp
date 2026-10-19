@@ -51,7 +51,7 @@ struct ipo_quotation_release_qualifier {
     using storage_type = result_type;
 
     constexpr ipo_quotation_release_qualifier()
-     : value{ enum_type::anticipated_quotation_release_time } {}
+     : value{ enum_type{} } {}
 
     constexpr ipo_quotation_release_qualifier(enum_type v)
      : value{ v } {}

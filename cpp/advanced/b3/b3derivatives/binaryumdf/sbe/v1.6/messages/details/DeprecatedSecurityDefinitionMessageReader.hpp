@@ -19,6 +19,10 @@ public:
         : pos_(pos), end_(end), block_length_(block_length) {
     }
 
+    const deprecated_security_definition_message_deprecated_underlyings_groups_entry& entry() const {
+        return *reinterpret_cast<const deprecated_security_definition_message_deprecated_underlyings_groups_entry*>(pos_);
+    }
+
     std::uint64_t underlying_security_id() const {
         auto* entry = reinterpret_cast<const deprecated_security_definition_message_deprecated_underlyings_groups_entry*>(pos_);
         return entry->underlying_security_id.get().value();
@@ -88,6 +92,10 @@ class deprecated_security_definition_message_deprecated_legs_groups_entry_reader
 public:
     deprecated_security_definition_message_deprecated_legs_groups_entry_reader(const std::byte* pos, const std::byte* end, uint16_t block_length)
         : pos_(pos), end_(end), block_length_(block_length) {
+    }
+
+    const deprecated_security_definition_message_deprecated_legs_groups_entry& entry() const {
+        return *reinterpret_cast<const deprecated_security_definition_message_deprecated_legs_groups_entry*>(pos_);
     }
 
     std::uint64_t leg_security_id() const {
@@ -164,6 +172,10 @@ class deprecated_security_definition_message_deprecated_instr_attribs_groups_ent
 public:
     deprecated_security_definition_message_deprecated_instr_attribs_groups_entry_reader(const std::byte* pos, const std::byte* end, uint16_t block_length)
         : pos_(pos), end_(end), block_length_(block_length) {
+    }
+
+    const deprecated_security_definition_message_deprecated_instr_attribs_groups_entry& entry() const {
+        return *reinterpret_cast<const deprecated_security_definition_message_deprecated_instr_attribs_groups_entry*>(pos_);
     }
 
     sbe_binaryumdf::instr_attrib_type::enum_type instr_attrib_type() const {

@@ -58,7 +58,7 @@ struct lot_type {
     using storage_type = result_type;
 
     constexpr lot_type()
-     : value{ enum_type::odd_lot } {}
+     : value{ enum_type{} } {}
 
     constexpr lot_type(enum_type v)
      : value{ v } {}

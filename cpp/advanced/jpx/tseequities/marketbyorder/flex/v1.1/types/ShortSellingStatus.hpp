@@ -52,7 +52,7 @@ struct short_selling_status {
     using storage_type = result_type;
 
     constexpr short_selling_status()
-     : value{ enum_type::short_selling_regulation_is_not_applied } {}
+     : value{ enum_type{} } {}
 
     constexpr short_selling_status(enum_type v)
      : value{ v } {}

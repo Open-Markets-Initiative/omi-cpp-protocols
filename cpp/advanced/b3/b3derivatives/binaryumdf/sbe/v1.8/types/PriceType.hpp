@@ -55,7 +55,7 @@ struct price_type {
     using storage_type = result_type;
 
     constexpr price_type()
-     : value{ enum_type::percentage } {}
+     : value{ enum_type{} } {}
 
     constexpr price_type(enum_type v)
      : value{ v } {}

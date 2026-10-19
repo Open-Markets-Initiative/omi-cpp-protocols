@@ -10,11 +10,13 @@
 #include <map>
 #include <string>
 #include <type_traits>
+#include <unordered_map>
 #include <utility>
 #include <vector>
 
 #include "PcapIterator.hpp"
 #include "Frame.hpp"
+#include "TcpReassembler.hpp"
 #include "cpp/classes/jpx/tseequities/marketbyorder/flex/v1.1/definitions.hpp"
 
 namespace protocol = ::jpx::tseequities::marketbyorder::flex::v1_1;
@@ -206,18 +208,26 @@ void read_udp_packet(protocol::UdpPacket& decoded, const packet::Frame& frame, T
     }
 }
 
-// Tcp Packet: a frame of its transport is a whole packet of its own.
-void read_tcp_packet(protocol::TcpPacket& decoded, const packet::Frame& frame, Tally& tally, std::vector<std::byte>& encoded) {
-    const std::size_t number = ++tally.packets;
+// Tcp Packet: a connection's bytes, as far as they amount to whole frames.
+void read_tcp_packet(std::vector<std::byte>& buffer, Tally& tally, std::vector<std::byte>& encoded) {
+    protocol::TcpPacket decoded;
+    std::size_t consumed = 0;
 
     try {
-        decoded.decode(frame.payload, frame.payload_len);
+        consumed = decoded.decode(buffer.data(), buffer.size());
     } catch (const protocol::DecodeError& error) {
+        const std::size_t number = ++tally.packets;
+
         if (++tally.undecodable <= shown) {
             std::cerr << "read " << number << ": does not decode: " << error.what() << '\n';
         }
+        buffer.clear();
         return;
     }
+
+    if (consumed == 0) { return; }
+
+    const std::size_t number = ++tally.packets;
 
     if (const protocol::TcpMessage* message = decoded.message()) {
         ++tally.messages;
@@ -245,10 +255,10 @@ void read_tcp_packet(protocol::TcpPacket& decoded, const packet::Frame& frame, T
     try {
         encoded.assign(decoded.encoded_size(), std::byte{ 0 });
         const std::size_t written = decoded.encode(encoded.data(), encoded.size());
-        const std::size_t offset = first_difference(frame.payload, frame.payload_len, encoded.data(), written);
+        const std::size_t offset = first_difference(buffer.data(), consumed, encoded.data(), written);
 
-        if ((written != frame.payload_len || offset < written) && ++tally.mismatched <= shown) {
-            std::cerr << "read " << number << ": encodes to " << written << " bytes against " << frame.payload_len
+        if ((written != consumed || offset < written) && ++tally.mismatched <= shown) {
+            std::cerr << "read " << number << ": encodes to " << written << " bytes against " << consumed
                       << " read, first difference at byte " << offset << '\n';
         }
     } catch (const protocol::EncodeError& error) {
@@ -256,6 +266,8 @@ void read_tcp_packet(protocol::TcpPacket& decoded, const packet::Frame& frame, T
             std::cerr << "read " << number << ": does not encode: " << error.what() << '\n';
         }
     }
+
+    buffer.erase(buffer.begin(), buffer.begin() + static_cast<std::ptrdiff_t>(consumed));
 }
 
 } // namespace
@@ -277,7 +289,20 @@ int main(int argc, char** argv) {
     // One read per tree for the whole capture, reused the way a program reads one, so
     // state a failed decode leaves behind shows up here too.
     protocol::UdpPacket udp_packet_read;
-    protocol::TcpPacket tcp_packet_read;
+
+    // One buffer per connection: the reassembler hands over the bytes in order, and what
+    // does not yet amount to a whole frame waits here for the bytes behind it.
+    std::unordered_map<packet::TcpFlowKey, std::vector<std::byte>, packet::TcpFlowKey::hash> buffers;
+
+    packet::TcpReassembler reassembler;
+
+    reassembler.on_data = [&](const packet::TcpFlowKey& key, const std::byte* data, std::size_t length) {
+        std::vector<std::byte>& buffer = buffers[key];
+
+        buffer.insert(buffer.end(), data, data + length);
+
+        read_tcp_packet(buffer, tally, encoded);
+    };
 
     while (captures.advance()) {
         const packet::Frame frame(captures.data(), captures.length());
@@ -290,10 +315,18 @@ int main(int argc, char** argv) {
         }
 
         if (frame.is_tcp()) {
-            read_tcp_packet(tcp_packet_read, frame, tally, encoded);
-            continue;
+            reassembler.process(frame);
         }
 
+    }
+
+    // A capture that ends mid-frame leaves bytes behind: not a failure, but reported.
+    std::size_t unread = 0;
+
+    for (const auto& [key, buffer] : buffers) { unread += buffer.size(); }
+
+    if (unread > 0) {
+        std::fprintf(stderr, "%zu bytes left unread at the end of the capture\n", unread);
     }
 
     summarize(tally);

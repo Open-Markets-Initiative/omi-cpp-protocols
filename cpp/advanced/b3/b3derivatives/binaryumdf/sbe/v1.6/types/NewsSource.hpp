@@ -91,7 +91,7 @@ struct news_source {
     using storage_type = result_type;
 
     constexpr news_source()
-     : value{ enum_type::other } {}
+     : value{ enum_type{} } {}
 
     constexpr news_source(enum_type v)
      : value{ v } {}

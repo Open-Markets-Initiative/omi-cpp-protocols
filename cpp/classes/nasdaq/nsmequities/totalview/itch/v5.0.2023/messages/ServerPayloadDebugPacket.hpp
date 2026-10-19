@@ -3,6 +3,7 @@
 #include <cstddef>
 #include <memory>
 #include <ostream>
+#include <string>
 #include <string_view>
 
 #include "../messages/ServerMessage.hpp"
@@ -16,15 +17,14 @@ class ServerPayloadDebugPacket : public ServerMessage {
   public:
     // The code that selects this message
     static constexpr ServerMessageCode message_type = ServerPacketType::DebugPacket;
-    // Bytes of this message on the wire
-    static constexpr std::size_t wire_size = 1;
 
     ServerPayloadDebugPacket() = default;
-    ServerPayloadDebugPacket(char debug_text);
+    ServerPayloadDebugPacket(const std::string& debug_text);
 
     // Debug Text: Free form human readable text
-    char debug_text() const;
-    void set_debug_text(char value);
+    const std::string& debug_text() const;
+    std::string& debug_text();
+    void set_debug_text(const std::string& value);
 
     // ServerMessage
     ServerMessageCode type() const override;
@@ -41,7 +41,7 @@ class ServerPayloadDebugPacket : public ServerMessage {
     bool operator!=(const ServerPayloadDebugPacket& other) const;
 
   private:
-    char debug_text_{};
+    std::string debug_text_{};
 };
 
 } // namespace nasdaq::nsmequities::totalview::itch::v5_0_2023

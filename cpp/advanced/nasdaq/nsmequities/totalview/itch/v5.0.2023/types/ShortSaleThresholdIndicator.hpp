@@ -54,7 +54,7 @@ struct short_sale_threshold_indicator {
     using storage_type = result_type;
 
     constexpr short_sale_threshold_indicator()
-     : value{ enum_type::restricted } {}
+     : value{ enum_type{} } {}
 
     constexpr short_sale_threshold_indicator(enum_type v)
      : value{ v } {}

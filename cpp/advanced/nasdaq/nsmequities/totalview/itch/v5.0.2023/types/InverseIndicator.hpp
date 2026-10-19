@@ -51,7 +51,7 @@ struct inverse_indicator {
     using storage_type = result_type;
 
     constexpr inverse_indicator()
-     : value{ enum_type::inverse_etp } {}
+     : value{ enum_type{} } {}
 
     constexpr inverse_indicator(enum_type v)
      : value{ v } {}

@@ -55,7 +55,7 @@ struct luld_tier {
     using storage_type = result_type;
 
     constexpr luld_tier()
-     : value{ enum_type::not_applicable } {}
+     : value{ enum_type{} } {}
 
     constexpr luld_tier(enum_type v)
      : value{ v } {}

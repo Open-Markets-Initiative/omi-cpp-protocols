@@ -3,9 +3,13 @@
 #include <cstdint>
 #include <iostream>
 #include <iomanip>
+#include <cstddef>
+#include <unordered_map>
+#include <vector>
 
 #include "Settings.hpp"
 #include "../pcap/Parser.hpp"
+#include "../pcap/TcpReassembler.hpp"
 #include "cpp/modern/jpx/tseequities/marketbyorder/flex/v1.1/definitions.hpp"
 
 namespace statistics {
@@ -15,6 +19,8 @@ struct Statistics {
 
     jpx::tseequities::marketbyorder::flex::v1_1::MessageIterator message;
     jpx::tseequities::marketbyorder::flex::v1_1::TcpPacketIterator tcp_packet;
+    packet::TcpReassembler tcp_packet_reassembler;
+    std::unordered_map<packet::TcpFlowKey, std::vector<std::uint8_t>, packet::TcpFlowKey::hash> tcp_packet_flows;
     packet::Parser& parser;
     const statistics::Options& options;
 
@@ -41,7 +47,9 @@ struct Statistics {
     uint64_t end_of_message_message = 0;
 
     explicit Statistics(const statistics::Options& options, packet::Parser& parser)
-     : parser{ parser }, options{ options } {}
+     : parser{ parser }, options{ options } {
+        tcp_packet_reassembler.on_data = [this](const packet::TcpFlowKey& key, const std::byte* data, std::size_t length) { tcp_packet_flow(key, data, length); };
+    }
 
     // process a frame: every tree carrying its transport reads it
     void udp() {
@@ -49,7 +57,10 @@ struct Statistics {
 
         if (frame.is_udp()) {
             walk_message(frame);
-            walk_tcp_packet(frame);
+        }
+
+        if (frame.is_tcp()) {
+            tcp_packet_reassembler.process(frame);
         }
     }
 
@@ -62,12 +73,28 @@ struct Statistics {
         }
     }
 
-    // walk the Tcp Packet tree's datagrams
-    void walk_tcp_packet(const packet::Frame& frame) {
-        tcp_packet.initialize(frame.payload, frame.payload_len);
+    // walk the Tcp Packet tree's reassembled bytes
+    void tcp_packet_flow(const packet::TcpFlowKey& key, const std::byte* data, std::size_t length) {
+        auto& bytes = tcp_packet_flows[key];
+        bytes.insert(bytes.end(),
+                     reinterpret_cast<const std::uint8_t*>(data),
+                     reinterpret_cast<const std::uint8_t*>(data) + length);
+
+        const auto* base = reinterpret_cast<const std::byte*>(bytes.data());
+        tcp_packet.initialize(base, bytes.size());
+
+        std::size_t consumed = 0;
 
         while (tcp_packet.next()) {
+            if (tcp_packet.current > tcp_packet.end) { break; }   // the packet's bytes have not all arrived
+
+            consumed = static_cast<std::size_t>(tcp_packet.current - base);
             process_tcp_packet(tcp_packet.message, tcp_packet.packet_type);
+        }
+
+        // drop what was read, keeping the packet that is still arriving
+        if (consumed > 0) {
+            bytes.erase(bytes.begin(), bytes.begin() + static_cast<std::ptrdiff_t>(consumed));
         }
     }
 
@@ -112,7 +139,11 @@ struct Statistics {
                 break;
 
             default:
-                break;   // another tree's message_type
+                ++total_messages;
+                ++unknown_messages;
+                if (options.verbose) {
+                    std::cerr << "Unknown message_type: " << static_cast<int>(message_type) << std::endl;
+                }
                 break;
         }
     }
@@ -138,7 +169,11 @@ struct Statistics {
                 break;
 
             default:
-                break;   // another tree's packet_type
+                ++total_messages;
+                ++unknown_messages;
+                if (options.verbose) {
+                    std::cerr << "Unknown packet_type: " << static_cast<int>(packet_type) << std::endl;
+                }
                 break;
         }
     }

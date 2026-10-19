@@ -9,23 +9,23 @@ struct TcpPacketIterator {
     const std::byte* current = nullptr;
     const std::byte* end = nullptr;
 
+    const TcpPacketHeader* tcp_packet_header = nullptr;
     char packet_type = 0;
     std::uint16_t packet_length = 0;
     const std::byte* message = nullptr;
 
-    // initialize parser
-    void initialize(const std::byte* data, std::size_t length) {
-
-        end = data + length;
-
+    // initialize over reassembled byte stream
+    void initialize(const std::byte* data, std::size_t bytes) {
         current = data;
-        message = nullptr;
+        end = data + bytes;
 
+        tcp_packet_header = nullptr;
+        message = nullptr;
         packet_type = 0;
         packet_length = 0;
     }
 
-    // next message
+    // next reassembled packet
     bool next() {
 
         if (current >= end) {
@@ -36,13 +36,13 @@ struct TcpPacketIterator {
             return false;
         }
 
-        const auto* header = TcpPacketHeader::parse(current);
+        tcp_packet_header = TcpPacketHeader::parse(current);
         message = current + sizeof(TcpPacketHeader);
 
-        packet_type = header->packet_type.get();
-        packet_length = header->packet_length.get();
+        packet_type = tcp_packet_header->packet_type.get();
+        packet_length = tcp_packet_header->packet_length.get();
 
-        current += packet_length;
+        current += packet_length + 2;
 
         return true;
     }
@@ -52,6 +52,7 @@ struct TcpPacketIterator {
         current = nullptr;
         end = nullptr;
 
+        tcp_packet_header = nullptr;
         message = nullptr;
         packet_type = 0;
         packet_length = 0;

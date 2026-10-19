@@ -54,7 +54,15 @@ inline std::ostream& operator<<(std::ostream& os, const snapshot_start_message& 
 }
 
 inline std::ostream& operator<<(std::ostream& os, const snapshot_data_message& msg) {
-    os << "iex_tp_header=\"" << msg.fields.iex_tp_header.get().value() << '"'
+    os << "iextp_header.version=" << static_cast<unsigned>(msg.fields.iextp_header.version.get().value())
+       << ",iextp_header.message_protocol_id=" << msg.fields.iextp_header.message_protocol_id.get().value()
+       << ",iextp_header.channel_id=" << msg.fields.iextp_header.channel_id.get().value()
+       << ",iextp_header.session_id=" << msg.fields.iextp_header.session_id.get().value()
+       << ",iextp_header.payload_length=" << msg.fields.iextp_header.payload_length.get().value()
+       << ",iextp_header.message_count=" << msg.fields.iextp_header.message_count.get().value()
+       << ",iextp_header.stream_offset=" << msg.fields.iextp_header.stream_offset.get().value()
+       << ",iextp_header.first_message_sequence_number=" << msg.fields.iextp_header.first_message_sequence_number.get().value()
+       << ",iextp_header.send_time=" << msg.fields.iextp_header.send_time.get().value()
        << ",iex_tp_message_block_length=" << msg.fields.iex_tp_message_block_length.get().value()
        << ",iex_tp_message_length=" << msg.fields.iex_tp_message_length.get().value()
        << ",iex_tp_message_type=\"" << snap_tops::iex_tp_message_type::to_string(msg.fields.iex_tp_message_type.get().value()) << '"'

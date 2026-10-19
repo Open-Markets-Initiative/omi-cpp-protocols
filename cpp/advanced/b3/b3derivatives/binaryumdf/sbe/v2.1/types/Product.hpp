@@ -70,7 +70,7 @@ struct product {
     using storage_type = result_type;
 
     constexpr product()
-     : value{ enum_type::commodity } {}
+     : value{ enum_type{} } {}
 
     constexpr product(enum_type v)
      : value{ v } {}

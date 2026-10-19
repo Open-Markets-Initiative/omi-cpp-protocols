@@ -67,7 +67,7 @@ struct pricing_method {
     using storage_type = result_type;
 
     constexpr pricing_method()
-     : value{ enum_type::itayose_method } {}
+     : value{ enum_type{} } {}
 
     constexpr pricing_method(enum_type v)
      : value{ v } {}

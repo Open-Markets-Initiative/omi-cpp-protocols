@@ -5,7 +5,7 @@
 
 namespace iex::iexequities::deepplus::snap::v1_06 {
 
-// Length of the IexTp message block, see the Iex Transport specification
+// Length in bytes of the IexTp message block that follows this field: the IexTp Message Length field and the message
 struct IexTpMessageBlockLength {
 
     static constexpr const char* name = "Iex Tp Message Block Length";

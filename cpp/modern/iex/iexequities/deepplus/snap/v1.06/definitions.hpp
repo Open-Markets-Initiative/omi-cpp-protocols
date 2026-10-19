@@ -1,6 +1,7 @@
 #pragma once
 
 #include "structs/MessageHeader.hpp"
+#include "structs/IextpHeader.hpp"
 
 #include "messages/SnapshotRequestMessage.hpp"
 #include "messages/ErrorResponseMessage.hpp"

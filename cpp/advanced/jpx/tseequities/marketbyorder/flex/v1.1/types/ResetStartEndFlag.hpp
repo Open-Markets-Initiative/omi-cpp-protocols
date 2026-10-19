@@ -52,7 +52,7 @@ struct reset_start_end_flag {
     using storage_type = result_type;
 
     constexpr reset_start_end_flag()
-     : value{ enum_type::start_of_reset_dissemination } {}
+     : value{ enum_type{} } {}
 
     constexpr reset_start_end_flag(enum_type v)
      : value{ v } {}

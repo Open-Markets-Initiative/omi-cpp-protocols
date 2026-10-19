@@ -5,7 +5,7 @@ namespace b3::b3derivatives::binaryumdf::sbe::v1_6 {
 
 #pragma pack(push, 1)
 
-// Action
+// SequenceReset_1Message
 struct SequenceResetMessage {
 
 

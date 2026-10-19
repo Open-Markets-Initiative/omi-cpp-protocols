@@ -55,7 +55,7 @@ struct settl_price_type {
     using storage_type = result_type;
 
     constexpr settl_price_type()
-     : value{ enum_type::final_value } {}
+     : value{ enum_type{} } {}
 
     constexpr settl_price_type(enum_type v)
      : value{ v } {}

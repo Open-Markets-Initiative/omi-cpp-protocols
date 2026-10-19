@@ -124,7 +124,7 @@ void expect(const char* name, const char* relative) {
 int main() {
     std::printf("== Nasdaq.NsmEquities.TotalView.Itch.v5.0.2023 (classes)\n");
     expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadAddOrderNoMpidAttributionMessage>("AddOrderNoMpidAttributionMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/AddOrderNoMPID.pcap");
-    expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadAddOrderWithMpidAttributionMessage>("AddOrderWithMpidAttributionMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/AddOrderWithMPID.pcap");
+    expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadAddOrderWithMpidAttributionMessage>("AddOrderWithMpidAttributionMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/AddOrderWithMpid.pcap");
     expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadCrossTradeMessage>("CrossTradeMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/CrossTrade.pcap");
     expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadLuldAuctionCollarMessage>("LuldAuctionCollarMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/LULDAuctionCollar.pcap");
     expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadMarketParticipantPositionMessage>("MarketParticipantPositionMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/MarketParticipantPosition.pcap");

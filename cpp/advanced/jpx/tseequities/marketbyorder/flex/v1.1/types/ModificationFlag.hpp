@@ -52,7 +52,7 @@ struct modification_flag {
     using storage_type = result_type;
 
     constexpr modification_flag()
-     : value{ enum_type::cancel_order_or_modification_order_that_changes_time_priority } {}
+     : value{ enum_type{} } {}
 
     constexpr modification_flag(enum_type v)
      : value{ v } {}

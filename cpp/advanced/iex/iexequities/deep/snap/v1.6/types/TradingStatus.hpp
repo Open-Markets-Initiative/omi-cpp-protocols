@@ -57,7 +57,7 @@ struct trading_status {
     using storage_type = result_type;
 
     constexpr trading_status()
-     : value{ enum_type::trading_halted_across_all_us_equity_markets } {}
+     : value{ enum_type{} } {}
 
     constexpr trading_status(enum_type v)
      : value{ v } {}

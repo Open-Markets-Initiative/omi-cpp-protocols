@@ -3,6 +3,7 @@
 
 #include "../pcap/Frame.hpp"
 #include "../pcap/PcapFile.hpp"
+#include "../pcap/TcpReassembler.hpp"
 #include "cpp/modern/jpx/tseequities/marketbyorder/flex/v1.1/definitions.hpp"
 #include "../protocol/Branches.hpp"
 
@@ -16,6 +17,9 @@
 #include <string>
 #include <type_traits>
 #include <vector>
+#include <deque>
+#include <unordered_map>
+#include <utility>
 
 namespace extractor {
 
@@ -161,6 +165,17 @@ inline void write_samples(const fs::path& out_dir,
     }
 }
 
+// Per-flow accumulator. The reassembler delivers in-order chunks; a packet may straddle chunk
+// boundaries, so each flow holds its leftover bytes and packets are walked out of them greedily.
+// The wire_log records which wire frame each leftover byte came from — when a packet's bytes
+// span more than one wire frame, that's a reassembly example.
+struct FlowBuffer {
+    std::vector<std::uint8_t> bytes;
+    // (wire_frame, byte_count) entries, front-to-back, parallel to `bytes`.
+    // Consecutive entries from the same wire frame are merged so contributors are unique.
+    std::deque<std::pair<Captured, std::size_t>> wire_log;
+};
+
 // A discriminator value as a key: its bits, never sign-extended.
 template <typename Value>
 inline std::uint64_t key_of(Value value) {
@@ -197,7 +212,6 @@ inline int sample(const fs::path& in_path, const fs::path& out_dir) {
         }
 
         if (count == 0) { return; }
-        if (protocol::Branches::name(first) == nullptr) { return; }   // another tree's datagram
 
         if (count == 1) {
             keep(first, pcap.length(), [&] { return capture_of(pcap); });
@@ -206,30 +220,73 @@ inline int sample(const fs::path& in_path, const fs::path& out_dir) {
         }
     };
 
-    // The Tcp Packet tree: TcpPacketIterator walks each datagram's messages.
-    auto walk_tcp_packet = [&](const packet::Frame& frame) {
-        jpx::tseequities::marketbyorder::flex::v1_1::TcpPacketIterator messages;
-        messages.initialize(frame.payload, frame.payload_len);
+    // The Tcp Packet tree: TcpPacketIterator walks each flow's reassembled bytes.
+    std::unordered_map<packet::TcpFlowKey, FlowBuffer, packet::TcpFlowKey::hash> flows_tcp_packet;
+    packet::TcpReassembler reassembler_tcp_packet;
+    reassembler_tcp_packet.on_data = [&](const packet::TcpFlowKey& key, const std::byte* data, std::size_t len) {
+        auto& flow = flows_tcp_packet[key];
 
-        std::size_t count = 0;
-        std::uint64_t first = 0;
+        // Append bytes + record contribution. Merge with the trailing log entry when it's
+        // the same wire frame (out-of-order drains can trigger multiple on_data per process()).
+        flow.bytes.insert(flow.bytes.end(),
+                          reinterpret_cast<const std::uint8_t*>(data),
+                          reinterpret_cast<const std::uint8_t*>(data) + len);
+        if (!flow.wire_log.empty() &&
+            flow.wire_log.back().first.timestamp_ns == current_wire.timestamp_ns) {
+            flow.wire_log.back().second += len;
+        } else {
+            flow.wire_log.emplace_back(current_wire, len);
+        }
 
-        while (messages.next()) {
-            if (count == 0) {
-                first = key_of(messages.packet_type);
-                first |= 72057594037927936ull;
+        const auto* base = reinterpret_cast<const std::byte*>(flow.bytes.data());
+        jpx::tseequities::marketbyorder::flex::v1_1::TcpPacketIterator packets;
+        packets.initialize(base, flow.bytes.size());
+
+        std::size_t pos = 0;
+        std::size_t packets_in_chunk = 0;
+        while (packets.next()) {
+            if (packets.current > packets.end) { break; }   // need more bytes
+
+            const std::size_t begin = pos;
+            pos = static_cast<std::size_t>(packets.current - base);
+            const std::size_t span = pos - begin;
+            if (packets.message > packets.current) { continue; }   // shorter than its header (a null sentinel)
+
+            std::uint64_t id = key_of(packets.packet_type);
+            id |= 72057594037927936ull;
+
+            // Per-key sample: a synthetic wire frame around the packet's raw bytes, so the packet sits
+            // at TCP-payload offset 0 and the per-message pcap replays standalone.
+            const auto* bytes = flow.bytes.data() + begin;
+            keep(id, 14 + 20 + 20 + span, [&] { return synthesize_wire_frame(current_wire.timestamp_ns, bytes, span); });
+
+            // Reassembly example: the original wire frames of the first packet spanning more than one.
+            if (reassembly_frames.empty()) {
+                std::vector<Captured> contributors;
+                std::size_t walked = 0;
+                for (const auto& [frame, count] : flow.wire_log) {
+                    if (walked >= begin + span) { break; }
+                    if (walked + count > begin) { contributors.push_back(frame); }
+                    walked += count;
+                }
+                if (contributors.size() > 1) { reassembly_frames = std::move(contributors); }
             }
-            ++count;
+
+            ++packets_in_chunk;
         }
 
-        if (count == 0) { return; }
-        if (protocol::Branches::name(first) == nullptr) { return; }   // another tree's datagram
-
-        if (count == 1) {
-            keep(first, pcap.length(), [&] { return capture_of(pcap); });
-        } else if (!multiple_messages) {
-            multiple_messages = capture_of(pcap);
+        // Drop consumed bytes from both buffer and contribution log in lock-step.
+        if (pos > 0) {
+            flow.bytes.erase(flow.bytes.begin(), flow.bytes.begin() + static_cast<std::ptrdiff_t>(pos));
+            std::size_t remaining = pos;
+            while (remaining > 0 && !flow.wire_log.empty()) {
+                auto& [frame, count] = flow.wire_log.front();
+                if (count <= remaining) { remaining -= count; flow.wire_log.pop_front(); }
+                else { count -= remaining; remaining = 0; }
+            }
         }
+
+        if (packets_in_chunk > 1 && !multiple_messages) { multiple_messages = current_wire; }
     };
 
     while (pcap.advance()) {
@@ -238,7 +295,11 @@ inline int sample(const fs::path& in_path, const fs::path& out_dir) {
 
         if (frame.is_udp()) {
             walk_message(frame);
-            walk_tcp_packet(frame);
+        }
+
+        if (frame.is_tcp()) {
+            current_wire = capture_of(pcap);
+            reassembler_tcp_packet.process(frame);
         }
     }
 

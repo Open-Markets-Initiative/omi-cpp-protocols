@@ -21,7 +21,7 @@ struct end_of_message_message {
         flex_marketbyorder::next_sequence_number next_sequence_number;
     };
 
-    flex_marketbyorder::tcp_packet_header header = {std::uint16_t(sizeof(flex_marketbyorder::tcp_packet_header) + sizeof(fields_type)), packet_type::enum_type::end_of_message_message};
+    flex_marketbyorder::tcp_packet_header header = {std::uint16_t(sizeof(flex_marketbyorder::tcp_packet_header) + sizeof(fields_type) - 2), packet_type::enum_type::end_of_message_message};
 
     fields_type fields;
 

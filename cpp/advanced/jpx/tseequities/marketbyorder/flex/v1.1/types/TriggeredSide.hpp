@@ -54,7 +54,7 @@ struct triggered_side {
     using storage_type = result_type;
 
     constexpr triggered_side()
-     : value{ enum_type::sell_order } {}
+     : value{ enum_type{} } {}
 
     constexpr triggered_side(enum_type v)
      : value{ v } {}

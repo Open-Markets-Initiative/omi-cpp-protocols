@@ -54,7 +54,7 @@ struct market_code {
     using storage_type = result_type;
 
     constexpr market_code()
-     : value{ enum_type::nasdaq } {}
+     : value{ enum_type{} } {}
 
     constexpr market_code(enum_type v)
      : value{ v } {}

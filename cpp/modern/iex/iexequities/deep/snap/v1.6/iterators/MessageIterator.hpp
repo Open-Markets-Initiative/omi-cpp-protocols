@@ -9,15 +9,17 @@ struct MessageIterator {
     const std::byte* current = nullptr;
     const std::byte* end = nullptr;
 
+    const MessageHeader* message_header = nullptr;
     char message_type = 0;
     std::uint16_t message_length = 0;
     const std::byte* message = nullptr;
 
     // initialize over reassembled byte stream
-    void initialize(const std::byte* data, std::size_t length) {
+    void initialize(const std::byte* data, std::size_t bytes) {
         current = data;
-        end = data + length;
+        end = data + bytes;
 
+        message_header = nullptr;
         message = nullptr;
         message_type = 0;
         message_length = 0;
@@ -34,7 +36,7 @@ struct MessageIterator {
             return false;
         }
 
-        const auto* message_header = MessageHeader::parse(current);
+        message_header = MessageHeader::parse(current);
         message = current + sizeof(MessageHeader);
 
         message_type = message_header->message_type.get();
@@ -50,6 +52,7 @@ struct MessageIterator {
         current = nullptr;
         end = nullptr;
 
+        message_header = nullptr;
         message = nullptr;
         message_type = 0;
         message_length = 0;

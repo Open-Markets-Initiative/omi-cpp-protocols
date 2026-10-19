@@ -51,7 +51,7 @@ struct operational_halt_action {
     using storage_type = result_type;
 
     constexpr operational_halt_action()
-     : value{ enum_type::halted } {}
+     : value{ enum_type{} } {}
 
     constexpr operational_halt_action(enum_type v)
      : value{ v } {}

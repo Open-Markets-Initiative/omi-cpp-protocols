@@ -63,7 +63,7 @@ struct server_packet_type {
     using storage_type = result_type;
 
     constexpr server_packet_type()
-     : value{ enum_type::debug_packet } {}
+     : value{ enum_type{} } {}
 
     constexpr server_packet_type(enum_type v)
      : value{ v } {}

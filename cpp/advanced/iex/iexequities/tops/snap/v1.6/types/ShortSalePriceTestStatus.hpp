@@ -52,7 +52,7 @@ struct short_sale_price_test_status {
     using storage_type = result_type;
 
     constexpr short_sale_price_test_status()
-     : value{ enum_type::not_in_effect } {}
+     : value{ enum_type{} } {}
 
     constexpr short_sale_price_test_status(enum_type v)
      : value{ v } {}

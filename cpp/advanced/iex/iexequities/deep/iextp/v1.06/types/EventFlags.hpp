@@ -52,7 +52,7 @@ struct event_flags {
     using storage_type = result_type;
 
     constexpr event_flags()
-     : value{ enum_type::order_book_is_processing_an_event } {}
+     : value{ enum_type{} } {}
 
     constexpr event_flags(enum_type v)
      : value{ v } {}

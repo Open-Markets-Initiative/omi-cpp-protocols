@@ -54,7 +54,7 @@ struct imbalance_side {
     using storage_type = result_type;
 
     constexpr imbalance_side()
-     : value{ enum_type::buy } {}
+     : value{ enum_type{} } {}
 
     constexpr imbalance_side(enum_type v)
      : value{ v } {}

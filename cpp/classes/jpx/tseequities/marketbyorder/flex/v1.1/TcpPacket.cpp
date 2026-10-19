@@ -34,7 +34,7 @@ std::size_t TcpPacket::decode(const std::byte* data, std::size_t length) {
 
     offset += tcp_packet_header_.decode(data + offset, length - offset);
 
-    const std::size_t packet_size = static_cast<std::size_t>(tcp_packet_header_.packet_length());
+    const std::size_t packet_size = static_cast<std::size_t>(tcp_packet_header_.packet_length()) + 2;
     wire::require("TcpPacket", packet_size, length);
     const std::size_t body = packet_size - offset;
 
@@ -50,7 +50,7 @@ std::size_t TcpPacket::encode(std::byte* data, std::size_t capacity) const {
     wire::require_capacity("TcpPacket", encoded_size(), capacity);
 
     auto tcp_packet_header = tcp_packet_header_;
-    tcp_packet_header.set_packet_length(static_cast<std::uint16_t>(encoded_size()));
+    tcp_packet_header.set_packet_length(static_cast<std::uint16_t>(encoded_size() - 2));
     tcp_packet_header.set_packet_type(message_->type());
 
     offset += tcp_packet_header.encode(data + offset, capacity - offset);

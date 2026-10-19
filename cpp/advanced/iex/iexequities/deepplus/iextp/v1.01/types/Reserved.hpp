@@ -3,7 +3,7 @@
 #include <cstddef>
 #include <array>
 #include <span>
-#include <cstring>
+#include <algorithm>
 #include "../cache/Required.hpp"
 
 namespace iex::iexequities::deepplus::iextp::v1_01 {
@@ -25,9 +25,9 @@ struct reserved {
         return result_type{value};
     }
 
-    void set(std::span<const std::uint8_t> src) {
+    constexpr void set(std::span<const std::uint8_t> src) {
         auto len = std::min(src.size(), value.size());
-        std::memcpy(value.data(), src.data(), len);
+        std::copy_n(src.begin(), len, value.begin());
     }
 
     constexpr void set(result_type v) {

@@ -51,7 +51,7 @@ struct security_event {
     using storage_type = result_type;
 
     constexpr security_event()
-     : value{ enum_type::opening_process_complete } {}
+     : value{ enum_type{} } {}
 
     constexpr security_event(enum_type v)
      : value{ v } {}

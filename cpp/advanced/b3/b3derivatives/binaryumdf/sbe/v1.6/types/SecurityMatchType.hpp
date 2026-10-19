@@ -52,7 +52,7 @@ struct security_match_type {
     using storage_type = result_type;
 
     constexpr security_match_type()
-     : value{ enum_type::issuing_buy_back_auction } {}
+     : value{ enum_type{} } {}
 
     constexpr security_match_type(enum_type v)
      : value{ v } {}

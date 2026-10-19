@@ -52,7 +52,7 @@ struct test_mode_flag {
     using storage_type = result_type;
 
     constexpr test_mode_flag()
-     : value{ enum_type::production } {}
+     : value{ enum_type{} } {}
 
     constexpr test_mode_flag(enum_type v)
      : value{ v } {}

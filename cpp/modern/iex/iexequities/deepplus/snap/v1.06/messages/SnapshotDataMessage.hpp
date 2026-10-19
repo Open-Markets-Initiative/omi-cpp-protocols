@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../types/IexTpHeader.hpp"
+#include "../structs/IextpHeader.hpp"
 #include "../types/IexTpMessageBlockLength.hpp"
 #include "../types/IexTpMessageLength.hpp"
 #include "../types/IexTpMessageType.hpp"
@@ -13,7 +13,7 @@ namespace iex::iexequities::deepplus::snap::v1_06 {
 // Carries one complete Deep Plus feed message wrapped with an IexTp header providing Deep Plus feed sequencing and timing information
 struct SnapshotDataMessage {
 
-    IexTpHeader iex_tp_header;
+    IextpHeader iextp_header;
     IexTpMessageBlockLength iex_tp_message_block_length;
     IexTpMessageLength iex_tp_message_length;
     IexTpMessageType iex_tp_message_type;

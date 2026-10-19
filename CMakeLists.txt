@@ -801,6 +801,7 @@ add_library(classes_iex_iexequities_deep_snap_v1.6 STATIC
   cpp/classes/iex/iexequities/deep/snap/v1.6/messages/SnapshotRequestMessage.cpp
   cpp/classes/iex/iexequities/deep/snap/v1.6/messages/ErrorResponseMessage.cpp
   cpp/classes/iex/iexequities/deep/snap/v1.6/messages/SnapshotStartMessage.cpp
+  cpp/classes/iex/iexequities/deep/snap/v1.6/structs/IextpHeader.cpp
   cpp/classes/iex/iexequities/deep/snap/v1.6/messages/SystemEventMessage.cpp
   cpp/classes/iex/iexequities/deep/snap/v1.6/bitfields/SecurityDirectoryFlags.cpp
   cpp/classes/iex/iexequities/deep/snap/v1.6/messages/SecurityDirectoryMessage.cpp
@@ -914,6 +915,7 @@ add_library(classes_iex_iexequities_deepplus_snap_v1.06 STATIC
   cpp/classes/iex/iexequities/deepplus/snap/v1.06/messages/SnapshotRequestMessage.cpp
   cpp/classes/iex/iexequities/deepplus/snap/v1.06/messages/ErrorResponseMessage.cpp
   cpp/classes/iex/iexequities/deepplus/snap/v1.06/messages/SnapshotStartMessage.cpp
+  cpp/classes/iex/iexequities/deepplus/snap/v1.06/structs/IextpHeader.cpp
   cpp/classes/iex/iexequities/deepplus/snap/v1.06/messages/SystemEventMessage.cpp
   cpp/classes/iex/iexequities/deepplus/snap/v1.06/bitfields/SecurityDirectoryFlags.cpp
   cpp/classes/iex/iexequities/deepplus/snap/v1.06/messages/SecurityDirectoryMessage.cpp
@@ -1041,6 +1043,7 @@ add_library(classes_iex_iexequities_tops_snap_v1.6 STATIC
   cpp/classes/iex/iexequities/tops/snap/v1.6/messages/SnapshotRequestMessage.cpp
   cpp/classes/iex/iexequities/tops/snap/v1.6/messages/ErrorResponseMessage.cpp
   cpp/classes/iex/iexequities/tops/snap/v1.6/messages/SnapshotStartMessage.cpp
+  cpp/classes/iex/iexequities/tops/snap/v1.6/structs/IextpHeader.cpp
   cpp/classes/iex/iexequities/tops/snap/v1.6/messages/SystemEventMessage.cpp
   cpp/classes/iex/iexequities/tops/snap/v1.6/bitfields/SecurityDirectoryFlags.cpp
   cpp/classes/iex/iexequities/tops/snap/v1.6/messages/SecurityDirectoryMessage.cpp

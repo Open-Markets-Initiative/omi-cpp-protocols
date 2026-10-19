@@ -32,6 +32,7 @@
 #include "NetOrderImbalanceIndicatorMessage.hpp"
 #include "RetailPriceImprovementIndicatorMessage.hpp"
 #include "DirectListingWithCapitalRaisePriceDiscoveryMessage.hpp"
+#include "../json/messages/debug_packet_json.hpp"
 #include "../json/messages/unsequenced_data_packet_json.hpp"
 #include "../json/messages/sequenced_data_packet_json.hpp"
 
@@ -69,7 +70,7 @@ inline std::ostream& operator<<(std::ostream& os, const message_header& value) {
 }
 
 inline std::ostream& operator<<(std::ostream& os, const debug_packet& msg) {
-    os << "debug_text=\"" << msg.fields.debug_text.get().value() << '"'
+    os << "tail=" << json::tail_to_json_string(msg)
        ;
     return os;
 }

@@ -64,7 +64,7 @@ struct md_update_action {
     using storage_type = result_type;
 
     constexpr md_update_action()
-     : value{ enum_type::new_value } {}
+     : value{ enum_type{} } {}
 
     constexpr md_update_action(enum_type v)
      : value{ v } {}

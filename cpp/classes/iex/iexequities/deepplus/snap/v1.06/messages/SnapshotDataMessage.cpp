@@ -8,11 +8,11 @@
 namespace iex::iexequities::deepplus::snap::v1_06 {
 
 SnapshotDataMessage::SnapshotDataMessage(const SnapshotDataMessage& other)
-  : iex_tp_header_(other.iex_tp_header_), iex_tp_message_block_length_(other.iex_tp_message_block_length_), iex_tp_message_length_(other.iex_tp_message_length_), iex_tp_message_type_(other.iex_tp_message_type_), iex_tp_message_data_(other.iex_tp_message_data_ ? other.iex_tp_message_data_->clone() : nullptr) {}
+  : iextp_header_(other.iextp_header_), iex_tp_message_block_length_(other.iex_tp_message_block_length_), iex_tp_message_length_(other.iex_tp_message_length_), iex_tp_message_type_(other.iex_tp_message_type_), iex_tp_message_data_(other.iex_tp_message_data_ ? other.iex_tp_message_data_->clone() : nullptr) {}
 
 SnapshotDataMessage& SnapshotDataMessage::operator=(const SnapshotDataMessage& other) {
     if (this != &other) {
-        iex_tp_header_ = other.iex_tp_header_;
+        iextp_header_ = other.iextp_header_;
         iex_tp_message_block_length_ = other.iex_tp_message_block_length_;
         iex_tp_message_length_ = other.iex_tp_message_length_;
         iex_tp_message_type_ = other.iex_tp_message_type_;
@@ -21,8 +21,9 @@ SnapshotDataMessage& SnapshotDataMessage::operator=(const SnapshotDataMessage& o
     return *this;
 }
 
-char SnapshotDataMessage::iex_tp_header() const { return iex_tp_header_; }
-void SnapshotDataMessage::set_iex_tp_header(char value) { iex_tp_header_ = value; }
+const IextpHeader& SnapshotDataMessage::iextp_header() const { return iextp_header_; }
+IextpHeader& SnapshotDataMessage::iextp_header() { return iextp_header_; }
+void SnapshotDataMessage::set_iextp_header(const IextpHeader& value) { iextp_header_ = value; }
 
 std::uint16_t SnapshotDataMessage::iex_tp_message_block_length() const { return iex_tp_message_block_length_; }
 void SnapshotDataMessage::set_iex_tp_message_block_length(std::uint16_t value) { iex_tp_message_block_length_ = value; }
@@ -44,9 +45,7 @@ std::string_view SnapshotDataMessage::name() const { return "Snapshot Data Messa
 std::size_t SnapshotDataMessage::decode(const std::byte* data, std::size_t length) {
     std::size_t offset = 0;
 
-    wire::require("SnapshotDataMessage", offset + 1, length);
-    iex_tp_header_ = wire::read_char(data + offset);
-    offset += 1;
+    offset += iextp_header_.decode(data + offset, length - offset);
 
     wire::require("SnapshotDataMessage", offset + 2, length);
     iex_tp_message_block_length_ = wire::read_u16_le(data + offset);
@@ -62,7 +61,10 @@ std::size_t SnapshotDataMessage::decode(const std::byte* data, std::size_t lengt
 
     {
         auto selected = IexTpMessageDataFactory::create(iex_tp_message_type_);
-        offset += selected->decode(data + offset, length - offset);
+        const std::size_t bounded = static_cast<std::size_t>(iex_tp_message_length_);
+        wire::require("SnapshotDataMessage", offset + bounded, length);
+        selected->decode(data + offset, bounded);
+        offset += bounded;
         iex_tp_message_data_ = std::move(selected);
     }
 
@@ -77,14 +79,15 @@ std::size_t SnapshotDataMessage::encode(std::byte* data, std::size_t capacity) c
     // Counts and lengths are written from what is encoded, not from what was stored
     auto iex_tp_message_type = iex_tp_message_type_;
     iex_tp_message_type = iex_tp_message_data_->type();
+    auto iex_tp_message_length = iex_tp_message_length_;
+    iex_tp_message_length = static_cast<std::uint16_t>(iex_tp_message_data_->encoded_size());
 
-    wire::write_char(data + offset, iex_tp_header_);
-    offset += 1;
+    offset += iextp_header_.encode(data + offset, capacity - offset);
 
     wire::write_u16_le(data + offset, static_cast<std::uint16_t>(iex_tp_message_block_length_));
     offset += 2;
 
-    wire::write_u16_le(data + offset, static_cast<std::uint16_t>(iex_tp_message_length_));
+    wire::write_u16_le(data + offset, static_cast<std::uint16_t>(iex_tp_message_length));
     offset += 2;
 
     wire::write_char(data + offset, static_cast<char>(iex_tp_message_type));
@@ -96,7 +99,7 @@ std::size_t SnapshotDataMessage::encode(std::byte* data, std::size_t capacity) c
 }
 
 std::size_t SnapshotDataMessage::encoded_size() const {
-    return 1 + 2 + 2 + 1 + (iex_tp_message_data_ ? iex_tp_message_data_->encoded_size() : 0);
+    return iextp_header_.encoded_size() + 2 + 2 + 1 + (iex_tp_message_data_ ? iex_tp_message_data_->encoded_size() : 0);
 }
 
 void SnapshotDataMessage::accept(Visitor& visitor) const {
@@ -109,8 +112,8 @@ std::unique_ptr<Message> SnapshotDataMessage::clone() const {
 
 void SnapshotDataMessage::print(std::ostream& out) const {
     out << "SnapshotDataMessage{";
-    out << "iex_tp_header=";
-    print::character(out, iex_tp_header_);
+    out << "iextp_header=";
+    iextp_header_.print(out);
     out << ", iex_tp_message_block_length=";
     out << iex_tp_message_block_length_;
     out << ", iex_tp_message_length=";
@@ -128,7 +131,7 @@ bool SnapshotDataMessage::equals(const Message& other) const {
 }
 
 bool SnapshotDataMessage::operator==(const SnapshotDataMessage& other) const {
-    return iex_tp_header_ == other.iex_tp_header_
+    return iextp_header_ == other.iextp_header_
         && iex_tp_message_block_length_ == other.iex_tp_message_block_length_
         && iex_tp_message_length_ == other.iex_tp_message_length_
         && iex_tp_message_type_ == other.iex_tp_message_type_

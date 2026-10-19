@@ -117,6 +117,11 @@ struct TradeCondition {
         return value & mask::UnusedTradeCondition15;
     }
 
+    // all bits
+    [[nodiscard]] constexpr type get() const {
+        return value;
+    }
+
   protected:
     type value;
 };

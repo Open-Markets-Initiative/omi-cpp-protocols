@@ -9,15 +9,17 @@ struct ServerSoupBinTcpPacketIterator {
     const std::byte* current = nullptr;
     const std::byte* end = nullptr;
 
+    const ServerPacketHeader* server_packet_header = nullptr;
     char server_packet_type = 0;
     std::uint16_t packet_length = 0;
     const std::byte* message = nullptr;
 
     // initialize over reassembled byte stream
-    void initialize(const std::byte* data, std::size_t length) {
+    void initialize(const std::byte* data, std::size_t bytes) {
         current = data;
-        end = data + length;
+        end = data + bytes;
 
+        server_packet_header = nullptr;
         message = nullptr;
         server_packet_type = 0;
         packet_length = 0;
@@ -34,7 +36,7 @@ struct ServerSoupBinTcpPacketIterator {
             return false;
         }
 
-        const auto* server_packet_header = ServerPacketHeader::parse(current);
+        server_packet_header = ServerPacketHeader::parse(current);
         message = current + sizeof(ServerPacketHeader);
 
         server_packet_type = server_packet_header->server_packet_type.get();
@@ -50,6 +52,7 @@ struct ServerSoupBinTcpPacketIterator {
         current = nullptr;
         end = nullptr;
 
+        server_packet_header = nullptr;
         message = nullptr;
         server_packet_type = 0;
         packet_length = 0;

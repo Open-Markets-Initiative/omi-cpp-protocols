@@ -61,7 +61,7 @@ struct price_band_type {
     using storage_type = result_type;
 
     constexpr price_band_type()
-     : value{ enum_type::hard_limit } {}
+     : value{ enum_type{} } {}
 
     constexpr price_band_type(enum_type v)
      : value{ v } {}

@@ -32,7 +32,8 @@ class SequencedDataPacket : public ServerMessage {
     char sequenced_message_type() const;
     void set_sequenced_message_type(char value);
 
-    // Sequenced Message: Branch
+    // Sequenced Message: The sequenced (server to client) message carried by the packet,
+    // opaque bytes unless an application source dispatches it
     const SequencedMessage* sequenced_message() const;
     SequencedMessage* sequenced_message();
     void set_sequenced_message(std::unique_ptr<SequencedMessage> value);

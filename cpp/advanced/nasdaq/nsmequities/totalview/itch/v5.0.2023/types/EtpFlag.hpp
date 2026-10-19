@@ -54,7 +54,7 @@ struct etp_flag {
     using storage_type = result_type;
 
     constexpr etp_flag()
-     : value{ enum_type::etp } {}
+     : value{ enum_type{} } {}
 
     constexpr etp_flag(enum_type v)
      : value{ v } {}

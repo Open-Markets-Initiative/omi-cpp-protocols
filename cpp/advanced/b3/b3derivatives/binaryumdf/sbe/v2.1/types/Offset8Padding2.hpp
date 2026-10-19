@@ -3,7 +3,7 @@
 #include <cstddef>
 #include <array>
 #include <span>
-#include <cstring>
+#include <algorithm>
 #include "../cache/Required.hpp"
 
 namespace b3::b3derivatives::binaryumdf::sbe::v2_1 {
@@ -25,9 +25,9 @@ struct offset_8_padding_2 {
         return result_type{value};
     }
 
-    void set(std::span<const std::uint8_t> src) {
+    constexpr void set(std::span<const std::uint8_t> src) {
         auto len = std::min(src.size(), value.size());
-        std::memcpy(value.data(), src.data(), len);
+        std::copy_n(src.begin(), len, value.begin());
     }
 
     constexpr void set(result_type v) {

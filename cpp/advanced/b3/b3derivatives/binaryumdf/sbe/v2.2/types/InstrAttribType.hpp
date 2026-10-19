@@ -52,7 +52,7 @@ struct instr_attrib_type {
     using storage_type = result_type;
 
     constexpr instr_attrib_type()
-     : value{ enum_type::trade_type_eligibility } {}
+     : value{ enum_type{} } {}
 
     constexpr instr_attrib_type(enum_type v)
      : value{ v } {}

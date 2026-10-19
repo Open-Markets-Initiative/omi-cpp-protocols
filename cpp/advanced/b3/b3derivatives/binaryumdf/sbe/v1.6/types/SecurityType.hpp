@@ -97,7 +97,7 @@ struct security_type {
     using storage_type = result_type;
 
     constexpr security_type()
-     : value{ enum_type::cash } {}
+     : value{ enum_type{} } {}
 
     constexpr security_type(enum_type v)
      : value{ v } {}

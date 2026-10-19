@@ -87,7 +87,7 @@ struct price_variation_indicator {
     using storage_type = result_type;
 
     constexpr price_variation_indicator()
-     : value{ enum_type::less_than_1_percent } {}
+     : value{ enum_type{} } {}
 
     constexpr price_variation_indicator(enum_type v)
      : value{ v } {}

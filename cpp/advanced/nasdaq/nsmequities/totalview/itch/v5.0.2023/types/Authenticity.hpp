@@ -51,7 +51,7 @@ struct authenticity {
     using storage_type = result_type;
 
     constexpr authenticity()
-     : value{ enum_type::live_production } {}
+     : value{ enum_type{} } {}
 
     constexpr authenticity(enum_type v)
      : value{ v } {}

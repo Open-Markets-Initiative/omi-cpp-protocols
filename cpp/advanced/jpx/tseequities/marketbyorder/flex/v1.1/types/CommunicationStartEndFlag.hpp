@@ -55,7 +55,7 @@ struct communication_start_end_flag {
     using storage_type = result_type;
 
     constexpr communication_start_end_flag()
-     : value{ enum_type::health_check_control } {}
+     : value{ enum_type{} } {}
 
     constexpr communication_start_end_flag(enum_type v)
      : value{ v } {}

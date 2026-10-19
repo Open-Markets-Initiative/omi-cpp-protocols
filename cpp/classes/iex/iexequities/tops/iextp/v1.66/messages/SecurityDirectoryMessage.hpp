@@ -17,8 +17,9 @@ namespace iex::iexequities::tops::iextp::v1_66 {
 
 class Visitor;
 
-// The System Event Message is used to indicate events that apply to the market or the data
-// feed.
+// IEX disseminates a full pre-market spin of Security Directory Messages for all IEX-listed
+// securities. After the pre-market spin, IEX will use the Security Directory Message to relay
+// changes for an individual security.
 class SecurityDirectoryMessage : public Message {
   public:
     // The code that selects this message

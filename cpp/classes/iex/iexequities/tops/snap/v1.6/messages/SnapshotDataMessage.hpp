@@ -9,6 +9,7 @@
 #include "../enums/IexTpMessageType.hpp"
 #include "../messages/IexTpMessageData.hpp"
 #include "../messages/Message.hpp"
+#include "../structs/IextpHeader.hpp"
 
 namespace iex::iexequities::tops::snap::v1_6 {
 
@@ -29,13 +30,13 @@ class SnapshotDataMessage : public Message {
     SnapshotDataMessage& operator=(SnapshotDataMessage&& other) noexcept = default;
     ~SnapshotDataMessage() = default;
 
-    // Iex Tp Header: IexTp header for the wrapped Tops feed message, see the Iex Transport
-    // specification
-    char iex_tp_header() const;
-    void set_iex_tp_header(char value);
+    // Iextp Header: IexTp header of the wrapped feed message
+    const IextpHeader& iextp_header() const;
+    IextpHeader& iextp_header();
+    void set_iextp_header(const IextpHeader& value);
 
-    // Iex Tp Message Block Length: Length of the IexTp message block, see the Iex Transport
-    // specification
+    // Iex Tp Message Block Length: Length in bytes of the IexTp message block that follows
+    // this field: the IexTp Message Length field and the message
     std::uint16_t iex_tp_message_block_length() const;
     void set_iex_tp_message_block_length(std::uint16_t value);
 
@@ -48,7 +49,8 @@ class SnapshotDataMessage : public Message {
     IexTpMessageType iex_tp_message_type() const;
     void set_iex_tp_message_type(IexTpMessageType value);
 
-    // Iex Tp Message Data: Branch
+    // Iex Tp Message Data: One complete Iex Tops formatted message, may be any Tops message
+    // type, see the Iex Transport specification
     const IexTpMessageData* iex_tp_message_data() const;
     IexTpMessageData* iex_tp_message_data();
     void set_iex_tp_message_data(std::unique_ptr<IexTpMessageData> value);
@@ -68,7 +70,7 @@ class SnapshotDataMessage : public Message {
     bool operator!=(const SnapshotDataMessage& other) const;
 
   private:
-    char iex_tp_header_{};
+    IextpHeader iextp_header_{};
     std::uint16_t iex_tp_message_block_length_{};
     std::uint16_t iex_tp_message_length_{};
     IexTpMessageType iex_tp_message_type_{};

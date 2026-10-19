@@ -78,7 +78,7 @@ struct financial_status_indicator {
     using storage_type = result_type;
 
     constexpr financial_status_indicator()
-     : value{ enum_type::deficient } {}
+     : value{ enum_type{} } {}
 
     constexpr financial_status_indicator(enum_type v)
      : value{ v } {}

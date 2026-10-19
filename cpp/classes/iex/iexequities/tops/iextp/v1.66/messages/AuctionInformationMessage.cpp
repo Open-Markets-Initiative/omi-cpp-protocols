@@ -6,7 +6,7 @@
 
 namespace iex::iexequities::tops::iextp::v1_66 {
 
-AuctionInformationMessage::AuctionInformationMessage(AuctionType auction_type, std::chrono::nanoseconds timestamp, const std::string& symbol, std::uint32_t paired_shares, Decimal reference_price, Decimal indicative_clearing_price, std::uint32_t imbalance_shares, ImbalanceSide imbalance_side, char extension_number, std::chrono::seconds scheduled_auction_time, Decimal auction_book_clearing_price, Decimal collar_reference_price, Decimal lower_auction_collar, Decimal upper_auction_collar)
+AuctionInformationMessage::AuctionInformationMessage(AuctionType auction_type, std::chrono::nanoseconds timestamp, const std::string& symbol, std::uint32_t paired_shares, Decimal reference_price, Decimal indicative_clearing_price, std::uint32_t imbalance_shares, ImbalanceSide imbalance_side, std::uint8_t extension_number, std::chrono::seconds scheduled_auction_time, Decimal auction_book_clearing_price, Decimal collar_reference_price, Decimal lower_auction_collar, Decimal upper_auction_collar)
   : auction_type_(auction_type), timestamp_(timestamp), symbol_(symbol), paired_shares_(paired_shares), reference_price_(reference_price), indicative_clearing_price_(indicative_clearing_price), imbalance_shares_(imbalance_shares), imbalance_side_(imbalance_side), extension_number_(extension_number), scheduled_auction_time_(scheduled_auction_time), auction_book_clearing_price_(auction_book_clearing_price), collar_reference_price_(collar_reference_price), lower_auction_collar_(lower_auction_collar), upper_auction_collar_(upper_auction_collar) {}
 
 AuctionType AuctionInformationMessage::auction_type() const { return auction_type_; }
@@ -34,8 +34,8 @@ void AuctionInformationMessage::set_imbalance_shares(std::uint32_t value) { imba
 ImbalanceSide AuctionInformationMessage::imbalance_side() const { return imbalance_side_; }
 void AuctionInformationMessage::set_imbalance_side(ImbalanceSide value) { imbalance_side_ = value; }
 
-char AuctionInformationMessage::extension_number() const { return extension_number_; }
-void AuctionInformationMessage::set_extension_number(char value) { extension_number_ = value; }
+std::uint8_t AuctionInformationMessage::extension_number() const { return extension_number_; }
+void AuctionInformationMessage::set_extension_number(std::uint8_t value) { extension_number_ = value; }
 
 std::chrono::seconds AuctionInformationMessage::scheduled_auction_time() const { return scheduled_auction_time_; }
 void AuctionInformationMessage::set_scheduled_auction_time(std::chrono::seconds value) { scheduled_auction_time_ = value; }
@@ -84,7 +84,7 @@ std::size_t AuctionInformationMessage::decode(const std::byte* data, std::size_t
     imbalance_side_ = static_cast<ImbalanceSide>(wire::read_char(data + offset));
     offset += 1;
 
-    extension_number_ = wire::read_char(data + offset);
+    extension_number_ = wire::read_u8(data + offset);
     offset += 1;
 
     scheduled_auction_time_ = std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
@@ -133,7 +133,7 @@ std::size_t AuctionInformationMessage::encode(std::byte* data, std::size_t capac
     wire::write_char(data + offset, static_cast<char>(imbalance_side_));
     offset += 1;
 
-    wire::write_char(data + offset, extension_number_);
+    wire::write_u8(data + offset, static_cast<std::uint8_t>(extension_number_));
     offset += 1;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(scheduled_auction_time_.count()));
@@ -185,7 +185,7 @@ void AuctionInformationMessage::print(std::ostream& out) const {
     out << ", imbalance_side=";
     out << imbalance_side_;
     out << ", extension_number=";
-    print::character(out, extension_number_);
+    out << static_cast<int>(extension_number_);
     out << ", scheduled_auction_time=";
     out << scheduled_auction_time_.count();
     out << ", auction_book_clearing_price=";

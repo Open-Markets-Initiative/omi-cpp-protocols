@@ -55,7 +55,7 @@ struct multi_leg_model {
     using storage_type = result_type;
 
     constexpr multi_leg_model()
-     : value{ enum_type::predefined } {}
+     : value{ enum_type{} } {}
 
     constexpr multi_leg_model(enum_type v)
      : value{ v } {}

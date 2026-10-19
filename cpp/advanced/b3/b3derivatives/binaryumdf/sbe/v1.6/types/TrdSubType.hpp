@@ -73,7 +73,7 @@ struct trd_sub_type {
     using storage_type = result_type;
 
     constexpr trd_sub_type()
-     : value{ enum_type::multi_asset_trade } {}
+     : value{ enum_type{} } {}
 
     constexpr trd_sub_type(enum_type v)
      : value{ v } {}

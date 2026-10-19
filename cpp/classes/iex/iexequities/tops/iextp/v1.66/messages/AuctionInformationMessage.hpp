@@ -28,7 +28,7 @@ class AuctionInformationMessage : public Message {
     static constexpr std::size_t wire_size = 79;
 
     AuctionInformationMessage() = default;
-    AuctionInformationMessage(AuctionType auction_type, std::chrono::nanoseconds timestamp, const std::string& symbol, std::uint32_t paired_shares, Decimal reference_price, Decimal indicative_clearing_price, std::uint32_t imbalance_shares, ImbalanceSide imbalance_side, char extension_number, std::chrono::seconds scheduled_auction_time, Decimal auction_book_clearing_price, Decimal collar_reference_price, Decimal lower_auction_collar, Decimal upper_auction_collar);
+    AuctionInformationMessage(AuctionType auction_type, std::chrono::nanoseconds timestamp, const std::string& symbol, std::uint32_t paired_shares, Decimal reference_price, Decimal indicative_clearing_price, std::uint32_t imbalance_shares, ImbalanceSide imbalance_side, std::uint8_t extension_number, std::chrono::seconds scheduled_auction_time, Decimal auction_book_clearing_price, Decimal collar_reference_price, Decimal lower_auction_collar, Decimal upper_auction_collar);
 
     // Auction Type: Auction type identifier
     AuctionType auction_type() const;
@@ -68,8 +68,8 @@ class AuctionInformationMessage : public Message {
     void set_imbalance_side(ImbalanceSide value);
 
     // Extension Number: Number of extensions an auction received
-    char extension_number() const;
-    void set_extension_number(char value);
+    std::uint8_t extension_number() const;
+    void set_extension_number(std::uint8_t value);
 
     // Scheduled Auction Time: Projected time of the auction match
     std::chrono::seconds scheduled_auction_time() const;
@@ -114,7 +114,7 @@ class AuctionInformationMessage : public Message {
     Decimal indicative_clearing_price_{ 0, -4 };
     std::uint32_t imbalance_shares_{};
     ImbalanceSide imbalance_side_{};
-    char extension_number_{};
+    std::uint8_t extension_number_{};
     std::chrono::seconds scheduled_auction_time_{};
     Decimal auction_book_clearing_price_{ 0, -4 };
     Decimal collar_reference_price_{ 0, -4 };

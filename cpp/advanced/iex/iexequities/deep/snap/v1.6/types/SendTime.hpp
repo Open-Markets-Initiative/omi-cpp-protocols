@@ -1,31 +1,32 @@
 #pragma once
 
 #include <cstddef>
+#include <cstdint>
 #include "../cache/Required.hpp"
 
-namespace iex::iexequities::tops::snap::v1_6 {
+namespace iex::iexequities::deep::snap::v1_6 {
 
-// iex_tp_header
-struct iex_tp_header {
+// send_time
+struct send_time {
 
-    static constexpr const char* name = "iex_tp_header";
-    static constexpr std::size_t size = 1;
+    static constexpr const char* name = "send_time";
+    static constexpr std::size_t size = 8;
     static constexpr bool is_optional = false;
 
-    using result_type = required<char>;
+    using result_type = required<std::int64_t>;
     using storage_type = result_type;
 
-    constexpr iex_tp_header()
+    constexpr send_time()
      : value{ 0 } {}
 
-    constexpr iex_tp_header(char v)
+    constexpr send_time(std::int64_t v)
      : value{ v } {}
 
     [[nodiscard]] constexpr result_type get() const {
         return result_type{value};
     }
 
-    constexpr void set(char v) {
+    constexpr void set(std::int64_t v) {
         value = v;
     }
 
@@ -37,6 +38,6 @@ struct iex_tp_header {
     }
 
   protected:
-    char value;
+    std::int64_t value;
 };
 }

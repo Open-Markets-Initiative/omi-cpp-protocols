@@ -58,7 +58,7 @@ struct price_limit_type {
     using storage_type = result_type;
 
     constexpr price_limit_type()
-     : value{ enum_type::price_unit } {}
+     : value{ enum_type{} } {}
 
     constexpr price_limit_type(enum_type v)
      : value{ v } {}

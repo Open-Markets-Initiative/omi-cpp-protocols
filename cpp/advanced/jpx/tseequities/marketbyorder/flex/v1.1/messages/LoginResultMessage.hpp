@@ -19,7 +19,7 @@ struct login_result_message {
         flex_marketbyorder::result_code result_code;
     };
 
-    flex_marketbyorder::tcp_packet_header header = {std::uint16_t(sizeof(flex_marketbyorder::tcp_packet_header) + sizeof(fields_type)), packet_type::enum_type::login_result_message};
+    flex_marketbyorder::tcp_packet_header header = {std::uint16_t(sizeof(flex_marketbyorder::tcp_packet_header) + sizeof(fields_type) - 2), packet_type::enum_type::login_result_message};
 
     fields_type fields;
 

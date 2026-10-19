@@ -67,7 +67,7 @@ struct security_trading_status {
     using storage_type = result_type;
 
     constexpr security_trading_status()
-     : value{ enum_type::pause } {}
+     : value{ enum_type{} } {}
 
     constexpr security_trading_status(enum_type v)
      : value{ v } {}

@@ -67,7 +67,7 @@ struct market_status {
     using storage_type = result_type;
 
     constexpr market_status()
-     : value{ enum_type::morning_session_order_acceptance_time } {}
+     : value{ enum_type{} } {}
 
     constexpr market_status(enum_type v)
      : value{ v } {}

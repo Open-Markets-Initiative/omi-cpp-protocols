@@ -55,7 +55,7 @@ struct last_fragment {
     using storage_type = result_type;
 
     constexpr last_fragment()
-     : value{ enum_type::false_value } {}
+     : value{ enum_type{} } {}
 
     constexpr last_fragment(enum_type v)
      : value{ v } {}

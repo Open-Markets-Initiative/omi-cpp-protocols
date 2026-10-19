@@ -60,7 +60,7 @@ struct market_maker_mode {
     using storage_type = result_type;
 
     constexpr market_maker_mode()
-     : value{ enum_type::normal } {}
+     : value{ enum_type{} } {}
 
     constexpr market_maker_mode(enum_type v)
      : value{ v } {}

@@ -57,7 +57,7 @@ struct packet_type {
     using storage_type = result_type;
 
     constexpr packet_type()
-     : value{ enum_type::login_request_message } {}
+     : value{ enum_type{} } {}
 
     constexpr packet_type(enum_type v)
      : value{ v } {}

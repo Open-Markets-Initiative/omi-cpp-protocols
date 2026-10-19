@@ -12,6 +12,7 @@ struct Version {
     static constexpr auto name = "Version";
     static constexpr std::size_t size = 1;
     using type = std::uint8_t;
+static const type static_value = 1;
 
     // default constructor
     constexpr Version()

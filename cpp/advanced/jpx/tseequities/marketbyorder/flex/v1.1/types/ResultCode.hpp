@@ -66,7 +66,7 @@ struct result_code {
     using storage_type = result_type;
 
     constexpr result_code()
-     : value{ enum_type::accepted } {}
+     : value{ enum_type{} } {}
 
     constexpr result_code(enum_type v)
      : value{ v } {}

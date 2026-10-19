@@ -127,7 +127,7 @@ struct template_id {
     using storage_type = result_type;
 
     constexpr template_id()
-     : value{ enum_type::sequence_reset_1_message } {}
+     : value{ enum_type{} } {}
 
     constexpr template_id(enum_type v)
      : value{ v } {}

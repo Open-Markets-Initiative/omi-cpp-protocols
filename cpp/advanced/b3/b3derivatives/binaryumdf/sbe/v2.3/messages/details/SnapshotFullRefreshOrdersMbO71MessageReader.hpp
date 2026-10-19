@@ -19,6 +19,10 @@ public:
         : pos_(pos), end_(end), block_length_(block_length) {
     }
 
+    const snapshot_full_refresh_orders_mb_o_71_message_no_m_d_entries_groups_entry& entry() const {
+        return *reinterpret_cast<const snapshot_full_refresh_orders_mb_o_71_message_no_m_d_entries_groups_entry*>(pos_);
+    }
+
     std::optional<std::int64_t> md_corporate_offset_price_optional() const {
         auto* entry = reinterpret_cast<const snapshot_full_refresh_orders_mb_o_71_message_no_m_d_entries_groups_entry*>(pos_);
         return entry->md_corporate_offset_price_optional.get();

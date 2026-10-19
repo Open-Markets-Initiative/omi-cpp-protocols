@@ -51,7 +51,7 @@ struct operational_halt_status {
     using storage_type = result_type;
 
     constexpr operational_halt_status()
-     : value{ enum_type::iex_specific_operational_trading_halt } {}
+     : value{ enum_type{} } {}
 
     constexpr operational_halt_status(enum_type v)
      : value{ v } {}

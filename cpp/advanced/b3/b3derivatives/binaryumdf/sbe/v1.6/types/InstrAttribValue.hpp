@@ -61,7 +61,7 @@ struct instr_attrib_value {
     using storage_type = result_type;
 
     constexpr instr_attrib_value()
-     : value{ enum_type::electronic_match_or_gtd_gtc_eligible } {}
+     : value{ enum_type{} } {}
 
     constexpr instr_attrib_value(enum_type v)
      : value{ v } {}

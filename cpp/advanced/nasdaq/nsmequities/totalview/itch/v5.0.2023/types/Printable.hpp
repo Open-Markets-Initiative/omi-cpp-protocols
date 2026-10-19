@@ -51,7 +51,7 @@ struct printable {
     using storage_type = result_type;
 
     constexpr printable()
-     : value{ enum_type::no } {}
+     : value{ enum_type{} } {}
 
     constexpr printable(enum_type v)
      : value{ v } {}

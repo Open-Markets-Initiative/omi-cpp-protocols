@@ -60,7 +60,7 @@ struct market_participant_state {
     using storage_type = result_type;
 
     constexpr market_participant_state()
-     : value{ enum_type::active } {}
+     : value{ enum_type{} } {}
 
     constexpr market_participant_state(enum_type v)
      : value{ v } {}

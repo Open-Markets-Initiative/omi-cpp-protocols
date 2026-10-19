@@ -57,7 +57,7 @@ struct retail_liquidity_indicator {
     using storage_type = result_type;
 
     constexpr retail_liquidity_indicator()
-     : value{ enum_type::not_applicable } {}
+     : value{ enum_type{} } {}
 
     constexpr retail_liquidity_indicator(enum_type v)
      : value{ v } {}

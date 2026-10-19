@@ -51,7 +51,7 @@ struct round_lots_only {
     using storage_type = result_type;
 
     constexpr round_lots_only()
-     : value{ enum_type::yes } {}
+     : value{ enum_type{} } {}
 
     constexpr round_lots_only(enum_type v)
      : value{ v } {}

@@ -26,7 +26,7 @@ public:
         *reinterpret_cast<uint32_t*>(pos_) = static_cast<uint32_t>(v.size());
         std::memcpy(pos_ + sizeof(uint32_t), v.data(), v.size());
         auto* next_pos = pos_ + sizeof(uint32_t) + v.size();
-        reinterpret_cast<flex_marketbyorder::tcp_packet_header*>(msg_start_)->packet_length.set(static_cast<uint16_t>(next_pos - msg_start_));
+        reinterpret_cast<flex_marketbyorder::tcp_packet_header*>(msg_start_)->packet_length.set(static_cast<uint16_t>(next_pos - msg_start_ - 2));
         return { msg_start_, static_cast<size_t>(next_pos - msg_start_) };
     }
 };

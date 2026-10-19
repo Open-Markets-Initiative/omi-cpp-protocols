@@ -99,7 +99,7 @@ void expect(const char* name, const char* relative) {
 int main() {
     std::printf("== Nasdaq.NsmEquities.TotalView.Itch.v5.0.2023 (advanced)\n");
     expect<protocol::add_order_no_mpid_attribution_message>("AddOrderNoMpidAttributionMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/AddOrderNoMPID.pcap");
-    expect<protocol::add_order_with_mpid_attribution_message>("AddOrderWithMpidAttributionMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/AddOrderWithMPID.pcap");
+    expect<protocol::add_order_with_mpid_attribution_message>("AddOrderWithMpidAttributionMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/AddOrderWithMpid.pcap");
     expect<protocol::cross_trade_message>("CrossTradeMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/CrossTrade.pcap");
     expect<protocol::luld_auction_collar_message>("LuldAuctionCollarMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/LULDAuctionCollar.pcap");
     expect<protocol::market_participant_position_message>("MarketParticipantPositionMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/MarketParticipantPosition.pcap");

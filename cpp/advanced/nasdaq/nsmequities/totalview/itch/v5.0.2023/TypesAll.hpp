@@ -4,7 +4,6 @@
 
 #include "types/PacketLength.hpp"
 #include "types/ClientPacketType.hpp"
-#include "types/DebugText.hpp"
 #include "types/Username.hpp"
 #include "types/Password.hpp"
 #include "types/RequestedSession.hpp"

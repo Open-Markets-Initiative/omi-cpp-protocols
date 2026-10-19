@@ -54,7 +54,7 @@ struct reg_sho_action {
     using storage_type = result_type;
 
     constexpr reg_sho_action()
-     : value{ enum_type::no_price_test } {}
+     : value{ enum_type{} } {}
 
     constexpr reg_sho_action(enum_type v)
      : value{ v } {}

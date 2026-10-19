@@ -51,7 +51,7 @@ struct open_eligibility_status {
     using storage_type = result_type;
 
     constexpr open_eligibility_status()
-     : value{ enum_type::not_eligible } {}
+     : value{ enum_type{} } {}
 
     constexpr open_eligibility_status(enum_type v)
      : value{ v } {}
