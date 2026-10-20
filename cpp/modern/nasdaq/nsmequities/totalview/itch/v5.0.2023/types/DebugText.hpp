@@ -16,7 +16,7 @@ struct DebugText {
 
     // default constructor
     constexpr DebugText()
-     : value{ 0 } {}
+     : value{} {}
 
     // standard constructor
     constexpr explicit DebugText(const type &value)

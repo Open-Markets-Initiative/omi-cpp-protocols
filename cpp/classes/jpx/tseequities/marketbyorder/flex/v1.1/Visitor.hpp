@@ -31,8 +31,10 @@ class Visitor {
     virtual void visit(const UnknownMessage&) {}
 };
 
-class LoginRequestMessage;
-class LoginResultMessage;
+class LoginRequestRetransmissionMessage;
+class LoginRequestSnapshotMessage;
+class LoginResultAcceptedMessage;
+class LoginResultRejectedMessage;
 class MessageResponseMessage;
 class EndOfMessageMessage;
 class UnknownTcpMessage;
@@ -43,8 +45,10 @@ class TcpMessageVisitor {
   public:
     virtual ~TcpMessageVisitor() = default;
 
-    virtual void visit(const LoginRequestMessage&) {}
-    virtual void visit(const LoginResultMessage&) {}
+    virtual void visit(const LoginRequestRetransmissionMessage&) {}
+    virtual void visit(const LoginRequestSnapshotMessage&) {}
+    virtual void visit(const LoginResultAcceptedMessage&) {}
+    virtual void visit(const LoginResultRejectedMessage&) {}
     virtual void visit(const MessageResponseMessage&) {}
     virtual void visit(const EndOfMessageMessage&) {}
     virtual void visit(const UnknownTcpMessage&) {}

@@ -13,23 +13,29 @@ namespace jpx::tseequities::marketbyorder::flex::v1_1 {
 struct packet_type {
 
     enum class enum_type : char {
-        login_request_message = 'R',
-        login_result_message = 'A',
+        login_request_retransmission_message = 'R',
+        login_request_snapshot_message = 'L',
+        login_result_accepted_message = 'A',
+        login_result_rejected_message = 'J',
         message_response_message = 'S',
         end_of_message_message = 'G'
     };
 
-    static constexpr std::array<std::pair<std::string_view, enum_type>, 4> from_string_map = {{
+    static constexpr std::array<std::pair<std::string_view, enum_type>, 6> from_string_map = {{
         {"End Of Message Message", enum_type::end_of_message_message},
-        {"Login Request Message", enum_type::login_request_message},
-        {"Login Result Message", enum_type::login_result_message},
+        {"Login Request Retransmission Message", enum_type::login_request_retransmission_message},
+        {"Login Request Snapshot Message", enum_type::login_request_snapshot_message},
+        {"Login Result Accepted Message", enum_type::login_result_accepted_message},
+        {"Login Result Rejected Message", enum_type::login_result_rejected_message},
         {"Message Response Message", enum_type::message_response_message}
     }};
 
     static constexpr std::string_view to_string(enum_type value) {
         switch (value) {
-            case enum_type::login_request_message: return "Login Request Message";
-            case enum_type::login_result_message: return "Login Result Message";
+            case enum_type::login_request_retransmission_message: return "Login Request Retransmission Message";
+            case enum_type::login_request_snapshot_message: return "Login Request Snapshot Message";
+            case enum_type::login_result_accepted_message: return "Login Result Accepted Message";
+            case enum_type::login_result_rejected_message: return "Login Result Rejected Message";
             case enum_type::message_response_message: return "Message Response Message";
             case enum_type::end_of_message_message: return "End Of Message Message";
             default: return "unknown";

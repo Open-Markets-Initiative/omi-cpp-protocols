@@ -59,12 +59,18 @@ template<typename Handler>
 void dispatch_tcp_packet(Handler& handler, const std::byte* buffer, std::size_t length) {
     (void)length;
 
-    switch (login_request_message::parse(buffer)->header.packet_type.get().value()) {
-        case packet_type::enum_type::login_request_message:
-            handler.on_message(*login_request_message::parse(buffer));
+    switch (login_request_retransmission_message::parse(buffer)->header.packet_type.get().value()) {
+        case packet_type::enum_type::login_request_retransmission_message:
+            handler.on_message(*login_request_retransmission_message::parse(buffer));
             break;
-        case packet_type::enum_type::login_result_message:
-            handler.on_message(*login_result_message::parse(buffer));
+        case packet_type::enum_type::login_request_snapshot_message:
+            handler.on_message(*login_request_snapshot_message::parse(buffer));
+            break;
+        case packet_type::enum_type::login_result_accepted_message:
+            handler.on_message(*login_result_accepted_message::parse(buffer));
+            break;
+        case packet_type::enum_type::login_result_rejected_message:
+            handler.on_message(*login_result_rejected_message::parse(buffer));
             break;
         case packet_type::enum_type::message_response_message:
             handler.on_message(*message_response_message::parse(buffer));

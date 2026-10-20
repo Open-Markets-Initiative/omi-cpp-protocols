@@ -17,9 +17,11 @@ inline const char* name(std::uint64_t id) {
         case 79ull: return "TradingStatusMessage";
         case 82ull: return "ResetMessage";
         case 84ull: return "SecondsTimestampMessage";
-        case 72057594037928001ull: return "LoginResultMessage";
+        case 72057594037928001ull: return "LoginResultAcceptedMessage";
         case 72057594037928007ull: return "EndOfMessageMessage";
-        case 72057594037928018ull: return "LoginRequestMessage";
+        case 72057594037928010ull: return "LoginResultRejectedMessage";
+        case 72057594037928012ull: return "LoginRequestSnapshotMessage";
+        case 72057594037928018ull: return "LoginRequestRetransmissionMessage";
         case 72057594037928019ull: return "MessageResponseMessage";
         default: return nullptr;
     }

@@ -35,8 +35,8 @@
 #include "RetailPriceImprovementIndicatorMessage.hpp"
 #include "DirectListingWithCapitalRaisePriceDiscoveryMessage.hpp"
 
-#include "../actions/ClientHeartbeat.hpp"
-#include "../actions/LogoutRequest.hpp"
-#include "../actions/ServerHeartbeat.hpp"
-#include "../actions/EndOfSession.hpp"
-#include "../actions/Heartbeat.hpp"
+#include "../messages/ClientHeartbeat.hpp"
+#include "../messages/LogoutRequest.hpp"
+#include "../messages/ServerHeartbeat.hpp"
+#include "../messages/EndOfSession.hpp"
+#include "../messages/Heartbeat.hpp"

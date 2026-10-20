@@ -21,8 +21,10 @@ std::unique_ptr<Message> Factory::create(MessageCode code) {
 
 std::unique_ptr<TcpMessage> TcpMessageFactory::create(TcpMessageCode code) {
     switch (code) {
-        case LoginRequestMessage::message_type: return std::make_unique<LoginRequestMessage>();
-        case LoginResultMessage::message_type: return std::make_unique<LoginResultMessage>();
+        case LoginRequestRetransmissionMessage::message_type: return std::make_unique<LoginRequestRetransmissionMessage>();
+        case LoginRequestSnapshotMessage::message_type: return std::make_unique<LoginRequestSnapshotMessage>();
+        case LoginResultAcceptedMessage::message_type: return std::make_unique<LoginResultAcceptedMessage>();
+        case LoginResultRejectedMessage::message_type: return std::make_unique<LoginResultRejectedMessage>();
         case MessageResponseMessage::message_type: return std::make_unique<MessageResponseMessage>();
         case EndOfMessageMessage::message_type: return std::make_unique<EndOfMessageMessage>();
         default: return std::make_unique<UnknownTcpMessage>(code);

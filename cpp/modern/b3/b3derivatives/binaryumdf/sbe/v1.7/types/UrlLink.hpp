@@ -16,7 +16,7 @@ struct UrlLink {
 
     // default constructor
     constexpr UrlLink()
-     : value{ 0 } {}
+     : value{} {}
 
     // standard constructor
     constexpr explicit UrlLink(const type &value)

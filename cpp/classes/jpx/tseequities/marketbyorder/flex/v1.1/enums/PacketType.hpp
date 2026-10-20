@@ -8,10 +8,12 @@ namespace jpx::tseequities::marketbyorder::flex::v1_1 {
 
 // First byte of the Tcp packet identifying the packet type used as dispatch key
 enum class PacketType : char {
-    LoginRequestMessage = 'R',    // Login Request Message
-    LoginResultMessage = 'A',     // Login Result Message
-    MessageResponseMessage = 'S', // Message Response Message
-    EndOfMessageMessage = 'G',    // End Of Message Message
+    LoginRequestRetransmissionMessage = 'R', // Login Request Retransmission Message
+    LoginRequestSnapshotMessage = 'L',       // Login Request Snapshot Message
+    LoginResultAcceptedMessage = 'A',        // Login Result Accepted Message
+    LoginResultRejectedMessage = 'J',        // Login Result Rejected Message
+    MessageResponseMessage = 'S',            // Message Response Message
+    EndOfMessageMessage = 'G',               // End Of Message Message
 };
 
 // The documented name of a code, or empty for one the specification does not list

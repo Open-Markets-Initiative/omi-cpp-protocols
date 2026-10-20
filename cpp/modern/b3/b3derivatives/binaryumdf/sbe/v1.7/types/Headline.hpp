@@ -16,7 +16,7 @@ struct Headline {
 
     // default constructor
     constexpr Headline()
-     : value{ 0 } {}
+     : value{} {}
 
     // standard constructor
     constexpr explicit Headline(const type &value)

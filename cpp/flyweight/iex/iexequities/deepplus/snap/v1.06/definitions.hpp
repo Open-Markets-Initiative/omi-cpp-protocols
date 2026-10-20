@@ -1,0 +1,32 @@
+#pragma once
+
+// Every flyweight view and reader of Iex.IexEquities.DeepPlus.Snap.v1.06.
+
+#include "structs/MessageHeader.hpp"
+#include "messages/SnapshotRequestMessage.hpp"
+#include "messages/ErrorResponseMessage.hpp"
+#include "messages/SnapshotStartMessage.hpp"
+#include "structs/IextpHeader.hpp"
+#include "messages/SystemEventMessage.hpp"
+#include "bitfields/SecurityDirectoryFlags.hpp"
+#include "messages/SecurityDirectoryMessage.hpp"
+#include "messages/TradingStatusMessage.hpp"
+#include "messages/RetailLiquidityIndicatorMessage.hpp"
+#include "messages/OperationalHaltStatusMessage.hpp"
+#include "messages/ShortSalePriceTestStatusMessage.hpp"
+#include "messages/SecurityEventMessage.hpp"
+#include "messages/AddOrderMessage.hpp"
+#include "bitfields/ModifyFlags.hpp"
+#include "messages/OrderModifyMessage.hpp"
+#include "messages/OrderDeleteMessage.hpp"
+#include "bitfields/SaleConditionFlags.hpp"
+#include "messages/OrderExecutedMessage.hpp"
+#include "messages/TradeMessage.hpp"
+#include "messages/TradeBreakMessage.hpp"
+#include "messages/ClearBookMessage.hpp"
+#include "messages/SnapshotDataMessage.hpp"
+#include "messages/SnapshotEndMessage.hpp"
+#include "structs/Packet.hpp"
+#include "structs/Frame.hpp"
+
+#include "StreamReader.hpp"

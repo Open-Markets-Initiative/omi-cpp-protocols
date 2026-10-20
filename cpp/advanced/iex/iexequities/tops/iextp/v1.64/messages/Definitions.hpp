@@ -14,3 +14,5 @@
 #include "OfficialPriceMessage.hpp"
 #include "TradeBreakMessage.hpp"
 #include "AuctionInformationMessage.hpp"
+
+#include "../packets/Heartbeat.hpp"

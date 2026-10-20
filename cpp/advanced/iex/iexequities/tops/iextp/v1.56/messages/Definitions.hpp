@@ -6,3 +6,5 @@
 #include "QuoteUpdateMessage.hpp"
 #include "TradeReportMessage.hpp"
 #include "TradeBreakMessage.hpp"
+
+#include "../packets/Heartbeat.hpp"

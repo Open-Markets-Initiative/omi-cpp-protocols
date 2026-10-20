@@ -16,7 +16,7 @@ struct Text {
 
     // default constructor
     constexpr Text()
-     : value{ 0 } {}
+     : value{} {}
 
     // standard constructor
     constexpr explicit Text(const type &value)

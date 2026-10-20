@@ -17,3 +17,5 @@
 #include "TradeMessage.hpp"
 #include "TradeBreakMessage.hpp"
 #include "ClearBookMessage.hpp"
+
+#include "../packets/Heartbeat.hpp"

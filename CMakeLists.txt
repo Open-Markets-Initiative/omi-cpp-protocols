@@ -12,64 +12,83 @@ add_library(protocols_check OBJECT
   checks/b3_b3derivatives_binaryumdf_sbe_v1.6_advanced.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v1.6_modern.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v1.6_classes.cpp
+  checks/b3_b3derivatives_binaryumdf_sbe_v1.6_flyweight.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v1.7_advanced.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v1.7_modern.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v1.7_classes.cpp
+  checks/b3_b3derivatives_binaryumdf_sbe_v1.7_flyweight.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v1.8_advanced.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v1.8_modern.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v1.8_classes.cpp
+  checks/b3_b3derivatives_binaryumdf_sbe_v1.8_flyweight.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v1.9_advanced.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v1.9_modern.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v1.9_classes.cpp
+  checks/b3_b3derivatives_binaryumdf_sbe_v1.9_flyweight.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v2.1_advanced.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v2.1_modern.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v2.1_classes.cpp
+  checks/b3_b3derivatives_binaryumdf_sbe_v2.1_flyweight.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v2.2_advanced.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v2.2_modern.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v2.2_classes.cpp
+  checks/b3_b3derivatives_binaryumdf_sbe_v2.2_flyweight.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v2.3_advanced.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v2.3_modern.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v2.3_classes.cpp
+  checks/b3_b3derivatives_binaryumdf_sbe_v2.3_flyweight.cpp
   checks/iex_iexequities_deep_iextp_v1.06_advanced.cpp
   checks/iex_iexequities_deep_iextp_v1.06_modern.cpp
   checks/iex_iexequities_deep_iextp_v1.06_classes.cpp
+  checks/iex_iexequities_deep_iextp_v1.06_flyweight.cpp
   checks/iex_iexequities_deep_iextp_v1.08_advanced.cpp
   checks/iex_iexequities_deep_iextp_v1.08_modern.cpp
   checks/iex_iexequities_deep_iextp_v1.08_classes.cpp
+  checks/iex_iexequities_deep_iextp_v1.08_flyweight.cpp
   checks/iex_iexequities_deep_snap_v1.6_advanced.cpp
   checks/iex_iexequities_deep_snap_v1.6_modern.cpp
   checks/iex_iexequities_deep_snap_v1.6_classes.cpp
+  checks/iex_iexequities_deep_snap_v1.6_flyweight.cpp
   checks/iex_iexequities_deepplus_iextp_v1.01_advanced.cpp
   checks/iex_iexequities_deepplus_iextp_v1.01_modern.cpp
   checks/iex_iexequities_deepplus_iextp_v1.01_classes.cpp
+  checks/iex_iexequities_deepplus_iextp_v1.01_flyweight.cpp
   checks/iex_iexequities_deepplus_iextp_v1.05_advanced.cpp
   checks/iex_iexequities_deepplus_iextp_v1.05_modern.cpp
   checks/iex_iexequities_deepplus_iextp_v1.05_classes.cpp
+  checks/iex_iexequities_deepplus_iextp_v1.05_flyweight.cpp
   checks/iex_iexequities_deepplus_snap_v1.06_advanced.cpp
   checks/iex_iexequities_deepplus_snap_v1.06_modern.cpp
   checks/iex_iexequities_deepplus_snap_v1.06_classes.cpp
+  checks/iex_iexequities_deepplus_snap_v1.06_flyweight.cpp
   checks/iex_iexequities_tops_iextp_v1.56_advanced.cpp
   checks/iex_iexequities_tops_iextp_v1.56_modern.cpp
   checks/iex_iexequities_tops_iextp_v1.56_classes.cpp
+  checks/iex_iexequities_tops_iextp_v1.56_flyweight.cpp
   checks/iex_iexequities_tops_iextp_v1.64_advanced.cpp
   checks/iex_iexequities_tops_iextp_v1.64_modern.cpp
   checks/iex_iexequities_tops_iextp_v1.64_classes.cpp
+  checks/iex_iexequities_tops_iextp_v1.64_flyweight.cpp
   checks/iex_iexequities_tops_iextp_v1.66_advanced.cpp
   checks/iex_iexequities_tops_iextp_v1.66_modern.cpp
   checks/iex_iexequities_tops_iextp_v1.66_classes.cpp
+  checks/iex_iexequities_tops_iextp_v1.66_flyweight.cpp
   checks/iex_iexequities_tops_snap_v1.6_advanced.cpp
   checks/iex_iexequities_tops_snap_v1.6_modern.cpp
   checks/iex_iexequities_tops_snap_v1.6_classes.cpp
+  checks/iex_iexequities_tops_snap_v1.6_flyweight.cpp
   checks/jpx_tseequities_marketbyorder_flex_v1.1_advanced.cpp
   checks/jpx_tseequities_marketbyorder_flex_v1.1_modern.cpp
   checks/jpx_tseequities_marketbyorder_flex_v1.1_classes.cpp
+  checks/jpx_tseequities_marketbyorder_flex_v1.1_flyweight.cpp
   checks/nasdaq_nsmequities_totalview_itch_v5.0.2023_advanced.cpp
   checks/nasdaq_nsmequities_totalview_itch_v5.0.2023_modern.cpp
   checks/nasdaq_nsmequities_totalview_itch_v5.0.2023_classes.cpp
+  checks/nasdaq_nsmequities_totalview_itch_v5.0.2023_flyweight.cpp
 )
-# The Classes libraries under cpp/classes/ — one static library per protocol, linked by the
-# dump program and the classes test that decode through it. Each library precompiles the
-# standard headers every one of its many small sources parses.
+# The libraries of the formats with sources of their own (cpp/classes/, cpp/flyweight/) — one
+# static library per protocol and format, linked by the programs and tests that read through it.
+# Each library precompiles the standard headers every one of its many small sources parses.
 add_library(classes_b3_b3derivatives_binaryumdf_sbe_v1.6 STATIC
   cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/TemplateId.cpp
   cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/TradingSessionId.cpp
@@ -155,6 +174,41 @@ add_library(classes_b3_b3derivatives_binaryumdf_sbe_v1.6 STATIC
 )
 target_include_directories(classes_b3_b3derivatives_binaryumdf_sbe_v1.6 PUBLIC ${CMAKE_SOURCE_DIR})
 target_precompile_headers(classes_b3_b3derivatives_binaryumdf_sbe_v1.6 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(flyweight_b3_b3derivatives_binaryumdf_sbe_v1.6 STATIC
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/TemplateId.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/TradingSessionId.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/SecurityTradingStatus.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/SecurityTradingEvent.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/TradingSessionSubId.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/SecurityIdSource.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/SecurityUpdateAction.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/SecurityType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/LotType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/Product.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/ExerciseStyle.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/PutOrCall.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/PriceType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/GovernanceIndicator.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/SecurityMatchType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/LastFragment.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/MultiLegModel.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/MultiLegPriceMethod.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/LegSecurityType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/LegSide.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/InstrAttribType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/InstrAttribValue.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/NewsSource.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/MdUpdateAction.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/OpenCloseSettlFlag.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/PriceBandType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/PriceLimitType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/PriceBandMidpointPriceType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/TrdSubType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/MdEntryType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/AggressorSide.cpp
+)
+target_include_directories(flyweight_b3_b3derivatives_binaryumdf_sbe_v1.6 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(flyweight_b3_b3derivatives_binaryumdf_sbe_v1.6 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
 add_library(classes_b3_b3derivatives_binaryumdf_sbe_v1.7 STATIC
   cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/TemplateId.cpp
   cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/TradingSessionId.cpp
@@ -248,6 +302,41 @@ add_library(classes_b3_b3derivatives_binaryumdf_sbe_v1.7 STATIC
 )
 target_include_directories(classes_b3_b3derivatives_binaryumdf_sbe_v1.7 PUBLIC ${CMAKE_SOURCE_DIR})
 target_precompile_headers(classes_b3_b3derivatives_binaryumdf_sbe_v1.7 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(flyweight_b3_b3derivatives_binaryumdf_sbe_v1.7 STATIC
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/TemplateId.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/TradingSessionId.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/SecurityTradingStatus.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/SecurityTradingEvent.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/TradingSessionSubId.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/SecurityIdSource.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/SecurityUpdateAction.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/SecurityType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/LotType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/Product.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/ExerciseStyle.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/PutOrCall.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/PriceType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/GovernanceIndicator.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/SecurityMatchType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/LastFragment.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/MultiLegModel.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/MultiLegPriceMethod.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/LegSecurityType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/LegSide.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/InstrAttribType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/InstrAttribValue.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/NewsSource.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/MdUpdateAction.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/OpenCloseSettlFlag.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/PriceBandType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/PriceLimitType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/PriceBandMidpointPriceType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/TrdSubType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/MdEntryType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/AggressorSide.cpp
+)
+target_include_directories(flyweight_b3_b3derivatives_binaryumdf_sbe_v1.7 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(flyweight_b3_b3derivatives_binaryumdf_sbe_v1.7 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
 add_library(classes_b3_b3derivatives_binaryumdf_sbe_v1.8 STATIC
   cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/TemplateId.cpp
   cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/TradingSessionId.cpp
@@ -345,6 +434,43 @@ add_library(classes_b3_b3derivatives_binaryumdf_sbe_v1.8 STATIC
 )
 target_include_directories(classes_b3_b3derivatives_binaryumdf_sbe_v1.8 PUBLIC ${CMAKE_SOURCE_DIR})
 target_precompile_headers(classes_b3_b3derivatives_binaryumdf_sbe_v1.8 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(flyweight_b3_b3derivatives_binaryumdf_sbe_v1.8 STATIC
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/TemplateId.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/TradingSessionId.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/SecurityTradingStatus.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/SecurityTradingEvent.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/TradingSessionSubId.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/SecurityIdSource.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/SecurityUpdateAction.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/SecurityType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/LotType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/Product.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/ExerciseStyle.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/PutOrCall.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/PriceTypeOptional.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/GovernanceIndicator.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/SecurityMatchType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/LastFragment.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/MultiLegModel.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/MultiLegPriceMethod.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/LegSecurityType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/LegSide.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/InstrAttribType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/InstrAttribValue.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/NewsSource.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/MdUpdateAction.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/OpenCloseSettlFlag.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/PriceBandType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/PriceLimitType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/PriceBandMidpointPriceType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/TrdSubType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/PriceType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/SettlPriceType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/MdEntryType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/AggressorSide.cpp
+)
+target_include_directories(flyweight_b3_b3derivatives_binaryumdf_sbe_v1.8 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(flyweight_b3_b3derivatives_binaryumdf_sbe_v1.8 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
 add_library(classes_b3_b3derivatives_binaryumdf_sbe_v1.9 STATIC
   cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/TemplateId.cpp
   cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/TradingSessionId.cpp
@@ -436,6 +562,44 @@ add_library(classes_b3_b3derivatives_binaryumdf_sbe_v1.9 STATIC
 )
 target_include_directories(classes_b3_b3derivatives_binaryumdf_sbe_v1.9 PUBLIC ${CMAKE_SOURCE_DIR})
 target_precompile_headers(classes_b3_b3derivatives_binaryumdf_sbe_v1.9 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(flyweight_b3_b3derivatives_binaryumdf_sbe_v1.9 STATIC
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/TemplateId.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/TradingSessionId.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/SecurityTradingStatus.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/SecurityTradingEvent.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/TradingSessionSubId.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/SecurityIdSource.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/SecurityUpdateAction.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/SecurityType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/LotType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/Product.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/ExerciseStyle.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/PutOrCall.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/PriceTypeOptional.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/GovernanceIndicator.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/SecurityMatchType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/LastFragment.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/MultiLegModel.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/MultiLegPriceMethod.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/ImpliedMarketIndicator.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/LegSecurityType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/LegSide.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/InstrAttribType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/InstrAttribValue.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/NewsSource.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/MdUpdateAction.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/OpenCloseSettlFlag.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/PriceBandType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/PriceLimitType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/PriceBandMidpointPriceType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/TrdSubType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/PriceType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/SettlPriceType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/MdEntryType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/AggressorSide.cpp
+)
+target_include_directories(flyweight_b3_b3derivatives_binaryumdf_sbe_v1.9 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(flyweight_b3_b3derivatives_binaryumdf_sbe_v1.9 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
 add_library(classes_b3_b3derivatives_binaryumdf_sbe_v2.1 STATIC
   cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/TemplateId.cpp
   cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/TradingSessionId.cpp
@@ -526,6 +690,44 @@ add_library(classes_b3_b3derivatives_binaryumdf_sbe_v2.1 STATIC
 )
 target_include_directories(classes_b3_b3derivatives_binaryumdf_sbe_v2.1 PUBLIC ${CMAKE_SOURCE_DIR})
 target_precompile_headers(classes_b3_b3derivatives_binaryumdf_sbe_v2.1 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(flyweight_b3_b3derivatives_binaryumdf_sbe_v2.1 STATIC
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/TemplateId.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/TradingSessionId.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/SecurityTradingStatus.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/SecurityTradingEvent.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/TradingSessionSubId.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/SecurityIdSource.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/SecurityUpdateAction.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/SecurityType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/LotType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/Product.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/ExerciseStyle.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/PutOrCall.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/PriceTypeOptional.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/GovernanceIndicator.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/SecurityMatchType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/LastFragment.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/MultiLegModel.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/MultiLegPriceMethod.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/ImpliedMarketIndicator.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/LegSecurityType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/LegSide.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/InstrAttribType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/InstrAttribValue.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/NewsSource.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/MdUpdateAction.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/OpenCloseSettlFlag.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/PriceBandType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/PriceLimitType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/PriceBandMidpointPriceType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/TrdSubType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/PriceType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/SettlPriceType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/MdEntryType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/AggressorSide.cpp
+)
+target_include_directories(flyweight_b3_b3derivatives_binaryumdf_sbe_v2.1 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(flyweight_b3_b3derivatives_binaryumdf_sbe_v2.1 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
 add_library(classes_b3_b3derivatives_binaryumdf_sbe_v2.2 STATIC
   cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/TemplateId.cpp
   cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/TradingSessionId.cpp
@@ -617,6 +819,45 @@ add_library(classes_b3_b3derivatives_binaryumdf_sbe_v2.2 STATIC
 )
 target_include_directories(classes_b3_b3derivatives_binaryumdf_sbe_v2.2 PUBLIC ${CMAKE_SOURCE_DIR})
 target_precompile_headers(classes_b3_b3derivatives_binaryumdf_sbe_v2.2 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(flyweight_b3_b3derivatives_binaryumdf_sbe_v2.2 STATIC
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/TemplateId.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/TradingSessionId.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/SecurityTradingStatus.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/SecurityTradingEvent.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/TradingSessionSubId.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/SecurityIdSource.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/SecurityUpdateAction.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/SecurityType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/LotType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/Product.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/ExerciseStyle.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/PutOrCall.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/PriceTypeOptional.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/GovernanceIndicator.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/SecurityMatchType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/LastFragment.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/MultiLegModel.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/MultiLegPriceMethod.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/ImpliedMarketIndicator.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/OptPayoutType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/LegSecurityType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/LegSide.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/InstrAttribType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/InstrAttribValue.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/NewsSource.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/MdUpdateAction.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/OpenCloseSettlFlag.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/PriceBandType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/PriceLimitType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/PriceBandMidpointPriceType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/TrdSubType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/PriceType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/SettlPriceType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/MdEntryType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/AggressorSide.cpp
+)
+target_include_directories(flyweight_b3_b3derivatives_binaryumdf_sbe_v2.2 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(flyweight_b3_b3derivatives_binaryumdf_sbe_v2.2 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
 add_library(classes_b3_b3derivatives_binaryumdf_sbe_v2.3 STATIC
   cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/TemplateId.cpp
   cpp/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/TradingSessionId.cpp
@@ -709,6 +950,46 @@ add_library(classes_b3_b3derivatives_binaryumdf_sbe_v2.3 STATIC
 )
 target_include_directories(classes_b3_b3derivatives_binaryumdf_sbe_v2.3 PUBLIC ${CMAKE_SOURCE_DIR})
 target_precompile_headers(classes_b3_b3derivatives_binaryumdf_sbe_v2.3 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(flyweight_b3_b3derivatives_binaryumdf_sbe_v2.3 STATIC
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/TemplateId.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/TradingSessionId.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/SecurityTradingStatus.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/SecurityTradingEvent.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/TradingSessionSubId.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/SecurityIdSource.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/SecurityUpdateAction.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/SecurityType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/LotType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/Product.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/ExerciseStyle.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/PutOrCall.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/PriceTypeOptional.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/GovernanceIndicator.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/SecurityMatchType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/LastFragment.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/MultiLegModel.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/MultiLegPriceMethod.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/ImpliedMarketIndicator.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/OptPayoutType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/LegSecurityType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/LegSide.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/InstrAttribType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/InstrAttribValue.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/NewsSource.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/MdUpdateAction.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/OpenCloseSettlFlag.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/PriceBandType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/PriceLimitType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/PriceBandMidpointPriceType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/TrdSubType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/OpenCloseSettlFlagOptional.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/PriceType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/SettlPriceType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/MdEntryType.cpp
+  cpp/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/AggressorSide.cpp
+)
+target_include_directories(flyweight_b3_b3derivatives_binaryumdf_sbe_v2.3 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(flyweight_b3_b3derivatives_binaryumdf_sbe_v2.3 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
 add_library(classes_iex_iexequities_deep_iextp_v1.06 STATIC
   cpp/classes/iex/iexequities/deep/iextp/v1.06/enums/MessageType.cpp
   cpp/classes/iex/iexequities/deep/iextp/v1.06/enums/SystemEvent.cpp
@@ -744,6 +1025,22 @@ add_library(classes_iex_iexequities_deep_iextp_v1.06 STATIC
 )
 target_include_directories(classes_iex_iexequities_deep_iextp_v1.06 PUBLIC ${CMAKE_SOURCE_DIR})
 target_precompile_headers(classes_iex_iexequities_deep_iextp_v1.06 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(flyweight_iex_iexequities_deep_iextp_v1.06 STATIC
+  cpp/flyweight/iex/iexequities/deep/iextp/v1.06/enums/MessageType.cpp
+  cpp/flyweight/iex/iexequities/deep/iextp/v1.06/enums/SystemEvent.cpp
+  cpp/flyweight/iex/iexequities/deep/iextp/v1.06/enums/LuldTier.cpp
+  cpp/flyweight/iex/iexequities/deep/iextp/v1.06/enums/TradingStatus.cpp
+  cpp/flyweight/iex/iexequities/deep/iextp/v1.06/enums/OperationalHaltStatus.cpp
+  cpp/flyweight/iex/iexequities/deep/iextp/v1.06/enums/ShortSalePriceTestStatus.cpp
+  cpp/flyweight/iex/iexequities/deep/iextp/v1.06/enums/Detail.cpp
+  cpp/flyweight/iex/iexequities/deep/iextp/v1.06/enums/SecurityEvent.cpp
+  cpp/flyweight/iex/iexequities/deep/iextp/v1.06/enums/EventFlags.cpp
+  cpp/flyweight/iex/iexequities/deep/iextp/v1.06/enums/PriceType.cpp
+  cpp/flyweight/iex/iexequities/deep/iextp/v1.06/enums/AuctionType.cpp
+  cpp/flyweight/iex/iexequities/deep/iextp/v1.06/enums/ImbalanceSide.cpp
+)
+target_include_directories(flyweight_iex_iexequities_deep_iextp_v1.06 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(flyweight_iex_iexequities_deep_iextp_v1.06 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
 add_library(classes_iex_iexequities_deep_iextp_v1.08 STATIC
   cpp/classes/iex/iexequities/deep/iextp/v1.08/enums/MessageType.cpp
   cpp/classes/iex/iexequities/deep/iextp/v1.08/enums/SystemEvent.cpp
@@ -781,6 +1078,23 @@ add_library(classes_iex_iexequities_deep_iextp_v1.08 STATIC
 )
 target_include_directories(classes_iex_iexequities_deep_iextp_v1.08 PUBLIC ${CMAKE_SOURCE_DIR})
 target_precompile_headers(classes_iex_iexequities_deep_iextp_v1.08 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(flyweight_iex_iexequities_deep_iextp_v1.08 STATIC
+  cpp/flyweight/iex/iexequities/deep/iextp/v1.08/enums/MessageType.cpp
+  cpp/flyweight/iex/iexequities/deep/iextp/v1.08/enums/SystemEvent.cpp
+  cpp/flyweight/iex/iexequities/deep/iextp/v1.08/enums/LuldTier.cpp
+  cpp/flyweight/iex/iexequities/deep/iextp/v1.08/enums/TradingStatus.cpp
+  cpp/flyweight/iex/iexequities/deep/iextp/v1.08/enums/RetailLiquidityIndicator.cpp
+  cpp/flyweight/iex/iexequities/deep/iextp/v1.08/enums/OperationalHaltStatus.cpp
+  cpp/flyweight/iex/iexequities/deep/iextp/v1.08/enums/ShortSalePriceTestStatus.cpp
+  cpp/flyweight/iex/iexequities/deep/iextp/v1.08/enums/Detail.cpp
+  cpp/flyweight/iex/iexequities/deep/iextp/v1.08/enums/SecurityEvent.cpp
+  cpp/flyweight/iex/iexequities/deep/iextp/v1.08/enums/EventFlags.cpp
+  cpp/flyweight/iex/iexequities/deep/iextp/v1.08/enums/PriceType.cpp
+  cpp/flyweight/iex/iexequities/deep/iextp/v1.08/enums/AuctionType.cpp
+  cpp/flyweight/iex/iexequities/deep/iextp/v1.08/enums/ImbalanceSide.cpp
+)
+target_include_directories(flyweight_iex_iexequities_deep_iextp_v1.08 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(flyweight_iex_iexequities_deep_iextp_v1.08 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
 add_library(classes_iex_iexequities_deep_snap_v1.6 STATIC
   cpp/classes/iex/iexequities/deep/snap/v1.6/enums/MessageType.cpp
   cpp/classes/iex/iexequities/deep/snap/v1.6/enums/RejectReasonCode.cpp
@@ -826,6 +1140,25 @@ add_library(classes_iex_iexequities_deep_snap_v1.6 STATIC
 )
 target_include_directories(classes_iex_iexequities_deep_snap_v1.6 PUBLIC ${CMAKE_SOURCE_DIR})
 target_precompile_headers(classes_iex_iexequities_deep_snap_v1.6 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(flyweight_iex_iexequities_deep_snap_v1.6 STATIC
+  cpp/flyweight/iex/iexequities/deep/snap/v1.6/enums/MessageType.cpp
+  cpp/flyweight/iex/iexequities/deep/snap/v1.6/enums/RejectReasonCode.cpp
+  cpp/flyweight/iex/iexequities/deep/snap/v1.6/enums/IexTpMessageType.cpp
+  cpp/flyweight/iex/iexequities/deep/snap/v1.6/enums/SystemEvent.cpp
+  cpp/flyweight/iex/iexequities/deep/snap/v1.6/enums/LuldTier.cpp
+  cpp/flyweight/iex/iexequities/deep/snap/v1.6/enums/TradingStatus.cpp
+  cpp/flyweight/iex/iexequities/deep/snap/v1.6/enums/RetailLiquidityIndicator.cpp
+  cpp/flyweight/iex/iexequities/deep/snap/v1.6/enums/OperationalHaltStatus.cpp
+  cpp/flyweight/iex/iexequities/deep/snap/v1.6/enums/ShortSalePriceTestStatus.cpp
+  cpp/flyweight/iex/iexequities/deep/snap/v1.6/enums/Detail.cpp
+  cpp/flyweight/iex/iexequities/deep/snap/v1.6/enums/SecurityEvent.cpp
+  cpp/flyweight/iex/iexequities/deep/snap/v1.6/enums/EventFlags.cpp
+  cpp/flyweight/iex/iexequities/deep/snap/v1.6/enums/PriceType.cpp
+  cpp/flyweight/iex/iexequities/deep/snap/v1.6/enums/AuctionType.cpp
+  cpp/flyweight/iex/iexequities/deep/snap/v1.6/enums/ImbalanceSide.cpp
+)
+target_include_directories(flyweight_iex_iexequities_deep_snap_v1.6 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(flyweight_iex_iexequities_deep_snap_v1.6 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
 add_library(classes_iex_iexequities_deepplus_iextp_v1.01 STATIC
   cpp/classes/iex/iexequities/deepplus/iextp/v1.01/enums/MessageType.cpp
   cpp/classes/iex/iexequities/deepplus/iextp/v1.01/enums/SystemEvent.cpp
@@ -862,6 +1195,20 @@ add_library(classes_iex_iexequities_deepplus_iextp_v1.01 STATIC
 )
 target_include_directories(classes_iex_iexequities_deepplus_iextp_v1.01 PUBLIC ${CMAKE_SOURCE_DIR})
 target_precompile_headers(classes_iex_iexequities_deepplus_iextp_v1.01 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(flyweight_iex_iexequities_deepplus_iextp_v1.01 STATIC
+  cpp/flyweight/iex/iexequities/deepplus/iextp/v1.01/enums/MessageType.cpp
+  cpp/flyweight/iex/iexequities/deepplus/iextp/v1.01/enums/SystemEvent.cpp
+  cpp/flyweight/iex/iexequities/deepplus/iextp/v1.01/enums/LuldTier.cpp
+  cpp/flyweight/iex/iexequities/deepplus/iextp/v1.01/enums/TradingStatus.cpp
+  cpp/flyweight/iex/iexequities/deepplus/iextp/v1.01/enums/RetailLiquidityIndicator.cpp
+  cpp/flyweight/iex/iexequities/deepplus/iextp/v1.01/enums/OperationalHaltStatus.cpp
+  cpp/flyweight/iex/iexequities/deepplus/iextp/v1.01/enums/ShortSalePriceTestStatus.cpp
+  cpp/flyweight/iex/iexequities/deepplus/iextp/v1.01/enums/Detail.cpp
+  cpp/flyweight/iex/iexequities/deepplus/iextp/v1.01/enums/SecurityEvent.cpp
+  cpp/flyweight/iex/iexequities/deepplus/iextp/v1.01/enums/Side.cpp
+)
+target_include_directories(flyweight_iex_iexequities_deepplus_iextp_v1.01 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(flyweight_iex_iexequities_deepplus_iextp_v1.01 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
 add_library(classes_iex_iexequities_deepplus_iextp_v1.05 STATIC
   cpp/classes/iex/iexequities/deepplus/iextp/v1.05/enums/MessageType.cpp
   cpp/classes/iex/iexequities/deepplus/iextp/v1.05/enums/SystemEvent.cpp
@@ -898,6 +1245,20 @@ add_library(classes_iex_iexequities_deepplus_iextp_v1.05 STATIC
 )
 target_include_directories(classes_iex_iexequities_deepplus_iextp_v1.05 PUBLIC ${CMAKE_SOURCE_DIR})
 target_precompile_headers(classes_iex_iexequities_deepplus_iextp_v1.05 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(flyweight_iex_iexequities_deepplus_iextp_v1.05 STATIC
+  cpp/flyweight/iex/iexequities/deepplus/iextp/v1.05/enums/MessageType.cpp
+  cpp/flyweight/iex/iexequities/deepplus/iextp/v1.05/enums/SystemEvent.cpp
+  cpp/flyweight/iex/iexequities/deepplus/iextp/v1.05/enums/LuldTier.cpp
+  cpp/flyweight/iex/iexequities/deepplus/iextp/v1.05/enums/TradingStatus.cpp
+  cpp/flyweight/iex/iexequities/deepplus/iextp/v1.05/enums/RetailLiquidityIndicator.cpp
+  cpp/flyweight/iex/iexequities/deepplus/iextp/v1.05/enums/OperationalHaltStatus.cpp
+  cpp/flyweight/iex/iexequities/deepplus/iextp/v1.05/enums/ShortSalePriceTestStatus.cpp
+  cpp/flyweight/iex/iexequities/deepplus/iextp/v1.05/enums/Detail.cpp
+  cpp/flyweight/iex/iexequities/deepplus/iextp/v1.05/enums/SecurityEvent.cpp
+  cpp/flyweight/iex/iexequities/deepplus/iextp/v1.05/enums/Side.cpp
+)
+target_include_directories(flyweight_iex_iexequities_deepplus_iextp_v1.05 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(flyweight_iex_iexequities_deepplus_iextp_v1.05 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
 add_library(classes_iex_iexequities_deepplus_snap_v1.06 STATIC
   cpp/classes/iex/iexequities/deepplus/snap/v1.06/enums/MessageType.cpp
   cpp/classes/iex/iexequities/deepplus/snap/v1.06/enums/RejectReasonCode.cpp
@@ -942,6 +1303,22 @@ add_library(classes_iex_iexequities_deepplus_snap_v1.06 STATIC
 )
 target_include_directories(classes_iex_iexequities_deepplus_snap_v1.06 PUBLIC ${CMAKE_SOURCE_DIR})
 target_precompile_headers(classes_iex_iexequities_deepplus_snap_v1.06 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(flyweight_iex_iexequities_deepplus_snap_v1.06 STATIC
+  cpp/flyweight/iex/iexequities/deepplus/snap/v1.06/enums/MessageType.cpp
+  cpp/flyweight/iex/iexequities/deepplus/snap/v1.06/enums/RejectReasonCode.cpp
+  cpp/flyweight/iex/iexequities/deepplus/snap/v1.06/enums/IexTpMessageType.cpp
+  cpp/flyweight/iex/iexequities/deepplus/snap/v1.06/enums/SystemEvent.cpp
+  cpp/flyweight/iex/iexequities/deepplus/snap/v1.06/enums/LuldTier.cpp
+  cpp/flyweight/iex/iexequities/deepplus/snap/v1.06/enums/TradingStatus.cpp
+  cpp/flyweight/iex/iexequities/deepplus/snap/v1.06/enums/RetailLiquidityIndicator.cpp
+  cpp/flyweight/iex/iexequities/deepplus/snap/v1.06/enums/OperationalHaltStatus.cpp
+  cpp/flyweight/iex/iexequities/deepplus/snap/v1.06/enums/ShortSalePriceTestStatus.cpp
+  cpp/flyweight/iex/iexequities/deepplus/snap/v1.06/enums/Detail.cpp
+  cpp/flyweight/iex/iexequities/deepplus/snap/v1.06/enums/SecurityEvent.cpp
+  cpp/flyweight/iex/iexequities/deepplus/snap/v1.06/enums/Side.cpp
+)
+target_include_directories(flyweight_iex_iexequities_deepplus_snap_v1.06 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(flyweight_iex_iexequities_deepplus_snap_v1.06 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
 add_library(classes_iex_iexequities_tops_iextp_v1.56 STATIC
   cpp/classes/iex/iexequities/tops/iextp/v1.56/enums/MessageType.cpp
   cpp/classes/iex/iexequities/tops/iextp/v1.56/structs/IextpHeader.cpp
@@ -957,6 +1334,11 @@ add_library(classes_iex_iexequities_tops_iextp_v1.56 STATIC
 )
 target_include_directories(classes_iex_iexequities_tops_iextp_v1.56 PUBLIC ${CMAKE_SOURCE_DIR})
 target_precompile_headers(classes_iex_iexequities_tops_iextp_v1.56 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(flyweight_iex_iexequities_tops_iextp_v1.56 STATIC
+  cpp/flyweight/iex/iexequities/tops/iextp/v1.56/enums/MessageType.cpp
+)
+target_include_directories(flyweight_iex_iexequities_tops_iextp_v1.56 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(flyweight_iex_iexequities_tops_iextp_v1.56 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
 add_library(classes_iex_iexequities_tops_iextp_v1.64 STATIC
   cpp/classes/iex/iexequities/tops/iextp/v1.64/enums/MessageType.cpp
   cpp/classes/iex/iexequities/tops/iextp/v1.64/enums/SystemEvent.cpp
@@ -991,6 +1373,21 @@ add_library(classes_iex_iexequities_tops_iextp_v1.64 STATIC
 )
 target_include_directories(classes_iex_iexequities_tops_iextp_v1.64 PUBLIC ${CMAKE_SOURCE_DIR})
 target_precompile_headers(classes_iex_iexequities_tops_iextp_v1.64 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(flyweight_iex_iexequities_tops_iextp_v1.64 STATIC
+  cpp/flyweight/iex/iexequities/tops/iextp/v1.64/enums/MessageType.cpp
+  cpp/flyweight/iex/iexequities/tops/iextp/v1.64/enums/SystemEvent.cpp
+  cpp/flyweight/iex/iexequities/tops/iextp/v1.64/enums/LuldTier.cpp
+  cpp/flyweight/iex/iexequities/tops/iextp/v1.64/enums/TradingStatus.cpp
+  cpp/flyweight/iex/iexequities/tops/iextp/v1.64/enums/OperationalHaltStatus.cpp
+  cpp/flyweight/iex/iexequities/tops/iextp/v1.64/enums/ShortSalePriceTestStatus.cpp
+  cpp/flyweight/iex/iexequities/tops/iextp/v1.64/enums/Detail.cpp
+  cpp/flyweight/iex/iexequities/tops/iextp/v1.64/enums/SecurityEvent.cpp
+  cpp/flyweight/iex/iexequities/tops/iextp/v1.64/enums/PriceType.cpp
+  cpp/flyweight/iex/iexequities/tops/iextp/v1.64/enums/AuctionType.cpp
+  cpp/flyweight/iex/iexequities/tops/iextp/v1.64/enums/ImbalanceSide.cpp
+)
+target_include_directories(flyweight_iex_iexequities_tops_iextp_v1.64 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(flyweight_iex_iexequities_tops_iextp_v1.64 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
 add_library(classes_iex_iexequities_tops_iextp_v1.66 STATIC
   cpp/classes/iex/iexequities/tops/iextp/v1.66/enums/MessageType.cpp
   cpp/classes/iex/iexequities/tops/iextp/v1.66/enums/SystemEvent.cpp
@@ -1025,6 +1422,21 @@ add_library(classes_iex_iexequities_tops_iextp_v1.66 STATIC
 )
 target_include_directories(classes_iex_iexequities_tops_iextp_v1.66 PUBLIC ${CMAKE_SOURCE_DIR})
 target_precompile_headers(classes_iex_iexequities_tops_iextp_v1.66 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(flyweight_iex_iexequities_tops_iextp_v1.66 STATIC
+  cpp/flyweight/iex/iexequities/tops/iextp/v1.66/enums/MessageType.cpp
+  cpp/flyweight/iex/iexequities/tops/iextp/v1.66/enums/SystemEvent.cpp
+  cpp/flyweight/iex/iexequities/tops/iextp/v1.66/enums/LuldTier.cpp
+  cpp/flyweight/iex/iexequities/tops/iextp/v1.66/enums/TradingStatus.cpp
+  cpp/flyweight/iex/iexequities/tops/iextp/v1.66/enums/RetailLiquidityIndicator.cpp
+  cpp/flyweight/iex/iexequities/tops/iextp/v1.66/enums/OperationalHaltStatus.cpp
+  cpp/flyweight/iex/iexequities/tops/iextp/v1.66/enums/ShortSalePriceTestStatus.cpp
+  cpp/flyweight/iex/iexequities/tops/iextp/v1.66/enums/Detail.cpp
+  cpp/flyweight/iex/iexequities/tops/iextp/v1.66/enums/PriceType.cpp
+  cpp/flyweight/iex/iexequities/tops/iextp/v1.66/enums/AuctionType.cpp
+  cpp/flyweight/iex/iexequities/tops/iextp/v1.66/enums/ImbalanceSide.cpp
+)
+target_include_directories(flyweight_iex_iexequities_tops_iextp_v1.66 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(flyweight_iex_iexequities_tops_iextp_v1.66 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
 add_library(classes_iex_iexequities_tops_snap_v1.6 STATIC
   cpp/classes/iex/iexequities/tops/snap/v1.6/enums/MessageType.cpp
   cpp/classes/iex/iexequities/tops/snap/v1.6/enums/RejectReasonCode.cpp
@@ -1067,6 +1479,23 @@ add_library(classes_iex_iexequities_tops_snap_v1.6 STATIC
 )
 target_include_directories(classes_iex_iexequities_tops_snap_v1.6 PUBLIC ${CMAKE_SOURCE_DIR})
 target_precompile_headers(classes_iex_iexequities_tops_snap_v1.6 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(flyweight_iex_iexequities_tops_snap_v1.6 STATIC
+  cpp/flyweight/iex/iexequities/tops/snap/v1.6/enums/MessageType.cpp
+  cpp/flyweight/iex/iexequities/tops/snap/v1.6/enums/RejectReasonCode.cpp
+  cpp/flyweight/iex/iexequities/tops/snap/v1.6/enums/IexTpMessageType.cpp
+  cpp/flyweight/iex/iexequities/tops/snap/v1.6/enums/SystemEvent.cpp
+  cpp/flyweight/iex/iexequities/tops/snap/v1.6/enums/LuldTier.cpp
+  cpp/flyweight/iex/iexequities/tops/snap/v1.6/enums/TradingStatus.cpp
+  cpp/flyweight/iex/iexequities/tops/snap/v1.6/enums/RetailLiquidityIndicator.cpp
+  cpp/flyweight/iex/iexequities/tops/snap/v1.6/enums/OperationalHaltStatus.cpp
+  cpp/flyweight/iex/iexequities/tops/snap/v1.6/enums/ShortSalePriceTestStatus.cpp
+  cpp/flyweight/iex/iexequities/tops/snap/v1.6/enums/Detail.cpp
+  cpp/flyweight/iex/iexequities/tops/snap/v1.6/enums/PriceType.cpp
+  cpp/flyweight/iex/iexequities/tops/snap/v1.6/enums/AuctionType.cpp
+  cpp/flyweight/iex/iexequities/tops/snap/v1.6/enums/ImbalanceSide.cpp
+)
+target_include_directories(flyweight_iex_iexequities_tops_snap_v1.6 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(flyweight_iex_iexequities_tops_snap_v1.6 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
 add_library(classes_jpx_tseequities_marketbyorder_flex_v1.1 STATIC
   cpp/classes/jpx/tseequities/marketbyorder/flex/v1.1/enums/MessageType.cpp
   cpp/classes/jpx/tseequities/marketbyorder/flex/v1.1/enums/MarketStatus.cpp
@@ -1094,8 +1523,10 @@ add_library(classes_jpx_tseequities_marketbyorder_flex_v1.1 STATIC
   cpp/classes/jpx/tseequities/marketbyorder/flex/v1.1/messages/ResetMessage.cpp
   cpp/classes/jpx/tseequities/marketbyorder/flex/v1.1/messages/CommunicationControlMessage.cpp
   cpp/classes/jpx/tseequities/marketbyorder/flex/v1.1/structs/TcpPacketHeader.cpp
-  cpp/classes/jpx/tseequities/marketbyorder/flex/v1.1/messages/LoginRequestMessage.cpp
-  cpp/classes/jpx/tseequities/marketbyorder/flex/v1.1/messages/LoginResultMessage.cpp
+  cpp/classes/jpx/tseequities/marketbyorder/flex/v1.1/messages/LoginRequestRetransmissionMessage.cpp
+  cpp/classes/jpx/tseequities/marketbyorder/flex/v1.1/messages/LoginRequestSnapshotMessage.cpp
+  cpp/classes/jpx/tseequities/marketbyorder/flex/v1.1/messages/LoginResultAcceptedMessage.cpp
+  cpp/classes/jpx/tseequities/marketbyorder/flex/v1.1/messages/LoginResultRejectedMessage.cpp
   cpp/classes/jpx/tseequities/marketbyorder/flex/v1.1/messages/MessageResponseMessage.cpp
   cpp/classes/jpx/tseequities/marketbyorder/flex/v1.1/messages/EndOfMessageMessage.cpp
   cpp/classes/jpx/tseequities/marketbyorder/flex/v1.1/messages/UnknownMessage.cpp
@@ -1106,6 +1537,24 @@ add_library(classes_jpx_tseequities_marketbyorder_flex_v1.1 STATIC
 )
 target_include_directories(classes_jpx_tseequities_marketbyorder_flex_v1.1 PUBLIC ${CMAKE_SOURCE_DIR})
 target_precompile_headers(classes_jpx_tseequities_marketbyorder_flex_v1.1 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(flyweight_jpx_tseequities_marketbyorder_flex_v1.1 STATIC
+  cpp/flyweight/jpx/tseequities/marketbyorder/flex/v1.1/enums/MessageType.cpp
+  cpp/flyweight/jpx/tseequities/marketbyorder/flex/v1.1/enums/MarketStatus.cpp
+  cpp/flyweight/jpx/tseequities/marketbyorder/flex/v1.1/enums/ShortSellingStatus.cpp
+  cpp/flyweight/jpx/tseequities/marketbyorder/flex/v1.1/enums/PricingMethod.cpp
+  cpp/flyweight/jpx/tseequities/marketbyorder/flex/v1.1/enums/TriggeredSide.cpp
+  cpp/flyweight/jpx/tseequities/marketbyorder/flex/v1.1/enums/Side.cpp
+  cpp/flyweight/jpx/tseequities/marketbyorder/flex/v1.1/enums/OrderCondition.cpp
+  cpp/flyweight/jpx/tseequities/marketbyorder/flex/v1.1/enums/ModificationFlag.cpp
+  cpp/flyweight/jpx/tseequities/marketbyorder/flex/v1.1/enums/AdoptedPricingMethod.cpp
+  cpp/flyweight/jpx/tseequities/marketbyorder/flex/v1.1/enums/ResetStartEndFlag.cpp
+  cpp/flyweight/jpx/tseequities/marketbyorder/flex/v1.1/enums/TestModeFlag.cpp
+  cpp/flyweight/jpx/tseequities/marketbyorder/flex/v1.1/enums/CommunicationStartEndFlag.cpp
+  cpp/flyweight/jpx/tseequities/marketbyorder/flex/v1.1/enums/PacketType.cpp
+  cpp/flyweight/jpx/tseequities/marketbyorder/flex/v1.1/enums/ResultCode.cpp
+)
+target_include_directories(flyweight_jpx_tseequities_marketbyorder_flex_v1.1 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(flyweight_jpx_tseequities_marketbyorder_flex_v1.1 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
 add_library(classes_nasdaq_nsmequities_totalview_itch_v5.0.2023 STATIC
   cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/ClientPacketType.cpp
   cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/ServerPacketType.cpp
@@ -1206,6 +1655,41 @@ add_library(classes_nasdaq_nsmequities_totalview_itch_v5.0.2023 STATIC
 )
 target_include_directories(classes_nasdaq_nsmequities_totalview_itch_v5.0.2023 PUBLIC ${CMAKE_SOURCE_DIR})
 target_precompile_headers(classes_nasdaq_nsmequities_totalview_itch_v5.0.2023 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(flyweight_nasdaq_nsmequities_totalview_itch_v5.0.2023 STATIC
+  cpp/flyweight/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/ClientPacketType.cpp
+  cpp/flyweight/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/ServerPacketType.cpp
+  cpp/flyweight/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/RejectReasonCode.cpp
+  cpp/flyweight/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/EventCode.cpp
+  cpp/flyweight/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/MarketCategory.cpp
+  cpp/flyweight/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/FinancialStatusIndicator.cpp
+  cpp/flyweight/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/RoundLotsOnly.cpp
+  cpp/flyweight/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/IssueClassification.cpp
+  cpp/flyweight/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/Authenticity.cpp
+  cpp/flyweight/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/ShortSaleThresholdIndicator.cpp
+  cpp/flyweight/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/IpoFlag.cpp
+  cpp/flyweight/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/LuldReferencePriceTier.cpp
+  cpp/flyweight/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/EtpFlag.cpp
+  cpp/flyweight/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/InverseIndicator.cpp
+  cpp/flyweight/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/TradingState.cpp
+  cpp/flyweight/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/RegShoAction.cpp
+  cpp/flyweight/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/PrimaryMarketMaker.cpp
+  cpp/flyweight/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/MarketMakerMode.cpp
+  cpp/flyweight/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/MarketParticipantState.cpp
+  cpp/flyweight/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/BreachedLevel.cpp
+  cpp/flyweight/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/IpoQuotationReleaseQualifier.cpp
+  cpp/flyweight/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/MarketCode.cpp
+  cpp/flyweight/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/OperationalHaltAction.cpp
+  cpp/flyweight/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/BuySellIndicator.cpp
+  cpp/flyweight/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/Printable.cpp
+  cpp/flyweight/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/CrossType.cpp
+  cpp/flyweight/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/ImbalanceDirection.cpp
+  cpp/flyweight/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/PriceVariationIndicator.cpp
+  cpp/flyweight/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/InterestFlag.cpp
+  cpp/flyweight/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/OpenEligibilityStatus.cpp
+  cpp/flyweight/nasdaq/nsmequities/totalview/itch/v5.0.2023/enums/MessageType.cpp
+)
+target_include_directories(flyweight_nasdaq_nsmequities_totalview_itch_v5.0.2023 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(flyweight_nasdaq_nsmequities_totalview_itch_v5.0.2023 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
 # Programs under executables/ — one per protocol. Each reads the parser published under
 # cpp/, included by a repository-root-relative path, so there is only ever one copy of a
 # protocol's parser in the tree.

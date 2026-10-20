@@ -13,8 +13,10 @@
 #include "messages/OrderDeleteMessage.hpp"
 #include "messages/ResetMessage.hpp"
 #include "messages/CommunicationControlMessage.hpp"
-#include "messages/LoginRequestMessage.hpp"
-#include "messages/LoginResultMessage.hpp"
+#include "messages/LoginRequestRetransmissionMessage.hpp"
+#include "messages/LoginRequestSnapshotMessage.hpp"
+#include "messages/LoginResultAcceptedMessage.hpp"
+#include "messages/LoginResultRejectedMessage.hpp"
 #include "messages/MessageResponseMessage.hpp"
 #include "messages/EndOfMessageMessage.hpp"
 

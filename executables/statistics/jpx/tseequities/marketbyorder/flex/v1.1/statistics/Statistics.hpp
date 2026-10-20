@@ -41,8 +41,10 @@ struct Statistics {
     uint64_t order_delete_message = 0;
     uint64_t reset_message = 0;
     uint64_t communication_control_message = 0;
-    uint64_t login_request_message = 0;
-    uint64_t login_result_message = 0;
+    uint64_t login_request_retransmission_message = 0;
+    uint64_t login_request_snapshot_message = 0;
+    uint64_t login_result_accepted_message = 0;
+    uint64_t login_result_rejected_message = 0;
     uint64_t message_response_message = 0;
     uint64_t end_of_message_message = 0;
 
@@ -153,11 +155,19 @@ struct Statistics {
         switch (packet_type) {
             case 'R':
                 ++total_messages;
-                ++login_request_message;
+                ++login_request_retransmission_message;
+                break;
+            case 'L':
+                ++total_messages;
+                ++login_request_snapshot_message;
                 break;
             case 'A':
                 ++total_messages;
-                ++login_result_message;
+                ++login_result_accepted_message;
+                break;
+            case 'J':
+                ++total_messages;
+                ++login_result_rejected_message;
                 break;
             case 'S':
                 ++total_messages;
@@ -192,19 +202,21 @@ struct Statistics {
         std::cout << std::endl;
         std::cout << "Message Counts:" << std::endl;
         std::cout << "--------------" << std::endl;
-        std::cout << "  SecondsTimestampMessage (T)        " << seconds_timestamp_message << std::endl;
-        std::cout << "  TradingStatusMessage (O)           " << trading_status_message << std::endl;
-        std::cout << "  ExecutionSummaryMessage (K)        " << execution_summary_message << std::endl;
-        std::cout << "  AddOrderMessage (A)                " << add_order_message << std::endl;
-        std::cout << "  OrderExecutedMessage (E)           " << order_executed_message << std::endl;
-        std::cout << "  OrderExecutedWithPriceMessage (C)  " << order_executed_with_price_message << std::endl;
-        std::cout << "  OrderDeleteMessage (D)             " << order_delete_message << std::endl;
-        std::cout << "  ResetMessage (R)                   " << reset_message << std::endl;
-        std::cout << "  CommunicationControlMessage (L)    " << communication_control_message << std::endl;
-        std::cout << "  LoginRequestMessage (R)            " << login_request_message << std::endl;
-        std::cout << "  LoginResultMessage (A)             " << login_result_message << std::endl;
-        std::cout << "  MessageResponseMessage (S)         " << message_response_message << std::endl;
-        std::cout << "  EndOfMessageMessage (G)            " << end_of_message_message << std::endl;
+        std::cout << "  SecondsTimestampMessage (T)            " << seconds_timestamp_message << std::endl;
+        std::cout << "  TradingStatusMessage (O)               " << trading_status_message << std::endl;
+        std::cout << "  ExecutionSummaryMessage (K)            " << execution_summary_message << std::endl;
+        std::cout << "  AddOrderMessage (A)                    " << add_order_message << std::endl;
+        std::cout << "  OrderExecutedMessage (E)               " << order_executed_message << std::endl;
+        std::cout << "  OrderExecutedWithPriceMessage (C)      " << order_executed_with_price_message << std::endl;
+        std::cout << "  OrderDeleteMessage (D)                 " << order_delete_message << std::endl;
+        std::cout << "  ResetMessage (R)                       " << reset_message << std::endl;
+        std::cout << "  CommunicationControlMessage (L)        " << communication_control_message << std::endl;
+        std::cout << "  LoginRequestRetransmissionMessage (R)  " << login_request_retransmission_message << std::endl;
+        std::cout << "  LoginRequestSnapshotMessage (L)        " << login_request_snapshot_message << std::endl;
+        std::cout << "  LoginResultAcceptedMessage (A)         " << login_result_accepted_message << std::endl;
+        std::cout << "  LoginResultRejectedMessage (J)         " << login_result_rejected_message << std::endl;
+        std::cout << "  MessageResponseMessage (S)             " << message_response_message << std::endl;
+        std::cout << "  EndOfMessageMessage (G)                " << end_of_message_message << std::endl;
     }
 };
 }

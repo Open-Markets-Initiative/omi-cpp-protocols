@@ -16,7 +16,7 @@ struct SecurityDesc {
 
     // default constructor
     constexpr SecurityDesc()
-     : value{ 0 } {}
+     : value{} {}
 
     // standard constructor
     constexpr explicit SecurityDesc(const type &value)

@@ -12,8 +12,10 @@
 #include "OrderDeleteMessage.hpp"
 #include "ResetMessage.hpp"
 #include "CommunicationControlMessage.hpp"
-#include "LoginRequestMessage.hpp"
-#include "LoginResultMessage.hpp"
+#include "LoginRequestRetransmissionMessage.hpp"
+#include "LoginRequestSnapshotMessage.hpp"
+#include "LoginResultAcceptedMessage.hpp"
+#include "LoginResultRejectedMessage.hpp"
 #include "MessageResponseMessage.hpp"
 #include "EndOfMessageMessage.hpp"
 #include "../json/messages/message_response_message_json.hpp"
@@ -136,7 +138,7 @@ inline std::ostream& operator<<(std::ostream& os, const communication_control_me
     return os;
 }
 
-inline std::ostream& operator<<(std::ostream& os, const login_request_message& msg) {
+inline std::ostream& operator<<(std::ostream& os, const login_request_retransmission_message& msg) {
     os << "user_id=\"" << msg.fields.user_id.get_trimmed().value() << '"'
        << ",multicast_group_number=" << static_cast<unsigned>(msg.fields.multicast_group_number.get().value())
        << ",number_of_system_reboots=" << static_cast<unsigned>(msg.fields.number_of_system_reboots.get().value())
@@ -146,7 +148,24 @@ inline std::ostream& operator<<(std::ostream& os, const login_request_message& m
     return os;
 }
 
-inline std::ostream& operator<<(std::ostream& os, const login_result_message& msg) {
+inline std::ostream& operator<<(std::ostream& os, const login_request_snapshot_message& msg) {
+    os << "user_id=\"" << msg.fields.user_id.get_trimmed().value() << '"'
+       << ",multicast_group_number=" << static_cast<unsigned>(msg.fields.multicast_group_number.get().value())
+       << ",number_of_system_reboots=" << static_cast<unsigned>(msg.fields.number_of_system_reboots.get().value())
+       << ",sequence_number=" << msg.fields.sequence_number.get().value()
+       << ",requested_message_count=" << msg.fields.requested_message_count.get().value()
+       ;
+    return os;
+}
+
+inline std::ostream& operator<<(std::ostream& os, const login_result_accepted_message& msg) {
+    os << "multicast_group_number=" << static_cast<unsigned>(msg.fields.multicast_group_number.get().value())
+       << ",result_code=\"" << flex_marketbyorder::result_code::to_string(msg.fields.result_code.get().value()) << '"'
+       ;
+    return os;
+}
+
+inline std::ostream& operator<<(std::ostream& os, const login_result_rejected_message& msg) {
     os << "multicast_group_number=" << static_cast<unsigned>(msg.fields.multicast_group_number.get().value())
        << ",result_code=\"" << flex_marketbyorder::result_code::to_string(msg.fields.result_code.get().value()) << '"'
        ;
