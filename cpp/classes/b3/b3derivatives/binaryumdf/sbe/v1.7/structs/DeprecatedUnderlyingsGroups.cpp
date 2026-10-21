@@ -22,8 +22,8 @@ std::size_t DeprecatedUnderlyingsGroups::decode(const std::byte* data, std::size
     offset += group_size_encoding_.decode(data + offset, length - offset);
 
     {
-        const std::size_t count = static_cast<std::size_t>(group_size_encoding_.num_in_group());
-        const std::size_t block = static_cast<std::size_t>(group_size_encoding_.block_length());
+        const std::size_t count = wire::count(group_size_encoding_.num_in_group());
+        const std::size_t block = wire::count(group_size_encoding_.block_length());
         deprecated_underlyings_group_.clear();
         deprecated_underlyings_group_.reserve(count);
         for (std::size_t index = 0; index < count; ++index) {

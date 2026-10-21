@@ -112,7 +112,7 @@ std::size_t Packet::decode(const std::byte* data, std::size_t length) {
         const std::size_t start = offset;
         Frame frame;
         offset += frame.decode(data + offset, length - offset);
-        const std::size_t frame_size = static_cast<std::size_t>(frame.framing_header().message_length());
+        const std::size_t frame_size = wire::count(frame.framing_header().message_length());
         wire::require("Packet", start + frame_size, length);
         const std::size_t body = start + frame_size - offset;
         std::unique_ptr<Message> message = Factory::create(frame.message_header().template_id());

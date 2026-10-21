@@ -23,7 +23,7 @@ std::size_t Text::decode(const std::byte* data, std::size_t length) {
     offset += 2;
 
     {
-        const std::size_t count = static_cast<std::size_t>(text_length_);
+        const std::size_t count = wire::count(text_length_);
         wire::require("Text", offset + count, length);
         text_data_.assign(reinterpret_cast<const char*>(data + offset), count);
         offset += count;

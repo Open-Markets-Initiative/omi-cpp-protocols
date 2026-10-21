@@ -7,6 +7,7 @@ Generated C++ binary-protocol parsers, one directory tree per generation format 
 - `cpp/modern/` — the Modern parser
 - `cpp/classes/` — the Classes library: owning classes that decode once and encode back
 - `cpp/flyweight/` — the Flyweight library: views over the bytes, read in place without casts
+- `cpp/tmp/` — the Tmp header: one per protocol, types and packed messages, each field asked for by its type
 
 Every parser is compile-verified: `checks/` holds one translation unit per protocol and
 format that includes the aggregating headers, and `CMakeLists.txt` compiles them all —
@@ -42,7 +43,7 @@ The pcap reader they all share is `executables/pcap/`.
 
 `tests/` holds a test per protocol and format (26 of them), each written against the
 surface that format's program uses, plus one run of each program on its protocol's first
-declared capture (36 of them):
+declared capture (45 of them):
 
 - `tests/modern/` walks every payload with the Modern iterator and requires the declared
   message — what extractor reads through

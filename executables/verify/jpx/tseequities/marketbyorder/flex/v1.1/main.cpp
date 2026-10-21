@@ -157,7 +157,7 @@ void read_udp_packet(protocol::UdpPacket& decoded, const packet::Frame& frame, T
         ++tally.messages;
 
         // The size rule: the length the frame's header declares against what the model reads.
-        const std::size_t declared = static_cast<std::size_t>(held.message_header().tag_length()) + 1;
+        const std::size_t declared = wire::count(held.message_header().tag_length()) + 1;
         const std::size_t derived = frame_size(held);
 
         if (declared != derived && ++tally.sizes <= shown) {

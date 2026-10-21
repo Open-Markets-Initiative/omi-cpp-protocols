@@ -29,7 +29,7 @@ class UnderlyingsGroups {
 
     GroupSizeEncoding group_size_encoding() const { return GroupSizeEncoding{ bytes_.subspan(0) }; }
 
-    view::entries<UnderlyingsGroup> underlyings_group() const { return view::entries<UnderlyingsGroup>{ bytes_.subspan(3), static_cast<std::size_t>(group_size_encoding().num_in_group()), static_cast<std::size_t>(group_size_encoding().block_length()) }; }
+    view::entries<UnderlyingsGroup> underlyings_group() const { return view::entries<UnderlyingsGroup>{ bytes_.subspan(3), wire::count(group_size_encoding().num_in_group()), wire::count(group_size_encoding().block_length()) }; }
 
     void print(std::ostream& out) const {
         out << "UnderlyingsGroups{";

@@ -61,7 +61,7 @@ std::size_t SnapshotDataMessage::decode(const std::byte* data, std::size_t lengt
 
     {
         auto selected = IexTpMessageDataFactory::create(iex_tp_message_type_);
-        const std::size_t bounded = static_cast<std::size_t>(iex_tp_message_length_);
+        const std::size_t bounded = wire::count(iex_tp_message_length_);
         wire::require("SnapshotDataMessage", offset + bounded, length);
         selected->decode(data + offset, bounded);
         offset += bounded;

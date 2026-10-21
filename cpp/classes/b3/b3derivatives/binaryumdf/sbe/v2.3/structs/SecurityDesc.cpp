@@ -23,7 +23,7 @@ std::size_t SecurityDesc::decode(const std::byte* data, std::size_t length) {
     offset += 1;
 
     {
-        const std::size_t count = static_cast<std::size_t>(security_desc_length_);
+        const std::size_t count = wire::count(security_desc_length_);
         wire::require("SecurityDesc", offset + count, length);
         security_desc_data_.assign(reinterpret_cast<const char*>(data + offset), count);
         offset += count;

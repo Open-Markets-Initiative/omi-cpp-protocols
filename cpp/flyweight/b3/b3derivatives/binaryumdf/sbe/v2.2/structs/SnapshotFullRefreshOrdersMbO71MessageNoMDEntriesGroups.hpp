@@ -29,7 +29,7 @@ class SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroups {
 
     GroupSizeEncoding group_size_encoding() const { return GroupSizeEncoding{ bytes_.subspan(0) }; }
 
-    view::entries<SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup> snapshot_full_refresh_orders_mb_o_71_message_no_m_d_entries_group() const { return view::entries<SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup>{ bytes_.subspan(3), static_cast<std::size_t>(group_size_encoding().num_in_group()), static_cast<std::size_t>(group_size_encoding().block_length()) }; }
+    view::entries<SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup> snapshot_full_refresh_orders_mb_o_71_message_no_m_d_entries_group() const { return view::entries<SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup>{ bytes_.subspan(3), wire::count(group_size_encoding().num_in_group()), wire::count(group_size_encoding().block_length()) }; }
 
     void print(std::ostream& out) const {
         out << "SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroups{";

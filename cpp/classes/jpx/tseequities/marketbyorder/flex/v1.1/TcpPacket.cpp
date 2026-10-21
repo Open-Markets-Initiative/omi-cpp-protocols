@@ -34,7 +34,7 @@ std::size_t TcpPacket::decode(const std::byte* data, std::size_t length) {
 
     offset += tcp_packet_header_.decode(data + offset, length - offset);
 
-    const std::size_t packet_size = static_cast<std::size_t>(tcp_packet_header_.packet_length()) + 2;
+    const std::size_t packet_size = wire::count(tcp_packet_header_.packet_length()) + 2;
     wire::require("TcpPacket", packet_size, length);
     const std::size_t body = packet_size - offset;
 

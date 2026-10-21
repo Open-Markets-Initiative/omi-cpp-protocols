@@ -23,7 +23,7 @@ std::size_t UrlLink::decode(const std::byte* data, std::size_t length) {
     offset += 2;
 
     {
-        const std::size_t count = static_cast<std::size_t>(url_link_length_);
+        const std::size_t count = wire::count(url_link_length_);
         wire::require("UrlLink", offset + count, length);
         url_link_data_.assign(reinterpret_cast<const char*>(data + offset), count);
         offset += count;

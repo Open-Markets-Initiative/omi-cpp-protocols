@@ -22,8 +22,8 @@ std::size_t DeprecatedLegsGroups::decode(const std::byte* data, std::size_t leng
     offset += group_size_encoding_.decode(data + offset, length - offset);
 
     {
-        const std::size_t count = static_cast<std::size_t>(group_size_encoding_.num_in_group());
-        const std::size_t block = static_cast<std::size_t>(group_size_encoding_.block_length());
+        const std::size_t count = wire::count(group_size_encoding_.num_in_group());
+        const std::size_t block = wire::count(group_size_encoding_.block_length());
         deprecated_legs_group_.clear();
         deprecated_legs_group_.reserve(count);
         for (std::size_t index = 0; index < count; ++index) {

@@ -28,7 +28,7 @@ class SecurityDesc {
 
     std::uint8_t security_desc_length() const { return wire::read_u8(at(0)); }
 
-    std::size_t security_desc_data_size() const { return static_cast<std::size_t>(security_desc_length()); }
+    std::size_t security_desc_data_size() const { return wire::count(security_desc_length()); }
     std::string_view security_desc_data() const {
         wire::require("SecurityDesc", 1 + security_desc_data_size(), bytes_.size());
         return view::characters(at(1), security_desc_data_size());

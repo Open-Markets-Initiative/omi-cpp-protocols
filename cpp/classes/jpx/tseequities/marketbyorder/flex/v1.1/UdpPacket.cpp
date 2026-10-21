@@ -95,13 +95,13 @@ std::size_t UdpPacket::decode(const std::byte* data, std::size_t length) {
 
     kind_ = Kind::Messages;
 
-    const std::size_t count = static_cast<std::size_t>(packet_header_.message_count());
+    const std::size_t count = wire::count(packet_header_.message_count());
 
     for (std::size_t index = 0; index < count; ++index) {
         const std::size_t start = offset;
         Frame frame;
         offset += frame.decode(data + offset, length - offset);
-        const std::size_t frame_size = static_cast<std::size_t>(frame.message_header().tag_length()) + 1;
+        const std::size_t frame_size = wire::count(frame.message_header().tag_length()) + 1;
         wire::require("UdpPacket", start + frame_size, length);
         const std::size_t body = start + frame_size - offset;
         std::unique_ptr<Message> message = Factory::create(frame.message_header().message_type());

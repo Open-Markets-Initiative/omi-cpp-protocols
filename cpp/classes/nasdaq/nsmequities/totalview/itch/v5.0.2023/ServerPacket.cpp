@@ -90,7 +90,7 @@ std::size_t ServerPacket::decode(const std::byte* data, std::size_t length) {
 
         ServerFrame frame;
         offset += frame.decode(data + offset, length - offset);
-        const std::size_t frame_size = static_cast<std::size_t>(frame.server_packet_header().packet_length()) + 2;
+        const std::size_t frame_size = wire::count(frame.server_packet_header().packet_length()) + 2;
         if (frame_size < 3) { throw DecodeError("ServerPacket", 3, frame_size); }
         if (start + frame_size > length) { offset = start; break; }
         const std::size_t body = start + frame_size - offset;

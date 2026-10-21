@@ -8,13 +8,18 @@
 namespace iex::iexequities::tops::iextp::v1_64 {
 
 // Thrown when a buffer does not hold the bytes a decode needs. The message names
-// the class that was decoding, how many bytes it needed and how many it had.
+// the class that was decoding, how many bytes it needed and how many it had - or,
+// when the bytes are there but cannot be read as what they carry, why not.
 class DecodeError : public std::runtime_error {
   public:
     DecodeError(std::string_view what, std::size_t needed, std::size_t available)
       : std::runtime_error(std::string(what) + ": " + std::to_string(needed)
                            + " bytes needed, " + std::to_string(available) + " available"),
         needed_(needed), available_(available) {}
+
+    DecodeError(std::string_view what, std::string_view reason)
+      : std::runtime_error(std::string(what) + ": " + std::string(reason)),
+        needed_(0), available_(0) {}
 
     std::size_t needed() const { return needed_; }
     std::size_t available() const { return available_; }

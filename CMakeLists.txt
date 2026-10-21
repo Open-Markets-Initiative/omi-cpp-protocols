@@ -13,78 +13,97 @@ add_library(protocols_check OBJECT
   checks/b3_b3derivatives_binaryumdf_sbe_v1.6_modern.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v1.6_classes.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v1.6_flyweight.cpp
+  checks/b3_b3derivatives_binaryumdf_sbe_v1.6_tmp.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v1.7_advanced.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v1.7_modern.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v1.7_classes.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v1.7_flyweight.cpp
+  checks/b3_b3derivatives_binaryumdf_sbe_v1.7_tmp.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v1.8_advanced.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v1.8_modern.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v1.8_classes.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v1.8_flyweight.cpp
+  checks/b3_b3derivatives_binaryumdf_sbe_v1.8_tmp.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v1.9_advanced.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v1.9_modern.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v1.9_classes.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v1.9_flyweight.cpp
+  checks/b3_b3derivatives_binaryumdf_sbe_v1.9_tmp.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v2.1_advanced.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v2.1_modern.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v2.1_classes.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v2.1_flyweight.cpp
+  checks/b3_b3derivatives_binaryumdf_sbe_v2.1_tmp.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v2.2_advanced.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v2.2_modern.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v2.2_classes.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v2.2_flyweight.cpp
+  checks/b3_b3derivatives_binaryumdf_sbe_v2.2_tmp.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v2.3_advanced.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v2.3_modern.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v2.3_classes.cpp
   checks/b3_b3derivatives_binaryumdf_sbe_v2.3_flyweight.cpp
+  checks/b3_b3derivatives_binaryumdf_sbe_v2.3_tmp.cpp
   checks/iex_iexequities_deep_iextp_v1.06_advanced.cpp
   checks/iex_iexequities_deep_iextp_v1.06_modern.cpp
   checks/iex_iexequities_deep_iextp_v1.06_classes.cpp
   checks/iex_iexequities_deep_iextp_v1.06_flyweight.cpp
+  checks/iex_iexequities_deep_iextp_v1.06_tmp.cpp
   checks/iex_iexequities_deep_iextp_v1.08_advanced.cpp
   checks/iex_iexequities_deep_iextp_v1.08_modern.cpp
   checks/iex_iexequities_deep_iextp_v1.08_classes.cpp
   checks/iex_iexequities_deep_iextp_v1.08_flyweight.cpp
+  checks/iex_iexequities_deep_iextp_v1.08_tmp.cpp
   checks/iex_iexequities_deep_snap_v1.6_advanced.cpp
   checks/iex_iexequities_deep_snap_v1.6_modern.cpp
   checks/iex_iexequities_deep_snap_v1.6_classes.cpp
   checks/iex_iexequities_deep_snap_v1.6_flyweight.cpp
+  checks/iex_iexequities_deep_snap_v1.6_tmp.cpp
   checks/iex_iexequities_deepplus_iextp_v1.01_advanced.cpp
   checks/iex_iexequities_deepplus_iextp_v1.01_modern.cpp
   checks/iex_iexequities_deepplus_iextp_v1.01_classes.cpp
   checks/iex_iexequities_deepplus_iextp_v1.01_flyweight.cpp
+  checks/iex_iexequities_deepplus_iextp_v1.01_tmp.cpp
   checks/iex_iexequities_deepplus_iextp_v1.05_advanced.cpp
   checks/iex_iexequities_deepplus_iextp_v1.05_modern.cpp
   checks/iex_iexequities_deepplus_iextp_v1.05_classes.cpp
   checks/iex_iexequities_deepplus_iextp_v1.05_flyweight.cpp
+  checks/iex_iexequities_deepplus_iextp_v1.05_tmp.cpp
   checks/iex_iexequities_deepplus_snap_v1.06_advanced.cpp
   checks/iex_iexequities_deepplus_snap_v1.06_modern.cpp
   checks/iex_iexequities_deepplus_snap_v1.06_classes.cpp
   checks/iex_iexequities_deepplus_snap_v1.06_flyweight.cpp
+  checks/iex_iexequities_deepplus_snap_v1.06_tmp.cpp
   checks/iex_iexequities_tops_iextp_v1.56_advanced.cpp
   checks/iex_iexequities_tops_iextp_v1.56_modern.cpp
   checks/iex_iexequities_tops_iextp_v1.56_classes.cpp
   checks/iex_iexequities_tops_iextp_v1.56_flyweight.cpp
+  checks/iex_iexequities_tops_iextp_v1.56_tmp.cpp
   checks/iex_iexequities_tops_iextp_v1.64_advanced.cpp
   checks/iex_iexequities_tops_iextp_v1.64_modern.cpp
   checks/iex_iexequities_tops_iextp_v1.64_classes.cpp
   checks/iex_iexequities_tops_iextp_v1.64_flyweight.cpp
+  checks/iex_iexequities_tops_iextp_v1.64_tmp.cpp
   checks/iex_iexequities_tops_iextp_v1.66_advanced.cpp
   checks/iex_iexequities_tops_iextp_v1.66_modern.cpp
   checks/iex_iexequities_tops_iextp_v1.66_classes.cpp
   checks/iex_iexequities_tops_iextp_v1.66_flyweight.cpp
+  checks/iex_iexequities_tops_iextp_v1.66_tmp.cpp
   checks/iex_iexequities_tops_snap_v1.6_advanced.cpp
   checks/iex_iexequities_tops_snap_v1.6_modern.cpp
   checks/iex_iexequities_tops_snap_v1.6_classes.cpp
   checks/iex_iexequities_tops_snap_v1.6_flyweight.cpp
+  checks/iex_iexequities_tops_snap_v1.6_tmp.cpp
   checks/jpx_tseequities_marketbyorder_flex_v1.1_advanced.cpp
   checks/jpx_tseequities_marketbyorder_flex_v1.1_modern.cpp
   checks/jpx_tseequities_marketbyorder_flex_v1.1_classes.cpp
   checks/jpx_tseequities_marketbyorder_flex_v1.1_flyweight.cpp
+  checks/jpx_tseequities_marketbyorder_flex_v1.1_tmp.cpp
   checks/nasdaq_nsmequities_totalview_itch_v5.0.2023_advanced.cpp
   checks/nasdaq_nsmequities_totalview_itch_v5.0.2023_modern.cpp
   checks/nasdaq_nsmequities_totalview_itch_v5.0.2023_classes.cpp
   checks/nasdaq_nsmequities_totalview_itch_v5.0.2023_flyweight.cpp
+  checks/nasdaq_nsmequities_totalview_itch_v5.0.2023_tmp.cpp
 )
 # The libraries of the formats with sources of their own (cpp/classes/, cpp/flyweight/) — one
 # static library per protocol and format, linked by the programs and tests that read through it.
@@ -1703,6 +1722,8 @@ target_link_libraries(dump_b3_b3derivatives_binaryumdf_sbe_v1.6 PRIVATE classes_
 add_executable(verify_b3_b3derivatives_binaryumdf_sbe_v1.6 executables/verify/b3/b3derivatives/binaryumdf/sbe/v1.6/main.cpp)
 target_include_directories(verify_b3_b3derivatives_binaryumdf_sbe_v1.6 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/b3/b3derivatives/binaryumdf/sbe/v1.6)
 target_link_libraries(verify_b3_b3derivatives_binaryumdf_sbe_v1.6 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v1.6)
+add_executable(benchmark_b3_b3derivatives_binaryumdf_sbe_v1.6 executables/benchmark/b3/b3derivatives/binaryumdf/sbe/v1.6/main.cpp)
+target_include_directories(benchmark_b3_b3derivatives_binaryumdf_sbe_v1.6 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/b3/b3derivatives/binaryumdf/sbe/v1.6)
 add_executable(statistics_b3_b3derivatives_binaryumdf_sbe_v1.7 executables/statistics/b3/b3derivatives/binaryumdf/sbe/v1.7/main.cpp)
 target_include_directories(statistics_b3_b3derivatives_binaryumdf_sbe_v1.7 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/b3/b3derivatives/binaryumdf/sbe/v1.7)
 add_executable(extractor_b3_b3derivatives_binaryumdf_sbe_v1.7 executables/extractor/b3/b3derivatives/binaryumdf/sbe/v1.7/main.cpp)
@@ -1713,6 +1734,8 @@ target_link_libraries(dump_b3_b3derivatives_binaryumdf_sbe_v1.7 PRIVATE classes_
 add_executable(verify_b3_b3derivatives_binaryumdf_sbe_v1.7 executables/verify/b3/b3derivatives/binaryumdf/sbe/v1.7/main.cpp)
 target_include_directories(verify_b3_b3derivatives_binaryumdf_sbe_v1.7 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/b3/b3derivatives/binaryumdf/sbe/v1.7)
 target_link_libraries(verify_b3_b3derivatives_binaryumdf_sbe_v1.7 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v1.7)
+add_executable(benchmark_b3_b3derivatives_binaryumdf_sbe_v1.7 executables/benchmark/b3/b3derivatives/binaryumdf/sbe/v1.7/main.cpp)
+target_include_directories(benchmark_b3_b3derivatives_binaryumdf_sbe_v1.7 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/b3/b3derivatives/binaryumdf/sbe/v1.7)
 add_executable(statistics_b3_b3derivatives_binaryumdf_sbe_v1.8 executables/statistics/b3/b3derivatives/binaryumdf/sbe/v1.8/main.cpp)
 target_include_directories(statistics_b3_b3derivatives_binaryumdf_sbe_v1.8 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/b3/b3derivatives/binaryumdf/sbe/v1.8)
 add_executable(extractor_b3_b3derivatives_binaryumdf_sbe_v1.8 executables/extractor/b3/b3derivatives/binaryumdf/sbe/v1.8/main.cpp)
@@ -1723,6 +1746,8 @@ target_link_libraries(dump_b3_b3derivatives_binaryumdf_sbe_v1.8 PRIVATE classes_
 add_executable(verify_b3_b3derivatives_binaryumdf_sbe_v1.8 executables/verify/b3/b3derivatives/binaryumdf/sbe/v1.8/main.cpp)
 target_include_directories(verify_b3_b3derivatives_binaryumdf_sbe_v1.8 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/b3/b3derivatives/binaryumdf/sbe/v1.8)
 target_link_libraries(verify_b3_b3derivatives_binaryumdf_sbe_v1.8 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v1.8)
+add_executable(benchmark_b3_b3derivatives_binaryumdf_sbe_v1.8 executables/benchmark/b3/b3derivatives/binaryumdf/sbe/v1.8/main.cpp)
+target_include_directories(benchmark_b3_b3derivatives_binaryumdf_sbe_v1.8 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/b3/b3derivatives/binaryumdf/sbe/v1.8)
 add_executable(statistics_b3_b3derivatives_binaryumdf_sbe_v1.9 executables/statistics/b3/b3derivatives/binaryumdf/sbe/v1.9/main.cpp)
 target_include_directories(statistics_b3_b3derivatives_binaryumdf_sbe_v1.9 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/b3/b3derivatives/binaryumdf/sbe/v1.9)
 add_executable(extractor_b3_b3derivatives_binaryumdf_sbe_v1.9 executables/extractor/b3/b3derivatives/binaryumdf/sbe/v1.9/main.cpp)
@@ -1733,6 +1758,8 @@ target_link_libraries(dump_b3_b3derivatives_binaryumdf_sbe_v1.9 PRIVATE classes_
 add_executable(verify_b3_b3derivatives_binaryumdf_sbe_v1.9 executables/verify/b3/b3derivatives/binaryumdf/sbe/v1.9/main.cpp)
 target_include_directories(verify_b3_b3derivatives_binaryumdf_sbe_v1.9 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/b3/b3derivatives/binaryumdf/sbe/v1.9)
 target_link_libraries(verify_b3_b3derivatives_binaryumdf_sbe_v1.9 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v1.9)
+add_executable(benchmark_b3_b3derivatives_binaryumdf_sbe_v1.9 executables/benchmark/b3/b3derivatives/binaryumdf/sbe/v1.9/main.cpp)
+target_include_directories(benchmark_b3_b3derivatives_binaryumdf_sbe_v1.9 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/b3/b3derivatives/binaryumdf/sbe/v1.9)
 add_executable(statistics_b3_b3derivatives_binaryumdf_sbe_v2.1 executables/statistics/b3/b3derivatives/binaryumdf/sbe/v2.1/main.cpp)
 target_include_directories(statistics_b3_b3derivatives_binaryumdf_sbe_v2.1 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/b3/b3derivatives/binaryumdf/sbe/v2.1)
 add_executable(extractor_b3_b3derivatives_binaryumdf_sbe_v2.1 executables/extractor/b3/b3derivatives/binaryumdf/sbe/v2.1/main.cpp)
@@ -1743,6 +1770,8 @@ target_link_libraries(dump_b3_b3derivatives_binaryumdf_sbe_v2.1 PRIVATE classes_
 add_executable(verify_b3_b3derivatives_binaryumdf_sbe_v2.1 executables/verify/b3/b3derivatives/binaryumdf/sbe/v2.1/main.cpp)
 target_include_directories(verify_b3_b3derivatives_binaryumdf_sbe_v2.1 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/b3/b3derivatives/binaryumdf/sbe/v2.1)
 target_link_libraries(verify_b3_b3derivatives_binaryumdf_sbe_v2.1 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v2.1)
+add_executable(benchmark_b3_b3derivatives_binaryumdf_sbe_v2.1 executables/benchmark/b3/b3derivatives/binaryumdf/sbe/v2.1/main.cpp)
+target_include_directories(benchmark_b3_b3derivatives_binaryumdf_sbe_v2.1 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/b3/b3derivatives/binaryumdf/sbe/v2.1)
 add_executable(statistics_b3_b3derivatives_binaryumdf_sbe_v2.2 executables/statistics/b3/b3derivatives/binaryumdf/sbe/v2.2/main.cpp)
 target_include_directories(statistics_b3_b3derivatives_binaryumdf_sbe_v2.2 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/b3/b3derivatives/binaryumdf/sbe/v2.2)
 add_executable(extractor_b3_b3derivatives_binaryumdf_sbe_v2.2 executables/extractor/b3/b3derivatives/binaryumdf/sbe/v2.2/main.cpp)
@@ -1753,6 +1782,8 @@ target_link_libraries(dump_b3_b3derivatives_binaryumdf_sbe_v2.2 PRIVATE classes_
 add_executable(verify_b3_b3derivatives_binaryumdf_sbe_v2.2 executables/verify/b3/b3derivatives/binaryumdf/sbe/v2.2/main.cpp)
 target_include_directories(verify_b3_b3derivatives_binaryumdf_sbe_v2.2 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/b3/b3derivatives/binaryumdf/sbe/v2.2)
 target_link_libraries(verify_b3_b3derivatives_binaryumdf_sbe_v2.2 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v2.2)
+add_executable(benchmark_b3_b3derivatives_binaryumdf_sbe_v2.2 executables/benchmark/b3/b3derivatives/binaryumdf/sbe/v2.2/main.cpp)
+target_include_directories(benchmark_b3_b3derivatives_binaryumdf_sbe_v2.2 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/b3/b3derivatives/binaryumdf/sbe/v2.2)
 add_executable(statistics_b3_b3derivatives_binaryumdf_sbe_v2.3 executables/statistics/b3/b3derivatives/binaryumdf/sbe/v2.3/main.cpp)
 target_include_directories(statistics_b3_b3derivatives_binaryumdf_sbe_v2.3 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/b3/b3derivatives/binaryumdf/sbe/v2.3)
 add_executable(extractor_b3_b3derivatives_binaryumdf_sbe_v2.3 executables/extractor/b3/b3derivatives/binaryumdf/sbe/v2.3/main.cpp)
@@ -1763,6 +1794,8 @@ target_link_libraries(dump_b3_b3derivatives_binaryumdf_sbe_v2.3 PRIVATE classes_
 add_executable(verify_b3_b3derivatives_binaryumdf_sbe_v2.3 executables/verify/b3/b3derivatives/binaryumdf/sbe/v2.3/main.cpp)
 target_include_directories(verify_b3_b3derivatives_binaryumdf_sbe_v2.3 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/b3/b3derivatives/binaryumdf/sbe/v2.3)
 target_link_libraries(verify_b3_b3derivatives_binaryumdf_sbe_v2.3 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v2.3)
+add_executable(benchmark_b3_b3derivatives_binaryumdf_sbe_v2.3 executables/benchmark/b3/b3derivatives/binaryumdf/sbe/v2.3/main.cpp)
+target_include_directories(benchmark_b3_b3derivatives_binaryumdf_sbe_v2.3 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/b3/b3derivatives/binaryumdf/sbe/v2.3)
 add_executable(statistics_iex_iexequities_deep_iextp_v1.06 executables/statistics/iex/iexequities/deep/iextp/v1.06/main.cpp)
 target_include_directories(statistics_iex_iexequities_deep_iextp_v1.06 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/iex/iexequities/deep/iextp/v1.06)
 add_executable(extractor_iex_iexequities_deep_iextp_v1.06 executables/extractor/iex/iexequities/deep/iextp/v1.06/main.cpp)
@@ -1773,6 +1806,8 @@ target_link_libraries(dump_iex_iexequities_deep_iextp_v1.06 PRIVATE classes_iex_
 add_executable(verify_iex_iexequities_deep_iextp_v1.06 executables/verify/iex/iexequities/deep/iextp/v1.06/main.cpp)
 target_include_directories(verify_iex_iexequities_deep_iextp_v1.06 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/iex/iexequities/deep/iextp/v1.06)
 target_link_libraries(verify_iex_iexequities_deep_iextp_v1.06 PRIVATE classes_iex_iexequities_deep_iextp_v1.06)
+add_executable(benchmark_iex_iexequities_deep_iextp_v1.06 executables/benchmark/iex/iexequities/deep/iextp/v1.06/main.cpp)
+target_include_directories(benchmark_iex_iexequities_deep_iextp_v1.06 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/iex/iexequities/deep/iextp/v1.06)
 add_executable(statistics_iex_iexequities_deep_iextp_v1.08 executables/statistics/iex/iexequities/deep/iextp/v1.08/main.cpp)
 target_include_directories(statistics_iex_iexequities_deep_iextp_v1.08 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/iex/iexequities/deep/iextp/v1.08)
 add_executable(extractor_iex_iexequities_deep_iextp_v1.08 executables/extractor/iex/iexequities/deep/iextp/v1.08/main.cpp)
@@ -1783,6 +1818,8 @@ target_link_libraries(dump_iex_iexequities_deep_iextp_v1.08 PRIVATE classes_iex_
 add_executable(verify_iex_iexequities_deep_iextp_v1.08 executables/verify/iex/iexequities/deep/iextp/v1.08/main.cpp)
 target_include_directories(verify_iex_iexequities_deep_iextp_v1.08 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/iex/iexequities/deep/iextp/v1.08)
 target_link_libraries(verify_iex_iexequities_deep_iextp_v1.08 PRIVATE classes_iex_iexequities_deep_iextp_v1.08)
+add_executable(benchmark_iex_iexequities_deep_iextp_v1.08 executables/benchmark/iex/iexequities/deep/iextp/v1.08/main.cpp)
+target_include_directories(benchmark_iex_iexequities_deep_iextp_v1.08 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/iex/iexequities/deep/iextp/v1.08)
 add_executable(statistics_iex_iexequities_deep_snap_v1.6 executables/statistics/iex/iexequities/deep/snap/v1.6/main.cpp)
 target_include_directories(statistics_iex_iexequities_deep_snap_v1.6 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/iex/iexequities/deep/snap/v1.6)
 add_executable(extractor_iex_iexequities_deep_snap_v1.6 executables/extractor/iex/iexequities/deep/snap/v1.6/main.cpp)
@@ -1803,6 +1840,8 @@ target_link_libraries(dump_iex_iexequities_deepplus_iextp_v1.01 PRIVATE classes_
 add_executable(verify_iex_iexequities_deepplus_iextp_v1.01 executables/verify/iex/iexequities/deepplus/iextp/v1.01/main.cpp)
 target_include_directories(verify_iex_iexequities_deepplus_iextp_v1.01 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/iex/iexequities/deepplus/iextp/v1.01)
 target_link_libraries(verify_iex_iexequities_deepplus_iextp_v1.01 PRIVATE classes_iex_iexequities_deepplus_iextp_v1.01)
+add_executable(benchmark_iex_iexequities_deepplus_iextp_v1.01 executables/benchmark/iex/iexequities/deepplus/iextp/v1.01/main.cpp)
+target_include_directories(benchmark_iex_iexequities_deepplus_iextp_v1.01 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/iex/iexequities/deepplus/iextp/v1.01)
 add_executable(statistics_iex_iexequities_deepplus_iextp_v1.05 executables/statistics/iex/iexequities/deepplus/iextp/v1.05/main.cpp)
 target_include_directories(statistics_iex_iexequities_deepplus_iextp_v1.05 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/iex/iexequities/deepplus/iextp/v1.05)
 add_executable(extractor_iex_iexequities_deepplus_iextp_v1.05 executables/extractor/iex/iexequities/deepplus/iextp/v1.05/main.cpp)
@@ -1813,6 +1852,8 @@ target_link_libraries(dump_iex_iexequities_deepplus_iextp_v1.05 PRIVATE classes_
 add_executable(verify_iex_iexequities_deepplus_iextp_v1.05 executables/verify/iex/iexequities/deepplus/iextp/v1.05/main.cpp)
 target_include_directories(verify_iex_iexequities_deepplus_iextp_v1.05 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/iex/iexequities/deepplus/iextp/v1.05)
 target_link_libraries(verify_iex_iexequities_deepplus_iextp_v1.05 PRIVATE classes_iex_iexequities_deepplus_iextp_v1.05)
+add_executable(benchmark_iex_iexequities_deepplus_iextp_v1.05 executables/benchmark/iex/iexequities/deepplus/iextp/v1.05/main.cpp)
+target_include_directories(benchmark_iex_iexequities_deepplus_iextp_v1.05 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/iex/iexequities/deepplus/iextp/v1.05)
 add_executable(statistics_iex_iexequities_deepplus_snap_v1.06 executables/statistics/iex/iexequities/deepplus/snap/v1.06/main.cpp)
 target_include_directories(statistics_iex_iexequities_deepplus_snap_v1.06 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/iex/iexequities/deepplus/snap/v1.06)
 add_executable(extractor_iex_iexequities_deepplus_snap_v1.06 executables/extractor/iex/iexequities/deepplus/snap/v1.06/main.cpp)
@@ -1833,6 +1874,8 @@ target_link_libraries(dump_iex_iexequities_tops_iextp_v1.56 PRIVATE classes_iex_
 add_executable(verify_iex_iexequities_tops_iextp_v1.56 executables/verify/iex/iexequities/tops/iextp/v1.56/main.cpp)
 target_include_directories(verify_iex_iexequities_tops_iextp_v1.56 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/iex/iexequities/tops/iextp/v1.56)
 target_link_libraries(verify_iex_iexequities_tops_iextp_v1.56 PRIVATE classes_iex_iexequities_tops_iextp_v1.56)
+add_executable(benchmark_iex_iexequities_tops_iextp_v1.56 executables/benchmark/iex/iexequities/tops/iextp/v1.56/main.cpp)
+target_include_directories(benchmark_iex_iexequities_tops_iextp_v1.56 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/iex/iexequities/tops/iextp/v1.56)
 add_executable(statistics_iex_iexequities_tops_iextp_v1.64 executables/statistics/iex/iexequities/tops/iextp/v1.64/main.cpp)
 target_include_directories(statistics_iex_iexequities_tops_iextp_v1.64 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/iex/iexequities/tops/iextp/v1.64)
 add_executable(extractor_iex_iexequities_tops_iextp_v1.64 executables/extractor/iex/iexequities/tops/iextp/v1.64/main.cpp)
@@ -1843,6 +1886,8 @@ target_link_libraries(dump_iex_iexequities_tops_iextp_v1.64 PRIVATE classes_iex_
 add_executable(verify_iex_iexequities_tops_iextp_v1.64 executables/verify/iex/iexequities/tops/iextp/v1.64/main.cpp)
 target_include_directories(verify_iex_iexequities_tops_iextp_v1.64 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/iex/iexequities/tops/iextp/v1.64)
 target_link_libraries(verify_iex_iexequities_tops_iextp_v1.64 PRIVATE classes_iex_iexequities_tops_iextp_v1.64)
+add_executable(benchmark_iex_iexequities_tops_iextp_v1.64 executables/benchmark/iex/iexequities/tops/iextp/v1.64/main.cpp)
+target_include_directories(benchmark_iex_iexequities_tops_iextp_v1.64 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/iex/iexequities/tops/iextp/v1.64)
 add_executable(statistics_iex_iexequities_tops_iextp_v1.66 executables/statistics/iex/iexequities/tops/iextp/v1.66/main.cpp)
 target_include_directories(statistics_iex_iexequities_tops_iextp_v1.66 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/iex/iexequities/tops/iextp/v1.66)
 add_executable(extractor_iex_iexequities_tops_iextp_v1.66 executables/extractor/iex/iexequities/tops/iextp/v1.66/main.cpp)
@@ -1853,6 +1898,8 @@ target_link_libraries(dump_iex_iexequities_tops_iextp_v1.66 PRIVATE classes_iex_
 add_executable(verify_iex_iexequities_tops_iextp_v1.66 executables/verify/iex/iexequities/tops/iextp/v1.66/main.cpp)
 target_include_directories(verify_iex_iexequities_tops_iextp_v1.66 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/iex/iexequities/tops/iextp/v1.66)
 target_link_libraries(verify_iex_iexequities_tops_iextp_v1.66 PRIVATE classes_iex_iexequities_tops_iextp_v1.66)
+add_executable(benchmark_iex_iexequities_tops_iextp_v1.66 executables/benchmark/iex/iexequities/tops/iextp/v1.66/main.cpp)
+target_include_directories(benchmark_iex_iexequities_tops_iextp_v1.66 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/iex/iexequities/tops/iextp/v1.66)
 add_executable(statistics_iex_iexequities_tops_snap_v1.6 executables/statistics/iex/iexequities/tops/snap/v1.6/main.cpp)
 target_include_directories(statistics_iex_iexequities_tops_snap_v1.6 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/iex/iexequities/tops/snap/v1.6)
 add_executable(extractor_iex_iexequities_tops_snap_v1.6 executables/extractor/iex/iexequities/tops/snap/v1.6/main.cpp)
@@ -1873,6 +1920,8 @@ target_link_libraries(dump_jpx_tseequities_marketbyorder_flex_v1.1 PRIVATE class
 add_executable(verify_jpx_tseequities_marketbyorder_flex_v1.1 executables/verify/jpx/tseequities/marketbyorder/flex/v1.1/main.cpp)
 target_include_directories(verify_jpx_tseequities_marketbyorder_flex_v1.1 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/jpx/tseequities/marketbyorder/flex/v1.1)
 target_link_libraries(verify_jpx_tseequities_marketbyorder_flex_v1.1 PRIVATE classes_jpx_tseequities_marketbyorder_flex_v1.1)
+add_executable(benchmark_jpx_tseequities_marketbyorder_flex_v1.1 executables/benchmark/jpx/tseequities/marketbyorder/flex/v1.1/main.cpp)
+target_include_directories(benchmark_jpx_tseequities_marketbyorder_flex_v1.1 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/jpx/tseequities/marketbyorder/flex/v1.1)
 add_executable(statistics_nasdaq_nsmequities_totalview_itch_v5.0.2023 executables/statistics/nasdaq/nsmequities/totalview/itch/v5.0.2023/main.cpp)
 target_include_directories(statistics_nasdaq_nsmequities_totalview_itch_v5.0.2023 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/nasdaq/nsmequities/totalview/itch/v5.0.2023)
 add_executable(extractor_nasdaq_nsmequities_totalview_itch_v5.0.2023 executables/extractor/nasdaq/nsmequities/totalview/itch/v5.0.2023/main.cpp)
@@ -1883,6 +1932,8 @@ target_link_libraries(dump_nasdaq_nsmequities_totalview_itch_v5.0.2023 PRIVATE c
 add_executable(verify_nasdaq_nsmequities_totalview_itch_v5.0.2023 executables/verify/nasdaq/nsmequities/totalview/itch/v5.0.2023/main.cpp)
 target_include_directories(verify_nasdaq_nsmequities_totalview_itch_v5.0.2023 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/nasdaq/nsmequities/totalview/itch/v5.0.2023)
 target_link_libraries(verify_nasdaq_nsmequities_totalview_itch_v5.0.2023 PRIVATE classes_nasdaq_nsmequities_totalview_itch_v5.0.2023)
+add_executable(benchmark_nasdaq_nsmequities_totalview_itch_v5.0.2023 executables/benchmark/nasdaq/nsmequities/totalview/itch/v5.0.2023/main.cpp)
+target_include_directories(benchmark_nasdaq_nsmequities_totalview_itch_v5.0.2023 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/nasdaq/nsmequities/totalview/itch/v5.0.2023)
 # Corpus-driven tests, one family per format under tests/, each through the surface that
 # format's program uses: modern through the packet iterator, advanced through the session
 # layer, classes through the Packet's decode and encode. The test programs are built by
@@ -2052,6 +2103,9 @@ if(OMI_PACKETS_DIR)
   add_test(NAME verify_iex_iexequities_deep_iextp_v1.06 COMMAND verify_iex_iexequities_deep_iextp_v1.06 ${OMI_PACKETS_DIR}/Iex/IexEquities.Deep.IexTp.v1.06/AuctionInformationMessage.pcap)
   set_tests_properties(verify_iex_iexequities_deep_iextp_v1.06 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
+  add_test(NAME benchmark_iex_iexequities_deep_iextp_v1.06 COMMAND benchmark_iex_iexequities_deep_iextp_v1.06 ${OMI_PACKETS_DIR}/Iex/IexEquities.Deep.IexTp.v1.06/AuctionInformationMessage.pcap 1)
+  set_tests_properties(benchmark_iex_iexequities_deep_iextp_v1.06 PROPERTIES PASS_REGULAR_EXPRESSION ", 0 did not parse")
+
   add_test(NAME statistics_iex_iexequities_deep_iextp_v1.08 COMMAND statistics_iex_iexequities_deep_iextp_v1.08 -i ${OMI_PACKETS_DIR}/Iex/IexEquities.Deep.IexTp.v1.08/AuctionInformationMessage.pcap)
   set_tests_properties(statistics_iex_iexequities_deep_iextp_v1.08 PROPERTIES PASS_REGULAR_EXPRESSION "AuctionInformationMessage \\([^)]*\\) +[1-9]")
 
@@ -2065,6 +2119,9 @@ if(OMI_PACKETS_DIR)
 
   add_test(NAME verify_iex_iexequities_deep_iextp_v1.08 COMMAND verify_iex_iexequities_deep_iextp_v1.08 ${OMI_PACKETS_DIR}/Iex/IexEquities.Deep.IexTp.v1.08/AuctionInformationMessage.pcap)
   set_tests_properties(verify_iex_iexequities_deep_iextp_v1.08 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+  add_test(NAME benchmark_iex_iexequities_deep_iextp_v1.08 COMMAND benchmark_iex_iexequities_deep_iextp_v1.08 ${OMI_PACKETS_DIR}/Iex/IexEquities.Deep.IexTp.v1.08/AuctionInformationMessage.pcap 1)
+  set_tests_properties(benchmark_iex_iexequities_deep_iextp_v1.08 PROPERTIES PASS_REGULAR_EXPRESSION ", 0 did not parse")
 
   add_test(NAME statistics_iex_iexequities_deepplus_iextp_v1.01 COMMAND statistics_iex_iexequities_deepplus_iextp_v1.01 -i ${OMI_PACKETS_DIR}/Iex/IexEquities.DeepPlus.IexTp.v1.01/B_TradeBreak.pcap)
   set_tests_properties(statistics_iex_iexequities_deepplus_iextp_v1.01 PROPERTIES PASS_REGULAR_EXPRESSION "TradeBreakMessage \\([^)]*\\) +[1-9]")
@@ -2080,6 +2137,9 @@ if(OMI_PACKETS_DIR)
   add_test(NAME verify_iex_iexequities_deepplus_iextp_v1.01 COMMAND verify_iex_iexequities_deepplus_iextp_v1.01 ${OMI_PACKETS_DIR}/Iex/IexEquities.DeepPlus.IexTp.v1.01/B_TradeBreak.pcap)
   set_tests_properties(verify_iex_iexequities_deepplus_iextp_v1.01 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
+  add_test(NAME benchmark_iex_iexequities_deepplus_iextp_v1.01 COMMAND benchmark_iex_iexequities_deepplus_iextp_v1.01 ${OMI_PACKETS_DIR}/Iex/IexEquities.DeepPlus.IexTp.v1.01/B_TradeBreak.pcap 1)
+  set_tests_properties(benchmark_iex_iexequities_deepplus_iextp_v1.01 PROPERTIES PASS_REGULAR_EXPRESSION ", 0 did not parse")
+
   add_test(NAME statistics_iex_iexequities_deepplus_iextp_v1.05 COMMAND statistics_iex_iexequities_deepplus_iextp_v1.05 -i ${OMI_PACKETS_DIR}/Iex/IexEquities.DeepPlus.IexTp.v1.05/AddOrderMessage.pcap)
   set_tests_properties(statistics_iex_iexequities_deepplus_iextp_v1.05 PROPERTIES PASS_REGULAR_EXPRESSION "AddOrderMessage \\([^)]*\\) +[1-9]")
 
@@ -2093,6 +2153,9 @@ if(OMI_PACKETS_DIR)
 
   add_test(NAME verify_iex_iexequities_deepplus_iextp_v1.05 COMMAND verify_iex_iexequities_deepplus_iextp_v1.05 ${OMI_PACKETS_DIR}/Iex/IexEquities.DeepPlus.IexTp.v1.05/AddOrderMessage.pcap)
   set_tests_properties(verify_iex_iexequities_deepplus_iextp_v1.05 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+  add_test(NAME benchmark_iex_iexequities_deepplus_iextp_v1.05 COMMAND benchmark_iex_iexequities_deepplus_iextp_v1.05 ${OMI_PACKETS_DIR}/Iex/IexEquities.DeepPlus.IexTp.v1.05/AddOrderMessage.pcap 1)
+  set_tests_properties(benchmark_iex_iexequities_deepplus_iextp_v1.05 PROPERTIES PASS_REGULAR_EXPRESSION ", 0 did not parse")
 
   add_test(NAME statistics_iex_iexequities_tops_iextp_v1.56 COMMAND statistics_iex_iexequities_tops_iextp_v1.56 -i ${OMI_PACKETS_DIR}/Iex/IexEquities.Tops.IexTp.v1.56/QuoteUpdateMessage.pcap)
   set_tests_properties(statistics_iex_iexequities_tops_iextp_v1.56 PROPERTIES PASS_REGULAR_EXPRESSION "QuoteUpdateMessage \\([^)]*\\) +[1-9]")
@@ -2108,6 +2171,9 @@ if(OMI_PACKETS_DIR)
   add_test(NAME verify_iex_iexequities_tops_iextp_v1.56 COMMAND verify_iex_iexequities_tops_iextp_v1.56 ${OMI_PACKETS_DIR}/Iex/IexEquities.Tops.IexTp.v1.56/QuoteUpdateMessage.pcap)
   set_tests_properties(verify_iex_iexequities_tops_iextp_v1.56 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
+  add_test(NAME benchmark_iex_iexequities_tops_iextp_v1.56 COMMAND benchmark_iex_iexequities_tops_iextp_v1.56 ${OMI_PACKETS_DIR}/Iex/IexEquities.Tops.IexTp.v1.56/QuoteUpdateMessage.pcap 1)
+  set_tests_properties(benchmark_iex_iexequities_tops_iextp_v1.56 PROPERTIES PASS_REGULAR_EXPRESSION ", 0 did not parse")
+
   add_test(NAME statistics_iex_iexequities_tops_iextp_v1.64 COMMAND statistics_iex_iexequities_tops_iextp_v1.64 -i ${OMI_PACKETS_DIR}/Iex/IexEquities.Tops.IexTp.v1.64/AuctionInformationMessage.pcap)
   set_tests_properties(statistics_iex_iexequities_tops_iextp_v1.64 PROPERTIES PASS_REGULAR_EXPRESSION "AuctionInformationMessage \\([^)]*\\) +[1-9]")
 
@@ -2121,6 +2187,9 @@ if(OMI_PACKETS_DIR)
 
   add_test(NAME verify_iex_iexequities_tops_iextp_v1.64 COMMAND verify_iex_iexequities_tops_iextp_v1.64 ${OMI_PACKETS_DIR}/Iex/IexEquities.Tops.IexTp.v1.64/AuctionInformationMessage.pcap)
   set_tests_properties(verify_iex_iexequities_tops_iextp_v1.64 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+  add_test(NAME benchmark_iex_iexequities_tops_iextp_v1.64 COMMAND benchmark_iex_iexequities_tops_iextp_v1.64 ${OMI_PACKETS_DIR}/Iex/IexEquities.Tops.IexTp.v1.64/AuctionInformationMessage.pcap 1)
+  set_tests_properties(benchmark_iex_iexequities_tops_iextp_v1.64 PROPERTIES PASS_REGULAR_EXPRESSION ", 0 did not parse")
 
   add_test(NAME statistics_iex_iexequities_tops_iextp_v1.66 COMMAND statistics_iex_iexequities_tops_iextp_v1.66 -i ${OMI_PACKETS_DIR}/Iex/IexEquities.Tops.IexTp.v1.66/AuctionInformationMessage.pcap)
   set_tests_properties(statistics_iex_iexequities_tops_iextp_v1.66 PROPERTIES PASS_REGULAR_EXPRESSION "AuctionInformationMessage \\([^)]*\\) +[1-9]")
@@ -2136,6 +2205,9 @@ if(OMI_PACKETS_DIR)
   add_test(NAME verify_iex_iexequities_tops_iextp_v1.66 COMMAND verify_iex_iexequities_tops_iextp_v1.66 ${OMI_PACKETS_DIR}/Iex/IexEquities.Tops.IexTp.v1.66/AuctionInformationMessage.pcap)
   set_tests_properties(verify_iex_iexequities_tops_iextp_v1.66 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
+  add_test(NAME benchmark_iex_iexequities_tops_iextp_v1.66 COMMAND benchmark_iex_iexequities_tops_iextp_v1.66 ${OMI_PACKETS_DIR}/Iex/IexEquities.Tops.IexTp.v1.66/AuctionInformationMessage.pcap 1)
+  set_tests_properties(benchmark_iex_iexequities_tops_iextp_v1.66 PROPERTIES PASS_REGULAR_EXPRESSION ", 0 did not parse")
+
   add_test(NAME statistics_jpx_tseequities_marketbyorder_flex_v1.1 COMMAND statistics_jpx_tseequities_marketbyorder_flex_v1.1 -i ${OMI_PACKETS_DIR}/Jpx/TseEquities.MarketByOrder.Flex.v1.1/CommunicationControlMessage.pcap)
   set_tests_properties(statistics_jpx_tseequities_marketbyorder_flex_v1.1 PROPERTIES PASS_REGULAR_EXPRESSION "CommunicationControlMessage \\([^)]*\\) +[1-9]")
 
@@ -2150,6 +2222,9 @@ if(OMI_PACKETS_DIR)
   add_test(NAME verify_jpx_tseequities_marketbyorder_flex_v1.1 COMMAND verify_jpx_tseequities_marketbyorder_flex_v1.1 ${OMI_PACKETS_DIR}/Jpx/TseEquities.MarketByOrder.Flex.v1.1/CommunicationControlMessage.pcap)
   set_tests_properties(verify_jpx_tseequities_marketbyorder_flex_v1.1 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
+  add_test(NAME benchmark_jpx_tseequities_marketbyorder_flex_v1.1 COMMAND benchmark_jpx_tseequities_marketbyorder_flex_v1.1 ${OMI_PACKETS_DIR}/Jpx/TseEquities.MarketByOrder.Flex.v1.1/CommunicationControlMessage.pcap 1)
+  set_tests_properties(benchmark_jpx_tseequities_marketbyorder_flex_v1.1 PROPERTIES PASS_REGULAR_EXPRESSION ", 0 did not parse")
+
   add_test(NAME statistics_nasdaq_nsmequities_totalview_itch_v5.0.2023 COMMAND statistics_nasdaq_nsmequities_totalview_itch_v5.0.2023 -i ${OMI_PACKETS_DIR}/Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/AddOrderNoMPID.pcap)
   set_tests_properties(statistics_nasdaq_nsmequities_totalview_itch_v5.0.2023 PROPERTIES PASS_REGULAR_EXPRESSION "AddOrderNoMpidAttributionMessage \\([^)]*\\) +[1-9]")
 
@@ -2163,4 +2238,7 @@ if(OMI_PACKETS_DIR)
 
   add_test(NAME verify_nasdaq_nsmequities_totalview_itch_v5.0.2023 COMMAND verify_nasdaq_nsmequities_totalview_itch_v5.0.2023 ${OMI_PACKETS_DIR}/Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/AddOrderNoMPID.pcap)
   set_tests_properties(verify_nasdaq_nsmequities_totalview_itch_v5.0.2023 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+  add_test(NAME benchmark_nasdaq_nsmequities_totalview_itch_v5.0.2023 COMMAND benchmark_nasdaq_nsmequities_totalview_itch_v5.0.2023 ${OMI_PACKETS_DIR}/Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/AddOrderNoMPID.pcap 1)
+  set_tests_properties(benchmark_nasdaq_nsmequities_totalview_itch_v5.0.2023 PROPERTIES PASS_REGULAR_EXPRESSION ", 0 did not parse")
 endif()

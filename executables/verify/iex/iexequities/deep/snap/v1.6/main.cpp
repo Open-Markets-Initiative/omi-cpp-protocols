@@ -164,7 +164,7 @@ void read_packet(std::vector<std::byte>& buffer, Tally& tally, std::vector<std::
         ++tally.messages;
 
         // The size rule: the length the frame's header declares against what the model reads.
-        const std::size_t declared = static_cast<std::size_t>(held.message_header().message_length()) + 2;
+        const std::size_t declared = wire::count(held.message_header().message_length()) + 2;
         const std::size_t derived = frame_size(held);
 
         if (declared != derived && ++tally.sizes <= shown) {

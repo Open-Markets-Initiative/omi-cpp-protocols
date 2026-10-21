@@ -157,7 +157,7 @@ void read_packet(protocol::Packet& decoded, const packet::Frame& frame, Tally& t
         ++tally.messages;
 
         // The size rule: the length the frame's header declares against what the model reads.
-        const std::size_t declared = static_cast<std::size_t>(held.message_header().message_length()) + 2;
+        const std::size_t declared = wire::count(held.message_header().message_length()) + 2;
         const std::size_t derived = frame_size(held);
 
         if (declared != derived && ++tally.sizes <= shown) {

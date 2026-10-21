@@ -23,7 +23,7 @@ std::size_t Headline::decode(const std::byte* data, std::size_t length) {
     offset += 2;
 
     {
-        const std::size_t count = static_cast<std::size_t>(headline_length_);
+        const std::size_t count = wire::count(headline_length_);
         wire::require("Headline", offset + count, length);
         headline_data_.assign(reinterpret_cast<const char*>(data + offset), count);
         offset += count;

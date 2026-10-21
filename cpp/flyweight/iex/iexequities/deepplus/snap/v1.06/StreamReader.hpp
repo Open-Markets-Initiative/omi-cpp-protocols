@@ -17,8 +17,8 @@ namespace iex::iexequities::deepplus::snap::v1_06 {
 
 // Reads a Packet in place: its headers, then each message its frames carry, handed to the
 // handler as a view of its bytes. A handler declares an on() for each view it wants; a view it
-// declares none for is passed over, and a code no message answers to goes to on_unknown() when
-// it declares one.
+// declares none for is passed over, and a code no message answers to goes to on_unknown(code,
+// body) when it declares one.
 struct StreamReader {
     // Read one packet; what it returns is how many of the bytes the packet took.
     template <typename Handler>
@@ -38,7 +38,7 @@ struct StreamReader {
 
             const Frame frame{ bytes.subspan(offset) };
             offset += frame.encoded_size();
-            const std::size_t frame_size = static_cast<std::size_t>(frame.message_header().message_length()) + 2;
+            const std::size_t frame_size = wire::count(frame.message_header().message_length()) + 2;
             if (frame_size < Frame::minimum_size) { throw DecodeError(Packet::name, Frame::minimum_size, frame_size); }
             if (start + frame_size > bytes.size()) { offset = start; break; }
             dispatch(frame, bytes.subspan(offset, start + frame_size - offset), handler);
@@ -63,10 +63,10 @@ struct StreamReader {
         }
     }
 
-    template <typename Message, typename Handler>
-    static std::size_t handle(std::span<const std::byte> body, Handler& handler) {
+    template <typename Message, typename Handler, typename... Handed>
+    static std::size_t handle(std::span<const std::byte> body, Handler& handler, Handed... handed) {
         wire::require(Message::name, Message::minimum_size, body.size());
-        const Message message{ body };
+        const Message message{ body, handed... };
         if constexpr (requires { handler.on(message); }) { handler.on(message); }
         return message.encoded_size();
     }

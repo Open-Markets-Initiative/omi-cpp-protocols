@@ -51,7 +51,7 @@ class SnapshotDataMessage {
 
     // the bytes the message it selects is read from
     std::span<const std::byte> iex_tp_message_data_bytes() const {
-        const std::size_t bounded = static_cast<std::size_t>(iex_tp_message_length());
+        const std::size_t bounded = wire::count(iex_tp_message_length());
         wire::require("SnapshotDataMessage", 45 + bounded, bytes_.size());
         return bytes_.subspan(45, bounded);
     }
@@ -147,7 +147,7 @@ class SnapshotDataMessage {
 
     // the bytes the message it selects takes
     std::size_t iex_tp_message_data_size() const {
-        return static_cast<std::size_t>(iex_tp_message_length());
+        return wire::count(iex_tp_message_length());
     }
 
     // the message it selects, printed; a code no message answers to prints its bytes

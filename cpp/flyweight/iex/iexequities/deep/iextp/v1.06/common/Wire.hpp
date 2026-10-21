@@ -7,6 +7,7 @@
 #include <optional>
 #include <string>
 #include <string_view>
+#include <type_traits>
 
 #include "Decimal.hpp"
 #include "Errors.hpp"
@@ -184,6 +185,52 @@ inline std::size_t terminated_length(const std::byte* data, std::size_t availabl
         if (data[index] == std::byte{ 0 }) { return index; }
     }
     throw DecodeError("terminated text", limit + 1, available);
+}
+
+// counts
+
+// How many a count or a length states - entries, or bytes. It is a number on the
+// wire, or digits of text as a protocol of text fields sends it, or either of those
+// that may be absent - which states none.
+template <typename T>
+    requires std::is_integral_v<T>
+inline std::size_t count(T value) {
+    return static_cast<std::size_t>(value);
+}
+
+inline std::size_t count(char digit) {
+    if (digit < '0' || digit > '9') { throw DecodeError("count", "'" + std::string(1, digit) + "' is not a digit"); }
+    return static_cast<std::size_t>(digit - '0');
+}
+
+// Digits, right-justified: blanks before them are fill, and no digits at all is none
+inline std::size_t count(std::string_view digits) {
+    std::size_t value = 0;
+    std::size_t index = 0;
+    while (index < digits.size() && digits[index] == ' ') { ++index; }
+    for (; index < digits.size(); ++index) {
+        const char digit = digits[index];
+        if (digit < '0' || digit > '9') { throw DecodeError("count", "\"" + std::string(digits) + "\" is not a number"); }
+        value = value * 10 + static_cast<std::size_t>(digit - '0');
+    }
+    return value;
+}
+
+template <typename T>
+inline std::size_t count(const std::optional<T>& value) {
+    return value ? count(*value) : 0;
+}
+
+// A count as a text field of its width carries it: its digits, zero-filled on the left
+inline std::string digits(std::size_t value, std::size_t width) {
+    const std::string text = std::to_string(value);
+    if (text.size() > width) { throw EncodeError("count", text + " does not fit in " + std::to_string(width) + " digits"); }
+    return std::string(width - text.size(), '0') + text;
+}
+
+inline char digit(std::size_t value) {
+    if (value > 9) { throw EncodeError("count", std::to_string(value) + " does not fit in one digit"); }
+    return static_cast<char>('0' + value);
 }
 
 // optional values

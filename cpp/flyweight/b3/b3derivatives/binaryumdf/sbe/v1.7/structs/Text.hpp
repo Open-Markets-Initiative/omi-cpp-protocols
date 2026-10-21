@@ -28,7 +28,7 @@ class Text {
 
     std::uint16_t text_length() const { return wire::read_u16_le(at(0)); }
 
-    std::size_t text_data_size() const { return static_cast<std::size_t>(text_length()); }
+    std::size_t text_data_size() const { return wire::count(text_length()); }
     std::string_view text_data() const {
         wire::require("Text", 2 + text_data_size(), bytes_.size());
         return view::characters(at(2), text_data_size());
