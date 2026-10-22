@@ -1,7 +1,8 @@
 # Benchmark Programs
 
-Times reading a capture through the Tmp header. The capture's datagrams are read into memory
-first, so only the reading is timed: every datagram parsed, and every field of every message
+Times reading a capture through the Tmp header, by the reading generated into the program. The
+capture's datagrams are read into memory first, so only the reading is timed: every datagram
+parsed, and every field of every message
 read through `get<Field>()` and folded into a checksum, so no read can be skipped. It reports
 the whole read - nanoseconds per datagram and per message, messages and megabytes a second -
 and then every field of each message type read on its own. Each figure is the best of the

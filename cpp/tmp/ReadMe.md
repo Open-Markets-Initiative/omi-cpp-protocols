@@ -1,6 +1,6 @@
 # Tmp C++ Headers
 
-Template meta programming parsers, one header per protocol. Every field is a type: a struct
+Template meta programming data models, one header per protocol. Every field is a type: a struct
 holding the field's bytes as the wire has them, saying its `type`, `size`, byte `order`, the
 values the model names (`no_value`, `minimum`, `maximum`), an implied decimal's `exponent` and
 an enum's values; its `value()` reads it in the host's order. Every message is a packed struct
@@ -11,18 +11,18 @@ const auto& message = *reinterpret_cast<const quote_update_message*>(bytes);
 auto price = message.get<bid_price>().value();
 ```
 
-Each struct lists its members' types as `fields`, so generic code can walk every field. Where
-no struct lies over the bytes - the packet, its frames, a branch selecting its message by a
-code - a struct of that name has a `parse(data, length, handler)` that walks it, and hands the
-handler each type it lays over the bytes. An element the reader does not walk yet is named in
-the header as not generated yet.
+Each struct lists its members' types as `fields`, so generic code can walk every field. The
+header holds no reading: where no struct lies over the bytes - the packet, its frames, a branch
+selecting its message by a code - it names the element, and the program that reads is generated
+with a `parse_<element>(data, length, handler)` that walks it, handing the handler each type it
+lays over the bytes. An element not walked yet is named in the header as not generated yet.
 
 Each protocol has its own directory, named for its identifier with the version as the last
 segment — `Iex.IexEquities.Tops.IexTp.v1.64` becomes `iex/iexequities/tops/iextp/v1.64` —
 matching the C++ namespace the code declares.
 
 Each protocol is one header, `<namespace>.hpp`; the benchmark program under
-`executables/benchmark/` reads through it.
+`executables/benchmark/` is generated with its reading over it.
 
 ## Protocols (19)
 

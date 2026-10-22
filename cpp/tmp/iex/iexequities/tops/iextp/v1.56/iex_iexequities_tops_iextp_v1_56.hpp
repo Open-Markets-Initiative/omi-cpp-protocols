@@ -15,6 +15,16 @@
 #include <string_view>
 #include <type_traits>
 
+// A member of a struct laid over its bytes: the overload get<Field>() finds it by, and the member
+#ifndef IEXTPFIELD
+#define IEXTPFIELD(type) constexpr const type& ref(const type*) const noexcept { return type##_; } type type##_
+#endif
+
+// A repeating group of a message: its entries' type, which the parse hands over one at a time; no bytes
+#ifndef IEXTPSEQUENCE
+#define IEXTPSEQUENCE(type) using type##_sequence = tmp::sequence<type>
+#endif
+
 namespace iex::iexequities::tops::iextp::v1_56 {
 
 /////////////////////////////////////////////////////////////////////
@@ -25,6 +35,12 @@ namespace tmp {
     // The types of a struct's members, in wire order: what generic code walks a struct by
     template <typename... Fields>
     struct list {};
+
+    // A repeating group of a message: the type of its entries, each laid over its bytes in turn
+    template <typename Entry>
+    struct sequence {
+        using entry = Entry;
+    };
 
     // An integer as the wire holds it, in the host's order: swapped when the wire's order is not the host's
     template <std::endian Order, typename T>
@@ -55,119 +71,6 @@ namespace tmp {
         std::size_t length = N;
         while (length > 0 && text[length - 1] == fill) { --length; }
         return { text.data(), length };
-    }
-
-    // Thrown when the bytes end before what they must hold
-    struct short_read : std::runtime_error {
-        using std::runtime_error::runtime_error;
-    };
-
-    inline void require(std::size_t needed, std::size_t available) {
-        if (needed > available) {
-            throw short_read(std::to_string(needed) + " bytes needed, " + std::to_string(available) + " available");
-        }
-    }
-
-    // Hand the handler a value, when it takes one
-    template <typename Handler, typename T>
-    constexpr void call(Handler& handler, const T& value) {
-        if constexpr (requires { handler(value); }) { handler(value); }
-    }
-
-    // A type laid over its bytes, handed to the handler
-    template <typename T, typename Handler>
-    const T& read(const std::byte* data, std::size_t length, Handler& handler) {
-        require(T::size, length);
-        const auto& value = *reinterpret_cast<const T*>(data);
-        call(handler, value);
-        return value;
-    }
-
-    // A field as a rule reads it: an enum by the code the wire holds, a field by its value, and a
-    // bit - which its bitfield answers as a value - as it is
-    template <typename T>
-    constexpr auto rule(const T& field) noexcept {
-        if constexpr (requires { field.raw(); }) { return field.raw(); }
-        else if constexpr (requires { field.value(); }) { return field.value(); }
-        else { return field; }
-    }
-
-    // A field an optional member may hold, read as its type's zero when the member is absent
-    template <typename T>
-    struct maybe {
-        const T* field;
-
-        constexpr auto value() const noexcept {
-            using type = decltype(field->value());
-            return field != nullptr ? field->value() : type{};
-        }
-
-        constexpr auto raw() const noexcept requires requires(const T& held) { held.raw(); } {
-            using type = decltype(field->raw());
-            return field != nullptr ? field->raw() : type{};
-        }
-
-        // a bit of an optional bitfield, nothing when the bitfield is absent
-        template <typename Bit>
-        constexpr auto get() const noexcept requires requires(const T& held) { held.template get<Bit>(); } {
-            using type = std::remove_cvref_t<decltype(field->template get<Bit>())>;
-            return field != nullptr ? type{ field->template get<Bit>() } : type{};
-        }
-    };
-
-    // A type laid over its bytes without handing it on: a frame's length, read before the frame is
-    template <typename T>
-    const T& at(const std::byte* data) noexcept {
-        return *reinterpret_cast<const T*>(data);
-    }
-
-    // A type laid over bytes ahead of the walk, at a place every byte before it fixes, which a rule
-    // reads before the walk reaches it: a branch's code in the header its messages begin with
-    template <typename T>
-    const T& ahead(const std::byte* data, std::size_t length, std::size_t at) {
-        require(at + T::size, length);
-        return *reinterpret_cast<const T*>(data + at);
-    }
-
-    // A type laid over its bytes and handed to the handler; what it returns is the bytes it took
-    template <typename T, typename Handler>
-    std::size_t take(const std::byte* data, std::size_t length, Handler& handler) {
-        read<T>(data, length, handler);
-        return T::size;
-    }
-
-    // The characters before a terminating zero, which the bytes must hold
-    inline std::size_t terminated(const std::byte* data, std::size_t length) {
-        for (std::size_t index = 0; index < length; ++index) {
-            if (data[index] == std::byte{ 0 }) { return index; }
-        }
-        throw short_read("no terminator in " + std::to_string(length) + " bytes");
-    }
-
-    // Bytes a branch's code selects no message for, handed to the handler when it takes them
-    template <typename Handler>
-    void unknown(Handler& handler, const std::byte* data, std::size_t length) {
-        if constexpr (requires { handler.unknown(data, length); }) { handler.unknown(data, length); }
-    }
-
-    // How many a count or a length states: a number, or digits of text
-    template <typename T>
-        requires std::is_integral_v<T>
-    constexpr std::size_t count(T value) noexcept { return static_cast<std::size_t>(value); }
-
-    inline std::size_t count(char digit) {
-        if (digit < '0' || digit > '9') { throw short_read(std::string("'") + digit + "' is not a digit"); }
-        return static_cast<std::size_t>(digit - '0');
-    }
-
-    inline std::size_t count(std::string_view digits) {
-        std::size_t value = 0;
-        for (const char digit : digits) {
-            if (digit == ' ') { continue; }
-            if (digit < '0' || digit > '9') { throw short_read("\"" + std::string(digits) + "\" is not a number"); }
-            value = value * 10 + static_cast<std::size_t>(digit - '0');
-        }
-        return value;
     }
 } // namespace tmp
 
@@ -599,21 +502,13 @@ struct trade_break_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    sale_condition_flags sale_condition_flags_;
-    timestamp timestamp_;
-    symbol symbol_;
-    size_type size_type_;
-    price price_;
-    trade_id trade_id_;
-    reserved_4 reserved_4_;
-
-    constexpr const sale_condition_flags& ref(const sale_condition_flags*) const noexcept { return sale_condition_flags_; }
-    constexpr const timestamp& ref(const timestamp*) const noexcept { return timestamp_; }
-    constexpr const symbol& ref(const symbol*) const noexcept { return symbol_; }
-    constexpr const size_type& ref(const size_type*) const noexcept { return size_type_; }
-    constexpr const price& ref(const price*) const noexcept { return price_; }
-    constexpr const trade_id& ref(const trade_id*) const noexcept { return trade_id_; }
-    constexpr const reserved_4& ref(const reserved_4*) const noexcept { return reserved_4_; }
+    IEXTPFIELD(sale_condition_flags);
+    IEXTPFIELD(timestamp);
+    IEXTPFIELD(symbol);
+    IEXTPFIELD(size_type);
+    IEXTPFIELD(price);
+    IEXTPFIELD(trade_id);
+    IEXTPFIELD(reserved_4);
 };
 
 static_assert(sizeof(trade_break_message) == trade_break_message::size, "trade_break_message lies over its bytes exactly");
@@ -634,21 +529,13 @@ struct trade_report_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    sale_condition_flags sale_condition_flags_;
-    timestamp timestamp_;
-    symbol symbol_;
-    size_type size_type_;
-    price price_;
-    trade_id trade_id_;
-    reserved_4 reserved_4_;
-
-    constexpr const sale_condition_flags& ref(const sale_condition_flags*) const noexcept { return sale_condition_flags_; }
-    constexpr const timestamp& ref(const timestamp*) const noexcept { return timestamp_; }
-    constexpr const symbol& ref(const symbol*) const noexcept { return symbol_; }
-    constexpr const size_type& ref(const size_type*) const noexcept { return size_type_; }
-    constexpr const price& ref(const price*) const noexcept { return price_; }
-    constexpr const trade_id& ref(const trade_id*) const noexcept { return trade_id_; }
-    constexpr const reserved_4& ref(const reserved_4*) const noexcept { return reserved_4_; }
+    IEXTPFIELD(sale_condition_flags);
+    IEXTPFIELD(timestamp);
+    IEXTPFIELD(symbol);
+    IEXTPFIELD(size_type);
+    IEXTPFIELD(price);
+    IEXTPFIELD(trade_id);
+    IEXTPFIELD(reserved_4);
 };
 
 static_assert(sizeof(trade_report_message) == trade_report_message::size, "trade_report_message lies over its bytes exactly");
@@ -689,21 +576,13 @@ struct quote_update_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    quote_update_flags quote_update_flags_;
-    timestamp timestamp_;
-    symbol symbol_;
-    bid_size bid_size_;
-    bid_price bid_price_;
-    ask_price ask_price_;
-    ask_size ask_size_;
-
-    constexpr const quote_update_flags& ref(const quote_update_flags*) const noexcept { return quote_update_flags_; }
-    constexpr const timestamp& ref(const timestamp*) const noexcept { return timestamp_; }
-    constexpr const symbol& ref(const symbol*) const noexcept { return symbol_; }
-    constexpr const bid_size& ref(const bid_size*) const noexcept { return bid_size_; }
-    constexpr const bid_price& ref(const bid_price*) const noexcept { return bid_price_; }
-    constexpr const ask_price& ref(const ask_price*) const noexcept { return ask_price_; }
-    constexpr const ask_size& ref(const ask_size*) const noexcept { return ask_size_; }
+    IEXTPFIELD(quote_update_flags);
+    IEXTPFIELD(timestamp);
+    IEXTPFIELD(symbol);
+    IEXTPFIELD(bid_size);
+    IEXTPFIELD(bid_price);
+    IEXTPFIELD(ask_price);
+    IEXTPFIELD(ask_size);
 };
 
 static_assert(sizeof(quote_update_message) == quote_update_message::size, "quote_update_message lies over its bytes exactly");
@@ -713,31 +592,6 @@ static_assert(sizeof(quote_update_message) == quote_update_message::size, "quote
 struct message_data {
     static constexpr std::string_view name = "Message Data";
     static constexpr bool is_message = false;
-
-    // read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
-    template <typename Handler>
-    static std::size_t parse([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler, const message_type& message_type_) {
-        if (static_cast<bool>(tmp::rule(message_type_) == 'Q')) {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            [[maybe_unused]] const auto& quote_update_message_ = tmp::read<quote_update_message>(data + offset, bound - offset, handler); offset += quote_update_message::size;
-            return offset;
-        }
-        if (static_cast<bool>(tmp::rule(message_type_) == 'T')) {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            [[maybe_unused]] const auto& trade_report_message_ = tmp::read<trade_report_message>(data + offset, bound - offset, handler); offset += trade_report_message::size;
-            return offset;
-        }
-        if (static_cast<bool>(tmp::rule(message_type_) == 'B')) {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            [[maybe_unused]] const auto& trade_break_message_ = tmp::read<trade_break_message>(data + offset, bound - offset, handler); offset += trade_break_message::size;
-            return offset;
-        }
-        tmp::unknown(handler, data, length);
-        return length;
-    }
 };
 
 // Message Header
@@ -755,11 +609,8 @@ struct message_header {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    message_length message_length_;
-    message_type message_type_;
-
-    constexpr const message_length& ref(const message_length*) const noexcept { return message_length_; }
-    constexpr const message_type& ref(const message_type*) const noexcept { return message_type_; }
+    IEXTPFIELD(message_length);
+    IEXTPFIELD(message_type);
 };
 
 static_assert(sizeof(message_header) == message_header::size, "message_header lies over its bytes exactly");
@@ -769,18 +620,6 @@ static_assert(sizeof(message_header) == message_header::size, "message_header li
 struct message {
     static constexpr std::string_view name = "Message";
     static constexpr bool is_message = false;
-
-    // read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
-    template <typename Handler>
-    static std::size_t parse([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler) {
-        std::size_t offset = 0;
-        std::size_t bound = length;
-        [[maybe_unused]] const auto& message_header_ = tmp::read<message_header>(data + offset, bound - offset, handler); offset += message_header::size;
-        bound = static_cast<std::size_t>(static_cast<std::int64_t>(tmp::count(tmp::rule(message_header_.template get<message_length>()))) + 2);
-        tmp::require(bound, length);
-        offset += message_data::parse(data + offset, bound - offset, handler, message_header_.template get<message_type>());
-        return bound;
-    }
 };
 
 // Heartbeat
@@ -796,27 +635,8 @@ struct messages {
     static constexpr std::string_view name = "Messages";
     static constexpr bool is_message = false;
 
-    // read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
-    template <typename Handler>
-    static std::size_t parse([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler, const message_count& message_count_) {
-        if (static_cast<bool>(tmp::rule(message_count_) == 0)) {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            tmp::call(handler, heartbeat{});
-            return offset;
-        }
-        {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            {
-                const std::size_t count = static_cast<std::size_t>(tmp::rule(message_count_));
-                for (std::size_t index = 0; index < count; ++index) {
-                    offset += message::parse(data + offset, bound - offset, handler);
-                }
-            }
-            return offset;
-        }
-    }
+    // its repeating groups, whose entries the parse hands over one at a time
+    IEXTPSEQUENCE(message);
 };
 
 // Iextp Header
@@ -834,27 +654,16 @@ struct iextp_header {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    version version_;
-    reserved reserved_;
-    message_protocol_id message_protocol_id_;
-    channel_id channel_id_;
-    session_id session_id_;
-    payload_length payload_length_;
-    message_count message_count_;
-    stream_offset stream_offset_;
-    first_message_sequence_number first_message_sequence_number_;
-    send_time send_time_;
-
-    constexpr const version& ref(const version*) const noexcept { return version_; }
-    constexpr const reserved& ref(const reserved*) const noexcept { return reserved_; }
-    constexpr const message_protocol_id& ref(const message_protocol_id*) const noexcept { return message_protocol_id_; }
-    constexpr const channel_id& ref(const channel_id*) const noexcept { return channel_id_; }
-    constexpr const session_id& ref(const session_id*) const noexcept { return session_id_; }
-    constexpr const payload_length& ref(const payload_length*) const noexcept { return payload_length_; }
-    constexpr const message_count& ref(const message_count*) const noexcept { return message_count_; }
-    constexpr const stream_offset& ref(const stream_offset*) const noexcept { return stream_offset_; }
-    constexpr const first_message_sequence_number& ref(const first_message_sequence_number*) const noexcept { return first_message_sequence_number_; }
-    constexpr const send_time& ref(const send_time*) const noexcept { return send_time_; }
+    IEXTPFIELD(version);
+    IEXTPFIELD(reserved);
+    IEXTPFIELD(message_protocol_id);
+    IEXTPFIELD(channel_id);
+    IEXTPFIELD(session_id);
+    IEXTPFIELD(payload_length);
+    IEXTPFIELD(message_count);
+    IEXTPFIELD(stream_offset);
+    IEXTPFIELD(first_message_sequence_number);
+    IEXTPFIELD(send_time);
 };
 
 static_assert(sizeof(iextp_header) == iextp_header::size, "iextp_header lies over its bytes exactly");
@@ -864,21 +673,6 @@ static_assert(sizeof(iextp_header) == iextp_header::size, "iextp_header lies ove
 struct packet {
     static constexpr std::string_view name = "Packet";
     static constexpr bool is_message = false;
-
-    // read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
-    template <typename Handler>
-    static std::size_t parse([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler) {
-        std::size_t offset = 0;
-        const std::size_t bound = length;
-        [[maybe_unused]] const auto& iextp_header_ = tmp::read<iextp_header>(data + offset, bound - offset, handler); offset += iextp_header::size;
-        {
-            const std::size_t size = static_cast<std::size_t>(tmp::rule(iextp_header_.template get<payload_length>()));
-            tmp::require(offset + size, bound);
-            messages::parse(data + offset, size, handler, iextp_header_.template get<message_count>());
-            offset += size;
-        }
-        return offset;
-    }
 };
 
 #pragma pack(pop)

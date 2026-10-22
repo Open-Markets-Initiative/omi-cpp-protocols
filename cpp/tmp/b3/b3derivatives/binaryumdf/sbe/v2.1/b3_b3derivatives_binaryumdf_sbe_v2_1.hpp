@@ -15,6 +15,16 @@
 #include <string_view>
 #include <type_traits>
 
+// A member of a struct laid over its bytes: the overload get<Field>() finds it by, and the member
+#ifndef BINARYUMDFFIELD
+#define BINARYUMDFFIELD(type) constexpr const type& ref(const type*) const noexcept { return type##_; } type type##_
+#endif
+
+// A repeating group of a message: its entries' type, which the parse hands over one at a time; no bytes
+#ifndef BINARYUMDFSEQUENCE
+#define BINARYUMDFSEQUENCE(type) using type##_sequence = tmp::sequence<type>
+#endif
+
 namespace b3::b3derivatives::binaryumdf::sbe::v2_1 {
 
 /////////////////////////////////////////////////////////////////////
@@ -25,6 +35,12 @@ namespace tmp {
     // The types of a struct's members, in wire order: what generic code walks a struct by
     template <typename... Fields>
     struct list {};
+
+    // A repeating group of a message: the type of its entries, each laid over its bytes in turn
+    template <typename Entry>
+    struct sequence {
+        using entry = Entry;
+    };
 
     // An integer as the wire holds it, in the host's order: swapped when the wire's order is not the host's
     template <std::endian Order, typename T>
@@ -55,119 +71,6 @@ namespace tmp {
         std::size_t length = N;
         while (length > 0 && text[length - 1] == fill) { --length; }
         return { text.data(), length };
-    }
-
-    // Thrown when the bytes end before what they must hold
-    struct short_read : std::runtime_error {
-        using std::runtime_error::runtime_error;
-    };
-
-    inline void require(std::size_t needed, std::size_t available) {
-        if (needed > available) {
-            throw short_read(std::to_string(needed) + " bytes needed, " + std::to_string(available) + " available");
-        }
-    }
-
-    // Hand the handler a value, when it takes one
-    template <typename Handler, typename T>
-    constexpr void call(Handler& handler, const T& value) {
-        if constexpr (requires { handler(value); }) { handler(value); }
-    }
-
-    // A type laid over its bytes, handed to the handler
-    template <typename T, typename Handler>
-    const T& read(const std::byte* data, std::size_t length, Handler& handler) {
-        require(T::size, length);
-        const auto& value = *reinterpret_cast<const T*>(data);
-        call(handler, value);
-        return value;
-    }
-
-    // A field as a rule reads it: an enum by the code the wire holds, a field by its value, and a
-    // bit - which its bitfield answers as a value - as it is
-    template <typename T>
-    constexpr auto rule(const T& field) noexcept {
-        if constexpr (requires { field.raw(); }) { return field.raw(); }
-        else if constexpr (requires { field.value(); }) { return field.value(); }
-        else { return field; }
-    }
-
-    // A field an optional member may hold, read as its type's zero when the member is absent
-    template <typename T>
-    struct maybe {
-        const T* field;
-
-        constexpr auto value() const noexcept {
-            using type = decltype(field->value());
-            return field != nullptr ? field->value() : type{};
-        }
-
-        constexpr auto raw() const noexcept requires requires(const T& held) { held.raw(); } {
-            using type = decltype(field->raw());
-            return field != nullptr ? field->raw() : type{};
-        }
-
-        // a bit of an optional bitfield, nothing when the bitfield is absent
-        template <typename Bit>
-        constexpr auto get() const noexcept requires requires(const T& held) { held.template get<Bit>(); } {
-            using type = std::remove_cvref_t<decltype(field->template get<Bit>())>;
-            return field != nullptr ? type{ field->template get<Bit>() } : type{};
-        }
-    };
-
-    // A type laid over its bytes without handing it on: a frame's length, read before the frame is
-    template <typename T>
-    const T& at(const std::byte* data) noexcept {
-        return *reinterpret_cast<const T*>(data);
-    }
-
-    // A type laid over bytes ahead of the walk, at a place every byte before it fixes, which a rule
-    // reads before the walk reaches it: a branch's code in the header its messages begin with
-    template <typename T>
-    const T& ahead(const std::byte* data, std::size_t length, std::size_t at) {
-        require(at + T::size, length);
-        return *reinterpret_cast<const T*>(data + at);
-    }
-
-    // A type laid over its bytes and handed to the handler; what it returns is the bytes it took
-    template <typename T, typename Handler>
-    std::size_t take(const std::byte* data, std::size_t length, Handler& handler) {
-        read<T>(data, length, handler);
-        return T::size;
-    }
-
-    // The characters before a terminating zero, which the bytes must hold
-    inline std::size_t terminated(const std::byte* data, std::size_t length) {
-        for (std::size_t index = 0; index < length; ++index) {
-            if (data[index] == std::byte{ 0 }) { return index; }
-        }
-        throw short_read("no terminator in " + std::to_string(length) + " bytes");
-    }
-
-    // Bytes a branch's code selects no message for, handed to the handler when it takes them
-    template <typename Handler>
-    void unknown(Handler& handler, const std::byte* data, std::size_t length) {
-        if constexpr (requires { handler.unknown(data, length); }) { handler.unknown(data, length); }
-    }
-
-    // How many a count or a length states: a number, or digits of text
-    template <typename T>
-        requires std::is_integral_v<T>
-    constexpr std::size_t count(T value) noexcept { return static_cast<std::size_t>(value); }
-
-    inline std::size_t count(char digit) {
-        if (digit < '0' || digit > '9') { throw short_read(std::string("'") + digit + "' is not a digit"); }
-        return static_cast<std::size_t>(digit - '0');
-    }
-
-    inline std::size_t count(std::string_view digits) {
-        std::size_t value = 0;
-        for (const char digit : digits) {
-            if (digit == ' ') { continue; }
-            if (digit < '0' || digit > '9') { throw short_read("\"" + std::string(digits) + "\" is not a number"); }
-            value = value * 10 + static_cast<std::size_t>(digit - '0');
-        }
-        return value;
     }
 } // namespace tmp
 
@@ -3197,23 +3100,14 @@ struct snapshot_full_refresh_orders_mb_o_71_message_no_m_d_entries_group {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    md_corporate_offset_price_optional md_corporate_offset_price_optional_;
-    md_entry_size_quantity md_entry_size_quantity_;
-    md_entry_position_no md_entry_position_no_;
-    entering_firm entering_firm_;
-    md_insert_timestamp md_insert_timestamp_;
-    secondary_order_id secondary_order_id_;
-    md_entry_type md_entry_type_;
-    match_event_indicator match_event_indicator_;
-
-    constexpr const md_corporate_offset_price_optional& ref(const md_corporate_offset_price_optional*) const noexcept { return md_corporate_offset_price_optional_; }
-    constexpr const md_entry_size_quantity& ref(const md_entry_size_quantity*) const noexcept { return md_entry_size_quantity_; }
-    constexpr const md_entry_position_no& ref(const md_entry_position_no*) const noexcept { return md_entry_position_no_; }
-    constexpr const entering_firm& ref(const entering_firm*) const noexcept { return entering_firm_; }
-    constexpr const md_insert_timestamp& ref(const md_insert_timestamp*) const noexcept { return md_insert_timestamp_; }
-    constexpr const secondary_order_id& ref(const secondary_order_id*) const noexcept { return secondary_order_id_; }
-    constexpr const md_entry_type& ref(const md_entry_type*) const noexcept { return md_entry_type_; }
-    constexpr const match_event_indicator& ref(const match_event_indicator*) const noexcept { return match_event_indicator_; }
+    BINARYUMDFFIELD(md_corporate_offset_price_optional);
+    BINARYUMDFFIELD(md_entry_size_quantity);
+    BINARYUMDFFIELD(md_entry_position_no);
+    BINARYUMDFFIELD(entering_firm);
+    BINARYUMDFFIELD(md_insert_timestamp);
+    BINARYUMDFFIELD(secondary_order_id);
+    BINARYUMDFFIELD(md_entry_type);
+    BINARYUMDFFIELD(match_event_indicator);
 };
 
 static_assert(sizeof(snapshot_full_refresh_orders_mb_o_71_message_no_m_d_entries_group) == snapshot_full_refresh_orders_mb_o_71_message_no_m_d_entries_group::size, "snapshot_full_refresh_orders_mb_o_71_message_no_m_d_entries_group lies over its bytes exactly");
@@ -3233,11 +3127,8 @@ struct group_size_encoding {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    block_length block_length_;
-    num_in_group num_in_group_;
-
-    constexpr const block_length& ref(const block_length*) const noexcept { return block_length_; }
-    constexpr const num_in_group& ref(const num_in_group*) const noexcept { return num_in_group_; }
+    BINARYUMDFFIELD(block_length);
+    BINARYUMDFFIELD(num_in_group);
 };
 
 static_assert(sizeof(group_size_encoding) == group_size_encoding::size, "group_size_encoding lies over its bytes exactly");
@@ -3248,26 +3139,8 @@ struct snapshot_full_refresh_orders_mb_o_71_message_no_m_d_entries_groups {
     static constexpr std::string_view name = "Snapshot Full Refresh Orders Mb O 71 Message no M D Entries Groups";
     static constexpr bool is_message = false;
 
-    // read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
-    template <typename Handler>
-    static std::size_t parse([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler) {
-        std::size_t offset = 0;
-        const std::size_t bound = length;
-        [[maybe_unused]] const auto& group_size_encoding_ = tmp::read<group_size_encoding>(data + offset, bound - offset, handler); offset += group_size_encoding::size;
-        {
-            const std::size_t count = static_cast<std::size_t>(tmp::rule(group_size_encoding_.template get<num_in_group>()));
-            for (std::size_t index = 0; index < count; ++index) {
-                {
-                    const std::size_t block = static_cast<std::size_t>(tmp::rule(group_size_encoding_.template get<block_length>()));
-                    const std::size_t start = offset;
-                    offset += tmp::take<snapshot_full_refresh_orders_mb_o_71_message_no_m_d_entries_group>(data + offset, bound - offset, handler);
-                    if (offset - start < block) { offset = start + block; }
-                    tmp::require(offset, bound);
-                }
-            }
-        }
-        return offset;
-    }
+    // its repeating groups, whose entries the parse hands over one at a time
+    BINARYUMDFSEQUENCE(snapshot_full_refresh_orders_mb_o_71_message_no_m_d_entries_group);
 };
 
 // Snapshot Full Refresh Orders Mb O 71 Message Section 1
@@ -3286,9 +3159,7 @@ struct snapshot_full_refresh_orders_mb_o_71_message_section_1 {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    security_id security_id_;
-
-    constexpr const security_id& ref(const security_id*) const noexcept { return security_id_; }
+    BINARYUMDFFIELD(security_id);
 };
 
 static_assert(sizeof(snapshot_full_refresh_orders_mb_o_71_message_section_1) == snapshot_full_refresh_orders_mb_o_71_message_section_1::size, "snapshot_full_refresh_orders_mb_o_71_message_section_1 lies over its bytes exactly");
@@ -3298,16 +3169,6 @@ static_assert(sizeof(snapshot_full_refresh_orders_mb_o_71_message_section_1) == 
 struct snapshot_full_refresh_orders_mb_o_71_message {
     static constexpr std::string_view name = "Snapshot Full Refresh Orders Mb O 71 Message";
     static constexpr bool is_message = true;
-
-    // read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
-    template <typename Handler>
-    static std::size_t parse([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler) {
-        std::size_t offset = 0;
-        const std::size_t bound = length;
-        [[maybe_unused]] const auto& snapshot_full_refresh_orders_mb_o_71_message_section_1_ = tmp::read<snapshot_full_refresh_orders_mb_o_71_message_section_1>(data + offset, bound - offset, handler); offset += snapshot_full_refresh_orders_mb_o_71_message_section_1::size;
-        offset += snapshot_full_refresh_orders_mb_o_71_message_no_m_d_entries_groups::parse(data + offset, bound - offset, handler);
-        return offset;
-    }
 };
 
 // Trade Bust 57 Message
@@ -3325,29 +3186,17 @@ struct trade_bust_57_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    security_id security_id_;
-    match_event_indicator match_event_indicator_;
-    trading_session_id trading_session_id_;
-    offset_10_padding_2 offset_10_padding_2_;
-    md_future_price md_future_price_;
-    md_entry_size_quantity md_entry_size_quantity_;
-    trade_id trade_id_;
-    trade_date trade_date_;
-    offset_34_padding_2 offset_34_padding_2_;
-    transact_time transact_time_;
-    rpt_seq rpt_seq_;
-
-    constexpr const security_id& ref(const security_id*) const noexcept { return security_id_; }
-    constexpr const match_event_indicator& ref(const match_event_indicator*) const noexcept { return match_event_indicator_; }
-    constexpr const trading_session_id& ref(const trading_session_id*) const noexcept { return trading_session_id_; }
-    constexpr const offset_10_padding_2& ref(const offset_10_padding_2*) const noexcept { return offset_10_padding_2_; }
-    constexpr const md_future_price& ref(const md_future_price*) const noexcept { return md_future_price_; }
-    constexpr const md_entry_size_quantity& ref(const md_entry_size_quantity*) const noexcept { return md_entry_size_quantity_; }
-    constexpr const trade_id& ref(const trade_id*) const noexcept { return trade_id_; }
-    constexpr const trade_date& ref(const trade_date*) const noexcept { return trade_date_; }
-    constexpr const offset_34_padding_2& ref(const offset_34_padding_2*) const noexcept { return offset_34_padding_2_; }
-    constexpr const transact_time& ref(const transact_time*) const noexcept { return transact_time_; }
-    constexpr const rpt_seq& ref(const rpt_seq*) const noexcept { return rpt_seq_; }
+    BINARYUMDFFIELD(security_id);
+    BINARYUMDFFIELD(match_event_indicator);
+    BINARYUMDFFIELD(trading_session_id);
+    BINARYUMDFFIELD(offset_10_padding_2);
+    BINARYUMDFFIELD(md_future_price);
+    BINARYUMDFFIELD(md_entry_size_quantity);
+    BINARYUMDFFIELD(trade_id);
+    BINARYUMDFFIELD(trade_date);
+    BINARYUMDFFIELD(offset_34_padding_2);
+    BINARYUMDFFIELD(transact_time);
+    BINARYUMDFFIELD(rpt_seq);
 };
 
 static_assert(sizeof(trade_bust_57_message) == trade_bust_57_message::size, "trade_bust_57_message lies over its bytes exactly");
@@ -3367,27 +3216,16 @@ struct execution_statistics_56_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    security_id security_id_;
-    match_event_indicator match_event_indicator_;
-    trading_session_id trading_session_id_;
-    trade_date trade_date_;
-    trade_volume trade_volume_;
-    vwap_px vwap_px_;
-    net_chg_prev_day net_chg_prev_day_;
-    number_of_trades number_of_trades_;
-    md_entry_timestamp md_entry_timestamp_;
-    rpt_seq rpt_seq_;
-
-    constexpr const security_id& ref(const security_id*) const noexcept { return security_id_; }
-    constexpr const match_event_indicator& ref(const match_event_indicator*) const noexcept { return match_event_indicator_; }
-    constexpr const trading_session_id& ref(const trading_session_id*) const noexcept { return trading_session_id_; }
-    constexpr const trade_date& ref(const trade_date*) const noexcept { return trade_date_; }
-    constexpr const trade_volume& ref(const trade_volume*) const noexcept { return trade_volume_; }
-    constexpr const vwap_px& ref(const vwap_px*) const noexcept { return vwap_px_; }
-    constexpr const net_chg_prev_day& ref(const net_chg_prev_day*) const noexcept { return net_chg_prev_day_; }
-    constexpr const number_of_trades& ref(const number_of_trades*) const noexcept { return number_of_trades_; }
-    constexpr const md_entry_timestamp& ref(const md_entry_timestamp*) const noexcept { return md_entry_timestamp_; }
-    constexpr const rpt_seq& ref(const rpt_seq*) const noexcept { return rpt_seq_; }
+    BINARYUMDFFIELD(security_id);
+    BINARYUMDFFIELD(match_event_indicator);
+    BINARYUMDFFIELD(trading_session_id);
+    BINARYUMDFFIELD(trade_date);
+    BINARYUMDFFIELD(trade_volume);
+    BINARYUMDFFIELD(vwap_px);
+    BINARYUMDFFIELD(net_chg_prev_day);
+    BINARYUMDFFIELD(number_of_trades);
+    BINARYUMDFFIELD(md_entry_timestamp);
+    BINARYUMDFFIELD(rpt_seq);
 };
 
 static_assert(sizeof(execution_statistics_56_message) == execution_statistics_56_message::size, "execution_statistics_56_message lies over its bytes exactly");
@@ -3407,29 +3245,17 @@ struct execution_summary_55_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    security_id security_id_;
-    offset_8_padding_2 offset_8_padding_2_;
-    aggressor_side aggressor_side_;
-    offset_11_padding_1 offset_11_padding_1_;
-    last_px last_px_;
-    fill_qty fill_qty_;
-    traded_hidden_qty traded_hidden_qty_;
-    cxl_qty cxl_qty_;
-    aggressor_time aggressor_time_;
-    rpt_seq rpt_seq_;
-    transact_time transact_time_;
-
-    constexpr const security_id& ref(const security_id*) const noexcept { return security_id_; }
-    constexpr const offset_8_padding_2& ref(const offset_8_padding_2*) const noexcept { return offset_8_padding_2_; }
-    constexpr const aggressor_side& ref(const aggressor_side*) const noexcept { return aggressor_side_; }
-    constexpr const offset_11_padding_1& ref(const offset_11_padding_1*) const noexcept { return offset_11_padding_1_; }
-    constexpr const last_px& ref(const last_px*) const noexcept { return last_px_; }
-    constexpr const fill_qty& ref(const fill_qty*) const noexcept { return fill_qty_; }
-    constexpr const traded_hidden_qty& ref(const traded_hidden_qty*) const noexcept { return traded_hidden_qty_; }
-    constexpr const cxl_qty& ref(const cxl_qty*) const noexcept { return cxl_qty_; }
-    constexpr const aggressor_time& ref(const aggressor_time*) const noexcept { return aggressor_time_; }
-    constexpr const rpt_seq& ref(const rpt_seq*) const noexcept { return rpt_seq_; }
-    constexpr const transact_time& ref(const transact_time*) const noexcept { return transact_time_; }
+    BINARYUMDFFIELD(security_id);
+    BINARYUMDFFIELD(offset_8_padding_2);
+    BINARYUMDFFIELD(aggressor_side);
+    BINARYUMDFFIELD(offset_11_padding_1);
+    BINARYUMDFFIELD(last_px);
+    BINARYUMDFFIELD(fill_qty);
+    BINARYUMDFFIELD(traded_hidden_qty);
+    BINARYUMDFFIELD(cxl_qty);
+    BINARYUMDFFIELD(aggressor_time);
+    BINARYUMDFFIELD(rpt_seq);
+    BINARYUMDFFIELD(transact_time);
 };
 
 static_assert(sizeof(execution_summary_55_message) == execution_summary_55_message::size, "execution_summary_55_message lies over its bytes exactly");
@@ -3469,39 +3295,22 @@ struct forward_trade_54_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    security_id security_id_;
-    match_event_indicator match_event_indicator_;
-    trading_session_id trading_session_id_;
-    trade_condition trade_condition_;
-    md_future_price md_future_price_;
-    md_entry_size_quantity md_entry_size_quantity_;
-    trade_id trade_id_;
-    md_entry_buyer md_entry_buyer_;
-    md_entry_seller md_entry_seller_;
-    trade_date trade_date_;
-    transact_time transact_time_;
-    rpt_seq rpt_seq_;
-    seller_days seller_days_;
-    md_entry_interest_rate md_entry_interest_rate_;
-    trd_sub_type trd_sub_type_;
-    padding_3 padding_3_;
-
-    constexpr const security_id& ref(const security_id*) const noexcept { return security_id_; }
-    constexpr const match_event_indicator& ref(const match_event_indicator*) const noexcept { return match_event_indicator_; }
-    constexpr const trading_session_id& ref(const trading_session_id*) const noexcept { return trading_session_id_; }
-    constexpr const trade_condition& ref(const trade_condition*) const noexcept { return trade_condition_; }
-    constexpr const md_future_price& ref(const md_future_price*) const noexcept { return md_future_price_; }
-    constexpr const md_entry_size_quantity& ref(const md_entry_size_quantity*) const noexcept { return md_entry_size_quantity_; }
-    constexpr const trade_id& ref(const trade_id*) const noexcept { return trade_id_; }
-    constexpr const md_entry_buyer& ref(const md_entry_buyer*) const noexcept { return md_entry_buyer_; }
-    constexpr const md_entry_seller& ref(const md_entry_seller*) const noexcept { return md_entry_seller_; }
-    constexpr const trade_date& ref(const trade_date*) const noexcept { return trade_date_; }
-    constexpr const transact_time& ref(const transact_time*) const noexcept { return transact_time_; }
-    constexpr const rpt_seq& ref(const rpt_seq*) const noexcept { return rpt_seq_; }
-    constexpr const seller_days& ref(const seller_days*) const noexcept { return seller_days_; }
-    constexpr const md_entry_interest_rate& ref(const md_entry_interest_rate*) const noexcept { return md_entry_interest_rate_; }
-    constexpr const trd_sub_type& ref(const trd_sub_type*) const noexcept { return trd_sub_type_; }
-    constexpr const padding_3& ref(const padding_3*) const noexcept { return padding_3_; }
+    BINARYUMDFFIELD(security_id);
+    BINARYUMDFFIELD(match_event_indicator);
+    BINARYUMDFFIELD(trading_session_id);
+    BINARYUMDFFIELD(trade_condition);
+    BINARYUMDFFIELD(md_future_price);
+    BINARYUMDFFIELD(md_entry_size_quantity);
+    BINARYUMDFFIELD(trade_id);
+    BINARYUMDFFIELD(md_entry_buyer);
+    BINARYUMDFFIELD(md_entry_seller);
+    BINARYUMDFFIELD(trade_date);
+    BINARYUMDFFIELD(transact_time);
+    BINARYUMDFFIELD(rpt_seq);
+    BINARYUMDFFIELD(seller_days);
+    BINARYUMDFFIELD(md_entry_interest_rate);
+    BINARYUMDFFIELD(trd_sub_type);
+    BINARYUMDFFIELD(padding_3);
 };
 
 static_assert(sizeof(forward_trade_54_message) == forward_trade_54_message::size, "forward_trade_54_message lies over its bytes exactly");
@@ -3521,35 +3330,20 @@ struct trade_53_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    security_id security_id_;
-    match_event_indicator match_event_indicator_;
-    trading_session_id trading_session_id_;
-    trade_condition trade_condition_;
-    md_future_price md_future_price_;
-    md_entry_size_quantity md_entry_size_quantity_;
-    trade_id trade_id_;
-    md_entry_buyer md_entry_buyer_;
-    md_entry_seller md_entry_seller_;
-    trade_date trade_date_;
-    trd_sub_type trd_sub_type_;
-    offset_43_padding_1 offset_43_padding_1_;
-    transact_time transact_time_;
-    rpt_seq rpt_seq_;
-
-    constexpr const security_id& ref(const security_id*) const noexcept { return security_id_; }
-    constexpr const match_event_indicator& ref(const match_event_indicator*) const noexcept { return match_event_indicator_; }
-    constexpr const trading_session_id& ref(const trading_session_id*) const noexcept { return trading_session_id_; }
-    constexpr const trade_condition& ref(const trade_condition*) const noexcept { return trade_condition_; }
-    constexpr const md_future_price& ref(const md_future_price*) const noexcept { return md_future_price_; }
-    constexpr const md_entry_size_quantity& ref(const md_entry_size_quantity*) const noexcept { return md_entry_size_quantity_; }
-    constexpr const trade_id& ref(const trade_id*) const noexcept { return trade_id_; }
-    constexpr const md_entry_buyer& ref(const md_entry_buyer*) const noexcept { return md_entry_buyer_; }
-    constexpr const md_entry_seller& ref(const md_entry_seller*) const noexcept { return md_entry_seller_; }
-    constexpr const trade_date& ref(const trade_date*) const noexcept { return trade_date_; }
-    constexpr const trd_sub_type& ref(const trd_sub_type*) const noexcept { return trd_sub_type_; }
-    constexpr const offset_43_padding_1& ref(const offset_43_padding_1*) const noexcept { return offset_43_padding_1_; }
-    constexpr const transact_time& ref(const transact_time*) const noexcept { return transact_time_; }
-    constexpr const rpt_seq& ref(const rpt_seq*) const noexcept { return rpt_seq_; }
+    BINARYUMDFFIELD(security_id);
+    BINARYUMDFFIELD(match_event_indicator);
+    BINARYUMDFFIELD(trading_session_id);
+    BINARYUMDFFIELD(trade_condition);
+    BINARYUMDFFIELD(md_future_price);
+    BINARYUMDFFIELD(md_entry_size_quantity);
+    BINARYUMDFFIELD(trade_id);
+    BINARYUMDFFIELD(md_entry_buyer);
+    BINARYUMDFFIELD(md_entry_seller);
+    BINARYUMDFFIELD(trade_date);
+    BINARYUMDFFIELD(trd_sub_type);
+    BINARYUMDFFIELD(offset_43_padding_1);
+    BINARYUMDFFIELD(transact_time);
+    BINARYUMDFFIELD(rpt_seq);
 };
 
 static_assert(sizeof(trade_53_message) == trade_53_message::size, "trade_53_message lies over its bytes exactly");
@@ -3569,23 +3363,14 @@ struct mass_delete_orders_mb_o_52_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    security_id security_id_;
-    match_event_indicator match_event_indicator_;
-    md_update_action md_update_action_;
-    md_entry_type md_entry_type_;
-    offset_11_padding_1 offset_11_padding_1_;
-    md_entry_position_no md_entry_position_no_;
-    transact_time transact_time_;
-    rpt_seq rpt_seq_;
-
-    constexpr const security_id& ref(const security_id*) const noexcept { return security_id_; }
-    constexpr const match_event_indicator& ref(const match_event_indicator*) const noexcept { return match_event_indicator_; }
-    constexpr const md_update_action& ref(const md_update_action*) const noexcept { return md_update_action_; }
-    constexpr const md_entry_type& ref(const md_entry_type*) const noexcept { return md_entry_type_; }
-    constexpr const offset_11_padding_1& ref(const offset_11_padding_1*) const noexcept { return offset_11_padding_1_; }
-    constexpr const md_entry_position_no& ref(const md_entry_position_no*) const noexcept { return md_entry_position_no_; }
-    constexpr const transact_time& ref(const transact_time*) const noexcept { return transact_time_; }
-    constexpr const rpt_seq& ref(const rpt_seq*) const noexcept { return rpt_seq_; }
+    BINARYUMDFFIELD(security_id);
+    BINARYUMDFFIELD(match_event_indicator);
+    BINARYUMDFFIELD(md_update_action);
+    BINARYUMDFFIELD(md_entry_type);
+    BINARYUMDFFIELD(offset_11_padding_1);
+    BINARYUMDFFIELD(md_entry_position_no);
+    BINARYUMDFFIELD(transact_time);
+    BINARYUMDFFIELD(rpt_seq);
 };
 
 static_assert(sizeof(mass_delete_orders_mb_o_52_message) == mass_delete_orders_mb_o_52_message::size, "mass_delete_orders_mb_o_52_message lies over its bytes exactly");
@@ -3605,29 +3390,17 @@ struct delete_order_mb_o_51_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    security_id security_id_;
-    match_event_indicator match_event_indicator_;
-    offset_9_padding_1 offset_9_padding_1_;
-    md_entry_type md_entry_type_;
-    offset_11_padding_1 offset_11_padding_1_;
-    md_entry_position_no md_entry_position_no_;
-    md_entry_size_quantity md_entry_size_quantity_;
-    secondary_order_id secondary_order_id_;
-    transact_time transact_time_;
-    rpt_seq rpt_seq_;
-    md_corporate_offset_price_optional md_corporate_offset_price_optional_;
-
-    constexpr const security_id& ref(const security_id*) const noexcept { return security_id_; }
-    constexpr const match_event_indicator& ref(const match_event_indicator*) const noexcept { return match_event_indicator_; }
-    constexpr const offset_9_padding_1& ref(const offset_9_padding_1*) const noexcept { return offset_9_padding_1_; }
-    constexpr const md_entry_type& ref(const md_entry_type*) const noexcept { return md_entry_type_; }
-    constexpr const offset_11_padding_1& ref(const offset_11_padding_1*) const noexcept { return offset_11_padding_1_; }
-    constexpr const md_entry_position_no& ref(const md_entry_position_no*) const noexcept { return md_entry_position_no_; }
-    constexpr const md_entry_size_quantity& ref(const md_entry_size_quantity*) const noexcept { return md_entry_size_quantity_; }
-    constexpr const secondary_order_id& ref(const secondary_order_id*) const noexcept { return secondary_order_id_; }
-    constexpr const transact_time& ref(const transact_time*) const noexcept { return transact_time_; }
-    constexpr const rpt_seq& ref(const rpt_seq*) const noexcept { return rpt_seq_; }
-    constexpr const md_corporate_offset_price_optional& ref(const md_corporate_offset_price_optional*) const noexcept { return md_corporate_offset_price_optional_; }
+    BINARYUMDFFIELD(security_id);
+    BINARYUMDFFIELD(match_event_indicator);
+    BINARYUMDFFIELD(offset_9_padding_1);
+    BINARYUMDFFIELD(md_entry_type);
+    BINARYUMDFFIELD(offset_11_padding_1);
+    BINARYUMDFFIELD(md_entry_position_no);
+    BINARYUMDFFIELD(md_entry_size_quantity);
+    BINARYUMDFFIELD(secondary_order_id);
+    BINARYUMDFFIELD(transact_time);
+    BINARYUMDFFIELD(rpt_seq);
+    BINARYUMDFFIELD(md_corporate_offset_price_optional);
 };
 
 static_assert(sizeof(delete_order_mb_o_51_message) == delete_order_mb_o_51_message::size, "delete_order_mb_o_51_message lies over its bytes exactly");
@@ -3647,33 +3420,19 @@ struct order_mb_o_50_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    security_id security_id_;
-    match_event_indicator match_event_indicator_;
-    md_update_action md_update_action_;
-    md_entry_type md_entry_type_;
-    offset_11_padding_1 offset_11_padding_1_;
-    md_corporate_offset_price_optional md_corporate_offset_price_optional_;
-    md_entry_size_quantity md_entry_size_quantity_;
-    md_entry_position_no md_entry_position_no_;
-    entering_firm entering_firm_;
-    md_insert_timestamp md_insert_timestamp_;
-    secondary_order_id secondary_order_id_;
-    rpt_seq rpt_seq_;
-    transact_time transact_time_;
-
-    constexpr const security_id& ref(const security_id*) const noexcept { return security_id_; }
-    constexpr const match_event_indicator& ref(const match_event_indicator*) const noexcept { return match_event_indicator_; }
-    constexpr const md_update_action& ref(const md_update_action*) const noexcept { return md_update_action_; }
-    constexpr const md_entry_type& ref(const md_entry_type*) const noexcept { return md_entry_type_; }
-    constexpr const offset_11_padding_1& ref(const offset_11_padding_1*) const noexcept { return offset_11_padding_1_; }
-    constexpr const md_corporate_offset_price_optional& ref(const md_corporate_offset_price_optional*) const noexcept { return md_corporate_offset_price_optional_; }
-    constexpr const md_entry_size_quantity& ref(const md_entry_size_quantity*) const noexcept { return md_entry_size_quantity_; }
-    constexpr const md_entry_position_no& ref(const md_entry_position_no*) const noexcept { return md_entry_position_no_; }
-    constexpr const entering_firm& ref(const entering_firm*) const noexcept { return entering_firm_; }
-    constexpr const md_insert_timestamp& ref(const md_insert_timestamp*) const noexcept { return md_insert_timestamp_; }
-    constexpr const secondary_order_id& ref(const secondary_order_id*) const noexcept { return secondary_order_id_; }
-    constexpr const rpt_seq& ref(const rpt_seq*) const noexcept { return rpt_seq_; }
-    constexpr const transact_time& ref(const transact_time*) const noexcept { return transact_time_; }
+    BINARYUMDFFIELD(security_id);
+    BINARYUMDFFIELD(match_event_indicator);
+    BINARYUMDFFIELD(md_update_action);
+    BINARYUMDFFIELD(md_entry_type);
+    BINARYUMDFFIELD(offset_11_padding_1);
+    BINARYUMDFFIELD(md_corporate_offset_price_optional);
+    BINARYUMDFFIELD(md_entry_size_quantity);
+    BINARYUMDFFIELD(md_entry_position_no);
+    BINARYUMDFFIELD(entering_firm);
+    BINARYUMDFFIELD(md_insert_timestamp);
+    BINARYUMDFFIELD(secondary_order_id);
+    BINARYUMDFFIELD(rpt_seq);
+    BINARYUMDFFIELD(transact_time);
 };
 
 static_assert(sizeof(order_mb_o_50_message) == order_mb_o_50_message::size, "order_mb_o_50_message lies over its bytes exactly");
@@ -3693,25 +3452,15 @@ struct snapshot_full_refresh_header_30_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    security_id security_id_;
-    last_msg_seq_num_processed last_msg_seq_num_processed_;
-    tot_num_reports tot_num_reports_;
-    tot_num_bids tot_num_bids_;
-    tot_num_offers tot_num_offers_;
-    tot_num_stats tot_num_stats_;
-    offset_26_padding_2 offset_26_padding_2_;
-    last_rpt_seq last_rpt_seq_;
-    last_sequence_version last_sequence_version_;
-
-    constexpr const security_id& ref(const security_id*) const noexcept { return security_id_; }
-    constexpr const last_msg_seq_num_processed& ref(const last_msg_seq_num_processed*) const noexcept { return last_msg_seq_num_processed_; }
-    constexpr const tot_num_reports& ref(const tot_num_reports*) const noexcept { return tot_num_reports_; }
-    constexpr const tot_num_bids& ref(const tot_num_bids*) const noexcept { return tot_num_bids_; }
-    constexpr const tot_num_offers& ref(const tot_num_offers*) const noexcept { return tot_num_offers_; }
-    constexpr const tot_num_stats& ref(const tot_num_stats*) const noexcept { return tot_num_stats_; }
-    constexpr const offset_26_padding_2& ref(const offset_26_padding_2*) const noexcept { return offset_26_padding_2_; }
-    constexpr const last_rpt_seq& ref(const last_rpt_seq*) const noexcept { return last_rpt_seq_; }
-    constexpr const last_sequence_version& ref(const last_sequence_version*) const noexcept { return last_sequence_version_; }
+    BINARYUMDFFIELD(security_id);
+    BINARYUMDFFIELD(last_msg_seq_num_processed);
+    BINARYUMDFFIELD(tot_num_reports);
+    BINARYUMDFFIELD(tot_num_bids);
+    BINARYUMDFFIELD(tot_num_offers);
+    BINARYUMDFFIELD(tot_num_stats);
+    BINARYUMDFFIELD(offset_26_padding_2);
+    BINARYUMDFFIELD(last_rpt_seq);
+    BINARYUMDFFIELD(last_sequence_version);
 };
 
 static_assert(sizeof(snapshot_full_refresh_header_30_message) == snapshot_full_refresh_header_30_message::size, "snapshot_full_refresh_header_30_message lies over its bytes exactly");
@@ -3731,21 +3480,13 @@ struct open_interest_29_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    security_id security_id_;
-    match_event_indicator match_event_indicator_;
-    offset_9_padding_1 offset_9_padding_1_;
-    trade_date trade_date_;
-    md_entry_size_quantity md_entry_size_quantity_;
-    md_entry_timestamp md_entry_timestamp_;
-    rpt_seq rpt_seq_;
-
-    constexpr const security_id& ref(const security_id*) const noexcept { return security_id_; }
-    constexpr const match_event_indicator& ref(const match_event_indicator*) const noexcept { return match_event_indicator_; }
-    constexpr const offset_9_padding_1& ref(const offset_9_padding_1*) const noexcept { return offset_9_padding_1_; }
-    constexpr const trade_date& ref(const trade_date*) const noexcept { return trade_date_; }
-    constexpr const md_entry_size_quantity& ref(const md_entry_size_quantity*) const noexcept { return md_entry_size_quantity_; }
-    constexpr const md_entry_timestamp& ref(const md_entry_timestamp*) const noexcept { return md_entry_timestamp_; }
-    constexpr const rpt_seq& ref(const rpt_seq*) const noexcept { return rpt_seq_; }
+    BINARYUMDFFIELD(security_id);
+    BINARYUMDFFIELD(match_event_indicator);
+    BINARYUMDFFIELD(offset_9_padding_1);
+    BINARYUMDFFIELD(trade_date);
+    BINARYUMDFFIELD(md_entry_size_quantity);
+    BINARYUMDFFIELD(md_entry_timestamp);
+    BINARYUMDFFIELD(rpt_seq);
 };
 
 static_assert(sizeof(open_interest_29_message) == open_interest_29_message::size, "open_interest_29_message lies over its bytes exactly");
@@ -3765,29 +3506,17 @@ struct settlement_price_28_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    security_id security_id_;
-    match_event_indicator match_event_indicator_;
-    offset_9_padding_1 offset_9_padding_1_;
-    trade_date trade_date_;
-    md_future_price md_future_price_;
-    md_entry_timestamp md_entry_timestamp_;
-    open_close_settl_flag open_close_settl_flag_;
-    price_type price_type_;
-    settl_price_type settl_price_type_;
-    rpt_seq rpt_seq_;
-    padding_1 padding_1_;
-
-    constexpr const security_id& ref(const security_id*) const noexcept { return security_id_; }
-    constexpr const match_event_indicator& ref(const match_event_indicator*) const noexcept { return match_event_indicator_; }
-    constexpr const offset_9_padding_1& ref(const offset_9_padding_1*) const noexcept { return offset_9_padding_1_; }
-    constexpr const trade_date& ref(const trade_date*) const noexcept { return trade_date_; }
-    constexpr const md_future_price& ref(const md_future_price*) const noexcept { return md_future_price_; }
-    constexpr const md_entry_timestamp& ref(const md_entry_timestamp*) const noexcept { return md_entry_timestamp_; }
-    constexpr const open_close_settl_flag& ref(const open_close_settl_flag*) const noexcept { return open_close_settl_flag_; }
-    constexpr const price_type& ref(const price_type*) const noexcept { return price_type_; }
-    constexpr const settl_price_type& ref(const settl_price_type*) const noexcept { return settl_price_type_; }
-    constexpr const rpt_seq& ref(const rpt_seq*) const noexcept { return rpt_seq_; }
-    constexpr const padding_1& ref(const padding_1*) const noexcept { return padding_1_; }
+    BINARYUMDFFIELD(security_id);
+    BINARYUMDFFIELD(match_event_indicator);
+    BINARYUMDFFIELD(offset_9_padding_1);
+    BINARYUMDFFIELD(trade_date);
+    BINARYUMDFFIELD(md_future_price);
+    BINARYUMDFFIELD(md_entry_timestamp);
+    BINARYUMDFFIELD(open_close_settl_flag);
+    BINARYUMDFFIELD(price_type);
+    BINARYUMDFFIELD(settl_price_type);
+    BINARYUMDFFIELD(rpt_seq);
+    BINARYUMDFFIELD(padding_1);
 };
 
 static_assert(sizeof(settlement_price_28_message) == settlement_price_28_message::size, "settlement_price_28_message lies over its bytes exactly");
@@ -3807,39 +3536,22 @@ struct last_trade_price_27_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    security_id security_id_;
-    match_event_indicator match_event_indicator_;
-    trading_session_id trading_session_id_;
-    trade_condition trade_condition_;
-    md_future_price md_future_price_;
-    md_entry_size_quantity md_entry_size_quantity_;
-    trade_id trade_id_;
-    md_entry_buyer md_entry_buyer_;
-    md_entry_seller md_entry_seller_;
-    trade_date trade_date_;
-    md_entry_timestamp md_entry_timestamp_;
-    rpt_seq rpt_seq_;
-    seller_days seller_days_;
-    md_entry_interest_rate md_entry_interest_rate_;
-    trd_sub_type trd_sub_type_;
-    padding_3 padding_3_;
-
-    constexpr const security_id& ref(const security_id*) const noexcept { return security_id_; }
-    constexpr const match_event_indicator& ref(const match_event_indicator*) const noexcept { return match_event_indicator_; }
-    constexpr const trading_session_id& ref(const trading_session_id*) const noexcept { return trading_session_id_; }
-    constexpr const trade_condition& ref(const trade_condition*) const noexcept { return trade_condition_; }
-    constexpr const md_future_price& ref(const md_future_price*) const noexcept { return md_future_price_; }
-    constexpr const md_entry_size_quantity& ref(const md_entry_size_quantity*) const noexcept { return md_entry_size_quantity_; }
-    constexpr const trade_id& ref(const trade_id*) const noexcept { return trade_id_; }
-    constexpr const md_entry_buyer& ref(const md_entry_buyer*) const noexcept { return md_entry_buyer_; }
-    constexpr const md_entry_seller& ref(const md_entry_seller*) const noexcept { return md_entry_seller_; }
-    constexpr const trade_date& ref(const trade_date*) const noexcept { return trade_date_; }
-    constexpr const md_entry_timestamp& ref(const md_entry_timestamp*) const noexcept { return md_entry_timestamp_; }
-    constexpr const rpt_seq& ref(const rpt_seq*) const noexcept { return rpt_seq_; }
-    constexpr const seller_days& ref(const seller_days*) const noexcept { return seller_days_; }
-    constexpr const md_entry_interest_rate& ref(const md_entry_interest_rate*) const noexcept { return md_entry_interest_rate_; }
-    constexpr const trd_sub_type& ref(const trd_sub_type*) const noexcept { return trd_sub_type_; }
-    constexpr const padding_3& ref(const padding_3*) const noexcept { return padding_3_; }
+    BINARYUMDFFIELD(security_id);
+    BINARYUMDFFIELD(match_event_indicator);
+    BINARYUMDFFIELD(trading_session_id);
+    BINARYUMDFFIELD(trade_condition);
+    BINARYUMDFFIELD(md_future_price);
+    BINARYUMDFFIELD(md_entry_size_quantity);
+    BINARYUMDFFIELD(trade_id);
+    BINARYUMDFFIELD(md_entry_buyer);
+    BINARYUMDFFIELD(md_entry_seller);
+    BINARYUMDFFIELD(trade_date);
+    BINARYUMDFFIELD(md_entry_timestamp);
+    BINARYUMDFFIELD(rpt_seq);
+    BINARYUMDFFIELD(seller_days);
+    BINARYUMDFFIELD(md_entry_interest_rate);
+    BINARYUMDFFIELD(trd_sub_type);
+    BINARYUMDFFIELD(padding_3);
 };
 
 static_assert(sizeof(last_trade_price_27_message) == last_trade_price_27_message::size, "last_trade_price_27_message lies over its bytes exactly");
@@ -3859,21 +3571,13 @@ struct low_price_25_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    security_id security_id_;
-    match_event_indicator match_event_indicator_;
-    md_update_action md_update_action_;
-    trade_date trade_date_;
-    md_future_price md_future_price_;
-    md_entry_timestamp md_entry_timestamp_;
-    rpt_seq rpt_seq_;
-
-    constexpr const security_id& ref(const security_id*) const noexcept { return security_id_; }
-    constexpr const match_event_indicator& ref(const match_event_indicator*) const noexcept { return match_event_indicator_; }
-    constexpr const md_update_action& ref(const md_update_action*) const noexcept { return md_update_action_; }
-    constexpr const trade_date& ref(const trade_date*) const noexcept { return trade_date_; }
-    constexpr const md_future_price& ref(const md_future_price*) const noexcept { return md_future_price_; }
-    constexpr const md_entry_timestamp& ref(const md_entry_timestamp*) const noexcept { return md_entry_timestamp_; }
-    constexpr const rpt_seq& ref(const rpt_seq*) const noexcept { return rpt_seq_; }
+    BINARYUMDFFIELD(security_id);
+    BINARYUMDFFIELD(match_event_indicator);
+    BINARYUMDFFIELD(md_update_action);
+    BINARYUMDFFIELD(trade_date);
+    BINARYUMDFFIELD(md_future_price);
+    BINARYUMDFFIELD(md_entry_timestamp);
+    BINARYUMDFFIELD(rpt_seq);
 };
 
 static_assert(sizeof(low_price_25_message) == low_price_25_message::size, "low_price_25_message lies over its bytes exactly");
@@ -3893,21 +3597,13 @@ struct high_price_24_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    security_id security_id_;
-    match_event_indicator match_event_indicator_;
-    md_update_action md_update_action_;
-    trade_date trade_date_;
-    md_future_price md_future_price_;
-    md_entry_timestamp md_entry_timestamp_;
-    rpt_seq rpt_seq_;
-
-    constexpr const security_id& ref(const security_id*) const noexcept { return security_id_; }
-    constexpr const match_event_indicator& ref(const match_event_indicator*) const noexcept { return match_event_indicator_; }
-    constexpr const md_update_action& ref(const md_update_action*) const noexcept { return md_update_action_; }
-    constexpr const trade_date& ref(const trade_date*) const noexcept { return trade_date_; }
-    constexpr const md_future_price& ref(const md_future_price*) const noexcept { return md_future_price_; }
-    constexpr const md_entry_timestamp& ref(const md_entry_timestamp*) const noexcept { return md_entry_timestamp_; }
-    constexpr const rpt_seq& ref(const rpt_seq*) const noexcept { return rpt_seq_; }
+    BINARYUMDFFIELD(security_id);
+    BINARYUMDFFIELD(match_event_indicator);
+    BINARYUMDFFIELD(md_update_action);
+    BINARYUMDFFIELD(trade_date);
+    BINARYUMDFFIELD(md_future_price);
+    BINARYUMDFFIELD(md_entry_timestamp);
+    BINARYUMDFFIELD(rpt_seq);
 };
 
 static_assert(sizeof(high_price_24_message) == high_price_24_message::size, "high_price_24_message lies over its bytes exactly");
@@ -3927,27 +3623,16 @@ struct price_band_22_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    security_id security_id_;
-    match_event_indicator match_event_indicator_;
-    price_band_type price_band_type_;
-    price_limit_type price_limit_type_;
-    price_band_midpoint_price_type price_band_midpoint_price_type_;
-    low_limit_price low_limit_price_;
-    high_limit_price high_limit_price_;
-    trading_reference_price trading_reference_price_;
-    md_entry_timestamp md_entry_timestamp_;
-    rpt_seq rpt_seq_;
-
-    constexpr const security_id& ref(const security_id*) const noexcept { return security_id_; }
-    constexpr const match_event_indicator& ref(const match_event_indicator*) const noexcept { return match_event_indicator_; }
-    constexpr const price_band_type& ref(const price_band_type*) const noexcept { return price_band_type_; }
-    constexpr const price_limit_type& ref(const price_limit_type*) const noexcept { return price_limit_type_; }
-    constexpr const price_band_midpoint_price_type& ref(const price_band_midpoint_price_type*) const noexcept { return price_band_midpoint_price_type_; }
-    constexpr const low_limit_price& ref(const low_limit_price*) const noexcept { return low_limit_price_; }
-    constexpr const high_limit_price& ref(const high_limit_price*) const noexcept { return high_limit_price_; }
-    constexpr const trading_reference_price& ref(const trading_reference_price*) const noexcept { return trading_reference_price_; }
-    constexpr const md_entry_timestamp& ref(const md_entry_timestamp*) const noexcept { return md_entry_timestamp_; }
-    constexpr const rpt_seq& ref(const rpt_seq*) const noexcept { return rpt_seq_; }
+    BINARYUMDFFIELD(security_id);
+    BINARYUMDFFIELD(match_event_indicator);
+    BINARYUMDFFIELD(price_band_type);
+    BINARYUMDFFIELD(price_limit_type);
+    BINARYUMDFFIELD(price_band_midpoint_price_type);
+    BINARYUMDFFIELD(low_limit_price);
+    BINARYUMDFFIELD(high_limit_price);
+    BINARYUMDFFIELD(trading_reference_price);
+    BINARYUMDFFIELD(md_entry_timestamp);
+    BINARYUMDFFIELD(rpt_seq);
 };
 
 static_assert(sizeof(price_band_22_message) == price_band_22_message::size, "price_band_22_message lies over its bytes exactly");
@@ -3967,21 +3652,13 @@ struct quantity_band_21_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    security_id security_id_;
-    match_event_indicator match_event_indicator_;
-    offset_9_padding_3 offset_9_padding_3_;
-    avg_daily_traded_qty avg_daily_traded_qty_;
-    max_trade_vol max_trade_vol_;
-    md_entry_timestamp md_entry_timestamp_;
-    rpt_seq rpt_seq_;
-
-    constexpr const security_id& ref(const security_id*) const noexcept { return security_id_; }
-    constexpr const match_event_indicator& ref(const match_event_indicator*) const noexcept { return match_event_indicator_; }
-    constexpr const offset_9_padding_3& ref(const offset_9_padding_3*) const noexcept { return offset_9_padding_3_; }
-    constexpr const avg_daily_traded_qty& ref(const avg_daily_traded_qty*) const noexcept { return avg_daily_traded_qty_; }
-    constexpr const max_trade_vol& ref(const max_trade_vol*) const noexcept { return max_trade_vol_; }
-    constexpr const md_entry_timestamp& ref(const md_entry_timestamp*) const noexcept { return md_entry_timestamp_; }
-    constexpr const rpt_seq& ref(const rpt_seq*) const noexcept { return rpt_seq_; }
+    BINARYUMDFFIELD(security_id);
+    BINARYUMDFFIELD(match_event_indicator);
+    BINARYUMDFFIELD(offset_9_padding_3);
+    BINARYUMDFFIELD(avg_daily_traded_qty);
+    BINARYUMDFFIELD(max_trade_vol);
+    BINARYUMDFFIELD(md_entry_timestamp);
+    BINARYUMDFFIELD(rpt_seq);
 };
 
 static_assert(sizeof(quantity_band_21_message) == quantity_band_21_message::size, "quantity_band_21_message lies over its bytes exactly");
@@ -4021,21 +3698,13 @@ struct auction_imbalance_19_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    security_id security_id_;
-    match_event_indicator match_event_indicator_;
-    md_update_action md_update_action_;
-    imbalance_condition imbalance_condition_;
-    md_entry_size_quantity_optional md_entry_size_quantity_optional_;
-    md_entry_timestamp md_entry_timestamp_;
-    rpt_seq rpt_seq_;
-
-    constexpr const security_id& ref(const security_id*) const noexcept { return security_id_; }
-    constexpr const match_event_indicator& ref(const match_event_indicator*) const noexcept { return match_event_indicator_; }
-    constexpr const md_update_action& ref(const md_update_action*) const noexcept { return md_update_action_; }
-    constexpr const imbalance_condition& ref(const imbalance_condition*) const noexcept { return imbalance_condition_; }
-    constexpr const md_entry_size_quantity_optional& ref(const md_entry_size_quantity_optional*) const noexcept { return md_entry_size_quantity_optional_; }
-    constexpr const md_entry_timestamp& ref(const md_entry_timestamp*) const noexcept { return md_entry_timestamp_; }
-    constexpr const rpt_seq& ref(const rpt_seq*) const noexcept { return rpt_seq_; }
+    BINARYUMDFFIELD(security_id);
+    BINARYUMDFFIELD(match_event_indicator);
+    BINARYUMDFFIELD(md_update_action);
+    BINARYUMDFFIELD(imbalance_condition);
+    BINARYUMDFFIELD(md_entry_size_quantity_optional);
+    BINARYUMDFFIELD(md_entry_timestamp);
+    BINARYUMDFFIELD(rpt_seq);
 };
 
 static_assert(sizeof(auction_imbalance_19_message) == auction_imbalance_19_message::size, "auction_imbalance_19_message lies over its bytes exactly");
@@ -4055,25 +3724,15 @@ struct closing_price_17_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    security_id security_id_;
-    match_event_indicator match_event_indicator_;
-    open_close_settl_flag open_close_settl_flag_;
-    offset_10_padding_2 offset_10_padding_2_;
-    md_corporate_price md_corporate_price_;
-    last_trade_date last_trade_date_;
-    trade_date trade_date_;
-    md_entry_timestamp md_entry_timestamp_;
-    rpt_seq rpt_seq_;
-
-    constexpr const security_id& ref(const security_id*) const noexcept { return security_id_; }
-    constexpr const match_event_indicator& ref(const match_event_indicator*) const noexcept { return match_event_indicator_; }
-    constexpr const open_close_settl_flag& ref(const open_close_settl_flag*) const noexcept { return open_close_settl_flag_; }
-    constexpr const offset_10_padding_2& ref(const offset_10_padding_2*) const noexcept { return offset_10_padding_2_; }
-    constexpr const md_corporate_price& ref(const md_corporate_price*) const noexcept { return md_corporate_price_; }
-    constexpr const last_trade_date& ref(const last_trade_date*) const noexcept { return last_trade_date_; }
-    constexpr const trade_date& ref(const trade_date*) const noexcept { return trade_date_; }
-    constexpr const md_entry_timestamp& ref(const md_entry_timestamp*) const noexcept { return md_entry_timestamp_; }
-    constexpr const rpt_seq& ref(const rpt_seq*) const noexcept { return rpt_seq_; }
+    BINARYUMDFFIELD(security_id);
+    BINARYUMDFFIELD(match_event_indicator);
+    BINARYUMDFFIELD(open_close_settl_flag);
+    BINARYUMDFFIELD(offset_10_padding_2);
+    BINARYUMDFFIELD(md_corporate_price);
+    BINARYUMDFFIELD(last_trade_date);
+    BINARYUMDFFIELD(trade_date);
+    BINARYUMDFFIELD(md_entry_timestamp);
+    BINARYUMDFFIELD(rpt_seq);
 };
 
 static_assert(sizeof(closing_price_17_message) == closing_price_17_message::size, "closing_price_17_message lies over its bytes exactly");
@@ -4093,23 +3752,14 @@ struct theoretical_opening_price_16_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    security_id security_id_;
-    match_event_indicator match_event_indicator_;
-    md_update_action md_update_action_;
-    trade_date trade_date_;
-    md_corporate_offset_price_optional md_corporate_offset_price_optional_;
-    md_entry_size_quantity_optional md_entry_size_quantity_optional_;
-    md_entry_timestamp md_entry_timestamp_;
-    rpt_seq rpt_seq_;
-
-    constexpr const security_id& ref(const security_id*) const noexcept { return security_id_; }
-    constexpr const match_event_indicator& ref(const match_event_indicator*) const noexcept { return match_event_indicator_; }
-    constexpr const md_update_action& ref(const md_update_action*) const noexcept { return md_update_action_; }
-    constexpr const trade_date& ref(const trade_date*) const noexcept { return trade_date_; }
-    constexpr const md_corporate_offset_price_optional& ref(const md_corporate_offset_price_optional*) const noexcept { return md_corporate_offset_price_optional_; }
-    constexpr const md_entry_size_quantity_optional& ref(const md_entry_size_quantity_optional*) const noexcept { return md_entry_size_quantity_optional_; }
-    constexpr const md_entry_timestamp& ref(const md_entry_timestamp*) const noexcept { return md_entry_timestamp_; }
-    constexpr const rpt_seq& ref(const rpt_seq*) const noexcept { return rpt_seq_; }
+    BINARYUMDFFIELD(security_id);
+    BINARYUMDFFIELD(match_event_indicator);
+    BINARYUMDFFIELD(md_update_action);
+    BINARYUMDFFIELD(trade_date);
+    BINARYUMDFFIELD(md_corporate_offset_price_optional);
+    BINARYUMDFFIELD(md_entry_size_quantity_optional);
+    BINARYUMDFFIELD(md_entry_timestamp);
+    BINARYUMDFFIELD(rpt_seq);
 };
 
 static_assert(sizeof(theoretical_opening_price_16_message) == theoretical_opening_price_16_message::size, "theoretical_opening_price_16_message lies over its bytes exactly");
@@ -4129,29 +3779,17 @@ struct opening_price_15_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    security_id security_id_;
-    match_event_indicator match_event_indicator_;
-    md_update_action md_update_action_;
-    open_close_settl_flag open_close_settl_flag_;
-    offset_11_padding_1 offset_11_padding_1_;
-    md_future_price md_future_price_;
-    net_chg_prev_day net_chg_prev_day_;
-    trade_date trade_date_;
-    md_entry_timestamp md_entry_timestamp_;
-    rpt_seq rpt_seq_;
-    padding_2 padding_2_;
-
-    constexpr const security_id& ref(const security_id*) const noexcept { return security_id_; }
-    constexpr const match_event_indicator& ref(const match_event_indicator*) const noexcept { return match_event_indicator_; }
-    constexpr const md_update_action& ref(const md_update_action*) const noexcept { return md_update_action_; }
-    constexpr const open_close_settl_flag& ref(const open_close_settl_flag*) const noexcept { return open_close_settl_flag_; }
-    constexpr const offset_11_padding_1& ref(const offset_11_padding_1*) const noexcept { return offset_11_padding_1_; }
-    constexpr const md_future_price& ref(const md_future_price*) const noexcept { return md_future_price_; }
-    constexpr const net_chg_prev_day& ref(const net_chg_prev_day*) const noexcept { return net_chg_prev_day_; }
-    constexpr const trade_date& ref(const trade_date*) const noexcept { return trade_date_; }
-    constexpr const md_entry_timestamp& ref(const md_entry_timestamp*) const noexcept { return md_entry_timestamp_; }
-    constexpr const rpt_seq& ref(const rpt_seq*) const noexcept { return rpt_seq_; }
-    constexpr const padding_2& ref(const padding_2*) const noexcept { return padding_2_; }
+    BINARYUMDFFIELD(security_id);
+    BINARYUMDFFIELD(match_event_indicator);
+    BINARYUMDFFIELD(md_update_action);
+    BINARYUMDFFIELD(open_close_settl_flag);
+    BINARYUMDFFIELD(offset_11_padding_1);
+    BINARYUMDFFIELD(md_future_price);
+    BINARYUMDFFIELD(net_chg_prev_day);
+    BINARYUMDFFIELD(trade_date);
+    BINARYUMDFFIELD(md_entry_timestamp);
+    BINARYUMDFFIELD(rpt_seq);
+    BINARYUMDFFIELD(padding_2);
 };
 
 static_assert(sizeof(opening_price_15_message) == opening_price_15_message::size, "opening_price_15_message lies over its bytes exactly");
@@ -4172,9 +3810,7 @@ struct url_link_section_1 {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    url_link_length url_link_length_;
-
-    constexpr const url_link_length& ref(const url_link_length*) const noexcept { return url_link_length_; }
+    BINARYUMDFFIELD(url_link_length);
 };
 
 static_assert(sizeof(url_link_section_1) == url_link_section_1::size, "url_link_section_1 lies over its bytes exactly");
@@ -4184,23 +3820,6 @@ static_assert(sizeof(url_link_section_1) == url_link_section_1::size, "url_link_
 struct url_link {
     static constexpr std::string_view name = "Url Link";
     static constexpr bool is_message = false;
-
-    // read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
-    template <typename Handler>
-    static std::size_t parse([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler) {
-        std::size_t offset = 0;
-        const std::size_t bound = length;
-        [[maybe_unused]] const auto& url_link_section_1_ = tmp::read<url_link_section_1>(data + offset, bound - offset, handler); offset += url_link_section_1::size;
-        if (static_cast<bool>(tmp::rule(url_link_section_1_.template get<url_link_length>()) > 0)) {
-            {
-                const std::size_t size = static_cast<std::size_t>(tmp::rule(url_link_section_1_.template get<url_link_length>()));
-                tmp::require(offset + size, bound);
-                tmp::call(handler, url_link_data{ data + offset, size });
-                offset += size;
-            }
-        }
-        return offset;
-    }
 };
 
 // Text Section 1
@@ -4219,9 +3838,7 @@ struct text_section_1 {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    text_length text_length_;
-
-    constexpr const text_length& ref(const text_length*) const noexcept { return text_length_; }
+    BINARYUMDFFIELD(text_length);
 };
 
 static_assert(sizeof(text_section_1) == text_section_1::size, "text_section_1 lies over its bytes exactly");
@@ -4231,23 +3848,6 @@ static_assert(sizeof(text_section_1) == text_section_1::size, "text_section_1 li
 struct text {
     static constexpr std::string_view name = "Text";
     static constexpr bool is_message = false;
-
-    // read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
-    template <typename Handler>
-    static std::size_t parse([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler) {
-        std::size_t offset = 0;
-        const std::size_t bound = length;
-        [[maybe_unused]] const auto& text_section_1_ = tmp::read<text_section_1>(data + offset, bound - offset, handler); offset += text_section_1::size;
-        if (static_cast<bool>(tmp::rule(text_section_1_.template get<text_length>()) > 0)) {
-            {
-                const std::size_t size = static_cast<std::size_t>(tmp::rule(text_section_1_.template get<text_length>()));
-                tmp::require(offset + size, bound);
-                tmp::call(handler, text_data{ data + offset, size });
-                offset += size;
-            }
-        }
-        return offset;
-    }
 };
 
 // Headline Section 1
@@ -4266,9 +3866,7 @@ struct headline_section_1 {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    headline_length headline_length_;
-
-    constexpr const headline_length& ref(const headline_length*) const noexcept { return headline_length_; }
+    BINARYUMDFFIELD(headline_length);
 };
 
 static_assert(sizeof(headline_section_1) == headline_section_1::size, "headline_section_1 lies over its bytes exactly");
@@ -4278,23 +3876,6 @@ static_assert(sizeof(headline_section_1) == headline_section_1::size, "headline_
 struct headline {
     static constexpr std::string_view name = "Headline";
     static constexpr bool is_message = false;
-
-    // read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
-    template <typename Handler>
-    static std::size_t parse([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler) {
-        std::size_t offset = 0;
-        const std::size_t bound = length;
-        [[maybe_unused]] const auto& headline_section_1_ = tmp::read<headline_section_1>(data + offset, bound - offset, handler); offset += headline_section_1::size;
-        if (static_cast<bool>(tmp::rule(headline_section_1_.template get<headline_length>()) > 0)) {
-            {
-                const std::size_t size = static_cast<std::size_t>(tmp::rule(headline_section_1_.template get<headline_length>()));
-                tmp::require(offset + size, bound);
-                tmp::call(handler, headline_data{ data + offset, size });
-                offset += size;
-            }
-        }
-        return offset;
-    }
 };
 
 // News 5 Message Section 1
@@ -4313,25 +3894,15 @@ struct news_5_message_section_1 {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    security_id_optional security_id_optional_;
-    match_event_indicator match_event_indicator_;
-    news_source news_source_;
-    language_code language_code_;
-    part_count part_count_;
-    part_number part_number_;
-    news_id news_id_;
-    orig_time orig_time_;
-    total_text_length total_text_length_;
-
-    constexpr const security_id_optional& ref(const security_id_optional*) const noexcept { return security_id_optional_; }
-    constexpr const match_event_indicator& ref(const match_event_indicator*) const noexcept { return match_event_indicator_; }
-    constexpr const news_source& ref(const news_source*) const noexcept { return news_source_; }
-    constexpr const language_code& ref(const language_code*) const noexcept { return language_code_; }
-    constexpr const part_count& ref(const part_count*) const noexcept { return part_count_; }
-    constexpr const part_number& ref(const part_number*) const noexcept { return part_number_; }
-    constexpr const news_id& ref(const news_id*) const noexcept { return news_id_; }
-    constexpr const orig_time& ref(const orig_time*) const noexcept { return orig_time_; }
-    constexpr const total_text_length& ref(const total_text_length*) const noexcept { return total_text_length_; }
+    BINARYUMDFFIELD(security_id_optional);
+    BINARYUMDFFIELD(match_event_indicator);
+    BINARYUMDFFIELD(news_source);
+    BINARYUMDFFIELD(language_code);
+    BINARYUMDFFIELD(part_count);
+    BINARYUMDFFIELD(part_number);
+    BINARYUMDFFIELD(news_id);
+    BINARYUMDFFIELD(orig_time);
+    BINARYUMDFFIELD(total_text_length);
 };
 
 static_assert(sizeof(news_5_message_section_1) == news_5_message_section_1::size, "news_5_message_section_1 lies over its bytes exactly");
@@ -4341,18 +3912,6 @@ static_assert(sizeof(news_5_message_section_1) == news_5_message_section_1::size
 struct news_5_message {
     static constexpr std::string_view name = "News 5 Message";
     static constexpr bool is_message = true;
-
-    // read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
-    template <typename Handler>
-    static std::size_t parse([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler) {
-        std::size_t offset = 0;
-        const std::size_t bound = length;
-        [[maybe_unused]] const auto& news_5_message_section_1_ = tmp::read<news_5_message_section_1>(data + offset, bound - offset, handler); offset += news_5_message_section_1::size;
-        offset += headline::parse(data + offset, bound - offset, handler);
-        offset += text::parse(data + offset, bound - offset, handler);
-        offset += url_link::parse(data + offset, bound - offset, handler);
-        return offset;
-    }
 };
 
 // Security Desc Section 1
@@ -4371,9 +3930,7 @@ struct security_desc_section_1 {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    security_desc_length security_desc_length_;
-
-    constexpr const security_desc_length& ref(const security_desc_length*) const noexcept { return security_desc_length_; }
+    BINARYUMDFFIELD(security_desc_length);
 };
 
 static_assert(sizeof(security_desc_section_1) == security_desc_section_1::size, "security_desc_section_1 lies over its bytes exactly");
@@ -4383,23 +3940,6 @@ static_assert(sizeof(security_desc_section_1) == security_desc_section_1::size, 
 struct security_desc {
     static constexpr std::string_view name = "Security Desc";
     static constexpr bool is_message = false;
-
-    // read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
-    template <typename Handler>
-    static std::size_t parse([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler) {
-        std::size_t offset = 0;
-        const std::size_t bound = length;
-        [[maybe_unused]] const auto& security_desc_section_1_ = tmp::read<security_desc_section_1>(data + offset, bound - offset, handler); offset += security_desc_section_1::size;
-        if (static_cast<bool>(tmp::rule(security_desc_section_1_.template get<security_desc_length>()) > 0)) {
-            {
-                const std::size_t size = static_cast<std::size_t>(tmp::rule(security_desc_section_1_.template get<security_desc_length>()));
-                tmp::require(offset + size, bound);
-                tmp::call(handler, security_desc_data{ data + offset, size });
-                offset += size;
-            }
-        }
-        return offset;
-    }
 };
 
 // Instr Attribs Group
@@ -4417,11 +3957,8 @@ struct instr_attribs_group {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    instr_attrib_type instr_attrib_type_;
-    instr_attrib_value instr_attrib_value_;
-
-    constexpr const instr_attrib_type& ref(const instr_attrib_type*) const noexcept { return instr_attrib_type_; }
-    constexpr const instr_attrib_value& ref(const instr_attrib_value*) const noexcept { return instr_attrib_value_; }
+    BINARYUMDFFIELD(instr_attrib_type);
+    BINARYUMDFFIELD(instr_attrib_value);
 };
 
 static_assert(sizeof(instr_attribs_group) == instr_attribs_group::size, "instr_attribs_group lies over its bytes exactly");
@@ -4432,26 +3969,8 @@ struct instr_attribs_groups {
     static constexpr std::string_view name = "Instr Attribs Groups";
     static constexpr bool is_message = false;
 
-    // read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
-    template <typename Handler>
-    static std::size_t parse([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler) {
-        std::size_t offset = 0;
-        const std::size_t bound = length;
-        [[maybe_unused]] const auto& group_size_encoding_ = tmp::read<group_size_encoding>(data + offset, bound - offset, handler); offset += group_size_encoding::size;
-        {
-            const std::size_t count = static_cast<std::size_t>(tmp::rule(group_size_encoding_.template get<num_in_group>()));
-            for (std::size_t index = 0; index < count; ++index) {
-                {
-                    const std::size_t block = static_cast<std::size_t>(tmp::rule(group_size_encoding_.template get<block_length>()));
-                    const std::size_t start = offset;
-                    offset += tmp::take<instr_attribs_group>(data + offset, bound - offset, handler);
-                    if (offset - start < block) { offset = start + block; }
-                    tmp::require(offset, bound);
-                }
-            }
-        }
-        return offset;
-    }
+    // its repeating groups, whose entries the parse hands over one at a time
+    BINARYUMDFSEQUENCE(instr_attribs_group);
 };
 
 // Legs Group
@@ -4469,17 +3988,11 @@ struct legs_group {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    leg_security_id leg_security_id_;
-    leg_ratio_qty leg_ratio_qty_;
-    leg_security_type leg_security_type_;
-    leg_side leg_side_;
-    leg_symbol leg_symbol_;
-
-    constexpr const leg_security_id& ref(const leg_security_id*) const noexcept { return leg_security_id_; }
-    constexpr const leg_ratio_qty& ref(const leg_ratio_qty*) const noexcept { return leg_ratio_qty_; }
-    constexpr const leg_security_type& ref(const leg_security_type*) const noexcept { return leg_security_type_; }
-    constexpr const leg_side& ref(const leg_side*) const noexcept { return leg_side_; }
-    constexpr const leg_symbol& ref(const leg_symbol*) const noexcept { return leg_symbol_; }
+    BINARYUMDFFIELD(leg_security_id);
+    BINARYUMDFFIELD(leg_ratio_qty);
+    BINARYUMDFFIELD(leg_security_type);
+    BINARYUMDFFIELD(leg_side);
+    BINARYUMDFFIELD(leg_symbol);
 };
 
 static_assert(sizeof(legs_group) == legs_group::size, "legs_group lies over its bytes exactly");
@@ -4490,26 +4003,8 @@ struct legs_groups {
     static constexpr std::string_view name = "Legs Groups";
     static constexpr bool is_message = false;
 
-    // read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
-    template <typename Handler>
-    static std::size_t parse([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler) {
-        std::size_t offset = 0;
-        const std::size_t bound = length;
-        [[maybe_unused]] const auto& group_size_encoding_ = tmp::read<group_size_encoding>(data + offset, bound - offset, handler); offset += group_size_encoding::size;
-        {
-            const std::size_t count = static_cast<std::size_t>(tmp::rule(group_size_encoding_.template get<num_in_group>()));
-            for (std::size_t index = 0; index < count; ++index) {
-                {
-                    const std::size_t block = static_cast<std::size_t>(tmp::rule(group_size_encoding_.template get<block_length>()));
-                    const std::size_t start = offset;
-                    offset += tmp::take<legs_group>(data + offset, bound - offset, handler);
-                    if (offset - start < block) { offset = start + block; }
-                    tmp::require(offset, bound);
-                }
-            }
-        }
-        return offset;
-    }
+    // its repeating groups, whose entries the parse hands over one at a time
+    BINARYUMDFSEQUENCE(legs_group);
 };
 
 // Underlyings Group
@@ -4527,11 +4022,8 @@ struct underlyings_group {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    underlying_security_id underlying_security_id_;
-    underlying_symbol underlying_symbol_;
-
-    constexpr const underlying_security_id& ref(const underlying_security_id*) const noexcept { return underlying_security_id_; }
-    constexpr const underlying_symbol& ref(const underlying_symbol*) const noexcept { return underlying_symbol_; }
+    BINARYUMDFFIELD(underlying_security_id);
+    BINARYUMDFFIELD(underlying_symbol);
 };
 
 static_assert(sizeof(underlyings_group) == underlyings_group::size, "underlyings_group lies over its bytes exactly");
@@ -4542,26 +4034,8 @@ struct underlyings_groups {
     static constexpr std::string_view name = "Underlyings Groups";
     static constexpr bool is_message = false;
 
-    // read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
-    template <typename Handler>
-    static std::size_t parse([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler) {
-        std::size_t offset = 0;
-        const std::size_t bound = length;
-        [[maybe_unused]] const auto& group_size_encoding_ = tmp::read<group_size_encoding>(data + offset, bound - offset, handler); offset += group_size_encoding::size;
-        {
-            const std::size_t count = static_cast<std::size_t>(tmp::rule(group_size_encoding_.template get<num_in_group>()));
-            for (std::size_t index = 0; index < count; ++index) {
-                {
-                    const std::size_t block = static_cast<std::size_t>(tmp::rule(group_size_encoding_.template get<block_length>()));
-                    const std::size_t start = offset;
-                    offset += tmp::take<underlyings_group>(data + offset, bound - offset, handler);
-                    if (offset - start < block) { offset = start + block; }
-                    tmp::require(offset, bound);
-                }
-            }
-        }
-        return offset;
-    }
+    // its repeating groups, whose entries the parse hands over one at a time
+    BINARYUMDFSEQUENCE(underlyings_group);
 };
 
 // Contract Settl Month
@@ -4579,15 +4053,10 @@ struct contract_settl_month {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    year year_;
-    month month_;
-    day day_;
-    week week_;
-
-    constexpr const year& ref(const year*) const noexcept { return year_; }
-    constexpr const month& ref(const month*) const noexcept { return month_; }
-    constexpr const day& ref(const day*) const noexcept { return day_; }
-    constexpr const week& ref(const week*) const noexcept { return week_; }
+    BINARYUMDFFIELD(year);
+    BINARYUMDFFIELD(month);
+    BINARYUMDFFIELD(day);
+    BINARYUMDFFIELD(week);
 };
 
 static_assert(sizeof(contract_settl_month) == contract_settl_month::size, "contract_settl_month lies over its bytes exactly");
@@ -4607,15 +4076,10 @@ struct maturity_month_year {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    year year_;
-    month month_;
-    day day_;
-    week week_;
-
-    constexpr const year& ref(const year*) const noexcept { return year_; }
-    constexpr const month& ref(const month*) const noexcept { return month_; }
-    constexpr const day& ref(const day*) const noexcept { return day_; }
-    constexpr const week& ref(const week*) const noexcept { return week_; }
+    BINARYUMDFFIELD(year);
+    BINARYUMDFFIELD(month);
+    BINARYUMDFFIELD(day);
+    BINARYUMDFFIELD(week);
 };
 
 static_assert(sizeof(maturity_month_year) == maturity_month_year::size, "maturity_month_year lies over its bytes exactly");
@@ -4636,111 +4100,58 @@ struct security_definition_message_section_1 {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    security_id security_id_;
-    security_exchange security_exchange_;
-    security_id_source security_id_source_;
-    security_group security_group_;
-    symbol symbol_;
-    security_update_action security_update_action_;
-    security_type security_type_;
-    security_sub_type security_sub_type_;
-    tot_no_related_sym tot_no_related_sym_;
-    min_price_increment min_price_increment_;
-    strike_price strike_price_;
-    contract_multiplier contract_multiplier_;
-    price_divisor price_divisor_;
-    security_validity_timestamp security_validity_timestamp_;
-    no_shares_issued no_shares_issued_;
-    clearing_house_id clearing_house_id_;
-    min_order_qty min_order_qty_;
-    max_order_qty max_order_qty_;
-    min_lot_size min_lot_size_;
-    min_trade_vol min_trade_vol_;
-    corporate_action_event_id corporate_action_event_id_;
-    issue_date issue_date_;
-    maturity_date maturity_date_;
-    country_of_issue country_of_issue_;
-    start_date start_date_;
-    end_date end_date_;
-    settl_type settl_type_;
-    settl_date settl_date_;
-    dated_date dated_date_;
-    isin_number isin_number_;
-    asset asset_;
-    cfi_code cfi_code_;
-    maturity_month_year maturity_month_year_;
-    contract_settl_month contract_settl_month_;
-    currency currency_;
-    strike_currency strike_currency_;
-    settl_currency settl_currency_;
-    security_strategy_type security_strategy_type_;
-    lot_type lot_type_;
-    tick_size_denominator tick_size_denominator_;
-    product product_;
-    exercise_style exercise_style_;
-    put_or_call put_or_call_;
-    price_type_optional price_type_optional_;
-    market_segment_id market_segment_id_;
-    governance_indicator governance_indicator_;
-    security_match_type security_match_type_;
-    last_fragment last_fragment_;
-    multi_leg_model multi_leg_model_;
-    multi_leg_price_method multi_leg_price_method_;
-    min_cross_qty min_cross_qty_;
-    implied_market_indicator implied_market_indicator_;
-
-    constexpr const security_id& ref(const security_id*) const noexcept { return security_id_; }
-    constexpr const security_exchange& ref(const security_exchange*) const noexcept { return security_exchange_; }
-    constexpr const security_id_source& ref(const security_id_source*) const noexcept { return security_id_source_; }
-    constexpr const security_group& ref(const security_group*) const noexcept { return security_group_; }
-    constexpr const symbol& ref(const symbol*) const noexcept { return symbol_; }
-    constexpr const security_update_action& ref(const security_update_action*) const noexcept { return security_update_action_; }
-    constexpr const security_type& ref(const security_type*) const noexcept { return security_type_; }
-    constexpr const security_sub_type& ref(const security_sub_type*) const noexcept { return security_sub_type_; }
-    constexpr const tot_no_related_sym& ref(const tot_no_related_sym*) const noexcept { return tot_no_related_sym_; }
-    constexpr const min_price_increment& ref(const min_price_increment*) const noexcept { return min_price_increment_; }
-    constexpr const strike_price& ref(const strike_price*) const noexcept { return strike_price_; }
-    constexpr const contract_multiplier& ref(const contract_multiplier*) const noexcept { return contract_multiplier_; }
-    constexpr const price_divisor& ref(const price_divisor*) const noexcept { return price_divisor_; }
-    constexpr const security_validity_timestamp& ref(const security_validity_timestamp*) const noexcept { return security_validity_timestamp_; }
-    constexpr const no_shares_issued& ref(const no_shares_issued*) const noexcept { return no_shares_issued_; }
-    constexpr const clearing_house_id& ref(const clearing_house_id*) const noexcept { return clearing_house_id_; }
-    constexpr const min_order_qty& ref(const min_order_qty*) const noexcept { return min_order_qty_; }
-    constexpr const max_order_qty& ref(const max_order_qty*) const noexcept { return max_order_qty_; }
-    constexpr const min_lot_size& ref(const min_lot_size*) const noexcept { return min_lot_size_; }
-    constexpr const min_trade_vol& ref(const min_trade_vol*) const noexcept { return min_trade_vol_; }
-    constexpr const corporate_action_event_id& ref(const corporate_action_event_id*) const noexcept { return corporate_action_event_id_; }
-    constexpr const issue_date& ref(const issue_date*) const noexcept { return issue_date_; }
-    constexpr const maturity_date& ref(const maturity_date*) const noexcept { return maturity_date_; }
-    constexpr const country_of_issue& ref(const country_of_issue*) const noexcept { return country_of_issue_; }
-    constexpr const start_date& ref(const start_date*) const noexcept { return start_date_; }
-    constexpr const end_date& ref(const end_date*) const noexcept { return end_date_; }
-    constexpr const settl_type& ref(const settl_type*) const noexcept { return settl_type_; }
-    constexpr const settl_date& ref(const settl_date*) const noexcept { return settl_date_; }
-    constexpr const dated_date& ref(const dated_date*) const noexcept { return dated_date_; }
-    constexpr const isin_number& ref(const isin_number*) const noexcept { return isin_number_; }
-    constexpr const asset& ref(const asset*) const noexcept { return asset_; }
-    constexpr const cfi_code& ref(const cfi_code*) const noexcept { return cfi_code_; }
-    constexpr const maturity_month_year& ref(const maturity_month_year*) const noexcept { return maturity_month_year_; }
-    constexpr const contract_settl_month& ref(const contract_settl_month*) const noexcept { return contract_settl_month_; }
-    constexpr const currency& ref(const currency*) const noexcept { return currency_; }
-    constexpr const strike_currency& ref(const strike_currency*) const noexcept { return strike_currency_; }
-    constexpr const settl_currency& ref(const settl_currency*) const noexcept { return settl_currency_; }
-    constexpr const security_strategy_type& ref(const security_strategy_type*) const noexcept { return security_strategy_type_; }
-    constexpr const lot_type& ref(const lot_type*) const noexcept { return lot_type_; }
-    constexpr const tick_size_denominator& ref(const tick_size_denominator*) const noexcept { return tick_size_denominator_; }
-    constexpr const product& ref(const product*) const noexcept { return product_; }
-    constexpr const exercise_style& ref(const exercise_style*) const noexcept { return exercise_style_; }
-    constexpr const put_or_call& ref(const put_or_call*) const noexcept { return put_or_call_; }
-    constexpr const price_type_optional& ref(const price_type_optional*) const noexcept { return price_type_optional_; }
-    constexpr const market_segment_id& ref(const market_segment_id*) const noexcept { return market_segment_id_; }
-    constexpr const governance_indicator& ref(const governance_indicator*) const noexcept { return governance_indicator_; }
-    constexpr const security_match_type& ref(const security_match_type*) const noexcept { return security_match_type_; }
-    constexpr const last_fragment& ref(const last_fragment*) const noexcept { return last_fragment_; }
-    constexpr const multi_leg_model& ref(const multi_leg_model*) const noexcept { return multi_leg_model_; }
-    constexpr const multi_leg_price_method& ref(const multi_leg_price_method*) const noexcept { return multi_leg_price_method_; }
-    constexpr const min_cross_qty& ref(const min_cross_qty*) const noexcept { return min_cross_qty_; }
-    constexpr const implied_market_indicator& ref(const implied_market_indicator*) const noexcept { return implied_market_indicator_; }
+    BINARYUMDFFIELD(security_id);
+    BINARYUMDFFIELD(security_exchange);
+    BINARYUMDFFIELD(security_id_source);
+    BINARYUMDFFIELD(security_group);
+    BINARYUMDFFIELD(symbol);
+    BINARYUMDFFIELD(security_update_action);
+    BINARYUMDFFIELD(security_type);
+    BINARYUMDFFIELD(security_sub_type);
+    BINARYUMDFFIELD(tot_no_related_sym);
+    BINARYUMDFFIELD(min_price_increment);
+    BINARYUMDFFIELD(strike_price);
+    BINARYUMDFFIELD(contract_multiplier);
+    BINARYUMDFFIELD(price_divisor);
+    BINARYUMDFFIELD(security_validity_timestamp);
+    BINARYUMDFFIELD(no_shares_issued);
+    BINARYUMDFFIELD(clearing_house_id);
+    BINARYUMDFFIELD(min_order_qty);
+    BINARYUMDFFIELD(max_order_qty);
+    BINARYUMDFFIELD(min_lot_size);
+    BINARYUMDFFIELD(min_trade_vol);
+    BINARYUMDFFIELD(corporate_action_event_id);
+    BINARYUMDFFIELD(issue_date);
+    BINARYUMDFFIELD(maturity_date);
+    BINARYUMDFFIELD(country_of_issue);
+    BINARYUMDFFIELD(start_date);
+    BINARYUMDFFIELD(end_date);
+    BINARYUMDFFIELD(settl_type);
+    BINARYUMDFFIELD(settl_date);
+    BINARYUMDFFIELD(dated_date);
+    BINARYUMDFFIELD(isin_number);
+    BINARYUMDFFIELD(asset);
+    BINARYUMDFFIELD(cfi_code);
+    BINARYUMDFFIELD(maturity_month_year);
+    BINARYUMDFFIELD(contract_settl_month);
+    BINARYUMDFFIELD(currency);
+    BINARYUMDFFIELD(strike_currency);
+    BINARYUMDFFIELD(settl_currency);
+    BINARYUMDFFIELD(security_strategy_type);
+    BINARYUMDFFIELD(lot_type);
+    BINARYUMDFFIELD(tick_size_denominator);
+    BINARYUMDFFIELD(product);
+    BINARYUMDFFIELD(exercise_style);
+    BINARYUMDFFIELD(put_or_call);
+    BINARYUMDFFIELD(price_type_optional);
+    BINARYUMDFFIELD(market_segment_id);
+    BINARYUMDFFIELD(governance_indicator);
+    BINARYUMDFFIELD(security_match_type);
+    BINARYUMDFFIELD(last_fragment);
+    BINARYUMDFFIELD(multi_leg_model);
+    BINARYUMDFFIELD(multi_leg_price_method);
+    BINARYUMDFFIELD(min_cross_qty);
+    BINARYUMDFFIELD(implied_market_indicator);
 };
 
 static_assert(sizeof(security_definition_message_section_1) == security_definition_message_section_1::size, "security_definition_message_section_1 lies over its bytes exactly");
@@ -4750,19 +4161,6 @@ static_assert(sizeof(security_definition_message_section_1) == security_definiti
 struct security_definition_message {
     static constexpr std::string_view name = "Security Definition Message";
     static constexpr bool is_message = true;
-
-    // read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
-    template <typename Handler>
-    static std::size_t parse([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler) {
-        std::size_t offset = 0;
-        const std::size_t bound = length;
-        [[maybe_unused]] const auto& security_definition_message_section_1_ = tmp::read<security_definition_message_section_1>(data + offset, bound - offset, handler); offset += security_definition_message_section_1::size;
-        offset += underlyings_groups::parse(data + offset, bound - offset, handler);
-        offset += legs_groups::parse(data + offset, bound - offset, handler);
-        offset += instr_attribs_groups::parse(data + offset, bound - offset, handler);
-        offset += security_desc::parse(data + offset, bound - offset, handler);
-        return offset;
-    }
 };
 
 // Security Group Phase 10 Message
@@ -4780,27 +4178,16 @@ struct security_group_phase_10_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    security_group security_group_;
-    offset_3_padding_5 offset_3_padding_5_;
-    match_event_indicator match_event_indicator_;
-    trading_session_id trading_session_id_;
-    trading_session_sub_id trading_session_sub_id_;
-    security_trading_event security_trading_event_;
-    trade_date trade_date_;
-    offset_14_padding_2 offset_14_padding_2_;
-    trad_ses_open_time trad_ses_open_time_;
-    transact_time transact_time_;
-
-    constexpr const security_group& ref(const security_group*) const noexcept { return security_group_; }
-    constexpr const offset_3_padding_5& ref(const offset_3_padding_5*) const noexcept { return offset_3_padding_5_; }
-    constexpr const match_event_indicator& ref(const match_event_indicator*) const noexcept { return match_event_indicator_; }
-    constexpr const trading_session_id& ref(const trading_session_id*) const noexcept { return trading_session_id_; }
-    constexpr const trading_session_sub_id& ref(const trading_session_sub_id*) const noexcept { return trading_session_sub_id_; }
-    constexpr const security_trading_event& ref(const security_trading_event*) const noexcept { return security_trading_event_; }
-    constexpr const trade_date& ref(const trade_date*) const noexcept { return trade_date_; }
-    constexpr const offset_14_padding_2& ref(const offset_14_padding_2*) const noexcept { return offset_14_padding_2_; }
-    constexpr const trad_ses_open_time& ref(const trad_ses_open_time*) const noexcept { return trad_ses_open_time_; }
-    constexpr const transact_time& ref(const transact_time*) const noexcept { return transact_time_; }
+    BINARYUMDFFIELD(security_group);
+    BINARYUMDFFIELD(offset_3_padding_5);
+    BINARYUMDFFIELD(match_event_indicator);
+    BINARYUMDFFIELD(trading_session_id);
+    BINARYUMDFFIELD(trading_session_sub_id);
+    BINARYUMDFFIELD(security_trading_event);
+    BINARYUMDFFIELD(trade_date);
+    BINARYUMDFFIELD(offset_14_padding_2);
+    BINARYUMDFFIELD(trad_ses_open_time);
+    BINARYUMDFFIELD(transact_time);
 };
 
 static_assert(sizeof(security_group_phase_10_message) == security_group_phase_10_message::size, "security_group_phase_10_message lies over its bytes exactly");
@@ -4820,27 +4207,16 @@ struct security_status_3_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    security_id security_id_;
-    match_event_indicator match_event_indicator_;
-    trading_session_id trading_session_id_;
-    security_trading_status security_trading_status_;
-    security_trading_event security_trading_event_;
-    trade_date trade_date_;
-    offset_14_padding_2 offset_14_padding_2_;
-    trad_ses_open_time trad_ses_open_time_;
-    transact_time transact_time_;
-    rpt_seq rpt_seq_;
-
-    constexpr const security_id& ref(const security_id*) const noexcept { return security_id_; }
-    constexpr const match_event_indicator& ref(const match_event_indicator*) const noexcept { return match_event_indicator_; }
-    constexpr const trading_session_id& ref(const trading_session_id*) const noexcept { return trading_session_id_; }
-    constexpr const security_trading_status& ref(const security_trading_status*) const noexcept { return security_trading_status_; }
-    constexpr const security_trading_event& ref(const security_trading_event*) const noexcept { return security_trading_event_; }
-    constexpr const trade_date& ref(const trade_date*) const noexcept { return trade_date_; }
-    constexpr const offset_14_padding_2& ref(const offset_14_padding_2*) const noexcept { return offset_14_padding_2_; }
-    constexpr const trad_ses_open_time& ref(const trad_ses_open_time*) const noexcept { return trad_ses_open_time_; }
-    constexpr const transact_time& ref(const transact_time*) const noexcept { return transact_time_; }
-    constexpr const rpt_seq& ref(const rpt_seq*) const noexcept { return rpt_seq_; }
+    BINARYUMDFFIELD(security_id);
+    BINARYUMDFFIELD(match_event_indicator);
+    BINARYUMDFFIELD(trading_session_id);
+    BINARYUMDFFIELD(security_trading_status);
+    BINARYUMDFFIELD(security_trading_event);
+    BINARYUMDFFIELD(trade_date);
+    BINARYUMDFFIELD(offset_14_padding_2);
+    BINARYUMDFFIELD(trad_ses_open_time);
+    BINARYUMDFFIELD(transact_time);
+    BINARYUMDFFIELD(rpt_seq);
 };
 
 static_assert(sizeof(security_status_3_message) == security_status_3_message::size, "security_status_3_message lies over its bytes exactly");
@@ -4860,13 +4236,9 @@ struct channel_reset_11_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    match_event_indicator match_event_indicator_;
-    offset_1_padding_3 offset_1_padding_3_;
-    md_entry_timestamp md_entry_timestamp_;
-
-    constexpr const match_event_indicator& ref(const match_event_indicator*) const noexcept { return match_event_indicator_; }
-    constexpr const offset_1_padding_3& ref(const offset_1_padding_3*) const noexcept { return offset_1_padding_3_; }
-    constexpr const md_entry_timestamp& ref(const md_entry_timestamp*) const noexcept { return md_entry_timestamp_; }
+    BINARYUMDFFIELD(match_event_indicator);
+    BINARYUMDFFIELD(offset_1_padding_3);
+    BINARYUMDFFIELD(md_entry_timestamp);
 };
 
 static_assert(sizeof(channel_reset_11_message) == channel_reset_11_message::size, "channel_reset_11_message lies over its bytes exactly");
@@ -4886,15 +4258,10 @@ struct empty_book_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    security_id security_id_;
-    match_event_indicator match_event_indicator_;
-    offset_9_padding_3 offset_9_padding_3_;
-    md_entry_timestamp md_entry_timestamp_;
-
-    constexpr const security_id& ref(const security_id*) const noexcept { return security_id_; }
-    constexpr const match_event_indicator& ref(const match_event_indicator*) const noexcept { return match_event_indicator_; }
-    constexpr const offset_9_padding_3& ref(const offset_9_padding_3*) const noexcept { return offset_9_padding_3_; }
-    constexpr const md_entry_timestamp& ref(const md_entry_timestamp*) const noexcept { return md_entry_timestamp_; }
+    BINARYUMDFFIELD(security_id);
+    BINARYUMDFFIELD(match_event_indicator);
+    BINARYUMDFFIELD(offset_9_padding_3);
+    BINARYUMDFFIELD(md_entry_timestamp);
 };
 
 static_assert(sizeof(empty_book_message) == empty_book_message::size, "empty_book_message lies over its bytes exactly");
@@ -4914,9 +4281,7 @@ struct sequence_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    next_seq_no next_seq_no_;
-
-    constexpr const next_seq_no& ref(const next_seq_no*) const noexcept { return next_seq_no_; }
+    BINARYUMDFFIELD(next_seq_no);
 };
 
 static_assert(sizeof(sequence_message) == sequence_message::size, "sequence_message lies over its bytes exactly");
@@ -4933,358 +4298,6 @@ struct sequence_reset_message {
 struct payload {
     static constexpr std::string_view name = "Payload";
     static constexpr bool is_message = false;
-
-    // read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
-    template <typename Handler>
-    static std::size_t parse([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler, const template_id& template_id_, const block_length& block_length_) {
-        if (static_cast<bool>(tmp::rule(template_id_) == 1)) {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            tmp::call(handler, sequence_reset_message{});
-            return offset;
-        }
-        if (static_cast<bool>(tmp::rule(template_id_) == 2)) {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            {
-                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
-                const std::size_t start = offset;
-                offset += tmp::take<sequence_message>(data + offset, bound - offset, handler);
-                if (offset - start < block) { offset = start + block; }
-                tmp::require(offset, bound);
-            }
-            return offset;
-        }
-        if (static_cast<bool>(tmp::rule(template_id_) == 9)) {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            {
-                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
-                const std::size_t start = offset;
-                offset += tmp::take<empty_book_message>(data + offset, bound - offset, handler);
-                if (offset - start < block) { offset = start + block; }
-                tmp::require(offset, bound);
-            }
-            return offset;
-        }
-        if (static_cast<bool>(tmp::rule(template_id_) == 11)) {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            {
-                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
-                const std::size_t start = offset;
-                offset += tmp::take<channel_reset_11_message>(data + offset, bound - offset, handler);
-                if (offset - start < block) { offset = start + block; }
-                tmp::require(offset, bound);
-            }
-            return offset;
-        }
-        if (static_cast<bool>(tmp::rule(template_id_) == 3)) {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            {
-                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
-                const std::size_t start = offset;
-                offset += tmp::take<security_status_3_message>(data + offset, bound - offset, handler);
-                if (offset - start < block) { offset = start + block; }
-                tmp::require(offset, bound);
-            }
-            return offset;
-        }
-        if (static_cast<bool>(tmp::rule(template_id_) == 10)) {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            {
-                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
-                const std::size_t start = offset;
-                offset += tmp::take<security_group_phase_10_message>(data + offset, bound - offset, handler);
-                if (offset - start < block) { offset = start + block; }
-                tmp::require(offset, bound);
-            }
-            return offset;
-        }
-        if (static_cast<bool>(tmp::rule(template_id_) == 12)) {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            {
-                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
-                const std::size_t start = offset;
-                offset += security_definition_message::parse(data + offset, bound - offset, handler);
-                tmp::call(handler, security_definition_message{});
-                if (offset - start < block) { offset = start + block; }
-                tmp::require(offset, bound);
-            }
-            return offset;
-        }
-        if (static_cast<bool>(tmp::rule(template_id_) == 5)) {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            {
-                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
-                const std::size_t start = offset;
-                offset += news_5_message::parse(data + offset, bound - offset, handler);
-                tmp::call(handler, news_5_message{});
-                if (offset - start < block) { offset = start + block; }
-                tmp::require(offset, bound);
-            }
-            return offset;
-        }
-        if (static_cast<bool>(tmp::rule(template_id_) == 15)) {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            {
-                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
-                const std::size_t start = offset;
-                offset += tmp::take<opening_price_15_message>(data + offset, bound - offset, handler);
-                if (offset - start < block) { offset = start + block; }
-                tmp::require(offset, bound);
-            }
-            return offset;
-        }
-        if (static_cast<bool>(tmp::rule(template_id_) == 16)) {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            {
-                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
-                const std::size_t start = offset;
-                offset += tmp::take<theoretical_opening_price_16_message>(data + offset, bound - offset, handler);
-                if (offset - start < block) { offset = start + block; }
-                tmp::require(offset, bound);
-            }
-            return offset;
-        }
-        if (static_cast<bool>(tmp::rule(template_id_) == 17)) {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            {
-                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
-                const std::size_t start = offset;
-                offset += tmp::take<closing_price_17_message>(data + offset, bound - offset, handler);
-                if (offset - start < block) { offset = start + block; }
-                tmp::require(offset, bound);
-            }
-            return offset;
-        }
-        if (static_cast<bool>(tmp::rule(template_id_) == 19)) {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            {
-                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
-                const std::size_t start = offset;
-                offset += tmp::take<auction_imbalance_19_message>(data + offset, bound - offset, handler);
-                if (offset - start < block) { offset = start + block; }
-                tmp::require(offset, bound);
-            }
-            return offset;
-        }
-        if (static_cast<bool>(tmp::rule(template_id_) == 21)) {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            {
-                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
-                const std::size_t start = offset;
-                offset += tmp::take<quantity_band_21_message>(data + offset, bound - offset, handler);
-                if (offset - start < block) { offset = start + block; }
-                tmp::require(offset, bound);
-            }
-            return offset;
-        }
-        if (static_cast<bool>(tmp::rule(template_id_) == 22)) {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            {
-                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
-                const std::size_t start = offset;
-                offset += tmp::take<price_band_22_message>(data + offset, bound - offset, handler);
-                if (offset - start < block) { offset = start + block; }
-                tmp::require(offset, bound);
-            }
-            return offset;
-        }
-        if (static_cast<bool>(tmp::rule(template_id_) == 24)) {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            {
-                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
-                const std::size_t start = offset;
-                offset += tmp::take<high_price_24_message>(data + offset, bound - offset, handler);
-                if (offset - start < block) { offset = start + block; }
-                tmp::require(offset, bound);
-            }
-            return offset;
-        }
-        if (static_cast<bool>(tmp::rule(template_id_) == 25)) {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            {
-                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
-                const std::size_t start = offset;
-                offset += tmp::take<low_price_25_message>(data + offset, bound - offset, handler);
-                if (offset - start < block) { offset = start + block; }
-                tmp::require(offset, bound);
-            }
-            return offset;
-        }
-        if (static_cast<bool>(tmp::rule(template_id_) == 27)) {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            {
-                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
-                const std::size_t start = offset;
-                offset += tmp::take<last_trade_price_27_message>(data + offset, bound - offset, handler);
-                if (offset - start < block) { offset = start + block; }
-                tmp::require(offset, bound);
-            }
-            return offset;
-        }
-        if (static_cast<bool>(tmp::rule(template_id_) == 28)) {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            {
-                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
-                const std::size_t start = offset;
-                offset += tmp::take<settlement_price_28_message>(data + offset, bound - offset, handler);
-                if (offset - start < block) { offset = start + block; }
-                tmp::require(offset, bound);
-            }
-            return offset;
-        }
-        if (static_cast<bool>(tmp::rule(template_id_) == 29)) {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            {
-                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
-                const std::size_t start = offset;
-                offset += tmp::take<open_interest_29_message>(data + offset, bound - offset, handler);
-                if (offset - start < block) { offset = start + block; }
-                tmp::require(offset, bound);
-            }
-            return offset;
-        }
-        if (static_cast<bool>(tmp::rule(template_id_) == 30)) {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            {
-                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
-                const std::size_t start = offset;
-                offset += tmp::take<snapshot_full_refresh_header_30_message>(data + offset, bound - offset, handler);
-                if (offset - start < block) { offset = start + block; }
-                tmp::require(offset, bound);
-            }
-            return offset;
-        }
-        if (static_cast<bool>(tmp::rule(template_id_) == 50)) {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            {
-                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
-                const std::size_t start = offset;
-                offset += tmp::take<order_mb_o_50_message>(data + offset, bound - offset, handler);
-                if (offset - start < block) { offset = start + block; }
-                tmp::require(offset, bound);
-            }
-            return offset;
-        }
-        if (static_cast<bool>(tmp::rule(template_id_) == 51)) {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            {
-                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
-                const std::size_t start = offset;
-                offset += tmp::take<delete_order_mb_o_51_message>(data + offset, bound - offset, handler);
-                if (offset - start < block) { offset = start + block; }
-                tmp::require(offset, bound);
-            }
-            return offset;
-        }
-        if (static_cast<bool>(tmp::rule(template_id_) == 52)) {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            {
-                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
-                const std::size_t start = offset;
-                offset += tmp::take<mass_delete_orders_mb_o_52_message>(data + offset, bound - offset, handler);
-                if (offset - start < block) { offset = start + block; }
-                tmp::require(offset, bound);
-            }
-            return offset;
-        }
-        if (static_cast<bool>(tmp::rule(template_id_) == 53)) {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            {
-                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
-                const std::size_t start = offset;
-                offset += tmp::take<trade_53_message>(data + offset, bound - offset, handler);
-                if (offset - start < block) { offset = start + block; }
-                tmp::require(offset, bound);
-            }
-            return offset;
-        }
-        if (static_cast<bool>(tmp::rule(template_id_) == 54)) {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            {
-                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
-                const std::size_t start = offset;
-                offset += tmp::take<forward_trade_54_message>(data + offset, bound - offset, handler);
-                if (offset - start < block) { offset = start + block; }
-                tmp::require(offset, bound);
-            }
-            return offset;
-        }
-        if (static_cast<bool>(tmp::rule(template_id_) == 55)) {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            {
-                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
-                const std::size_t start = offset;
-                offset += tmp::take<execution_summary_55_message>(data + offset, bound - offset, handler);
-                if (offset - start < block) { offset = start + block; }
-                tmp::require(offset, bound);
-            }
-            return offset;
-        }
-        if (static_cast<bool>(tmp::rule(template_id_) == 56)) {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            {
-                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
-                const std::size_t start = offset;
-                offset += tmp::take<execution_statistics_56_message>(data + offset, bound - offset, handler);
-                if (offset - start < block) { offset = start + block; }
-                tmp::require(offset, bound);
-            }
-            return offset;
-        }
-        if (static_cast<bool>(tmp::rule(template_id_) == 57)) {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            {
-                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
-                const std::size_t start = offset;
-                offset += tmp::take<trade_bust_57_message>(data + offset, bound - offset, handler);
-                if (offset - start < block) { offset = start + block; }
-                tmp::require(offset, bound);
-            }
-            return offset;
-        }
-        if (static_cast<bool>(tmp::rule(template_id_) == 71)) {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            {
-                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
-                const std::size_t start = offset;
-                offset += snapshot_full_refresh_orders_mb_o_71_message::parse(data + offset, bound - offset, handler);
-                tmp::call(handler, snapshot_full_refresh_orders_mb_o_71_message{});
-                if (offset - start < block) { offset = start + block; }
-                tmp::require(offset, bound);
-            }
-            return offset;
-        }
-        tmp::unknown(handler, data, length);
-        return length;
-    }
 };
 
 // Message Header
@@ -5302,15 +4315,10 @@ struct message_header {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    block_length block_length_;
-    template_id template_id_;
-    schema_id schema_id_;
-    version version_;
-
-    constexpr const block_length& ref(const block_length*) const noexcept { return block_length_; }
-    constexpr const template_id& ref(const template_id*) const noexcept { return template_id_; }
-    constexpr const schema_id& ref(const schema_id*) const noexcept { return schema_id_; }
-    constexpr const version& ref(const version*) const noexcept { return version_; }
+    BINARYUMDFFIELD(block_length);
+    BINARYUMDFFIELD(template_id);
+    BINARYUMDFFIELD(schema_id);
+    BINARYUMDFFIELD(version);
 };
 
 static_assert(sizeof(message_header) == message_header::size, "message_header lies over its bytes exactly");
@@ -5330,11 +4338,8 @@ struct framing_header {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    message_length message_length_;
-    encoding_type encoding_type_;
-
-    constexpr const message_length& ref(const message_length*) const noexcept { return message_length_; }
-    constexpr const encoding_type& ref(const encoding_type*) const noexcept { return encoding_type_; }
+    BINARYUMDFFIELD(message_length);
+    BINARYUMDFFIELD(encoding_type);
 };
 
 static_assert(sizeof(framing_header) == framing_header::size, "framing_header lies over its bytes exactly");
@@ -5355,11 +4360,8 @@ struct message_section_1 {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    framing_header framing_header_;
-    message_header message_header_;
-
-    constexpr const framing_header& ref(const framing_header*) const noexcept { return framing_header_; }
-    constexpr const message_header& ref(const message_header*) const noexcept { return message_header_; }
+    BINARYUMDFFIELD(framing_header);
+    BINARYUMDFFIELD(message_header);
 };
 
 static_assert(sizeof(message_section_1) == message_section_1::size, "message_section_1 lies over its bytes exactly");
@@ -5369,23 +4371,6 @@ static_assert(sizeof(message_section_1) == message_section_1::size, "message_sec
 struct message {
     static constexpr std::string_view name = "Message";
     static constexpr bool is_message = false;
-
-    // read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
-    template <typename Handler>
-    static std::size_t parse([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler) {
-        std::size_t offset = 0;
-        std::size_t bound = length;
-        [[maybe_unused]] const auto& message_section_1_ = tmp::read<message_section_1>(data + offset, bound - offset, handler); offset += message_section_1::size;
-        bound = static_cast<std::size_t>(tmp::rule(message_section_1_.template get<framing_header>().template get<message_length>()));
-        tmp::require(bound, length);
-        {
-            const std::size_t size = static_cast<std::size_t>(static_cast<std::int64_t>(tmp::count(tmp::rule(message_section_1_.template get<framing_header>().template get<message_length>()))) - 12);
-            tmp::require(offset + size, bound);
-            payload::parse(data + offset, size, handler, message_section_1_.template get<message_header>().template get<template_id>(), message_section_1_.template get<message_header>().template get<block_length>());
-            offset += size;
-        }
-        return bound;
-    }
 };
 
 // Packet Header
@@ -5403,17 +4388,11 @@ struct packet_header {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    channel_id channel_id_;
-    packet_reserved packet_reserved_;
-    sequence_version sequence_version_;
-    sequence_number sequence_number_;
-    sending_time sending_time_;
-
-    constexpr const channel_id& ref(const channel_id*) const noexcept { return channel_id_; }
-    constexpr const packet_reserved& ref(const packet_reserved*) const noexcept { return packet_reserved_; }
-    constexpr const sequence_version& ref(const sequence_version*) const noexcept { return sequence_version_; }
-    constexpr const sequence_number& ref(const sequence_number*) const noexcept { return sequence_number_; }
-    constexpr const sending_time& ref(const sending_time*) const noexcept { return sending_time_; }
+    BINARYUMDFFIELD(channel_id);
+    BINARYUMDFFIELD(packet_reserved);
+    BINARYUMDFFIELD(sequence_version);
+    BINARYUMDFFIELD(sequence_number);
+    BINARYUMDFFIELD(sending_time);
 };
 
 static_assert(sizeof(packet_header) == packet_header::size, "packet_header lies over its bytes exactly");
@@ -5423,23 +4402,6 @@ static_assert(sizeof(packet_header) == packet_header::size, "packet_header lies 
 struct packet {
     static constexpr std::string_view name = "Packet";
     static constexpr bool is_message = false;
-
-    // read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
-    template <typename Handler>
-    static std::size_t parse([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler) {
-        std::size_t offset = 0;
-        const std::size_t bound = length;
-        [[maybe_unused]] const auto& packet_header_ = tmp::read<packet_header>(data + offset, bound - offset, handler); offset += packet_header::size;
-        {
-            const std::size_t end = static_cast<std::size_t>(static_cast<std::int64_t>(bound));
-            tmp::require(end, bound);
-            while (offset < end) {
-                [[maybe_unused]] const std::size_t bound = end;
-                offset += message::parse(data + offset, bound - offset, handler);
-            }
-        }
-        return offset;
-    }
 };
 
 #pragma pack(pop)

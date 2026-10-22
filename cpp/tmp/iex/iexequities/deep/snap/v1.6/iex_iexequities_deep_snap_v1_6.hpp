@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include <algorithm>
 #include <array>
 #include <bit>
 #include <cstddef>
@@ -14,6 +15,16 @@
 #include <string_view>
 #include <type_traits>
 
+// A member of a struct laid over its bytes: the overload get<Field>() finds it by, and the member
+#ifndef SNAPFIELD
+#define SNAPFIELD(type) constexpr const type& ref(const type*) const noexcept { return type##_; } type type##_
+#endif
+
+// A repeating group of a message: its entries' type, which the parse hands over one at a time; no bytes
+#ifndef SNAPSEQUENCE
+#define SNAPSEQUENCE(type) using type##_sequence = tmp::sequence<type>
+#endif
+
 namespace iex::iexequities::deep::snap::v1_6 {
 
 /////////////////////////////////////////////////////////////////////
@@ -24,6 +35,12 @@ namespace tmp {
     // The types of a struct's members, in wire order: what generic code walks a struct by
     template <typename... Fields>
     struct list {};
+
+    // A repeating group of a message: the type of its entries, each laid over its bytes in turn
+    template <typename Entry>
+    struct sequence {
+        using entry = Entry;
+    };
 
     // An integer as the wire holds it, in the host's order: swapped when the wire's order is not the host's
     template <std::endian Order, typename T>
@@ -54,79 +71,6 @@ namespace tmp {
         std::size_t length = N;
         while (length > 0 && text[length - 1] == fill) { --length; }
         return { text.data(), length };
-    }
-
-    // Thrown when the bytes end before what they must hold
-    struct short_read : std::runtime_error {
-        using std::runtime_error::runtime_error;
-    };
-
-    inline void require(std::size_t needed, std::size_t available) {
-        if (needed > available) {
-            throw short_read(std::to_string(needed) + " bytes needed, " + std::to_string(available) + " available");
-        }
-    }
-
-    // Hand the handler a value, when it takes one
-    template <typename Handler, typename T>
-    constexpr void call(Handler& handler, const T& value) {
-        if constexpr (requires { handler(value); }) { handler(value); }
-    }
-
-    // A type laid over its bytes, handed to the handler
-    template <typename T, typename Handler>
-    const T& read(const std::byte* data, std::size_t length, Handler& handler) {
-        require(T::size, length);
-        const auto& value = *reinterpret_cast<const T*>(data);
-        call(handler, value);
-        return value;
-    }
-
-    // A type laid over its bytes without handing it on: a frame's length, read before the frame is
-    template <typename T>
-    const T& at(const std::byte* data) noexcept {
-        return *reinterpret_cast<const T*>(data);
-    }
-
-    // A type laid over its bytes and handed to the handler; what it returns is the bytes it took
-    template <typename T, typename Handler>
-    std::size_t take(const std::byte* data, std::size_t length, Handler& handler) {
-        read<T>(data, length, handler);
-        return T::size;
-    }
-
-    // The characters before a terminating zero, which the bytes must hold
-    inline std::size_t terminated(const std::byte* data, std::size_t length) {
-        for (std::size_t index = 0; index < length; ++index) {
-            if (data[index] == std::byte{ 0 }) { return index; }
-        }
-        throw short_read("no terminator in " + std::to_string(length) + " bytes");
-    }
-
-    // Bytes a branch's code selects no message for, handed to the handler when it takes them
-    template <typename Handler>
-    void unknown(Handler& handler, const std::byte* data, std::size_t length) {
-        if constexpr (requires { handler.unknown(data, length); }) { handler.unknown(data, length); }
-    }
-
-    // How many a count or a length states: a number, or digits of text
-    template <typename T>
-        requires std::is_integral_v<T>
-    constexpr std::size_t count(T value) noexcept { return static_cast<std::size_t>(value); }
-
-    inline std::size_t count(char digit) {
-        if (digit < '0' || digit > '9') { throw short_read(std::string("'") + digit + "' is not a digit"); }
-        return static_cast<std::size_t>(digit - '0');
-    }
-
-    inline std::size_t count(std::string_view digits) {
-        std::size_t value = 0;
-        for (const char digit : digits) {
-            if (digit == ' ') { continue; }
-            if (digit < '0' || digit > '9') { throw short_read("\"" + std::string(digits) + "\" is not a number"); }
-            value = value * 10 + static_cast<std::size_t>(digit - '0');
-        }
-        return value;
     }
 } // namespace tmp
 
@@ -1086,9 +1030,7 @@ struct snapshot_end_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    snapshot_sequence_number snapshot_sequence_number_;
-
-    constexpr const snapshot_sequence_number& ref(const snapshot_sequence_number*) const noexcept { return snapshot_sequence_number_; }
+    SNAPFIELD(snapshot_sequence_number);
 };
 
 static_assert(sizeof(snapshot_end_message) == snapshot_end_message::size, "snapshot_end_message lies over its bytes exactly");
@@ -1110,35 +1052,20 @@ struct auction_information_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    auction_type auction_type_;
-    timestamp timestamp_;
-    symbol symbol_;
-    paired_shares paired_shares_;
-    reference_price reference_price_;
-    indicative_clearing_price indicative_clearing_price_;
-    imbalance_shares imbalance_shares_;
-    imbalance_side imbalance_side_;
-    extension_number extension_number_;
-    scheduled_auction_time scheduled_auction_time_;
-    auction_book_clearing_price auction_book_clearing_price_;
-    collar_reference_price collar_reference_price_;
-    lower_auction_collar lower_auction_collar_;
-    upper_auction_collar upper_auction_collar_;
-
-    constexpr const auction_type& ref(const auction_type*) const noexcept { return auction_type_; }
-    constexpr const timestamp& ref(const timestamp*) const noexcept { return timestamp_; }
-    constexpr const symbol& ref(const symbol*) const noexcept { return symbol_; }
-    constexpr const paired_shares& ref(const paired_shares*) const noexcept { return paired_shares_; }
-    constexpr const reference_price& ref(const reference_price*) const noexcept { return reference_price_; }
-    constexpr const indicative_clearing_price& ref(const indicative_clearing_price*) const noexcept { return indicative_clearing_price_; }
-    constexpr const imbalance_shares& ref(const imbalance_shares*) const noexcept { return imbalance_shares_; }
-    constexpr const imbalance_side& ref(const imbalance_side*) const noexcept { return imbalance_side_; }
-    constexpr const extension_number& ref(const extension_number*) const noexcept { return extension_number_; }
-    constexpr const scheduled_auction_time& ref(const scheduled_auction_time*) const noexcept { return scheduled_auction_time_; }
-    constexpr const auction_book_clearing_price& ref(const auction_book_clearing_price*) const noexcept { return auction_book_clearing_price_; }
-    constexpr const collar_reference_price& ref(const collar_reference_price*) const noexcept { return collar_reference_price_; }
-    constexpr const lower_auction_collar& ref(const lower_auction_collar*) const noexcept { return lower_auction_collar_; }
-    constexpr const upper_auction_collar& ref(const upper_auction_collar*) const noexcept { return upper_auction_collar_; }
+    SNAPFIELD(auction_type);
+    SNAPFIELD(timestamp);
+    SNAPFIELD(symbol);
+    SNAPFIELD(paired_shares);
+    SNAPFIELD(reference_price);
+    SNAPFIELD(indicative_clearing_price);
+    SNAPFIELD(imbalance_shares);
+    SNAPFIELD(imbalance_side);
+    SNAPFIELD(extension_number);
+    SNAPFIELD(scheduled_auction_time);
+    SNAPFIELD(auction_book_clearing_price);
+    SNAPFIELD(collar_reference_price);
+    SNAPFIELD(lower_auction_collar);
+    SNAPFIELD(upper_auction_collar);
 };
 
 static_assert(sizeof(auction_information_message) == auction_information_message::size, "auction_information_message lies over its bytes exactly");
@@ -1178,19 +1105,12 @@ struct trade_break_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    sale_condition_flags sale_condition_flags_;
-    timestamp timestamp_;
-    symbol symbol_;
-    size_type size_type_;
-    price price_;
-    trade_id trade_id_;
-
-    constexpr const sale_condition_flags& ref(const sale_condition_flags*) const noexcept { return sale_condition_flags_; }
-    constexpr const timestamp& ref(const timestamp*) const noexcept { return timestamp_; }
-    constexpr const symbol& ref(const symbol*) const noexcept { return symbol_; }
-    constexpr const size_type& ref(const size_type*) const noexcept { return size_type_; }
-    constexpr const price& ref(const price*) const noexcept { return price_; }
-    constexpr const trade_id& ref(const trade_id*) const noexcept { return trade_id_; }
+    SNAPFIELD(sale_condition_flags);
+    SNAPFIELD(timestamp);
+    SNAPFIELD(symbol);
+    SNAPFIELD(size_type);
+    SNAPFIELD(price);
+    SNAPFIELD(trade_id);
 };
 
 static_assert(sizeof(trade_break_message) == trade_break_message::size, "trade_break_message lies over its bytes exactly");
@@ -1211,15 +1131,10 @@ struct official_price_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    price_type price_type_;
-    timestamp timestamp_;
-    symbol symbol_;
-    official_price official_price_;
-
-    constexpr const price_type& ref(const price_type*) const noexcept { return price_type_; }
-    constexpr const timestamp& ref(const timestamp*) const noexcept { return timestamp_; }
-    constexpr const symbol& ref(const symbol*) const noexcept { return symbol_; }
-    constexpr const official_price& ref(const official_price*) const noexcept { return official_price_; }
+    SNAPFIELD(price_type);
+    SNAPFIELD(timestamp);
+    SNAPFIELD(symbol);
+    SNAPFIELD(official_price);
 };
 
 static_assert(sizeof(official_price_message) == official_price_message::size, "official_price_message lies over its bytes exactly");
@@ -1240,19 +1155,12 @@ struct trade_report_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    sale_condition_flags sale_condition_flags_;
-    timestamp timestamp_;
-    symbol symbol_;
-    size_type size_type_;
-    price price_;
-    trade_id trade_id_;
-
-    constexpr const sale_condition_flags& ref(const sale_condition_flags*) const noexcept { return sale_condition_flags_; }
-    constexpr const timestamp& ref(const timestamp*) const noexcept { return timestamp_; }
-    constexpr const symbol& ref(const symbol*) const noexcept { return symbol_; }
-    constexpr const size_type& ref(const size_type*) const noexcept { return size_type_; }
-    constexpr const price& ref(const price*) const noexcept { return price_; }
-    constexpr const trade_id& ref(const trade_id*) const noexcept { return trade_id_; }
+    SNAPFIELD(sale_condition_flags);
+    SNAPFIELD(timestamp);
+    SNAPFIELD(symbol);
+    SNAPFIELD(size_type);
+    SNAPFIELD(price);
+    SNAPFIELD(trade_id);
 };
 
 static_assert(sizeof(trade_report_message) == trade_report_message::size, "trade_report_message lies over its bytes exactly");
@@ -1273,17 +1181,11 @@ struct price_level_sell_update_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    event_flags event_flags_;
-    timestamp timestamp_;
-    symbol symbol_;
-    size_type size_type_;
-    price price_;
-
-    constexpr const event_flags& ref(const event_flags*) const noexcept { return event_flags_; }
-    constexpr const timestamp& ref(const timestamp*) const noexcept { return timestamp_; }
-    constexpr const symbol& ref(const symbol*) const noexcept { return symbol_; }
-    constexpr const size_type& ref(const size_type*) const noexcept { return size_type_; }
-    constexpr const price& ref(const price*) const noexcept { return price_; }
+    SNAPFIELD(event_flags);
+    SNAPFIELD(timestamp);
+    SNAPFIELD(symbol);
+    SNAPFIELD(size_type);
+    SNAPFIELD(price);
 };
 
 static_assert(sizeof(price_level_sell_update_message) == price_level_sell_update_message::size, "price_level_sell_update_message lies over its bytes exactly");
@@ -1304,17 +1206,11 @@ struct price_level_buy_update_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    event_flags event_flags_;
-    timestamp timestamp_;
-    symbol symbol_;
-    size_type size_type_;
-    price price_;
-
-    constexpr const event_flags& ref(const event_flags*) const noexcept { return event_flags_; }
-    constexpr const timestamp& ref(const timestamp*) const noexcept { return timestamp_; }
-    constexpr const symbol& ref(const symbol*) const noexcept { return symbol_; }
-    constexpr const size_type& ref(const size_type*) const noexcept { return size_type_; }
-    constexpr const price& ref(const price*) const noexcept { return price_; }
+    SNAPFIELD(event_flags);
+    SNAPFIELD(timestamp);
+    SNAPFIELD(symbol);
+    SNAPFIELD(size_type);
+    SNAPFIELD(price);
 };
 
 static_assert(sizeof(price_level_buy_update_message) == price_level_buy_update_message::size, "price_level_buy_update_message lies over its bytes exactly");
@@ -1334,13 +1230,9 @@ struct security_event_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    security_event security_event_;
-    timestamp timestamp_;
-    symbol symbol_;
-
-    constexpr const security_event& ref(const security_event*) const noexcept { return security_event_; }
-    constexpr const timestamp& ref(const timestamp*) const noexcept { return timestamp_; }
-    constexpr const symbol& ref(const symbol*) const noexcept { return symbol_; }
+    SNAPFIELD(security_event);
+    SNAPFIELD(timestamp);
+    SNAPFIELD(symbol);
 };
 
 static_assert(sizeof(security_event_message) == security_event_message::size, "security_event_message lies over its bytes exactly");
@@ -1361,15 +1253,10 @@ struct short_sale_price_test_status_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    short_sale_price_test_status short_sale_price_test_status_;
-    timestamp timestamp_;
-    symbol symbol_;
-    detail detail_;
-
-    constexpr const short_sale_price_test_status& ref(const short_sale_price_test_status*) const noexcept { return short_sale_price_test_status_; }
-    constexpr const timestamp& ref(const timestamp*) const noexcept { return timestamp_; }
-    constexpr const symbol& ref(const symbol*) const noexcept { return symbol_; }
-    constexpr const detail& ref(const detail*) const noexcept { return detail_; }
+    SNAPFIELD(short_sale_price_test_status);
+    SNAPFIELD(timestamp);
+    SNAPFIELD(symbol);
+    SNAPFIELD(detail);
 };
 
 static_assert(sizeof(short_sale_price_test_status_message) == short_sale_price_test_status_message::size, "short_sale_price_test_status_message lies over its bytes exactly");
@@ -1390,13 +1277,9 @@ struct operational_halt_status_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    operational_halt_status operational_halt_status_;
-    timestamp timestamp_;
-    symbol symbol_;
-
-    constexpr const operational_halt_status& ref(const operational_halt_status*) const noexcept { return operational_halt_status_; }
-    constexpr const timestamp& ref(const timestamp*) const noexcept { return timestamp_; }
-    constexpr const symbol& ref(const symbol*) const noexcept { return symbol_; }
+    SNAPFIELD(operational_halt_status);
+    SNAPFIELD(timestamp);
+    SNAPFIELD(symbol);
 };
 
 static_assert(sizeof(operational_halt_status_message) == operational_halt_status_message::size, "operational_halt_status_message lies over its bytes exactly");
@@ -1417,13 +1300,9 @@ struct retail_liquidity_indicator_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    retail_liquidity_indicator retail_liquidity_indicator_;
-    timestamp timestamp_;
-    symbol symbol_;
-
-    constexpr const retail_liquidity_indicator& ref(const retail_liquidity_indicator*) const noexcept { return retail_liquidity_indicator_; }
-    constexpr const timestamp& ref(const timestamp*) const noexcept { return timestamp_; }
-    constexpr const symbol& ref(const symbol*) const noexcept { return symbol_; }
+    SNAPFIELD(retail_liquidity_indicator);
+    SNAPFIELD(timestamp);
+    SNAPFIELD(symbol);
 };
 
 static_assert(sizeof(retail_liquidity_indicator_message) == retail_liquidity_indicator_message::size, "retail_liquidity_indicator_message lies over its bytes exactly");
@@ -1443,15 +1322,10 @@ struct trading_status_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    trading_status trading_status_;
-    timestamp timestamp_;
-    symbol symbol_;
-    reason reason_;
-
-    constexpr const trading_status& ref(const trading_status*) const noexcept { return trading_status_; }
-    constexpr const timestamp& ref(const timestamp*) const noexcept { return timestamp_; }
-    constexpr const symbol& ref(const symbol*) const noexcept { return symbol_; }
-    constexpr const reason& ref(const reason*) const noexcept { return reason_; }
+    SNAPFIELD(trading_status);
+    SNAPFIELD(timestamp);
+    SNAPFIELD(symbol);
+    SNAPFIELD(reason);
 };
 
 static_assert(sizeof(trading_status_message) == trading_status_message::size, "trading_status_message lies over its bytes exactly");
@@ -1492,19 +1366,12 @@ struct security_directory_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    security_directory_flags security_directory_flags_;
-    timestamp timestamp_;
-    symbol symbol_;
-    round_lot_size round_lot_size_;
-    adjusted_poc_price adjusted_poc_price_;
-    luld_tier luld_tier_;
-
-    constexpr const security_directory_flags& ref(const security_directory_flags*) const noexcept { return security_directory_flags_; }
-    constexpr const timestamp& ref(const timestamp*) const noexcept { return timestamp_; }
-    constexpr const symbol& ref(const symbol*) const noexcept { return symbol_; }
-    constexpr const round_lot_size& ref(const round_lot_size*) const noexcept { return round_lot_size_; }
-    constexpr const adjusted_poc_price& ref(const adjusted_poc_price*) const noexcept { return adjusted_poc_price_; }
-    constexpr const luld_tier& ref(const luld_tier*) const noexcept { return luld_tier_; }
+    SNAPFIELD(security_directory_flags);
+    SNAPFIELD(timestamp);
+    SNAPFIELD(symbol);
+    SNAPFIELD(round_lot_size);
+    SNAPFIELD(adjusted_poc_price);
+    SNAPFIELD(luld_tier);
 };
 
 static_assert(sizeof(security_directory_message) == security_directory_message::size, "security_directory_message lies over its bytes exactly");
@@ -1525,11 +1392,8 @@ struct system_event_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    system_event system_event_;
-    timestamp timestamp_;
-
-    constexpr const system_event& ref(const system_event*) const noexcept { return system_event_; }
-    constexpr const timestamp& ref(const timestamp*) const noexcept { return timestamp_; }
+    SNAPFIELD(system_event);
+    SNAPFIELD(timestamp);
 };
 
 static_assert(sizeof(system_event_message) == system_event_message::size, "system_event_message lies over its bytes exactly");
@@ -1540,91 +1404,6 @@ static_assert(sizeof(system_event_message) == system_event_message::size, "syste
 struct iex_tp_message_data {
     static constexpr std::string_view name = "Iex Tp Message Data";
     static constexpr bool is_message = false;
-
-    // read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
-    template <typename Handler>
-    static std::size_t parse([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler, const iex_tp_message_type& iex_tp_message_type_) {
-        if (iex_tp_message_type_.raw() == 'S') {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            [[maybe_unused]] const auto& system_event_message_ = tmp::read<system_event_message>(data + offset, bound - offset, handler); offset += system_event_message::size;
-            return offset;
-        }
-        if (iex_tp_message_type_.raw() == 'D') {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            [[maybe_unused]] const auto& security_directory_message_ = tmp::read<security_directory_message>(data + offset, bound - offset, handler); offset += security_directory_message::size;
-            return offset;
-        }
-        if (iex_tp_message_type_.raw() == 'H') {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            [[maybe_unused]] const auto& trading_status_message_ = tmp::read<trading_status_message>(data + offset, bound - offset, handler); offset += trading_status_message::size;
-            return offset;
-        }
-        if (iex_tp_message_type_.raw() == 'I') {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            [[maybe_unused]] const auto& retail_liquidity_indicator_message_ = tmp::read<retail_liquidity_indicator_message>(data + offset, bound - offset, handler); offset += retail_liquidity_indicator_message::size;
-            return offset;
-        }
-        if (iex_tp_message_type_.raw() == 'O') {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            [[maybe_unused]] const auto& operational_halt_status_message_ = tmp::read<operational_halt_status_message>(data + offset, bound - offset, handler); offset += operational_halt_status_message::size;
-            return offset;
-        }
-        if (iex_tp_message_type_.raw() == 'P') {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            [[maybe_unused]] const auto& short_sale_price_test_status_message_ = tmp::read<short_sale_price_test_status_message>(data + offset, bound - offset, handler); offset += short_sale_price_test_status_message::size;
-            return offset;
-        }
-        if (iex_tp_message_type_.raw() == 'E') {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            [[maybe_unused]] const auto& security_event_message_ = tmp::read<security_event_message>(data + offset, bound - offset, handler); offset += security_event_message::size;
-            return offset;
-        }
-        if (iex_tp_message_type_.raw() == '8') {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            [[maybe_unused]] const auto& price_level_buy_update_message_ = tmp::read<price_level_buy_update_message>(data + offset, bound - offset, handler); offset += price_level_buy_update_message::size;
-            return offset;
-        }
-        if (iex_tp_message_type_.raw() == '5') {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            [[maybe_unused]] const auto& price_level_sell_update_message_ = tmp::read<price_level_sell_update_message>(data + offset, bound - offset, handler); offset += price_level_sell_update_message::size;
-            return offset;
-        }
-        if (iex_tp_message_type_.raw() == 'T') {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            [[maybe_unused]] const auto& trade_report_message_ = tmp::read<trade_report_message>(data + offset, bound - offset, handler); offset += trade_report_message::size;
-            return offset;
-        }
-        if (iex_tp_message_type_.raw() == 'X') {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            [[maybe_unused]] const auto& official_price_message_ = tmp::read<official_price_message>(data + offset, bound - offset, handler); offset += official_price_message::size;
-            return offset;
-        }
-        if (iex_tp_message_type_.raw() == 'B') {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            [[maybe_unused]] const auto& trade_break_message_ = tmp::read<trade_break_message>(data + offset, bound - offset, handler); offset += trade_break_message::size;
-            return offset;
-        }
-        if (iex_tp_message_type_.raw() == 'A') {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            [[maybe_unused]] const auto& auction_information_message_ = tmp::read<auction_information_message>(data + offset, bound - offset, handler); offset += auction_information_message::size;
-            return offset;
-        }
-        tmp::unknown(handler, data, length);
-        return length;
-    }
 };
 
 // Iextp Header
@@ -1642,27 +1421,16 @@ struct iextp_header {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    version version_;
-    reserved reserved_;
-    message_protocol_id message_protocol_id_;
-    channel_id channel_id_;
-    session_id session_id_;
-    payload_length payload_length_;
-    message_count message_count_;
-    stream_offset stream_offset_;
-    first_message_sequence_number first_message_sequence_number_;
-    send_time send_time_;
-
-    constexpr const version& ref(const version*) const noexcept { return version_; }
-    constexpr const reserved& ref(const reserved*) const noexcept { return reserved_; }
-    constexpr const message_protocol_id& ref(const message_protocol_id*) const noexcept { return message_protocol_id_; }
-    constexpr const channel_id& ref(const channel_id*) const noexcept { return channel_id_; }
-    constexpr const session_id& ref(const session_id*) const noexcept { return session_id_; }
-    constexpr const payload_length& ref(const payload_length*) const noexcept { return payload_length_; }
-    constexpr const message_count& ref(const message_count*) const noexcept { return message_count_; }
-    constexpr const stream_offset& ref(const stream_offset*) const noexcept { return stream_offset_; }
-    constexpr const first_message_sequence_number& ref(const first_message_sequence_number*) const noexcept { return first_message_sequence_number_; }
-    constexpr const send_time& ref(const send_time*) const noexcept { return send_time_; }
+    SNAPFIELD(version);
+    SNAPFIELD(reserved);
+    SNAPFIELD(message_protocol_id);
+    SNAPFIELD(channel_id);
+    SNAPFIELD(session_id);
+    SNAPFIELD(payload_length);
+    SNAPFIELD(message_count);
+    SNAPFIELD(stream_offset);
+    SNAPFIELD(first_message_sequence_number);
+    SNAPFIELD(send_time);
 };
 
 static_assert(sizeof(iextp_header) == iextp_header::size, "iextp_header lies over its bytes exactly");
@@ -1683,15 +1451,10 @@ struct snapshot_data_message_section_1 {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    iextp_header iextp_header_;
-    iex_tp_message_block_length iex_tp_message_block_length_;
-    iex_tp_message_length iex_tp_message_length_;
-    iex_tp_message_type iex_tp_message_type_;
-
-    constexpr const iextp_header& ref(const iextp_header*) const noexcept { return iextp_header_; }
-    constexpr const iex_tp_message_block_length& ref(const iex_tp_message_block_length*) const noexcept { return iex_tp_message_block_length_; }
-    constexpr const iex_tp_message_length& ref(const iex_tp_message_length*) const noexcept { return iex_tp_message_length_; }
-    constexpr const iex_tp_message_type& ref(const iex_tp_message_type*) const noexcept { return iex_tp_message_type_; }
+    SNAPFIELD(iextp_header);
+    SNAPFIELD(iex_tp_message_block_length);
+    SNAPFIELD(iex_tp_message_length);
+    SNAPFIELD(iex_tp_message_type);
 };
 
 static_assert(sizeof(snapshot_data_message_section_1) == snapshot_data_message_section_1::size, "snapshot_data_message_section_1 lies over its bytes exactly");
@@ -1702,23 +1465,6 @@ static_assert(sizeof(snapshot_data_message_section_1) == snapshot_data_message_s
 struct snapshot_data_message {
     static constexpr std::string_view name = "Snapshot Data Message";
     static constexpr bool is_message = false;
-
-    // read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
-    template <typename Handler>
-    static std::size_t parse([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler) {
-        std::size_t offset = 0;
-        std::size_t bound = length;
-        [[maybe_unused]] const auto& snapshot_data_message_section_1_ = tmp::read<snapshot_data_message_section_1>(data + offset, bound - offset, handler); offset += snapshot_data_message_section_1::size;
-        bound = tmp::count(snapshot_data_message_section_1_.template get<iex_tp_message_block_length>().value()) + 42;
-        tmp::require(bound, length);
-        {
-            const std::size_t size = tmp::count(snapshot_data_message_section_1_.template get<iex_tp_message_length>().value()) - 1;
-            tmp::require(offset + size, bound);
-            iex_tp_message_data::parse(data + offset, size, handler, snapshot_data_message_section_1_.template get<iex_tp_message_type>());
-            offset += size;
-        }
-        return bound;
-    }
 };
 
 // Snapshot Start Message
@@ -1737,9 +1483,7 @@ struct snapshot_start_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    snapshot_length snapshot_length_;
-
-    constexpr const snapshot_length& ref(const snapshot_length*) const noexcept { return snapshot_length_; }
+    SNAPFIELD(snapshot_length);
 };
 
 static_assert(sizeof(snapshot_start_message) == snapshot_start_message::size, "snapshot_start_message lies over its bytes exactly");
@@ -1759,9 +1503,7 @@ struct error_response_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    reject_reason_code reject_reason_code_;
-
-    constexpr const reject_reason_code& ref(const reject_reason_code*) const noexcept { return reject_reason_code_; }
+    SNAPFIELD(reject_reason_code);
 };
 
 static_assert(sizeof(error_response_message) == error_response_message::size, "error_response_message lies over its bytes exactly");
@@ -1782,15 +1524,10 @@ struct snapshot_request_message {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    authentication_token authentication_token_;
-    channel_id channel_id_;
-    session_id session_id_;
-    minimum_sequence_number minimum_sequence_number_;
-
-    constexpr const authentication_token& ref(const authentication_token*) const noexcept { return authentication_token_; }
-    constexpr const channel_id& ref(const channel_id*) const noexcept { return channel_id_; }
-    constexpr const session_id& ref(const session_id*) const noexcept { return session_id_; }
-    constexpr const minimum_sequence_number& ref(const minimum_sequence_number*) const noexcept { return minimum_sequence_number_; }
+    SNAPFIELD(authentication_token);
+    SNAPFIELD(channel_id);
+    SNAPFIELD(session_id);
+    SNAPFIELD(minimum_sequence_number);
 };
 
 static_assert(sizeof(snapshot_request_message) == snapshot_request_message::size, "snapshot_request_message lies over its bytes exactly");
@@ -1800,43 +1537,6 @@ static_assert(sizeof(snapshot_request_message) == snapshot_request_message::size
 struct message_data {
     static constexpr std::string_view name = "Message Data";
     static constexpr bool is_message = false;
-
-    // read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
-    template <typename Handler>
-    static std::size_t parse([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler, const message_type& message_type_) {
-        if (message_type_.raw() == 'r') {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            [[maybe_unused]] const auto& snapshot_request_message_ = tmp::read<snapshot_request_message>(data + offset, bound - offset, handler); offset += snapshot_request_message::size;
-            return offset;
-        }
-        if (message_type_.raw() == 'e') {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            [[maybe_unused]] const auto& error_response_message_ = tmp::read<error_response_message>(data + offset, bound - offset, handler); offset += error_response_message::size;
-            return offset;
-        }
-        if (message_type_.raw() == 's') {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            [[maybe_unused]] const auto& snapshot_start_message_ = tmp::read<snapshot_start_message>(data + offset, bound - offset, handler); offset += snapshot_start_message::size;
-            return offset;
-        }
-        if (message_type_.raw() == 'd') {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            offset += snapshot_data_message::parse(data + offset, bound - offset, handler);
-            return offset;
-        }
-        if (message_type_.raw() == 'x') {
-            std::size_t offset = 0;
-            [[maybe_unused]] const std::size_t bound = length;
-            [[maybe_unused]] const auto& snapshot_end_message_ = tmp::read<snapshot_end_message>(data + offset, bound - offset, handler); offset += snapshot_end_message::size;
-            return offset;
-        }
-        tmp::unknown(handler, data, length);
-        return length;
-    }
 };
 
 // Message Header
@@ -1854,11 +1554,8 @@ struct message_header {
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    message_length message_length_;
-    message_type message_type_;
-
-    constexpr const message_length& ref(const message_length*) const noexcept { return message_length_; }
-    constexpr const message_type& ref(const message_type*) const noexcept { return message_type_; }
+    SNAPFIELD(message_length);
+    SNAPFIELD(message_type);
 };
 
 static_assert(sizeof(message_header) == message_header::size, "message_header lies over its bytes exactly");
@@ -1868,18 +1565,6 @@ static_assert(sizeof(message_header) == message_header::size, "message_header li
 struct message {
     static constexpr std::string_view name = "Message";
     static constexpr bool is_message = false;
-
-    // read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
-    template <typename Handler>
-    static std::size_t parse([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler) {
-        std::size_t offset = 0;
-        std::size_t bound = length;
-        [[maybe_unused]] const auto& message_header_ = tmp::read<message_header>(data + offset, bound - offset, handler); offset += message_header::size;
-        bound = tmp::count(message_header_.template get<message_length>().value()) + 2;
-        tmp::require(bound, length);
-        offset += message_data::parse(data + offset, bound - offset, handler, message_header_.template get<message_type>());
-        return bound;
-    }
 };
 
 // Packet
@@ -1887,21 +1572,6 @@ struct message {
 struct packet {
     static constexpr std::string_view name = "Packet";
     static constexpr bool is_message = false;
-
-    // read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
-    template <typename Handler>
-    static std::size_t parse([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler) {
-        std::size_t offset = 0;
-        const std::size_t bound = length;
-        while (offset < bound) {
-            if (bound - offset < 0 + message_length::size) { return offset; }
-            const std::size_t size = tmp::count(tmp::at<message_length>(data + offset + 0).value()) + 2;
-            if (bound - offset < size) { return offset; }
-            message::parse(data + offset, size, handler);
-            offset += size;
-        }
-        return offset;
-    }
 };
 
 #pragma pack(pop)
