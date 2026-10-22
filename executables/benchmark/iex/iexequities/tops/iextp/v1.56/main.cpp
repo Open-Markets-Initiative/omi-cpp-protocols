@@ -44,6 +44,12 @@ namespace tmp {
         }
     }
 
+    // The bytes left for a member when the members after it take some: refused when fewer remain
+    inline std::size_t leaving(std::size_t available, std::size_t taken) {
+        require(taken, available);
+        return available - taken;
+    }
+
     // Hand the handler a value, when it takes one
     template <typename Handler, typename T>
     constexpr void call(Handler& handler, const T& value) {
@@ -118,6 +124,15 @@ namespace tmp {
             if (data[index] == std::byte{ 0 }) { return index; }
         }
         throw short_read("no terminator in " + std::to_string(length) + " bytes");
+    }
+
+    // The bytes of a frame ending on a terminator, the terminator included; none while the bytes
+    // do not hold it yet
+    inline std::size_t through(const std::byte* data, std::size_t length, std::byte terminator) noexcept {
+        for (std::size_t index = 0; index < length; ++index) {
+            if (data[index] == terminator) { return index + 1; }
+        }
+        return 0;
     }
 
     // Bytes a branch's code selects no message for, handed to the handler when it takes them

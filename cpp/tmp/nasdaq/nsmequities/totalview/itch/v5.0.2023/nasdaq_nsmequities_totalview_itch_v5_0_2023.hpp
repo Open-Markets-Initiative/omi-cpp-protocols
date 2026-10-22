@@ -71,6 +71,26 @@ namespace tmp {
         while (length > 0 && text[length - 1] == fill) { --length; }
         return { text.data(), length };
     }
+
+    // Text of a fixed width justified right, as the characters after its fill
+    template <std::size_t N>
+    constexpr std::string_view trimmed_front(const std::array<char, N>& text, char fill) noexcept {
+        std::size_t start = 0;
+        while (start < N && text[start] == fill) { ++start; }
+        return { text.data() + start, N - start };
+    }
+
+    // The integer the digits of text state, its fill skipped; it ends at anything else
+    template <typename T>
+    constexpr T number(std::string_view text, char fill) noexcept {
+        T value = 0;
+        for (const char character : text) {
+            if (character == fill) { continue; }
+            if (character < '0' || character > '9') { break; }
+            value = static_cast<T>(value * 10 + static_cast<T>(character - '0'));
+        }
+        return value;
+    }
 } // namespace tmp
 
 /////////////////////////////////////////////////////////////////////
@@ -79,12 +99,13 @@ namespace tmp {
 
 // Accepted Sequence Number: The sequence number in ASCII of the next Sequenced Message to be sent. Left padded with spaces.
 struct accepted_sequence_number {
-    using type = std::string_view;
+    using type = std::uint64_t;
     static constexpr std::size_t size = 20;
     static constexpr char fill = ' ';
 
-    constexpr type value() const noexcept { return tmp::trimmed(value_, fill); }
+    constexpr type value() const noexcept { return tmp::number<type>(raw(), fill); }
     constexpr operator type() const noexcept { return value(); }
+    constexpr std::string_view raw() const noexcept { return tmp::trimmed_front(value_, fill); }
 
   protected:
     std::array<char, 20> value_;
@@ -96,7 +117,7 @@ struct accepted_session {
     static constexpr std::size_t size = 10;
     static constexpr char fill = ' ';
 
-    constexpr type value() const noexcept { return tmp::trimmed(value_, fill); }
+    constexpr type value() const noexcept { return tmp::trimmed_front(value_, fill); }
     constexpr operator type() const noexcept { return value(); }
 
   protected:
@@ -1180,12 +1201,13 @@ struct reject_reason_code {
 
 // Requested Sequence Number: Specifies the next sequence number in ASCII the client wants to receive upon connection, or 0 to start receiving the most recently generated message.
 struct requested_sequence_number {
-    using type = std::string_view;
+    using type = std::uint64_t;
     static constexpr std::size_t size = 20;
     static constexpr char fill = ' ';
 
-    constexpr type value() const noexcept { return tmp::trimmed(value_, fill); }
+    constexpr type value() const noexcept { return tmp::number<type>(raw(), fill); }
     constexpr operator type() const noexcept { return value(); }
+    constexpr std::string_view raw() const noexcept { return tmp::trimmed_front(value_, fill); }
 
   protected:
     std::array<char, 20> value_;
@@ -1197,7 +1219,7 @@ struct requested_session {
     static constexpr std::size_t size = 10;
     static constexpr char fill = ' ';
 
-    constexpr type value() const noexcept { return tmp::trimmed(value_, fill); }
+    constexpr type value() const noexcept { return tmp::trimmed_front(value_, fill); }
     constexpr operator type() const noexcept { return value(); }
 
   protected:

@@ -71,6 +71,26 @@ namespace tmp {
         while (length > 0 && text[length - 1] == fill) { --length; }
         return { text.data(), length };
     }
+
+    // Text of a fixed width justified right, as the characters after its fill
+    template <std::size_t N>
+    constexpr std::string_view trimmed_front(const std::array<char, N>& text, char fill) noexcept {
+        std::size_t start = 0;
+        while (start < N && text[start] == fill) { ++start; }
+        return { text.data() + start, N - start };
+    }
+
+    // The integer the digits of text state, its fill skipped; it ends at anything else
+    template <typename T>
+    constexpr T number(std::string_view text, char fill) noexcept {
+        T value = 0;
+        for (const char character : text) {
+            if (character == fill) { continue; }
+            if (character < '0' || character > '9') { break; }
+            value = static_cast<T>(value * 10 + static_cast<T>(character - '0'));
+        }
+        return value;
+    }
 } // namespace tmp
 
 /////////////////////////////////////////////////////////////////////
