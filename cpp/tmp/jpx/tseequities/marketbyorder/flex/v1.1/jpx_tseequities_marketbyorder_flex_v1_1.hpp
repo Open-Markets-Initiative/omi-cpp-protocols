@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include <algorithm>
 #include <array>
 #include <bit>
 #include <cstddef>
@@ -82,10 +83,50 @@ namespace tmp {
         return value;
     }
 
+    // A field as a rule reads it: an enum by the code the wire holds, a field by its value, and a
+    // bit - which its bitfield answers as a value - as it is
+    template <typename T>
+    constexpr auto rule(const T& field) noexcept {
+        if constexpr (requires { field.raw(); }) { return field.raw(); }
+        else if constexpr (requires { field.value(); }) { return field.value(); }
+        else { return field; }
+    }
+
+    // A field an optional member may hold, read as its type's zero when the member is absent
+    template <typename T>
+    struct maybe {
+        const T* field;
+
+        constexpr auto value() const noexcept {
+            using type = decltype(field->value());
+            return field != nullptr ? field->value() : type{};
+        }
+
+        constexpr auto raw() const noexcept requires requires(const T& held) { held.raw(); } {
+            using type = decltype(field->raw());
+            return field != nullptr ? field->raw() : type{};
+        }
+
+        // a bit of an optional bitfield, nothing when the bitfield is absent
+        template <typename Bit>
+        constexpr auto get() const noexcept requires requires(const T& held) { held.template get<Bit>(); } {
+            using type = std::remove_cvref_t<decltype(field->template get<Bit>())>;
+            return field != nullptr ? type{ field->template get<Bit>() } : type{};
+        }
+    };
+
     // A type laid over its bytes without handing it on: a frame's length, read before the frame is
     template <typename T>
     const T& at(const std::byte* data) noexcept {
         return *reinterpret_cast<const T*>(data);
+    }
+
+    // A type laid over bytes ahead of the walk, at a place every byte before it fixes, which a rule
+    // reads before the walk reaches it: a branch's code in the header its messages begin with
+    template <typename T>
+    const T& ahead(const std::byte* data, std::size_t length, std::size_t at) {
+        require(at + T::size, length);
+        return *reinterpret_cast<const T*>(data + at);
     }
 
     // A type laid over its bytes and handed to the handler; what it returns is the bytes it took
@@ -1057,38 +1098,38 @@ struct tcp_payload {
     // read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
     template <typename Handler>
     static std::size_t parse([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler, const packet_type& packet_type_) {
-        if (packet_type_.raw() == 'R') {
+        if (static_cast<bool>(tmp::rule(packet_type_) == 'R')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& login_request_retransmission_message_ = tmp::read<login_request_retransmission_message>(data + offset, bound - offset, handler); offset += login_request_retransmission_message::size;
             return offset;
         }
-        if (packet_type_.raw() == 'L') {
+        if (static_cast<bool>(tmp::rule(packet_type_) == 'L')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& login_request_snapshot_message_ = tmp::read<login_request_snapshot_message>(data + offset, bound - offset, handler); offset += login_request_snapshot_message::size;
             return offset;
         }
-        if (packet_type_.raw() == 'A') {
+        if (static_cast<bool>(tmp::rule(packet_type_) == 'A')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& login_result_accepted_message_ = tmp::read<login_result_accepted_message>(data + offset, bound - offset, handler); offset += login_result_accepted_message::size;
             return offset;
         }
-        if (packet_type_.raw() == 'J') {
+        if (static_cast<bool>(tmp::rule(packet_type_) == 'J')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& login_result_rejected_message_ = tmp::read<login_result_rejected_message>(data + offset, bound - offset, handler); offset += login_result_rejected_message::size;
             return offset;
         }
-        if (packet_type_.raw() == 'S') {
+        if (static_cast<bool>(tmp::rule(packet_type_) == 'S')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             offset += message_response_message::parse(data + offset, bound - offset, handler);
             tmp::call(handler, message_response_message{});
             return offset;
         }
-        if (packet_type_.raw() == 'G') {
+        if (static_cast<bool>(tmp::rule(packet_type_) == 'G')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& end_of_message_message_ = tmp::read<end_of_message_message>(data + offset, bound - offset, handler); offset += end_of_message_message::size;
@@ -1421,55 +1462,55 @@ struct payload {
     // read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
     template <typename Handler>
     static std::size_t parse([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler, const message_type& message_type_) {
-        if (message_type_.raw() == 'T') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'T')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& seconds_timestamp_message_ = tmp::read<seconds_timestamp_message>(data + offset, bound - offset, handler); offset += seconds_timestamp_message::size;
             return offset;
         }
-        if (message_type_.raw() == 'O') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'O')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& trading_status_message_ = tmp::read<trading_status_message>(data + offset, bound - offset, handler); offset += trading_status_message::size;
             return offset;
         }
-        if (message_type_.raw() == 'K') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'K')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& execution_summary_message_ = tmp::read<execution_summary_message>(data + offset, bound - offset, handler); offset += execution_summary_message::size;
             return offset;
         }
-        if (message_type_.raw() == 'A') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'A')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& add_order_message_ = tmp::read<add_order_message>(data + offset, bound - offset, handler); offset += add_order_message::size;
             return offset;
         }
-        if (message_type_.raw() == 'E') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'E')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& order_executed_message_ = tmp::read<order_executed_message>(data + offset, bound - offset, handler); offset += order_executed_message::size;
             return offset;
         }
-        if (message_type_.raw() == 'C') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'C')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& order_executed_with_price_message_ = tmp::read<order_executed_with_price_message>(data + offset, bound - offset, handler); offset += order_executed_with_price_message::size;
             return offset;
         }
-        if (message_type_.raw() == 'D') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'D')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& order_delete_message_ = tmp::read<order_delete_message>(data + offset, bound - offset, handler); offset += order_delete_message::size;
             return offset;
         }
-        if (message_type_.raw() == 'R') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'R')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& reset_message_ = tmp::read<reset_message>(data + offset, bound - offset, handler); offset += reset_message::size;
             return offset;
         }
-        if (message_type_.raw() == 'L') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'L')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& communication_control_message_ = tmp::read<communication_control_message>(data + offset, bound - offset, handler); offset += communication_control_message::size;
@@ -1516,7 +1557,7 @@ struct message {
         std::size_t offset = 0;
         std::size_t bound = length;
         [[maybe_unused]] const auto& message_header_ = tmp::read<message_header>(data + offset, bound - offset, handler); offset += message_header::size;
-        bound = tmp::count(message_header_.template get<tag_length>().value()) + 1;
+        bound = static_cast<std::size_t>(static_cast<std::int64_t>(tmp::count(tmp::rule(message_header_.template get<tag_length>()))) + 1);
         tmp::require(bound, length);
         offset += payload::parse(data + offset, bound - offset, handler, message_header_.template get<message_type>());
         return bound;
@@ -1574,7 +1615,7 @@ struct udp_packet {
         const std::size_t bound = length;
         [[maybe_unused]] const auto& packet_header_ = tmp::read<packet_header>(data + offset, bound - offset, handler); offset += packet_header::size;
         {
-            const std::size_t count = tmp::count(packet_header_.template get<message_count>().value());
+            const std::size_t count = static_cast<std::size_t>(tmp::rule(packet_header_.template get<message_count>()));
             for (std::size_t index = 0; index < count; ++index) {
                 offset += message::parse(data + offset, bound - offset, handler);
             }

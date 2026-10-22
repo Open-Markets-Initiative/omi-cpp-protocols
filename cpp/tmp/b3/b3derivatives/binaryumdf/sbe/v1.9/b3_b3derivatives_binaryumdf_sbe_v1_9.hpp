@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include <algorithm>
 #include <array>
 #include <bit>
 #include <cstddef>
@@ -82,10 +83,50 @@ namespace tmp {
         return value;
     }
 
+    // A field as a rule reads it: an enum by the code the wire holds, a field by its value, and a
+    // bit - which its bitfield answers as a value - as it is
+    template <typename T>
+    constexpr auto rule(const T& field) noexcept {
+        if constexpr (requires { field.raw(); }) { return field.raw(); }
+        else if constexpr (requires { field.value(); }) { return field.value(); }
+        else { return field; }
+    }
+
+    // A field an optional member may hold, read as its type's zero when the member is absent
+    template <typename T>
+    struct maybe {
+        const T* field;
+
+        constexpr auto value() const noexcept {
+            using type = decltype(field->value());
+            return field != nullptr ? field->value() : type{};
+        }
+
+        constexpr auto raw() const noexcept requires requires(const T& held) { held.raw(); } {
+            using type = decltype(field->raw());
+            return field != nullptr ? field->raw() : type{};
+        }
+
+        // a bit of an optional bitfield, nothing when the bitfield is absent
+        template <typename Bit>
+        constexpr auto get() const noexcept requires requires(const T& held) { held.template get<Bit>(); } {
+            using type = std::remove_cvref_t<decltype(field->template get<Bit>())>;
+            return field != nullptr ? type{ field->template get<Bit>() } : type{};
+        }
+    };
+
     // A type laid over its bytes without handing it on: a frame's length, read before the frame is
     template <typename T>
     const T& at(const std::byte* data) noexcept {
         return *reinterpret_cast<const T*>(data);
+    }
+
+    // A type laid over bytes ahead of the walk, at a place every byte before it fixes, which a rule
+    // reads before the walk reaches it: a branch's code in the header its messages begin with
+    template <typename T>
+    const T& ahead(const std::byte* data, std::size_t length, std::size_t at) {
+        require(at + T::size, length);
+        return *reinterpret_cast<const T*>(data + at);
     }
 
     // A type laid over its bytes and handed to the handler; what it returns is the bytes it took
@@ -3198,10 +3239,10 @@ struct snapshot_full_refresh_orders_mb_o_71_message_no_m_d_entries_groups {
         const std::size_t bound = length;
         [[maybe_unused]] const auto& group_size_encoding_ = tmp::read<group_size_encoding>(data + offset, bound - offset, handler); offset += group_size_encoding::size;
         {
-            const std::size_t count = tmp::count(group_size_encoding_.template get<num_in_group>().value());
+            const std::size_t count = static_cast<std::size_t>(tmp::rule(group_size_encoding_.template get<num_in_group>()));
             for (std::size_t index = 0; index < count; ++index) {
                 {
-                    const std::size_t block = tmp::count(group_size_encoding_.template get<block_length>().value());
+                    const std::size_t block = static_cast<std::size_t>(tmp::rule(group_size_encoding_.template get<block_length>()));
                     const std::size_t start = offset;
                     offset += tmp::take<snapshot_full_refresh_orders_mb_o_71_message_no_m_d_entries_group>(data + offset, bound - offset, handler);
                     if (offset - start < block) { offset = start + block; }
@@ -4150,9 +4191,9 @@ struct url_link {
         std::size_t offset = 0;
         const std::size_t bound = length;
         [[maybe_unused]] const auto& url_link_section_1_ = tmp::read<url_link_section_1>(data + offset, bound - offset, handler); offset += url_link_section_1::size;
-        if (url_link_section_1_.template get<url_link_length>().value() > 0) {
+        if (static_cast<bool>(tmp::rule(url_link_section_1_.template get<url_link_length>()) > 0)) {
             {
-                const std::size_t size = tmp::count(url_link_section_1_.template get<url_link_length>().value());
+                const std::size_t size = static_cast<std::size_t>(tmp::rule(url_link_section_1_.template get<url_link_length>()));
                 tmp::require(offset + size, bound);
                 tmp::call(handler, url_link_data{ data + offset, size });
                 offset += size;
@@ -4197,9 +4238,9 @@ struct text {
         std::size_t offset = 0;
         const std::size_t bound = length;
         [[maybe_unused]] const auto& text_section_1_ = tmp::read<text_section_1>(data + offset, bound - offset, handler); offset += text_section_1::size;
-        if (text_section_1_.template get<text_length>().value() > 0) {
+        if (static_cast<bool>(tmp::rule(text_section_1_.template get<text_length>()) > 0)) {
             {
-                const std::size_t size = tmp::count(text_section_1_.template get<text_length>().value());
+                const std::size_t size = static_cast<std::size_t>(tmp::rule(text_section_1_.template get<text_length>()));
                 tmp::require(offset + size, bound);
                 tmp::call(handler, text_data{ data + offset, size });
                 offset += size;
@@ -4244,9 +4285,9 @@ struct headline {
         std::size_t offset = 0;
         const std::size_t bound = length;
         [[maybe_unused]] const auto& headline_section_1_ = tmp::read<headline_section_1>(data + offset, bound - offset, handler); offset += headline_section_1::size;
-        if (headline_section_1_.template get<headline_length>().value() > 0) {
+        if (static_cast<bool>(tmp::rule(headline_section_1_.template get<headline_length>()) > 0)) {
             {
-                const std::size_t size = tmp::count(headline_section_1_.template get<headline_length>().value());
+                const std::size_t size = static_cast<std::size_t>(tmp::rule(headline_section_1_.template get<headline_length>()));
                 tmp::require(offset + size, bound);
                 tmp::call(handler, headline_data{ data + offset, size });
                 offset += size;
@@ -4349,9 +4390,9 @@ struct security_desc {
         std::size_t offset = 0;
         const std::size_t bound = length;
         [[maybe_unused]] const auto& security_desc_section_1_ = tmp::read<security_desc_section_1>(data + offset, bound - offset, handler); offset += security_desc_section_1::size;
-        if (security_desc_section_1_.template get<security_desc_length>().value() > 0) {
+        if (static_cast<bool>(tmp::rule(security_desc_section_1_.template get<security_desc_length>()) > 0)) {
             {
-                const std::size_t size = tmp::count(security_desc_section_1_.template get<security_desc_length>().value());
+                const std::size_t size = static_cast<std::size_t>(tmp::rule(security_desc_section_1_.template get<security_desc_length>()));
                 tmp::require(offset + size, bound);
                 tmp::call(handler, security_desc_data{ data + offset, size });
                 offset += size;
@@ -4398,10 +4439,10 @@ struct instr_attribs_groups {
         const std::size_t bound = length;
         [[maybe_unused]] const auto& group_size_encoding_ = tmp::read<group_size_encoding>(data + offset, bound - offset, handler); offset += group_size_encoding::size;
         {
-            const std::size_t count = tmp::count(group_size_encoding_.template get<num_in_group>().value());
+            const std::size_t count = static_cast<std::size_t>(tmp::rule(group_size_encoding_.template get<num_in_group>()));
             for (std::size_t index = 0; index < count; ++index) {
                 {
-                    const std::size_t block = tmp::count(group_size_encoding_.template get<block_length>().value());
+                    const std::size_t block = static_cast<std::size_t>(tmp::rule(group_size_encoding_.template get<block_length>()));
                     const std::size_t start = offset;
                     offset += tmp::take<instr_attribs_group>(data + offset, bound - offset, handler);
                     if (offset - start < block) { offset = start + block; }
@@ -4456,10 +4497,10 @@ struct legs_groups {
         const std::size_t bound = length;
         [[maybe_unused]] const auto& group_size_encoding_ = tmp::read<group_size_encoding>(data + offset, bound - offset, handler); offset += group_size_encoding::size;
         {
-            const std::size_t count = tmp::count(group_size_encoding_.template get<num_in_group>().value());
+            const std::size_t count = static_cast<std::size_t>(tmp::rule(group_size_encoding_.template get<num_in_group>()));
             for (std::size_t index = 0; index < count; ++index) {
                 {
-                    const std::size_t block = tmp::count(group_size_encoding_.template get<block_length>().value());
+                    const std::size_t block = static_cast<std::size_t>(tmp::rule(group_size_encoding_.template get<block_length>()));
                     const std::size_t start = offset;
                     offset += tmp::take<legs_group>(data + offset, bound - offset, handler);
                     if (offset - start < block) { offset = start + block; }
@@ -4508,10 +4549,10 @@ struct underlyings_groups {
         const std::size_t bound = length;
         [[maybe_unused]] const auto& group_size_encoding_ = tmp::read<group_size_encoding>(data + offset, bound - offset, handler); offset += group_size_encoding::size;
         {
-            const std::size_t count = tmp::count(group_size_encoding_.template get<num_in_group>().value());
+            const std::size_t count = static_cast<std::size_t>(tmp::rule(group_size_encoding_.template get<num_in_group>()));
             for (std::size_t index = 0; index < count; ++index) {
                 {
-                    const std::size_t block = tmp::count(group_size_encoding_.template get<block_length>().value());
+                    const std::size_t block = static_cast<std::size_t>(tmp::rule(group_size_encoding_.template get<block_length>()));
                     const std::size_t start = offset;
                     offset += tmp::take<underlyings_group>(data + offset, bound - offset, handler);
                     if (offset - start < block) { offset = start + block; }
@@ -4896,17 +4937,17 @@ struct payload {
     // read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
     template <typename Handler>
     static std::size_t parse([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler, const template_id& template_id_, const block_length& block_length_) {
-        if (template_id_.raw() == 1) {
+        if (static_cast<bool>(tmp::rule(template_id_) == 1)) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             tmp::call(handler, sequence_reset_message{});
             return offset;
         }
-        if (template_id_.raw() == 2) {
+        if (static_cast<bool>(tmp::rule(template_id_) == 2)) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             {
-                const std::size_t block = tmp::count(block_length_.value());
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
                 const std::size_t start = offset;
                 offset += tmp::take<sequence_message>(data + offset, bound - offset, handler);
                 if (offset - start < block) { offset = start + block; }
@@ -4914,11 +4955,11 @@ struct payload {
             }
             return offset;
         }
-        if (template_id_.raw() == 9) {
+        if (static_cast<bool>(tmp::rule(template_id_) == 9)) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             {
-                const std::size_t block = tmp::count(block_length_.value());
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
                 const std::size_t start = offset;
                 offset += tmp::take<empty_book_message>(data + offset, bound - offset, handler);
                 if (offset - start < block) { offset = start + block; }
@@ -4926,11 +4967,11 @@ struct payload {
             }
             return offset;
         }
-        if (template_id_.raw() == 11) {
+        if (static_cast<bool>(tmp::rule(template_id_) == 11)) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             {
-                const std::size_t block = tmp::count(block_length_.value());
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
                 const std::size_t start = offset;
                 offset += tmp::take<channel_reset_11_message>(data + offset, bound - offset, handler);
                 if (offset - start < block) { offset = start + block; }
@@ -4938,11 +4979,11 @@ struct payload {
             }
             return offset;
         }
-        if (template_id_.raw() == 3) {
+        if (static_cast<bool>(tmp::rule(template_id_) == 3)) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             {
-                const std::size_t block = tmp::count(block_length_.value());
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
                 const std::size_t start = offset;
                 offset += tmp::take<security_status_3_message>(data + offset, bound - offset, handler);
                 if (offset - start < block) { offset = start + block; }
@@ -4950,11 +4991,11 @@ struct payload {
             }
             return offset;
         }
-        if (template_id_.raw() == 10) {
+        if (static_cast<bool>(tmp::rule(template_id_) == 10)) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             {
-                const std::size_t block = tmp::count(block_length_.value());
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
                 const std::size_t start = offset;
                 offset += tmp::take<security_group_phase_10_message>(data + offset, bound - offset, handler);
                 if (offset - start < block) { offset = start + block; }
@@ -4962,11 +5003,11 @@ struct payload {
             }
             return offset;
         }
-        if (template_id_.raw() == 12) {
+        if (static_cast<bool>(tmp::rule(template_id_) == 12)) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             {
-                const std::size_t block = tmp::count(block_length_.value());
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
                 const std::size_t start = offset;
                 offset += security_definition_message::parse(data + offset, bound - offset, handler);
                 tmp::call(handler, security_definition_message{});
@@ -4975,11 +5016,11 @@ struct payload {
             }
             return offset;
         }
-        if (template_id_.raw() == 5) {
+        if (static_cast<bool>(tmp::rule(template_id_) == 5)) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             {
-                const std::size_t block = tmp::count(block_length_.value());
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
                 const std::size_t start = offset;
                 offset += news_5_message::parse(data + offset, bound - offset, handler);
                 tmp::call(handler, news_5_message{});
@@ -4988,11 +5029,11 @@ struct payload {
             }
             return offset;
         }
-        if (template_id_.raw() == 15) {
+        if (static_cast<bool>(tmp::rule(template_id_) == 15)) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             {
-                const std::size_t block = tmp::count(block_length_.value());
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
                 const std::size_t start = offset;
                 offset += tmp::take<opening_price_15_message>(data + offset, bound - offset, handler);
                 if (offset - start < block) { offset = start + block; }
@@ -5000,11 +5041,11 @@ struct payload {
             }
             return offset;
         }
-        if (template_id_.raw() == 16) {
+        if (static_cast<bool>(tmp::rule(template_id_) == 16)) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             {
-                const std::size_t block = tmp::count(block_length_.value());
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
                 const std::size_t start = offset;
                 offset += tmp::take<theoretical_opening_price_16_message>(data + offset, bound - offset, handler);
                 if (offset - start < block) { offset = start + block; }
@@ -5012,11 +5053,11 @@ struct payload {
             }
             return offset;
         }
-        if (template_id_.raw() == 17) {
+        if (static_cast<bool>(tmp::rule(template_id_) == 17)) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             {
-                const std::size_t block = tmp::count(block_length_.value());
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
                 const std::size_t start = offset;
                 offset += tmp::take<closing_price_17_message>(data + offset, bound - offset, handler);
                 if (offset - start < block) { offset = start + block; }
@@ -5024,11 +5065,11 @@ struct payload {
             }
             return offset;
         }
-        if (template_id_.raw() == 19) {
+        if (static_cast<bool>(tmp::rule(template_id_) == 19)) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             {
-                const std::size_t block = tmp::count(block_length_.value());
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
                 const std::size_t start = offset;
                 offset += tmp::take<auction_imbalance_19_message>(data + offset, bound - offset, handler);
                 if (offset - start < block) { offset = start + block; }
@@ -5036,11 +5077,11 @@ struct payload {
             }
             return offset;
         }
-        if (template_id_.raw() == 21) {
+        if (static_cast<bool>(tmp::rule(template_id_) == 21)) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             {
-                const std::size_t block = tmp::count(block_length_.value());
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
                 const std::size_t start = offset;
                 offset += tmp::take<quantity_band_21_message>(data + offset, bound - offset, handler);
                 if (offset - start < block) { offset = start + block; }
@@ -5048,11 +5089,11 @@ struct payload {
             }
             return offset;
         }
-        if (template_id_.raw() == 22) {
+        if (static_cast<bool>(tmp::rule(template_id_) == 22)) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             {
-                const std::size_t block = tmp::count(block_length_.value());
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
                 const std::size_t start = offset;
                 offset += tmp::take<price_band_22_message>(data + offset, bound - offset, handler);
                 if (offset - start < block) { offset = start + block; }
@@ -5060,11 +5101,11 @@ struct payload {
             }
             return offset;
         }
-        if (template_id_.raw() == 24) {
+        if (static_cast<bool>(tmp::rule(template_id_) == 24)) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             {
-                const std::size_t block = tmp::count(block_length_.value());
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
                 const std::size_t start = offset;
                 offset += tmp::take<high_price_24_message>(data + offset, bound - offset, handler);
                 if (offset - start < block) { offset = start + block; }
@@ -5072,11 +5113,11 @@ struct payload {
             }
             return offset;
         }
-        if (template_id_.raw() == 25) {
+        if (static_cast<bool>(tmp::rule(template_id_) == 25)) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             {
-                const std::size_t block = tmp::count(block_length_.value());
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
                 const std::size_t start = offset;
                 offset += tmp::take<low_price_25_message>(data + offset, bound - offset, handler);
                 if (offset - start < block) { offset = start + block; }
@@ -5084,11 +5125,11 @@ struct payload {
             }
             return offset;
         }
-        if (template_id_.raw() == 27) {
+        if (static_cast<bool>(tmp::rule(template_id_) == 27)) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             {
-                const std::size_t block = tmp::count(block_length_.value());
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
                 const std::size_t start = offset;
                 offset += tmp::take<last_trade_price_27_message>(data + offset, bound - offset, handler);
                 if (offset - start < block) { offset = start + block; }
@@ -5096,11 +5137,11 @@ struct payload {
             }
             return offset;
         }
-        if (template_id_.raw() == 28) {
+        if (static_cast<bool>(tmp::rule(template_id_) == 28)) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             {
-                const std::size_t block = tmp::count(block_length_.value());
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
                 const std::size_t start = offset;
                 offset += tmp::take<settlement_price_28_message>(data + offset, bound - offset, handler);
                 if (offset - start < block) { offset = start + block; }
@@ -5108,11 +5149,11 @@ struct payload {
             }
             return offset;
         }
-        if (template_id_.raw() == 29) {
+        if (static_cast<bool>(tmp::rule(template_id_) == 29)) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             {
-                const std::size_t block = tmp::count(block_length_.value());
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
                 const std::size_t start = offset;
                 offset += tmp::take<open_interest_29_message>(data + offset, bound - offset, handler);
                 if (offset - start < block) { offset = start + block; }
@@ -5120,11 +5161,11 @@ struct payload {
             }
             return offset;
         }
-        if (template_id_.raw() == 30) {
+        if (static_cast<bool>(tmp::rule(template_id_) == 30)) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             {
-                const std::size_t block = tmp::count(block_length_.value());
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
                 const std::size_t start = offset;
                 offset += tmp::take<snapshot_full_refresh_header_30_message>(data + offset, bound - offset, handler);
                 if (offset - start < block) { offset = start + block; }
@@ -5132,11 +5173,11 @@ struct payload {
             }
             return offset;
         }
-        if (template_id_.raw() == 50) {
+        if (static_cast<bool>(tmp::rule(template_id_) == 50)) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             {
-                const std::size_t block = tmp::count(block_length_.value());
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
                 const std::size_t start = offset;
                 offset += tmp::take<order_mb_o_50_message>(data + offset, bound - offset, handler);
                 if (offset - start < block) { offset = start + block; }
@@ -5144,11 +5185,11 @@ struct payload {
             }
             return offset;
         }
-        if (template_id_.raw() == 51) {
+        if (static_cast<bool>(tmp::rule(template_id_) == 51)) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             {
-                const std::size_t block = tmp::count(block_length_.value());
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
                 const std::size_t start = offset;
                 offset += tmp::take<delete_order_mb_o_51_message>(data + offset, bound - offset, handler);
                 if (offset - start < block) { offset = start + block; }
@@ -5156,11 +5197,11 @@ struct payload {
             }
             return offset;
         }
-        if (template_id_.raw() == 52) {
+        if (static_cast<bool>(tmp::rule(template_id_) == 52)) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             {
-                const std::size_t block = tmp::count(block_length_.value());
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
                 const std::size_t start = offset;
                 offset += tmp::take<mass_delete_orders_mb_o_52_message>(data + offset, bound - offset, handler);
                 if (offset - start < block) { offset = start + block; }
@@ -5168,11 +5209,11 @@ struct payload {
             }
             return offset;
         }
-        if (template_id_.raw() == 53) {
+        if (static_cast<bool>(tmp::rule(template_id_) == 53)) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             {
-                const std::size_t block = tmp::count(block_length_.value());
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
                 const std::size_t start = offset;
                 offset += tmp::take<trade_53_message>(data + offset, bound - offset, handler);
                 if (offset - start < block) { offset = start + block; }
@@ -5180,11 +5221,11 @@ struct payload {
             }
             return offset;
         }
-        if (template_id_.raw() == 54) {
+        if (static_cast<bool>(tmp::rule(template_id_) == 54)) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             {
-                const std::size_t block = tmp::count(block_length_.value());
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
                 const std::size_t start = offset;
                 offset += tmp::take<forward_trade_54_message>(data + offset, bound - offset, handler);
                 if (offset - start < block) { offset = start + block; }
@@ -5192,11 +5233,11 @@ struct payload {
             }
             return offset;
         }
-        if (template_id_.raw() == 55) {
+        if (static_cast<bool>(tmp::rule(template_id_) == 55)) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             {
-                const std::size_t block = tmp::count(block_length_.value());
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
                 const std::size_t start = offset;
                 offset += tmp::take<execution_summary_55_message>(data + offset, bound - offset, handler);
                 if (offset - start < block) { offset = start + block; }
@@ -5204,11 +5245,11 @@ struct payload {
             }
             return offset;
         }
-        if (template_id_.raw() == 56) {
+        if (static_cast<bool>(tmp::rule(template_id_) == 56)) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             {
-                const std::size_t block = tmp::count(block_length_.value());
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
                 const std::size_t start = offset;
                 offset += tmp::take<execution_statistics_56_message>(data + offset, bound - offset, handler);
                 if (offset - start < block) { offset = start + block; }
@@ -5216,11 +5257,11 @@ struct payload {
             }
             return offset;
         }
-        if (template_id_.raw() == 57) {
+        if (static_cast<bool>(tmp::rule(template_id_) == 57)) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             {
-                const std::size_t block = tmp::count(block_length_.value());
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
                 const std::size_t start = offset;
                 offset += tmp::take<trade_bust_57_message>(data + offset, bound - offset, handler);
                 if (offset - start < block) { offset = start + block; }
@@ -5228,11 +5269,11 @@ struct payload {
             }
             return offset;
         }
-        if (template_id_.raw() == 71) {
+        if (static_cast<bool>(tmp::rule(template_id_) == 71)) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             {
-                const std::size_t block = tmp::count(block_length_.value());
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(block_length_));
                 const std::size_t start = offset;
                 offset += snapshot_full_refresh_orders_mb_o_71_message::parse(data + offset, bound - offset, handler);
                 tmp::call(handler, snapshot_full_refresh_orders_mb_o_71_message{});
@@ -5335,10 +5376,10 @@ struct message {
         std::size_t offset = 0;
         std::size_t bound = length;
         [[maybe_unused]] const auto& message_section_1_ = tmp::read<message_section_1>(data + offset, bound - offset, handler); offset += message_section_1::size;
-        bound = tmp::count(message_section_1_.template get<framing_header>().template get<message_length>().value());
+        bound = static_cast<std::size_t>(tmp::rule(message_section_1_.template get<framing_header>().template get<message_length>()));
         tmp::require(bound, length);
         {
-            const std::size_t size = tmp::count(message_section_1_.template get<framing_header>().template get<message_length>().value()) - 12;
+            const std::size_t size = static_cast<std::size_t>(static_cast<std::int64_t>(tmp::count(tmp::rule(message_section_1_.template get<framing_header>().template get<message_length>()))) - 12);
             tmp::require(offset + size, bound);
             payload::parse(data + offset, size, handler, message_section_1_.template get<message_header>().template get<template_id>(), message_section_1_.template get<message_header>().template get<block_length>());
             offset += size;
@@ -5390,7 +5431,7 @@ struct packet {
         const std::size_t bound = length;
         [[maybe_unused]] const auto& packet_header_ = tmp::read<packet_header>(data + offset, bound - offset, handler); offset += packet_header::size;
         {
-            const std::size_t end = bound;
+            const std::size_t end = static_cast<std::size_t>(static_cast<std::int64_t>(bound));
             tmp::require(end, bound);
             while (offset < end) {
                 [[maybe_unused]] const std::size_t bound = end;

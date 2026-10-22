@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include <algorithm>
 #include <array>
 #include <bit>
 #include <cstddef>
@@ -82,10 +83,50 @@ namespace tmp {
         return value;
     }
 
+    // A field as a rule reads it: an enum by the code the wire holds, a field by its value, and a
+    // bit - which its bitfield answers as a value - as it is
+    template <typename T>
+    constexpr auto rule(const T& field) noexcept {
+        if constexpr (requires { field.raw(); }) { return field.raw(); }
+        else if constexpr (requires { field.value(); }) { return field.value(); }
+        else { return field; }
+    }
+
+    // A field an optional member may hold, read as its type's zero when the member is absent
+    template <typename T>
+    struct maybe {
+        const T* field;
+
+        constexpr auto value() const noexcept {
+            using type = decltype(field->value());
+            return field != nullptr ? field->value() : type{};
+        }
+
+        constexpr auto raw() const noexcept requires requires(const T& held) { held.raw(); } {
+            using type = decltype(field->raw());
+            return field != nullptr ? field->raw() : type{};
+        }
+
+        // a bit of an optional bitfield, nothing when the bitfield is absent
+        template <typename Bit>
+        constexpr auto get() const noexcept requires requires(const T& held) { held.template get<Bit>(); } {
+            using type = std::remove_cvref_t<decltype(field->template get<Bit>())>;
+            return field != nullptr ? type{ field->template get<Bit>() } : type{};
+        }
+    };
+
     // A type laid over its bytes without handing it on: a frame's length, read before the frame is
     template <typename T>
     const T& at(const std::byte* data) noexcept {
         return *reinterpret_cast<const T*>(data);
+    }
+
+    // A type laid over bytes ahead of the walk, at a place every byte before it fixes, which a rule
+    // reads before the walk reaches it: a branch's code in the header its messages begin with
+    template <typename T>
+    const T& ahead(const std::byte* data, std::size_t length, std::size_t at) {
+        require(at + T::size, length);
+        return *reinterpret_cast<const T*>(data + at);
     }
 
     // A type laid over its bytes and handed to the handler; what it returns is the bytes it took
@@ -2525,139 +2566,139 @@ struct payload {
     // read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
     template <typename Handler>
     static std::size_t parse([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler, const message_type& message_type_) {
-        if (message_type_.raw() == 'S') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'S')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& system_event_message_ = tmp::read<system_event_message>(data + offset, bound - offset, handler); offset += system_event_message::size;
             return offset;
         }
-        if (message_type_.raw() == 'R') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'R')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& stock_directory_message_ = tmp::read<stock_directory_message>(data + offset, bound - offset, handler); offset += stock_directory_message::size;
             return offset;
         }
-        if (message_type_.raw() == 'H') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'H')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& stock_trading_action_message_ = tmp::read<stock_trading_action_message>(data + offset, bound - offset, handler); offset += stock_trading_action_message::size;
             return offset;
         }
-        if (message_type_.raw() == 'Y') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'Y')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& reg_sho_short_sale_price_test_restricted_indicator_message_ = tmp::read<reg_sho_short_sale_price_test_restricted_indicator_message>(data + offset, bound - offset, handler); offset += reg_sho_short_sale_price_test_restricted_indicator_message::size;
             return offset;
         }
-        if (message_type_.raw() == 'L') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'L')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& market_participant_position_message_ = tmp::read<market_participant_position_message>(data + offset, bound - offset, handler); offset += market_participant_position_message::size;
             return offset;
         }
-        if (message_type_.raw() == 'V') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'V')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& mwcb_decline_level_message_ = tmp::read<mwcb_decline_level_message>(data + offset, bound - offset, handler); offset += mwcb_decline_level_message::size;
             return offset;
         }
-        if (message_type_.raw() == 'W') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'W')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& mwcb_status_level_message_ = tmp::read<mwcb_status_level_message>(data + offset, bound - offset, handler); offset += mwcb_status_level_message::size;
             return offset;
         }
-        if (message_type_.raw() == 'K') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'K')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& ipo_quoting_period_update_ = tmp::read<ipo_quoting_period_update>(data + offset, bound - offset, handler); offset += ipo_quoting_period_update::size;
             return offset;
         }
-        if (message_type_.raw() == 'J') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'J')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& luld_auction_collar_message_ = tmp::read<luld_auction_collar_message>(data + offset, bound - offset, handler); offset += luld_auction_collar_message::size;
             return offset;
         }
-        if (message_type_.raw() == 'h') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'h')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& operational_halt_message_ = tmp::read<operational_halt_message>(data + offset, bound - offset, handler); offset += operational_halt_message::size;
             return offset;
         }
-        if (message_type_.raw() == 'A') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'A')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& add_order_no_mpid_attribution_message_ = tmp::read<add_order_no_mpid_attribution_message>(data + offset, bound - offset, handler); offset += add_order_no_mpid_attribution_message::size;
             return offset;
         }
-        if (message_type_.raw() == 'F') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'F')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& add_order_with_mpid_attribution_message_ = tmp::read<add_order_with_mpid_attribution_message>(data + offset, bound - offset, handler); offset += add_order_with_mpid_attribution_message::size;
             return offset;
         }
-        if (message_type_.raw() == 'E') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'E')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& order_executed_message_ = tmp::read<order_executed_message>(data + offset, bound - offset, handler); offset += order_executed_message::size;
             return offset;
         }
-        if (message_type_.raw() == 'C') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'C')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& order_executed_with_price_message_ = tmp::read<order_executed_with_price_message>(data + offset, bound - offset, handler); offset += order_executed_with_price_message::size;
             return offset;
         }
-        if (message_type_.raw() == 'X') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'X')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& order_cancel_message_ = tmp::read<order_cancel_message>(data + offset, bound - offset, handler); offset += order_cancel_message::size;
             return offset;
         }
-        if (message_type_.raw() == 'D') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'D')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& order_delete_message_ = tmp::read<order_delete_message>(data + offset, bound - offset, handler); offset += order_delete_message::size;
             return offset;
         }
-        if (message_type_.raw() == 'U') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'U')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& order_replace_message_ = tmp::read<order_replace_message>(data + offset, bound - offset, handler); offset += order_replace_message::size;
             return offset;
         }
-        if (message_type_.raw() == 'P') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'P')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& non_cross_trade_message_ = tmp::read<non_cross_trade_message>(data + offset, bound - offset, handler); offset += non_cross_trade_message::size;
             return offset;
         }
-        if (message_type_.raw() == 'Q') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'Q')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& cross_trade_message_ = tmp::read<cross_trade_message>(data + offset, bound - offset, handler); offset += cross_trade_message::size;
             return offset;
         }
-        if (message_type_.raw() == 'B') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'B')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& broken_trade_message_ = tmp::read<broken_trade_message>(data + offset, bound - offset, handler); offset += broken_trade_message::size;
             return offset;
         }
-        if (message_type_.raw() == 'I') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'I')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& net_order_imbalance_indicator_message_ = tmp::read<net_order_imbalance_indicator_message>(data + offset, bound - offset, handler); offset += net_order_imbalance_indicator_message::size;
             return offset;
         }
-        if (message_type_.raw() == 'N') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'N')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& retail_price_improvement_indicator_message_ = tmp::read<retail_price_improvement_indicator_message>(data + offset, bound - offset, handler); offset += retail_price_improvement_indicator_message::size;
             return offset;
         }
-        if (message_type_.raw() == 'O') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'O')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& direct_listing_with_capital_raise_price_discovery_message_ = tmp::read<direct_listing_with_capital_raise_price_discovery_message>(data + offset, bound - offset, handler); offset += direct_listing_with_capital_raise_price_discovery_message::size;
@@ -2704,10 +2745,10 @@ struct message {
         std::size_t offset = 0;
         std::size_t bound = length;
         [[maybe_unused]] const auto& message_header_ = tmp::read<message_header>(data + offset, bound - offset, handler); offset += message_header::size;
-        bound = tmp::count(message_header_.template get<message_length>().value()) + 2;
+        bound = static_cast<std::size_t>(static_cast<std::int64_t>(tmp::count(tmp::rule(message_header_.template get<message_length>()))) + 2);
         tmp::require(bound, length);
         {
-            const std::size_t size = tmp::count(message_header_.template get<message_length>().value()) - 1;
+            const std::size_t size = static_cast<std::size_t>(static_cast<std::int64_t>(tmp::count(tmp::rule(message_header_.template get<message_length>()))) - 1);
             tmp::require(offset + size, bound);
             payload::parse(data + offset, size, handler, message_header_.template get<message_type>());
             offset += size;
@@ -2739,13 +2780,13 @@ struct messages {
     // read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
     template <typename Handler>
     static std::size_t parse([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler, const message_count& message_count_) {
-        if (message_count_.value() == 0) {
+        if (static_cast<bool>(tmp::rule(message_count_) == 0)) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             tmp::call(handler, heartbeat{});
             return offset;
         }
-        if (message_count_.value() == 65535) {
+        if (static_cast<bool>(tmp::rule(message_count_) == 65535)) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             tmp::call(handler, end_of_session{});
@@ -2755,7 +2796,7 @@ struct messages {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             {
-                const std::size_t count = tmp::count(message_count_.value());
+                const std::size_t count = static_cast<std::size_t>(tmp::rule(message_count_));
                 for (std::size_t index = 0; index < count; ++index) {
                     offset += message::parse(data + offset, bound - offset, handler);
                 }
@@ -2825,139 +2866,139 @@ struct sequenced_message {
     // read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
     template <typename Handler>
     static std::size_t parse([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler, const sequenced_message_type& sequenced_message_type_) {
-        if (sequenced_message_type_.value() == 'S') {
+        if (static_cast<bool>(tmp::rule(sequenced_message_type_) == 'S')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& system_event_message_ = tmp::read<system_event_message>(data + offset, bound - offset, handler); offset += system_event_message::size;
             return offset;
         }
-        if (sequenced_message_type_.value() == 'R') {
+        if (static_cast<bool>(tmp::rule(sequenced_message_type_) == 'R')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& stock_directory_message_ = tmp::read<stock_directory_message>(data + offset, bound - offset, handler); offset += stock_directory_message::size;
             return offset;
         }
-        if (sequenced_message_type_.value() == 'H') {
+        if (static_cast<bool>(tmp::rule(sequenced_message_type_) == 'H')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& stock_trading_action_message_ = tmp::read<stock_trading_action_message>(data + offset, bound - offset, handler); offset += stock_trading_action_message::size;
             return offset;
         }
-        if (sequenced_message_type_.value() == 'Y') {
+        if (static_cast<bool>(tmp::rule(sequenced_message_type_) == 'Y')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& reg_sho_short_sale_price_test_restricted_indicator_message_ = tmp::read<reg_sho_short_sale_price_test_restricted_indicator_message>(data + offset, bound - offset, handler); offset += reg_sho_short_sale_price_test_restricted_indicator_message::size;
             return offset;
         }
-        if (sequenced_message_type_.value() == 'L') {
+        if (static_cast<bool>(tmp::rule(sequenced_message_type_) == 'L')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& market_participant_position_message_ = tmp::read<market_participant_position_message>(data + offset, bound - offset, handler); offset += market_participant_position_message::size;
             return offset;
         }
-        if (sequenced_message_type_.value() == 'V') {
+        if (static_cast<bool>(tmp::rule(sequenced_message_type_) == 'V')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& mwcb_decline_level_message_ = tmp::read<mwcb_decline_level_message>(data + offset, bound - offset, handler); offset += mwcb_decline_level_message::size;
             return offset;
         }
-        if (sequenced_message_type_.value() == 'W') {
+        if (static_cast<bool>(tmp::rule(sequenced_message_type_) == 'W')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& mwcb_status_level_message_ = tmp::read<mwcb_status_level_message>(data + offset, bound - offset, handler); offset += mwcb_status_level_message::size;
             return offset;
         }
-        if (sequenced_message_type_.value() == 'K') {
+        if (static_cast<bool>(tmp::rule(sequenced_message_type_) == 'K')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& ipo_quoting_period_update_ = tmp::read<ipo_quoting_period_update>(data + offset, bound - offset, handler); offset += ipo_quoting_period_update::size;
             return offset;
         }
-        if (sequenced_message_type_.value() == 'J') {
+        if (static_cast<bool>(tmp::rule(sequenced_message_type_) == 'J')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& luld_auction_collar_message_ = tmp::read<luld_auction_collar_message>(data + offset, bound - offset, handler); offset += luld_auction_collar_message::size;
             return offset;
         }
-        if (sequenced_message_type_.value() == 'h') {
+        if (static_cast<bool>(tmp::rule(sequenced_message_type_) == 'h')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& operational_halt_message_ = tmp::read<operational_halt_message>(data + offset, bound - offset, handler); offset += operational_halt_message::size;
             return offset;
         }
-        if (sequenced_message_type_.value() == 'A') {
+        if (static_cast<bool>(tmp::rule(sequenced_message_type_) == 'A')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& add_order_no_mpid_attribution_message_ = tmp::read<add_order_no_mpid_attribution_message>(data + offset, bound - offset, handler); offset += add_order_no_mpid_attribution_message::size;
             return offset;
         }
-        if (sequenced_message_type_.value() == 'F') {
+        if (static_cast<bool>(tmp::rule(sequenced_message_type_) == 'F')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& add_order_with_mpid_attribution_message_ = tmp::read<add_order_with_mpid_attribution_message>(data + offset, bound - offset, handler); offset += add_order_with_mpid_attribution_message::size;
             return offset;
         }
-        if (sequenced_message_type_.value() == 'E') {
+        if (static_cast<bool>(tmp::rule(sequenced_message_type_) == 'E')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& order_executed_message_ = tmp::read<order_executed_message>(data + offset, bound - offset, handler); offset += order_executed_message::size;
             return offset;
         }
-        if (sequenced_message_type_.value() == 'C') {
+        if (static_cast<bool>(tmp::rule(sequenced_message_type_) == 'C')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& order_executed_with_price_message_ = tmp::read<order_executed_with_price_message>(data + offset, bound - offset, handler); offset += order_executed_with_price_message::size;
             return offset;
         }
-        if (sequenced_message_type_.value() == 'X') {
+        if (static_cast<bool>(tmp::rule(sequenced_message_type_) == 'X')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& order_cancel_message_ = tmp::read<order_cancel_message>(data + offset, bound - offset, handler); offset += order_cancel_message::size;
             return offset;
         }
-        if (sequenced_message_type_.value() == 'D') {
+        if (static_cast<bool>(tmp::rule(sequenced_message_type_) == 'D')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& order_delete_message_ = tmp::read<order_delete_message>(data + offset, bound - offset, handler); offset += order_delete_message::size;
             return offset;
         }
-        if (sequenced_message_type_.value() == 'U') {
+        if (static_cast<bool>(tmp::rule(sequenced_message_type_) == 'U')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& order_replace_message_ = tmp::read<order_replace_message>(data + offset, bound - offset, handler); offset += order_replace_message::size;
             return offset;
         }
-        if (sequenced_message_type_.value() == 'P') {
+        if (static_cast<bool>(tmp::rule(sequenced_message_type_) == 'P')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& non_cross_trade_message_ = tmp::read<non_cross_trade_message>(data + offset, bound - offset, handler); offset += non_cross_trade_message::size;
             return offset;
         }
-        if (sequenced_message_type_.value() == 'Q') {
+        if (static_cast<bool>(tmp::rule(sequenced_message_type_) == 'Q')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& cross_trade_message_ = tmp::read<cross_trade_message>(data + offset, bound - offset, handler); offset += cross_trade_message::size;
             return offset;
         }
-        if (sequenced_message_type_.value() == 'B') {
+        if (static_cast<bool>(tmp::rule(sequenced_message_type_) == 'B')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& broken_trade_message_ = tmp::read<broken_trade_message>(data + offset, bound - offset, handler); offset += broken_trade_message::size;
             return offset;
         }
-        if (sequenced_message_type_.value() == 'I') {
+        if (static_cast<bool>(tmp::rule(sequenced_message_type_) == 'I')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& net_order_imbalance_indicator_message_ = tmp::read<net_order_imbalance_indicator_message>(data + offset, bound - offset, handler); offset += net_order_imbalance_indicator_message::size;
             return offset;
         }
-        if (sequenced_message_type_.value() == 'N') {
+        if (static_cast<bool>(tmp::rule(sequenced_message_type_) == 'N')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& retail_price_improvement_indicator_message_ = tmp::read<retail_price_improvement_indicator_message>(data + offset, bound - offset, handler); offset += retail_price_improvement_indicator_message::size;
             return offset;
         }
-        if (sequenced_message_type_.value() == 'O') {
+        if (static_cast<bool>(tmp::rule(sequenced_message_type_) == 'O')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& direct_listing_with_capital_raise_price_discovery_message_ = tmp::read<direct_listing_with_capital_raise_price_discovery_message>(data + offset, bound - offset, handler); offset += direct_listing_with_capital_raise_price_discovery_message::size;
@@ -3006,7 +3047,7 @@ struct sequenced_data_packet {
         const std::size_t bound = length;
         [[maybe_unused]] const auto& sequenced_data_packet_section_1_ = tmp::read<sequenced_data_packet_section_1>(data + offset, bound - offset, handler); offset += sequenced_data_packet_section_1::size;
         {
-            const std::size_t size = tmp::count(packet_length_.value()) - 2;
+            const std::size_t size = static_cast<std::size_t>(static_cast<std::int64_t>(tmp::count(tmp::rule(packet_length_))) - 2);
             tmp::require(offset + size, bound);
             sequenced_message::parse(data + offset, size, handler, sequenced_data_packet_section_1_.template get<sequenced_message_type>());
             offset += size;
@@ -3075,7 +3116,7 @@ struct debug_packet {
         std::size_t offset = 0;
         const std::size_t bound = length;
         {
-            const std::size_t size = tmp::count(packet_length_.value()) - 1;
+            const std::size_t size = static_cast<std::size_t>(static_cast<std::int64_t>(tmp::count(tmp::rule(packet_length_))) - 1);
             tmp::require(offset + size, bound);
             tmp::call(handler, debug_text{ data + offset, size });
             offset += size;
@@ -3093,43 +3134,43 @@ struct server_payload {
     // read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
     template <typename Handler>
     static std::size_t parse([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler, const server_packet_type& server_packet_type_, const packet_length& packet_length_) {
-        if (server_packet_type_.raw() == '+') {
+        if (static_cast<bool>(tmp::rule(server_packet_type_) == '+')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             offset += debug_packet::parse(data + offset, bound - offset, handler, packet_length_);
             tmp::call(handler, debug_packet{});
             return offset;
         }
-        if (server_packet_type_.raw() == 'A') {
+        if (static_cast<bool>(tmp::rule(server_packet_type_) == 'A')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& login_accepted_packet_ = tmp::read<login_accepted_packet>(data + offset, bound - offset, handler); offset += login_accepted_packet::size;
             return offset;
         }
-        if (server_packet_type_.raw() == 'J') {
+        if (static_cast<bool>(tmp::rule(server_packet_type_) == 'J')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& login_rejected_packet_ = tmp::read<login_rejected_packet>(data + offset, bound - offset, handler); offset += login_rejected_packet::size;
             return offset;
         }
-        if (server_packet_type_.raw() == 'S') {
+        if (static_cast<bool>(tmp::rule(server_packet_type_) == 'S')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             {
-                const std::size_t size = tmp::count(packet_length_.value()) - 1;
+                const std::size_t size = static_cast<std::size_t>(static_cast<std::int64_t>(tmp::count(tmp::rule(packet_length_))) - 1);
                 tmp::require(offset + size, bound);
                 sequenced_data_packet::parse(data + offset, size, handler, packet_length_);
                 offset += size;
             }
             return offset;
         }
-        if (server_packet_type_.raw() == 'H') {
+        if (static_cast<bool>(tmp::rule(server_packet_type_) == 'H')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             tmp::call(handler, server_heartbeat{});
             return offset;
         }
-        if (server_packet_type_.raw() == 'Z') {
+        if (static_cast<bool>(tmp::rule(server_packet_type_) == 'Z')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             tmp::call(handler, end_of_session{});
@@ -3176,7 +3217,7 @@ struct server_soup_bin_tcp_packet {
         std::size_t offset = 0;
         std::size_t bound = length;
         [[maybe_unused]] const auto& server_packet_header_ = tmp::read<server_packet_header>(data + offset, bound - offset, handler); offset += server_packet_header::size;
-        bound = tmp::count(server_packet_header_.template get<packet_length>().value()) + 2;
+        bound = static_cast<std::size_t>(static_cast<std::int64_t>(tmp::count(tmp::rule(server_packet_header_.template get<packet_length>()))) + 2);
         tmp::require(bound, length);
         offset += server_payload::parse(data + offset, bound - offset, handler, server_packet_header_.template get<server_packet_type>(), server_packet_header_.template get<packet_length>());
         return bound;
@@ -3196,7 +3237,7 @@ struct server_packet {
         const std::size_t bound = length;
         while (offset < bound) {
             if (bound - offset < 0 + packet_length::size) { return offset; }
-            const std::size_t size = tmp::count(tmp::at<packet_length>(data + offset + 0).value()) + 2;
+            const std::size_t size = static_cast<std::size_t>(static_cast<std::int64_t>(tmp::count(tmp::rule(tmp::at<packet_length>(data + offset + 0)))) + 2);
             if (bound - offset < size) { return offset; }
             server_soup_bin_tcp_packet::parse(data + offset, size, handler);
             offset += size;
@@ -3256,7 +3297,7 @@ struct unsequenced_data_packet {
         const std::size_t bound = length;
         [[maybe_unused]] const auto& unsequenced_data_packet_section_1_ = tmp::read<unsequenced_data_packet_section_1>(data + offset, bound - offset, handler); offset += unsequenced_data_packet_section_1::size;
         {
-            const std::size_t size = tmp::count(packet_length_.value()) - 2;
+            const std::size_t size = static_cast<std::size_t>(static_cast<std::int64_t>(tmp::count(tmp::rule(packet_length_))) - 2);
             tmp::require(offset + size, bound);
             tmp::call(handler, unsequenced_message{ data + offset, size });
             offset += size;
@@ -3303,24 +3344,24 @@ struct client_payload {
     // read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
     template <typename Handler>
     static std::size_t parse([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler, const client_packet_type& client_packet_type_, const packet_length& packet_length_) {
-        if (client_packet_type_.raw() == '+') {
+        if (static_cast<bool>(tmp::rule(client_packet_type_) == '+')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             offset += debug_packet::parse(data + offset, bound - offset, handler, packet_length_);
             tmp::call(handler, debug_packet{});
             return offset;
         }
-        if (client_packet_type_.raw() == 'L') {
+        if (static_cast<bool>(tmp::rule(client_packet_type_) == 'L')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& login_request_packet_ = tmp::read<login_request_packet>(data + offset, bound - offset, handler); offset += login_request_packet::size;
             return offset;
         }
-        if (client_packet_type_.raw() == 'U') {
+        if (static_cast<bool>(tmp::rule(client_packet_type_) == 'U')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             {
-                const std::size_t size = tmp::count(packet_length_.value()) - 1;
+                const std::size_t size = static_cast<std::size_t>(static_cast<std::int64_t>(tmp::count(tmp::rule(packet_length_))) - 1);
                 tmp::require(offset + size, bound);
                 unsequenced_data_packet::parse(data + offset, size, handler, packet_length_);
                 tmp::call(handler, unsequenced_data_packet{});
@@ -3328,13 +3369,13 @@ struct client_payload {
             }
             return offset;
         }
-        if (client_packet_type_.raw() == 'R') {
+        if (static_cast<bool>(tmp::rule(client_packet_type_) == 'R')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             tmp::call(handler, client_heartbeat{});
             return offset;
         }
-        if (client_packet_type_.raw() == 'O') {
+        if (static_cast<bool>(tmp::rule(client_packet_type_) == 'O')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             tmp::call(handler, logout_request{});
@@ -3381,7 +3422,7 @@ struct client_soup_bin_tcp_packet {
         std::size_t offset = 0;
         std::size_t bound = length;
         [[maybe_unused]] const auto& client_packet_header_ = tmp::read<client_packet_header>(data + offset, bound - offset, handler); offset += client_packet_header::size;
-        bound = tmp::count(client_packet_header_.template get<packet_length>().value()) + 2;
+        bound = static_cast<std::size_t>(static_cast<std::int64_t>(tmp::count(tmp::rule(client_packet_header_.template get<packet_length>()))) + 2);
         tmp::require(bound, length);
         offset += client_payload::parse(data + offset, bound - offset, handler, client_packet_header_.template get<client_packet_type>(), client_packet_header_.template get<packet_length>());
         return bound;
@@ -3401,7 +3442,7 @@ struct client_packet {
         const std::size_t bound = length;
         while (offset < bound) {
             if (bound - offset < 0 + packet_length::size) { return offset; }
-            const std::size_t size = tmp::count(tmp::at<packet_length>(data + offset + 0).value()) + 2;
+            const std::size_t size = static_cast<std::size_t>(static_cast<std::int64_t>(tmp::count(tmp::rule(tmp::at<packet_length>(data + offset + 0)))) + 2);
             if (bound - offset < size) { return offset; }
             client_soup_bin_tcp_packet::parse(data + offset, size, handler);
             offset += size;

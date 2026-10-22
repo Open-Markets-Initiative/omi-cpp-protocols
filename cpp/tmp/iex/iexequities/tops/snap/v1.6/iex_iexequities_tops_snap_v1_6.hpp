@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include <algorithm>
 #include <array>
 #include <bit>
 #include <cstddef>
@@ -82,10 +83,50 @@ namespace tmp {
         return value;
     }
 
+    // A field as a rule reads it: an enum by the code the wire holds, a field by its value, and a
+    // bit - which its bitfield answers as a value - as it is
+    template <typename T>
+    constexpr auto rule(const T& field) noexcept {
+        if constexpr (requires { field.raw(); }) { return field.raw(); }
+        else if constexpr (requires { field.value(); }) { return field.value(); }
+        else { return field; }
+    }
+
+    // A field an optional member may hold, read as its type's zero when the member is absent
+    template <typename T>
+    struct maybe {
+        const T* field;
+
+        constexpr auto value() const noexcept {
+            using type = decltype(field->value());
+            return field != nullptr ? field->value() : type{};
+        }
+
+        constexpr auto raw() const noexcept requires requires(const T& held) { held.raw(); } {
+            using type = decltype(field->raw());
+            return field != nullptr ? field->raw() : type{};
+        }
+
+        // a bit of an optional bitfield, nothing when the bitfield is absent
+        template <typename Bit>
+        constexpr auto get() const noexcept requires requires(const T& held) { held.template get<Bit>(); } {
+            using type = std::remove_cvref_t<decltype(field->template get<Bit>())>;
+            return field != nullptr ? type{ field->template get<Bit>() } : type{};
+        }
+    };
+
     // A type laid over its bytes without handing it on: a frame's length, read before the frame is
     template <typename T>
     const T& at(const std::byte* data) noexcept {
         return *reinterpret_cast<const T*>(data);
+    }
+
+    // A type laid over bytes ahead of the walk, at a place every byte before it fixes, which a rule
+    // reads before the walk reaches it: a branch's code in the header its messages begin with
+    template <typename T>
+    const T& ahead(const std::byte* data, std::size_t length, std::size_t at) {
+        require(at + T::size, length);
+        return *reinterpret_cast<const T*>(data + at);
     }
 
     // A type laid over its bytes and handed to the handler; what it returns is the bytes it took
@@ -1551,67 +1592,67 @@ struct iex_tp_message_data {
     // read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
     template <typename Handler>
     static std::size_t parse([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler, const iex_tp_message_type& iex_tp_message_type_) {
-        if (iex_tp_message_type_.raw() == 'S') {
+        if (static_cast<bool>(tmp::rule(iex_tp_message_type_) == 'S')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& system_event_message_ = tmp::read<system_event_message>(data + offset, bound - offset, handler); offset += system_event_message::size;
             return offset;
         }
-        if (iex_tp_message_type_.raw() == 'D') {
+        if (static_cast<bool>(tmp::rule(iex_tp_message_type_) == 'D')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& security_directory_message_ = tmp::read<security_directory_message>(data + offset, bound - offset, handler); offset += security_directory_message::size;
             return offset;
         }
-        if (iex_tp_message_type_.raw() == 'H') {
+        if (static_cast<bool>(tmp::rule(iex_tp_message_type_) == 'H')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& trading_status_message_ = tmp::read<trading_status_message>(data + offset, bound - offset, handler); offset += trading_status_message::size;
             return offset;
         }
-        if (iex_tp_message_type_.raw() == 'I') {
+        if (static_cast<bool>(tmp::rule(iex_tp_message_type_) == 'I')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& retail_liquidity_indicator_message_ = tmp::read<retail_liquidity_indicator_message>(data + offset, bound - offset, handler); offset += retail_liquidity_indicator_message::size;
             return offset;
         }
-        if (iex_tp_message_type_.raw() == 'O') {
+        if (static_cast<bool>(tmp::rule(iex_tp_message_type_) == 'O')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& operational_halt_status_message_ = tmp::read<operational_halt_status_message>(data + offset, bound - offset, handler); offset += operational_halt_status_message::size;
             return offset;
         }
-        if (iex_tp_message_type_.raw() == 'P') {
+        if (static_cast<bool>(tmp::rule(iex_tp_message_type_) == 'P')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& short_sale_price_test_status_message_ = tmp::read<short_sale_price_test_status_message>(data + offset, bound - offset, handler); offset += short_sale_price_test_status_message::size;
             return offset;
         }
-        if (iex_tp_message_type_.raw() == 'Q') {
+        if (static_cast<bool>(tmp::rule(iex_tp_message_type_) == 'Q')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& quote_update_message_ = tmp::read<quote_update_message>(data + offset, bound - offset, handler); offset += quote_update_message::size;
             return offset;
         }
-        if (iex_tp_message_type_.raw() == 'T') {
+        if (static_cast<bool>(tmp::rule(iex_tp_message_type_) == 'T')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& trade_report_message_ = tmp::read<trade_report_message>(data + offset, bound - offset, handler); offset += trade_report_message::size;
             return offset;
         }
-        if (iex_tp_message_type_.raw() == 'X') {
+        if (static_cast<bool>(tmp::rule(iex_tp_message_type_) == 'X')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& official_price_message_ = tmp::read<official_price_message>(data + offset, bound - offset, handler); offset += official_price_message::size;
             return offset;
         }
-        if (iex_tp_message_type_.raw() == 'B') {
+        if (static_cast<bool>(tmp::rule(iex_tp_message_type_) == 'B')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& trade_break_message_ = tmp::read<trade_break_message>(data + offset, bound - offset, handler); offset += trade_break_message::size;
             return offset;
         }
-        if (iex_tp_message_type_.raw() == 'A') {
+        if (static_cast<bool>(tmp::rule(iex_tp_message_type_) == 'A')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& auction_information_message_ = tmp::read<auction_information_message>(data + offset, bound - offset, handler); offset += auction_information_message::size;
@@ -1704,10 +1745,10 @@ struct snapshot_data_message {
         std::size_t offset = 0;
         std::size_t bound = length;
         [[maybe_unused]] const auto& snapshot_data_message_section_1_ = tmp::read<snapshot_data_message_section_1>(data + offset, bound - offset, handler); offset += snapshot_data_message_section_1::size;
-        bound = tmp::count(snapshot_data_message_section_1_.template get<iex_tp_message_block_length>().value()) + 42;
+        bound = static_cast<std::size_t>(static_cast<std::int64_t>(tmp::count(tmp::rule(snapshot_data_message_section_1_.template get<iex_tp_message_block_length>()))) + 42);
         tmp::require(bound, length);
         {
-            const std::size_t size = tmp::count(snapshot_data_message_section_1_.template get<iex_tp_message_length>().value()) - 1;
+            const std::size_t size = static_cast<std::size_t>(static_cast<std::int64_t>(tmp::count(tmp::rule(snapshot_data_message_section_1_.template get<iex_tp_message_length>()))) - 1);
             tmp::require(offset + size, bound);
             iex_tp_message_data::parse(data + offset, size, handler, snapshot_data_message_section_1_.template get<iex_tp_message_type>());
             offset += size;
@@ -1799,31 +1840,31 @@ struct message_data {
     // read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
     template <typename Handler>
     static std::size_t parse([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler, const message_type& message_type_) {
-        if (message_type_.raw() == 'r') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'r')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& snapshot_request_message_ = tmp::read<snapshot_request_message>(data + offset, bound - offset, handler); offset += snapshot_request_message::size;
             return offset;
         }
-        if (message_type_.raw() == 'e') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'e')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& error_response_message_ = tmp::read<error_response_message>(data + offset, bound - offset, handler); offset += error_response_message::size;
             return offset;
         }
-        if (message_type_.raw() == 's') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 's')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& snapshot_start_message_ = tmp::read<snapshot_start_message>(data + offset, bound - offset, handler); offset += snapshot_start_message::size;
             return offset;
         }
-        if (message_type_.raw() == 'd') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'd')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             offset += snapshot_data_message::parse(data + offset, bound - offset, handler);
             return offset;
         }
-        if (message_type_.raw() == 'x') {
+        if (static_cast<bool>(tmp::rule(message_type_) == 'x')) {
             std::size_t offset = 0;
             [[maybe_unused]] const std::size_t bound = length;
             [[maybe_unused]] const auto& snapshot_end_message_ = tmp::read<snapshot_end_message>(data + offset, bound - offset, handler); offset += snapshot_end_message::size;
@@ -1870,7 +1911,7 @@ struct message {
         std::size_t offset = 0;
         std::size_t bound = length;
         [[maybe_unused]] const auto& message_header_ = tmp::read<message_header>(data + offset, bound - offset, handler); offset += message_header::size;
-        bound = tmp::count(message_header_.template get<message_length>().value()) + 2;
+        bound = static_cast<std::size_t>(static_cast<std::int64_t>(tmp::count(tmp::rule(message_header_.template get<message_length>()))) + 2);
         tmp::require(bound, length);
         offset += message_data::parse(data + offset, bound - offset, handler, message_header_.template get<message_type>());
         return bound;
@@ -1890,7 +1931,7 @@ struct packet {
         const std::size_t bound = length;
         while (offset < bound) {
             if (bound - offset < 0 + message_length::size) { return offset; }
-            const std::size_t size = tmp::count(tmp::at<message_length>(data + offset + 0).value()) + 2;
+            const std::size_t size = static_cast<std::size_t>(static_cast<std::int64_t>(tmp::count(tmp::rule(tmp::at<message_length>(data + offset + 0)))) + 2);
             if (bound - offset < size) { return offset; }
             message::parse(data + offset, size, handler);
             offset += size;
