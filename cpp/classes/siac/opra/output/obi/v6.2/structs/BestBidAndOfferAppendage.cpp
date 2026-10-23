@@ -1,0 +1,170 @@
+#include "BestBidAndOfferAppendage.hpp"
+
+#include "../common/Print.hpp"
+#include "../common/Wire.hpp"
+
+namespace siac::opra::output::obi::v6_2 {
+
+BestBidAndOfferAppendage::BestBidAndOfferAppendage(BestBidParticipantId best_bid_participant_id, BestBidDenominatorCode best_bid_denominator_code, Decimal best_bid_price, std::uint32_t best_bid_size, BestOfferParticipantId best_offer_participant_id, BestOfferDenominatorCode best_offer_denominator_code, Decimal best_offer_price, std::uint32_t best_offer_size)
+  : best_bid_participant_id_(best_bid_participant_id), best_bid_denominator_code_(best_bid_denominator_code), best_bid_price_(best_bid_price), best_bid_size_(best_bid_size), best_offer_participant_id_(best_offer_participant_id), best_offer_denominator_code_(best_offer_denominator_code), best_offer_price_(best_offer_price), best_offer_size_(best_offer_size) {}
+
+BestBidParticipantId BestBidAndOfferAppendage::best_bid_participant_id() const { return best_bid_participant_id_; }
+void BestBidAndOfferAppendage::set_best_bid_participant_id(BestBidParticipantId value) { best_bid_participant_id_ = value; }
+
+BestBidDenominatorCode BestBidAndOfferAppendage::best_bid_denominator_code() const { return best_bid_denominator_code_; }
+void BestBidAndOfferAppendage::set_best_bid_denominator_code(BestBidDenominatorCode value) { best_bid_denominator_code_ = value; }
+
+Decimal BestBidAndOfferAppendage::best_bid_price() const { return best_bid_price_; }
+void BestBidAndOfferAppendage::set_best_bid_price(Decimal value) { best_bid_price_ = value; }
+int BestBidAndOfferAppendage::best_bid_price_exponent(char code) {
+    switch (code) {
+        case 'A': return -1;
+        case 'B': return -2;
+        case 'C': return -3;
+        case 'D': return -4;
+        case 'E': return -5;
+        case 'F': return -6;
+        case 'G': return -7;
+        case 'H': return -8;
+        case 'I': return 0;
+        default: return 0;
+    }
+}
+
+std::uint32_t BestBidAndOfferAppendage::best_bid_size() const { return best_bid_size_; }
+void BestBidAndOfferAppendage::set_best_bid_size(std::uint32_t value) { best_bid_size_ = value; }
+
+BestOfferParticipantId BestBidAndOfferAppendage::best_offer_participant_id() const { return best_offer_participant_id_; }
+void BestBidAndOfferAppendage::set_best_offer_participant_id(BestOfferParticipantId value) { best_offer_participant_id_ = value; }
+
+BestOfferDenominatorCode BestBidAndOfferAppendage::best_offer_denominator_code() const { return best_offer_denominator_code_; }
+void BestBidAndOfferAppendage::set_best_offer_denominator_code(BestOfferDenominatorCode value) { best_offer_denominator_code_ = value; }
+
+Decimal BestBidAndOfferAppendage::best_offer_price() const { return best_offer_price_; }
+void BestBidAndOfferAppendage::set_best_offer_price(Decimal value) { best_offer_price_ = value; }
+int BestBidAndOfferAppendage::best_offer_price_exponent(char code) {
+    switch (code) {
+        case 'A': return -1;
+        case 'B': return -2;
+        case 'C': return -3;
+        case 'D': return -4;
+        case 'E': return -5;
+        case 'F': return -6;
+        case 'G': return -7;
+        case 'H': return -8;
+        case 'I': return 0;
+        default: return 0;
+    }
+}
+
+std::uint32_t BestBidAndOfferAppendage::best_offer_size() const { return best_offer_size_; }
+void BestBidAndOfferAppendage::set_best_offer_size(std::uint32_t value) { best_offer_size_ = value; }
+
+std::size_t BestBidAndOfferAppendage::decode(const std::byte* data, std::size_t length) {
+    std::size_t offset = 0;
+    wire::require("BestBidAndOfferAppendage", wire_size, length);
+
+    best_bid_participant_id_ = static_cast<BestBidParticipantId>(wire::read_char(data + offset));
+    offset += 1;
+
+    best_bid_denominator_code_ = static_cast<BestBidDenominatorCode>(wire::read_char(data + offset));
+    offset += 1;
+
+    best_bid_price_ = Decimal(static_cast<std::int64_t>(wire::read_i32_be(data + offset)), best_bid_price_exponent(static_cast<char>(best_bid_denominator_code_)));
+    offset += 4;
+
+    best_bid_size_ = wire::read_u32_be(data + offset);
+    offset += 4;
+
+    best_offer_participant_id_ = static_cast<BestOfferParticipantId>(wire::read_char(data + offset));
+    offset += 1;
+
+    best_offer_denominator_code_ = static_cast<BestOfferDenominatorCode>(wire::read_char(data + offset));
+    offset += 1;
+
+    best_offer_price_ = Decimal(static_cast<std::int64_t>(wire::read_i32_be(data + offset)), best_offer_price_exponent(static_cast<char>(best_offer_denominator_code_)));
+    offset += 4;
+
+    best_offer_size_ = wire::read_u32_be(data + offset);
+    offset += 4;
+
+    return offset;
+}
+
+std::size_t BestBidAndOfferAppendage::encode(std::byte* data, std::size_t capacity) const {
+    std::size_t offset = 0;
+    wire::require_capacity("BestBidAndOfferAppendage", wire_size, capacity);
+
+    wire::write_char(data + offset, static_cast<char>(best_bid_participant_id_));
+    offset += 1;
+
+    wire::write_char(data + offset, static_cast<char>(best_bid_denominator_code_));
+    offset += 1;
+
+    wire::write_i32_be(data + offset, static_cast<std::int32_t>(best_bid_price_.mantissa()));
+    offset += 4;
+
+    wire::write_u32_be(data + offset, static_cast<std::uint32_t>(best_bid_size_));
+    offset += 4;
+
+    wire::write_char(data + offset, static_cast<char>(best_offer_participant_id_));
+    offset += 1;
+
+    wire::write_char(data + offset, static_cast<char>(best_offer_denominator_code_));
+    offset += 1;
+
+    wire::write_i32_be(data + offset, static_cast<std::int32_t>(best_offer_price_.mantissa()));
+    offset += 4;
+
+    wire::write_u32_be(data + offset, static_cast<std::uint32_t>(best_offer_size_));
+    offset += 4;
+
+    return offset;
+}
+
+std::size_t BestBidAndOfferAppendage::encoded_size() const {
+    return wire_size;
+}
+
+void BestBidAndOfferAppendage::print(std::ostream& out) const {
+    out << "BestBidAndOfferAppendage{";
+    out << "best_bid_participant_id=";
+    out << best_bid_participant_id_;
+    out << ", best_bid_denominator_code=";
+    out << best_bid_denominator_code_;
+    out << ", best_bid_price=";
+    out << best_bid_price_;
+    out << ", best_bid_size=";
+    out << best_bid_size_;
+    out << ", best_offer_participant_id=";
+    out << best_offer_participant_id_;
+    out << ", best_offer_denominator_code=";
+    out << best_offer_denominator_code_;
+    out << ", best_offer_price=";
+    out << best_offer_price_;
+    out << ", best_offer_size=";
+    out << best_offer_size_;
+    out << '}';
+}
+
+bool BestBidAndOfferAppendage::operator==(const BestBidAndOfferAppendage& other) const {
+    return best_bid_participant_id_ == other.best_bid_participant_id_
+        && best_bid_denominator_code_ == other.best_bid_denominator_code_
+        && best_bid_price_ == other.best_bid_price_
+        && best_bid_size_ == other.best_bid_size_
+        && best_offer_participant_id_ == other.best_offer_participant_id_
+        && best_offer_denominator_code_ == other.best_offer_denominator_code_
+        && best_offer_price_ == other.best_offer_price_
+        && best_offer_size_ == other.best_offer_size_;
+}
+
+bool BestBidAndOfferAppendage::operator!=(const BestBidAndOfferAppendage& other) const {
+    return !(*this == other);
+}
+
+std::ostream& operator<<(std::ostream& out, const BestBidAndOfferAppendage& value) {
+    value.print(out);
+    return out;
+}
+
+} // namespace siac::opra::output::obi::v6_2

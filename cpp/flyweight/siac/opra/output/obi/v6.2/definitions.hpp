@@ -1,0 +1,32 @@
+#pragma once
+
+// Every flyweight view and reader of Siac.Opra.Output.Obi.v6.2.
+
+#include "structs/BlockTimestamp.hpp"
+#include "structs/BlockHeader.hpp"
+#include "structs/MessageHeader.hpp"
+#include "messages/AdministrativeMessage.hpp"
+#include "messages/AdministrativeCategory.hpp"
+#include "messages/ControlMessage.hpp"
+#include "messages/ControlCategory.hpp"
+#include "structs/ExpirationBlock.hpp"
+#include "messages/EquityAndIndexLastSaleMessage.hpp"
+#include "messages/EquityAndIndexLastSaleCategory.hpp"
+#include "messages/OpenInterestMessage.hpp"
+#include "messages/OpenInterestCategory.hpp"
+#include "messages/EquityAndIndexEndOfDaySummaryMessage.hpp"
+#include "messages/EquityAndIndexEndOfDaySummaryCategory.hpp"
+#include "structs/BestBidAppendage.hpp"
+#include "structs/BestOfferAppendage.hpp"
+#include "structs/BestBidAndOfferAppendage.hpp"
+#include "messages/LongEquityAndIndexQuoteMessage.hpp"
+#include "messages/LongEquityAndIndexQuoteCategory.hpp"
+#include "messages/ShortEquityAndIndexQuoteMessage.hpp"
+#include "messages/ShortEquityAndIndexQuoteCategory.hpp"
+#include "messages/UnderlyingValueLastSaleMessage.hpp"
+#include "messages/UnderlyingValueBidAndOfferMessage.hpp"
+#include "messages/UnderlyingValueCategory.hpp"
+#include "structs/Packet.hpp"
+#include "structs/Frame.hpp"
+
+#include "PacketReader.hpp"

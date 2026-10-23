@@ -69,7 +69,7 @@ struct Statistics {
     }
 
     // called once per segment, before any message is dispatched
-    b3::b3derivatives::binaryumdf::sbe::v1_6::seq_action on_transport_header(const b3::b3derivatives::binaryumdf::sbe::v1_6::packet_header& transport, const packet::Frame&) {
+    b3::b3derivatives::binaryumdf::sbe::v1_6::seq_action on_transport_header(const b3::b3derivatives::binaryumdf::sbe::v1_6::packet_header&, const packet::Frame&) {
         // how many messages this segment holds is however many the walk finds; each is counted as it arrives
 
         return b3::b3derivatives::binaryumdf::sbe::v1_6::seq_action::process;

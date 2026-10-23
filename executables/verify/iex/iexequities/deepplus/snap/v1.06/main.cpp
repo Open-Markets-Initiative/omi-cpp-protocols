@@ -20,6 +20,8 @@
 #include "cpp/classes/iex/iexequities/deepplus/snap/v1.06/definitions.hpp"
 
 namespace protocol = ::iex::iexequities::deepplus::snap::v1_06;
+// the wire the Classes expressions this program states its sizes in read through
+namespace wire = protocol::wire;
 
 namespace {
 

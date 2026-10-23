@@ -1,0 +1,37 @@
+#pragma once
+
+#include "../types/MdReqId.hpp"
+#include "../types/SubscriptionReqType.hpp"
+#include "../structs/MessageHeader.hpp"
+
+namespace cme::mdp3::v9 {
+
+#pragma pack(push, 1)
+
+// SecurityStatusRequest
+struct SecurityStatusRequest {
+
+    MdReqId md_req_id;
+    SubscriptionReqType subscription_req_type;
+
+    // the type code that selects this message in the dispatch switch
+    static constexpr std::uint16_t message_type = 209;
+
+    // parse method
+    static SecurityStatusRequest* parse(std::byte* buffer) {
+        return reinterpret_cast<SecurityStatusRequest*>(buffer);
+    }
+
+    // parse method const
+    static const SecurityStatusRequest* parse(const std::byte* buffer) {
+        return reinterpret_cast<const SecurityStatusRequest*>(buffer);
+    }
+
+    // parse the overlaid body from its selecting header
+    static const SecurityStatusRequest* parse(const MessageHeader* header) {
+        return reinterpret_cast<const SecurityStatusRequest*>(reinterpret_cast<const std::byte*>(header) + sizeof(MessageHeader));
+    }
+};
+
+#pragma pack(pop)
+}

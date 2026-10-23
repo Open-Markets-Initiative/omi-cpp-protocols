@@ -1,0 +1,22 @@
+#pragma once
+
+#include "../structs/BlockHeader.hpp"
+#include "../structs/Message.hpp"
+#include "../structs/SipBlockTimestamp.hpp"
+#include "../structs/Timestamp1.hpp"
+#include "../structs/Timestamp2.hpp"
+
+#include "SymbolReferenceDataMessage.hpp"
+#include "StartOfDayMessage.hpp"
+#include "FinraCloseMessage.hpp"
+#include "ResetBlockSequenceNumberMessage.hpp"
+#include "FinraOpenMessage.hpp"
+#include "DisasterRecoveryDataCenterActivationMessage.hpp"
+#include "LineIntegrityMessage.hpp"
+#include "EndOfDayMessage.hpp"
+#include "MarketWideCircuitBreakerDeclineLevelStatusMessage.hpp"
+#include "MarketWideCircuitBreakerStatusMessage.hpp"
+#include "AuctionStatusMessage.hpp"
+#include "LongQuoteMessage.hpp"
+#include "ShortQuoteMessage.hpp"
+#include "SpecialLongQuoteMessage.hpp"

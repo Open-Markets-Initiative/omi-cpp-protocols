@@ -1,0 +1,63 @@
+#pragma once
+
+#include <cstddef>
+#include "../structs/MessageHeader.hpp"
+#include "../types/SourceTime.hpp"
+#include "../types/SourceTimeNs.hpp"
+#include "../types/SymbolIndex.hpp"
+#include "../types/HighPrice.hpp"
+#include "../types/LowPrice.hpp"
+#include "../types/Open.hpp"
+#include "../types/Close.hpp"
+#include "../types/TotalVolume.hpp"
+
+namespace nyse::nyseequities::integratedfeed::xdp::v2_3_a {
+
+namespace xdp_integratedfeed = ::nyse::nyseequities::integratedfeed::xdp::v2_3_a;
+
+#pragma pack(push, 1)
+
+// Stock Summary Message
+struct stock_summary_message {
+
+    struct fields_type {
+        xdp_integratedfeed::source_time source_time;
+        xdp_integratedfeed::source_time_ns source_time_ns;
+        xdp_integratedfeed::symbol_index symbol_index;
+        xdp_integratedfeed::high_price high_price;
+        xdp_integratedfeed::low_price low_price;
+        xdp_integratedfeed::open open;
+        xdp_integratedfeed::close close;
+        xdp_integratedfeed::total_volume total_volume;
+    };
+
+    xdp_integratedfeed::message_header header = {std::uint16_t(sizeof(xdp_integratedfeed::message_header) + sizeof(fields_type)), message_type::enum_type::stock_summary_message};
+
+    fields_type fields;
+
+    // parse method
+    static stock_summary_message* parse(std::byte* buffer) {
+        return reinterpret_cast<stock_summary_message*>(buffer);
+    }
+
+    // parse method const
+    static const stock_summary_message* parse(const std::byte* buffer) {
+        return reinterpret_cast<const stock_summary_message*>(buffer);
+    }
+
+};
+
+// layout verification
+static_assert(offsetof(stock_summary_message::fields_type, source_time) == 0, "unexpected offset of stock_summary_message::fields_type::source_time");
+static_assert(offsetof(stock_summary_message::fields_type, source_time_ns) == 4, "unexpected offset of stock_summary_message::fields_type::source_time_ns");
+static_assert(offsetof(stock_summary_message::fields_type, symbol_index) == 8, "unexpected offset of stock_summary_message::fields_type::symbol_index");
+static_assert(offsetof(stock_summary_message::fields_type, high_price) == 12, "unexpected offset of stock_summary_message::fields_type::high_price");
+static_assert(offsetof(stock_summary_message::fields_type, low_price) == 16, "unexpected offset of stock_summary_message::fields_type::low_price");
+static_assert(offsetof(stock_summary_message::fields_type, open) == 20, "unexpected offset of stock_summary_message::fields_type::open");
+static_assert(offsetof(stock_summary_message::fields_type, close) == 24, "unexpected offset of stock_summary_message::fields_type::close");
+static_assert(offsetof(stock_summary_message::fields_type, total_volume) == 28, "unexpected offset of stock_summary_message::fields_type::total_volume");
+static_assert(sizeof(stock_summary_message::fields_type) == 32, "unexpected sizeof stock_summary_message::fields_type");
+static_assert(sizeof(stock_summary_message) == sizeof(xdp_integratedfeed::message_header) + 32, "unexpected sizeof stock_summary_message");
+
+#pragma pack(pop)
+}

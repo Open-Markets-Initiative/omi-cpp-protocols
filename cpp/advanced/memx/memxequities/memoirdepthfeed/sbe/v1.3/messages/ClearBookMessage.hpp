@@ -1,0 +1,45 @@
+#pragma once
+
+#include <cstddef>
+#include "../structs/SbeHeader.hpp"
+#include "../types/Timestamp.hpp"
+#include "../types/SecurityId.hpp"
+
+namespace memx::memxequities::memoirdepthfeed::sbe::v1_3 {
+
+namespace sbe_memoirdepthfeed = ::memx::memxequities::memoirdepthfeed::sbe::v1_3;
+
+#pragma pack(push, 1)
+
+// Clear Book Message
+struct clear_book_message {
+
+    struct fields_type {
+        sbe_memoirdepthfeed::timestamp timestamp;
+        sbe_memoirdepthfeed::security_id security_id;
+    };
+
+    sbe_memoirdepthfeed::sbe_header header = {{}, template_id::enum_type::clear_book_message, schema_id(2), version(259)};
+
+    fields_type fields;
+
+    // parse method
+    static clear_book_message* parse(std::byte* buffer) {
+        return reinterpret_cast<clear_book_message*>(buffer);
+    }
+
+    // parse method const
+    static const clear_book_message* parse(const std::byte* buffer) {
+        return reinterpret_cast<const clear_book_message*>(buffer);
+    }
+
+};
+
+// layout verification
+static_assert(offsetof(clear_book_message::fields_type, timestamp) == 0, "unexpected offset of clear_book_message::fields_type::timestamp");
+static_assert(offsetof(clear_book_message::fields_type, security_id) == 8, "unexpected offset of clear_book_message::fields_type::security_id");
+static_assert(sizeof(clear_book_message::fields_type) == 10, "unexpected sizeof clear_book_message::fields_type");
+static_assert(sizeof(clear_book_message) == sizeof(sbe_memoirdepthfeed::sbe_header) + 10, "unexpected sizeof clear_book_message");
+
+#pragma pack(pop)
+}

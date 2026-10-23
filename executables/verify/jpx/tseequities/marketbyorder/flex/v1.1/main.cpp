@@ -20,6 +20,8 @@
 #include "cpp/classes/jpx/tseequities/marketbyorder/flex/v1.1/definitions.hpp"
 
 namespace protocol = ::jpx::tseequities::marketbyorder::flex::v1_1;
+// the wire the Classes expressions this program states its sizes in read through
+namespace wire = protocol::wire;
 
 namespace {
 

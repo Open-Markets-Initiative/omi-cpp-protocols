@@ -1,0 +1,19 @@
+#include "PotentialSecurityTradingEvent.hpp"
+
+namespace eurex::t7::eobi::fbe::v13_0 {
+
+std::string_view to_string(PotentialSecurityTradingEvent value) {
+    switch (value) {
+        case PotentialSecurityTradingEvent::None: return "None";
+        case PotentialSecurityTradingEvent::PriceVolatilityAuctionIsExtended: return "Price Volatility Auction Is Extended";
+        default: return {};
+    }
+}
+
+std::ostream& operator<<(std::ostream& out, PotentialSecurityTradingEvent value) {
+    const auto name = to_string(value);
+    if (!name.empty()) { return out << name; }
+    return out << static_cast<long long>(value);
+}
+
+} // namespace eurex::t7::eobi::fbe::v13_0

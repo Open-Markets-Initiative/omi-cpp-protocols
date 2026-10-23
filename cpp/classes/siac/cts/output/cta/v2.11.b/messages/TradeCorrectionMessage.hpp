@@ -1,0 +1,277 @@
+#pragma once
+
+#include <cstddef>
+#include <cstdint>
+#include <memory>
+#include <ostream>
+#include <string>
+#include <string_view>
+
+#include "../common/Decimal.hpp"
+#include "../enums/FinancialStatusIndicator.hpp"
+#include "../enums/InstrumentType.hpp"
+#include "../enums/ParticipantId.hpp"
+#include "../enums/PrimaryListingMarketParticipantId.hpp"
+#include "../enums/TradeReportingFacilityId.hpp"
+#include "../messages/TradeMessagePayload.hpp"
+#include "../structs/Timestamp1.hpp"
+#include "../structs/Timestamp2.hpp"
+
+namespace siac::cts::output::cta::v2_11_b {
+
+class TradeMessagePayloadVisitor;
+
+// Used to correct CTA eligible Equity, Local Issue or Bond information. To be descoped when
+// Fractional Trade Volume publication is activated
+class TradeCorrectionMessage : public TradeMessagePayload {
+  public:
+    // The code that selects this message
+    static constexpr TradeMessagePayloadCode message_type = TradeMessageType::TradeCorrection;
+    // Bytes of this message on the wire
+    static constexpr std::size_t wire_size = 168;
+
+    TradeCorrectionMessage() = default;
+    TradeCorrectionMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol, InstrumentType instrument_type, const std::string& corrected_sale_condition, Decimal corrected_trade_price, std::uint32_t corrected_trade_volume, std::uint8_t corrected_sellers_sale_days, char corrected_stop_stock_indicator, char corrected_trade_through_exempt_indicator, char corrected_short_sale_restriction_indicator, TradeReportingFacilityId trade_reporting_facility_id, const Timestamp2& timestamp_2, std::int64_t original_participant_reference_number, const std::string& original_sale_condition, Decimal original_trade_price, std::uint32_t original_trade_volume, std::uint8_t original_sellers_sale_days, char original_stop_stock_indicator, char original_trade_through_exempt_indicator, char original_short_sale_restriction_indicator, PrimaryListingMarketParticipantId primary_listing_market_participant_id, FinancialStatusIndicator financial_status_indicator, std::uint32_t consolidated_previous_close_price_date, char consolidated_last_participant_id, Decimal consolidated_last_price, Decimal consolidated_high_price, Decimal consolidated_low_price, std::uint32_t consolidated_total_volume, char consolidated_tick, std::uint32_t participant_previous_close_price_date, Decimal participant_last_price, Decimal participant_high_price, Decimal participant_low_price, Decimal participant_open_price, std::uint32_t participant_total_volume, char participant_tick);
+
+    // Participant Id: Identifies the Participant or Processor that initiated the message
+    ParticipantId participant_id() const;
+    void set_participant_id(ParticipantId value);
+
+    // Timestamp 1: Timestamp 1
+    const Timestamp1& timestamp_1() const;
+    Timestamp1& timestamp_1();
+    void set_timestamp_1(const Timestamp1& value);
+
+    // Message Id: The Message ID identifies the individual message within the block beginning
+    // with number one
+    std::uint8_t message_id() const;
+    void set_message_id(std::uint8_t value);
+
+    // Transaction Id: Identifies the transaction
+    std::uint32_t transaction_id() const;
+    void set_transaction_id(std::uint32_t value);
+
+    // Participant Reference Number: Contains the Participant Reference Number
+    std::int64_t participant_reference_number() const;
+    void set_participant_reference_number(std::int64_t value);
+
+    // Security Symbol: Identifies the Security Symbol. Left justified, space-filled
+    const std::string& security_symbol() const;
+    std::string& security_symbol();
+    void set_security_symbol(const std::string& value);
+
+    // Instrument Type: Identifies the instrument type relevant to the trade
+    InstrumentType instrument_type() const;
+    void set_instrument_type(InstrumentType value);
+
+    // Corrected Sale Condition: Corrected sale condition associated with a trade
+    const std::string& corrected_sale_condition() const;
+    std::string& corrected_sale_condition();
+    void set_corrected_sale_condition(const std::string& value);
+
+    // Corrected Trade Price: Corrected monetary value of an individual share of security. Has
+    // implied 6 decimal places
+    Decimal corrected_trade_price() const;
+    void set_corrected_trade_price(Decimal value);
+
+    // Corrected Trade Volume: Corrected total number of shares which traded in a single
+    // transaction for an individual security
+    std::uint32_t corrected_trade_volume() const;
+    void set_corrected_trade_volume(std::uint32_t value);
+
+    // Corrected Sellers Sale Days: Corrected number of days that may elapse before delivery of
+    // the security
+    std::uint8_t corrected_sellers_sale_days() const;
+    void set_corrected_sellers_sale_days(std::uint8_t value);
+
+    // Corrected Stop Stock Indicator: Corrected stop stock indicator
+    char corrected_stop_stock_indicator() const;
+    void set_corrected_stop_stock_indicator(char value);
+
+    // Corrected Trade Through Exempt Indicator: Corrected trade through exempt indicator
+    char corrected_trade_through_exempt_indicator() const;
+    void set_corrected_trade_through_exempt_indicator(char value);
+
+    // Corrected Short Sale Restriction Indicator: Corrected short sale restriction indicator
+    char corrected_short_sale_restriction_indicator() const;
+    void set_corrected_short_sale_restriction_indicator(char value);
+
+    // Trade Reporting Facility Id: Identifies the Participant with whom a Trade Reporting
+    // Facility (TRF) has been formed. Space-filled
+    TradeReportingFacilityId trade_reporting_facility_id() const;
+    void set_trade_reporting_facility_id(TradeReportingFacilityId value);
+
+    // Timestamp 2: Timestamp 2
+    const Timestamp2& timestamp_2() const;
+    Timestamp2& timestamp_2();
+    void set_timestamp_2(const Timestamp2& value);
+
+    // Original Participant Reference Number: Contains the Participant Reference Number of
+    // transaction to be corrected, cancelled or errored
+    std::int64_t original_participant_reference_number() const;
+    void set_original_participant_reference_number(std::int64_t value);
+
+    // Original Sale Condition: Original sale condition associated with a trade
+    const std::string& original_sale_condition() const;
+    std::string& original_sale_condition();
+    void set_original_sale_condition(const std::string& value);
+
+    // Original Trade Price: Original monetary value of an individual share of security. Has
+    // implied 6 decimal places
+    Decimal original_trade_price() const;
+    void set_original_trade_price(Decimal value);
+
+    // Original Trade Volume: Original total number of shares which traded in a single
+    // transaction for an individual security
+    std::uint32_t original_trade_volume() const;
+    void set_original_trade_volume(std::uint32_t value);
+
+    // Original Sellers Sale Days: Original number of days that may elapse before delivery of
+    // the security
+    std::uint8_t original_sellers_sale_days() const;
+    void set_original_sellers_sale_days(std::uint8_t value);
+
+    // Original Stop Stock Indicator: Original stop stock indicator
+    char original_stop_stock_indicator() const;
+    void set_original_stop_stock_indicator(char value);
+
+    // Original Trade Through Exempt Indicator: Original trade through exempt indicator
+    char original_trade_through_exempt_indicator() const;
+    void set_original_trade_through_exempt_indicator(char value);
+
+    // Original Short Sale Restriction Indicator: Original short sale restriction indicator
+    char original_short_sale_restriction_indicator() const;
+    void set_original_short_sale_restriction_indicator(char value);
+
+    // Primary Listing Market Participant Id: Identifies the Primary Listing Market of the
+    // security symbol
+    PrimaryListingMarketParticipantId primary_listing_market_participant_id() const;
+    void set_primary_listing_market_participant_id(PrimaryListingMarketParticipantId value);
+
+    // Financial Status Indicator: Identifies the financial status of the security
+    FinancialStatusIndicator financial_status_indicator() const;
+    void set_financial_status_indicator(FinancialStatusIndicator value);
+
+    // Consolidated Previous Close Price Date: Consolidated date the security last traded.
+    // Represented in seconds since Epoch
+    std::uint32_t consolidated_previous_close_price_date() const;
+    void set_consolidated_previous_close_price_date(std::uint32_t value);
+
+    // Consolidated Last Participant Id: Consolidated last participant ID
+    char consolidated_last_participant_id() const;
+    void set_consolidated_last_participant_id(char value);
+
+    // Consolidated Last Price: Consolidated last price. Has implied 6 decimal places
+    Decimal consolidated_last_price() const;
+    void set_consolidated_last_price(Decimal value);
+
+    // Consolidated High Price: Consolidated highest price paid during the trading day. Has
+    // implied 6 decimal places
+    Decimal consolidated_high_price() const;
+    void set_consolidated_high_price(Decimal value);
+
+    // Consolidated Low Price: Consolidated lowest price paid during the trading day. Has
+    // implied 6 decimal places
+    Decimal consolidated_low_price() const;
+    void set_consolidated_low_price(Decimal value);
+
+    // Consolidated Total Volume: Contains the Consolidated Total Volume of shares traded for a
+    // security at the time of the trade correction or cancel/error
+    std::uint32_t consolidated_total_volume() const;
+    void set_consolidated_total_volume(std::uint32_t value);
+
+    // Consolidated Tick: Consolidated tick direction
+    char consolidated_tick() const;
+    void set_consolidated_tick(char value);
+
+    // Participant Previous Close Price Date: Participant date the security last traded.
+    // Represented in seconds since Epoch
+    std::uint32_t participant_previous_close_price_date() const;
+    void set_participant_previous_close_price_date(std::uint32_t value);
+
+    // Participant Last Price: Participant last price. Has implied 6 decimal places
+    Decimal participant_last_price() const;
+    void set_participant_last_price(Decimal value);
+
+    // Participant High Price: Participant highest price paid during the trading day. Has
+    // implied 6 decimal places
+    Decimal participant_high_price() const;
+    void set_participant_high_price(Decimal value);
+
+    // Participant Low Price: Participant lowest price paid during the trading day. Has implied
+    // 6 decimal places
+    Decimal participant_low_price() const;
+    void set_participant_low_price(Decimal value);
+
+    // Participant Open Price: Participant first qualifying price paid during the trading day.
+    // Has implied 6 decimal places
+    Decimal participant_open_price() const;
+    void set_participant_open_price(Decimal value);
+
+    // Participant Total Volume: Contains the Participant Total Volume of shares traded for a
+    // security at the time of the trade correction or cancel/error
+    std::uint32_t participant_total_volume() const;
+    void set_participant_total_volume(std::uint32_t value);
+
+    // Participant Tick: Participant tick direction
+    char participant_tick() const;
+    void set_participant_tick(char value);
+
+    // TradeMessagePayload
+    TradeMessagePayloadCode type() const override;
+    std::string_view name() const override;
+    std::size_t decode(const std::byte* data, std::size_t length) override;
+    std::size_t encode(std::byte* data, std::size_t capacity) const override;
+    std::size_t encoded_size() const override;
+    void accept(TradeMessagePayloadVisitor& visitor) const override;
+    std::unique_ptr<TradeMessagePayload> clone() const override;
+    void print(std::ostream& out) const override;
+    bool equals(const TradeMessagePayload& other) const override;
+
+    bool operator==(const TradeCorrectionMessage& other) const;
+    bool operator!=(const TradeCorrectionMessage& other) const;
+
+  private:
+    ParticipantId participant_id_{};
+    Timestamp1 timestamp_1_{};
+    std::uint8_t message_id_{};
+    std::uint32_t transaction_id_{};
+    std::int64_t participant_reference_number_{};
+    std::string security_symbol_{};
+    InstrumentType instrument_type_{};
+    std::string corrected_sale_condition_{};
+    Decimal corrected_trade_price_{ 0, -6 };
+    std::uint32_t corrected_trade_volume_{};
+    std::uint8_t corrected_sellers_sale_days_{};
+    char corrected_stop_stock_indicator_{};
+    char corrected_trade_through_exempt_indicator_{};
+    char corrected_short_sale_restriction_indicator_{};
+    TradeReportingFacilityId trade_reporting_facility_id_{};
+    Timestamp2 timestamp_2_{};
+    std::int64_t original_participant_reference_number_{};
+    std::string original_sale_condition_{};
+    Decimal original_trade_price_{ 0, -6 };
+    std::uint32_t original_trade_volume_{};
+    std::uint8_t original_sellers_sale_days_{};
+    char original_stop_stock_indicator_{};
+    char original_trade_through_exempt_indicator_{};
+    char original_short_sale_restriction_indicator_{};
+    PrimaryListingMarketParticipantId primary_listing_market_participant_id_{};
+    FinancialStatusIndicator financial_status_indicator_{};
+    std::uint32_t consolidated_previous_close_price_date_{};
+    char consolidated_last_participant_id_{};
+    Decimal consolidated_last_price_{ 0, -6 };
+    Decimal consolidated_high_price_{ 0, -6 };
+    Decimal consolidated_low_price_{ 0, -6 };
+    std::uint32_t consolidated_total_volume_{};
+    char consolidated_tick_{};
+    std::uint32_t participant_previous_close_price_date_{};
+    Decimal participant_last_price_{ 0, -6 };
+    Decimal participant_high_price_{ 0, -6 };
+    Decimal participant_low_price_{ 0, -6 };
+    Decimal participant_open_price_{ 0, -6 };
+    std::uint32_t participant_total_volume_{};
+    char participant_tick_{};
+};
+
+} // namespace siac::cts::output::cta::v2_11_b

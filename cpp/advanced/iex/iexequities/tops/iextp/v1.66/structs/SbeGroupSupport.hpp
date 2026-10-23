@@ -7,6 +7,10 @@
 
 namespace iex::iexequities::tops::iextp::v1_66 {
 
+// A group's dimension: how long each entry's block is, and how many entries follow
+template <typename Header>
+struct group_dimension;
+
 template <typename Entry, typename Header>
 class sbe_group_iterator {
     const std::byte* begin_;
@@ -22,8 +26,8 @@ class sbe_group_iterator {
         if (begin_ + sizeof(Header) > end_)
             throw std::runtime_error("buffer overrun reading group header");
         auto* hdr = reinterpret_cast<const Header*>(begin_);
-        block_length_ = hdr->block_length.get().value();
-        num_in_group_ = hdr->num_in_group.get().value();
+        block_length_ = group_dimension<Header>::block_length(*hdr);
+        num_in_group_ = group_dimension<Header>::count(*hdr);
         current_ = begin_ + sizeof(Header);
         index_ = 0;
     }

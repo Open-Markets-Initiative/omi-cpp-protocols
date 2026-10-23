@@ -1,0 +1,21 @@
+#pragma once
+
+#include "../structs/UnitHeader.hpp"
+#include "../structs/MessageHeader.hpp"
+
+#include "TimeMessage.hpp"
+#include "SystemEventMessage.hpp"
+#include "SymbolDirectoryMessage.hpp"
+#include "SymbolStatusMessage.hpp"
+#include "AddOrderMessage.hpp"
+#include "AddAttributedOrderMessage.hpp"
+#include "OrderDeletedMessage.hpp"
+#include "OrderModifiedMessage.hpp"
+#include "OrderBookClearMessage.hpp"
+#include "OrderExecutedMessage.hpp"
+#include "OrderExecutedWithPriceSizeMessage.hpp"
+#include "TradeMessage.hpp"
+#include "AuctionTradeMessage.hpp"
+#include "AuctionInfoMessage.hpp"
+#include "StatisticsMessage.hpp"
+#include "TopOfBookMessage.hpp"

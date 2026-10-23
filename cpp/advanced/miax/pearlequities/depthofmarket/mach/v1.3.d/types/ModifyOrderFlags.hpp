@@ -1,0 +1,52 @@
+#pragma once
+
+#include <cstddef>
+#include <cstdint>
+#include <cstdint>
+#include "../cache/Required.hpp"
+
+namespace miax::pearlequities::depthofmarket::mach::v1_3_d {
+
+// modify_order_flags
+struct modify_order_flags {
+
+    using type = uint8_t;
+
+    static constexpr type order_position = type{1} << 0;
+
+    static constexpr const char* name = "modify_order_flags";
+    static constexpr std::size_t size = 1;
+    static constexpr bool is_optional = false;
+
+    using result_type = required<uint8_t>;
+    using storage_type = result_type;
+
+    constexpr modify_order_flags()
+     : value{ 0 } {}
+
+    [[nodiscard]] constexpr result_type get() const {
+        return result_type{value};
+    }
+
+    constexpr void set(uint8_t v) {
+        value = v;
+    }
+
+    constexpr void set(result_type v) {
+        if (v.has_value())
+            set(v.value());
+        else
+            set(type{0});
+    }
+
+    [[nodiscard]] constexpr bool has(type bit) const { return (value & bit) != 0; }
+    constexpr void set(type bit, bool enabled) { if (enabled) value |= bit; else value &= static_cast<type>(~bit); }
+
+    [[nodiscard]] constexpr bool has_order_position() const { return has(order_position); }
+
+    constexpr void set_order_position(bool v) { set(order_position, v); }
+
+  protected:
+    type value;
+};
+}

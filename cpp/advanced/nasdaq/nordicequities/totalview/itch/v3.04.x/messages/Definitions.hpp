@@ -1,0 +1,25 @@
+#pragma once
+
+#include "../structs/PacketHeader.hpp"
+#include "../structs/MessageHeader.hpp"
+
+#include "SystemEventMessage.hpp"
+#include "OrderBookTradingActionMessage.hpp"
+#include "OrderBookDirectoryMessage.hpp"
+#include "AddOrderMessage.hpp"
+#include "AddOrderMpidAttributionMessage.hpp"
+#include "OrderExecutedMessage.hpp"
+#include "OrderExecutedWithPriceMessage.hpp"
+#include "OrderCancelMessage.hpp"
+#include "OrderDeleteMessage.hpp"
+#include "OrderBookFlushMessage.hpp"
+#include "OrderReplaceMessage.hpp"
+#include "TradeMessage.hpp"
+#include "CrossTradeMessage.hpp"
+#include "BrokenTradeMessage.hpp"
+#include "NoiiMessage.hpp"
+#include "MoiiMessage.hpp"
+#include "ExecutionSummaryMessage.hpp"
+
+#include "../messages/Heartbeat.hpp"
+#include "../messages/EndOfSession.hpp"

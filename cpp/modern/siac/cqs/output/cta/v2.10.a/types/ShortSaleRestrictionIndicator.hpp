@@ -1,0 +1,30 @@
+#pragma once
+
+#include <cstddef>
+
+namespace siac::cqs::output::cta::v2_10_a {
+
+
+// Identifies whether or not a Short Sale Restriction is in effect
+struct ShortSaleRestrictionIndicator {
+
+    static constexpr auto name = "Short Sale Restriction Indicator";
+    static constexpr std::size_t size = 1;
+
+    // default constructor
+    constexpr ShortSaleRestrictionIndicator()
+     : value{ 0 } {}
+
+    // standard constructor
+    constexpr explicit ShortSaleRestrictionIndicator(const char &value)
+     : value{ value } {}
+
+    // get value of ShortSaleRestrictionIndicator field
+    [[nodiscard]] char get() const {
+        return value;
+    }
+
+  protected:
+    char value;
+};
+}

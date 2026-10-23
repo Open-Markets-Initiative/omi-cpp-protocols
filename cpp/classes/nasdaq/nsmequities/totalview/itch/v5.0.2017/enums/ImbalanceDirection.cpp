@@ -1,0 +1,21 @@
+#include "ImbalanceDirection.hpp"
+
+namespace nasdaq::nsmequities::totalview::itch::v5_0_2017 {
+
+std::string_view to_string(ImbalanceDirection value) {
+    switch (value) {
+        case ImbalanceDirection::Buy: return "Buy";
+        case ImbalanceDirection::Sell: return "Sell";
+        case ImbalanceDirection::NoImbalance: return "No Imbalance";
+        case ImbalanceDirection::InsufficientOrders: return "Insufficient Orders";
+        default: return {};
+    }
+}
+
+std::ostream& operator<<(std::ostream& out, ImbalanceDirection value) {
+    const auto name = to_string(value);
+    if (!name.empty()) { return out << name; }
+    return out << '\'' << static_cast<char>(value) << '\'';
+}
+
+} // namespace nasdaq::nsmequities::totalview::itch::v5_0_2017

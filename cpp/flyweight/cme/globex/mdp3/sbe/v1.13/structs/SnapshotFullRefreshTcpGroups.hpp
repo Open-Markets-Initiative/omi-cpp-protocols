@@ -1,0 +1,55 @@
+#pragma once
+
+#include <cstddef>
+#include <cstdint>
+#include <ostream>
+#include <span>
+
+#include "../common/Wire.hpp"
+#include "../common/Print.hpp"
+#include "../common/View.hpp"
+#include "../structs/GroupSize.hpp"
+#include "../groups/SnapshotFullRefreshTcpGroup.hpp"
+
+namespace cme::globex::mdp3::sbe::v1_13 {
+
+// NoMDEntries Block
+class SnapshotFullRefreshTcpGroups {
+  public:
+    static constexpr const char* name = "SnapshotFullRefreshTcpGroups";
+
+    // the bytes it reads, which it does not own: they must outlive it
+    explicit SnapshotFullRefreshTcpGroups(std::span<const std::byte> bytes) noexcept : bytes_{ bytes } {}
+
+    std::span<const std::byte> bytes() const noexcept { return bytes_; }
+
+    // the bytes every SnapshotFullRefreshTcpGroups has, which a reader checks before it views them
+    static constexpr std::size_t minimum_size = 3;
+    std::size_t encoded_size() const { return snapshot_full_refresh_tcp_group_end(); }
+
+    GroupSize group_size() const { return GroupSize{ bytes_.subspan(0) }; }
+
+    view::entries<SnapshotFullRefreshTcpGroup> snapshot_full_refresh_tcp_group() const { return view::entries<SnapshotFullRefreshTcpGroup>{ bytes_.subspan(3), wire::count(group_size().num_in_group()), wire::count(group_size().block_length()) }; }
+
+    void print(std::ostream& out) const {
+        out << "SnapshotFullRefreshTcpGroups{";
+        out << "group_size=";
+        group_size().print(out);
+        out << ", snapshot_full_refresh_tcp_group=";
+        print::sequence(out, snapshot_full_refresh_tcp_group());
+        out << '}';
+    }
+
+  private:
+    const std::byte* at(std::size_t offset) const noexcept { return bytes_.data() + offset; }
+    std::size_t snapshot_full_refresh_tcp_group_end() const { return 3 + snapshot_full_refresh_tcp_group().encoded_size(); }
+
+    std::span<const std::byte> bytes_;
+};
+
+inline std::ostream& operator<<(std::ostream& out, const SnapshotFullRefreshTcpGroups& value) {
+    value.print(out);
+    return out;
+}
+
+} // namespace cme::globex::mdp3::sbe::v1_13

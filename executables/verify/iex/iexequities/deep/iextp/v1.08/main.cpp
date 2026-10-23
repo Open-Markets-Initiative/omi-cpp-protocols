@@ -18,6 +18,8 @@
 #include "cpp/classes/iex/iexequities/deep/iextp/v1.08/definitions.hpp"
 
 namespace protocol = ::iex::iexequities::deep::iextp::v1_08;
+// the wire the Classes expressions this program states its sizes in read through
+namespace wire = protocol::wire;
 
 namespace {
 

@@ -1,0 +1,32 @@
+#pragma once
+
+#include <cstddef>
+#include <cstdint>
+
+namespace miax::pearlequities::depthofmarket::mach::v1_3_d {
+
+
+// Specifies the session the client would like to log into, or zero to log into the currently active session
+struct RequestedTradingSessionId {
+
+    static constexpr auto name = "Requested Trading Session Id";
+    static constexpr std::size_t size = 1;
+    using type = std::uint8_t;
+
+    // default constructor
+    constexpr RequestedTradingSessionId()
+     : value{ 0 } {}
+
+    // standard constructor
+    constexpr explicit RequestedTradingSessionId(const std::uint8_t &value)
+     : value{ value } {}
+
+    // get value of RequestedTradingSessionId field
+    [[nodiscard]] std::uint8_t get() const {
+        return value;
+    }
+
+  protected:
+    std::uint8_t value;
+};
+}

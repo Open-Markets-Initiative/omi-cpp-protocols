@@ -21,6 +21,8 @@
 #include "cpp/classes/nasdaq/nsmequities/totalview/itch/v5.0.2023/definitions.hpp"
 
 namespace protocol = ::nasdaq::nsmequities::totalview::itch::v5_0_2023;
+// the wire the Classes expressions this program states its sizes in read through
+namespace wire = protocol::wire;
 
 namespace {
 

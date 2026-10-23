@@ -1,0 +1,66 @@
+#pragma once
+
+#include "../types/ParticipantId.hpp"
+#include "../structs/Timestamp1.hpp"
+#include "../types/MessageId.hpp"
+#include "../types/TransactionId.hpp"
+#include "../types/ParticipantReferenceNumber.hpp"
+#include "../types/SecuritySymbol.hpp"
+#include "../types/InstrumentType.hpp"
+#include "../structs/SaleCondition4.hpp"
+#include "../types/TradePrice.hpp"
+#include "../types/FractionalTradeVolume.hpp"
+#include "../types/SellersSaleDays.hpp"
+#include "../types/StopStockIndicator.hpp"
+#include "../types/TradeThroughExemptIndicator.hpp"
+#include "../types/TradeReportingFacilityId.hpp"
+#include "../structs/Timestamp2.hpp"
+#include "../types/ShortSaleRestrictionIndicator.hpp"
+#include "../types/PrimaryListingMarketParticipantId.hpp"
+#include "../types/FinancialStatusIndicator.hpp"
+#include "../types/HeldTradeIndicator.hpp"
+#include "../types/ConsolidatedHighLowLastIndicator.hpp"
+#include "../types/ParticipantOpenHighLowLastIndicator.hpp"
+
+namespace siac::cts::output::cta::v2_11_b {
+
+#pragma pack(push, 1)
+
+// Used to report trade information for CTA eligible Equity, Local Issue or Bonds. Volume is represented as a fractional value
+struct FractionalLongTradeMessage {
+
+    ParticipantId participant_id;
+    Timestamp1 timestamp_1;
+    MessageId message_id;
+    TransactionId transaction_id;
+    ParticipantReferenceNumber participant_reference_number;
+    SecuritySymbol security_symbol;
+    InstrumentType instrument_type;
+    SaleCondition4 sale_condition_4;
+    TradePrice trade_price;
+    FractionalTradeVolume fractional_trade_volume;
+    SellersSaleDays sellers_sale_days;
+    StopStockIndicator stop_stock_indicator;
+    TradeThroughExemptIndicator trade_through_exempt_indicator;
+    TradeReportingFacilityId trade_reporting_facility_id;
+    Timestamp2 timestamp_2;
+    ShortSaleRestrictionIndicator short_sale_restriction_indicator;
+    PrimaryListingMarketParticipantId primary_listing_market_participant_id;
+    FinancialStatusIndicator financial_status_indicator;
+    HeldTradeIndicator held_trade_indicator;
+    ConsolidatedHighLowLastIndicator consolidated_high_low_last_indicator;
+    ParticipantOpenHighLowLastIndicator participant_open_high_low_last_indicator;
+
+    // parse method
+    static FractionalLongTradeMessage* parse(std::byte* buffer) {
+        return reinterpret_cast<FractionalLongTradeMessage*>(buffer);
+    }
+
+    // parse method const
+    static const FractionalLongTradeMessage* parse(const std::byte* buffer) {
+        return reinterpret_cast<const FractionalLongTradeMessage*>(buffer);
+    }
+};
+
+#pragma pack(pop)
+}

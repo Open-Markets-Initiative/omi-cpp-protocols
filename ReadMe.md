@@ -64,19 +64,65 @@ cmake -S . -B build -DOMI_PACKETS_DIR=/path/to/packets
 cmake --build build --parallel && ctest --test-dir build
 ```
 
+A protocol a format's generator refuses is left out of that format, and out of the programs
+and tests that read through it:
+
+- Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d, Classes: no counted or sized frame found under the packet root 'Udp Packet'
+- Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d, Flyweight: no counted or sized frame found under the packet root 'Udp Packet'
+- Miax.MiaxOptions.TopOfMarket.Mach.v2.5, Classes: no counted or sized frame found under the packet root 'Udp Packet'
+- Miax.MiaxOptions.TopOfMarket.Mach.v2.5, Flyweight: no counted or sized frame found under the packet root 'Udp Packet'
+
 ## Organizations
 
-> [B3][B3.Directory] · [Iex][Iex.Directory] · [Jpx][Jpx.Directory] · [Nasdaq][Nasdaq.Directory]
+> [Asx][Asx.Directory] · [B3][B3.Directory] · [Cboe][Cboe.Directory] · [Cme][Cme.Directory] · [Eurex][Eurex.Directory] · [Iex][Iex.Directory] · [Jpx][Jpx.Directory] · [Lseg][Lseg.Directory] · [Memx][Memx.Directory] · [Miax][Miax.Directory] · [Nasdaq][Nasdaq.Directory] · [Nyse][Nyse.Directory] · [Siac][Siac.Directory]
 
 ## Exchanges
 
-> [B3Derivatives][B3Derivatives.Exchange] · [IexEquities][IexEquities.Exchange] · [NsmEquities][NsmEquities.Exchange] · [TseEquities][TseEquities.Exchange]
+> [ArcaEquities][ArcaEquities.Exchange] · [ArcaOptions][ArcaOptions.Exchange] · [AsxDerivatives][AsxDerivatives.Exchange] · [B3Derivatives][B3Derivatives.Exchange] · [BzxEquities][BzxEquities.Exchange] · [CfeFutures][CfeFutures.Exchange] · [EdgxOptions][EdgxOptions.Exchange] · [IexEquities][IexEquities.Exchange] · [Lse][Lse.Exchange] · [MemxEquities][MemxEquities.Exchange] · [MiaxOptions][MiaxOptions.Exchange] · [NomOptions][NomOptions.Exchange] · [NordicEquities][NordicEquities.Exchange] · [NsmEquities][NsmEquities.Exchange] · [NyseEquities][NyseEquities.Exchange] · [OseDerivatives][OseDerivatives.Exchange] · [PearlEquities][PearlEquities.Exchange] · [PhlxOptions][PhlxOptions.Exchange] · [TseEquities][TseEquities.Exchange]
 
+## Platforms
+
+> [Cme Globex][Globex.Platform] · [Lseg Millennium][Millennium.Platform] · [Eurex T7][T7.Platform]
+
+## Consolidators
+
+> [Cqs][Cqs.Consolidator] · [Cts][Cts.Consolidator] · [Opra][Opra.Consolidator]
+
+[Asx.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Asx "Australian Securities Exchange"
 [B3.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/B3 "Brasil, Bolsa, Balcão"
+[Cboe.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Cboe "Chicago Board Options Exchange"
+[Cme.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Cme "CME Group"
+[Eurex.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Eurex "Eurex Exchange"
 [Iex.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Iex "Investors Exchange"
 [Jpx.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Jpx "Japan Exchange Group"
+[Lseg.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Lseg "London Stock Exchange"
+[Memx.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Memx "The Members Exchange"
+[Miax.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Miax "Miami International Holdings"
 [Nasdaq.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nasdaq "National Association of Securities Dealers Automated Quotations (Nasdaq)"
+[Nyse.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nyse "New York Stock Exchange"
+[Siac.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Siac "The Securities Industry Automation Corporation"
+[ArcaEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nyse/Protocols/ArcaEquities "Nyse Arca Equities"
+[ArcaOptions.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nyse/Protocols/ArcaOptions "Nyse Arca Options"
+[AsxDerivatives.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Asx/Protocols/AsxDerivatives "Asx Derivatives"
 [B3Derivatives.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/B3/Protocols/B3Derivatives "B3 Derivatives"
+[BzxEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Cboe/Protocols/BzxEquities "Cboe Bzx Equities"
+[CfeFutures.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Cboe/Protocols/CfeFutures "Cboe Futures Exchange"
+[Cqs.Consolidator]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Siac/Protocols/Cqs "Consolidated Quotation System"
+[Cts.Consolidator]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Siac/Protocols/Cts "Consolidated Tape System"
+[EdgxOptions.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Cboe/Protocols/EdgxOptions "Cboe Edgx Options"
+[Globex.Platform]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Cme/Protocols/Globex "CME Globex"
 [IexEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Iex/Protocols/IexEquities "IEX Equities"
+[Lse.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Lseg/Protocols/Lse "London Stock Exchange"
+[MemxEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Memx/Protocols/MemxEquities "Memx Equities"
+[MiaxOptions.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Miax/Protocols/MiaxOptions "MIAX Options"
+[Millennium.Platform]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Lseg/Protocols/Millennium "Millennium Exchange"
+[NomOptions.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nasdaq/Protocols/NomOptions "Nasdaq Options Market"
+[NordicEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nasdaq/Protocols/NordicEquities "Nasdaq Nordic Equities"
 [NsmEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nasdaq/Protocols/NsmEquities "Nasdaq Stock Market"
+[NyseEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nyse/Protocols/NyseEquities "New York Stock Exchange Equities"
+[Opra.Consolidator]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Siac/Protocols/Opra "Options Price Reporting Authority"
+[OseDerivatives.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Jpx/Protocols/OseDerivatives "Osaka Securities Exchange"
+[PearlEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Miax/Protocols/PearlEquities "MIAX Pearl Equities"
+[PhlxOptions.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nasdaq/Protocols/PhlxOptions "Nasdaq PHLX"
+[T7.Platform]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Eurex/Protocols/T7 "T7"
 [TseEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Jpx/Protocols/TseEquities "Tokyo Stock Exchange Equities"

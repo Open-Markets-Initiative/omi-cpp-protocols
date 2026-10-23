@@ -5,7 +5,19 @@
 #include <stdexcept>
 #include <string_view>
 
+#include "../structs/GroupSizeEncoding.hpp"
+
 namespace b3::b3derivatives::binaryumdf::sbe::v1_7 {
+
+// A group's dimension: how long each entry's block is, and how many entries follow
+template <typename Header>
+struct group_dimension;
+
+template <>
+struct group_dimension<group_size_encoding> {
+    static auto block_length(const group_size_encoding& header) { return header.block_length.get().value(); }
+    static auto count(const group_size_encoding& header) { return header.num_in_group.get().value(); }
+};
 
 template <typename Entry, typename Header>
 class sbe_group_iterator {
@@ -22,8 +34,8 @@ class sbe_group_iterator {
         if (begin_ + sizeof(Header) > end_)
             throw std::runtime_error("buffer overrun reading group header");
         auto* hdr = reinterpret_cast<const Header*>(begin_);
-        block_length_ = hdr->block_length.get().value();
-        num_in_group_ = hdr->num_in_group.get().value();
+        block_length_ = group_dimension<Header>::block_length(*hdr);
+        num_in_group_ = group_dimension<Header>::count(*hdr);
         current_ = begin_ + sizeof(Header);
         index_ = 0;
     }

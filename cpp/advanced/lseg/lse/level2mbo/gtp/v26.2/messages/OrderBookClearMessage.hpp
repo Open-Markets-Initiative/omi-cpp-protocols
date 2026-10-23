@@ -1,0 +1,51 @@
+#pragma once
+
+#include <cstddef>
+#include "../structs/MessageHeader.hpp"
+#include "../types/Timestamp.hpp"
+#include "../types/SourceVenue.hpp"
+#include "../types/Instrument.hpp"
+#include "../types/OrderBookType.hpp"
+
+namespace lseg::lse::level2mbo::gtp::v26_2 {
+
+namespace gtp_level2mbo = ::lseg::lse::level2mbo::gtp::v26_2;
+
+#pragma pack(push, 1)
+
+// Order Book Clear Message
+struct order_book_clear_message {
+
+    struct fields_type {
+        gtp_level2mbo::timestamp timestamp;
+        gtp_level2mbo::source_venue source_venue;
+        gtp_level2mbo::instrument instrument;
+        gtp_level2mbo::order_book_type order_book_type;
+    };
+
+    gtp_level2mbo::message_header header = {std::uint16_t(sizeof(gtp_level2mbo::message_header) + sizeof(fields_type)), message_type::enum_type::order_book_clear_message};
+
+    fields_type fields;
+
+    // parse method
+    static order_book_clear_message* parse(std::byte* buffer) {
+        return reinterpret_cast<order_book_clear_message*>(buffer);
+    }
+
+    // parse method const
+    static const order_book_clear_message* parse(const std::byte* buffer) {
+        return reinterpret_cast<const order_book_clear_message*>(buffer);
+    }
+
+};
+
+// layout verification
+static_assert(offsetof(order_book_clear_message::fields_type, timestamp) == 0, "unexpected offset of order_book_clear_message::fields_type::timestamp");
+static_assert(offsetof(order_book_clear_message::fields_type, source_venue) == 8, "unexpected offset of order_book_clear_message::fields_type::source_venue");
+static_assert(offsetof(order_book_clear_message::fields_type, instrument) == 10, "unexpected offset of order_book_clear_message::fields_type::instrument");
+static_assert(offsetof(order_book_clear_message::fields_type, order_book_type) == 18, "unexpected offset of order_book_clear_message::fields_type::order_book_type");
+static_assert(sizeof(order_book_clear_message::fields_type) == 19, "unexpected sizeof order_book_clear_message::fields_type");
+static_assert(sizeof(order_book_clear_message) == sizeof(gtp_level2mbo::message_header) + 19, "unexpected sizeof order_book_clear_message");
+
+#pragma pack(pop)
+}

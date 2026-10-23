@@ -1,0 +1,55 @@
+#pragma once
+
+#include <chrono>
+#include <cstddef>
+#include <cstdint>
+#include <memory>
+#include <optional>
+#include <ostream>
+#include <string_view>
+
+#include "../messages/Message.hpp"
+
+namespace eurex::t7::eobi::fbe::v13_0 {
+
+class Visitor;
+
+// Order Mass Delete
+class OrderMassDelete : public Message {
+  public:
+    // The code that selects this message
+    static constexpr MessageCode message_type = TemplateId::OrderMassDelete;
+    // Bytes of this message on the wire
+    static constexpr std::size_t wire_size = 16;
+
+    OrderMassDelete() = default;
+    OrderMassDelete(std::optional<std::int64_t> security_id, std::optional<std::chrono::nanoseconds> transact_time);
+
+    // Security Id:
+    std::optional<std::int64_t> security_id() const;
+    void set_security_id(std::optional<std::int64_t> value);
+
+    // Transact Time: Matching-engine transaction time in nanoseconds since Unix epoch
+    std::optional<std::chrono::nanoseconds> transact_time() const;
+    void set_transact_time(std::optional<std::chrono::nanoseconds> value);
+
+    // Message
+    MessageCode type() const override;
+    std::string_view name() const override;
+    std::size_t decode(const std::byte* data, std::size_t length) override;
+    std::size_t encode(std::byte* data, std::size_t capacity) const override;
+    std::size_t encoded_size() const override;
+    void accept(Visitor& visitor) const override;
+    std::unique_ptr<Message> clone() const override;
+    void print(std::ostream& out) const override;
+    bool equals(const Message& other) const override;
+
+    bool operator==(const OrderMassDelete& other) const;
+    bool operator!=(const OrderMassDelete& other) const;
+
+  private:
+    std::optional<std::int64_t> security_id_{};
+    std::optional<std::chrono::nanoseconds> transact_time_{};
+};
+
+} // namespace eurex::t7::eobi::fbe::v13_0

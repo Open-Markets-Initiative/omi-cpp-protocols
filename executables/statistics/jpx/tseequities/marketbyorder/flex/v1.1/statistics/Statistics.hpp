@@ -101,7 +101,7 @@ struct Statistics {
     }
 
     // count a message of the Udp Packet tree
-    void process_message(const std::byte* pointer, const char message_type) {
+    void process_message(const std::byte*, const char message_type) {
         switch (message_type) {
             case 'T':
                 ++total_messages;
@@ -151,7 +151,7 @@ struct Statistics {
     }
 
     // count a message of the Tcp Packet tree
-    void process_tcp_packet(const std::byte* pointer, const char packet_type) {
+    void process_tcp_packet(const std::byte*, const char packet_type) {
         switch (packet_type) {
             case 'R':
                 ++total_messages;

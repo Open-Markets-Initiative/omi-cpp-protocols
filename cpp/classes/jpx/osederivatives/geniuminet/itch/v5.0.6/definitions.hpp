@@ -1,0 +1,42 @@
+#pragma once
+
+#include "common/Decimal.hpp"
+#include "common/Errors.hpp"
+#include "common/Print.hpp"
+#include "common/Wire.hpp"
+
+#include "enums/EventCode.hpp"
+#include "enums/FinancialProduct.hpp"
+#include "enums/LegSide.hpp"
+#include "enums/LotType.hpp"
+#include "enums/MessageType.hpp"
+#include "enums/OccurredAtCross.hpp"
+#include "enums/Printable.hpp"
+#include "enums/PutOrCall.hpp"
+#include "enums/Side.hpp"
+
+#include "bitfields/OrderAttributes.hpp"
+
+#include "structs/MessageHeader.hpp"
+#include "structs/PacketHeader.hpp"
+
+#include "messages/AddOrderNoMpid.hpp"
+#include "messages/AddOrderWithMpid.hpp"
+#include "messages/CombinationOrderbookLeg.hpp"
+#include "messages/EquilibriumPriceUpdate.hpp"
+#include "messages/Message.hpp"
+#include "messages/OrderBookDirectory.hpp"
+#include "messages/OrderBookStateMessage.hpp"
+#include "messages/OrderDeleteMessage.hpp"
+#include "messages/OrderExecutedMessage.hpp"
+#include "messages/OrderExecutedWithPriceMessage.hpp"
+#include "messages/OrderReplaceMessage.hpp"
+#include "messages/SecondsMessage.hpp"
+#include "messages/SystemEventMessage.hpp"
+#include "messages/TickSizeTableEntry.hpp"
+#include "messages/TradeMessage.hpp"
+#include "messages/UnknownMessage.hpp"
+
+#include "Factory.hpp"
+#include "Packet.hpp"
+#include "Visitor.hpp"

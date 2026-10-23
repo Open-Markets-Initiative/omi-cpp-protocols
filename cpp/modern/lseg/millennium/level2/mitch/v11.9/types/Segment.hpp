@@ -1,0 +1,45 @@
+#pragma once
+
+#include <array>
+#include <cstddef>
+#include <string>
+
+namespace lseg::millennium::level2::mitch::v11_9 {
+
+
+// Segment the instrument is assigned to.
+struct Segment {
+
+    static constexpr auto name = "Segment";
+    static constexpr std::size_t size = 6;
+
+    // underlying type
+    using type = std::array<char, size>;
+
+    // default constructor
+    constexpr Segment()
+     : value{ 0 } {}
+
+    // standard constructor
+    constexpr explicit Segment(const type &value)
+     : value{ value } {}
+
+    // get value of Segment field
+    [[nodiscard]] std::string get() const {
+        return std::string{value.data(), length()};
+    }
+
+    // runtime length of field
+    [[nodiscard]] std::size_t length() const {
+        std::size_t index = 0;
+        for (; index < size; ++index) {
+            if (value[index] == ' ') { break; }
+        }
+
+        return index;
+    }
+
+  protected:
+    type value;
+};
+}

@@ -18,6 +18,8 @@
 #include "cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/definitions.hpp"
 
 namespace protocol = ::b3::b3derivatives::binaryumdf::sbe::v1_7;
+// the wire the Classes expressions this program states its sizes in read through
+namespace wire = protocol::wire;
 
 namespace {
 

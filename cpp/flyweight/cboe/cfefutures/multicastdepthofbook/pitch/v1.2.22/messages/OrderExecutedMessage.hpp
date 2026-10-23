@@ -1,0 +1,68 @@
+#pragma once
+
+#include <chrono>
+#include <cstddef>
+#include <cstdint>
+#include <ostream>
+#include <span>
+
+#include "../common/Wire.hpp"
+#include "../common/Print.hpp"
+#include "../common/View.hpp"
+#include "../enums/TradeCondition.hpp"
+
+namespace cboe::cfefutures::multicastdepthofbook::pitch::v1_2_22 {
+
+// Order Executed messages are sent when an order on the CFE book is executed in whole or in
+// part.
+class OrderExecutedMessage {
+  public:
+    static constexpr const char* name = "OrderExecutedMessage";
+
+    // the bytes it reads, which it does not own: they must outlive it
+    explicit OrderExecutedMessage(std::span<const std::byte> bytes) noexcept : bytes_{ bytes } {}
+
+    std::span<const std::byte> bytes() const noexcept { return bytes_; }
+
+    // the bytes every OrderExecutedMessage has, which a reader checks before it views them
+    static constexpr std::size_t minimum_size = 25;
+    static constexpr std::size_t fixed_size = 25;
+    std::size_t encoded_size() const { return 25; }
+
+    std::chrono::nanoseconds time_offset() const { return std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(at(0)))); }
+
+    std::uint64_t order_id() const { return wire::read_u64_le(at(4)); }
+
+    std::uint32_t executed_quantity() const { return wire::read_u32_le(at(12)); }
+
+    std::uint64_t execution_id() const { return wire::read_u64_le(at(16)); }
+
+    TradeCondition trade_condition() const { return static_cast<TradeCondition>(wire::read_char(at(24))); }
+
+    void print(std::ostream& out) const {
+        out << "OrderExecutedMessage{";
+        out << "time_offset=";
+        out << time_offset().count();
+        out << ", order_id=";
+        out << order_id();
+        out << ", executed_quantity=";
+        out << executed_quantity();
+        out << ", execution_id=";
+        out << execution_id();
+        out << ", trade_condition=";
+        out << trade_condition();
+        out << '}';
+    }
+
+  private:
+    const std::byte* at(std::size_t offset) const noexcept { return bytes_.data() + offset; }
+
+    std::span<const std::byte> bytes_;
+};
+
+inline std::ostream& operator<<(std::ostream& out, const OrderExecutedMessage& value) {
+    value.print(out);
+    return out;
+}
+
+} // namespace cboe::cfefutures::multicastdepthofbook::pitch::v1_2_22
