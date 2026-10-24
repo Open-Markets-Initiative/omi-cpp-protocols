@@ -17,6 +17,18 @@ so a clean build fires the generated layout `static_assert`s across every protoc
 cmake -S . -B build && cmake --build build
 ```
 
+## Development
+
+Updates are greatly appreciated; however, this entire repository is source generated. If you wish to suggest updates, the recommended process is to create an issue with changes and explanation.
+
+| Parser | Protocol Count | Generated Lines |
+| --- | --- | --- |
+| Advanced | 46 | 385,121 |
+| Modern | 46 | 217,884 |
+| Classes | 44 | 493,547 |
+| Flyweight | 44 | 222,485 |
+| Tmp | 46 | 119,226 |
+
 ## Programs
 
 `executables/` holds the programs, one directory per protocol under each. They read the
