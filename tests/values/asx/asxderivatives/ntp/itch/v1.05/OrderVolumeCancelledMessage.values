@@ -1,0 +1,15 @@
+# Asx.AsxDerivatives.Ntp.Itch.v1.05 OrderVolumeCancelledMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 1567326030
+packet.packetheader.sequencenumber = 3517150
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 24
+packet.messages.message[0].messageheader.messagetype = X
+packet.messages.message[0].payload = packet.messages.message.payload.ordervolumecancelledmessage
+packet.messages.message[0].payload.ordervolumecancelledmessage.nanoseconds = 93032000
+packet.messages.message[0].payload.ordervolumecancelledmessage.tradedate = 18143
+packet.messages.message[0].payload.ordervolumecancelledmessage.tradeableinstrumentid = 124841
+packet.messages.message[0].payload.ordervolumecancelledmessage.side = B
+packet.messages.message[0].payload.ordervolumecancelledmessage.orderid = 6574533871977644033
+packet.messages.message[0].payload.ordervolumecancelledmessage.quantity = 1

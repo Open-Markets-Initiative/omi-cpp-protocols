@@ -6,7 +6,7 @@
 
 namespace siac::cts::output::cta::v2_11_b {
 
-FractionalPriorDayTradeMessage::FractionalPriorDayTradeMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol, InstrumentType instrument_type, const SaleCondition4& sale_condition_4, Decimal trade_price, std::uint64_t fractional_trade_volume, std::uint8_t sellers_sale_days, StopStockIndicator stop_stock_indicator, TradeThroughExemptIndicator trade_through_exempt_indicator, ShortSaleRestrictionIndicator short_sale_restriction_indicator, TradeReportingFacilityId trade_reporting_facility_id, const PriorDayTradeDateAndTime& prior_day_trade_date_and_time)
+FractionalPriorDayTradeMessage::FractionalPriorDayTradeMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol, InstrumentType instrument_type, const SaleCondition4& sale_condition_4, Decimal trade_price, Decimal fractional_trade_volume, std::uint8_t sellers_sale_days, StopStockIndicator stop_stock_indicator, TradeThroughExemptIndicator trade_through_exempt_indicator, ShortSaleRestrictionIndicator short_sale_restriction_indicator, TradeReportingFacilityId trade_reporting_facility_id, const PriorDayTradeDateAndTime& prior_day_trade_date_and_time)
   : participant_id_(participant_id), timestamp_1_(timestamp_1), message_id_(message_id), transaction_id_(transaction_id), participant_reference_number_(participant_reference_number), security_symbol_(security_symbol), instrument_type_(instrument_type), sale_condition_4_(sale_condition_4), trade_price_(trade_price), fractional_trade_volume_(fractional_trade_volume), sellers_sale_days_(sellers_sale_days), stop_stock_indicator_(stop_stock_indicator), trade_through_exempt_indicator_(trade_through_exempt_indicator), short_sale_restriction_indicator_(short_sale_restriction_indicator), trade_reporting_facility_id_(trade_reporting_facility_id), prior_day_trade_date_and_time_(prior_day_trade_date_and_time) {}
 
 ParticipantId FractionalPriorDayTradeMessage::participant_id() const { return participant_id_; }
@@ -39,8 +39,8 @@ void FractionalPriorDayTradeMessage::set_sale_condition_4(const SaleCondition4& 
 Decimal FractionalPriorDayTradeMessage::trade_price() const { return trade_price_; }
 void FractionalPriorDayTradeMessage::set_trade_price(Decimal value) { trade_price_ = value; }
 
-std::uint64_t FractionalPriorDayTradeMessage::fractional_trade_volume() const { return fractional_trade_volume_; }
-void FractionalPriorDayTradeMessage::set_fractional_trade_volume(std::uint64_t value) { fractional_trade_volume_ = value; }
+Decimal FractionalPriorDayTradeMessage::fractional_trade_volume() const { return fractional_trade_volume_; }
+void FractionalPriorDayTradeMessage::set_fractional_trade_volume(Decimal value) { fractional_trade_volume_ = value; }
 
 std::uint8_t FractionalPriorDayTradeMessage::sellers_sale_days() const { return sellers_sale_days_; }
 void FractionalPriorDayTradeMessage::set_sellers_sale_days(std::uint8_t value) { sellers_sale_days_ = value; }
@@ -94,7 +94,7 @@ std::size_t FractionalPriorDayTradeMessage::decode(const std::byte* data, std::s
     trade_price_ = Decimal(static_cast<std::int64_t>(wire::read_u64_be(data + offset)), -6);
     offset += 8;
 
-    fractional_trade_volume_ = wire::read_u64_be(data + offset);
+    fractional_trade_volume_ = Decimal(static_cast<std::int64_t>(wire::read_u64_be(data + offset)), -6);
     offset += 8;
 
     sellers_sale_days_ = wire::read_u8(data + offset);
@@ -146,7 +146,7 @@ std::size_t FractionalPriorDayTradeMessage::encode(std::byte* data, std::size_t 
     wire::write_u64_be(data + offset, static_cast<std::uint64_t>(trade_price_.mantissa()));
     offset += 8;
 
-    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(fractional_trade_volume_));
+    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(fractional_trade_volume_.mantissa()));
     offset += 8;
 
     wire::write_u8(data + offset, static_cast<std::uint8_t>(sellers_sale_days_));

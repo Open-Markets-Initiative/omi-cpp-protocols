@@ -1,0 +1,14 @@
+# Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.41.29 OrderExecutedMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.length = 34
+packet.packetheader.messagecount = 1
+packet.packetheader.unit = 7
+packet.packetheader.sequence = 199724
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 26
+packet.messages.message[0].messageheader.messagetype = 35
+packet.messages.message[0].payload = packet.messages.message.payload.orderexecutedmessage
+packet.messages.message[0].payload.orderexecutedmessage.timeoffset = 701000
+packet.messages.message[0].payload.orderexecutedmessage.orderid = 1001909035936909313
+packet.messages.message[0].payload.orderexecutedmessage.executedquantity = 1
+packet.messages.message[0].payload.orderexecutedmessage.executionid = 561186580741

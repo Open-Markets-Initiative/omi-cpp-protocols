@@ -6,7 +6,7 @@
 
 namespace siac::cts::output::cta::v2_11_b {
 
-BidAndOfferIndexMessage::BidAndOfferIndexMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& index_symbol, std::int64_t bid_index_value, std::int64_t offer_index_value)
+BidAndOfferIndexMessage::BidAndOfferIndexMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& index_symbol, Decimal bid_index_value, Decimal offer_index_value)
   : participant_id_(participant_id), timestamp_1_(timestamp_1), message_id_(message_id), transaction_id_(transaction_id), participant_reference_number_(participant_reference_number), index_symbol_(index_symbol), bid_index_value_(bid_index_value), offer_index_value_(offer_index_value) {}
 
 ParticipantId BidAndOfferIndexMessage::participant_id() const { return participant_id_; }
@@ -29,11 +29,11 @@ const std::string& BidAndOfferIndexMessage::index_symbol() const { return index_
 std::string& BidAndOfferIndexMessage::index_symbol() { return index_symbol_; }
 void BidAndOfferIndexMessage::set_index_symbol(const std::string& value) { index_symbol_ = value; }
 
-std::int64_t BidAndOfferIndexMessage::bid_index_value() const { return bid_index_value_; }
-void BidAndOfferIndexMessage::set_bid_index_value(std::int64_t value) { bid_index_value_ = value; }
+Decimal BidAndOfferIndexMessage::bid_index_value() const { return bid_index_value_; }
+void BidAndOfferIndexMessage::set_bid_index_value(Decimal value) { bid_index_value_ = value; }
 
-std::int64_t BidAndOfferIndexMessage::offer_index_value() const { return offer_index_value_; }
-void BidAndOfferIndexMessage::set_offer_index_value(std::int64_t value) { offer_index_value_ = value; }
+Decimal BidAndOfferIndexMessage::offer_index_value() const { return offer_index_value_; }
+void BidAndOfferIndexMessage::set_offer_index_value(Decimal value) { offer_index_value_ = value; }
 
 IndicesMessagePayloadCode BidAndOfferIndexMessage::type() const { return message_type; }
 
@@ -60,10 +60,10 @@ std::size_t BidAndOfferIndexMessage::decode(const std::byte* data, std::size_t l
     index_symbol_ = wire::read_text(data + offset, 11, ' ');
     offset += 11;
 
-    bid_index_value_ = wire::read_i64_be(data + offset);
+    bid_index_value_ = Decimal(static_cast<std::int64_t>(wire::read_i64_be(data + offset)), -6);
     offset += 8;
 
-    offer_index_value_ = wire::read_i64_be(data + offset);
+    offer_index_value_ = Decimal(static_cast<std::int64_t>(wire::read_i64_be(data + offset)), -6);
     offset += 8;
 
     return offset;
@@ -90,10 +90,10 @@ std::size_t BidAndOfferIndexMessage::encode(std::byte* data, std::size_t capacit
     wire::write_text(data + offset, 11, ' ', index_symbol_);
     offset += 11;
 
-    wire::write_i64_be(data + offset, static_cast<std::int64_t>(bid_index_value_));
+    wire::write_i64_be(data + offset, static_cast<std::int64_t>(bid_index_value_.mantissa()));
     offset += 8;
 
-    wire::write_i64_be(data + offset, static_cast<std::int64_t>(offer_index_value_));
+    wire::write_i64_be(data + offset, static_cast<std::int64_t>(offer_index_value_.mantissa()));
     offset += 8;
 
     return offset;

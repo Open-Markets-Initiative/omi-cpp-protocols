@@ -1,0 +1,17 @@
+# Eurex.T7.Eobi.Fbe.v13.0 Heartbeat: canonical values, read by the model
+datagram 0
+packet.packetheader.eobiheader.bodylen = 32
+packet.packetheader.eobiheader.templateid = 13004
+packet.packetheader.eobiheader.msgseqnum = 4294967295
+packet.packetheader.applseqnum = 12066297
+packet.packetheader.marketsegmentid = 1610
+packet.packetheader.partitionid = 6
+packet.packetheader.completionindicator = 1
+packet.packetheader.applseqresetindicator = 0
+packet.packetheader.dscp = 0
+packet.packetheader.transacttime = 1744639200044073832
+packet.message[0].messageheadercomp.bodylen = 16
+packet.message[0].messageheadercomp.templateid = 13001
+packet.message[0].messageheadercomp.msgseqnum = 4294967295
+packet.message[0].payload = packet.message.payload.heartbeat
+packet.message[0].payload.heartbeat.lastmsgseqnumprocessed = 6324

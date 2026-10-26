@@ -26,14 +26,12 @@ class ClientTcpFrame {
     ClientTcpFrame& operator=(ClientTcpFrame&& other) noexcept = default;
     ~ClientTcpFrame() = default;
 
-    // Client Technical Header: Cme Technical Header sent by the firm to Cme. Tcp Message Size
-    // is the last field so this fixed 16 byte header spans everything up to and including the
-    // length the reassembly reads.
+    // Client Technical Header: Cme Technical Header sent by the firm to Cme
     const ClientTechnicalHeader& client_technical_header() const;
     ClientTechnicalHeader& client_technical_header();
     void set_client_technical_header(const ClientTechnicalHeader& value);
 
-    // Message Header: Template ID and length of message root
+    // Message Header: Message Size followed by the Simple Binary Header
     const MessageHeader& message_header() const;
     MessageHeader& message_header();
     void set_message_header(const MessageHeader& value);

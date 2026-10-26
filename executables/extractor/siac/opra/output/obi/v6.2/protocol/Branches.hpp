@@ -8,6 +8,23 @@ namespace protocol::Branches {
 // discriminator value -> short message name (PascalCase, suitable for filenames).
 inline const char* name(std::uint64_t id) {
     switch (id) {
+        case 67ull: return "AdministrativeCategory";
+        case 72ull: return "ControlCategory";
+        case 89ull: return "UnderlyingValueCategory";
+        case 97ull: return "EquityAndIndexLastSaleCategory";
+        case 100ull: return "OpenInterestCategory";
+        case 102ull: return "EquityAndIndexEndOfDaySummaryCategory";
+        case 107ull: return "LongEquityAndIndexQuoteCategory";
+        case 113ull: return "ShortEquityAndIndexQuoteCategory";
+        case 287762808864ull: return "AdministrativeMessage";
+        case 309237645392ull: return "ControlMessage";
+        case 416611827800ull: return "EquityAndIndexLastSaleMessage";
+        case 429496729632ull: return "OpenInterestMessage";
+        case 438086664224ull: return "EquityAndIndexEndOfDaySummaryMessage";
+        case 459561500761ull: return "LongEquityAndIndexQuoteMessage";
+        case 485331304537ull: return "ShortEquityAndIndexQuoteMessage";
+        case 382252089376ull: return "UnderlyingValueLastSaleMessage";
+        case 382252089417ull: return "UnderlyingValueBidAndOfferMessage";
         default: return nullptr;
     }
 }

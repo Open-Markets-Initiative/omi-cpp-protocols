@@ -1,0 +1,17 @@
+# Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.41.29 AddOrderLongMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.length = 42
+packet.packetheader.messagecount = 1
+packet.packetheader.unit = 11
+packet.packetheader.sequence = 112497
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 34
+packet.messages.message[0].messageheader.messagetype = 33
+packet.messages.message[0].payload = packet.messages.message.payload.addorderlongmessage
+packet.messages.message[0].payload.addorderlongmessage.timeoffset = 3616000
+packet.messages.message[0].payload.addorderlongmessage.orderid = 1528395844775644791
+packet.messages.message[0].payload.addorderlongmessage.sideindicator = S
+packet.messages.message[0].payload.addorderlongmessage.quantity = 75000
+packet.messages.message[0].payload.addorderlongmessage.symbolshort = GBIL
+packet.messages.message[0].payload.addorderlongmessage.price = 99.96
+packet.messages.message[0].payload.addorderlongmessage.addorderflags.display = 1

@@ -1,0 +1,21 @@
+# Nasdaq.NsmEquities.TotalView.Itch.v5.0.2017 NetOrderImbalanceIndicatorMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 000010059B
+packet.packetheader.sequencenumber = 14757919
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 50
+packet.messages.message[0].messageheader.messagetype = I
+packet.messages.message[0].payload = packet.messages.message.payload.netorderimbalanceindicatormessage
+packet.messages.message[0].payload.netorderimbalanceindicatormessage.stocklocate = 6462
+packet.messages.message[0].payload.netorderimbalanceindicatormessage.trackingnumber = 0
+packet.messages.message[0].payload.netorderimbalanceindicatormessage.timestamp = 34200000268978
+packet.messages.message[0].payload.netorderimbalanceindicatormessage.pairedshares = 1
+packet.messages.message[0].payload.netorderimbalanceindicatormessage.imbalanceshares = 0
+packet.messages.message[0].payload.netorderimbalanceindicatormessage.imbalancedirection = N
+packet.messages.message[0].payload.netorderimbalanceindicatormessage.stock = MDC
+packet.messages.message[0].payload.netorderimbalanceindicatormessage.farprice = 46.44
+packet.messages.message[0].payload.netorderimbalanceindicatormessage.nearprice = 46.44
+packet.messages.message[0].payload.netorderimbalanceindicatormessage.currentreferenceprice = 46.44
+packet.messages.message[0].payload.netorderimbalanceindicatormessage.crosstype = O
+packet.messages.message[0].payload.netorderimbalanceindicatormessage.pricevariationindicator = L

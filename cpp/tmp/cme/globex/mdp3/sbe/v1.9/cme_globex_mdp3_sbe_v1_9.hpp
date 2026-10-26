@@ -2240,19 +2240,6 @@ struct symbol {
     std::array<char, 20> value_;
 };
 
-// Tcp Message Size: Message Size
-struct tcp_message_size {
-    using type = std::uint16_t;
-    static constexpr std::size_t size = 2;
-    static constexpr std::endian order = std::endian::little;
-
-    constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
-    constexpr operator type() const noexcept { return value(); }
-
-  protected:
-    type value_;
-};
-
 // Tcp Sending Time: Packet Sending Time, nanoseconds since the Unix epoch
 struct tcp_sending_time {
     using type = std::uint64_t;
@@ -5149,9 +5136,9 @@ struct server_payload {
     static constexpr bool is_message = false;
 };
 
-// Message Header: Template ID and length of message root
-struct message_header {
-    static constexpr std::string_view name = "Message Header";
+// Simple Binary Header: Template ID and length of message root
+struct simple_binary_header {
+    static constexpr std::string_view name = "Simple Binary Header";
     static constexpr std::size_t size = 8;
     static constexpr bool is_message = false;
 
@@ -5173,6 +5160,28 @@ struct message_header {
     MDP3FIELD(version);
 };
 
+static_assert(sizeof(simple_binary_header) == simple_binary_header::size, "simple_binary_header lies over its bytes exactly");
+
+// Message Header: Message Size followed by the Simple Binary Header
+struct message_header {
+    static constexpr std::string_view name = "Message Header";
+    static constexpr std::size_t size = 10;
+    static constexpr bool is_message = false;
+
+    // the types of its members, in wire order
+    using fields = tmp::list<
+        message_size,
+        simple_binary_header>;
+
+    // the member of the type asked for
+    template <typename Field>
+    constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
+
+  protected:
+    MDP3FIELD(message_size);
+    MDP3FIELD(simple_binary_header);
+};
+
 static_assert(sizeof(message_header) == message_header::size, "message_header lies over its bytes exactly");
 
 // Server Tcp Message: Cme Tcp Message sent by Cme to the firm
@@ -5181,18 +5190,17 @@ struct server_tcp_message {
     static constexpr bool is_message = false;
 };
 
-// Server Technical Header: Cme Technical Header sent by Cme to the firm. Tcp Message Size is the last field so this fixed 16 byte header spans everything up to and including the length the reassembly reads.
+// Server Technical Header: Cme Technical Header sent by Cme to the firm
 struct server_technical_header {
     static constexpr std::string_view name = "Server Technical Header";
-    static constexpr std::size_t size = 16;
+    static constexpr std::size_t size = 14;
     static constexpr bool is_message = false;
 
     // the types of its members, in wire order
     using fields = tmp::list<
         encoding_type,
         message_sequence_number,
-        tcp_sending_time,
-        tcp_message_size>;
+        tcp_sending_time>;
 
     // the member of the type asked for
     template <typename Field>
@@ -5202,7 +5210,6 @@ struct server_technical_header {
     MDP3FIELD(encoding_type);
     MDP3FIELD(message_sequence_number);
     MDP3FIELD(tcp_sending_time);
-    MDP3FIELD(tcp_message_size);
 };
 
 static_assert(sizeof(server_technical_header) == server_technical_header::size, "server_technical_header lies over its bytes exactly");
@@ -5532,18 +5539,17 @@ struct client_tcp_message {
     static constexpr bool is_message = false;
 };
 
-// Client Technical Header: Cme Technical Header sent by the firm to Cme. Tcp Message Size is the last field so this fixed 16 byte header spans everything up to and including the length the reassembly reads.
+// Client Technical Header: Cme Technical Header sent by the firm to Cme
 struct client_technical_header {
     static constexpr std::string_view name = "Client Technical Header";
-    static constexpr std::size_t size = 16;
+    static constexpr std::size_t size = 14;
     static constexpr bool is_message = false;
 
     // the types of its members, in wire order
     using fields = tmp::list<
         encoding_type,
         message_sequence_number,
-        tcp_sending_time,
-        tcp_message_size>;
+        tcp_sending_time>;
 
     // the member of the type asked for
     template <typename Field>
@@ -5553,7 +5559,6 @@ struct client_technical_header {
     MDP3FIELD(encoding_type);
     MDP3FIELD(message_sequence_number);
     MDP3FIELD(tcp_sending_time);
-    MDP3FIELD(tcp_message_size);
 };
 
 static_assert(sizeof(client_technical_header) == client_technical_header::size, "client_technical_header lies over its bytes exactly");
@@ -5599,30 +5604,6 @@ struct payload {
     static constexpr std::string_view name = "Payload";
     static constexpr bool is_message = false;
 };
-
-// Message Section 1
-struct message_section_1 {
-    static constexpr std::string_view name = "Message Section 1";
-    static constexpr std::size_t size = 10;
-    static constexpr bool is_message = false;
-    // a section of a message no struct lies over: the fields it lays over in turn
-    static constexpr bool is_section = true;
-
-    // the types of its members, in wire order
-    using fields = tmp::list<
-        message_size,
-        message_header>;
-
-    // the member of the type asked for
-    template <typename Field>
-    constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
-
-  protected:
-    MDP3FIELD(message_size);
-    MDP3FIELD(message_header);
-};
-
-static_assert(sizeof(message_section_1) == message_section_1::size, "message_section_1 lies over its bytes exactly");
 
 // Message: Cme Market Data Message
 struct message {

@@ -1,0 +1,21 @@
+# Siac.Opra.Output.Obi.v6.2 ControlMessage: canonical values, read by the model
+datagram 0
+packet.blockheader.version = 6
+packet.blockheader.blocksize = 34
+packet.blockheader.datafeedindicator = O
+packet.blockheader.retransmissionindicator =  
+packet.blockheader.sessionindicator = 0
+packet.blockheader.blocksequencenumber = 402622060
+packet.blockheader.messagesinblock = 1
+packet.blockheader.blocktimestamp.seconds = 1701291411
+packet.blockheader.blocktimestamp.nanoseconds = 938973184
+packet.blockheader.blocktimestamp = 1701291411938973184
+packet.blockheader.blockchecksum = 1903
+packet.message[0].messageheader.participantid = O
+packet.message[0].messageheader.messagecategory = H
+packet.message[0].payload = packet.message.payload.controlcategory
+packet.message[0].payload.controlcategory.controlmessagetype = N
+packet.message[0].payload.controlcategory.controlmessagepayload = packet.message.payload.controlcategory.controlmessagepayload.controlmessage
+packet.message[0].payload.controlcategory.controlmessagepayload.controlmessage.messageindicator =  
+packet.message[0].payload.controlcategory.controlmessagepayload.controlmessage.transactionid = 0
+packet.message[0].payload.controlcategory.controlmessagepayload.controlmessage.participantreferencenumber = 0

@@ -8,12 +8,11 @@
 #include "../common/Wire.hpp"
 #include "../common/Print.hpp"
 #include "../common/View.hpp"
-#include "../enums/TemplateId.hpp"
-#include "../enums/SchemaId.hpp"
+#include "../structs/SimpleBinaryHeader.hpp"
 
 namespace cme::globex::mdp3::sbe::v1_8 {
 
-// Template ID and length of message root
+// Message Size followed by the Simple Binary Header
 class MessageHeader {
   public:
     static constexpr const char* name = "MessageHeader";
@@ -24,28 +23,20 @@ class MessageHeader {
     std::span<const std::byte> bytes() const noexcept { return bytes_; }
 
     // the bytes every MessageHeader has, which a reader checks before it views them
-    static constexpr std::size_t minimum_size = 8;
-    static constexpr std::size_t fixed_size = 8;
-    std::size_t encoded_size() const { return 8; }
+    static constexpr std::size_t minimum_size = 10;
+    static constexpr std::size_t fixed_size = 10;
+    std::size_t encoded_size() const { return 10; }
 
-    std::uint16_t block_length() const { return wire::read_u16_le(at(0)); }
+    std::uint16_t message_size() const { return wire::read_u16_le(at(0)); }
 
-    TemplateId template_id() const { return static_cast<TemplateId>(wire::read_u16_le(at(2))); }
-
-    SchemaId schema_id() const { return static_cast<SchemaId>(wire::read_u16_le(at(4))); }
-
-    std::uint16_t version() const { return wire::read_u16_le(at(6)); }
+    SimpleBinaryHeader simple_binary_header() const { return SimpleBinaryHeader{ bytes_.subspan(2) }; }
 
     void print(std::ostream& out) const {
         out << "MessageHeader{";
-        out << "block_length=";
-        out << block_length();
-        out << ", template_id=";
-        out << template_id();
-        out << ", schema_id=";
-        out << schema_id();
-        out << ", version=";
-        out << version();
+        out << "message_size=";
+        out << message_size();
+        out << ", simple_binary_header=";
+        simple_binary_header().print(out);
         out << '}';
     }
 

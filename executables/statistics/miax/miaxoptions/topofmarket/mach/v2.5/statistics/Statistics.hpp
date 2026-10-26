@@ -17,7 +17,7 @@ namespace statistics {
 // Miax Mach C++ statistics
 struct Statistics {
 
-    miax::miaxoptions::topofmarket::mach::v2_5::UdpPacketIterator udp_packet;
+    miax::miaxoptions::topofmarket::mach::v2_5::MachMessageIterator mach_message;
     miax::miaxoptions::topofmarket::mach::v2_5::SesmTcpPacketIterator sesm_tcp_packet;
     packet::TcpReassembler sesm_tcp_packet_reassembler;
     std::unordered_map<packet::TcpFlowKey, std::vector<std::uint8_t>, packet::TcpFlowKey::hash> sesm_tcp_packet_flows;
@@ -68,7 +68,7 @@ struct Statistics {
         const auto& frame = parser.frame();
 
         if (frame.is_udp()) {
-            walk_udp_packet(frame);
+            walk_mach_message(frame);
         }
 
         if (frame.is_tcp()) {
@@ -77,16 +77,16 @@ struct Statistics {
     }
 
     // walk the Udp Packet tree's datagrams
-    void walk_udp_packet(const packet::Frame& frame) {
-        udp_packet.initialize(frame.payload, frame.payload_len);
+    void walk_mach_message(const packet::Frame& frame) {
+        mach_message.initialize(frame.payload, frame.payload_len);
 
-        while (udp_packet.next()) {
-            if (udp_packet.packet_type == 0 || udp_packet.packet_type == 1 || udp_packet.packet_type == 2) {
+        while (mach_message.next()) {
+            if (mach_message.packet_type == 0 || mach_message.packet_type == 1 || mach_message.packet_type == 2) {
                 ++heartbeats;
                 continue;
             }
 
-            process_udp_packet(udp_packet.message, udp_packet.packet_type);
+            process_mach_message(mach_message.message, mach_message.packet_type);
         }
     }
 
@@ -121,7 +121,7 @@ struct Statistics {
     }
 
     // count a message of the Udp Packet tree
-    void process_udp_packet(const std::byte* pointer, const std::uint8_t packet_type) {
+    void process_mach_message(const std::byte* pointer, const std::uint8_t packet_type) {
         switch (packet_type) {
             case 3:
                 ++total_messages;

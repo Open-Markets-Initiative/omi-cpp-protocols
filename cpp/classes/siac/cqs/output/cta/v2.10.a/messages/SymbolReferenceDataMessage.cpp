@@ -6,7 +6,7 @@
 
 namespace siac::cqs::output::cta::v2_10_a {
 
-SymbolReferenceDataMessage::SymbolReferenceDataMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol, const std::string& prior_security_symbol, PrimaryListingMarketParticipantId primary_listing_market_participant_id, Decimal primary_listing_market_previous_closing_price, Decimal consolidated_closing_price, std::uint16_t round_lot_size, char reserved, LuldTier luld_tier, std::uint32_t luld_leverage_ratio, Test test, Ipo ipo, FinancialStatusIndicator financial_status_indicator, ShortSaleRestrictionIndicator short_sale_restriction_indicator, char halt_reason, InstrumentType instrument_type, char second_reserved, char third_reserved, const std::string& reserved_128)
+SymbolReferenceDataMessage::SymbolReferenceDataMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol, const std::string& prior_security_symbol, PrimaryListingMarketParticipantId primary_listing_market_participant_id, Decimal primary_listing_market_previous_closing_price, Decimal consolidated_closing_price, std::uint16_t round_lot_size, char reserved, LuldTier luld_tier, Decimal luld_leverage_ratio, Test test, Ipo ipo, FinancialStatusIndicator financial_status_indicator, ShortSaleRestrictionIndicator short_sale_restriction_indicator, char halt_reason, InstrumentType instrument_type, char second_reserved, char third_reserved, const std::string& reserved_128)
   : participant_id_(participant_id), timestamp_1_(timestamp_1), message_id_(message_id), transaction_id_(transaction_id), participant_reference_number_(participant_reference_number), security_symbol_(security_symbol), prior_security_symbol_(prior_security_symbol), primary_listing_market_participant_id_(primary_listing_market_participant_id), primary_listing_market_previous_closing_price_(primary_listing_market_previous_closing_price), consolidated_closing_price_(consolidated_closing_price), round_lot_size_(round_lot_size), reserved_(reserved), luld_tier_(luld_tier), luld_leverage_ratio_(luld_leverage_ratio), test_(test), ipo_(ipo), financial_status_indicator_(financial_status_indicator), short_sale_restriction_indicator_(short_sale_restriction_indicator), halt_reason_(halt_reason), instrument_type_(instrument_type), second_reserved_(second_reserved), third_reserved_(third_reserved), reserved_128_(reserved_128) {}
 
 ParticipantId SymbolReferenceDataMessage::participant_id() const { return participant_id_; }
@@ -51,8 +51,8 @@ void SymbolReferenceDataMessage::set_reserved(char value) { reserved_ = value; }
 LuldTier SymbolReferenceDataMessage::luld_tier() const { return luld_tier_; }
 void SymbolReferenceDataMessage::set_luld_tier(LuldTier value) { luld_tier_ = value; }
 
-std::uint32_t SymbolReferenceDataMessage::luld_leverage_ratio() const { return luld_leverage_ratio_; }
-void SymbolReferenceDataMessage::set_luld_leverage_ratio(std::uint32_t value) { luld_leverage_ratio_ = value; }
+Decimal SymbolReferenceDataMessage::luld_leverage_ratio() const { return luld_leverage_ratio_; }
+void SymbolReferenceDataMessage::set_luld_leverage_ratio(Decimal value) { luld_leverage_ratio_ = value; }
 
 Test SymbolReferenceDataMessage::test() const { return test_; }
 void SymbolReferenceDataMessage::set_test(Test value) { test_ = value; }
@@ -128,7 +128,7 @@ std::size_t SymbolReferenceDataMessage::decode(const std::byte* data, std::size_
     luld_tier_ = static_cast<LuldTier>(wire::read_char(data + offset));
     offset += 1;
 
-    luld_leverage_ratio_ = wire::read_u32_be(data + offset);
+    luld_leverage_ratio_ = Decimal(static_cast<std::int64_t>(wire::read_u32_be(data + offset)), -6);
     offset += 4;
 
     test_ = static_cast<Test>(wire::read_char(data + offset));
@@ -203,7 +203,7 @@ std::size_t SymbolReferenceDataMessage::encode(std::byte* data, std::size_t capa
     wire::write_char(data + offset, static_cast<char>(luld_tier_));
     offset += 1;
 
-    wire::write_u32_be(data + offset, static_cast<std::uint32_t>(luld_leverage_ratio_));
+    wire::write_u32_be(data + offset, static_cast<std::uint32_t>(luld_leverage_ratio_.mantissa()));
     offset += 4;
 
     wire::write_char(data + offset, static_cast<char>(test_));

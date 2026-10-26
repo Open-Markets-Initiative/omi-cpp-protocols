@@ -1,0 +1,24 @@
+# Siac.Cqs.Output.Cta.v2.10.a FinraOpenMessage: canonical values, read by the model
+datagram 0
+packet.blockheader.version = 2
+packet.blockheader.blocksize = 46
+packet.blockheader.datafeedindicator = Q
+packet.blockheader.retransmissionindicator = O
+packet.blockheader.blocksequencenumber = 333675
+packet.blockheader.messagesinblock = 1
+packet.blockheader.sipblocktimestamp.seconds = 1775563200
+packet.blockheader.sipblocktimestamp.nanoseconds = 2867711
+packet.blockheader.sipblocktimestamp = 1775563200002867711
+packet.blockheader.blockchecksum = 3327
+packet.message[0].messagelength = 26
+packet.message[0].messagecategory = C
+packet.message[0].categorypayload = packet.message.categorypayload.controlmessage
+packet.message[0].categorypayload.controlmessage.controlmessagetype = O
+packet.message[0].categorypayload.controlmessage.controlmessagepayload = packet.message.categorypayload.controlmessage.controlmessagepayload.finraopenmessage
+packet.message[0].categorypayload.controlmessage.controlmessagepayload.finraopenmessage.participantid = D
+packet.message[0].categorypayload.controlmessage.controlmessagepayload.finraopenmessage.timestamp1.seconds = 1775563200
+packet.message[0].categorypayload.controlmessage.controlmessagepayload.finraopenmessage.timestamp1.nanoseconds = 2147035
+packet.message[0].categorypayload.controlmessage.controlmessagepayload.finraopenmessage.timestamp1 = 1775563200002147035
+packet.message[0].categorypayload.controlmessage.controlmessagepayload.finraopenmessage.messageid = 1
+packet.message[0].categorypayload.controlmessage.controlmessagepayload.finraopenmessage.transactionid = 0
+packet.message[0].categorypayload.controlmessage.controlmessagepayload.finraopenmessage.participantreferencenumber = 71675222700081

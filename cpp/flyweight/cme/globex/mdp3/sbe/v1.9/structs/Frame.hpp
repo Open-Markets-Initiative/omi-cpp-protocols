@@ -27,15 +27,11 @@ class Frame {
     static constexpr std::size_t fixed_size = 10;
     std::size_t encoded_size() const { return 10; }
 
-    std::uint16_t message_size() const { return wire::read_u16_le(at(0)); }
-
-    MessageHeader message_header() const { return MessageHeader{ bytes_.subspan(2) }; }
+    MessageHeader message_header() const { return MessageHeader{ bytes_.subspan(0) }; }
 
     void print(std::ostream& out) const {
         out << "Frame{";
-        out << "message_size=";
-        out << message_size();
-        out << ", message_header=";
+        out << "message_header=";
         message_header().print(out);
         out << '}';
     }

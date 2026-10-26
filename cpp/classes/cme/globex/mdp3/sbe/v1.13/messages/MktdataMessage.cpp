@@ -28,7 +28,7 @@ MessageCode MktdataMessage::type() const { return message_type; }
 std::string_view MktdataMessage::name() const { return "Mktdata Message"; }
 
 void MktdataMessage::bind(const Frame& frame) {
-    template_id_ = frame.message_header().template_id();
+    template_id_ = frame.message_header().simple_binary_header().template_id();
 }
 
 std::optional<TemplateId> MktdataMessage::bound_template_id() const {

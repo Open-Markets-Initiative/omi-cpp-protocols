@@ -1,0 +1,19 @@
+# Iex.IexEquities.Tops.IexTp.v1.66 TradingStatusMessage: canonical values, read by the model
+datagram 0
+packet.iextpheader.version = 1
+packet.iextpheader.messageprotocolid = 32771
+packet.iextpheader.channelid = 1
+packet.iextpheader.sessionid = 1304625152
+packet.iextpheader.payloadlength = 24
+packet.iextpheader.messagecount = 1
+packet.iextpheader.streamoffset = 1426605
+packet.iextpheader.firstmessagesequencenumber = 55307
+packet.iextpheader.sendtime = 1720006080480411614
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 22
+packet.messages.message[0].messageheader.messagetype = H
+packet.messages.message[0].messagedata = packet.messages.message.messagedata.tradingstatusmessage
+packet.messages.message[0].messagedata.tradingstatusmessage.tradingstatus = H
+packet.messages.message[0].messagedata.tradingstatusmessage.timestamp = 1720006080480411614
+packet.messages.message[0].messagedata.tradingstatusmessage.symbol = ASLN
+packet.messages.message[0].messagedata.tradingstatusmessage.reason = NA

@@ -1,0 +1,18 @@
+# Iex.IexEquities.Deep.IexTp.v1.08 RetailLiquidityIndicatorMessage: canonical values, read by the model
+datagram 0
+packet.iextpheader.version = 1
+packet.iextpheader.messageprotocolid = 32772
+packet.iextpheader.channelid = 1
+packet.iextpheader.sessionid = 1315962880
+packet.iextpheader.payloadlength = 20
+packet.iextpheader.messagecount = 1
+packet.iextpheader.streamoffset = 11882477
+packet.iextpheader.firstmessagesequencenumber = 389360
+packet.iextpheader.sendtime = 1734964200059780385
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 18
+packet.messages.message[0].messageheader.messagetype = I
+packet.messages.message[0].messagedata = packet.messages.message.messagedata.retailliquidityindicatormessage
+packet.messages.message[0].messagedata.retailliquidityindicatormessage.retailliquidityindicator = B
+packet.messages.message[0].messagedata.retailliquidityindicatormessage.timestamp = 1734964200046734988
+packet.messages.message[0].messagedata.retailliquidityindicatormessage.symbol = SSO

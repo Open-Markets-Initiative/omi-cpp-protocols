@@ -3,7 +3,7 @@
 #include "../types/MdReqIdOptional.hpp"
 #include "../types/MdReqRejReason.hpp"
 #include "../types/Text.hpp"
-#include "../structs/MessageHeader.hpp"
+#include "../structs/SimpleBinaryHeader.hpp"
 
 namespace cme::mdp3::v8 {
 
@@ -30,8 +30,8 @@ struct RequestReject {
     }
 
     // parse the overlaid body from its selecting header
-    static const RequestReject* parse(const MessageHeader* header) {
-        return reinterpret_cast<const RequestReject*>(reinterpret_cast<const std::byte*>(header) + sizeof(MessageHeader));
+    static const RequestReject* parse(const SimpleBinaryHeader* header) {
+        return reinterpret_cast<const RequestReject*>(reinterpret_cast<const std::byte*>(header) + sizeof(SimpleBinaryHeader));
     }
 };
 

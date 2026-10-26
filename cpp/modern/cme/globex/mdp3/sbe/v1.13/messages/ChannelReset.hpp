@@ -2,7 +2,7 @@
 
 #include "../types/TransactTime.hpp"
 #include "../bitfields/MatchEventIndicator.hpp"
-#include "../structs/MessageHeader.hpp"
+#include "../structs/SimpleBinaryHeader.hpp"
 
 namespace cme::mdp3::v13 {
 
@@ -28,8 +28,8 @@ struct ChannelReset {
     }
 
     // parse the overlaid body from its selecting header
-    static const ChannelReset* parse(const MessageHeader* header) {
-        return reinterpret_cast<const ChannelReset*>(reinterpret_cast<const std::byte*>(header) + sizeof(MessageHeader));
+    static const ChannelReset* parse(const SimpleBinaryHeader* header) {
+        return reinterpret_cast<const ChannelReset*>(reinterpret_cast<const std::byte*>(header) + sizeof(SimpleBinaryHeader));
     }
 };
 

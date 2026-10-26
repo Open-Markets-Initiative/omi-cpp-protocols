@@ -38,7 +38,7 @@
 #include "../types/MainFraction.hpp"
 #include "../types/SubFraction.hpp"
 #include "../types/TradingReferenceDate.hpp"
-#include "../structs/MessageHeader.hpp"
+#include "../structs/SimpleBinaryHeader.hpp"
 
 namespace cme::mdp3::v9 {
 
@@ -100,8 +100,8 @@ struct MdInstrumentDefinitionSpread {
     }
 
     // parse the overlaid body from its selecting header
-    static const MdInstrumentDefinitionSpread* parse(const MessageHeader* header) {
-        return reinterpret_cast<const MdInstrumentDefinitionSpread*>(reinterpret_cast<const std::byte*>(header) + sizeof(MessageHeader));
+    static const MdInstrumentDefinitionSpread* parse(const SimpleBinaryHeader* header) {
+        return reinterpret_cast<const MdInstrumentDefinitionSpread*>(reinterpret_cast<const std::byte*>(header) + sizeof(SimpleBinaryHeader));
     }
 };
 

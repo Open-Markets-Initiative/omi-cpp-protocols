@@ -1,6 +1,6 @@
 # Protocol Tests
 
-One test per protocol and format (26 of them), each written against the surface that
+One test per protocol and format (162 of them), each written against the surface that
 format's program reads through, so a format is exercised the way its consumer uses it rather
 than through whichever surface was easiest to write against. Every test reads the captures
 its protocol declares in the repository's configuration and requires the declared message to
@@ -16,6 +16,8 @@ a failure rather than a pass.
   the `Visitor`, and requires the packet to encode back to exactly the bytes it was read
   from. The surface dump reads through, and the strictest of the three: a field decoded
   into the wrong member still encodes back wrong.
+- `tmp/`
+- `flyweight/`
 
 Beside them the repository's `CMakeLists.txt` runs each program on its protocol's first
 declared capture, and requires what that program is for: dump to print the message's class,

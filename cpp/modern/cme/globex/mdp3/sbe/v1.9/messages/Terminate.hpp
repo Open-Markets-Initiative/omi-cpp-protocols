@@ -5,7 +5,7 @@
 #include "../types/RequestTimestamp.hpp"
 #include "../types/ErrorCodes.hpp"
 #include "../types/Padding5.hpp"
-#include "../structs/MessageHeader.hpp"
+#include "../structs/SimpleBinaryHeader.hpp"
 
 namespace cme::mdp3::v9 {
 
@@ -34,8 +34,8 @@ struct Terminate {
     }
 
     // parse the overlaid body from its selecting header
-    static const Terminate* parse(const MessageHeader* header) {
-        return reinterpret_cast<const Terminate*>(reinterpret_cast<const std::byte*>(header) + sizeof(MessageHeader));
+    static const Terminate* parse(const SimpleBinaryHeader* header) {
+        return reinterpret_cast<const Terminate*>(reinterpret_cast<const std::byte*>(header) + sizeof(SimpleBinaryHeader));
     }
 };
 

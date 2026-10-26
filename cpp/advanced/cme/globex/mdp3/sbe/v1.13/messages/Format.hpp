@@ -91,21 +91,12 @@ inline std::ostream& operator<<(std::ostream& os, const binary_packet_header& va
     return os;
 }
 
-inline std::ostream& operator<<(std::ostream& os, const message& value) {
-    os << "message_size=" << value.message_size.get().value()
-       << ",message_header.block_length=" << value.message_header.block_length.get().value()
-       << ",message_header.template_id=\"" << sbe_mdp3::template_id::to_string(value.message_header.template_id.get().value()) << '"'
-       << ",message_header.schema_id=\"" << sbe_mdp3::schema_id::to_string(value.message_header.schema_id.get().value()) << '"'
-       << ",message_header.version=" << value.message_header.version.get().value()
-       ;
-    return os;
-}
-
 inline std::ostream& operator<<(std::ostream& os, const message_header& value) {
-    os << "block_length=" << value.block_length.get().value()
-       << ",template_id=\"" << sbe_mdp3::template_id::to_string(value.template_id.get().value()) << '"'
-       << ",schema_id=\"" << sbe_mdp3::schema_id::to_string(value.schema_id.get().value()) << '"'
-       << ",version=" << value.version.get().value()
+    os << "message_size=" << value.message_size.get().value()
+       << ",simple_binary_header.block_length=" << value.simple_binary_header.block_length.get().value()
+       << ",simple_binary_header.template_id=\"" << sbe_mdp3::template_id::to_string(value.simple_binary_header.template_id.get().value()) << '"'
+       << ",simple_binary_header.schema_id=\"" << sbe_mdp3::schema_id::to_string(value.simple_binary_header.schema_id.get().value()) << '"'
+       << ",simple_binary_header.version=" << value.simple_binary_header.version.get().value()
        ;
     return os;
 }
@@ -429,7 +420,6 @@ inline std::ostream& operator<<(std::ostream& os, const client_technical_header&
     os << "encoding_type=" << value.encoding_type.get().value()
        << ",message_sequence_number=" << value.message_sequence_number.get().value()
        << ",tcp_sending_time=" << value.tcp_sending_time.get().value()
-       << ",tcp_message_size=" << value.tcp_message_size.get().value()
        ;
     return os;
 }
@@ -438,7 +428,15 @@ inline std::ostream& operator<<(std::ostream& os, const server_technical_header&
     os << "encoding_type=" << value.encoding_type.get().value()
        << ",message_sequence_number=" << value.message_sequence_number.get().value()
        << ",tcp_sending_time=" << value.tcp_sending_time.get().value()
-       << ",tcp_message_size=" << value.tcp_message_size.get().value()
+       ;
+    return os;
+}
+
+inline std::ostream& operator<<(std::ostream& os, const simple_binary_header& value) {
+    os << "block_length=" << value.block_length.get().value()
+       << ",template_id=\"" << sbe_mdp3::template_id::to_string(value.template_id.get().value()) << '"'
+       << ",schema_id=\"" << sbe_mdp3::schema_id::to_string(value.schema_id.get().value()) << '"'
+       << ",version=" << value.version.get().value()
        ;
     return os;
 }

@@ -11,6 +11,7 @@
 #include "../common/View.hpp"
 #include "../enums/ParticipantId.hpp"
 #include "../structs/Timestamp1.hpp"
+#include "../common/Decimal.hpp"
 
 namespace siac::cts::output::cta::v2_11_b {
 
@@ -41,7 +42,7 @@ class IndexMessage {
 
     std::string_view index_symbol() const { return view::text(at(22), 11, ' '); }
 
-    std::int64_t index_value() const { return wire::read_i64_be(at(33)); }
+    Decimal index_value() const { return Decimal(static_cast<std::int64_t>(wire::read_i64_be(at(33))), -6); }
 
     void print(std::ostream& out) const {
         out << "IndexMessage{";

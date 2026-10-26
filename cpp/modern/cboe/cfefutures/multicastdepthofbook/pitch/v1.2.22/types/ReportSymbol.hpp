@@ -29,11 +29,12 @@ struct ReportSymbol {
         return std::string{value.data(), length()};
     }
 
-    // runtime length of field
+    // runtime length of field: its characters up to the fill after the last of them, so a space
+    // or a null inside the text is kept
     [[nodiscard]] std::size_t length() const {
-        std::size_t index = 0;
-        for (; index < size; ++index) {
-            if (value[index] == ' ') { break; }
+        std::size_t index = size;
+        for (; index > 0; --index) {
+            if (value[index - 1] != ' ') { break; }
         }
 
         return index;

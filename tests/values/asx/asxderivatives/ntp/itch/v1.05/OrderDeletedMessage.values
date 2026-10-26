@@ -1,0 +1,14 @@
+# Asx.AsxDerivatives.Ntp.Itch.v1.05 OrderDeletedMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 1567326030
+packet.packetheader.sequencenumber = 3649571
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 20
+packet.messages.message[0].messageheader.messagetype = D
+packet.messages.message[0].payload = packet.messages.message.payload.orderdeletedmessage
+packet.messages.message[0].payload.orderdeletedmessage.nanoseconds = 662796000
+packet.messages.message[0].payload.orderdeletedmessage.tradedate = 18143
+packet.messages.message[0].payload.orderdeletedmessage.tradeableinstrumentid = 124841
+packet.messages.message[0].payload.orderdeletedmessage.side = B
+packet.messages.message[0].payload.orderdeletedmessage.orderid = 6574556985549668358

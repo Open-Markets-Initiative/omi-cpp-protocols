@@ -4,35 +4,27 @@
 #include <cstdint>
 #include <ostream>
 
-#include "../enums/SchemaId.hpp"
-#include "../enums/TemplateId.hpp"
+#include "../structs/SimpleBinaryHeader.hpp"
 
 namespace cme::globex::mdp3::sbe::v1_8 {
 
-// Template ID and length of message root
+// Message Size followed by the Simple Binary Header
 class MessageHeader {
   public:
     // Bytes of this struct on the wire
-    static constexpr std::size_t wire_size = 8;
+    static constexpr std::size_t wire_size = 10;
 
     MessageHeader() = default;
-    MessageHeader(std::uint16_t block_length, TemplateId template_id, SchemaId schema_id, std::uint16_t version);
+    MessageHeader(std::uint16_t message_size, const SimpleBinaryHeader& simple_binary_header);
 
-    // Block Length:
-    std::uint16_t block_length() const;
-    void set_block_length(std::uint16_t value);
+    // Message Size: Message Size
+    std::uint16_t message_size() const;
+    void set_message_size(std::uint16_t value);
 
-    // Template Id:
-    TemplateId template_id() const;
-    void set_template_id(TemplateId value);
-
-    // Schema Id:
-    SchemaId schema_id() const;
-    void set_schema_id(SchemaId value);
-
-    // Version:
-    std::uint16_t version() const;
-    void set_version(std::uint16_t value);
+    // Simple Binary Header: Template ID and length of message root
+    const SimpleBinaryHeader& simple_binary_header() const;
+    SimpleBinaryHeader& simple_binary_header();
+    void set_simple_binary_header(const SimpleBinaryHeader& value);
 
     // Read this from the bytes at data, and return how many were consumed; throws DecodeError when too few
     std::size_t decode(const std::byte* data, std::size_t length);
@@ -46,10 +38,8 @@ class MessageHeader {
     bool operator!=(const MessageHeader& other) const;
 
   private:
-    std::uint16_t block_length_{};
-    TemplateId template_id_{};
-    SchemaId schema_id_{};
-    std::uint16_t version_{};
+    std::uint16_t message_size_{};
+    SimpleBinaryHeader simple_binary_header_{};
 };
 
 std::ostream& operator<<(std::ostream& out, const MessageHeader& value);

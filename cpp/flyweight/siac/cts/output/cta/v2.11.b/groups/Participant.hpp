@@ -9,6 +9,7 @@
 #include "../common/Print.hpp"
 #include "../common/View.hpp"
 #include "../enums/ParticipantId.hpp"
+#include "../common/Decimal.hpp"
 
 namespace siac::cts::output::cta::v2_11_b {
 
@@ -29,7 +30,7 @@ class Participant {
 
     ParticipantId participant_id() const { return static_cast<ParticipantId>(wire::read_char(at(0))); }
 
-    std::uint64_t fractional_trade_total_volume() const { return wire::read_u64_be(at(1)); }
+    Decimal fractional_trade_total_volume() const { return Decimal(static_cast<std::int64_t>(wire::read_u64_be(at(1))), -6); }
 
     void print(std::ostream& out) const {
         out << "Participant{";

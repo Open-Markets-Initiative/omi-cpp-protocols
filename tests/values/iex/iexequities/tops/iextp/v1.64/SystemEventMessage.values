@@ -1,0 +1,17 @@
+# Iex.IexEquities.Tops.IexTp.v1.64 SystemEventMessage: canonical values, read by the model
+datagram 0
+packet.iextpheader.version = 1
+packet.iextpheader.messageprotocolid = 32771
+packet.iextpheader.channelid = 1
+packet.iextpheader.sessionid = 1150681088
+packet.iextpheader.payloadlength = 12
+packet.iextpheader.messagecount = 1
+packet.iextpheader.streamoffset = 1035245
+packet.iextpheader.firstmessagesequencenumber = 35579
+packet.iextpheader.sendtime = 1517063400001073818
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 10
+packet.messages.message[0].messageheader.messagetype = S
+packet.messages.message[0].messagedata = packet.messages.message.messagedata.systemeventmessage
+packet.messages.message[0].messagedata.systemeventmessage.systemevent = R
+packet.messages.message[0].messagedata.systemeventmessage.timestamp = 1517063400001073818

@@ -1,0 +1,13 @@
+# Jpx.OseDerivatives.GeniumInet.Itch.v5.0.6 OrderDeleteMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = JP29787691
+packet.packetheader.sequencenumber = 14822435
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 18
+packet.messages.message[0].messageheader.messagetype = D
+packet.messages.message[0].payload = packet.messages.message.payload.orderdeletemessage
+packet.messages.message[0].payload.orderdeletemessage.nanoseconds = 2985737
+packet.messages.message[0].payload.orderdeletemessage.orderid = 8187978167705104281
+packet.messages.message[0].payload.orderdeletemessage.orderbookid = 196724
+packet.messages.message[0].payload.orderdeletemessage.side = S

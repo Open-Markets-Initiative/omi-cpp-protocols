@@ -59,7 +59,7 @@ class FractionalTradeCancelErrorMessage {
 
     Decimal trade_price() const { return Decimal(static_cast<std::int64_t>(wire::read_u64_be(at(38))), -6); }
 
-    std::uint64_t fractional_trade_volume() const { return wire::read_u64_be(at(46)); }
+    Decimal fractional_trade_volume() const { return Decimal(static_cast<std::int64_t>(wire::read_u64_be(at(46))), -6); }
 
     std::uint8_t sellers_sale_days() const { return wire::read_u8(at(54)); }
 
@@ -91,7 +91,7 @@ class FractionalTradeCancelErrorMessage {
 
     Decimal consolidated_low_price() const { return Decimal(static_cast<std::int64_t>(wire::read_u64_be(at(99))), -6); }
 
-    std::uint64_t consolidated_fractional_total_volume() const { return wire::read_u64_be(at(107)); }
+    Decimal consolidated_fractional_total_volume() const { return Decimal(static_cast<std::int64_t>(wire::read_u64_be(at(107))), -6); }
 
     char consolidated_tick() const { return wire::read_char(at(115)); }
 
@@ -105,7 +105,7 @@ class FractionalTradeCancelErrorMessage {
 
     Decimal participant_open_price() const { return Decimal(static_cast<std::int64_t>(wire::read_u64_be(at(144))), -6); }
 
-    std::uint64_t participant_fractional_total_volume() const { return wire::read_u64_be(at(152)); }
+    Decimal participant_fractional_total_volume() const { return Decimal(static_cast<std::int64_t>(wire::read_u64_be(at(152))), -6); }
 
     char participant_tick() const { return wire::read_char(at(160)); }
 

@@ -1,0 +1,26 @@
+# Asx.AsxDerivatives.Ntp.Itch.v1.05 CombinationTradeExecutedMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 1567326030
+packet.packetheader.sequencenumber = 3563653
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 80
+packet.messages.message[0].messageheader.messagetype = p
+packet.messages.message[0].payload = packet.messages.message.payload.combinationtradeexecutedmessage
+packet.messages.message[0].payload.combinationtradeexecutedmessage.nanoseconds = 100208000
+packet.messages.message[0].payload.combinationtradeexecutedmessage.tradedate = 18143
+packet.messages.message[0].payload.combinationtradeexecutedmessage.tradeableinstrumentid = 60806
+packet.messages.message[0].payload.combinationtradeexecutedmessage.tradetype = R
+packet.messages.message[0].payload.combinationtradeexecutedmessage.tradeid = 6574550498567798787
+packet.messages.message[0].payload.combinationtradeexecutedmessage.executedquantity = 1
+packet.messages.message[0].payload.combinationtradeexecutedmessage.tradeprice = 993400
+packet.messages.message[0].payload.combinationtradeexecutedmessage.buyertradeableinstrumentid = 77046
+packet.messages.message[0].payload.combinationtradeexecutedmessage.buyerside = S
+packet.messages.message[0].payload.combinationtradeexecutedmessage.buyerorderid = 0
+packet.messages.message[0].payload.combinationtradeexecutedmessage.buyercombinationtradeid = 0
+packet.messages.message[0].payload.combinationtradeexecutedmessage.buyerparticipantid = 
+packet.messages.message[0].payload.combinationtradeexecutedmessage.sellertradeableinstrumentid = 77046
+packet.messages.message[0].payload.combinationtradeexecutedmessage.sellerside = B
+packet.messages.message[0].payload.combinationtradeexecutedmessage.sellerorderid = 6574548375914430465
+packet.messages.message[0].payload.combinationtradeexecutedmessage.sellercombinationtradeid = 6574550498567798785
+packet.messages.message[0].payload.combinationtradeexecutedmessage.sellerparticipantid = 

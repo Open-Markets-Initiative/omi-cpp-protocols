@@ -1,0 +1,21 @@
+# Asx.AsxDerivatives.Ntp.Itch.v1.05 SecondsMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 1567326030
+packet.packetheader.sequencenumber = 3524316
+packet.packetheader.messagecount = 2
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 5
+packet.messages.message[0].messageheader.messagetype = T
+packet.messages.message[0].payload = packet.messages.message.payload.secondsmessage
+packet.messages.message[0].payload.secondsmessage.second = 1567494517
+packet.messages.message[1].messageheader.messagelength = 40
+packet.messages.message[1].messageheader.messagetype = A
+packet.messages.message[1].payload = packet.messages.message.payload.addordermessage
+packet.messages.message[1].payload.addordermessage.nanoseconds = 21574000
+packet.messages.message[1].payload.addordermessage.tradedate = 18143
+packet.messages.message[1].payload.addordermessage.tradeableinstrumentid = 77030
+packet.messages.message[1].payload.addordermessage.side = S
+packet.messages.message[1].payload.addordermessage.orderid = 6574548522719264769
+packet.messages.message[1].payload.addordermessage.orderbookpriority = 4141658
+packet.messages.message[1].payload.addordermessage.quantity = 42
+packet.messages.message[1].payload.addordermessage.price = -1000

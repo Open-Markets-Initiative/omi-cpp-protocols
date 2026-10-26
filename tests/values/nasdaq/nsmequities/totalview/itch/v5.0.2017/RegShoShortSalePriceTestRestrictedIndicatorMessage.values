@@ -1,0 +1,14 @@
+# Nasdaq.NsmEquities.TotalView.Itch.v5.0.2017 RegShoShortSalePriceTestRestrictedIndicatorMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 000010059B
+packet.packetheader.sequencenumber = 2435
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 20
+packet.messages.message[0].messageheader.messagetype = Y
+packet.messages.message[0].payload = packet.messages.message.payload.regshoshortsalepricetestrestrictedindicatormessage
+packet.messages.message[0].payload.regshoshortsalepricetestrestrictedindicatormessage.locatecode = 5
+packet.messages.message[0].payload.regshoshortsalepricetestrestrictedindicatormessage.trackingnumber = 0
+packet.messages.message[0].payload.regshoshortsalepricetestrestrictedindicatormessage.timestamp = 11204528482637
+packet.messages.message[0].payload.regshoshortsalepricetestrestrictedindicatormessage.stock = AAC
+packet.messages.message[0].payload.regshoshortsalepricetestrestrictedindicatormessage.regshoaction = 0

@@ -1,0 +1,17 @@
+# Asx.AsxDerivatives.Ntp.Itch.v1.05 AddOrderMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 1567326030
+packet.packetheader.sequencenumber = 3775770
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 40
+packet.messages.message[0].messageheader.messagetype = A
+packet.messages.message[0].payload = packet.messages.message.payload.addordermessage
+packet.messages.message[0].payload.addordermessage.nanoseconds = 483375000
+packet.messages.message[0].payload.addordermessage.tradedate = 18143
+packet.messages.message[0].payload.addordermessage.tradeableinstrumentid = 124841
+packet.messages.message[0].payload.addordermessage.side = B
+packet.messages.message[0].payload.addordermessage.orderid = 6574565075380617217
+packet.messages.message[0].payload.addordermessage.orderbookpriority = 4292968
+packet.messages.message[0].payload.addordermessage.quantity = 1
+packet.messages.message[0].payload.addordermessage.price = 65270000

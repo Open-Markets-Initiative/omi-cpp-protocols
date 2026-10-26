@@ -1,0 +1,18 @@
+# Iex.IexEquities.DeepPlus.IexTp.v1.05 RetailLiquidityIndicatorMessage: canonical values, read by the model
+datagram 0
+packet.iextpheader.version = 1
+packet.iextpheader.messageprotocolid = 32773
+packet.iextpheader.channelid = 1
+packet.iextpheader.sessionid = 1339949056
+packet.iextpheader.payloadlength = 20
+packet.iextpheader.messagecount = 1
+packet.iextpheader.streamoffset = 16222145
+packet.iextpheader.firstmessagesequencenumber = 488185
+packet.iextpheader.sendtime = 1766586600091342782
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 18
+packet.messages.message[0].messageheader.messagetype = I
+packet.messages.message[0].messagedata = packet.messages.message.messagedata.retailliquidityindicatormessage
+packet.messages.message[0].messagedata.retailliquidityindicatormessage.retailliquidityindicator =  
+packet.messages.message[0].messagedata.retailliquidityindicatormessage.timestamp = 1766586600091250574
+packet.messages.message[0].messagedata.retailliquidityindicatormessage.symbol = HDV

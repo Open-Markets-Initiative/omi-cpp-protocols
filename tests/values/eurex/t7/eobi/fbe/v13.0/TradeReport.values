@@ -1,0 +1,25 @@
+# Eurex.T7.Eobi.Fbe.v13.0 TradeReport: canonical values, read by the model
+datagram 0
+packet.packetheader.eobiheader.bodylen = 32
+packet.packetheader.eobiheader.templateid = 13004
+packet.packetheader.eobiheader.msgseqnum = 4294967295
+packet.packetheader.applseqnum = 52821090
+packet.packetheader.marketsegmentid = 1210
+packet.packetheader.partitionid = 7
+packet.packetheader.completionindicator = 1
+packet.packetheader.applseqresetindicator = 0
+packet.packetheader.dscp = 0
+packet.packetheader.transacttime = 1744639329293337560
+packet.message[0].messageheadercomp.bodylen = 56
+packet.message[0].messageheadercomp.templateid = 13201
+packet.message[0].messageheadercomp.msgseqnum = 454998013
+packet.message[0].payload = packet.message.payload.tradereport
+packet.message[0].payload.tradereport.securityid = 11044582
+packet.message[0].payload.tradereport.transacttime = 1744639329293258903
+packet.message[0].payload.tradereport.lastqty = 20
+packet.message[0].payload.tradereport.lastpx = 281.6
+packet.message[0].payload.tradereport.trdmatchid = 637540119
+packet.message[0].payload.tradereport.matchtype = 13
+packet.message[0].payload.tradereport.matchsubtype = 255
+packet.message[0].payload.tradereport.algorithmictradeindicator = 255
+packet.message[0].payload.tradereport.tradecondition = 65535

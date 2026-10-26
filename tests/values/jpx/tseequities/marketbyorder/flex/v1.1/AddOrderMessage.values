@@ -1,0 +1,25 @@
+# Jpx.TseEquities.MarketByOrder.Flex.v1.1 AddOrderMessage: canonical values, read by the model
+datagram 0
+udppacket.packetheader.multicastgroupnumber = 51
+udppacket.packetheader.numberofsystemreboots = 0
+udppacket.packetheader.sequencenumber = 117
+udppacket.packetheader.issuecode = 6857
+udppacket.packetheader.updatenumber = 2
+udppacket.packetheader.packetnumber = 0
+udppacket.packetheader.totalnumberofpackets = 0
+udppacket.packetheader.utilityflag = 0
+udppacket.packetheader.messagecount = 2
+udppacket.message[0].messageheader.taglength = 5
+udppacket.message[0].messageheader.messagetype = T
+udppacket.message[0].payload = udppacket.message.payload.secondstimestampmessage
+udppacket.message[0].payload.secondstimestampmessage.timeseconds = 1730761200
+udppacket.message[1].messageheader.taglength = 26
+udppacket.message[1].messageheader.messagetype = A
+udppacket.message[1].payload = udppacket.message.payload.addordermessage
+udppacket.message[1].payload.addordermessage.timemicroseconds = 50328
+udppacket.message[1].payload.addordermessage.orderid = 2
+udppacket.message[1].payload.addordermessage.side = S
+udppacket.message[1].payload.addordermessage.quantity = 100
+udppacket.message[1].payload.addordermessage.price = 9703
+udppacket.message[1].payload.addordermessage.ordercondition = 0
+udppacket.message[1].payload.addordermessage.modificationflag = 0

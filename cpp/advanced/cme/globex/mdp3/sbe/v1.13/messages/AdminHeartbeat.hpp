@@ -2,7 +2,6 @@
 
 #include <cstddef>
 #include "../structs/MessageHeader.hpp"
-#include "../types/MessageSize.hpp"
 
 namespace cme::mdp3::v13 {
 
@@ -13,9 +12,7 @@ namespace sbe_mdp3 = ::cme::mdp3::v13;
 // Admin Heartbeat
 struct admin_heartbeat {
 
-    // Transport framing: message size precedes the SBE header on the wire
-    sbe_mdp3::message_size message_size;
-    sbe_mdp3::message_header header = {{}, template_id::enum_type::admin_heartbeat, schema_id::enum_type::mktdata, version(13)};
+    sbe_mdp3::message_header header = {std::uint16_t(sizeof(sbe_mdp3::message_header)), {}};
 
     // parse method
     static admin_heartbeat* parse(std::byte* buffer) {
@@ -30,7 +27,7 @@ struct admin_heartbeat {
 };
 
 // layout verification
-static_assert(sizeof(admin_heartbeat) == sizeof(sbe_mdp3::message_size) + sizeof(sbe_mdp3::message_header) + 0, "unexpected sizeof admin_heartbeat");
+static_assert(sizeof(admin_heartbeat) == sizeof(sbe_mdp3::message_header) + 0, "unexpected sizeof admin_heartbeat");
 
 #pragma pack(pop)
 }

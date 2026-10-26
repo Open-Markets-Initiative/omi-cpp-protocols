@@ -123,8 +123,8 @@ void expect(const char* name, const char* relative) {
 
 int main() {
     std::printf("== Jpx.TseEquities.MarketByOrder.Flex.v1.1 (classes)\n");
-    expect<protocol::UdpPacket, protocol::Visitor, protocol::CommunicationControlMessage>("CommunicationControlMessage", "Jpx/TseEquities.MarketByOrder.Flex.v1.1/CommunicationControlMessage.pcap");
     expect<protocol::UdpPacket, protocol::Visitor, protocol::AddOrderMessage>("AddOrderMessage", "Jpx/TseEquities.MarketByOrder.Flex.v1.1/AddOrderMessage.pcap");
+    expect<protocol::UdpPacket, protocol::Visitor, protocol::CommunicationControlMessage>("CommunicationControlMessage", "Jpx/TseEquities.MarketByOrder.Flex.v1.1/CommunicationControlMessage.pcap");
     expect<protocol::UdpPacket, protocol::Visitor, protocol::OrderDeleteMessage>("OrderDeleteMessage", "Jpx/TseEquities.MarketByOrder.Flex.v1.1/OrderDeleteMessage.pcap");
     expect<protocol::UdpPacket, protocol::Visitor, protocol::TradingStatusMessage>("TradingStatusMessage", "Jpx/TseEquities.MarketByOrder.Flex.v1.1/TradingStatusMessage.pcap");
     return failures == 0 ? 0 : 1;

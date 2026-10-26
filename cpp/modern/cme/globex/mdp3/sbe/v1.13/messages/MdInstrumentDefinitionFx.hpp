@@ -47,7 +47,7 @@
 #include "../types/AltMinQuoteLife.hpp"
 #include "../types/AltPriceIncrementConstraint.hpp"
 #include "../types/MaxBidAskConstraint.hpp"
-#include "../structs/MessageHeader.hpp"
+#include "../structs/SimpleBinaryHeader.hpp"
 
 namespace cme::mdp3::v13 {
 
@@ -118,8 +118,8 @@ struct MdInstrumentDefinitionFx {
     }
 
     // parse the overlaid body from its selecting header
-    static const MdInstrumentDefinitionFx* parse(const MessageHeader* header) {
-        return reinterpret_cast<const MdInstrumentDefinitionFx*>(reinterpret_cast<const std::byte*>(header) + sizeof(MessageHeader));
+    static const MdInstrumentDefinitionFx* parse(const SimpleBinaryHeader* header) {
+        return reinterpret_cast<const MdInstrumentDefinitionFx*>(reinterpret_cast<const std::byte*>(header) + sizeof(SimpleBinaryHeader));
     }
 };
 

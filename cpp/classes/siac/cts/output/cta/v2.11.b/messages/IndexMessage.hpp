@@ -7,6 +7,7 @@
 #include <string>
 #include <string_view>
 
+#include "../common/Decimal.hpp"
 #include "../enums/ParticipantId.hpp"
 #include "../messages/IndicesMessagePayload.hpp"
 #include "../structs/Timestamp1.hpp"
@@ -24,7 +25,7 @@ class IndexMessage : public IndicesMessagePayload {
     static constexpr std::size_t wire_size = 41;
 
     IndexMessage() = default;
-    IndexMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& index_symbol, std::int64_t index_value);
+    IndexMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& index_symbol, Decimal index_value);
 
     // Participant Id: Identifies the Participant or Processor that initiated the message
     ParticipantId participant_id() const;
@@ -55,8 +56,8 @@ class IndexMessage : public IndicesMessagePayload {
 
     // Index Value: Represents a statistical composite that measures changes in the economy or
     // in financial markets. Has implied 6 decimal places
-    std::int64_t index_value() const;
-    void set_index_value(std::int64_t value);
+    Decimal index_value() const;
+    void set_index_value(Decimal value);
 
     // IndicesMessagePayload
     IndicesMessagePayloadCode type() const override;
@@ -79,7 +80,7 @@ class IndexMessage : public IndicesMessagePayload {
     std::uint32_t transaction_id_{};
     std::int64_t participant_reference_number_{};
     std::string index_symbol_{};
-    std::int64_t index_value_{};
+    Decimal index_value_{ 0, -6 };
 };
 
 } // namespace siac::cts::output::cta::v2_11_b

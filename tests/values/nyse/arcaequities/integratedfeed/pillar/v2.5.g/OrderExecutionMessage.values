@@ -1,0 +1,25 @@
+# Nyse.ArcaEquities.IntegratedFeed.Pillar.v2.5.g OrderExecutionMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 58
+packet.packetheader.deliveryflag = 11
+packet.packetheader.numbermsgs = 1
+packet.packetheader.seqnum = 1000565
+packet.packetheader.sendtime.seconds = 1692710999
+packet.packetheader.sendtime.nanoseconds = 999998464
+packet.packetheader.sendtime = 1692710999999998464
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 42
+packet.messages.message[0].messageheader.messagetype = 103
+packet.messages.message[0].payload = packet.messages.message.payload.orderexecutionmessage
+packet.messages.message[0].payload.orderexecutionmessage.sourcetimens = 999986176
+packet.messages.message[0].payload.orderexecutionmessage.symbolindex = 10130
+packet.messages.message[0].payload.orderexecutionmessage.symbolseqnum = 108558
+packet.messages.message[0].payload.orderexecutionmessage.orderid = 16047372208777278
+packet.messages.message[0].payload.orderexecutionmessage.tradeid = 137540
+packet.messages.message[0].payload.orderexecutionmessage.price = 169760000
+packet.messages.message[0].payload.orderexecutionmessage.volume = 25
+packet.messages.message[0].payload.orderexecutionmessage.printableflag = 1
+packet.messages.message[0].payload.orderexecutionmessage.tradecond1 = @
+packet.messages.message[0].payload.orderexecutionmessage.tradecond2 = F
+packet.messages.message[0].payload.orderexecutionmessage.tradecond3 = T
+packet.messages.message[0].payload.orderexecutionmessage.tradecond4 = I

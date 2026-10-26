@@ -51,8 +51,8 @@ void process_segment(Handler& handler, const std::byte* data, std::size_t length
 
         if (cursor + block_size > end) break;
 
-        // Dispatch from after the message length field (pointing to dispatch struct)
-        dispatch(handler, cursor + sizeof(message_length), msg_len, packet_receive_time, *hdr);
+        // Dispatch the whole message, its length field included: dispatch reads past the length itself
+        dispatch(handler, cursor, block_size, packet_receive_time, *hdr);
         cursor += block_size;
     }
 }

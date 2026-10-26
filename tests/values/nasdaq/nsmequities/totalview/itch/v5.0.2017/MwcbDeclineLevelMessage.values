@@ -1,0 +1,15 @@
+# Nasdaq.NsmEquities.TotalView.Itch.v5.0.2017 MwcbDeclineLevelMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 000010059B
+packet.packetheader.sequencenumber = 6112943
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 35
+packet.messages.message[0].messageheader.messagetype = V
+packet.messages.message[0].payload = packet.messages.message.payload.mwcbdeclinelevelmessage
+packet.messages.message[0].payload.mwcbdeclinelevelmessage.stocklocate = 0
+packet.messages.message[0].payload.mwcbdeclinelevelmessage.trackingnumber = 0
+packet.messages.message[0].payload.mwcbdeclinelevelmessage.timestamp = 25205979745535
+packet.messages.message[0].payload.mwcbdeclinelevelmessage.level1 = 4091.78
+packet.messages.message[0].payload.mwcbdeclinelevelmessage.level2 = 3827.79
+packet.messages.message[0].payload.mwcbdeclinelevelmessage.level3 = 3519.81

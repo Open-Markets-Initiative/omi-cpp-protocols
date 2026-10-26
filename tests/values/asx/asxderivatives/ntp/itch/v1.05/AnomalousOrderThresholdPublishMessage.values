@@ -1,0 +1,18 @@
+# Asx.AsxDerivatives.Ntp.Itch.v1.05 AnomalousOrderThresholdPublishMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 1567326030
+packet.packetheader.sequencenumber = 3903893
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 59
+packet.messages.message[0].messageheader.messagetype = W
+packet.messages.message[0].payload = packet.messages.message.payload.anomalousorderthresholdpublishmessage
+packet.messages.message[0].payload.anomalousorderthresholdpublishmessage.nanoseconds = 21047000
+packet.messages.message[0].payload.anomalousorderthresholdpublishmessage.tradedate = 18143
+packet.messages.message[0].payload.anomalousorderthresholdpublishmessage.tradeableinstrumentid = 161259
+packet.messages.message[0].payload.anomalousorderthresholdpublishmessage.aotprice = 63380000
+packet.messages.message[0].payload.anomalousorderthresholdpublishmessage.aotupperprice = 63950000
+packet.messages.message[0].payload.anomalousorderthresholdpublishmessage.aotlowerprice = 62810000
+packet.messages.message[0].payload.anomalousorderthresholdpublishmessage.etrprice = 63380000
+packet.messages.message[0].payload.anomalousorderthresholdpublishmessage.etrupperprice = 66540000
+packet.messages.message[0].payload.anomalousorderthresholdpublishmessage.etrlowerprice = 60220000

@@ -1,0 +1,17 @@
+# Nyse.ArcaEquities.IntegratedFeed.Pillar.v2.5.g RetailPriceImprovementMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 33
+packet.packetheader.deliveryflag = 11
+packet.packetheader.numbermsgs = 1
+packet.packetheader.seqnum = 899767
+packet.packetheader.sendtime.seconds = 1692711000
+packet.packetheader.sendtime.nanoseconds = 9936128
+packet.packetheader.sendtime = 1692711000009936128
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 17
+packet.messages.message[0].messageheader.messagetype = 114
+packet.messages.message[0].payload = packet.messages.message.payload.retailpriceimprovementmessage
+packet.messages.message[0].payload.retailpriceimprovementmessage.sourcetimens = 9879040
+packet.messages.message[0].payload.retailpriceimprovementmessage.symbolindex = 28187
+packet.messages.message[0].payload.retailpriceimprovementmessage.symbolseqnum = 168
+packet.messages.message[0].payload.retailpriceimprovementmessage.rpiindicator = C

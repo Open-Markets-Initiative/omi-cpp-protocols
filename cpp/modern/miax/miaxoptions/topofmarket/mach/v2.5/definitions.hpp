@@ -1,6 +1,6 @@
 #pragma once
 
-#include "structs/MachMessage.hpp"
+#include "structs/MachPacketHeader.hpp"
 #include "structs/ApplicationMessage.hpp"
 #include "structs/SesmPacketHeader.hpp"
 #include "structs/SequencedDataPacket.hpp"
@@ -30,4 +30,4 @@
 #include "messages/EndOfRefreshNotificationMessage.hpp"
 
 #include "iterators/SesmTcpPacketIterator.hpp"
-#include "iterators/UdpPacketIterator.hpp"
+#include "iterators/MachMessageIterator.hpp"

@@ -1,0 +1,18 @@
+# Nasdaq.NsmEquities.TotalView.Itch.v5.0.2026 NonCrossTradeMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = S061226   
+packet.packetheader.sequencenumber = 4
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 44
+packet.messages.message[0].messageheader.messagetype = P
+packet.messages.message[0].payload = packet.messages.message.payload.noncrosstrademessage
+packet.messages.message[0].payload.noncrosstrademessage.stocklocate = 807
+packet.messages.message[0].payload.noncrosstrademessage.trackingnumber = 2
+packet.messages.message[0].payload.noncrosstrademessage.timestamp = 14400027281321
+packet.messages.message[0].payload.noncrosstrademessage.orderreferencenumber = 0
+packet.messages.message[0].payload.noncrosstrademessage.buysellindicator = B
+packet.messages.message[0].payload.noncrosstrademessage.shares = 1
+packet.messages.message[0].payload.noncrosstrademessage.stock = ASML
+packet.messages.message[0].payload.noncrosstrademessage.price = 1855.23
+packet.messages.message[0].payload.noncrosstrademessage.matchnumber = 25604

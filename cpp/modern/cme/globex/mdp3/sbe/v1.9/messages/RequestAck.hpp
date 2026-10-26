@@ -3,7 +3,7 @@
 #include "../types/MdReqId.hpp"
 #include "../types/SubscriptionReqType.hpp"
 #include "../types/MdReqIdStatus.hpp"
-#include "../structs/MessageHeader.hpp"
+#include "../structs/SimpleBinaryHeader.hpp"
 
 namespace cme::mdp3::v9 {
 
@@ -30,8 +30,8 @@ struct RequestAck {
     }
 
     // parse the overlaid body from its selecting header
-    static const RequestAck* parse(const MessageHeader* header) {
-        return reinterpret_cast<const RequestAck*>(reinterpret_cast<const std::byte*>(header) + sizeof(MessageHeader));
+    static const RequestAck* parse(const SimpleBinaryHeader* header) {
+        return reinterpret_cast<const RequestAck*>(reinterpret_cast<const std::byte*>(header) + sizeof(SimpleBinaryHeader));
     }
 };
 

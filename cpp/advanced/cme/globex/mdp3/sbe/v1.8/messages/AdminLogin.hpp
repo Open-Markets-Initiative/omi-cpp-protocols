@@ -3,7 +3,6 @@
 #include <cstddef>
 #include "../structs/MessageHeader.hpp"
 #include "../types/HeartBtInt.hpp"
-#include "../types/MessageSize.hpp"
 
 namespace cme::mdp3::v8 {
 
@@ -18,9 +17,7 @@ struct admin_login {
         sbe_mdp3::heart_bt_int heart_bt_int;
     };
 
-    // Transport framing: message size precedes the SBE header on the wire
-    sbe_mdp3::message_size message_size;
-    sbe_mdp3::message_header header = {{}, template_id::enum_type::admin_login, schema_id::enum_type::mktdata, version(8)};
+    sbe_mdp3::message_header header = {std::uint16_t(sizeof(sbe_mdp3::message_header) + sizeof(fields_type)), {}};
 
     fields_type fields;
 
@@ -39,7 +36,7 @@ struct admin_login {
 // layout verification
 static_assert(offsetof(admin_login::fields_type, heart_bt_int) == 0, "unexpected offset of admin_login::fields_type::heart_bt_int");
 static_assert(sizeof(admin_login::fields_type) == 1, "unexpected sizeof admin_login::fields_type");
-static_assert(sizeof(admin_login) == sizeof(sbe_mdp3::message_size) + sizeof(sbe_mdp3::message_header) + 1, "unexpected sizeof admin_login");
+static_assert(sizeof(admin_login) == sizeof(sbe_mdp3::message_header) + 1, "unexpected sizeof admin_login");
 
 #pragma pack(pop)
 }

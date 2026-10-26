@@ -11,7 +11,6 @@
 #include "../types/SecurityTradingStatus.hpp"
 #include "../types/HaltReason.hpp"
 #include "../types/SecurityTradingEvent.hpp"
-#include "../types/MessageSize.hpp"
 
 namespace cme::mdp3::v13 {
 
@@ -34,9 +33,7 @@ struct security_status {
         sbe_mdp3::security_trading_event security_trading_event;
     };
 
-    // Transport framing: message size precedes the SBE header on the wire
-    sbe_mdp3::message_size message_size;
-    sbe_mdp3::message_header header = {{}, template_id::enum_type::security_status, schema_id::enum_type::mktdata, version(13)};
+    sbe_mdp3::message_header header = {std::uint16_t(sizeof(sbe_mdp3::message_header) + sizeof(fields_type)), {}};
 
     fields_type fields;
 
@@ -63,7 +60,7 @@ static_assert(offsetof(security_status::fields_type, security_trading_status) ==
 static_assert(offsetof(security_status::fields_type, halt_reason) == 28, "unexpected offset of security_status::fields_type::halt_reason");
 static_assert(offsetof(security_status::fields_type, security_trading_event) == 29, "unexpected offset of security_status::fields_type::security_trading_event");
 static_assert(sizeof(security_status::fields_type) == 30, "unexpected sizeof security_status::fields_type");
-static_assert(sizeof(security_status) == sizeof(sbe_mdp3::message_size) + sizeof(sbe_mdp3::message_header) + 30, "unexpected sizeof security_status");
+static_assert(sizeof(security_status) == sizeof(sbe_mdp3::message_header) + 30, "unexpected sizeof security_status");
 
 #pragma pack(pop)
 }

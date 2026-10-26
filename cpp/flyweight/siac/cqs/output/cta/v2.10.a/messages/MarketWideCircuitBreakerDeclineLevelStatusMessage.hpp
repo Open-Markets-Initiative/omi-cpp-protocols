@@ -10,6 +10,7 @@
 #include "../common/View.hpp"
 #include "../enums/ParticipantId.hpp"
 #include "../structs/Timestamp1.hpp"
+#include "../common/Decimal.hpp"
 
 namespace siac::cqs::output::cta::v2_10_a {
 
@@ -39,11 +40,11 @@ class MarketWideCircuitBreakerDeclineLevelStatusMessage {
 
     std::int64_t participant_reference_number() const { return wire::read_i64_be(at(14)); }
 
-    std::int64_t mwcb_level_1() const { return wire::read_i64_be(at(22)); }
+    Decimal mwcb_level_1() const { return Decimal(static_cast<std::int64_t>(wire::read_i64_be(at(22))), -6); }
 
-    std::int64_t mwcb_level_2() const { return wire::read_i64_be(at(30)); }
+    Decimal mwcb_level_2() const { return Decimal(static_cast<std::int64_t>(wire::read_i64_be(at(30))), -6); }
 
-    std::int64_t mwcb_level_3() const { return wire::read_i64_be(at(38)); }
+    Decimal mwcb_level_3() const { return Decimal(static_cast<std::int64_t>(wire::read_i64_be(at(38))), -6); }
 
     char reserved() const { return wire::read_char(at(46)); }
 

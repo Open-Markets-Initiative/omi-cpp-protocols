@@ -1,0 +1,26 @@
+# Nasdaq.NsmEquities.TotalView.Itch.v5.0.2017 StockDirectoryMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 000010059B
+packet.packetheader.sequencenumber = 2
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 39
+packet.messages.message[0].messageheader.messagetype = R
+packet.messages.message[0].payload = packet.messages.message.payload.stockdirectorymessage
+packet.messages.message[0].payload.stockdirectorymessage.stocklocate = 1
+packet.messages.message[0].payload.stockdirectorymessage.trackingnumber = 0
+packet.messages.message[0].payload.stockdirectorymessage.timestamp = 11204486613252
+packet.messages.message[0].payload.stockdirectorymessage.stock = A
+packet.messages.message[0].payload.stockdirectorymessage.marketcategory = N
+packet.messages.message[0].payload.stockdirectorymessage.financialstatusindicator = 
+packet.messages.message[0].payload.stockdirectorymessage.roundlotsize = 100
+packet.messages.message[0].payload.stockdirectorymessage.roundlotsonly = N
+packet.messages.message[0].payload.stockdirectorymessage.issueclassification = C
+packet.messages.message[0].payload.stockdirectorymessage.issuesubtype = Z
+packet.messages.message[0].payload.stockdirectorymessage.authenticity = P
+packet.messages.message[0].payload.stockdirectorymessage.shortsalethresholdindicator = N
+packet.messages.message[0].payload.stockdirectorymessage.ipoflag = 
+packet.messages.message[0].payload.stockdirectorymessage.luldreferencepricetier = 1
+packet.messages.message[0].payload.stockdirectorymessage.etpflag = N
+packet.messages.message[0].payload.stockdirectorymessage.etpleveragefactor = 0
+packet.messages.message[0].payload.stockdirectorymessage.inverseindicator = N

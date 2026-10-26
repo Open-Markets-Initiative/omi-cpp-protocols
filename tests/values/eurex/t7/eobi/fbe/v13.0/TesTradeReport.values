@@ -1,0 +1,29 @@
+# Eurex.T7.Eobi.Fbe.v13.0 TesTradeReport: canonical values, read by the model
+datagram 0
+packet.packetheader.eobiheader.bodylen = 32
+packet.packetheader.eobiheader.templateid = 13004
+packet.packetheader.eobiheader.msgseqnum = 4294967295
+packet.packetheader.applseqnum = 3698074
+packet.packetheader.marketsegmentid = 688
+packet.packetheader.partitionid = 2
+packet.packetheader.completionindicator = 1
+packet.packetheader.applseqresetindicator = 0
+packet.packetheader.dscp = 0
+packet.packetheader.transacttime = 1744639217069665004
+packet.message[0].messageheadercomp.bodylen = 80
+packet.message[0].messageheadercomp.templateid = 13203
+packet.message[0].messageheadercomp.msgseqnum = 3827607
+packet.message[0].payload = packet.message.payload.testradereport
+packet.message[0].payload.testradereport.securityid = 11820389
+packet.message[0].payload.testradereport.transacttime = 1744639217068307748
+packet.message[0].payload.testradereport.lastqty = 214
+packet.message[0].payload.testradereport.lastpx = 131.18
+packet.message[0].payload.testradereport.trdmatchid = 109
+packet.message[0].payload.testradereport.trdtype = 12
+packet.message[0].payload.testradereport.tradecondition = 65535
+packet.message[0].payload.testradereport.multilegreportingtype = 1
+packet.message[0].payload.testradereport.multilegpricemodel = 255
+packet.message[0].payload.testradereport.nondisclosedtradevolume = -922337203685477.5808
+packet.message[0].payload.testradereport.transbkdtime = 18446744073709551615
+packet.message[0].payload.testradereport.numberofbuysides = 1
+packet.message[0].payload.testradereport.numberofsellsides = 1

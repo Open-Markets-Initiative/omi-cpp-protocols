@@ -1,0 +1,20 @@
+# Eurex.T7.Eobi.Fbe.v13.0 QuoteRequest: canonical values, read by the model
+datagram 0
+packet.packetheader.eobiheader.bodylen = 32
+packet.packetheader.eobiheader.templateid = 13004
+packet.packetheader.eobiheader.msgseqnum = 4294967295
+packet.packetheader.applseqnum = 29698207
+packet.packetheader.marketsegmentid = 1432
+packet.packetheader.partitionid = 9
+packet.packetheader.completionindicator = 1
+packet.packetheader.applseqresetindicator = 0
+packet.packetheader.dscp = 0
+packet.packetheader.transacttime = 1744639246935029818
+packet.message[0].messageheadercomp.bodylen = 40
+packet.message[0].messageheadercomp.templateid = 13503
+packet.message[0].messageheadercomp.msgseqnum = 7582551
+packet.message[0].payload = packet.message.payload.quoterequest
+packet.message[0].payload.quoterequest.securityid = 72063744431123870
+packet.message[0].payload.quoterequest.lastqty = 1
+packet.message[0].payload.quoterequest.side = 255
+packet.message[0].payload.quoterequest.transacttime = 1744639246935016270

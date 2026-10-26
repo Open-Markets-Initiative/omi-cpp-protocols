@@ -65,7 +65,7 @@ class SymbolReferenceDataMessage {
 
     LuldTier luld_tier() const { return static_cast<LuldTier>(wire::read_char(at(64))); }
 
-    std::uint32_t luld_leverage_ratio() const { return wire::read_u32_be(at(65)); }
+    Decimal luld_leverage_ratio() const { return Decimal(static_cast<std::int64_t>(wire::read_u32_be(at(65))), -6); }
 
     Test test() const { return static_cast<Test>(wire::read_char(at(69))); }
 

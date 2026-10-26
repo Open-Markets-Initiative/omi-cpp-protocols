@@ -1,0 +1,13 @@
+# Nasdaq.NsmEquities.TotalView.Itch.v5.0.2026 OrderDeleteMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = S061226   
+packet.packetheader.sequencenumber = 6
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 19
+packet.messages.message[0].messageheader.messagetype = D
+packet.messages.message[0].payload = packet.messages.message.payload.orderdeletemessage
+packet.messages.message[0].payload.orderdeletemessage.stocklocate = 7268
+packet.messages.message[0].payload.orderdeletemessage.trackingnumber = 0
+packet.messages.message[0].payload.orderdeletemessage.timestamp = 14400001276218
+packet.messages.message[0].payload.orderdeletemessage.orderreferencenumber = 175

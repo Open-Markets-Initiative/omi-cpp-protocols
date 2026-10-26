@@ -1,9 +1,7 @@
 #pragma once
 
-#include "../types/BlockLength.hpp"
-#include "../types/TemplateId.hpp"
-#include "../types/SchemaId.hpp"
-#include "../types/Version.hpp"
+#include "../types/MessageSize.hpp"
+#include "../structs/SimpleBinaryHeader.hpp"
 
 namespace cme::mdp3::v13 {
 
@@ -11,10 +9,8 @@ namespace cme::mdp3::v13 {
 
 struct MessageHeader {
 
-    BlockLength block_length;
-    TemplateId template_id;
-    SchemaId schema_id;
-    Version version;
+    MessageSize message_size;
+    SimpleBinaryHeader simple_binary_header;
 
     // parse method
     static MessageHeader* parse(std::byte* buffer) {

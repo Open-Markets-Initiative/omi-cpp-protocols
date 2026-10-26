@@ -1,0 +1,18 @@
+# Nasdaq.NsmEquities.TotalView.Itch.v5.0.2017 NonCrossTradeMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 000010059B
+packet.packetheader.sequencenumber = 304133
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 44
+packet.messages.message[0].messageheader.messagetype = P
+packet.messages.message[0].payload = packet.messages.message.payload.noncrosstrademessage
+packet.messages.message[0].payload.noncrosstrademessage.stocklocate = 5381
+packet.messages.message[0].payload.noncrosstrademessage.trackingnumber = 2
+packet.messages.message[0].payload.noncrosstrademessage.timestamp = 14400965607312
+packet.messages.message[0].payload.noncrosstrademessage.orderreferencenumber = 0
+packet.messages.message[0].payload.noncrosstrademessage.buysellindicator = B
+packet.messages.message[0].payload.noncrosstrademessage.shares = 1
+packet.messages.message[0].payload.noncrosstrademessage.stock = IONQ
+packet.messages.message[0].payload.noncrosstrademessage.price = 14.62
+packet.messages.message[0].payload.noncrosstrademessage.matchnumber = 22660

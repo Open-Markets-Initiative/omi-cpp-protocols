@@ -3,7 +3,6 @@
 #include <cstddef>
 #include "../structs/MessageHeader.hpp"
 #include "../structs/SbeGroupSupport.hpp"
-#include "../types/MessageSize.hpp"
 
 namespace cme::mdp3::v9 {
 
@@ -18,22 +17,20 @@ struct mdpsessionmgmt_message {
     struct fields_type {
     };
 
-    // Transport framing: message size precedes the SBE header on the wire
-    sbe_mdp3::message_size message_size;
-    sbe_mdp3::message_header header = {{}, {}, schema_id::enum_type::mdpsessionmgmt, version(9)};
+    sbe_mdp3::message_header header = {std::uint16_t(sizeof(sbe_mdp3::message_header)), {}};
 
     static constexpr std::size_t max_message_size = 1280;
-    static constexpr std::size_t tail_capacity = max_message_size - sizeof(sbe_mdp3::message_header) - sizeof(sbe_mdp3::message_size);
+    static constexpr std::size_t tail_capacity = max_message_size - sizeof(sbe_mdp3::message_header);
 
     std::byte tail[tail_capacity];
 
     // tail buffer accessors
     const std::byte* tail_begin() const { return tail; }
     const std::byte* tail_end() const {
-        auto sz = message_size.get().value();
-        return sz == sizeof(sbe_mdp3::message_header) + sizeof(sbe_mdp3::message_size)
+        auto sz = header.message_size.get().value();
+        return sz == sizeof(sbe_mdp3::message_header)
             ? tail + tail_capacity
-            : tail + (sz - sizeof(sbe_mdp3::message_header) - sizeof(sbe_mdp3::message_size));
+            : tail + (sz - sizeof(sbe_mdp3::message_header));
     }
 
     // sequential access to variable-length regions

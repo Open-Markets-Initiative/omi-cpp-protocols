@@ -6,7 +6,7 @@
 
 namespace siac::cts::output::cta::v2_11_b {
 
-FractionalLongTradeMessage::FractionalLongTradeMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol, InstrumentType instrument_type, const SaleCondition4& sale_condition_4, Decimal trade_price, std::uint64_t fractional_trade_volume, std::uint8_t sellers_sale_days, StopStockIndicator stop_stock_indicator, TradeThroughExemptIndicator trade_through_exempt_indicator, TradeReportingFacilityId trade_reporting_facility_id, const Timestamp2& timestamp_2, ShortSaleRestrictionIndicator short_sale_restriction_indicator, PrimaryListingMarketParticipantId primary_listing_market_participant_id, FinancialStatusIndicator financial_status_indicator, HeldTradeIndicator held_trade_indicator, ConsolidatedHighLowLastIndicator consolidated_high_low_last_indicator, ParticipantOpenHighLowLastIndicator participant_open_high_low_last_indicator)
+FractionalLongTradeMessage::FractionalLongTradeMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol, InstrumentType instrument_type, const SaleCondition4& sale_condition_4, Decimal trade_price, Decimal fractional_trade_volume, std::uint8_t sellers_sale_days, StopStockIndicator stop_stock_indicator, TradeThroughExemptIndicator trade_through_exempt_indicator, TradeReportingFacilityId trade_reporting_facility_id, const Timestamp2& timestamp_2, ShortSaleRestrictionIndicator short_sale_restriction_indicator, PrimaryListingMarketParticipantId primary_listing_market_participant_id, FinancialStatusIndicator financial_status_indicator, HeldTradeIndicator held_trade_indicator, ConsolidatedHighLowLastIndicator consolidated_high_low_last_indicator, ParticipantOpenHighLowLastIndicator participant_open_high_low_last_indicator)
   : participant_id_(participant_id), timestamp_1_(timestamp_1), message_id_(message_id), transaction_id_(transaction_id), participant_reference_number_(participant_reference_number), security_symbol_(security_symbol), instrument_type_(instrument_type), sale_condition_4_(sale_condition_4), trade_price_(trade_price), fractional_trade_volume_(fractional_trade_volume), sellers_sale_days_(sellers_sale_days), stop_stock_indicator_(stop_stock_indicator), trade_through_exempt_indicator_(trade_through_exempt_indicator), trade_reporting_facility_id_(trade_reporting_facility_id), timestamp_2_(timestamp_2), short_sale_restriction_indicator_(short_sale_restriction_indicator), primary_listing_market_participant_id_(primary_listing_market_participant_id), financial_status_indicator_(financial_status_indicator), held_trade_indicator_(held_trade_indicator), consolidated_high_low_last_indicator_(consolidated_high_low_last_indicator), participant_open_high_low_last_indicator_(participant_open_high_low_last_indicator) {}
 
 ParticipantId FractionalLongTradeMessage::participant_id() const { return participant_id_; }
@@ -39,8 +39,8 @@ void FractionalLongTradeMessage::set_sale_condition_4(const SaleCondition4& valu
 Decimal FractionalLongTradeMessage::trade_price() const { return trade_price_; }
 void FractionalLongTradeMessage::set_trade_price(Decimal value) { trade_price_ = value; }
 
-std::uint64_t FractionalLongTradeMessage::fractional_trade_volume() const { return fractional_trade_volume_; }
-void FractionalLongTradeMessage::set_fractional_trade_volume(std::uint64_t value) { fractional_trade_volume_ = value; }
+Decimal FractionalLongTradeMessage::fractional_trade_volume() const { return fractional_trade_volume_; }
+void FractionalLongTradeMessage::set_fractional_trade_volume(Decimal value) { fractional_trade_volume_ = value; }
 
 std::uint8_t FractionalLongTradeMessage::sellers_sale_days() const { return sellers_sale_days_; }
 void FractionalLongTradeMessage::set_sellers_sale_days(std::uint8_t value) { sellers_sale_days_ = value; }
@@ -109,7 +109,7 @@ std::size_t FractionalLongTradeMessage::decode(const std::byte* data, std::size_
     trade_price_ = Decimal(static_cast<std::int64_t>(wire::read_u64_be(data + offset)), -6);
     offset += 8;
 
-    fractional_trade_volume_ = wire::read_u64_be(data + offset);
+    fractional_trade_volume_ = Decimal(static_cast<std::int64_t>(wire::read_u64_be(data + offset)), -6);
     offset += 8;
 
     sellers_sale_days_ = wire::read_u8(data + offset);
@@ -176,7 +176,7 @@ std::size_t FractionalLongTradeMessage::encode(std::byte* data, std::size_t capa
     wire::write_u64_be(data + offset, static_cast<std::uint64_t>(trade_price_.mantissa()));
     offset += 8;
 
-    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(fractional_trade_volume_));
+    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(fractional_trade_volume_.mantissa()));
     offset += 8;
 
     wire::write_u8(data + offset, static_cast<std::uint8_t>(sellers_sale_days_));

@@ -1,0 +1,28 @@
+# Eurex.T7.Eobi.Fbe.v13.0 OrderModify: canonical values, read by the model
+datagram 0
+packet.packetheader.eobiheader.bodylen = 32
+packet.packetheader.eobiheader.templateid = 13004
+packet.packetheader.eobiheader.msgseqnum = 4294967295
+packet.packetheader.applseqnum = 2874142
+packet.packetheader.marketsegmentid = 690
+packet.packetheader.partitionid = 12
+packet.packetheader.completionindicator = 1
+packet.packetheader.applseqresetindicator = 0
+packet.packetheader.dscp = 0
+packet.packetheader.transacttime = 1744639200000172104
+packet.message[0].messageheadercomp.bodylen = 88
+packet.message[0].messageheadercomp.templateid = 13101
+packet.message[0].messageheadercomp.msgseqnum = 693333
+packet.message[0].payload = packet.message.payload.ordermodify
+packet.message[0].payload.ordermodify.requesttime = 1744639200000156431
+packet.message[0].payload.ordermodify.trdregtsprevtimepriority = 1744639177111911957
+packet.message[0].payload.ordermodify.prevprice = 107.505
+packet.message[0].payload.ordermodify.prevdisplayqty = 9
+packet.message[0].payload.ordermodify.securityid = 11820391
+packet.message[0].payload.ordermodify.orderdetailscomp.trdregtstimepriority = 1744639200000163904
+packet.message[0].payload.ordermodify.orderdetailscomp.displayqty = 24
+packet.message[0].payload.ordermodify.orderdetailscomp.side = 2
+packet.message[0].payload.ordermodify.orderdetailscomp.ordtype = 255
+packet.message[0].payload.ordermodify.orderdetailscomp.hhiindicator = -1
+packet.message[0].payload.ordermodify.orderdetailscomp.price = 107.505
+packet.message[0].payload.ordermodify.prevpricehhiindicator = -128

@@ -95,6 +95,7 @@
 #include "structs/SecurityStatusRequestRelatedSymbolGroups.hpp"
 #include "structs/SecurityStatusRequestSecurityGroups.hpp"
 #include "structs/ServerTechnicalHeader.hpp"
+#include "structs/SimpleBinaryHeader.hpp"
 #include "structs/SnapshotFullRefreshGroups.hpp"
 #include "structs/SnapshotFullRefreshOrderBookGroups.hpp"
 

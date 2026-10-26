@@ -23,14 +23,22 @@ struct MessageIterator {
 
         end = data + length;
 
-        if (length < sizeof(SequencedMessage)) {
+        if (length < sizeof(CommonHeader) + sizeof(SequencedMessage)) {
             current = end;
             message = nullptr;
             message_count = 0;
             return;
         }
 
-        current = data;
+        // the messages are there only where Common Header's Message Type selects them
+        if (CommonHeader::parse(data + 0)->message_type.get() != 2) {
+            current = end;
+            message = nullptr;
+            message_count = 0;
+            return;
+        }
+
+        current = data + sizeof(CommonHeader);
         message = nullptr;
 
         sequenced_message = SequencedMessage::parse(current);

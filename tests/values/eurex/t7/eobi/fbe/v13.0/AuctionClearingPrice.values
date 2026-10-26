@@ -1,0 +1,23 @@
+# Eurex.T7.Eobi.Fbe.v13.0 AuctionClearingPrice: canonical values, read by the model
+datagram 0
+packet.packetheader.eobiheader.bodylen = 32
+packet.packetheader.eobiheader.templateid = 13004
+packet.packetheader.eobiheader.msgseqnum = 4294967295
+packet.packetheader.applseqnum = 8124
+packet.packetheader.marketsegmentid = 757
+packet.packetheader.partitionid = 2
+packet.packetheader.completionindicator = 1
+packet.packetheader.applseqresetindicator = 0
+packet.packetheader.dscp = 0
+packet.packetheader.transacttime = 1744610327701932476
+packet.message[0].messageheadercomp.bodylen = 56
+packet.message[0].messageheadercomp.templateid = 13501
+packet.message[0].messageheadercomp.msgseqnum = 67
+packet.message[0].payload = packet.message.payload.auctionclearingprice
+packet.message[0].payload.auctionclearingprice.transacttime = 1744610327701920281
+packet.message[0].payload.auctionclearingprice.securityid = 7904351
+packet.message[0].payload.auctionclearingprice.lastpx = 11389
+packet.message[0].payload.auctionclearingprice.lastqty = -922337203685477.5808
+packet.message[0].payload.auctionclearingprice.imbalanceqty = -922337203685477.5808
+packet.message[0].payload.auctionclearingprice.securitytradingstatus = 255
+packet.message[0].payload.auctionclearingprice.potentialsecuritytradingevent = 255

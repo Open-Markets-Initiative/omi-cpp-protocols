@@ -1,0 +1,20 @@
+# Asx.AsxDerivatives.Ntp.Itch.v1.05 AuctionOrderExecutedMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 1567326030
+packet.packetheader.sequencenumber = 3537964
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 53
+packet.messages.message[0].messageheader.messagetype = C
+packet.messages.message[0].payload = packet.messages.message.payload.auctionorderexecutedmessage
+packet.messages.message[0].payload.auctionorderexecutedmessage.nanoseconds = 4000
+packet.messages.message[0].payload.auctionorderexecutedmessage.tradedate = 18143
+packet.messages.message[0].payload.auctionorderexecutedmessage.tradeableinstrumentid = 160917
+packet.messages.message[0].payload.auctionorderexecutedmessage.side = B
+packet.messages.message[0].payload.auctionorderexecutedmessage.orderid = 6574549016187518977
+packet.messages.message[0].payload.auctionorderexecutedmessage.quantityremaining = 19
+packet.messages.message[0].payload.auctionorderexecutedmessage.tradetype = l
+packet.messages.message[0].payload.auctionorderexecutedmessage.tradeid = 6574549374074896396
+packet.messages.message[0].payload.auctionorderexecutedmessage.executedquantity = 1
+packet.messages.message[0].payload.auctionorderexecutedmessage.tradeprice = 990750
+packet.messages.message[0].payload.auctionorderexecutedmessage.oppositeorderid = 6574529319324893185

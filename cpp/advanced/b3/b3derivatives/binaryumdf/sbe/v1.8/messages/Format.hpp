@@ -53,17 +53,6 @@ inline std::ostream& operator<<(std::ostream& os, const packet_header& value) {
     return os;
 }
 
-inline std::ostream& operator<<(std::ostream& os, const message& value) {
-    os << "framing_header.message_length=" << value.framing_header.message_length.get().value()
-       << ",framing_header.encoding_type=" << value.framing_header.encoding_type.get().value()
-       << ",message_header.block_length=" << value.message_header.block_length.get().value()
-       << ",message_header.template_id=\"" << sbe_binaryumdf::template_id::to_string(value.message_header.template_id.get().value()) << '"'
-       << ",message_header.schema_id=" << value.message_header.schema_id.get().value()
-       << ",message_header.version=" << value.message_header.version.get().value()
-       ;
-    return os;
-}
-
 inline std::ostream& operator<<(std::ostream& os, const message_header& value) {
     os << "block_length=" << value.block_length.get().value()
        << ",template_id=\"" << sbe_binaryumdf::template_id::to_string(value.template_id.get().value()) << '"'

@@ -6,7 +6,6 @@
 #include "../types/RequestTimestamp.hpp"
 #include "../types/SecretKeySecureIdExpiration.hpp"
 #include "../types/Padding4.hpp"
-#include "../types/MessageSize.hpp"
 
 namespace cme::mdp3::v8 {
 
@@ -24,9 +23,7 @@ struct negotiation_response {
         sbe_mdp3::padding_4 padding_4;
     };
 
-    // Transport framing: message size precedes the SBE header on the wire
-    sbe_mdp3::message_size message_size;
-    sbe_mdp3::message_header header = {{}, template_id::enum_type::negotiation_response, schema_id::enum_type::mdpsessionmgmt, version(8)};
+    sbe_mdp3::message_header header = {std::uint16_t(sizeof(sbe_mdp3::message_header) + sizeof(fields_type)), {}};
 
     fields_type fields;
 
@@ -48,7 +45,7 @@ static_assert(offsetof(negotiation_response::fields_type, request_timestamp) == 
 static_assert(offsetof(negotiation_response::fields_type, secret_key_secure_id_expiration) == 16, "unexpected offset of negotiation_response::fields_type::secret_key_secure_id_expiration");
 static_assert(offsetof(negotiation_response::fields_type, padding_4) == 18, "unexpected offset of negotiation_response::fields_type::padding_4");
 static_assert(sizeof(negotiation_response::fields_type) == 22, "unexpected sizeof negotiation_response::fields_type");
-static_assert(sizeof(negotiation_response) == sizeof(sbe_mdp3::message_size) + sizeof(sbe_mdp3::message_header) + 22, "unexpected sizeof negotiation_response");
+static_assert(sizeof(negotiation_response) == sizeof(sbe_mdp3::message_header) + 22, "unexpected sizeof negotiation_response");
 
 #pragma pack(pop)
 }

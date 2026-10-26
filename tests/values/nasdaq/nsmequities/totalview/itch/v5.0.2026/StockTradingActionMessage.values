@@ -1,0 +1,16 @@
+# Nasdaq.NsmEquities.TotalView.Itch.v5.0.2026 StockTradingActionMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = S061226   
+packet.packetheader.sequencenumber = 11
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 25
+packet.messages.message[0].messageheader.messagetype = H
+packet.messages.message[0].payload = packet.messages.message.payload.stocktradingactionmessage
+packet.messages.message[0].payload.stocktradingactionmessage.stocklocate = 1
+packet.messages.message[0].payload.stocktradingactionmessage.trackingnumber = 0
+packet.messages.message[0].payload.stocktradingactionmessage.timestamp = 11097196486632
+packet.messages.message[0].payload.stocktradingactionmessage.stock = A
+packet.messages.message[0].payload.stocktradingactionmessage.tradingstate = T
+packet.messages.message[0].payload.stocktradingactionmessage.reserved = 
+packet.messages.message[0].payload.stocktradingactionmessage.reasoncode = 

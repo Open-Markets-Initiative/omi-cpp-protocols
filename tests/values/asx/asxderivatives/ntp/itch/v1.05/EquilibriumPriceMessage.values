@@ -1,0 +1,16 @@
+# Asx.AsxDerivatives.Ntp.Itch.v1.05 EquilibriumPriceMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 1567326030
+packet.packetheader.sequencenumber = 3513103
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 43
+packet.messages.message[0].messageheader.messagetype = Z
+packet.messages.message[0].payload = packet.messages.message.payload.equilibriumpricemessage
+packet.messages.message[0].payload.equilibriumpricemessage.nanoseconds = 133000
+packet.messages.message[0].payload.equilibriumpricemessage.tradedate = 18143
+packet.messages.message[0].payload.equilibriumpricemessage.tradeableinstrumentid = 156836
+packet.messages.message[0].payload.equilibriumpricemessage.equilibriumprice = 0
+packet.messages.message[0].payload.equilibriumpricemessage.matchedquantity = 0
+packet.messages.message[0].payload.equilibriumpricemessage.bidquantity = 0
+packet.messages.message[0].payload.equilibriumpricemessage.askquantity = 0

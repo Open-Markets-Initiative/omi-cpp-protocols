@@ -6,7 +6,7 @@
 
 namespace siac::cts::output::cta::v2_11_b {
 
-FractionalTradeCorrectionMessage::FractionalTradeCorrectionMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol, InstrumentType instrument_type, const std::string& corrected_sale_condition, Decimal corrected_trade_price, std::uint64_t corrected_fractional_trade_volume, std::uint8_t corrected_sellers_sale_days, char corrected_stop_stock_indicator, char corrected_trade_through_exempt_indicator, char corrected_short_sale_restriction_indicator, TradeReportingFacilityId trade_reporting_facility_id, const Timestamp2& timestamp_2, std::int64_t original_participant_reference_number, const std::string& original_sale_condition, Decimal original_trade_price, std::uint64_t original_fractional_trade_volume, std::uint8_t original_sellers_sale_days, char original_stop_stock_indicator, char original_trade_through_exempt_indicator, char original_short_sale_restriction_indicator, PrimaryListingMarketParticipantId primary_listing_market_participant_id, FinancialStatusIndicator financial_status_indicator, std::uint32_t consolidated_previous_close_price_date, char consolidated_last_participant_id, Decimal consolidated_last_price, Decimal consolidated_high_price, Decimal consolidated_low_price, std::uint64_t consolidated_fractional_total_volume, char consolidated_tick, std::uint32_t participant_previous_close_price_date, Decimal participant_last_price, Decimal participant_high_price, Decimal participant_low_price, Decimal participant_open_price, std::uint64_t participant_fractional_total_volume, char participant_tick)
+FractionalTradeCorrectionMessage::FractionalTradeCorrectionMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol, InstrumentType instrument_type, const std::string& corrected_sale_condition, Decimal corrected_trade_price, Decimal corrected_fractional_trade_volume, std::uint8_t corrected_sellers_sale_days, char corrected_stop_stock_indicator, char corrected_trade_through_exempt_indicator, char corrected_short_sale_restriction_indicator, TradeReportingFacilityId trade_reporting_facility_id, const Timestamp2& timestamp_2, std::int64_t original_participant_reference_number, const std::string& original_sale_condition, Decimal original_trade_price, Decimal original_fractional_trade_volume, std::uint8_t original_sellers_sale_days, char original_stop_stock_indicator, char original_trade_through_exempt_indicator, char original_short_sale_restriction_indicator, PrimaryListingMarketParticipantId primary_listing_market_participant_id, FinancialStatusIndicator financial_status_indicator, std::uint32_t consolidated_previous_close_price_date, char consolidated_last_participant_id, Decimal consolidated_last_price, Decimal consolidated_high_price, Decimal consolidated_low_price, Decimal consolidated_fractional_total_volume, char consolidated_tick, std::uint32_t participant_previous_close_price_date, Decimal participant_last_price, Decimal participant_high_price, Decimal participant_low_price, Decimal participant_open_price, Decimal participant_fractional_total_volume, char participant_tick)
   : participant_id_(participant_id), timestamp_1_(timestamp_1), message_id_(message_id), transaction_id_(transaction_id), participant_reference_number_(participant_reference_number), security_symbol_(security_symbol), instrument_type_(instrument_type), corrected_sale_condition_(corrected_sale_condition), corrected_trade_price_(corrected_trade_price), corrected_fractional_trade_volume_(corrected_fractional_trade_volume), corrected_sellers_sale_days_(corrected_sellers_sale_days), corrected_stop_stock_indicator_(corrected_stop_stock_indicator), corrected_trade_through_exempt_indicator_(corrected_trade_through_exempt_indicator), corrected_short_sale_restriction_indicator_(corrected_short_sale_restriction_indicator), trade_reporting_facility_id_(trade_reporting_facility_id), timestamp_2_(timestamp_2), original_participant_reference_number_(original_participant_reference_number), original_sale_condition_(original_sale_condition), original_trade_price_(original_trade_price), original_fractional_trade_volume_(original_fractional_trade_volume), original_sellers_sale_days_(original_sellers_sale_days), original_stop_stock_indicator_(original_stop_stock_indicator), original_trade_through_exempt_indicator_(original_trade_through_exempt_indicator), original_short_sale_restriction_indicator_(original_short_sale_restriction_indicator), primary_listing_market_participant_id_(primary_listing_market_participant_id), financial_status_indicator_(financial_status_indicator), consolidated_previous_close_price_date_(consolidated_previous_close_price_date), consolidated_last_participant_id_(consolidated_last_participant_id), consolidated_last_price_(consolidated_last_price), consolidated_high_price_(consolidated_high_price), consolidated_low_price_(consolidated_low_price), consolidated_fractional_total_volume_(consolidated_fractional_total_volume), consolidated_tick_(consolidated_tick), participant_previous_close_price_date_(participant_previous_close_price_date), participant_last_price_(participant_last_price), participant_high_price_(participant_high_price), participant_low_price_(participant_low_price), participant_open_price_(participant_open_price), participant_fractional_total_volume_(participant_fractional_total_volume), participant_tick_(participant_tick) {}
 
 ParticipantId FractionalTradeCorrectionMessage::participant_id() const { return participant_id_; }
@@ -39,8 +39,8 @@ void FractionalTradeCorrectionMessage::set_corrected_sale_condition(const std::s
 Decimal FractionalTradeCorrectionMessage::corrected_trade_price() const { return corrected_trade_price_; }
 void FractionalTradeCorrectionMessage::set_corrected_trade_price(Decimal value) { corrected_trade_price_ = value; }
 
-std::uint64_t FractionalTradeCorrectionMessage::corrected_fractional_trade_volume() const { return corrected_fractional_trade_volume_; }
-void FractionalTradeCorrectionMessage::set_corrected_fractional_trade_volume(std::uint64_t value) { corrected_fractional_trade_volume_ = value; }
+Decimal FractionalTradeCorrectionMessage::corrected_fractional_trade_volume() const { return corrected_fractional_trade_volume_; }
+void FractionalTradeCorrectionMessage::set_corrected_fractional_trade_volume(Decimal value) { corrected_fractional_trade_volume_ = value; }
 
 std::uint8_t FractionalTradeCorrectionMessage::corrected_sellers_sale_days() const { return corrected_sellers_sale_days_; }
 void FractionalTradeCorrectionMessage::set_corrected_sellers_sale_days(std::uint8_t value) { corrected_sellers_sale_days_ = value; }
@@ -71,8 +71,8 @@ void FractionalTradeCorrectionMessage::set_original_sale_condition(const std::st
 Decimal FractionalTradeCorrectionMessage::original_trade_price() const { return original_trade_price_; }
 void FractionalTradeCorrectionMessage::set_original_trade_price(Decimal value) { original_trade_price_ = value; }
 
-std::uint64_t FractionalTradeCorrectionMessage::original_fractional_trade_volume() const { return original_fractional_trade_volume_; }
-void FractionalTradeCorrectionMessage::set_original_fractional_trade_volume(std::uint64_t value) { original_fractional_trade_volume_ = value; }
+Decimal FractionalTradeCorrectionMessage::original_fractional_trade_volume() const { return original_fractional_trade_volume_; }
+void FractionalTradeCorrectionMessage::set_original_fractional_trade_volume(Decimal value) { original_fractional_trade_volume_ = value; }
 
 std::uint8_t FractionalTradeCorrectionMessage::original_sellers_sale_days() const { return original_sellers_sale_days_; }
 void FractionalTradeCorrectionMessage::set_original_sellers_sale_days(std::uint8_t value) { original_sellers_sale_days_ = value; }
@@ -107,8 +107,8 @@ void FractionalTradeCorrectionMessage::set_consolidated_high_price(Decimal value
 Decimal FractionalTradeCorrectionMessage::consolidated_low_price() const { return consolidated_low_price_; }
 void FractionalTradeCorrectionMessage::set_consolidated_low_price(Decimal value) { consolidated_low_price_ = value; }
 
-std::uint64_t FractionalTradeCorrectionMessage::consolidated_fractional_total_volume() const { return consolidated_fractional_total_volume_; }
-void FractionalTradeCorrectionMessage::set_consolidated_fractional_total_volume(std::uint64_t value) { consolidated_fractional_total_volume_ = value; }
+Decimal FractionalTradeCorrectionMessage::consolidated_fractional_total_volume() const { return consolidated_fractional_total_volume_; }
+void FractionalTradeCorrectionMessage::set_consolidated_fractional_total_volume(Decimal value) { consolidated_fractional_total_volume_ = value; }
 
 char FractionalTradeCorrectionMessage::consolidated_tick() const { return consolidated_tick_; }
 void FractionalTradeCorrectionMessage::set_consolidated_tick(char value) { consolidated_tick_ = value; }
@@ -128,8 +128,8 @@ void FractionalTradeCorrectionMessage::set_participant_low_price(Decimal value) 
 Decimal FractionalTradeCorrectionMessage::participant_open_price() const { return participant_open_price_; }
 void FractionalTradeCorrectionMessage::set_participant_open_price(Decimal value) { participant_open_price_ = value; }
 
-std::uint64_t FractionalTradeCorrectionMessage::participant_fractional_total_volume() const { return participant_fractional_total_volume_; }
-void FractionalTradeCorrectionMessage::set_participant_fractional_total_volume(std::uint64_t value) { participant_fractional_total_volume_ = value; }
+Decimal FractionalTradeCorrectionMessage::participant_fractional_total_volume() const { return participant_fractional_total_volume_; }
+void FractionalTradeCorrectionMessage::set_participant_fractional_total_volume(Decimal value) { participant_fractional_total_volume_ = value; }
 
 char FractionalTradeCorrectionMessage::participant_tick() const { return participant_tick_; }
 void FractionalTradeCorrectionMessage::set_participant_tick(char value) { participant_tick_ = value; }
@@ -168,7 +168,7 @@ std::size_t FractionalTradeCorrectionMessage::decode(const std::byte* data, std:
     corrected_trade_price_ = Decimal(static_cast<std::int64_t>(wire::read_u64_be(data + offset)), -6);
     offset += 8;
 
-    corrected_fractional_trade_volume_ = wire::read_u64_be(data + offset);
+    corrected_fractional_trade_volume_ = Decimal(static_cast<std::int64_t>(wire::read_u64_be(data + offset)), -6);
     offset += 8;
 
     corrected_sellers_sale_days_ = wire::read_u8(data + offset);
@@ -197,7 +197,7 @@ std::size_t FractionalTradeCorrectionMessage::decode(const std::byte* data, std:
     original_trade_price_ = Decimal(static_cast<std::int64_t>(wire::read_u64_be(data + offset)), -6);
     offset += 8;
 
-    original_fractional_trade_volume_ = wire::read_u64_be(data + offset);
+    original_fractional_trade_volume_ = Decimal(static_cast<std::int64_t>(wire::read_u64_be(data + offset)), -6);
     offset += 8;
 
     original_sellers_sale_days_ = wire::read_u8(data + offset);
@@ -233,7 +233,7 @@ std::size_t FractionalTradeCorrectionMessage::decode(const std::byte* data, std:
     consolidated_low_price_ = Decimal(static_cast<std::int64_t>(wire::read_u64_be(data + offset)), -6);
     offset += 8;
 
-    consolidated_fractional_total_volume_ = wire::read_u64_be(data + offset);
+    consolidated_fractional_total_volume_ = Decimal(static_cast<std::int64_t>(wire::read_u64_be(data + offset)), -6);
     offset += 8;
 
     consolidated_tick_ = wire::read_char(data + offset);
@@ -254,7 +254,7 @@ std::size_t FractionalTradeCorrectionMessage::decode(const std::byte* data, std:
     participant_open_price_ = Decimal(static_cast<std::int64_t>(wire::read_u64_be(data + offset)), -6);
     offset += 8;
 
-    participant_fractional_total_volume_ = wire::read_u64_be(data + offset);
+    participant_fractional_total_volume_ = Decimal(static_cast<std::int64_t>(wire::read_u64_be(data + offset)), -6);
     offset += 8;
 
     participant_tick_ = wire::read_char(data + offset);
@@ -293,7 +293,7 @@ std::size_t FractionalTradeCorrectionMessage::encode(std::byte* data, std::size_
     wire::write_u64_be(data + offset, static_cast<std::uint64_t>(corrected_trade_price_.mantissa()));
     offset += 8;
 
-    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(corrected_fractional_trade_volume_));
+    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(corrected_fractional_trade_volume_.mantissa()));
     offset += 8;
 
     wire::write_u8(data + offset, static_cast<std::uint8_t>(corrected_sellers_sale_days_));
@@ -322,7 +322,7 @@ std::size_t FractionalTradeCorrectionMessage::encode(std::byte* data, std::size_
     wire::write_u64_be(data + offset, static_cast<std::uint64_t>(original_trade_price_.mantissa()));
     offset += 8;
 
-    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(original_fractional_trade_volume_));
+    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(original_fractional_trade_volume_.mantissa()));
     offset += 8;
 
     wire::write_u8(data + offset, static_cast<std::uint8_t>(original_sellers_sale_days_));
@@ -358,7 +358,7 @@ std::size_t FractionalTradeCorrectionMessage::encode(std::byte* data, std::size_
     wire::write_u64_be(data + offset, static_cast<std::uint64_t>(consolidated_low_price_.mantissa()));
     offset += 8;
 
-    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(consolidated_fractional_total_volume_));
+    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(consolidated_fractional_total_volume_.mantissa()));
     offset += 8;
 
     wire::write_char(data + offset, consolidated_tick_);
@@ -379,7 +379,7 @@ std::size_t FractionalTradeCorrectionMessage::encode(std::byte* data, std::size_
     wire::write_u64_be(data + offset, static_cast<std::uint64_t>(participant_open_price_.mantissa()));
     offset += 8;
 
-    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(participant_fractional_total_volume_));
+    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(participant_fractional_total_volume_.mantissa()));
     offset += 8;
 
     wire::write_char(data + offset, participant_tick_);

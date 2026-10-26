@@ -28,7 +28,7 @@ class FractionalParticipantEndOfDaySummaryMessage : public SummaryMessagePayload
     static constexpr std::size_t wire_size = 80;
 
     FractionalParticipantEndOfDaySummaryMessage() = default;
-    FractionalParticipantEndOfDaySummaryMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol, InstrumentType instrument_type, char summary_participant_id, std::uint32_t previous_close_price_date, Decimal last_price, Decimal high_price, Decimal low_price, Decimal open_price, std::uint64_t fractional_total_volume, Tick tick);
+    FractionalParticipantEndOfDaySummaryMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol, InstrumentType instrument_type, char summary_participant_id, std::uint32_t previous_close_price_date, Decimal last_price, Decimal high_price, Decimal low_price, Decimal open_price, Decimal fractional_total_volume, Tick tick);
 
     // Participant Id: Identifies the Participant or Processor that initiated the message
     ParticipantId participant_id() const;
@@ -93,8 +93,8 @@ class FractionalParticipantEndOfDaySummaryMessage : public SummaryMessagePayload
 
     // Fractional Total Volume: Contains Total Volume of shares traded in a security either on
     // a Consolidated or an individual Participant basis. Has implied 6 decimal places
-    std::uint64_t fractional_total_volume() const;
-    void set_fractional_total_volume(std::uint64_t value);
+    Decimal fractional_total_volume() const;
+    void set_fractional_total_volume(Decimal value);
 
     // Tick: Represents for a Participant the upward, downward or unchanged price movement in a
     // security's trades
@@ -129,7 +129,7 @@ class FractionalParticipantEndOfDaySummaryMessage : public SummaryMessagePayload
     Decimal high_price_{ 0, -6 };
     Decimal low_price_{ 0, -6 };
     Decimal open_price_{ 0, -6 };
-    std::uint64_t fractional_total_volume_{};
+    Decimal fractional_total_volume_{ 0, -6 };
     Tick tick_{};
 };
 

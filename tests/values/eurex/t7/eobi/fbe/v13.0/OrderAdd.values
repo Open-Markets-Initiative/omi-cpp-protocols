@@ -1,0 +1,24 @@
+# Eurex.T7.Eobi.Fbe.v13.0 OrderAdd: canonical values, read by the model
+datagram 0
+packet.packetheader.eobiheader.bodylen = 32
+packet.packetheader.eobiheader.templateid = 13004
+packet.packetheader.eobiheader.msgseqnum = 4294967295
+packet.packetheader.applseqnum = 5989351
+packet.packetheader.marketsegmentid = 816
+packet.packetheader.partitionid = 12
+packet.packetheader.completionindicator = 1
+packet.packetheader.applseqresetindicator = 0
+packet.packetheader.dscp = 0
+packet.packetheader.transacttime = 1744639200001240768
+packet.message[0].messageheadercomp.bodylen = 56
+packet.message[0].messageheadercomp.templateid = 13100
+packet.message[0].messageheadercomp.msgseqnum = 777821
+packet.message[0].payload = packet.message.payload.orderadd
+packet.message[0].payload.orderadd.requesttime = 1744639200001212867
+packet.message[0].payload.orderadd.securityid = 7904812
+packet.message[0].payload.orderadd.orderdetailscomp.trdregtstimepriority = 1744639200001234539
+packet.message[0].payload.orderadd.orderdetailscomp.displayqty = 10
+packet.message[0].payload.orderadd.orderdetailscomp.side = 1
+packet.message[0].payload.orderadd.orderdetailscomp.ordtype = 255
+packet.message[0].payload.orderadd.orderdetailscomp.hhiindicator = -1
+packet.message[0].payload.orderadd.orderdetailscomp.price = 493.3

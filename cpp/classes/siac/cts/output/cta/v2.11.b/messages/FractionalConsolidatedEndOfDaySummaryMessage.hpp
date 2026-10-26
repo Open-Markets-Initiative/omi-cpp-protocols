@@ -30,7 +30,7 @@ class FractionalConsolidatedEndOfDaySummaryMessage : public SummaryMessagePayloa
     static constexpr std::size_t wire_size = 75;
 
     FractionalConsolidatedEndOfDaySummaryMessage() = default;
-    FractionalConsolidatedEndOfDaySummaryMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol, InstrumentType instrument_type, char last_participant_id, std::uint32_t previous_close_price_date, Decimal last_price, Decimal high_price, Decimal low_price, std::uint64_t fractional_total_volume, ShortSaleRestrictionIndicator short_sale_restriction_indicator, PrimaryListingMarketParticipantId primary_listing_market_participant_id, FinancialStatusIndicator financial_status_indicator, std::uint8_t number_of_participants);
+    FractionalConsolidatedEndOfDaySummaryMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol, InstrumentType instrument_type, char last_participant_id, std::uint32_t previous_close_price_date, Decimal last_price, Decimal high_price, Decimal low_price, Decimal fractional_total_volume, ShortSaleRestrictionIndicator short_sale_restriction_indicator, PrimaryListingMarketParticipantId primary_listing_market_participant_id, FinancialStatusIndicator financial_status_indicator, std::uint8_t number_of_participants);
 
     // Participant Id: Identifies the Participant or Processor that initiated the message
     ParticipantId participant_id() const;
@@ -91,8 +91,8 @@ class FractionalConsolidatedEndOfDaySummaryMessage : public SummaryMessagePayloa
 
     // Fractional Total Volume: Contains Total Volume of shares traded in a security either on
     // a Consolidated or an individual Participant basis. Has implied 6 decimal places
-    std::uint64_t fractional_total_volume() const;
-    void set_fractional_total_volume(std::uint64_t value);
+    Decimal fractional_total_volume() const;
+    void set_fractional_total_volume(Decimal value);
 
     // Short Sale Restriction Indicator: Identifies whether or not a Short Sale Restriction is
     // in effect for a security
@@ -140,7 +140,7 @@ class FractionalConsolidatedEndOfDaySummaryMessage : public SummaryMessagePayloa
     Decimal last_price_{ 0, -6 };
     Decimal high_price_{ 0, -6 };
     Decimal low_price_{ 0, -6 };
-    std::uint64_t fractional_total_volume_{};
+    Decimal fractional_total_volume_{ 0, -6 };
     ShortSaleRestrictionIndicator short_sale_restriction_indicator_{};
     PrimaryListingMarketParticipantId primary_listing_market_participant_id_{};
     FinancialStatusIndicator financial_status_indicator_{};

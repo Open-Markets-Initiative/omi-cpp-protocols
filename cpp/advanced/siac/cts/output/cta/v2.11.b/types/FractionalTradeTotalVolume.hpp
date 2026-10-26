@@ -12,6 +12,7 @@ struct fractional_trade_total_volume {
     static constexpr const char* name = "fractional_trade_total_volume";
     static constexpr std::size_t size = 8;
     static constexpr bool is_optional = false;
+    static constexpr int exponent = -6;
 
     using result_type = required<std::uint64_t>;
     using storage_type = result_type;

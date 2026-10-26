@@ -16,7 +16,7 @@ namespace eurex::t7::eobi::fbe::v15_0 {
 template<typename Handler>
 void dispatch(Handler& handler, const std::byte* buffer, std::size_t length, std::uint64_t packet_receive_time, const packet_header& transport) {
     (void)length;
-    const auto* header = eobi_header::parse(buffer + sizeof(fbe_eobi::body_len));
+    const auto* header = eobi_header::parse(buffer);
 
     switch (header->template_id.get().value()) {
         case template_id::enum_type::add_complex_instrument:

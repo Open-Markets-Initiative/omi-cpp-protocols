@@ -1,0 +1,23 @@
+# Asx.AsxDerivatives.Ntp.Itch.v1.05 CombinationOrderExecutedMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 1567326030
+packet.packetheader.sequencenumber = 3686897
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 66
+packet.messages.message[0].messageheader.messagetype = e
+packet.messages.message[0].payload = packet.messages.message.payload.combinationorderexecutedmessage
+packet.messages.message[0].payload.combinationorderexecutedmessage.nanoseconds = 562011000
+packet.messages.message[0].payload.combinationorderexecutedmessage.tradedate = 18143
+packet.messages.message[0].payload.combinationorderexecutedmessage.tradeableinstrumentid = 60816
+packet.messages.message[0].payload.combinationorderexecutedmessage.side = S
+packet.messages.message[0].payload.combinationorderexecutedmessage.orderid = 6574508707520987141
+packet.messages.message[0].payload.combinationorderexecutedmessage.quantityremaining = 0
+packet.messages.message[0].payload.combinationorderexecutedmessage.tradetype = S
+packet.messages.message[0].payload.combinationorderexecutedmessage.tradeid = 6574559446955999235
+packet.messages.message[0].payload.combinationorderexecutedmessage.executedquantity = 10
+packet.messages.message[0].payload.combinationorderexecutedmessage.tradeprice = 993700
+packet.messages.message[0].payload.combinationorderexecutedmessage.oppositetradeableinstrumentid = 77052
+packet.messages.message[0].payload.combinationorderexecutedmessage.oppositeside = B
+packet.messages.message[0].payload.combinationorderexecutedmessage.oppositeorderid = 6574548367525822465
+packet.messages.message[0].payload.combinationorderexecutedmessage.combinationtradeid = 6574559446955999234

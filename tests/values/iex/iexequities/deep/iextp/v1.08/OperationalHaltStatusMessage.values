@@ -1,0 +1,18 @@
+# Iex.IexEquities.Deep.IexTp.v1.08 OperationalHaltStatusMessage: canonical values, read by the model
+datagram 0
+packet.iextpheader.version = 1
+packet.iextpheader.messageprotocolid = 32772
+packet.iextpheader.channelid = 1
+packet.iextpheader.sessionid = 1315962880
+packet.iextpheader.payloadlength = 20
+packet.iextpheader.messagecount = 1
+packet.iextpheader.streamoffset = 956104
+packet.iextpheader.firstmessagesequencenumber = 45000
+packet.iextpheader.sendtime = 1734958144298235933
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 18
+packet.messages.message[0].messageheader.messagetype = O
+packet.messages.message[0].messagedata = packet.messages.message.messagedata.operationalhaltstatusmessage
+packet.messages.message[0].messagedata.operationalhaltstatusmessage.operationalhaltstatus = N
+packet.messages.message[0].messagedata.operationalhaltstatusmessage.timestamp = 1734958144298235933
+packet.messages.message[0].messagedata.operationalhaltstatusmessage.symbol = ICCT

@@ -5,14 +5,14 @@
 
 namespace siac::cts::output::cta::v2_11_b {
 
-Participant::Participant(ParticipantId participant_id, std::uint64_t fractional_trade_total_volume)
+Participant::Participant(ParticipantId participant_id, Decimal fractional_trade_total_volume)
   : participant_id_(participant_id), fractional_trade_total_volume_(fractional_trade_total_volume) {}
 
 ParticipantId Participant::participant_id() const { return participant_id_; }
 void Participant::set_participant_id(ParticipantId value) { participant_id_ = value; }
 
-std::uint64_t Participant::fractional_trade_total_volume() const { return fractional_trade_total_volume_; }
-void Participant::set_fractional_trade_total_volume(std::uint64_t value) { fractional_trade_total_volume_ = value; }
+Decimal Participant::fractional_trade_total_volume() const { return fractional_trade_total_volume_; }
+void Participant::set_fractional_trade_total_volume(Decimal value) { fractional_trade_total_volume_ = value; }
 
 std::size_t Participant::decode(const std::byte* data, std::size_t length) {
     std::size_t offset = 0;
@@ -21,7 +21,7 @@ std::size_t Participant::decode(const std::byte* data, std::size_t length) {
     participant_id_ = static_cast<ParticipantId>(wire::read_char(data + offset));
     offset += 1;
 
-    fractional_trade_total_volume_ = wire::read_u64_be(data + offset);
+    fractional_trade_total_volume_ = Decimal(static_cast<std::int64_t>(wire::read_u64_be(data + offset)), -6);
     offset += 8;
 
     return offset;
@@ -34,7 +34,7 @@ std::size_t Participant::encode(std::byte* data, std::size_t capacity) const {
     wire::write_char(data + offset, static_cast<char>(participant_id_));
     offset += 1;
 
-    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(fractional_trade_total_volume_));
+    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(fractional_trade_total_volume_.mantissa()));
     offset += 8;
 
     return offset;

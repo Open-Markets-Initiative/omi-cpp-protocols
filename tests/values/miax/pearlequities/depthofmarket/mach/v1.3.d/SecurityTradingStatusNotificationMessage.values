@@ -1,0 +1,14 @@
+# Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d SecurityTradingStatusNotificationMessage: canonical values, read by the model
+datagram 0
+udppacket.machmessage[0].machpacketheader.sequencenumber = 1591
+udppacket.machmessage[0].machpacketheader.machpacketlength = 24
+udppacket.machmessage[0].machpacketheader.machpackettype = 3
+udppacket.machmessage[0].machpacketheader.sessionnumber = 1
+udppacket.machmessage[0].payload = udppacket.machmessage.payload.applicationmessage
+udppacket.machmessage[0].payload.applicationmessage.messagetype = 4
+udppacket.machmessage[0].payload.applicationmessage.data = udppacket.machmessage.payload.applicationmessage.data.securitytradingstatusnotificationmessage
+udppacket.machmessage[0].payload.applicationmessage.data.securitytradingstatusnotificationmessage.nanoseconds = 598271
+udppacket.machmessage[0].payload.applicationmessage.data.securitytradingstatusnotificationmessage.symbolid = 536871158
+udppacket.machmessage[0].payload.applicationmessage.data.securitytradingstatusnotificationmessage.tradingstatus = 2
+udppacket.machmessage[0].payload.applicationmessage.data.securitytradingstatusnotificationmessage.marketstate = 3
+udppacket.machmessage[0].payload.applicationmessage.data.securitytradingstatusnotificationmessage.shortsalerestriction = N

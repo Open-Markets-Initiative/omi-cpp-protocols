@@ -1,0 +1,34 @@
+# Nyse.ArcaEquities.IntegratedFeed.Pillar.v2.5.g CrossTradeMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 78
+packet.packetheader.deliveryflag = 11
+packet.packetheader.numbermsgs = 2
+packet.packetheader.seqnum = 810712
+packet.packetheader.sendtime.seconds = 1692711000
+packet.packetheader.sendtime.nanoseconds = 23558912
+packet.packetheader.sendtime = 1692711000023558912
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 29
+packet.messages.message[0].messageheader.messagetype = 111
+packet.messages.message[0].payload = packet.messages.message.payload.crosstrademessage
+packet.messages.message[0].payload.crosstrademessage.sourcetimens = 23533824
+packet.messages.message[0].payload.crosstrademessage.symbolindex = 18913
+packet.messages.message[0].payload.crosstrademessage.symbolseqnum = 1071
+packet.messages.message[0].payload.crosstrademessage.crossid = 19880
+packet.messages.message[0].payload.crosstrademessage.price = 52170000
+packet.messages.message[0].payload.crosstrademessage.volume = 1
+packet.messages.message[0].payload.crosstrademessage.crosstype = O
+packet.messages.message[1].messageheader.messagesize = 33
+packet.messages.message[1].messageheader.messagetype = 110
+packet.messages.message[1].payload = packet.messages.message.payload.nondisplayedtrademessage
+packet.messages.message[1].payload.nondisplayedtrademessage.sourcetimens = 23533824
+packet.messages.message[1].payload.nondisplayedtrademessage.symbolindex = 18913
+packet.messages.message[1].payload.nondisplayedtrademessage.symbolseqnum = 1072
+packet.messages.message[1].payload.nondisplayedtrademessage.tradeid = 58355
+packet.messages.message[1].payload.nondisplayedtrademessage.price = 52170000
+packet.messages.message[1].payload.nondisplayedtrademessage.volume = 1
+packet.messages.message[1].payload.nondisplayedtrademessage.printableflag = 0
+packet.messages.message[1].payload.nondisplayedtrademessage.tradecond1 = @
+packet.messages.message[1].payload.nondisplayedtrademessage.tradecond2 = O
+packet.messages.message[1].payload.nondisplayedtrademessage.tradecond3 =  
+packet.messages.message[1].payload.nondisplayedtrademessage.tradecond4 = I

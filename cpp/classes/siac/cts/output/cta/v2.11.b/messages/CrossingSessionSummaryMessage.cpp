@@ -6,7 +6,7 @@
 
 namespace siac::cts::output::cta::v2_11_b {
 
-CrossingSessionSummaryMessage::CrossingSessionSummaryMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, std::uint64_t crossing_session_i_total_trades_volume, std::uint64_t crossing_session_ii_dollar_value, std::uint64_t crossing_session_ii_total_trades_volume)
+CrossingSessionSummaryMessage::CrossingSessionSummaryMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, std::uint64_t crossing_session_i_total_trades_volume, Decimal crossing_session_ii_dollar_value, std::uint64_t crossing_session_ii_total_trades_volume)
   : participant_id_(participant_id), timestamp_1_(timestamp_1), message_id_(message_id), transaction_id_(transaction_id), participant_reference_number_(participant_reference_number), crossing_session_i_total_trades_volume_(crossing_session_i_total_trades_volume), crossing_session_ii_dollar_value_(crossing_session_ii_dollar_value), crossing_session_ii_total_trades_volume_(crossing_session_ii_total_trades_volume) {}
 
 ParticipantId CrossingSessionSummaryMessage::participant_id() const { return participant_id_; }
@@ -28,8 +28,8 @@ void CrossingSessionSummaryMessage::set_participant_reference_number(std::int64_
 std::uint64_t CrossingSessionSummaryMessage::crossing_session_i_total_trades_volume() const { return crossing_session_i_total_trades_volume_; }
 void CrossingSessionSummaryMessage::set_crossing_session_i_total_trades_volume(std::uint64_t value) { crossing_session_i_total_trades_volume_ = value; }
 
-std::uint64_t CrossingSessionSummaryMessage::crossing_session_ii_dollar_value() const { return crossing_session_ii_dollar_value_; }
-void CrossingSessionSummaryMessage::set_crossing_session_ii_dollar_value(std::uint64_t value) { crossing_session_ii_dollar_value_ = value; }
+Decimal CrossingSessionSummaryMessage::crossing_session_ii_dollar_value() const { return crossing_session_ii_dollar_value_; }
+void CrossingSessionSummaryMessage::set_crossing_session_ii_dollar_value(Decimal value) { crossing_session_ii_dollar_value_ = value; }
 
 std::uint64_t CrossingSessionSummaryMessage::crossing_session_ii_total_trades_volume() const { return crossing_session_ii_total_trades_volume_; }
 void CrossingSessionSummaryMessage::set_crossing_session_ii_total_trades_volume(std::uint64_t value) { crossing_session_ii_total_trades_volume_ = value; }
@@ -59,7 +59,7 @@ std::size_t CrossingSessionSummaryMessage::decode(const std::byte* data, std::si
     crossing_session_i_total_trades_volume_ = wire::read_u64_be(data + offset);
     offset += 8;
 
-    crossing_session_ii_dollar_value_ = wire::read_u64_be(data + offset);
+    crossing_session_ii_dollar_value_ = Decimal(static_cast<std::int64_t>(wire::read_u64_be(data + offset)), -6);
     offset += 8;
 
     crossing_session_ii_total_trades_volume_ = wire::read_u64_be(data + offset);
@@ -89,7 +89,7 @@ std::size_t CrossingSessionSummaryMessage::encode(std::byte* data, std::size_t c
     wire::write_u64_be(data + offset, static_cast<std::uint64_t>(crossing_session_i_total_trades_volume_));
     offset += 8;
 
-    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(crossing_session_ii_dollar_value_));
+    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(crossing_session_ii_dollar_value_.mantissa()));
     offset += 8;
 
     wire::write_u64_be(data + offset, static_cast<std::uint64_t>(crossing_session_ii_total_trades_volume_));

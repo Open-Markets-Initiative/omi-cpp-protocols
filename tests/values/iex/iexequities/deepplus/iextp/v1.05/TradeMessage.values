@@ -1,0 +1,25 @@
+# Iex.IexEquities.DeepPlus.IexTp.v1.05 TradeMessage: canonical values, read by the model
+datagram 0
+packet.iextpheader.version = 1
+packet.iextpheader.messageprotocolid = 32773
+packet.iextpheader.channelid = 1
+packet.iextpheader.sessionid = 1339949056
+packet.iextpheader.payloadlength = 40
+packet.iextpheader.messagecount = 1
+packet.iextpheader.streamoffset = 1140977
+packet.iextpheader.firstmessagesequencenumber = 51590
+packet.iextpheader.sendtime = 1766581203122278734
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 38
+packet.messages.message[0].messageheader.messagetype = T
+packet.messages.message[0].messagedata = packet.messages.message.messagedata.trademessage
+packet.messages.message[0].messagedata.trademessage.saleconditionflags.singlepricecrosstrade = 0
+packet.messages.message[0].messagedata.trademessage.saleconditionflags.tradethroughexempt = 0
+packet.messages.message[0].messagedata.trademessage.saleconditionflags.oddlot = 0
+packet.messages.message[0].messagedata.trademessage.saleconditionflags.extendedhours = 1
+packet.messages.message[0].messagedata.trademessage.saleconditionflags.intermarketsweep = 0
+packet.messages.message[0].messagedata.trademessage.timestamp = 1766581203121483801
+packet.messages.message[0].messagedata.trademessage.symbol = MARA
+packet.messages.message[0].messagedata.trademessage.size = 100
+packet.messages.message[0].messagedata.trademessage.price = 9.87
+packet.messages.message[0].messagedata.trademessage.tradeid = 171418260816789585

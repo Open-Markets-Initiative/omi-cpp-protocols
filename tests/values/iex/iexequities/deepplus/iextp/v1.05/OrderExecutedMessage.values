@@ -1,0 +1,26 @@
+# Iex.IexEquities.DeepPlus.IexTp.v1.05 OrderExecutedMessage: canonical values, read by the model
+datagram 0
+packet.iextpheader.version = 1
+packet.iextpheader.messageprotocolid = 32773
+packet.iextpheader.channelid = 1
+packet.iextpheader.sessionid = 1339949056
+packet.iextpheader.payloadlength = 48
+packet.iextpheader.messagecount = 1
+packet.iextpheader.streamoffset = 1103337
+packet.iextpheader.firstmessagesequencenumber = 50560
+packet.iextpheader.sendtime = 1766581201273987246
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 46
+packet.messages.message[0].messageheader.messagetype = L
+packet.messages.message[0].messagedata = packet.messages.message.messagedata.orderexecutedmessage
+packet.messages.message[0].messagedata.orderexecutedmessage.saleconditionflags.singlepricecrosstrade = 0
+packet.messages.message[0].messagedata.orderexecutedmessage.saleconditionflags.tradethroughexempt = 0
+packet.messages.message[0].messagedata.orderexecutedmessage.saleconditionflags.oddlot = 0
+packet.messages.message[0].messagedata.orderexecutedmessage.saleconditionflags.extendedhours = 1
+packet.messages.message[0].messagedata.orderexecutedmessage.saleconditionflags.intermarketsweep = 1
+packet.messages.message[0].messagedata.orderexecutedmessage.timestamp = 1766581201273263536
+packet.messages.message[0].messagedata.orderexecutedmessage.symbol = RPTX
+packet.messages.message[0].messagedata.orderexecutedmessage.orderidreference = 181551359978373143
+packet.messages.message[0].messagedata.orderexecutedmessage.size = 500
+packet.messages.message[0].messagedata.orderexecutedmessage.price = 2.61
+packet.messages.message[0].messagedata.orderexecutedmessage.tradeid = 181551359978373174

@@ -1,0 +1,25 @@
+# Iex.IexEquities.DeepPlus.IexTp.v1.01 TradeBreakMessage: canonical values, read by the model
+datagram 0
+packet.iextpheader.version = 1
+packet.iextpheader.messageprotocolid = 32773
+packet.iextpheader.channelid = 1
+packet.iextpheader.sessionid = 1310523392
+packet.iextpheader.payloadlength = 40
+packet.iextpheader.messagecount = 1
+packet.iextpheader.streamoffset = 1252425
+packet.iextpheader.firstmessagesequencenumber = 59330
+packet.iextpheader.sendtime = 1727790988348659471
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 38
+packet.messages.message[0].messageheader.messagetype = B
+packet.messages.message[0].messagedata = packet.messages.message.messagedata.tradebreakmessage
+packet.messages.message[0].messagedata.tradebreakmessage.saleconditionflags.singlepricecrosstrade = 0
+packet.messages.message[0].messagedata.tradebreakmessage.saleconditionflags.tradethroughexempt = 0
+packet.messages.message[0].messagedata.tradebreakmessage.saleconditionflags.oddlot = 0
+packet.messages.message[0].messagedata.tradebreakmessage.saleconditionflags.extendedhours = 0
+packet.messages.message[0].messagedata.tradebreakmessage.saleconditionflags.intermarketsweep = 0
+packet.messages.message[0].messagedata.tradebreakmessage.timestamp = 1727790339594659879
+packet.messages.message[0].messagedata.tradebreakmessage.symbol = TFC
+packet.messages.message[0].messagedata.tradebreakmessage.size = 100
+packet.messages.message[0].messagedata.tradebreakmessage.price = 42.2
+packet.messages.message[0].messagedata.tradebreakmessage.tradeid = 27866022694355438

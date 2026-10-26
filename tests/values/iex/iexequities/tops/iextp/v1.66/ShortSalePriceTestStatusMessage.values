@@ -1,0 +1,19 @@
+# Iex.IexEquities.Tops.IexTp.v1.66 ShortSalePriceTestStatusMessage: canonical values, read by the model
+datagram 0
+packet.iextpheader.version = 1
+packet.iextpheader.messageprotocolid = 32771
+packet.iextpheader.channelid = 1
+packet.iextpheader.sessionid = 1304625152
+packet.iextpheader.payloadlength = 21
+packet.iextpheader.messagecount = 1
+packet.iextpheader.streamoffset = 1425303
+packet.iextpheader.firstmessagesequencenumber = 55245
+packet.iextpheader.sendtime = 1720006080466162007
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 19
+packet.messages.message[0].messageheader.messagetype = P
+packet.messages.message[0].messagedata = packet.messages.message.messagedata.shortsalepriceteststatusmessage
+packet.messages.message[0].messagedata.shortsalepriceteststatusmessage.shortsalepriceteststatus = 1
+packet.messages.message[0].messagedata.shortsalepriceteststatusmessage.timestamp = 1720006080466162007
+packet.messages.message[0].messagedata.shortsalepriceteststatusmessage.symbol = FGI
+packet.messages.message[0].messagedata.shortsalepriceteststatusmessage.detail = N

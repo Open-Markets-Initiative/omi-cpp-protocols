@@ -1,0 +1,17 @@
+# Nyse.ArcaEquities.IntegratedFeed.Pillar.v2.5.g DeleteOrderMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 41
+packet.packetheader.deliveryflag = 11
+packet.packetheader.numbermsgs = 1
+packet.packetheader.seqnum = 1123075
+packet.packetheader.sendtime.seconds = 1692710999
+packet.packetheader.sendtime.nanoseconds = 999803392
+packet.packetheader.sendtime = 1692710999999803392
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 25
+packet.messages.message[0].messageheader.messagetype = 102
+packet.messages.message[0].payload = packet.messages.message.payload.deleteordermessage
+packet.messages.message[0].payload.deleteordermessage.sourcetimens = 999794176
+packet.messages.message[0].payload.deleteordermessage.symbolindex = 31224
+packet.messages.message[0].payload.deleteordermessage.symbolseqnum = 2487
+packet.messages.message[0].payload.deleteordermessage.orderid = 14639997325720137

@@ -2145,13 +2145,11 @@ struct payload {
     static constexpr bool is_message = false;
 };
 
-// Mach Message Section 1
-struct mach_message_section_1 {
-    static constexpr std::string_view name = "Mach Message Section 1";
+// Mach Packet Header: Mach packet header (12 bytes)
+struct mach_packet_header {
+    static constexpr std::string_view name = "Mach Packet Header";
     static constexpr std::size_t size = 12;
     static constexpr bool is_message = false;
-    // a section of a message no struct lies over: the fields it lays over in turn
-    static constexpr bool is_section = true;
 
     // the types of its members, in wire order
     using fields = tmp::list<
@@ -2171,7 +2169,7 @@ struct mach_message_section_1 {
     MACHFIELD(session_number);
 };
 
-static_assert(sizeof(mach_message_section_1) == mach_message_section_1::size, "mach_message_section_1 lies over its bytes exactly");
+static_assert(sizeof(mach_packet_header) == mach_packet_header::size, "mach_packet_header lies over its bytes exactly");
 
 // Mach Message
 struct mach_message {

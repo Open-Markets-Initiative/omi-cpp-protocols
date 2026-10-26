@@ -1,0 +1,20 @@
+# Iex.IexEquities.Deep.IexTp.v1.08 PriceLevelSellUpdateMessage: canonical values, read by the model
+datagram 0
+packet.iextpheader.version = 1
+packet.iextpheader.messageprotocolid = 32772
+packet.iextpheader.channelid = 1
+packet.iextpheader.sessionid = 1315962880
+packet.iextpheader.payloadlength = 32
+packet.iextpheader.messagecount = 1
+packet.iextpheader.streamoffset = 956276
+packet.iextpheader.firstmessagesequencenumber = 45008
+packet.iextpheader.sendtime = 1734958800102453406
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 30
+packet.messages.message[0].messageheader.messagetype = 5
+packet.messages.message[0].messagedata = packet.messages.message.messagedata.pricelevelsellupdatemessage
+packet.messages.message[0].messagedata.pricelevelsellupdatemessage.eventflags = 1
+packet.messages.message[0].messagedata.pricelevelsellupdatemessage.timestamp = 1734958800014492246
+packet.messages.message[0].messagedata.pricelevelsellupdatemessage.symbol = SMST
+packet.messages.message[0].messagedata.pricelevelsellupdatemessage.size = 2200
+packet.messages.message[0].messagedata.pricelevelsellupdatemessage.price = 5.76

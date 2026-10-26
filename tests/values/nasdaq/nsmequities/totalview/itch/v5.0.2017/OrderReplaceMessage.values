@@ -1,0 +1,16 @@
+# Nasdaq.NsmEquities.TotalView.Itch.v5.0.2017 OrderReplaceMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 000010059B
+packet.packetheader.sequencenumber = 14757701
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 35
+packet.messages.message[0].messageheader.messagetype = U
+packet.messages.message[0].payload = packet.messages.message.payload.orderreplacemessage
+packet.messages.message[0].payload.orderreplacemessage.stocklocate = 7603
+packet.messages.message[0].payload.orderreplacemessage.trackingnumber = 0
+packet.messages.message[0].payload.orderreplacemessage.timestamp = 34199999836649
+packet.messages.message[0].payload.orderreplacemessage.originalorderreferencenumber = 15108479
+packet.messages.message[0].payload.orderreplacemessage.neworderreferencenumber = 21361351
+packet.messages.message[0].payload.orderreplacemessage.shares = 100
+packet.messages.message[0].payload.orderreplacemessage.price = 106.26

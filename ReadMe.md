@@ -23,11 +23,27 @@ Updates are greatly appreciated; however, this entire repository is source gener
 
 | Parser | Protocol Count | Generated Lines |
 | --- | --- | --- |
-| Advanced | 46 | 385,121 |
-| Modern | 46 | 217,884 |
-| Classes | 44 | 493,547 |
-| Flyweight | 44 | 222,485 |
-| Tmp | 46 | 119,226 |
+| Advanced | 44 | 373,048 |
+| Modern | 46 | 218,505 |
+| Classes | 46 | 509,230 |
+| Flyweight | 46 | 230,416 |
+| Tmp | 46 | 119,186 |
+
+| Organization | Protocol Count | Generated Lines |
+| --- | --- | --- |
+| Asx | 1 | 28,728 |
+| B3 | 7 | 333,962 |
+| Cboe | 3 | 57,608 |
+| Cme | 3 | 288,771 |
+| Eurex | 2 | 76,850 |
+| Iex | 10 | 144,536 |
+| Jpx | 2 | 32,447 |
+| Lseg | 2 | 35,274 |
+| Memx | 1 | 12,740 |
+| Miax | 2 | 34,061 |
+| Nasdaq | 7 | 211,463 |
+| Nyse | 3 | 83,090 |
+| Siac | 3 | 110,855 |
 
 ## Programs
 
@@ -53,9 +69,9 @@ The pcap reader they all share is `executables/pcap/`.
 
 ## Tests
 
-`tests/` holds a test per protocol and format (26 of them), each written against the
+`tests/` holds a test per protocol and format (162 of them), each written against the
 surface that format's program uses, plus one run of each program on its protocol's first
-declared capture (45 of them):
+declared capture (130 of them):
 
 - `tests/modern/` walks every payload with the Modern iterator and requires the declared
   message — what extractor reads through
@@ -79,10 +95,8 @@ cmake --build build --parallel && ctest --test-dir build
 A protocol a format's generator refuses is left out of that format, and out of the programs
 and tests that read through it:
 
-- Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d, Classes: no counted or sized frame found under the packet root 'Udp Packet'
-- Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d, Flyweight: no counted or sized frame found under the packet root 'Udp Packet'
-- Miax.MiaxOptions.TopOfMarket.Mach.v2.5, Classes: no counted or sized frame found under the packet root 'Udp Packet'
-- Miax.MiaxOptions.TopOfMarket.Mach.v2.5, Flyweight: no counted or sized frame found under the packet root 'Udp Packet'
+- Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d, Advanced: 'Heartbeat' is an action the model neither calls a message nor sets in a packet, so it has no place among the messages or the packets
+- Miax.MiaxOptions.TopOfMarket.Mach.v2.5, Advanced: 'Heartbeat' is an action the model neither calls a message nor sets in a packet, so it has no place among the messages or the packets
 
 ## Organizations
 

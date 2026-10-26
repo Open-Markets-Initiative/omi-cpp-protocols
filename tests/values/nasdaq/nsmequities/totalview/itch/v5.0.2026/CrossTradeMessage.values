@@ -1,0 +1,17 @@
+# Nasdaq.NsmEquities.TotalView.Itch.v5.0.2026 CrossTradeMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = S061226   
+packet.packetheader.sequencenumber = 15
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 40
+packet.messages.message[0].messageheader.messagetype = Q
+packet.messages.message[0].payload = packet.messages.message.payload.crosstrademessage
+packet.messages.message[0].payload.crosstrademessage.stocklocate = 12621
+packet.messages.message[0].payload.crosstrademessage.trackingnumber = 2
+packet.messages.message[0].payload.crosstrademessage.timestamp = 32400000896726
+packet.messages.message[0].payload.crosstrademessage.crossshares = 34
+packet.messages.message[0].payload.crosstrademessage.stock = XXII
+packet.messages.message[0].payload.crosstrademessage.crossprice = 6.3
+packet.messages.message[0].payload.crosstrademessage.matchnumber = 672234
+packet.messages.message[0].payload.crosstrademessage.crosstype = H

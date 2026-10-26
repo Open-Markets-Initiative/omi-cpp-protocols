@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../structs/PacketHeader.hpp"
-#include "../structs/Message.hpp"
 #include "../structs/MessageHeader.hpp"
 #include "../structs/UnderlyingsGroups.hpp"
 #include "../structs/LegsGroups.hpp"

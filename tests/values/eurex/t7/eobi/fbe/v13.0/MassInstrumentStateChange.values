@@ -1,0 +1,27 @@
+# Eurex.T7.Eobi.Fbe.v13.0 MassInstrumentStateChange: canonical values, read by the model
+datagram 0
+packet.packetheader.eobiheader.bodylen = 32
+packet.packetheader.eobiheader.templateid = 13004
+packet.packetheader.eobiheader.msgseqnum = 4294967295
+packet.packetheader.applseqnum = 6168249
+packet.packetheader.marketsegmentid = 402909
+packet.packetheader.partitionid = 12
+packet.packetheader.completionindicator = 1
+packet.packetheader.applseqresetindicator = 0
+packet.packetheader.dscp = 0
+packet.packetheader.transacttime = 1744639549482784476
+packet.message[0].messageheadercomp.bodylen = 800
+packet.message[0].messageheadercomp.templateid = 13302
+packet.message[0].messageheadercomp.msgseqnum = 187173
+packet.message[0].payload = packet.message.payload.massinstrumentstatechange
+packet.message[0].payload.massinstrumentstatechange.instrumentscopeproductcomplex = 5
+packet.message[0].payload.massinstrumentstatechange.securitymassstatus = 1
+packet.message[0].payload.massinstrumentstatechange.securitymasstradingstatus = 203
+packet.message[0].payload.massinstrumentstatechange.massmarketcondition = 0
+packet.message[0].payload.massinstrumentstatechange.fastmarketindicator = 0
+packet.message[0].payload.massinstrumentstatechange.securitymasstradingevent = 255
+packet.message[0].payload.massinstrumentstatechange.masssoldoutindicator = 255
+packet.message[0].payload.massinstrumentstatechange.tessecuritymassstatus = 1
+packet.message[0].payload.massinstrumentstatechange.transacttime = 1744639549482726908
+packet.message[0].payload.massinstrumentstatechange.lastfragment = 1
+packet.message[0].payload.massinstrumentstatechange.norelatedsym = 0

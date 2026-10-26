@@ -31,7 +31,7 @@ class FractionalTradeCorrectionMessage : public TradeMessagePayload {
     static constexpr std::size_t wire_size = 184;
 
     FractionalTradeCorrectionMessage() = default;
-    FractionalTradeCorrectionMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol, InstrumentType instrument_type, const std::string& corrected_sale_condition, Decimal corrected_trade_price, std::uint64_t corrected_fractional_trade_volume, std::uint8_t corrected_sellers_sale_days, char corrected_stop_stock_indicator, char corrected_trade_through_exempt_indicator, char corrected_short_sale_restriction_indicator, TradeReportingFacilityId trade_reporting_facility_id, const Timestamp2& timestamp_2, std::int64_t original_participant_reference_number, const std::string& original_sale_condition, Decimal original_trade_price, std::uint64_t original_fractional_trade_volume, std::uint8_t original_sellers_sale_days, char original_stop_stock_indicator, char original_trade_through_exempt_indicator, char original_short_sale_restriction_indicator, PrimaryListingMarketParticipantId primary_listing_market_participant_id, FinancialStatusIndicator financial_status_indicator, std::uint32_t consolidated_previous_close_price_date, char consolidated_last_participant_id, Decimal consolidated_last_price, Decimal consolidated_high_price, Decimal consolidated_low_price, std::uint64_t consolidated_fractional_total_volume, char consolidated_tick, std::uint32_t participant_previous_close_price_date, Decimal participant_last_price, Decimal participant_high_price, Decimal participant_low_price, Decimal participant_open_price, std::uint64_t participant_fractional_total_volume, char participant_tick);
+    FractionalTradeCorrectionMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol, InstrumentType instrument_type, const std::string& corrected_sale_condition, Decimal corrected_trade_price, Decimal corrected_fractional_trade_volume, std::uint8_t corrected_sellers_sale_days, char corrected_stop_stock_indicator, char corrected_trade_through_exempt_indicator, char corrected_short_sale_restriction_indicator, TradeReportingFacilityId trade_reporting_facility_id, const Timestamp2& timestamp_2, std::int64_t original_participant_reference_number, const std::string& original_sale_condition, Decimal original_trade_price, Decimal original_fractional_trade_volume, std::uint8_t original_sellers_sale_days, char original_stop_stock_indicator, char original_trade_through_exempt_indicator, char original_short_sale_restriction_indicator, PrimaryListingMarketParticipantId primary_listing_market_participant_id, FinancialStatusIndicator financial_status_indicator, std::uint32_t consolidated_previous_close_price_date, char consolidated_last_participant_id, Decimal consolidated_last_price, Decimal consolidated_high_price, Decimal consolidated_low_price, Decimal consolidated_fractional_total_volume, char consolidated_tick, std::uint32_t participant_previous_close_price_date, Decimal participant_last_price, Decimal participant_high_price, Decimal participant_low_price, Decimal participant_open_price, Decimal participant_fractional_total_volume, char participant_tick);
 
     // Participant Id: Identifies the Participant or Processor that initiated the message
     ParticipantId participant_id() const;
@@ -76,8 +76,8 @@ class FractionalTradeCorrectionMessage : public TradeMessagePayload {
 
     // Corrected Fractional Trade Volume: Corrected total number of shares which traded in a
     // single transaction. Has implied 6 decimal places
-    std::uint64_t corrected_fractional_trade_volume() const;
-    void set_corrected_fractional_trade_volume(std::uint64_t value);
+    Decimal corrected_fractional_trade_volume() const;
+    void set_corrected_fractional_trade_volume(Decimal value);
 
     // Corrected Sellers Sale Days: Corrected number of days that may elapse before delivery of
     // the security
@@ -123,8 +123,8 @@ class FractionalTradeCorrectionMessage : public TradeMessagePayload {
 
     // Original Fractional Trade Volume: Original total number of shares which traded in a
     // single transaction. Has implied 6 decimal places
-    std::uint64_t original_fractional_trade_volume() const;
-    void set_original_fractional_trade_volume(std::uint64_t value);
+    Decimal original_fractional_trade_volume() const;
+    void set_original_fractional_trade_volume(Decimal value);
 
     // Original Sellers Sale Days: Original number of days that may elapse before delivery of
     // the security
@@ -177,8 +177,8 @@ class FractionalTradeCorrectionMessage : public TradeMessagePayload {
 
     // Consolidated Fractional Total Volume: Consolidated total volume of shares traded. Has
     // implied 6 decimal places
-    std::uint64_t consolidated_fractional_total_volume() const;
-    void set_consolidated_fractional_total_volume(std::uint64_t value);
+    Decimal consolidated_fractional_total_volume() const;
+    void set_consolidated_fractional_total_volume(Decimal value);
 
     // Consolidated Tick: Consolidated tick direction
     char consolidated_tick() const;
@@ -210,8 +210,8 @@ class FractionalTradeCorrectionMessage : public TradeMessagePayload {
 
     // Participant Fractional Total Volume: Participant total volume of shares traded. Has
     // implied 6 decimal places
-    std::uint64_t participant_fractional_total_volume() const;
-    void set_participant_fractional_total_volume(std::uint64_t value);
+    Decimal participant_fractional_total_volume() const;
+    void set_participant_fractional_total_volume(Decimal value);
 
     // Participant Tick: Participant tick direction
     char participant_tick() const;
@@ -241,7 +241,7 @@ class FractionalTradeCorrectionMessage : public TradeMessagePayload {
     InstrumentType instrument_type_{};
     std::string corrected_sale_condition_{};
     Decimal corrected_trade_price_{ 0, -6 };
-    std::uint64_t corrected_fractional_trade_volume_{};
+    Decimal corrected_fractional_trade_volume_{ 0, -6 };
     std::uint8_t corrected_sellers_sale_days_{};
     char corrected_stop_stock_indicator_{};
     char corrected_trade_through_exempt_indicator_{};
@@ -251,7 +251,7 @@ class FractionalTradeCorrectionMessage : public TradeMessagePayload {
     std::int64_t original_participant_reference_number_{};
     std::string original_sale_condition_{};
     Decimal original_trade_price_{ 0, -6 };
-    std::uint64_t original_fractional_trade_volume_{};
+    Decimal original_fractional_trade_volume_{ 0, -6 };
     std::uint8_t original_sellers_sale_days_{};
     char original_stop_stock_indicator_{};
     char original_trade_through_exempt_indicator_{};
@@ -263,14 +263,14 @@ class FractionalTradeCorrectionMessage : public TradeMessagePayload {
     Decimal consolidated_last_price_{ 0, -6 };
     Decimal consolidated_high_price_{ 0, -6 };
     Decimal consolidated_low_price_{ 0, -6 };
-    std::uint64_t consolidated_fractional_total_volume_{};
+    Decimal consolidated_fractional_total_volume_{ 0, -6 };
     char consolidated_tick_{};
     std::uint32_t participant_previous_close_price_date_{};
     Decimal participant_last_price_{ 0, -6 };
     Decimal participant_high_price_{ 0, -6 };
     Decimal participant_low_price_{ 0, -6 };
     Decimal participant_open_price_{ 0, -6 };
-    std::uint64_t participant_fractional_total_volume_{};
+    Decimal participant_fractional_total_volume_{ 0, -6 };
     char participant_tick_{};
 };
 

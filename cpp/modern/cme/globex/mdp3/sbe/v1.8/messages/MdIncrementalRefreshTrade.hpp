@@ -3,7 +3,7 @@
 #include "../types/TransactTime.hpp"
 #include "../bitfields/MatchEventIndicator.hpp"
 #include "../types/Padding2.hpp"
-#include "../structs/MessageHeader.hpp"
+#include "../structs/SimpleBinaryHeader.hpp"
 
 namespace cme::mdp3::v8 {
 
@@ -30,8 +30,8 @@ struct MdIncrementalRefreshTrade {
     }
 
     // parse the overlaid body from its selecting header
-    static const MdIncrementalRefreshTrade* parse(const MessageHeader* header) {
-        return reinterpret_cast<const MdIncrementalRefreshTrade*>(reinterpret_cast<const std::byte*>(header) + sizeof(MessageHeader));
+    static const MdIncrementalRefreshTrade* parse(const SimpleBinaryHeader* header) {
+        return reinterpret_cast<const MdIncrementalRefreshTrade*>(reinterpret_cast<const std::byte*>(header) + sizeof(SimpleBinaryHeader));
     }
 };
 

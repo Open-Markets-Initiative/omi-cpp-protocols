@@ -1,0 +1,7 @@
+# Memx.MemxEquities.MemoirDepthFeed.Sbe.v1.3 Heartbeat: canonical values, read by the model
+datagram 0
+packet.commonheader.messagetype = 0
+packet.commonheader.headerlength = 18
+packet.commonheader.sessionid = 6148333994739271368
+packet.commonheader.sequencenumber = 1435792
+packet.sequencedmessages = packet.sequencedmessages.heartbeat

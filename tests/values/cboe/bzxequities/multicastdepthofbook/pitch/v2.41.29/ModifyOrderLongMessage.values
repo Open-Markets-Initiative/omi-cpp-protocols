@@ -1,0 +1,16 @@
+# Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.41.29 ModifyOrderLongMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.length = 35
+packet.packetheader.messagecount = 1
+packet.packetheader.unit = 12
+packet.packetheader.sequence = 48314
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 27
+packet.messages.message[0].messageheader.messagetype = 39
+packet.messages.message[0].payload = packet.messages.message.payload.modifyorderlongmessage
+packet.messages.message[0].payload.modifyorderlongmessage.timeoffset = 75801000
+packet.messages.message[0].payload.modifyorderlongmessage.orderid = 1660017550794624034
+packet.messages.message[0].payload.modifyorderlongmessage.quantity = 500
+packet.messages.message[0].payload.modifyorderlongmessage.price = 0.445
+packet.messages.message[0].payload.modifyorderlongmessage.modifyorderflags.display = 1
+packet.messages.message[0].payload.modifyorderlongmessage.modifyorderflags.priority = 0

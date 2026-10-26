@@ -1,0 +1,29 @@
+# Iex.IexEquities.Tops.IexTp.v1.66 AuctionInformationMessage: canonical values, read by the model
+datagram 0
+packet.iextpheader.version = 1
+packet.iextpheader.messageprotocolid = 32771
+packet.iextpheader.channelid = 1
+packet.iextpheader.sessionid = 1304625152
+packet.iextpheader.payloadlength = 82
+packet.iextpheader.messagecount = 1
+packet.iextpheader.streamoffset = 12188631
+packet.iextpheader.firstmessagesequencenumber = 300643
+packet.iextpheader.sendtime = 1720013280005635435
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 80
+packet.messages.message[0].messageheader.messagetype = A
+packet.messages.message[0].messagedata = packet.messages.message.messagedata.auctioninformationmessage
+packet.messages.message[0].messagedata.auctioninformationmessage.auctiontype = O
+packet.messages.message[0].messagedata.auctioninformationmessage.timestamp = 1720013280004801438
+packet.messages.message[0].messagedata.auctioninformationmessage.symbol = ZEXIT
+packet.messages.message[0].messagedata.auctioninformationmessage.pairedshares = 2000
+packet.messages.message[0].messagedata.auctioninformationmessage.referenceprice = 10
+packet.messages.message[0].messagedata.auctioninformationmessage.indicativeclearingprice = 10
+packet.messages.message[0].messagedata.auctioninformationmessage.imbalanceshares = 0
+packet.messages.message[0].messagedata.auctioninformationmessage.imbalanceside = N
+packet.messages.message[0].messagedata.auctioninformationmessage.extensionnumber = 0
+packet.messages.message[0].messagedata.auctioninformationmessage.scheduledauctiontime = 1720013400
+packet.messages.message[0].messagedata.auctioninformationmessage.auctionbookclearingprice = 10
+packet.messages.message[0].messagedata.auctioninformationmessage.collarreferenceprice = 10
+packet.messages.message[0].messagedata.auctioninformationmessage.lowerauctioncollar = 9
+packet.messages.message[0].messagedata.auctioninformationmessage.upperauctioncollar = 11

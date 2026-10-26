@@ -1,0 +1,32 @@
+# Asx.AsxDerivatives.Ntp.Itch.v1.05 FutureSymbolDirectoryMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 1567326030
+packet.packetheader.sequencenumber = 3467798
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 180
+packet.messages.message[0].messageheader.messagetype = f
+packet.messages.message[0].payload = packet.messages.message.payload.futuresymboldirectorymessage
+packet.messages.message[0].payload.futuresymboldirectorymessage.nanoseconds = 99888000
+packet.messages.message[0].payload.futuresymboldirectorymessage.tradedate = 18143
+packet.messages.message[0].payload.futuresymboldirectorymessage.tradeableinstrumentid = 163538
+packet.messages.message[0].payload.futuresymboldirectorymessage.symbolname = WKN0
+packet.messages.message[0].payload.futuresymboldirectorymessage.longname = WA Wheat Futures
+packet.messages.message[0].payload.futuresymboldirectorymessage.isin = 
+packet.messages.message[0].payload.futuresymboldirectorymessage.exchange = XSFE
+packet.messages.message[0].payload.futuresymboldirectorymessage.instrument = WK
+packet.messages.message[0].payload.futuresymboldirectorymessage.cficode = FCAPSO
+packet.messages.message[0].payload.futuresymboldirectorymessage.expiryyear = 2020
+packet.messages.message[0].payload.futuresymboldirectorymessage.expirymonth = 7
+packet.messages.message[0].payload.futuresymboldirectorymessage.pricedisplaydecimals = 2
+packet.messages.message[0].payload.futuresymboldirectorymessage.pricefractionaldenominator = 1000000
+packet.messages.message[0].payload.futuresymboldirectorymessage.priceminimumtick = 100000
+packet.messages.message[0].payload.futuresymboldirectorymessage.lasttradingdate = 1594821600
+packet.messages.message[0].payload.futuresymboldirectorymessage.priordaysettlement = 3030000
+packet.messages.message[0].payload.futuresymboldirectorymessage.currency = AUD
+packet.messages.message[0].payload.futuresymboldirectorymessage.lotsizeorfacevalue = 20000000
+packet.messages.message[0].payload.futuresymboldirectorymessage.maturityvalue = 0
+packet.messages.message[0].payload.futuresymboldirectorymessage.couponrate = 0
+packet.messages.message[0].payload.futuresymboldirectorymessage.paymentsperyear = 0
+packet.messages.message[0].payload.futuresymboldirectorymessage.blocklotsize = 0
+packet.messages.message[0].payload.futuresymboldirectorymessage.expirydate = 1594908000

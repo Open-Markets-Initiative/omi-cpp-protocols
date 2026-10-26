@@ -6,7 +6,7 @@
 
 namespace siac::cts::output::cta::v2_11_b {
 
-FractionalTradeCancelErrorMessage::FractionalTradeCancelErrorMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol, InstrumentType instrument_type, const SaleCondition4& sale_condition_4, Decimal trade_price, std::uint64_t fractional_trade_volume, std::uint8_t sellers_sale_days, StopStockIndicator stop_stock_indicator, TradeThroughExemptIndicator trade_through_exempt_indicator, TradeReportingFacilityId trade_reporting_facility_id, std::int64_t original_participant_reference_number, const Timestamp2& timestamp_2, CancelErrorAction cancel_error_action, ShortSaleRestrictionIndicator short_sale_restriction_indicator, PrimaryListingMarketParticipantId primary_listing_market_participant_id, FinancialStatusIndicator financial_status_indicator, std::uint32_t consolidated_previous_close_price_date, char consolidated_last_participant_id, Decimal consolidated_last_price, Decimal consolidated_high_price, Decimal consolidated_low_price, std::uint64_t consolidated_fractional_total_volume, char consolidated_tick, std::uint32_t participant_previous_close_price_date, Decimal participant_last_price, Decimal participant_high_price, Decimal participant_low_price, Decimal participant_open_price, std::uint64_t participant_fractional_total_volume, char participant_tick)
+FractionalTradeCancelErrorMessage::FractionalTradeCancelErrorMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol, InstrumentType instrument_type, const SaleCondition4& sale_condition_4, Decimal trade_price, Decimal fractional_trade_volume, std::uint8_t sellers_sale_days, StopStockIndicator stop_stock_indicator, TradeThroughExemptIndicator trade_through_exempt_indicator, TradeReportingFacilityId trade_reporting_facility_id, std::int64_t original_participant_reference_number, const Timestamp2& timestamp_2, CancelErrorAction cancel_error_action, ShortSaleRestrictionIndicator short_sale_restriction_indicator, PrimaryListingMarketParticipantId primary_listing_market_participant_id, FinancialStatusIndicator financial_status_indicator, std::uint32_t consolidated_previous_close_price_date, char consolidated_last_participant_id, Decimal consolidated_last_price, Decimal consolidated_high_price, Decimal consolidated_low_price, Decimal consolidated_fractional_total_volume, char consolidated_tick, std::uint32_t participant_previous_close_price_date, Decimal participant_last_price, Decimal participant_high_price, Decimal participant_low_price, Decimal participant_open_price, Decimal participant_fractional_total_volume, char participant_tick)
   : participant_id_(participant_id), timestamp_1_(timestamp_1), message_id_(message_id), transaction_id_(transaction_id), participant_reference_number_(participant_reference_number), security_symbol_(security_symbol), instrument_type_(instrument_type), sale_condition_4_(sale_condition_4), trade_price_(trade_price), fractional_trade_volume_(fractional_trade_volume), sellers_sale_days_(sellers_sale_days), stop_stock_indicator_(stop_stock_indicator), trade_through_exempt_indicator_(trade_through_exempt_indicator), trade_reporting_facility_id_(trade_reporting_facility_id), original_participant_reference_number_(original_participant_reference_number), timestamp_2_(timestamp_2), cancel_error_action_(cancel_error_action), short_sale_restriction_indicator_(short_sale_restriction_indicator), primary_listing_market_participant_id_(primary_listing_market_participant_id), financial_status_indicator_(financial_status_indicator), consolidated_previous_close_price_date_(consolidated_previous_close_price_date), consolidated_last_participant_id_(consolidated_last_participant_id), consolidated_last_price_(consolidated_last_price), consolidated_high_price_(consolidated_high_price), consolidated_low_price_(consolidated_low_price), consolidated_fractional_total_volume_(consolidated_fractional_total_volume), consolidated_tick_(consolidated_tick), participant_previous_close_price_date_(participant_previous_close_price_date), participant_last_price_(participant_last_price), participant_high_price_(participant_high_price), participant_low_price_(participant_low_price), participant_open_price_(participant_open_price), participant_fractional_total_volume_(participant_fractional_total_volume), participant_tick_(participant_tick) {}
 
 ParticipantId FractionalTradeCancelErrorMessage::participant_id() const { return participant_id_; }
@@ -39,8 +39,8 @@ void FractionalTradeCancelErrorMessage::set_sale_condition_4(const SaleCondition
 Decimal FractionalTradeCancelErrorMessage::trade_price() const { return trade_price_; }
 void FractionalTradeCancelErrorMessage::set_trade_price(Decimal value) { trade_price_ = value; }
 
-std::uint64_t FractionalTradeCancelErrorMessage::fractional_trade_volume() const { return fractional_trade_volume_; }
-void FractionalTradeCancelErrorMessage::set_fractional_trade_volume(std::uint64_t value) { fractional_trade_volume_ = value; }
+Decimal FractionalTradeCancelErrorMessage::fractional_trade_volume() const { return fractional_trade_volume_; }
+void FractionalTradeCancelErrorMessage::set_fractional_trade_volume(Decimal value) { fractional_trade_volume_ = value; }
 
 std::uint8_t FractionalTradeCancelErrorMessage::sellers_sale_days() const { return sellers_sale_days_; }
 void FractionalTradeCancelErrorMessage::set_sellers_sale_days(std::uint8_t value) { sellers_sale_days_ = value; }
@@ -88,8 +88,8 @@ void FractionalTradeCancelErrorMessage::set_consolidated_high_price(Decimal valu
 Decimal FractionalTradeCancelErrorMessage::consolidated_low_price() const { return consolidated_low_price_; }
 void FractionalTradeCancelErrorMessage::set_consolidated_low_price(Decimal value) { consolidated_low_price_ = value; }
 
-std::uint64_t FractionalTradeCancelErrorMessage::consolidated_fractional_total_volume() const { return consolidated_fractional_total_volume_; }
-void FractionalTradeCancelErrorMessage::set_consolidated_fractional_total_volume(std::uint64_t value) { consolidated_fractional_total_volume_ = value; }
+Decimal FractionalTradeCancelErrorMessage::consolidated_fractional_total_volume() const { return consolidated_fractional_total_volume_; }
+void FractionalTradeCancelErrorMessage::set_consolidated_fractional_total_volume(Decimal value) { consolidated_fractional_total_volume_ = value; }
 
 char FractionalTradeCancelErrorMessage::consolidated_tick() const { return consolidated_tick_; }
 void FractionalTradeCancelErrorMessage::set_consolidated_tick(char value) { consolidated_tick_ = value; }
@@ -109,8 +109,8 @@ void FractionalTradeCancelErrorMessage::set_participant_low_price(Decimal value)
 Decimal FractionalTradeCancelErrorMessage::participant_open_price() const { return participant_open_price_; }
 void FractionalTradeCancelErrorMessage::set_participant_open_price(Decimal value) { participant_open_price_ = value; }
 
-std::uint64_t FractionalTradeCancelErrorMessage::participant_fractional_total_volume() const { return participant_fractional_total_volume_; }
-void FractionalTradeCancelErrorMessage::set_participant_fractional_total_volume(std::uint64_t value) { participant_fractional_total_volume_ = value; }
+Decimal FractionalTradeCancelErrorMessage::participant_fractional_total_volume() const { return participant_fractional_total_volume_; }
+void FractionalTradeCancelErrorMessage::set_participant_fractional_total_volume(Decimal value) { participant_fractional_total_volume_ = value; }
 
 char FractionalTradeCancelErrorMessage::participant_tick() const { return participant_tick_; }
 void FractionalTradeCancelErrorMessage::set_participant_tick(char value) { participant_tick_ = value; }
@@ -148,7 +148,7 @@ std::size_t FractionalTradeCancelErrorMessage::decode(const std::byte* data, std
     trade_price_ = Decimal(static_cast<std::int64_t>(wire::read_u64_be(data + offset)), -6);
     offset += 8;
 
-    fractional_trade_volume_ = wire::read_u64_be(data + offset);
+    fractional_trade_volume_ = Decimal(static_cast<std::int64_t>(wire::read_u64_be(data + offset)), -6);
     offset += 8;
 
     sellers_sale_days_ = wire::read_u8(data + offset);
@@ -195,7 +195,7 @@ std::size_t FractionalTradeCancelErrorMessage::decode(const std::byte* data, std
     consolidated_low_price_ = Decimal(static_cast<std::int64_t>(wire::read_u64_be(data + offset)), -6);
     offset += 8;
 
-    consolidated_fractional_total_volume_ = wire::read_u64_be(data + offset);
+    consolidated_fractional_total_volume_ = Decimal(static_cast<std::int64_t>(wire::read_u64_be(data + offset)), -6);
     offset += 8;
 
     consolidated_tick_ = wire::read_char(data + offset);
@@ -216,7 +216,7 @@ std::size_t FractionalTradeCancelErrorMessage::decode(const std::byte* data, std
     participant_open_price_ = Decimal(static_cast<std::int64_t>(wire::read_u64_be(data + offset)), -6);
     offset += 8;
 
-    participant_fractional_total_volume_ = wire::read_u64_be(data + offset);
+    participant_fractional_total_volume_ = Decimal(static_cast<std::int64_t>(wire::read_u64_be(data + offset)), -6);
     offset += 8;
 
     participant_tick_ = wire::read_char(data + offset);
@@ -254,7 +254,7 @@ std::size_t FractionalTradeCancelErrorMessage::encode(std::byte* data, std::size
     wire::write_u64_be(data + offset, static_cast<std::uint64_t>(trade_price_.mantissa()));
     offset += 8;
 
-    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(fractional_trade_volume_));
+    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(fractional_trade_volume_.mantissa()));
     offset += 8;
 
     wire::write_u8(data + offset, static_cast<std::uint8_t>(sellers_sale_days_));
@@ -301,7 +301,7 @@ std::size_t FractionalTradeCancelErrorMessage::encode(std::byte* data, std::size
     wire::write_u64_be(data + offset, static_cast<std::uint64_t>(consolidated_low_price_.mantissa()));
     offset += 8;
 
-    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(consolidated_fractional_total_volume_));
+    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(consolidated_fractional_total_volume_.mantissa()));
     offset += 8;
 
     wire::write_char(data + offset, consolidated_tick_);
@@ -322,7 +322,7 @@ std::size_t FractionalTradeCancelErrorMessage::encode(std::byte* data, std::size
     wire::write_u64_be(data + offset, static_cast<std::uint64_t>(participant_open_price_.mantissa()));
     offset += 8;
 
-    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(participant_fractional_total_volume_));
+    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(participant_fractional_total_volume_.mantissa()));
     offset += 8;
 
     wire::write_char(data + offset, participant_tick_);

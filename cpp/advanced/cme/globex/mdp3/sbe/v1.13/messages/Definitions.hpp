@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../structs/BinaryPacketHeader.hpp"
-#include "../structs/Message.hpp"
 #include "../structs/MessageHeader.hpp"
 #include "../structs/ChannelResetGroups.hpp"
 #include "../structs/IncrementalRefreshVolumeGroups.hpp"

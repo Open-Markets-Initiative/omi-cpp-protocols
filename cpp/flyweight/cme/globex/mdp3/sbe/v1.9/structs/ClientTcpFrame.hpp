@@ -30,7 +30,7 @@ class ClientTcpFrame {
 
     ClientTechnicalHeader client_technical_header() const { return ClientTechnicalHeader{ bytes_.subspan(0) }; }
 
-    MessageHeader message_header() const { return MessageHeader{ bytes_.subspan(16) }; }
+    MessageHeader message_header() const { return MessageHeader{ bytes_.subspan(14) }; }
 
     void print(std::ostream& out) const {
         out << "ClientTcpFrame{";

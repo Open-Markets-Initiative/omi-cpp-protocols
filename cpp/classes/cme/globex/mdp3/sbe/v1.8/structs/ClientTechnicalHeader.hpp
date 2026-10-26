@@ -7,15 +7,14 @@
 
 namespace cme::globex::mdp3::sbe::v1_8 {
 
-// Cme Technical Header sent by the firm to Cme. Tcp Message Size is the last field so this
-// fixed 16 byte header spans everything up to and including the length the reassembly reads.
+// Cme Technical Header sent by the firm to Cme
 class ClientTechnicalHeader {
   public:
     // Bytes of this struct on the wire
-    static constexpr std::size_t wire_size = 16;
+    static constexpr std::size_t wire_size = 14;
 
     ClientTechnicalHeader() = default;
-    ClientTechnicalHeader(std::uint16_t encoding_type, std::uint32_t message_sequence_number, std::chrono::nanoseconds tcp_sending_time, std::uint16_t tcp_message_size);
+    ClientTechnicalHeader(std::uint16_t encoding_type, std::uint32_t message_sequence_number, std::chrono::nanoseconds tcp_sending_time);
 
     // Encoding Type: Encoding Type
     std::uint16_t encoding_type() const;
@@ -28,10 +27,6 @@ class ClientTechnicalHeader {
     // Tcp Sending Time: Packet Sending Time, nanoseconds since the Unix epoch
     std::chrono::nanoseconds tcp_sending_time() const;
     void set_tcp_sending_time(std::chrono::nanoseconds value);
-
-    // Tcp Message Size: Message Size
-    std::uint16_t tcp_message_size() const;
-    void set_tcp_message_size(std::uint16_t value);
 
     // Read this from the bytes at data, and return how many were consumed; throws DecodeError when too few
     std::size_t decode(const std::byte* data, std::size_t length);
@@ -48,7 +43,6 @@ class ClientTechnicalHeader {
     std::uint16_t encoding_type_{};
     std::uint32_t message_sequence_number_{};
     std::chrono::nanoseconds tcp_sending_time_{};
-    std::uint16_t tcp_message_size_{};
 };
 
 std::ostream& operator<<(std::ostream& out, const ClientTechnicalHeader& value);

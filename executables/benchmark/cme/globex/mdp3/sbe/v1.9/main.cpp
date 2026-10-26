@@ -1379,7 +1379,7 @@ std::size_t parse_server_tcp_message([[maybe_unused]] const std::byte* data, [[m
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& message_header_ = tmp::read<message_header>(data + offset, bound - offset, handler); offset += message_header::size;
-    offset += parse_server_payload(data + offset, bound - offset, handler, message_header_.template get<template_id>(), message_header_.template get<block_length>());
+    offset += parse_server_payload(data + offset, bound - offset, handler, message_header_.template get<simple_binary_header>().template get<template_id>(), message_header_.template get<simple_binary_header>().template get<block_length>());
     return offset;
 }
 
@@ -1389,9 +1389,9 @@ std::size_t parse_server_tcp_frame([[maybe_unused]] const std::byte* data, [[may
     std::size_t offset = 0;
     std::size_t bound = length;
     [[maybe_unused]] const auto& server_technical_header_ = tmp::read<server_technical_header>(data + offset, bound - offset, handler); offset += server_technical_header::size;
-    bound = static_cast<std::size_t>(static_cast<std::int64_t>(tmp::count(tmp::rule(server_technical_header_.template get<tcp_message_size>()))) + 14);
-    tmp::require(bound, length);
     offset += parse_server_tcp_message(data + offset, bound - offset, handler);
+    bound = static_cast<std::size_t>(static_cast<std::int64_t>(tmp::count(tmp::rule(tmp::ahead<message_size>(data, length, 14)))) + 14);
+    tmp::require(bound, length);
     return bound;
 }
 
@@ -1401,8 +1401,8 @@ std::size_t parse_server_tcp_packet([[maybe_unused]] const std::byte* data, [[ma
     std::size_t offset = 0;
     const std::size_t bound = length;
     while (offset < bound) {
-        if (bound - offset < 14 + tcp_message_size::size) { return offset; }
-        const std::size_t size = static_cast<std::size_t>(static_cast<std::int64_t>(tmp::count(tmp::rule(tmp::at<tcp_message_size>(data + offset + 14)))) + 14);
+        if (bound - offset < 14 + message_size::size) { return offset; }
+        const std::size_t size = static_cast<std::size_t>(static_cast<std::int64_t>(tmp::count(tmp::rule(tmp::at<message_size>(data + offset + 14)))) + 14);
         if (bound - offset < size) { return offset; }
         parse_server_tcp_frame(data + offset, size, handler);
         offset += size;
@@ -1651,7 +1651,7 @@ std::size_t parse_client_tcp_message([[maybe_unused]] const std::byte* data, [[m
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& message_header_ = tmp::read<message_header>(data + offset, bound - offset, handler); offset += message_header::size;
-    offset += parse_client_payload(data + offset, bound - offset, handler, message_header_.template get<template_id>(), message_header_.template get<block_length>());
+    offset += parse_client_payload(data + offset, bound - offset, handler, message_header_.template get<simple_binary_header>().template get<template_id>(), message_header_.template get<simple_binary_header>().template get<block_length>());
     return offset;
 }
 
@@ -1661,9 +1661,9 @@ std::size_t parse_client_tcp_frame([[maybe_unused]] const std::byte* data, [[may
     std::size_t offset = 0;
     std::size_t bound = length;
     [[maybe_unused]] const auto& client_technical_header_ = tmp::read<client_technical_header>(data + offset, bound - offset, handler); offset += client_technical_header::size;
-    bound = static_cast<std::size_t>(static_cast<std::int64_t>(tmp::count(tmp::rule(client_technical_header_.template get<tcp_message_size>()))) + 14);
-    tmp::require(bound, length);
     offset += parse_client_tcp_message(data + offset, bound - offset, handler);
+    bound = static_cast<std::size_t>(static_cast<std::int64_t>(tmp::count(tmp::rule(tmp::ahead<message_size>(data, length, 14)))) + 14);
+    tmp::require(bound, length);
     return bound;
 }
 
@@ -1673,8 +1673,8 @@ std::size_t parse_client_tcp_packet([[maybe_unused]] const std::byte* data, [[ma
     std::size_t offset = 0;
     const std::size_t bound = length;
     while (offset < bound) {
-        if (bound - offset < 14 + tcp_message_size::size) { return offset; }
-        const std::size_t size = static_cast<std::size_t>(static_cast<std::int64_t>(tmp::count(tmp::rule(tmp::at<tcp_message_size>(data + offset + 14)))) + 14);
+        if (bound - offset < 14 + message_size::size) { return offset; }
+        const std::size_t size = static_cast<std::size_t>(static_cast<std::int64_t>(tmp::count(tmp::rule(tmp::at<message_size>(data + offset + 14)))) + 14);
         if (bound - offset < size) { return offset; }
         parse_client_tcp_frame(data + offset, size, handler);
         offset += size;
@@ -2223,10 +2223,10 @@ template <typename Handler>
 std::size_t parse_message([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler) {
     std::size_t offset = 0;
     std::size_t bound = length;
-    [[maybe_unused]] const auto& message_section_1_ = tmp::read<message_section_1>(data + offset, bound - offset, handler); offset += message_section_1::size;
-    bound = static_cast<std::size_t>(tmp::rule(message_section_1_.template get<message_size>()));
+    [[maybe_unused]] const auto& message_header_ = tmp::read<message_header>(data + offset, bound - offset, handler); offset += message_header::size;
+    bound = static_cast<std::size_t>(tmp::rule(message_header_.template get<message_size>()));
     tmp::require(bound, length);
-    offset += parse_payload(data + offset, bound - offset, handler, message_section_1_.template get<message_header>().template get<schema_id>(), message_section_1_.template get<message_header>().template get<template_id>(), message_section_1_.template get<message_header>().template get<block_length>());
+    offset += parse_payload(data + offset, bound - offset, handler, message_header_.template get<simple_binary_header>().template get<schema_id>(), message_header_.template get<simple_binary_header>().template get<template_id>(), message_header_.template get<simple_binary_header>().template get<block_length>());
     return bound;
 }
 

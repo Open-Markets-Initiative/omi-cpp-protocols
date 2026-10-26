@@ -1,0 +1,21 @@
+# Nyse.ArcaEquities.IntegratedFeed.Pillar.v2.5.g AddOrderMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 55
+packet.packetheader.deliveryflag = 11
+packet.packetheader.numbermsgs = 1
+packet.packetheader.seqnum = 1113223
+packet.packetheader.sendtime.seconds = 1692710999
+packet.packetheader.sendtime.nanoseconds = 999797504
+packet.packetheader.sendtime = 1692710999999797504
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 39
+packet.messages.message[0].messageheader.messagetype = 100
+packet.messages.message[0].payload = packet.messages.message.payload.addordermessage
+packet.messages.message[0].payload.addordermessage.sourcetimens = 999790080
+packet.messages.message[0].payload.addordermessage.symbolindex = 10127
+packet.messages.message[0].payload.addordermessage.symbolseqnum = 10604
+packet.messages.message[0].payload.addordermessage.orderid = 14921472302506655
+packet.messages.message[0].payload.addordermessage.price = 33980000
+packet.messages.message[0].payload.addordermessage.volume = 800
+packet.messages.message[0].payload.addordermessage.side = S
+packet.messages.message[0].payload.addordermessage.firmid = 

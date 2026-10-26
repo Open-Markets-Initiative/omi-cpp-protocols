@@ -31,7 +31,7 @@ struct UdpPacketReader {
             wire::require(Frame::name, offset + Frame::minimum_size, bytes.size());
             const Frame frame{ bytes.subspan(offset) };
             offset += frame.encoded_size();
-            const std::size_t frame_size = wire::count(frame.message_size());
+            const std::size_t frame_size = wire::count(frame.message_header().message_size());
             wire::require(UdpPacket::name, start + frame_size, bytes.size());
             dispatch(frame, bytes.subspan(offset, start + frame_size - offset), handler);
             offset = start + frame_size;
@@ -43,11 +43,11 @@ struct UdpPacketReader {
   private:
     template <typename Handler>
     static std::size_t dispatch(const Frame& frame, std::span<const std::byte> body, Handler& handler) {
-        switch (frame.message_header().schema_id()) {
-            case SchemaId::Mktdata: return handle<MktdataMessage>(body, handler, frame.message_header().template_id());
-            case SchemaId::Mdpsessionmgmt: return handle<MdpsessionmgmtMessage>(body, handler, frame.message_header().template_id());
+        switch (frame.message_header().simple_binary_header().schema_id()) {
+            case SchemaId::Mktdata: return handle<MktdataMessage>(body, handler, frame.message_header().simple_binary_header().template_id());
+            case SchemaId::Mdpsessionmgmt: return handle<MdpsessionmgmtMessage>(body, handler, frame.message_header().simple_binary_header().template_id());
             default:
-                if constexpr (requires { handler.on_unknown(frame.message_header().schema_id(), body); }) { handler.on_unknown(frame.message_header().schema_id(), body); }
+                if constexpr (requires { handler.on_unknown(frame.message_header().simple_binary_header().schema_id(), body); }) { handler.on_unknown(frame.message_header().simple_binary_header().schema_id(), body); }
                 return body.size();
         }
     }

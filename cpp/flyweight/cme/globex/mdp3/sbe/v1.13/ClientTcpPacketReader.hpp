@@ -38,7 +38,7 @@ struct ClientTcpPacketReader {
 
             const ClientTcpFrame frame{ bytes.subspan(offset) };
             offset += frame.encoded_size();
-            const std::size_t frame_size = wire::count(frame.client_technical_header().tcp_message_size()) + 14;
+            const std::size_t frame_size = wire::count(frame.message_header().message_size()) + 14;
             if (frame_size < ClientTcpFrame::minimum_size) { throw DecodeError(ClientTcpPacket::name, ClientTcpFrame::minimum_size, frame_size); }
             if (start + frame_size > bytes.size()) { offset = start; break; }
             dispatch(frame, bytes.subspan(offset, start + frame_size - offset), handler);
@@ -51,14 +51,14 @@ struct ClientTcpPacketReader {
   private:
     template <typename Handler>
     static std::size_t dispatch(const ClientTcpFrame& frame, std::span<const std::byte> body, Handler& handler) {
-        switch (frame.message_header().template_id()) {
+        switch (frame.message_header().simple_binary_header().template_id()) {
             case TemplateId::Negotiate: return handle<ClientPayloadNegotiate>(body, handler);
             case TemplateId::Terminate: return handle<ClientPayloadTerminate>(body, handler);
             case TemplateId::MarketDataRequest: return handle<ClientPayloadMarketDataRequest>(body, handler);
             case TemplateId::SecurityListRequest: return handle<ClientPayloadSecurityListRequest>(body, handler);
             case TemplateId::SecurityStatusRequest: return handle<ClientPayloadSecurityStatusRequest>(body, handler);
             default:
-                if constexpr (requires { handler.on_unknown(frame.message_header().template_id(), body); }) { handler.on_unknown(frame.message_header().template_id(), body); }
+                if constexpr (requires { handler.on_unknown(frame.message_header().simple_binary_header().template_id(), body); }) { handler.on_unknown(frame.message_header().simple_binary_header().template_id(), body); }
                 return body.size();
         }
     }

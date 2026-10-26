@@ -8,7 +8,6 @@
 #include "../types/RequestTimestamp.hpp"
 #include "../types/Session.hpp"
 #include "../types/Firm.hpp"
-#include "../types/MessageSize.hpp"
 
 namespace cme::mdp3::v9 {
 
@@ -28,9 +27,7 @@ struct negotiate {
         sbe_mdp3::firm firm;
     };
 
-    // Transport framing: message size precedes the SBE header on the wire
-    sbe_mdp3::message_size message_size;
-    sbe_mdp3::message_header header = {{}, template_id::enum_type::negotiate, schema_id::enum_type::mdpsessionmgmt, version(9)};
+    sbe_mdp3::message_header header = {std::uint16_t(sizeof(sbe_mdp3::message_header) + sizeof(fields_type)), {}};
 
     fields_type fields;
 
@@ -54,7 +51,7 @@ static_assert(offsetof(negotiate::fields_type, request_timestamp) == 60, "unexpe
 static_assert(offsetof(negotiate::fields_type, session) == 68, "unexpected offset of negotiate::fields_type::session");
 static_assert(offsetof(negotiate::fields_type, firm) == 73, "unexpected offset of negotiate::fields_type::firm");
 static_assert(sizeof(negotiate::fields_type) == 78, "unexpected sizeof negotiate::fields_type");
-static_assert(sizeof(negotiate) == sizeof(sbe_mdp3::message_size) + sizeof(sbe_mdp3::message_header) + 78, "unexpected sizeof negotiate");
+static_assert(sizeof(negotiate) == sizeof(sbe_mdp3::message_header) + 78, "unexpected sizeof negotiate");
 
 #pragma pack(pop)
 }

@@ -54,7 +54,7 @@ class FractionalTradeCorrectionMessage {
 
     Decimal corrected_trade_price() const { return Decimal(static_cast<std::int64_t>(wire::read_u64_be(at(38))), -6); }
 
-    std::uint64_t corrected_fractional_trade_volume() const { return wire::read_u64_be(at(46)); }
+    Decimal corrected_fractional_trade_volume() const { return Decimal(static_cast<std::int64_t>(wire::read_u64_be(at(46))), -6); }
 
     std::uint8_t corrected_sellers_sale_days() const { return wire::read_u8(at(54)); }
 
@@ -74,7 +74,7 @@ class FractionalTradeCorrectionMessage {
 
     Decimal original_trade_price() const { return Decimal(static_cast<std::int64_t>(wire::read_u64_be(at(79))), -6); }
 
-    std::uint64_t original_fractional_trade_volume() const { return wire::read_u64_be(at(87)); }
+    Decimal original_fractional_trade_volume() const { return Decimal(static_cast<std::int64_t>(wire::read_u64_be(at(87))), -6); }
 
     std::uint8_t original_sellers_sale_days() const { return wire::read_u8(at(95)); }
 
@@ -98,7 +98,7 @@ class FractionalTradeCorrectionMessage {
 
     Decimal consolidated_low_price() const { return Decimal(static_cast<std::int64_t>(wire::read_u64_be(at(122))), -6); }
 
-    std::uint64_t consolidated_fractional_total_volume() const { return wire::read_u64_be(at(130)); }
+    Decimal consolidated_fractional_total_volume() const { return Decimal(static_cast<std::int64_t>(wire::read_u64_be(at(130))), -6); }
 
     char consolidated_tick() const { return wire::read_char(at(138)); }
 
@@ -112,7 +112,7 @@ class FractionalTradeCorrectionMessage {
 
     Decimal participant_open_price() const { return Decimal(static_cast<std::int64_t>(wire::read_u64_be(at(167))), -6); }
 
-    std::uint64_t participant_fractional_total_volume() const { return wire::read_u64_be(at(175)); }
+    Decimal participant_fractional_total_volume() const { return Decimal(static_cast<std::int64_t>(wire::read_u64_be(at(175))), -6); }
 
     char participant_tick() const { return wire::read_char(at(183)); }
 

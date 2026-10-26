@@ -1,0 +1,18 @@
+# Iex.IexEquities.Deep.IexTp.v1.06 SecurityEventMessage: canonical values, read by the model
+datagram 0
+packet.iextpheader.version = 1
+packet.iextpheader.messageprotocolid = 32772
+packet.iextpheader.channelid = 1
+packet.iextpheader.sessionid = 1222443008
+packet.iextpheader.payloadlength = 20
+packet.iextpheader.messagecount = 1
+packet.iextpheader.streamoffset = 6536873
+packet.iextpheader.firstmessagesequencenumber = 210961
+packet.iextpheader.sendtime = 1611671400004366448
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 18
+packet.messages.message[0].messageheader.messagetype = E
+packet.messages.message[0].messagedata = packet.messages.message.messagedata.securityeventmessage
+packet.messages.message[0].messagedata.securityeventmessage.securityevent = O
+packet.messages.message[0].messagedata.securityeventmessage.timestamp = 1611671400000617431
+packet.messages.message[0].messagedata.securityeventmessage.symbol = BDGE

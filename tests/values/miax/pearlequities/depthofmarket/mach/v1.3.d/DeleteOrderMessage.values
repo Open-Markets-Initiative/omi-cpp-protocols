@@ -1,0 +1,12 @@
+# Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d DeleteOrderMessage: canonical values, read by the model
+datagram 0
+udppacket.machmessage[0].machpacketheader.sequencenumber = 2081
+udppacket.machmessage[0].machpacketheader.machpacketlength = 29
+udppacket.machmessage[0].machpacketheader.machpackettype = 3
+udppacket.machmessage[0].machpacketheader.sessionnumber = 1
+udppacket.machmessage[0].payload = udppacket.machmessage.payload.applicationmessage
+udppacket.machmessage[0].payload.applicationmessage.messagetype = 23
+udppacket.machmessage[0].payload.applicationmessage.data = udppacket.machmessage.payload.applicationmessage.data.deleteordermessage
+udppacket.machmessage[0].payload.applicationmessage.data.deleteordermessage.nanoseconds = 2291651
+udppacket.machmessage[0].payload.applicationmessage.data.deleteordermessage.symbolid = 436207708
+udppacket.machmessage[0].payload.applicationmessage.data.deleteordermessage.orderid = 1896896976570552327

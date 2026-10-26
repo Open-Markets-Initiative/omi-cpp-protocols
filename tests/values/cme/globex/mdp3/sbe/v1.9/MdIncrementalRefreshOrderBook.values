@@ -1,0 +1,29 @@
+# Cme.Globex.Mdp3.Sbe.v1.9 MdIncrementalRefreshOrderBook: canonical values, read by the model
+datagram 0
+udppacket.binarypacketheader.packetsequencenumber = 911525
+udppacket.binarypacketheader.sendingtime = 1536760536898363329
+udppacket.message[0].messageheader.messagesize = 64
+udppacket.message[0].messageheader.simplebinaryheader.blocklength = 11
+udppacket.message[0].messageheader.simplebinaryheader.templateid = 47
+udppacket.message[0].messageheader.simplebinaryheader.schemaid = 1
+udppacket.message[0].messageheader.simplebinaryheader.version = 9
+udppacket.message[0].payload = udppacket.message.payload.mktdatamessage
+udppacket.message[0].payload.mktdatamessage.mktdatapayload = udppacket.message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook
+udppacket.message[0].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.transacttime = 1536760536853618175
+udppacket.message[0].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.matcheventindicator.lasttrademsg = 0
+udppacket.message[0].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.matcheventindicator.lastvolumemsg = 0
+udppacket.message[0].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.matcheventindicator.lastquotemsg = 1
+udppacket.message[0].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.matcheventindicator.laststatsmsg = 0
+udppacket.message[0].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.matcheventindicator.lastimpliedmsg = 0
+udppacket.message[0].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.matcheventindicator.recoverymsg = 0
+udppacket.message[0].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.matcheventindicator.reserved = 0
+udppacket.message[0].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.matcheventindicator.endofevent = 1
+udppacket.message[0].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.incrementalrefreshorderbookgroups.groupsize.blocklength = 40
+udppacket.message[0].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.incrementalrefreshorderbookgroups.groupsize.numingroup = 1
+udppacket.message[0].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.incrementalrefreshorderbookgroups.incrementalrefreshorderbookgroup[0].orderidoptional = 76662054355
+udppacket.message[0].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.incrementalrefreshorderbookgroups.incrementalrefreshorderbookgroup[0].mdorderpriority = 641463012
+udppacket.message[0].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.incrementalrefreshorderbookgroups.incrementalrefreshorderbookgroup[0].mdentrypxoptionalex = 12068
+udppacket.message[0].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.incrementalrefreshorderbookgroups.incrementalrefreshorderbookgroup[0].mddisplayqtyoptional = 4
+udppacket.message[0].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.incrementalrefreshorderbookgroups.incrementalrefreshorderbookgroup[0].securityid = 532259
+udppacket.message[0].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.incrementalrefreshorderbookgroups.incrementalrefreshorderbookgroup[0].mdupdateaction = 0
+udppacket.message[0].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.incrementalrefreshorderbookgroups.incrementalrefreshorderbookgroup[0].mdentrytypebook = 1

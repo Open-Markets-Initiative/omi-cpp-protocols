@@ -1,0 +1,23 @@
+# Eurex.T7.Eobi.Fbe.v13.0 CrossRequest: canonical values, read by the model
+datagram 0
+packet.packetheader.eobiheader.bodylen = 32
+packet.packetheader.eobiheader.templateid = 13004
+packet.packetheader.eobiheader.msgseqnum = 4294967295
+packet.packetheader.applseqnum = 52820836
+packet.packetheader.marketsegmentid = 1210
+packet.packetheader.partitionid = 7
+packet.packetheader.completionindicator = 1
+packet.packetheader.applseqresetindicator = 0
+packet.packetheader.dscp = 0
+packet.packetheader.transacttime = 1744639329143223659
+packet.message[0].messageheadercomp.bodylen = 48
+packet.message[0].messageheadercomp.templateid = 13502
+packet.message[0].messageheadercomp.msgseqnum = 454996700
+packet.message[0].payload = packet.message.payload.crossrequest
+packet.message[0].payload.crossrequest.securityid = 11044582
+packet.message[0].payload.crossrequest.lastpx = 281.6
+packet.message[0].payload.crossrequest.lastqty = 20
+packet.message[0].payload.crossrequest.side = 255
+packet.message[0].payload.crossrequest.crossrequesttype = 2
+packet.message[0].payload.crossrequest.inputsource = 1
+packet.message[0].payload.crossrequest.transacttime = 1744639329143194570

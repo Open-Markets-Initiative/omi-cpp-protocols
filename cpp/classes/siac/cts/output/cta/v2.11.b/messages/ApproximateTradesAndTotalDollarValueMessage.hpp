@@ -6,6 +6,7 @@
 #include <ostream>
 #include <string_view>
 
+#include "../common/Decimal.hpp"
 #include "../enums/ParticipantId.hpp"
 #include "../messages/MarketStatusMessagePayload.hpp"
 #include "../structs/Timestamp1.hpp"
@@ -24,7 +25,7 @@ class ApproximateTradesAndTotalDollarValueMessage : public MarketStatusMessagePa
     static constexpr std::size_t wire_size = 34;
 
     ApproximateTradesAndTotalDollarValueMessage() = default;
-    ApproximateTradesAndTotalDollarValueMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, std::uint32_t total_trades, std::uint64_t dollar_value);
+    ApproximateTradesAndTotalDollarValueMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, std::uint32_t total_trades, Decimal dollar_value);
 
     // Participant Id: Identifies the Participant or Processor that initiated the message
     ParticipantId participant_id() const;
@@ -55,8 +56,8 @@ class ApproximateTradesAndTotalDollarValueMessage : public MarketStatusMessagePa
 
     // Dollar Value: Represents the total dollar worth of the daily trade transactions. Has
     // implied 6 decimal places
-    std::uint64_t dollar_value() const;
-    void set_dollar_value(std::uint64_t value);
+    Decimal dollar_value() const;
+    void set_dollar_value(Decimal value);
 
     // MarketStatusMessagePayload
     MarketStatusMessagePayloadCode type() const override;
@@ -79,7 +80,7 @@ class ApproximateTradesAndTotalDollarValueMessage : public MarketStatusMessagePa
     std::uint32_t transaction_id_{};
     std::int64_t participant_reference_number_{};
     std::uint32_t total_trades_{};
-    std::uint64_t dollar_value_{};
+    Decimal dollar_value_{ 0, -6 };
 };
 
 } // namespace siac::cts::output::cta::v2_11_b

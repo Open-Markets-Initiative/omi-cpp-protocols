@@ -1,0 +1,21 @@
+# Iex.IexEquities.DeepPlus.IexTp.v1.01 OrderModifyMessage: canonical values, read by the model
+datagram 0
+packet.iextpheader.version = 1
+packet.iextpheader.messageprotocolid = 32773
+packet.iextpheader.channelid = 1
+packet.iextpheader.sessionid = 1310523392
+packet.iextpheader.payloadlength = 40
+packet.iextpheader.messagecount = 1
+packet.iextpheader.streamoffset = 1004625
+packet.iextpheader.firstmessagesequencenumber = 47213
+packet.iextpheader.sendtime = 1727787570854659817
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 38
+packet.messages.message[0].messageheader.messagetype = M
+packet.messages.message[0].messagedata = packet.messages.message.messagedata.ordermodifymessage
+packet.messages.message[0].messagedata.ordermodifymessage.modifyflags.priority = 0
+packet.messages.message[0].messagedata.ordermodifymessage.timestamp = 1727787570827660238
+packet.messages.message[0].messagedata.ordermodifymessage.symbol = IBKR
+packet.messages.message[0].messagedata.ordermodifymessage.orderidreference = 27866022694355118
+packet.messages.message[0].messagedata.ordermodifymessage.size = 200
+packet.messages.message[0].messagedata.ordermodifymessage.price = 138.33

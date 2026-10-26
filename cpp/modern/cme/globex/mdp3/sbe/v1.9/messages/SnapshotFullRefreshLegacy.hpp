@@ -11,7 +11,7 @@
 #include "../types/HighLimitPrice.hpp"
 #include "../types/LowLimitPrice.hpp"
 #include "../types/MaxPriceVariation.hpp"
-#include "../structs/MessageHeader.hpp"
+#include "../structs/SimpleBinaryHeader.hpp"
 
 namespace cme::mdp3::v9 {
 
@@ -46,8 +46,8 @@ struct SnapshotFullRefreshLegacy {
     }
 
     // parse the overlaid body from its selecting header
-    static const SnapshotFullRefreshLegacy* parse(const MessageHeader* header) {
-        return reinterpret_cast<const SnapshotFullRefreshLegacy*>(reinterpret_cast<const std::byte*>(header) + sizeof(MessageHeader));
+    static const SnapshotFullRefreshLegacy* parse(const SimpleBinaryHeader* header) {
+        return reinterpret_cast<const SnapshotFullRefreshLegacy*>(reinterpret_cast<const std::byte*>(header) + sizeof(SimpleBinaryHeader));
     }
 };
 

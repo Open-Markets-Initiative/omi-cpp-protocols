@@ -6,7 +6,7 @@
 #include "../types/NoChunks.hpp"
 #include "../types/CurrentChunk.hpp"
 #include "../types/TransactTime.hpp"
-#include "../structs/MessageHeader.hpp"
+#include "../structs/SimpleBinaryHeader.hpp"
 
 namespace cme::mdp3::v9 {
 
@@ -36,8 +36,8 @@ struct SnapshotFullRefreshOrderBookLegacy {
     }
 
     // parse the overlaid body from its selecting header
-    static const SnapshotFullRefreshOrderBookLegacy* parse(const MessageHeader* header) {
-        return reinterpret_cast<const SnapshotFullRefreshOrderBookLegacy*>(reinterpret_cast<const std::byte*>(header) + sizeof(MessageHeader));
+    static const SnapshotFullRefreshOrderBookLegacy* parse(const SimpleBinaryHeader* header) {
+        return reinterpret_cast<const SnapshotFullRefreshOrderBookLegacy*>(reinterpret_cast<const std::byte*>(header) + sizeof(SimpleBinaryHeader));
     }
 };
 

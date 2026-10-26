@@ -1,0 +1,18 @@
+# Asx.AsxDerivatives.Ntp.Itch.v1.05 OpenHighLowLastTradeAdjustmentMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 1567326030
+packet.packetheader.sequencenumber = 3495568
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 55
+packet.messages.message[0].messageheader.messagetype = t
+packet.messages.message[0].payload = packet.messages.message.payload.openhighlowlasttradeadjustmentmessage
+packet.messages.message[0].payload.openhighlowlasttradeadjustmentmessage.nanoseconds = 129074000
+packet.messages.message[0].payload.openhighlowlasttradeadjustmentmessage.tradedate = 18143
+packet.messages.message[0].payload.openhighlowlasttradeadjustmentmessage.tradeableinstrumentid = 145186
+packet.messages.message[0].payload.openhighlowlasttradeadjustmentmessage.openingtrade = 0
+packet.messages.message[0].payload.openhighlowlasttradeadjustmentmessage.highesttrade = 0
+packet.messages.message[0].payload.openhighlowlasttradeadjustmentmessage.lowesttrade = 0
+packet.messages.message[0].payload.openhighlowlasttradeadjustmentmessage.lasttrade = 0
+packet.messages.message[0].payload.openhighlowlasttradeadjustmentmessage.lastvolume = 0
+packet.messages.message[0].payload.openhighlowlasttradeadjustmentmessage.totaltradedvolume = 0

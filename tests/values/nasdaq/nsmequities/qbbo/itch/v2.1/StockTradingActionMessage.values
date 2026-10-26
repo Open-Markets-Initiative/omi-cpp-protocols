@@ -1,0 +1,71 @@
+# Nasdaq.NsmEquities.Qbbo.Itch.v2.1 StockTradingActionMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 
+packet.packetheader.sequencenumber = 0
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 23
+packet.messages.message[0].messageheader.messagetype = H
+packet.messages.message[0].payload = packet.messages.message.payload.stocktradingactionmessage
+packet.messages.message[0].payload.stocktradingactionmessage.trackingnumber = 0
+packet.messages.message[0].payload.stocktradingactionmessage.timestamp = 34216197060404
+packet.messages.message[0].payload.stocktradingactionmessage.stock = ZVZZT
+packet.messages.message[0].payload.stocktradingactionmessage.securityclass = Q
+packet.messages.message[0].payload.stocktradingactionmessage.currenttradingstate = P
+packet.messages.message[0].payload.stocktradingactionmessage.reason = LUDP
+datagram 1
+packet.packetheader.session = 
+packet.packetheader.sequencenumber = 0
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 23
+packet.messages.message[0].messageheader.messagetype = H
+packet.messages.message[0].payload = packet.messages.message.payload.stocktradingactionmessage
+packet.messages.message[0].payload.stocktradingactionmessage.trackingnumber = 0
+packet.messages.message[0].payload.stocktradingactionmessage.timestamp = 34355444086210
+packet.messages.message[0].payload.stocktradingactionmessage.stock = BVS
+packet.messages.message[0].payload.stocktradingactionmessage.securityclass = Q
+packet.messages.message[0].payload.stocktradingactionmessage.currenttradingstate = P
+packet.messages.message[0].payload.stocktradingactionmessage.reason = LUDP
+datagram 2
+packet.packetheader.session = 
+packet.packetheader.sequencenumber = 0
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 23
+packet.messages.message[0].messageheader.messagetype = H
+packet.messages.message[0].payload = packet.messages.message.payload.stocktradingactionmessage
+packet.messages.message[0].payload.stocktradingactionmessage.trackingnumber = 0
+packet.messages.message[0].payload.stocktradingactionmessage.timestamp = 34487773046097
+packet.messages.message[0].payload.stocktradingactionmessage.stock = ZXZZT
+packet.messages.message[0].payload.stocktradingactionmessage.securityclass = Q
+packet.messages.message[0].payload.stocktradingactionmessage.currenttradingstate = P
+packet.messages.message[0].payload.stocktradingactionmessage.reason = LUDP
+datagram 3
+packet.packetheader.session = 
+packet.packetheader.sequencenumber = 0
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 23
+packet.messages.message[0].messageheader.messagetype = H
+packet.messages.message[0].payload = packet.messages.message.payload.stocktradingactionmessage
+packet.messages.message[0].payload.stocktradingactionmessage.trackingnumber = 3
+packet.messages.message[0].payload.stocktradingactionmessage.timestamp = 34516197207162
+packet.messages.message[0].payload.stocktradingactionmessage.stock = ZVZZT
+packet.messages.message[0].payload.stocktradingactionmessage.securityclass = Q
+packet.messages.message[0].payload.stocktradingactionmessage.currenttradingstate = T
+packet.messages.message[0].payload.stocktradingactionmessage.reason = 
+datagram 4
+packet.packetheader.session = 
+packet.packetheader.sequencenumber = 0
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 23
+packet.messages.message[0].messageheader.messagetype = H
+packet.messages.message[0].payload = packet.messages.message.payload.stocktradingactionmessage
+packet.messages.message[0].payload.stocktradingactionmessage.trackingnumber = 2
+packet.messages.message[0].payload.stocktradingactionmessage.timestamp = 34787773229093
+packet.messages.message[0].payload.stocktradingactionmessage.stock = ZXZZT
+packet.messages.message[0].payload.stocktradingactionmessage.securityclass = Q
+packet.messages.message[0].payload.stocktradingactionmessage.currenttradingstate = T
+packet.messages.message[0].payload.stocktradingactionmessage.reason = 

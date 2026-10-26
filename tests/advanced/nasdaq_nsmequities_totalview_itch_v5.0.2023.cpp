@@ -98,20 +98,20 @@ void expect(const char* name, const char* relative) {
 
 int main() {
     std::printf("== Nasdaq.NsmEquities.TotalView.Itch.v5.0.2023 (advanced)\n");
-    expect<protocol::add_order_no_mpid_attribution_message>("AddOrderNoMpidAttributionMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/AddOrderNoMPID.pcap");
-    expect<protocol::add_order_with_mpid_attribution_message>("AddOrderWithMpidAttributionMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/AddOrderWithMpid.pcap");
-    expect<protocol::cross_trade_message>("CrossTradeMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/CrossTrade.pcap");
-    expect<protocol::luld_auction_collar_message>("LuldAuctionCollarMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/LULDAuctionCollar.pcap");
-    expect<protocol::market_participant_position_message>("MarketParticipantPositionMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/MarketParticipantPosition.pcap");
-    expect<protocol::net_order_imbalance_indicator_message>("NetOrderImbalanceIndicatorMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/NetOrderImbalanceIndicator.pcap");
-    expect<protocol::non_cross_trade_message>("NonCrossTradeMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/NonCrossTrade.pcap");
-    expect<protocol::order_cancel_message>("OrderCancelMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/OrderCancel.pcap");
-    expect<protocol::order_delete_message>("OrderDeleteMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/OrderDelete.pcap");
-    expect<protocol::order_executed_message>("OrderExecutedMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/OrderExecuted.pcap");
-    expect<protocol::order_executed_with_price_message>("OrderExecutedWithPriceMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/OrderExecutedWithPrice.pcap");
-    expect<protocol::order_replace_message>("OrderReplaceMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/OrderReplace.pcap");
-    expect<protocol::reg_sho_short_sale_price_test_restricted_indicator_message>("RegShoShortSalePriceTestRestrictedIndicatorMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/RegSHORestriction.pcap");
-    expect<protocol::stock_trading_action_message>("StockTradingActionMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/StockTradingAction.pcap");
-    expect<protocol::system_event_message>("SystemEventMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/SystemEvent.pcap");
+    expect<protocol::add_order_no_mpid_attribution_message>("AddOrderNoMpidAttributionMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/AddOrderNoMpidAttributionMessage.pcap");
+    expect<protocol::add_order_with_mpid_attribution_message>("AddOrderWithMpidAttributionMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/AddOrderWithMpidAttributionMessage.pcap");
+    expect<protocol::cross_trade_message>("CrossTradeMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/CrossTradeMessage.pcap");
+    expect<protocol::luld_auction_collar_message>("LuldAuctionCollarMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/LuldAuctionCollarMessage.pcap");
+    expect<protocol::market_participant_position_message>("MarketParticipantPositionMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/MarketParticipantPositionMessage.pcap");
+    expect<protocol::net_order_imbalance_indicator_message>("NetOrderImbalanceIndicatorMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/NetOrderImbalanceIndicatorMessage.pcap");
+    expect<protocol::non_cross_trade_message>("NonCrossTradeMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/NonCrossTradeMessage.pcap");
+    expect<protocol::order_cancel_message>("OrderCancelMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/OrderCancelMessage.pcap");
+    expect<protocol::order_delete_message>("OrderDeleteMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/OrderDeleteMessage.pcap");
+    expect<protocol::order_executed_message>("OrderExecutedMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/OrderExecutedMessage.pcap");
+    expect<protocol::order_executed_with_price_message>("OrderExecutedWithPriceMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/OrderExecutedWithPriceMessage.pcap");
+    expect<protocol::order_replace_message>("OrderReplaceMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/OrderReplaceMessage.pcap");
+    expect<protocol::reg_sho_short_sale_price_test_restricted_indicator_message>("RegShoShortSalePriceTestRestrictedIndicatorMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/RegShoShortSalePriceTestRestrictedIndicatorMessage.pcap");
+    expect<protocol::stock_trading_action_message>("StockTradingActionMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/StockTradingActionMessage.pcap");
+    expect<protocol::system_event_message>("SystemEventMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/SystemEventMessage.pcap");
     return failures == 0 ? 0 : 1;
 }

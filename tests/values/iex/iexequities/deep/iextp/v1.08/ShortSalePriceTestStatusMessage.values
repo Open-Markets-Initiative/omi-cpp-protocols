@@ -1,0 +1,19 @@
+# Iex.IexEquities.Deep.IexTp.v1.08 ShortSalePriceTestStatusMessage: canonical values, read by the model
+datagram 0
+packet.iextpheader.version = 1
+packet.iextpheader.messageprotocolid = 32772
+packet.iextpheader.channelid = 1
+packet.iextpheader.sessionid = 1315962880
+packet.iextpheader.payloadlength = 21
+packet.iextpheader.messagecount = 1
+packet.iextpheader.streamoffset = 947011
+packet.iextpheader.firstmessagesequencenumber = 44565
+packet.iextpheader.sendtime = 1734957213778540022
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 19
+packet.messages.message[0].messageheader.messagetype = P
+packet.messages.message[0].messagedata = packet.messages.message.messagedata.shortsalepriceteststatusmessage
+packet.messages.message[0].messagedata.shortsalepriceteststatusmessage.shortsalepriceteststatus = 1
+packet.messages.message[0].messagedata.shortsalepriceteststatusmessage.timestamp = 1734957213778540022
+packet.messages.message[0].messagedata.shortsalepriceteststatusmessage.symbol = RVPH
+packet.messages.message[0].messagedata.shortsalepriceteststatusmessage.detail = N

@@ -7,7 +7,6 @@
 #include "../types/RequestTimestamp.hpp"
 #include "../types/ErrorCodes.hpp"
 #include "../types/Padding5.hpp"
-#include "../types/MessageSize.hpp"
 
 namespace cme::mdp3::v8 {
 
@@ -26,9 +25,7 @@ struct negotiation_reject {
         sbe_mdp3::padding_5 padding_5;
     };
 
-    // Transport framing: message size precedes the SBE header on the wire
-    sbe_mdp3::message_size message_size;
-    sbe_mdp3::message_header header = {{}, template_id::enum_type::negotiation_reject, schema_id::enum_type::mdpsessionmgmt, version(8)};
+    sbe_mdp3::message_header header = {std::uint16_t(sizeof(sbe_mdp3::message_header) + sizeof(fields_type)), {}};
 
     fields_type fields;
 
@@ -51,7 +48,7 @@ static_assert(offsetof(negotiation_reject::fields_type, request_timestamp) == 56
 static_assert(offsetof(negotiation_reject::fields_type, error_codes) == 64, "unexpected offset of negotiation_reject::fields_type::error_codes");
 static_assert(offsetof(negotiation_reject::fields_type, padding_5) == 65, "unexpected offset of negotiation_reject::fields_type::padding_5");
 static_assert(sizeof(negotiation_reject::fields_type) == 70, "unexpected sizeof negotiation_reject::fields_type");
-static_assert(sizeof(negotiation_reject) == sizeof(sbe_mdp3::message_size) + sizeof(sbe_mdp3::message_header) + 70, "unexpected sizeof negotiation_reject");
+static_assert(sizeof(negotiation_reject) == sizeof(sbe_mdp3::message_header) + 70, "unexpected sizeof negotiation_reject");
 
 #pragma pack(pop)
 }

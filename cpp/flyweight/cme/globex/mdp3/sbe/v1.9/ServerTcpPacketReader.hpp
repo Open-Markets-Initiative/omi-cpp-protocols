@@ -66,7 +66,7 @@ struct ServerTcpPacketReader {
 
             const ServerTcpFrame frame{ bytes.subspan(offset) };
             offset += frame.encoded_size();
-            const std::size_t frame_size = wire::count(frame.server_technical_header().tcp_message_size()) + 14;
+            const std::size_t frame_size = wire::count(frame.message_header().message_size()) + 14;
             if (frame_size < ServerTcpFrame::minimum_size) { throw DecodeError(ServerTcpPacket::name, ServerTcpFrame::minimum_size, frame_size); }
             if (start + frame_size > bytes.size()) { offset = start; break; }
             dispatch(frame, bytes.subspan(offset, start + frame_size - offset), handler);
@@ -79,7 +79,7 @@ struct ServerTcpPacketReader {
   private:
     template <typename Handler>
     static std::size_t dispatch(const ServerTcpFrame& frame, std::span<const std::byte> body, Handler& handler) {
-        switch (frame.message_header().template_id()) {
+        switch (frame.message_header().simple_binary_header().template_id()) {
             case TemplateId::ChannelReset: return handle<ServerPayloadChannelReset>(body, handler);
             case TemplateId::AdminLogin: return handle<ServerPayloadAdminLogin>(body, handler);
             case TemplateId::AdminLogout: return handle<ServerPayloadAdminLogout>(body, handler);
@@ -114,7 +114,7 @@ struct ServerTcpPacketReader {
             case TemplateId::RequestAck: return handle<ServerPayloadRequestAck>(body, handler);
             case TemplateId::RequestReject: return handle<ServerPayloadRequestReject>(body, handler);
             default:
-                if constexpr (requires { handler.on_unknown(frame.message_header().template_id(), body); }) { handler.on_unknown(frame.message_header().template_id(), body); }
+                if constexpr (requires { handler.on_unknown(frame.message_header().simple_binary_header().template_id(), body); }) { handler.on_unknown(frame.message_header().simple_binary_header().template_id(), body); }
                 return body.size();
         }
     }

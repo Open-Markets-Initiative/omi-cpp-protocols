@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../structs/MessageHeader.hpp"
+#include "../structs/SimpleBinaryHeader.hpp"
 
 namespace cme::mdp3::v8 {
 
@@ -24,8 +24,8 @@ struct SubscriberHeartbeat {
     }
 
     // parse the overlaid body from its selecting header
-    static const SubscriberHeartbeat* parse(const MessageHeader* header) {
-        return reinterpret_cast<const SubscriberHeartbeat*>(reinterpret_cast<const std::byte*>(header) + sizeof(MessageHeader));
+    static const SubscriberHeartbeat* parse(const SimpleBinaryHeader* header) {
+        return reinterpret_cast<const SubscriberHeartbeat*>(reinterpret_cast<const std::byte*>(header) + sizeof(SimpleBinaryHeader));
     }
 };
 

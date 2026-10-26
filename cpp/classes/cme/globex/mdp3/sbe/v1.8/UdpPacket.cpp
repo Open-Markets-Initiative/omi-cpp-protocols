@@ -10,20 +10,16 @@ namespace cme::globex::mdp3::sbe::v1_8 {
 Frame::Frame(std::unique_ptr<Message> message) : message_(std::move(message)) {}
 
 Frame::Frame(const Frame& other)
-  : message_size_(other.message_size_), message_header_(other.message_header_), message_(other.message_ ? other.message_->clone() : nullptr), trailer_(other.trailer_) {}
+  : message_header_(other.message_header_), message_(other.message_ ? other.message_->clone() : nullptr), trailer_(other.trailer_) {}
 
 Frame& Frame::operator=(const Frame& other) {
     if (this != &other) {
-        message_size_ = other.message_size_;
         message_header_ = other.message_header_;
         message_ = other.message_ ? other.message_->clone() : nullptr;
         trailer_ = other.trailer_;
     }
     return *this;
 }
-
-std::uint16_t Frame::message_size() const { return message_size_; }
-void Frame::set_message_size(std::uint16_t value) { message_size_ = value; }
 
 const MessageHeader& Frame::message_header() const { return message_header_; }
 MessageHeader& Frame::message_header() { return message_header_; }
@@ -39,10 +35,6 @@ std::vector<std::byte>& Frame::trailer() { return trailer_; }
 std::size_t Frame::decode(const std::byte* data, std::size_t length) {
     std::size_t offset = 0;
 
-    wire::require("Frame", offset + 2, length);
-    message_size_ = wire::read_u16_le(data + offset);
-    offset += 2;
-
     offset += message_header_.decode(data + offset, length - offset);
 
     return offset;
@@ -52,23 +44,17 @@ std::size_t Frame::encode(std::byte* data, std::size_t capacity) const {
     std::size_t offset = 0;
     wire::require_capacity("Frame", encoded_size(), capacity);
 
-    wire::write_u16_le(data + offset, static_cast<std::uint16_t>(message_size_));
-    offset += 2;
-
     offset += message_header_.encode(data + offset, capacity - offset);
 
     return offset;
 }
 
 std::size_t Frame::encoded_size() const {
-    return 2 + message_header_.encoded_size();
+    return message_header_.encoded_size();
 }
 
 void Frame::print(std::ostream& out) const {
     out << "Frame{";
-    out << "message_size=";
-    out << message_size_;
-    out << ", ";
     out << "message_header=";
     message_header_.print(out);
     out << ", ";
@@ -79,7 +65,6 @@ void Frame::print(std::ostream& out) const {
 }
 
 bool Frame::operator==(const Frame& other) const {
-    if (!(message_size_ == other.message_size_)) { return false; }
     if (!(message_header_ == other.message_header_)) { return false; }
     if (!(trailer_ == other.trailer_)) { return false; }
     if (!message_ || !other.message_) { return !message_ && !other.message_; }
@@ -114,10 +99,10 @@ std::size_t UdpPacket::decode(const std::byte* data, std::size_t length) {
         const std::size_t start = offset;
         Frame frame;
         offset += frame.decode(data + offset, length - offset);
-        const std::size_t frame_size = wire::count(frame.message_size());
+        const std::size_t frame_size = wire::count(frame.message_header().message_size());
         wire::require("UdpPacket", start + frame_size, length);
         const std::size_t body = start + frame_size - offset;
-        std::unique_ptr<Message> message = Factory::create(frame.message_header().schema_id());
+        std::unique_ptr<Message> message = Factory::create(frame.message_header().simple_binary_header().schema_id());
         message->bind(frame);
         // What the message left of its frame: bytes the model does not describe, kept as they came
         const std::size_t used = message->decode(data + offset, body);
@@ -149,14 +134,10 @@ std::size_t UdpPacket::encode(std::byte* data, std::size_t capacity) const {
         if (frame.message() == nullptr) { throw EncodeError("UdpPacket", "a frame holds no message"); }
         const std::size_t frame_size = frame.encoded_size() + frame.message()->encoded_size() + frame.trailer().size();
 
-        auto message_size = frame.message_size();
         auto message_header = frame.message_header();
-        message_size = static_cast<std::uint16_t>(frame_size);
-        message_header.set_schema_id(frame.message()->type());
-        if (const auto bound = frame.message()->bound_template_id()) { message_header.set_template_id(*bound); }
-
-        wire::write_u16_le(data + offset, static_cast<std::uint16_t>(message_size));
-        offset += 2;
+        message_header.set_message_size(static_cast<std::uint16_t>(frame_size));
+        message_header.simple_binary_header().set_schema_id(frame.message()->type());
+        if (const auto bound = frame.message()->bound_template_id()) { message_header.simple_binary_header().set_template_id(*bound); }
 
         offset += message_header.encode(data + offset, capacity - offset);
 

@@ -12,8 +12,7 @@
 
 namespace cme::globex::mdp3::sbe::v1_8 {
 
-// Cme Technical Header sent by Cme to the firm. Tcp Message Size is the last field so this
-// fixed 16 byte header spans everything up to and including the length the reassembly reads.
+// Cme Technical Header sent by Cme to the firm
 class ServerTechnicalHeader {
   public:
     static constexpr const char* name = "ServerTechnicalHeader";
@@ -24,17 +23,15 @@ class ServerTechnicalHeader {
     std::span<const std::byte> bytes() const noexcept { return bytes_; }
 
     // the bytes every ServerTechnicalHeader has, which a reader checks before it views them
-    static constexpr std::size_t minimum_size = 16;
-    static constexpr std::size_t fixed_size = 16;
-    std::size_t encoded_size() const { return 16; }
+    static constexpr std::size_t minimum_size = 14;
+    static constexpr std::size_t fixed_size = 14;
+    std::size_t encoded_size() const { return 14; }
 
     std::uint16_t encoding_type() const { return wire::read_u16_le(at(0)); }
 
     std::uint32_t message_sequence_number() const { return wire::read_u32_le(at(2)); }
 
     std::chrono::nanoseconds tcp_sending_time() const { return std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u64_le(at(6)))); }
-
-    std::uint16_t tcp_message_size() const { return wire::read_u16_le(at(14)); }
 
     void print(std::ostream& out) const {
         out << "ServerTechnicalHeader{";
@@ -44,8 +41,6 @@ class ServerTechnicalHeader {
         out << message_sequence_number();
         out << ", tcp_sending_time=";
         out << tcp_sending_time().count();
-        out << ", tcp_message_size=";
-        out << tcp_message_size();
         out << '}';
     }
 

@@ -1,0 +1,25 @@
+# Eurex.T7.Eobi.Fbe.v13.0 TradeReversal: canonical values, read by the model
+datagram 0
+packet.packetheader.eobiheader.bodylen = 32
+packet.packetheader.eobiheader.templateid = 13004
+packet.packetheader.eobiheader.msgseqnum = 4294967295
+packet.packetheader.applseqnum = 1345756
+packet.packetheader.marketsegmentid = 661
+packet.packetheader.partitionid = 12
+packet.packetheader.completionindicator = 1
+packet.packetheader.applseqresetindicator = 0
+packet.packetheader.dscp = 0
+packet.packetheader.transacttime = 1744611133975276690
+packet.message[0].messageheadercomp.bodylen = 416
+packet.message[0].messageheadercomp.templateid = 13200
+packet.message[0].messageheadercomp.msgseqnum = 83
+packet.message[0].payload = packet.message.payload.tradereversal
+packet.message[0].payload.tradereversal.securityid = 7937445
+packet.message[0].payload.tradereversal.transacttime = 1744611133973385437
+packet.message[0].payload.tradereversal.lastqty = 408
+packet.message[0].payload.tradereversal.lastpx = 8380.693
+packet.message[0].payload.tradereversal.trdregtsexecutiontime = 18446744073709551615
+packet.message[0].payload.tradereversal.trdmatchid = 20
+packet.message[0].payload.tradereversal.tradecondition = 65535
+packet.message[0].payload.tradereversal.mdorigintype = 1
+packet.message[0].payload.tradereversal.nomdentries = 0

@@ -7,6 +7,7 @@
 #include "cpp/modern/nasdaq/nsmequities/totalview/itch/v5.0.2017/definitions.hpp"
 #include "../protocol/Branches.hpp"
 
+#include <algorithm>
 #include <cstddef>
 #include <cstdint>
 #include <cstdio>
@@ -111,6 +112,7 @@ inline Captured synthesize_wire_frame(std::uint64_t timestamp_ns,
 struct PacketSample {
     std::vector<Captured> frames;
     std::size_t total_bytes = 0;
+    bool mixed = false;   // carries messages of other keys too
 };
 
 inline PacketSample sample_of_one(Captured frame) {
@@ -190,10 +192,14 @@ inline int sample(const fs::path& in_path, const fs::path& out_dir) {
     std::vector<Captured> reassembly_frames;          // wire frames that together delivered one reassembled packet
     Captured current_wire;                            // wire frame being walked
 
-    // Keep a sample for a key when it is the first or smaller than the one kept.
-    auto keep = [&](std::uint64_t id, std::size_t size, auto make) {
+    // Keep a sample for a key when it is the first or better than the one kept: one holding only
+    // the key's messages beats one mixed with other keys, and then the smaller wins.
+    auto keep = [&](std::uint64_t id, bool mixed, std::size_t size, auto make) {
         const auto it = smallest.find(id);
-        if (it == smallest.end() || size < it->second.total_bytes) { smallest[id] = sample_of_one(make()); }
+        if (it != smallest.end() && (mixed > it->second.mixed || (mixed == it->second.mixed && size >= it->second.total_bytes))) { return; }
+        PacketSample sample = sample_of_one(make());
+        sample.mixed = mixed;
+        smallest[id] = std::move(sample);
     };
 
     // The Packet tree: MessageIterator walks each datagram's messages.
@@ -202,21 +208,23 @@ inline int sample(const fs::path& in_path, const fs::path& out_dir) {
         messages.initialize(frame.payload, frame.payload_len);
 
         std::size_t count = 0;
-        std::uint64_t first = 0;
+        std::vector<std::uint64_t> keys;   // each key the datagram's messages carry, once
 
         while (messages.next()) {
-            if (count == 0) {
-                first = key_of(messages.message_type);
-                first |= 144115188075855872ull;
-            }
+            std::uint64_t id = key_of(messages.message_type);
+            id |= 144115188075855872ull;
+            if (std::find(keys.begin(), keys.end(), id) == keys.end()) { keys.push_back(id); }
             ++count;
         }
 
         if (count == 0) { return; }
 
-        if (count == 1) {
-            keep(first, pcap.length(), [&] { return capture_of(pcap); });
-        } else if (!multiple_messages) {
+        // The datagram samples each key it carries - a feed batching its messages (MDP3, EOBI,
+        // XDP) may send no datagram of one message - mixed when it carries more than one key
+        for (const std::uint64_t id : keys) {
+            keep(id, keys.size() > 1, pcap.length(), [&] { return capture_of(pcap); });
+        }
+        if (count > 1 && !multiple_messages) {
             multiple_messages = capture_of(pcap);
         }
     };
@@ -259,7 +267,7 @@ inline int sample(const fs::path& in_path, const fs::path& out_dir) {
             // Per-key sample: a synthetic wire frame around the packet's raw bytes, so the packet sits
             // at TCP-payload offset 0 and the per-message pcap replays standalone.
             const auto* bytes = flow.bytes.data() + begin;
-            keep(id, 14 + 20 + 20 + span, [&] { return synthesize_wire_frame(current_wire.timestamp_ns, bytes, span); });
+            keep(id, false, 14 + 20 + 20 + span, [&] { return synthesize_wire_frame(current_wire.timestamp_ns, bytes, span); });
 
             // Reassembly example: the original wire frames of the first packet spanning more than one.
             if (reassembly_frames.empty()) {
@@ -338,7 +346,7 @@ inline int sample(const fs::path& in_path, const fs::path& out_dir) {
             // Per-key sample: a synthetic wire frame around the packet's raw bytes, so the packet sits
             // at TCP-payload offset 0 and the per-message pcap replays standalone.
             const auto* bytes = flow.bytes.data() + begin;
-            keep(id, 14 + 20 + 20 + span, [&] { return synthesize_wire_frame(current_wire.timestamp_ns, bytes, span); });
+            keep(id, false, 14 + 20 + 20 + span, [&] { return synthesize_wire_frame(current_wire.timestamp_ns, bytes, span); });
 
             // Reassembly example: the original wire frames of the first packet spanning more than one.
             if (reassembly_frames.empty()) {

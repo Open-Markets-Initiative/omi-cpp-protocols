@@ -4,7 +4,7 @@
 #include "../types/QuoteReqId.hpp"
 #include "../bitfields/MatchEventIndicator.hpp"
 #include "../types/Padding3.hpp"
-#include "../structs/MessageHeader.hpp"
+#include "../structs/SimpleBinaryHeader.hpp"
 
 namespace cme::mdp3::v13 {
 
@@ -32,8 +32,8 @@ struct QuoteRequest {
     }
 
     // parse the overlaid body from its selecting header
-    static const QuoteRequest* parse(const MessageHeader* header) {
-        return reinterpret_cast<const QuoteRequest*>(reinterpret_cast<const std::byte*>(header) + sizeof(MessageHeader));
+    static const QuoteRequest* parse(const SimpleBinaryHeader* header) {
+        return reinterpret_cast<const QuoteRequest*>(reinterpret_cast<const std::byte*>(header) + sizeof(SimpleBinaryHeader));
     }
 };
 

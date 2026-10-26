@@ -1,0 +1,17 @@
+# Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d TradeMessage: canonical values, read by the model
+datagram 0
+udppacket.machmessage[0].machpacketheader.sequencenumber = 2253
+udppacket.machmessage[0].machpacketheader.machpacketlength = 43
+udppacket.machmessage[0].machpacketheader.machpackettype = 3
+udppacket.machmessage[0].machpacketheader.sessionnumber = 1
+udppacket.machmessage[0].payload = udppacket.machmessage.payload.applicationmessage
+udppacket.machmessage[0].payload.applicationmessage.messagetype = 10
+udppacket.machmessage[0].payload.applicationmessage.data = udppacket.machmessage.payload.applicationmessage.data.trademessage
+udppacket.machmessage[0].payload.applicationmessage.data.trademessage.nanoseconds = 2570478
+udppacket.machmessage[0].payload.applicationmessage.data.trademessage.symbolid = 402653206
+udppacket.machmessage[0].payload.applicationmessage.data.trademessage.tradeid = 1747396655419752449
+udppacket.machmessage[0].payload.applicationmessage.data.trademessage.correctionnumber = 0
+udppacket.machmessage[0].payload.applicationmessage.data.trademessage.price = 0.0815
+udppacket.machmessage[0].payload.applicationmessage.data.trademessage.size = 1000
+udppacket.machmessage[0].payload.applicationmessage.data.trademessage.tradeflags.sipreporting = 0
+udppacket.machmessage[0].payload.applicationmessage.data.trademessage.tradeflags.retailtradeindicator = 0

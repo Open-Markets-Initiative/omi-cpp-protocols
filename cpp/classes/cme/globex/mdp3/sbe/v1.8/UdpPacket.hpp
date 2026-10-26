@@ -1,7 +1,6 @@
 #pragma once
 
 #include <cstddef>
-#include <cstdint>
 #include <memory>
 #include <ostream>
 #include <string_view>
@@ -15,7 +14,7 @@ namespace cme::globex::mdp3::sbe::v1_8 {
 
 class Visitor;
 
-// The frame around one message: the message size and message header and the message they select.
+// The frame around one message: the message header and the message they select.
 // Decode and encode here cover the headers; the packet decodes and encodes the message.
 class Frame {
   public:
@@ -27,11 +26,7 @@ class Frame {
     Frame& operator=(Frame&& other) noexcept = default;
     ~Frame() = default;
 
-    // Message Size: Message Size
-    std::uint16_t message_size() const;
-    void set_message_size(std::uint16_t value);
-
-    // Message Header: Template ID and length of message root
+    // Message Header: Message Size followed by the Simple Binary Header
     const MessageHeader& message_header() const;
     MessageHeader& message_header();
     void set_message_header(const MessageHeader& value);
@@ -59,7 +54,6 @@ class Frame {
     bool operator!=(const Frame& other) const;
 
   private:
-    std::uint16_t message_size_{};
     MessageHeader message_header_{};
     std::unique_ptr<Message> message_;
     std::vector<std::byte> trailer_;

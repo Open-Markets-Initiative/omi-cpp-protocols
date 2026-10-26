@@ -7,6 +7,7 @@
 #include <string>
 #include <string_view>
 
+#include "../common/Decimal.hpp"
 #include "../enums/ParticipantId.hpp"
 #include "../messages/IndicesMessagePayload.hpp"
 #include "../structs/Timestamp1.hpp"
@@ -24,7 +25,7 @@ class BidAndOfferIndexMessage : public IndicesMessagePayload {
     static constexpr std::size_t wire_size = 49;
 
     BidAndOfferIndexMessage() = default;
-    BidAndOfferIndexMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& index_symbol, std::int64_t bid_index_value, std::int64_t offer_index_value);
+    BidAndOfferIndexMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& index_symbol, Decimal bid_index_value, Decimal offer_index_value);
 
     // Participant Id: Identifies the Participant or Processor that initiated the message
     ParticipantId participant_id() const;
@@ -55,13 +56,13 @@ class BidAndOfferIndexMessage : public IndicesMessagePayload {
 
     // Bid Index Value: Represents the value of the index's calculation formula using the
     // current Bid values of the component securities. Has implied 6 decimal places
-    std::int64_t bid_index_value() const;
-    void set_bid_index_value(std::int64_t value);
+    Decimal bid_index_value() const;
+    void set_bid_index_value(Decimal value);
 
     // Offer Index Value: Represents the value of the index calculation formula using the
     // current offer values of the component securities. Has implied 6 decimal places
-    std::int64_t offer_index_value() const;
-    void set_offer_index_value(std::int64_t value);
+    Decimal offer_index_value() const;
+    void set_offer_index_value(Decimal value);
 
     // IndicesMessagePayload
     IndicesMessagePayloadCode type() const override;
@@ -84,8 +85,8 @@ class BidAndOfferIndexMessage : public IndicesMessagePayload {
     std::uint32_t transaction_id_{};
     std::int64_t participant_reference_number_{};
     std::string index_symbol_{};
-    std::int64_t bid_index_value_{};
-    std::int64_t offer_index_value_{};
+    Decimal bid_index_value_{ 0, -6 };
+    Decimal offer_index_value_{ 0, -6 };
 };
 
 } // namespace siac::cts::output::cta::v2_11_b

@@ -1,0 +1,26 @@
+# Eurex.T7.Eobi.Fbe.v13.0 OrderModifySamePrio: canonical values, read by the model
+datagram 0
+packet.packetheader.eobiheader.bodylen = 32
+packet.packetheader.eobiheader.templateid = 13004
+packet.packetheader.eobiheader.msgseqnum = 4294967295
+packet.packetheader.applseqnum = 2313682
+packet.packetheader.marketsegmentid = 675
+packet.packetheader.partitionid = 3
+packet.packetheader.completionindicator = 1
+packet.packetheader.applseqresetindicator = 0
+packet.packetheader.dscp = 0
+packet.packetheader.transacttime = 1744639200004392511
+packet.message[0].messageheadercomp.bodylen = 72
+packet.message[0].messageheadercomp.templateid = 13106
+packet.message[0].messageheadercomp.msgseqnum = 2322308
+packet.message[0].payload = packet.message.payload.ordermodifysameprio
+packet.message[0].payload.ordermodifysameprio.requesttime = 1744639200004378677
+packet.message[0].payload.ordermodifysameprio.transacttime = 1744639200004385749
+packet.message[0].payload.ordermodifysameprio.prevdisplayqty = 5
+packet.message[0].payload.ordermodifysameprio.securityid = 7904020
+packet.message[0].payload.ordermodifysameprio.orderdetailscomp.trdregtstimepriority = 1744639199616610203
+packet.message[0].payload.ordermodifysameprio.orderdetailscomp.displayqty = 4
+packet.message[0].payload.ordermodifysameprio.orderdetailscomp.side = 2
+packet.message[0].payload.ordermodifysameprio.orderdetailscomp.ordtype = 255
+packet.message[0].payload.ordermodifysameprio.orderdetailscomp.hhiindicator = -1
+packet.message[0].payload.ordermodifysameprio.orderdetailscomp.price = 4845

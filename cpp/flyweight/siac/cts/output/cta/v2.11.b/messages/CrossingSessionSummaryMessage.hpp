@@ -10,6 +10,7 @@
 #include "../common/View.hpp"
 #include "../enums/ParticipantId.hpp"
 #include "../structs/Timestamp1.hpp"
+#include "../common/Decimal.hpp"
 
 namespace siac::cts::output::cta::v2_11_b {
 
@@ -41,7 +42,7 @@ class CrossingSessionSummaryMessage {
 
     std::uint64_t crossing_session_i_total_trades_volume() const { return wire::read_u64_be(at(22)); }
 
-    std::uint64_t crossing_session_ii_dollar_value() const { return wire::read_u64_be(at(30)); }
+    Decimal crossing_session_ii_dollar_value() const { return Decimal(static_cast<std::int64_t>(wire::read_u64_be(at(30))), -6); }
 
     std::uint64_t crossing_session_ii_total_trades_volume() const { return wire::read_u64_be(at(38)); }
 

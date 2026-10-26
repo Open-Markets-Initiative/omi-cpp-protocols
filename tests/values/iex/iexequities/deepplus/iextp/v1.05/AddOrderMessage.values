@@ -1,0 +1,21 @@
+# Iex.IexEquities.DeepPlus.IexTp.v1.05 AddOrderMessage: canonical values, read by the model
+datagram 0
+packet.iextpheader.version = 1
+packet.iextpheader.messageprotocolid = 32773
+packet.iextpheader.channelid = 1
+packet.iextpheader.sessionid = 1339949056
+packet.iextpheader.payloadlength = 40
+packet.iextpheader.messagecount = 1
+packet.iextpheader.streamoffset = 1040917
+packet.iextpheader.firstmessagesequencenumber = 48989
+packet.iextpheader.sendtime = 1766581200061418420
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 38
+packet.messages.message[0].messageheader.messagetype = a
+packet.messages.message[0].messagedata = packet.messages.message.messagedata.addordermessage
+packet.messages.message[0].messagedata.addordermessage.side = 5
+packet.messages.message[0].messagedata.addordermessage.timestamp = 1766581200006012369
+packet.messages.message[0].messagedata.addordermessage.symbol = VCSH
+packet.messages.message[0].messagedata.addordermessage.orderid = 169729410956525569
+packet.messages.message[0].messagedata.addordermessage.size = 100
+packet.messages.message[0].messagedata.addordermessage.price = 79.71

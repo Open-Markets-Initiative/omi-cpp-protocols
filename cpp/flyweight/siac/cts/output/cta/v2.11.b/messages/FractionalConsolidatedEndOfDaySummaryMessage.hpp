@@ -59,7 +59,7 @@ class FractionalConsolidatedEndOfDaySummaryMessage {
 
     Decimal low_price() const { return Decimal(static_cast<std::int64_t>(wire::read_u64_be(at(55))), -6); }
 
-    std::uint64_t fractional_total_volume() const { return wire::read_u64_be(at(63)); }
+    Decimal fractional_total_volume() const { return Decimal(static_cast<std::int64_t>(wire::read_u64_be(at(63))), -6); }
 
     ShortSaleRestrictionIndicator short_sale_restriction_indicator() const { return static_cast<ShortSaleRestrictionIndicator>(wire::read_char(at(71))); }
 

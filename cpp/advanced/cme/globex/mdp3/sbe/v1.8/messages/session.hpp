@@ -4,7 +4,7 @@
 #include <cstdint>
 
 #include "../structs/BinaryPacketHeader.hpp"
-#include "../structs/MessageHeader.hpp"
+#include "../structs/SimpleBinaryHeader.hpp"
 #include "../types/MessageSize.hpp"
 #include "dispatch.hpp"
 
@@ -32,7 +32,7 @@ void process_segment(Handler& handler, const std::byte* data, std::size_t length
     const std::byte* cursor = data + sizeof(binary_packet_header);
     const std::byte* end = data + length;
 
-    while (cursor + sizeof(message_size) + sizeof(message_header) <= end) {
+    while (cursor + sizeof(message_size) + sizeof(simple_binary_header) <= end) {
         // message_size precedes the SBE header as transport framing
         auto block_size = static_cast<std::size_t>(reinterpret_cast<const message_size*>(cursor)->get().value());
 

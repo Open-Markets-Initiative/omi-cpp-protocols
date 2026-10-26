@@ -1,0 +1,17 @@
+# Nasdaq.NsmEquities.TotalView.Itch.v5.0.2017 LuldAuctionCollarMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 000010059B
+packet.packetheader.sequencenumber = 17270338
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 35
+packet.messages.message[0].messageheader.messagetype = J
+packet.messages.message[0].payload = packet.messages.message.payload.luldauctioncollarmessage
+packet.messages.message[0].payload.luldauctioncollarmessage.stocklocate = 11320
+packet.messages.message[0].payload.luldauctioncollarmessage.trackingnumber = 0
+packet.messages.message[0].payload.luldauctioncollarmessage.timestamp = 34216302268913
+packet.messages.message[0].payload.luldauctioncollarmessage.stock = ZVZZT
+packet.messages.message[0].payload.luldauctioncollarmessage.auctioncollarreferenceprice = 27.02
+packet.messages.message[0].payload.luldauctioncollarmessage.upperauctioncollarprice = 33.02
+packet.messages.message[0].payload.luldauctioncollarmessage.lowerauctioncollarprice = 25.67
+packet.messages.message[0].payload.luldauctioncollarmessage.auctioncollarextension = 0

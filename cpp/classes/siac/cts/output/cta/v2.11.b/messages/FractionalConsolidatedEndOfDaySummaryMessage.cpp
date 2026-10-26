@@ -6,7 +6,7 @@
 
 namespace siac::cts::output::cta::v2_11_b {
 
-FractionalConsolidatedEndOfDaySummaryMessage::FractionalConsolidatedEndOfDaySummaryMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol, InstrumentType instrument_type, char last_participant_id, std::uint32_t previous_close_price_date, Decimal last_price, Decimal high_price, Decimal low_price, std::uint64_t fractional_total_volume, ShortSaleRestrictionIndicator short_sale_restriction_indicator, PrimaryListingMarketParticipantId primary_listing_market_participant_id, FinancialStatusIndicator financial_status_indicator, std::uint8_t number_of_participants)
+FractionalConsolidatedEndOfDaySummaryMessage::FractionalConsolidatedEndOfDaySummaryMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol, InstrumentType instrument_type, char last_participant_id, std::uint32_t previous_close_price_date, Decimal last_price, Decimal high_price, Decimal low_price, Decimal fractional_total_volume, ShortSaleRestrictionIndicator short_sale_restriction_indicator, PrimaryListingMarketParticipantId primary_listing_market_participant_id, FinancialStatusIndicator financial_status_indicator, std::uint8_t number_of_participants)
   : participant_id_(participant_id), timestamp_1_(timestamp_1), message_id_(message_id), transaction_id_(transaction_id), participant_reference_number_(participant_reference_number), security_symbol_(security_symbol), instrument_type_(instrument_type), last_participant_id_(last_participant_id), previous_close_price_date_(previous_close_price_date), last_price_(last_price), high_price_(high_price), low_price_(low_price), fractional_total_volume_(fractional_total_volume), short_sale_restriction_indicator_(short_sale_restriction_indicator), primary_listing_market_participant_id_(primary_listing_market_participant_id), financial_status_indicator_(financial_status_indicator), number_of_participants_(number_of_participants) {}
 
 ParticipantId FractionalConsolidatedEndOfDaySummaryMessage::participant_id() const { return participant_id_; }
@@ -47,8 +47,8 @@ void FractionalConsolidatedEndOfDaySummaryMessage::set_high_price(Decimal value)
 Decimal FractionalConsolidatedEndOfDaySummaryMessage::low_price() const { return low_price_; }
 void FractionalConsolidatedEndOfDaySummaryMessage::set_low_price(Decimal value) { low_price_ = value; }
 
-std::uint64_t FractionalConsolidatedEndOfDaySummaryMessage::fractional_total_volume() const { return fractional_total_volume_; }
-void FractionalConsolidatedEndOfDaySummaryMessage::set_fractional_total_volume(std::uint64_t value) { fractional_total_volume_ = value; }
+Decimal FractionalConsolidatedEndOfDaySummaryMessage::fractional_total_volume() const { return fractional_total_volume_; }
+void FractionalConsolidatedEndOfDaySummaryMessage::set_fractional_total_volume(Decimal value) { fractional_total_volume_ = value; }
 
 ShortSaleRestrictionIndicator FractionalConsolidatedEndOfDaySummaryMessage::short_sale_restriction_indicator() const { return short_sale_restriction_indicator_; }
 void FractionalConsolidatedEndOfDaySummaryMessage::set_short_sale_restriction_indicator(ShortSaleRestrictionIndicator value) { short_sale_restriction_indicator_ = value; }
@@ -105,7 +105,7 @@ std::size_t FractionalConsolidatedEndOfDaySummaryMessage::decode(const std::byte
     low_price_ = Decimal(static_cast<std::int64_t>(wire::read_u64_be(data + offset)), -6);
     offset += 8;
 
-    fractional_total_volume_ = wire::read_u64_be(data + offset);
+    fractional_total_volume_ = Decimal(static_cast<std::int64_t>(wire::read_u64_be(data + offset)), -6);
     offset += 8;
 
     short_sale_restriction_indicator_ = static_cast<ShortSaleRestrictionIndicator>(wire::read_char(data + offset));
@@ -162,7 +162,7 @@ std::size_t FractionalConsolidatedEndOfDaySummaryMessage::encode(std::byte* data
     wire::write_u64_be(data + offset, static_cast<std::uint64_t>(low_price_.mantissa()));
     offset += 8;
 
-    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(fractional_total_volume_));
+    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(fractional_total_volume_.mantissa()));
     offset += 8;
 
     wire::write_char(data + offset, static_cast<char>(short_sale_restriction_indicator_));

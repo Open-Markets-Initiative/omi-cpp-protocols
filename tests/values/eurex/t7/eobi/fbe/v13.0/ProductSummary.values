@@ -1,0 +1,23 @@
+# Eurex.T7.Eobi.Fbe.v13.0 ProductSummary: canonical values, read by the model
+datagram 0
+packet.packetheader.eobiheader.bodylen = 32
+packet.packetheader.eobiheader.templateid = 13004
+packet.packetheader.eobiheader.msgseqnum = 4294967295
+packet.packetheader.applseqnum = 1201091
+packet.packetheader.marketsegmentid = 484976
+packet.packetheader.partitionid = 8
+packet.packetheader.completionindicator = 1
+packet.packetheader.applseqresetindicator = 0
+packet.packetheader.dscp = 0
+packet.packetheader.transacttime = 1744639222893890691
+packet.message[0].messageheadercomp.bodylen = 24
+packet.message[0].messageheadercomp.templateid = 13600
+packet.message[0].messageheadercomp.msgseqnum = 5628
+packet.message[0].payload = packet.message.payload.productsummary
+packet.message[0].payload.productsummary.lastmsgseqnumprocessed = 4
+packet.message[0].payload.productsummary.tradingsessionid = 1
+packet.message[0].payload.productsummary.tradingsessionsubid = 3
+packet.message[0].payload.productsummary.tradsesstatus = 2
+packet.message[0].payload.productsummary.marketcondition = 0
+packet.message[0].payload.productsummary.fastmarketindicator = 0
+packet.message[0].payload.productsummary.testradsesstatus = 2

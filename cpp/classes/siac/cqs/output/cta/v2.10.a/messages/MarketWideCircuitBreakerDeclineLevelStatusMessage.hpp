@@ -6,6 +6,7 @@
 #include <ostream>
 #include <string_view>
 
+#include "../common/Decimal.hpp"
 #include "../enums/ParticipantId.hpp"
 #include "../messages/MarketStatusMessagePayload.hpp"
 #include "../structs/Timestamp1.hpp"
@@ -24,7 +25,7 @@ class MarketWideCircuitBreakerDeclineLevelStatusMessage : public MarketStatusMes
     static constexpr std::size_t wire_size = 47;
 
     MarketWideCircuitBreakerDeclineLevelStatusMessage() = default;
-    MarketWideCircuitBreakerDeclineLevelStatusMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, std::int64_t mwcb_level_1, std::int64_t mwcb_level_2, std::int64_t mwcb_level_3, char reserved);
+    MarketWideCircuitBreakerDeclineLevelStatusMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, Decimal mwcb_level_1, Decimal mwcb_level_2, Decimal mwcb_level_3, char reserved);
 
     // Participant Id: Identifies the Participant or Processor that generated the message
     ParticipantId participant_id() const;
@@ -52,18 +53,18 @@ class MarketWideCircuitBreakerDeclineLevelStatusMessage : public MarketStatusMes
 
     // Mwcb Level 1: Identifies the daily established drop level value associated with Level 1
     // = 7% of Previous Close S&P 500 Value. Has implied 6 decimal places
-    std::int64_t mwcb_level_1() const;
-    void set_mwcb_level_1(std::int64_t value);
+    Decimal mwcb_level_1() const;
+    void set_mwcb_level_1(Decimal value);
 
     // Mwcb Level 2: Identifies the daily established drop level value associated with Level 2
     // = 13% of Previous Close S&P 500 Value. Has implied 6 decimal places
-    std::int64_t mwcb_level_2() const;
-    void set_mwcb_level_2(std::int64_t value);
+    Decimal mwcb_level_2() const;
+    void set_mwcb_level_2(Decimal value);
 
     // Mwcb Level 3: Identifies the daily established drop level value associated with Level 3
     // = 20% of Previous Close S&P 500 Value. Has implied 6 decimal places
-    std::int64_t mwcb_level_3() const;
-    void set_mwcb_level_3(std::int64_t value);
+    Decimal mwcb_level_3() const;
+    void set_mwcb_level_3(Decimal value);
 
     // Reserved: Space-filled. Field is reserved for future use
     char reserved() const;
@@ -89,9 +90,9 @@ class MarketWideCircuitBreakerDeclineLevelStatusMessage : public MarketStatusMes
     std::uint8_t message_id_{};
     std::uint32_t transaction_id_{};
     std::int64_t participant_reference_number_{};
-    std::int64_t mwcb_level_1_{};
-    std::int64_t mwcb_level_2_{};
-    std::int64_t mwcb_level_3_{};
+    Decimal mwcb_level_1_{ 0, -6 };
+    Decimal mwcb_level_2_{ 0, -6 };
+    Decimal mwcb_level_3_{ 0, -6 };
     char reserved_{};
 };
 

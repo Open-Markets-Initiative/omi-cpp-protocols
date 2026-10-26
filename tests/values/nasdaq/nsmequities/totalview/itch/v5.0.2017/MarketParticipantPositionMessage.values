@@ -1,0 +1,17 @@
+# Nasdaq.NsmEquities.TotalView.Itch.v5.0.2017 MarketParticipantPositionMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 000010059B
+packet.packetheader.sequencenumber = 17861990
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 26
+packet.messages.message[0].messageheader.messagetype = L
+packet.messages.message[0].payload = packet.messages.message.payload.marketparticipantpositionmessage
+packet.messages.message[0].payload.marketparticipantpositionmessage.stocklocate = 3731
+packet.messages.message[0].payload.marketparticipantpositionmessage.trackingnumber = 0
+packet.messages.message[0].payload.marketparticipantpositionmessage.timestamp = 34224494802989
+packet.messages.message[0].payload.marketparticipantpositionmessage.mpid = MAXM
+packet.messages.message[0].payload.marketparticipantpositionmessage.stock = FGMC
+packet.messages.message[0].payload.marketparticipantpositionmessage.primarymarketmaker = Y
+packet.messages.message[0].payload.marketparticipantpositionmessage.marketmakermode = N
+packet.messages.message[0].payload.marketparticipantpositionmessage.marketparticipantstate = A

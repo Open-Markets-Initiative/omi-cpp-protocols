@@ -1,0 +1,18 @@
+# Iex.IexEquities.DeepPlus.IexTp.v1.05 SecurityEventMessage: canonical values, read by the model
+datagram 0
+packet.iextpheader.version = 1
+packet.iextpheader.messageprotocolid = 32773
+packet.iextpheader.channelid = 1
+packet.iextpheader.sessionid = 1339949056
+packet.iextpheader.payloadlength = 20
+packet.iextpheader.messagecount = 1
+packet.iextpheader.streamoffset = 15666665
+packet.iextpheader.firstmessagesequencenumber = 467873
+packet.iextpheader.sendtime = 1766586600000610923
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 18
+packet.messages.message[0].messageheader.messagetype = E
+packet.messages.message[0].messagedata = packet.messages.message.messagedata.securityeventmessage
+packet.messages.message[0].messagedata.securityeventmessage.securityevent = O
+packet.messages.message[0].messagedata.securityeventmessage.timestamp = 1766586600000130893
+packet.messages.message[0].messagedata.securityeventmessage.symbol = AADR

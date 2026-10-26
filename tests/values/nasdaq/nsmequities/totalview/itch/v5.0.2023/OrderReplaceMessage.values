@@ -1,0 +1,76 @@
+# Nasdaq.NsmEquities.TotalView.Itch.v5.0.2023 OrderReplaceMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 
+packet.packetheader.sequencenumber = 0
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 35
+packet.messages.message[0].messageheader.messagetype = U
+packet.messages.message[0].payload = packet.messages.message.payload.orderreplacemessage
+packet.messages.message[0].payload.orderreplacemessage.stocklocate = 7603
+packet.messages.message[0].payload.orderreplacemessage.trackingnumber = 0
+packet.messages.message[0].payload.orderreplacemessage.timestamp = 34199999836649
+packet.messages.message[0].payload.orderreplacemessage.originalorderreferencenumber = 15108479
+packet.messages.message[0].payload.orderreplacemessage.neworderreferencenumber = 21361351
+packet.messages.message[0].payload.orderreplacemessage.shares = 100
+packet.messages.message[0].payload.orderreplacemessage.price = 106.26
+datagram 1
+packet.packetheader.session = 
+packet.packetheader.sequencenumber = 0
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 35
+packet.messages.message[0].messageheader.messagetype = U
+packet.messages.message[0].payload = packet.messages.message.payload.orderreplacemessage
+packet.messages.message[0].payload.orderreplacemessage.stocklocate = 7603
+packet.messages.message[0].payload.orderreplacemessage.trackingnumber = 0
+packet.messages.message[0].payload.orderreplacemessage.timestamp = 34199999839204
+packet.messages.message[0].payload.orderreplacemessage.originalorderreferencenumber = 15108487
+packet.messages.message[0].payload.orderreplacemessage.neworderreferencenumber = 21361355
+packet.messages.message[0].payload.orderreplacemessage.shares = 100
+packet.messages.message[0].payload.orderreplacemessage.price = 106.26
+datagram 2
+packet.packetheader.session = 
+packet.packetheader.sequencenumber = 0
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 35
+packet.messages.message[0].messageheader.messagetype = U
+packet.messages.message[0].payload = packet.messages.message.payload.orderreplacemessage
+packet.messages.message[0].payload.orderreplacemessage.stocklocate = 7603
+packet.messages.message[0].payload.orderreplacemessage.trackingnumber = 0
+packet.messages.message[0].payload.orderreplacemessage.timestamp = 34199999839753
+packet.messages.message[0].payload.orderreplacemessage.originalorderreferencenumber = 15108483
+packet.messages.message[0].payload.orderreplacemessage.neworderreferencenumber = 21361359
+packet.messages.message[0].payload.orderreplacemessage.shares = 100
+packet.messages.message[0].payload.orderreplacemessage.price = 106.26
+datagram 3
+packet.packetheader.session = 
+packet.packetheader.sequencenumber = 0
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 35
+packet.messages.message[0].messageheader.messagetype = U
+packet.messages.message[0].payload = packet.messages.message.payload.orderreplacemessage
+packet.messages.message[0].payload.orderreplacemessage.stocklocate = 3709
+packet.messages.message[0].payload.orderreplacemessage.trackingnumber = 0
+packet.messages.message[0].payload.orderreplacemessage.timestamp = 34199999842535
+packet.messages.message[0].payload.orderreplacemessage.originalorderreferencenumber = 22987054
+packet.messages.message[0].payload.orderreplacemessage.neworderreferencenumber = 23508278
+packet.messages.message[0].payload.orderreplacemessage.shares = 100
+packet.messages.message[0].payload.orderreplacemessage.price = 161.4
+datagram 4
+packet.packetheader.session = 
+packet.packetheader.sequencenumber = 0
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 35
+packet.messages.message[0].messageheader.messagetype = U
+packet.messages.message[0].payload = packet.messages.message.payload.orderreplacemessage
+packet.messages.message[0].payload.orderreplacemessage.stocklocate = 310
+packet.messages.message[0].payload.orderreplacemessage.trackingnumber = 0
+packet.messages.message[0].payload.orderreplacemessage.timestamp = 34199999852428
+packet.messages.message[0].payload.orderreplacemessage.originalorderreferencenumber = 18188209
+packet.messages.message[0].payload.orderreplacemessage.neworderreferencenumber = 18923109
+packet.messages.message[0].payload.orderreplacemessage.shares = 100
+packet.messages.message[0].payload.orderreplacemessage.price = 21.73

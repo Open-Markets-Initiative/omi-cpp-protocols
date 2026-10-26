@@ -1,0 +1,19 @@
+# Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.41.29 AddOrderExpandedMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.length = 49
+packet.packetheader.messagecount = 1
+packet.packetheader.unit = 6
+packet.packetheader.sequence = 28590
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 41
+packet.messages.message[0].messageheader.messagetype = 47
+packet.messages.message[0].payload = packet.messages.message.payload.addorderexpandedmessage
+packet.messages.message[0].payload.addorderexpandedmessage.timeoffset = 41875000
+packet.messages.message[0].payload.addorderexpandedmessage.orderid = 870287334271319538
+packet.messages.message[0].payload.addorderexpandedmessage.sideindicator = B
+packet.messages.message[0].payload.addorderexpandedmessage.quantity = 100
+packet.messages.message[0].payload.addorderexpandedmessage.symbollong = CODI
+packet.messages.message[0].payload.addorderexpandedmessage.price = 19.35
+packet.messages.message[0].payload.addorderexpandedmessage.addorderflags.display = 1
+packet.messages.message[0].payload.addorderexpandedmessage.participantid = XGWD
+packet.messages.message[0].payload.addorderexpandedmessage.customerindicator = 

@@ -1,0 +1,23 @@
+# Jpx.OseDerivatives.GeniumInet.Itch.v5.0.6 AddOrderNoMpid: canonical values, read by the model
+datagram 0
+packet.packetheader.session = JP29787691
+packet.packetheader.sequencenumber = 14822434
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 37
+packet.messages.message[0].messageheader.messagetype = A
+packet.messages.message[0].payload = packet.messages.message.payload.addordernompid
+packet.messages.message[0].payload.addordernompid.nanoseconds = 2980605
+packet.messages.message[0].payload.addordernompid.orderid = 8187978167705104288
+packet.messages.message[0].payload.addordernompid.orderbookid = 196724
+packet.messages.message[0].payload.addordernompid.side = S
+packet.messages.message[0].payload.addordernompid.orderbookposition = 5
+packet.messages.message[0].payload.addordernompid.quantity = 7
+packet.messages.message[0].payload.addordernompid.price = 660650000
+packet.messages.message[0].payload.addordernompid.orderattributes.force = 0
+packet.messages.message[0].payload.addordernompid.orderattributes.shortsell = 0
+packet.messages.message[0].payload.addordernompid.orderattributes.marketbid = 0
+packet.messages.message[0].payload.addordernompid.orderattributes.pricestabilization = 0
+packet.messages.message[0].payload.addordernompid.orderattributes.overridecrossing = 0
+packet.messages.message[0].payload.addordernompid.orderattributes.undisclosed = 0
+packet.messages.message[0].payload.addordernompid.lottype = 2

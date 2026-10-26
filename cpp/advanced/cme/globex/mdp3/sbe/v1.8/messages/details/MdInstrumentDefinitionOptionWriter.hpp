@@ -249,7 +249,7 @@ public:
 
     std::span<std::byte> end_option_related_instruments() {
         header_->num_in_group.set(count_);
-        reinterpret_cast<sbe_mdp3::message_size*>(msg_start_)->set(static_cast<uint16_t>(pos_ - msg_start_));
+        reinterpret_cast<sbe_mdp3::message_header*>(msg_start_)->message_size.set(static_cast<uint16_t>(pos_ - msg_start_));
         return { msg_start_, static_cast<size_t>(pos_ - msg_start_) };
     }
 };

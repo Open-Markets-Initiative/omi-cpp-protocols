@@ -1,0 +1,36 @@
+# Siac.Opra.Output.Obi.v6.2 LongEquityAndIndexQuoteMessage: canonical values, read by the model
+datagram 0
+packet.blockheader.version = 6
+packet.blockheader.blocksize = 74
+packet.blockheader.datafeedindicator = O
+packet.blockheader.retransmissionindicator =  
+packet.blockheader.sessionindicator = 0
+packet.blockheader.blocksequencenumber = 402565753
+packet.blockheader.messagesinblock = 1
+packet.blockheader.blocktimestamp.seconds = 1701291404
+packet.blockheader.blocktimestamp.nanoseconds = 954681088
+packet.blockheader.blocktimestamp = 1701291404954681088
+packet.blockheader.blockchecksum = 4034
+packet.message[0].messageheader.participantid = D
+packet.message[0].messageheader.messagecategory = k
+packet.message[0].payload = packet.message.payload.longequityandindexquotecategory
+packet.message[0].payload.longequityandindexquotecategory.longequityandindexquotemessagetype =  
+packet.message[0].payload.longequityandindexquotecategory.longequityandindexquotemessagepayload = packet.message.payload.longequityandindexquotecategory.longequityandindexquotemessagepayload.longequityandindexquotemessage
+packet.message[0].payload.longequityandindexquotecategory.longequityandindexquotemessagepayload.longequityandindexquotemessage.bboindicator = M
+packet.message[0].payload.longequityandindexquotecategory.longequityandindexquotemessagepayload.longequityandindexquotemessage.transactionid = 220610983
+packet.message[0].payload.longequityandindexquotecategory.longequityandindexquotemessagepayload.longequityandindexquotemessage.participantreferencenumber = 0
+packet.message[0].payload.longequityandindexquotecategory.longequityandindexquotemessagepayload.longequityandindexquotemessage.securitysymbol = AMZN
+packet.message[0].payload.longequityandindexquotecategory.longequityandindexquotemessagepayload.longequityandindexquotemessage.expirationblock.expirationmonth = A
+packet.message[0].payload.longequityandindexquotecategory.longequityandindexquotemessagepayload.longequityandindexquotemessage.expirationblock.expirationday = 19
+packet.message[0].payload.longequityandindexquotecategory.longequityandindexquotemessagepayload.longequityandindexquotemessage.expirationblock.expirationyear = 24
+packet.message[0].payload.longequityandindexquotecategory.longequityandindexquotemessagepayload.longequityandindexquotemessage.strikepricedenominatorcode = B
+packet.message[0].payload.longequityandindexquotecategory.longequityandindexquotemessagepayload.longequityandindexquotemessage.strikeprice = 16525
+packet.message[0].payload.longequityandindexquotecategory.longequityandindexquotemessagepayload.longequityandindexquotemessage.premiumpricedenominatorcode = B
+packet.message[0].payload.longequityandindexquotecategory.longequityandindexquotemessagepayload.longequityandindexquotemessage.bidprice = 61
+packet.message[0].payload.longequityandindexquotecategory.longequityandindexquotemessagepayload.longequityandindexquotemessage.bidsize = 239
+packet.message[0].payload.longequityandindexquotecategory.longequityandindexquotemessagepayload.longequityandindexquotemessage.offerprice = 63
+packet.message[0].payload.longequityandindexquotecategory.longequityandindexquotemessagepayload.longequityandindexquotemessage.offersize = 495
+packet.message[0].payload.longequityandindexquotecategory.longequityandindexquotemessagepayload.longequityandindexquotemessage.bestbidappendage.bestbidparticipantid = P
+packet.message[0].payload.longequityandindexquotecategory.longequityandindexquotemessagepayload.longequityandindexquotemessage.bestbidappendage.bestbiddenominatorcode = B
+packet.message[0].payload.longequityandindexquotecategory.longequityandindexquotemessagepayload.longequityandindexquotemessage.bestbidappendage.bestbidprice = 61
+packet.message[0].payload.longequityandindexquotecategory.longequityandindexquotemessagepayload.longequityandindexquotemessage.bestbidappendage.bestbidsize = 243

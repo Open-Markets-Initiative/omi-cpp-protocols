@@ -1,0 +1,31 @@
+# Eurex.T7.Eobi.Fbe.v13.0 InstrumentSummary: canonical values, read by the model
+datagram 0
+packet.packetheader.eobiheader.bodylen = 32
+packet.packetheader.eobiheader.templateid = 13004
+packet.packetheader.eobiheader.msgseqnum = 4294967295
+packet.packetheader.applseqnum = 6309595
+packet.packetheader.marketsegmentid = 156143
+packet.packetheader.partitionid = 6
+packet.packetheader.completionindicator = 1
+packet.packetheader.applseqresetindicator = 0
+packet.packetheader.dscp = 0
+packet.packetheader.transacttime = 1744639200046218807
+packet.message[0].messageheadercomp.bodylen = 544
+packet.message[0].messageheadercomp.templateid = 13601
+packet.message[0].messageheadercomp.msgseqnum = 14824
+packet.message[0].payload = packet.message.payload.instrumentsummary
+packet.message[0].payload.instrumentsummary.securityid = 72728223116427332
+packet.message[0].payload.instrumentsummary.lastupdatetime = 1744614000015171814
+packet.message[0].payload.instrumentsummary.trdregtsexecutiontime = 18446744073709551615
+packet.message[0].payload.instrumentsummary.totnoorders = 0
+packet.message[0].payload.instrumentsummary.securitystatus = 1
+packet.message[0].payload.instrumentsummary.securitytradingstatus = 203
+packet.message[0].payload.instrumentsummary.marketcondition = 0
+packet.message[0].payload.instrumentsummary.fastmarketindicator = 0
+packet.message[0].payload.instrumentsummary.securitytradingevent = 255
+packet.message[0].payload.instrumentsummary.soldoutindicator = 255
+packet.message[0].payload.instrumentsummary.highpx = -92233720368.54775808
+packet.message[0].payload.instrumentsummary.lowpx = -92233720368.54775808
+packet.message[0].payload.instrumentsummary.productcomplex = 5
+packet.message[0].payload.instrumentsummary.nomdentries = 0
+packet.message[0].payload.instrumentsummary.tessecuritystatus = 1

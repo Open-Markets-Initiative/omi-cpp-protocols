@@ -1,0 +1,26 @@
+# Eurex.T7.Eobi.Fbe.v13.0 FullOrderExecution: canonical values, read by the model
+datagram 0
+packet.packetheader.eobiheader.bodylen = 32
+packet.packetheader.eobiheader.templateid = 13004
+packet.packetheader.eobiheader.msgseqnum = 4294967295
+packet.packetheader.applseqnum = 1359508
+packet.packetheader.marketsegmentid = 358228
+packet.packetheader.partitionid = 4
+packet.packetheader.completionindicator = 1
+packet.packetheader.applseqresetindicator = 0
+packet.packetheader.dscp = 0
+packet.packetheader.transacttime = 1744639200044668591
+packet.message[0].messageheadercomp.bodylen = 56
+packet.message[0].messageheadercomp.templateid = 13104
+packet.message[0].messageheadercomp.msgseqnum = 518856
+packet.message[0].payload = packet.message.payload.fullorderexecution
+packet.message[0].payload.fullorderexecution.side = 2
+packet.message[0].payload.fullorderexecution.ordtype = 255
+packet.message[0].payload.fullorderexecution.algorithmictradeindicator = 255
+packet.message[0].payload.fullorderexecution.hhiindicator = -128
+packet.message[0].payload.fullorderexecution.trdmatchid = 22480
+packet.message[0].payload.fullorderexecution.price = 21071
+packet.message[0].payload.fullorderexecution.trdregtstimepriority = 1744639199616441589
+packet.message[0].payload.fullorderexecution.securityid = 11922135
+packet.message[0].payload.fullorderexecution.lastqty = 1
+packet.message[0].payload.fullorderexecution.lastpx = 21071

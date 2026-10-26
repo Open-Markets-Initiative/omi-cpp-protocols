@@ -61,7 +61,7 @@ class FractionalLongTradeMessage {
 
     Decimal trade_price() const { return Decimal(static_cast<std::int64_t>(wire::read_u64_be(at(38))), -6); }
 
-    std::uint64_t fractional_trade_volume() const { return wire::read_u64_be(at(46)); }
+    Decimal fractional_trade_volume() const { return Decimal(static_cast<std::int64_t>(wire::read_u64_be(at(46))), -6); }
 
     std::uint8_t sellers_sale_days() const { return wire::read_u8(at(54)); }
 

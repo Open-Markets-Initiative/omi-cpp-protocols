@@ -3,7 +3,7 @@
 #include "../types/TransactTime.hpp"
 #include "../bitfields/MatchEventIndicator.hpp"
 #include "../types/Padding2.hpp"
-#include "../structs/MessageHeader.hpp"
+#include "../structs/SimpleBinaryHeader.hpp"
 
 namespace cme::mdp3::v13 {
 
@@ -30,8 +30,8 @@ struct MdIncrementalRefreshLimitsBanding {
     }
 
     // parse the overlaid body from its selecting header
-    static const MdIncrementalRefreshLimitsBanding* parse(const MessageHeader* header) {
-        return reinterpret_cast<const MdIncrementalRefreshLimitsBanding*>(reinterpret_cast<const std::byte*>(header) + sizeof(MessageHeader));
+    static const MdIncrementalRefreshLimitsBanding* parse(const SimpleBinaryHeader* header) {
+        return reinterpret_cast<const MdIncrementalRefreshLimitsBanding*>(reinterpret_cast<const std::byte*>(header) + sizeof(SimpleBinaryHeader));
     }
 };
 

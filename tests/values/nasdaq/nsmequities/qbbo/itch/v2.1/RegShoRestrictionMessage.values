@@ -1,0 +1,61 @@
+# Nasdaq.NsmEquities.Qbbo.Itch.v2.1 RegShoRestrictionMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 
+packet.packetheader.sequencenumber = 0
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 18
+packet.messages.message[0].messageheader.messagetype = Y
+packet.messages.message[0].payload = packet.messages.message.payload.regshorestrictionmessage
+packet.messages.message[0].payload.regshorestrictionmessage.trackingnumber = 0
+packet.messages.message[0].payload.regshorestrictionmessage.timestamp = 34200011828087
+packet.messages.message[0].payload.regshorestrictionmessage.stock = HURA
+packet.messages.message[0].payload.regshorestrictionmessage.regshoaction = 1
+datagram 1
+packet.packetheader.session = 
+packet.packetheader.sequencenumber = 0
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 18
+packet.messages.message[0].messageheader.messagetype = Y
+packet.messages.message[0].payload = packet.messages.message.payload.regshorestrictionmessage
+packet.messages.message[0].payload.regshorestrictionmessage.trackingnumber = 0
+packet.messages.message[0].payload.regshorestrictionmessage.timestamp = 34200205067021
+packet.messages.message[0].payload.regshorestrictionmessage.stock = FAAS
+packet.messages.message[0].payload.regshorestrictionmessage.regshoaction = 1
+datagram 2
+packet.packetheader.session = 
+packet.packetheader.sequencenumber = 0
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 18
+packet.messages.message[0].messageheader.messagetype = Y
+packet.messages.message[0].payload = packet.messages.message.payload.regshorestrictionmessage
+packet.messages.message[0].payload.regshorestrictionmessage.trackingnumber = 0
+packet.messages.message[0].payload.regshorestrictionmessage.timestamp = 34200228000814
+packet.messages.message[0].payload.regshorestrictionmessage.stock = CGBSW
+packet.messages.message[0].payload.regshorestrictionmessage.regshoaction = 1
+datagram 3
+packet.packetheader.session = 
+packet.packetheader.sequencenumber = 0
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 18
+packet.messages.message[0].messageheader.messagetype = Y
+packet.messages.message[0].payload = packet.messages.message.payload.regshorestrictionmessage
+packet.messages.message[0].payload.regshorestrictionmessage.trackingnumber = 0
+packet.messages.message[0].payload.regshorestrictionmessage.timestamp = 34200370164087
+packet.messages.message[0].payload.regshorestrictionmessage.stock = TCMD
+packet.messages.message[0].payload.regshorestrictionmessage.regshoaction = 1
+datagram 4
+packet.packetheader.session = 
+packet.packetheader.sequencenumber = 0
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 18
+packet.messages.message[0].messageheader.messagetype = Y
+packet.messages.message[0].payload = packet.messages.message.payload.regshorestrictionmessage
+packet.messages.message[0].payload.regshorestrictionmessage.trackingnumber = 0
+packet.messages.message[0].payload.regshorestrictionmessage.timestamp = 34200525328956
+packet.messages.message[0].payload.regshorestrictionmessage.stock = WGSWW
+packet.messages.message[0].payload.regshorestrictionmessage.regshoaction = 1

@@ -1,0 +1,18 @@
+# Iex.IexEquities.Tops.IexTp.v1.66 RetailLiquidityIndicatorMessage: canonical values, read by the model
+datagram 0
+packet.iextpheader.version = 1
+packet.iextpheader.messageprotocolid = 32771
+packet.iextpheader.channelid = 1
+packet.iextpheader.sessionid = 1304625152
+packet.iextpheader.payloadlength = 20
+packet.iextpheader.messagecount = 1
+packet.iextpheader.streamoffset = 13179259
+packet.iextpheader.firstmessagesequencenumber = 322882
+packet.iextpheader.sendtime = 1720013400068524741
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 18
+packet.messages.message[0].messageheader.messagetype = I
+packet.messages.message[0].messagedata = packet.messages.message.messagedata.retailliquidityindicatormessage
+packet.messages.message[0].messagedata.retailliquidityindicatormessage.retailliquidityindicator = A
+packet.messages.message[0].messagedata.retailliquidityindicatormessage.timestamp = 1720013400005165077
+packet.messages.message[0].messagedata.retailliquidityindicatormessage.symbol = UDOW

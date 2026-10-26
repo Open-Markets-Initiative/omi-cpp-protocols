@@ -54,7 +54,7 @@ class FractionalShortTradeMessage {
 
     Decimal trade_price_2() const { return Decimal(static_cast<std::int64_t>(wire::read_u16_be(at(29))), -2); }
 
-    std::uint32_t fractional_trade_volume_4() const { return wire::read_u32_be(at(31)); }
+    Decimal fractional_trade_volume_4() const { return Decimal(static_cast<std::int64_t>(wire::read_u32_be(at(31))), -6); }
 
     PrimaryListingMarketParticipantId primary_listing_market_participant_id() const { return static_cast<PrimaryListingMarketParticipantId>(wire::read_char(at(35))); }
 

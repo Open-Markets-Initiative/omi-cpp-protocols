@@ -6,6 +6,7 @@
 #include <ostream>
 #include <string_view>
 
+#include "../common/Decimal.hpp"
 #include "../enums/ParticipantId.hpp"
 #include "../messages/MarketStatusMessagePayload.hpp"
 #include "../structs/Timestamp1.hpp"
@@ -24,7 +25,7 @@ class CrossingSessionSummaryMessage : public MarketStatusMessagePayload {
     static constexpr std::size_t wire_size = 46;
 
     CrossingSessionSummaryMessage() = default;
-    CrossingSessionSummaryMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, std::uint64_t crossing_session_i_total_trades_volume, std::uint64_t crossing_session_ii_dollar_value, std::uint64_t crossing_session_ii_total_trades_volume);
+    CrossingSessionSummaryMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, std::uint64_t crossing_session_i_total_trades_volume, Decimal crossing_session_ii_dollar_value, std::uint64_t crossing_session_ii_total_trades_volume);
 
     // Participant Id: Identifies the Participant or Processor that initiated the message
     ParticipantId participant_id() const;
@@ -56,8 +57,8 @@ class CrossingSessionSummaryMessage : public MarketStatusMessagePayload {
 
     // Crossing Session Ii Dollar Value: Contains the Dollar Value traded after the close of a
     // Participant's regular session. Has implied 6 decimal places
-    std::uint64_t crossing_session_ii_dollar_value() const;
-    void set_crossing_session_ii_dollar_value(std::uint64_t value);
+    Decimal crossing_session_ii_dollar_value() const;
+    void set_crossing_session_ii_dollar_value(Decimal value);
 
     // Crossing Session Ii Total Trades Volume: Contains the number of shares traded after the
     // close of a Participant's regular session
@@ -85,7 +86,7 @@ class CrossingSessionSummaryMessage : public MarketStatusMessagePayload {
     std::uint32_t transaction_id_{};
     std::int64_t participant_reference_number_{};
     std::uint64_t crossing_session_i_total_trades_volume_{};
-    std::uint64_t crossing_session_ii_dollar_value_{};
+    Decimal crossing_session_ii_dollar_value_{ 0, -6 };
     std::uint64_t crossing_session_ii_total_trades_volume_{};
 };
 

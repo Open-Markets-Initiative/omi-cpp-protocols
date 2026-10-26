@@ -6,7 +6,7 @@
 
 namespace siac::cts::output::cta::v2_11_b {
 
-IndexMessage::IndexMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& index_symbol, std::int64_t index_value)
+IndexMessage::IndexMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& index_symbol, Decimal index_value)
   : participant_id_(participant_id), timestamp_1_(timestamp_1), message_id_(message_id), transaction_id_(transaction_id), participant_reference_number_(participant_reference_number), index_symbol_(index_symbol), index_value_(index_value) {}
 
 ParticipantId IndexMessage::participant_id() const { return participant_id_; }
@@ -29,8 +29,8 @@ const std::string& IndexMessage::index_symbol() const { return index_symbol_; }
 std::string& IndexMessage::index_symbol() { return index_symbol_; }
 void IndexMessage::set_index_symbol(const std::string& value) { index_symbol_ = value; }
 
-std::int64_t IndexMessage::index_value() const { return index_value_; }
-void IndexMessage::set_index_value(std::int64_t value) { index_value_ = value; }
+Decimal IndexMessage::index_value() const { return index_value_; }
+void IndexMessage::set_index_value(Decimal value) { index_value_ = value; }
 
 IndicesMessagePayloadCode IndexMessage::type() const { return message_type; }
 
@@ -57,7 +57,7 @@ std::size_t IndexMessage::decode(const std::byte* data, std::size_t length) {
     index_symbol_ = wire::read_text(data + offset, 11, ' ');
     offset += 11;
 
-    index_value_ = wire::read_i64_be(data + offset);
+    index_value_ = Decimal(static_cast<std::int64_t>(wire::read_i64_be(data + offset)), -6);
     offset += 8;
 
     return offset;
@@ -84,7 +84,7 @@ std::size_t IndexMessage::encode(std::byte* data, std::size_t capacity) const {
     wire::write_text(data + offset, 11, ' ', index_symbol_);
     offset += 11;
 
-    wire::write_i64_be(data + offset, static_cast<std::int64_t>(index_value_));
+    wire::write_i64_be(data + offset, static_cast<std::int64_t>(index_value_.mantissa()));
     offset += 8;
 
     return offset;

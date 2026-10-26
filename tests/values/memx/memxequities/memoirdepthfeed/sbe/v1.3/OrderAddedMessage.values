@@ -1,0 +1,20 @@
+# Memx.MemxEquities.MemoirDepthFeed.Sbe.v1.3 OrderAddedMessage: canonical values, read by the model
+datagram 0
+packet.commonheader.messagetype = 2
+packet.commonheader.headerlength = 18
+packet.commonheader.sessionid = 6148333994739271368
+packet.commonheader.sequencenumber = 1371819
+packet.sequencedmessages = packet.sequencedmessages.sequencedmessage
+packet.sequencedmessages.sequencedmessage.messagecount = 1
+packet.sequencedmessages.sequencedmessage.message[0].messagelength = 37
+packet.sequencedmessages.sequencedmessage.message[0].sbemessage.sbeheader.blocklength = 31
+packet.sequencedmessages.sequencedmessage.message[0].sbemessage.sbeheader.templateid = 10
+packet.sequencedmessages.sequencedmessage.message[0].sbemessage.sbeheader.schemaid = 2
+packet.sequencedmessages.sequencedmessage.message[0].sbemessage.sbeheader.version = 259
+packet.sequencedmessages.sequencedmessage.message[0].sbemessage.payload = packet.sequencedmessages.sequencedmessage.message.sbemessage.payload.orderaddedmessage
+packet.sequencedmessages.sequencedmessage.message[0].sbemessage.payload.orderaddedmessage.timestamp = 1692711000000117312
+packet.sequencedmessages.sequencedmessage.message[0].sbemessage.payload.orderaddedmessage.securityid = 7996
+packet.sequencedmessages.sequencedmessage.message[0].sbemessage.payload.orderaddedmessage.orderid = 20881514
+packet.sequencedmessages.sequencedmessage.message[0].sbemessage.payload.orderaddedmessage.side = S
+packet.sequencedmessages.sequencedmessage.message[0].sbemessage.payload.orderaddedmessage.quantity = 900
+packet.sequencedmessages.sequencedmessage.message[0].sbemessage.payload.orderaddedmessage.price = 104.76

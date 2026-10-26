@@ -1,8 +1,8 @@
 #pragma once
 
 #include "structs/BinaryPacketHeader.hpp"
-#include "structs/Message.hpp"
 #include "structs/MessageHeader.hpp"
+#include "structs/SimpleBinaryHeader.hpp"
 #include "structs/GroupSize.hpp"
 #include "structs/GroupSize8Byte.hpp"
 #include "structs/MaturityMonthYear.hpp"

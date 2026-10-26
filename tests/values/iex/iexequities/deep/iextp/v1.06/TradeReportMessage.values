@@ -1,0 +1,25 @@
+# Iex.IexEquities.Deep.IexTp.v1.06 TradeReportMessage: canonical values, read by the model
+datagram 0
+packet.iextpheader.version = 1
+packet.iextpheader.messageprotocolid = 32772
+packet.iextpheader.channelid = 1
+packet.iextpheader.sessionid = 1222443008
+packet.iextpheader.payloadlength = 40
+packet.iextpheader.messagecount = 1
+packet.iextpheader.streamoffset = 639953
+packet.iextpheader.firstmessagesequencenumber = 29466
+packet.iextpheader.sendtime = 1611666000912596863
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 38
+packet.messages.message[0].messageheader.messagetype = T
+packet.messages.message[0].messagedata = packet.messages.message.messagedata.tradereportmessage
+packet.messages.message[0].messagedata.tradereportmessage.saleconditionflags.singlepricecrosstrade = 0
+packet.messages.message[0].messagedata.tradereportmessage.saleconditionflags.tradethroughexempt = 0
+packet.messages.message[0].messagedata.tradereportmessage.saleconditionflags.oddlot = 0
+packet.messages.message[0].messagedata.tradereportmessage.saleconditionflags.extendedhours = 1
+packet.messages.message[0].messagedata.tradereportmessage.saleconditionflags.intermarketsweep = 0
+packet.messages.message[0].messagedata.tradereportmessage.timestamp = 1611666000910698221
+packet.messages.message[0].messagedata.tradereportmessage.symbol = AMC
+packet.messages.message[0].messagedata.tradereportmessage.size = 105
+packet.messages.message[0].messagedata.tradereportmessage.price = 4.82
+packet.messages.message[0].messagedata.tradereportmessage.tradeid = 2368576

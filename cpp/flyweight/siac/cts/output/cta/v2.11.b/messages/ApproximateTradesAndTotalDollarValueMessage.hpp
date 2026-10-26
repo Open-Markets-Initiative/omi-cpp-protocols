@@ -10,6 +10,7 @@
 #include "../common/View.hpp"
 #include "../enums/ParticipantId.hpp"
 #include "../structs/Timestamp1.hpp"
+#include "../common/Decimal.hpp"
 
 namespace siac::cts::output::cta::v2_11_b {
 
@@ -41,7 +42,7 @@ class ApproximateTradesAndTotalDollarValueMessage {
 
     std::uint32_t total_trades() const { return wire::read_u32_be(at(22)); }
 
-    std::uint64_t dollar_value() const { return wire::read_u64_be(at(26)); }
+    Decimal dollar_value() const { return Decimal(static_cast<std::int64_t>(wire::read_u64_be(at(26))), -6); }
 
     void print(std::ostream& out) const {
         out << "ApproximateTradesAndTotalDollarValueMessage{";

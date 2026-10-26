@@ -6,7 +6,7 @@
 
 namespace siac::cts::output::cta::v2_11_b {
 
-FractionalShortTradeMessage::FractionalShortTradeMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol_5, SaleCondition1 sale_condition_1, SaleConditionCategory sale_condition_category, Decimal trade_price_2, std::uint32_t fractional_trade_volume_4, PrimaryListingMarketParticipantId primary_listing_market_participant_id, ConsolidatedHighLowLastIndicator consolidated_high_low_last_indicator, ParticipantOpenHighLowLastIndicator participant_open_high_low_last_indicator)
+FractionalShortTradeMessage::FractionalShortTradeMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol_5, SaleCondition1 sale_condition_1, SaleConditionCategory sale_condition_category, Decimal trade_price_2, Decimal fractional_trade_volume_4, PrimaryListingMarketParticipantId primary_listing_market_participant_id, ConsolidatedHighLowLastIndicator consolidated_high_low_last_indicator, ParticipantOpenHighLowLastIndicator participant_open_high_low_last_indicator)
   : participant_id_(participant_id), timestamp_1_(timestamp_1), message_id_(message_id), transaction_id_(transaction_id), participant_reference_number_(participant_reference_number), security_symbol_5_(security_symbol_5), sale_condition_1_(sale_condition_1), sale_condition_category_(sale_condition_category), trade_price_2_(trade_price_2), fractional_trade_volume_4_(fractional_trade_volume_4), primary_listing_market_participant_id_(primary_listing_market_participant_id), consolidated_high_low_last_indicator_(consolidated_high_low_last_indicator), participant_open_high_low_last_indicator_(participant_open_high_low_last_indicator) {}
 
 ParticipantId FractionalShortTradeMessage::participant_id() const { return participant_id_; }
@@ -38,8 +38,8 @@ void FractionalShortTradeMessage::set_sale_condition_category(SaleConditionCateg
 Decimal FractionalShortTradeMessage::trade_price_2() const { return trade_price_2_; }
 void FractionalShortTradeMessage::set_trade_price_2(Decimal value) { trade_price_2_ = value; }
 
-std::uint32_t FractionalShortTradeMessage::fractional_trade_volume_4() const { return fractional_trade_volume_4_; }
-void FractionalShortTradeMessage::set_fractional_trade_volume_4(std::uint32_t value) { fractional_trade_volume_4_ = value; }
+Decimal FractionalShortTradeMessage::fractional_trade_volume_4() const { return fractional_trade_volume_4_; }
+void FractionalShortTradeMessage::set_fractional_trade_volume_4(Decimal value) { fractional_trade_volume_4_ = value; }
 
 PrimaryListingMarketParticipantId FractionalShortTradeMessage::primary_listing_market_participant_id() const { return primary_listing_market_participant_id_; }
 void FractionalShortTradeMessage::set_primary_listing_market_participant_id(PrimaryListingMarketParticipantId value) { primary_listing_market_participant_id_ = value; }
@@ -84,7 +84,7 @@ std::size_t FractionalShortTradeMessage::decode(const std::byte* data, std::size
     trade_price_2_ = Decimal(static_cast<std::int64_t>(wire::read_u16_be(data + offset)), -2);
     offset += 2;
 
-    fractional_trade_volume_4_ = wire::read_u32_be(data + offset);
+    fractional_trade_volume_4_ = Decimal(static_cast<std::int64_t>(wire::read_u32_be(data + offset)), -6);
     offset += 4;
 
     primary_listing_market_participant_id_ = static_cast<PrimaryListingMarketParticipantId>(wire::read_char(data + offset));
@@ -129,7 +129,7 @@ std::size_t FractionalShortTradeMessage::encode(std::byte* data, std::size_t cap
     wire::write_u16_be(data + offset, static_cast<std::uint16_t>(trade_price_2_.mantissa()));
     offset += 2;
 
-    wire::write_u32_be(data + offset, static_cast<std::uint32_t>(fractional_trade_volume_4_));
+    wire::write_u32_be(data + offset, static_cast<std::uint32_t>(fractional_trade_volume_4_.mantissa()));
     offset += 4;
 
     wire::write_char(data + offset, static_cast<char>(primary_listing_market_participant_id_));

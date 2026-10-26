@@ -1,0 +1,10 @@
+# Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d SystemTimeMessage: canonical values, read by the model
+datagram 0
+udppacket.machmessage[0].machpacketheader.sequencenumber = 1888
+udppacket.machmessage[0].machpacketheader.machpacketlength = 17
+udppacket.machmessage[0].machpacketheader.machpackettype = 3
+udppacket.machmessage[0].machpacketheader.sessionnumber = 1
+udppacket.machmessage[0].payload = udppacket.machmessage.payload.applicationmessage
+udppacket.machmessage[0].payload.applicationmessage.messagetype = 49
+udppacket.machmessage[0].payload.applicationmessage.data = udppacket.machmessage.payload.applicationmessage.data.systemtimemessage
+udppacket.machmessage[0].payload.applicationmessage.data.systemtimemessage.seconds = 1692711000

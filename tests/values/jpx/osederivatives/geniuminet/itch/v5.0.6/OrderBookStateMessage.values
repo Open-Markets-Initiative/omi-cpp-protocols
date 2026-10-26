@@ -1,0 +1,12 @@
+# Jpx.OseDerivatives.GeniumInet.Itch.v5.0.6 OrderBookStateMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = JP29787691
+packet.packetheader.sequencenumber = 39313614
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 29
+packet.messages.message[0].messageheader.messagetype = O
+packet.messages.message[0].payload = packet.messages.message.payload.orderbookstatemessage
+packet.messages.message[0].payload.orderbookstatemessage.nanoseconds = 110531058
+packet.messages.message[0].payload.orderbookstatemessage.orderbookid = 94634085
+packet.messages.message[0].payload.orderbookstatemessage.statename = DCB

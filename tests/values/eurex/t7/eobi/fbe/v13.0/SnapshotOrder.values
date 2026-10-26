@@ -1,0 +1,22 @@
+# Eurex.T7.Eobi.Fbe.v13.0 SnapshotOrder: canonical values, read by the model
+datagram 0
+packet.packetheader.eobiheader.bodylen = 32
+packet.packetheader.eobiheader.templateid = 13004
+packet.packetheader.eobiheader.msgseqnum = 4294967295
+packet.packetheader.applseqnum = 26460339
+packet.packetheader.marketsegmentid = 298533
+packet.packetheader.partitionid = 8
+packet.packetheader.completionindicator = 1
+packet.packetheader.applseqresetindicator = 0
+packet.packetheader.dscp = 0
+packet.packetheader.transacttime = 1744639204361209794
+packet.message[0].messageheadercomp.bodylen = 40
+packet.message[0].messageheadercomp.templateid = 13602
+packet.message[0].messageheadercomp.msgseqnum = 248185
+packet.message[0].payload = packet.message.payload.snapshotorder
+packet.message[0].payload.snapshotorder.orderdetailscomp.trdregtstimepriority = 1744632033197975042
+packet.message[0].payload.snapshotorder.orderdetailscomp.displayqty = 250
+packet.message[0].payload.snapshotorder.orderdetailscomp.side = 2
+packet.message[0].payload.snapshotorder.orderdetailscomp.ordtype = 255
+packet.message[0].payload.snapshotorder.orderdetailscomp.hhiindicator = -128
+packet.message[0].payload.snapshotorder.orderdetailscomp.price = 3.95

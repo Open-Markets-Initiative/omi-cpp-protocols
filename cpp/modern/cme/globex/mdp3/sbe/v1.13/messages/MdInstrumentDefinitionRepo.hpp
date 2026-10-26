@@ -44,7 +44,7 @@
 #include "../types/InstrumentGuid.hpp"
 #include "../types/TermCode.hpp"
 #include "../types/BrokenDateTermType.hpp"
-#include "../structs/MessageHeader.hpp"
+#include "../structs/SimpleBinaryHeader.hpp"
 
 namespace cme::mdp3::v13 {
 
@@ -112,8 +112,8 @@ struct MdInstrumentDefinitionRepo {
     }
 
     // parse the overlaid body from its selecting header
-    static const MdInstrumentDefinitionRepo* parse(const MessageHeader* header) {
-        return reinterpret_cast<const MdInstrumentDefinitionRepo*>(reinterpret_cast<const std::byte*>(header) + sizeof(MessageHeader));
+    static const MdInstrumentDefinitionRepo* parse(const SimpleBinaryHeader* header) {
+        return reinterpret_cast<const MdInstrumentDefinitionRepo*>(reinterpret_cast<const std::byte*>(header) + sizeof(SimpleBinaryHeader));
     }
 };
 

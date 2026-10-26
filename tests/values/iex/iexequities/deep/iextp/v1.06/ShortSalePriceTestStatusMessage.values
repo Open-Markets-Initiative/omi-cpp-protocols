@@ -1,0 +1,19 @@
+# Iex.IexEquities.Deep.IexTp.v1.06 ShortSalePriceTestStatusMessage: canonical values, read by the model
+datagram 0
+packet.iextpheader.version = 1
+packet.iextpheader.messageprotocolid = 32772
+packet.iextpheader.channelid = 1
+packet.iextpheader.sessionid = 1222443008
+packet.iextpheader.payloadlength = 21
+packet.iextpheader.messagecount = 1
+packet.iextpheader.streamoffset = 628378
+packet.iextpheader.firstmessagesequencenumber = 29002
+packet.iextpheader.sendtime = 1611663532020229378
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 19
+packet.messages.message[0].messageheader.messagetype = P
+packet.messages.message[0].messagedata = packet.messages.message.messagedata.shortsalepriceteststatusmessage
+packet.messages.message[0].messagedata.shortsalepriceteststatusmessage.shortsalepriceteststatus = 1
+packet.messages.message[0].messagedata.shortsalepriceteststatusmessage.timestamp = 1611663532020223194
+packet.messages.message[0].messagedata.shortsalepriceteststatusmessage.symbol = AMPE
+packet.messages.message[0].messagedata.shortsalepriceteststatusmessage.detail = N

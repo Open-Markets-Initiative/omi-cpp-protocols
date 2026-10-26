@@ -28,7 +28,7 @@ MessageCode MdpsessionmgmtMessage::type() const { return message_type; }
 std::string_view MdpsessionmgmtMessage::name() const { return "Mdpsessionmgmt Message"; }
 
 void MdpsessionmgmtMessage::bind(const Frame& frame) {
-    template_id_ = frame.message_header().template_id();
+    template_id_ = frame.message_header().simple_binary_header().template_id();
 }
 
 std::optional<TemplateId> MdpsessionmgmtMessage::bound_template_id() const {

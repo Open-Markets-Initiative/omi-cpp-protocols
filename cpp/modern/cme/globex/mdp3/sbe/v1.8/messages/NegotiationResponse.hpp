@@ -4,7 +4,7 @@
 #include "../types/RequestTimestamp.hpp"
 #include "../types/SecretKeySecureIdExpiration.hpp"
 #include "../types/Padding4.hpp"
-#include "../structs/MessageHeader.hpp"
+#include "../structs/SimpleBinaryHeader.hpp"
 
 namespace cme::mdp3::v8 {
 
@@ -32,8 +32,8 @@ struct NegotiationResponse {
     }
 
     // parse the overlaid body from its selecting header
-    static const NegotiationResponse* parse(const MessageHeader* header) {
-        return reinterpret_cast<const NegotiationResponse*>(reinterpret_cast<const std::byte*>(header) + sizeof(MessageHeader));
+    static const NegotiationResponse* parse(const SimpleBinaryHeader* header) {
+        return reinterpret_cast<const NegotiationResponse*>(reinterpret_cast<const std::byte*>(header) + sizeof(SimpleBinaryHeader));
     }
 };
 

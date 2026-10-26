@@ -1,0 +1,14 @@
+# Jpx.OseDerivatives.GeniumInet.Itch.v5.0.6 EquilibriumPriceUpdate: canonical values, read by the model
+datagram 0
+packet.packetheader.session = JP29787691
+packet.packetheader.sequencenumber = 39311363
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 53
+packet.messages.message[0].messageheader.messagetype = Z
+packet.messages.message[0].payload = packet.messages.message.payload.equilibriumpriceupdate
+packet.messages.message[0].payload.equilibriumpriceupdate.nanoseconds = 63166643
+packet.messages.message[0].payload.equilibriumpriceupdate.orderbookid = 94634085
+packet.messages.message[0].payload.equilibriumpriceupdate.availablebidquantityatequilibriumprice = 0
+packet.messages.message[0].payload.equilibriumpriceupdate.availableaskquantityatequilibriumprice = 0
+packet.messages.message[0].payload.equilibriumpriceupdate.equilibriumprice = -2147483648

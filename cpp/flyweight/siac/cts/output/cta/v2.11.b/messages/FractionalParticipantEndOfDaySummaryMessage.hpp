@@ -59,7 +59,7 @@ class FractionalParticipantEndOfDaySummaryMessage {
 
     Decimal open_price() const { return Decimal(static_cast<std::int64_t>(wire::read_u64_be(at(63))), -6); }
 
-    std::uint64_t fractional_total_volume() const { return wire::read_u64_be(at(71)); }
+    Decimal fractional_total_volume() const { return Decimal(static_cast<std::int64_t>(wire::read_u64_be(at(71))), -6); }
 
     Tick tick() const { return static_cast<Tick>(wire::read_char(at(79))); }
 

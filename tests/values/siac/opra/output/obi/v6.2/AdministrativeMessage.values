@@ -1,0 +1,23 @@
+# Siac.Opra.Output.Obi.v6.2 AdministrativeMessage: canonical values, read by the model
+datagram 0
+packet.blockheader.version = 6
+packet.blockheader.blocksize = 118
+packet.blockheader.datafeedindicator = O
+packet.blockheader.retransmissionindicator =  
+packet.blockheader.sessionindicator = 0
+packet.blockheader.blocksequencenumber = 405982822
+packet.blockheader.messagesinblock = 1
+packet.blockheader.blocktimestamp.seconds = 1701293400
+packet.blockheader.blocktimestamp.nanoseconds = 1424640
+packet.blockheader.blocktimestamp = 1701293400001424640
+packet.blockheader.blockchecksum = 6508
+packet.message[0].messageheader.participantid = C
+packet.message[0].messageheader.messagecategory = C
+packet.message[0].payload = packet.message.payload.administrativecategory
+packet.message[0].payload.administrativecategory.administrativemessagetype =  
+packet.message[0].payload.administrativecategory.administrativemessagepayload = packet.message.payload.administrativecategory.administrativemessagepayload.administrativemessage
+packet.message[0].payload.administrativecategory.administrativemessagepayload.administrativemessage.messageindicator =  
+packet.message[0].payload.administrativecategory.administrativemessagepayload.administrativemessage.transactionid = 469797501
+packet.message[0].payload.administrativecategory.administrativemessagepayload.administrativemessage.participantreferencenumber = 0
+packet.message[0].payload.administrativecategory.administrativemessagepayload.administrativemessage.messagedatalength = 83
+packet.message[0].payload.administrativecategory.administrativemessagepayload.administrativemessage.messagedata = TEXT CFLEX QQQ LST 3.21C PM EUR 03/28/2024 1 @ 385.55 2QQQ ADJ 1.0000 390.20 389.81

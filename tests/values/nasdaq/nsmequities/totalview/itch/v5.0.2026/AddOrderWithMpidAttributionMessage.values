@@ -1,0 +1,18 @@
+# Nasdaq.NsmEquities.TotalView.Itch.v5.0.2026 AddOrderWithMpidAttributionMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = S061226   
+packet.packetheader.sequencenumber = 2
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 40
+packet.messages.message[0].messageheader.messagetype = F
+packet.messages.message[0].payload = packet.messages.message.payload.addorderwithmpidattributionmessage
+packet.messages.message[0].payload.addorderwithmpidattributionmessage.stocklocate = 3334
+packet.messages.message[0].payload.addorderwithmpidattributionmessage.trackingnumber = 0
+packet.messages.message[0].payload.addorderwithmpidattributionmessage.timestamp = 14400169995639
+packet.messages.message[0].payload.addorderwithmpidattributionmessage.orderreferencenumber = 36270
+packet.messages.message[0].payload.addorderwithmpidattributionmessage.buysellindicator = B
+packet.messages.message[0].payload.addorderwithmpidattributionmessage.shares = 100
+packet.messages.message[0].payload.addorderwithmpidattributionmessage.stock = DYNF
+packet.messages.message[0].payload.addorderwithmpidattributionmessage.price = 56.44
+packet.messages.message[0].payload.addorderwithmpidattributionmessage.attribution = OPTG

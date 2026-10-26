@@ -1,0 +1,23 @@
+# Iex.IexEquities.Tops.IexTp.v1.56 QuoteUpdateMessage: canonical values, read by the model
+datagram 0
+packet.iextpheader.version = 1
+packet.iextpheader.messageprotocolid = 32770
+packet.iextpheader.channelid = 1
+packet.iextpheader.sessionid = 1144717312
+packet.iextpheader.payloadlength = 44
+packet.iextpheader.messagecount = 1
+packet.iextpheader.streamoffset = 371580
+packet.iextpheader.firstmessagesequencenumber = 8446
+packet.iextpheader.sendtime = 1509192000487009269
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 42
+packet.messages.message[0].messageheader.messagetype = Q
+packet.messages.message[0].messagedata = packet.messages.message.messagedata.quoteupdatemessage
+packet.messages.message[0].messagedata.quoteupdatemessage.quoteupdateflags.marketsession = 1
+packet.messages.message[0].messagedata.quoteupdatemessage.quoteupdateflags.symbolavailability = 0
+packet.messages.message[0].messagedata.quoteupdatemessage.timestamp = 1509192000475229769
+packet.messages.message[0].messagedata.quoteupdatemessage.symbol = ZIEXT
+packet.messages.message[0].messagedata.quoteupdatemessage.bidsize = 0
+packet.messages.message[0].messagedata.quoteupdatemessage.bidprice = 0
+packet.messages.message[0].messagedata.quoteupdatemessage.askprice = 1
+packet.messages.message[0].messagedata.quoteupdatemessage.asksize = 100

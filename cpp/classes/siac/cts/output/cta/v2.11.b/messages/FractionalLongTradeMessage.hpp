@@ -38,7 +38,7 @@ class FractionalLongTradeMessage : public TradeMessagePayload {
     static constexpr std::size_t wire_size = 72;
 
     FractionalLongTradeMessage() = default;
-    FractionalLongTradeMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol, InstrumentType instrument_type, const SaleCondition4& sale_condition_4, Decimal trade_price, std::uint64_t fractional_trade_volume, std::uint8_t sellers_sale_days, StopStockIndicator stop_stock_indicator, TradeThroughExemptIndicator trade_through_exempt_indicator, TradeReportingFacilityId trade_reporting_facility_id, const Timestamp2& timestamp_2, ShortSaleRestrictionIndicator short_sale_restriction_indicator, PrimaryListingMarketParticipantId primary_listing_market_participant_id, FinancialStatusIndicator financial_status_indicator, HeldTradeIndicator held_trade_indicator, ConsolidatedHighLowLastIndicator consolidated_high_low_last_indicator, ParticipantOpenHighLowLastIndicator participant_open_high_low_last_indicator);
+    FractionalLongTradeMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol, InstrumentType instrument_type, const SaleCondition4& sale_condition_4, Decimal trade_price, Decimal fractional_trade_volume, std::uint8_t sellers_sale_days, StopStockIndicator stop_stock_indicator, TradeThroughExemptIndicator trade_through_exempt_indicator, TradeReportingFacilityId trade_reporting_facility_id, const Timestamp2& timestamp_2, ShortSaleRestrictionIndicator short_sale_restriction_indicator, PrimaryListingMarketParticipantId primary_listing_market_participant_id, FinancialStatusIndicator financial_status_indicator, HeldTradeIndicator held_trade_indicator, ConsolidatedHighLowLastIndicator consolidated_high_low_last_indicator, ParticipantOpenHighLowLastIndicator participant_open_high_low_last_indicator);
 
     // Participant Id: Identifies the Participant or Processor that initiated the message
     ParticipantId participant_id() const;
@@ -83,8 +83,8 @@ class FractionalLongTradeMessage : public TradeMessagePayload {
 
     // Fractional Trade Volume: Contains the total number of shares which traded in a single
     // transaction for an individual security. Has implied 6 decimal places
-    std::uint64_t fractional_trade_volume() const;
-    void set_fractional_trade_volume(std::uint64_t value);
+    Decimal fractional_trade_volume() const;
+    void set_fractional_trade_volume(Decimal value);
 
     // Sellers Sale Days: Specifies the number of days that may elapse before delivery of the
     // security. Allowed values 2 through 60 days
@@ -162,7 +162,7 @@ class FractionalLongTradeMessage : public TradeMessagePayload {
     InstrumentType instrument_type_{};
     SaleCondition4 sale_condition_4_{};
     Decimal trade_price_{ 0, -6 };
-    std::uint64_t fractional_trade_volume_{};
+    Decimal fractional_trade_volume_{ 0, -6 };
     std::uint8_t sellers_sale_days_{};
     StopStockIndicator stop_stock_indicator_{};
     TradeThroughExemptIndicator trade_through_exempt_indicator_{};

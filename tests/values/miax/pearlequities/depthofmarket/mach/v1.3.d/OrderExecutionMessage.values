@@ -1,0 +1,17 @@
+# Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d OrderExecutionMessage: canonical values, read by the model
+datagram 0
+udppacket.machmessage[0].machpacketheader.sequencenumber = 1764
+udppacket.machmessage[0].machpacketheader.machpacketlength = 50
+udppacket.machmessage[0].machpacketheader.machpackettype = 3
+udppacket.machmessage[0].machpacketheader.sessionnumber = 1
+udppacket.machmessage[0].payload = udppacket.machmessage.payload.applicationmessage
+udppacket.machmessage[0].payload.applicationmessage.messagetype = 24
+udppacket.machmessage[0].payload.applicationmessage.data = udppacket.machmessage.payload.applicationmessage.data.orderexecutionmessage
+udppacket.machmessage[0].payload.applicationmessage.data.orderexecutionmessage.nanoseconds = 77106013
+udppacket.machmessage[0].payload.applicationmessage.data.orderexecutionmessage.symbolid = 570425383
+udppacket.machmessage[0].payload.applicationmessage.data.orderexecutionmessage.orderid = 2473357728873977662
+udppacket.machmessage[0].payload.applicationmessage.data.orderexecutionmessage.tradeid = 2467972595799031846
+udppacket.machmessage[0].payload.applicationmessage.data.orderexecutionmessage.price = 9.89
+udppacket.machmessage[0].payload.applicationmessage.data.orderexecutionmessage.size = 1
+udppacket.machmessage[0].payload.applicationmessage.data.orderexecutionmessage.orderexecutionflags.sipreporting = 1
+udppacket.machmessage[0].payload.applicationmessage.data.orderexecutionmessage.orderexecutionflags.tradedagainstretail = 0

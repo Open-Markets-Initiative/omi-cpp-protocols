@@ -1,0 +1,25 @@
+# Iex.IexEquities.Tops.IexTp.v1.64 TradeReportMessage: canonical values, read by the model
+datagram 0
+packet.iextpheader.version = 1
+packet.iextpheader.messageprotocolid = 32771
+packet.iextpheader.channelid = 1
+packet.iextpheader.sessionid = 1150681088
+packet.iextpheader.payloadlength = 40
+packet.iextpheader.messagecount = 1
+packet.iextpheader.streamoffset = 935669
+packet.iextpheader.firstmessagesequencenumber = 34347
+packet.iextpheader.sendtime = 1517059863763805628
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 38
+packet.messages.message[0].messageheader.messagetype = T
+packet.messages.message[0].messagedata = packet.messages.message.messagedata.tradereportmessage
+packet.messages.message[0].messagedata.tradereportmessage.saleconditionflags.singlepricecrosstrade = 0
+packet.messages.message[0].messagedata.tradereportmessage.saleconditionflags.tradethroughexempt = 0
+packet.messages.message[0].messagedata.tradereportmessage.saleconditionflags.oddlot = 0
+packet.messages.message[0].messagedata.tradereportmessage.saleconditionflags.extendedhours = 1
+packet.messages.message[0].messagedata.tradereportmessage.saleconditionflags.intermarketsweep = 1
+packet.messages.message[0].messagedata.tradereportmessage.timestamp = 1517059863763350264
+packet.messages.message[0].messagedata.tradereportmessage.symbol = ZIEXT
+packet.messages.message[0].messagedata.tradereportmessage.size = 100
+packet.messages.message[0].messagedata.tradereportmessage.price = 0.9998
+packet.messages.message[0].messagedata.tradereportmessage.tradeid = 972306

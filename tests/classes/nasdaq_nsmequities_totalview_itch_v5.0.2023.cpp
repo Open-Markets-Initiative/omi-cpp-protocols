@@ -123,20 +123,20 @@ void expect(const char* name, const char* relative) {
 
 int main() {
     std::printf("== Nasdaq.NsmEquities.TotalView.Itch.v5.0.2023 (classes)\n");
-    expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadAddOrderNoMpidAttributionMessage>("AddOrderNoMpidAttributionMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/AddOrderNoMPID.pcap");
-    expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadAddOrderWithMpidAttributionMessage>("AddOrderWithMpidAttributionMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/AddOrderWithMpid.pcap");
-    expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadCrossTradeMessage>("CrossTradeMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/CrossTrade.pcap");
-    expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadLuldAuctionCollarMessage>("LuldAuctionCollarMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/LULDAuctionCollar.pcap");
-    expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadMarketParticipantPositionMessage>("MarketParticipantPositionMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/MarketParticipantPosition.pcap");
-    expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadNetOrderImbalanceIndicatorMessage>("NetOrderImbalanceIndicatorMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/NetOrderImbalanceIndicator.pcap");
-    expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadNonCrossTradeMessage>("NonCrossTradeMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/NonCrossTrade.pcap");
-    expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadOrderCancelMessage>("OrderCancelMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/OrderCancel.pcap");
-    expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadOrderDeleteMessage>("OrderDeleteMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/OrderDelete.pcap");
-    expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadOrderExecutedMessage>("OrderExecutedMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/OrderExecuted.pcap");
-    expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadOrderExecutedWithPriceMessage>("OrderExecutedWithPriceMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/OrderExecutedWithPrice.pcap");
-    expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadOrderReplaceMessage>("OrderReplaceMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/OrderReplace.pcap");
-    expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadRegShoShortSalePriceTestRestrictedIndicatorMessage>("RegShoShortSalePriceTestRestrictedIndicatorMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/RegSHORestriction.pcap");
-    expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadStockTradingActionMessage>("StockTradingActionMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/StockTradingAction.pcap");
-    expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadSystemEventMessage>("SystemEventMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/SystemEvent.pcap");
+    expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadAddOrderNoMpidAttributionMessage>("AddOrderNoMpidAttributionMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/AddOrderNoMpidAttributionMessage.pcap");
+    expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadAddOrderWithMpidAttributionMessage>("AddOrderWithMpidAttributionMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/AddOrderWithMpidAttributionMessage.pcap");
+    expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadCrossTradeMessage>("CrossTradeMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/CrossTradeMessage.pcap");
+    expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadLuldAuctionCollarMessage>("LuldAuctionCollarMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/LuldAuctionCollarMessage.pcap");
+    expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadMarketParticipantPositionMessage>("MarketParticipantPositionMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/MarketParticipantPositionMessage.pcap");
+    expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadNetOrderImbalanceIndicatorMessage>("NetOrderImbalanceIndicatorMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/NetOrderImbalanceIndicatorMessage.pcap");
+    expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadNonCrossTradeMessage>("NonCrossTradeMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/NonCrossTradeMessage.pcap");
+    expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadOrderCancelMessage>("OrderCancelMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/OrderCancelMessage.pcap");
+    expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadOrderDeleteMessage>("OrderDeleteMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/OrderDeleteMessage.pcap");
+    expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadOrderExecutedMessage>("OrderExecutedMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/OrderExecutedMessage.pcap");
+    expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadOrderExecutedWithPriceMessage>("OrderExecutedWithPriceMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/OrderExecutedWithPriceMessage.pcap");
+    expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadOrderReplaceMessage>("OrderReplaceMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/OrderReplaceMessage.pcap");
+    expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadRegShoShortSalePriceTestRestrictedIndicatorMessage>("RegShoShortSalePriceTestRestrictedIndicatorMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/RegShoShortSalePriceTestRestrictedIndicatorMessage.pcap");
+    expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadStockTradingActionMessage>("StockTradingActionMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/StockTradingActionMessage.pcap");
+    expect<protocol::Packet, protocol::PacketMessageVisitor, protocol::PayloadSystemEventMessage>("SystemEventMessage", "Nasdaq/NsmEquities.TotalView.Itch.v5.0.2023/SystemEventMessage.pcap");
     return failures == 0 ? 0 : 1;
 }

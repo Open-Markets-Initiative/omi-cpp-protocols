@@ -6,7 +6,7 @@
 #include "../types/RequestTimestamp.hpp"
 #include "../types/Session.hpp"
 #include "../types/Firm.hpp"
-#include "../structs/MessageHeader.hpp"
+#include "../structs/SimpleBinaryHeader.hpp"
 
 namespace cme::mdp3::v9 {
 
@@ -36,8 +36,8 @@ struct Negotiate {
     }
 
     // parse the overlaid body from its selecting header
-    static const Negotiate* parse(const MessageHeader* header) {
-        return reinterpret_cast<const Negotiate*>(reinterpret_cast<const std::byte*>(header) + sizeof(MessageHeader));
+    static const Negotiate* parse(const SimpleBinaryHeader* header) {
+        return reinterpret_cast<const Negotiate*>(reinterpret_cast<const std::byte*>(header) + sizeof(SimpleBinaryHeader));
     }
 };
 

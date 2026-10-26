@@ -1,0 +1,21 @@
+# Iex.IexEquities.DeepPlus.IexTp.v1.01 AddOrderMessage: canonical values, read by the model
+datagram 0
+packet.iextpheader.version = 1
+packet.iextpheader.messageprotocolid = 32773
+packet.iextpheader.channelid = 1
+packet.iextpheader.sessionid = 1310523392
+packet.iextpheader.payloadlength = 40
+packet.iextpheader.messagecount = 1
+packet.iextpheader.streamoffset = 1001933
+packet.iextpheader.firstmessagesequencenumber = 47150
+packet.iextpheader.sendtime = 1727787282529659099
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 38
+packet.messages.message[0].messageheader.messagetype = a
+packet.messages.message[0].messagedata = packet.messages.message.messagedata.addordermessage
+packet.messages.message[0].messagedata.addordermessage.side = 5
+packet.messages.message[0].messagedata.addordermessage.timestamp = 1727787282503661342
+packet.messages.message[0].messagedata.addordermessage.symbol = IBKR
+packet.messages.message[0].messagedata.addordermessage.orderid = 27866022694354954
+packet.messages.message[0].messagedata.addordermessage.size = 100
+packet.messages.message[0].messagedata.addordermessage.price = 136.5

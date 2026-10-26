@@ -16,7 +16,7 @@ namespace b3::b3derivatives::binaryumdf::sbe::v1_8 {
 template<typename Handler>
 void dispatch(Handler& handler, const std::byte* buffer, std::size_t length, std::uint64_t packet_receive_time, const packet_header& transport) {
     (void)length;
-    const auto* header = message_header::parse(buffer + sizeof(sbe_binaryumdf::message_length));
+    const auto* header = message_header::parse(buffer + sizeof(sbe_binaryumdf::message_length) + sizeof(sbe_binaryumdf::encoding_type));
 
     switch (header->template_id.get().value()) {
         case template_id::enum_type::sequence_reset_1_message:

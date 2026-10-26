@@ -3,6 +3,7 @@
 // Every flyweight view and reader of Cme.Globex.Mdp3.Sbe.v1.8.
 
 #include "structs/BinaryPacketHeader.hpp"
+#include "structs/SimpleBinaryHeader.hpp"
 #include "structs/MessageHeader.hpp"
 #include "bitfields/MatchEventIndicator.hpp"
 #include "structs/GroupSize.hpp"

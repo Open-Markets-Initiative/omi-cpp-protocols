@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../types/LogoutText.hpp"
-#include "../structs/MessageHeader.hpp"
+#include "../structs/SimpleBinaryHeader.hpp"
 
 namespace cme::mdp3::v13 {
 
@@ -26,8 +26,8 @@ struct AdminLogout {
     }
 
     // parse the overlaid body from its selecting header
-    static const AdminLogout* parse(const MessageHeader* header) {
-        return reinterpret_cast<const AdminLogout*>(reinterpret_cast<const std::byte*>(header) + sizeof(MessageHeader));
+    static const AdminLogout* parse(const SimpleBinaryHeader* header) {
+        return reinterpret_cast<const AdminLogout*>(reinterpret_cast<const std::byte*>(header) + sizeof(SimpleBinaryHeader));
     }
 };
 

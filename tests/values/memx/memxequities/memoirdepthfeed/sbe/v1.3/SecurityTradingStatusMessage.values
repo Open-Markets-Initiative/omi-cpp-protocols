@@ -1,0 +1,18 @@
+# Memx.MemxEquities.MemoirDepthFeed.Sbe.v1.3 SecurityTradingStatusMessage: canonical values, read by the model
+datagram 0
+packet.commonheader.messagetype = 2
+packet.commonheader.headerlength = 18
+packet.commonheader.sessionid = 6148333994739271368
+packet.commonheader.sequencenumber = 5420663
+packet.sequencedmessages = packet.sequencedmessages.sequencedmessage
+packet.sequencedmessages.sequencedmessage.messagecount = 1
+packet.sequencedmessages.sequencedmessage.message[0].messagelength = 18
+packet.sequencedmessages.sequencedmessage.message[0].sbemessage.sbeheader.blocklength = 12
+packet.sequencedmessages.sequencedmessage.message[0].sbemessage.sbeheader.templateid = 3
+packet.sequencedmessages.sequencedmessage.message[0].sbemessage.sbeheader.schemaid = 2
+packet.sequencedmessages.sequencedmessage.message[0].sbemessage.sbeheader.version = 259
+packet.sequencedmessages.sequencedmessage.message[0].sbemessage.payload = packet.sequencedmessages.sequencedmessage.message.sbemessage.payload.securitytradingstatusmessage
+packet.sequencedmessages.sequencedmessage.message[0].sbemessage.payload.securitytradingstatusmessage.timestamp = 1692711259822591067
+packet.sequencedmessages.sequencedmessage.message[0].sbemessage.payload.securitytradingstatusmessage.securityid = 356
+packet.sequencedmessages.sequencedmessage.message[0].sbemessage.payload.securitytradingstatusmessage.securitytradingstatus = P
+packet.sequencedmessages.sequencedmessage.message[0].sbemessage.payload.securitytradingstatusmessage.securitytradingstatusreason = R

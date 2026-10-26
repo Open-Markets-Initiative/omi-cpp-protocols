@@ -1,0 +1,19 @@
+# Iex.IexEquities.Deep.IexTp.v1.06 TradingStatusMessage: canonical values, read by the model
+datagram 0
+packet.iextpheader.version = 1
+packet.iextpheader.messageprotocolid = 32772
+packet.iextpheader.channelid = 1
+packet.iextpheader.sessionid = 1222443008
+packet.iextpheader.payloadlength = 24
+packet.iextpheader.messagecount = 1
+packet.iextpheader.streamoffset = 629365
+packet.iextpheader.firstmessagesequencenumber = 29049
+packet.iextpheader.sendtime = 1611663532064388022
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 22
+packet.messages.message[0].messageheader.messagetype = H
+packet.messages.message[0].messagedata = packet.messages.message.messagedata.tradingstatusmessage
+packet.messages.message[0].messagedata.tradingstatusmessage.tradingstatus = H
+packet.messages.message[0].messagedata.tradingstatusmessage.timestamp = 1611663532064388022
+packet.messages.message[0].messagedata.tradingstatusmessage.symbol = EIDX
+packet.messages.message[0].messagedata.tradingstatusmessage.reason = NA

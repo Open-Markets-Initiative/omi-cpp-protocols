@@ -6,7 +6,7 @@
 
 namespace siac::cts::output::cta::v2_11_b {
 
-ApproximateTradesAndTotalDollarValueMessage::ApproximateTradesAndTotalDollarValueMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, std::uint32_t total_trades, std::uint64_t dollar_value)
+ApproximateTradesAndTotalDollarValueMessage::ApproximateTradesAndTotalDollarValueMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, std::uint32_t total_trades, Decimal dollar_value)
   : participant_id_(participant_id), timestamp_1_(timestamp_1), message_id_(message_id), transaction_id_(transaction_id), participant_reference_number_(participant_reference_number), total_trades_(total_trades), dollar_value_(dollar_value) {}
 
 ParticipantId ApproximateTradesAndTotalDollarValueMessage::participant_id() const { return participant_id_; }
@@ -28,8 +28,8 @@ void ApproximateTradesAndTotalDollarValueMessage::set_participant_reference_numb
 std::uint32_t ApproximateTradesAndTotalDollarValueMessage::total_trades() const { return total_trades_; }
 void ApproximateTradesAndTotalDollarValueMessage::set_total_trades(std::uint32_t value) { total_trades_ = value; }
 
-std::uint64_t ApproximateTradesAndTotalDollarValueMessage::dollar_value() const { return dollar_value_; }
-void ApproximateTradesAndTotalDollarValueMessage::set_dollar_value(std::uint64_t value) { dollar_value_ = value; }
+Decimal ApproximateTradesAndTotalDollarValueMessage::dollar_value() const { return dollar_value_; }
+void ApproximateTradesAndTotalDollarValueMessage::set_dollar_value(Decimal value) { dollar_value_ = value; }
 
 MarketStatusMessagePayloadCode ApproximateTradesAndTotalDollarValueMessage::type() const { return message_type; }
 
@@ -56,7 +56,7 @@ std::size_t ApproximateTradesAndTotalDollarValueMessage::decode(const std::byte*
     total_trades_ = wire::read_u32_be(data + offset);
     offset += 4;
 
-    dollar_value_ = wire::read_u64_be(data + offset);
+    dollar_value_ = Decimal(static_cast<std::int64_t>(wire::read_u64_be(data + offset)), -6);
     offset += 8;
 
     return offset;
@@ -83,7 +83,7 @@ std::size_t ApproximateTradesAndTotalDollarValueMessage::encode(std::byte* data,
     wire::write_u32_be(data + offset, static_cast<std::uint32_t>(total_trades_));
     offset += 4;
 
-    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(dollar_value_));
+    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(dollar_value_.mantissa()));
     offset += 8;
 
     return offset;

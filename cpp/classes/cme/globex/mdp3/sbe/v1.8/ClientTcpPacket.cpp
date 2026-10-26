@@ -103,11 +103,11 @@ std::size_t ClientTcpPacket::decode(const std::byte* data, std::size_t length) {
 
         ClientTcpFrame frame;
         offset += frame.decode(data + offset, length - offset);
-        const std::size_t frame_size = wire::count(frame.client_technical_header().tcp_message_size()) + 14;
+        const std::size_t frame_size = wire::count(frame.message_header().message_size()) + 14;
         if (frame_size < 24) { throw DecodeError("ClientTcpPacket", 24, frame_size); }
         if (start + frame_size > length) { offset = start; break; }
         const std::size_t body = start + frame_size - offset;
-        std::unique_ptr<ClientTcpMessage> message = ClientTcpMessageFactory::create(frame.message_header().template_id());
+        std::unique_ptr<ClientTcpMessage> message = ClientTcpMessageFactory::create(frame.message_header().simple_binary_header().template_id());
         // What the message left of its frame: bytes the model does not describe, kept as they came
         const std::size_t used = message->decode(data + offset, body);
         frame.trailer().assign(data + offset + used, data + start + frame_size);
@@ -130,8 +130,8 @@ std::size_t ClientTcpPacket::encode(std::byte* data, std::size_t capacity) const
 
         auto client_technical_header = frame.client_technical_header();
         auto message_header = frame.message_header();
-        client_technical_header.set_tcp_message_size(static_cast<std::uint16_t>(frame_size - 14));
-        message_header.set_template_id(frame.message()->type());
+        message_header.set_message_size(static_cast<std::uint16_t>(frame_size - 14));
+        message_header.simple_binary_header().set_template_id(frame.message()->type());
 
         offset += client_technical_header.encode(data + offset, capacity - offset);
 

@@ -3,7 +3,6 @@
 #include <cstddef>
 #include "../structs/MessageHeader.hpp"
 #include "../types/Text.hpp"
-#include "../types/MessageSize.hpp"
 
 namespace cme::mdp3::v8 {
 
@@ -18,9 +17,7 @@ struct admin_logout {
         sbe_mdp3::text text;
     };
 
-    // Transport framing: message size precedes the SBE header on the wire
-    sbe_mdp3::message_size message_size;
-    sbe_mdp3::message_header header = {{}, template_id::enum_type::admin_logout, schema_id::enum_type::mktdata, version(8)};
+    sbe_mdp3::message_header header = {std::uint16_t(sizeof(sbe_mdp3::message_header) + sizeof(fields_type)), {}};
 
     fields_type fields;
 
@@ -39,7 +36,7 @@ struct admin_logout {
 // layout verification
 static_assert(offsetof(admin_logout::fields_type, text) == 0, "unexpected offset of admin_logout::fields_type::text");
 static_assert(sizeof(admin_logout::fields_type) == 100, "unexpected sizeof admin_logout::fields_type");
-static_assert(sizeof(admin_logout) == sizeof(sbe_mdp3::message_size) + sizeof(sbe_mdp3::message_header) + 100, "unexpected sizeof admin_logout");
+static_assert(sizeof(admin_logout) == sizeof(sbe_mdp3::message_header) + 100, "unexpected sizeof admin_logout");
 
 #pragma pack(pop)
 }

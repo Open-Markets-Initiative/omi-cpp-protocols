@@ -11,19 +11,26 @@ struct IndexValue {
 
     static constexpr const char* name = "Index Value";
     static constexpr std::size_t size =  8;
+    static constexpr std::size_t precision = 6;
+    static constexpr double denominator = 1000000;
     using type = std::int64_t;
 
     // default constructor
     constexpr IndexValue()
      : value{ 0 } {}
 
-    // standard constructor
+    // constructor for IndexValue field
     constexpr explicit IndexValue(const std::int64_t value)
      : value{ std::byteswap(value) } {}
 
-    // get value of IndexValue field
-    [[nodiscard]] std::int64_t get() const {
+    // get underlying integer of IndexValue field
+    [[nodiscard]] std::int64_t integer() const {
         return std::byteswap(value);
+    }
+
+    // decimal value of IndexValue field
+    [[nodiscard]] double get() const {
+        return integer() / denominator;
     }
 
   protected:

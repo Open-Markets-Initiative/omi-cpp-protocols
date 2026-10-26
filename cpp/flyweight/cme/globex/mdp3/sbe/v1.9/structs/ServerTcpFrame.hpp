@@ -30,7 +30,7 @@ class ServerTcpFrame {
 
     ServerTechnicalHeader server_technical_header() const { return ServerTechnicalHeader{ bytes_.subspan(0) }; }
 
-    MessageHeader message_header() const { return MessageHeader{ bytes_.subspan(16) }; }
+    MessageHeader message_header() const { return MessageHeader{ bytes_.subspan(14) }; }
 
     void print(std::ostream& out) const {
         out << "ServerTcpFrame{";

@@ -1,0 +1,19 @@
+# Iex.IexEquities.DeepPlus.IexTp.v1.05 TradingStatusMessage: canonical values, read by the model
+datagram 0
+packet.iextpheader.version = 1
+packet.iextpheader.messageprotocolid = 32773
+packet.iextpheader.channelid = 1
+packet.iextpheader.sessionid = 1339949056
+packet.iextpheader.payloadlength = 24
+packet.iextpheader.messagecount = 1
+packet.iextpheader.streamoffset = 1037770
+packet.iextpheader.firstmessagesequencenumber = 48839
+packet.iextpheader.sendtime = 1766578158913825607
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 22
+packet.messages.message[0].messageheader.messagetype = H
+packet.messages.message[0].messagedata = packet.messages.message.messagedata.tradingstatusmessage
+packet.messages.message[0].messagedata.tradingstatusmessage.tradingstatus = H
+packet.messages.message[0].messagedata.tradingstatusmessage.timestamp = 1766578158913825607
+packet.messages.message[0].messagedata.tradingstatusmessage.symbol = OMER
+packet.messages.message[0].messagedata.tradingstatusmessage.reason = NA

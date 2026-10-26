@@ -1,0 +1,15 @@
+# Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d ModifyOrderMessage: canonical values, read by the model
+datagram 0
+udppacket.machmessage[0].machpacketheader.sequencenumber = 1770
+udppacket.machmessage[0].machpacketheader.machpacketlength = 42
+udppacket.machmessage[0].machpacketheader.machpackettype = 3
+udppacket.machmessage[0].machpacketheader.sessionnumber = 1
+udppacket.machmessage[0].payload = udppacket.machmessage.payload.applicationmessage
+udppacket.machmessage[0].payload.applicationmessage.messagetype = 21
+udppacket.machmessage[0].payload.applicationmessage.data = udppacket.machmessage.payload.applicationmessage.data.modifyordermessage
+udppacket.machmessage[0].payload.applicationmessage.data.modifyordermessage.nanoseconds = 3050017
+udppacket.machmessage[0].payload.applicationmessage.data.modifyordermessage.symbolid = 369098952
+udppacket.machmessage[0].payload.applicationmessage.data.modifyordermessage.orderid = 1608666600418838021
+udppacket.machmessage[0].payload.applicationmessage.data.modifyordermessage.price = 156.62
+udppacket.machmessage[0].payload.applicationmessage.data.modifyordermessage.size = 1000
+udppacket.machmessage[0].payload.applicationmessage.data.modifyordermessage.modifyorderflags.orderposition = 1

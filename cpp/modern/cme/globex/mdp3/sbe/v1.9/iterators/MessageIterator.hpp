@@ -47,15 +47,15 @@ struct MessageIterator {
             return false;
         }
 
-        if (current + sizeof(Message) > end) {
+        if (current + sizeof(MessageHeader) > end) {
             return false;
         }
 
-        const auto* header = Message::parse(current);
-        message = current + sizeof(Message);
+        const auto* header = MessageHeader::parse(current);
+        message = current + sizeof(MessageHeader);
 
-        schema_id = header->message_header.schema_id.get();
-        template_id = header->message_header.template_id.get();
+        schema_id = header->simple_binary_header.schema_id.get();
+        template_id = header->simple_binary_header.template_id.get();
         message_size = header->message_size.get();
 
         current += message_size;

@@ -1,0 +1,18 @@
+# Jpx.OseDerivatives.GeniumInet.Itch.v5.0.6 OrderExecutedMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = JP29787691
+packet.packetheader.sequencenumber = 14822517
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 52
+packet.messages.message[0].messageheader.messagetype = E
+packet.messages.message[0].payload = packet.messages.message.payload.orderexecutedmessage
+packet.messages.message[0].payload.orderexecutedmessage.nanoseconds = 63979561
+packet.messages.message[0].payload.orderexecutedmessage.orderid = 8187978167705104385
+packet.messages.message[0].payload.orderexecutedmessage.orderbookid = 196724
+packet.messages.message[0].payload.orderexecutedmessage.side = S
+packet.messages.message[0].payload.orderexecutedmessage.executedquantity = 1
+packet.messages.message[0].payload.orderexecutedmessage.matchid = 81879544294020192
+packet.messages.message[0].payload.orderexecutedmessage.combogroupid = 0
+packet.messages.message[0].payload.orderexecutedmessage.participantidowner = 
+packet.messages.message[0].payload.orderexecutedmessage.participantidcounterparty = 

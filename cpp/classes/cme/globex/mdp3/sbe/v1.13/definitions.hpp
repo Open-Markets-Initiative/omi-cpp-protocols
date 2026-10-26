@@ -130,6 +130,7 @@
 #include "structs/SecurityStatusRequestSecurityGroups.hpp"
 #include "structs/SecurityStatusWorkupGroups.hpp"
 #include "structs/ServerTechnicalHeader.hpp"
+#include "structs/SimpleBinaryHeader.hpp"
 #include "structs/SnapshotFullRefreshGroups.hpp"
 #include "structs/SnapshotFullRefreshLongGroups.hpp"
 #include "structs/SnapshotFullRefreshOrderBookGroups.hpp"

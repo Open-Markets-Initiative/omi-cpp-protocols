@@ -4,7 +4,7 @@
 #include <cstddef>
 
 #include "Definitions.hpp"
-#include "../structs/MessageHeader.hpp"
+#include "../structs/SimpleBinaryHeader.hpp"
 #include "../structs/BinaryPacketHeader.hpp"
 #include "../types/MessageSize.hpp"
 
@@ -17,9 +17,9 @@ template<typename Handler>
 void dispatch(Handler& handler, const std::byte* buffer, std::size_t length, std::uint64_t packet_receive_time, const binary_packet_header& transport) {
     (void)length;
 
-    switch (mktdata_message::parse(buffer)->header.schema_id.get().value()) {
+    switch (mktdata_message::parse(buffer)->header.simple_binary_header.schema_id.get().value()) {
         case schema_id::enum_type::mktdata: {
-            switch (channel_reset::parse(buffer)->header.template_id.get().value()) {
+            switch (channel_reset::parse(buffer)->header.simple_binary_header.template_id.get().value()) {
                 case template_id::enum_type::channel_reset:
                     handler.on_message(*channel_reset::parse(buffer), packet_receive_time, transport);
                     break;
@@ -115,7 +115,7 @@ void dispatch(Handler& handler, const std::byte* buffer, std::size_t length, std
             break;
         }
         case schema_id::enum_type::mdpsessionmgmt: {
-            switch (negotiate::parse(buffer)->header.template_id.get().value()) {
+            switch (negotiate::parse(buffer)->header.simple_binary_header.template_id.get().value()) {
                 case template_id::enum_type::negotiate:
                     handler.on_message(*negotiate::parse(buffer), packet_receive_time, transport);
                     break;

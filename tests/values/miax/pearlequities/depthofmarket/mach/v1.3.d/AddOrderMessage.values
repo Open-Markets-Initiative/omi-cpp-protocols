@@ -1,0 +1,16 @@
+# Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d AddOrderMessage: canonical values, read by the model
+datagram 0
+udppacket.machmessage[0].machpacketheader.sequencenumber = 1595
+udppacket.machmessage[0].machpacketheader.machpacketlength = 46
+udppacket.machmessage[0].machpacketheader.machpackettype = 3
+udppacket.machmessage[0].machpacketheader.sessionnumber = 1
+udppacket.machmessage[0].payload = udppacket.machmessage.payload.applicationmessage
+udppacket.machmessage[0].payload.applicationmessage.messagetype = 20
+udppacket.machmessage[0].payload.applicationmessage.data = udppacket.machmessage.payload.applicationmessage.data.addordermessage
+udppacket.machmessage[0].payload.applicationmessage.data.addordermessage.nanoseconds = 745864
+udppacket.machmessage[0].payload.applicationmessage.data.addordermessage.symbolid = 536871023
+udppacket.machmessage[0].payload.applicationmessage.data.addordermessage.orderid = 2329242540798117934
+udppacket.machmessage[0].payload.applicationmessage.data.addordermessage.orderside = B
+udppacket.machmessage[0].payload.applicationmessage.data.addordermessage.price = 69
+udppacket.machmessage[0].payload.applicationmessage.data.addordermessage.size = 100
+udppacket.machmessage[0].payload.applicationmessage.data.addordermessage.attributableid = 

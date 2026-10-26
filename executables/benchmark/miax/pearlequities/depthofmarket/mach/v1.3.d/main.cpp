@@ -498,10 +498,12 @@ std::size_t parse_payload([[maybe_unused]] const std::byte* data, [[maybe_unused
 template <typename Handler>
 std::size_t parse_mach_message([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler) {
     std::size_t offset = 0;
-    const std::size_t bound = length;
-    [[maybe_unused]] const auto& mach_message_section_1_ = tmp::read<mach_message_section_1>(data + offset, bound - offset, handler); offset += mach_message_section_1::size;
-    offset += parse_payload(data + offset, bound - offset, handler, mach_message_section_1_.template get<mach_packet_type>(), mach_message_section_1_.template get<mach_packet_length>());
-    return offset;
+    std::size_t bound = length;
+    [[maybe_unused]] const auto& mach_packet_header_ = tmp::read<mach_packet_header>(data + offset, bound - offset, handler); offset += mach_packet_header::size;
+    bound = static_cast<std::size_t>(tmp::rule(mach_packet_header_.template get<mach_packet_length>()));
+    tmp::require(bound, length);
+    offset += parse_payload(data + offset, bound - offset, handler, mach_packet_header_.template get<mach_packet_type>(), mach_packet_header_.template get<mach_packet_length>());
+    return bound;
 }
 
 // Udp Packet: read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took

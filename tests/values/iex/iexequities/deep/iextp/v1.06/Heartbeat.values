@@ -1,0 +1,12 @@
+# Iex.IexEquities.Deep.IexTp.v1.06 Heartbeat: canonical values, read by the model
+datagram 0
+packet.iextpheader.version = 1
+packet.iextpheader.messageprotocolid = 32772
+packet.iextpheader.channelid = 1
+packet.iextpheader.sessionid = 1222443008
+packet.iextpheader.payloadlength = 0
+packet.iextpheader.messagecount = 0
+packet.iextpheader.streamoffset = 0
+packet.iextpheader.firstmessagesequencenumber = 1
+packet.iextpheader.sendtime = 1611663432627930301
+packet.messages = packet.messages.heartbeat

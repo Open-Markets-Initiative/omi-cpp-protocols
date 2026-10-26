@@ -1,0 +1,17 @@
+# Jpx.OseDerivatives.GeniumInet.Itch.v5.0.6 SecondsMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = JP29787691
+packet.packetheader.sequencenumber = 11014599
+packet.packetheader.messagecount = 2
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 5
+packet.messages.message[0].messageheader.messagetype = T
+packet.messages.message[0].payload = packet.messages.message.payload.secondsmessage
+packet.messages.message[0].payload.secondsmessage.seconds = 1787319000
+packet.messages.message[1].messageheader.messagelength = 18
+packet.messages.message[1].messageheader.messagetype = D
+packet.messages.message[1].payload = packet.messages.message.payload.orderdeletemessage
+packet.messages.message[1].payload.orderdeletemessage.nanoseconds = 3516921
+packet.messages.message[1].payload.orderdeletemessage.orderid = 8187978163424631394
+packet.messages.message[1].payload.orderdeletemessage.orderbookid = 49152101
+packet.messages.message[1].payload.orderdeletemessage.side = S

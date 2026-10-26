@@ -1,0 +1,17 @@
+# Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.41.29 AddOrderShortMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.length = 34
+packet.packetheader.messagecount = 1
+packet.packetheader.unit = 27
+packet.packetheader.sequence = 243973
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 26
+packet.messages.message[0].messageheader.messagetype = 34
+packet.messages.message[0].payload = packet.messages.message.payload.addordershortmessage
+packet.messages.message[0].payload.addordershortmessage.timeoffset = 210000
+packet.messages.message[0].payload.addordershortmessage.orderid = 3634343108428749712
+packet.messages.message[0].payload.addordershortmessage.sideindicator = B
+packet.messages.message[0].payload.addordershortmessage.quantityshort = 100
+packet.messages.message[0].payload.addordershortmessage.symbolshort = UBR
+packet.messages.message[0].payload.addordershortmessage.priceshort = 24.1
+packet.messages.message[0].payload.addordershortmessage.addorderflags.display = 1

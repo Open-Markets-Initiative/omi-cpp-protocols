@@ -42,7 +42,7 @@
 #include "../types/HighLimitPrice.hpp"
 #include "../types/UserDefinedInstrument.hpp"
 #include "../types/TradingReferenceDate.hpp"
-#include "../structs/MessageHeader.hpp"
+#include "../structs/SimpleBinaryHeader.hpp"
 
 namespace cme::mdp3::v9 {
 
@@ -108,8 +108,8 @@ struct MdInstrumentDefinitionOptionLegacy {
     }
 
     // parse the overlaid body from its selecting header
-    static const MdInstrumentDefinitionOptionLegacy* parse(const MessageHeader* header) {
-        return reinterpret_cast<const MdInstrumentDefinitionOptionLegacy*>(reinterpret_cast<const std::byte*>(header) + sizeof(MessageHeader));
+    static const MdInstrumentDefinitionOptionLegacy* parse(const SimpleBinaryHeader* header) {
+        return reinterpret_cast<const MdInstrumentDefinitionOptionLegacy*>(reinterpret_cast<const std::byte*>(header) + sizeof(SimpleBinaryHeader));
     }
 };
 

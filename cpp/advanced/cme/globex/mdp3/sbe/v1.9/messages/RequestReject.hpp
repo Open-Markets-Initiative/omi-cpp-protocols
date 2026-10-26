@@ -5,7 +5,6 @@
 #include "../types/MdReqIdOptional.hpp"
 #include "../types/MdReqRejReason.hpp"
 #include "../types/Text.hpp"
-#include "../types/MessageSize.hpp"
 
 namespace cme::mdp3::v9 {
 
@@ -22,9 +21,7 @@ struct request_reject {
         sbe_mdp3::text text;
     };
 
-    // Transport framing: message size precedes the SBE header on the wire
-    sbe_mdp3::message_size message_size;
-    sbe_mdp3::message_header header = {{}, template_id::enum_type::request_reject, schema_id::enum_type::mdpsessionmgmt, version(9)};
+    sbe_mdp3::message_header header = {std::uint16_t(sizeof(sbe_mdp3::message_header) + sizeof(fields_type)), {}};
 
     fields_type fields;
 
@@ -45,7 +42,7 @@ static_assert(offsetof(request_reject::fields_type, md_req_id_optional) == 0, "u
 static_assert(offsetof(request_reject::fields_type, md_req_rej_reason) == 4, "unexpected offset of request_reject::fields_type::md_req_rej_reason");
 static_assert(offsetof(request_reject::fields_type, text) == 5, "unexpected offset of request_reject::fields_type::text");
 static_assert(sizeof(request_reject::fields_type) == 105, "unexpected sizeof request_reject::fields_type");
-static_assert(sizeof(request_reject) == sizeof(sbe_mdp3::message_size) + sizeof(sbe_mdp3::message_header) + 105, "unexpected sizeof request_reject");
+static_assert(sizeof(request_reject) == sizeof(sbe_mdp3::message_header) + 105, "unexpected sizeof request_reject");
 
 #pragma pack(pop)
 }

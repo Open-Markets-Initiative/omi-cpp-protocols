@@ -34,7 +34,7 @@ class SymbolReferenceDataMessage : public AdministrativeMessagePayload {
     static constexpr std::size_t wire_size = 205;
 
     SymbolReferenceDataMessage() = default;
-    SymbolReferenceDataMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol, const std::string& prior_security_symbol, PrimaryListingMarketParticipantId primary_listing_market_participant_id, Decimal primary_listing_market_previous_closing_price, Decimal consolidated_closing_price, std::uint16_t round_lot_size, MinimumPriceIncrementIndicator minimum_price_increment_indicator, LuldTier luld_tier, std::uint32_t luld_leverage_ratio, Test test, Ipo ipo, FinancialStatusIndicator financial_status_indicator, ShortSaleRestrictionIndicator short_sale_restriction_indicator, HaltReason halt_reason, InstrumentType instrument_type, char reserved, char second_reserved, const std::string& reserved_128);
+    SymbolReferenceDataMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol, const std::string& prior_security_symbol, PrimaryListingMarketParticipantId primary_listing_market_participant_id, Decimal primary_listing_market_previous_closing_price, Decimal consolidated_closing_price, std::uint16_t round_lot_size, MinimumPriceIncrementIndicator minimum_price_increment_indicator, LuldTier luld_tier, Decimal luld_leverage_ratio, Test test, Ipo ipo, FinancialStatusIndicator financial_status_indicator, ShortSaleRestrictionIndicator short_sale_restriction_indicator, HaltReason halt_reason, InstrumentType instrument_type, char reserved, char second_reserved, const std::string& reserved_128);
 
     // Participant Id: Identifies the Participant or Processor that initiated the message
     ParticipantId participant_id() const;
@@ -97,8 +97,8 @@ class SymbolReferenceDataMessage : public AdministrativeMessagePayload {
 
     // Luld Leverage Ratio: Represents the Leverage ratio associated with the LULD Tier of the
     // security symbol. Has implied 6 decimal places
-    std::uint32_t luld_leverage_ratio() const;
-    void set_luld_leverage_ratio(std::uint32_t value);
+    Decimal luld_leverage_ratio() const;
+    void set_luld_leverage_ratio(Decimal value);
 
     // Test: Identifies whether the security symbol is a test symbol
     Test test() const;
@@ -166,7 +166,7 @@ class SymbolReferenceDataMessage : public AdministrativeMessagePayload {
     std::uint16_t round_lot_size_{};
     MinimumPriceIncrementIndicator minimum_price_increment_indicator_{};
     LuldTier luld_tier_{};
-    std::uint32_t luld_leverage_ratio_{};
+    Decimal luld_leverage_ratio_{ 0, -6 };
     Test test_{};
     Ipo ipo_{};
     FinancialStatusIndicator financial_status_indicator_{};

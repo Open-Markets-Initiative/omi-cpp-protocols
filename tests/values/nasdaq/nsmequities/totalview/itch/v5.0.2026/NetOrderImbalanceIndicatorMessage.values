@@ -1,0 +1,21 @@
+# Nasdaq.NsmEquities.TotalView.Itch.v5.0.2026 NetOrderImbalanceIndicatorMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = S061226   
+packet.packetheader.sequencenumber = 17
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 50
+packet.messages.message[0].messageheader.messagetype = I
+packet.messages.message[0].payload = packet.messages.message.payload.netorderimbalanceindicatormessage
+packet.messages.message[0].payload.netorderimbalanceindicatormessage.stocklocate = 234
+packet.messages.message[0].payload.netorderimbalanceindicatormessage.trackingnumber = 0
+packet.messages.message[0].payload.netorderimbalanceindicatormessage.timestamp = 32101000091121
+packet.messages.message[0].payload.netorderimbalanceindicatormessage.pairedshares = 0
+packet.messages.message[0].payload.netorderimbalanceindicatormessage.imbalanceshares = 0
+packet.messages.message[0].payload.netorderimbalanceindicatormessage.imbalancedirection = O
+packet.messages.message[0].payload.netorderimbalanceindicatormessage.stock = AERT
+packet.messages.message[0].payload.netorderimbalanceindicatormessage.farprice = 0
+packet.messages.message[0].payload.netorderimbalanceindicatormessage.nearprice = 0
+packet.messages.message[0].payload.netorderimbalanceindicatormessage.currentreferenceprice = 0
+packet.messages.message[0].payload.netorderimbalanceindicatormessage.crosstype = H
+packet.messages.message[0].payload.netorderimbalanceindicatormessage.pricevariationindicator = 

@@ -6,6 +6,7 @@
 #include "cpp/modern/siac/opra/output/obi/v6.2/definitions.hpp"
 #include "../protocol/Branches.hpp"
 
+#include <algorithm>
 #include <cstddef>
 #include <cstdint>
 #include <cstdio>
@@ -107,6 +108,7 @@ inline Captured synthesize_wire_frame(std::uint64_t timestamp_ns,
 struct PacketSample {
     std::vector<Captured> frames;
     std::size_t total_bytes = 0;
+    bool mixed = false;   // carries messages of other keys too
 };
 
 inline PacketSample sample_of_one(Captured frame) {
@@ -175,11 +177,93 @@ inline int sample(const fs::path& in_path, const fs::path& out_dir) {
     std::vector<Captured> reassembly_frames;          // wire frames that together delivered one reassembled packet
     Captured current_wire;                            // wire frame being walked
 
-    // The Packet tree has no Modern iterator the extractor walks, so its packets are not sampled.
+    // Keep a sample for a key when it is the first or better than the one kept: one holding only
+    // the key's messages beats one mixed with other keys, and then the smaller wins.
+    auto keep = [&](std::uint64_t id, bool mixed, std::size_t size, auto make) {
+        const auto it = smallest.find(id);
+        if (it != smallest.end() && (mixed > it->second.mixed || (mixed == it->second.mixed && size >= it->second.total_bytes))) { return; }
+        PacketSample sample = sample_of_one(make());
+        sample.mixed = mixed;
+        smallest[id] = std::move(sample);
+    };
+
+    // The Packet tree: MessageIterator walks each datagram's messages.
+    auto walk_message = [&](const packet::Frame& frame) {
+        siac::opra::output::obi::v6_2::MessageIterator messages;
+        messages.initialize(frame.payload, frame.payload_len);
+
+        std::size_t count = 0;
+        std::vector<std::uint64_t> keys;   // each key the datagram's messages carry, once
+
+        while (messages.next()) {
+            std::uint64_t id = key_of(messages.message_category);
+            switch (id) {
+                case 67:
+                    if (messages.message + sizeof(siac::opra::output::obi::v6_2::AdministrativeCategory) <= messages.current) {
+                        id = (id << 32) | key_of(siac::opra::output::obi::v6_2::AdministrativeCategory::parse(messages.message)->administrative_message_type.get());
+                    }
+                    break;
+                case 72:
+                    if (messages.message + sizeof(siac::opra::output::obi::v6_2::ControlCategory) <= messages.current) {
+                        id = (id << 32) | key_of(siac::opra::output::obi::v6_2::ControlCategory::parse(messages.message)->control_message_type.get());
+                    }
+                    break;
+                case 97:
+                    if (messages.message + sizeof(siac::opra::output::obi::v6_2::EquityAndIndexLastSaleCategory) <= messages.current) {
+                        id = (id << 32) | key_of(siac::opra::output::obi::v6_2::EquityAndIndexLastSaleCategory::parse(messages.message)->equity_and_index_last_sale_message_type.get());
+                    }
+                    break;
+                case 100:
+                    if (messages.message + sizeof(siac::opra::output::obi::v6_2::OpenInterestCategory) <= messages.current) {
+                        id = (id << 32) | key_of(siac::opra::output::obi::v6_2::OpenInterestCategory::parse(messages.message)->open_interest_message_type.get());
+                    }
+                    break;
+                case 102:
+                    if (messages.message + sizeof(siac::opra::output::obi::v6_2::EquityAndIndexEndOfDaySummaryCategory) <= messages.current) {
+                        id = (id << 32) | key_of(siac::opra::output::obi::v6_2::EquityAndIndexEndOfDaySummaryCategory::parse(messages.message)->equity_and_index_end_of_day_summary_message_type.get());
+                    }
+                    break;
+                case 107:
+                    if (messages.message + sizeof(siac::opra::output::obi::v6_2::LongEquityAndIndexQuoteCategory) <= messages.current) {
+                        id = (id << 32) | key_of(siac::opra::output::obi::v6_2::LongEquityAndIndexQuoteCategory::parse(messages.message)->long_equity_and_index_quote_message_type.get());
+                    }
+                    break;
+                case 113:
+                    if (messages.message + sizeof(siac::opra::output::obi::v6_2::ShortEquityAndIndexQuoteCategory) <= messages.current) {
+                        id = (id << 32) | key_of(siac::opra::output::obi::v6_2::ShortEquityAndIndexQuoteCategory::parse(messages.message)->short_equity_and_index_quote_message_type.get());
+                    }
+                    break;
+                case 89:
+                    if (messages.message + sizeof(siac::opra::output::obi::v6_2::UnderlyingValueCategory) <= messages.current) {
+                        id = (id << 32) | key_of(siac::opra::output::obi::v6_2::UnderlyingValueCategory::parse(messages.message)->underlying_value_message_type.get());
+                    }
+                    break;
+                default:
+                    break;
+            }
+            if (std::find(keys.begin(), keys.end(), id) == keys.end()) { keys.push_back(id); }
+            ++count;
+        }
+
+        if (count == 0) { return; }
+
+        // The datagram samples each key it carries - a feed batching its messages (MDP3, EOBI,
+        // XDP) may send no datagram of one message - mixed when it carries more than one key
+        for (const std::uint64_t id : keys) {
+            keep(id, keys.size() > 1, pcap.length(), [&] { return capture_of(pcap); });
+        }
+        if (count > 1 && !multiple_messages) {
+            multiple_messages = capture_of(pcap);
+        }
+    };
 
     while (pcap.advance()) {
         packet::Frame frame(pcap.data(), pcap.length());
         if (!frame.valid()) { continue; }
+
+        if (frame.is_udp()) {
+            walk_message(frame);
+        }
     }
 
     write_samples(out_dir, smallest, multiple_messages, reassembly_frames);

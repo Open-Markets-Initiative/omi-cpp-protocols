@@ -1,0 +1,21 @@
+# Nyse.ArcaEquities.IntegratedFeed.Pillar.v2.5.g ReplaceOrderMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 58
+packet.packetheader.deliveryflag = 11
+packet.packetheader.numbermsgs = 1
+packet.packetheader.seqnum = 749117
+packet.packetheader.sendtime.seconds = 1692710999
+packet.packetheader.sendtime.nanoseconds = 999808000
+packet.packetheader.sendtime = 1692710999999808000
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 42
+packet.messages.message[0].messageheader.messagetype = 104
+packet.messages.message[0].payload = packet.messages.message.payload.replaceordermessage
+packet.messages.message[0].payload.replaceordermessage.sourcetimens = 999799296
+packet.messages.message[0].payload.replaceordermessage.symbolindex = 59222
+packet.messages.message[0].payload.replaceordermessage.symbolseqnum = 82
+packet.messages.message[0].payload.replaceordermessage.orderid = 17454747092738647
+packet.messages.message[0].payload.replaceordermessage.neworderid = 17454747092751049
+packet.messages.message[0].payload.replaceordermessage.price = 16120000
+packet.messages.message[0].payload.replaceordermessage.volume = 100
+packet.messages.message[0].payload.replaceordermessage.side = B

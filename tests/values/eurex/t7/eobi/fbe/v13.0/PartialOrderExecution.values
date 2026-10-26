@@ -1,0 +1,26 @@
+# Eurex.T7.Eobi.Fbe.v13.0 PartialOrderExecution: canonical values, read by the model
+datagram 0
+packet.packetheader.eobiheader.bodylen = 32
+packet.packetheader.eobiheader.templateid = 13004
+packet.packetheader.eobiheader.msgseqnum = 4294967295
+packet.packetheader.applseqnum = 1469529
+packet.packetheader.marketsegmentid = 636
+packet.packetheader.partitionid = 3
+packet.packetheader.completionindicator = 1
+packet.packetheader.applseqresetindicator = 0
+packet.packetheader.dscp = 0
+packet.packetheader.transacttime = 1744639200067329750
+packet.message[0].messageheadercomp.bodylen = 56
+packet.message[0].messageheadercomp.templateid = 13105
+packet.message[0].messageheadercomp.msgseqnum = 1542536
+packet.message[0].payload = packet.message.payload.partialorderexecution
+packet.message[0].payload.partialorderexecution.side = 2
+packet.message[0].payload.partialorderexecution.ordtype = 255
+packet.message[0].payload.partialorderexecution.algorithmictradeindicator = 255
+packet.message[0].payload.partialorderexecution.hhiindicator = -1
+packet.message[0].payload.partialorderexecution.trdmatchid = 23933
+packet.message[0].payload.partialorderexecution.price = 119.08
+packet.message[0].payload.partialorderexecution.trdregtstimepriority = 1744639200067132518
+packet.message[0].payload.partialorderexecution.securityid = 11820365
+packet.message[0].payload.partialorderexecution.lastqty = 7
+packet.message[0].payload.partialorderexecution.lastpx = 119.08

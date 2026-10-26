@@ -1,0 +1,13 @@
+# Asx.AsxDerivatives.Ntp.Itch.v1.05 TextMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 1567326030
+packet.packetheader.sequencenumber = 3489795
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 113
+packet.messages.message[0].messageheader.messagetype = x
+packet.messages.message[0].payload = packet.messages.message.payload.textmessage
+packet.messages.message[0].payload.textmessage.nanoseconds = 678981000
+packet.messages.message[0].payload.textmessage.tradedate = 18143
+packet.messages.message[0].payload.textmessage.sourceid = 
+packet.messages.message[0].payload.textmessage.text = EFP Regd @ 16:30 599 XTU9 @ 99.0800

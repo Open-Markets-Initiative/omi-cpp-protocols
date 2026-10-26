@@ -208,7 +208,7 @@ void read_udp_packet(protocol::UdpPacket& decoded, const packet::Frame& frame, T
         ++tally.messages;
 
         // The size rule: the length the frame's header declares against what the model reads.
-        const std::size_t declared = wire::count(held.message_size());
+        const std::size_t declared = wire::count(held.message_header().message_size());
         const std::size_t derived = frame_size(held);
 
         if (declared != derived && ++tally.sizes <= shown) {
@@ -226,9 +226,9 @@ void read_udp_packet(protocol::UdpPacket& decoded, const packet::Frame& frame, T
             if (++tally.unknown <= shown) {
                 std::cerr << "read " << number << " frame " << index << ": unknown message code " << value << '\n';
             }
-        } else if (message->type() != held.message_header().schema_id()) {
+        } else if (message->type() != held.message_header().simple_binary_header().schema_id()) {
             if (++tally.dispatches <= shown) {
-                std::cerr << "read " << number << " frame " << index << ": code " << code_value(held.message_header().schema_id())
+                std::cerr << "read " << number << " frame " << index << ": code " << code_value(held.message_header().simple_binary_header().schema_id())
                           << " decoded as " << message->name() << ", whose code is " << code_value(message->type()) << '\n';
             }
         }
@@ -291,7 +291,7 @@ void read_client_tcp_packet(std::vector<std::byte>& buffer, Tally& tally, std::v
         ++tally.messages;
 
         // The size rule: the length the frame's header declares against what the model reads.
-        const std::size_t declared = wire::count(held.client_technical_header().tcp_message_size()) + 14;
+        const std::size_t declared = wire::count(held.message_header().message_size()) + 14;
         const std::size_t derived = frame_size(held);
 
         if (declared != derived && ++tally.sizes <= shown) {
@@ -309,9 +309,9 @@ void read_client_tcp_packet(std::vector<std::byte>& buffer, Tally& tally, std::v
             if (++tally.unknown <= shown) {
                 std::cerr << "read " << number << " frame " << index << ": unknown message code " << value << '\n';
             }
-        } else if (message->type() != held.message_header().template_id()) {
+        } else if (message->type() != held.message_header().simple_binary_header().template_id()) {
             if (++tally.dispatches <= shown) {
-                std::cerr << "read " << number << " frame " << index << ": code " << code_value(held.message_header().template_id())
+                std::cerr << "read " << number << " frame " << index << ": code " << code_value(held.message_header().simple_binary_header().template_id())
                           << " decoded as " << message->name() << ", whose code is " << code_value(message->type()) << '\n';
             }
         }
@@ -370,7 +370,7 @@ void read_server_tcp_packet(std::vector<std::byte>& buffer, Tally& tally, std::v
         ++tally.messages;
 
         // The size rule: the length the frame's header declares against what the model reads.
-        const std::size_t declared = wire::count(held.server_technical_header().tcp_message_size()) + 14;
+        const std::size_t declared = wire::count(held.message_header().message_size()) + 14;
         const std::size_t derived = frame_size(held);
 
         if (declared != derived && ++tally.sizes <= shown) {
@@ -388,9 +388,9 @@ void read_server_tcp_packet(std::vector<std::byte>& buffer, Tally& tally, std::v
             if (++tally.unknown <= shown) {
                 std::cerr << "read " << number << " frame " << index << ": unknown message code " << value << '\n';
             }
-        } else if (message->type() != held.message_header().template_id()) {
+        } else if (message->type() != held.message_header().simple_binary_header().template_id()) {
             if (++tally.dispatches <= shown) {
-                std::cerr << "read " << number << " frame " << index << ": code " << code_value(held.message_header().template_id())
+                std::cerr << "read " << number << " frame " << index << ": code " << code_value(held.message_header().simple_binary_header().template_id())
                           << " decoded as " << message->name() << ", whose code is " << code_value(message->type()) << '\n';
             }
         }

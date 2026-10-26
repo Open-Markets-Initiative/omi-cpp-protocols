@@ -2,7 +2,7 @@
 
 #include "../types/MdReqId.hpp"
 #include "../types/SubscriptionReqType.hpp"
-#include "../structs/MessageHeader.hpp"
+#include "../structs/SimpleBinaryHeader.hpp"
 
 namespace cme::mdp3::v13 {
 
@@ -28,8 +28,8 @@ struct SecurityListRequest {
     }
 
     // parse the overlaid body from its selecting header
-    static const SecurityListRequest* parse(const MessageHeader* header) {
-        return reinterpret_cast<const SecurityListRequest*>(reinterpret_cast<const std::byte*>(header) + sizeof(MessageHeader));
+    static const SecurityListRequest* parse(const SimpleBinaryHeader* header) {
+        return reinterpret_cast<const SecurityListRequest*>(reinterpret_cast<const std::byte*>(header) + sizeof(SimpleBinaryHeader));
     }
 };
 

@@ -6,7 +6,7 @@
 
 namespace siac::cqs::output::cta::v2_10_a {
 
-MarketWideCircuitBreakerDeclineLevelStatusMessage::MarketWideCircuitBreakerDeclineLevelStatusMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, std::int64_t mwcb_level_1, std::int64_t mwcb_level_2, std::int64_t mwcb_level_3, char reserved)
+MarketWideCircuitBreakerDeclineLevelStatusMessage::MarketWideCircuitBreakerDeclineLevelStatusMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, Decimal mwcb_level_1, Decimal mwcb_level_2, Decimal mwcb_level_3, char reserved)
   : participant_id_(participant_id), timestamp_1_(timestamp_1), message_id_(message_id), transaction_id_(transaction_id), participant_reference_number_(participant_reference_number), mwcb_level_1_(mwcb_level_1), mwcb_level_2_(mwcb_level_2), mwcb_level_3_(mwcb_level_3), reserved_(reserved) {}
 
 ParticipantId MarketWideCircuitBreakerDeclineLevelStatusMessage::participant_id() const { return participant_id_; }
@@ -25,14 +25,14 @@ void MarketWideCircuitBreakerDeclineLevelStatusMessage::set_transaction_id(std::
 std::int64_t MarketWideCircuitBreakerDeclineLevelStatusMessage::participant_reference_number() const { return participant_reference_number_; }
 void MarketWideCircuitBreakerDeclineLevelStatusMessage::set_participant_reference_number(std::int64_t value) { participant_reference_number_ = value; }
 
-std::int64_t MarketWideCircuitBreakerDeclineLevelStatusMessage::mwcb_level_1() const { return mwcb_level_1_; }
-void MarketWideCircuitBreakerDeclineLevelStatusMessage::set_mwcb_level_1(std::int64_t value) { mwcb_level_1_ = value; }
+Decimal MarketWideCircuitBreakerDeclineLevelStatusMessage::mwcb_level_1() const { return mwcb_level_1_; }
+void MarketWideCircuitBreakerDeclineLevelStatusMessage::set_mwcb_level_1(Decimal value) { mwcb_level_1_ = value; }
 
-std::int64_t MarketWideCircuitBreakerDeclineLevelStatusMessage::mwcb_level_2() const { return mwcb_level_2_; }
-void MarketWideCircuitBreakerDeclineLevelStatusMessage::set_mwcb_level_2(std::int64_t value) { mwcb_level_2_ = value; }
+Decimal MarketWideCircuitBreakerDeclineLevelStatusMessage::mwcb_level_2() const { return mwcb_level_2_; }
+void MarketWideCircuitBreakerDeclineLevelStatusMessage::set_mwcb_level_2(Decimal value) { mwcb_level_2_ = value; }
 
-std::int64_t MarketWideCircuitBreakerDeclineLevelStatusMessage::mwcb_level_3() const { return mwcb_level_3_; }
-void MarketWideCircuitBreakerDeclineLevelStatusMessage::set_mwcb_level_3(std::int64_t value) { mwcb_level_3_ = value; }
+Decimal MarketWideCircuitBreakerDeclineLevelStatusMessage::mwcb_level_3() const { return mwcb_level_3_; }
+void MarketWideCircuitBreakerDeclineLevelStatusMessage::set_mwcb_level_3(Decimal value) { mwcb_level_3_ = value; }
 
 char MarketWideCircuitBreakerDeclineLevelStatusMessage::reserved() const { return reserved_; }
 void MarketWideCircuitBreakerDeclineLevelStatusMessage::set_reserved(char value) { reserved_ = value; }
@@ -59,13 +59,13 @@ std::size_t MarketWideCircuitBreakerDeclineLevelStatusMessage::decode(const std:
     participant_reference_number_ = wire::read_i64_be(data + offset);
     offset += 8;
 
-    mwcb_level_1_ = wire::read_i64_be(data + offset);
+    mwcb_level_1_ = Decimal(static_cast<std::int64_t>(wire::read_i64_be(data + offset)), -6);
     offset += 8;
 
-    mwcb_level_2_ = wire::read_i64_be(data + offset);
+    mwcb_level_2_ = Decimal(static_cast<std::int64_t>(wire::read_i64_be(data + offset)), -6);
     offset += 8;
 
-    mwcb_level_3_ = wire::read_i64_be(data + offset);
+    mwcb_level_3_ = Decimal(static_cast<std::int64_t>(wire::read_i64_be(data + offset)), -6);
     offset += 8;
 
     reserved_ = wire::read_char(data + offset);
@@ -92,13 +92,13 @@ std::size_t MarketWideCircuitBreakerDeclineLevelStatusMessage::encode(std::byte*
     wire::write_i64_be(data + offset, static_cast<std::int64_t>(participant_reference_number_));
     offset += 8;
 
-    wire::write_i64_be(data + offset, static_cast<std::int64_t>(mwcb_level_1_));
+    wire::write_i64_be(data + offset, static_cast<std::int64_t>(mwcb_level_1_.mantissa()));
     offset += 8;
 
-    wire::write_i64_be(data + offset, static_cast<std::int64_t>(mwcb_level_2_));
+    wire::write_i64_be(data + offset, static_cast<std::int64_t>(mwcb_level_2_.mantissa()));
     offset += 8;
 
-    wire::write_i64_be(data + offset, static_cast<std::int64_t>(mwcb_level_3_));
+    wire::write_i64_be(data + offset, static_cast<std::int64_t>(mwcb_level_3_.mantissa()));
     offset += 8;
 
     wire::write_char(data + offset, reserved_);

@@ -1,0 +1,21 @@
+# Iex.IexEquities.DeepPlus.IexTp.v1.05 OrderModifyMessage: canonical values, read by the model
+datagram 0
+packet.iextpheader.version = 1
+packet.iextpheader.messageprotocolid = 32773
+packet.iextpheader.channelid = 1
+packet.iextpheader.sessionid = 1339949056
+packet.iextpheader.payloadlength = 40
+packet.iextpheader.messagecount = 1
+packet.iextpheader.streamoffset = 1044481
+packet.iextpheader.firstmessagesequencenumber = 49079
+packet.iextpheader.sendtime = 1766581200220276353
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 38
+packet.messages.message[0].messageheader.messagetype = M
+packet.messages.message[0].messagedata = packet.messages.message.messagedata.ordermodifymessage
+packet.messages.message[0].messagedata.ordermodifymessage.modifyflags.priority = 0
+packet.messages.message[0].messagedata.ordermodifymessage.timestamp = 1766581200070042323
+packet.messages.message[0].messagedata.ordermodifymessage.symbol = NVDY
+packet.messages.message[0].messagedata.ordermodifymessage.orderidreference = 179299560164687876
+packet.messages.message[0].messagedata.ordermodifymessage.size = 500
+packet.messages.message[0].messagedata.ordermodifymessage.price = 14.73

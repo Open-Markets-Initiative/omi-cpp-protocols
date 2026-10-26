@@ -31,7 +31,7 @@ class FractionalShortTradeMessage : public TradeMessagePayload {
     static constexpr std::size_t wire_size = 38;
 
     FractionalShortTradeMessage() = default;
-    FractionalShortTradeMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol_5, SaleCondition1 sale_condition_1, SaleConditionCategory sale_condition_category, Decimal trade_price_2, std::uint32_t fractional_trade_volume_4, PrimaryListingMarketParticipantId primary_listing_market_participant_id, ConsolidatedHighLowLastIndicator consolidated_high_low_last_indicator, ParticipantOpenHighLowLastIndicator participant_open_high_low_last_indicator);
+    FractionalShortTradeMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol_5, SaleCondition1 sale_condition_1, SaleConditionCategory sale_condition_category, Decimal trade_price_2, Decimal fractional_trade_volume_4, PrimaryListingMarketParticipantId primary_listing_market_participant_id, ConsolidatedHighLowLastIndicator consolidated_high_low_last_indicator, ParticipantOpenHighLowLastIndicator participant_open_high_low_last_indicator);
 
     // Participant Id: Identifies the Participant or Processor that initiated the message
     ParticipantId participant_id() const;
@@ -76,8 +76,8 @@ class FractionalShortTradeMessage : public TradeMessagePayload {
 
     // Fractional Trade Volume 4: Contains the total number of shares which traded in a single
     // transaction for an individual security. Has implied 6 decimal places
-    std::uint32_t fractional_trade_volume_4() const;
-    void set_fractional_trade_volume_4(std::uint32_t value);
+    Decimal fractional_trade_volume_4() const;
+    void set_fractional_trade_volume_4(Decimal value);
 
     // Primary Listing Market Participant Id: Identifies the Primary Listing Market of the
     // security symbol
@@ -118,7 +118,7 @@ class FractionalShortTradeMessage : public TradeMessagePayload {
     SaleCondition1 sale_condition_1_{};
     SaleConditionCategory sale_condition_category_{};
     Decimal trade_price_2_{ 0, -2 };
-    std::uint32_t fractional_trade_volume_4_{};
+    Decimal fractional_trade_volume_4_{ 0, -6 };
     PrimaryListingMarketParticipantId primary_listing_market_participant_id_{};
     ConsolidatedHighLowLastIndicator consolidated_high_low_last_indicator_{};
     ParticipantOpenHighLowLastIndicator participant_open_high_low_last_indicator_{};

@@ -12,7 +12,7 @@ struct ServerTcpFrameIterator {
     const ServerTechnicalHeader* server_technical_header = nullptr;
     const MessageHeader* message_header = nullptr;
     std::uint16_t template_id = 0;
-    std::uint16_t tcp_message_size = 0;
+    std::uint16_t message_size = 0;
     const std::byte* message = nullptr;
 
     // initialize over reassembled byte stream
@@ -24,7 +24,7 @@ struct ServerTcpFrameIterator {
         message_header = nullptr;
         message = nullptr;
         template_id = 0;
-        tcp_message_size = 0;
+        message_size = 0;
     }
 
     // next reassembled packet
@@ -42,10 +42,10 @@ struct ServerTcpFrameIterator {
         message_header = MessageHeader::parse(current + sizeof(ServerTechnicalHeader));
         message = current + sizeof(ServerTechnicalHeader) + sizeof(MessageHeader);
 
-        template_id = message_header->template_id.get();
-        tcp_message_size = server_technical_header->tcp_message_size.get();
+        template_id = message_header->simple_binary_header.template_id.get();
+        message_size = message_header->message_size.get();
 
-        current += tcp_message_size + 14;
+        current += message_size + 14;
 
         return true;
     }
@@ -59,7 +59,7 @@ struct ServerTcpFrameIterator {
         message_header = nullptr;
         message = nullptr;
         template_id = 0;
-        tcp_message_size = 0;
+        message_size = 0;
     }
 };
 }

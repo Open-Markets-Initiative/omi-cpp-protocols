@@ -1,0 +1,19 @@
+# Iex.IexEquities.DeepPlus.IexTp.v1.01 OrderDeleteMessage: canonical values, read by the model
+datagram 0
+packet.iextpheader.version = 1
+packet.iextpheader.messageprotocolid = 32773
+packet.iextpheader.channelid = 1
+packet.iextpheader.sessionid = 1310523392
+packet.iextpheader.payloadlength = 28
+packet.iextpheader.messagecount = 1
+packet.iextpheader.streamoffset = 1001973
+packet.iextpheader.firstmessagesequencenumber = 47151
+packet.iextpheader.sendtime = 1727787285465659215
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 26
+packet.messages.message[0].messageheader.messagetype = R
+packet.messages.message[0].messagedata = packet.messages.message.messagedata.orderdeletemessage
+packet.messages.message[0].messagedata.orderdeletemessage.reserved1 =  
+packet.messages.message[0].messagedata.orderdeletemessage.timestamp = 1727787285421659978
+packet.messages.message[0].messagedata.orderdeletemessage.symbol = IBKR
+packet.messages.message[0].messagedata.orderdeletemessage.orderidreference = 27866022694354954

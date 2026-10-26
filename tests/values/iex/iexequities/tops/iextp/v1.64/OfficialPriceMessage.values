@@ -1,0 +1,19 @@
+# Iex.IexEquities.Tops.IexTp.v1.64 OfficialPriceMessage: canonical values, read by the model
+datagram 0
+packet.iextpheader.version = 1
+packet.iextpheader.messageprotocolid = 32771
+packet.iextpheader.channelid = 1
+packet.iextpheader.sessionid = 1150681088
+packet.iextpheader.payloadlength = 28
+packet.iextpheader.messagecount = 1
+packet.iextpheader.streamoffset = 1479011
+packet.iextpheader.firstmessagesequencenumber = 45626
+packet.iextpheader.sendtime = 1517064180131848184
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 26
+packet.messages.message[0].messageheader.messagetype = X
+packet.messages.message[0].messagedata = packet.messages.message.messagedata.officialpricemessage
+packet.messages.message[0].messagedata.officialpricemessage.pricetype = Q
+packet.messages.message[0].messagedata.officialpricemessage.timestamp = 1517064180131848184
+packet.messages.message[0].messagedata.officialpricemessage.symbol = ZXIET
+packet.messages.message[0].messagedata.officialpricemessage.officialprice = 100

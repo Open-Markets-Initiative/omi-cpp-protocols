@@ -6,7 +6,7 @@
 
 namespace siac::cts::output::cta::v2_11_b {
 
-FractionalParticipantEndOfDaySummaryMessage::FractionalParticipantEndOfDaySummaryMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol, InstrumentType instrument_type, char summary_participant_id, std::uint32_t previous_close_price_date, Decimal last_price, Decimal high_price, Decimal low_price, Decimal open_price, std::uint64_t fractional_total_volume, Tick tick)
+FractionalParticipantEndOfDaySummaryMessage::FractionalParticipantEndOfDaySummaryMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol, InstrumentType instrument_type, char summary_participant_id, std::uint32_t previous_close_price_date, Decimal last_price, Decimal high_price, Decimal low_price, Decimal open_price, Decimal fractional_total_volume, Tick tick)
   : participant_id_(participant_id), timestamp_1_(timestamp_1), message_id_(message_id), transaction_id_(transaction_id), participant_reference_number_(participant_reference_number), security_symbol_(security_symbol), instrument_type_(instrument_type), summary_participant_id_(summary_participant_id), previous_close_price_date_(previous_close_price_date), last_price_(last_price), high_price_(high_price), low_price_(low_price), open_price_(open_price), fractional_total_volume_(fractional_total_volume), tick_(tick) {}
 
 ParticipantId FractionalParticipantEndOfDaySummaryMessage::participant_id() const { return participant_id_; }
@@ -50,8 +50,8 @@ void FractionalParticipantEndOfDaySummaryMessage::set_low_price(Decimal value) {
 Decimal FractionalParticipantEndOfDaySummaryMessage::open_price() const { return open_price_; }
 void FractionalParticipantEndOfDaySummaryMessage::set_open_price(Decimal value) { open_price_ = value; }
 
-std::uint64_t FractionalParticipantEndOfDaySummaryMessage::fractional_total_volume() const { return fractional_total_volume_; }
-void FractionalParticipantEndOfDaySummaryMessage::set_fractional_total_volume(std::uint64_t value) { fractional_total_volume_ = value; }
+Decimal FractionalParticipantEndOfDaySummaryMessage::fractional_total_volume() const { return fractional_total_volume_; }
+void FractionalParticipantEndOfDaySummaryMessage::set_fractional_total_volume(Decimal value) { fractional_total_volume_ = value; }
 
 Tick FractionalParticipantEndOfDaySummaryMessage::tick() const { return tick_; }
 void FractionalParticipantEndOfDaySummaryMessage::set_tick(Tick value) { tick_ = value; }
@@ -102,7 +102,7 @@ std::size_t FractionalParticipantEndOfDaySummaryMessage::decode(const std::byte*
     open_price_ = Decimal(static_cast<std::int64_t>(wire::read_u64_be(data + offset)), -6);
     offset += 8;
 
-    fractional_total_volume_ = wire::read_u64_be(data + offset);
+    fractional_total_volume_ = Decimal(static_cast<std::int64_t>(wire::read_u64_be(data + offset)), -6);
     offset += 8;
 
     tick_ = static_cast<Tick>(wire::read_char(data + offset));
@@ -153,7 +153,7 @@ std::size_t FractionalParticipantEndOfDaySummaryMessage::encode(std::byte* data,
     wire::write_u64_be(data + offset, static_cast<std::uint64_t>(open_price_.mantissa()));
     offset += 8;
 
-    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(fractional_total_volume_));
+    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(fractional_total_volume_.mantissa()));
     offset += 8;
 
     wire::write_char(data + offset, static_cast<char>(tick_));

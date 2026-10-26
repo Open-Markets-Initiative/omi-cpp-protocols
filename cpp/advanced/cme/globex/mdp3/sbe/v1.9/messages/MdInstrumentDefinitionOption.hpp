@@ -57,7 +57,6 @@
 #include "../types/UnderlyingSymbol.hpp"
 #include "../types/RelatedSecurityId.hpp"
 #include "../types/RelatedSymbol.hpp"
-#include "../types/MessageSize.hpp"
 
 namespace cme::mdp3::v9 {
 
@@ -155,12 +154,10 @@ struct md_instrument_definition_option {
         sbe_mdp3::trading_reference_date trading_reference_date;
     };
 
-    // Transport framing: message size precedes the SBE header on the wire
-    sbe_mdp3::message_size message_size;
-    sbe_mdp3::message_header header = {{}, template_id::enum_type::md_instrument_definition_option, schema_id::enum_type::mktdata, version(9)};
+    sbe_mdp3::message_header header = {std::uint16_t(sizeof(sbe_mdp3::message_header) + sizeof(fields_type)), {}};
 
     static constexpr std::size_t max_message_size = 1280;
-    static constexpr std::size_t tail_capacity = max_message_size - sizeof(sbe_mdp3::message_header) - sizeof(fields_type) - sizeof(sbe_mdp3::message_size);
+    static constexpr std::size_t tail_capacity = max_message_size - sizeof(sbe_mdp3::message_header) - sizeof(fields_type);
 
     fields_type fields;
     std::byte tail[tail_capacity];
@@ -168,10 +165,10 @@ struct md_instrument_definition_option {
     // tail buffer accessors
     const std::byte* tail_begin() const { return tail; }
     const std::byte* tail_end() const {
-        auto sz = message_size.get().value();
-        return sz == sizeof(sbe_mdp3::message_header) + sizeof(fields_type) + sizeof(sbe_mdp3::message_size)
+        auto sz = header.message_size.get().value();
+        return sz == sizeof(sbe_mdp3::message_header) + sizeof(fields_type)
             ? tail + tail_capacity
-            : tail + (sz - sizeof(sbe_mdp3::message_header) - sizeof(fields_type) - sizeof(sbe_mdp3::message_size));
+            : tail + (sz - sizeof(sbe_mdp3::message_header) - sizeof(fields_type));
     }
 
     // sequential access to variable-length regions

@@ -1,0 +1,26 @@
+# Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.41.29 AuctionUpdateMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.length = 82
+packet.packetheader.messagecount = 2
+packet.packetheader.unit = 33
+packet.packetheader.sequence = 287063
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 27
+packet.messages.message[0].messageheader.messagetype = 150
+packet.messages.message[0].payload = packet.messages.message.payload.auctionsummarymessage
+packet.messages.message[0].payload.auctionsummarymessage.timeoffset = 129000
+packet.messages.message[0].payload.auctionsummarymessage.symbollong = FPAG
+packet.messages.message[0].payload.auctionsummarymessage.auctionopeningtype = O
+packet.messages.message[0].payload.auctionsummarymessage.price = 24.2
+packet.messages.message[0].payload.auctionsummarymessage.sharescontracts = 100
+packet.messages.message[1].messageheader.messagelength = 47
+packet.messages.message[1].messageheader.messagetype = 149
+packet.messages.message[1].payload = packet.messages.message.payload.auctionupdatemessage
+packet.messages.message[1].payload.auctionupdatemessage.timeoffset = 129000
+packet.messages.message[1].payload.auctionupdatemessage.symbollong = UJUL
+packet.messages.message[1].payload.auctionupdatemessage.auctiontype = O
+packet.messages.message[1].payload.auctionupdatemessage.referenceprice = 287100
+packet.messages.message[1].payload.auctionupdatemessage.buyshares = 10
+packet.messages.message[1].payload.auctionupdatemessage.sellshares = 94
+packet.messages.message[1].payload.auctionupdatemessage.indicativeprice = 286700
+packet.messages.message[1].payload.auctionupdatemessage.auctiononlyprice = 286500

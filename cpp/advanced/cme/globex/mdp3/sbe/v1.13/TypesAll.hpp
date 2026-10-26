@@ -222,4 +222,3 @@
 #include "types/EncodingType.hpp"
 #include "types/MessageSequenceNumber.hpp"
 #include "types/TcpSendingTime.hpp"
-#include "types/TcpMessageSize.hpp"

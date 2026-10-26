@@ -6,7 +6,7 @@
 #include "../types/HighLimitPrice.hpp"
 #include "../types/LowLimitPrice.hpp"
 #include "../types/MaxPriceVariation.hpp"
-#include "../structs/MessageHeader.hpp"
+#include "../structs/SimpleBinaryHeader.hpp"
 
 namespace cme::mdp3::v13 {
 
@@ -36,8 +36,8 @@ struct SnapshotFullRefreshTcp {
     }
 
     // parse the overlaid body from its selecting header
-    static const SnapshotFullRefreshTcp* parse(const MessageHeader* header) {
-        return reinterpret_cast<const SnapshotFullRefreshTcp*>(reinterpret_cast<const std::byte*>(header) + sizeof(MessageHeader));
+    static const SnapshotFullRefreshTcp* parse(const SimpleBinaryHeader* header) {
+        return reinterpret_cast<const SnapshotFullRefreshTcp*>(reinterpret_cast<const std::byte*>(header) + sizeof(SimpleBinaryHeader));
     }
 };
 
