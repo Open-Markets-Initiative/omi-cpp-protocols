@@ -15,7 +15,7 @@
 
 #include "PcapIterator.hpp"
 #include "Frame.hpp"
-#include "cpp/classes/lseg/millennium/level2/mitch/v11.9/definitions.hpp"
+#include "cpp/binary/classes/lseg/millennium/level2/mitch/v11.9/definitions.hpp"
 
 namespace protocol = ::lseg::millennium::level2::mitch::v11_9;
 // the wire the Classes expressions this program states its sizes in read through

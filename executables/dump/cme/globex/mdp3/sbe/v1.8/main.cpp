@@ -15,7 +15,7 @@
 #include "PcapIterator.hpp"
 #include "Frame.hpp"
 #include "TcpReassembler.hpp"
-#include "cpp/classes/cme/globex/mdp3/sbe/v1.8/definitions.hpp"
+#include "cpp/binary/classes/cme/globex/mdp3/sbe/v1.8/definitions.hpp"
 
 namespace protocol = ::cme::globex::mdp3::sbe::v1_8;
 

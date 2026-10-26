@@ -6,7 +6,7 @@
 
 #include "Settings.hpp"
 #include "../pcap/Parser.hpp"
-#include "cpp/advanced/cboe/cfefutures/multicastdepthofbook/pitch/v1.2.22/messages/session.hpp"
+#include "cpp/binary/advanced/cboe/cfefutures/multicastdepthofbook/pitch/v1.2.22/messages/session.hpp"
 
 namespace statistics {
 

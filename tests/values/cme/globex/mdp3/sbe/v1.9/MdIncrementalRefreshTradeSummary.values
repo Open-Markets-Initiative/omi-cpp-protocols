@@ -140,7 +140,7 @@ udppacket.message[4].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshb
 udppacket.message[4].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.incrementalrefreshbookgroups.incrementalrefreshbookgroup[0].mdentrysizeshortoptional = 3
 udppacket.message[4].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.incrementalrefreshbookgroups.incrementalrefreshbookgroup[0].securityid = 5893
 udppacket.message[4].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.incrementalrefreshbookgroups.incrementalrefreshbookgroup[0].rptseq = 19534
-udppacket.message[4].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.incrementalrefreshbookgroups.incrementalrefreshbookgroup[0].numberofordersoptional = 2147483647
+udppacket.message[4].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.incrementalrefreshbookgroups.incrementalrefreshbookgroup[0].numberofordersoptional = (null)
 udppacket.message[4].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.incrementalrefreshbookgroups.incrementalrefreshbookgroup[0].mdpricelevel = 1
 udppacket.message[4].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.incrementalrefreshbookgroups.incrementalrefreshbookgroup[0].mdupdateaction = 1
 udppacket.message[4].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.incrementalrefreshbookgroups.incrementalrefreshbookgroup[0].mdentrytypebook = E

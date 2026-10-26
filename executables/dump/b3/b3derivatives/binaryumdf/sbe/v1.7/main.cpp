@@ -12,7 +12,7 @@
 
 #include "PcapIterator.hpp"
 #include "Frame.hpp"
-#include "cpp/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/definitions.hpp"
+#include "cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/definitions.hpp"
 
 namespace protocol = ::b3::b3derivatives::binaryumdf::sbe::v1_7;
 

@@ -21,6 +21,6 @@ packet.message[0].payload.ordermodifysameprio.securityid = 7904020
 packet.message[0].payload.ordermodifysameprio.orderdetailscomp.trdregtstimepriority = 1744639199616610203
 packet.message[0].payload.ordermodifysameprio.orderdetailscomp.displayqty = 4
 packet.message[0].payload.ordermodifysameprio.orderdetailscomp.side = 2
-packet.message[0].payload.ordermodifysameprio.orderdetailscomp.ordtype = 255
+packet.message[0].payload.ordermodifysameprio.orderdetailscomp.ordtype = (null)
 packet.message[0].payload.ordermodifysameprio.orderdetailscomp.hhiindicator = -1
 packet.message[0].payload.ordermodifysameprio.orderdetailscomp.price = 4845

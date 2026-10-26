@@ -18,7 +18,7 @@
 #include "PcapIterator.hpp"
 #include "Frame.hpp"
 #include "TcpReassembler.hpp"
-#include "cpp/classes/nasdaq/nomoptions/itto/itch/v4.0.2025/definitions.hpp"
+#include "cpp/binary/classes/nasdaq/nomoptions/itto/itch/v4.0.2025/definitions.hpp"
 
 namespace protocol = ::nasdaq::nomoptions::itto::itch::v4_0_2025;
 // the wire the Classes expressions this program states its sizes in read through

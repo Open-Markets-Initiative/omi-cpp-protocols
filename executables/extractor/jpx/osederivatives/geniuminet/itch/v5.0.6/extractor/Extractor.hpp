@@ -3,7 +3,7 @@
 
 #include "../pcap/Frame.hpp"
 #include "../pcap/PcapFile.hpp"
-#include "cpp/modern/jpx/osederivatives/geniuminet/itch/v5.0.6/definitions.hpp"
+#include "cpp/binary/modern/jpx/osederivatives/geniuminet/itch/v5.0.6/definitions.hpp"
 #include "../protocol/Branches.hpp"
 
 #include <algorithm>

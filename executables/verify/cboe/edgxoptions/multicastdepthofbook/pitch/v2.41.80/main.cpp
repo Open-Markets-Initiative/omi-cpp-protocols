@@ -15,7 +15,7 @@
 
 #include "PcapIterator.hpp"
 #include "Frame.hpp"
-#include "cpp/classes/cboe/edgxoptions/multicastdepthofbook/pitch/v2.41.80/definitions.hpp"
+#include "cpp/binary/classes/cboe/edgxoptions/multicastdepthofbook/pitch/v2.41.80/definitions.hpp"
 
 namespace protocol = ::cboe::edgxoptions::multicastdepthofbook::pitch::v2_41_80;
 // the wire the Classes expressions this program states its sizes in read through

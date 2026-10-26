@@ -6,7 +6,7 @@
 
 #include "Settings.hpp"
 #include "../pcap/Parser.hpp"
-#include "cpp/advanced/nyse/arcaequities/integratedfeed/pillar/v2.5.g/messages/session.hpp"
+#include "cpp/binary/advanced/nyse/arcaequities/integratedfeed/pillar/v2.5.g/messages/session.hpp"
 
 namespace statistics {
 

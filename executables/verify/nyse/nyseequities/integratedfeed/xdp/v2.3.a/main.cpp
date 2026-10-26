@@ -15,7 +15,7 @@
 
 #include "PcapIterator.hpp"
 #include "Frame.hpp"
-#include "cpp/classes/nyse/nyseequities/integratedfeed/xdp/v2.3.a/definitions.hpp"
+#include "cpp/binary/classes/nyse/nyseequities/integratedfeed/xdp/v2.3.a/definitions.hpp"
 
 namespace protocol = ::nyse::nyseequities::integratedfeed::xdp::v2_3_a;
 // the wire the Classes expressions this program states its sizes in read through

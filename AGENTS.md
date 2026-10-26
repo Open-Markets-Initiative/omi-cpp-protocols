@@ -2,7 +2,7 @@
 
 ## What This Is
 
-Source generated C++ parsers for common binary exchange protocols, market data and order entry. Each flavor is its own directory under `cpp/`, with the programs that use them under `executables/`.
+Source generated C++ parsers for common binary exchange protocols, market data and order entry, and readers of delimited files (the NYSE Daily TAQ files). Each model family is its own directory under `cpp/` (the binary protocols are under `cpp/binary/`, the delimited readers under `cpp/delimited/`), each flavor its own directory within its family's, with the programs that use them under `executables/`.
 
 For every organization and protocol published here: [ReadMe](ReadMe.md "Omi C++ Protocols ReadMe")
 
@@ -11,6 +11,7 @@ For every organization and protocol published here: [ReadMe](ReadMe.md "Omi C++ 
 - Build with the CMake project at the repository root; a flavor is a header set rather than a library to link, so including its headers is usually all a user needs.
 - The flavors trade differently: the modern headers read a buffer in place with no copy, the advanced ones carry a tail buffer sized for the largest message. Pick by whether the user holds the message after reading it.
 - Where a protocol frames its messages in an outer packet header, that header has its own parser and both are needed to walk a capture.
+- A delimited reader (`cpp/delimited/<protocol>/Rows.hpp`, reading a line onto the row of `Row.hpp`) includes the headers every reader shares as `../delimited/`: put `cpp/delimited/delimited` on the include path. Nothing needs Arrow; the rows programs need zlib, and the build leaves them out where it cannot find it.
 
 ## How This Was Generated
 

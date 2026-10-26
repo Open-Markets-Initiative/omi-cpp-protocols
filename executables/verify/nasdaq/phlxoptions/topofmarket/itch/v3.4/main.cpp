@@ -18,7 +18,7 @@
 #include "PcapIterator.hpp"
 #include "Frame.hpp"
 #include "TcpReassembler.hpp"
-#include "cpp/classes/nasdaq/phlxoptions/topofmarket/itch/v3.4/definitions.hpp"
+#include "cpp/binary/classes/nasdaq/phlxoptions/topofmarket/itch/v3.4/definitions.hpp"
 
 namespace protocol = ::nasdaq::phlxoptions::topofmarket::itch::v3_4;
 // the wire the Classes expressions this program states its sizes in read through

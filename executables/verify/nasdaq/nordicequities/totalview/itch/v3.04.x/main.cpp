@@ -15,7 +15,7 @@
 
 #include "PcapIterator.hpp"
 #include "Frame.hpp"
-#include "cpp/classes/nasdaq/nordicequities/totalview/itch/v3.04.x/definitions.hpp"
+#include "cpp/binary/classes/nasdaq/nordicequities/totalview/itch/v3.04.x/definitions.hpp"
 
 namespace protocol = ::nasdaq::nordicequities::totalview::itch::v3_04_x;
 // the wire the Classes expressions this program states its sizes in read through

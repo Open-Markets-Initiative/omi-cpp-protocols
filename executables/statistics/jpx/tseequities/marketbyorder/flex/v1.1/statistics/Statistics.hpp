@@ -10,7 +10,7 @@
 #include "Settings.hpp"
 #include "../pcap/Parser.hpp"
 #include "../pcap/TcpReassembler.hpp"
-#include "cpp/modern/jpx/tseequities/marketbyorder/flex/v1.1/definitions.hpp"
+#include "cpp/binary/modern/jpx/tseequities/marketbyorder/flex/v1.1/definitions.hpp"
 
 namespace statistics {
 

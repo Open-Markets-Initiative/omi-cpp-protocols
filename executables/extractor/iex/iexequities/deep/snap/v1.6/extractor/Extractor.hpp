@@ -4,7 +4,7 @@
 #include "../pcap/Frame.hpp"
 #include "../pcap/PcapFile.hpp"
 #include "../pcap/TcpReassembler.hpp"
-#include "cpp/modern/iex/iexequities/deep/snap/v1.6/definitions.hpp"
+#include "cpp/binary/modern/iex/iexequities/deep/snap/v1.6/definitions.hpp"
 #include "../protocol/Branches.hpp"
 
 #include <algorithm>

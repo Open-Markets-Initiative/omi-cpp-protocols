@@ -3,7 +3,7 @@
 
 #include "../pcap/Frame.hpp"
 #include "../pcap/PcapFile.hpp"
-#include "cpp/modern/nyse/nyseequities/integratedfeed/xdp/v2.3.a/definitions.hpp"
+#include "cpp/binary/modern/nyse/nyseequities/integratedfeed/xdp/v2.3.a/definitions.hpp"
 #include "../protocol/Branches.hpp"
 
 #include <algorithm>

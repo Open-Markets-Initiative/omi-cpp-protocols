@@ -18,7 +18,7 @@ Each protocol has its own directory, named for its identifier with the version a
 segment — `Iex.IexEquities.Tops.IexTp.v1.64` becomes `iex/iexequities/tops/iextp/v1.64` —
 matching the C++ namespace the code declares.
 
-Each directory holds only the program: it includes its protocol's parser from `cpp/classes/`
+Each directory holds only the program: it includes its protocol's parser from `cpp/binary/classes/`
 and the capture reader from `executables/pcap/`, both resolved from the repository root, so
 no program carries a copy of either.
 

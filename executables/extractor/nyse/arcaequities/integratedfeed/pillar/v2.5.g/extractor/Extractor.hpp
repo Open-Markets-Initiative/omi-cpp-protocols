@@ -3,7 +3,7 @@
 
 #include "../pcap/Frame.hpp"
 #include "../pcap/PcapFile.hpp"
-#include "cpp/modern/nyse/arcaequities/integratedfeed/pillar/v2.5.g/definitions.hpp"
+#include "cpp/binary/modern/nyse/arcaequities/integratedfeed/pillar/v2.5.g/definitions.hpp"
 #include "../protocol/Branches.hpp"
 
 #include <algorithm>

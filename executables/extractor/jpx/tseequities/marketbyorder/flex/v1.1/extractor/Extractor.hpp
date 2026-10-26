@@ -4,7 +4,7 @@
 #include "../pcap/Frame.hpp"
 #include "../pcap/PcapFile.hpp"
 #include "../pcap/TcpReassembler.hpp"
-#include "cpp/modern/jpx/tseequities/marketbyorder/flex/v1.1/definitions.hpp"
+#include "cpp/binary/modern/jpx/tseequities/marketbyorder/flex/v1.1/definitions.hpp"
 #include "../protocol/Branches.hpp"
 
 #include <algorithm>

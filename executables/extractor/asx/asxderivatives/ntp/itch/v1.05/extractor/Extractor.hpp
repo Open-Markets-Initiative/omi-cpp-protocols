@@ -3,7 +3,7 @@
 
 #include "../pcap/Frame.hpp"
 #include "../pcap/PcapFile.hpp"
-#include "cpp/modern/asx/asxderivatives/ntp/itch/v1.05/definitions.hpp"
+#include "cpp/binary/modern/asx/asxderivatives/ntp/itch/v1.05/definitions.hpp"
 #include "../protocol/Branches.hpp"
 
 #include <algorithm>

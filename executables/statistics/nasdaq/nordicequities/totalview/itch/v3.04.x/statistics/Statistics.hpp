@@ -6,7 +6,7 @@
 
 #include "Settings.hpp"
 #include "../pcap/Parser.hpp"
-#include "cpp/advanced/nasdaq/nordicequities/totalview/itch/v3.04.x/messages/session.hpp"
+#include "cpp/binary/advanced/nasdaq/nordicequities/totalview/itch/v3.04.x/messages/session.hpp"
 
 namespace statistics {
 

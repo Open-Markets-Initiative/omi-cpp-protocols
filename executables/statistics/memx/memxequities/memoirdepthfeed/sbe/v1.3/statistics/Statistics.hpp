@@ -6,7 +6,7 @@
 
 #include "Settings.hpp"
 #include "../pcap/Parser.hpp"
-#include "cpp/advanced/memx/memxequities/memoirdepthfeed/sbe/v1.3/messages/session.hpp"
+#include "cpp/binary/advanced/memx/memxequities/memoirdepthfeed/sbe/v1.3/messages/session.hpp"
 
 namespace statistics {
 

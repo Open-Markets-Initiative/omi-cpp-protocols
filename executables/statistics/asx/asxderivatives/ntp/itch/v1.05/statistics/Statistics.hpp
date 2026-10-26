@@ -6,7 +6,7 @@
 
 #include "Settings.hpp"
 #include "../pcap/Parser.hpp"
-#include "cpp/advanced/asx/asxderivatives/ntp/itch/v1.05/messages/session.hpp"
+#include "cpp/binary/advanced/asx/asxderivatives/ntp/itch/v1.05/messages/session.hpp"
 
 namespace statistics {
 

@@ -4,7 +4,7 @@
 #include "../pcap/Frame.hpp"
 #include "../pcap/PcapFile.hpp"
 #include "../pcap/TcpReassembler.hpp"
-#include "cpp/modern/nasdaq/phlxoptions/topofmarket/itch/v3.4/definitions.hpp"
+#include "cpp/binary/modern/nasdaq/phlxoptions/topofmarket/itch/v3.4/definitions.hpp"
 #include "../protocol/Branches.hpp"
 
 #include <algorithm>

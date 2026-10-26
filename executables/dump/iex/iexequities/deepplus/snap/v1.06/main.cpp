@@ -14,7 +14,7 @@
 #include "PcapIterator.hpp"
 #include "Frame.hpp"
 #include "TcpReassembler.hpp"
-#include "cpp/classes/iex/iexequities/deepplus/snap/v1.06/definitions.hpp"
+#include "cpp/binary/classes/iex/iexequities/deepplus/snap/v1.06/definitions.hpp"
 
 namespace protocol = ::iex::iexequities::deepplus::snap::v1_06;
 

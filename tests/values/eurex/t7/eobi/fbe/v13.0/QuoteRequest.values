@@ -16,5 +16,5 @@ packet.message[0].messageheadercomp.msgseqnum = 7582551
 packet.message[0].payload = packet.message.payload.quoterequest
 packet.message[0].payload.quoterequest.securityid = 72063744431123870
 packet.message[0].payload.quoterequest.lastqty = 1
-packet.message[0].payload.quoterequest.side = 255
+packet.message[0].payload.quoterequest.side = (null)
 packet.message[0].payload.quoterequest.transacttime = 1744639246935016270

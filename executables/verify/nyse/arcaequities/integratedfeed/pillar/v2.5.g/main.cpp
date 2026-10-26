@@ -15,7 +15,7 @@
 
 #include "PcapIterator.hpp"
 #include "Frame.hpp"
-#include "cpp/classes/nyse/arcaequities/integratedfeed/pillar/v2.5.g/definitions.hpp"
+#include "cpp/binary/classes/nyse/arcaequities/integratedfeed/pillar/v2.5.g/definitions.hpp"
 
 namespace protocol = ::nyse::arcaequities::integratedfeed::pillar::v2_5_g;
 // the wire the Classes expressions this program states its sizes in read through

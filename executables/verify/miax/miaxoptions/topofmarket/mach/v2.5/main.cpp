@@ -17,7 +17,7 @@
 #include "PcapIterator.hpp"
 #include "Frame.hpp"
 #include "TcpReassembler.hpp"
-#include "cpp/classes/miax/miaxoptions/topofmarket/mach/v2.5/definitions.hpp"
+#include "cpp/binary/classes/miax/miaxoptions/topofmarket/mach/v2.5/definitions.hpp"
 
 namespace protocol = ::miax::miaxoptions::topofmarket::mach::v2_5;
 // the wire the Classes expressions this program states its sizes in read through

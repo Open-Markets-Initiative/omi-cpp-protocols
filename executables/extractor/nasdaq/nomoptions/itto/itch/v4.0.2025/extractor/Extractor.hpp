@@ -4,7 +4,7 @@
 #include "../pcap/Frame.hpp"
 #include "../pcap/PcapFile.hpp"
 #include "../pcap/TcpReassembler.hpp"
-#include "cpp/modern/nasdaq/nomoptions/itto/itch/v4.0.2025/definitions.hpp"
+#include "cpp/binary/modern/nasdaq/nomoptions/itto/itch/v4.0.2025/definitions.hpp"
 #include "../protocol/Branches.hpp"
 
 #include <algorithm>

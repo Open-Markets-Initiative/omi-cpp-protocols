@@ -3,7 +3,7 @@
 
 #include "../pcap/Frame.hpp"
 #include "../pcap/PcapFile.hpp"
-#include "cpp/modern/memx/memxequities/memoirdepthfeed/sbe/v1.3/definitions.hpp"
+#include "cpp/binary/modern/memx/memxequities/memoirdepthfeed/sbe/v1.3/definitions.hpp"
 #include "../protocol/Branches.hpp"
 
 #include <algorithm>

@@ -19,6 +19,6 @@ packet.message[0].payload.orderadd.securityid = 7904812
 packet.message[0].payload.orderadd.orderdetailscomp.trdregtstimepriority = 1744639200001234539
 packet.message[0].payload.orderadd.orderdetailscomp.displayqty = 10
 packet.message[0].payload.orderadd.orderdetailscomp.side = 1
-packet.message[0].payload.orderadd.orderdetailscomp.ordtype = 255
+packet.message[0].payload.orderadd.orderdetailscomp.ordtype = (null)
 packet.message[0].payload.orderadd.orderdetailscomp.hhiindicator = -1
 packet.message[0].payload.orderadd.orderdetailscomp.price = 493.3

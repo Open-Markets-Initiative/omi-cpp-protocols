@@ -15,7 +15,7 @@
 
 #include "PcapIterator.hpp"
 #include "Frame.hpp"
-#include "cpp/classes/siac/opra/output/obi/v6.2/definitions.hpp"
+#include "cpp/binary/classes/siac/opra/output/obi/v6.2/definitions.hpp"
 
 namespace protocol = ::siac::opra::output::obi::v6_2;
 // the wire the Classes expressions this program states its sizes in read through

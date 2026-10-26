@@ -6,7 +6,7 @@
 
 #include "Settings.hpp"
 #include "../pcap/Parser.hpp"
-#include "cpp/modern/lseg/millennium/level2/mitch/v11.9/definitions.hpp"
+#include "cpp/binary/modern/lseg/millennium/level2/mitch/v11.9/definitions.hpp"
 
 namespace statistics {
 

@@ -6,7 +6,7 @@
 
 #include "Settings.hpp"
 #include "../pcap/Parser.hpp"
-#include "cpp/advanced/cme/globex/mdp3/sbe/v1.13/messages/session.hpp"
+#include "cpp/binary/advanced/cme/globex/mdp3/sbe/v1.13/messages/session.hpp"
 
 namespace statistics {
 

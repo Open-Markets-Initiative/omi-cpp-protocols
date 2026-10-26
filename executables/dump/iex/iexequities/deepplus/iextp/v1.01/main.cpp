@@ -12,7 +12,7 @@
 
 #include "PcapIterator.hpp"
 #include "Frame.hpp"
-#include "cpp/classes/iex/iexequities/deepplus/iextp/v1.01/definitions.hpp"
+#include "cpp/binary/classes/iex/iexequities/deepplus/iextp/v1.01/definitions.hpp"
 
 namespace protocol = ::iex::iexequities::deepplus::iextp::v1_01;
 

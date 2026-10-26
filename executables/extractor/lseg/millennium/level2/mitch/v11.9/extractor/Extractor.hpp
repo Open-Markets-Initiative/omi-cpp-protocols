@@ -3,7 +3,7 @@
 
 #include "../pcap/Frame.hpp"
 #include "../pcap/PcapFile.hpp"
-#include "cpp/modern/lseg/millennium/level2/mitch/v11.9/definitions.hpp"
+#include "cpp/binary/modern/lseg/millennium/level2/mitch/v11.9/definitions.hpp"
 #include "../protocol/Branches.hpp"
 
 #include <algorithm>

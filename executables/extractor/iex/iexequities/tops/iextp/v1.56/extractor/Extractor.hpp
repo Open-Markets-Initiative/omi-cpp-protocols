@@ -3,7 +3,7 @@
 
 #include "../pcap/Frame.hpp"
 #include "../pcap/PcapFile.hpp"
-#include "cpp/modern/iex/iexequities/tops/iextp/v1.56/definitions.hpp"
+#include "cpp/binary/modern/iex/iexequities/tops/iextp/v1.56/definitions.hpp"
 #include "../protocol/Branches.hpp"
 
 #include <algorithm>

@@ -15,7 +15,7 @@
 
 #include "PcapIterator.hpp"
 #include "Frame.hpp"
-#include "cpp/classes/cboe/bzxequities/multicastdepthofbook/pitch/v2.41.29/definitions.hpp"
+#include "cpp/binary/classes/cboe/bzxequities/multicastdepthofbook/pitch/v2.41.29/definitions.hpp"
 
 namespace protocol = ::cboe::bzxequities::multicastdepthofbook::pitch::v2_41_29;
 // the wire the Classes expressions this program states its sizes in read through

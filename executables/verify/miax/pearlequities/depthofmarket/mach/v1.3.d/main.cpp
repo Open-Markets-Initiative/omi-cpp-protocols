@@ -17,7 +17,7 @@
 #include "PcapIterator.hpp"
 #include "Frame.hpp"
 #include "TcpReassembler.hpp"
-#include "cpp/classes/miax/pearlequities/depthofmarket/mach/v1.3.d/definitions.hpp"
+#include "cpp/binary/classes/miax/pearlequities/depthofmarket/mach/v1.3.d/definitions.hpp"
 
 namespace protocol = ::miax::pearlequities::depthofmarket::mach::v1_3_d;
 // the wire the Classes expressions this program states its sizes in read through

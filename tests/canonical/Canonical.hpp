@@ -95,6 +95,11 @@ inline std::string text(std::string value) {
     return value;
 }
 
+// A nullable field holding no value, as the model lists it
+inline std::string absent() {
+    return "(null)";
+}
+
 // Numeric text as the number it spells, without the zeros or spaces in front of it
 inline std::string numeric(std::string value) {
     const auto first = value.find_first_not_of(" \0", 0, 2);

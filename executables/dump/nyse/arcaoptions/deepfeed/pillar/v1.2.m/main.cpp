@@ -12,7 +12,7 @@
 
 #include "PcapIterator.hpp"
 #include "Frame.hpp"
-#include "cpp/classes/nyse/arcaoptions/deepfeed/pillar/v1.2.m/definitions.hpp"
+#include "cpp/binary/classes/nyse/arcaoptions/deepfeed/pillar/v1.2.m/definitions.hpp"
 
 namespace protocol = ::nyse::arcaoptions::deepfeed::pillar::v1_2_m;
 

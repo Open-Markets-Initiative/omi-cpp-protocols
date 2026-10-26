@@ -1,2 +1,2 @@
-#include "../cpp/advanced/jpx/tseequities/marketbyorder/flex/v1.1/TypesAll.hpp"
-#include "../cpp/advanced/jpx/tseequities/marketbyorder/flex/v1.1/messages/Definitions.hpp"
+#include "../cpp/binary/advanced/jpx/tseequities/marketbyorder/flex/v1.1/TypesAll.hpp"
+#include "../cpp/binary/advanced/jpx/tseequities/marketbyorder/flex/v1.1/messages/Definitions.hpp"

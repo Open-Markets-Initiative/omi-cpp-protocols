@@ -6,7 +6,7 @@
 
 #include "Settings.hpp"
 #include "../pcap/Parser.hpp"
-#include "cpp/advanced/jpx/osederivatives/geniuminet/itch/v5.0.6/messages/session.hpp"
+#include "cpp/binary/advanced/jpx/osederivatives/geniuminet/itch/v5.0.6/messages/session.hpp"
 
 namespace statistics {
 

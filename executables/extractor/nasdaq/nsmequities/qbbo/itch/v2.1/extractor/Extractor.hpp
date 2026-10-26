@@ -3,7 +3,7 @@
 
 #include "../pcap/Frame.hpp"
 #include "../pcap/PcapFile.hpp"
-#include "cpp/modern/nasdaq/nsmequities/qbbo/itch/v2.1/definitions.hpp"
+#include "cpp/binary/modern/nasdaq/nsmequities/qbbo/itch/v2.1/definitions.hpp"
 #include "../protocol/Branches.hpp"
 
 #include <algorithm>

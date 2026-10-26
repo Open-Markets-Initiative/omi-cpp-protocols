@@ -6,7 +6,7 @@
 
 #include "Settings.hpp"
 #include "../pcap/Parser.hpp"
-#include "cpp/advanced/iex/iexequities/tops/iextp/v1.64/messages/session.hpp"
+#include "cpp/binary/advanced/iex/iexequities/tops/iextp/v1.64/messages/session.hpp"
 
 namespace statistics {
 

@@ -12,7 +12,7 @@
 
 #include "PcapIterator.hpp"
 #include "Frame.hpp"
-#include "cpp/classes/asx/asxderivatives/ntp/itch/v1.05/definitions.hpp"
+#include "cpp/binary/classes/asx/asxderivatives/ntp/itch/v1.05/definitions.hpp"
 
 namespace protocol = ::asx::asxderivatives::ntp::itch::v1_05;
 

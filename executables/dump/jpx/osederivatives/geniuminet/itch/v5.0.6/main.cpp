@@ -12,7 +12,7 @@
 
 #include "PcapIterator.hpp"
 #include "Frame.hpp"
-#include "cpp/classes/jpx/osederivatives/geniuminet/itch/v5.0.6/definitions.hpp"
+#include "cpp/binary/classes/jpx/osederivatives/geniuminet/itch/v5.0.6/definitions.hpp"
 
 namespace protocol = ::jpx::osederivatives::geniuminet::itch::v5_0_6;
 

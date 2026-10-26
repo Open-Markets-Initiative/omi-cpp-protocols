@@ -3,7 +3,7 @@
 
 #include "../pcap/Frame.hpp"
 #include "../pcap/PcapFile.hpp"
-#include "cpp/modern/siac/cqs/output/cta/v2.10.a/definitions.hpp"
+#include "cpp/binary/modern/siac/cqs/output/cta/v2.10.a/definitions.hpp"
 #include "../protocol/Branches.hpp"
 
 #include <algorithm>

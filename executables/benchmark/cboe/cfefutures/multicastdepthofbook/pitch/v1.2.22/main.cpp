@@ -23,7 +23,7 @@
 
 #include "PcapIterator.hpp"
 #include "Frame.hpp"
-#include "cpp/tmp/cboe/cfefutures/multicastdepthofbook/pitch/v1.2.22/cboe_cfefutures_multicastdepthofbook_pitch_v1_2_22.hpp"
+#include "cpp/binary/tmp/cboe/cfefutures/multicastdepthofbook/pitch/v1.2.22/cboe_cfefutures_multicastdepthofbook_pitch_v1_2_22.hpp"
 
 // Cboe CfeFutures MulticastDepthOfBook Pitch 1.2.22: the reading of its packets, through its Template Meta Programming header
 namespace cboe::cfefutures::multicastdepthofbook::pitch::v1_2_22 {

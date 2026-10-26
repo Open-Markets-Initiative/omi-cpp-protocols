@@ -12,7 +12,7 @@
 
 #include "PcapIterator.hpp"
 #include "Frame.hpp"
-#include "cpp/classes/eurex/t7/eobi/fbe/v13.0/definitions.hpp"
+#include "cpp/binary/classes/eurex/t7/eobi/fbe/v13.0/definitions.hpp"
 
 namespace protocol = ::eurex::t7::eobi::fbe::v13_0;
 

@@ -1,13 +1,16 @@
 # Omi C++ Protocols
 
-Generated C++ binary-protocol parsers, one directory tree per generation format under
-`cpp/`:
+Generated C++ protocol parsers, one directory per model family under `cpp/` and, within a
+family, one directory tree per generation format. The binary protocols are under `cpp/binary/`:
 
-- `cpp/advanced/` — packed structs, types, messages and dispatch (the Advanced parser)
-- `cpp/modern/` — the Modern parser
-- `cpp/classes/` — the Classes library: owning classes that decode once and encode back
-- `cpp/flyweight/` — the Flyweight library: views over the bytes, read in place without casts
-- `cpp/tmp/` — the Tmp header: one per protocol, types and packed messages, each field asked for by its type
+- `cpp/binary/advanced/` — packed structs, types, messages and dispatch (the Advanced parser)
+- `cpp/binary/modern/` — the Modern parser
+- `cpp/binary/classes/` — the Classes library: owning classes that decode once and encode back
+- `cpp/binary/flyweight/` — the Flyweight library: views over the bytes, read in place without casts
+- `cpp/binary/tmp/` — the Tmp header: one per protocol, types and packed messages, each field asked for by its type
+
+The delimited files are read under `cpp/delimited/`: a reader per protocol, which reads each line
+of a file straight into typed C++ values (see Delimited, below).
 
 Every parser is compile-verified: `checks/` holds one translation unit per protocol and
 format that includes the aggregating headers, and `CMakeLists.txt` compiles them all —
@@ -23,17 +26,18 @@ Updates are greatly appreciated; however, this entire repository is source gener
 
 | Parser | Protocol Count | Generated Lines |
 | --- | --- | --- |
-| Advanced | 44 | 373,048 |
-| Modern | 46 | 218,505 |
-| Classes | 46 | 509,230 |
-| Flyweight | 46 | 230,416 |
-| Tmp | 46 | 119,186 |
+| Advanced | 44 | 376,658 |
+| Modern | 46 | 222,075 |
+| Classes | 46 | 513,373 |
+| Flyweight | 46 | 234,338 |
+| Tmp | 46 | 122,636 |
+| Delimited | 10 | 3,573 |
 
 | Organization | Protocol Count | Generated Lines |
 | --- | --- | --- |
 | Asx | 1 | 28,728 |
 | B3 | 7 | 333,962 |
-| Cboe | 3 | 57,608 |
+| Cboe | 3 | 62,920 |
 | Cme | 3 | 288,771 |
 | Eurex | 2 | 76,850 |
 | Iex | 10 | 144,536 |
@@ -41,8 +45,8 @@ Updates are greatly appreciated; however, this entire repository is source gener
 | Lseg | 2 | 35,274 |
 | Memx | 1 | 12,740 |
 | Miax | 2 | 34,061 |
-| Nasdaq | 7 | 211,463 |
-| Nyse | 3 | 83,090 |
+| Nasdaq | 7 | 224,846 |
+| Nyse | 13 | 85,631 |
 | Siac | 3 | 110,855 |
 
 ## Programs
@@ -67,17 +71,43 @@ The pcap reader they all share is `executables/pcap/`.
 ./build/verify_<protocol> capture.pcap
 ```
 
+## Delimited
+
+`cpp/delimited/` holds a reader per delimited protocol (10 of them, the NYSE Daily
+TAQ files): a csv's header row, which selects the layout variant the file is read by, then each
+data line read straight into typed C++ values, with no binary record between. A protocol's reader
+is two headers in its directory: `Rows.hpp`, the reading of a line onto a row, and `Row.hpp`, its
+data record as a plain C++ row - text as a `std::string_view` of the line, an integer, a decimal as
+the integer of its stated places, a date as days since 1970-01-01, a time of day as its count since
+midnight, a field a line may leave empty as optional. A time of day counted from midnight in a zone
+the model states has `<field>_utc(day)`, the instant on a day, UTC Unix nanoseconds; a row prints
+it so on a stream's print day (`out << calendar::on(day)`), ISO 8601 UTC.
+
+The headers every reader shares are emitted once, in `cpp/delimited/delimited/`: the line scanner
+(`Scanner.hpp`), the values a row holds (`Values.hpp`) and the calendar (`Day.hpp`). A reader
+includes them as `../delimited/`, which resolves with `cpp/delimited/delimited` on the include path,
+as `checks/` compiles each reader. Nothing here needs Arrow: a Parquet program is the formats
+repository's.
+
+`executables/rows/` holds a program per protocol reading a file of its lines, gzip or plain, through
+its reader, printing the first rows and counting the rest. It reads gzip through zlib, so the build
+makes it where zlib is found.
+
+```sh
+./build/rows_<protocol> lines.csv.gz [--rows count] [--day yyyymmdd]
+```
+
 ## Tests
 
-`tests/` holds a test per protocol and format (162 of them), each written against the
+`tests/` holds a test per protocol and format (167 of them), each written against the
 surface that format's program uses, plus one run of each program on its protocol's first
 declared capture (130 of them):
 
-- `tests/modern/` walks every payload with the Modern iterator and requires the declared
+- `tests/binary/modern/` walks every payload with the Modern iterator and requires the declared
   message — what extractor reads through
-- `tests/advanced/` walks every segment with the session layer's `process_segment` and
+- `tests/binary/advanced/` walks every segment with the session layer's `process_segment` and
   requires the declared message to be dispatched — what statistics reads through
-- `tests/classes/` decodes every datagram into the `Packet`, requires the declared message
+- `tests/binary/classes/` decodes every datagram into the `Packet`, requires the declared message
   through the `Visitor`, and requires each datagram to encode back to its own bytes — what
   dump reads through
 - the program runs require dump to print the message's class, statistics to count it,
@@ -112,7 +142,7 @@ and tests that read through it:
 
 ## Consolidators
 
-> [Cqs][Cqs.Consolidator] · [Cts][Cts.Consolidator] · [Opra][Opra.Consolidator]
+> [Cqs][Cqs.Consolidator] · [Cts][Cts.Consolidator] · [NyseConsolidated][NyseConsolidated.Consolidator] · [Opra][Opra.Consolidator]
 
 [Asx.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Asx "Australian Securities Exchange"
 [B3.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/B3 "Brasil, Bolsa, Balcão"
@@ -145,6 +175,7 @@ and tests that read through it:
 [NomOptions.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nasdaq/Protocols/NomOptions "Nasdaq Options Market"
 [NordicEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nasdaq/Protocols/NordicEquities "Nasdaq Nordic Equities"
 [NsmEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nasdaq/Protocols/NsmEquities "Nasdaq Stock Market"
+[NyseConsolidated.Consolidator]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nyse/Protocols/NyseConsolidated "NYSE Consolidated"
 [NyseEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nyse/Protocols/NyseEquities "New York Stock Exchange Equities"
 [Opra.Consolidator]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Siac/Protocols/Opra "Options Price Reporting Authority"
 [OseDerivatives.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Jpx/Protocols/OseDerivatives "Osaka Securities Exchange"

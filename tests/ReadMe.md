@@ -1,23 +1,23 @@
 # Protocol Tests
 
-One test per protocol and format (162 of them), each written against the surface that
+One test per protocol and format (167 of them), each written against the surface that
 format's program reads through, so a format is exercised the way its consumer uses it rather
 than through whichever surface was easiest to write against. Every test reads the captures
 its protocol declares in the repository's configuration and requires the declared message to
 appear; a capture that parses to nothing, or to messages of every kind but the named one, is
 a failure rather than a pass.
 
-- `modern/` — walks every transport payload with the generated iterator, and requires the
+- `binary/modern/` — walks every transport payload with the generated iterator, and requires the
   declared message among what it yields. The surface the extractor reads through.
-- `advanced/` — hands every segment to the session layer's `process_segment` with a handler
+- `binary/advanced/` — hands every segment to the session layer's `process_segment` with a handler
   whose `on_message` is a template, so every dispatched message is counted and the declared
   one counted on its own. The surface statistics reads through.
-- `classes/` — decodes every datagram into the `Packet`, requires the declared message through
+- `binary/classes/` — decodes every datagram into the `Packet`, requires the declared message through
   the `Visitor`, and requires the packet to encode back to exactly the bytes it was read
   from. The surface dump reads through, and the strictest of the three: a field decoded
   into the wrong member still encodes back wrong.
-- `tmp/`
-- `flyweight/`
+- `binary/tmp/`
+- `binary/flyweight/`
 
 Beside them the repository's `CMakeLists.txt` runs each program on its protocol's first
 declared capture, and requires what that program is for: dump to print the message's class,

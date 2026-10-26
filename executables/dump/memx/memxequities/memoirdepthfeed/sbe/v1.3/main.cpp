@@ -12,7 +12,7 @@
 
 #include "PcapIterator.hpp"
 #include "Frame.hpp"
-#include "cpp/classes/memx/memxequities/memoirdepthfeed/sbe/v1.3/definitions.hpp"
+#include "cpp/binary/classes/memx/memxequities/memoirdepthfeed/sbe/v1.3/definitions.hpp"
 
 namespace protocol = ::memx::memxequities::memoirdepthfeed::sbe::v1_3;
 

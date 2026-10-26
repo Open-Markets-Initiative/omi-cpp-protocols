@@ -6,7 +6,7 @@
 
 #include "Settings.hpp"
 #include "../pcap/Parser.hpp"
-#include "cpp/advanced/siac/opra/output/obi/v6.2/messages/session.hpp"
+#include "cpp/binary/advanced/siac/opra/output/obi/v6.2/messages/session.hpp"
 
 namespace statistics {
 

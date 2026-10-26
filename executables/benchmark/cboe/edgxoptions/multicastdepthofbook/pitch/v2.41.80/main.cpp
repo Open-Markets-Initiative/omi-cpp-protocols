@@ -23,7 +23,7 @@
 
 #include "PcapIterator.hpp"
 #include "Frame.hpp"
-#include "cpp/tmp/cboe/edgxoptions/multicastdepthofbook/pitch/v2.41.80/cboe_edgxoptions_multicastdepthofbook_pitch_v2_41_80.hpp"
+#include "cpp/binary/tmp/cboe/edgxoptions/multicastdepthofbook/pitch/v2.41.80/cboe_edgxoptions_multicastdepthofbook_pitch_v2_41_80.hpp"
 
 // Cboe EdgxOptions MulticastDepthOfBook Pitch 2.41.80: the reading of its packets, through its Template Meta Programming header
 namespace cboe::edgxoptions::multicastdepthofbook::pitch::v2_41_80 {

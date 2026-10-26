@@ -18,7 +18,7 @@
 #include "PcapIterator.hpp"
 #include "Frame.hpp"
 #include "TcpReassembler.hpp"
-#include "cpp/classes/cme/globex/mdp3/sbe/v1.9/definitions.hpp"
+#include "cpp/binary/classes/cme/globex/mdp3/sbe/v1.9/definitions.hpp"
 
 namespace protocol = ::cme::globex::mdp3::sbe::v1_9;
 // the wire the Classes expressions this program states its sizes in read through

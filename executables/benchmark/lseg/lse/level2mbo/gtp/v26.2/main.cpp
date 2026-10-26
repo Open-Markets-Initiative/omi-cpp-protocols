@@ -23,7 +23,7 @@
 
 #include "PcapIterator.hpp"
 #include "Frame.hpp"
-#include "cpp/tmp/lseg/lse/level2mbo/gtp/v26.2/lseg_lse_level2mbo_gtp_v26_2.hpp"
+#include "cpp/binary/tmp/lseg/lse/level2mbo/gtp/v26.2/lseg_lse_level2mbo_gtp_v26_2.hpp"
 
 // Lseg Lse Level2Mbo Gtp 26.2: the reading of its packets, through its Template Meta Programming header
 namespace lseg::lse::level2mbo::gtp::v26_2 {

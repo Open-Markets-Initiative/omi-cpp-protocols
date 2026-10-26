@@ -23,7 +23,7 @@
 
 #include "PcapIterator.hpp"
 #include "Frame.hpp"
-#include "cpp/tmp/lseg/millennium/level2/mitch/v11.9/lseg_millennium_level2_mitch_v11_9.hpp"
+#include "cpp/binary/tmp/lseg/millennium/level2/mitch/v11.9/lseg_millennium_level2_mitch_v11_9.hpp"
 
 // Lseg Millennium Level2 Mitch 11.9: the reading of its packets, through its Template Meta Programming header
 namespace lseg::millennium::level2::mitch::v11_9 {

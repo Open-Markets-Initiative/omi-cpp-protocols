@@ -6,7 +6,7 @@
 
 #include "Settings.hpp"
 #include "../pcap/Parser.hpp"
-#include "cpp/advanced/b3/b3derivatives/binaryumdf/sbe/v2.3/messages/session.hpp"
+#include "cpp/binary/advanced/b3/b3derivatives/binaryumdf/sbe/v2.3/messages/session.hpp"
 
 namespace statistics {
 

@@ -15,7 +15,7 @@
 
 #include "PcapIterator.hpp"
 #include "Frame.hpp"
-#include "cpp/classes/siac/cts/output/cta/v2.11.b/definitions.hpp"
+#include "cpp/binary/classes/siac/cts/output/cta/v2.11.b/definitions.hpp"
 
 namespace protocol = ::siac::cts::output::cta::v2_11_b;
 // the wire the Classes expressions this program states its sizes in read through

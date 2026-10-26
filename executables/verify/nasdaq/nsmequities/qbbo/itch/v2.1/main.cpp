@@ -15,7 +15,7 @@
 
 #include "PcapIterator.hpp"
 #include "Frame.hpp"
-#include "cpp/classes/nasdaq/nsmequities/qbbo/itch/v2.1/definitions.hpp"
+#include "cpp/binary/classes/nasdaq/nsmequities/qbbo/itch/v2.1/definitions.hpp"
 
 namespace protocol = ::nasdaq::nsmequities::qbbo::itch::v2_1;
 // the wire the Classes expressions this program states its sizes in read through
