@@ -8,7 +8,7 @@ std::string_view to_string(SaleCondition1 value) {
         case SaleCondition1::AveragePriceTrade: return "Average Price Trade";
         case SaleCondition1::CashTradeSameDayClearing: return "Cash Trade Same Day Clearing";
         case SaleCondition1::AutomaticExecution: return "Automatic Execution";
-        case SaleCondition1::IntermarketSweepOrder: return "Intermarket Sweep Order";
+        case SaleCondition1::InterMarketSweepOrder: return "Inter Market Sweep Order";
         case SaleCondition1::PriceVariationTrade: return "Price Variation Trade";
         case SaleCondition1::OddLotTrade: return "Odd Lot Trade";
         case SaleCondition1::Rule127NyseOnlyOrRule155NyseAmericanOnly: return "Rule 127 Nyse Only Or Rule 155 Nyse American Only";

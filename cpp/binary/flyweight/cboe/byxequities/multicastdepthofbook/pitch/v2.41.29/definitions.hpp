@@ -1,0 +1,33 @@
+#pragma once
+
+// Every flyweight view and reader of Cboe.ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29.
+
+#include "structs/PacketHeader.hpp"
+#include "structs/MessageHeader.hpp"
+#include "messages/TimeMessage.hpp"
+#include "messages/UnitClearMessage.hpp"
+#include "bitfields/AddOrderFlags.hpp"
+#include "messages/AddOrderLongMessage.hpp"
+#include "messages/AddOrderShortMessage.hpp"
+#include "messages/AddOrderExpandedMessage.hpp"
+#include "messages/OrderExecutedMessage.hpp"
+#include "messages/OrderExecutedAtPriceSizeMessage.hpp"
+#include "messages/ReduceSizeLongMessage.hpp"
+#include "messages/ReduceSizeShortMessage.hpp"
+#include "bitfields/ModifyOrderFlags.hpp"
+#include "messages/ModifyOrderLongMessage.hpp"
+#include "messages/ModifyOrderShortMessage.hpp"
+#include "messages/DeleteOrderMessage.hpp"
+#include "messages/TradeLongMessage.hpp"
+#include "messages/TradeShortMessage.hpp"
+#include "messages/TradeExpandedMessage.hpp"
+#include "messages/TradeBreakMessage.hpp"
+#include "messages/EndOfSession.hpp"
+#include "messages/TradingStatusMessage.hpp"
+#include "messages/AuctionUpdateMessage.hpp"
+#include "messages/AuctionSummaryMessage.hpp"
+#include "messages/RetailPriceImprovementMessage.hpp"
+#include "structs/Packet.hpp"
+#include "structs/Frame.hpp"
+
+#include "PacketReader.hpp"

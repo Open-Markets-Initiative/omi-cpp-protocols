@@ -1,0 +1,15 @@
+# Miax.OnyxFutures.TopOfMarket.Mach.v1.0.b BestBidAndOfferMessage: canonical values, read by the model
+datagram 0
+packet.machmessage[0].machpacketheader.sequencenumber = 864
+packet.machmessage[0].machpacketheader.packetlength = 49
+packet.machmessage[0].machpacketheader.packettype = 3
+packet.machmessage[0].machpacketheader.sessionnumber = 1
+packet.machmessage[0].payload = packet.machmessage.payload.applicationmessage
+packet.machmessage[0].payload.applicationmessage.messagetype = 15
+packet.machmessage[0].payload.applicationmessage.data = packet.machmessage.payload.applicationmessage.data.bestbidandoffermessage
+packet.machmessage[0].payload.applicationmessage.data.bestbidandoffermessage.timestamp = 1751046360476514106
+packet.machmessage[0].payload.applicationmessage.data.bestbidandoffermessage.instrumentid = 33554460
+packet.machmessage[0].payload.applicationmessage.data.bestbidandoffermessage.mbbprice = 2.5
+packet.machmessage[0].payload.applicationmessage.data.bestbidandoffermessage.mbbsize = 200
+packet.machmessage[0].payload.applicationmessage.data.bestbidandoffermessage.mboprice = 5.9475
+packet.machmessage[0].payload.applicationmessage.data.bestbidandoffermessage.mbosize = 1

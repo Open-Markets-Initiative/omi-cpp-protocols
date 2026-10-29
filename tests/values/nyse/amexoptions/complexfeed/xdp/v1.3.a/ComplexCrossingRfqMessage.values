@@ -1,0 +1,23 @@
+# Nyse.AmexOptions.ComplexFeed.Xdp.v1.3.a ComplexCrossingRfqMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.packetsize = 52
+packet.packetheader.deliveryflag = 11
+packet.packetheader.messagecount = 2
+packet.packetheader.sequencenumber = 201005
+packet.packetheader.sendtime.seconds = 1676559600
+packet.packetheader.sendtime.nanoseconds = 816627000
+packet.packetheader.sendtime = 1676559600816627000
+packet.message[0].messageheader.messagesize = 8
+packet.message[0].messageheader.messagetype = 455
+packet.message[0].payload = packet.message.payload.streamidmessage
+packet.message[0].payload.streamidmessage.streamid = 51
+packet.message[1].messageheader.messagesize = 28
+packet.message[1].messageheader.messagetype = 429
+packet.message[1].payload = packet.message.payload.complexcrossingrfqmessage
+packet.message[1].payload.complexcrossingrfqmessage.sourcetime = 1676559600
+packet.message[1].payload.complexcrossingrfqmessage.sourcens = 816614000
+packet.message[1].payload.complexcrossingrfqmessage.complexindex = 261333538
+packet.message[1].payload.complexcrossingrfqmessage.symbolseqnum = 209
+packet.message[1].payload.complexcrossingrfqmessage.side = S
+packet.message[1].payload.complexcrossingrfqmessage.volume2 = 1
+packet.message[1].payload.complexcrossingrfqmessage.price = 999999999

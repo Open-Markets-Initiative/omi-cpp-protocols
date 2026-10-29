@@ -1,0 +1,166 @@
+#include "MarketWideCircuitBreakerDeclineLevelStatusMessage.hpp"
+
+#include "../common/Print.hpp"
+#include "../common/Wire.hpp"
+#include "../Visitor.hpp"
+
+namespace siac::cts::output::cta::v2_10 {
+
+MarketWideCircuitBreakerDeclineLevelStatusMessage::MarketWideCircuitBreakerDeclineLevelStatusMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, Decimal mwcb_level_1, Decimal mwcb_level_2, Decimal mwcb_level_3, std::uint8_t reserved)
+  : participant_id_(participant_id), timestamp_1_(timestamp_1), message_id_(message_id), transaction_id_(transaction_id), participant_reference_number_(participant_reference_number), mwcb_level_1_(mwcb_level_1), mwcb_level_2_(mwcb_level_2), mwcb_level_3_(mwcb_level_3), reserved_(reserved) {}
+
+ParticipantId MarketWideCircuitBreakerDeclineLevelStatusMessage::participant_id() const { return participant_id_; }
+void MarketWideCircuitBreakerDeclineLevelStatusMessage::set_participant_id(ParticipantId value) { participant_id_ = value; }
+
+const Timestamp1& MarketWideCircuitBreakerDeclineLevelStatusMessage::timestamp_1() const { return timestamp_1_; }
+Timestamp1& MarketWideCircuitBreakerDeclineLevelStatusMessage::timestamp_1() { return timestamp_1_; }
+void MarketWideCircuitBreakerDeclineLevelStatusMessage::set_timestamp_1(const Timestamp1& value) { timestamp_1_ = value; }
+
+std::uint8_t MarketWideCircuitBreakerDeclineLevelStatusMessage::message_id() const { return message_id_; }
+void MarketWideCircuitBreakerDeclineLevelStatusMessage::set_message_id(std::uint8_t value) { message_id_ = value; }
+
+std::uint32_t MarketWideCircuitBreakerDeclineLevelStatusMessage::transaction_id() const { return transaction_id_; }
+void MarketWideCircuitBreakerDeclineLevelStatusMessage::set_transaction_id(std::uint32_t value) { transaction_id_ = value; }
+
+std::int64_t MarketWideCircuitBreakerDeclineLevelStatusMessage::participant_reference_number() const { return participant_reference_number_; }
+void MarketWideCircuitBreakerDeclineLevelStatusMessage::set_participant_reference_number(std::int64_t value) { participant_reference_number_ = value; }
+
+Decimal MarketWideCircuitBreakerDeclineLevelStatusMessage::mwcb_level_1() const { return mwcb_level_1_; }
+void MarketWideCircuitBreakerDeclineLevelStatusMessage::set_mwcb_level_1(Decimal value) { mwcb_level_1_ = value; }
+
+Decimal MarketWideCircuitBreakerDeclineLevelStatusMessage::mwcb_level_2() const { return mwcb_level_2_; }
+void MarketWideCircuitBreakerDeclineLevelStatusMessage::set_mwcb_level_2(Decimal value) { mwcb_level_2_ = value; }
+
+Decimal MarketWideCircuitBreakerDeclineLevelStatusMessage::mwcb_level_3() const { return mwcb_level_3_; }
+void MarketWideCircuitBreakerDeclineLevelStatusMessage::set_mwcb_level_3(Decimal value) { mwcb_level_3_ = value; }
+
+std::uint8_t MarketWideCircuitBreakerDeclineLevelStatusMessage::reserved() const { return reserved_; }
+void MarketWideCircuitBreakerDeclineLevelStatusMessage::set_reserved(std::uint8_t value) { reserved_ = value; }
+
+MarketStatusMessagePayloadCode MarketWideCircuitBreakerDeclineLevelStatusMessage::type() const { return message_type; }
+
+std::string_view MarketWideCircuitBreakerDeclineLevelStatusMessage::name() const { return "Market Wide Circuit Breaker Decline Level Status Message"; }
+
+std::size_t MarketWideCircuitBreakerDeclineLevelStatusMessage::decode(const std::byte* data, std::size_t length) {
+    std::size_t offset = 0;
+    wire::require("MarketWideCircuitBreakerDeclineLevelStatusMessage", wire_size, length);
+
+    participant_id_ = static_cast<ParticipantId>(wire::read_char(data + offset));
+    offset += 1;
+
+    offset += timestamp_1_.decode(data + offset, length - offset);
+
+    message_id_ = wire::read_u8(data + offset);
+    offset += 1;
+
+    transaction_id_ = wire::read_u32_be(data + offset);
+    offset += 4;
+
+    participant_reference_number_ = wire::read_i64_be(data + offset);
+    offset += 8;
+
+    mwcb_level_1_ = Decimal(static_cast<std::int64_t>(wire::read_i64_be(data + offset)), -6);
+    offset += 8;
+
+    mwcb_level_2_ = Decimal(static_cast<std::int64_t>(wire::read_i64_be(data + offset)), -6);
+    offset += 8;
+
+    mwcb_level_3_ = Decimal(static_cast<std::int64_t>(wire::read_i64_be(data + offset)), -6);
+    offset += 8;
+
+    reserved_ = wire::read_u8(data + offset);
+    offset += 1;
+
+    return offset;
+}
+
+std::size_t MarketWideCircuitBreakerDeclineLevelStatusMessage::encode(std::byte* data, std::size_t capacity) const {
+    std::size_t offset = 0;
+    wire::require_capacity("MarketWideCircuitBreakerDeclineLevelStatusMessage", wire_size, capacity);
+
+    wire::write_char(data + offset, static_cast<char>(participant_id_));
+    offset += 1;
+
+    offset += timestamp_1_.encode(data + offset, capacity - offset);
+
+    wire::write_u8(data + offset, static_cast<std::uint8_t>(message_id_));
+    offset += 1;
+
+    wire::write_u32_be(data + offset, static_cast<std::uint32_t>(transaction_id_));
+    offset += 4;
+
+    wire::write_i64_be(data + offset, static_cast<std::int64_t>(participant_reference_number_));
+    offset += 8;
+
+    wire::write_i64_be(data + offset, static_cast<std::int64_t>(mwcb_level_1_.mantissa()));
+    offset += 8;
+
+    wire::write_i64_be(data + offset, static_cast<std::int64_t>(mwcb_level_2_.mantissa()));
+    offset += 8;
+
+    wire::write_i64_be(data + offset, static_cast<std::int64_t>(mwcb_level_3_.mantissa()));
+    offset += 8;
+
+    wire::write_u8(data + offset, static_cast<std::uint8_t>(reserved_));
+    offset += 1;
+
+    return offset;
+}
+
+std::size_t MarketWideCircuitBreakerDeclineLevelStatusMessage::encoded_size() const {
+    return wire_size;
+}
+
+void MarketWideCircuitBreakerDeclineLevelStatusMessage::accept(MarketStatusMessagePayloadVisitor& visitor) const {
+    visitor.visit(*this);
+}
+
+std::unique_ptr<MarketStatusMessagePayload> MarketWideCircuitBreakerDeclineLevelStatusMessage::clone() const {
+    return std::make_unique<MarketWideCircuitBreakerDeclineLevelStatusMessage>(*this);
+}
+
+void MarketWideCircuitBreakerDeclineLevelStatusMessage::print(std::ostream& out) const {
+    out << "MarketWideCircuitBreakerDeclineLevelStatusMessage{";
+    out << "participant_id=";
+    out << participant_id_;
+    out << ", timestamp_1=";
+    timestamp_1_.print(out);
+    out << ", message_id=";
+    out << static_cast<int>(message_id_);
+    out << ", transaction_id=";
+    out << transaction_id_;
+    out << ", participant_reference_number=";
+    out << participant_reference_number_;
+    out << ", mwcb_level_1=";
+    out << mwcb_level_1_;
+    out << ", mwcb_level_2=";
+    out << mwcb_level_2_;
+    out << ", mwcb_level_3=";
+    out << mwcb_level_3_;
+    out << ", reserved=";
+    out << static_cast<int>(reserved_);
+    out << '}';
+}
+
+bool MarketWideCircuitBreakerDeclineLevelStatusMessage::equals(const MarketStatusMessagePayload& other) const {
+    const auto* that = dynamic_cast<const MarketWideCircuitBreakerDeclineLevelStatusMessage*>(&other);
+    return that != nullptr && *this == *that;
+}
+
+bool MarketWideCircuitBreakerDeclineLevelStatusMessage::operator==(const MarketWideCircuitBreakerDeclineLevelStatusMessage& other) const {
+    return participant_id_ == other.participant_id_
+        && timestamp_1_ == other.timestamp_1_
+        && message_id_ == other.message_id_
+        && transaction_id_ == other.transaction_id_
+        && participant_reference_number_ == other.participant_reference_number_
+        && mwcb_level_1_ == other.mwcb_level_1_
+        && mwcb_level_2_ == other.mwcb_level_2_
+        && mwcb_level_3_ == other.mwcb_level_3_
+        && reserved_ == other.reserved_;
+}
+
+bool MarketWideCircuitBreakerDeclineLevelStatusMessage::operator!=(const MarketWideCircuitBreakerDeclineLevelStatusMessage& other) const {
+    return !(*this == other);
+}
+
+} // namespace siac::cts::output::cta::v2_10

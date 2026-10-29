@@ -1,0 +1,35 @@
+#pragma once
+
+#include "common/Day.hpp"
+#include "common/Decimal.hpp"
+#include "common/Errors.hpp"
+#include "common/Print.hpp"
+#include "common/Wire.hpp"
+
+#include "enums/CurrentTradingState.hpp"
+#include "enums/EventCode.hpp"
+#include "enums/MessageType.hpp"
+#include "enums/OpenState.hpp"
+#include "enums/OptionType.hpp"
+#include "enums/QuoteCondition.hpp"
+#include "enums/Side.hpp"
+#include "enums/StrategyType.hpp"
+
+#include "groups/LegInformation.hpp"
+#include "structs/MessageHeader.hpp"
+#include "structs/PacketHeader.hpp"
+
+#include "messages/ComplexStrategyDirectoryMessage.hpp"
+#include "messages/ComplexStrategyTickerMessage.hpp"
+#include "messages/Message.hpp"
+#include "messages/StrategyBestAskUpdate.hpp"
+#include "messages/StrategyBestBidAndAskUpdate.hpp"
+#include "messages/StrategyBestBidUpdate.hpp"
+#include "messages/StrategyOpenClosedMessage.hpp"
+#include "messages/StrategyTradingActionMessage.hpp"
+#include "messages/SystemEventMessage.hpp"
+#include "messages/UnknownMessage.hpp"
+
+#include "Factory.hpp"
+#include "Packet.hpp"
+#include "Visitor.hpp"

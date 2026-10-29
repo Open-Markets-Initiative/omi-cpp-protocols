@@ -1,0 +1,18 @@
+# CixAts.CixAspen.MarketDataFeed.Aspen.v1.4 NewOrderAddMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.marketdayidentifier = 20676
+packet.packetheader.feedidentifier = W
+packet.packetheader.sequence = 8326
+packet.packetheader.count = 1
+packet.message[0].messageheader.length = 51
+packet.message[0].messageheader.messagetype = D
+packet.message[0].payload = packet.message.payload.neworderaddmessage
+packet.message[0].payload.neworderaddmessage.timestamp = 1786455806886248844
+packet.message[0].payload.neworderaddmessage.symbolid = 6348
+packet.message[0].payload.neworderaddmessage.orderid = 59672753787206139
+packet.message[0].payload.neworderaddmessage.side = B
+packet.message[0].payload.neworderaddmessage.quantity = 10000
+packet.message[0].payload.neworderaddmessage.symbol = BMO
+packet.message[0].payload.neworderaddmessage.price = 229.55
+packet.message[0].payload.neworderaddmessage.broker = 022
+packet.message[0].payload.neworderaddmessage.reserved1 = 

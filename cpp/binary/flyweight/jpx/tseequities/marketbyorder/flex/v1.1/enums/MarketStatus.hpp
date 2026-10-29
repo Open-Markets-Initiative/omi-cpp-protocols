@@ -13,7 +13,7 @@ enum class MarketStatus : std::uint8_t {
     EndOfMorningSession = 19,                 // End Of Morning Session
     AfternoonSessionOrderAcceptanceTime = 21, // Afternoon Session Order Acceptance Time
     AfternoonSessionTradingHours = 22,        // Afternoon Session Trading Hours
-    AfternoonSessionPreclosing = 23,          // Afternoon Session Preclosing
+    AfternoonSessionPreClosing = 23,          // Afternoon Session Pre Closing
     EndOfAfternoonSession = 29,               // End Of Afternoon Session
 };
 

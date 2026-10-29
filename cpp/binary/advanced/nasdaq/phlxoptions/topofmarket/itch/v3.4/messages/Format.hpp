@@ -112,7 +112,7 @@ inline std::ostream& operator<<(std::ostream& os, const system_event_message& ms
     os << "nanoseconds=" << msg.fields.nanoseconds.get().value()
        << ",event_code=\"" << itch_topofmarket::event_code::to_string(msg.fields.event_code.get().value()) << '"'
        << ",version=" << static_cast<unsigned>(msg.fields.version.get().value())
-       << ",subversion=" << static_cast<unsigned>(msg.fields.subversion.get().value())
+       << ",sub_version=" << static_cast<unsigned>(msg.fields.sub_version.get().value())
        ;
     return os;
 }

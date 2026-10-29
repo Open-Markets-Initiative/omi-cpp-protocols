@@ -1,0 +1,21 @@
+# Cboe.C1Options.Complex.Pitch.v2.1.18 ComplexInstrumentDefinitionExpandedMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.length = 59
+packet.packetheader.messagecount = 1
+packet.packetheader.unit = 33
+packet.packetheader.sequence = 0
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 51
+packet.messages.message[0].messageheader.messagetype = 154
+packet.messages.message[0].payload = packet.messages.message.payload.complexinstrumentdefinitionexpandedmessage
+packet.messages.message[0].payload.complexinstrumentdefinitionexpandedmessage.timeoffset = 0
+packet.messages.message[0].payload.complexinstrumentdefinitionexpandedmessage.complexinstrumentid = T01uVj
+packet.messages.message[0].payload.complexinstrumentdefinitionexpandedmessage.complexinstrumentunderlying = SPX
+packet.messages.message[0].payload.complexinstrumentdefinitionexpandedmessage.complexinstrumenttype = O
+packet.messages.message[0].payload.complexinstrumentdefinitionexpandedmessage.legcount = 2
+packet.messages.message[0].payload.complexinstrumentdefinitionexpandedmessage.complexinstrumentleg[0].legsymbol = 021FXz
+packet.messages.message[0].payload.complexinstrumentdefinitionexpandedmessage.complexinstrumentleg[0].legratio = 1
+packet.messages.message[0].payload.complexinstrumentdefinitionexpandedmessage.complexinstrumentleg[0].legsecuritytype = O
+packet.messages.message[0].payload.complexinstrumentdefinitionexpandedmessage.complexinstrumentleg[1].legsymbol = 021FXv
+packet.messages.message[0].payload.complexinstrumentdefinitionexpandedmessage.complexinstrumentleg[1].legratio = -1
+packet.messages.message[0].payload.complexinstrumentdefinitionexpandedmessage.complexinstrumentleg[1].legsecuritytype = O

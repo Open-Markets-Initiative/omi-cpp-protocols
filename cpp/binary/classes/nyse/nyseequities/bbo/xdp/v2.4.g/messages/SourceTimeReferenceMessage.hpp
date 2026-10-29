@@ -1,0 +1,60 @@
+#pragma once
+
+#include <cstddef>
+#include <cstdint>
+#include <memory>
+#include <ostream>
+#include <string_view>
+
+#include "../messages/Message.hpp"
+
+namespace nyse::nyseequities::bbo::xdp::v2_4_g {
+
+class Visitor;
+
+// This message is sent at the start of every second during periods of active data publication.
+class SourceTimeReferenceMessage : public Message {
+  public:
+    // The code that selects this message
+    static constexpr MessageCode message_type = MessageType::SourceTimeReferenceMessage;
+    // Bytes of this message on the wire
+    static constexpr std::size_t wire_size = 12;
+
+    SourceTimeReferenceMessage() = default;
+    SourceTimeReferenceMessage(std::uint32_t id, std::uint32_t symbol_seq_num, std::uint32_t source_time);
+
+    // Id: ID of the originating Matching Engine partition to which this message applies.
+    std::uint32_t id() const;
+    void set_id(std::uint32_t value);
+
+    // Symbol Seq Num: Reserved for future use. Ignore any content. This usage will become
+    // standard across all products in future releases.
+    std::uint32_t symbol_seq_num() const;
+    void set_symbol_seq_num(std::uint32_t value);
+
+    // Source Time: The time when this msg was generated in the order book, in seconds since
+    // Jan 1, 1970 00:00:00 UTC.
+    std::uint32_t source_time() const;
+    void set_source_time(std::uint32_t value);
+
+    // Message
+    MessageCode type() const override;
+    std::string_view name() const override;
+    std::size_t decode(const std::byte* data, std::size_t length) override;
+    std::size_t encode(std::byte* data, std::size_t capacity) const override;
+    std::size_t encoded_size() const override;
+    void accept(Visitor& visitor) const override;
+    std::unique_ptr<Message> clone() const override;
+    void print(std::ostream& out) const override;
+    bool equals(const Message& other) const override;
+
+    bool operator==(const SourceTimeReferenceMessage& other) const;
+    bool operator!=(const SourceTimeReferenceMessage& other) const;
+
+  private:
+    std::uint32_t id_{};
+    std::uint32_t symbol_seq_num_{};
+    std::uint32_t source_time_{};
+};
+
+} // namespace nyse::nyseequities::bbo::xdp::v2_4_g

@@ -1,0 +1,15 @@
+# Nasdaq.NsmEquities.TotalView.Itch.v4.0 StockDirectoryMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = S032409v4.
+packet.packetheader.sequencenumber = 1
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 18
+packet.messages.message[0].messageheader.messagetype = R
+packet.messages.message[0].payload = packet.messages.message.payload.stockdirectorymessage
+packet.messages.message[0].payload.stockdirectorymessage.nanoseconds = 470000000
+packet.messages.message[0].payload.stockdirectorymessage.stock = A
+packet.messages.message[0].payload.stockdirectorymessage.marketcategory = T
+packet.messages.message[0].payload.stockdirectorymessage.financialstatusindicator = 
+packet.messages.message[0].payload.stockdirectorymessage.roundlotsize = 100
+packet.messages.message[0].payload.stockdirectorymessage.roundlotsonly = N

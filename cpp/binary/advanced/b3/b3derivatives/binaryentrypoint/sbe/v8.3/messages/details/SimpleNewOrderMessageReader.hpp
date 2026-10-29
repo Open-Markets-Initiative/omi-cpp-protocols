@@ -1,0 +1,17 @@
+#pragma once
+
+#include "SimpleNewOrderMessageWriter.hpp"
+#include <optional>
+#include <stdexcept>
+#include <string_view>
+
+namespace b3::b3derivatives::binaryentrypoint::sbe::v8_3 {
+
+namespace sbe_binaryentrypoint = ::b3::b3derivatives::binaryentrypoint::sbe::v8_3;
+
+
+inline sbe_var_data read_memo(const simple_new_order_message& msg) {
+    return { msg.tail_begin(), msg.tail_end() };
+}
+
+}

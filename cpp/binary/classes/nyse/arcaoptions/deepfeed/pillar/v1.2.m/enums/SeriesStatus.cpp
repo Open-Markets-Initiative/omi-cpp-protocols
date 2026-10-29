@@ -7,7 +7,7 @@ std::string_view to_string(SeriesStatus value) {
         case SeriesStatus::TradingHalt: return "Trading Halt";
         case SeriesStatus::Resume: return "Resume";
         case SeriesStatus::Suspend: return "Suspend";
-        case SeriesStatus::Preopening: return "Preopening";
+        case SeriesStatus::PreOpening: return "Pre Opening";
         case SeriesStatus::BeginAcceptingOrders: return "Begin Accepting Orders";
         case SeriesStatus::CoreSession: return "Core Session";
         case SeriesStatus::Closed: return "Closed";

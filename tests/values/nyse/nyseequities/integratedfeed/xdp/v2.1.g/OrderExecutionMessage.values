@@ -1,0 +1,22 @@
+# Nyse.NyseEquities.IntegratedFeed.Xdp.v2.1.g OrderExecutionMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.packetsize = 58
+packet.packetheader.deliveryflag = 11
+packet.packetheader.messagecount = 1
+packet.packetheader.sequencenumber = 87479
+packet.packetheader.sendtime.seconds = 1506694840
+packet.packetheader.sendtime.nanoseconds = 586519167
+packet.packetheader.sendtime = 1506694840586519167
+packet.message[0].messageheader.messagesize = 42
+packet.message[0].messageheader.messagetype = 103
+packet.message[0].payload = packet.message.payload.orderexecutionmessage
+packet.message[0].payload.orderexecutionmessage.sourcetimens = 654601000
+packet.message[0].payload.orderexecutionmessage.symbolindex = 10454
+packet.message[0].payload.orderexecutionmessage.symbolseqnum = 115
+packet.message[0].payload.orderexecutionmessage.orderid = 69740
+packet.message[0].payload.orderexecutionmessage.tradeid = 2
+packet.message[0].payload.orderexecutionmessage.price = 285300
+packet.message[0].payload.orderexecutionmessage.volume = 16
+packet.message[0].payload.orderexecutionmessage.printableflag = 0
+packet.message[0].payload.orderexecutionmessage.numparitysplits = 0
+packet.message[0].payload.orderexecutionmessage.dbexecid = 1

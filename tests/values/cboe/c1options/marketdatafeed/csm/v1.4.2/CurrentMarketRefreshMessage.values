@@ -1,0 +1,28 @@
+# Cboe.C1Options.MarketDataFeed.Csm.v1.4.2 CurrentMarketRefreshMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.version = 1
+packet.packetheader.packetlength = 61
+packet.packetheader.sendingtime = 1545339142667
+packet.packetheader.messagecount = 1
+packet.packetheader.firstmsgseqnum = 35792412
+packet.message[0].messageheader.messagelength = 45
+packet.message[0].messageheader.templateid = 11
+packet.message[0].messageheader.messagetype = W
+packet.message[0].messageheader.msgseqnum = 35792412
+packet.message[0].payload = packet.message.payload.currentmarketrefreshmessage
+packet.message[0].payload.currentmarketrefreshmessage.classkey = 70582274
+packet.message[0].payload.currentmarketrefreshmessage.securityid = 226860256
+packet.message[0].payload.currentmarketrefreshmessage.securitytradingstatus = 25
+packet.message[0].payload.currentmarketrefreshmessage.pricetype = 3
+packet.message[0].payload.currentmarketrefreshmessage.applseqnum = 1419
+packet.message[0].payload.currentmarketrefreshmessage.noentries = 2
+packet.message[0].payload.currentmarketrefreshmessage.mdentry[0].mdentrytype = 0
+packet.message[0].payload.currentmarketrefreshmessage.mdentry[0].mdentrypx.mdentrypxexponent = -2
+packet.message[0].payload.currentmarketrefreshmessage.mdentry[0].mdentrypx.mdentrypxmantissa = -5
+packet.message[0].payload.currentmarketrefreshmessage.mdentry[0].mdentrysize = 275
+packet.message[0].payload.currentmarketrefreshmessage.mdentry[0].mdvolumetype = 0
+packet.message[0].payload.currentmarketrefreshmessage.mdentry[1].mdentrytype = 0
+packet.message[0].payload.currentmarketrefreshmessage.mdentry[1].mdentrypx.mdentrypxexponent = -2
+packet.message[0].payload.currentmarketrefreshmessage.mdentry[1].mdentrypx.mdentrypxmantissa = -5
+packet.message[0].payload.currentmarketrefreshmessage.mdentry[1].mdentrysize = 75
+packet.message[0].payload.currentmarketrefreshmessage.mdentry[1].mdvolumetype = 1

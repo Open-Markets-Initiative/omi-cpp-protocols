@@ -6,8 +6,8 @@
 
 namespace nasdaq::nsmequities::qbbo::itch::v2_1 {
 
-StockDirectoryMessage::StockDirectoryMessage(std::uint16_t tracking_number, std::chrono::nanoseconds time_stamp, const std::string& stock, MarketCategory market_category, FinancialStatusIndicator financial_status_indicator, std::uint32_t round_lot_size, RoundLotsOnly round_lots_only, IssueClassification issue_classification, const std::string& issue_subtype, Authenticity authenticity, ShortSaleThresholdIndicator short_sale_threshold_indicator, IpoFlag ipo_flag, LuldReferencePriceTier luld_reference_price_tier, EtpFlag etp_flag, std::uint32_t etp_leverage_factor, InverseIndicator inverse_indicator)
-  : tracking_number_(tracking_number), time_stamp_(time_stamp), stock_(stock), market_category_(market_category), financial_status_indicator_(financial_status_indicator), round_lot_size_(round_lot_size), round_lots_only_(round_lots_only), issue_classification_(issue_classification), issue_subtype_(issue_subtype), authenticity_(authenticity), short_sale_threshold_indicator_(short_sale_threshold_indicator), ipo_flag_(ipo_flag), luld_reference_price_tier_(luld_reference_price_tier), etp_flag_(etp_flag), etp_leverage_factor_(etp_leverage_factor), inverse_indicator_(inverse_indicator) {}
+StockDirectoryMessage::StockDirectoryMessage(std::uint16_t tracking_number, std::chrono::nanoseconds time_stamp, const std::string& stock, MarketCategory market_category, FinancialStatusIndicator financial_status_indicator, std::uint32_t round_lot_size, RoundLotsOnly round_lots_only, IssueClassification issue_classification, const std::string& issue_sub_type, Authenticity authenticity, ShortSaleThresholdIndicator short_sale_threshold_indicator, IpoFlag ipo_flag, LuldReferencePriceTier luld_reference_price_tier, EtpFlag etp_flag, std::uint32_t etp_leverage_factor, InverseIndicator inverse_indicator)
+  : tracking_number_(tracking_number), time_stamp_(time_stamp), stock_(stock), market_category_(market_category), financial_status_indicator_(financial_status_indicator), round_lot_size_(round_lot_size), round_lots_only_(round_lots_only), issue_classification_(issue_classification), issue_sub_type_(issue_sub_type), authenticity_(authenticity), short_sale_threshold_indicator_(short_sale_threshold_indicator), ipo_flag_(ipo_flag), luld_reference_price_tier_(luld_reference_price_tier), etp_flag_(etp_flag), etp_leverage_factor_(etp_leverage_factor), inverse_indicator_(inverse_indicator) {}
 
 std::uint16_t StockDirectoryMessage::tracking_number() const { return tracking_number_; }
 void StockDirectoryMessage::set_tracking_number(std::uint16_t value) { tracking_number_ = value; }
@@ -35,9 +35,9 @@ void StockDirectoryMessage::set_round_lots_only(RoundLotsOnly value) { round_lot
 IssueClassification StockDirectoryMessage::issue_classification() const { return issue_classification_; }
 void StockDirectoryMessage::set_issue_classification(IssueClassification value) { issue_classification_ = value; }
 
-const std::string& StockDirectoryMessage::issue_subtype() const { return issue_subtype_; }
-std::string& StockDirectoryMessage::issue_subtype() { return issue_subtype_; }
-void StockDirectoryMessage::set_issue_subtype(const std::string& value) { issue_subtype_ = value; }
+const std::string& StockDirectoryMessage::issue_sub_type() const { return issue_sub_type_; }
+std::string& StockDirectoryMessage::issue_sub_type() { return issue_sub_type_; }
+void StockDirectoryMessage::set_issue_sub_type(const std::string& value) { issue_sub_type_ = value; }
 
 Authenticity StockDirectoryMessage::authenticity() const { return authenticity_; }
 void StockDirectoryMessage::set_authenticity(Authenticity value) { authenticity_ = value; }
@@ -92,7 +92,7 @@ std::size_t StockDirectoryMessage::decode(const std::byte* data, std::size_t len
     issue_classification_ = static_cast<IssueClassification>(wire::read_char(data + offset));
     offset += 1;
 
-    issue_subtype_ = wire::read_text(data + offset, 2, ' ');
+    issue_sub_type_ = wire::read_text(data + offset, 2, ' ');
     offset += 2;
 
     authenticity_ = static_cast<Authenticity>(wire::read_char(data + offset));
@@ -147,7 +147,7 @@ std::size_t StockDirectoryMessage::encode(std::byte* data, std::size_t capacity)
     wire::write_char(data + offset, static_cast<char>(issue_classification_));
     offset += 1;
 
-    wire::write_text(data + offset, 2, ' ', issue_subtype_);
+    wire::write_text(data + offset, 2, ' ', issue_sub_type_);
     offset += 2;
 
     wire::write_char(data + offset, static_cast<char>(authenticity_));
@@ -204,8 +204,8 @@ void StockDirectoryMessage::print(std::ostream& out) const {
     out << round_lots_only_;
     out << ", issue_classification=";
     out << issue_classification_;
-    out << ", issue_subtype=";
-    print::text(out, issue_subtype_);
+    out << ", issue_sub_type=";
+    print::text(out, issue_sub_type_);
     out << ", authenticity=";
     out << authenticity_;
     out << ", short_sale_threshold_indicator=";
@@ -237,7 +237,7 @@ bool StockDirectoryMessage::operator==(const StockDirectoryMessage& other) const
         && round_lot_size_ == other.round_lot_size_
         && round_lots_only_ == other.round_lots_only_
         && issue_classification_ == other.issue_classification_
-        && issue_subtype_ == other.issue_subtype_
+        && issue_sub_type_ == other.issue_sub_type_
         && authenticity_ == other.authenticity_
         && short_sale_threshold_indicator_ == other.short_sale_threshold_indicator_
         && ipo_flag_ == other.ipo_flag_

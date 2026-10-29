@@ -1,0 +1,30 @@
+# Nyse.AmexOptions.DeepFeed.Xdp.v1.3.a RefreshOutrightMarketDepthSellMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.packetsize = 72
+packet.packetheader.deliveryflag = 3
+packet.packetheader.messagecount = 2
+packet.packetheader.sequencenumber = 7460028
+packet.packetheader.sendtime.seconds = 1676559600
+packet.packetheader.sendtime.nanoseconds = 1167000
+packet.packetheader.sendtime = 1676559600001167000
+packet.message[0].messageheader.messagesize = 8
+packet.message[0].messageheader.messagetype = 455
+packet.message[0].payload = packet.message.payload.streamidmessage
+packet.message[0].payload.streamidmessage.streamid = 82
+packet.message[1].messageheader.messagesize = 48
+packet.message[1].messageheader.messagetype = 505
+packet.message[1].payload = packet.message.payload.refreshoutrightmarketdepthsellmessage
+packet.message[1].payload.refreshoutrightmarketdepthsellmessage.sourcetime = 1676559241
+packet.message[1].payload.refreshoutrightmarketdepthsellmessage.sourcetimens = 951162000
+packet.message[1].payload.refreshoutrightmarketdepthsellmessage.seriesindex = 260427425
+packet.message[1].payload.refreshoutrightmarketdepthsellmessage.symbolseqnum = 18
+packet.message[1].payload.refreshoutrightmarketdepthsellmessage.firstlevelprice = 4500
+packet.message[1].payload.refreshoutrightmarketdepthsellmessage.secondlevelprice = 50000
+packet.message[1].payload.refreshoutrightmarketdepthsellmessage.thirdlevelprice = 0
+packet.message[1].payload.refreshoutrightmarketdepthsellmessage.firstvolume = 35
+packet.message[1].payload.refreshoutrightmarketdepthsellmessage.secondvolume = 3
+packet.message[1].payload.refreshoutrightmarketdepthsellmessage.thirdvolume = 0
+packet.message[1].payload.refreshoutrightmarketdepthsellmessage.quotecondition = 1
+packet.message[1].payload.refreshoutrightmarketdepthsellmessage.firstlevelcustomervolume = 0
+packet.message[1].payload.refreshoutrightmarketdepthsellmessage.secondlevelcustomervolume = 0
+packet.message[1].payload.refreshoutrightmarketdepthsellmessage.thirdlevelcustomervolume = 0

@@ -173,7 +173,7 @@ inline std::ostream& operator<<(std::ostream& os, const future_symbol_directory_
        << ",tradeable_instrument_id=" << msg.fields.tradeable_instrument_id.get().value()
        << ",symbol_name=\"" << text::latin1_to_utf8(msg.fields.symbol_name.get_trimmed().value()) << '"'
        << ",long_name=\"" << text::latin1_to_utf8(msg.fields.long_name.get_trimmed().value()) << '"'
-       << ",isin=\"" << text::latin1_to_utf8(msg.fields.isin.get_trimmed().value()) << '"'
+       << ",isin=\"" << (msg.fields.isin.get_trimmed().has_value() ? text::latin1_to_utf8(msg.fields.isin.get_trimmed().value()) : std::string_view("null")) << '"'
        << ",exchange=\"" << text::latin1_to_utf8(msg.fields.exchange.get_trimmed().value()) << '"'
        << ",instrument=\"" << text::latin1_to_utf8(msg.fields.instrument.get_trimmed().value()) << '"'
        << ",cfi_code=\"" << text::latin1_to_utf8(msg.fields.cfi_code.get_trimmed().value()) << '"'
@@ -201,7 +201,7 @@ inline std::ostream& operator<<(std::ostream& os, const options_symbol_directory
        << ",tradeable_instrument_id=" << msg.fields.tradeable_instrument_id.get().value()
        << ",symbol_name=\"" << text::latin1_to_utf8(msg.fields.symbol_name.get_trimmed().value()) << '"'
        << ",long_name=\"" << text::latin1_to_utf8(msg.fields.long_name.get_trimmed().value()) << '"'
-       << ",isin=\"" << text::latin1_to_utf8(msg.fields.isin.get_trimmed().value()) << '"'
+       << ",isin=\"" << (msg.fields.isin.get_trimmed().has_value() ? text::latin1_to_utf8(msg.fields.isin.get_trimmed().value()) : std::string_view("null")) << '"'
        << ",exchange=\"" << text::latin1_to_utf8(msg.fields.exchange.get_trimmed().value()) << '"'
        << ",instrument=\"" << text::latin1_to_utf8(msg.fields.instrument.get_trimmed().value()) << '"'
        << ",cfi_code=\"" << text::latin1_to_utf8(msg.fields.cfi_code.get_trimmed().value()) << '"'
@@ -226,7 +226,7 @@ inline std::ostream& operator<<(std::ostream& os, const options_symbol_directory
        << ",payments_per_year=" << static_cast<unsigned>(msg.fields.payments_per_year.get().value())
        << ",block_lot_size=" << msg.fields.block_lot_size.get().value()
        << ",expiry_date=" << msg.fields.expiry_date.get().value()
-       << ",basis_of_quotation=\"" << text::latin1_to_utf8(msg.fields.basis_of_quotation.get_trimmed().value()) << '"'
+       << ",basis_of_quotation=\"" << (msg.fields.basis_of_quotation.get_trimmed().has_value() ? text::latin1_to_utf8(msg.fields.basis_of_quotation.get_trimmed().value()) : std::string_view("null")) << '"'
        ;
     return os;
 }

@@ -17,7 +17,7 @@ struct trade_type {
         regular_or_continuous_trade = 0,
         auction_trade_bulk = 1,
         auction_trade_individual = 2,
-        onbook_trade_cancellation = 9,
+        on_book_trade_cancellation = 9,
         trade_correction = 11,
         rfq_trade = 22,
         rfq_trade_cancellation = 23,
@@ -27,7 +27,7 @@ struct trade_type {
     static constexpr std::array<std::pair<std::string_view, enum_type>, 8> from_string_map = {{
         {"Auction Trade Bulk", enum_type::auction_trade_bulk},
         {"Auction Trade Individual", enum_type::auction_trade_individual},
-        {"Onbook Trade Cancellation", enum_type::onbook_trade_cancellation},
+        {"On Book Trade Cancellation", enum_type::on_book_trade_cancellation},
         {"Regular Or Continuous Trade", enum_type::regular_or_continuous_trade},
         {"Rfq Trade", enum_type::rfq_trade},
         {"Rfq Trade Cancellation", enum_type::rfq_trade_cancellation},
@@ -40,7 +40,7 @@ struct trade_type {
             case enum_type::regular_or_continuous_trade: return "Regular Or Continuous Trade";
             case enum_type::auction_trade_bulk: return "Auction Trade Bulk";
             case enum_type::auction_trade_individual: return "Auction Trade Individual";
-            case enum_type::onbook_trade_cancellation: return "Onbook Trade Cancellation";
+            case enum_type::on_book_trade_cancellation: return "On Book Trade Cancellation";
             case enum_type::trade_correction: return "Trade Correction";
             case enum_type::rfq_trade: return "Rfq Trade";
             case enum_type::rfq_trade_cancellation: return "Rfq Trade Cancellation";

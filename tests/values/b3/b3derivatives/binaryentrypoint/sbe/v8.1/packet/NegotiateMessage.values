@@ -1,0 +1,34 @@
+# B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1 NegotiateMessage: canonical values of 'packet', read by the model
+stream 0
+packet.simpleopenframe[0].simpleopenframingheader.messagelength = 152
+packet.simpleopenframe[0].simpleopenframingheader.encodingtype = 60240
+packet.simpleopenframe[0].messageheader.blocklength = 28
+packet.simpleopenframe[0].messageheader.templateid = 1
+packet.simpleopenframe[0].messageheader.schemaid = 1
+packet.simpleopenframe[0].messageheader.version = 3
+packet.simpleopenframe[0].payload = packet.simpleopenframe.payload.negotiatemessage
+packet.simpleopenframe[0].payload.negotiatemessage.sessionid = 100000008
+packet.simpleopenframe[0].payload.negotiatemessage.sessionverid = 1714479416854
+packet.simpleopenframe[0].payload.negotiatemessage.timestamp = 1714479417479000000
+packet.simpleopenframe[0].payload.negotiatemessage.enteringfirm = 45
+packet.simpleopenframe[0].payload.negotiatemessage.onbehalffirm = (null)
+packet.simpleopenframe[0].payload.negotiatemessage.credentials.credentialslength = 85
+packet.simpleopenframe[0].payload.negotiatemessage.credentials.credentialsdata = {
+  "auth_type": "basic",
+  "username": "100000008",
+  "access_key": "/-^9DU9|cKqq"
+}
+packet.simpleopenframe[0].payload.negotiatemessage.credentials = {
+  "auth_type": "basic",
+  "username": "100000008",
+  "access_key": "/-^9DU9|cKqq"
+}
+packet.simpleopenframe[0].payload.negotiatemessage.clientip.clientiplength = 9
+packet.simpleopenframe[0].payload.negotiatemessage.clientip.clientipdata = 127.0.0.1
+packet.simpleopenframe[0].payload.negotiatemessage.clientip = 127.0.0.1
+packet.simpleopenframe[0].payload.negotiatemessage.clientappname.clientappnamelength = 11
+packet.simpleopenframe[0].payload.negotiatemessage.clientappname.clientappnamedata = TonysEngine
+packet.simpleopenframe[0].payload.negotiatemessage.clientappname = TonysEngine
+packet.simpleopenframe[0].payload.negotiatemessage.clientappversion.clientappversionlength = 3
+packet.simpleopenframe[0].payload.negotiatemessage.clientappversion.clientappversiondata = 1.0
+packet.simpleopenframe[0].payload.negotiatemessage.clientappversion = 1.0

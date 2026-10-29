@@ -1,0 +1,35 @@
+# Nasdaq.IseOptions.TopComboQuoteFeed.Itch.v1.0 ComplexStrategyDirectoryMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 000008367I
+packet.packetheader.sequencenumber = 319782
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 83
+packet.messages.message[0].messageheader.messagetype = R
+packet.messages.message[0].payload = packet.messages.message.payload.complexstrategydirectorymessage
+packet.messages.message[0].payload.complexstrategydirectorymessage.timestamp = 50698131848093
+packet.messages.message[0].payload.complexstrategydirectorymessage.strategyid = 2100120
+packet.messages.message[0].payload.complexstrategydirectorymessage.strategytype = V
+packet.messages.message[0].payload.complexstrategydirectorymessage.source = 1
+packet.messages.message[0].payload.complexstrategydirectorymessage.underlyingsymbol = AMZN
+packet.messages.message[0].payload.complexstrategydirectorymessage.numberoflegs = 2
+packet.messages.message[0].payload.complexstrategydirectorymessage.leginformation[0].optionid = 48647
+packet.messages.message[0].payload.complexstrategydirectorymessage.leginformation[0].securitysymbol = AMZN
+packet.messages.message[0].payload.complexstrategydirectorymessage.leginformation[0].legid = 0
+packet.messages.message[0].payload.complexstrategydirectorymessage.leginformation[0].expirationyear = 19
+packet.messages.message[0].payload.complexstrategydirectorymessage.leginformation[0].expirationmonth = 1
+packet.messages.message[0].payload.complexstrategydirectorymessage.leginformation[0].expirationday = 4
+packet.messages.message[0].payload.complexstrategydirectorymessage.leginformation[0].explicitstrikeprice = 1535
+packet.messages.message[0].payload.complexstrategydirectorymessage.leginformation[0].optiontype = C
+packet.messages.message[0].payload.complexstrategydirectorymessage.leginformation[0].side = B
+packet.messages.message[0].payload.complexstrategydirectorymessage.leginformation[0].legratio = 1
+packet.messages.message[0].payload.complexstrategydirectorymessage.leginformation[1].optionid = 48649
+packet.messages.message[0].payload.complexstrategydirectorymessage.leginformation[1].securitysymbol = AMZN
+packet.messages.message[0].payload.complexstrategydirectorymessage.leginformation[1].legid = 1
+packet.messages.message[0].payload.complexstrategydirectorymessage.leginformation[1].expirationyear = 19
+packet.messages.message[0].payload.complexstrategydirectorymessage.leginformation[1].expirationmonth = 1
+packet.messages.message[0].payload.complexstrategydirectorymessage.leginformation[1].expirationday = 4
+packet.messages.message[0].payload.complexstrategydirectorymessage.leginformation[1].explicitstrikeprice = 1537.5
+packet.messages.message[0].payload.complexstrategydirectorymessage.leginformation[1].optiontype = C
+packet.messages.message[0].payload.complexstrategydirectorymessage.leginformation[1].side = S
+packet.messages.message[0].payload.complexstrategydirectorymessage.leginformation[1].legratio = 1

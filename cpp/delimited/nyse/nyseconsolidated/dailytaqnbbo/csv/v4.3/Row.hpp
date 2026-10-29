@@ -45,8 +45,8 @@ struct Nbbo {
     ::scaled::delimited::values::Required<std::string_view> source_of_quote;
     // Best Bid Quote Condition: text; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::string_view> best_bid_quote_condition;
-    // Best_Bid_Exchange: text
-    ::scaled::delimited::values::Required<std::string_view> best_bid_exchange;
+    // Best_Bid_Exchange: text; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::string_view> best_bid_exchange;
     // Best_Bid_Price: a decimal, the integer of its 6 places
     ::scaled::delimited::values::Required<std::int64_t> best_bid_price;
     static constexpr int best_bid_price_places = 6;
@@ -56,8 +56,8 @@ struct Nbbo {
     ::scaled::delimited::values::Optional<std::string_view> best_bid_finra_market_maker_id;
     // Best_Offer_Quote_Condition: text; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::string_view> best_offer_quote_condition;
-    // Best_Offer_Exchange: text
-    ::scaled::delimited::values::Required<std::string_view> best_offer_exchange;
+    // Best_Offer_Exchange: text; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::string_view> best_offer_exchange;
     // Best_Offer_Price: a decimal, the integer of its 6 places
     ::scaled::delimited::values::Required<std::int64_t> best_offer_price;
     static constexpr int best_offer_price_places = 6;

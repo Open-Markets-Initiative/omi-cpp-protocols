@@ -6,20 +6,20 @@
 
 namespace nasdaq::phlxoptions::topofmarket::itch::v3_4 {
 
-// subversion
-struct subversion {
+// sub_version
+struct sub_version {
 
-    static constexpr const char* name = "subversion";
+    static constexpr const char* name = "sub_version";
     static constexpr std::size_t size = 1;
     static constexpr bool is_optional = false;
 
     using result_type = required<std::uint8_t>;
     using storage_type = result_type;
 
-    constexpr subversion()
+    constexpr sub_version()
      : value{ 0 } {}
 
-    constexpr subversion(std::uint8_t v)
+    constexpr sub_version(std::uint8_t v)
      : value{ v } {}
 
     [[nodiscard]] constexpr result_type get() const {

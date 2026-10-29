@@ -1,0 +1,17 @@
+# Nyse.NyseEquities.IntegratedFeedRefresh.Pillar.v2.5.g RefreshHeaderMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 32
+packet.packetheader.deliveryflag = 18
+packet.packetheader.numbermsgs = 1
+packet.packetheader.seqnum = 37323569
+packet.packetheader.sendtime.seconds = 1692711003
+packet.packetheader.sendtime.nanoseconds = 412873728
+packet.packetheader.sendtime = 1692711003412873728
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 16
+packet.messages.message[0].messageheader.messagetype = 35
+packet.messages.message[0].payload = packet.messages.message.payload.refreshheadermessage
+packet.messages.message[0].payload.refreshheadermessage.currentrefreshpkt = 1
+packet.messages.message[0].payload.refreshheadermessage.totalrefreshpkts = 15
+packet.messages.message[0].payload.refreshheadermessage.fullrefreshheader.lastseqnum = 481936
+packet.messages.message[0].payload.refreshheadermessage.fullrefreshheader.lastsymbolseqnum = 1235

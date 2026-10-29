@@ -14,7 +14,7 @@ struct category_2 {
 
     enum class enum_type : char {
         no_trade_through_exempt_reason = ' ',
-        intermarket_sweep_order = 'F',
+        inter_market_sweep_order = 'F',
         derivatively_priced = '4',
         market_center_reopening_trade = '5',
         market_center_closing_trade = '6',
@@ -26,7 +26,7 @@ struct category_2 {
     static constexpr std::array<std::pair<std::string_view, enum_type>, 8> from_string_map = {{
         {"Corrected Consolidated Close Price As Per Listing Market", enum_type::corrected_consolidated_close_price_as_per_listing_market},
         {"Derivatively Priced", enum_type::derivatively_priced},
-        {"Intermarket Sweep Order", enum_type::intermarket_sweep_order},
+        {"Inter Market Sweep Order", enum_type::inter_market_sweep_order},
         {"Market Center Closing Trade", enum_type::market_center_closing_trade},
         {"Market Center Reopening Trade", enum_type::market_center_reopening_trade},
         {"No Trade Through Exempt Reason", enum_type::no_trade_through_exempt_reason},
@@ -37,7 +37,7 @@ struct category_2 {
     static constexpr std::string_view to_string(enum_type value) {
         switch (value) {
             case enum_type::no_trade_through_exempt_reason: return "No Trade Through Exempt Reason";
-            case enum_type::intermarket_sweep_order: return "Intermarket Sweep Order";
+            case enum_type::inter_market_sweep_order: return "Inter Market Sweep Order";
             case enum_type::derivatively_priced: return "Derivatively Priced";
             case enum_type::market_center_reopening_trade: return "Market Center Reopening Trade";
             case enum_type::market_center_closing_trade: return "Market Center Closing Trade";

@@ -1,0 +1,16 @@
+# Cboe.EdgxEquities.MulticastDepthOfBook.Pitch.v2.41.29 TimeMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.length = 28
+packet.packetheader.messagecount = 2
+packet.packetheader.unit = 19
+packet.packetheader.sequence = 209330
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 6
+packet.messages.message[0].messageheader.messagetype = 32
+packet.messages.message[0].payload = packet.messages.message.payload.timemessage
+packet.messages.message[0].payload.timemessage.time = 34200
+packet.messages.message[1].messageheader.messagelength = 14
+packet.messages.message[1].messageheader.messagetype = 41
+packet.messages.message[1].payload = packet.messages.message.payload.deleteordermessage
+packet.messages.message[1].payload.deleteordermessage.timeoffset = 61000
+packet.messages.message[1].payload.deleteordermessage.orderid = 2529144657348354973

@@ -60,7 +60,7 @@ struct Reader {
         values[entry + ".payload.stockdirectorymessage.roundlotsize"] = canonical::number(message.round_lot_size());
         values[entry + ".payload.stockdirectorymessage.roundlotsonly"] = canonical::text(canonical::character(message.round_lots_only()), ' ', false);
         values[entry + ".payload.stockdirectorymessage.issueclassification"] = canonical::text(canonical::character(message.issue_classification()), ' ', false);
-        values[entry + ".payload.stockdirectorymessage.issuesubtype"] = canonical::text(std::string(message.issue_subtype()), ' ', false);
+        values[entry + ".payload.stockdirectorymessage.issuesubtype"] = canonical::text(std::string(message.issue_sub_type()), ' ', false);
         values[entry + ".payload.stockdirectorymessage.authenticity"] = canonical::text(canonical::character(message.authenticity()), ' ', false);
         values[entry + ".payload.stockdirectorymessage.shortsalethresholdindicator"] = canonical::text(canonical::character(message.short_sale_threshold_indicator()), ' ', false);
         values[entry + ".payload.stockdirectorymessage.ipoflag"] = canonical::text(canonical::character(message.ipo_flag()), ' ', false);

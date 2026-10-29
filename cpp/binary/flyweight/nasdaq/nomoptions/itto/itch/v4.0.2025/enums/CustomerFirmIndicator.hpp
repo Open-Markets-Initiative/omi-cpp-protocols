@@ -10,7 +10,7 @@ namespace nasdaq::nomoptions::itto::itch::v4_0_2025 {
 enum class CustomerFirmIndicator : char {
     Customer = 'C',                  // Customer
     FirmJoint = 'F',                 // Firm Joint
-    Onfloor = 'M',                   // Onfloor
+    OnFloor = 'M',                   // On Floor
     Professional = 'P',              // Professional
     BrokerDealerNonRegistered = 'B', // Broker Dealer Non Registered
 };

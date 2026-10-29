@@ -15,9 +15,9 @@ class SaleConditionFlags {
     SaleConditionFlags() = default;
     explicit SaleConditionFlags(std::uint8_t raw);
 
-    // Singleprice Cross Trade: Trade resulting from a single-price cross
-    bool singleprice_cross_trade() const;
-    void set_singleprice_cross_trade(bool value);
+    // Single Price Cross Trade: Trade resulting from a single-price cross
+    bool single_price_cross_trade() const;
+    void set_single_price_cross_trade(bool value);
 
     // Trade Through Exempt: Trade is not subject to Rule 611
     bool trade_through_exempt() const;

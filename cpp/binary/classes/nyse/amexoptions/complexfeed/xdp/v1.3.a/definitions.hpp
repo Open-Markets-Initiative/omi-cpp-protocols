@@ -1,0 +1,37 @@
+#pragma once
+
+#include "common/Decimal.hpp"
+#include "common/Errors.hpp"
+#include "common/Print.hpp"
+#include "common/Wire.hpp"
+
+#include "enums/DeliveryFlag.hpp"
+#include "enums/LegSecurityType.hpp"
+#include "enums/MarketId.hpp"
+#include "enums/MessageType.hpp"
+#include "enums/QuoteCondition.hpp"
+#include "enums/SecurityStatus.hpp"
+#include "enums/Side.hpp"
+#include "enums/TradeCond1.hpp"
+
+#include "groups/LegDefinition.hpp"
+#include "structs/MessageHeader.hpp"
+#include "structs/PacketHeader.hpp"
+#include "structs/SendTime.hpp"
+
+#include "messages/ComplexCrossingRfqMessage.hpp"
+#include "messages/ComplexCubeRfqMessage.hpp"
+#include "messages/ComplexQuoteMessage.hpp"
+#include "messages/ComplexStatusMessage.hpp"
+#include "messages/ComplexSymbolDefinitionMessage.hpp"
+#include "messages/ComplexTradeMessage.hpp"
+#include "messages/Message.hpp"
+#include "messages/RefreshComplexQuoteMessage.hpp"
+#include "messages/RefreshComplexTradeMessage.hpp"
+#include "messages/SequenceNumberResetMessage.hpp"
+#include "messages/StreamIdMessage.hpp"
+#include "messages/UnknownMessage.hpp"
+
+#include "Factory.hpp"
+#include "Packet.hpp"
+#include "Visitor.hpp"

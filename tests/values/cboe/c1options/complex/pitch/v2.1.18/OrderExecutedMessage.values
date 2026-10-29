@@ -1,0 +1,15 @@
+# Cboe.C1Options.Complex.Pitch.v2.1.18 OrderExecutedMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.length = 35
+packet.packetheader.messagecount = 1
+packet.packetheader.unit = 33
+packet.packetheader.sequence = 9975020
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 27
+packet.messages.message[0].messageheader.messagetype = 35
+packet.messages.message[0].payload = packet.messages.message.payload.orderexecutedmessage
+packet.messages.message[0].payload.orderexecutedmessage.timeoffset = 447888000
+packet.messages.message[0].payload.orderexecutedmessage.orderid = 4366474235781953227
+packet.messages.message[0].payload.orderexecutedmessage.executedquantity = 1
+packet.messages.message[0].payload.orderexecutedmessage.executionid = 2589463989980
+packet.messages.message[0].payload.orderexecutedmessage.tradecondition = f

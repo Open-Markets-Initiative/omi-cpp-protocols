@@ -1,0 +1,32 @@
+#pragma once
+
+// Every flyweight view and reader of OtcMarkets.LinkAts.Multicast.Link.v4.3.
+
+#include "bitfields/PacketFlag.hpp"
+#include "structs/PacketHeader.hpp"
+#include "structs/MessageHeader.hpp"
+#include "messages/StartOfSpinMessage.hpp"
+#include "messages/EndOfSpinMessage.hpp"
+#include "messages/MarketOpenMessage.hpp"
+#include "messages/MarketCloseMessage.hpp"
+#include "bitfields/SecurityFlags.hpp"
+#include "messages/SecurityMessage.hpp"
+#include "bitfields/QuoteFlags.hpp"
+#include "bitfields/ExtendedQuoteFlags.hpp"
+#include "messages/QuoteMessage.hpp"
+#include "messages/QuoteUpdateMessage.hpp"
+#include "messages/InsideMessage.hpp"
+#include "messages/InsideUpdateMessage.hpp"
+#include "messages/ReferencePriceMessage.hpp"
+#include "messages/ReferencePriceUpdateMessage.hpp"
+#include "bitfields/ExtendedSecurityFlags.hpp"
+#include "structs/SecurityDetail.hpp"
+#include "structs/Issuer.hpp"
+#include "messages/ExtendedSecurityMessage.hpp"
+#include "messages/ExtendedSecurityNoCusipMessage.hpp"
+#include "bitfields/TradeStatus.hpp"
+#include "messages/TradeMessage.hpp"
+#include "structs/Packet.hpp"
+#include "structs/Frame.hpp"
+
+#include "PacketReader.hpp"

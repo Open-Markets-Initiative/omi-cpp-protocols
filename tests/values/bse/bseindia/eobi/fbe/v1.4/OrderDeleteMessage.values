@@ -1,0 +1,22 @@
+# Bse.BseIndia.Eobi.Fbe.v1.4 OrderDeleteMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.eobiheader.bodylen = 32
+packet.packetheader.eobiheader.templateid = 13002
+packet.packetheader.eobiheader.msgseqnum = 4294967295
+packet.packetheader.applseqnum = 168753
+packet.packetheader.marketsegmentid = 535
+packet.packetheader.partitionid = 14
+packet.packetheader.completionindicator = 1
+packet.packetheader.applseqresetindicator = 0
+packet.packetheader.transacttime = 1786592700051769651
+packet.message[0].messageheader.bodylen = 64
+packet.message[0].messageheader.templateid = 13102
+packet.message[0].messageheader.msgseqnum = 73
+packet.message[0].payload = packet.message.payload.orderdeletemessage
+packet.message[0].payload.orderdeletemessage.trdregtstimein = 1786592700051693294
+packet.message[0].payload.orderdeletemessage.transacttime = 1786592700051709111
+packet.message[0].payload.orderdeletemessage.securityid = 826672
+packet.message[0].payload.orderdeletemessage.orderdetails.trdregtstimepriority = 1786592700015446066
+packet.message[0].payload.orderdeletemessage.orderdetails.displayqty = 50
+packet.message[0].payload.orderdeletemessage.orderdetails.side = 1
+packet.message[0].payload.orderdeletemessage.orderdetails.price = 1185580

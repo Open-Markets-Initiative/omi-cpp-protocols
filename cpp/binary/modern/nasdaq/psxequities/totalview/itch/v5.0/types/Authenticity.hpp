@@ -1,0 +1,30 @@
+#pragma once
+
+#include <cstddef>
+
+namespace nasdaq::psxequities::totalview::itch::v5_0 {
+
+
+// Denotes if an issue or quoting participant record is set-up in NASDAQ systems in a live/production, test, or demo state. Please note that firms should only show live issues and quoting participants on public quotation displays.
+struct Authenticity {
+
+    static constexpr auto name = "Authenticity";
+    static constexpr std::size_t size = 1;
+
+    // default constructor
+    constexpr Authenticity()
+     : value{ 0 } {}
+
+    // standard constructor
+    constexpr explicit Authenticity(const char &value)
+     : value{ value } {}
+
+    // get value of Authenticity field
+    [[nodiscard]] char get() const {
+        return value;
+    }
+
+  protected:
+    char value;
+};
+}

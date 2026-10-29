@@ -1,0 +1,17 @@
+# Nyse.NyseEquities.IntegratedFeed.Pillar.v2.5.g SequenceNumberResetMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 30
+packet.packetheader.deliveryflag = 12
+packet.packetheader.numbermsgs = 1
+packet.packetheader.seqnum = 1
+packet.packetheader.sendtime.seconds = 1692678382
+packet.packetheader.sendtime.nanoseconds = 541796352
+packet.packetheader.sendtime = 1692678382541796352
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 14
+packet.messages.message[0].messageheader.messagetype = 1
+packet.messages.message[0].payload = packet.messages.message.payload.sequencenumberresetmessage
+packet.messages.message[0].payload.sequencenumberresetmessage.sourcetime = 1692678312
+packet.messages.message[0].payload.sequencenumberresetmessage.sourcetimens = 345209600
+packet.messages.message[0].payload.sequencenumberresetmessage.productid = 11
+packet.messages.message[0].payload.sequencenumberresetmessage.channelid = 53

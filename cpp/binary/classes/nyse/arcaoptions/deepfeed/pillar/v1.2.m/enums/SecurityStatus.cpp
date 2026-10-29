@@ -10,7 +10,7 @@ std::string_view to_string(SecurityStatus value) {
         case SecurityStatus::ShortSaleRestrictionActivatedDay1: return "Short Sale Restriction Activated Day 1";
         case SecurityStatus::ShortSaleRestrictionContinuedDay2: return "Short Sale Restriction Continued Day 2";
         case SecurityStatus::ShortSaleRestrictionDeactivated: return "Short Sale Restriction Deactivated";
-        case SecurityStatus::Preopening: return "Preopening";
+        case SecurityStatus::PreOpening: return "Pre Opening";
         case SecurityStatus::BeginAcceptingOrders: return "Begin Accepting Orders";
         case SecurityStatus::EarlySession: return "Early Session";
         case SecurityStatus::CoreSession: return "Core Session";

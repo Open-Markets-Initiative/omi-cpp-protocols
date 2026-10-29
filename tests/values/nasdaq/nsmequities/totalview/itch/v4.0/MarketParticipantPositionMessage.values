@@ -1,0 +1,15 @@
+# Nasdaq.NsmEquities.TotalView.Itch.v4.0 MarketParticipantPositionMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = S032409v4.
+packet.packetheader.sequencenumber = 16245
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 18
+packet.messages.message[0].messageheader.messagetype = L
+packet.messages.message[0].payload = packet.messages.message.payload.marketparticipantpositionmessage
+packet.messages.message[0].payload.marketparticipantpositionmessage.nanoseconds = 497000000
+packet.messages.message[0].payload.marketparticipantpositionmessage.mpid = ABLE
+packet.messages.message[0].payload.marketparticipantpositionmessage.stock = AAPL
+packet.messages.message[0].payload.marketparticipantpositionmessage.primarymarketmaker = Y
+packet.messages.message[0].payload.marketparticipantpositionmessage.marketmakermode = N
+packet.messages.message[0].payload.marketparticipantpositionmessage.marketparticipantstate = A

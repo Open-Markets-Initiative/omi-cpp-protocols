@@ -17,7 +17,7 @@ struct sale_condition_1 {
         average_price_trade = 'B',
         cash_trade_same_day_clearing = 'C',
         automatic_execution = 'E',
-        intermarket_sweep_order = 'F',
+        inter_market_sweep_order = 'F',
         price_variation_trade = 'H',
         odd_lot_trade = 'I',
         rule_127_nyse_only_or_rule_155_nyse_american_only = 'K',
@@ -51,7 +51,7 @@ struct sale_condition_1 {
         {"Derivatively Priced", enum_type::derivatively_priced},
         {"Extended Hours Sold Out Of Sequence", enum_type::extended_hours_sold_out_of_sequence},
         {"Extended Hours Trade", enum_type::extended_hours_trade},
-        {"Intermarket Sweep Order", enum_type::intermarket_sweep_order},
+        {"Inter Market Sweep Order", enum_type::inter_market_sweep_order},
         {"Market Center Closing Trade", enum_type::market_center_closing_trade},
         {"Market Center Official Close", enum_type::market_center_official_close},
         {"Market Center Official Open", enum_type::market_center_official_open},
@@ -76,7 +76,7 @@ struct sale_condition_1 {
             case enum_type::average_price_trade: return "Average Price Trade";
             case enum_type::cash_trade_same_day_clearing: return "Cash Trade Same Day Clearing";
             case enum_type::automatic_execution: return "Automatic Execution";
-            case enum_type::intermarket_sweep_order: return "Intermarket Sweep Order";
+            case enum_type::inter_market_sweep_order: return "Inter Market Sweep Order";
             case enum_type::price_variation_trade: return "Price Variation Trade";
             case enum_type::odd_lot_trade: return "Odd Lot Trade";
             case enum_type::rule_127_nyse_only_or_rule_155_nyse_american_only: return "Rule 127 Nyse Only Or Rule 155 Nyse American Only";

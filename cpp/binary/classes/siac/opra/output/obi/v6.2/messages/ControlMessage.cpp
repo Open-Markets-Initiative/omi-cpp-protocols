@@ -18,7 +18,8 @@ void ControlMessage::set_transaction_id(std::uint32_t value) { transaction_id_ =
 std::uint32_t ControlMessage::participant_reference_number() const { return participant_reference_number_; }
 void ControlMessage::set_participant_reference_number(std::uint32_t value) { participant_reference_number_ = value; }
 
-ControlMessagePayloadCode ControlMessage::type() const { return message_type; }
+ControlMessagePayloadCode ControlMessage::type() const { return type_; }
+void ControlMessage::set_type(ControlMessagePayloadCode value) { type_ = value; }
 
 std::string_view ControlMessage::name() const { return "Control Message"; }
 
@@ -85,7 +86,8 @@ bool ControlMessage::equals(const ControlMessagePayload& other) const {
 bool ControlMessage::operator==(const ControlMessage& other) const {
     return message_indicator_ == other.message_indicator_
         && transaction_id_ == other.transaction_id_
-        && participant_reference_number_ == other.participant_reference_number_;
+        && participant_reference_number_ == other.participant_reference_number_
+        && type_ == other.type_;
 }
 
 bool ControlMessage::operator!=(const ControlMessage& other) const {

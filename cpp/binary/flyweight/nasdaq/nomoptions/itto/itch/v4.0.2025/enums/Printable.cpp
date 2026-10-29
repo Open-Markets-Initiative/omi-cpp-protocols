@@ -4,7 +4,7 @@ namespace nasdaq::nomoptions::itto::itch::v4_0_2025 {
 
 std::string_view to_string(Printable value) {
     switch (value) {
-        case Printable::Nonprintable: return "Nonprintable";
+        case Printable::NonPrintable: return "Non Printable";
         case Printable::Printable: return "Printable";
         default: return {};
     }

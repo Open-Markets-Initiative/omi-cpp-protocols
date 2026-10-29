@@ -1,0 +1,14 @@
+# Jnx.JnxEquities.Pts.Itch.v1.7 OrderReplacedMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 1697659284
+packet.packetheader.sequencenumber = 46931
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 29
+packet.messages.message[0].messageheader.messagetype = U
+packet.messages.message[0].udppayload = packet.messages.message.udppayload.orderreplacedmessage
+packet.messages.message[0].udppayload.orderreplacedmessage.nanoseconds = 605754000
+packet.messages.message[0].udppayload.orderreplacedmessage.originalordernumber = 202310190000033267
+packet.messages.message[0].udppayload.orderreplacedmessage.newordernumber = 202310190000033267
+packet.messages.message[0].udppayload.orderreplacedmessage.quantity = 100
+packet.messages.message[0].udppayload.orderreplacedmessage.price = 3745

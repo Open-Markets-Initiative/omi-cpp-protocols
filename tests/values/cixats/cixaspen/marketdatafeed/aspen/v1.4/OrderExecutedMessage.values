@@ -1,0 +1,17 @@
+# CixAts.CixAspen.MarketDataFeed.Aspen.v1.4 OrderExecutedMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.marketdayidentifier = 20676
+packet.packetheader.feedidentifier = W
+packet.packetheader.sequence = 16691
+packet.packetheader.count = 1
+packet.message[0].messageheader.length = 48
+packet.message[0].messageheader.messagetype = J
+packet.message[0].payload = packet.message.payload.orderexecutedmessage
+packet.message[0].payload.orderexecutedmessage.timestamp = 1786456800000583925
+packet.message[0].payload.orderexecutedmessage.orderid = 59672753787206139
+packet.message[0].payload.orderexecutedmessage.quantity = 10000
+packet.message[0].payload.orderexecutedmessage.executionid = 514078166000000205
+packet.message[0].payload.orderexecutedmessage.side = B
+packet.message[0].payload.orderexecutedmessage.price = 229.52
+packet.message[0].payload.orderexecutedmessage.broker = 022
+packet.message[0].payload.orderexecutedmessage.contrabroker = 022

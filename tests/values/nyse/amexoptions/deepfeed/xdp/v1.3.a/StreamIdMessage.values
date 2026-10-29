@@ -1,0 +1,30 @@
+# Nyse.AmexOptions.DeepFeed.Xdp.v1.3.a StreamIdMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.packetsize = 72
+packet.packetheader.deliveryflag = 11
+packet.packetheader.messagecount = 2
+packet.packetheader.sequencenumber = 26899168
+packet.packetheader.sendtime.seconds = 1676559600
+packet.packetheader.sendtime.nanoseconds = 7000
+packet.packetheader.sendtime = 1676559600000007000
+packet.message[0].messageheader.messagesize = 8
+packet.message[0].messageheader.messagetype = 455
+packet.message[0].payload = packet.message.payload.streamidmessage
+packet.message[0].payload.streamidmessage.streamid = 305
+packet.message[1].messageheader.messagesize = 48
+packet.message[1].messageheader.messagetype = 405
+packet.message[1].payload = packet.message.payload.outrightmarketdepthsellmessage
+packet.message[1].payload.outrightmarketdepthsellmessage.sourcetime = 1676559599
+packet.message[1].payload.outrightmarketdepthsellmessage.sourcens = 999962000
+packet.message[1].payload.outrightmarketdepthsellmessage.seriesindex = 260926987
+packet.message[1].payload.outrightmarketdepthsellmessage.symbolseqnum = 19423
+packet.message[1].payload.outrightmarketdepthsellmessage.firstlevelprice = 115000
+packet.message[1].payload.outrightmarketdepthsellmessage.secondlevelprice = 115500
+packet.message[1].payload.outrightmarketdepthsellmessage.thirdlevelprice = 134600
+packet.message[1].payload.outrightmarketdepthsellmessage.firstvolume = 8
+packet.message[1].payload.outrightmarketdepthsellmessage.secondvolume = 175
+packet.message[1].payload.outrightmarketdepthsellmessage.thirdvolume = 1
+packet.message[1].payload.outrightmarketdepthsellmessage.quotecondition = 1
+packet.message[1].payload.outrightmarketdepthsellmessage.firstlevelcustomervolume = 0
+packet.message[1].payload.outrightmarketdepthsellmessage.secondlevelcustomervolume = 0
+packet.message[1].payload.outrightmarketdepthsellmessage.thirdlevelcustomervolume = 0

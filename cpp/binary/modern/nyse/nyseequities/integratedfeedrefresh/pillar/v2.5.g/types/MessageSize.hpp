@@ -1,0 +1,31 @@
+#pragma once
+
+#include <cstddef>
+#include <cstdint>
+
+namespace nyse::nyseequities::integratedfeedrefresh::pillar::v2_5_g {
+
+// The size of this message in bytes
+struct MessageSize {
+
+    static constexpr const char* name = "Message Size";
+    static constexpr std::size_t size =  2;
+    using type = std::uint16_t;
+
+    // default constructor
+    constexpr MessageSize()
+     : value{ 0 } {}
+
+    // standard constructor
+    constexpr explicit MessageSize(const std::uint16_t value)
+     : value{ value } {}
+
+    // get value of MessageSize field
+    [[nodiscard]] std::uint16_t get() const {
+        return value;
+    }
+
+  protected:
+    std::uint16_t value;
+};
+}

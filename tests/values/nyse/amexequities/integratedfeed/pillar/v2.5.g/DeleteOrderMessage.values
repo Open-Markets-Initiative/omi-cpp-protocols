@@ -1,0 +1,17 @@
+# Nyse.AmexEquities.IntegratedFeed.Pillar.v2.5.g DeleteOrderMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 41
+packet.packetheader.deliveryflag = 11
+packet.packetheader.numbermsgs = 1
+packet.packetheader.seqnum = 151957
+packet.packetheader.sendtime.seconds = 1692711000
+packet.packetheader.sendtime.nanoseconds = 239446
+packet.packetheader.sendtime = 1692711000000239446
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 25
+packet.messages.message[0].messageheader.messagetype = 102
+packet.messages.message[0].payload = packet.messages.message.payload.deleteordermessage
+packet.messages.message[0].payload.deleteordermessage.sourcetimens = 229499
+packet.messages.message[0].payload.deleteordermessage.symbolindex = 64983
+packet.messages.message[0].payload.deleteordermessage.symbolseqnum = 20
+packet.messages.message[0].payload.deleteordermessage.orderid = 14646594393779404

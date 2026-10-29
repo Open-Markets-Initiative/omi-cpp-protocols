@@ -1,0 +1,300 @@
+// Nyse.ArcaOptions.DeepFeed.Pillar.v1.2.m benchmark, through the Modern iterator: every value it reads from every message of the simulated
+// sequence (tests/simulated/nyse/arcaoptions/deepfeed/pillar/v1.2.m.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
+
+#include <cstdio>
+#include <cstddef>
+#include <cstdint>
+#include <cstdlib>
+#include <string>
+#include <utility>
+#include <vector>
+
+#include "PcapIterator.hpp"
+#include "Frame.hpp"
+#include "executables/benchmark/Benchmark.hpp"
+#include "cpp/binary/modern/nyse/arcaoptions/deepfeed/pillar/v1.2.m/definitions.hpp"
+
+namespace protocol = ::nyse::arcaoptions::deepfeed::pillar::v1_2_m;
+
+namespace {
+
+// The values the Modern iterator reads from one datagram, folded into a checksum
+std::uint64_t read(const packet::Frame& frame) {
+    std::uint64_t checksum = 0;
+    protocol::MessageIterator iterator;
+    iterator.initialize(frame.payload, frame.payload_len);
+
+    checksum += bench::digest(iterator.packet_header->pkt_size.get());
+    checksum += bench::digest(iterator.packet_header->delivery_flag.get());
+    checksum += bench::digest(iterator.packet_header->number_msgs.get());
+    checksum += bench::digest(iterator.packet_header->seq_num.get());
+    checksum += bench::digest(iterator.packet_header->send_time.seconds.get());
+    checksum += bench::digest(iterator.packet_header->send_time.nanoseconds.get());
+
+    std::size_t index = 0;
+
+    while (iterator.next()) {
+        checksum += index++;
+        checksum += bench::digest(iterator.message_header->message_size.get());
+        checksum += bench::digest(iterator.message_header->message_type.get());
+
+        if (iterator.message_type == protocol::SequenceNumberResetMessage::message_type) {
+            [[maybe_unused]] const auto* message = protocol::SequenceNumberResetMessage::parse(iterator.message);
+            checksum += bench::digest(message->source_time.get());
+            checksum += bench::digest(message->source_time_ns.get());
+            checksum += bench::digest(message->product_id.get());
+            checksum += bench::digest(message->channel_id.get());
+        } else if (iterator.message_type == protocol::SourceTimeReferenceMessage::message_type) {
+            [[maybe_unused]] const auto* message = protocol::SourceTimeReferenceMessage::parse(iterator.message);
+            checksum += bench::digest(message->id.get());
+            checksum += bench::digest(message->symbol_seq_num.get());
+            checksum += bench::digest(message->source_time.get());
+        } else if (iterator.message_type == protocol::SymbolIndexMappingMessage::message_type) {
+            [[maybe_unused]] const auto* message = protocol::SymbolIndexMappingMessage::parse(iterator.message);
+            checksum += bench::digest(message->symbol_index.get());
+            checksum += bench::digest(message->symbol.get());
+            checksum += bench::digest(message->market_id.get());
+            checksum += bench::digest(message->system_id.get());
+            checksum += bench::digest(message->exchange_code.get());
+            checksum += bench::digest(message->price_scale_code.get());
+            checksum += bench::digest(message->security_type.get());
+            checksum += bench::digest(message->lot_size.get());
+            checksum += bench::digest(message->prev_close_price.get());
+            checksum += bench::digest(message->prev_close_volume.get());
+            checksum += bench::digest(message->price_resolution.get());
+            checksum += bench::digest(message->round_lot.get());
+        } else if (iterator.message_type == protocol::SymbolClearMessage::message_type) {
+            [[maybe_unused]] const auto* message = protocol::SymbolClearMessage::parse(iterator.message);
+            checksum += bench::digest(message->source_time.get());
+            checksum += bench::digest(message->source_time_ns.get());
+            checksum += bench::digest(message->symbol_index.get());
+            checksum += bench::digest(message->next_source_seq_num.get());
+        } else if (iterator.message_type == protocol::SecurityStatusMessage::message_type) {
+            [[maybe_unused]] const auto* message = protocol::SecurityStatusMessage::parse(iterator.message);
+            checksum += bench::digest(message->source_time.get());
+            checksum += bench::digest(message->source_time_ns.get());
+            checksum += bench::digest(message->symbol_index.get());
+            checksum += bench::digest(message->symbol_seq_num.get());
+            checksum += bench::digest(message->security_status.get());
+            checksum += bench::digest(message->halt_condition.get());
+            checksum += bench::digest(message->price_1.get());
+            checksum += bench::digest(message->price_2.get());
+            checksum += bench::digest(message->ssr_triggering_exchange_id.get());
+            checksum += bench::digest(message->ssr_triggering_volume.get());
+            checksum += (static_cast<std::uint32_t>(message->time.get()) != 0x0U ? bench::digest(message->time.get()) : std::uint64_t{0});
+            checksum += bench::digest(message->ssr_state.get());
+            checksum += bench::digest(message->market_state.get());
+            checksum += bench::digest(message->session_state.get());
+        } else if (iterator.message_type == protocol::OutrightSeriesIndexMappingMessage::message_type) {
+            [[maybe_unused]] const auto* message = protocol::OutrightSeriesIndexMappingMessage::parse(iterator.message);
+            checksum += bench::digest(message->series_index.get());
+            checksum += bench::digest(message->series_type.get());
+            checksum += bench::digest(message->market_id.get());
+            checksum += bench::digest(message->system_id.get());
+            checksum += bench::digest(message->option_symbol_root.get());
+            checksum += bench::digest(message->underlying_symbol.get());
+            checksum += bench::digest(message->underlying_index.get());
+            checksum += bench::digest(message->price_scale_code.get());
+            checksum += bench::digest(message->contract_multiplier.get());
+            checksum += bench::digest(message->maturity_date.get());
+            checksum += bench::digest(message->put_or_call.get());
+            checksum += bench::digest(message->strike_price.get());
+            checksum += bench::digest(message->closing_only_indicator.get());
+        } else if (iterator.message_type == protocol::OptionsStatusMessage::message_type) {
+            [[maybe_unused]] const auto* message = protocol::OptionsStatusMessage::parse(iterator.message);
+            checksum += bench::digest(message->source_time.get());
+            checksum += bench::digest(message->source_time_ns.get());
+            checksum += bench::digest(message->series_index.get());
+            checksum += bench::digest(message->series_seq_num.get());
+            checksum += bench::digest(message->series_status.get());
+            checksum += bench::digest(message->market_state.get());
+            checksum += bench::digest(message->options_status_halt_condition.get());
+        } else if (iterator.message_type == protocol::ComplexSeriesIndexMappingMessage::message_type) {
+            [[maybe_unused]] const auto* message = protocol::ComplexSeriesIndexMappingMessage::parse(iterator.message);
+            checksum += bench::digest(message->series_index.get());
+            checksum += bench::digest(message->market_id.get());
+            checksum += bench::digest(message->system_id.get());
+            checksum += bench::digest(message->no_of_legs.get());
+        } else if (iterator.message_type == protocol::RetransmissionRequestMessage::message_type) {
+            [[maybe_unused]] const auto* message = protocol::RetransmissionRequestMessage::parse(iterator.message);
+            checksum += bench::digest(message->begin_seq_num.get());
+            checksum += bench::digest(message->end_seq_num.get());
+            checksum += bench::digest(message->source_id.get());
+            checksum += bench::digest(message->product_id.get());
+            checksum += bench::digest(message->channel_id.get());
+        } else if (iterator.message_type == protocol::RefreshHeaderMessage::message_type) {
+            [[maybe_unused]] const auto* message = protocol::RefreshHeaderMessage::parse(iterator.message);
+            checksum += bench::digest(message->current_refresh_pkt.get());
+            checksum += bench::digest(message->total_refresh_pkts.get());
+        } else if (iterator.message_type == protocol::RefreshRequestMessage::message_type) {
+            [[maybe_unused]] const auto* message = protocol::RefreshRequestMessage::parse(iterator.message);
+            checksum += bench::digest(message->symbol_index.get());
+            checksum += bench::digest(message->source_id.get());
+            checksum += bench::digest(message->product_id.get());
+            checksum += bench::digest(message->channel_id.get());
+        } else if (iterator.message_type == protocol::SymbolIndexMappingRequestMessage::message_type) {
+            [[maybe_unused]] const auto* message = protocol::SymbolIndexMappingRequestMessage::parse(iterator.message);
+            checksum += bench::digest(message->symbol_index.get());
+            checksum += bench::digest(message->source_id.get());
+            checksum += bench::digest(message->product_id.get());
+            checksum += bench::digest(message->channel_id.get());
+            checksum += bench::digest(message->retransmit_method.get());
+        } else if (iterator.message_type == protocol::MessageUnavailableMessage::message_type) {
+            [[maybe_unused]] const auto* message = protocol::MessageUnavailableMessage::parse(iterator.message);
+            checksum += bench::digest(message->begin_seq_num.get());
+            checksum += bench::digest(message->end_seq_num.get());
+            checksum += bench::digest(message->product_id.get());
+            checksum += bench::digest(message->channel_id.get());
+        } else if (iterator.message_type == protocol::RequestResponseMessage::message_type) {
+            [[maybe_unused]] const auto* message = protocol::RequestResponseMessage::parse(iterator.message);
+            checksum += bench::digest(message->request_seq_num.get());
+            checksum += bench::digest(message->begin_seq_num.get());
+            checksum += bench::digest(message->end_seq_num.get());
+            checksum += bench::digest(message->source_id.get());
+            checksum += bench::digest(message->product_id.get());
+            checksum += bench::digest(message->channel_id.get());
+            checksum += bench::digest(message->status.get());
+        } else if (iterator.message_type == protocol::HeartbeatResponseMessage::message_type) {
+            [[maybe_unused]] const auto* message = protocol::HeartbeatResponseMessage::parse(iterator.message);
+            checksum += bench::digest(message->source_id.get());
+        } else if (iterator.message_type == protocol::OptionsAddOrderMessage::message_type) {
+            [[maybe_unused]] const auto* message = protocol::OptionsAddOrderMessage::parse(iterator.message);
+            checksum += bench::digest(message->source_time_ns.get());
+            checksum += bench::digest(message->series_index.get());
+            checksum += bench::digest(message->series_seq_num.get());
+            checksum += bench::digest(message->order_id.get());
+            checksum += bench::digest(message->price.get());
+            checksum += bench::digest(message->volume.get());
+            checksum += bench::digest(message->side.get());
+            checksum += bench::digest(message->firm_id.get());
+            checksum += bench::digest(message->cust_indicator.get());
+        } else if (iterator.message_type == protocol::OptionsModifyOrderMessage::message_type) {
+            [[maybe_unused]] const auto* message = protocol::OptionsModifyOrderMessage::parse(iterator.message);
+            checksum += bench::digest(message->source_time_ns.get());
+            checksum += bench::digest(message->series_index.get());
+            checksum += bench::digest(message->series_seq_num.get());
+            checksum += bench::digest(message->order_id.get());
+            checksum += bench::digest(message->price.get());
+            checksum += bench::digest(message->volume.get());
+            checksum += bench::digest(message->position_change.get());
+            checksum += bench::digest(message->side.get());
+            checksum += bench::digest(message->cust_indicator.get());
+        } else if (iterator.message_type == protocol::OptionsDeleteOrderMessage::message_type) {
+            [[maybe_unused]] const auto* message = protocol::OptionsDeleteOrderMessage::parse(iterator.message);
+            checksum += bench::digest(message->source_time_ns.get());
+            checksum += bench::digest(message->series_index.get());
+            checksum += bench::digest(message->series_seq_num.get());
+            checksum += bench::digest(message->order_id.get());
+        } else if (iterator.message_type == protocol::OptionsOrderExecutionMessage::message_type) {
+            [[maybe_unused]] const auto* message = protocol::OptionsOrderExecutionMessage::parse(iterator.message);
+            checksum += bench::digest(message->source_time_ns.get());
+            checksum += bench::digest(message->series_index.get());
+            checksum += bench::digest(message->series_seq_num.get());
+            checksum += bench::digest(message->order_id.get());
+            checksum += bench::digest(message->trade_id.get());
+            checksum += bench::digest(message->price.get());
+            checksum += bench::digest(message->volume.get());
+            checksum += bench::digest(message->printable_flag.get());
+            checksum += bench::digest(message->trade_cond_1.get());
+        } else if (iterator.message_type == protocol::OptionsReplaceOrderMessage::message_type) {
+            [[maybe_unused]] const auto* message = protocol::OptionsReplaceOrderMessage::parse(iterator.message);
+            checksum += bench::digest(message->source_time_ns.get());
+            checksum += bench::digest(message->series_index.get());
+            checksum += bench::digest(message->series_seq_num.get());
+            checksum += bench::digest(message->order_id.get());
+            checksum += bench::digest(message->new_order_id.get());
+            checksum += bench::digest(message->price.get());
+            checksum += bench::digest(message->volume.get());
+            checksum += bench::digest(message->side.get());
+            checksum += bench::digest(message->cust_indicator.get());
+        } else if (iterator.message_type == protocol::OptionsImbalanceMessage::message_type) {
+            [[maybe_unused]] const auto* message = protocol::OptionsImbalanceMessage::parse(iterator.message);
+            checksum += bench::digest(message->source_time.get());
+            checksum += bench::digest(message->source_time_ns.get());
+            checksum += bench::digest(message->series_index.get());
+            checksum += bench::digest(message->series_seq_num.get());
+            checksum += bench::digest(message->paired_qty.get());
+            checksum += bench::digest(message->total_imbalance_qty.get());
+            checksum += bench::digest(message->market_imbalance_qty.get());
+            checksum += bench::digest(message->auction_type.get());
+            checksum += bench::digest(message->imbalance_side.get());
+            checksum += bench::digest(message->continuous_book_clearing_price.get());
+            checksum += bench::digest(message->auction_interest_clearing_price.get());
+            checksum += bench::digest(message->indicative_match_price.get());
+            checksum += bench::digest(message->upper_collar.get());
+            checksum += bench::digest(message->lower_collar.get());
+            checksum += bench::digest(message->auction_status.get());
+        } else if (iterator.message_type == protocol::OptionsAddOrderRefreshMessage::message_type) {
+            [[maybe_unused]] const auto* message = protocol::OptionsAddOrderRefreshMessage::parse(iterator.message);
+            checksum += bench::digest(message->source_time.get());
+            checksum += bench::digest(message->source_time_ns.get());
+            checksum += bench::digest(message->series_index.get());
+            checksum += bench::digest(message->series_seq_num.get());
+            checksum += bench::digest(message->order_id.get());
+            checksum += bench::digest(message->price.get());
+            checksum += bench::digest(message->volume.get());
+            checksum += bench::digest(message->side.get());
+            checksum += bench::digest(message->firm_id.get());
+            checksum += bench::digest(message->cust_indicator.get());
+        } else if (iterator.message_type == protocol::OptionsSeriesRfqMessage::message_type) {
+            [[maybe_unused]] const auto* message = protocol::OptionsSeriesRfqMessage::parse(iterator.message);
+            checksum += bench::digest(message->source_time.get());
+            checksum += bench::digest(message->source_time_ns.get());
+            checksum += bench::digest(message->series_index.get());
+            checksum += bench::digest(message->series_seq_num.get());
+            checksum += bench::digest(message->rfq_side.get());
+            checksum += bench::digest(message->type.get());
+            checksum += bench::digest(message->capacity.get());
+            checksum += bench::digest(message->total_quantity.get());
+            checksum += bench::digest(message->working_price.get());
+            checksum += bench::digest(message->participant.get());
+            checksum += bench::digest(message->auction_id.get());
+            checksum += bench::digest(message->rfq_status.get());
+        } else if (iterator.message_type == protocol::OptionsNonDisplayedTradeMessage::message_type) {
+            [[maybe_unused]] const auto* message = protocol::OptionsNonDisplayedTradeMessage::parse(iterator.message);
+            checksum += bench::digest(message->source_time_ns.get());
+            checksum += bench::digest(message->series_index.get());
+            checksum += bench::digest(message->series_seq_num.get());
+            checksum += bench::digest(message->trade_id.get());
+            checksum += bench::digest(message->price.get());
+            checksum += bench::digest(message->volume.get());
+            checksum += bench::digest(message->printable_flag.get());
+            checksum += bench::digest(message->non_displayed_trade_trade_cond_1.get());
+            checksum += bench::digest(message->price_type.get());
+        } else if (iterator.message_type == protocol::OptionsCrossTradeMessage::message_type) {
+            [[maybe_unused]] const auto* message = protocol::OptionsCrossTradeMessage::parse(iterator.message);
+            checksum += bench::digest(message->source_time_ns.get());
+            checksum += bench::digest(message->series_index.get());
+            checksum += bench::digest(message->series_seq_num.get());
+            checksum += bench::digest(message->cross_id.get());
+            checksum += bench::digest(message->price.get());
+            checksum += bench::digest(message->volume.get());
+            checksum += bench::digest(message->cross_type.get());
+        } else if (iterator.message_type == protocol::OptionsTradeCancelMessage::message_type) {
+            [[maybe_unused]] const auto* message = protocol::OptionsTradeCancelMessage::parse(iterator.message);
+            checksum += bench::digest(message->source_time_ns.get());
+            checksum += bench::digest(message->series_index.get());
+            checksum += bench::digest(message->series_seq_num.get());
+            checksum += bench::digest(message->trade_id.get());
+        } else if (iterator.message_type == protocol::OptionsOutrightSeriesSummaryMessage::message_type) {
+            [[maybe_unused]] const auto* message = protocol::OptionsOutrightSeriesSummaryMessage::parse(iterator.message);
+            checksum += bench::digest(message->source_time.get());
+            checksum += bench::digest(message->source_time_ns.get());
+            checksum += bench::digest(message->series_index.get());
+            checksum += bench::digest(message->high_price.get());
+            checksum += bench::digest(message->low_price.get());
+            checksum += bench::digest(message->open.get());
+            checksum += bench::digest(message->close.get());
+            checksum += bench::digest(message->total_volume.get());
+        }
+    }
+
+    return checksum;
+}
+
+}
+
+int main(int argc, char** argv) {
+    // read named through a call, as POSIX declares a read of its own
+    return bench::run("Nyse.ArcaOptions.DeepFeed.Pillar.v1.2.m", "modern", argc, argv, [](const packet::Frame& frame) { return read(frame); });
+}

@@ -1,0 +1,25 @@
+# Nyse.TexasEquities.IntegratedFeed.Pillar.v2.5.g OrderExecutionMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 58
+packet.packetheader.deliveryflag = 11
+packet.packetheader.numbermsgs = 1
+packet.packetheader.seqnum = 174583
+packet.packetheader.sendtime.seconds = 1692711000
+packet.packetheader.sendtime.nanoseconds = 159745536
+packet.packetheader.sendtime = 1692711000159745536
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 42
+packet.messages.message[0].messageheader.messagetype = 103
+packet.messages.message[0].payload = packet.messages.message.payload.orderexecutionmessage
+packet.messages.message[0].payload.orderexecutionmessage.sourcetimens = 159720704
+packet.messages.message[0].payload.orderexecutionmessage.symbolindex = 6155
+packet.messages.message[0].payload.orderexecutionmessage.symbolseqnum = 10
+packet.messages.message[0].payload.orderexecutionmessage.orderid = 14367318440188924
+packet.messages.message[0].payload.orderexecutionmessage.tradeid = 7
+packet.messages.message[0].payload.orderexecutionmessage.price = 94920000
+packet.messages.message[0].payload.orderexecutionmessage.volume = 300
+packet.messages.message[0].payload.orderexecutionmessage.printableflag = 1
+packet.messages.message[0].payload.orderexecutionmessage.tradecond1 = @
+packet.messages.message[0].payload.orderexecutionmessage.tradecond2 =  
+packet.messages.message[0].payload.orderexecutionmessage.tradecond3 =  
+packet.messages.message[0].payload.orderexecutionmessage.tradecond4 =  

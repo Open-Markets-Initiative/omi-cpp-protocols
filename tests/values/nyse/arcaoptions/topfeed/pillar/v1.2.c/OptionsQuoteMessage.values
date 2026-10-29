@@ -1,0 +1,23 @@
+# Nyse.ArcaOptions.TopFeed.Pillar.v1.2.c OptionsQuoteMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 58
+packet.packetheader.deliveryflag = 11
+packet.packetheader.numbermsgs = 1
+packet.packetheader.seqnum = 663636
+packet.packetheader.sendtime.seconds = 1639233834
+packet.packetheader.sendtime.nanoseconds = 489233920
+packet.packetheader.sendtime = 1639233834489233920
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 42
+packet.messages.message[0].messageheader.messagetype = 340
+packet.messages.message[0].payload = packet.messages.message.payload.optionsquotemessage
+packet.messages.message[0].payload.optionsquotemessage.sourcetimens = 489212416
+packet.messages.message[0].payload.optionsquotemessage.seriesindex = 30588629
+packet.messages.message[0].payload.optionsquotemessage.seriesseqnum = 5
+packet.messages.message[0].payload.optionsquotemessage.askprice = 108500
+packet.messages.message[0].payload.optionsquotemessage.askvolume = 10
+packet.messages.message[0].payload.optionsquotemessage.bidprice = 0
+packet.messages.message[0].payload.optionsquotemessage.bidvolume = 0
+packet.messages.message[0].payload.optionsquotemessage.quotecondition = 1
+packet.messages.message[0].payload.optionsquotemessage.askcustomervolume = 10
+packet.messages.message[0].payload.optionsquotemessage.bidcustomervolume = 0

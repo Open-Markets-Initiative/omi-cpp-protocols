@@ -1,0 +1,27 @@
+# Nyse.ArcaEquities.IntegratedFeedRefresh.Pillar.v2.5.g RefreshHeaderMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 67
+packet.packetheader.deliveryflag = 19
+packet.packetheader.numbermsgs = 2
+packet.packetheader.seqnum = 9591932
+packet.packetheader.sendtime.seconds = 1692711000
+packet.packetheader.sendtime.nanoseconds = 142862592
+packet.packetheader.sendtime = 1692711000142862592
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 8
+packet.messages.message[0].messageheader.messagetype = 35
+packet.messages.message[0].payload = packet.messages.message.payload.refreshheadermessage
+packet.messages.message[0].payload.refreshheadermessage.currentrefreshpkt = 3
+packet.messages.message[0].payload.refreshheadermessage.totalrefreshpkts = 3
+packet.messages.message[1].messageheader.messagesize = 43
+packet.messages.message[1].messageheader.messagetype = 106
+packet.messages.message[1].payload = packet.messages.message.payload.addorderrefreshmessage
+packet.messages.message[1].payload.addorderrefreshmessage.sourcetime = 1692711000
+packet.messages.message[1].payload.addorderrefreshmessage.sourcetimens = 91596800
+packet.messages.message[1].payload.addorderrefreshmessage.symbolindex = 19095
+packet.messages.message[1].payload.addorderrefreshmessage.symbolseqnum = 238
+packet.messages.message[1].payload.addorderrefreshmessage.orderid = 16328847186171793
+packet.messages.message[1].payload.addorderrefreshmessage.price = 63120000
+packet.messages.message[1].payload.addorderrefreshmessage.volume = 400
+packet.messages.message[1].payload.addorderrefreshmessage.side = B
+packet.messages.message[1].payload.addorderrefreshmessage.firmid = 

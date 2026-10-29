@@ -1,0 +1,19 @@
+# Nasdaq.NsmEquities.TotalView.Itch.v4.0 NetOrderImbalanceIndicatorMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = S032409v4.
+packet.packetheader.sequencenumber = 6301027
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 42
+packet.messages.message[0].messageheader.messagetype = I
+packet.messages.message[0].payload = packet.messages.message.payload.netorderimbalanceindicatormessage
+packet.messages.message[0].payload.netorderimbalanceindicatormessage.nanoseconds = 0
+packet.messages.message[0].payload.netorderimbalanceindicatormessage.pairedshares = 400
+packet.messages.message[0].payload.netorderimbalanceindicatormessage.imbalanceshares = 0
+packet.messages.message[0].payload.netorderimbalanceindicatormessage.imbalancedirection = N
+packet.messages.message[0].payload.netorderimbalanceindicatormessage.stock = A
+packet.messages.message[0].payload.netorderimbalanceindicatormessage.farprice = 15.65
+packet.messages.message[0].payload.netorderimbalanceindicatormessage.nearprice = 15.65
+packet.messages.message[0].payload.netorderimbalanceindicatormessage.currentreferenceprice = 15.65
+packet.messages.message[0].payload.netorderimbalanceindicatormessage.crosstype = O
+packet.messages.message[0].payload.netorderimbalanceindicatormessage.pricevariationindicator = L

@@ -19,8 +19,8 @@ void NoteCodesBitField4::set_pd_price_discrepancy_historical_average_share_class
 bool NoteCodesBitField4::sm_stressed_market() const { return (raw_ & static_cast<std::uint8_t>(0x40)) != 0; }
 void NoteCodesBitField4::set_sm_stressed_market(bool value) { raw_ = static_cast<std::uint8_t>(value ? (raw_ | static_cast<std::uint8_t>(0x40)) : (raw_ & ~static_cast<std::uint8_t>(0x40))); }
 
-bool NoteCodesBitField4::ew_marketwide_exceptional_circumstance() const { return (raw_ & static_cast<std::uint8_t>(0x80)) != 0; }
-void NoteCodesBitField4::set_ew_marketwide_exceptional_circumstance(bool value) { raw_ = static_cast<std::uint8_t>(value ? (raw_ | static_cast<std::uint8_t>(0x80)) : (raw_ & ~static_cast<std::uint8_t>(0x80))); }
+bool NoteCodesBitField4::ew_market_wide_exceptional_circumstance() const { return (raw_ & static_cast<std::uint8_t>(0x80)) != 0; }
+void NoteCodesBitField4::set_ew_market_wide_exceptional_circumstance(bool value) { raw_ = static_cast<std::uint8_t>(value ? (raw_ | static_cast<std::uint8_t>(0x80)) : (raw_ & ~static_cast<std::uint8_t>(0x80))); }
 
 std::uint8_t NoteCodesBitField4::raw() const { return raw_; }
 void NoteCodesBitField4::set_raw(std::uint8_t value) { raw_ = value; }
@@ -51,8 +51,8 @@ void NoteCodesBitField4::print(std::ostream& out) const {
     out << (pd_price_discrepancy_historical_average_share_classes() ? "true" : "false");
     out << ", sm_stressed_market=";
     out << (sm_stressed_market() ? "true" : "false");
-    out << ", ew_marketwide_exceptional_circumstance=";
-    out << (ew_marketwide_exceptional_circumstance() ? "true" : "false");
+    out << ", ew_market_wide_exceptional_circumstance=";
+    out << (ew_market_wide_exceptional_circumstance() ? "true" : "false");
     out << '}';
 }
 

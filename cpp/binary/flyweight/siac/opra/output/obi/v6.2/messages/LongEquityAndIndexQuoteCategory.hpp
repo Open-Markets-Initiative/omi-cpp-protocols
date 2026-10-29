@@ -40,7 +40,7 @@ class LongEquityAndIndexQuoteCategory {
     void long_equity_and_index_quote_message_payload(Handler& handler) const {
         const auto bytes = long_equity_and_index_quote_message_payload_bytes();
         switch (long_equity_and_index_quote_message_type()) {
-            case LongEquityAndIndexQuoteMessageType::RegularTrading: {
+            case LongEquityAndIndexQuoteMessageType::RegularTrading: case LongEquityAndIndexQuoteMessageType::NonFirmQuote: case LongEquityAndIndexQuoteMessageType::IndicativeValue: case LongEquityAndIndexQuoteMessageType::Rotation: case LongEquityAndIndexQuoteMessageType::TradingHalted: case LongEquityAndIndexQuoteMessageType::EligibleForAutomaticExecution: case LongEquityAndIndexQuoteMessageType::BidContainsCustomerTradingInterest: case LongEquityAndIndexQuoteMessageType::OfferContainsCustomerTradingInterest: case LongEquityAndIndexQuoteMessageType::BothBidAndOfferContainCustomerTradingInterest: case LongEquityAndIndexQuoteMessageType::OfferSideOfQuoteNotFirmBidSideFirm: case LongEquityAndIndexQuoteMessageType::BidSideOfQuoteNotFirmOfferSideFirm: {
                 wire::require(LongEquityAndIndexQuoteMessage::name, LongEquityAndIndexQuoteMessage::minimum_size, bytes.size());
                 const LongEquityAndIndexQuoteMessage message{ bytes };
                 if constexpr (requires { handler.on(message); }) { handler.on(message); }
@@ -56,7 +56,7 @@ class LongEquityAndIndexQuoteCategory {
     std::size_t long_equity_and_index_quote_message_payload_size() const {
         const auto bytes = long_equity_and_index_quote_message_payload_bytes();
         switch (long_equity_and_index_quote_message_type()) {
-            case LongEquityAndIndexQuoteMessageType::RegularTrading: return LongEquityAndIndexQuoteMessage{ bytes }.encoded_size();
+            case LongEquityAndIndexQuoteMessageType::RegularTrading: case LongEquityAndIndexQuoteMessageType::NonFirmQuote: case LongEquityAndIndexQuoteMessageType::IndicativeValue: case LongEquityAndIndexQuoteMessageType::Rotation: case LongEquityAndIndexQuoteMessageType::TradingHalted: case LongEquityAndIndexQuoteMessageType::EligibleForAutomaticExecution: case LongEquityAndIndexQuoteMessageType::BidContainsCustomerTradingInterest: case LongEquityAndIndexQuoteMessageType::OfferContainsCustomerTradingInterest: case LongEquityAndIndexQuoteMessageType::BothBidAndOfferContainCustomerTradingInterest: case LongEquityAndIndexQuoteMessageType::OfferSideOfQuoteNotFirmBidSideFirm: case LongEquityAndIndexQuoteMessageType::BidSideOfQuoteNotFirmOfferSideFirm: return LongEquityAndIndexQuoteMessage{ bytes }.encoded_size();
             default: return bytes.size();
         }
     }
@@ -65,7 +65,7 @@ class LongEquityAndIndexQuoteCategory {
     void long_equity_and_index_quote_message_payload_print(std::ostream& out) const {
         const auto bytes = long_equity_and_index_quote_message_payload_bytes();
         switch (long_equity_and_index_quote_message_type()) {
-            case LongEquityAndIndexQuoteMessageType::RegularTrading: LongEquityAndIndexQuoteMessage{ bytes }.print(out); return;
+            case LongEquityAndIndexQuoteMessageType::RegularTrading: case LongEquityAndIndexQuoteMessageType::NonFirmQuote: case LongEquityAndIndexQuoteMessageType::IndicativeValue: case LongEquityAndIndexQuoteMessageType::Rotation: case LongEquityAndIndexQuoteMessageType::TradingHalted: case LongEquityAndIndexQuoteMessageType::EligibleForAutomaticExecution: case LongEquityAndIndexQuoteMessageType::BidContainsCustomerTradingInterest: case LongEquityAndIndexQuoteMessageType::OfferContainsCustomerTradingInterest: case LongEquityAndIndexQuoteMessageType::BothBidAndOfferContainCustomerTradingInterest: case LongEquityAndIndexQuoteMessageType::OfferSideOfQuoteNotFirmBidSideFirm: case LongEquityAndIndexQuoteMessageType::BidSideOfQuoteNotFirmOfferSideFirm: LongEquityAndIndexQuoteMessage{ bytes }.print(out); return;
             default:
                 out << "UnknownLongEquityAndIndexQuoteMessagePayload{type=" << long_equity_and_index_quote_message_type() << ", body=";
                 print::hex(out, bytes.data(), bytes.size());

@@ -1,0 +1,39 @@
+#pragma once
+
+#include <cstdint>
+#include <ostream>
+#include <string_view>
+
+namespace siac::cts::output::cta::v2_9 {
+
+// Participant or Processor that generated the message
+enum class InitiatingParticipantId : char {
+    NyseAmerican = 'A',    // Nyse American
+    NasdaqBx = 'B',        // Nasdaq Bx
+    NyseNational = 'C',    // Nyse National
+    Adf = 'D',             // Adf
+    Miax = 'H',            // Miax
+    Ise = 'I',             // Ise
+    CboeEdga = 'J',        // Cboe Edga
+    CboeEdgx = 'K',        // Cboe Edgx
+    Ltse = 'L',            // Ltse
+    NyseChicago = 'M',     // Nyse Chicago
+    Nyse = 'N',            // Nyse
+    NyseArca = 'P',        // Nyse Arca
+    Cts = 'S',             // Cts
+    Nasdaq = 'T',          // Nasdaq
+    MembersExchange = 'U', // Members Exchange
+    Iex = 'V',             // Iex
+    Cbsx = 'W',            // Cbsx
+    NasdaqPsx = 'X',       // Nasdaq Psx
+    CboeByx = 'Y',         // Cboe Byx
+    CboeBzx = 'Z',         // Cboe Bzx
+};
+
+// The documented name of a code, or empty for one the specification does not list
+std::string_view to_string(InitiatingParticipantId value);
+
+// The documented name, or the raw code when there is none
+std::ostream& operator<<(std::ostream& out, InitiatingParticipantId value);
+
+} // namespace siac::cts::output::cta::v2_9

@@ -1,0 +1,17 @@
+# OtcMarkets.LinkAts.Multicast.Link.v4.3 MarketOpenMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.packetsize = 35
+packet.packetheader.seqnum = 5841
+packet.packetheader.packetflag.heartbeat = 0
+packet.packetheader.packetflag.seqnumreset = 0
+packet.packetheader.packetflag.replay = 0
+packet.packetheader.packetflag.test = 0
+packet.packetheader.messagecount = 1
+packet.packetheader.packetmilli = 21602850
+packet.messageblock = packet.messageblock.message
+packet.messageblock.message[0].messageheader.messagesize = 23
+packet.messageblock.message[0].messageheader.messagetype = 13
+packet.messageblock.message[0].payload = packet.messageblock.message.payload.marketopenmessage
+packet.messageblock.message[0].payload.marketopenmessage.channelseqnum = 112313
+packet.messageblock.message[0].payload.marketopenmessage.marketopen = 1553853602801
+packet.messageblock.message[0].payload.marketopenmessage.marketclose = 1553889600000

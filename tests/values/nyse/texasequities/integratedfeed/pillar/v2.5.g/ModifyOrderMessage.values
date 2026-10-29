@@ -1,0 +1,21 @@
+# Nyse.TexasEquities.IntegratedFeed.Pillar.v2.5.g ModifyOrderMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 51
+packet.packetheader.deliveryflag = 11
+packet.packetheader.numbermsgs = 1
+packet.packetheader.seqnum = 174567
+packet.packetheader.sendtime.seconds = 1692711000
+packet.packetheader.sendtime.nanoseconds = 154627072
+packet.packetheader.sendtime = 1692711000154627072
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 35
+packet.messages.message[0].messageheader.messagetype = 101
+packet.messages.message[0].payload = packet.messages.message.payload.modifyordermessage
+packet.messages.message[0].payload.modifyordermessage.sourcetimens = 154617856
+packet.messages.message[0].payload.modifyordermessage.symbolindex = 24457
+packet.messages.message[0].payload.modifyordermessage.symbolseqnum = 40
+packet.messages.message[0].payload.modifyordermessage.orderid = 14367318440217604
+packet.messages.message[0].payload.modifyordermessage.price = 23040000
+packet.messages.message[0].payload.modifyordermessage.volume = 2400
+packet.messages.message[0].payload.modifyordermessage.positionchange = 0
+packet.messages.message[0].payload.modifyordermessage.side = S

@@ -755,8 +755,8 @@ struct issue_classification {
     std::underlying_type_t<type> value_;
 };
 
-// Issue Subtype: Identifies the security sub-type for the issue as assigned by Nasdaq. See Appendix for allowable values.
-struct issue_subtype {
+// Issue Sub Type: Identifies the security sub-type for the issue as assigned by Nasdaq. See Appendix for allowable values.
+struct issue_sub_type {
     using type = std::string_view;
     static constexpr std::size_t size = 2;
     static constexpr char fill = ' ';
@@ -1370,7 +1370,7 @@ struct stock_directory_message {
         round_lot_size,
         round_lots_only,
         issue_classification,
-        issue_subtype,
+        issue_sub_type,
         authenticity,
         short_sale_threshold_indicator,
         ipo_flag,
@@ -1392,7 +1392,7 @@ struct stock_directory_message {
     ITCHFIELD(round_lot_size);
     ITCHFIELD(round_lots_only);
     ITCHFIELD(issue_classification);
-    ITCHFIELD(issue_subtype);
+    ITCHFIELD(issue_sub_type);
     ITCHFIELD(authenticity);
     ITCHFIELD(short_sale_threshold_indicator);
     ITCHFIELD(ipo_flag);

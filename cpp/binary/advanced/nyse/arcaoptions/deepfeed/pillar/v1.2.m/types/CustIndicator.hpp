@@ -14,20 +14,20 @@ struct cust_indicator {
 
     enum class enum_type : char {
         customer = 'C',
-        noncustomer = 'N',
+        non_customer = 'N',
         derived_for_future_use = 'D'
     };
 
     static constexpr std::array<std::pair<std::string_view, enum_type>, 3> from_string_map = {{
         {"Customer", enum_type::customer},
         {"Derived For Future Use", enum_type::derived_for_future_use},
-        {"Noncustomer", enum_type::noncustomer}
+        {"Non Customer", enum_type::non_customer}
     }};
 
     static constexpr std::string_view to_string(enum_type value) {
         switch (value) {
             case enum_type::customer: return "Customer";
-            case enum_type::noncustomer: return "Noncustomer";
+            case enum_type::non_customer: return "Non Customer";
             case enum_type::derived_for_future_use: return "Derived For Future Use";
             default: return "unknown";
         }

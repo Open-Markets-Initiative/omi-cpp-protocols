@@ -19,9 +19,9 @@ class AllowedBookTypes {
     bool firm_quote_book() const;
     void set_firm_quote_book(bool value);
 
-    // Offbook: Off-book
-    bool offbook() const;
-    void set_offbook(bool value);
+    // Off Book: Off-book
+    bool off_book() const;
+    void set_off_book(bool value);
 
     // Electronic Order Book: Electronic Order Book
     bool electronic_order_book() const;

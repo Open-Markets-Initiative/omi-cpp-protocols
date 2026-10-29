@@ -4,9 +4,9 @@ namespace jpx::tseequities::marketbyorder::flex::v1_1 {
 
 std::string_view to_string(OrderCondition value) {
     switch (value) {
-        case OrderCondition::Nonconditional: return "Nonconditional";
-        case OrderCondition::Onopen: return "Onopen";
-        case OrderCondition::Onclose: return "Onclose";
+        case OrderCondition::NonConditional: return "Non Conditional";
+        case OrderCondition::OnOpen: return "On Open";
+        case OrderCondition::OnClose: return "On Close";
         case OrderCondition::Funari: return "Funari";
         default: return {};
     }

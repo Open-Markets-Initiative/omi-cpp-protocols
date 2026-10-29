@@ -9,6 +9,7 @@
 #include <string_view>
 
 #include "../common/Decimal.hpp"
+#include "../enums/CounterPartyId.hpp"
 #include "../enums/Side.hpp"
 #include "../enums/TradeType.hpp"
 #include "../messages/Message.hpp"

@@ -1,0 +1,15 @@
+# CixAts.CixAspen.MarketDataFeed.Aspen.v1.4 SymbolStateMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.marketdayidentifier = 20676
+packet.packetheader.feedidentifier = W
+packet.packetheader.sequence = 389008
+packet.packetheader.count = 1
+packet.message[0].messageheader.length = 28
+packet.message[0].messageheader.messagetype = C
+packet.message[0].payload = packet.message.payload.symbolstatemessage
+packet.message[0].payload.symbolstatemessage.timestamp = 1786472410829377273
+packet.message[0].payload.symbolstatemessage.symbolid = 3631
+packet.message[0].payload.symbolstatemessage.symbol = SBN
+packet.message[0].payload.symbolstatemessage.state = H
+packet.message[0].payload.symbolstatemessage.reserved1 = 
+packet.message[0].payload.symbolstatemessage.info = MKDT

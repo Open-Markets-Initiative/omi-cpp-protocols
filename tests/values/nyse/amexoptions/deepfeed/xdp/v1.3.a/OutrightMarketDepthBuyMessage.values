@@ -1,0 +1,30 @@
+# Nyse.AmexOptions.DeepFeed.Xdp.v1.3.a OutrightMarketDepthBuyMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.packetsize = 72
+packet.packetheader.deliveryflag = 11
+packet.packetheader.messagecount = 2
+packet.packetheader.sequencenumber = 6625747
+packet.packetheader.sendtime.seconds = 1676559600
+packet.packetheader.sendtime.nanoseconds = 20000
+packet.packetheader.sendtime = 1676559600000020000
+packet.message[0].messageheader.messagesize = 8
+packet.message[0].messageheader.messagetype = 455
+packet.message[0].payload = packet.message.payload.streamidmessage
+packet.message[0].payload.streamidmessage.streamid = 98
+packet.message[1].messageheader.messagesize = 48
+packet.message[1].messageheader.messagetype = 403
+packet.message[1].payload = packet.message.payload.outrightmarketdepthbuymessage
+packet.message[1].payload.outrightmarketdepthbuymessage.sourcetime = 1676559599
+packet.message[1].payload.outrightmarketdepthbuymessage.sourcens = 999977000
+packet.message[1].payload.outrightmarketdepthbuymessage.seriesindex = 260521171
+packet.message[1].payload.outrightmarketdepthbuymessage.symbolseqnum = 3224
+packet.message[1].payload.outrightmarketdepthbuymessage.firstlevelprice = 94500
+packet.message[1].payload.outrightmarketdepthbuymessage.secondlevelprice = 92500
+packet.message[1].payload.outrightmarketdepthbuymessage.thirdlevelprice = 92000
+packet.message[1].payload.outrightmarketdepthbuymessage.firstlevelvolume = 1
+packet.message[1].payload.outrightmarketdepthbuymessage.secondlevelvolume = 2
+packet.message[1].payload.outrightmarketdepthbuymessage.thirdlevelvolume = 3
+packet.message[1].payload.outrightmarketdepthbuymessage.quotecondition = 1
+packet.message[1].payload.outrightmarketdepthbuymessage.firstlevelcustomervolume = 0
+packet.message[1].payload.outrightmarketdepthbuymessage.secondlevelcustomervolume = 0
+packet.message[1].payload.outrightmarketdepthbuymessage.thirdlevelcustomervolume = 0

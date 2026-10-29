@@ -1178,8 +1178,8 @@ struct strike_price {
     type value_;
 };
 
-// Subversion: Sub-version of this interface. Currently set to 0.
-struct subversion {
+// Sub Version: Sub-version of this interface. Currently set to 0.
+struct sub_version {
     using type = std::uint8_t;
     static constexpr std::size_t size = 1;
 
@@ -1643,7 +1643,7 @@ struct system_event_message {
         nanoseconds,
         event_code,
         version,
-        subversion>;
+        sub_version>;
 
     // the member of the type asked for
     template <typename Field>
@@ -1653,7 +1653,7 @@ struct system_event_message {
     ITCHFIELD(nanoseconds);
     ITCHFIELD(event_code);
     ITCHFIELD(version);
-    ITCHFIELD(subversion);
+    ITCHFIELD(sub_version);
 };
 
 static_assert(sizeof(system_event_message) == system_event_message::size, "system_event_message lies over its bytes exactly");

@@ -1,28 +1,34 @@
 # Benchmark Programs
 
-Times reading a capture through the Tmp header, by the reading generated into the program. The
-capture's datagrams are read into memory first, so only the reading is timed: every datagram
-parsed, and every field of every message
-read through `get<Field>()` and folded into a checksum, so no read can be skipped. It reports
-the whole read - nanoseconds per datagram and per message, messages and megabytes a second -
-and then every field of each message type read on its own. Each figure is the best of the
-passes asked for (ten by default). Datagrams that do not parse are counted and left out of the
-timing; it exits 1 when there are any.
+Times each format's reading of a protocol, the same way over the same packets: one program per
+format, as the formats never meet in one program, each reading every value of every message the
+way that format's values test does and folding it into a checksum. They read the protocol's
+simulated sequence (`tests/simulated/<protocol>.pcap`) - packets written from the model and read
+back through it before they are kept - so they run without a corpus, and every build's ctest runs
+each briefly to prove it does.
+
+The harness they share (`executables/benchmark/Benchmark.hpp`) holds the capture in memory, reads
+every datagram once before anything is timed - a datagram that does not read fails the program -
+warms the reading up, then samples it: each sample whole passes over the capture, long enough for
+the clock to resolve, until at least 30 samples and the seconds asked for (one by default) are in
+hand. Every pass must come to the same checksum, which the compiler must keep, so no read can be
+skipped. It reports the spread of a datagram's reading - least, median, p90, p99 and mean - and
+datagrams and megabytes a second at the median, pinned to one CPU where the system allows.
 
 ```sh
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release && cmake --build build
-./build/benchmark_<protocol> capture.pcap [passes]
+./build/benchmark_<format>_<protocol> tests/simulated/<protocol>.pcap [seconds]
 ```
 
 Each protocol has its own directory, named for its identifier with the version as the last
 segment — `Iex.IexEquities.Tops.IexTp.v1.64` becomes `iex/iexequities/tops/iextp/v1.64` —
 matching the C++ namespace the code declares.
 
-Each directory holds only the program: it includes its protocol's parser from `cpp/binary/tmp/`
+Each directory holds only the program: it includes its protocol's parser from `cpp/binary/<format>/`
 and the capture reader from `executables/pcap/`, both resolved from the repository root, so
-no program carries a copy of either. Time a Release build: a Debug one measures the compiler's debugging, not the reading.
+no program carries a copy of either. Time a Release build: a Debug one measures the compiler's debugging, not the reading, and says so.
 
-## Protocols (46)
+## Protocols (98)
 
 - `Asx.AsxDerivatives.Ntp.Itch.v1.05`
 - `B3.B3Derivatives.BinaryUmdf.Sbe.v1.6`
@@ -32,14 +38,29 @@ no program carries a copy of either. Time a Release build: a Debug one measures 
 - `B3.B3Derivatives.BinaryUmdf.Sbe.v2.1`
 - `B3.B3Derivatives.BinaryUmdf.Sbe.v2.2`
 - `B3.B3Derivatives.BinaryUmdf.Sbe.v2.3`
+- `B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0`
+- `B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1`
+- `B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3`
+- `Bse.BseIndia.Eobi.Fbe.v1.4`
 - `Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.41.29`
 - `Cboe.EdgxOptions.MulticastDepthOfBook.Pitch.v2.41.80`
 - `Cboe.CfeFutures.MulticastDepthOfBook.Pitch.v1.2.22`
+- `Cboe.ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29`
+- `Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.20.4`
+- `Cboe.C1Options.Complex.Pitch.v2.1.18`
+- `Cboe.C1Options.MulticastDepthOfBook.Pitch.v2.39.4`
+- `Cboe.C1Options.MarketDataFeed.Csm.v1.4.2`
+- `Cboe.EdgaEquities.MulticastDepthOfBook.Pitch.v2.41.29`
+- `Cboe.EdgxEquities.MulticastDepthOfBook.Pitch.v2.41.29`
+- `CixAts.CixAspen.MarketDataFeed.Aspen.v1.4`
 - `Cme.Globex.Mdp3.Sbe.v1.8`
 - `Cme.Globex.Mdp3.Sbe.v1.9`
 - `Cme.Globex.Mdp3.Sbe.v1.13`
+- `Cme.Globex.Mdp3.Sbe.v1.5`
 - `Eurex.T7.Eobi.Fbe.v13.0`
 - `Eurex.T7.Eobi.Fbe.v15.0`
+- `Eurex.T7.Eobi.Fbe.v3.0`
+- `Eurex.T7.Eobi.Fbe.v6.0`
 - `Iex.IexEquities.Deep.IexTp.v1.06`
 - `Iex.IexEquities.Deep.IexTp.v1.08`
 - `Iex.IexEquities.Deep.Snap.v1.6`
@@ -50,6 +71,9 @@ no program carries a copy of either. Time a Release build: a Debug one measures 
 - `Iex.IexEquities.Tops.IexTp.v1.64`
 - `Iex.IexEquities.Tops.IexTp.v1.66`
 - `Iex.IexEquities.Tops.Snap.v1.6`
+- `Jnx.JnxEquities.Pts.Itch.v1.6`
+- `Jnx.JnxEquities.Pts.Itch.v1.7`
+- `Jnx.JnxEquities.Pts.Ouch.v1.11`
 - `Jpx.OseDerivatives.GeniumInet.Itch.v5.0.6`
 - `Jpx.TseEquities.MarketByOrder.Flex.v1.1`
 - `Lseg.Lse.Level2Mbo.Gtp.v26.2`
@@ -57,6 +81,8 @@ no program carries a copy of either. Time a Release build: a Debug one measures 
 - `Memx.MemxEquities.MemoirDepthFeed.Sbe.v1.3`
 - `Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d`
 - `Miax.MiaxOptions.TopOfMarket.Mach.v2.5`
+- `Miax.MiaxOptions.ComplexTopOfMarket.Mach.v1.1`
+- `Miax.OnyxFutures.TopOfMarket.Mach.v1.0.b`
 - `Nasdaq.NsmEquities.TotalView.Itch.v5.0.2017`
 - `Nasdaq.NsmEquities.TotalView.Itch.v5.0.2023`
 - `Nasdaq.NsmEquities.TotalView.Itch.v5.0.2026`
@@ -64,11 +90,43 @@ no program carries a copy of either. Time a Release build: a Debug one measures 
 - `Nasdaq.NomOptions.Itto.Itch.v4.0.2025`
 - `Nasdaq.PhlxOptions.TopOfMarket.Itch.v3.4`
 - `Nasdaq.NordicEquities.TotalView.Itch.v3.04.X`
+- `Nasdaq.IseOptions.OrderComboFeed.Itch.v1.1`
+- `Nasdaq.IseOptions.TopComboQuoteFeed.Itch.v1.0`
+- `Nasdaq.NsmEquities.NlsPlus.Itch.v3.0`
+- `Nasdaq.NsmEquities.TotalView.Itch.v4.0`
+- `Nasdaq.NtxEquities.TotalView.Itch.v5.0`
+- `Nasdaq.PsxEquities.TotalView.Itch.v5.0`
 - `Nyse.ArcaEquities.IntegratedFeed.Pillar.v2.5.g`
 - `Nyse.ArcaOptions.DeepFeed.Pillar.v1.2.m`
 - `Nyse.NyseEquities.IntegratedFeed.Xdp.v2.3.a`
+- `Nyse.AmexEquities.IntegratedFeed.Pillar.v2.5.g`
+- `Nyse.AmexEquities.IntegratedFeed.Xdp.v2.1.g`
+- `Nyse.AmexEquities.IntegratedFeedRefresh.Pillar.v2.5.g`
+- `Nyse.AmexOptions.ComplexFeed.Xdp.v1.3.a`
+- `Nyse.AmexOptions.DeepFeed.Xdp.v1.3.a`
+- `Nyse.ArcaEquities.Bbo.Xdp.v2.4.c`
+- `Nyse.ArcaEquities.IntegratedFeedRefresh.Pillar.v2.5.g`
+- `Nyse.ArcaOptions.TopFeed.Pillar.v1.2.c`
+- `Nyse.NationalEquities.Bbo.Pillar.v2.5.d`
+- `Nyse.NationalEquities.Trades.Pillar.v2.6`
+- `Nyse.NyseEquities.Bbo.Pillar.v2.5.b`
+- `Nyse.NyseEquities.Bbo.Xdp.v2.4.g`
+- `Nyse.NyseEquities.ImbalancesFeed.Xdp.v2.1.f`
+- `Nyse.NyseEquities.ImbalancesFeed.Xdp.v2.2.a`
+- `Nyse.NyseEquities.IntegratedFeed.Pillar.v2.5.g`
+- `Nyse.NyseEquities.IntegratedFeed.Xdp.v2.1.g`
+- `Nyse.NyseEquities.IntegratedFeedRefresh.Pillar.v2.5.g`
+- `Nyse.NyseEquities.IntegratedFeedRetransmission.Pillar.v2.5.g`
+- `Nyse.TexasEquities.IntegratedFeed.Pillar.v2.5.g`
+- `Nyse.TexasEquities.IntegratedFeedRefresh.Pillar.v2.5.g`
+- `OtcMarkets.LinkAts.Multicast.Link.v4.3`
 - `Siac.Opra.Output.Obi.v6.2`
 - `Siac.Cts.Output.Cta.v2.11.b`
 - `Siac.Cqs.Output.Cta.v2.10.a`
+- `Siac.Cqs.Output.Cta.v1.91`
+- `Siac.Cts.Output.Cta.v1.91`
+- `Siac.Cts.Output.Cta.v2.10`
+- `Siac.Cts.Output.Cta.v2.9`
+- `Tmx.Tsx.QuantumFeedLevel2.Xmt.v2.10`
 
 Regenerated by `Generate.Cpp.Protocols.Repository`; do not edit by hand.

@@ -77,4 +77,31 @@ std::unique_ptr<PacketMessage> PacketMessageFactory::create(PacketMessageCode co
     }
 }
 
+std::unique_ptr<FileMessage> FileMessageFactory::create(FileMessageCode code) {
+    switch (code) {
+        case FilePayloadSystemEventMessage::message_type: return std::make_unique<FilePayloadSystemEventMessage>();
+        case FilePayloadStockDirectoryMessage::message_type: return std::make_unique<FilePayloadStockDirectoryMessage>();
+        case FilePayloadStockTradingActionMessage::message_type: return std::make_unique<FilePayloadStockTradingActionMessage>();
+        case FilePayloadRegShoShortSalePriceTestRestrictedIndicatorMessage::message_type: return std::make_unique<FilePayloadRegShoShortSalePriceTestRestrictedIndicatorMessage>();
+        case FilePayloadMarketParticipantPositionMessage::message_type: return std::make_unique<FilePayloadMarketParticipantPositionMessage>();
+        case FilePayloadMwcbDeclineLevelMessage::message_type: return std::make_unique<FilePayloadMwcbDeclineLevelMessage>();
+        case FilePayloadMwcbStatusLevelMessage::message_type: return std::make_unique<FilePayloadMwcbStatusLevelMessage>();
+        case FilePayloadIpoQuotingPeriodUpdate::message_type: return std::make_unique<FilePayloadIpoQuotingPeriodUpdate>();
+        case FilePayloadLuldAuctionCollarMessage::message_type: return std::make_unique<FilePayloadLuldAuctionCollarMessage>();
+        case FilePayloadAddOrderNoMpidAttributionMessage::message_type: return std::make_unique<FilePayloadAddOrderNoMpidAttributionMessage>();
+        case FilePayloadAddOrderWithMpidAttributionMessage::message_type: return std::make_unique<FilePayloadAddOrderWithMpidAttributionMessage>();
+        case FilePayloadOrderExecutedMessage::message_type: return std::make_unique<FilePayloadOrderExecutedMessage>();
+        case FilePayloadOrderExecutedWithPriceMessage::message_type: return std::make_unique<FilePayloadOrderExecutedWithPriceMessage>();
+        case FilePayloadOrderCancelMessage::message_type: return std::make_unique<FilePayloadOrderCancelMessage>();
+        case FilePayloadOrderDeleteMessage::message_type: return std::make_unique<FilePayloadOrderDeleteMessage>();
+        case FilePayloadOrderReplaceMessage::message_type: return std::make_unique<FilePayloadOrderReplaceMessage>();
+        case FilePayloadNonCrossTradeMessage::message_type: return std::make_unique<FilePayloadNonCrossTradeMessage>();
+        case FilePayloadCrossTradeMessage::message_type: return std::make_unique<FilePayloadCrossTradeMessage>();
+        case FilePayloadBrokenTradeMessage::message_type: return std::make_unique<FilePayloadBrokenTradeMessage>();
+        case FilePayloadNetOrderImbalanceIndicatorMessage::message_type: return std::make_unique<FilePayloadNetOrderImbalanceIndicatorMessage>();
+        case FilePayloadRetailInterestMessage::message_type: return std::make_unique<FilePayloadRetailInterestMessage>();
+        default: return std::make_unique<UnknownFileMessage>(code);
+    }
+}
+
 } // namespace nasdaq::nsmequities::totalview::itch::v5_0_2017

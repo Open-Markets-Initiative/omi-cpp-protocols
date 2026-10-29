@@ -52,7 +52,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.stockdirectorymessage.roundlotsize"] = canonical::number(message->round_lot_size.get());
             values[entry + ".payload.stockdirectorymessage.roundlotsonly"] = canonical::text(canonical::character(message->round_lots_only.get()), ' ', false);
             values[entry + ".payload.stockdirectorymessage.issueclassification"] = canonical::text(canonical::character(message->issue_classification.get()), ' ', false);
-            values[entry + ".payload.stockdirectorymessage.issuesubtype"] = canonical::text(std::string(message->issue_subtype.get()), ' ', false);
+            values[entry + ".payload.stockdirectorymessage.issuesubtype"] = canonical::text(std::string(message->issue_sub_type.get()), ' ', false);
             values[entry + ".payload.stockdirectorymessage.authenticity"] = canonical::text(canonical::character(message->authenticity.get()), ' ', false);
             values[entry + ".payload.stockdirectorymessage.shortsalethresholdindicator"] = canonical::text(canonical::character(message->short_sale_threshold_indicator.get()), ' ', false);
             values[entry + ".payload.stockdirectorymessage.ipoflag"] = canonical::text(canonical::character(message->ipo_flag.get()), ' ', false);

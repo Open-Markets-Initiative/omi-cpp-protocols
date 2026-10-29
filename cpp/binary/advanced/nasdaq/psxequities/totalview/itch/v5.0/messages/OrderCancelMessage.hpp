@@ -1,0 +1,54 @@
+#pragma once
+
+#include <cstddef>
+#include "../structs/MessageHeader.hpp"
+#include "../types/StockLocate.hpp"
+#include "../types/TrackingNumber.hpp"
+#include "../types/Timestamp.hpp"
+#include "../types/OrderReferenceNumber.hpp"
+#include "../types/CancelledShares.hpp"
+
+namespace nasdaq::psxequities::totalview::itch::v5_0 {
+
+namespace itch_totalview = ::nasdaq::psxequities::totalview::itch::v5_0;
+
+#pragma pack(push, 1)
+
+// Order Cancel Message
+struct order_cancel_message {
+
+    struct fields_type {
+        itch_totalview::stock_locate stock_locate;
+        itch_totalview::tracking_number tracking_number;
+        itch_totalview::timestamp timestamp;
+        itch_totalview::order_reference_number order_reference_number;
+        itch_totalview::cancelled_shares cancelled_shares;
+    };
+
+    itch_totalview::message_header header = {std::uint16_t(sizeof(itch_totalview::message_header) + sizeof(fields_type) - 2), message_type::enum_type::order_cancel_message};
+
+    fields_type fields;
+
+    // parse method
+    static order_cancel_message* parse(std::byte* buffer) {
+        return reinterpret_cast<order_cancel_message*>(buffer);
+    }
+
+    // parse method const
+    static const order_cancel_message* parse(const std::byte* buffer) {
+        return reinterpret_cast<const order_cancel_message*>(buffer);
+    }
+
+};
+
+// layout verification
+static_assert(offsetof(order_cancel_message::fields_type, stock_locate) == 0, "unexpected offset of order_cancel_message::fields_type::stock_locate");
+static_assert(offsetof(order_cancel_message::fields_type, tracking_number) == 2, "unexpected offset of order_cancel_message::fields_type::tracking_number");
+static_assert(offsetof(order_cancel_message::fields_type, timestamp) == 4, "unexpected offset of order_cancel_message::fields_type::timestamp");
+static_assert(offsetof(order_cancel_message::fields_type, order_reference_number) == 10, "unexpected offset of order_cancel_message::fields_type::order_reference_number");
+static_assert(offsetof(order_cancel_message::fields_type, cancelled_shares) == 18, "unexpected offset of order_cancel_message::fields_type::cancelled_shares");
+static_assert(sizeof(order_cancel_message::fields_type) == 22, "unexpected sizeof order_cancel_message::fields_type");
+static_assert(sizeof(order_cancel_message) == sizeof(itch_totalview::message_header) + 22, "unexpected sizeof order_cancel_message");
+
+#pragma pack(pop)
+}

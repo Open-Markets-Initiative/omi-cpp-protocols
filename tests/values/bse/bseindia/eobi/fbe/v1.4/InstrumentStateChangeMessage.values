@@ -1,0 +1,20 @@
+# Bse.BseIndia.Eobi.Fbe.v1.4 InstrumentStateChangeMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.eobiheader.bodylen = 32
+packet.packetheader.eobiheader.templateid = 13002
+packet.packetheader.eobiheader.msgseqnum = 4294967295
+packet.packetheader.applseqnum = 163511
+packet.packetheader.marketsegmentid = 2675
+packet.packetheader.partitionid = 14
+packet.packetheader.completionindicator = 1
+packet.packetheader.applseqresetindicator = 0
+packet.packetheader.transacttime = 1786591800000183149
+packet.message[0].messageheader.bodylen = 32
+packet.message[0].messageheader.templateid = 13301
+packet.message[0].messageheader.msgseqnum = 40
+packet.message[0].payload = packet.message.payload.instrumentstatechangemessage
+packet.message[0].payload.instrumentstatechangemessage.securityid = 830589
+packet.message[0].payload.instrumentstatechangemessage.securitystatus = 1
+packet.message[0].payload.instrumentstatechangemessage.securitytradingstatus = 204
+packet.message[0].payload.instrumentstatechangemessage.fastmarketindicator = 0
+packet.message[0].payload.instrumentstatechangemessage.transacttime = 1786591800000039851

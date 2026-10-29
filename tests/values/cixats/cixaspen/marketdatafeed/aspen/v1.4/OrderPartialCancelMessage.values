@@ -1,0 +1,12 @@
+# CixAts.CixAspen.MarketDataFeed.Aspen.v1.4 OrderPartialCancelMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.marketdayidentifier = 20676
+packet.packetheader.feedidentifier = W
+packet.packetheader.sequence = 43260
+packet.packetheader.count = 1
+packet.message[0].messageheader.length = 25
+packet.message[0].messageheader.messagetype = F
+packet.message[0].payload = packet.message.payload.orderpartialcancelmessage
+packet.message[0].payload.orderpartialcancelmessage.timestamp = 1786458841972879077
+packet.message[0].payload.orderpartialcancelmessage.orderid = 56917948881542992
+packet.message[0].payload.orderpartialcancelmessage.quantitycanceled = 7623

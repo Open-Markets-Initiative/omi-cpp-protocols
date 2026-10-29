@@ -1,0 +1,16 @@
+# Jnx.JnxEquities.Pts.Itch.v1.7 OrderAddedWithoutAttributesMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 1697659284
+packet.packetheader.sequencenumber = 12577
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 30
+packet.messages.message[0].messageheader.messagetype = A
+packet.messages.message[0].udppayload = packet.messages.message.udppayload.orderaddedwithoutattributesmessage
+packet.messages.message[0].udppayload.orderaddedwithoutattributesmessage.nanoseconds = 22654000
+packet.messages.message[0].udppayload.orderaddedwithoutattributesmessage.ordernumber = 202310190000000001
+packet.messages.message[0].udppayload.orderaddedwithoutattributesmessage.buysellindicator = B
+packet.messages.message[0].udppayload.orderaddedwithoutattributesmessage.quantity = 1000
+packet.messages.message[0].udppayload.orderaddedwithoutattributesmessage.orderbookid = 942683448
+packet.messages.message[0].udppayload.orderaddedwithoutattributesmessage.group = DAY
+packet.messages.message[0].udppayload.orderaddedwithoutattributesmessage.price = 7134

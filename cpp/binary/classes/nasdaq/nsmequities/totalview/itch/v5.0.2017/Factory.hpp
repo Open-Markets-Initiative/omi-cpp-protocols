@@ -6,6 +6,7 @@
 #include "messages/ServerMessage.hpp"
 #include "messages/SequencedMessage.hpp"
 #include "messages/PacketMessage.hpp"
+#include "messages/FileMessage.hpp"
 
 namespace nasdaq::nsmequities::totalview::itch::v5_0_2017 {
 
@@ -39,6 +40,14 @@ class SequencedMessageFactory {
 class PacketMessageFactory {
   public:
     static std::unique_ptr<PacketMessage> create(PacketMessageCode code);
+};
+
+// Makes the message a Message Type selects. A code the specification does
+// not list makes an UnknownFileMessage carrying that code, never nothing, so a stream never
+// stops on one.
+class FileMessageFactory {
+  public:
+    static std::unique_ptr<FileMessage> create(FileMessageCode code);
 };
 
 } // namespace nasdaq::nsmequities::totalview::itch::v5_0_2017

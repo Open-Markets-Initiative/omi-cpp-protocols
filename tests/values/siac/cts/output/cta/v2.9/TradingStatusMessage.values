@@ -1,0 +1,37 @@
+# Siac.Cts.Output.Cta.v2.9 TradingStatusMessage: canonical values, read by the model
+datagram 0
+packet.blockheader.version = 2
+packet.blockheader.blocksize = 96
+packet.blockheader.datafeedindicator = T
+packet.blockheader.retransmissionindicator = O
+packet.blockheader.blocksequencenumber = 2792877
+packet.blockheader.messagesinblock = 1
+packet.blockheader.sipblocktimestamp.seconds = 1738010010
+packet.blockheader.sipblocktimestamp.nanoseconds = 5897984
+packet.blockheader.sipblocktimestamp = 1738010010005897984
+packet.blockheader.blockchecksum = 4257
+packet.message[0].messagelength = 76
+packet.message[0].messagecategory = T
+packet.message[0].categorypayload = packet.message.categorypayload.trademessage
+packet.message[0].categorypayload.trademessage.trademessagetype = S
+packet.message[0].categorypayload.trademessage.trademessagepayload = packet.message.categorypayload.trademessage.trademessagepayload.tradingstatusmessage
+packet.message[0].categorypayload.trademessage.trademessagepayload.tradingstatusmessage.participantid = S
+packet.message[0].categorypayload.trademessage.trademessagepayload.tradingstatusmessage.timestamp1.seconds = 1738010010
+packet.message[0].categorypayload.trademessage.trademessagepayload.tradingstatusmessage.timestamp1.nanoseconds = 5891584
+packet.message[0].categorypayload.trademessage.trademessagepayload.tradingstatusmessage.timestamp1 = 1738010010005891584
+packet.message[0].categorypayload.trademessage.trademessagepayload.tradingstatusmessage.messageid = 1
+packet.message[0].categorypayload.trademessage.trademessagepayload.tradingstatusmessage.transactionid = 0
+packet.message[0].categorypayload.trademessage.trademessagepayload.tradingstatusmessage.participantreferencenumber = 0
+packet.message[0].categorypayload.trademessage.trademessagepayload.tradingstatusmessage.securitysymbol = HYBX
+packet.message[0].categorypayload.trademessage.trademessagepayload.tradingstatusmessage.instrumenttype = 0
+packet.message[0].categorypayload.trademessage.trademessagepayload.tradingstatusmessage.lastprice = 0
+packet.message[0].categorypayload.trademessage.trademessagepayload.tradingstatusmessage.highindicationpriceupperlimitpriceband = 33.83
+packet.message[0].categorypayload.trademessage.trademessagepayload.tradingstatusmessage.lowindicationpricelowerlimitpriceband = 27.68
+packet.message[0].categorypayload.trademessage.trademessagepayload.tradingstatusmessage.buyvolume = 0
+packet.message[0].categorypayload.trademessage.trademessagepayload.tradingstatusmessage.sellvolume = 0
+packet.message[0].categorypayload.trademessage.trademessagepayload.tradingstatusmessage.securitystatus = F
+packet.message[0].categorypayload.trademessage.trademessagepayload.tradingstatusmessage.haltreason =  
+packet.message[0].categorypayload.trademessage.trademessagepayload.tradingstatusmessage.shortsalerestrictionindicator =  
+packet.message[0].categorypayload.trademessage.trademessagepayload.tradingstatusmessage.primarylistingmarketparticipantid = N
+packet.message[0].categorypayload.trademessage.trademessagepayload.tradingstatusmessage.financialstatusindicator = 0
+packet.message[0].categorypayload.trademessage.trademessagepayload.tradingstatusmessage.limituplimitdownindicator = B

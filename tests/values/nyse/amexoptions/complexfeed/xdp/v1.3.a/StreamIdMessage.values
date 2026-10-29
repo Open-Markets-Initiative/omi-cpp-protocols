@@ -1,0 +1,22 @@
+# Nyse.AmexOptions.ComplexFeed.Xdp.v1.3.a StreamIdMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.packetsize = 48
+packet.packetheader.deliveryflag = 11
+packet.packetheader.messagecount = 2
+packet.packetheader.sequencenumber = 617931
+packet.packetheader.sendtime.seconds = 1676559600
+packet.packetheader.sendtime.nanoseconds = 340422000
+packet.packetheader.sendtime = 1676559600340422000
+packet.message[0].messageheader.messagesize = 8
+packet.message[0].messageheader.messagetype = 455
+packet.message[0].payload = packet.message.payload.streamidmessage
+packet.message[0].payload.streamidmessage.streamid = 35
+packet.message[1].messageheader.messagesize = 24
+packet.message[1].messageheader.messagetype = 433
+packet.message[1].payload = packet.message.payload.complexstatusmessage
+packet.message[1].payload.complexstatusmessage.sourcetime = 1676559600
+packet.message[1].payload.complexstatusmessage.sourcetimens = 340414000
+packet.message[1].payload.complexstatusmessage.complexindex = 261336045
+packet.message[1].payload.complexstatusmessage.symbolseqnum = 6
+packet.message[1].payload.complexstatusmessage.securitystatus = Q
+packet.message[1].payload.complexstatusmessage.haltcondition =  

@@ -35,24 +35,24 @@ namespace variant_dailytaqtradeluld_v4_3 {
         ::scaled::delimited::Expected{ "Layout", "", '|', false, layout },
     } };
 
-    // Trade Luld: a line of 9 fields, or as few as 6: its last 3 are optional, null where the line stops before them; onto a row
+    // Trade Luld: a line of 9 fields, onto a row
     template <typename Row>
     void read(const ::scaled::delimited::Fields& fields, Row& row) {
-        ::scaled::delimited::expect(fields, 6, 9, "Trade Luld");
+        ::scaled::delimited::expect(fields, 9, "Trade Luld");
         row.time.set(static_cast<std::uint64_t>(::scaled::delimited::time_of_day(fields[0], 9, "Time")));  // Time
         row.sequence_number.set(::scaled::delimited::integer<std::int64_t>(fields[1], "Sequence Number"));  // Sequence Number
         row.source.set(fields[2]);  // Source
         row.symbol.set(fields[3]);  // Symbol
         row.low_price.data = ::scaled::delimited::decimal(fields[4], 6, "Low Price");  // Low Price
         row.high_price.data = ::scaled::delimited::decimal(fields[5], 6, "High Price");  // High Price
-        if (!::scaled::delimited::at(fields, 6).empty()) {  // LULD Price Band Indicator
-            row.luld_price_band_indicator.set(::scaled::delimited::at(fields, 6));
+        if (!fields[6].empty()) {  // LULD Price Band Indicator
+            row.luld_price_band_indicator.set(fields[6]);
         }
-        if (!::scaled::delimited::at(fields, 7).empty()) {  // Reference Price
-            row.reference_price.data = ::scaled::delimited::decimal(::scaled::delimited::at(fields, 7), 6, "Reference Price");
+        if (!fields[7].empty()) {  // Reference Price
+            row.reference_price.data = ::scaled::delimited::decimal(fields[7], 6, "Reference Price");
         }
-        if (!::scaled::delimited::at(fields, 8).empty()) {  // Num Extensions
-            row.num_extensions.set(::scaled::delimited::integer<std::int64_t>(::scaled::delimited::at(fields, 8), "Num Extensions"));
+        if (!fields[8].empty()) {  // Num Extensions
+            row.num_extensions.set(::scaled::delimited::integer<std::int64_t>(fields[8], "Num Extensions"));
         }
     }
 }

@@ -1,0 +1,17 @@
+# Cboe.EdgxEquities.MulticastDepthOfBook.Pitch.v2.41.29 AddOrderShortMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.length = 34
+packet.packetheader.messagecount = 1
+packet.packetheader.unit = 15
+packet.packetheader.sequence = 174915
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 26
+packet.messages.message[0].messageheader.messagetype = 34
+packet.messages.message[0].payload = packet.messages.message.payload.addordershortmessage
+packet.messages.message[0].payload.addordershortmessage.timeoffset = 964000
+packet.messages.message[0].payload.addordershortmessage.orderid = 2002657841979059035
+packet.messages.message[0].payload.addordershortmessage.sideindicator = S
+packet.messages.message[0].payload.addordershortmessage.quantityshort = 100
+packet.messages.message[0].payload.addordershortmessage.symbolshort = IWM
+packet.messages.message[0].payload.addordershortmessage.priceshort = 185.05
+packet.messages.message[0].payload.addordershortmessage.addorderflags.display = 1

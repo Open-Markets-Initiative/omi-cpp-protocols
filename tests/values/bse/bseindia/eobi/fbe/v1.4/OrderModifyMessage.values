@@ -1,0 +1,24 @@
+# Bse.BseIndia.Eobi.Fbe.v1.4 OrderModifyMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.eobiheader.bodylen = 32
+packet.packetheader.eobiheader.templateid = 13002
+packet.packetheader.eobiheader.msgseqnum = 4294967295
+packet.packetheader.applseqnum = 168668
+packet.packetheader.marketsegmentid = 629
+packet.packetheader.partitionid = 14
+packet.packetheader.completionindicator = 1
+packet.packetheader.applseqresetindicator = 0
+packet.packetheader.transacttime = 1786592700018995638
+packet.message[0].messageheader.bodylen = 80
+packet.message[0].messageheader.templateid = 13101
+packet.message[0].messageheader.msgseqnum = 70
+packet.message[0].payload = packet.message.payload.ordermodifymessage
+packet.message[0].payload.ordermodifymessage.trdregtstimein = 1786592700018883476
+packet.message[0].payload.ordermodifymessage.trdregtsprevtimepriority = 1786592700015966455
+packet.message[0].payload.ordermodifymessage.prevprice = 1390055
+packet.message[0].payload.ordermodifymessage.prevdisplayqty = 50
+packet.message[0].payload.ordermodifymessage.securityid = 825811
+packet.message[0].payload.ordermodifymessage.orderdetails.trdregtstimepriority = 1786592700018901687
+packet.message[0].payload.ordermodifymessage.orderdetails.displayqty = 50
+packet.message[0].payload.ordermodifymessage.orderdetails.side = 1
+packet.message[0].payload.ordermodifymessage.orderdetails.price = 1392155

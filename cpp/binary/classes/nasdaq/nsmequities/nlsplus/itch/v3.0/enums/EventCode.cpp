@@ -1,0 +1,23 @@
+#include "EventCode.hpp"
+
+namespace nasdaq::nsmequities::nlsplus::itch::v3_0 {
+
+std::string_view to_string(EventCode value) {
+    switch (value) {
+        case EventCode::StartOfTransmissions: return "Start Of Transmissions";
+        case EventCode::StartOfSystemHours: return "Start Of System Hours";
+        case EventCode::StartOfMarketHours: return "Start Of Market Hours";
+        case EventCode::EndOfMarketHours: return "End Of Market Hours";
+        case EventCode::EndOfSystemHours: return "End Of System Hours";
+        case EventCode::EndOfTransmissions: return "End Of Transmissions";
+        default: return {};
+    }
+}
+
+std::ostream& operator<<(std::ostream& out, EventCode value) {
+    const auto name = to_string(value);
+    if (!name.empty()) { return out << name; }
+    return out << '\'' << static_cast<char>(value) << '\'';
+}
+
+} // namespace nasdaq::nsmequities::nlsplus::itch::v3_0

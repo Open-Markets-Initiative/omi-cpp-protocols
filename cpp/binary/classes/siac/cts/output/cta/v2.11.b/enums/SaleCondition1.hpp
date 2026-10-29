@@ -12,7 +12,7 @@ enum class SaleCondition1 : char {
     AveragePriceTrade = 'B',                                 // Average Price Trade
     CashTradeSameDayClearing = 'C',                          // Cash Trade Same Day Clearing
     AutomaticExecution = 'E',                                // Automatic Execution
-    IntermarketSweepOrder = 'F',                             // Intermarket Sweep Order
+    InterMarketSweepOrder = 'F',                             // Inter Market Sweep Order
     PriceVariationTrade = 'H',                               // Price Variation Trade
     OddLotTrade = 'I',                                       // Odd Lot Trade
     Rule127NyseOnlyOrRule155NyseAmericanOnly = 'K',          // Rule 127 Nyse Only Or Rule 155 Nyse American Only

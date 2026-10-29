@@ -1,0 +1,25 @@
+# Nyse.AmexOptions.ComplexFeed.Xdp.v1.3.a RefreshComplexTradeMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.packetsize = 60
+packet.packetheader.deliveryflag = 3
+packet.packetheader.messagecount = 2
+packet.packetheader.sequencenumber = 61822
+packet.packetheader.sendtime.seconds = 1676559600
+packet.packetheader.sendtime.nanoseconds = 48196000
+packet.packetheader.sendtime = 1676559600048196000
+packet.message[0].messageheader.messagesize = 8
+packet.message[0].messageheader.messagetype = 455
+packet.message[0].payload = packet.message.payload.streamidmessage
+packet.message[0].payload.streamidmessage.streamid = 275
+packet.message[1].messageheader.messagesize = 36
+packet.message[1].messageheader.messagetype = 513
+packet.message[1].payload = packet.message.payload.refreshcomplextrademessage
+packet.message[1].payload.refreshcomplextrademessage.sourcetime = 1676558400
+packet.message[1].payload.refreshcomplextrademessage.sourcetimens = 48185000
+packet.message[1].payload.refreshcomplextrademessage.complexindex = 261332627
+packet.message[1].payload.refreshcomplextrademessage.symbolseqnum = 11
+packet.message[1].payload.refreshcomplextrademessage.tradeid = 20
+packet.message[1].payload.refreshcomplextrademessage.price = 23200
+packet.message[1].payload.refreshcomplextrademessage.volume4 = 1
+packet.message[1].payload.refreshcomplextrademessage.tradecond1 =  
+packet.message[1].payload.refreshcomplextrademessage.tradecond2 = f

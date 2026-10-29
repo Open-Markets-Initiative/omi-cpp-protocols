@@ -9,7 +9,7 @@ namespace nyse::arcaoptions::deepfeed::pillar::v1_2_m {
 // Capacity of the order.
 enum class CustIndicator : char {
     Customer = 'C',            // Customer
-    Noncustomer = 'N',         // Noncustomer
+    NonCustomer = 'N',         // Non Customer
     DerivedForFutureUse = 'D', // Derived For Future Use
 };
 

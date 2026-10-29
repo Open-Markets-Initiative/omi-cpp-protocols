@@ -15,7 +15,7 @@ struct order_book_type {
 
     enum class enum_type : std::uint8_t {
         firm_quote_book = 1,
-        offbook = 2,
+        off_book = 2,
         electronic_order_book = 3,
         private_rfq = 4
     };
@@ -23,14 +23,14 @@ struct order_book_type {
     static constexpr std::array<std::pair<std::string_view, enum_type>, 4> from_string_map = {{
         {"Electronic Order Book", enum_type::electronic_order_book},
         {"Firm Quote Book", enum_type::firm_quote_book},
-        {"Offbook", enum_type::offbook},
+        {"Off Book", enum_type::off_book},
         {"Private Rfq", enum_type::private_rfq}
     }};
 
     static constexpr std::string_view to_string(enum_type value) {
         switch (value) {
             case enum_type::firm_quote_book: return "Firm Quote Book";
-            case enum_type::offbook: return "Offbook";
+            case enum_type::off_book: return "Off Book";
             case enum_type::electronic_order_book: return "Electronic Order Book";
             case enum_type::private_rfq: return "Private Rfq";
             default: return "unknown";

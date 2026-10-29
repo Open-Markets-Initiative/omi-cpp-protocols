@@ -16,8 +16,8 @@ void NoteCodesBitField5::set_un_underlying_not_quoted(bool value) { raw_ = stati
 bool NoteCodesBitField5::da_digital_asset() const { return (raw_ & static_cast<std::uint8_t>(0x4)) != 0; }
 void NoteCodesBitField5::set_da_digital_asset(bool value) { raw_ = static_cast<std::uint8_t>(value ? (raw_ | static_cast<std::uint8_t>(0x4)) : (raw_ & ~static_cast<std::uint8_t>(0x4))); }
 
-bool NoteCodesBitField5::kn_knockout_buy_back_into_next_trading_day() const { return (raw_ & static_cast<std::uint8_t>(0x8)) != 0; }
-void NoteCodesBitField5::set_kn_knockout_buy_back_into_next_trading_day(bool value) { raw_ = static_cast<std::uint8_t>(value ? (raw_ | static_cast<std::uint8_t>(0x8)) : (raw_ & ~static_cast<std::uint8_t>(0x8))); }
+bool NoteCodesBitField5::kn_knock_out_buy_back_into_next_trading_day() const { return (raw_ & static_cast<std::uint8_t>(0x8)) != 0; }
+void NoteCodesBitField5::set_kn_knock_out_buy_back_into_next_trading_day(bool value) { raw_ = static_cast<std::uint8_t>(value ? (raw_ | static_cast<std::uint8_t>(0x8)) : (raw_ & ~static_cast<std::uint8_t>(0x8))); }
 
 std::uint8_t NoteCodesBitField5::raw() const { return raw_; }
 void NoteCodesBitField5::set_raw(std::uint8_t value) { raw_ = value; }
@@ -46,8 +46,8 @@ void NoteCodesBitField5::print(std::ostream& out) const {
     out << (un_underlying_not_quoted() ? "true" : "false");
     out << ", da_digital_asset=";
     out << (da_digital_asset() ? "true" : "false");
-    out << ", kn_knockout_buy_back_into_next_trading_day=";
-    out << (kn_knockout_buy_back_into_next_trading_day() ? "true" : "false");
+    out << ", kn_knock_out_buy_back_into_next_trading_day=";
+    out << (kn_knock_out_buy_back_into_next_trading_day() ? "true" : "false");
     out << '}';
 }
 

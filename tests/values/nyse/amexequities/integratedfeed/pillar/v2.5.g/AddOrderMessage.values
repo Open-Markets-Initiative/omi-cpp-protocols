@@ -1,0 +1,21 @@
+# Nyse.AmexEquities.IntegratedFeed.Pillar.v2.5.g AddOrderMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 55
+packet.packetheader.deliveryflag = 11
+packet.packetheader.numbermsgs = 1
+packet.packetheader.seqnum = 53123
+packet.packetheader.sendtime.seconds = 1692710999
+packet.packetheader.sendtime.nanoseconds = 999887563
+packet.packetheader.sendtime = 1692710999999887563
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 39
+packet.messages.message[0].messageheader.messagetype = 100
+packet.messages.message[0].payload = packet.messages.message.payload.addordermessage
+packet.messages.message[0].payload.addordermessage.sourcetimens = 999879073
+packet.messages.message[0].payload.addordermessage.symbolindex = 994
+packet.messages.message[0].payload.addordermessage.symbolseqnum = 21
+packet.messages.message[0].payload.addordermessage.orderid = 15772494300524586
+packet.messages.message[0].payload.addordermessage.price = 78670000
+packet.messages.message[0].payload.addordermessage.volume = 800
+packet.messages.message[0].payload.addordermessage.side = B
+packet.messages.message[0].payload.addordermessage.firmid = 

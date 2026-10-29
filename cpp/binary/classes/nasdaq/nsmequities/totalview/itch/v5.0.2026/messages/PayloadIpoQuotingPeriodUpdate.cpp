@@ -25,6 +25,7 @@ void PayloadIpoQuotingPeriodUpdate::set_stock(const std::string& value) { stock_
 
 std::chrono::seconds PayloadIpoQuotingPeriodUpdate::ipo_quotation_release_time() const { return ipo_quotation_release_time_; }
 void PayloadIpoQuotingPeriodUpdate::set_ipo_quotation_release_time(std::chrono::seconds value) { ipo_quotation_release_time_ = value; }
+std::int64_t PayloadIpoQuotingPeriodUpdate::ipo_quotation_release_time_utc(const calendar::Day& day) const { return calendar::midnight(day, "America/New_York").utc(static_cast<std::int64_t>(ipo_quotation_release_time_.count()) * 1000000000); }
 
 IpoQuotationReleaseQualifier PayloadIpoQuotingPeriodUpdate::ipo_quotation_release_qualifier() const { return ipo_quotation_release_qualifier_; }
 void PayloadIpoQuotingPeriodUpdate::set_ipo_quotation_release_qualifier(IpoQuotationReleaseQualifier value) { ipo_quotation_release_qualifier_ = value; }
@@ -115,7 +116,7 @@ void PayloadIpoQuotingPeriodUpdate::print(std::ostream& out) const {
     out << ", stock=";
     print::text(out, stock_);
     out << ", ipo_quotation_release_time=";
-    out << ipo_quotation_release_time_.count();
+    calendar::print(out, ipo_quotation_release_time_.count(), 1000000000, "America/New_York");
     out << ", ipo_quotation_release_qualifier=";
     out << ipo_quotation_release_qualifier_;
     out << ", ipo_price=";

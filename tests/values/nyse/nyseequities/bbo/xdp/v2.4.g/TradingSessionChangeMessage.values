@@ -1,0 +1,17 @@
+# Nyse.NyseEquities.Bbo.Xdp.v2.4.g TradingSessionChangeMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.packetsize = 37
+packet.packetheader.deliveryflag = 11
+packet.packetheader.messagecount = 1
+packet.packetheader.sequencenumber = 307
+packet.packetheader.sendtime.seconds = 1507047420
+packet.packetheader.sendtime.nanoseconds = 171756003
+packet.packetheader.sendtime = 1507047420171756003
+packet.message[0].messageheader.messagesize = 21
+packet.message[0].messageheader.messagetype = 33
+packet.message[0].payload = packet.message.payload.tradingsessionchangemessage
+packet.message[0].payload.tradingsessionchangemessage.sourcetime = 1466775000
+packet.message[0].payload.tradingsessionchangemessage.sourcetimens = 50189000
+packet.message[0].payload.tradingsessionchangemessage.symbolindex = 4785
+packet.message[0].payload.tradingsessionchangemessage.symbolseqnum = 5
+packet.message[0].payload.tradingsessionchangemessage.tradingsession = 2

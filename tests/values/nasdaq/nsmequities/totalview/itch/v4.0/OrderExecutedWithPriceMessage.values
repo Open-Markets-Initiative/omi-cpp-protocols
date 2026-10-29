@@ -1,0 +1,15 @@
+# Nasdaq.NsmEquities.TotalView.Itch.v4.0 OrderExecutedWithPriceMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = S032409v4.
+packet.packetheader.sequencenumber = 7209017
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 30
+packet.messages.message[0].messageheader.messagetype = C
+packet.messages.message[0].payload = packet.messages.message.payload.orderexecutedwithpricemessage
+packet.messages.message[0].payload.orderexecutedwithpricemessage.nanoseconds = 3000000
+packet.messages.message[0].payload.orderexecutedwithpricemessage.orderreferencenumber = 5271220
+packet.messages.message[0].payload.orderexecutedwithpricemessage.executedshares = 100
+packet.messages.message[0].payload.orderexecutedwithpricemessage.matchnumber = 70909
+packet.messages.message[0].payload.orderexecutedwithpricemessage.printable = N
+packet.messages.message[0].payload.orderexecutedwithpricemessage.executionprice = 6.46

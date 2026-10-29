@@ -1,0 +1,27 @@
+# Nyse.NyseEquities.IntegratedFeedRefresh.Pillar.v2.5.g SymbolIndexMappingMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 60
+packet.packetheader.deliveryflag = 18
+packet.packetheader.numbermsgs = 1
+packet.packetheader.seqnum = 37323570
+packet.packetheader.sendtime.seconds = 1692711003
+packet.packetheader.sendtime.nanoseconds = 412873728
+packet.packetheader.sendtime = 1692711003412873728
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 44
+packet.messages.message[0].messageheader.messagetype = 3
+packet.messages.message[0].payload = packet.messages.message.payload.symbolindexmappingmessage
+packet.messages.message[0].payload.symbolindexmappingmessage.symbolindex = 10164
+packet.messages.message[0].payload.symbolindexmappingmessage.symbol = CUBE
+packet.messages.message[0].payload.symbolindexmappingmessage.marketid = 1
+packet.messages.message[0].payload.symbolindexmappingmessage.systemid = 56
+packet.messages.message[0].payload.symbolindexmappingmessage.exchangecode = N
+packet.messages.message[0].payload.symbolindexmappingmessage.pricescalecode = 6
+packet.messages.message[0].payload.symbolindexmappingmessage.securitytype = C
+packet.messages.message[0].payload.symbolindexmappingmessage.lotsize = 100
+packet.messages.message[0].payload.symbolindexmappingmessage.prevcloseprice = 41410000
+packet.messages.message[0].payload.symbolindexmappingmessage.prevclosevolume = 0
+packet.messages.message[0].payload.symbolindexmappingmessage.priceresolution = 0
+packet.messages.message[0].payload.symbolindexmappingmessage.roundlot = N
+packet.messages.message[0].payload.symbolindexmappingmessage.mpv = 100
+packet.messages.message[0].payload.symbolindexmappingmessage.unitoftrade = 1

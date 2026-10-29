@@ -1,0 +1,34 @@
+# Bse.BseIndia.Eobi.Fbe.v1.4 ExecutionSummaryMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.eobiheader.bodylen = 32
+packet.packetheader.eobiheader.templateid = 13002
+packet.packetheader.eobiheader.msgseqnum = 4294967295
+packet.packetheader.applseqnum = 177204
+packet.packetheader.marketsegmentid = 1761
+packet.packetheader.partitionid = 14
+packet.packetheader.completionindicator = 1
+packet.packetheader.applseqresetindicator = 0
+packet.packetheader.transacttime = 1786592780517649699
+packet.message[0].messageheader.bodylen = 64
+packet.message[0].messageheader.templateid = 13202
+packet.message[0].messageheader.msgseqnum = 716
+packet.message[0].payload = packet.message.payload.executionsummarymessage
+packet.message[0].payload.executionsummarymessage.securityid = 830838
+packet.message[0].payload.executionsummarymessage.aggressortimestamp = 1786592780517489421
+packet.message[0].payload.executionsummarymessage.execid = 1786592780517505368
+packet.message[0].payload.executionsummarymessage.lastqty = 30
+packet.message[0].payload.executionsummarymessage.aggressorside = 1
+packet.message[0].payload.executionsummarymessage.tradecondition = (null)
+packet.message[0].payload.executionsummarymessage.lastpx = 44000
+packet.message[0].payload.executionsummarymessage.restinghiddenqty = 0
+packet.message[1].messageheader.bodylen = 64
+packet.message[1].messageheader.templateid = 13104
+packet.message[1].messageheader.msgseqnum = 717
+packet.message[1].payload = packet.message.payload.fullorderexecutionmessage
+packet.message[1].payload.fullorderexecutionmessage.side = 2
+packet.message[1].payload.fullorderexecutionmessage.price = 44000
+packet.message[1].payload.fullorderexecutionmessage.trdregtstimepriority = 1786592780517346921
+packet.message[1].payload.fullorderexecutionmessage.securityid = 830838
+packet.message[1].payload.fullorderexecutionmessage.trdmatchid = 1
+packet.message[1].payload.fullorderexecutionmessage.lastqty = 30
+packet.message[1].payload.fullorderexecutionmessage.lastpx = 44000

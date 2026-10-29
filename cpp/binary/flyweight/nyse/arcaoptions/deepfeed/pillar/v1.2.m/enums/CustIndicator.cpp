@@ -5,7 +5,7 @@ namespace nyse::arcaoptions::deepfeed::pillar::v1_2_m {
 std::string_view to_string(CustIndicator value) {
     switch (value) {
         case CustIndicator::Customer: return "Customer";
-        case CustIndicator::Noncustomer: return "Noncustomer";
+        case CustIndicator::NonCustomer: return "Non Customer";
         case CustIndicator::DerivedForFutureUse: return "Derived For Future Use";
         default: return {};
     }

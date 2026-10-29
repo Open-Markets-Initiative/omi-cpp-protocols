@@ -1,0 +1,17 @@
+# Cboe.EdgaEquities.MulticastDepthOfBook.Pitch.v2.41.29 TradeLongMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.length = 49
+packet.packetheader.messagecount = 1
+packet.packetheader.unit = 23
+packet.packetheader.sequence = 53188
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 41
+packet.messages.message[0].messageheader.messagetype = 42
+packet.messages.message[0].payload = packet.messages.message.payload.tradelongmessage
+packet.messages.message[0].payload.tradelongmessage.timeoffset = 115784000
+packet.messages.message[0].payload.tradelongmessage.orderid = 3055631507076566990
+packet.messages.message[0].payload.tradelongmessage.sideindicator = B
+packet.messages.message[0].payload.tradelongmessage.quantity = 300
+packet.messages.message[0].payload.tradelongmessage.symbolshort = SH
+packet.messages.message[0].payload.tradelongmessage.price = 14.115
+packet.messages.message[0].payload.tradelongmessage.executionid = 1802375779049

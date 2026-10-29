@@ -8,9 +8,9 @@ namespace jpx::tseequities::marketbyorder::flex::v1_1 {
 
 // Indicates the order condition
 enum class OrderCondition : std::uint8_t {
-    Nonconditional = 0, // Nonconditional
-    Onopen = 2,         // Onopen
-    Onclose = 4,        // Onclose
+    NonConditional = 0, // Non Conditional
+    OnOpen = 2,         // On Open
+    OnClose = 4,        // On Close
     Funari = 6,         // Funari
 };
 

@@ -780,7 +780,7 @@ struct customer_firm_indicator {
     enum class type : char {
         customer = 'C',
         firm_joint = 'F',
-        onfloor = 'M',
+        on_floor = 'M',
         professional = 'P',
         broker_dealer_non_registered = 'B',
     };
@@ -1264,7 +1264,7 @@ struct price_short {
 // Printable: Indicates if the execution should be reflected on time and sale displays and volume calculations.
 struct printable {
     enum class type : char {
-        nonprintable = 'N',
+        non_printable = 'N',
         printable = 'Y',
     };
 

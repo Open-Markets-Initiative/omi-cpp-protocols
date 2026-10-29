@@ -1,0 +1,25 @@
+# Eurex.T7.Eobi.Fbe.v6.0 InstrumentSummary: canonical values, read by the model
+datagram 0
+packet.packetheader.eobiheader.bodylen = 32
+packet.packetheader.eobiheader.templateid = 13002
+packet.packetheader.eobiheader.msgseqnum = 4294967295
+packet.packetheader.applseqnum = 532356
+packet.packetheader.marketsegmentid = 604
+packet.packetheader.partitionid = 6
+packet.packetheader.completionindicator = 1
+packet.packetheader.applseqresetindicator = 0
+packet.packetheader.transacttime = 1512381720198716961
+packet.message[0].messageheadercomp.bodylen = 280
+packet.message[0].messageheadercomp.templateid = 13601
+packet.message[0].messageheadercomp.msgseqnum = 403
+packet.message[0].payload = packet.message.payload.instrumentsummary
+packet.message[0].payload.instrumentsummary.securityid = 72060188198174758
+packet.message[0].payload.instrumentsummary.lastupdatetime = 1512371100015095236
+packet.message[0].payload.instrumentsummary.trdregtsexecutiontime = (null)
+packet.message[0].payload.instrumentsummary.totnoorders = 0
+packet.message[0].payload.instrumentsummary.securitystatus = 1
+packet.message[0].payload.instrumentsummary.securitytradingstatus = 203
+packet.message[0].payload.instrumentsummary.marketcondition = 0
+packet.message[0].payload.instrumentsummary.fastmarketindicator = 0
+packet.message[0].payload.instrumentsummary.securitytradingevent = (null)
+packet.message[0].payload.instrumentsummary.nomdentries = 0

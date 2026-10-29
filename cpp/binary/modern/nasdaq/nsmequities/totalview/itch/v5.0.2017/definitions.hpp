@@ -42,3 +42,4 @@
 #include "iterators/MessageIterator.hpp"
 #include "iterators/ClientSoupBinTcpPacketIterator.hpp"
 #include "iterators/ServerSoupBinTcpPacketIterator.hpp"
+#include "iterators/FileMessageIterator.hpp"

@@ -1,0 +1,15 @@
+# Nasdaq.NsmEquities.TotalView.Itch.v4.0 AddOrderMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = S032409v4.
+packet.packetheader.sequencenumber = 155695
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 28
+packet.messages.message[0].messageheader.messagetype = A
+packet.messages.message[0].payload = packet.messages.message.payload.addordermessage
+packet.messages.message[0].payload.addordermessage.nanoseconds = 12000000
+packet.messages.message[0].payload.addordermessage.orderreferencenumber = 2687
+packet.messages.message[0].payload.addordermessage.side = S
+packet.messages.message[0].payload.addordermessage.shares = 60
+packet.messages.message[0].payload.addordermessage.stock = AAPL
+packet.messages.message[0].payload.addordermessage.price = 202

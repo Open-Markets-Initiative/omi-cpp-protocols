@@ -13,7 +13,7 @@ struct allowed_book_types {
     using type = uint8_t;
 
     static constexpr type firm_quote_book = type{1} << 1;
-    static constexpr type offbook = type{1} << 2;
+    static constexpr type off_book = type{1} << 2;
     static constexpr type electronic_order_book = type{1} << 3;
     static constexpr type private_rfq = type{1} << 4;
 
@@ -46,12 +46,12 @@ struct allowed_book_types {
     constexpr void set(type bit, bool enabled) { if (enabled) value |= bit; else value &= static_cast<type>(~bit); }
 
     [[nodiscard]] constexpr bool has_firm_quote_book() const { return has(firm_quote_book); }
-    [[nodiscard]] constexpr bool has_offbook() const { return has(offbook); }
+    [[nodiscard]] constexpr bool has_off_book() const { return has(off_book); }
     [[nodiscard]] constexpr bool has_electronic_order_book() const { return has(electronic_order_book); }
     [[nodiscard]] constexpr bool has_private_rfq() const { return has(private_rfq); }
 
     constexpr void set_firm_quote_book(bool v) { set(firm_quote_book, v); }
-    constexpr void set_offbook(bool v) { set(offbook, v); }
+    constexpr void set_off_book(bool v) { set(off_book, v); }
     constexpr void set_electronic_order_book(bool v) { set(electronic_order_book, v); }
     constexpr void set_private_rfq(bool v) { set(private_rfq, v); }
 

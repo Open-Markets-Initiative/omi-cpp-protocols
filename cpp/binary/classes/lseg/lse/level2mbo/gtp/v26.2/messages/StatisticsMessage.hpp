@@ -24,7 +24,7 @@ class StatisticsMessage : public Message {
     static constexpr std::size_t wire_size = 74;
 
     StatisticsMessage() = default;
-    StatisticsMessage(std::chrono::nanoseconds timestamp, std::uint64_t instrument, SourceVenue source_venue, Decimal volume, Decimal volume_onbook_only, Decimal vwap, Decimal vwap_onbook_only, std::uint32_t number_of_trades, std::uint32_t number_of_trades_onbook_only, Decimal turnover, Decimal turnover_onbook_only);
+    StatisticsMessage(std::chrono::nanoseconds timestamp, std::uint64_t instrument, SourceVenue source_venue, Decimal volume, Decimal volume_on_book_only, Decimal vwap, Decimal vwap_on_book_only, std::uint32_t number_of_trades, std::uint32_t number_of_trades_on_book_only, Decimal turnover, Decimal turnover_on_book_only);
 
     // Timestamp: Time the message was generated.
     std::chrono::nanoseconds timestamp() const;
@@ -42,33 +42,33 @@ class StatisticsMessage : public Message {
     Decimal volume() const;
     void set_volume(Decimal value);
 
-    // Volume Onbook Only: Cumulative volume for the trading day excluding off-book trades.
-    Decimal volume_onbook_only() const;
-    void set_volume_onbook_only(Decimal value);
+    // Volume On Book Only: Cumulative volume for the trading day excluding off-book trades.
+    Decimal volume_on_book_only() const;
+    void set_volume_on_book_only(Decimal value);
 
     // Vwap: Volume weighted average price for the day for all trades.
     Decimal vwap() const;
     void set_vwap(Decimal value);
 
-    // Vwap Onbook Only: Volume weighted average price for the day excluding off-book trades.
-    Decimal vwap_onbook_only() const;
-    void set_vwap_onbook_only(Decimal value);
+    // Vwap On Book Only: Volume weighted average price for the day excluding off-book trades.
+    Decimal vwap_on_book_only() const;
+    void set_vwap_on_book_only(Decimal value);
 
     // Number Of Trades: Count of all trades for the day.
     std::uint32_t number_of_trades() const;
     void set_number_of_trades(std::uint32_t value);
 
-    // Number Of Trades Onbook Only: Count of trades for the day excluding off-book trades.
-    std::uint32_t number_of_trades_onbook_only() const;
-    void set_number_of_trades_onbook_only(std::uint32_t value);
+    // Number Of Trades On Book Only: Count of trades for the day excluding off-book trades.
+    std::uint32_t number_of_trades_on_book_only() const;
+    void set_number_of_trades_on_book_only(std::uint32_t value);
 
     // Turnover: Turnover of all trades for the day.
     Decimal turnover() const;
     void set_turnover(Decimal value);
 
-    // Turnover Onbook Only: Turnover for the day excluding off-book trades.
-    Decimal turnover_onbook_only() const;
-    void set_turnover_onbook_only(Decimal value);
+    // Turnover On Book Only: Turnover for the day excluding off-book trades.
+    Decimal turnover_on_book_only() const;
+    void set_turnover_on_book_only(Decimal value);
 
     // Message
     MessageCode type() const override;
@@ -89,13 +89,13 @@ class StatisticsMessage : public Message {
     std::uint64_t instrument_{};
     SourceVenue source_venue_{};
     Decimal volume_{ 0, -4 };
-    Decimal volume_onbook_only_{ 0, -4 };
+    Decimal volume_on_book_only_{ 0, -4 };
     Decimal vwap_{ 0, -4 };
-    Decimal vwap_onbook_only_{ 0, -4 };
+    Decimal vwap_on_book_only_{ 0, -4 };
     std::uint32_t number_of_trades_{};
-    std::uint32_t number_of_trades_onbook_only_{};
+    std::uint32_t number_of_trades_on_book_only_{};
     Decimal turnover_{ 0, -4 };
-    Decimal turnover_onbook_only_{ 0, -4 };
+    Decimal turnover_on_book_only_{ 0, -4 };
 };
 
 } // namespace lseg::lse::level2mbo::gtp::v26_2

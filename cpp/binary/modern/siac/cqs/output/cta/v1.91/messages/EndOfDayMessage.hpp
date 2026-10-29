@@ -1,0 +1,34 @@
+#pragma once
+
+#include "../types/ParticipantId.hpp"
+#include "../structs/ParticipantTimestamp.hpp"
+#include "../types/MessageId.hpp"
+#include "../types/TransactionId.hpp"
+#include "../types/ParticipantReferenceNumber.hpp"
+
+namespace siac::cqs::output::cta::v1_91 {
+
+#pragma pack(push, 1)
+
+// The End of Day message is transmitted over the multicast lines to advise all Data Recipients that there are no further messages of any type transmitted for the day
+struct EndOfDayMessage {
+
+    ParticipantId participant_id;
+    ParticipantTimestamp participant_timestamp;
+    MessageId message_id;
+    TransactionId transaction_id;
+    ParticipantReferenceNumber participant_reference_number;
+
+    // parse method
+    static EndOfDayMessage* parse(std::byte* buffer) {
+        return reinterpret_cast<EndOfDayMessage*>(buffer);
+    }
+
+    // parse method const
+    static const EndOfDayMessage* parse(const std::byte* buffer) {
+        return reinterpret_cast<const EndOfDayMessage*>(buffer);
+    }
+};
+
+#pragma pack(pop)
+}

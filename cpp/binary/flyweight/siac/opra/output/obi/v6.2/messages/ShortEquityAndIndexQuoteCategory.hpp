@@ -40,7 +40,7 @@ class ShortEquityAndIndexQuoteCategory {
     void short_equity_and_index_quote_message_payload(Handler& handler) const {
         const auto bytes = short_equity_and_index_quote_message_payload_bytes();
         switch (short_equity_and_index_quote_message_type()) {
-            case ShortEquityAndIndexQuoteMessageType::RegularTrading: {
+            case ShortEquityAndIndexQuoteMessageType::RegularTrading: case ShortEquityAndIndexQuoteMessageType::NonFirmQuote: case ShortEquityAndIndexQuoteMessageType::IndicativeValue: case ShortEquityAndIndexQuoteMessageType::Rotation: case ShortEquityAndIndexQuoteMessageType::TradingHalted: case ShortEquityAndIndexQuoteMessageType::EligibleForAutomaticExecution: case ShortEquityAndIndexQuoteMessageType::BidContainsCustomerTradingInterest: case ShortEquityAndIndexQuoteMessageType::OfferContainsCustomerTradingInterest: case ShortEquityAndIndexQuoteMessageType::BothBidAndOfferContainCustomerTradingInterest: case ShortEquityAndIndexQuoteMessageType::OfferSideOfQuoteNotFirmBidSideFirm: case ShortEquityAndIndexQuoteMessageType::BidSideOfQuoteNotFirmOfferSideFirm: {
                 wire::require(ShortEquityAndIndexQuoteMessage::name, ShortEquityAndIndexQuoteMessage::minimum_size, bytes.size());
                 const ShortEquityAndIndexQuoteMessage message{ bytes };
                 if constexpr (requires { handler.on(message); }) { handler.on(message); }
@@ -56,7 +56,7 @@ class ShortEquityAndIndexQuoteCategory {
     std::size_t short_equity_and_index_quote_message_payload_size() const {
         const auto bytes = short_equity_and_index_quote_message_payload_bytes();
         switch (short_equity_and_index_quote_message_type()) {
-            case ShortEquityAndIndexQuoteMessageType::RegularTrading: return ShortEquityAndIndexQuoteMessage{ bytes }.encoded_size();
+            case ShortEquityAndIndexQuoteMessageType::RegularTrading: case ShortEquityAndIndexQuoteMessageType::NonFirmQuote: case ShortEquityAndIndexQuoteMessageType::IndicativeValue: case ShortEquityAndIndexQuoteMessageType::Rotation: case ShortEquityAndIndexQuoteMessageType::TradingHalted: case ShortEquityAndIndexQuoteMessageType::EligibleForAutomaticExecution: case ShortEquityAndIndexQuoteMessageType::BidContainsCustomerTradingInterest: case ShortEquityAndIndexQuoteMessageType::OfferContainsCustomerTradingInterest: case ShortEquityAndIndexQuoteMessageType::BothBidAndOfferContainCustomerTradingInterest: case ShortEquityAndIndexQuoteMessageType::OfferSideOfQuoteNotFirmBidSideFirm: case ShortEquityAndIndexQuoteMessageType::BidSideOfQuoteNotFirmOfferSideFirm: return ShortEquityAndIndexQuoteMessage{ bytes }.encoded_size();
             default: return bytes.size();
         }
     }
@@ -65,7 +65,7 @@ class ShortEquityAndIndexQuoteCategory {
     void short_equity_and_index_quote_message_payload_print(std::ostream& out) const {
         const auto bytes = short_equity_and_index_quote_message_payload_bytes();
         switch (short_equity_and_index_quote_message_type()) {
-            case ShortEquityAndIndexQuoteMessageType::RegularTrading: ShortEquityAndIndexQuoteMessage{ bytes }.print(out); return;
+            case ShortEquityAndIndexQuoteMessageType::RegularTrading: case ShortEquityAndIndexQuoteMessageType::NonFirmQuote: case ShortEquityAndIndexQuoteMessageType::IndicativeValue: case ShortEquityAndIndexQuoteMessageType::Rotation: case ShortEquityAndIndexQuoteMessageType::TradingHalted: case ShortEquityAndIndexQuoteMessageType::EligibleForAutomaticExecution: case ShortEquityAndIndexQuoteMessageType::BidContainsCustomerTradingInterest: case ShortEquityAndIndexQuoteMessageType::OfferContainsCustomerTradingInterest: case ShortEquityAndIndexQuoteMessageType::BothBidAndOfferContainCustomerTradingInterest: case ShortEquityAndIndexQuoteMessageType::OfferSideOfQuoteNotFirmBidSideFirm: case ShortEquityAndIndexQuoteMessageType::BidSideOfQuoteNotFirmOfferSideFirm: ShortEquityAndIndexQuoteMessage{ bytes }.print(out); return;
             default:
                 out << "UnknownShortEquityAndIndexQuoteMessagePayload{type=" << short_equity_and_index_quote_message_type() << ", body=";
                 print::hex(out, bytes.data(), bytes.size());

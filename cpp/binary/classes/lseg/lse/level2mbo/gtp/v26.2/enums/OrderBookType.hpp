@@ -9,7 +9,7 @@ namespace lseg::lse::level2mbo::gtp::v26_2 {
 // Order book the status applies to.
 enum class OrderBookType : std::uint8_t {
     FirmQuoteBook = 1,       // Firm Quote Book
-    Offbook = 2,             // Offbook
+    OffBook = 2,             // Off Book
     ElectronicOrderBook = 3, // Electronic Order Book
     PrivateRfq = 4,          // Private Rfq
 };

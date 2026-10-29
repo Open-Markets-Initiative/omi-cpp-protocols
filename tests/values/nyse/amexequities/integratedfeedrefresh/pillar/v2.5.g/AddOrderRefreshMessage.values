@@ -1,0 +1,27 @@
+# Nyse.AmexEquities.IntegratedFeedRefresh.Pillar.v2.5.g AddOrderRefreshMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 67
+packet.packetheader.deliveryflag = 19
+packet.packetheader.numbermsgs = 2
+packet.packetheader.seqnum = 902005
+packet.packetheader.sendtime.seconds = 1692711009
+packet.packetheader.sendtime.nanoseconds = 900319843
+packet.packetheader.sendtime = 1692711009900319843
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 8
+packet.messages.message[0].messageheader.messagetype = 35
+packet.messages.message[0].payload = packet.messages.message.payload.refreshheadermessage
+packet.messages.message[0].payload.refreshheadermessage.currentrefreshpkt = 5
+packet.messages.message[0].payload.refreshheadermessage.totalrefreshpkts = 5
+packet.messages.message[1].messageheader.messagesize = 43
+packet.messages.message[1].messageheader.messagetype = 106
+packet.messages.message[1].payload = packet.messages.message.payload.addorderrefreshmessage
+packet.messages.message[1].payload.addorderrefreshmessage.sourcetime = 1692711006
+packet.messages.message[1].payload.addorderrefreshmessage.sourcetimens = 22796029
+packet.messages.message[1].payload.addorderrefreshmessage.symbolindex = 14308
+packet.messages.message[1].payload.addorderrefreshmessage.symbolseqnum = 301
+packet.messages.message[1].payload.addorderrefreshmessage.orderid = 14928069370505594
+packet.messages.message[1].payload.addorderrefreshmessage.price = 6720000
+packet.messages.message[1].payload.addorderrefreshmessage.volume = 100
+packet.messages.message[1].payload.addorderrefreshmessage.side = S
+packet.messages.message[1].payload.addorderrefreshmessage.firmid = 

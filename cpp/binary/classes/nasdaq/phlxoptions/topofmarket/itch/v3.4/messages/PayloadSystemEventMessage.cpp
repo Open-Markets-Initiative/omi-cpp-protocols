@@ -6,8 +6,8 @@
 
 namespace nasdaq::phlxoptions::topofmarket::itch::v3_4 {
 
-PayloadSystemEventMessage::PayloadSystemEventMessage(std::chrono::nanoseconds nanoseconds, EventCode event_code, std::uint8_t version, std::uint8_t subversion)
-  : nanoseconds_(nanoseconds), event_code_(event_code), version_(version), subversion_(subversion) {}
+PayloadSystemEventMessage::PayloadSystemEventMessage(std::chrono::nanoseconds nanoseconds, EventCode event_code, std::uint8_t version, std::uint8_t sub_version)
+  : nanoseconds_(nanoseconds), event_code_(event_code), version_(version), sub_version_(sub_version) {}
 
 std::chrono::nanoseconds PayloadSystemEventMessage::nanoseconds() const { return nanoseconds_; }
 void PayloadSystemEventMessage::set_nanoseconds(std::chrono::nanoseconds value) { nanoseconds_ = value; }
@@ -18,8 +18,8 @@ void PayloadSystemEventMessage::set_event_code(EventCode value) { event_code_ = 
 std::uint8_t PayloadSystemEventMessage::version() const { return version_; }
 void PayloadSystemEventMessage::set_version(std::uint8_t value) { version_ = value; }
 
-std::uint8_t PayloadSystemEventMessage::subversion() const { return subversion_; }
-void PayloadSystemEventMessage::set_subversion(std::uint8_t value) { subversion_ = value; }
+std::uint8_t PayloadSystemEventMessage::sub_version() const { return sub_version_; }
+void PayloadSystemEventMessage::set_sub_version(std::uint8_t value) { sub_version_ = value; }
 
 PacketMessageCode PayloadSystemEventMessage::type() const { return message_type; }
 
@@ -38,7 +38,7 @@ std::size_t PayloadSystemEventMessage::decode(const std::byte* data, std::size_t
     version_ = wire::read_u8(data + offset);
     offset += 1;
 
-    subversion_ = wire::read_u8(data + offset);
+    sub_version_ = wire::read_u8(data + offset);
     offset += 1;
 
     return offset;
@@ -57,7 +57,7 @@ std::size_t PayloadSystemEventMessage::encode(std::byte* data, std::size_t capac
     wire::write_u8(data + offset, static_cast<std::uint8_t>(version_));
     offset += 1;
 
-    wire::write_u8(data + offset, static_cast<std::uint8_t>(subversion_));
+    wire::write_u8(data + offset, static_cast<std::uint8_t>(sub_version_));
     offset += 1;
 
     return offset;
@@ -83,8 +83,8 @@ void PayloadSystemEventMessage::print(std::ostream& out) const {
     out << event_code_;
     out << ", version=";
     out << static_cast<int>(version_);
-    out << ", subversion=";
-    out << static_cast<int>(subversion_);
+    out << ", sub_version=";
+    out << static_cast<int>(sub_version_);
     out << '}';
 }
 
@@ -97,7 +97,7 @@ bool PayloadSystemEventMessage::operator==(const PayloadSystemEventMessage& othe
     return nanoseconds_ == other.nanoseconds_
         && event_code_ == other.event_code_
         && version_ == other.version_
-        && subversion_ == other.subversion_;
+        && sub_version_ == other.sub_version_;
 }
 
 bool PayloadSystemEventMessage::operator!=(const PayloadSystemEventMessage& other) const {

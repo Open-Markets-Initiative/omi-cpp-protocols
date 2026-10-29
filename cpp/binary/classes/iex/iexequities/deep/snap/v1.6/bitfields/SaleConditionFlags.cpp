@@ -7,8 +7,8 @@ namespace iex::iexequities::deep::snap::v1_6 {
 
 SaleConditionFlags::SaleConditionFlags(std::uint8_t raw) : raw_(raw) {}
 
-bool SaleConditionFlags::singleprice_cross_trade() const { return (raw_ & static_cast<std::uint8_t>(0x8)) != 0; }
-void SaleConditionFlags::set_singleprice_cross_trade(bool value) { raw_ = static_cast<std::uint8_t>(value ? (raw_ | static_cast<std::uint8_t>(0x8)) : (raw_ & ~static_cast<std::uint8_t>(0x8))); }
+bool SaleConditionFlags::single_price_cross_trade() const { return (raw_ & static_cast<std::uint8_t>(0x8)) != 0; }
+void SaleConditionFlags::set_single_price_cross_trade(bool value) { raw_ = static_cast<std::uint8_t>(value ? (raw_ | static_cast<std::uint8_t>(0x8)) : (raw_ & ~static_cast<std::uint8_t>(0x8))); }
 
 bool SaleConditionFlags::trade_through_exempt() const { return (raw_ & static_cast<std::uint8_t>(0x10)) != 0; }
 void SaleConditionFlags::set_trade_through_exempt(bool value) { raw_ = static_cast<std::uint8_t>(value ? (raw_ | static_cast<std::uint8_t>(0x10)) : (raw_ & ~static_cast<std::uint8_t>(0x10))); }
@@ -43,8 +43,8 @@ std::size_t SaleConditionFlags::encoded_size() const {
 
 void SaleConditionFlags::print(std::ostream& out) const {
     out << "SaleConditionFlags{";
-    out << "singleprice_cross_trade=";
-    out << (singleprice_cross_trade() ? "true" : "false");
+    out << "single_price_cross_trade=";
+    out << (single_price_cross_trade() ? "true" : "false");
     out << ", trade_through_exempt=";
     out << (trade_through_exempt() ? "true" : "false");
     out << ", odd_lot=";

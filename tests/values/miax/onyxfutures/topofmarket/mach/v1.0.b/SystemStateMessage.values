@@ -1,0 +1,13 @@
+# Miax.OnyxFutures.TopOfMarket.Mach.v1.0.b SystemStateMessage: canonical values, read by the model
+datagram 0
+packet.machmessage[0].machpacketheader.sequencenumber = 1026
+packet.machmessage[0].machpacketheader.packetlength = 31
+packet.machmessage[0].machpacketheader.packettype = 3
+packet.machmessage[0].machpacketheader.sessionnumber = 1
+packet.machmessage[0].payload = packet.machmessage.payload.applicationmessage
+packet.machmessage[0].payload.applicationmessage.messagetype = 3
+packet.machmessage[0].payload.applicationmessage.data = packet.machmessage.payload.applicationmessage.data.systemstatemessage
+packet.machmessage[0].payload.applicationmessage.data.systemstatemessage.timestamp = 1751058312331959822
+packet.machmessage[0].payload.applicationmessage.data.systemstatemessage.tomversion = TOM1.0
+packet.machmessage[0].payload.applicationmessage.data.systemstatemessage.sessionid = 1
+packet.machmessage[0].payload.applicationmessage.data.systemstatemessage.systemstatus = C

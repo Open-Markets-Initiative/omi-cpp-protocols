@@ -9,7 +9,7 @@ namespace siac::cts::output::cta::v2_11_b {
 // Reason for Trade-Through Exemption / Other Reason
 enum class Category2 : char {
     NoTradeThroughExemptReason = ' ',                        // No Trade Through Exempt Reason
-    IntermarketSweepOrder = 'F',                             // Intermarket Sweep Order
+    InterMarketSweepOrder = 'F',                             // Inter Market Sweep Order
     DerivativelyPriced = '4',                                // Derivatively Priced
     MarketCenterReopeningTrade = '5',                        // Market Center Reopening Trade
     MarketCenterClosingTrade = '6',                          // Market Center Closing Trade

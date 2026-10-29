@@ -1,0 +1,32 @@
+# Siac.Cts.Output.Cta.v1.91 ShortTradeMessage: canonical values, read by the model
+datagram 0
+packet.blockheader.version = 0
+packet.blockheader.blocksize = 60
+packet.blockheader.datafeedindicator = T
+packet.blockheader.retransmissionindicator = O
+packet.blockheader.blocksequencenumber = 966624
+packet.blockheader.messagesinblock = 1
+packet.blockheader.sipblocktimestamp.seconds = 1504899700
+packet.blockheader.sipblocktimestamp.nanoseconds = 965091000
+packet.blockheader.sipblocktimestamp = 1504899700965091000
+packet.blockheader.blockchecksum = 4500
+packet.message[0].messagelength = 40
+packet.message[0].messagecategory = T
+packet.message[0].categorypayload = packet.message.categorypayload.trademessage
+packet.message[0].categorypayload.trademessage.trademessagetype = T
+packet.message[0].categorypayload.trademessage.trademessagepayload = packet.message.categorypayload.trademessage.trademessagepayload.shorttrademessage
+packet.message[0].categorypayload.trademessage.trademessagepayload.shorttrademessage.participantid = T
+packet.message[0].categorypayload.trademessage.trademessagepayload.shorttrademessage.timestamp1.seconds = 1504899700
+packet.message[0].categorypayload.trademessage.trademessagepayload.shorttrademessage.timestamp1.nanoseconds = 964446000
+packet.message[0].categorypayload.trademessage.trademessagepayload.shorttrademessage.timestamp1 = 1504899700964446000
+packet.message[0].categorypayload.trademessage.trademessagepayload.shorttrademessage.messageid = 1
+packet.message[0].categorypayload.trademessage.trademessagepayload.shorttrademessage.transactionid = 17413742
+packet.message[0].categorypayload.trademessage.trademessagepayload.shorttrademessage.participantreferencenumber = 62879466275670
+packet.message[0].categorypayload.trademessage.trademessagepayload.shorttrademessage.securitysymbolshort = AMP
+packet.message[0].categorypayload.trademessage.trademessagepayload.shorttrademessage.salecondition = I
+packet.message[0].categorypayload.trademessage.trademessagepayload.shorttrademessage.saleconditioncategory = 4
+packet.message[0].categorypayload.trademessage.trademessagepayload.shorttrademessage.tradepriceshort = 132.73
+packet.message[0].categorypayload.trademessage.trademessagepayload.shorttrademessage.tradevolumeshort = 20
+packet.message[0].categorypayload.trademessage.trademessagepayload.shorttrademessage.primarylistingmarketparticipantid = N
+packet.message[0].categorypayload.trademessage.trademessagepayload.shorttrademessage.consolidatedhighlowlastindicator = A
+packet.message[0].categorypayload.trademessage.trademessagepayload.shorttrademessage.participantopenhighlowlastindicator = A

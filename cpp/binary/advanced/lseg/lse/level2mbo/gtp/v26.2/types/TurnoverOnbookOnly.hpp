@@ -6,10 +6,10 @@
 
 namespace lseg::lse::level2mbo::gtp::v26_2 {
 
-// turnover_onbook_only
-struct turnover_onbook_only {
+// turnover_on_book_only
+struct turnover_on_book_only {
 
-    static constexpr const char* name = "turnover_onbook_only";
+    static constexpr const char* name = "turnover_on_book_only";
     static constexpr std::size_t size = 8;
     static constexpr bool is_optional = false;
     static constexpr int exponent = -4;
@@ -17,10 +17,10 @@ struct turnover_onbook_only {
     using result_type = required<std::int64_t>;
     using storage_type = result_type;
 
-    constexpr turnover_onbook_only()
+    constexpr turnover_on_book_only()
      : value{ 0 } {}
 
-    constexpr turnover_onbook_only(std::int64_t v)
+    constexpr turnover_on_book_only(std::int64_t v)
      : value{ v } {}
 
     [[nodiscard]] constexpr result_type get() const {

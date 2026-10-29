@@ -1,6 +1,7 @@
 #pragma once
 
 #include <bit>
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 

@@ -11,6 +11,7 @@ TimeMessage::TimeMessage(std::chrono::seconds seconds)
 
 std::chrono::seconds TimeMessage::seconds() const { return seconds_; }
 void TimeMessage::set_seconds(std::chrono::seconds value) { seconds_ = value; }
+std::int64_t TimeMessage::seconds_utc(const calendar::Day& day) const { return calendar::midnight(day, "Europe/London").utc(static_cast<std::int64_t>(seconds_.count()) * 1000000000); }
 
 MessageCode TimeMessage::type() const { return message_type; }
 
@@ -51,7 +52,7 @@ std::unique_ptr<Message> TimeMessage::clone() const {
 void TimeMessage::print(std::ostream& out) const {
     out << "TimeMessage{";
     out << "seconds=";
-    out << seconds_.count();
+    calendar::print(out, seconds_.count(), 1000000000, "Europe/London");
     out << '}';
 }
 

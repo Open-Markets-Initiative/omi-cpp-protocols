@@ -1,0 +1,12 @@
+# Nasdaq.IseOptions.OrderComboFeed.Itch.v1.1 StrategyTradingActionMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 000008367I
+packet.packetheader.sequencenumber = 337544
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 12
+packet.messages.message[0].messageheader.messagetype = H
+packet.messages.message[0].payload = packet.messages.message.payload.strategytradingactionmessage
+packet.messages.message[0].payload.strategytradingactionmessage.timestamp = 56511276701738
+packet.messages.message[0].payload.strategytradingactionmessage.strategyid = 2113464
+packet.messages.message[0].payload.strategytradingactionmessage.currenttradingstate = T

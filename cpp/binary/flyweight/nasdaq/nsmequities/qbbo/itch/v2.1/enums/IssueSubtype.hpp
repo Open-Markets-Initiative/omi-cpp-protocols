@@ -7,7 +7,7 @@ namespace nasdaq::nsmequities::qbbo::itch::v2_1 {
 // Identifies the security sub-type for the issue as assigned by Nasdaq. See Appendix for
 // allowable values.
 // The field is text of more than one byte, so its codes are named constants rather than an enum
-struct IssueSubtype {
+struct IssueSubType {
     static constexpr std::string_view PreferredTrustSecurities = "A";                      // Preferred Trust Securities
     static constexpr std::string_view AlphaIndexEtNs = "AI";                               // Alpha Index Et Ns
     static constexpr std::string_view IndexBasedDerivative = "B";                          // Index Based Derivative

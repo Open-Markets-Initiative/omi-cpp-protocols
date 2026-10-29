@@ -1,0 +1,14 @@
+# Cboe.EdgxEquities.MulticastDepthOfBook.Pitch.v2.41.29 TradingStatusMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.length = 26
+packet.packetheader.messagecount = 1
+packet.packetheader.unit = 6
+packet.packetheader.sequence = 87633
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 18
+packet.messages.message[0].messageheader.messagetype = 49
+packet.messages.message[0].payload = packet.messages.message.payload.tradingstatusmessage
+packet.messages.message[0].payload.tradingstatusmessage.timeoffset = 150707000
+packet.messages.message[0].payload.tradingstatusmessage.symbollong = CPHI
+packet.messages.message[0].payload.tradingstatusmessage.tradingstatus = T
+packet.messages.message[0].payload.tradingstatusmessage.regshoaction = 1

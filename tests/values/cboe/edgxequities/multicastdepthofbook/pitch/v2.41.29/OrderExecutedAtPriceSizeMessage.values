@@ -1,0 +1,16 @@
+# Cboe.EdgxEquities.MulticastDepthOfBook.Pitch.v2.41.29 OrderExecutedAtPriceSizeMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.length = 46
+packet.packetheader.messagecount = 1
+packet.packetheader.unit = 2
+packet.packetheader.sequence = 134863
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 38
+packet.messages.message[0].messageheader.messagetype = 36
+packet.messages.message[0].payload = packet.messages.message.payload.orderexecutedatpricesizemessage
+packet.messages.message[0].payload.orderexecutedatpricesizemessage.timeoffset = 46314000
+packet.messages.message[0].payload.orderexecutedatpricesizemessage.orderid = 291575692029799065
+packet.messages.message[0].payload.orderexecutedatpricesizemessage.executedquantity = 100
+packet.messages.message[0].payload.orderexecutedatpricesizemessage.remainingquantity = 0
+packet.messages.message[0].payload.orderexecutedatpricesizemessage.executionid = 156728344544
+packet.messages.message[0].payload.orderexecutedatpricesizemessage.price = 135.14

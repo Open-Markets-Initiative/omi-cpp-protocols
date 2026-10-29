@@ -61,6 +61,27 @@ inline const char* name(std::uint64_t id) {
         case 144115188075855959ull: return "Packet_MwcbStatusLevelMessage";
         case 144115188075855960ull: return "Packet_OrderCancelMessage";
         case 144115188075855961ull: return "Packet_RegShoShortSalePriceTestRestrictedIndicatorMessage";
+        case 216172782113783873ull: return "File_AddOrderNoMpidAttributionMessage";
+        case 216172782113783874ull: return "File_BrokenTradeMessage";
+        case 216172782113783875ull: return "File_OrderExecutedWithPriceMessage";
+        case 216172782113783876ull: return "File_OrderDeleteMessage";
+        case 216172782113783877ull: return "File_OrderExecutedMessage";
+        case 216172782113783878ull: return "File_AddOrderWithMpidAttributionMessage";
+        case 216172782113783880ull: return "File_StockTradingActionMessage";
+        case 216172782113783881ull: return "File_NetOrderImbalanceIndicatorMessage";
+        case 216172782113783882ull: return "File_LuldAuctionCollarMessage";
+        case 216172782113783883ull: return "File_IpoQuotingPeriodUpdate";
+        case 216172782113783884ull: return "File_MarketParticipantPositionMessage";
+        case 216172782113783886ull: return "File_RetailInterestMessage";
+        case 216172782113783888ull: return "File_NonCrossTradeMessage";
+        case 216172782113783889ull: return "File_CrossTradeMessage";
+        case 216172782113783890ull: return "File_StockDirectoryMessage";
+        case 216172782113783891ull: return "File_SystemEventMessage";
+        case 216172782113783893ull: return "File_OrderReplaceMessage";
+        case 216172782113783894ull: return "File_MwcbDeclineLevelMessage";
+        case 216172782113783895ull: return "File_MwcbStatusLevelMessage";
+        case 216172782113783896ull: return "File_OrderCancelMessage";
+        case 216172782113783897ull: return "File_RegShoShortSalePriceTestRestrictedIndicatorMessage";
         default: return nullptr;
     }
 }

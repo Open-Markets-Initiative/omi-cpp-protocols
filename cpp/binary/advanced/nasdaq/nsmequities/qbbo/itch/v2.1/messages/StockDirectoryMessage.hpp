@@ -10,7 +10,7 @@
 #include "../types/RoundLotSize.hpp"
 #include "../types/RoundLotsOnly.hpp"
 #include "../types/IssueClassification.hpp"
-#include "../types/IssueSubtype.hpp"
+#include "../types/IssueSubType.hpp"
 #include "../types/Authenticity.hpp"
 #include "../types/ShortSaleThresholdIndicator.hpp"
 #include "../types/IpoFlag.hpp"
@@ -37,7 +37,7 @@ struct stock_directory_message {
         itch_qbbo::round_lot_size round_lot_size;
         itch_qbbo::round_lots_only round_lots_only;
         itch_qbbo::issue_classification issue_classification;
-        itch_qbbo::issue_subtype issue_subtype;
+        itch_qbbo::issue_sub_type issue_sub_type;
         itch_qbbo::authenticity authenticity;
         itch_qbbo::short_sale_threshold_indicator short_sale_threshold_indicator;
         itch_qbbo::ipo_flag ipo_flag;
@@ -72,7 +72,7 @@ static_assert(offsetof(stock_directory_message::fields_type, financial_status_in
 static_assert(offsetof(stock_directory_message::fields_type, round_lot_size) == 18, "unexpected offset of stock_directory_message::fields_type::round_lot_size");
 static_assert(offsetof(stock_directory_message::fields_type, round_lots_only) == 22, "unexpected offset of stock_directory_message::fields_type::round_lots_only");
 static_assert(offsetof(stock_directory_message::fields_type, issue_classification) == 23, "unexpected offset of stock_directory_message::fields_type::issue_classification");
-static_assert(offsetof(stock_directory_message::fields_type, issue_subtype) == 24, "unexpected offset of stock_directory_message::fields_type::issue_subtype");
+static_assert(offsetof(stock_directory_message::fields_type, issue_sub_type) == 24, "unexpected offset of stock_directory_message::fields_type::issue_sub_type");
 static_assert(offsetof(stock_directory_message::fields_type, authenticity) == 26, "unexpected offset of stock_directory_message::fields_type::authenticity");
 static_assert(offsetof(stock_directory_message::fields_type, short_sale_threshold_indicator) == 27, "unexpected offset of stock_directory_message::fields_type::short_sale_threshold_indicator");
 static_assert(offsetof(stock_directory_message::fields_type, ipo_flag) == 28, "unexpected offset of stock_directory_message::fields_type::ipo_flag");

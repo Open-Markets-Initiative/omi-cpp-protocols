@@ -1,0 +1,27 @@
+# Nyse.AmexOptions.ComplexFeed.Xdp.v1.3.a RefreshComplexQuoteMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.packetsize = 64
+packet.packetheader.deliveryflag = 3
+packet.packetheader.messagecount = 2
+packet.packetheader.sequencenumber = 110258
+packet.packetheader.sendtime.seconds = 1676559600
+packet.packetheader.sendtime.nanoseconds = 174000
+packet.packetheader.sendtime = 1676559600000174000
+packet.message[0].messageheader.messagesize = 8
+packet.message[0].messageheader.messagetype = 455
+packet.message[0].payload = packet.message.payload.streamidmessage
+packet.message[0].payload.streamidmessage.streamid = 307
+packet.message[1].messageheader.messagesize = 40
+packet.message[1].messageheader.messagetype = 511
+packet.message[1].payload = packet.message.payload.refreshcomplexquotemessage
+packet.message[1].payload.refreshcomplexquotemessage.sourcetime = 1676558279
+packet.message[1].payload.refreshcomplexquotemessage.sourcetimens = 998405000
+packet.message[1].payload.refreshcomplexquotemessage.complexindex = 261332770
+packet.message[1].payload.refreshcomplexquotemessage.symbolseqnum = 7
+packet.message[1].payload.refreshcomplexquotemessage.askprice = 0
+packet.message[1].payload.refreshcomplexquotemessage.bidprice = 0
+packet.message[1].payload.refreshcomplexquotemessage.askvolume = 0
+packet.message[1].payload.refreshcomplexquotemessage.bidvolume = 0
+packet.message[1].payload.refreshcomplexquotemessage.askcustomervolume = 0
+packet.message[1].payload.refreshcomplexquotemessage.bidcustomervolume = 0
+packet.message[1].payload.refreshcomplexquotemessage.quotecondition = 1

@@ -1,0 +1,21 @@
+# Nyse.ArcaEquities.Bbo.Xdp.v2.4.c QuoteMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.packetsize = 54
+packet.packetheader.deliveryflag = 11
+packet.packetheader.messagecount = 1
+packet.packetheader.sequencenumber = 19618
+packet.packetheader.sendtime.seconds = 1507047424
+packet.packetheader.sendtime.nanoseconds = 34662597
+packet.packetheader.sendtime = 1507047424034662597
+packet.message[0].messageheader.messagesize = 38
+packet.message[0].messageheader.messagetype = 140
+packet.message[0].payload = packet.message.payload.quotemessage
+packet.message[0].payload.quotemessage.sourcetimens = 767927000
+packet.message[0].payload.quotemessage.symbolindex = 6589
+packet.message[0].payload.quotemessage.symbolseqnum = 992
+packet.message[0].payload.quotemessage.askprice = 103800
+packet.message[0].payload.quotemessage.askvolume = 100
+packet.message[0].payload.quotemessage.bidprice = 103200
+packet.message[0].payload.quotemessage.bidvolume = 300
+packet.message[0].payload.quotemessage.quotecondition = R
+packet.message[0].payload.quotemessage.rpiindicator = A

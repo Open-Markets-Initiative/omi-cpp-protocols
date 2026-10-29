@@ -1,0 +1,17 @@
+# Nyse.ArcaOptions.TopFeed.Pillar.v1.2.c SequenceNumberResetMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 30
+packet.packetheader.deliveryflag = 12
+packet.packetheader.numbermsgs = 1
+packet.packetheader.seqnum = 1
+packet.packetheader.sendtime.seconds = 1639201838
+packet.packetheader.sendtime.nanoseconds = 35122176
+packet.packetheader.sendtime = 1639201838035122176
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 14
+packet.messages.message[0].messageheader.messagetype = 1
+packet.messages.message[0].payload = packet.messages.message.payload.sequencenumberresetmessage
+packet.messages.message[0].payload.sequencenumberresetmessage.sourcetime = 1639201771
+packet.messages.message[0].payload.sequencenumberresetmessage.sourcetimens = 624591616
+packet.messages.message[0].payload.sequencenumberresetmessage.productid = 162
+packet.messages.message[0].payload.sequencenumberresetmessage.channelid = 51

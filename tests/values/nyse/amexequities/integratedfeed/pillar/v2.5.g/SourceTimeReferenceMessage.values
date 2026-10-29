@@ -1,0 +1,23 @@
+# Nyse.AmexEquities.IntegratedFeed.Pillar.v2.5.g SourceTimeReferenceMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 57
+packet.packetheader.deliveryflag = 11
+packet.packetheader.numbermsgs = 2
+packet.packetheader.seqnum = 151954
+packet.packetheader.sendtime.seconds = 1692711000
+packet.packetheader.sendtime.nanoseconds = 140047
+packet.packetheader.sendtime = 1692711000000140047
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 16
+packet.messages.message[0].messageheader.messagetype = 2
+packet.messages.message[0].payload = packet.messages.message.payload.sourcetimereferencemessage
+packet.messages.message[0].payload.sourcetimereferencemessage.id = 52
+packet.messages.message[0].payload.sourcetimereferencemessage.symbolseqnum = 0
+packet.messages.message[0].payload.sourcetimereferencemessage.sourcetime = 1692711000
+packet.messages.message[1].messageheader.messagesize = 25
+packet.messages.message[1].messageheader.messagetype = 102
+packet.messages.message[1].payload = packet.messages.message.payload.deleteordermessage
+packet.messages.message[1].payload.deleteordermessage.sourcetimens = 126123
+packet.messages.message[1].payload.deleteordermessage.symbolindex = 31224
+packet.messages.message[1].payload.deleteordermessage.symbolseqnum = 10
+packet.messages.message[1].payload.deleteordermessage.orderid = 14646594393770220

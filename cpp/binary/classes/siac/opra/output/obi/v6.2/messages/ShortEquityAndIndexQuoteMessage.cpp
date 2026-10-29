@@ -53,7 +53,8 @@ const std::optional<BestBidAndOfferAppendage>& ShortEquityAndIndexQuoteMessage::
 std::optional<BestBidAndOfferAppendage>& ShortEquityAndIndexQuoteMessage::best_bid_and_offer_appendage() { return best_bid_and_offer_appendage_; }
 void ShortEquityAndIndexQuoteMessage::set_best_bid_and_offer_appendage(const std::optional<BestBidAndOfferAppendage>& value) { best_bid_and_offer_appendage_ = value; }
 
-ShortEquityAndIndexQuoteMessagePayloadCode ShortEquityAndIndexQuoteMessage::type() const { return message_type; }
+ShortEquityAndIndexQuoteMessagePayloadCode ShortEquityAndIndexQuoteMessage::type() const { return type_; }
+void ShortEquityAndIndexQuoteMessage::set_type(ShortEquityAndIndexQuoteMessagePayloadCode value) { type_ = value; }
 
 std::string_view ShortEquityAndIndexQuoteMessage::name() const { return "Short Equity And Index Quote Message"; }
 
@@ -234,7 +235,8 @@ bool ShortEquityAndIndexQuoteMessage::operator==(const ShortEquityAndIndexQuoteM
         && offer_size_short_ == other.offer_size_short_
         && best_bid_appendage_ == other.best_bid_appendage_
         && best_offer_appendage_ == other.best_offer_appendage_
-        && best_bid_and_offer_appendage_ == other.best_bid_and_offer_appendage_;
+        && best_bid_and_offer_appendage_ == other.best_bid_and_offer_appendage_
+        && type_ == other.type_;
 }
 
 bool ShortEquityAndIndexQuoteMessage::operator!=(const ShortEquityAndIndexQuoteMessage& other) const {

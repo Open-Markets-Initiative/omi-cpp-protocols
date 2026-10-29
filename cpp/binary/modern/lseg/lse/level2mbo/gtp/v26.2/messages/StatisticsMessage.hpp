@@ -4,13 +4,13 @@
 #include "../types/Instrument.hpp"
 #include "../types/SourceVenue.hpp"
 #include "../types/Volume.hpp"
-#include "../types/VolumeOnbookOnly.hpp"
+#include "../types/VolumeOnBookOnly.hpp"
 #include "../types/Vwap.hpp"
-#include "../types/VwapOnbookOnly.hpp"
+#include "../types/VwapOnBookOnly.hpp"
 #include "../types/NumberOfTrades.hpp"
-#include "../types/NumberOfTradesOnbookOnly.hpp"
+#include "../types/NumberOfTradesOnBookOnly.hpp"
 #include "../types/Turnover.hpp"
-#include "../types/TurnoverOnbookOnly.hpp"
+#include "../types/TurnoverOnBookOnly.hpp"
 #include "../structs/MessageHeader.hpp"
 
 namespace lseg::lse::level2mbo::gtp::v26_2 {
@@ -24,13 +24,13 @@ struct StatisticsMessage {
     Instrument instrument;
     SourceVenue source_venue;
     Volume volume;
-    VolumeOnbookOnly volume_onbook_only;
+    VolumeOnBookOnly volume_on_book_only;
     Vwap vwap;
-    VwapOnbookOnly vwap_onbook_only;
+    VwapOnBookOnly vwap_on_book_only;
     NumberOfTrades number_of_trades;
-    NumberOfTradesOnbookOnly number_of_trades_onbook_only;
+    NumberOfTradesOnBookOnly number_of_trades_on_book_only;
     Turnover turnover;
-    TurnoverOnbookOnly turnover_onbook_only;
+    TurnoverOnBookOnly turnover_on_book_only;
 
     // the type code that selects this message in the dispatch switch
     static constexpr std::uint8_t message_type = 0x77;

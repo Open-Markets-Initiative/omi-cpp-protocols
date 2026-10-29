@@ -1,0 +1,26 @@
+# Nyse.AmexEquities.IntegratedFeed.Xdp.v2.1.g SymbolIndexMappingMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.packetsize = 60
+packet.packetheader.deliveryflag = 11
+packet.packetheader.messagecount = 1
+packet.packetheader.sequencenumber = 2
+packet.packetheader.sendtime.seconds = 1506694823
+packet.packetheader.sendtime.nanoseconds = 87795899
+packet.packetheader.sendtime = 1506694823087795899
+packet.message[0].messageheader.messagesize = 44
+packet.message[0].messageheader.messagetype = 3
+packet.message[0].payload = packet.message.payload.symbolindexmappingmessage
+packet.message[0].payload.symbolindexmappingmessage.symbolindex = 1169
+packet.message[0].payload.symbolindexmappingmessage.symbol = ABG
+packet.message[0].payload.symbolindexmappingmessage.marketid = 1
+packet.message[0].payload.symbolindexmappingmessage.systemid = 7
+packet.message[0].payload.symbolindexmappingmessage.exchangecode = N
+packet.message[0].payload.symbolindexmappingmessage.pricescalecode = 4
+packet.message[0].payload.symbolindexmappingmessage.securitytype = A
+packet.message[0].payload.symbolindexmappingmessage.lotsize = 100
+packet.message[0].payload.symbolindexmappingmessage.prevcloseprice = 508500
+packet.message[0].payload.symbolindexmappingmessage.prevclosevolume = 0
+packet.message[0].payload.symbolindexmappingmessage.priceresolution = 0
+packet.message[0].payload.symbolindexmappingmessage.roundlot = N
+packet.message[0].payload.symbolindexmappingmessage.mpv = 500
+packet.message[0].payload.symbolindexmappingmessage.unitoftrade = 1

@@ -1,0 +1,26 @@
+# Siac.Cts.Output.Cta.v1.91 IndexMessage: canonical values, read by the model
+datagram 0
+packet.blockheader.version = 0
+packet.blockheader.blocksize = 66
+packet.blockheader.datafeedindicator = T
+packet.blockheader.retransmissionindicator = O
+packet.blockheader.blocksequencenumber = 267447
+packet.blockheader.messagesinblock = 1
+packet.blockheader.sipblocktimestamp.seconds = 1504898534
+packet.blockheader.sipblocktimestamp.nanoseconds = 66535000
+packet.blockheader.sipblocktimestamp = 1504898534066535000
+packet.blockheader.blockchecksum = 3510
+packet.message[0].messagelength = 45
+packet.message[0].messagecategory = I
+packet.message[0].categorypayload = packet.message.categorypayload.indicesmessage
+packet.message[0].categorypayload.indicesmessage.indicesmessagetype = I
+packet.message[0].categorypayload.indicesmessage.indicesmessagepayload = packet.message.categorypayload.indicesmessage.indicesmessagepayload.indexmessage
+packet.message[0].categorypayload.indicesmessage.indicesmessagepayload.indexmessage.participantid = Z
+packet.message[0].categorypayload.indicesmessage.indicesmessagepayload.indexmessage.timestamp1.seconds = 0
+packet.message[0].categorypayload.indicesmessage.indicesmessagepayload.indexmessage.timestamp1.nanoseconds = 0
+packet.message[0].categorypayload.indicesmessage.indicesmessagepayload.indexmessage.timestamp1 = 0
+packet.message[0].categorypayload.indicesmessage.indicesmessagepayload.indexmessage.messageid = 1
+packet.message[0].categorypayload.indicesmessage.indicesmessagepayload.indexmessage.transactionid = 67183017
+packet.message[0].categorypayload.indicesmessage.indicesmessagepayload.indexmessage.participantreferencenumber = 52983561221733
+packet.message[0].categorypayload.indicesmessage.indicesmessagepayload.indexmessage.indexsymbol = NEAR.IV
+packet.message[0].categorypayload.indicesmessage.indicesmessagepayload.indexmessage.indexvalue = 50.2267

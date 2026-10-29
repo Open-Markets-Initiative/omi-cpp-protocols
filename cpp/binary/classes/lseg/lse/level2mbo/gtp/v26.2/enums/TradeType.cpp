@@ -7,7 +7,7 @@ std::string_view to_string(TradeType value) {
         case TradeType::RegularOrContinuousTrade: return "Regular Or Continuous Trade";
         case TradeType::AuctionTradeBulk: return "Auction Trade Bulk";
         case TradeType::AuctionTradeIndividual: return "Auction Trade Individual";
-        case TradeType::OnbookTradeCancellation: return "Onbook Trade Cancellation";
+        case TradeType::OnBookTradeCancellation: return "On Book Trade Cancellation";
         case TradeType::TradeCorrection: return "Trade Correction";
         case TradeType::RfqTrade: return "Rfq Trade";
         case TradeType::RfqTradeCancellation: return "Rfq Trade Cancellation";

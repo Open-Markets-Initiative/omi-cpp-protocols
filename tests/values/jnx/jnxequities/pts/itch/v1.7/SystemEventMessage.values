@@ -1,0 +1,12 @@
+# Jnx.JnxEquities.Pts.Itch.v1.7 SystemEventMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 1697659284
+packet.packetheader.sequencenumber = 12576
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 10
+packet.messages.message[0].messageheader.messagetype = S
+packet.messages.message[0].udppayload = packet.messages.message.udppayload.systemeventmessage
+packet.messages.message[0].udppayload.systemeventmessage.nanoseconds = 5000
+packet.messages.message[0].udppayload.systemeventmessage.group = DAY
+packet.messages.message[0].udppayload.systemeventmessage.systemevent = Q

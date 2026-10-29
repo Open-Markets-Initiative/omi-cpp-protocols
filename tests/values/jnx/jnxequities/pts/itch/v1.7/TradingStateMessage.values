@@ -1,0 +1,17 @@
+# Jnx.JnxEquities.Pts.Itch.v1.7 TradingStateMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 1697659284
+packet.packetheader.sequencenumber = 12562
+packet.packetheader.messagecount = 2
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 5
+packet.messages.message[0].messageheader.messagetype = T
+packet.messages.message[0].udppayload = packet.messages.message.udppayload.secondsmessage
+packet.messages.message[0].udppayload.secondsmessage.seconds = 27004
+packet.messages.message[1].messageheader.messagelength = 14
+packet.messages.message[1].messageheader.messagetype = H
+packet.messages.message[1].udppayload = packet.messages.message.udppayload.tradingstatemessage
+packet.messages.message[1].udppayload.tradingstatemessage.nanoseconds = 209492000
+packet.messages.message[1].udppayload.tradingstatemessage.orderbookid = 825438772
+packet.messages.message[1].udppayload.tradingstatemessage.group = DAY
+packet.messages.message[1].udppayload.tradingstatemessage.tradingstate = V

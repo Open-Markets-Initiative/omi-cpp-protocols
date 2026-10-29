@@ -1,0 +1,12 @@
+# CixAts.CixAspen.MarketDataFeed.Aspen.v1.4 MarketEventMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.marketdayidentifier = 20676
+packet.packetheader.feedidentifier = W
+packet.packetheader.sequence = 1
+packet.packetheader.count = 1
+packet.message[0].messageheader.length = 12
+packet.message[0].messageheader.messagetype = A
+packet.message[0].payload = packet.message.payload.marketeventmessage
+packet.message[0].payload.marketeventmessage.reserved2 = 
+packet.message[0].payload.marketeventmessage.timestamp = 1786444200000048080
+packet.message[0].payload.marketeventmessage.event = O

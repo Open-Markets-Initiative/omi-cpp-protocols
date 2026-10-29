@@ -1,0 +1,22 @@
+# Cboe.C1Options.MarketDataFeed.Csm.v1.4.2 TickerMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.version = 1
+packet.packetheader.packetlength = 49
+packet.packetheader.sendingtime = 1545339505140
+packet.packetheader.messagecount = 1
+packet.packetheader.firstmsgseqnum = 36228711
+packet.message[0].messageheader.messagelength = 33
+packet.message[0].messageheader.templateid = 14
+packet.message[0].messageheader.messagetype = X
+packet.message[0].messageheader.msgseqnum = 36228711
+packet.message[0].payload = packet.message.payload.tickermessage
+packet.message[0].payload.tickermessage.classkey = 69221107
+packet.message[0].payload.tickermessage.securityid = 383072593
+packet.message[0].payload.tickermessage.pricetype = 3
+packet.message[0].payload.tickermessage.noentries = 1
+packet.message[0].payload.tickermessage.tickermdentry[0].mdentrytype = 2
+packet.message[0].payload.tickermessage.tickermdentry[0].mdentrypx.mdentrypxexponent = -2
+packet.message[0].payload.tickermessage.tickermdentry[0].mdentrypx.mdentrypxmantissa = -370
+packet.message[0].payload.tickermessage.tickermdentry[0].mdentrysize = 1
+packet.message[0].payload.tickermessage.tickermdentry[0].tradecondition.tradeconditionlength = 4
+packet.message[0].payload.tickermessage.tickermdentry[0].tradecondition.tradeconditiontext = SPRD

@@ -1,0 +1,13 @@
+# Miax.OnyxFutures.TopOfMarket.Mach.v1.0.b InstrumentTradingStatusNotificationMessage: canonical values, read by the model
+datagram 0
+packet.machmessage[0].machpacketheader.sequencenumber = 927
+packet.machmessage[0].machpacketheader.packetlength = 27
+packet.machmessage[0].machpacketheader.packettype = 3
+packet.machmessage[0].machpacketheader.sessionnumber = 1
+packet.machmessage[0].payload = packet.machmessage.payload.applicationmessage
+packet.machmessage[0].payload.applicationmessage.messagetype = 4
+packet.machmessage[0].payload.applicationmessage.data = packet.machmessage.payload.applicationmessage.data.instrumenttradingstatusnotificationmessage
+packet.machmessage[0].payload.applicationmessage.data.instrumenttradingstatusnotificationmessage.timestamp = 1751048400000096534
+packet.machmessage[0].payload.applicationmessage.data.instrumenttradingstatusnotificationmessage.instrumentid = 33554448
+packet.machmessage[0].payload.applicationmessage.data.instrumenttradingstatusnotificationmessage.tradingstatus = 6
+packet.machmessage[0].payload.applicationmessage.data.instrumenttradingstatusnotificationmessage.marketstate = 3

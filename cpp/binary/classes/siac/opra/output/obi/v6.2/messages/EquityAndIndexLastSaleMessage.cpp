@@ -76,7 +76,8 @@ const std::array<std::byte, 4>& EquityAndIndexLastSaleMessage::reserved_4() cons
 std::array<std::byte, 4>& EquityAndIndexLastSaleMessage::reserved_4() { return reserved_4_; }
 void EquityAndIndexLastSaleMessage::set_reserved_4(const std::array<std::byte, 4>& value) { reserved_4_ = value; }
 
-EquityAndIndexLastSaleMessagePayloadCode EquityAndIndexLastSaleMessage::type() const { return message_type; }
+EquityAndIndexLastSaleMessagePayloadCode EquityAndIndexLastSaleMessage::type() const { return type_; }
+void EquityAndIndexLastSaleMessage::set_type(EquityAndIndexLastSaleMessagePayloadCode value) { type_ = value; }
 
 std::string_view EquityAndIndexLastSaleMessage::name() const { return "Equity And Index Last Sale Message"; }
 
@@ -231,7 +232,8 @@ bool EquityAndIndexLastSaleMessage::operator==(const EquityAndIndexLastSaleMessa
         && premium_price_denominator_code_ == other.premium_price_denominator_code_
         && premium_price_ == other.premium_price_
         && trade_identifier_ == other.trade_identifier_
-        && reserved_4_ == other.reserved_4_;
+        && reserved_4_ == other.reserved_4_
+        && type_ == other.type_;
 }
 
 bool EquityAndIndexLastSaleMessage::operator!=(const EquityAndIndexLastSaleMessage& other) const {

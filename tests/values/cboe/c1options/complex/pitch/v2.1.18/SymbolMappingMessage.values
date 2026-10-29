@@ -1,0 +1,14 @@
+# Cboe.C1Options.Complex.Pitch.v2.1.18 SymbolMappingMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.length = 46
+packet.packetheader.messagecount = 1
+packet.packetheader.unit = 33
+packet.packetheader.sequence = 0
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 38
+packet.messages.message[0].messageheader.messagetype = 46
+packet.messages.message[0].payload = packet.messages.message.payload.symbolmappingmessage
+packet.messages.message[0].payload.symbolmappingmessage.feedsymbol = 027wuE
+packet.messages.message[0].payload.symbolmappingmessage.osisymbol = SPX   200619P00500000
+packet.messages.message[0].payload.symbolmappingmessage.symbolcondition = N
+packet.messages.message[0].payload.symbolmappingmessage.underlying = SPX

@@ -1,0 +1,14 @@
+# Cboe.C1Options.Complex.Pitch.v2.1.18 ModifyOrderShortMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.length = 27
+packet.packetheader.messagecount = 1
+packet.packetheader.unit = 33
+packet.packetheader.sequence = 10026468
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 19
+packet.messages.message[0].messageheader.messagetype = 40
+packet.messages.message[0].payload = packet.messages.message.payload.modifyordershortmessage
+packet.messages.message[0].payload.modifyordershortmessage.timeoffset = 91747000
+packet.messages.message[0].payload.modifyordershortmessage.orderid = 4366412663179539329
+packet.messages.message[0].payload.modifyordershortmessage.quantityshort = 11
+packet.messages.message[0].payload.modifyordershortmessage.priceshort = -220.65

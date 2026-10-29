@@ -12,7 +12,7 @@ struct sale_condition_flags {
 
     using type = uint8_t;
 
-    static constexpr type singleprice_cross_trade = type{1} << 3;
+    static constexpr type single_price_cross_trade = type{1} << 3;
     static constexpr type trade_through_exempt = type{1} << 4;
     static constexpr type odd_lot = type{1} << 5;
     static constexpr type extended_hours = type{1} << 6;
@@ -46,13 +46,13 @@ struct sale_condition_flags {
     [[nodiscard]] constexpr bool has(type bit) const { return (value & bit) != 0; }
     constexpr void set(type bit, bool enabled) { if (enabled) value |= bit; else value &= static_cast<type>(~bit); }
 
-    [[nodiscard]] constexpr bool has_singleprice_cross_trade() const { return has(singleprice_cross_trade); }
+    [[nodiscard]] constexpr bool has_single_price_cross_trade() const { return has(single_price_cross_trade); }
     [[nodiscard]] constexpr bool has_trade_through_exempt() const { return has(trade_through_exempt); }
     [[nodiscard]] constexpr bool has_odd_lot() const { return has(odd_lot); }
     [[nodiscard]] constexpr bool has_extended_hours() const { return has(extended_hours); }
     [[nodiscard]] constexpr bool has_intermarket_sweep() const { return has(intermarket_sweep); }
 
-    constexpr void set_singleprice_cross_trade(bool v) { set(singleprice_cross_trade, v); }
+    constexpr void set_single_price_cross_trade(bool v) { set(single_price_cross_trade, v); }
     constexpr void set_trade_through_exempt(bool v) { set(trade_through_exempt, v); }
     constexpr void set_odd_lot(bool v) { set(odd_lot, v); }
     constexpr void set_extended_hours(bool v) { set(extended_hours, v); }

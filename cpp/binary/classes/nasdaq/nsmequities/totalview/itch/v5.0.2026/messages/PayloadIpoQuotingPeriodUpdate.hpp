@@ -50,6 +50,7 @@ class PayloadIpoQuotingPeriodUpdate : public PacketMessage {
     // quotation to the nearest second
     std::chrono::seconds ipo_quotation_release_time() const;
     void set_ipo_quotation_release_time(std::chrono::seconds value);
+    std::int64_t ipo_quotation_release_time_utc(const calendar::Day& day) const;
 
     // Ipo Quotation Release Qualifier: IPO Quotation Release Qualifier
     IpoQuotationReleaseQualifier ipo_quotation_release_qualifier() const;

@@ -1,0 +1,13 @@
+# Jnx.JnxEquities.Pts.Itch.v1.7 OrderExecutedMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 1697659284
+packet.packetheader.sequencenumber = 12589
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 25
+packet.messages.message[0].messageheader.messagetype = E
+packet.messages.message[0].udppayload = packet.messages.message.udppayload.orderexecutedmessage
+packet.messages.message[0].udppayload.orderexecutedmessage.nanoseconds = 86291000
+packet.messages.message[0].udppayload.orderexecutedmessage.ordernumber = 202310190000000011
+packet.messages.message[0].udppayload.orderexecutedmessage.executedquantity = 1
+packet.messages.message[0].udppayload.orderexecutedmessage.matchnumber = 202310190000000001

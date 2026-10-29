@@ -113,7 +113,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".messagedata.orderdeletemessage.orderidreference"] = canonical::number((*message).order_id_reference());
         } else if (const auto* message = dynamic_cast<const protocol::OrderExecutedMessage*>(each.message())) {
             values[entry + ".messagedata"] = "packet.messages.message.messagedata.orderexecutedmessage";
-            values[entry + ".messagedata.orderexecutedmessage.saleconditionflags.singlepricecrosstrade"] = canonical::number(static_cast<std::uint64_t>((*message).sale_condition_flags().singleprice_cross_trade()));
+            values[entry + ".messagedata.orderexecutedmessage.saleconditionflags.singlepricecrosstrade"] = canonical::number(static_cast<std::uint64_t>((*message).sale_condition_flags().single_price_cross_trade()));
             values[entry + ".messagedata.orderexecutedmessage.saleconditionflags.tradethroughexempt"] = canonical::number(static_cast<std::uint64_t>((*message).sale_condition_flags().trade_through_exempt()));
             values[entry + ".messagedata.orderexecutedmessage.saleconditionflags.oddlot"] = canonical::number(static_cast<std::uint64_t>((*message).sale_condition_flags().odd_lot()));
             values[entry + ".messagedata.orderexecutedmessage.saleconditionflags.extendedhours"] = canonical::number(static_cast<std::uint64_t>((*message).sale_condition_flags().extended_hours()));
@@ -126,7 +126,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".messagedata.orderexecutedmessage.tradeid"] = canonical::number((*message).trade_id());
         } else if (const auto* message = dynamic_cast<const protocol::TradeMessage*>(each.message())) {
             values[entry + ".messagedata"] = "packet.messages.message.messagedata.trademessage";
-            values[entry + ".messagedata.trademessage.saleconditionflags.singlepricecrosstrade"] = canonical::number(static_cast<std::uint64_t>((*message).sale_condition_flags().singleprice_cross_trade()));
+            values[entry + ".messagedata.trademessage.saleconditionflags.singlepricecrosstrade"] = canonical::number(static_cast<std::uint64_t>((*message).sale_condition_flags().single_price_cross_trade()));
             values[entry + ".messagedata.trademessage.saleconditionflags.tradethroughexempt"] = canonical::number(static_cast<std::uint64_t>((*message).sale_condition_flags().trade_through_exempt()));
             values[entry + ".messagedata.trademessage.saleconditionflags.oddlot"] = canonical::number(static_cast<std::uint64_t>((*message).sale_condition_flags().odd_lot()));
             values[entry + ".messagedata.trademessage.saleconditionflags.extendedhours"] = canonical::number(static_cast<std::uint64_t>((*message).sale_condition_flags().extended_hours()));
@@ -138,7 +138,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".messagedata.trademessage.tradeid"] = canonical::number((*message).trade_id());
         } else if (const auto* message = dynamic_cast<const protocol::TradeBreakMessage*>(each.message())) {
             values[entry + ".messagedata"] = "packet.messages.message.messagedata.tradebreakmessage";
-            values[entry + ".messagedata.tradebreakmessage.saleconditionflags.singlepricecrosstrade"] = canonical::number(static_cast<std::uint64_t>((*message).sale_condition_flags().singleprice_cross_trade()));
+            values[entry + ".messagedata.tradebreakmessage.saleconditionflags.singlepricecrosstrade"] = canonical::number(static_cast<std::uint64_t>((*message).sale_condition_flags().single_price_cross_trade()));
             values[entry + ".messagedata.tradebreakmessage.saleconditionflags.tradethroughexempt"] = canonical::number(static_cast<std::uint64_t>((*message).sale_condition_flags().trade_through_exempt()));
             values[entry + ".messagedata.tradebreakmessage.saleconditionflags.oddlot"] = canonical::number(static_cast<std::uint64_t>((*message).sale_condition_flags().odd_lot()));
             values[entry + ".messagedata.tradebreakmessage.saleconditionflags.extendedhours"] = canonical::number(static_cast<std::uint64_t>((*message).sale_condition_flags().extended_hours()));

@@ -27,14 +27,14 @@ std::unique_ptr<AdministrativeMessagePayload> AdministrativeMessagePayloadFactor
 
 std::unique_ptr<ControlMessagePayload> ControlMessagePayloadFactory::create(ControlMessagePayloadCode code) {
     switch (code) {
-        case ControlMessage::message_type: return std::make_unique<ControlMessage>();
+        case ControlMessage::message_type: case ControlMessageType::StartOfSummary: case ControlMessageType::EndOfSummary: case ControlMessageType::EndOfDay: case ControlMessageType::ResetBlockSequenceNumber: case ControlMessageType::StartOfOpenInterest: case ControlMessageType::EndOfOpenInterest: case ControlMessageType::LineIntegrity: case ControlMessageType::DisasterRecoveryDataCenterActivation: { auto message = std::make_unique<ControlMessage>(); message->set_type(code); return message; }
         default: return std::make_unique<UnknownControlMessagePayload>(code);
     }
 }
 
 std::unique_ptr<EquityAndIndexLastSaleMessagePayload> EquityAndIndexLastSaleMessagePayloadFactory::create(EquityAndIndexLastSaleMessagePayloadCode code) {
     switch (code) {
-        case EquityAndIndexLastSaleMessage::message_type: return std::make_unique<EquityAndIndexLastSaleMessage>();
+        case EquityAndIndexLastSaleMessage::message_type: case EquityAndIndexLastSaleMessageType::Oseq: case EquityAndIndexLastSaleMessageType::Cncl: case EquityAndIndexLastSaleMessageType::Late: case EquityAndIndexLastSaleMessageType::Cnco: case EquityAndIndexLastSaleMessageType::Open: case EquityAndIndexLastSaleMessageType::Cnol: case EquityAndIndexLastSaleMessageType::Opnl: case EquityAndIndexLastSaleMessageType::Auto: case EquityAndIndexLastSaleMessageType::Reop: case EquityAndIndexLastSaleMessageType::Ajst: case EquityAndIndexLastSaleMessageType::Sprd: case EquityAndIndexLastSaleMessageType::Stdl: case EquityAndIndexLastSaleMessageType::Stpd: case EquityAndIndexLastSaleMessageType::Cstp: case EquityAndIndexLastSaleMessageType::Bwrt: case EquityAndIndexLastSaleMessageType::Cmbo: case EquityAndIndexLastSaleMessageType::Spim: case EquityAndIndexLastSaleMessageType::Isoi: case EquityAndIndexLastSaleMessageType::Bnmt: case EquityAndIndexLastSaleMessageType::Xmpt: { auto message = std::make_unique<EquityAndIndexLastSaleMessage>(); message->set_type(code); return message; }
         default: return std::make_unique<UnknownEquityAndIndexLastSaleMessagePayload>(code);
     }
 }
@@ -55,14 +55,14 @@ std::unique_ptr<EquityAndIndexEndOfDaySummaryMessagePayload> EquityAndIndexEndOf
 
 std::unique_ptr<LongEquityAndIndexQuoteMessagePayload> LongEquityAndIndexQuoteMessagePayloadFactory::create(LongEquityAndIndexQuoteMessagePayloadCode code) {
     switch (code) {
-        case LongEquityAndIndexQuoteMessage::message_type: return std::make_unique<LongEquityAndIndexQuoteMessage>();
+        case LongEquityAndIndexQuoteMessage::message_type: case LongEquityAndIndexQuoteMessageType::NonFirmQuote: case LongEquityAndIndexQuoteMessageType::IndicativeValue: case LongEquityAndIndexQuoteMessageType::Rotation: case LongEquityAndIndexQuoteMessageType::TradingHalted: case LongEquityAndIndexQuoteMessageType::EligibleForAutomaticExecution: case LongEquityAndIndexQuoteMessageType::BidContainsCustomerTradingInterest: case LongEquityAndIndexQuoteMessageType::OfferContainsCustomerTradingInterest: case LongEquityAndIndexQuoteMessageType::BothBidAndOfferContainCustomerTradingInterest: case LongEquityAndIndexQuoteMessageType::OfferSideOfQuoteNotFirmBidSideFirm: case LongEquityAndIndexQuoteMessageType::BidSideOfQuoteNotFirmOfferSideFirm: { auto message = std::make_unique<LongEquityAndIndexQuoteMessage>(); message->set_type(code); return message; }
         default: return std::make_unique<UnknownLongEquityAndIndexQuoteMessagePayload>(code);
     }
 }
 
 std::unique_ptr<ShortEquityAndIndexQuoteMessagePayload> ShortEquityAndIndexQuoteMessagePayloadFactory::create(ShortEquityAndIndexQuoteMessagePayloadCode code) {
     switch (code) {
-        case ShortEquityAndIndexQuoteMessage::message_type: return std::make_unique<ShortEquityAndIndexQuoteMessage>();
+        case ShortEquityAndIndexQuoteMessage::message_type: case ShortEquityAndIndexQuoteMessageType::NonFirmQuote: case ShortEquityAndIndexQuoteMessageType::IndicativeValue: case ShortEquityAndIndexQuoteMessageType::Rotation: case ShortEquityAndIndexQuoteMessageType::TradingHalted: case ShortEquityAndIndexQuoteMessageType::EligibleForAutomaticExecution: case ShortEquityAndIndexQuoteMessageType::BidContainsCustomerTradingInterest: case ShortEquityAndIndexQuoteMessageType::OfferContainsCustomerTradingInterest: case ShortEquityAndIndexQuoteMessageType::BothBidAndOfferContainCustomerTradingInterest: case ShortEquityAndIndexQuoteMessageType::OfferSideOfQuoteNotFirmBidSideFirm: case ShortEquityAndIndexQuoteMessageType::BidSideOfQuoteNotFirmOfferSideFirm: { auto message = std::make_unique<ShortEquityAndIndexQuoteMessage>(); message->set_type(code); return message; }
         default: return std::make_unique<UnknownShortEquityAndIndexQuoteMessagePayload>(code);
     }
 }

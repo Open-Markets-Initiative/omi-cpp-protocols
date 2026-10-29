@@ -10,8 +10,8 @@ AllowedBookTypes::AllowedBookTypes(std::uint8_t raw) : raw_(raw) {}
 bool AllowedBookTypes::firm_quote_book() const { return (raw_ & static_cast<std::uint8_t>(0x2)) != 0; }
 void AllowedBookTypes::set_firm_quote_book(bool value) { raw_ = static_cast<std::uint8_t>(value ? (raw_ | static_cast<std::uint8_t>(0x2)) : (raw_ & ~static_cast<std::uint8_t>(0x2))); }
 
-bool AllowedBookTypes::offbook() const { return (raw_ & static_cast<std::uint8_t>(0x4)) != 0; }
-void AllowedBookTypes::set_offbook(bool value) { raw_ = static_cast<std::uint8_t>(value ? (raw_ | static_cast<std::uint8_t>(0x4)) : (raw_ & ~static_cast<std::uint8_t>(0x4))); }
+bool AllowedBookTypes::off_book() const { return (raw_ & static_cast<std::uint8_t>(0x4)) != 0; }
+void AllowedBookTypes::set_off_book(bool value) { raw_ = static_cast<std::uint8_t>(value ? (raw_ | static_cast<std::uint8_t>(0x4)) : (raw_ & ~static_cast<std::uint8_t>(0x4))); }
 
 bool AllowedBookTypes::electronic_order_book() const { return (raw_ & static_cast<std::uint8_t>(0x8)) != 0; }
 void AllowedBookTypes::set_electronic_order_book(bool value) { raw_ = static_cast<std::uint8_t>(value ? (raw_ | static_cast<std::uint8_t>(0x8)) : (raw_ & ~static_cast<std::uint8_t>(0x8))); }
@@ -42,8 +42,8 @@ void AllowedBookTypes::print(std::ostream& out) const {
     out << "AllowedBookTypes{";
     out << "firm_quote_book=";
     out << (firm_quote_book() ? "true" : "false");
-    out << ", offbook=";
-    out << (offbook() ? "true" : "false");
+    out << ", off_book=";
+    out << (off_book() ? "true" : "false");
     out << ", electronic_order_book=";
     out << (electronic_order_book() ? "true" : "false");
     out << ", private_rfq=";

@@ -1,0 +1,7 @@
+# Miax.MiaxOptions.ComplexTopOfMarket.Mach.v1.1 Heartbeat: canonical values, read by the model
+datagram 0
+packet.machmessage[0].machpacketheader.sequencenumber = 1271
+packet.machmessage[0].machpacketheader.packetlength = 12
+packet.machmessage[0].machpacketheader.packettype = 0
+packet.machmessage[0].machpacketheader.sessionnumber = 1
+packet.machmessage[0].payload = packet.machmessage.payload.heartbeat

@@ -152,4 +152,61 @@ class PacketMessageVisitor {
     virtual void visit(const UnknownPacketMessage&) {}
 };
 
+class FilePayloadSystemEventMessage;
+class FilePayloadStockDirectoryMessage;
+class FilePayloadStockTradingActionMessage;
+class FilePayloadRegShoShortSalePriceTestRestrictedIndicatorMessage;
+class FilePayloadMarketParticipantPositionMessage;
+class FilePayloadMwcbDeclineLevelMessage;
+class FilePayloadMwcbStatusLevelMessage;
+class FilePayloadIpoQuotingPeriodUpdate;
+class FilePayloadLuldAuctionCollarMessage;
+class FilePayloadOperationalHaltMessage;
+class FilePayloadAddOrderNoMpidAttributionMessage;
+class FilePayloadAddOrderWithMpidAttributionMessage;
+class FilePayloadOrderExecutedMessage;
+class FilePayloadOrderExecutedWithPriceMessage;
+class FilePayloadOrderCancelMessage;
+class FilePayloadOrderDeleteMessage;
+class FilePayloadOrderReplaceMessage;
+class FilePayloadNonCrossTradeMessage;
+class FilePayloadCrossTradeMessage;
+class FilePayloadBrokenTradeMessage;
+class FilePayloadNetOrderImbalanceIndicatorMessage;
+class FilePayloadRetailPriceImprovementIndicatorMessage;
+class FilePayloadDirectListingWithCapitalRaisePriceDiscoveryMessage;
+class UnknownFileMessage;
+
+// What the messages of the File Payload dispatch are handed to,
+// reached through the file_payload a FileMessage holds.
+class FileMessageVisitor {
+  public:
+    virtual ~FileMessageVisitor() = default;
+
+    virtual void visit(const FilePayloadSystemEventMessage&) {}
+    virtual void visit(const FilePayloadStockDirectoryMessage&) {}
+    virtual void visit(const FilePayloadStockTradingActionMessage&) {}
+    virtual void visit(const FilePayloadRegShoShortSalePriceTestRestrictedIndicatorMessage&) {}
+    virtual void visit(const FilePayloadMarketParticipantPositionMessage&) {}
+    virtual void visit(const FilePayloadMwcbDeclineLevelMessage&) {}
+    virtual void visit(const FilePayloadMwcbStatusLevelMessage&) {}
+    virtual void visit(const FilePayloadIpoQuotingPeriodUpdate&) {}
+    virtual void visit(const FilePayloadLuldAuctionCollarMessage&) {}
+    virtual void visit(const FilePayloadOperationalHaltMessage&) {}
+    virtual void visit(const FilePayloadAddOrderNoMpidAttributionMessage&) {}
+    virtual void visit(const FilePayloadAddOrderWithMpidAttributionMessage&) {}
+    virtual void visit(const FilePayloadOrderExecutedMessage&) {}
+    virtual void visit(const FilePayloadOrderExecutedWithPriceMessage&) {}
+    virtual void visit(const FilePayloadOrderCancelMessage&) {}
+    virtual void visit(const FilePayloadOrderDeleteMessage&) {}
+    virtual void visit(const FilePayloadOrderReplaceMessage&) {}
+    virtual void visit(const FilePayloadNonCrossTradeMessage&) {}
+    virtual void visit(const FilePayloadCrossTradeMessage&) {}
+    virtual void visit(const FilePayloadBrokenTradeMessage&) {}
+    virtual void visit(const FilePayloadNetOrderImbalanceIndicatorMessage&) {}
+    virtual void visit(const FilePayloadRetailPriceImprovementIndicatorMessage&) {}
+    virtual void visit(const FilePayloadDirectListingWithCapitalRaisePriceDiscoveryMessage&) {}
+    virtual void visit(const UnknownFileMessage&) {}
+};
+
 } // namespace nasdaq::nsmequities::totalview::itch::v5_0_2026

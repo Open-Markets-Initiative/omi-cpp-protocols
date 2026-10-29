@@ -6,8 +6,8 @@
 
 namespace lseg::lse::level2mbo::gtp::v26_2 {
 
-StatisticsMessage::StatisticsMessage(std::chrono::nanoseconds timestamp, std::uint64_t instrument, SourceVenue source_venue, Decimal volume, Decimal volume_onbook_only, Decimal vwap, Decimal vwap_onbook_only, std::uint32_t number_of_trades, std::uint32_t number_of_trades_onbook_only, Decimal turnover, Decimal turnover_onbook_only)
-  : timestamp_(timestamp), instrument_(instrument), source_venue_(source_venue), volume_(volume), volume_onbook_only_(volume_onbook_only), vwap_(vwap), vwap_onbook_only_(vwap_onbook_only), number_of_trades_(number_of_trades), number_of_trades_onbook_only_(number_of_trades_onbook_only), turnover_(turnover), turnover_onbook_only_(turnover_onbook_only) {}
+StatisticsMessage::StatisticsMessage(std::chrono::nanoseconds timestamp, std::uint64_t instrument, SourceVenue source_venue, Decimal volume, Decimal volume_on_book_only, Decimal vwap, Decimal vwap_on_book_only, std::uint32_t number_of_trades, std::uint32_t number_of_trades_on_book_only, Decimal turnover, Decimal turnover_on_book_only)
+  : timestamp_(timestamp), instrument_(instrument), source_venue_(source_venue), volume_(volume), volume_on_book_only_(volume_on_book_only), vwap_(vwap), vwap_on_book_only_(vwap_on_book_only), number_of_trades_(number_of_trades), number_of_trades_on_book_only_(number_of_trades_on_book_only), turnover_(turnover), turnover_on_book_only_(turnover_on_book_only) {}
 
 std::chrono::nanoseconds StatisticsMessage::timestamp() const { return timestamp_; }
 void StatisticsMessage::set_timestamp(std::chrono::nanoseconds value) { timestamp_ = value; }
@@ -21,26 +21,26 @@ void StatisticsMessage::set_source_venue(SourceVenue value) { source_venue_ = va
 Decimal StatisticsMessage::volume() const { return volume_; }
 void StatisticsMessage::set_volume(Decimal value) { volume_ = value; }
 
-Decimal StatisticsMessage::volume_onbook_only() const { return volume_onbook_only_; }
-void StatisticsMessage::set_volume_onbook_only(Decimal value) { volume_onbook_only_ = value; }
+Decimal StatisticsMessage::volume_on_book_only() const { return volume_on_book_only_; }
+void StatisticsMessage::set_volume_on_book_only(Decimal value) { volume_on_book_only_ = value; }
 
 Decimal StatisticsMessage::vwap() const { return vwap_; }
 void StatisticsMessage::set_vwap(Decimal value) { vwap_ = value; }
 
-Decimal StatisticsMessage::vwap_onbook_only() const { return vwap_onbook_only_; }
-void StatisticsMessage::set_vwap_onbook_only(Decimal value) { vwap_onbook_only_ = value; }
+Decimal StatisticsMessage::vwap_on_book_only() const { return vwap_on_book_only_; }
+void StatisticsMessage::set_vwap_on_book_only(Decimal value) { vwap_on_book_only_ = value; }
 
 std::uint32_t StatisticsMessage::number_of_trades() const { return number_of_trades_; }
 void StatisticsMessage::set_number_of_trades(std::uint32_t value) { number_of_trades_ = value; }
 
-std::uint32_t StatisticsMessage::number_of_trades_onbook_only() const { return number_of_trades_onbook_only_; }
-void StatisticsMessage::set_number_of_trades_onbook_only(std::uint32_t value) { number_of_trades_onbook_only_ = value; }
+std::uint32_t StatisticsMessage::number_of_trades_on_book_only() const { return number_of_trades_on_book_only_; }
+void StatisticsMessage::set_number_of_trades_on_book_only(std::uint32_t value) { number_of_trades_on_book_only_ = value; }
 
 Decimal StatisticsMessage::turnover() const { return turnover_; }
 void StatisticsMessage::set_turnover(Decimal value) { turnover_ = value; }
 
-Decimal StatisticsMessage::turnover_onbook_only() const { return turnover_onbook_only_; }
-void StatisticsMessage::set_turnover_onbook_only(Decimal value) { turnover_onbook_only_ = value; }
+Decimal StatisticsMessage::turnover_on_book_only() const { return turnover_on_book_only_; }
+void StatisticsMessage::set_turnover_on_book_only(Decimal value) { turnover_on_book_only_ = value; }
 
 MessageCode StatisticsMessage::type() const { return message_type; }
 
@@ -62,25 +62,25 @@ std::size_t StatisticsMessage::decode(const std::byte* data, std::size_t length)
     volume_ = Decimal(static_cast<std::int64_t>(wire::read_u64_le(data + offset)), -4);
     offset += 8;
 
-    volume_onbook_only_ = Decimal(static_cast<std::int64_t>(wire::read_u64_le(data + offset)), -4);
+    volume_on_book_only_ = Decimal(static_cast<std::int64_t>(wire::read_u64_le(data + offset)), -4);
     offset += 8;
 
     vwap_ = Decimal(static_cast<std::int64_t>(wire::read_i64_le(data + offset)), -4);
     offset += 8;
 
-    vwap_onbook_only_ = Decimal(static_cast<std::int64_t>(wire::read_i64_le(data + offset)), -4);
+    vwap_on_book_only_ = Decimal(static_cast<std::int64_t>(wire::read_i64_le(data + offset)), -4);
     offset += 8;
 
     number_of_trades_ = wire::read_u32_le(data + offset);
     offset += 4;
 
-    number_of_trades_onbook_only_ = wire::read_u32_le(data + offset);
+    number_of_trades_on_book_only_ = wire::read_u32_le(data + offset);
     offset += 4;
 
     turnover_ = Decimal(static_cast<std::int64_t>(wire::read_i64_le(data + offset)), -4);
     offset += 8;
 
-    turnover_onbook_only_ = Decimal(static_cast<std::int64_t>(wire::read_i64_le(data + offset)), -4);
+    turnover_on_book_only_ = Decimal(static_cast<std::int64_t>(wire::read_i64_le(data + offset)), -4);
     offset += 8;
 
     return offset;
@@ -102,25 +102,25 @@ std::size_t StatisticsMessage::encode(std::byte* data, std::size_t capacity) con
     wire::write_u64_le(data + offset, static_cast<std::uint64_t>(volume_.mantissa()));
     offset += 8;
 
-    wire::write_u64_le(data + offset, static_cast<std::uint64_t>(volume_onbook_only_.mantissa()));
+    wire::write_u64_le(data + offset, static_cast<std::uint64_t>(volume_on_book_only_.mantissa()));
     offset += 8;
 
     wire::write_i64_le(data + offset, static_cast<std::int64_t>(vwap_.mantissa()));
     offset += 8;
 
-    wire::write_i64_le(data + offset, static_cast<std::int64_t>(vwap_onbook_only_.mantissa()));
+    wire::write_i64_le(data + offset, static_cast<std::int64_t>(vwap_on_book_only_.mantissa()));
     offset += 8;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(number_of_trades_));
     offset += 4;
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(number_of_trades_onbook_only_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(number_of_trades_on_book_only_));
     offset += 4;
 
     wire::write_i64_le(data + offset, static_cast<std::int64_t>(turnover_.mantissa()));
     offset += 8;
 
-    wire::write_i64_le(data + offset, static_cast<std::int64_t>(turnover_onbook_only_.mantissa()));
+    wire::write_i64_le(data + offset, static_cast<std::int64_t>(turnover_on_book_only_.mantissa()));
     offset += 8;
 
     return offset;
@@ -148,20 +148,20 @@ void StatisticsMessage::print(std::ostream& out) const {
     out << source_venue_;
     out << ", volume=";
     out << volume_;
-    out << ", volume_onbook_only=";
-    out << volume_onbook_only_;
+    out << ", volume_on_book_only=";
+    out << volume_on_book_only_;
     out << ", vwap=";
     out << vwap_;
-    out << ", vwap_onbook_only=";
-    out << vwap_onbook_only_;
+    out << ", vwap_on_book_only=";
+    out << vwap_on_book_only_;
     out << ", number_of_trades=";
     out << number_of_trades_;
-    out << ", number_of_trades_onbook_only=";
-    out << number_of_trades_onbook_only_;
+    out << ", number_of_trades_on_book_only=";
+    out << number_of_trades_on_book_only_;
     out << ", turnover=";
     out << turnover_;
-    out << ", turnover_onbook_only=";
-    out << turnover_onbook_only_;
+    out << ", turnover_on_book_only=";
+    out << turnover_on_book_only_;
     out << '}';
 }
 
@@ -175,13 +175,13 @@ bool StatisticsMessage::operator==(const StatisticsMessage& other) const {
         && instrument_ == other.instrument_
         && source_venue_ == other.source_venue_
         && volume_ == other.volume_
-        && volume_onbook_only_ == other.volume_onbook_only_
+        && volume_on_book_only_ == other.volume_on_book_only_
         && vwap_ == other.vwap_
-        && vwap_onbook_only_ == other.vwap_onbook_only_
+        && vwap_on_book_only_ == other.vwap_on_book_only_
         && number_of_trades_ == other.number_of_trades_
-        && number_of_trades_onbook_only_ == other.number_of_trades_onbook_only_
+        && number_of_trades_on_book_only_ == other.number_of_trades_on_book_only_
         && turnover_ == other.turnover_
-        && turnover_onbook_only_ == other.turnover_onbook_only_;
+        && turnover_on_book_only_ == other.turnover_on_book_only_;
 }
 
 bool StatisticsMessage::operator!=(const StatisticsMessage& other) const {

@@ -1,0 +1,12 @@
+# Nasdaq.NsmEquities.TotalView.Itch.v4.0 OrderCancelMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = S032409v4.
+packet.packetheader.sequencenumber = 155843
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 17
+packet.messages.message[0].messageheader.messagetype = X
+packet.messages.message[0].payload = packet.messages.message.payload.ordercancelmessage
+packet.messages.message[0].payload.ordercancelmessage.nanoseconds = 573000000
+packet.messages.message[0].payload.ordercancelmessage.orderreferencenumber = 7953
+packet.messages.message[0].payload.ordercancelmessage.canceledshares = 10000

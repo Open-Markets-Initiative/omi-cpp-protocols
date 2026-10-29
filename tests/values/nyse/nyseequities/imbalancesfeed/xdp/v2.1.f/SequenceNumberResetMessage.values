@@ -1,0 +1,16 @@
+# Nyse.NyseEquities.ImbalancesFeed.Xdp.v2.1.f SequenceNumberResetMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.packetsize = 30
+packet.packetheader.deliveryflag = 12
+packet.packetheader.messagecount = 1
+packet.packetheader.sequencenumber = 1
+packet.packetheader.sendtime.seconds = 1506696094
+packet.packetheader.sendtime.nanoseconds = 876822130
+packet.packetheader.sendtime = 1506696094876822130
+packet.message[0].messageheader.messagesize = 14
+packet.message[0].messageheader.messagetype = 1
+packet.message[0].payload = packet.message.payload.sequencenumberresetmessage
+packet.message[0].payload.sequencenumberresetmessage.sourcetime = 1506694780
+packet.message[0].payload.sequencenumberresetmessage.sourcetimens = 864925661
+packet.message[0].payload.sequencenumberresetmessage.productid = 8
+packet.message[0].payload.sequencenumberresetmessage.channelid = 1

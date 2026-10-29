@@ -29,7 +29,7 @@ class AllowedBookTypes {
 
     bool firm_quote_book() const { return (raw() & static_cast<std::uint8_t>(0x2)) != 0; }
 
-    bool offbook() const { return (raw() & static_cast<std::uint8_t>(0x4)) != 0; }
+    bool off_book() const { return (raw() & static_cast<std::uint8_t>(0x4)) != 0; }
 
     bool electronic_order_book() const { return (raw() & static_cast<std::uint8_t>(0x8)) != 0; }
 
@@ -39,8 +39,8 @@ class AllowedBookTypes {
         out << "AllowedBookTypes{";
         out << "firm_quote_book=";
         out << (firm_quote_book() ? "true" : "false");
-        out << ", offbook=";
-        out << (offbook() ? "true" : "false");
+        out << ", off_book=";
+        out << (off_book() ? "true" : "false");
         out << ", electronic_order_book=";
         out << (electronic_order_book() ? "true" : "false");
         out << ", private_rfq=";

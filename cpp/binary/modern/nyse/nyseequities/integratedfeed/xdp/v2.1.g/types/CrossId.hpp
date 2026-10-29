@@ -1,0 +1,31 @@
+#pragma once
+
+#include <cstddef>
+#include <cstdint>
+
+namespace nyse::nyseequities::integratedfeed::xdp::v2_1_g {
+
+// Unique identifier for this Cross Trade. Used in Cross Correction message to identify the Cross Trade to correct.
+struct CrossId {
+
+    static constexpr const char* name = "Cross Id";
+    static constexpr std::size_t size =  4;
+    using type = std::uint32_t;
+
+    // default constructor
+    constexpr CrossId()
+     : value{ 0 } {}
+
+    // standard constructor
+    constexpr explicit CrossId(const std::uint32_t value)
+     : value{ value } {}
+
+    // get value of CrossId field
+    [[nodiscard]] std::uint32_t get() const {
+        return value;
+    }
+
+  protected:
+    std::uint32_t value;
+};
+}

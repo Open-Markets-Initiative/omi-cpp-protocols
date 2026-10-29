@@ -1,0 +1,21 @@
+# Bse.BseIndia.Eobi.Fbe.v1.4 OrderAddMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.eobiheader.bodylen = 32
+packet.packetheader.eobiheader.templateid = 13002
+packet.packetheader.eobiheader.msgseqnum = 4294967295
+packet.packetheader.applseqnum = 163523
+packet.packetheader.marketsegmentid = 2675
+packet.packetheader.partitionid = 14
+packet.packetheader.completionindicator = 1
+packet.packetheader.applseqresetindicator = 0
+packet.packetheader.transacttime = 1786591800613804871
+packet.message[0].messageheader.bodylen = 56
+packet.message[0].messageheader.templateid = 13100
+packet.message[0].messageheader.msgseqnum = 41
+packet.message[0].payload = packet.message.payload.orderaddmessage
+packet.message[0].payload.orderaddmessage.trdregtstimein = 1786591800613586856
+packet.message[0].payload.orderaddmessage.securityid = 830589
+packet.message[0].payload.orderaddmessage.orderdetails.trdregtstimepriority = 1786591800613625425
+packet.message[0].payload.orderaddmessage.orderdetails.displayqty = 225
+packet.message[0].payload.orderaddmessage.orderdetails.side = 1
+packet.message[0].payload.orderaddmessage.orderdetails.price = 3701000

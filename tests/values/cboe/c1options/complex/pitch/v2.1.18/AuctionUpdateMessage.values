@@ -1,0 +1,21 @@
+# Cboe.C1Options.Complex.Pitch.v2.1.18 AuctionUpdateMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.length = 72
+packet.packetheader.messagecount = 1
+packet.packetheader.unit = 33
+packet.packetheader.sequence = 452545
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 64
+packet.messages.message[0].messageheader.messagetype = 209
+packet.messages.message[0].payload = packet.messages.message.payload.auctionupdatemessage
+packet.messages.message[0].payload.auctionupdatemessage.timeoffset = 552689000
+packet.messages.message[0].payload.auctionupdatemessage.complexinstrumentid8 = T026qL
+packet.messages.message[0].payload.auctionupdatemessage.auctionopeningtype = G
+packet.messages.message[0].payload.auctionupdatemessage.referenceprice = 0
+packet.messages.message[0].payload.auctionupdatemessage.buycontracts = 0
+packet.messages.message[0].payload.auctionupdatemessage.sellcontracts = 0
+packet.messages.message[0].payload.auctionupdatemessage.indicativeprice = 0
+packet.messages.message[0].payload.auctionupdatemessage.auctiononlyprice = 0
+packet.messages.message[0].payload.auctionupdatemessage.openingcondition = 
+packet.messages.message[0].payload.auctionupdatemessage.compositemarketbidprice = 0
+packet.messages.message[0].payload.auctionupdatemessage.compositemarketofferprice = 0

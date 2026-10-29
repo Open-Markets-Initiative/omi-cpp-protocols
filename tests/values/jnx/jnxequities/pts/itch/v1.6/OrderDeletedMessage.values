@@ -1,0 +1,11 @@
+# Jnx.JnxEquities.Pts.Itch.v1.6 OrderDeletedMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 1670788904
+packet.packetheader.sequencenumber = 25211
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 13
+packet.messages.message[0].messageheader.messagetype = D
+packet.messages.message[0].payload = packet.messages.message.payload.orderdeletedmessage
+packet.messages.message[0].payload.orderdeletedmessage.nanoseconds = 37020000
+packet.messages.message[0].payload.orderdeletedmessage.ordernumber = 202212120000012541

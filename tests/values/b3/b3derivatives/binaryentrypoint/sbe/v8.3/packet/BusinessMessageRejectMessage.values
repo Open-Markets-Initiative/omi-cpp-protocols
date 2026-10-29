@@ -1,0 +1,24 @@
+# B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3 BusinessMessageRejectMessage: canonical values of 'packet', read by the model
+stream 0
+packet.simpleopenframe[0].simpleopenframingheader.messagelength = 94
+packet.simpleopenframe[0].simpleopenframingheader.encodingtype = 60240
+packet.simpleopenframe[0].messageheader.blocklength = 36
+packet.simpleopenframe[0].messageheader.templateid = 206
+packet.simpleopenframe[0].messageheader.schemaid = 1
+packet.simpleopenframe[0].messageheader.version = 5
+packet.simpleopenframe[0].payload = packet.simpleopenframe.payload.businessmessagerejectmessage
+packet.simpleopenframe[0].payload.businessmessagerejectmessage.outboundbusinessheader.sessionid = 200000006
+packet.simpleopenframe[0].payload.businessmessagerejectmessage.outboundbusinessheader.msgseqnum = 1934
+packet.simpleopenframe[0].payload.businessmessagerejectmessage.outboundbusinessheader.sendingtime = 1739219246193949401
+packet.simpleopenframe[0].payload.businessmessagerejectmessage.outboundbusinessheader.eventindicator = 0
+packet.simpleopenframe[0].payload.businessmessagerejectmessage.outboundbusinessheader.marketsegmentidoptional = 84
+packet.simpleopenframe[0].payload.businessmessagerejectmessage.refmsgtype = 20
+packet.simpleopenframe[0].payload.businessmessagerejectmessage.refseqnum = 842
+packet.simpleopenframe[0].payload.businessmessagerejectmessage.businessrejectrefid = (null)
+packet.simpleopenframe[0].payload.businessmessagerejectmessage.businessrejectreason = 33003
+packet.simpleopenframe[0].payload.businessmessagerejectmessage.memo.memolength = 18
+packet.simpleopenframe[0].payload.businessmessagerejectmessage.memo.memodata = CertificationTests
+packet.simpleopenframe[0].payload.businessmessagerejectmessage.memo = CertificationTests
+packet.simpleopenframe[0].payload.businessmessagerejectmessage.text.textlength = 26
+packet.simpleopenframe[0].payload.businessmessagerejectmessage.text.textdata = Field missing or incorrect
+packet.simpleopenframe[0].payload.businessmessagerejectmessage.text = Field missing or incorrect

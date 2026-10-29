@@ -1,0 +1,22 @@
+# Nyse.NyseEquities.IntegratedFeedRefresh.Pillar.v2.5.g AddOrderRefreshMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 59
+packet.packetheader.deliveryflag = 18
+packet.packetheader.numbermsgs = 1
+packet.packetheader.seqnum = 37323573
+packet.packetheader.sendtime.seconds = 1692711003
+packet.packetheader.sendtime.nanoseconds = 412873728
+packet.packetheader.sendtime = 1692711003412873728
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 43
+packet.messages.message[0].messageheader.messagetype = 106
+packet.messages.message[0].payload = packet.messages.message.payload.addorderrefreshmessage
+packet.messages.message[0].payload.addorderrefreshmessage.sourcetime = 1692700203
+packet.messages.message[0].payload.addorderrefreshmessage.sourcetimens = 433642752
+packet.messages.message[0].payload.addorderrefreshmessage.symbolindex = 10164
+packet.messages.message[0].payload.addorderrefreshmessage.symbolseqnum = 4
+packet.messages.message[0].payload.addorderrefreshmessage.orderid = 15763698207438926
+packet.messages.message[0].payload.addorderrefreshmessage.price = 39950000
+packet.messages.message[0].payload.addorderrefreshmessage.volume = 5
+packet.messages.message[0].payload.addorderrefreshmessage.side = B
+packet.messages.message[0].payload.addorderrefreshmessage.firmid = 

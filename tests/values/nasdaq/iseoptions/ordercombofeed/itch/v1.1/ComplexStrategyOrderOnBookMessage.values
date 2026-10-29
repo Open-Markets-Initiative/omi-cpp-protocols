@@ -1,0 +1,21 @@
+# Nasdaq.IseOptions.OrderComboFeed.Itch.v1.1 ComplexStrategyOrderOnBookMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 000008367I
+packet.packetheader.sequencenumber = 330074
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 42
+packet.messages.message[0].messageheader.messagetype = L
+packet.messages.message[0].payload = packet.messages.message.payload.complexstrategyorderonbookmessage
+packet.messages.message[0].payload.complexstrategyorderonbookmessage.timestamp = 55915530983885
+packet.messages.message[0].payload.complexstrategyorderonbookmessage.strategyid = 2051120
+packet.messages.message[0].payload.complexstrategyorderonbookmessage.ordertype = L
+packet.messages.message[0].payload.complexstrategyorderonbookmessage.side = A
+packet.messages.message[0].payload.complexstrategyorderonbookmessage.price = -0.02
+packet.messages.message[0].payload.complexstrategyorderonbookmessage.size = 165
+packet.messages.message[0].payload.complexstrategyorderonbookmessage.execflag = N
+packet.messages.message[0].payload.complexstrategyorderonbookmessage.ordercapacity = C
+packet.messages.message[0].payload.complexstrategyorderonbookmessage.scope = L
+packet.messages.message[0].payload.complexstrategyorderonbookmessage.ownerid = 
+packet.messages.message[0].payload.complexstrategyorderonbookmessage.giveup = 
+packet.messages.message[0].payload.complexstrategyorderonbookmessage.cmta = 

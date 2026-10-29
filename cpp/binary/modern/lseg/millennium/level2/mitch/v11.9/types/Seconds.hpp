@@ -1,7 +1,10 @@
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
+
+#include "../common/Day.hpp"
 
 namespace lseg::millennium::level2::mitch::v11_9 {
 
@@ -23,6 +26,11 @@ struct Seconds {
     // get value of Seconds field
     [[nodiscard]] std::uint32_t get() const {
         return value;
+    }
+
+    // Seconds on a day: its seconds since midnight, Europe/London, as UTC Unix nanoseconds
+    [[nodiscard]] std::int64_t utc(const calendar::Day& day) const {
+        return calendar::midnight(day, "Europe/London").utc(static_cast<std::int64_t>(get()) * 1000000000);
     }
 
   protected:

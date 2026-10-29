@@ -1,0 +1,16 @@
+# Cboe.EdgaEquities.MulticastDepthOfBook.Pitch.v2.41.29 ModifyOrderLongMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.length = 35
+packet.packetheader.messagecount = 1
+packet.packetheader.unit = 4
+packet.packetheader.sequence = 34749
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 27
+packet.messages.message[0].messageheader.messagetype = 39
+packet.messages.message[0].payload = packet.messages.message.payload.modifyorderlongmessage
+packet.messages.message[0].payload.modifyorderlongmessage.timeoffset = 12796000
+packet.messages.message[0].payload.modifyorderlongmessage.orderid = 554819134073703694
+packet.messages.message[0].payload.modifyorderlongmessage.quantity = 100
+packet.messages.message[0].payload.modifyorderlongmessage.price = 3026.02
+packet.messages.message[0].payload.modifyorderlongmessage.modifyorderflags.display = 1
+packet.messages.message[0].payload.modifyorderlongmessage.modifyorderflags.priority = 0

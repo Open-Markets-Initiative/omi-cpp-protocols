@@ -4,7 +4,7 @@ namespace nyse::arcaoptions::deepfeed::pillar::v1_2_m {
 
 std::string_view to_string(MarketState value) {
     switch (value) {
-        case MarketState::Preopening: return "Preopening";
+        case MarketState::PreOpening: return "Pre Opening";
         case MarketState::EarlySession: return "Early Session";
         case MarketState::CoreSession: return "Core Session";
         case MarketState::LateSessionNonNyseOnly: return "Late Session Non Nyse Only";

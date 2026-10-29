@@ -277,7 +277,7 @@ struct category_1 {
 struct category_2 {
     enum class type : char {
         no_trade_through_exempt_reason = ' ',
-        intermarket_sweep_order = 'F',
+        inter_market_sweep_order = 'F',
         derivatively_priced = '4',
         market_center_reopening_trade = '5',
         market_center_closing_trade = '6',
@@ -1737,7 +1737,7 @@ struct sale_condition_1 {
         average_price_trade = 'B',
         cash_trade_same_day_clearing = 'C',
         automatic_execution = 'E',
-        intermarket_sweep_order = 'F',
+        inter_market_sweep_order = 'F',
         price_variation_trade = 'H',
         odd_lot_trade = 'I',
         rule_127_nyse_only_or_rule_155_nyse_american_only = 'K',

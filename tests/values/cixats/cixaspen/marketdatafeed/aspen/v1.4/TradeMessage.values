@@ -1,0 +1,19 @@
+# CixAts.CixAspen.MarketDataFeed.Aspen.v1.4 TradeMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.marketdayidentifier = 20676
+packet.packetheader.feedidentifier = W
+packet.packetheader.sequence = 16694
+packet.packetheader.count = 1
+packet.message[0].messageheader.length = 61
+packet.message[0].messageheader.messagetype = K
+packet.message[0].payload = packet.message.payload.trademessage
+packet.message[0].payload.trademessage.symbolid = 2852
+packet.message[0].payload.trademessage.timestamp = 1786456800000846997
+packet.message[0].payload.trademessage.reserved8 = 9223372036854775808
+packet.message[0].payload.trademessage.side = B
+packet.message[0].payload.trademessage.shares = 10000
+packet.message[0].payload.trademessage.symbol = BMK
+packet.message[0].payload.trademessage.price = 0.055
+packet.message[0].payload.trademessage.executionid = 60183
+packet.message[0].payload.trademessage.broker = 022
+packet.message[0].payload.trademessage.contrabroker = 022

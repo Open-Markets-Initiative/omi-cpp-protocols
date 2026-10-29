@@ -1,0 +1,25 @@
+#pragma once
+
+#include "../structs/PacketHeader.hpp"
+#include "../structs/MessageHeader.hpp"
+#include "../structs/SendTime.hpp"
+
+#include "SequenceNumberResetMessage.hpp"
+#include "SourceTimeReferenceMessage.hpp"
+#include "SymbolIndexMappingMessage.hpp"
+#include "SymbolClearMessage.hpp"
+#include "SecurityStatusMessage.hpp"
+#include "AddOrderMessage.hpp"
+#include "ModifyOrderMessage.hpp"
+#include "DeleteOrderMessage.hpp"
+#include "OrderExecutionMessage.hpp"
+#include "ReplaceOrderMessage.hpp"
+#include "ImbalanceMessage.hpp"
+#include "AddOrderRefreshMessage.hpp"
+#include "NonDisplayedTradeMessage.hpp"
+#include "CrossTradeMessage.hpp"
+#include "TradeCancelMessage.hpp"
+#include "CrossCorrectionMessage.hpp"
+#include "RetailPriceImprovementMessage.hpp"
+
+#include "../messages/Heartbeat.hpp"

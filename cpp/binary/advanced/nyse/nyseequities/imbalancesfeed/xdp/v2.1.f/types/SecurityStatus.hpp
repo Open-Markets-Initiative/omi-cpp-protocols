@@ -1,0 +1,42 @@
+#pragma once
+
+#include <cstddef>
+#include "../cache/Required.hpp"
+
+namespace nyse::nyseequities::imbalancesfeed::xdp::v2_1_f {
+
+// security_status
+struct security_status {
+
+    static constexpr const char* name = "security_status";
+    static constexpr std::size_t size = 1;
+    static constexpr bool is_optional = false;
+
+    using result_type = required<char>;
+    using storage_type = result_type;
+
+    constexpr security_status()
+     : value{ 0 } {}
+
+    constexpr security_status(char v)
+     : value{ v } {}
+
+    [[nodiscard]] constexpr result_type get() const {
+        return result_type{value};
+    }
+
+    constexpr void set(char v) {
+        value = v;
+    }
+
+    constexpr void set(result_type value) {
+        if (value.has_value())
+            set(value.value());
+        else
+            set(0);
+    }
+
+  protected:
+    char value;
+};
+}

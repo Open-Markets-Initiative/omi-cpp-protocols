@@ -1,0 +1,25 @@
+# Nyse.AmexEquities.IntegratedFeed.Pillar.v2.5.g OrderExecutionMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 58
+packet.packetheader.deliveryflag = 11
+packet.packetheader.numbermsgs = 1
+packet.packetheader.seqnum = 104351
+packet.packetheader.sendtime.seconds = 1692711000
+packet.packetheader.sendtime.nanoseconds = 34227720
+packet.packetheader.sendtime = 1692711000034227720
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 42
+packet.messages.message[0].messageheader.messagetype = 103
+packet.messages.message[0].payload = packet.messages.message.payload.orderexecutionmessage
+packet.messages.message[0].payload.orderexecutionmessage.sourcetimens = 34196081
+packet.messages.message[0].payload.orderexecutionmessage.symbolindex = 17378
+packet.messages.message[0].payload.orderexecutionmessage.symbolseqnum = 583
+packet.messages.message[0].payload.orderexecutionmessage.orderid = 14928069370460245
+packet.messages.message[0].payload.orderexecutionmessage.tradeid = 5270
+packet.messages.message[0].payload.orderexecutionmessage.price = 470100
+packet.messages.message[0].payload.orderexecutionmessage.volume = 286
+packet.messages.message[0].payload.orderexecutionmessage.printableflag = 1
+packet.messages.message[0].payload.orderexecutionmessage.tradecond1 = @
+packet.messages.message[0].payload.orderexecutionmessage.tradecond2 =  
+packet.messages.message[0].payload.orderexecutionmessage.tradecond3 =  
+packet.messages.message[0].payload.orderexecutionmessage.tradecond4 =  

@@ -310,7 +310,7 @@ struct current_refresh_pkt {
 struct cust_indicator {
     enum class type : char {
         customer = 'C',
-        noncustomer = 'N',
+        non_customer = 'N',
         derived_for_future_use = 'D',
     };
 
@@ -642,7 +642,7 @@ struct market_imbalance_qty {
 // Market State: The current Market State.
 struct market_state {
     enum class type : char {
-        preopening = 'P',
+        pre_opening = 'P',
         early_session = 'E',
         core_session = 'O',
         late_session_non_nyse_only = 'L',
@@ -1275,7 +1275,7 @@ struct security_status {
         short_sale_restriction_activated_day_1 = 'A',
         short_sale_restriction_continued_day_2 = 'C',
         short_sale_restriction_deactivated = 'D',
-        preopening = 'P',
+        pre_opening = 'P',
         begin_accepting_orders = 'B',
         early_session = 'E',
         core_session = 'O',
@@ -1371,7 +1371,7 @@ struct series_status {
         trading_halt = '4',
         resume = '5',
         suspend = '6',
-        preopening = 'P',
+        pre_opening = 'P',
         begin_accepting_orders = 'B',
         core_session = 'O',
         closed = 'X',

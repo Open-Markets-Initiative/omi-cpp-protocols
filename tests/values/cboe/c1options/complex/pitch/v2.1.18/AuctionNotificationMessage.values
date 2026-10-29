@@ -1,0 +1,21 @@
+# Cboe.C1Options.Complex.Pitch.v2.1.18 AuctionNotificationMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.length = 55
+packet.packetheader.messagecount = 1
+packet.packetheader.unit = 33
+packet.packetheader.sequence = 10017425
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 47
+packet.messages.message[0].messageheader.messagetype = 173
+packet.messages.message[0].payload = packet.messages.message.payload.auctionnotificationmessage
+packet.messages.message[0].payload.auctionnotificationmessage.timeoffset = 976277000
+packet.messages.message[0].payload.auctionnotificationmessage.complexinstrumentid = T02KEC
+packet.messages.message[0].payload.auctionnotificationmessage.auctionid = 4366474235789306610
+packet.messages.message[0].payload.auctionnotificationmessage.auctiontype = C
+packet.messages.message[0].payload.auctionnotificationmessage.sideindicator = B
+packet.messages.message[0].payload.auctionnotificationmessage.price = 0
+packet.messages.message[0].payload.auctionnotificationmessage.quantity = 1
+packet.messages.message[0].payload.auctionnotificationmessage.customerindicator = N
+packet.messages.message[0].payload.auctionnotificationmessage.participantid = 
+packet.messages.message[0].payload.auctionnotificationmessage.auctionendoffset = 1976277000
+packet.messages.message[0].payload.auctionnotificationmessage.clientid = 

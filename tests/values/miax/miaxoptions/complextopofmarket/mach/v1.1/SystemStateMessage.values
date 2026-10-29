@@ -1,0 +1,13 @@
+# Miax.MiaxOptions.ComplexTopOfMarket.Mach.v1.1 SystemStateMessage: canonical values, read by the model
+datagram 0
+packet.machmessage[0].machpacketheader.sequencenumber = 1238
+packet.machmessage[0].machpacketheader.packetlength = 30
+packet.machmessage[0].machpacketheader.packettype = 3
+packet.machmessage[0].machpacketheader.sessionnumber = 1
+packet.machmessage[0].payload = packet.machmessage.payload.applicationmessage
+packet.machmessage[0].payload.applicationmessage.messagetype = S
+packet.machmessage[0].payload.applicationmessage.data = packet.machmessage.payload.applicationmessage.data.systemstatemessage
+packet.machmessage[0].payload.applicationmessage.data.systemstatemessage.nanoseconds = 907695111
+packet.machmessage[0].payload.applicationmessage.data.systemstatemessage.ctomversion = CTOM1.0
+packet.machmessage[0].payload.applicationmessage.data.systemstatemessage.sessionid = 1
+packet.machmessage[0].payload.applicationmessage.data.systemstatemessage.systemstatus = 1

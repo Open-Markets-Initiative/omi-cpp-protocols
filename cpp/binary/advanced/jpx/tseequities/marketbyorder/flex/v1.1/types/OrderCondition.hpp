@@ -14,24 +14,24 @@ namespace jpx::tseequities::marketbyorder::flex::v1_1 {
 struct order_condition {
 
     enum class enum_type : std::uint8_t {
-        nonconditional = 0,
-        onopen = 2,
-        onclose = 4,
+        non_conditional = 0,
+        on_open = 2,
+        on_close = 4,
         funari = 6
     };
 
     static constexpr std::array<std::pair<std::string_view, enum_type>, 4> from_string_map = {{
         {"Funari", enum_type::funari},
-        {"Nonconditional", enum_type::nonconditional},
-        {"Onclose", enum_type::onclose},
-        {"Onopen", enum_type::onopen}
+        {"Non Conditional", enum_type::non_conditional},
+        {"On Close", enum_type::on_close},
+        {"On Open", enum_type::on_open}
     }};
 
     static constexpr std::string_view to_string(enum_type value) {
         switch (value) {
-            case enum_type::nonconditional: return "Nonconditional";
-            case enum_type::onopen: return "Onopen";
-            case enum_type::onclose: return "Onclose";
+            case enum_type::non_conditional: return "Non Conditional";
+            case enum_type::on_open: return "On Open";
+            case enum_type::on_close: return "On Close";
             case enum_type::funari: return "Funari";
             default: return "unknown";
         }

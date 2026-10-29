@@ -1,0 +1,20 @@
+# Nyse.NyseEquities.IntegratedFeed.Pillar.v2.5.g CrossTradeMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 45
+packet.packetheader.deliveryflag = 11
+packet.packetheader.numbermsgs = 1
+packet.packetheader.seqnum = 498042
+packet.packetheader.sendtime.seconds = 1692711033
+packet.packetheader.sendtime.nanoseconds = 378327296
+packet.packetheader.sendtime = 1692711033378327296
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 29
+packet.messages.message[0].messageheader.messagetype = 111
+packet.messages.message[0].payload = packet.messages.message.payload.crosstrademessage
+packet.messages.message[0].payload.crosstrademessage.sourcetimens = 378312960
+packet.messages.message[0].payload.crosstrademessage.symbolindex = 70932
+packet.messages.message[0].payload.crosstrademessage.symbolseqnum = 1320
+packet.messages.message[0].payload.crosstrademessage.crossid = 26588
+packet.messages.message[0].payload.crosstrademessage.price = 6200000
+packet.messages.message[0].payload.crosstrademessage.volume = 58209
+packet.messages.message[0].payload.crosstrademessage.crosstype = O

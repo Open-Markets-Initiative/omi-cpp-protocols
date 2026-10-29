@@ -1,0 +1,33 @@
+#pragma once
+
+// Every flyweight view and reader of Nyse.NationalEquities.Trades.Pillar.v2.6.
+
+#include "structs/SendTime.hpp"
+#include "structs/PacketHeader.hpp"
+#include "structs/MessageHeader.hpp"
+#include "messages/SequenceNumberResetMessage.hpp"
+#include "messages/SourceTimeReferenceMessage.hpp"
+#include "messages/SymbolIndexMappingMessage.hpp"
+#include "messages/SymbolClearMessage.hpp"
+#include "messages/SecurityStatusMessage.hpp"
+#include "messages/RetransmissionRequestMessage.hpp"
+#include "messages/SymbolIndexMappingRequestMessage.hpp"
+#include "messages/RefreshRequestMessage.hpp"
+#include "messages/MessageUnavailableMessage.hpp"
+#include "structs/FullRefreshHeader.hpp"
+#include "messages/RefreshHeaderMessage.hpp"
+#include "messages/RequestResponseMessage.hpp"
+#include "messages/HeartbeatResponseMessage.hpp"
+#include "messages/TradeMessage.hpp"
+#include "messages/TradeCancelMessage.hpp"
+#include "messages/TradeCorrectionMessage.hpp"
+#include "messages/StockSummaryMessage.hpp"
+#include "messages/TrfFractionalTradeMessage.hpp"
+#include "messages/TrfTradeCancelMessage.hpp"
+#include "messages/TrfFractionalTradeCorrectionMessage.hpp"
+#include "messages/TrfFractionalPriorDayTradeMessage.hpp"
+#include "messages/TrfFractionalPriorDayTradeCancelMessage.hpp"
+#include "structs/Packet.hpp"
+#include "structs/Frame.hpp"
+
+#include "PacketReader.hpp"

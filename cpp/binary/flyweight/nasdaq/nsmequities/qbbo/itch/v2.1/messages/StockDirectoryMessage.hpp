@@ -15,7 +15,7 @@
 #include "../enums/FinancialStatusIndicator.hpp"
 #include "../enums/RoundLotsOnly.hpp"
 #include "../enums/IssueClassification.hpp"
-#include "../enums/IssueSubtype.hpp"
+#include "../enums/IssueSubType.hpp"
 #include "../enums/Authenticity.hpp"
 #include "../enums/ShortSaleThresholdIndicator.hpp"
 #include "../enums/IpoFlag.hpp"
@@ -58,7 +58,7 @@ class StockDirectoryMessage {
 
     IssueClassification issue_classification() const { return static_cast<IssueClassification>(wire::read_char(at(23))); }
 
-    std::string_view issue_subtype() const { return view::text(at(24), 2, ' '); }
+    std::string_view issue_sub_type() const { return view::text(at(24), 2, ' '); }
 
     Authenticity authenticity() const { return static_cast<Authenticity>(wire::read_char(at(26))); }
 
@@ -92,8 +92,8 @@ class StockDirectoryMessage {
         out << round_lots_only();
         out << ", issue_classification=";
         out << issue_classification();
-        out << ", issue_subtype=";
-        print::text(out, issue_subtype());
+        out << ", issue_sub_type=";
+        print::text(out, issue_sub_type());
         out << ", authenticity=";
         out << authenticity();
         out << ", short_sale_threshold_indicator=";

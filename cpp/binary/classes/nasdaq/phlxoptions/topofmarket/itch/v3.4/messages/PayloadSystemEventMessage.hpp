@@ -23,7 +23,7 @@ class PayloadSystemEventMessage : public PacketMessage {
     static constexpr std::size_t wire_size = 7;
 
     PayloadSystemEventMessage() = default;
-    PayloadSystemEventMessage(std::chrono::nanoseconds nanoseconds, EventCode event_code, std::uint8_t version, std::uint8_t subversion);
+    PayloadSystemEventMessage(std::chrono::nanoseconds nanoseconds, EventCode event_code, std::uint8_t version, std::uint8_t sub_version);
 
     // Nanoseconds: The sub-second portion of the time, in nanoseconds (0-999999999). The
     // second portion of the time is obtained from the most recent timestamp message.
@@ -38,9 +38,9 @@ class PayloadSystemEventMessage : public PacketMessage {
     std::uint8_t version() const;
     void set_version(std::uint8_t value);
 
-    // Subversion: Sub-version of this interface. Currently set to 0.
-    std::uint8_t subversion() const;
-    void set_subversion(std::uint8_t value);
+    // Sub Version: Sub-version of this interface. Currently set to 0.
+    std::uint8_t sub_version() const;
+    void set_sub_version(std::uint8_t value);
 
     // PacketMessage
     PacketMessageCode type() const override;
@@ -60,7 +60,7 @@ class PayloadSystemEventMessage : public PacketMessage {
     std::chrono::nanoseconds nanoseconds_{};
     EventCode event_code_{};
     std::uint8_t version_{};
-    std::uint8_t subversion_{};
+    std::uint8_t sub_version_{};
 };
 
 } // namespace nasdaq::phlxoptions::topofmarket::itch::v3_4

@@ -50,7 +50,7 @@ struct UtpAdmin {
     ::scaled::delimited::values::Optional<std::int64_t> luld_upper_limit_price_band;
     static constexpr int luld_upper_limit_price_band_places = 6;
     // LULDPrice Band Indicator: text; none where the line leaves it empty
-    ::scaled::delimited::values::Optional<std::string_view> luldprice_band_indicator;
+    ::scaled::delimited::values::Optional<std::string_view> luld_price_band_indicator;
     // Market Wide Circuit Breaker Decline Level 1: a decimal, the integer of its 2 places; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::int64_t> market_wide_circuit_breaker_decline_level_1;
     static constexpr int market_wide_circuit_breaker_decline_level_1_places = 2;
@@ -84,7 +84,7 @@ struct UtpAdmin {
         trading_action_reason.reset();
         luld_lower_limit_price_band.reset();
         luld_upper_limit_price_band.reset();
-        luldprice_band_indicator.reset();
+        luld_price_band_indicator.reset();
         market_wide_circuit_breaker_decline_level_1.reset();
         market_wide_circuit_breaker_decline_level_2.reset();
         market_wide_circuit_breaker_decline_level_3.reset();
@@ -152,8 +152,8 @@ struct UtpAdmin {
         ::scaled::delimited::values::print(out, luld_lower_limit_price_band, [](std::ostream& to, const std::int64_t value) { ::scaled::delimited::values::decimal(to, value, luld_lower_limit_price_band_places); });
         out << ", luld_upper_limit_price_band=";
         ::scaled::delimited::values::print(out, luld_upper_limit_price_band, [](std::ostream& to, const std::int64_t value) { ::scaled::delimited::values::decimal(to, value, luld_upper_limit_price_band_places); });
-        out << ", luldprice_band_indicator=";
-        ::scaled::delimited::values::print(out, luldprice_band_indicator, ::scaled::delimited::values::text);
+        out << ", luld_price_band_indicator=";
+        ::scaled::delimited::values::print(out, luld_price_band_indicator, ::scaled::delimited::values::text);
         out << ", market_wide_circuit_breaker_decline_level_1=";
         ::scaled::delimited::values::print(out, market_wide_circuit_breaker_decline_level_1, [](std::ostream& to, const std::int64_t value) { ::scaled::delimited::values::decimal(to, value, market_wide_circuit_breaker_decline_level_1_places); });
         out << ", market_wide_circuit_breaker_decline_level_2=";

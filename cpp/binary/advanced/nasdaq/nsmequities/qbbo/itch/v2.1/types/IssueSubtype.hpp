@@ -13,10 +13,10 @@
 
 namespace nasdaq::nsmequities::qbbo::itch::v2_1 {
 
-// issue_subtype
-struct issue_subtype {
+// issue_sub_type
+struct issue_sub_type {
 
-    static constexpr const char* name = "issue_subtype";
+    static constexpr const char* name = "issue_sub_type";
     static constexpr std::size_t size = 2;
     static constexpr char fill_char = ' ';
     static constexpr bool is_optional = false;
@@ -24,7 +24,7 @@ struct issue_subtype {
     using result_type = required<std::string_view>;
     using storage_type = required<std::array<char, 2>>;
 
-    constexpr issue_subtype() {
+    constexpr issue_sub_type() {
         value.fill(fill_char);
     }
 

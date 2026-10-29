@@ -9,7 +9,7 @@ namespace nasdaq::nomoptions::itto::itch::v4_0_2025 {
 // Indicates if the execution should be reflected on time and sale displays and volume
 // calculations.
 enum class Printable : char {
-    Nonprintable = 'N', // Nonprintable
+    NonPrintable = 'N', // Non Printable
     Printable = 'Y',    // Printable
 };
 

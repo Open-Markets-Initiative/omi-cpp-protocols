@@ -1,0 +1,22 @@
+#include "QuoteCondition.hpp"
+
+namespace nyse::amexoptions::deepfeed::xdp::v1_3_a {
+
+std::string_view to_string(QuoteCondition value) {
+    switch (value) {
+        case QuoteCondition::RegularTrading: return "Regular Trading";
+        case QuoteCondition::Rotation: return "Rotation";
+        case QuoteCondition::TradingHalted: return "Trading Halted";
+        case QuoteCondition::PreOpen: return "Pre Open";
+        case QuoteCondition::RotationLegalWidthQuotePending: return "Rotation Legal Width Quote Pending";
+        default: return {};
+    }
+}
+
+std::ostream& operator<<(std::ostream& out, QuoteCondition value) {
+    const auto name = to_string(value);
+    if (!name.empty()) { return out << name; }
+    return out << '\'' << static_cast<char>(value) << '\'';
+}
+
+} // namespace nyse::amexoptions::deepfeed::xdp::v1_3_a

@@ -1,0 +1,27 @@
+# Nyse.NyseEquities.IntegratedFeed.Pillar.v2.5.g SymbolIndexMappingMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 60
+packet.packetheader.deliveryflag = 11
+packet.packetheader.numbermsgs = 1
+packet.packetheader.seqnum = 2
+packet.packetheader.sendtime.seconds = 1692678441
+packet.packetheader.sendtime.nanoseconds = 296573696
+packet.packetheader.sendtime = 1692678441296573696
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 44
+packet.messages.message[0].messageheader.messagetype = 3
+packet.messages.message[0].payload = packet.messages.message.payload.symbolindexmappingmessage
+packet.messages.message[0].payload.symbolindexmappingmessage.symbolindex = 10058
+packet.messages.message[0].payload.symbolindexmappingmessage.symbol = WTRG
+packet.messages.message[0].payload.symbolindexmappingmessage.marketid = 1
+packet.messages.message[0].payload.symbolindexmappingmessage.systemid = 58
+packet.messages.message[0].payload.symbolindexmappingmessage.exchangecode = N
+packet.messages.message[0].payload.symbolindexmappingmessage.pricescalecode = 6
+packet.messages.message[0].payload.symbolindexmappingmessage.securitytype = C
+packet.messages.message[0].payload.symbolindexmappingmessage.lotsize = 100
+packet.messages.message[0].payload.symbolindexmappingmessage.prevcloseprice = 36780000
+packet.messages.message[0].payload.symbolindexmappingmessage.prevclosevolume = 0
+packet.messages.message[0].payload.symbolindexmappingmessage.priceresolution = 0
+packet.messages.message[0].payload.symbolindexmappingmessage.roundlot = N
+packet.messages.message[0].payload.symbolindexmappingmessage.mpv = 100
+packet.messages.message[0].payload.symbolindexmappingmessage.unitoftrade = 1

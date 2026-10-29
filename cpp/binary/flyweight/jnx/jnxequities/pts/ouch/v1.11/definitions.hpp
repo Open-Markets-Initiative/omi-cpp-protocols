@@ -1,0 +1,30 @@
+#pragma once
+
+// Every flyweight view and reader of Jnx.JnxEquities.Pts.Ouch.v1.11.
+
+#include "structs/ClientPacketHeader.hpp"
+#include "messages/DebugPacket.hpp"
+#include "messages/LoginRequestPacket.hpp"
+#include "messages/EnterOrderMessage.hpp"
+#include "messages/ReplaceOrderMessage.hpp"
+#include "messages/CancelOrderMessage.hpp"
+#include "messages/UnsequencedDataPacket.hpp"
+#include "structs/ServerPacketHeader.hpp"
+#include "messages/ServerPayloadDebugPacket.hpp"
+#include "messages/LoginAcceptedPacket.hpp"
+#include "messages/LoginRejectedPacket.hpp"
+#include "messages/SystemEventMessage.hpp"
+#include "messages/OrderAcceptedMessage.hpp"
+#include "messages/OrderReplacedMessage.hpp"
+#include "messages/OrderCanceledMessage.hpp"
+#include "messages/OrderAiqCanceledMessage.hpp"
+#include "messages/OrderExecutedMessage.hpp"
+#include "messages/OrderRejectedMessage.hpp"
+#include "messages/SequencedDataPacket.hpp"
+#include "structs/ClientPacket.hpp"
+#include "structs/Frame.hpp"
+#include "structs/ServerPacket.hpp"
+#include "structs/ServerFrame.hpp"
+
+#include "ClientPacketReader.hpp"
+#include "ServerPacketReader.hpp"

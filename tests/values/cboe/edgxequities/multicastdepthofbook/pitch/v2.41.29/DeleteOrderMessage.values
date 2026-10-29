@@ -1,0 +1,12 @@
+# Cboe.EdgxEquities.MulticastDepthOfBook.Pitch.v2.41.29 DeleteOrderMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.length = 22
+packet.packetheader.messagecount = 1
+packet.packetheader.unit = 29
+packet.packetheader.sequence = 216619
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 14
+packet.messages.message[0].messageheader.messagetype = 41
+packet.messages.message[0].payload = packet.messages.message.payload.deleteordermessage
+packet.messages.message[0].payload.deleteordermessage.timeoffset = 139000
+packet.messages.message[0].payload.deleteordermessage.orderid = 3845361695770712176

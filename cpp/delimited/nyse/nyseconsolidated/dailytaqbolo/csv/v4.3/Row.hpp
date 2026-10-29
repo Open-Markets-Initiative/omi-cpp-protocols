@@ -22,7 +22,7 @@ struct Bolo {
     // Source of Quote: text
     ::scaled::delimited::values::Required<std::string_view> source_of_quote;
     // SIP-generated Message Identifier: text; none where the line leaves it empty
-    ::scaled::delimited::values::Optional<std::string_view> sipgenerated_message_identifier;
+    ::scaled::delimited::values::Optional<std::string_view> sip_generated_message_identifier;
     // BOLO Indicator: text; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::string_view> bolo_indicator;
     // Odd Lot Best Bid Participant ID: text
@@ -50,7 +50,7 @@ struct Bolo {
         symbol.reset();
         sequence_number.reset();
         source_of_quote.reset();
-        sipgenerated_message_identifier.reset();
+        sip_generated_message_identifier.reset();
         bolo_indicator.reset();
         odd_lot_best_bid_participant_id.reset();
         odd_lot_best_bid_quote_price.reset();
@@ -78,8 +78,8 @@ struct Bolo {
         ::scaled::delimited::values::print(out, sequence_number, ::scaled::delimited::values::integer);
         out << ", source_of_quote=";
         ::scaled::delimited::values::print(out, source_of_quote, ::scaled::delimited::values::text);
-        out << ", sipgenerated_message_identifier=";
-        ::scaled::delimited::values::print(out, sipgenerated_message_identifier, ::scaled::delimited::values::text);
+        out << ", sip_generated_message_identifier=";
+        ::scaled::delimited::values::print(out, sip_generated_message_identifier, ::scaled::delimited::values::text);
         out << ", bolo_indicator=";
         ::scaled::delimited::values::print(out, bolo_indicator, ::scaled::delimited::values::text);
         out << ", odd_lot_best_bid_participant_id=";

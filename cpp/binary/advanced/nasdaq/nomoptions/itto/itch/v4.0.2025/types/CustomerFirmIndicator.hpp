@@ -15,7 +15,7 @@ struct customer_firm_indicator {
     enum class enum_type : char {
         customer = 'C',
         firm_joint = 'F',
-        onfloor = 'M',
+        on_floor = 'M',
         professional = 'P',
         broker_dealer_non_registered = 'B'
     };
@@ -24,7 +24,7 @@ struct customer_firm_indicator {
         {"Broker Dealer Non Registered", enum_type::broker_dealer_non_registered},
         {"Customer", enum_type::customer},
         {"Firm Joint", enum_type::firm_joint},
-        {"Onfloor", enum_type::onfloor},
+        {"On Floor", enum_type::on_floor},
         {"Professional", enum_type::professional}
     }};
 
@@ -32,7 +32,7 @@ struct customer_firm_indicator {
         switch (value) {
             case enum_type::customer: return "Customer";
             case enum_type::firm_joint: return "Firm Joint";
-            case enum_type::onfloor: return "Onfloor";
+            case enum_type::on_floor: return "On Floor";
             case enum_type::professional: return "Professional";
             case enum_type::broker_dealer_non_registered: return "Broker Dealer Non Registered";
             default: return "unknown";

@@ -1,0 +1,16 @@
+# Nyse.NyseEquities.Bbo.Xdp.v2.4.g SequenceNumberResetMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.packetsize = 30
+packet.packetheader.deliveryflag = 12
+packet.packetheader.messagecount = 1
+packet.packetheader.sequencenumber = 1
+packet.packetheader.sendtime.seconds = 1507047420
+packet.packetheader.sendtime.nanoseconds = 110550390
+packet.packetheader.sendtime = 1507047420110550390
+packet.message[0].messageheader.messagesize = 14
+packet.message[0].messageheader.messagetype = 1
+packet.message[0].payload = packet.message.payload.sequencenumberresetmessage
+packet.message[0].payload.sequencenumberresetmessage.sourcetime = 1507044971
+packet.message[0].payload.sequencenumberresetmessage.sourcetimens = 49677029
+packet.message[0].payload.sequencenumberresetmessage.productid = 3
+packet.message[0].payload.sequencenumberresetmessage.channelid = 1

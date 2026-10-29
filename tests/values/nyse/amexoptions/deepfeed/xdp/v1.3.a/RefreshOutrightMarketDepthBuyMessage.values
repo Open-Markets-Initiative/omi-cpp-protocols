@@ -1,0 +1,30 @@
+# Nyse.AmexOptions.DeepFeed.Xdp.v1.3.a RefreshOutrightMarketDepthBuyMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.packetsize = 72
+packet.packetheader.deliveryflag = 3
+packet.packetheader.messagecount = 2
+packet.packetheader.sequencenumber = 20698908
+packet.packetheader.sendtime.seconds = 1676559600
+packet.packetheader.sendtime.nanoseconds = 240000
+packet.packetheader.sendtime = 1676559600000240000
+packet.message[0].messageheader.messagesize = 8
+packet.message[0].messageheader.messagetype = 455
+packet.message[0].payload = packet.message.payload.streamidmessage
+packet.message[0].payload.streamidmessage.streamid = 209
+packet.message[1].messageheader.messagesize = 48
+packet.message[1].messageheader.messagetype = 503
+packet.message[1].payload = packet.message.payload.refreshoutrightmarketdepthbuymessage
+packet.message[1].payload.refreshoutrightmarketdepthbuymessage.sourcetime = 1676557803
+packet.message[1].payload.refreshoutrightmarketdepthbuymessage.sourcens = 750224000
+packet.message[1].payload.refreshoutrightmarketdepthbuymessage.seriesindex = 261106091
+packet.message[1].payload.refreshoutrightmarketdepthbuymessage.symbolseqnum = 34
+packet.message[1].payload.refreshoutrightmarketdepthbuymessage.firstlevelprice = 0
+packet.message[1].payload.refreshoutrightmarketdepthbuymessage.secondlevelprice = 0
+packet.message[1].payload.refreshoutrightmarketdepthbuymessage.thirdlevelprice = 0
+packet.message[1].payload.refreshoutrightmarketdepthbuymessage.firstvolume = 0
+packet.message[1].payload.refreshoutrightmarketdepthbuymessage.secondvolume = 0
+packet.message[1].payload.refreshoutrightmarketdepthbuymessage.thirdvolume = 0
+packet.message[1].payload.refreshoutrightmarketdepthbuymessage.quotecondition = 1
+packet.message[1].payload.refreshoutrightmarketdepthbuymessage.firstlevelcustomervolume = 0
+packet.message[1].payload.refreshoutrightmarketdepthbuymessage.secondlevelcustomervolume = 0
+packet.message[1].payload.refreshoutrightmarketdepthbuymessage.thirdlevelcustomervolume = 0

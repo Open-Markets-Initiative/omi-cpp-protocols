@@ -117,7 +117,7 @@ canonical::Listing read(const packet::Frame& frame) {
         } else if (iterator.message_type == protocol::OrderExecutedMessage::message_type) {
             values[entry + ".messagedata"] = "packet.messages.message.messagedata.orderexecutedmessage";
             [[maybe_unused]] const auto* message = protocol::OrderExecutedMessage::parse(iterator.message);
-            values[entry + ".messagedata.orderexecutedmessage.saleconditionflags.singlepricecrosstrade"] = canonical::number(static_cast<std::uint64_t>(message->sale_condition_flags.SinglepriceCrossTrade()));
+            values[entry + ".messagedata.orderexecutedmessage.saleconditionflags.singlepricecrosstrade"] = canonical::number(static_cast<std::uint64_t>(message->sale_condition_flags.SinglePriceCrossTrade()));
             values[entry + ".messagedata.orderexecutedmessage.saleconditionflags.tradethroughexempt"] = canonical::number(static_cast<std::uint64_t>(message->sale_condition_flags.TradeThroughExempt()));
             values[entry + ".messagedata.orderexecutedmessage.saleconditionflags.oddlot"] = canonical::number(static_cast<std::uint64_t>(message->sale_condition_flags.OddLot()));
             values[entry + ".messagedata.orderexecutedmessage.saleconditionflags.extendedhours"] = canonical::number(static_cast<std::uint64_t>(message->sale_condition_flags.ExtendedHours()));
@@ -131,7 +131,7 @@ canonical::Listing read(const packet::Frame& frame) {
         } else if (iterator.message_type == protocol::TradeMessage::message_type) {
             values[entry + ".messagedata"] = "packet.messages.message.messagedata.trademessage";
             [[maybe_unused]] const auto* message = protocol::TradeMessage::parse(iterator.message);
-            values[entry + ".messagedata.trademessage.saleconditionflags.singlepricecrosstrade"] = canonical::number(static_cast<std::uint64_t>(message->sale_condition_flags.SinglepriceCrossTrade()));
+            values[entry + ".messagedata.trademessage.saleconditionflags.singlepricecrosstrade"] = canonical::number(static_cast<std::uint64_t>(message->sale_condition_flags.SinglePriceCrossTrade()));
             values[entry + ".messagedata.trademessage.saleconditionflags.tradethroughexempt"] = canonical::number(static_cast<std::uint64_t>(message->sale_condition_flags.TradeThroughExempt()));
             values[entry + ".messagedata.trademessage.saleconditionflags.oddlot"] = canonical::number(static_cast<std::uint64_t>(message->sale_condition_flags.OddLot()));
             values[entry + ".messagedata.trademessage.saleconditionflags.extendedhours"] = canonical::number(static_cast<std::uint64_t>(message->sale_condition_flags.ExtendedHours()));
@@ -144,7 +144,7 @@ canonical::Listing read(const packet::Frame& frame) {
         } else if (iterator.message_type == protocol::TradeBreakMessage::message_type) {
             values[entry + ".messagedata"] = "packet.messages.message.messagedata.tradebreakmessage";
             [[maybe_unused]] const auto* message = protocol::TradeBreakMessage::parse(iterator.message);
-            values[entry + ".messagedata.tradebreakmessage.saleconditionflags.singlepricecrosstrade"] = canonical::number(static_cast<std::uint64_t>(message->sale_condition_flags.SinglepriceCrossTrade()));
+            values[entry + ".messagedata.tradebreakmessage.saleconditionflags.singlepricecrosstrade"] = canonical::number(static_cast<std::uint64_t>(message->sale_condition_flags.SinglePriceCrossTrade()));
             values[entry + ".messagedata.tradebreakmessage.saleconditionflags.tradethroughexempt"] = canonical::number(static_cast<std::uint64_t>(message->sale_condition_flags.TradeThroughExempt()));
             values[entry + ".messagedata.tradebreakmessage.saleconditionflags.oddlot"] = canonical::number(static_cast<std::uint64_t>(message->sale_condition_flags.OddLot()));
             values[entry + ".messagedata.tradebreakmessage.saleconditionflags.extendedhours"] = canonical::number(static_cast<std::uint64_t>(message->sale_condition_flags.ExtendedHours()));

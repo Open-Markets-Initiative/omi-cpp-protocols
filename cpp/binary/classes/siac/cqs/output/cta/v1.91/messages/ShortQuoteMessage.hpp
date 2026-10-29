@@ -1,0 +1,144 @@
+#pragma once
+
+#include <cstddef>
+#include <cstdint>
+#include <memory>
+#include <optional>
+#include <ostream>
+#include <string>
+#include <string_view>
+
+#include "../common/Decimal.hpp"
+#include "../enums/NationalBboIndicator.hpp"
+#include "../enums/ParticipantId.hpp"
+#include "../enums/PrimaryListingMarketParticipantId.hpp"
+#include "../messages/QuoteMessagePayload.hpp"
+#include "../structs/NationalBestBidLongAppendage.hpp"
+#include "../structs/NationalBestBidShortAppendage.hpp"
+#include "../structs/NationalBestOfferLongAppendage.hpp"
+#include "../structs/NationalBestOfferShortAppendage.hpp"
+#include "../structs/ParticipantTimestamp.hpp"
+
+namespace siac::cqs::output::cta::v1_91 {
+
+class QuoteMessagePayloadVisitor;
+
+// The Auction Status message is used when a Participant in a Cta eligible security
+class ShortQuoteMessage : public QuoteMessagePayload {
+  public:
+    // The code that selects this message
+    static constexpr QuoteMessagePayloadCode message_type = QuoteMessageType::ShortQuoteMessage;
+
+    ShortQuoteMessage() = default;
+    ShortQuoteMessage(ParticipantId participant_id, const ParticipantTimestamp& participant_timestamp, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol_short, Decimal bid_price_short, std::uint16_t bid_size_short, Decimal offer_price_short, std::uint16_t offer_size_short, PrimaryListingMarketParticipantId primary_listing_market_participant_id, NationalBboIndicator national_bbo_indicator, const std::optional<NationalBestBidLongAppendage>& national_best_bid_long_appendage, const std::optional<NationalBestOfferLongAppendage>& national_best_offer_long_appendage, const std::optional<NationalBestBidShortAppendage>& national_best_bid_short_appendage, const std::optional<NationalBestOfferShortAppendage>& national_best_offer_short_appendage);
+
+    // Participant Id: Participant or Processor that generated the message
+    ParticipantId participant_id() const;
+    void set_participant_id(ParticipantId value);
+
+    // Participant Timestamp: Participant Timestamp
+    const ParticipantTimestamp& participant_timestamp() const;
+    ParticipantTimestamp& participant_timestamp();
+    void set_participant_timestamp(const ParticipantTimestamp& value);
+
+    // Message Id: The Message ID identifies the individual message within the block beginning
+    // with number one
+    std::uint8_t message_id() const;
+    void set_message_id(std::uint8_t value);
+
+    // Transaction Id: The Transaction Id will be populated by CQS and is Reserved for Internal
+    // Use only
+    std::uint32_t transaction_id() const;
+    void set_transaction_id(std::uint32_t value);
+
+    // Participant Reference Number: Participant Reference Number is a pass-thru of the inbound
+    // Participant Reference number assigned to a transaction
+    std::int64_t participant_reference_number() const;
+    void set_participant_reference_number(std::int64_t value);
+
+    // Security Symbol Short: Contains the security symbol
+    const std::string& security_symbol_short() const;
+    std::string& security_symbol_short();
+    void set_security_symbol_short(const std::string& value);
+
+    // Bid Price Short: Represents the highest price a prospective buyer is prepared to pay at
+    // a particular time for a security
+    Decimal bid_price_short() const;
+    void set_bid_price_short(Decimal value);
+
+    // Bid Size Short: The Bid Size identifies the number of round-lots, for a security
+    std::uint16_t bid_size_short() const;
+    void set_bid_size_short(std::uint16_t value);
+
+    // Offer Price Short: Represents the lowest price acceptable to a prospective seller at a
+    // particular time for a security
+    Decimal offer_price_short() const;
+    void set_offer_price_short(Decimal value);
+
+    // Offer Size Short: The Offer Size identifies the number of round-lots, for a security
+    std::uint16_t offer_size_short() const;
+    void set_offer_size_short(std::uint16_t value);
+
+    // Primary Listing Market Participant Id: Identifies the Primary Listing Market for a
+    // security
+    PrimaryListingMarketParticipantId primary_listing_market_participant_id() const;
+    void set_primary_listing_market_participant_id(PrimaryListingMarketParticipantId value);
+
+    // National Bbo Indicator: Indicates the affect the new quote has on the National BBO.
+    NationalBboIndicator national_bbo_indicator() const;
+    void set_national_bbo_indicator(NationalBboIndicator value);
+
+    // National Best Bid Long Appendage: National Best Bid Long Appendage
+    const std::optional<NationalBestBidLongAppendage>& national_best_bid_long_appendage() const;
+    std::optional<NationalBestBidLongAppendage>& national_best_bid_long_appendage();
+    void set_national_best_bid_long_appendage(const std::optional<NationalBestBidLongAppendage>& value);
+
+    // National Best Offer Long Appendage: National Best Offer Long Appendage
+    const std::optional<NationalBestOfferLongAppendage>& national_best_offer_long_appendage() const;
+    std::optional<NationalBestOfferLongAppendage>& national_best_offer_long_appendage();
+    void set_national_best_offer_long_appendage(const std::optional<NationalBestOfferLongAppendage>& value);
+
+    // National Best Bid Short Appendage: National Best Bid Short Appendage
+    const std::optional<NationalBestBidShortAppendage>& national_best_bid_short_appendage() const;
+    std::optional<NationalBestBidShortAppendage>& national_best_bid_short_appendage();
+    void set_national_best_bid_short_appendage(const std::optional<NationalBestBidShortAppendage>& value);
+
+    // National Best Offer Short Appendage: National Best Offer Short Appendage
+    const std::optional<NationalBestOfferShortAppendage>& national_best_offer_short_appendage() const;
+    std::optional<NationalBestOfferShortAppendage>& national_best_offer_short_appendage();
+    void set_national_best_offer_short_appendage(const std::optional<NationalBestOfferShortAppendage>& value);
+
+    // QuoteMessagePayload
+    QuoteMessagePayloadCode type() const override;
+    std::string_view name() const override;
+    std::size_t decode(const std::byte* data, std::size_t length) override;
+    std::size_t encode(std::byte* data, std::size_t capacity) const override;
+    std::size_t encoded_size() const override;
+    void accept(QuoteMessagePayloadVisitor& visitor) const override;
+    std::unique_ptr<QuoteMessagePayload> clone() const override;
+    void print(std::ostream& out) const override;
+    bool equals(const QuoteMessagePayload& other) const override;
+
+    bool operator==(const ShortQuoteMessage& other) const;
+    bool operator!=(const ShortQuoteMessage& other) const;
+
+  private:
+    ParticipantId participant_id_{};
+    ParticipantTimestamp participant_timestamp_{};
+    std::uint8_t message_id_{};
+    std::uint32_t transaction_id_{};
+    std::int64_t participant_reference_number_{};
+    std::string security_symbol_short_{};
+    Decimal bid_price_short_{ 0, -2 };
+    std::uint16_t bid_size_short_{};
+    Decimal offer_price_short_{ 0, -2 };
+    std::uint16_t offer_size_short_{};
+    PrimaryListingMarketParticipantId primary_listing_market_participant_id_{};
+    NationalBboIndicator national_bbo_indicator_{};
+    std::optional<NationalBestBidLongAppendage> national_best_bid_long_appendage_{};
+    std::optional<NationalBestOfferLongAppendage> national_best_offer_long_appendage_{};
+    std::optional<NationalBestBidShortAppendage> national_best_bid_short_appendage_{};
+    std::optional<NationalBestOfferShortAppendage> national_best_offer_short_appendage_{};
+};
+
+} // namespace siac::cqs::output::cta::v1_91

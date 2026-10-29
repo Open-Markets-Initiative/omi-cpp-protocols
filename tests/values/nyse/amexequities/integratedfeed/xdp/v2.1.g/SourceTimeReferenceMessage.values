@@ -1,0 +1,15 @@
+# Nyse.AmexEquities.IntegratedFeed.Xdp.v2.1.g SourceTimeReferenceMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.packetsize = 32
+packet.packetheader.deliveryflag = 11
+packet.packetheader.messagecount = 1
+packet.packetheader.sequencenumber = 2008
+packet.packetheader.sendtime.seconds = 1506694823
+packet.packetheader.sendtime.nanoseconds = 489093661
+packet.packetheader.sendtime = 1506694823489093661
+packet.message[0].messageheader.messagesize = 16
+packet.message[0].messageheader.messagetype = 2
+packet.message[0].payload = packet.message.payload.sourcetimereferencemessage
+packet.message[0].payload.sourcetimereferencemessage.id = 7
+packet.message[0].payload.sourcetimereferencemessage.symbolseqnum = 0
+packet.message[0].payload.sourcetimereferencemessage.sourcetime = 1504092602

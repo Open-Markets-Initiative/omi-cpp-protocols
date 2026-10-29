@@ -1,0 +1,18 @@
+# OtcMarkets.LinkAts.Multicast.Link.v4.3 StartOfSpinMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.packetsize = 32
+packet.packetheader.seqnum = 1
+packet.packetheader.packetflag.heartbeat = 0
+packet.packetheader.packetflag.seqnumreset = 0
+packet.packetheader.packetflag.replay = 0
+packet.packetheader.packetflag.test = 0
+packet.packetheader.messagecount = 1
+packet.packetheader.packetmilli = 20405119
+packet.messageblock = packet.messageblock.message
+packet.messageblock.message[0].messageheader.messagesize = 20
+packet.messageblock.message[0].messageheader.messagetype = 11
+packet.messageblock.message[0].payload = packet.messageblock.message.payload.startofspinmessage
+packet.messageblock.message[0].payload.startofspinmessage.channelseqnum = 1
+packet.messageblock.message[0].payload.startofspinmessage.spintype = 3
+packet.messageblock.message[0].payload.startofspinmessage.spinstarttimemilli = 1553852405063
+packet.messageblock.message[0].payload.startofspinmessage.spinlastseqnum = 1

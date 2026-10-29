@@ -75,33 +75,33 @@ namespace variant_dailytaqmaster_v4_3 {
         if (!fields[17].empty()) {  // Specialist_Panel
             row.specialist_panel.set(fields[17]);
         }
-        row.tradedonnysemkt.set(::scaled::delimited::integer<std::int64_t>(fields[18], "TradedOnNYSEMKT"));  // TradedOnNYSEMKT
-        row.tradedonnasdaqbx.set(::scaled::delimited::integer<std::int64_t>(fields[19], "TradedOnNASDAQBX"));  // TradedOnNASDAQBX
-        row.tradedonnsx.set(::scaled::delimited::integer<std::int64_t>(fields[20], "TradedOnNSX"));  // TradedOnNSX
-        row.tradedonfinra.set(::scaled::delimited::integer<std::int64_t>(fields[21], "TradedOnFINRA"));  // TradedOnFINRA
-        row.tradedonise.set(::scaled::delimited::integer<std::int64_t>(fields[22], "TradedOnISE"));  // TradedOnISE
-        row.tradedonedgea.set(::scaled::delimited::integer<std::int64_t>(fields[23], "TradedOnEdgeA"));  // TradedOnEdgeA
-        row.tradedonedgex.set(::scaled::delimited::integer<std::int64_t>(fields[24], "TradedOnEdgeX"));  // TradedOnEdgeX
-        row.tradedonnysetexas.set(::scaled::delimited::integer<std::int64_t>(fields[25], "TradedOnNYSETexas"));  // TradedOnNYSETexas
-        row.tradedonnyse.set(::scaled::delimited::integer<std::int64_t>(fields[26], "TradedOnNYSE"));  // TradedOnNYSE
-        row.tradedonarca.set(::scaled::delimited::integer<std::int64_t>(fields[27], "TradedOnArca"));  // TradedOnArca
-        row.tradedonnasdaq.set(::scaled::delimited::integer<std::int64_t>(fields[28], "TradedOnNasdaq"));  // TradedOnNasdaq
-        row.tradedoncboe.set(::scaled::delimited::integer<std::int64_t>(fields[29], "TradedOnCBOE"));  // TradedOnCBOE
-        row.tradedonpsx.set(::scaled::delimited::integer<std::int64_t>(fields[30], "TradedOnPSX"));  // TradedOnPSX
-        row.tradedonbatsy.set(::scaled::delimited::integer<std::int64_t>(fields[31], "TradedOnBATSY"));  // TradedOnBATSY
-        row.tradedonbats.set(::scaled::delimited::integer<std::int64_t>(fields[32], "TradedOnBATS"));  // TradedOnBATS
-        row.tradedoniex.set(::scaled::delimited::integer<std::int64_t>(fields[33], "TradedOnIEX"));  // TradedOnIEX
+        row.traded_on_nysemkt.set(::scaled::delimited::integer<std::int64_t>(fields[18], "TradedOnNYSEMKT"));  // TradedOnNYSEMKT
+        row.traded_on_nasdaqbx.set(::scaled::delimited::integer<std::int64_t>(fields[19], "TradedOnNASDAQBX"));  // TradedOnNASDAQBX
+        row.traded_on_nsx.set(::scaled::delimited::integer<std::int64_t>(fields[20], "TradedOnNSX"));  // TradedOnNSX
+        row.traded_on_finra.set(::scaled::delimited::integer<std::int64_t>(fields[21], "TradedOnFINRA"));  // TradedOnFINRA
+        row.traded_on_ise.set(::scaled::delimited::integer<std::int64_t>(fields[22], "TradedOnISE"));  // TradedOnISE
+        row.traded_on_edge_a.set(::scaled::delimited::integer<std::int64_t>(fields[23], "TradedOnEdgeA"));  // TradedOnEdgeA
+        row.traded_on_edge_x.set(::scaled::delimited::integer<std::int64_t>(fields[24], "TradedOnEdgeX"));  // TradedOnEdgeX
+        row.traded_on_nyse_texas.set(::scaled::delimited::integer<std::int64_t>(fields[25], "TradedOnNYSETexas"));  // TradedOnNYSETexas
+        row.traded_on_nyse.set(::scaled::delimited::integer<std::int64_t>(fields[26], "TradedOnNYSE"));  // TradedOnNYSE
+        row.traded_on_arca.set(::scaled::delimited::integer<std::int64_t>(fields[27], "TradedOnArca"));  // TradedOnArca
+        row.traded_on_nasdaq.set(::scaled::delimited::integer<std::int64_t>(fields[28], "TradedOnNasdaq"));  // TradedOnNasdaq
+        row.traded_on_cboe.set(::scaled::delimited::integer<std::int64_t>(fields[29], "TradedOnCBOE"));  // TradedOnCBOE
+        row.traded_on_psx.set(::scaled::delimited::integer<std::int64_t>(fields[30], "TradedOnPSX"));  // TradedOnPSX
+        row.traded_on_batsy.set(::scaled::delimited::integer<std::int64_t>(fields[31], "TradedOnBATSY"));  // TradedOnBATSY
+        row.traded_on_bats.set(::scaled::delimited::integer<std::int64_t>(fields[32], "TradedOnBATS"));  // TradedOnBATS
+        row.traded_on_iex.set(::scaled::delimited::integer<std::int64_t>(fields[33], "TradedOnIEX"));  // TradedOnIEX
         if (!fields[34].empty()) {  // Tick_Pilot_Indicator
             row.tick_pilot_indicator.set(fields[34]);
         }
         if (!fields[35].empty()) {  // Effective_Date
             row.effective_date.set(static_cast<std::int32_t>(::scaled::delimited::days(fields[35], "Effective_Date")));
         }
-        row.tradedonltse.set(::scaled::delimited::integer<std::int64_t>(fields[36], "TradedOnLTSE"));  // TradedOnLTSE
-        row.tradedonmemx.set(::scaled::delimited::integer<std::int64_t>(fields[37], "TradedOnMEMX"));  // TradedOnMEMX
-        row.tradedonmiax.set(::scaled::delimited::integer<std::int64_t>(fields[38], "TradedOnMIAX"));  // TradedOnMIAX
-        row.tradedon24x.set(::scaled::delimited::integer<std::int64_t>(fields[39], "TradedOn24X"));  // TradedOn24X
-        row.tradedontxse.set(::scaled::delimited::integer<std::int64_t>(fields[40], "TradedOnTXSE"));  // TradedOnTXSE
+        row.traded_on_ltse.set(::scaled::delimited::integer<std::int64_t>(fields[36], "TradedOnLTSE"));  // TradedOnLTSE
+        row.traded_on_memx.set(::scaled::delimited::integer<std::int64_t>(fields[37], "TradedOnMEMX"));  // TradedOnMEMX
+        row.traded_on_miax.set(::scaled::delimited::integer<std::int64_t>(fields[38], "TradedOnMIAX"));  // TradedOnMIAX
+        row.traded_on_24x.set(::scaled::delimited::integer<std::int64_t>(fields[39], "TradedOn24X"));  // TradedOn24X
+        row.traded_on_txse.set(::scaled::delimited::integer<std::int64_t>(fields[40], "TradedOnTXSE"));  // TradedOnTXSE
     }
 }
 

@@ -16,7 +16,7 @@ struct note_codes_bit_field_4 {
     static constexpr type ce_capped_by_esma = type{1} << 3;
     static constexpr type pd_price_discrepancy_historical_average_share_classes = type{1} << 5;
     static constexpr type sm_stressed_market = type{1} << 6;
-    static constexpr type ew_marketwide_exceptional_circumstance = type{1} << 7;
+    static constexpr type ew_market_wide_exceptional_circumstance = type{1} << 7;
 
     static constexpr const char* name = "note_codes_bit_field_4";
     static constexpr std::size_t size = 1;
@@ -50,13 +50,13 @@ struct note_codes_bit_field_4 {
     [[nodiscard]] constexpr bool has_ce_capped_by_esma() const { return has(ce_capped_by_esma); }
     [[nodiscard]] constexpr bool has_pd_price_discrepancy_historical_average_share_classes() const { return has(pd_price_discrepancy_historical_average_share_classes); }
     [[nodiscard]] constexpr bool has_sm_stressed_market() const { return has(sm_stressed_market); }
-    [[nodiscard]] constexpr bool has_ew_marketwide_exceptional_circumstance() const { return has(ew_marketwide_exceptional_circumstance); }
+    [[nodiscard]] constexpr bool has_ew_market_wide_exceptional_circumstance() const { return has(ew_market_wide_exceptional_circumstance); }
 
     constexpr void set_bb_buy_back(bool v) { set(bb_buy_back, v); }
     constexpr void set_ce_capped_by_esma(bool v) { set(ce_capped_by_esma, v); }
     constexpr void set_pd_price_discrepancy_historical_average_share_classes(bool v) { set(pd_price_discrepancy_historical_average_share_classes, v); }
     constexpr void set_sm_stressed_market(bool v) { set(sm_stressed_market, v); }
-    constexpr void set_ew_marketwide_exceptional_circumstance(bool v) { set(ew_marketwide_exceptional_circumstance, v); }
+    constexpr void set_ew_market_wide_exceptional_circumstance(bool v) { set(ew_market_wide_exceptional_circumstance, v); }
 
   protected:
     type value;

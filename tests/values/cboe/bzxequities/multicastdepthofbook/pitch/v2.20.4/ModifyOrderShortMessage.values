@@ -1,0 +1,20 @@
+# Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.20.4 ModifyOrderShortMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.length = 33
+packet.packetheader.messagecount = 2
+packet.packetheader.unit = 1
+packet.packetheader.sequence = 21
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 6
+packet.messages.message[0].messageheader.messagetype = 32
+packet.messages.message[0].payload = packet.messages.message.payload.timemessage
+packet.messages.message[0].payload.timemessage.time = 76211
+packet.messages.message[1].messageheader.messagelength = 19
+packet.messages.message[1].messageheader.messagetype = 40
+packet.messages.message[1].payload = packet.messages.message.payload.modifyordershortmessage
+packet.messages.message[1].payload.modifyordershortmessage.timeoffset = 531588000
+packet.messages.message[1].payload.modifyordershortmessage.orderid = 245620911467925521
+packet.messages.message[1].payload.modifyordershortmessage.quantitybinary2 = 400
+packet.messages.message[1].payload.modifyordershortmessage.pricebinaryshortprice2 = 20.05
+packet.messages.message[1].payload.modifyordershortmessage.modifyflags.display = 1
+packet.messages.message[1].payload.modifyordershortmessage.modifyflags.maintainpriority = 0

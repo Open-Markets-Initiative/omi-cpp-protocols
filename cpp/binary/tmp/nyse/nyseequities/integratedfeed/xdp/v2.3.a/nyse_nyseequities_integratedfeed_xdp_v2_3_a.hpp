@@ -556,7 +556,7 @@ struct market_imbalance_qty {
 // Market State: The current Market State, which this msg updates if the Security Status field contains a Market State Code.
 struct market_state {
     enum class type : char {
-        preopening = 'P',
+        pre_opening = 'P',
         early_session = 'E',
         core_session = 'O',
         late_session = 'L',
@@ -1069,7 +1069,7 @@ struct security_status {
         short_sale_restriction_activated_day_1 = 'A',
         short_sale_restriction_continued_day_2 = 'C',
         short_sale_restriction_deactivated = 'D',
-        preopening = 'P',
+        pre_opening = 'P',
         early_session = 'E',
         core_session = 'O',
         late_session_non_nyse_only = 'L',

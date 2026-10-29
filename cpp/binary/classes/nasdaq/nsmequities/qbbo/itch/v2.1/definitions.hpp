@@ -17,7 +17,7 @@
 #include "enums/IpoFlag.hpp"
 #include "enums/IpoQuotationReleaseQualifier.hpp"
 #include "enums/IssueClassification.hpp"
-#include "enums/IssueSubtype.hpp"
+#include "enums/IssueSubType.hpp"
 #include "enums/LuldReferencePriceTier.hpp"
 #include "enums/MarketCategory.hpp"
 #include "enums/MarketCode.hpp"

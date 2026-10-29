@@ -1,0 +1,35 @@
+# Eurex.T7.Eobi.Fbe.v6.0 FullOrderExecution: canonical values, read by the model
+datagram 0
+packet.packetheader.eobiheader.bodylen = 32
+packet.packetheader.eobiheader.templateid = 13002
+packet.packetheader.eobiheader.msgseqnum = 4294967295
+packet.packetheader.applseqnum = 325524
+packet.packetheader.marketsegmentid = 689
+packet.packetheader.partitionid = 4
+packet.packetheader.completionindicator = 1
+packet.packetheader.applseqresetindicator = 0
+packet.packetheader.transacttime = 1401710401563892122
+packet.message[0].messageheadercomp.bodylen = 56
+packet.message[0].messageheadercomp.templateid = 13104
+packet.message[0].messageheadercomp.msgseqnum = 353910
+packet.message[0].payload = packet.message.payload.fullorderexecution
+packet.message[0].payload.fullorderexecution.side = 2
+packet.message[0].payload.fullorderexecution.ordtype = 0
+packet.message[0].payload.fullorderexecution.algorithmictradeindicator = 0
+packet.message[0].payload.fullorderexecution.price = 126.84
+packet.message[0].payload.fullorderexecution.trdregtstimepriority = 1401710401442488450
+packet.message[0].payload.fullorderexecution.securityid = 558045
+packet.message[0].payload.fullorderexecution.trdmatchid = 8479
+packet.message[0].payload.fullorderexecution.lastqty = 6
+packet.message[0].payload.fullorderexecution.lastpx = 126.84
+packet.message[1].messageheadercomp.bodylen = 48
+packet.message[1].messageheadercomp.templateid = 13100
+packet.message[1].messageheadercomp.msgseqnum = 353911
+packet.message[1].payload = packet.message.payload.orderadd
+packet.message[1].payload.orderadd.trdregtstimein = 1401710401563698876
+packet.message[1].payload.orderadd.securityid = 558045
+packet.message[1].payload.orderadd.orderdetailscomp.trdregtstimepriority = 1401710401563711828
+packet.message[1].payload.orderadd.orderdetailscomp.displayqty = 10
+packet.message[1].payload.orderadd.orderdetailscomp.side = 1
+packet.message[1].payload.orderadd.orderdetailscomp.ordtype = 0
+packet.message[1].payload.orderadd.orderdetailscomp.price = 126.84

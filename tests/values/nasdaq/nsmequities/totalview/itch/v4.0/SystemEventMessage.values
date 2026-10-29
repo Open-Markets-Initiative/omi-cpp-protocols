@@ -1,0 +1,11 @@
+# Nasdaq.NsmEquities.TotalView.Itch.v4.0 SystemEventMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = S032409v4.
+packet.packetheader.sequencenumber = 1
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 6
+packet.messages.message[0].messageheader.messagetype = S
+packet.messages.message[0].payload = packet.messages.message.payload.systemeventmessage
+packet.messages.message[0].payload.systemeventmessage.nanoseconds = 397000000
+packet.messages.message[0].payload.systemeventmessage.eventcode = O

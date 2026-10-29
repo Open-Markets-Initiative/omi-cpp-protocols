@@ -1,0 +1,15 @@
+# B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3 EstablishAckMessage: canonical values of 'packet', read by the model
+stream 0
+packet.simpleopenframe[0].simpleopenframingheader.messagelength = 48
+packet.simpleopenframe[0].simpleopenframingheader.encodingtype = 60240
+packet.simpleopenframe[0].messageheader.blocklength = 36
+packet.simpleopenframe[0].messageheader.templateid = 5
+packet.simpleopenframe[0].messageheader.schemaid = 1
+packet.simpleopenframe[0].messageheader.version = 5
+packet.simpleopenframe[0].payload = packet.simpleopenframe.payload.establishackmessage
+packet.simpleopenframe[0].payload.establishackmessage.sessionid = 200000006
+packet.simpleopenframe[0].payload.establishackmessage.sessionverid = 1738874584993
+packet.simpleopenframe[0].payload.establishackmessage.requesttimestamp = 1739218535405000000
+packet.simpleopenframe[0].payload.establishackmessage.keepaliveinterval = 1000
+packet.simpleopenframe[0].payload.establishackmessage.nextseqno = 1620
+packet.simpleopenframe[0].payload.establishackmessage.lastincomingseqno = 722

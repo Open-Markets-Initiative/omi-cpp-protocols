@@ -6,7 +6,7 @@ std::string_view to_string(CustomerFirmIndicator value) {
     switch (value) {
         case CustomerFirmIndicator::Customer: return "Customer";
         case CustomerFirmIndicator::FirmJoint: return "Firm Joint";
-        case CustomerFirmIndicator::Onfloor: return "Onfloor";
+        case CustomerFirmIndicator::OnFloor: return "On Floor";
         case CustomerFirmIndicator::Professional: return "Professional";
         case CustomerFirmIndicator::BrokerDealerNonRegistered: return "Broker Dealer Non Registered";
         default: return {};

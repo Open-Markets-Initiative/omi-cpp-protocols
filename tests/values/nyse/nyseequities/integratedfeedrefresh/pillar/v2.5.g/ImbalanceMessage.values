@@ -1,0 +1,35 @@
+# Nyse.NyseEquities.IntegratedFeedRefresh.Pillar.v2.5.g ImbalanceMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 89
+packet.packetheader.deliveryflag = 18
+packet.packetheader.numbermsgs = 1
+packet.packetheader.seqnum = 37323571
+packet.packetheader.sendtime.seconds = 1692711003
+packet.packetheader.sendtime.nanoseconds = 412873728
+packet.packetheader.sendtime = 1692711003412873728
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 73
+packet.messages.message[0].messageheader.messagetype = 105
+packet.messages.message[0].payload = packet.messages.message.payload.imbalancemessage
+packet.messages.message[0].payload.imbalancemessage.sourcetime = 1692710999
+packet.messages.message[0].payload.imbalancemessage.sourcetimens = 684052480
+packet.messages.message[0].payload.imbalancemessage.symbolindex = 10164
+packet.messages.message[0].payload.imbalancemessage.symbolseqnum = 852
+packet.messages.message[0].payload.imbalancemessage.referenceprice = 41410000
+packet.messages.message[0].payload.imbalancemessage.pairedqty = 5277
+packet.messages.message[0].payload.imbalancemessage.totalimbalanceqty = 2186
+packet.messages.message[0].payload.imbalancemessage.marketimbalanceqty = 0
+packet.messages.message[0].payload.imbalancemessage.auctiontime = 930
+packet.messages.message[0].payload.imbalancemessage.auctiontype = M
+packet.messages.message[0].payload.imbalancemessage.imbalanceside = B
+packet.messages.message[0].payload.imbalancemessage.continuousbookclearingprice = 41630000
+packet.messages.message[0].payload.imbalancemessage.auctioninterestclearingprice = 0
+packet.messages.message[0].payload.imbalancemessage.ssrfilingprice = 0
+packet.messages.message[0].payload.imbalancemessage.indicativematchprice = 0
+packet.messages.message[0].payload.imbalancemessage.uppercollar = 0
+packet.messages.message[0].payload.imbalancemessage.lowercollar = 0
+packet.messages.message[0].payload.imbalancemessage.auctionstatus = 0
+packet.messages.message[0].payload.imbalancemessage.freezestatus = 0
+packet.messages.message[0].payload.imbalancemessage.numextensions = 0
+packet.messages.message[0].payload.imbalancemessage.unpairedqty = 0
+packet.messages.message[0].payload.imbalancemessage.unpairedside =  

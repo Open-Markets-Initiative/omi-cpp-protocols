@@ -1,0 +1,22 @@
+# Nyse.AmexEquities.IntegratedFeed.Xdp.v2.1.g OrderExecutionMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.packetsize = 58
+packet.packetheader.deliveryflag = 11
+packet.packetheader.messagecount = 1
+packet.packetheader.sequencenumber = 2422938
+packet.packetheader.sendtime.seconds = 1506695307
+packet.packetheader.sendtime.nanoseconds = 834161303
+packet.packetheader.sendtime = 1506695307834161303
+packet.message[0].messageheader.messagesize = 42
+packet.message[0].messageheader.messagetype = 103
+packet.message[0].payload = packet.message.payload.orderexecutionmessage
+packet.message[0].payload.orderexecutionmessage.sourcetimens = 999220000
+packet.message[0].payload.orderexecutionmessage.symbolindex = 2705
+packet.message[0].payload.orderexecutionmessage.symbolseqnum = 135655
+packet.message[0].payload.orderexecutionmessage.orderid = 2522503
+packet.message[0].payload.orderexecutionmessage.tradeid = 96403
+packet.message[0].payload.orderexecutionmessage.price = 126400
+packet.message[0].payload.orderexecutionmessage.volume = 100
+packet.message[0].payload.orderexecutionmessage.printableflag = 1
+packet.message[0].payload.orderexecutionmessage.numparitysplits = 0
+packet.message[0].payload.orderexecutionmessage.dbexecid = 2728

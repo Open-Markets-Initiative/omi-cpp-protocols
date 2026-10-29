@@ -6,8 +6,8 @@
 
 namespace nasdaq::phlxoptions::topofmarket::itch::v3_4 {
 
-SystemEventMessage::SystemEventMessage(std::chrono::nanoseconds nanoseconds, EventCode event_code, std::uint8_t version, std::uint8_t subversion)
-  : nanoseconds_(nanoseconds), event_code_(event_code), version_(version), subversion_(subversion) {}
+SystemEventMessage::SystemEventMessage(std::chrono::nanoseconds nanoseconds, EventCode event_code, std::uint8_t version, std::uint8_t sub_version)
+  : nanoseconds_(nanoseconds), event_code_(event_code), version_(version), sub_version_(sub_version) {}
 
 std::chrono::nanoseconds SystemEventMessage::nanoseconds() const { return nanoseconds_; }
 void SystemEventMessage::set_nanoseconds(std::chrono::nanoseconds value) { nanoseconds_ = value; }
@@ -18,8 +18,8 @@ void SystemEventMessage::set_event_code(EventCode value) { event_code_ = value; 
 std::uint8_t SystemEventMessage::version() const { return version_; }
 void SystemEventMessage::set_version(std::uint8_t value) { version_ = value; }
 
-std::uint8_t SystemEventMessage::subversion() const { return subversion_; }
-void SystemEventMessage::set_subversion(std::uint8_t value) { subversion_ = value; }
+std::uint8_t SystemEventMessage::sub_version() const { return sub_version_; }
+void SystemEventMessage::set_sub_version(std::uint8_t value) { sub_version_ = value; }
 
 SequencedMessageCode SystemEventMessage::type() const { return message_type; }
 
@@ -38,7 +38,7 @@ std::size_t SystemEventMessage::decode(const std::byte* data, std::size_t length
     version_ = wire::read_u8(data + offset);
     offset += 1;
 
-    subversion_ = wire::read_u8(data + offset);
+    sub_version_ = wire::read_u8(data + offset);
     offset += 1;
 
     return offset;
@@ -57,7 +57,7 @@ std::size_t SystemEventMessage::encode(std::byte* data, std::size_t capacity) co
     wire::write_u8(data + offset, static_cast<std::uint8_t>(version_));
     offset += 1;
 
-    wire::write_u8(data + offset, static_cast<std::uint8_t>(subversion_));
+    wire::write_u8(data + offset, static_cast<std::uint8_t>(sub_version_));
     offset += 1;
 
     return offset;
@@ -83,8 +83,8 @@ void SystemEventMessage::print(std::ostream& out) const {
     out << event_code_;
     out << ", version=";
     out << static_cast<int>(version_);
-    out << ", subversion=";
-    out << static_cast<int>(subversion_);
+    out << ", sub_version=";
+    out << static_cast<int>(sub_version_);
     out << '}';
 }
 
@@ -97,7 +97,7 @@ bool SystemEventMessage::operator==(const SystemEventMessage& other) const {
     return nanoseconds_ == other.nanoseconds_
         && event_code_ == other.event_code_
         && version_ == other.version_
-        && subversion_ == other.subversion_;
+        && sub_version_ == other.sub_version_;
 }
 
 bool SystemEventMessage::operator!=(const SystemEventMessage& other) const {

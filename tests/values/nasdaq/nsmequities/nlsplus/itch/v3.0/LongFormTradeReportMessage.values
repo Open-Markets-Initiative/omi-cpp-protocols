@@ -1,0 +1,22 @@
+# Nasdaq.NsmEquities.NlsPlus.Itch.v3.0 LongFormTradeReportMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 000010500P
+packet.packetheader.sequencenumber = 2432352
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 53
+packet.messages.message[0].messageheader.trackingnumber = 0
+packet.messages.message[0].messageheader.timestamp = 36002542130004
+packet.messages.message[0].messageheader.messagetype = t
+packet.messages.message[0].payload = packet.messages.message.payload.longformtradereportmessage
+packet.messages.message[0].payload.longformtradereportmessage.originatingmarketcenteridentifier = L
+packet.messages.message[0].payload.longformtradereportmessage.issuesymbol = BRK.A
+packet.messages.message[0].payload.longformtradereportmessage.securityclass = N
+packet.messages.message[0].payload.longformtradereportmessage.tradecontrolnumber = 0000A0ZBWV
+packet.messages.message[0].payload.longformtradereportmessage.tradepricelong = 665057.545
+packet.messages.message[0].payload.longformtradereportmessage.tradesize = 1
+packet.messages.message[0].payload.longformtradereportmessage.saleconditionmodifier.settlementtype = @
+packet.messages.message[0].payload.longformtradereportmessage.saleconditionmodifier.tradethroughexemption = 
+packet.messages.message[0].payload.longformtradereportmessage.saleconditionmodifier.extendedhoursorsoldcode = 
+packet.messages.message[0].payload.longformtradereportmessage.saleconditionmodifier.specialsalecondition = 
+packet.messages.message[0].payload.longformtradereportmessage.consolidatedvolume = 648

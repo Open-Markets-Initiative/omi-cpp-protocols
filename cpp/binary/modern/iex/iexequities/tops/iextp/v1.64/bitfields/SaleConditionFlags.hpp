@@ -15,7 +15,7 @@ struct SaleConditionFlags {
     static constexpr std::size_t size = 1;
 
     struct mask {
-        static const type SinglepriceCrossTrade = 0x08;
+        static const type SinglePriceCrossTrade = 0x08;
         static const type TradeThroughExempt = 0x10;
         static const type OddLot = 0x20;
         static const type ExtendedHours = 0x40;
@@ -27,8 +27,8 @@ struct SaleConditionFlags {
      : value{ 0 } {}
 
     // Trade resulting from a single-price cross
-    [[nodiscard]] constexpr bool SinglepriceCrossTrade() const {
-        return value & mask::SinglepriceCrossTrade;
+    [[nodiscard]] constexpr bool SinglePriceCrossTrade() const {
+        return value & mask::SinglePriceCrossTrade;
     }
 
     // Trade is not subject to Rule 611

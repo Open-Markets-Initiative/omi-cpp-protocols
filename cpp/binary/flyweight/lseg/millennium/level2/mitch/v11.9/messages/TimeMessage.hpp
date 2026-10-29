@@ -9,6 +9,7 @@
 #include "../common/Wire.hpp"
 #include "../common/Print.hpp"
 #include "../common/View.hpp"
+#include "../common/Day.hpp"
 
 namespace lseg::millennium::level2::mitch::v11_9 {
 
@@ -28,11 +29,12 @@ class TimeMessage {
     std::size_t encoded_size() const { return 4; }
 
     std::chrono::seconds seconds() const { return std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_le(at(0)))); }
+    std::int64_t seconds_utc(const calendar::Day& day) const { return calendar::midnight(day, "Europe/London").utc(static_cast<std::int64_t>(seconds().count()) * 1000000000); }
 
     void print(std::ostream& out) const {
         out << "TimeMessage{";
         out << "seconds=";
-        out << seconds().count();
+        calendar::print(out, seconds().count(), 1000000000, "Europe/London");
         out << '}';
     }
 

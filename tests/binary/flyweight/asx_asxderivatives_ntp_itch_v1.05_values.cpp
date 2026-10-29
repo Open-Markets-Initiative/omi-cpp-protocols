@@ -63,7 +63,7 @@ struct Reader {
         values[entry + ".payload.futuresymboldirectorymessage.tradeableinstrumentid"] = canonical::number(message.tradeable_instrument_id());
         values[entry + ".payload.futuresymboldirectorymessage.symbolname"] = canonical::text(std::string(message.symbol_name()), ' ', false);
         values[entry + ".payload.futuresymboldirectorymessage.longname"] = canonical::text(std::string(message.long_name()), ' ', false);
-        values[entry + ".payload.futuresymboldirectorymessage.isin"] = canonical::text(std::string(message.isin()), ' ', false);
+        values[entry + ".payload.futuresymboldirectorymessage.isin"] = (canonical::text(std::string(message.isin()), ' ', false) != "" ? canonical::text(std::string(message.isin()), ' ', false) : canonical::absent());
         values[entry + ".payload.futuresymboldirectorymessage.exchange"] = canonical::text(std::string(message.exchange()), ' ', false);
         values[entry + ".payload.futuresymboldirectorymessage.instrument"] = canonical::text(std::string(message.instrument()), ' ', false);
         values[entry + ".payload.futuresymboldirectorymessage.cficode"] = canonical::text(std::string(message.cfi_code()), ' ', false);
@@ -91,7 +91,7 @@ struct Reader {
         values[entry + ".payload.optionssymboldirectorymessage.tradeableinstrumentid"] = canonical::number(message.tradeable_instrument_id());
         values[entry + ".payload.optionssymboldirectorymessage.symbolname"] = canonical::text(std::string(message.symbol_name()), ' ', false);
         values[entry + ".payload.optionssymboldirectorymessage.longname"] = canonical::text(std::string(message.long_name()), ' ', false);
-        values[entry + ".payload.optionssymboldirectorymessage.isin"] = canonical::text(std::string(message.isin()), ' ', false);
+        values[entry + ".payload.optionssymboldirectorymessage.isin"] = (canonical::text(std::string(message.isin()), ' ', false) != "" ? canonical::text(std::string(message.isin()), ' ', false) : canonical::absent());
         values[entry + ".payload.optionssymboldirectorymessage.exchange"] = canonical::text(std::string(message.exchange()), ' ', false);
         values[entry + ".payload.optionssymboldirectorymessage.instrument"] = canonical::text(std::string(message.instrument()), ' ', false);
         values[entry + ".payload.optionssymboldirectorymessage.cficode"] = canonical::text(std::string(message.cfi_code()), ' ', false);
@@ -116,7 +116,7 @@ struct Reader {
         values[entry + ".payload.optionssymboldirectorymessage.paymentsperyear"] = canonical::number(message.payments_per_year());
         values[entry + ".payload.optionssymboldirectorymessage.blocklotsize"] = canonical::number(message.block_lot_size());
         values[entry + ".payload.optionssymboldirectorymessage.expirydate"] = canonical::number(message.expiry_date());
-        values[entry + ".payload.optionssymboldirectorymessage.basisofquotation"] = canonical::text(std::string(message.basis_of_quotation()), ' ', false);
+        values[entry + ".payload.optionssymboldirectorymessage.basisofquotation"] = (canonical::text(std::string(message.basis_of_quotation()), ' ', false) != "" ? canonical::text(std::string(message.basis_of_quotation()), ' ', false) : canonical::absent());
     }
 
     void on(const protocol::CombinationSymbolDirectoryMessage& message) {

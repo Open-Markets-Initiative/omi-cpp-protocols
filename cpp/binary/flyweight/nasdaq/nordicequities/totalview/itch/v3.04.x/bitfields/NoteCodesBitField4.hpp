@@ -35,7 +35,7 @@ class NoteCodesBitField4 {
 
     bool sm_stressed_market() const { return (raw() & static_cast<std::uint8_t>(0x40)) != 0; }
 
-    bool ew_marketwide_exceptional_circumstance() const { return (raw() & static_cast<std::uint8_t>(0x80)) != 0; }
+    bool ew_market_wide_exceptional_circumstance() const { return (raw() & static_cast<std::uint8_t>(0x80)) != 0; }
 
     void print(std::ostream& out) const {
         out << "NoteCodesBitField4{";
@@ -47,8 +47,8 @@ class NoteCodesBitField4 {
         out << (pd_price_discrepancy_historical_average_share_classes() ? "true" : "false");
         out << ", sm_stressed_market=";
         out << (sm_stressed_market() ? "true" : "false");
-        out << ", ew_marketwide_exceptional_circumstance=";
-        out << (ew_marketwide_exceptional_circumstance() ? "true" : "false");
+        out << ", ew_market_wide_exceptional_circumstance=";
+        out << (ew_market_wide_exceptional_circumstance() ? "true" : "false");
         out << '}';
     }
 

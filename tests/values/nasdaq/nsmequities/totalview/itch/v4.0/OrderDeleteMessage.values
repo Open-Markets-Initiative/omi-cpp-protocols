@@ -1,0 +1,11 @@
+# Nasdaq.NsmEquities.TotalView.Itch.v4.0 OrderDeleteMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = S032409v4.
+packet.packetheader.sequencenumber = 155843
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 13
+packet.messages.message[0].messageheader.messagetype = D
+packet.messages.message[0].payload = packet.messages.message.payload.orderdeletemessage
+packet.messages.message[0].payload.orderdeletemessage.nanoseconds = 390000000
+packet.messages.message[0].payload.orderdeletemessage.orderreferencenumber = 7857

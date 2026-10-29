@@ -1,0 +1,16 @@
+# Nasdaq.NsmEquities.TotalView.Itch.v4.0 TradeMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = S032409v4.
+packet.packetheader.sequencenumber = 157536
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 36
+packet.messages.message[0].messageheader.messagetype = P
+packet.messages.message[0].payload = packet.messages.message.payload.trademessage
+packet.messages.message[0].payload.trademessage.nanoseconds = 817000000
+packet.messages.message[0].payload.trademessage.orderreferencenumber = 89209
+packet.messages.message[0].payload.trademessage.side = B
+packet.messages.message[0].payload.trademessage.shares = 900
+packet.messages.message[0].payload.trademessage.stock = GLD
+packet.messages.message[0].payload.trademessage.price = 91.31
+packet.messages.message[0].payload.trademessage.matchnumber = 2

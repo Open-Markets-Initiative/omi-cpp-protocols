@@ -41,6 +41,7 @@ class PayloadIpoQuotingPeriodUpdate {
     std::string_view stock() const { return view::text(at(10), 8, ' '); }
 
     std::chrono::seconds ipo_quotation_release_time() const { return std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_be(at(18)))); }
+    std::int64_t ipo_quotation_release_time_utc(const calendar::Day& day) const { return calendar::midnight(day, "America/New_York").utc(static_cast<std::int64_t>(ipo_quotation_release_time().count()) * 1000000000); }
 
     IpoQuotationReleaseQualifier ipo_quotation_release_qualifier() const { return static_cast<IpoQuotationReleaseQualifier>(wire::read_char(at(22))); }
 
@@ -57,7 +58,7 @@ class PayloadIpoQuotingPeriodUpdate {
         out << ", stock=";
         print::text(out, stock());
         out << ", ipo_quotation_release_time=";
-        out << ipo_quotation_release_time().count();
+        calendar::print(out, ipo_quotation_release_time().count(), 1000000000, "America/New_York");
         out << ", ipo_quotation_release_qualifier=";
         out << ipo_quotation_release_qualifier();
         out << ", ipo_price=";

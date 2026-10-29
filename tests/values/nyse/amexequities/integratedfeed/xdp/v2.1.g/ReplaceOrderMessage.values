@@ -1,0 +1,21 @@
+# Nyse.AmexEquities.IntegratedFeed.Xdp.v2.1.g ReplaceOrderMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.packetsize = 58
+packet.packetheader.deliveryflag = 11
+packet.packetheader.messagecount = 1
+packet.packetheader.sequencenumber = 2422789
+packet.packetheader.sendtime.seconds = 1506695307
+packet.packetheader.sendtime.nanoseconds = 804356157
+packet.packetheader.sendtime = 1506695307804356157
+packet.message[0].messageheader.messagesize = 42
+packet.message[0].messageheader.messagetype = 104
+packet.message[0].payload = packet.message.payload.replaceordermessage
+packet.message[0].payload.replaceordermessage.sourcetimens = 444580000
+packet.message[0].payload.replaceordermessage.symbolindex = 7786
+packet.message[0].payload.replaceordermessage.symbolseqnum = 38820
+packet.message[0].payload.replaceordermessage.orderid = 2581418
+packet.message[0].payload.replaceordermessage.neworderid = 2581507
+packet.message[0].payload.replaceordermessage.price = 230100
+packet.message[0].payload.replaceordermessage.volume = 100
+packet.message[0].payload.replaceordermessage.prevpriceparitysplits = 0
+packet.message[0].payload.replaceordermessage.newpriceparitysplits = 0

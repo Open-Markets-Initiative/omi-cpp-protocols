@@ -1,0 +1,22 @@
+# Cboe.C1Options.MarketDataFeed.Csm.v1.4.2 CurrentMarketUpdateMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.version = 1
+packet.packetheader.packetlength = 46
+packet.packetheader.sendingtime = 1545339142676
+packet.packetheader.messagecount = 1
+packet.packetheader.firstmsgseqnum = 35792413
+packet.message[0].messageheader.messagelength = 30
+packet.message[0].messageheader.templateid = 12
+packet.message[0].messageheader.messagetype = X
+packet.message[0].messageheader.msgseqnum = 35792413
+packet.message[0].payload = packet.message.payload.currentmarketupdatemessage
+packet.message[0].payload.currentmarketupdatemessage.classkey = 1198620495
+packet.message[0].payload.currentmarketupdatemessage.securityid = 380064036
+packet.message[0].payload.currentmarketupdatemessage.securitytradingstatus = 17
+packet.message[0].payload.currentmarketupdatemessage.pricetype = 3
+packet.message[0].payload.currentmarketupdatemessage.noentries = 1
+packet.message[0].payload.currentmarketupdatemessage.mdentry[0].mdentrytype = 0
+packet.message[0].payload.currentmarketupdatemessage.mdentry[0].mdentrypx.mdentrypxexponent = -2
+packet.message[0].payload.currentmarketupdatemessage.mdentry[0].mdentrypx.mdentrypxmantissa = -148
+packet.message[0].payload.currentmarketupdatemessage.mdentry[0].mdentrysize = 10
+packet.message[0].payload.currentmarketupdatemessage.mdentry[0].mdvolumetype = 0

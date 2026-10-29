@@ -9,6 +9,8 @@
 #include <string_view>
 
 #include "../common/Decimal.hpp"
+#include "../enums/ParticipantIdBuyer.hpp"
+#include "../enums/ParticipantIdSeller.hpp"
 #include "../enums/TradeType.hpp"
 #include "../messages/Message.hpp"
 

@@ -1,0 +1,32 @@
+# Nyse.NyseEquities.ImbalancesFeed.Xdp.v2.1.f ImbalanceMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.packetsize = 83
+packet.packetheader.deliveryflag = 11
+packet.packetheader.messagecount = 1
+packet.packetheader.sequencenumber = 11603
+packet.packetheader.sendtime.seconds = 1506696118
+packet.packetheader.sendtime.nanoseconds = 81369192
+packet.packetheader.sendtime = 1506696118081369192
+packet.message[0].messageheader.messagesize = 67
+packet.message[0].messageheader.messagetype = 105
+packet.message[0].payload = packet.message.payload.imbalancemessage
+packet.message[0].payload.imbalancemessage.sourcetime = 1504814400
+packet.message[0].payload.imbalancemessage.sourcetimens = 106502000
+packet.message[0].payload.imbalancemessage.symbolindex = 44419
+packet.message[0].payload.imbalancemessage.symbolseqnum = 10
+packet.message[0].payload.imbalancemessage.referenceprice = 182200
+packet.message[0].payload.imbalancemessage.pairedqty = 0
+packet.message[0].payload.imbalancemessage.totalimbalanceqty = 0
+packet.message[0].payload.imbalancemessage.marketimbalanceqty = 0
+packet.message[0].payload.imbalancemessage.auctiontime = 1600
+packet.message[0].payload.imbalancemessage.auctiontype = C
+packet.message[0].payload.imbalancemessage.imbalanceside =  
+packet.message[0].payload.imbalancemessage.continuousbookclearingprice = 182200
+packet.message[0].payload.imbalancemessage.closingonlyclearingprice = 182200
+packet.message[0].payload.imbalancemessage.ssrfilingprice = 0
+packet.message[0].payload.imbalancemessage.indicativematchprice = 0
+packet.message[0].payload.imbalancemessage.uppercollar = 0
+packet.message[0].payload.imbalancemessage.lowercollar = 0
+packet.message[0].payload.imbalancemessage.auctionstatus = 0
+packet.message[0].payload.imbalancemessage.freezestatus = 0
+packet.message[0].payload.imbalancemessage.numextensions = 0

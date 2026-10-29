@@ -1,0 +1,21 @@
+# Nyse.NyseEquities.Bbo.Xdp.v2.4.g QuoteMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.packetsize = 54
+packet.packetheader.deliveryflag = 11
+packet.packetheader.messagecount = 1
+packet.packetheader.sequencenumber = 315
+packet.packetheader.sendtime.seconds = 1507047420
+packet.packetheader.sendtime.nanoseconds = 173356314
+packet.packetheader.sendtime = 1507047420173356314
+packet.message[0].messageheader.messagesize = 38
+packet.message[0].messageheader.messagetype = 140
+packet.message[0].payload = packet.message.payload.quotemessage
+packet.message[0].payload.quotemessage.sourcetimens = 54166000
+packet.message[0].payload.quotemessage.symbolindex = 4785
+packet.message[0].payload.quotemessage.symbolseqnum = 6
+packet.message[0].payload.quotemessage.askprice = 46200
+packet.message[0].payload.quotemessage.askvolume = 400
+packet.message[0].payload.quotemessage.bidprice = 46000
+packet.message[0].payload.quotemessage.bidvolume = 12100
+packet.message[0].payload.quotemessage.quotecondition = O
+packet.message[0].payload.quotemessage.rpiindicator =  

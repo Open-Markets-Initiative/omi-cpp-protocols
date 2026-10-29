@@ -31,9 +31,9 @@ class NoteCodesBitField4 {
     bool sm_stressed_market() const;
     void set_sm_stressed_market(bool value);
 
-    // Ew Marketwide Exceptional Circumstance:
-    bool ew_marketwide_exceptional_circumstance() const;
-    void set_ew_marketwide_exceptional_circumstance(bool value);
+    // Ew Market Wide Exceptional Circumstance:
+    bool ew_market_wide_exceptional_circumstance() const;
+    void set_ew_market_wide_exceptional_circumstance(bool value);
 
     // The whole bitfield as its wire integer
     std::uint8_t raw() const;

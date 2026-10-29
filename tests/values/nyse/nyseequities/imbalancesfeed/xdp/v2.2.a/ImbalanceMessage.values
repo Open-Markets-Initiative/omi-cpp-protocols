@@ -1,0 +1,35 @@
+# Nyse.NyseEquities.ImbalancesFeed.Xdp.v2.2.a ImbalanceMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.packetsize = 89
+packet.packetheader.deliveryflag = 11
+packet.packetheader.messagecount = 1
+packet.packetheader.sequencenumber = 30914
+packet.packetheader.sendtime.seconds = 1551790800
+packet.packetheader.sendtime.nanoseconds = 9967029
+packet.packetheader.sendtime = 1551790800009967029
+packet.message[0].messageheader.messagesize = 73
+packet.message[0].messageheader.messagetype = 105
+packet.message[0].payload = packet.message.payload.imbalancemessage
+packet.message[0].payload.imbalancemessage.sourcetime = 1551790800
+packet.message[0].payload.imbalancemessage.sourcetimens = 6783488
+packet.message[0].payload.imbalancemessage.symbolindex = 10000
+packet.message[0].payload.imbalancemessage.symbolseqnum = 2
+packet.message[0].payload.imbalancemessage.referenceprice = 25640000
+packet.message[0].payload.imbalancemessage.pairedqty = 0
+packet.message[0].payload.imbalancemessage.totalimbalanceqty = 0
+packet.message[0].payload.imbalancemessage.marketimbalanceqty = 0
+packet.message[0].payload.imbalancemessage.auctiontime = 930
+packet.message[0].payload.imbalancemessage.auctiontype = M
+packet.message[0].payload.imbalancemessage.imbalanceside =  
+packet.message[0].payload.imbalancemessage.continuousbookclearingprice = 25640000
+packet.message[0].payload.imbalancemessage.closingonlyclearingprice = 0
+packet.message[0].payload.imbalancemessage.ssrfilingprice = 0
+packet.message[0].payload.imbalancemessage.indicativematchprice = 0
+packet.message[0].payload.imbalancemessage.uppercollar = 0
+packet.message[0].payload.imbalancemessage.lowercollar = 0
+packet.message[0].payload.imbalancemessage.auctionstatus = 0
+packet.message[0].payload.imbalancemessage.freezestatus = 0
+packet.message[0].payload.imbalancemessage.numextensions = 0
+packet.message[0].payload.imbalancemessage.unpairedqty = 0
+packet.message[0].payload.imbalancemessage.unpairedside =  
+packet.message[0].payload.imbalancemessage.significantimbalance =  

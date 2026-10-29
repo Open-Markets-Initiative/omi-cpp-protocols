@@ -1,0 +1,15 @@
+# Nasdaq.NsmEquities.TotalView.Itch.v4.0 CrossTradeMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = S032409v4.
+packet.packetheader.sequencenumber = 7208914
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 32
+packet.messages.message[0].messageheader.messagetype = Q
+packet.messages.message[0].payload = packet.messages.message.payload.crosstrademessage
+packet.messages.message[0].payload.crosstrademessage.nanoseconds = 1000000
+packet.messages.message[0].payload.crosstrademessage.crossshares = 0
+packet.messages.message[0].payload.crosstrademessage.stock = QCCO
+packet.messages.message[0].payload.crosstrademessage.crossprice = 0
+packet.messages.message[0].payload.crosstrademessage.matchnumber = 70902
+packet.messages.message[0].payload.crosstrademessage.crosstype = O

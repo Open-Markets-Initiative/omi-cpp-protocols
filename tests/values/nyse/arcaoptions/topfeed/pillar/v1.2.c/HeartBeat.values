@@ -1,0 +1,10 @@
+# Nyse.ArcaOptions.TopFeed.Pillar.v1.2.c HeartBeat: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 16
+packet.packetheader.deliveryflag = 1
+packet.packetheader.numbermsgs = 0
+packet.packetheader.seqnum = 2
+packet.packetheader.sendtime.seconds = 1639201847
+packet.packetheader.sendtime.nanoseconds = 57031936
+packet.packetheader.sendtime = 1639201847057031936
+packet.messages = packet.messages.heartbeat

@@ -242,7 +242,7 @@ struct market_status {
         end_of_morning_session = 19,
         afternoon_session_order_acceptance_time = 21,
         afternoon_session_trading_hours = 22,
-        afternoon_session_preclosing = 23,
+        afternoon_session_pre_closing = 23,
         end_of_afternoon_session = 29,
     };
 
@@ -362,9 +362,9 @@ struct number_of_system_reboots {
 // Order Condition: Indicates the order condition
 struct order_condition {
     enum class type : std::uint8_t {
-        nonconditional = 0,
-        onopen = 2,
-        onclose = 4,
+        non_conditional = 0,
+        on_open = 2,
+        on_close = 4,
         funari = 6,
     };
 

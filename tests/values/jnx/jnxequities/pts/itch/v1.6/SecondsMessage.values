@@ -1,0 +1,16 @@
+# Jnx.JnxEquities.Pts.Itch.v1.6 SecondsMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 1670788904
+packet.packetheader.sequencenumber = 36209
+packet.packetheader.messagecount = 2
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 5
+packet.messages.message[0].messageheader.messagetype = T
+packet.messages.message[0].payload = packet.messages.message.payload.secondsmessage
+packet.messages.message[0].payload.secondsmessage.seconds = 57600
+packet.messages.message[1].messageheader.messagelength = 10
+packet.messages.message[1].messageheader.messagetype = S
+packet.messages.message[1].payload = packet.messages.message.payload.systemeventmessage
+packet.messages.message[1].payload.systemeventmessage.nanoseconds = 5000
+packet.messages.message[1].payload.systemeventmessage.group = DAY
+packet.messages.message[1].payload.systemeventmessage.systemevent = M

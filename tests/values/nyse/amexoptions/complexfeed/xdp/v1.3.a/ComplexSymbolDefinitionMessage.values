@@ -1,0 +1,31 @@
+# Nyse.AmexOptions.ComplexFeed.Xdp.v1.3.a ComplexSymbolDefinitionMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.packetsize = 80
+packet.packetheader.deliveryflag = 11
+packet.packetheader.messagecount = 2
+packet.packetheader.sequencenumber = 136734
+packet.packetheader.sendtime.seconds = 1676559600
+packet.packetheader.sendtime.nanoseconds = 421482000
+packet.packetheader.sendtime = 1676559600421482000
+packet.message[0].messageheader.messagesize = 8
+packet.message[0].messageheader.messagetype = 455
+packet.message[0].payload = packet.message.payload.streamidmessage
+packet.message[0].payload.streamidmessage.streamid = 115
+packet.message[1].messageheader.messagesize = 56
+packet.message[1].messageheader.messagetype = 439
+packet.message[1].payload = packet.message.payload.complexsymboldefinitionmessage
+packet.message[1].payload.complexsymboldefinitionmessage.complexindex = 261333165
+packet.message[1].payload.complexsymboldefinitionmessage.complexsymbol = 8LCID2304760
+packet.message[1].payload.complexsymboldefinitionmessage.channelid = 123
+packet.message[1].payload.complexsymboldefinitionmessage.marketid = 8
+packet.message[1].payload.complexsymboldefinitionmessage.systemid = 7
+packet.message[1].payload.complexsymboldefinitionmessage.streamid = 115
+packet.message[1].payload.complexsymboldefinitionmessage.nooflegs = 2
+packet.message[1].payload.complexsymboldefinitionmessage.legdefinition[0].symbolindex = 260673100
+packet.message[1].payload.complexsymboldefinitionmessage.legdefinition[0].legratioqty = 1
+packet.message[1].payload.complexsymboldefinitionmessage.legdefinition[0].side = S
+packet.message[1].payload.complexsymboldefinitionmessage.legdefinition[0].legsecuritytype = O
+packet.message[1].payload.complexsymboldefinitionmessage.legdefinition[1].symbolindex = 260673151
+packet.message[1].payload.complexsymboldefinitionmessage.legdefinition[1].legratioqty = 1
+packet.message[1].payload.complexsymboldefinitionmessage.legdefinition[1].side = B
+packet.message[1].payload.complexsymboldefinitionmessage.legdefinition[1].legsecuritytype = O

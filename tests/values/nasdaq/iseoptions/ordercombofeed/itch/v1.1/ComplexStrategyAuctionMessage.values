@@ -1,0 +1,27 @@
+# Nasdaq.IseOptions.OrderComboFeed.Itch.v1.1 ComplexStrategyAuctionMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 000008367I
+packet.packetheader.sequencenumber = 344498
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 57
+packet.messages.message[0].messageheader.messagetype = J
+packet.messages.message[0].payload = packet.messages.message.payload.complexstrategyauctionmessage
+packet.messages.message[0].payload.complexstrategyauctionmessage.timestamp = 56898329099705
+packet.messages.message[0].payload.complexstrategyauctionmessage.strategyid = 2065520
+packet.messages.message[0].payload.complexstrategyauctionmessage.auctionid = 1147020
+packet.messages.message[0].payload.complexstrategyauctionmessage.ordertype = L
+packet.messages.message[0].payload.complexstrategyauctionmessage.side = B
+packet.messages.message[0].payload.complexstrategyauctionmessage.price = 0.65
+packet.messages.message[0].payload.complexstrategyauctionmessage.size = 1
+packet.messages.message[0].payload.complexstrategyauctionmessage.execflag = N
+packet.messages.message[0].payload.complexstrategyauctionmessage.ordercapacity = C
+packet.messages.message[0].payload.complexstrategyauctionmessage.scope = L
+packet.messages.message[0].payload.complexstrategyauctionmessage.ownerid = 
+packet.messages.message[0].payload.complexstrategyauctionmessage.giveup = 
+packet.messages.message[0].payload.complexstrategyauctionmessage.cmta = 
+packet.messages.message[0].payload.complexstrategyauctionmessage.auctionevent = U
+packet.messages.message[0].payload.complexstrategyauctionmessage.auctiontype = E
+packet.messages.message[0].payload.complexstrategyauctionmessage.numberofresponses = 1
+packet.messages.message[0].payload.complexstrategyauctionmessage.auctionresponse[0].responseprice = 0.52
+packet.messages.message[0].payload.complexstrategyauctionmessage.auctionresponse[0].responsesize = 4

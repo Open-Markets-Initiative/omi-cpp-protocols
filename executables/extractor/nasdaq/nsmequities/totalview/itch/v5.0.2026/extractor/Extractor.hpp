@@ -377,6 +377,76 @@ inline int sample(const fs::path& in_path, const fs::path& out_dir) {
         if (packets_in_chunk > 1 && !multiple_messages) { multiple_messages = current_wire; }
     };
 
+    // The File tree: FileMessageIterator walks each flow's reassembled bytes.
+    std::unordered_map<packet::TcpFlowKey, FlowBuffer, packet::TcpFlowKey::hash> flows_file_message;
+    packet::TcpReassembler reassembler_file_message;
+    reassembler_file_message.on_data = [&](const packet::TcpFlowKey& key, const std::byte* data, std::size_t len) {
+        auto& flow = flows_file_message[key];
+
+        // Append bytes + record contribution. Merge with the trailing log entry when it's
+        // the same wire frame (out-of-order drains can trigger multiple on_data per process()).
+        flow.bytes.insert(flow.bytes.end(),
+                          reinterpret_cast<const std::uint8_t*>(data),
+                          reinterpret_cast<const std::uint8_t*>(data) + len);
+        if (!flow.wire_log.empty() &&
+            flow.wire_log.back().first.timestamp_ns == current_wire.timestamp_ns) {
+            flow.wire_log.back().second += len;
+        } else {
+            flow.wire_log.emplace_back(current_wire, len);
+        }
+
+        const auto* base = reinterpret_cast<const std::byte*>(flow.bytes.data());
+        nasdaq::nsmequities::totalview::itch::v5_0_2026::FileMessageIterator packets;
+        packets.initialize(base, flow.bytes.size());
+
+        std::size_t pos = 0;
+        std::size_t packets_in_chunk = 0;
+        while (packets.next()) {
+            if (packets.current > packets.end) { break; }   // need more bytes
+
+            const std::size_t begin = pos;
+            pos = static_cast<std::size_t>(packets.current - base);
+            const std::size_t span = pos - begin;
+            if (packets.message > packets.current) { continue; }   // shorter than its header (a null sentinel)
+
+            std::uint64_t id = key_of(packets.message_type);
+            id |= 216172782113783808ull;
+            if (protocol::Branches::name(id) == nullptr) { continue; }   // another tree's packet
+
+            // Per-key sample: a synthetic wire frame around the packet's raw bytes, so the packet sits
+            // at TCP-payload offset 0 and the per-message pcap replays standalone.
+            const auto* bytes = flow.bytes.data() + begin;
+            keep(id, false, 14 + 20 + 20 + span, [&] { return synthesize_wire_frame(current_wire.timestamp_ns, bytes, span); });
+
+            // Reassembly example: the original wire frames of the first packet spanning more than one.
+            if (reassembly_frames.empty()) {
+                std::vector<Captured> contributors;
+                std::size_t walked = 0;
+                for (const auto& [frame, count] : flow.wire_log) {
+                    if (walked >= begin + span) { break; }
+                    if (walked + count > begin) { contributors.push_back(frame); }
+                    walked += count;
+                }
+                if (contributors.size() > 1) { reassembly_frames = std::move(contributors); }
+            }
+
+            ++packets_in_chunk;
+        }
+
+        // Drop consumed bytes from both buffer and contribution log in lock-step.
+        if (pos > 0) {
+            flow.bytes.erase(flow.bytes.begin(), flow.bytes.begin() + static_cast<std::ptrdiff_t>(pos));
+            std::size_t remaining = pos;
+            while (remaining > 0 && !flow.wire_log.empty()) {
+                auto& [frame, count] = flow.wire_log.front();
+                if (count <= remaining) { remaining -= count; flow.wire_log.pop_front(); }
+                else { count -= remaining; remaining = 0; }
+            }
+        }
+
+        if (packets_in_chunk > 1 && !multiple_messages) { multiple_messages = current_wire; }
+    };
+
     while (pcap.advance()) {
         packet::Frame frame(pcap.data(), pcap.length());
         if (!frame.valid()) { continue; }
@@ -389,6 +459,7 @@ inline int sample(const fs::path& in_path, const fs::path& out_dir) {
             current_wire = capture_of(pcap);
             reassembler_client_soup_bin_tcp_packet.process(frame);
             reassembler_server_soup_bin_tcp_packet.process(frame);
+            reassembler_file_message.process(frame);
         }
     }
 

@@ -1,0 +1,15 @@
+# B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0 NegotiateRejectMessage: canonical values of 'packet', read by the model
+stream 0
+packet.simpleopenframe[0].simpleopenframingheader.messagelength = 48
+packet.simpleopenframe[0].simpleopenframingheader.encodingtype = 60240
+packet.simpleopenframe[0].messageheader.blocklength = 36
+packet.simpleopenframe[0].messageheader.templateid = 3
+packet.simpleopenframe[0].messageheader.schemaid = 1
+packet.simpleopenframe[0].messageheader.version = 2
+packet.simpleopenframe[0].payload = packet.simpleopenframe.payload.negotiaterejectmessage
+packet.simpleopenframe[0].payload.negotiaterejectmessage.sessionid = 100000008
+packet.simpleopenframe[0].payload.negotiaterejectmessage.sessionverid = 1714479416854
+packet.simpleopenframe[0].payload.negotiaterejectmessage.requesttimestamp = 1714479417479000000
+packet.simpleopenframe[0].payload.negotiaterejectmessage.enteringfirmoptional = 45
+packet.simpleopenframe[0].payload.negotiaterejectmessage.negotiationrejectcode = 3
+packet.simpleopenframe[0].payload.negotiaterejectmessage.currentsessionverid = 1714474128039

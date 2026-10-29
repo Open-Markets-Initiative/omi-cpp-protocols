@@ -1,0 +1,24 @@
+# Nyse.NyseEquities.IntegratedFeedRetransmission.Pillar.v2.5.g NonDisplayedTradeMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 49
+packet.packetheader.deliveryflag = 13
+packet.packetheader.numbermsgs = 1
+packet.packetheader.seqnum = 471861
+packet.packetheader.sendtime.seconds = 1692711002
+packet.packetheader.sendtime.nanoseconds = 908615000
+packet.packetheader.sendtime = 1692711002908615000
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 33
+packet.messages.message[0].messageheader.messagetype = 110
+packet.messages.message[0].payload = packet.messages.message.payload.nondisplayedtrademessage
+packet.messages.message[0].payload.nondisplayedtrademessage.sourcetimens = 576898560
+packet.messages.message[0].payload.nondisplayedtrademessage.symbolindex = 7284
+packet.messages.message[0].payload.nondisplayedtrademessage.symbolseqnum = 4030
+packet.messages.message[0].payload.nondisplayedtrademessage.tradeid = 538987
+packet.messages.message[0].payload.nondisplayedtrademessage.price = 61020000
+packet.messages.message[0].payload.nondisplayedtrademessage.volume = 1
+packet.messages.message[0].payload.nondisplayedtrademessage.printableflag = 1
+packet.messages.message[0].payload.nondisplayedtrademessage.tradecond1 = @
+packet.messages.message[0].payload.nondisplayedtrademessage.tradecond2 = F
+packet.messages.message[0].payload.nondisplayedtrademessage.tradecond3 =  
+packet.messages.message[0].payload.nondisplayedtrademessage.tradecond4 = I

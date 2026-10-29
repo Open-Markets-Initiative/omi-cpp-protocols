@@ -1,0 +1,12 @@
+# Nasdaq.IseOptions.TopComboQuoteFeed.Itch.v1.0 StrategyOpenClosedMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 000008367I
+packet.packetheader.sequencenumber = 353806
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 12
+packet.messages.message[0].messageheader.messagetype = O
+packet.messages.message[0].payload = packet.messages.message.payload.strategyopenclosedmessage
+packet.messages.message[0].payload.strategyopenclosedmessage.timestamp = 53814886457152
+packet.messages.message[0].payload.strategyopenclosedmessage.strategyid = 2106008
+packet.messages.message[0].payload.strategyopenclosedmessage.openstate = Y

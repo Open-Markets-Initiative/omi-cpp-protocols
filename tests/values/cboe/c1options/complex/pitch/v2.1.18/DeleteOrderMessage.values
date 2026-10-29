@@ -1,0 +1,12 @@
+# Cboe.C1Options.Complex.Pitch.v2.1.18 DeleteOrderMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.length = 22
+packet.packetheader.messagecount = 1
+packet.packetheader.unit = 33
+packet.packetheader.sequence = 10033418
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 14
+packet.messages.message[0].messageheader.messagetype = 41
+packet.messages.message[0].payload = packet.messages.message.payload.deleteordermessage
+packet.messages.message[0].payload.deleteordermessage.timeoffset = 734722000
+packet.messages.message[0].payload.deleteordermessage.orderid = 4366474235795639260

@@ -230,13 +230,13 @@ inline std::ostream& operator<<(std::ostream& os, const statistics_message& msg)
        << ",instrument=" << msg.fields.instrument.get().value()
        << ",source_venue=\"" << gtp_level2mbo::source_venue::to_string(msg.fields.source_venue.get().value()) << '"'
        << ",volume=" << msg.fields.volume.get().value()
-       << ",volume_onbook_only=" << msg.fields.volume_onbook_only.get().value()
+       << ",volume_on_book_only=" << msg.fields.volume_on_book_only.get().value()
        << ",vwap=" << msg.fields.vwap.get().value()
-       << ",vwap_onbook_only=" << msg.fields.vwap_onbook_only.get().value()
+       << ",vwap_on_book_only=" << msg.fields.vwap_on_book_only.get().value()
        << ",number_of_trades=" << msg.fields.number_of_trades.get().value()
-       << ",number_of_trades_onbook_only=" << msg.fields.number_of_trades_onbook_only.get().value()
+       << ",number_of_trades_on_book_only=" << msg.fields.number_of_trades_on_book_only.get().value()
        << ",turnover=" << msg.fields.turnover.get().value()
-       << ",turnover_onbook_only=" << msg.fields.turnover_onbook_only.get().value()
+       << ",turnover_on_book_only=" << msg.fields.turnover_on_book_only.get().value()
        ;
     return os;
 }

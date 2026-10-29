@@ -1,0 +1,32 @@
+# Nyse.AmexEquities.IntegratedFeed.Xdp.v2.1.g ImbalanceMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.packetsize = 83
+packet.packetheader.deliveryflag = 11
+packet.packetheader.messagecount = 1
+packet.packetheader.sequencenumber = 3825213
+packet.packetheader.sendtime.seconds = 1506695588
+packet.packetheader.sendtime.nanoseconds = 380123886
+packet.packetheader.sendtime = 1506695588380123886
+packet.message[0].messageheader.messagesize = 67
+packet.message[0].messageheader.messagetype = 105
+packet.message[0].payload = packet.message.payload.imbalancemessage
+packet.message[0].payload.imbalancemessage.sourcetime = 1504123200
+packet.message[0].payload.imbalancemessage.sourcetimens = 69952000
+packet.message[0].payload.imbalancemessage.symbolindex = 1387
+packet.message[0].payload.imbalancemessage.symbolseqnum = 13902
+packet.message[0].payload.imbalancemessage.referenceprice = 252900
+packet.message[0].payload.imbalancemessage.pairedqty = 15600
+packet.message[0].payload.imbalancemessage.totalimbalanceqty = 500
+packet.message[0].payload.imbalancemessage.marketimbalanceqty = 0
+packet.message[0].payload.imbalancemessage.auctiontime = 1600
+packet.message[0].payload.imbalancemessage.auctiontype = C
+packet.message[0].payload.imbalancemessage.imbalanceside = B
+packet.message[0].payload.imbalancemessage.continuousbookclearingprice = 252900
+packet.message[0].payload.imbalancemessage.closingonlyclearingprice = 0
+packet.message[0].payload.imbalancemessage.ssrfilingprice = 0
+packet.message[0].payload.imbalancemessage.indicativematchprice = 0
+packet.message[0].payload.imbalancemessage.uppercollar = 0
+packet.message[0].payload.imbalancemessage.lowercollar = 0
+packet.message[0].payload.imbalancemessage.auctionstatus = 0
+packet.message[0].payload.imbalancemessage.freezestatus = 0
+packet.message[0].payload.imbalancemessage.numextensions = 0

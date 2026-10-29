@@ -18,7 +18,7 @@ struct security_status {
         short_sale_restriction_activated_day_1 = 'A',
         short_sale_restriction_continued_day_2 = 'C',
         short_sale_restriction_deactivated = 'D',
-        preopening = 'P',
+        pre_opening = 'P',
         early_session = 'E',
         core_session = 'O',
         late_session_non_nyse_only = 'L',
@@ -32,8 +32,8 @@ struct security_status {
         {"Core Session", enum_type::core_session},
         {"Early Session", enum_type::early_session},
         {"Late Session Non Nyse Only", enum_type::late_session_non_nyse_only},
+        {"Pre Opening", enum_type::pre_opening},
         {"Pre Opening Price Indication", enum_type::pre_opening_price_indication},
-        {"Preopening", enum_type::preopening},
         {"Price Indication", enum_type::price_indication},
         {"Resume", enum_type::resume},
         {"Short Sale Restriction Activated Day 1", enum_type::short_sale_restriction_activated_day_1},
@@ -49,7 +49,7 @@ struct security_status {
             case enum_type::short_sale_restriction_activated_day_1: return "Short Sale Restriction Activated Day 1";
             case enum_type::short_sale_restriction_continued_day_2: return "Short Sale Restriction Continued Day 2";
             case enum_type::short_sale_restriction_deactivated: return "Short Sale Restriction Deactivated";
-            case enum_type::preopening: return "Preopening";
+            case enum_type::pre_opening: return "Pre Opening";
             case enum_type::early_session: return "Early Session";
             case enum_type::core_session: return "Core Session";
             case enum_type::late_session_non_nyse_only: return "Late Session Non Nyse Only";

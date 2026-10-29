@@ -98,6 +98,7 @@ class EquityAndIndexLastSaleMessage : public EquityAndIndexLastSaleMessagePayloa
 
     // EquityAndIndexLastSaleMessagePayload
     EquityAndIndexLastSaleMessagePayloadCode type() const override;
+    void set_type(EquityAndIndexLastSaleMessagePayloadCode value);
     std::string_view name() const override;
     std::size_t decode(const std::byte* data, std::size_t length) override;
     std::size_t encode(std::byte* data, std::size_t capacity) const override;
@@ -124,6 +125,8 @@ class EquityAndIndexLastSaleMessage : public EquityAndIndexLastSaleMessagePayloa
     Decimal premium_price_{};
     std::uint32_t trade_identifier_{};
     std::array<std::byte, 4> reserved_4_{};
+    // The code it was read with, of the codes selecting it
+    EquityAndIndexLastSaleMessagePayloadCode type_ = message_type;
 };
 
 } // namespace siac::opra::output::obi::v6_2

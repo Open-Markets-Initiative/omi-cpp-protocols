@@ -3,7 +3,7 @@
 #include "../types/Nanoseconds.hpp"
 #include "../types/EventCode.hpp"
 #include "../types/Version.hpp"
-#include "../types/Subversion.hpp"
+#include "../types/SubVersion.hpp"
 #include "../structs/MessageHeader.hpp"
 
 namespace nasdaq::phlxoptions::topofmarket::itch::v3_4 {
@@ -16,7 +16,7 @@ struct SystemEventMessage {
     Nanoseconds nanoseconds;
     EventCode event_code;
     Version version;
-    Subversion subversion;
+    SubVersion sub_version;
 
     // the type code that selects this message in the dispatch switch
     static constexpr char message_type = 'S';

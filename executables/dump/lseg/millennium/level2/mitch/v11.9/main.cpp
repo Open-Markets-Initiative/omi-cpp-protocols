@@ -6,6 +6,7 @@
 #include <cstdint>
 #include <cstdio>
 #include <iostream>
+#include <optional>
 #include <string>
 #include <utility>
 #include <vector>
@@ -53,8 +54,21 @@ std::size_t whole(const packet::Frame& frame, std::size_t& undecodable, Printer 
 
 int main(int argc, char** argv) {
     if (argc < 2) {
-        std::fprintf(stderr, "usage: %s <capture.pcap>\n", argv[0]);
+        std::fprintf(stderr, "usage: %s <capture.pcap> [--day yyyymmdd]\n", argv[0]);
         return 2;
+    }
+
+    // the day each time of day counted from midnight is printed on, as the instant (--day yyyymmdd)
+    if (argc > 2) {
+        std::optional<protocol::calendar::Day> day;
+        if (argc == 4 && std::string{ argv[2] } == "--day") {
+            day = protocol::calendar::Day::parse(argv[3]);
+        }
+        if (!day) {
+            std::fprintf(stderr, "usage: %s <capture.pcap> [--day yyyymmdd]\n", argv[0]);
+            return 2;
+        }
+        std::cout << protocol::calendar::on(*day);
     }
 
     std::vector<std::pair<std::string, std::int64_t>> sources;

@@ -16,7 +16,7 @@
 #include "types/RoundLotSize.hpp"
 #include "types/RoundLotsOnly.hpp"
 #include "types/IssueClassification.hpp"
-#include "types/IssueSubtype.hpp"
+#include "types/IssueSubType.hpp"
 #include "types/Authenticity.hpp"
 #include "types/ShortSaleThresholdIndicator.hpp"
 #include "types/IpoFlag.hpp"

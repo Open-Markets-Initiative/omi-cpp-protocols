@@ -1,0 +1,26 @@
+# Nyse.NyseEquities.IntegratedFeed.Xdp.v2.1.g SecurityStatusMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.packetsize = 62
+packet.packetheader.deliveryflag = 11
+packet.packetheader.messagecount = 1
+packet.packetheader.sequencenumber = 238
+packet.packetheader.sendtime.seconds = 1506694823
+packet.packetheader.sendtime.nanoseconds = 135030940
+packet.packetheader.sendtime = 1506694823135030940
+packet.message[0].messageheader.messagesize = 46
+packet.message[0].messageheader.messagetype = 34
+packet.message[0].payload = packet.message.payload.securitystatusmessage
+packet.message[0].payload.securitystatusmessage.sourcetime = 1504068651
+packet.message[0].payload.securitystatusmessage.sourcetimens = 766826000
+packet.message[0].payload.securitystatusmessage.symbolindex = 1169
+packet.message[0].payload.securitystatusmessage.symbolseqnum = 1
+packet.message[0].payload.securitystatusmessage.securitystatus = P
+packet.message[0].payload.securitystatusmessage.haltcondition =  
+packet.message[0].payload.securitystatusmessage.price1 = 0
+packet.message[0].payload.securitystatusmessage.price2 = 0
+packet.message[0].payload.securitystatusmessage.ssrtriggeringexchangeid = 
+packet.message[0].payload.securitystatusmessage.ssrtriggeringvolume = 0
+packet.message[0].payload.securitystatusmessage.time = (null)
+packet.message[0].payload.securitystatusmessage.ssrstate = ~
+packet.message[0].payload.securitystatusmessage.marketstate = P
+packet.message[0].payload.securitystatusmessage.sessionstate =  

@@ -14,7 +14,7 @@ enum class SecurityStatus : char {
     ShortSaleRestrictionActivatedDay1 = 'A', // Short Sale Restriction Activated Day 1
     ShortSaleRestrictionContinuedDay2 = 'C', // Short Sale Restriction Continued Day 2
     ShortSaleRestrictionDeactivated = 'D',   // Short Sale Restriction Deactivated
-    Preopening = 'P',                        // Preopening
+    PreOpening = 'P',                        // Pre Opening
     BeginAcceptingOrders = 'B',              // Begin Accepting Orders
     EarlySession = 'E',                      // Early Session
     CoreSession = 'O',                       // Core Session

@@ -62,7 +62,9 @@ namespace variant_dailytaqnbbo_v4_3 {
         if (!fields[14].empty()) {  // Best Bid Quote Condition
             row.best_bid_quote_condition.set(fields[14]);
         }
-        row.best_bid_exchange.set(fields[15]);  // Best_Bid_Exchange
+        if (!fields[15].empty()) {  // Best_Bid_Exchange
+            row.best_bid_exchange.set(fields[15]);
+        }
         row.best_bid_price.data = ::scaled::delimited::decimal(fields[16], 6, "Best_Bid_Price");  // Best_Bid_Price
         row.best_bid_size.set(::scaled::delimited::integer<std::int64_t>(fields[17], "Best_Bid_Size"));  // Best_Bid_Size
         if (!fields[18].empty()) {  // Best_Bid_FINRA_Market_Maker_ID
@@ -71,7 +73,9 @@ namespace variant_dailytaqnbbo_v4_3 {
         if (!fields[19].empty()) {  // Best_Offer_Quote_Condition
             row.best_offer_quote_condition.set(fields[19]);
         }
-        row.best_offer_exchange.set(fields[20]);  // Best_Offer_Exchange
+        if (!fields[20].empty()) {  // Best_Offer_Exchange
+            row.best_offer_exchange.set(fields[20]);
+        }
         row.best_offer_price.data = ::scaled::delimited::decimal(fields[21], 6, "Best_Offer_Price");  // Best_Offer_Price
         row.best_offer_size.set(::scaled::delimited::integer<std::int64_t>(fields[22], "Best_Offer_Size"));  // Best_Offer_Size
         if (!fields[23].empty()) {  // Best_Offer_FINRA_Market_Maker_ID

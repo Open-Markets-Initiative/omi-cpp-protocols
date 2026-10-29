@@ -34,7 +34,7 @@ class SystemEventMessage {
 
     std::uint8_t version() const { return wire::read_u8(at(5)); }
 
-    std::uint8_t subversion() const { return wire::read_u8(at(6)); }
+    std::uint8_t sub_version() const { return wire::read_u8(at(6)); }
 
     void print(std::ostream& out) const {
         out << "SystemEventMessage{";
@@ -44,8 +44,8 @@ class SystemEventMessage {
         out << event_code();
         out << ", version=";
         out << static_cast<int>(version());
-        out << ", subversion=";
-        out << static_cast<int>(subversion());
+        out << ", sub_version=";
+        out << static_cast<int>(sub_version());
         out << '}';
     }
 

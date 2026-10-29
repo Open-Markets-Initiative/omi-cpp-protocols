@@ -1,0 +1,17 @@
+# Nyse.NyseEquities.IntegratedFeedRetransmission.Pillar.v2.5.g SymbolClearMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 36
+packet.packetheader.deliveryflag = 15
+packet.packetheader.numbermsgs = 1
+packet.packetheader.seqnum = 3
+packet.packetheader.sendtime.seconds = 1692684308
+packet.packetheader.sendtime.nanoseconds = 729314000
+packet.packetheader.sendtime = 1692684308729314000
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 20
+packet.messages.message[0].messageheader.messagetype = 32
+packet.messages.message[0].payload = packet.messages.message.payload.symbolclearmessage
+packet.messages.message[0].payload.symbolclearmessage.sourcetime = 1692678441
+packet.messages.message[0].payload.symbolclearmessage.sourcetimens = 490365952
+packet.messages.message[0].payload.symbolclearmessage.symbolindex = 10067
+packet.messages.message[0].payload.symbolclearmessage.nextsourceseqnum = 1

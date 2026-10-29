@@ -1,0 +1,13 @@
+# B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0 RetransmissionMessage: canonical values of 'packet', read by the model
+stream 0
+packet.simpleopenframe[0].simpleopenframingheader.messagelength = 32
+packet.simpleopenframe[0].simpleopenframingheader.encodingtype = 60240
+packet.simpleopenframe[0].messageheader.blocklength = 20
+packet.simpleopenframe[0].messageheader.templateid = 13
+packet.simpleopenframe[0].messageheader.schemaid = 1
+packet.simpleopenframe[0].messageheader.version = 2
+packet.simpleopenframe[0].payload = packet.simpleopenframe.payload.retransmissionmessage
+packet.simpleopenframe[0].payload.retransmissionmessage.sessionid = 100000008
+packet.simpleopenframe[0].payload.retransmissionmessage.requesttimestamp = 1714482078377000000
+packet.simpleopenframe[0].payload.retransmissionmessage.nextseqno = 1164
+packet.simpleopenframe[0].payload.retransmissionmessage.count = 5

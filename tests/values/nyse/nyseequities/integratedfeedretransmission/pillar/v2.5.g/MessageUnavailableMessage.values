@@ -1,0 +1,17 @@
+# Nyse.NyseEquities.IntegratedFeedRetransmission.Pillar.v2.5.g MessageUnavailableMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 30
+packet.packetheader.deliveryflag = 21
+packet.packetheader.numbermsgs = 1
+packet.packetheader.seqnum = 753354
+packet.packetheader.sendtime.seconds = 1692711301
+packet.packetheader.sendtime.nanoseconds = 128063000
+packet.packetheader.sendtime = 1692711301128063000
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 14
+packet.messages.message[0].messageheader.messagetype = 31
+packet.messages.message[0].payload = packet.messages.message.payload.messageunavailablemessage
+packet.messages.message[0].payload.messageunavailablemessage.beginseqnum = 753354
+packet.messages.message[0].payload.messageunavailablemessage.endseqnum = 753354
+packet.messages.message[0].payload.messageunavailablemessage.productid = 11
+packet.messages.message[0].payload.messageunavailablemessage.channelid = 55

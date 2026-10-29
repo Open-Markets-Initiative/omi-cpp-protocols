@@ -51,51 +51,51 @@ struct Security {
     // Specialist_Panel: text; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::string_view> specialist_panel;
     // TradedOnNYSEMKT: an integer
-    ::scaled::delimited::values::Required<std::int64_t> tradedonnysemkt;
+    ::scaled::delimited::values::Required<std::int64_t> traded_on_nysemkt;
     // TradedOnNASDAQBX: an integer
-    ::scaled::delimited::values::Required<std::int64_t> tradedonnasdaqbx;
+    ::scaled::delimited::values::Required<std::int64_t> traded_on_nasdaqbx;
     // TradedOnNSX: an integer
-    ::scaled::delimited::values::Required<std::int64_t> tradedonnsx;
+    ::scaled::delimited::values::Required<std::int64_t> traded_on_nsx;
     // TradedOnFINRA: an integer
-    ::scaled::delimited::values::Required<std::int64_t> tradedonfinra;
+    ::scaled::delimited::values::Required<std::int64_t> traded_on_finra;
     // TradedOnISE: an integer
-    ::scaled::delimited::values::Required<std::int64_t> tradedonise;
+    ::scaled::delimited::values::Required<std::int64_t> traded_on_ise;
     // TradedOnEdgeA: an integer
-    ::scaled::delimited::values::Required<std::int64_t> tradedonedgea;
+    ::scaled::delimited::values::Required<std::int64_t> traded_on_edge_a;
     // TradedOnEdgeX: an integer
-    ::scaled::delimited::values::Required<std::int64_t> tradedonedgex;
+    ::scaled::delimited::values::Required<std::int64_t> traded_on_edge_x;
     // TradedOnNYSETexas: an integer
-    ::scaled::delimited::values::Required<std::int64_t> tradedonnysetexas;
+    ::scaled::delimited::values::Required<std::int64_t> traded_on_nyse_texas;
     // TradedOnNYSE: an integer
-    ::scaled::delimited::values::Required<std::int64_t> tradedonnyse;
+    ::scaled::delimited::values::Required<std::int64_t> traded_on_nyse;
     // TradedOnArca: an integer
-    ::scaled::delimited::values::Required<std::int64_t> tradedonarca;
+    ::scaled::delimited::values::Required<std::int64_t> traded_on_arca;
     // TradedOnNasdaq: an integer
-    ::scaled::delimited::values::Required<std::int64_t> tradedonnasdaq;
+    ::scaled::delimited::values::Required<std::int64_t> traded_on_nasdaq;
     // TradedOnCBOE: an integer
-    ::scaled::delimited::values::Required<std::int64_t> tradedoncboe;
+    ::scaled::delimited::values::Required<std::int64_t> traded_on_cboe;
     // TradedOnPSX: an integer
-    ::scaled::delimited::values::Required<std::int64_t> tradedonpsx;
+    ::scaled::delimited::values::Required<std::int64_t> traded_on_psx;
     // TradedOnBATSY: an integer
-    ::scaled::delimited::values::Required<std::int64_t> tradedonbatsy;
+    ::scaled::delimited::values::Required<std::int64_t> traded_on_batsy;
     // TradedOnBATS: an integer
-    ::scaled::delimited::values::Required<std::int64_t> tradedonbats;
+    ::scaled::delimited::values::Required<std::int64_t> traded_on_bats;
     // TradedOnIEX: an integer
-    ::scaled::delimited::values::Required<std::int64_t> tradedoniex;
+    ::scaled::delimited::values::Required<std::int64_t> traded_on_iex;
     // Tick_Pilot_Indicator: text; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::string_view> tick_pilot_indicator;
     // Effective_Date: a date, days since 1970-01-01; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::int32_t> effective_date;
     // TradedOnLTSE: an integer
-    ::scaled::delimited::values::Required<std::int64_t> tradedonltse;
+    ::scaled::delimited::values::Required<std::int64_t> traded_on_ltse;
     // TradedOnMEMX: an integer
-    ::scaled::delimited::values::Required<std::int64_t> tradedonmemx;
+    ::scaled::delimited::values::Required<std::int64_t> traded_on_memx;
     // TradedOnMIAX: an integer
-    ::scaled::delimited::values::Required<std::int64_t> tradedonmiax;
+    ::scaled::delimited::values::Required<std::int64_t> traded_on_miax;
     // TradedOn24X: an integer
-    ::scaled::delimited::values::Required<std::int64_t> tradedon24x;
+    ::scaled::delimited::values::Required<std::int64_t> traded_on_24x;
     // TradedOnTXSE: an integer
-    ::scaled::delimited::values::Required<std::int64_t> tradedontxse;
+    ::scaled::delimited::values::Required<std::int64_t> traded_on_txse;
 
     // every field emptied: a row is reset before a line is read onto it
     void reset() {
@@ -117,29 +117,29 @@ struct Security {
         specialist_clearing_number.reset();
         specialist_post_number.reset();
         specialist_panel.reset();
-        tradedonnysemkt.reset();
-        tradedonnasdaqbx.reset();
-        tradedonnsx.reset();
-        tradedonfinra.reset();
-        tradedonise.reset();
-        tradedonedgea.reset();
-        tradedonedgex.reset();
-        tradedonnysetexas.reset();
-        tradedonnyse.reset();
-        tradedonarca.reset();
-        tradedonnasdaq.reset();
-        tradedoncboe.reset();
-        tradedonpsx.reset();
-        tradedonbatsy.reset();
-        tradedonbats.reset();
-        tradedoniex.reset();
+        traded_on_nysemkt.reset();
+        traded_on_nasdaqbx.reset();
+        traded_on_nsx.reset();
+        traded_on_finra.reset();
+        traded_on_ise.reset();
+        traded_on_edge_a.reset();
+        traded_on_edge_x.reset();
+        traded_on_nyse_texas.reset();
+        traded_on_nyse.reset();
+        traded_on_arca.reset();
+        traded_on_nasdaq.reset();
+        traded_on_cboe.reset();
+        traded_on_psx.reset();
+        traded_on_batsy.reset();
+        traded_on_bats.reset();
+        traded_on_iex.reset();
         tick_pilot_indicator.reset();
         effective_date.reset();
-        tradedonltse.reset();
-        tradedonmemx.reset();
-        tradedonmiax.reset();
-        tradedon24x.reset();
-        tradedontxse.reset();
+        traded_on_ltse.reset();
+        traded_on_memx.reset();
+        traded_on_miax.reset();
+        traded_on_24x.reset();
+        traded_on_txse.reset();
     }
 
     // the row as name=value, a time of day on the stream's print day as the instant, ISO 8601 UTC
@@ -181,52 +181,52 @@ struct Security {
         ::scaled::delimited::values::print(out, specialist_post_number, ::scaled::delimited::values::integer);
         out << ", specialist_panel=";
         ::scaled::delimited::values::print(out, specialist_panel, ::scaled::delimited::values::text);
-        out << ", tradedonnysemkt=";
-        ::scaled::delimited::values::print(out, tradedonnysemkt, ::scaled::delimited::values::integer);
-        out << ", tradedonnasdaqbx=";
-        ::scaled::delimited::values::print(out, tradedonnasdaqbx, ::scaled::delimited::values::integer);
-        out << ", tradedonnsx=";
-        ::scaled::delimited::values::print(out, tradedonnsx, ::scaled::delimited::values::integer);
-        out << ", tradedonfinra=";
-        ::scaled::delimited::values::print(out, tradedonfinra, ::scaled::delimited::values::integer);
-        out << ", tradedonise=";
-        ::scaled::delimited::values::print(out, tradedonise, ::scaled::delimited::values::integer);
-        out << ", tradedonedgea=";
-        ::scaled::delimited::values::print(out, tradedonedgea, ::scaled::delimited::values::integer);
-        out << ", tradedonedgex=";
-        ::scaled::delimited::values::print(out, tradedonedgex, ::scaled::delimited::values::integer);
-        out << ", tradedonnysetexas=";
-        ::scaled::delimited::values::print(out, tradedonnysetexas, ::scaled::delimited::values::integer);
-        out << ", tradedonnyse=";
-        ::scaled::delimited::values::print(out, tradedonnyse, ::scaled::delimited::values::integer);
-        out << ", tradedonarca=";
-        ::scaled::delimited::values::print(out, tradedonarca, ::scaled::delimited::values::integer);
-        out << ", tradedonnasdaq=";
-        ::scaled::delimited::values::print(out, tradedonnasdaq, ::scaled::delimited::values::integer);
-        out << ", tradedoncboe=";
-        ::scaled::delimited::values::print(out, tradedoncboe, ::scaled::delimited::values::integer);
-        out << ", tradedonpsx=";
-        ::scaled::delimited::values::print(out, tradedonpsx, ::scaled::delimited::values::integer);
-        out << ", tradedonbatsy=";
-        ::scaled::delimited::values::print(out, tradedonbatsy, ::scaled::delimited::values::integer);
-        out << ", tradedonbats=";
-        ::scaled::delimited::values::print(out, tradedonbats, ::scaled::delimited::values::integer);
-        out << ", tradedoniex=";
-        ::scaled::delimited::values::print(out, tradedoniex, ::scaled::delimited::values::integer);
+        out << ", traded_on_nysemkt=";
+        ::scaled::delimited::values::print(out, traded_on_nysemkt, ::scaled::delimited::values::integer);
+        out << ", traded_on_nasdaqbx=";
+        ::scaled::delimited::values::print(out, traded_on_nasdaqbx, ::scaled::delimited::values::integer);
+        out << ", traded_on_nsx=";
+        ::scaled::delimited::values::print(out, traded_on_nsx, ::scaled::delimited::values::integer);
+        out << ", traded_on_finra=";
+        ::scaled::delimited::values::print(out, traded_on_finra, ::scaled::delimited::values::integer);
+        out << ", traded_on_ise=";
+        ::scaled::delimited::values::print(out, traded_on_ise, ::scaled::delimited::values::integer);
+        out << ", traded_on_edge_a=";
+        ::scaled::delimited::values::print(out, traded_on_edge_a, ::scaled::delimited::values::integer);
+        out << ", traded_on_edge_x=";
+        ::scaled::delimited::values::print(out, traded_on_edge_x, ::scaled::delimited::values::integer);
+        out << ", traded_on_nyse_texas=";
+        ::scaled::delimited::values::print(out, traded_on_nyse_texas, ::scaled::delimited::values::integer);
+        out << ", traded_on_nyse=";
+        ::scaled::delimited::values::print(out, traded_on_nyse, ::scaled::delimited::values::integer);
+        out << ", traded_on_arca=";
+        ::scaled::delimited::values::print(out, traded_on_arca, ::scaled::delimited::values::integer);
+        out << ", traded_on_nasdaq=";
+        ::scaled::delimited::values::print(out, traded_on_nasdaq, ::scaled::delimited::values::integer);
+        out << ", traded_on_cboe=";
+        ::scaled::delimited::values::print(out, traded_on_cboe, ::scaled::delimited::values::integer);
+        out << ", traded_on_psx=";
+        ::scaled::delimited::values::print(out, traded_on_psx, ::scaled::delimited::values::integer);
+        out << ", traded_on_batsy=";
+        ::scaled::delimited::values::print(out, traded_on_batsy, ::scaled::delimited::values::integer);
+        out << ", traded_on_bats=";
+        ::scaled::delimited::values::print(out, traded_on_bats, ::scaled::delimited::values::integer);
+        out << ", traded_on_iex=";
+        ::scaled::delimited::values::print(out, traded_on_iex, ::scaled::delimited::values::integer);
         out << ", tick_pilot_indicator=";
         ::scaled::delimited::values::print(out, tick_pilot_indicator, ::scaled::delimited::values::text);
         out << ", effective_date=";
         ::scaled::delimited::values::print(out, effective_date, ::scaled::delimited::values::date);
-        out << ", tradedonltse=";
-        ::scaled::delimited::values::print(out, tradedonltse, ::scaled::delimited::values::integer);
-        out << ", tradedonmemx=";
-        ::scaled::delimited::values::print(out, tradedonmemx, ::scaled::delimited::values::integer);
-        out << ", tradedonmiax=";
-        ::scaled::delimited::values::print(out, tradedonmiax, ::scaled::delimited::values::integer);
-        out << ", tradedon24x=";
-        ::scaled::delimited::values::print(out, tradedon24x, ::scaled::delimited::values::integer);
-        out << ", tradedontxse=";
-        ::scaled::delimited::values::print(out, tradedontxse, ::scaled::delimited::values::integer);
+        out << ", traded_on_ltse=";
+        ::scaled::delimited::values::print(out, traded_on_ltse, ::scaled::delimited::values::integer);
+        out << ", traded_on_memx=";
+        ::scaled::delimited::values::print(out, traded_on_memx, ::scaled::delimited::values::integer);
+        out << ", traded_on_miax=";
+        ::scaled::delimited::values::print(out, traded_on_miax, ::scaled::delimited::values::integer);
+        out << ", traded_on_24x=";
+        ::scaled::delimited::values::print(out, traded_on_24x, ::scaled::delimited::values::integer);
+        out << ", traded_on_txse=";
+        ::scaled::delimited::values::print(out, traded_on_txse, ::scaled::delimited::values::integer);
         out << '}';
     }
 };

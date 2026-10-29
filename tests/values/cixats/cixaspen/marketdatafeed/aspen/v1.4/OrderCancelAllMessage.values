@@ -1,0 +1,11 @@
+# CixAts.CixAspen.MarketDataFeed.Aspen.v1.4 OrderCancelAllMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.marketdayidentifier = 20676
+packet.packetheader.feedidentifier = W
+packet.packetheader.sequence = 8327
+packet.packetheader.count = 1
+packet.message[0].messageheader.length = 17
+packet.message[0].messageheader.messagetype = G
+packet.message[0].payload = packet.message.payload.ordercancelallmessage
+packet.message[0].payload.ordercancelallmessage.timestamp = 1786455806891526572
+packet.message[0].payload.ordercancelallmessage.orderid = 59672753787206139

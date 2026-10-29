@@ -27,9 +27,9 @@ class NoteCodesBitField5 {
     bool da_digital_asset() const;
     void set_da_digital_asset(bool value);
 
-    // Kn Knockout Buy Back Into Next Trading Day:
-    bool kn_knockout_buy_back_into_next_trading_day() const;
-    void set_kn_knockout_buy_back_into_next_trading_day(bool value);
+    // Kn Knock Out Buy Back Into Next Trading Day:
+    bool kn_knock_out_buy_back_into_next_trading_day() const;
+    void set_kn_knock_out_buy_back_into_next_trading_day(bool value);
 
     // The whole bitfield as its wire integer
     std::uint8_t raw() const;

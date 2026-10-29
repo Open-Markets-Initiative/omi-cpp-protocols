@@ -96,7 +96,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".messagedata.quoteupdatemessage.asksize"] = canonical::number((*message).ask_size());
         } else if (const auto* message = dynamic_cast<const protocol::TradeReportMessage*>(each.message())) {
             values[entry + ".messagedata"] = "packet.messages.message.messagedata.tradereportmessage";
-            values[entry + ".messagedata.tradereportmessage.saleconditionflags.singlepricecrosstrade"] = canonical::number(static_cast<std::uint64_t>((*message).sale_condition_flags().singleprice_cross_trade()));
+            values[entry + ".messagedata.tradereportmessage.saleconditionflags.singlepricecrosstrade"] = canonical::number(static_cast<std::uint64_t>((*message).sale_condition_flags().single_price_cross_trade()));
             values[entry + ".messagedata.tradereportmessage.saleconditionflags.tradethroughexempt"] = canonical::number(static_cast<std::uint64_t>((*message).sale_condition_flags().trade_through_exempt()));
             values[entry + ".messagedata.tradereportmessage.saleconditionflags.oddlot"] = canonical::number(static_cast<std::uint64_t>((*message).sale_condition_flags().odd_lot()));
             values[entry + ".messagedata.tradereportmessage.saleconditionflags.extendedhours"] = canonical::number(static_cast<std::uint64_t>((*message).sale_condition_flags().extended_hours()));
@@ -114,7 +114,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".messagedata.officialpricemessage.officialprice"] = canonical::scaled((*message).official_price().mantissa(), (*message).official_price().exponent());
         } else if (const auto* message = dynamic_cast<const protocol::TradeBreakMessage*>(each.message())) {
             values[entry + ".messagedata"] = "packet.messages.message.messagedata.tradebreakmessage";
-            values[entry + ".messagedata.tradebreakmessage.saleconditionflags.singlepricecrosstrade"] = canonical::number(static_cast<std::uint64_t>((*message).sale_condition_flags().singleprice_cross_trade()));
+            values[entry + ".messagedata.tradebreakmessage.saleconditionflags.singlepricecrosstrade"] = canonical::number(static_cast<std::uint64_t>((*message).sale_condition_flags().single_price_cross_trade()));
             values[entry + ".messagedata.tradebreakmessage.saleconditionflags.tradethroughexempt"] = canonical::number(static_cast<std::uint64_t>((*message).sale_condition_flags().trade_through_exempt()));
             values[entry + ".messagedata.tradebreakmessage.saleconditionflags.oddlot"] = canonical::number(static_cast<std::uint64_t>((*message).sale_condition_flags().odd_lot()));
             values[entry + ".messagedata.tradebreakmessage.saleconditionflags.extendedhours"] = canonical::number(static_cast<std::uint64_t>((*message).sale_condition_flags().extended_hours()));

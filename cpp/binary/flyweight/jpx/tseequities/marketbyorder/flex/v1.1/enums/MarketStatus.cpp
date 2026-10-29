@@ -9,7 +9,7 @@ std::string_view to_string(MarketStatus value) {
         case MarketStatus::EndOfMorningSession: return "End Of Morning Session";
         case MarketStatus::AfternoonSessionOrderAcceptanceTime: return "Afternoon Session Order Acceptance Time";
         case MarketStatus::AfternoonSessionTradingHours: return "Afternoon Session Trading Hours";
-        case MarketStatus::AfternoonSessionPreclosing: return "Afternoon Session Preclosing";
+        case MarketStatus::AfternoonSessionPreClosing: return "Afternoon Session Pre Closing";
         case MarketStatus::EndOfAfternoonSession: return "End Of Afternoon Session";
         default: return {};
     }

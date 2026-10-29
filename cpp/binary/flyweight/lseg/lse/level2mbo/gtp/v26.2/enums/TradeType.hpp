@@ -11,7 +11,7 @@ enum class TradeType : std::uint8_t {
     RegularOrContinuousTrade = 0, // Regular Or Continuous Trade
     AuctionTradeBulk = 1,         // Auction Trade Bulk
     AuctionTradeIndividual = 2,   // Auction Trade Individual
-    OnbookTradeCancellation = 9,  // Onbook Trade Cancellation
+    OnBookTradeCancellation = 9,  // On Book Trade Cancellation
     TradeCorrection = 11,         // Trade Correction
     RfqTrade = 22,                // Rfq Trade
     RfqTradeCancellation = 23,    // Rfq Trade Cancellation

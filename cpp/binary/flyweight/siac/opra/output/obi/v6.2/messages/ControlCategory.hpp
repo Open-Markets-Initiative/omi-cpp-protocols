@@ -40,7 +40,7 @@ class ControlCategory {
     void control_message_payload(Handler& handler) const {
         const auto bytes = control_message_payload_bytes();
         switch (control_message_type()) {
-            case ControlMessageType::StartOfDay: {
+            case ControlMessageType::StartOfDay: case ControlMessageType::StartOfSummary: case ControlMessageType::EndOfSummary: case ControlMessageType::EndOfDay: case ControlMessageType::ResetBlockSequenceNumber: case ControlMessageType::StartOfOpenInterest: case ControlMessageType::EndOfOpenInterest: case ControlMessageType::LineIntegrity: case ControlMessageType::DisasterRecoveryDataCenterActivation: {
                 wire::require(ControlMessage::name, ControlMessage::minimum_size, bytes.size());
                 const ControlMessage message{ bytes };
                 if constexpr (requires { handler.on(message); }) { handler.on(message); }
@@ -56,7 +56,7 @@ class ControlCategory {
     std::size_t control_message_payload_size() const {
         const auto bytes = control_message_payload_bytes();
         switch (control_message_type()) {
-            case ControlMessageType::StartOfDay: return ControlMessage{ bytes }.encoded_size();
+            case ControlMessageType::StartOfDay: case ControlMessageType::StartOfSummary: case ControlMessageType::EndOfSummary: case ControlMessageType::EndOfDay: case ControlMessageType::ResetBlockSequenceNumber: case ControlMessageType::StartOfOpenInterest: case ControlMessageType::EndOfOpenInterest: case ControlMessageType::LineIntegrity: case ControlMessageType::DisasterRecoveryDataCenterActivation: return ControlMessage{ bytes }.encoded_size();
             default: return bytes.size();
         }
     }
@@ -65,7 +65,7 @@ class ControlCategory {
     void control_message_payload_print(std::ostream& out) const {
         const auto bytes = control_message_payload_bytes();
         switch (control_message_type()) {
-            case ControlMessageType::StartOfDay: ControlMessage{ bytes }.print(out); return;
+            case ControlMessageType::StartOfDay: case ControlMessageType::StartOfSummary: case ControlMessageType::EndOfSummary: case ControlMessageType::EndOfDay: case ControlMessageType::ResetBlockSequenceNumber: case ControlMessageType::StartOfOpenInterest: case ControlMessageType::EndOfOpenInterest: case ControlMessageType::LineIntegrity: case ControlMessageType::DisasterRecoveryDataCenterActivation: ControlMessage{ bytes }.print(out); return;
             default:
                 out << "UnknownControlMessagePayload{type=" << control_message_type() << ", body=";
                 print::hex(out, bytes.data(), bytes.size());

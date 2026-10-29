@@ -1,0 +1,14 @@
+# B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3 EstablishRejectMessage: canonical values of 'packet', read by the model
+stream 0
+packet.simpleopenframe[0].simpleopenframingheader.messagelength = 38
+packet.simpleopenframe[0].simpleopenframingheader.encodingtype = 60240
+packet.simpleopenframe[0].messageheader.blocklength = 26
+packet.simpleopenframe[0].messageheader.templateid = 6
+packet.simpleopenframe[0].messageheader.schemaid = 1
+packet.simpleopenframe[0].messageheader.version = 5
+packet.simpleopenframe[0].payload = packet.simpleopenframe.payload.establishrejectmessage
+packet.simpleopenframe[0].payload.establishrejectmessage.sessionid = 200000006
+packet.simpleopenframe[0].payload.establishrejectmessage.sessionverid = 1738874584993
+packet.simpleopenframe[0].payload.establishrejectmessage.requesttimestamp = 1739218535367000000
+packet.simpleopenframe[0].payload.establishrejectmessage.establishmentrejectcode = 9
+packet.simpleopenframe[0].payload.establishrejectmessage.lastincomingseqnooptional = 722

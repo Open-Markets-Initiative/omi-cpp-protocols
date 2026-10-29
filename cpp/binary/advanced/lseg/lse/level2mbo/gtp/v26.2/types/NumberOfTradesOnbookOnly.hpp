@@ -6,20 +6,20 @@
 
 namespace lseg::lse::level2mbo::gtp::v26_2 {
 
-// number_of_trades_onbook_only
-struct number_of_trades_onbook_only {
+// number_of_trades_on_book_only
+struct number_of_trades_on_book_only {
 
-    static constexpr const char* name = "number_of_trades_onbook_only";
+    static constexpr const char* name = "number_of_trades_on_book_only";
     static constexpr std::size_t size = 4;
     static constexpr bool is_optional = false;
 
     using result_type = required<std::uint32_t>;
     using storage_type = result_type;
 
-    constexpr number_of_trades_onbook_only()
+    constexpr number_of_trades_on_book_only()
      : value{ 0 } {}
 
-    constexpr number_of_trades_onbook_only(std::uint32_t v)
+    constexpr number_of_trades_on_book_only(std::uint32_t v)
      : value{ v } {}
 
     [[nodiscard]] constexpr result_type get() const {

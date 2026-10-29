@@ -16,7 +16,7 @@ struct AllowedBookTypes {
 
     struct mask {
         static const type FirmQuoteBook = 0x02;
-        static const type Offbook = 0x04;
+        static const type OffBook = 0x04;
         static const type ElectronicOrderBook = 0x08;
         static const type PrivateRfq = 0x10;
     };
@@ -31,8 +31,8 @@ struct AllowedBookTypes {
     }
 
     // Off-book
-    [[nodiscard]] constexpr bool Offbook() const {
-        return value & mask::Offbook;
+    [[nodiscard]] constexpr bool OffBook() const {
+        return value & mask::OffBook;
     }
 
     // Electronic Order Book

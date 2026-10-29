@@ -33,7 +33,7 @@ class NoteCodesBitField5 {
 
     bool da_digital_asset() const { return (raw() & static_cast<std::uint8_t>(0x4)) != 0; }
 
-    bool kn_knockout_buy_back_into_next_trading_day() const { return (raw() & static_cast<std::uint8_t>(0x8)) != 0; }
+    bool kn_knock_out_buy_back_into_next_trading_day() const { return (raw() & static_cast<std::uint8_t>(0x8)) != 0; }
 
     void print(std::ostream& out) const {
         out << "NoteCodesBitField5{";
@@ -43,8 +43,8 @@ class NoteCodesBitField5 {
         out << (un_underlying_not_quoted() ? "true" : "false");
         out << ", da_digital_asset=";
         out << (da_digital_asset() ? "true" : "false");
-        out << ", kn_knockout_buy_back_into_next_trading_day=";
-        out << (kn_knockout_buy_back_into_next_trading_day() ? "true" : "false");
+        out << ", kn_knock_out_buy_back_into_next_trading_day=";
+        out << (kn_knock_out_buy_back_into_next_trading_day() ? "true" : "false");
         out << '}';
     }
 

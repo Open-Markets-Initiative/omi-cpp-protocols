@@ -35,10 +35,10 @@ namespace variant_dailytaqquoteluld_v4_3 {
         ::scaled::delimited::Expected{ "Layout", "", '|', false, layout },
     } };
 
-    // Quote Luld: a line of 10 fields, or as few as 7: its last 3 are optional, null where the line stops before them; onto a row
+    // Quote Luld: a line of 10 fields, onto a row
     template <typename Row>
     void read(const ::scaled::delimited::Fields& fields, Row& row) {
-        ::scaled::delimited::expect(fields, 7, 10, "Quote Luld");
+        ::scaled::delimited::expect(fields, 10, "Quote Luld");
         row.time.set(static_cast<std::uint64_t>(::scaled::delimited::time_of_day(fields[0], 9, "Time")));  // Time
         row.sequence_number.set(::scaled::delimited::integer<std::int64_t>(fields[1], "Sequence_Number"));  // Sequence_Number
         row.source.set(fields[2]);  // Source
@@ -48,14 +48,14 @@ namespace variant_dailytaqquoteluld_v4_3 {
         }
         row.low_price.data = ::scaled::delimited::decimal(fields[5], 6, "Low_Price");  // Low_Price
         row.high_price.data = ::scaled::delimited::decimal(fields[6], 6, "High_Price");  // High_Price
-        if (!::scaled::delimited::at(fields, 7).empty()) {  // National_BBO_LULD_Indicator
-            row.national_bbo_luld_indicator.set(::scaled::delimited::at(fields, 7));
+        if (!fields[7].empty()) {  // National_BBO_LULD_Indicator
+            row.national_bbo_luld_indicator.set(fields[7]);
         }
-        if (!::scaled::delimited::at(fields, 8).empty()) {  // Reference_Price
-            row.reference_price.data = ::scaled::delimited::decimal(::scaled::delimited::at(fields, 8), 6, "Reference_Price");
+        if (!fields[8].empty()) {  // Reference_Price
+            row.reference_price.data = ::scaled::delimited::decimal(fields[8], 6, "Reference_Price");
         }
-        if (!::scaled::delimited::at(fields, 9).empty()) {  // Num_Extentions
-            row.num_extentions.set(::scaled::delimited::integer<std::int64_t>(::scaled::delimited::at(fields, 9), "Num_Extentions"));
+        if (!fields[9].empty()) {  // Num_Extentions
+            row.num_extentions.set(::scaled::delimited::integer<std::int64_t>(fields[9], "Num_Extentions"));
         }
     }
 }

@@ -1,0 +1,30 @@
+#pragma once
+
+#include <cstddef>
+
+namespace cboe::bzxequities::multicastdepthofbook::pitch::v2_20_4 {
+
+
+// "O" = Opening Auction "C" = Closing Auction "H" = Halt Auction "I" = IPO Auction
+struct AuctionType {
+
+    static constexpr auto name = "Auction Type";
+    static constexpr std::size_t size = 1;
+
+    // default constructor
+    constexpr AuctionType()
+     : value{ 0 } {}
+
+    // standard constructor
+    constexpr explicit AuctionType(const char &value)
+     : value{ value } {}
+
+    // get value of AuctionType field
+    [[nodiscard]] char get() const {
+        return value;
+    }
+
+  protected:
+    char value;
+};
+}

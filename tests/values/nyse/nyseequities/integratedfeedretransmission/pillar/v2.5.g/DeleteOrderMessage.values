@@ -1,0 +1,17 @@
+# Nyse.NyseEquities.IntegratedFeedRetransmission.Pillar.v2.5.g DeleteOrderMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 41
+packet.packetheader.deliveryflag = 15
+packet.packetheader.numbermsgs = 1
+packet.packetheader.seqnum = 380345
+packet.packetheader.sendtime.seconds = 1692711002
+packet.packetheader.sendtime.nanoseconds = 595235000
+packet.packetheader.sendtime = 1692711002595235000
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 25
+packet.messages.message[0].messageheader.messagetype = 102
+packet.messages.message[0].payload = packet.messages.message.payload.deleteordermessage
+packet.messages.message[0].payload.deleteordermessage.sourcetimens = 737805568
+packet.messages.message[0].payload.deleteordermessage.symbolindex = 6049
+packet.messages.message[0].payload.deleteordermessage.symbolseqnum = 552
+packet.messages.message[0].payload.deleteordermessage.orderid = 16045173184455944

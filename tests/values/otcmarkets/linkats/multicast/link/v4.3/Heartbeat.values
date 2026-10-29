@@ -1,0 +1,11 @@
+# OtcMarkets.LinkAts.Multicast.Link.v4.3 Heartbeat: canonical values, read by the model
+datagram 0
+packet.packetheader.packetsize = 12
+packet.packetheader.seqnum = 1
+packet.packetheader.packetflag.heartbeat = 1
+packet.packetheader.packetflag.seqnumreset = 0
+packet.packetheader.packetflag.replay = 0
+packet.packetheader.packetflag.test = 0
+packet.packetheader.messagecount = 0
+packet.packetheader.packetmilli = 20112863
+packet.messageblock = packet.messageblock.heartbeatpacket

@@ -1,0 +1,18 @@
+# Nasdaq.IseOptions.TopComboQuoteFeed.Itch.v1.0 ComplexStrategyTickerMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 000008367I
+packet.packetheader.sequencenumber = 321756
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 52
+packet.messages.message[0].messageheader.messagetype = t
+packet.messages.message[0].payload = packet.messages.message.payload.complexstrategytickermessage
+packet.messages.message[0].payload.complexstrategytickermessage.timestamp = 50898200001286
+packet.messages.message[0].payload.complexstrategytickermessage.strategyid = 2093020
+packet.messages.message[0].payload.complexstrategytickermessage.lastprice = 1.2
+packet.messages.message[0].payload.complexstrategytickermessage.size = 1
+packet.messages.message[0].payload.complexstrategytickermessage.volume = 8
+packet.messages.message[0].payload.complexstrategytickermessage.high = 121000000
+packet.messages.message[0].payload.complexstrategytickermessage.low = 120000000
+packet.messages.message[0].payload.complexstrategytickermessage.first = 121000000
+packet.messages.message[0].payload.complexstrategytickermessage.tradecondition = L

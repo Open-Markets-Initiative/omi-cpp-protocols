@@ -40,7 +40,7 @@ class EquityAndIndexLastSaleCategory {
     void equity_and_index_last_sale_message_payload(Handler& handler) const {
         const auto bytes = equity_and_index_last_sale_message_payload_bytes();
         switch (equity_and_index_last_sale_message_type()) {
-            case EquityAndIndexLastSaleMessageType::Canc: {
+            case EquityAndIndexLastSaleMessageType::Canc: case EquityAndIndexLastSaleMessageType::Oseq: case EquityAndIndexLastSaleMessageType::Cncl: case EquityAndIndexLastSaleMessageType::Late: case EquityAndIndexLastSaleMessageType::Cnco: case EquityAndIndexLastSaleMessageType::Open: case EquityAndIndexLastSaleMessageType::Cnol: case EquityAndIndexLastSaleMessageType::Opnl: case EquityAndIndexLastSaleMessageType::Auto: case EquityAndIndexLastSaleMessageType::Reop: case EquityAndIndexLastSaleMessageType::Ajst: case EquityAndIndexLastSaleMessageType::Sprd: case EquityAndIndexLastSaleMessageType::Stdl: case EquityAndIndexLastSaleMessageType::Stpd: case EquityAndIndexLastSaleMessageType::Cstp: case EquityAndIndexLastSaleMessageType::Bwrt: case EquityAndIndexLastSaleMessageType::Cmbo: case EquityAndIndexLastSaleMessageType::Spim: case EquityAndIndexLastSaleMessageType::Isoi: case EquityAndIndexLastSaleMessageType::Bnmt: case EquityAndIndexLastSaleMessageType::Xmpt: {
                 wire::require(EquityAndIndexLastSaleMessage::name, EquityAndIndexLastSaleMessage::minimum_size, bytes.size());
                 const EquityAndIndexLastSaleMessage message{ bytes };
                 if constexpr (requires { handler.on(message); }) { handler.on(message); }
@@ -56,7 +56,7 @@ class EquityAndIndexLastSaleCategory {
     std::size_t equity_and_index_last_sale_message_payload_size() const {
         const auto bytes = equity_and_index_last_sale_message_payload_bytes();
         switch (equity_and_index_last_sale_message_type()) {
-            case EquityAndIndexLastSaleMessageType::Canc: return EquityAndIndexLastSaleMessage{ bytes }.encoded_size();
+            case EquityAndIndexLastSaleMessageType::Canc: case EquityAndIndexLastSaleMessageType::Oseq: case EquityAndIndexLastSaleMessageType::Cncl: case EquityAndIndexLastSaleMessageType::Late: case EquityAndIndexLastSaleMessageType::Cnco: case EquityAndIndexLastSaleMessageType::Open: case EquityAndIndexLastSaleMessageType::Cnol: case EquityAndIndexLastSaleMessageType::Opnl: case EquityAndIndexLastSaleMessageType::Auto: case EquityAndIndexLastSaleMessageType::Reop: case EquityAndIndexLastSaleMessageType::Ajst: case EquityAndIndexLastSaleMessageType::Sprd: case EquityAndIndexLastSaleMessageType::Stdl: case EquityAndIndexLastSaleMessageType::Stpd: case EquityAndIndexLastSaleMessageType::Cstp: case EquityAndIndexLastSaleMessageType::Bwrt: case EquityAndIndexLastSaleMessageType::Cmbo: case EquityAndIndexLastSaleMessageType::Spim: case EquityAndIndexLastSaleMessageType::Isoi: case EquityAndIndexLastSaleMessageType::Bnmt: case EquityAndIndexLastSaleMessageType::Xmpt: return EquityAndIndexLastSaleMessage{ bytes }.encoded_size();
             default: return bytes.size();
         }
     }
@@ -65,7 +65,7 @@ class EquityAndIndexLastSaleCategory {
     void equity_and_index_last_sale_message_payload_print(std::ostream& out) const {
         const auto bytes = equity_and_index_last_sale_message_payload_bytes();
         switch (equity_and_index_last_sale_message_type()) {
-            case EquityAndIndexLastSaleMessageType::Canc: EquityAndIndexLastSaleMessage{ bytes }.print(out); return;
+            case EquityAndIndexLastSaleMessageType::Canc: case EquityAndIndexLastSaleMessageType::Oseq: case EquityAndIndexLastSaleMessageType::Cncl: case EquityAndIndexLastSaleMessageType::Late: case EquityAndIndexLastSaleMessageType::Cnco: case EquityAndIndexLastSaleMessageType::Open: case EquityAndIndexLastSaleMessageType::Cnol: case EquityAndIndexLastSaleMessageType::Opnl: case EquityAndIndexLastSaleMessageType::Auto: case EquityAndIndexLastSaleMessageType::Reop: case EquityAndIndexLastSaleMessageType::Ajst: case EquityAndIndexLastSaleMessageType::Sprd: case EquityAndIndexLastSaleMessageType::Stdl: case EquityAndIndexLastSaleMessageType::Stpd: case EquityAndIndexLastSaleMessageType::Cstp: case EquityAndIndexLastSaleMessageType::Bwrt: case EquityAndIndexLastSaleMessageType::Cmbo: case EquityAndIndexLastSaleMessageType::Spim: case EquityAndIndexLastSaleMessageType::Isoi: case EquityAndIndexLastSaleMessageType::Bnmt: case EquityAndIndexLastSaleMessageType::Xmpt: EquityAndIndexLastSaleMessage{ bytes }.print(out); return;
             default:
                 out << "UnknownEquityAndIndexLastSaleMessagePayload{type=" << equity_and_index_last_sale_message_type() << ", body=";
                 print::hex(out, bytes.data(), bytes.size());

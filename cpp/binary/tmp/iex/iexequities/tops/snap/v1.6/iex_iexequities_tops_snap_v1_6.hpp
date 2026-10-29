@@ -757,8 +757,8 @@ struct short_sale_price_test_status {
     std::underlying_type_t<type> value_;
 };
 
-// Singleprice Cross Trade: Trade resulting from a single-price cross
-struct singleprice_cross_trade {
+// Single Price Cross Trade: Trade resulting from a single-price cross
+struct single_price_cross_trade {
     using type = bool;
     static constexpr std::uint64_t mask = 0x8ULL;
     static constexpr int shift = 3;

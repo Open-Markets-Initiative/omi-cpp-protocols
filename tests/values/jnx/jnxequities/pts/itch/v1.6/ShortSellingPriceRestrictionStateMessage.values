@@ -1,0 +1,13 @@
+# Jnx.JnxEquities.Pts.Itch.v1.6 ShortSellingPriceRestrictionStateMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 1670788904
+packet.packetheader.sequencenumber = 32691
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 14
+packet.messages.message[0].messageheader.messagetype = Y
+packet.messages.message[0].payload = packet.messages.message.payload.shortsellingpricerestrictionstatemessage
+packet.messages.message[0].payload.shortsellingpricerestrictionstatemessage.nanoseconds = 865163000
+packet.messages.message[0].payload.shortsellingpricerestrictionstatemessage.orderbookid = 9656
+packet.messages.message[0].payload.shortsellingpricerestrictionstatemessage.group = DAY
+packet.messages.message[0].payload.shortsellingpricerestrictionstatemessage.shortsellingstate = 1

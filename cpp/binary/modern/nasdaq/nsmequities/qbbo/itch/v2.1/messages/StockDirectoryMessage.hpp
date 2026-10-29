@@ -8,7 +8,7 @@
 #include "../types/RoundLotSize.hpp"
 #include "../types/RoundLotsOnly.hpp"
 #include "../types/IssueClassification.hpp"
-#include "../types/IssueSubtype.hpp"
+#include "../types/IssueSubType.hpp"
 #include "../types/Authenticity.hpp"
 #include "../types/ShortSaleThresholdIndicator.hpp"
 #include "../types/IpoFlag.hpp"
@@ -33,7 +33,7 @@ struct StockDirectoryMessage {
     RoundLotSize round_lot_size;
     RoundLotsOnly round_lots_only;
     IssueClassification issue_classification;
-    IssueSubtype issue_subtype;
+    IssueSubType issue_sub_type;
     Authenticity authenticity;
     ShortSaleThresholdIndicator short_sale_threshold_indicator;
     IpoFlag ipo_flag;

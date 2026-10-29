@@ -1,0 +1,12 @@
+# Cboe.C1Options.MarketDataFeed.Csm.v1.4.2 HeartbeatMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.version = 1
+packet.packetheader.packetlength = 24
+packet.packetheader.sendingtime = 1545339143070
+packet.packetheader.messagecount = 1
+packet.packetheader.firstmsgseqnum = 35792742
+packet.message[0].messageheader.messagelength = 8
+packet.message[0].messageheader.templateid = 16
+packet.message[0].messageheader.messagetype = 0
+packet.message[0].messageheader.msgseqnum = 35792742
+packet.message[0].payload = packet.message.payload.heartbeatmessage

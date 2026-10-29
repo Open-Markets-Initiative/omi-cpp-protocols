@@ -1,0 +1,16 @@
+# Bse.BseIndia.Eobi.Fbe.v1.4 HeartbeatMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.eobiheader.bodylen = 32
+packet.packetheader.eobiheader.templateid = 13002
+packet.packetheader.eobiheader.msgseqnum = 4294967295
+packet.packetheader.applseqnum = 154061
+packet.packetheader.marketsegmentid = 2193
+packet.packetheader.partitionid = 14
+packet.packetheader.completionindicator = 1
+packet.packetheader.applseqresetindicator = 0
+packet.packetheader.transacttime = 1786590002653111539
+packet.message[0].messageheader.bodylen = 16
+packet.message[0].messageheader.templateid = 13001
+packet.message[0].messageheader.msgseqnum = 4294967295
+packet.message[0].payload = packet.message.payload.heartbeatmessage
+packet.message[0].payload.heartbeatmessage.lastmsgseqnumprocessed = 139

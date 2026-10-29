@@ -1,0 +1,20 @@
+# Bse.BseIndia.Eobi.Fbe.v1.4 InstrumentInfoMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.eobiheader.bodylen = 32
+packet.packetheader.eobiheader.templateid = 13002
+packet.packetheader.eobiheader.msgseqnum = 4294967295
+packet.packetheader.applseqnum = 158352
+packet.packetheader.marketsegmentid = 2676
+packet.packetheader.partitionid = 14
+packet.packetheader.completionindicator = 1
+packet.packetheader.applseqresetindicator = 0
+packet.packetheader.transacttime = 1786590823313915500
+packet.message[0].messageheader.bodylen = 48
+packet.message[0].messageheader.templateid = 13203
+packet.message[0].messageheader.msgseqnum = 1842
+packet.message[0].payload = packet.message.payload.instrumentinfomessage
+packet.message[0].payload.instrumentinfomessage.securityid = 833454
+packet.message[0].payload.instrumentinfomessage.closeprice = 0
+packet.message[0].payload.instrumentinfomessage.prevcloseprice = 2000
+packet.message[0].payload.instrumentinfomessage.uppercktlimit = 2290
+packet.message[0].payload.instrumentinfomessage.lowercktlimit = 5

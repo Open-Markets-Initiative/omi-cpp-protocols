@@ -3,6 +3,7 @@
 #include <cstddef>
 #include <cstdint>
 #include "../cache/Required.hpp"
+#include "../common/Day.hpp"
 
 namespace lseg::millennium::level2::mitch::v11_9 {
 
@@ -35,6 +36,16 @@ struct seconds {
             set(value.value());
         else
             set(0);
+    }
+
+    // seconds on a day: its seconds since midnight, Europe/London, as UTC Unix nanoseconds;
+    // none where it has no value
+    [[nodiscard]] std::optional<std::int64_t> utc(const calendar::Day& day) const {
+        const auto held = get();
+        if (!held.has_value()) {
+            return std::nullopt;
+        }
+        return calendar::midnight(day, "Europe/London").utc(static_cast<std::int64_t>(held.value()) * 1000000000);
     }
 
   protected:

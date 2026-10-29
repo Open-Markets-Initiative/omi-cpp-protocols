@@ -6,10 +6,10 @@
 
 namespace lseg::lse::level2mbo::gtp::v26_2 {
 
-// vwap_onbook_only
-struct vwap_onbook_only {
+// vwap_on_book_only
+struct vwap_on_book_only {
 
-    static constexpr const char* name = "vwap_onbook_only";
+    static constexpr const char* name = "vwap_on_book_only";
     static constexpr std::size_t size = 8;
     static constexpr bool is_optional = false;
     static constexpr int exponent = -4;
@@ -17,10 +17,10 @@ struct vwap_onbook_only {
     using result_type = required<std::int64_t>;
     using storage_type = result_type;
 
-    constexpr vwap_onbook_only()
+    constexpr vwap_on_book_only()
      : value{ 0 } {}
 
-    constexpr vwap_onbook_only(std::int64_t v)
+    constexpr vwap_on_book_only(std::int64_t v)
      : value{ v } {}
 
     [[nodiscard]] constexpr result_type get() const {

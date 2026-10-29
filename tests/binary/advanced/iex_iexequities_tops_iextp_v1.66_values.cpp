@@ -128,7 +128,7 @@ struct Reader {
         values[entry + ".messageheader.messagelength"] = canonical::number(message.header.message_length.get().value());
         values[entry + ".messageheader.messagetype"] = canonical::text(canonical::character(message.header.message_type.get().value()));
         values[entry + ".messagedata"] = "packet.messages.message.messagedata.tradereportmessage";
-        values[entry + ".messagedata.tradereportmessage.saleconditionflags.singlepricecrosstrade"] = canonical::number(static_cast<std::uint64_t>(message.fields.sale_condition_flags.has_singleprice_cross_trade()));
+        values[entry + ".messagedata.tradereportmessage.saleconditionflags.singlepricecrosstrade"] = canonical::number(static_cast<std::uint64_t>(message.fields.sale_condition_flags.has_single_price_cross_trade()));
         values[entry + ".messagedata.tradereportmessage.saleconditionflags.tradethroughexempt"] = canonical::number(static_cast<std::uint64_t>(message.fields.sale_condition_flags.has_trade_through_exempt()));
         values[entry + ".messagedata.tradereportmessage.saleconditionflags.oddlot"] = canonical::number(static_cast<std::uint64_t>(message.fields.sale_condition_flags.has_odd_lot()));
         values[entry + ".messagedata.tradereportmessage.saleconditionflags.extendedhours"] = canonical::number(static_cast<std::uint64_t>(message.fields.sale_condition_flags.has_extended_hours()));
@@ -156,7 +156,7 @@ struct Reader {
         values[entry + ".messageheader.messagelength"] = canonical::number(message.header.message_length.get().value());
         values[entry + ".messageheader.messagetype"] = canonical::text(canonical::character(message.header.message_type.get().value()));
         values[entry + ".messagedata"] = "packet.messages.message.messagedata.tradebreakmessage";
-        values[entry + ".messagedata.tradebreakmessage.saleconditionflags.singlepricecrosstrade"] = canonical::number(static_cast<std::uint64_t>(message.fields.sale_condition_flags.has_singleprice_cross_trade()));
+        values[entry + ".messagedata.tradebreakmessage.saleconditionflags.singlepricecrosstrade"] = canonical::number(static_cast<std::uint64_t>(message.fields.sale_condition_flags.has_single_price_cross_trade()));
         values[entry + ".messagedata.tradebreakmessage.saleconditionflags.tradethroughexempt"] = canonical::number(static_cast<std::uint64_t>(message.fields.sale_condition_flags.has_trade_through_exempt()));
         values[entry + ".messagedata.tradebreakmessage.saleconditionflags.oddlot"] = canonical::number(static_cast<std::uint64_t>(message.fields.sale_condition_flags.has_odd_lot()));
         values[entry + ".messagedata.tradebreakmessage.saleconditionflags.extendedhours"] = canonical::number(static_cast<std::uint64_t>(message.fields.sale_condition_flags.has_extended_hours()));

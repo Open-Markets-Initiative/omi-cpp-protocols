@@ -1,0 +1,30 @@
+#pragma once
+
+#include <cstddef>
+
+namespace nasdaq::nsmequities::nlsplus::itch::v3_0 {
+
+
+// Reflects the current trading state for the issue
+struct CurrentTradingState {
+
+    static constexpr auto name = "Current Trading State";
+    static constexpr std::size_t size = 1;
+
+    // default constructor
+    constexpr CurrentTradingState()
+     : value{ 0 } {}
+
+    // standard constructor
+    constexpr explicit CurrentTradingState(const char &value)
+     : value{ value } {}
+
+    // get value of CurrentTradingState field
+    [[nodiscard]] char get() const {
+        return value;
+    }
+
+  protected:
+    char value;
+};
+}

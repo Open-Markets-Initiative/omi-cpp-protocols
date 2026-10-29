@@ -407,8 +407,8 @@ struct number_of_trades {
     type value_;
 };
 
-// Number Of Trades Onbook Only: Count of trades for the day excluding off-book trades.
-struct number_of_trades_onbook_only {
+// Number Of Trades On Book Only: Count of trades for the day excluding off-book trades.
+struct number_of_trades_on_book_only {
     using type = std::uint32_t;
     static constexpr std::size_t size = 4;
     static constexpr std::endian order = std::endian::little;
@@ -420,8 +420,8 @@ struct number_of_trades_onbook_only {
     type value_;
 };
 
-// Offbook: Off-book
-struct offbook {
+// Off Book: Off-book
+struct off_book {
     using type = bool;
     static constexpr std::uint64_t mask = 0x4ULL;
     static constexpr int shift = 2;
@@ -453,7 +453,7 @@ struct opening_closing_price_indicator {
 struct order_book_type {
     enum class type : std::uint8_t {
         firm_quote_book = 1,
-        offbook = 2,
+        off_book = 2,
         electronic_order_book = 3,
         private_rfq = 4,
     };
@@ -858,7 +858,7 @@ struct trade_type {
         regular_or_continuous_trade = 0,
         auction_trade_bulk = 1,
         auction_trade_individual = 2,
-        onbook_trade_cancellation = 9,
+        on_book_trade_cancellation = 9,
         trade_correction = 11,
         rfq_trade = 22,
         rfq_trade_cancellation = 23,
@@ -939,8 +939,8 @@ struct turnover {
     type value_;
 };
 
-// Turnover Onbook Only: Turnover for the day excluding off-book trades.
-struct turnover_onbook_only {
+// Turnover On Book Only: Turnover for the day excluding off-book trades.
+struct turnover_on_book_only {
     using type = std::int64_t;
     static constexpr std::size_t size = 8;
     static constexpr std::endian order = std::endian::little;
@@ -1001,8 +1001,8 @@ struct volume {
     type value_;
 };
 
-// Volume Onbook Only: Cumulative volume for the trading day excluding off-book trades.
-struct volume_onbook_only {
+// Volume On Book Only: Cumulative volume for the trading day excluding off-book trades.
+struct volume_on_book_only {
     using type = std::uint64_t;
     static constexpr std::size_t size = 8;
     static constexpr std::endian order = std::endian::little;
@@ -1029,8 +1029,8 @@ struct vwap {
     type value_;
 };
 
-// Vwap Onbook Only: Volume weighted average price for the day excluding off-book trades.
-struct vwap_onbook_only {
+// Vwap On Book Only: Volume weighted average price for the day excluding off-book trades.
+struct vwap_on_book_only {
     using type = std::int64_t;
     static constexpr std::size_t size = 8;
     static constexpr std::endian order = std::endian::little;
@@ -1100,13 +1100,13 @@ struct statistics_message {
         instrument,
         source_venue,
         volume,
-        volume_onbook_only,
+        volume_on_book_only,
         vwap,
-        vwap_onbook_only,
+        vwap_on_book_only,
         number_of_trades,
-        number_of_trades_onbook_only,
+        number_of_trades_on_book_only,
         turnover,
-        turnover_onbook_only>;
+        turnover_on_book_only>;
 
     // the member of the type asked for
     template <typename Field>
@@ -1117,13 +1117,13 @@ struct statistics_message {
     GTPFIELD(instrument);
     GTPFIELD(source_venue);
     GTPFIELD(volume);
-    GTPFIELD(volume_onbook_only);
+    GTPFIELD(volume_on_book_only);
     GTPFIELD(vwap);
-    GTPFIELD(vwap_onbook_only);
+    GTPFIELD(vwap_on_book_only);
     GTPFIELD(number_of_trades);
-    GTPFIELD(number_of_trades_onbook_only);
+    GTPFIELD(number_of_trades_on_book_only);
     GTPFIELD(turnover);
-    GTPFIELD(turnover_onbook_only);
+    GTPFIELD(turnover_on_book_only);
 };
 
 static_assert(sizeof(statistics_message) == statistics_message::size, "statistics_message lies over its bytes exactly");

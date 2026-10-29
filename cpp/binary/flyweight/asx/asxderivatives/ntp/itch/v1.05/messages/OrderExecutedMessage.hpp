@@ -13,6 +13,7 @@
 #include "../enums/Side.hpp"
 #include "../enums/TradeType.hpp"
 #include "../common/Decimal.hpp"
+#include "../enums/CounterPartyId.hpp"
 
 namespace asx::asxderivatives::ntp::itch::v1_05 {
 

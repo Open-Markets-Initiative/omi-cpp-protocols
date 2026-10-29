@@ -6,6 +6,7 @@
 #include <ostream>
 #include <string_view>
 
+#include "../common/Day.hpp"
 #include "../messages/Message.hpp"
 
 namespace lseg::millennium::level2::mitch::v11_9 {
@@ -27,6 +28,7 @@ class TimeMessage : public Message {
     // for the server (i.e. not UTC).
     std::chrono::seconds seconds() const;
     void set_seconds(std::chrono::seconds value);
+    std::int64_t seconds_utc(const calendar::Day& day) const;
 
     // Message
     MessageCode type() const override;

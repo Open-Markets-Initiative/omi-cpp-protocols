@@ -19,7 +19,7 @@ struct NoteCodesBitField4 {
         static const type CeCappedByEsma = 0x08;
         static const type PdPriceDiscrepancyHistoricalAverageShareClasses = 0x20;
         static const type SmStressedMarket = 0x40;
-        static const type EwMarketwideExceptionalCircumstance = 0x80;
+        static const type EwMarketWideExceptionalCircumstance = 0x80;
     };
 
     // default constructor
@@ -47,8 +47,8 @@ struct NoteCodesBitField4 {
     }
 
     // 
-    [[nodiscard]] constexpr bool EwMarketwideExceptionalCircumstance() const {
-        return value & mask::EwMarketwideExceptionalCircumstance;
+    [[nodiscard]] constexpr bool EwMarketWideExceptionalCircumstance() const {
+        return value & mask::EwMarketWideExceptionalCircumstance;
     }
 
     // all bits

@@ -1,0 +1,25 @@
+#pragma once
+
+#include "../structs/PacketHeader.hpp"
+#include "../structs/MessageHeader.hpp"
+
+#include "TimeMessage.hpp"
+#include "UnitClearMessage.hpp"
+#include "AddOrderLongMessage.hpp"
+#include "AddOrderShortMessage.hpp"
+#include "AddOrderExpandedMessage.hpp"
+#include "OrderExecutedMessage.hpp"
+#include "OrderExecutedAtPriceSizeMessage.hpp"
+#include "ReduceSizeLongMessage.hpp"
+#include "ReduceSizeShortMessage.hpp"
+#include "ModifyOrderLongMessage.hpp"
+#include "ModifyOrderShortMessage.hpp"
+#include "DeleteOrderMessage.hpp"
+#include "TradeLongMessage.hpp"
+#include "TradeShortMessage.hpp"
+#include "TradeExpandedMessage.hpp"
+#include "TradeBreakMessage.hpp"
+#include "EndOfSession.hpp"
+#include "TradingStatusMessage.hpp"
+
+#include "../packets/Heartbeat.hpp"

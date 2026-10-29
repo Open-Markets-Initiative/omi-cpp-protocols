@@ -1,5 +1,6 @@
 #pragma once
 
+#include "common/Day.hpp"
 #include "common/Decimal.hpp"
 #include "common/Errors.hpp"
 #include "common/Print.hpp"

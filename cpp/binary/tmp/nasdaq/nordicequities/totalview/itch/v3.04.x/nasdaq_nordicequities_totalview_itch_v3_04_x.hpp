@@ -726,8 +726,8 @@ struct event_code {
     std::underlying_type_t<type> value_;
 };
 
-// Ew Marketwide Exceptional Circumstance
-struct ew_marketwide_exceptional_circumstance {
+// Ew Market Wide Exceptional Circumstance
+struct ew_market_wide_exceptional_circumstance {
     using type = bool;
     static constexpr std::uint64_t mask = 0x80ULL;
     static constexpr int shift = 7;
@@ -879,8 +879,8 @@ struct kb_knock_out_buy_back {
     static constexpr int shift = 7;
 };
 
-// Kn Knockout Buy Back Into Next Trading Day
-struct kn_knockout_buy_back_into_next_trading_day {
+// Kn Knock Out Buy Back Into Next Trading Day
+struct kn_knock_out_buy_back_into_next_trading_day {
     using type = bool;
     static constexpr std::uint64_t mask = 0x8ULL;
     static constexpr int shift = 3;

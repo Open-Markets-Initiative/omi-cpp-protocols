@@ -1,0 +1,34 @@
+# Bse.BseIndia.Eobi.Fbe.v1.4 PartialOrderExecutionMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.eobiheader.bodylen = 32
+packet.packetheader.eobiheader.templateid = 13002
+packet.packetheader.eobiheader.msgseqnum = 4294967295
+packet.packetheader.applseqnum = 180952
+packet.packetheader.marketsegmentid = 1761
+packet.packetheader.partitionid = 14
+packet.packetheader.completionindicator = 1
+packet.packetheader.applseqresetindicator = 0
+packet.packetheader.transacttime = 1786592846552436053
+packet.message[0].messageheader.bodylen = 64
+packet.message[0].messageheader.templateid = 13202
+packet.message[0].messageheader.msgseqnum = 1020
+packet.message[0].payload = packet.message.payload.executionsummarymessage
+packet.message[0].payload.executionsummarymessage.securityid = 830838
+packet.message[0].payload.executionsummarymessage.aggressortimestamp = 1786592846552236161
+packet.message[0].payload.executionsummarymessage.execid = 1786592846552275457
+packet.message[0].payload.executionsummarymessage.lastqty = 30
+packet.message[0].payload.executionsummarymessage.aggressorside = 1
+packet.message[0].payload.executionsummarymessage.tradecondition = (null)
+packet.message[0].payload.executionsummarymessage.lastpx = 52165
+packet.message[0].payload.executionsummarymessage.restinghiddenqty = 0
+packet.message[1].messageheader.bodylen = 64
+packet.message[1].messageheader.templateid = 13105
+packet.message[1].messageheader.msgseqnum = 1021
+packet.message[1].payload = packet.message.payload.partialorderexecutionmessage
+packet.message[1].payload.partialorderexecutionmessage.side = 2
+packet.message[1].payload.partialorderexecutionmessage.price = 52165
+packet.message[1].payload.partialorderexecutionmessage.trdregtstimepriority = 1786592845282727931
+packet.message[1].payload.partialorderexecutionmessage.securityid = 830838
+packet.message[1].payload.partialorderexecutionmessage.trdmatchid = 2
+packet.message[1].payload.partialorderexecutionmessage.lastqty = 30
+packet.message[1].payload.partialorderexecutionmessage.lastpx = 52165

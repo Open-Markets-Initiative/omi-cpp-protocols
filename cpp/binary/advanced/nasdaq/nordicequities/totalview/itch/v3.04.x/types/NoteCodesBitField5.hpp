@@ -15,7 +15,7 @@ struct note_codes_bit_field_5 {
     static constexpr type em_exceptional_circumstances_related_to_market_maker = type{1} << 0;
     static constexpr type un_underlying_not_quoted = type{1} << 1;
     static constexpr type da_digital_asset = type{1} << 2;
-    static constexpr type kn_knockout_buy_back_into_next_trading_day = type{1} << 3;
+    static constexpr type kn_knock_out_buy_back_into_next_trading_day = type{1} << 3;
 
     static constexpr const char* name = "note_codes_bit_field_5";
     static constexpr std::size_t size = 1;
@@ -48,12 +48,12 @@ struct note_codes_bit_field_5 {
     [[nodiscard]] constexpr bool has_em_exceptional_circumstances_related_to_market_maker() const { return has(em_exceptional_circumstances_related_to_market_maker); }
     [[nodiscard]] constexpr bool has_un_underlying_not_quoted() const { return has(un_underlying_not_quoted); }
     [[nodiscard]] constexpr bool has_da_digital_asset() const { return has(da_digital_asset); }
-    [[nodiscard]] constexpr bool has_kn_knockout_buy_back_into_next_trading_day() const { return has(kn_knockout_buy_back_into_next_trading_day); }
+    [[nodiscard]] constexpr bool has_kn_knock_out_buy_back_into_next_trading_day() const { return has(kn_knock_out_buy_back_into_next_trading_day); }
 
     constexpr void set_em_exceptional_circumstances_related_to_market_maker(bool v) { set(em_exceptional_circumstances_related_to_market_maker, v); }
     constexpr void set_un_underlying_not_quoted(bool v) { set(un_underlying_not_quoted, v); }
     constexpr void set_da_digital_asset(bool v) { set(da_digital_asset, v); }
-    constexpr void set_kn_knockout_buy_back_into_next_trading_day(bool v) { set(kn_knockout_buy_back_into_next_trading_day, v); }
+    constexpr void set_kn_knock_out_buy_back_into_next_trading_day(bool v) { set(kn_knock_out_buy_back_into_next_trading_day, v); }
 
   protected:
     type value;

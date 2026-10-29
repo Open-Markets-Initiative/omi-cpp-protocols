@@ -13,7 +13,9 @@
 #include "../enums/TradeType.hpp"
 #include "../common/Decimal.hpp"
 #include "../enums/BuyerSide.hpp"
+#include "../enums/BuyerParticipantId.hpp"
 #include "../enums/SellerSide.hpp"
+#include "../enums/SellerParticipantId.hpp"
 
 namespace asx::asxderivatives::ntp::itch::v1_05 {
 

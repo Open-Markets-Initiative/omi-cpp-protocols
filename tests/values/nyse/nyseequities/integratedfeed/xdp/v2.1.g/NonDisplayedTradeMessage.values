@@ -1,0 +1,20 @@
+# Nyse.NyseEquities.IntegratedFeed.Xdp.v2.1.g NonDisplayedTradeMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.packetsize = 49
+packet.packetheader.deliveryflag = 11
+packet.packetheader.messagecount = 1
+packet.packetheader.sequencenumber = 87487
+packet.packetheader.sendtime.seconds = 1506694840
+packet.packetheader.sendtime.nanoseconds = 588119423
+packet.packetheader.sendtime = 1506694840588119423
+packet.message[0].messageheader.messagesize = 33
+packet.message[0].messageheader.messagetype = 110
+packet.message[0].payload = packet.message.payload.nondisplayedtrademessage
+packet.message[0].payload.nondisplayedtrademessage.sourcetimens = 654601000
+packet.message[0].payload.nondisplayedtrademessage.symbolindex = 10454
+packet.message[0].payload.nondisplayedtrademessage.symbolseqnum = 123
+packet.message[0].payload.nondisplayedtrademessage.tradeid = 7
+packet.message[0].payload.nondisplayedtrademessage.price = 285300
+packet.message[0].payload.nondisplayedtrademessage.volume = 400
+packet.message[0].payload.nondisplayedtrademessage.printableflag = 0
+packet.message[0].payload.nondisplayedtrademessage.dbexecid = 1

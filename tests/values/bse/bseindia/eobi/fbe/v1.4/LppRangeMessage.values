@@ -1,0 +1,18 @@
+# Bse.BseIndia.Eobi.Fbe.v1.4 LppRangeMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.eobiheader.bodylen = 32
+packet.packetheader.eobiheader.templateid = 13002
+packet.packetheader.eobiheader.msgseqnum = 4294967295
+packet.packetheader.applseqnum = 163578
+packet.packetheader.marketsegmentid = 1774
+packet.packetheader.partitionid = 14
+packet.packetheader.completionindicator = 1
+packet.packetheader.applseqresetindicator = 0
+packet.packetheader.transacttime = 1786591810597726068
+packet.message[0].messageheader.bodylen = 32
+packet.message[0].messageheader.templateid = 13204
+packet.message[0].messageheader.msgseqnum = 99
+packet.message[0].payload = packet.message.payload.lpprangemessage
+packet.message[0].payload.lpprangemessage.securityid = 868626
+packet.message[0].payload.lpprangemessage.upperexeclimit = 534810
+packet.message[0].payload.lpprangemessage.lowerexeclimit = 229210

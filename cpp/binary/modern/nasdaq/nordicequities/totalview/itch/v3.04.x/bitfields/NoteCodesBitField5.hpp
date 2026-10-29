@@ -18,7 +18,7 @@ struct NoteCodesBitField5 {
         static const type EmExceptionalCircumstancesRelatedToMarketMaker = 0x01;
         static const type UnUnderlyingNotQuoted = 0x02;
         static const type DaDigitalAsset = 0x04;
-        static const type KnKnockoutBuyBackIntoNextTradingDay = 0x08;
+        static const type KnKnockOutBuyBackIntoNextTradingDay = 0x08;
     };
 
     // default constructor
@@ -41,8 +41,8 @@ struct NoteCodesBitField5 {
     }
 
     // 
-    [[nodiscard]] constexpr bool KnKnockoutBuyBackIntoNextTradingDay() const {
-        return value & mask::KnKnockoutBuyBackIntoNextTradingDay;
+    [[nodiscard]] constexpr bool KnKnockOutBuyBackIntoNextTradingDay() const {
+        return value & mask::KnKnockOutBuyBackIntoNextTradingDay;
     }
 
     // all bits

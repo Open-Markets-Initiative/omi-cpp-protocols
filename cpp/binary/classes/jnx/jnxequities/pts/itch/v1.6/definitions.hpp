@@ -1,0 +1,36 @@
+#pragma once
+
+#include "common/Day.hpp"
+#include "common/Decimal.hpp"
+#include "common/Errors.hpp"
+#include "common/Print.hpp"
+#include "common/Wire.hpp"
+
+#include "enums/BuySellIndicator.hpp"
+#include "enums/Group.hpp"
+#include "enums/MessageType.hpp"
+#include "enums/OrderType.hpp"
+#include "enums/ShortSellingState.hpp"
+#include "enums/SystemEvent.hpp"
+#include "enums/TradingState.hpp"
+
+#include "structs/MessageHeader.hpp"
+#include "structs/PacketHeader.hpp"
+
+#include "messages/Message.hpp"
+#include "messages/OrderAddedWithAttributesMessage.hpp"
+#include "messages/OrderAddedWithoutAttributesMessage.hpp"
+#include "messages/OrderDeletedMessage.hpp"
+#include "messages/OrderExecutedMessage.hpp"
+#include "messages/OrderReplacedMessage.hpp"
+#include "messages/OrderbookDirectoryMessage.hpp"
+#include "messages/PriceTickSizeMessage.hpp"
+#include "messages/SecondsMessage.hpp"
+#include "messages/ShortSellingPriceRestrictionStateMessage.hpp"
+#include "messages/SystemEventMessage.hpp"
+#include "messages/TradingStateMessage.hpp"
+#include "messages/UnknownMessage.hpp"
+
+#include "Factory.hpp"
+#include "Packet.hpp"
+#include "Visitor.hpp"

@@ -1,0 +1,6 @@
+# Nasdaq.IseOptions.TopComboQuoteFeed.Itch.v1.0 Heartbeat: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 000008367I
+packet.packetheader.sequencenumber = 383265
+packet.packetheader.messagecount = 0
+packet.messages = packet.messages.heartbeat

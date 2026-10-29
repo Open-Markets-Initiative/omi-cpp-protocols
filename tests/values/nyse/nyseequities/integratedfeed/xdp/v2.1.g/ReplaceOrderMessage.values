@@ -1,0 +1,21 @@
+# Nyse.NyseEquities.IntegratedFeed.Xdp.v2.1.g ReplaceOrderMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.packetsize = 58
+packet.packetheader.deliveryflag = 11
+packet.packetheader.messagecount = 1
+packet.packetheader.sequencenumber = 4953
+packet.packetheader.sendtime.seconds = 1506694824
+packet.packetheader.sendtime.nanoseconds = 78201647
+packet.packetheader.sendtime = 1506694824078201647
+packet.message[0].messageheader.messagesize = 42
+packet.message[0].messageheader.messagetype = 104
+packet.message[0].payload = packet.message.payload.replaceordermessage
+packet.message[0].payload.replaceordermessage.sourcetimens = 624823000
+packet.message[0].payload.replaceordermessage.symbolindex = 2338
+packet.message[0].payload.replaceordermessage.symbolseqnum = 28
+packet.message[0].payload.replaceordermessage.orderid = 535
+packet.message[0].payload.replaceordermessage.neworderid = 4849
+packet.message[0].payload.replaceordermessage.price = 630000
+packet.message[0].payload.replaceordermessage.volume = 300
+packet.message[0].payload.replaceordermessage.prevpriceparitysplits = 0
+packet.message[0].payload.replaceordermessage.newpriceparitysplits = 0

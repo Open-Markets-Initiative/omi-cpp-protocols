@@ -18,7 +18,7 @@
 #include "types/Nanoseconds.hpp"
 #include "types/EventCode.hpp"
 #include "types/Version.hpp"
-#include "types/Subversion.hpp"
+#include "types/SubVersion.hpp"
 #include "types/OptionId.hpp"
 #include "types/SecuritySymbol.hpp"
 #include "types/ExpirationYear.hpp"

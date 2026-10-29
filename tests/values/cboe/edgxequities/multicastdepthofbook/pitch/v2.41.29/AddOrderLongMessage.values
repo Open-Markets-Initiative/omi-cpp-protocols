@@ -1,0 +1,17 @@
+# Cboe.EdgxEquities.MulticastDepthOfBook.Pitch.v2.41.29 AddOrderLongMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.length = 42
+packet.packetheader.messagecount = 1
+packet.packetheader.unit = 25
+packet.packetheader.sequence = 312181
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 34
+packet.messages.message[0].messageheader.messagetype = 33
+packet.messages.message[0].payload = packet.messages.message.payload.addorderlongmessage
+packet.messages.message[0].payload.addorderlongmessage.timeoffset = 20369000
+packet.messages.message[0].payload.addorderlongmessage.orderid = 3318874880401845966
+packet.messages.message[0].payload.addorderlongmessage.sideindicator = S
+packet.messages.message[0].payload.addorderlongmessage.quantity = 100
+packet.messages.message[0].payload.addorderlongmessage.symbolshort = SVVC
+packet.messages.message[0].payload.addorderlongmessage.price = 0.731
+packet.messages.message[0].payload.addorderlongmessage.addorderflags.display = 1

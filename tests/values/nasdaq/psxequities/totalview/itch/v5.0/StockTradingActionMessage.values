@@ -1,0 +1,76 @@
+# Nasdaq.PsxEquities.TotalView.Itch.v5.0 StockTradingActionMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 
+packet.packetheader.sequencenumber = 0
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 25
+packet.messages.message[0].messageheader.messagetype = H
+packet.messages.message[0].payload = packet.messages.message.payload.stocktradingactionmessage
+packet.messages.message[0].payload.stocktradingactionmessage.stocklocate = 11325
+packet.messages.message[0].payload.stocktradingactionmessage.trackingnumber = 0
+packet.messages.message[0].payload.stocktradingactionmessage.timestamp = 34215592373969
+packet.messages.message[0].payload.stocktradingactionmessage.stock = ZXZZT
+packet.messages.message[0].payload.stocktradingactionmessage.tradingstate = H
+packet.messages.message[0].payload.stocktradingactionmessage.reserved = 
+packet.messages.message[0].payload.stocktradingactionmessage.reason = 
+datagram 1
+packet.packetheader.session = 
+packet.packetheader.sequencenumber = 0
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 25
+packet.messages.message[0].messageheader.messagetype = H
+packet.messages.message[0].payload = packet.messages.message.payload.stocktradingactionmessage
+packet.messages.message[0].payload.stocktradingactionmessage.stocklocate = 11320
+packet.messages.message[0].payload.stocktradingactionmessage.trackingnumber = 0
+packet.messages.message[0].payload.stocktradingactionmessage.timestamp = 34216302228746
+packet.messages.message[0].payload.stocktradingactionmessage.stock = ZVZZT
+packet.messages.message[0].payload.stocktradingactionmessage.tradingstate = H
+packet.messages.message[0].payload.stocktradingactionmessage.reserved = 
+packet.messages.message[0].payload.stocktradingactionmessage.reason = 
+datagram 2
+packet.packetheader.session = 
+packet.packetheader.sequencenumber = 0
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 25
+packet.messages.message[0].messageheader.messagetype = H
+packet.messages.message[0].payload = packet.messages.message.payload.stocktradingactionmessage
+packet.messages.message[0].payload.stocktradingactionmessage.stocklocate = 1707
+packet.messages.message[0].payload.stocktradingactionmessage.trackingnumber = 0
+packet.messages.message[0].payload.stocktradingactionmessage.timestamp = 34220599022960
+packet.messages.message[0].payload.stocktradingactionmessage.stock = CAML
+packet.messages.message[0].payload.stocktradingactionmessage.tradingstate = H
+packet.messages.message[0].payload.stocktradingactionmessage.reserved = 
+packet.messages.message[0].payload.stocktradingactionmessage.reason = 
+datagram 3
+packet.packetheader.session = 
+packet.packetheader.sequencenumber = 0
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 25
+packet.messages.message[0].messageheader.messagetype = H
+packet.messages.message[0].payload = packet.messages.message.payload.stocktradingactionmessage
+packet.messages.message[0].payload.stocktradingactionmessage.stocklocate = 6285
+packet.messages.message[0].payload.stocktradingactionmessage.trackingnumber = 0
+packet.messages.message[0].payload.stocktradingactionmessage.timestamp = 34241583270717
+packet.messages.message[0].payload.stocktradingactionmessage.stock = LTRY
+packet.messages.message[0].payload.stocktradingactionmessage.tradingstate = H
+packet.messages.message[0].payload.stocktradingactionmessage.reserved = 
+packet.messages.message[0].payload.stocktradingactionmessage.reason = 
+datagram 4
+packet.packetheader.session = 
+packet.packetheader.sequencenumber = 0
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 25
+packet.messages.message[0].messageheader.messagetype = H
+packet.messages.message[0].payload = packet.messages.message.payload.stocktradingactionmessage
+packet.messages.message[0].payload.stocktradingactionmessage.stocklocate = 2378
+packet.messages.message[0].payload.stocktradingactionmessage.trackingnumber = 0
+packet.messages.message[0].payload.stocktradingactionmessage.timestamp = 34260849925690
+packet.messages.message[0].payload.stocktradingactionmessage.stock = CSMD
+packet.messages.message[0].payload.stocktradingactionmessage.tradingstate = H
+packet.messages.message[0].payload.stocktradingactionmessage.reserved = 
+packet.messages.message[0].payload.stocktradingactionmessage.reason = 

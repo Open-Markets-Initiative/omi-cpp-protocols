@@ -45,11 +45,11 @@ struct CtaAdmin {
     // Status Indicator: text; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::string_view> status_indicator;
     // High Indication Price/Upper Limit Price Band: a decimal, the integer of its 6 places; none where the line leaves it empty
-    ::scaled::delimited::values::Optional<std::int64_t> high_indication_priceupper_limit_price_band;
-    static constexpr int high_indication_priceupper_limit_price_band_places = 6;
+    ::scaled::delimited::values::Optional<std::int64_t> high_indication_price_upper_limit_price_band;
+    static constexpr int high_indication_price_upper_limit_price_band_places = 6;
     // Low Indication Price/LowerL imit Price Band: a decimal, the integer of its 6 places; none where the line leaves it empty
-    ::scaled::delimited::values::Optional<std::int64_t> low_indication_pricelowerl_imit_price_band;
-    static constexpr int low_indication_pricelowerl_imit_price_band_places = 6;
+    ::scaled::delimited::values::Optional<std::int64_t> low_indication_price_lower_l_imit_price_band;
+    static constexpr int low_indication_price_lower_l_imit_price_band_places = 6;
     // Buy Volume: an integer; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::int64_t> buy_volume;
     // Sell Volume: an integer; none where the line leaves it empty
@@ -57,7 +57,7 @@ struct CtaAdmin {
     // Short Sale Restriction Indicator: text; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::string_view> short_sale_restriction_indicator;
     // Limit Up/Limit Down Indicator: text; none where the line leaves it empty
-    ::scaled::delimited::values::Optional<std::string_view> limit_uplimit_down_indicator;
+    ::scaled::delimited::values::Optional<std::string_view> limit_up_limit_down_indicator;
     // Market Wide Circuit Breaker Decline Level 1: a decimal, the integer of its 2 places; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::int64_t> market_wide_circuit_breaker_decline_level_1;
     static constexpr int market_wide_circuit_breaker_decline_level_1_places = 2;
@@ -89,12 +89,12 @@ struct CtaAdmin {
         common_indicator.reset();
         last_price.reset();
         status_indicator.reset();
-        high_indication_priceupper_limit_price_band.reset();
-        low_indication_pricelowerl_imit_price_band.reset();
+        high_indication_price_upper_limit_price_band.reset();
+        low_indication_price_lower_l_imit_price_band.reset();
         buy_volume.reset();
         sell_volume.reset();
         short_sale_restriction_indicator.reset();
-        limit_uplimit_down_indicator.reset();
+        limit_up_limit_down_indicator.reset();
         market_wide_circuit_breaker_decline_level_1.reset();
         market_wide_circuit_breaker_decline_level_2.reset();
         market_wide_circuit_breaker_decline_level_3.reset();
@@ -145,18 +145,18 @@ struct CtaAdmin {
         ::scaled::delimited::values::print(out, last_price, [](std::ostream& to, const std::int64_t value) { ::scaled::delimited::values::decimal(to, value, last_price_places); });
         out << ", status_indicator=";
         ::scaled::delimited::values::print(out, status_indicator, ::scaled::delimited::values::text);
-        out << ", high_indication_priceupper_limit_price_band=";
-        ::scaled::delimited::values::print(out, high_indication_priceupper_limit_price_band, [](std::ostream& to, const std::int64_t value) { ::scaled::delimited::values::decimal(to, value, high_indication_priceupper_limit_price_band_places); });
-        out << ", low_indication_pricelowerl_imit_price_band=";
-        ::scaled::delimited::values::print(out, low_indication_pricelowerl_imit_price_band, [](std::ostream& to, const std::int64_t value) { ::scaled::delimited::values::decimal(to, value, low_indication_pricelowerl_imit_price_band_places); });
+        out << ", high_indication_price_upper_limit_price_band=";
+        ::scaled::delimited::values::print(out, high_indication_price_upper_limit_price_band, [](std::ostream& to, const std::int64_t value) { ::scaled::delimited::values::decimal(to, value, high_indication_price_upper_limit_price_band_places); });
+        out << ", low_indication_price_lower_l_imit_price_band=";
+        ::scaled::delimited::values::print(out, low_indication_price_lower_l_imit_price_band, [](std::ostream& to, const std::int64_t value) { ::scaled::delimited::values::decimal(to, value, low_indication_price_lower_l_imit_price_band_places); });
         out << ", buy_volume=";
         ::scaled::delimited::values::print(out, buy_volume, ::scaled::delimited::values::integer);
         out << ", sell_volume=";
         ::scaled::delimited::values::print(out, sell_volume, ::scaled::delimited::values::integer);
         out << ", short_sale_restriction_indicator=";
         ::scaled::delimited::values::print(out, short_sale_restriction_indicator, ::scaled::delimited::values::text);
-        out << ", limit_uplimit_down_indicator=";
-        ::scaled::delimited::values::print(out, limit_uplimit_down_indicator, ::scaled::delimited::values::text);
+        out << ", limit_up_limit_down_indicator=";
+        ::scaled::delimited::values::print(out, limit_up_limit_down_indicator, ::scaled::delimited::values::text);
         out << ", market_wide_circuit_breaker_decline_level_1=";
         ::scaled::delimited::values::print(out, market_wide_circuit_breaker_decline_level_1, [](std::ostream& to, const std::int64_t value) { ::scaled::delimited::values::decimal(to, value, market_wide_circuit_breaker_decline_level_1_places); });
         out << ", market_wide_circuit_breaker_decline_level_2=";

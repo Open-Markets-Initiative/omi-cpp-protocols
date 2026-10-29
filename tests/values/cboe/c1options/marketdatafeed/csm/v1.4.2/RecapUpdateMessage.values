@@ -1,0 +1,35 @@
+# Cboe.C1Options.MarketDataFeed.Csm.v1.4.2 RecapUpdateMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.version = 1
+packet.packetheader.packetlength = 83
+packet.packetheader.sendingtime = 1545339142666
+packet.packetheader.messagecount = 1
+packet.packetheader.firstmsgseqnum = 35792406
+packet.message[0].messageheader.messagelength = 67
+packet.message[0].messageheader.templateid = 21
+packet.message[0].messageheader.messagetype = X
+packet.message[0].messageheader.msgseqnum = 35792406
+packet.message[0].payload = packet.message.payload.recapupdatemessage
+packet.message[0].payload.recapupdatemessage.classkey = 958167376
+packet.message[0].payload.recapupdatemessage.securityid = 383341702
+packet.message[0].payload.recapupdatemessage.pricetype = 3
+packet.message[0].payload.recapupdatemessage.prevclosepx.prevclosepxexponent = -2
+packet.message[0].payload.recapupdatemessage.prevclosepx.prevclosepxmantissa = -935
+packet.message[0].payload.recapupdatemessage.tradevolume = 20
+packet.message[0].payload.recapupdatemessage.noentries = 4
+packet.message[0].payload.recapupdatemessage.recapupdatemdentry[0].mdentrytype = 4
+packet.message[0].payload.recapupdatemessage.recapupdatemdentry[0].mdentrypx.mdentrypxexponent = -2
+packet.message[0].payload.recapupdatemessage.recapupdatemdentry[0].mdentrypx.mdentrypxmantissa = -935
+packet.message[0].payload.recapupdatemessage.recapupdatemdentry[0].mdentrysize = 0
+packet.message[0].payload.recapupdatemessage.recapupdatemdentry[1].mdentrytype = 2
+packet.message[0].payload.recapupdatemessage.recapupdatemdentry[1].mdentrypx.mdentrypxexponent = -2
+packet.message[0].payload.recapupdatemessage.recapupdatemdentry[1].mdentrypx.mdentrypxmantissa = -935
+packet.message[0].payload.recapupdatemessage.recapupdatemdentry[1].mdentrysize = 20
+packet.message[0].payload.recapupdatemessage.recapupdatemdentry[2].mdentrytype = 7
+packet.message[0].payload.recapupdatemessage.recapupdatemdentry[2].mdentrypx.mdentrypxexponent = -2
+packet.message[0].payload.recapupdatemessage.recapupdatemdentry[2].mdentrypx.mdentrypxmantissa = -935
+packet.message[0].payload.recapupdatemessage.recapupdatemdentry[2].mdentrysize = 0
+packet.message[0].payload.recapupdatemessage.recapupdatemdentry[3].mdentrytype = 8
+packet.message[0].payload.recapupdatemessage.recapupdatemdentry[3].mdentrypx.mdentrypxexponent = -2
+packet.message[0].payload.recapupdatemessage.recapupdatemdentry[3].mdentrypx.mdentrypxmantissa = -935
+packet.message[0].payload.recapupdatemessage.recapupdatemdentry[3].mdentrysize = 0

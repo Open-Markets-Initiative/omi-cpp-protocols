@@ -1,0 +1,22 @@
+# Nyse.NationalEquities.Bbo.Pillar.v2.5.d QuoteMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 50
+packet.packetheader.deliveryflag = 11
+packet.packetheader.numbermsgs = 1
+packet.packetheader.seqnum = 489904
+packet.packetheader.sendtime.seconds = 1692711000
+packet.packetheader.sendtime.nanoseconds = 168192
+packet.packetheader.sendtime = 1692711000000168192
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 34
+packet.messages.message[0].messageheader.messagetype = 140
+packet.messages.message[0].payload = packet.messages.message.payload.quotemessage
+packet.messages.message[0].payload.quotemessage.sourcetimens = 131584
+packet.messages.message[0].payload.quotemessage.symbolindex = 44840
+packet.messages.message[0].payload.quotemessage.symbolseqnum = 25
+packet.messages.message[0].payload.quotemessage.askprice = 28060000
+packet.messages.message[0].payload.quotemessage.askvolume = 100
+packet.messages.message[0].payload.quotemessage.bidprice = 27500000
+packet.messages.message[0].payload.quotemessage.bidvolume = 100
+packet.messages.message[0].payload.quotemessage.quotecondition = R
+packet.messages.message[0].payload.quotemessage.rpiindicator =  

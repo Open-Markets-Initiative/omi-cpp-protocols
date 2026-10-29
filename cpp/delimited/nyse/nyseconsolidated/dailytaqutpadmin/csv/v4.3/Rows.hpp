@@ -35,10 +35,10 @@ namespace variant_dailytaqutpadmin_v4_3 {
         ::scaled::delimited::Expected{ "Layout", "", '|', false, layout },
     } };
 
-    // Utp Admin: a line of 23 fields, or as few as 6: its last 17 are optional, null where the line stops before them; onto a row
+    // Utp Admin: a line of 23 fields, onto a row
     template <typename Row>
     void read(const ::scaled::delimited::Fields& fields, Row& row) {
-        ::scaled::delimited::expect(fields, 6, 23, "Utp Admin");
+        ::scaled::delimited::expect(fields, 23, "Utp Admin");
         row.timestamp.set(static_cast<std::uint64_t>(::scaled::delimited::time_of_day(fields[0], 9, "Timestamp")));  // Timestamp
         if (!fields[1].empty()) {  // Symbol
             row.symbol.set(fields[1]);
@@ -47,56 +47,56 @@ namespace variant_dailytaqutpadmin_v4_3 {
         row.message_type.set(fields[3]);  // Message Type
         row.message_sequence_number.set(::scaled::delimited::integer<std::int64_t>(fields[4], "Message Sequence Number"));  // Message Sequence Number
         row.market_center_originator_id.set(fields[5]);  // Market Center Originator ID
-        if (!::scaled::delimited::at(fields, 6).empty()) {  // Sub Market Center Originator ID
-            row.sub_market_center_originator_id.set(::scaled::delimited::at(fields, 6));
+        if (!fields[6].empty()) {  // Sub Market Center Originator ID
+            row.sub_market_center_originator_id.set(fields[6]);
         }
-        if (!::scaled::delimited::at(fields, 7).empty()) {  // Participant Timestamp
-            row.participant_timestamp.set(static_cast<std::uint64_t>(::scaled::delimited::time_of_day(::scaled::delimited::at(fields, 7), 9, "Participant Timestamp")));
+        if (!fields[7].empty()) {  // Participant Timestamp
+            row.participant_timestamp.set(static_cast<std::uint64_t>(::scaled::delimited::time_of_day(fields[7], 9, "Participant Timestamp")));
         }
-        if (!::scaled::delimited::at(fields, 8).empty()) {  // Financial Status
-            row.financial_status.set(::scaled::delimited::at(fields, 8));
+        if (!fields[8].empty()) {  // Financial Status
+            row.financial_status.set(fields[8]);
         }
-        if (!::scaled::delimited::at(fields, 9).empty()) {  // Short Sale Treshold Indicator
-            row.short_sale_treshold_indicator.set(::scaled::delimited::at(fields, 9));
+        if (!fields[9].empty()) {  // Short Sale Treshold Indicator
+            row.short_sale_treshold_indicator.set(fields[9]);
         }
-        if (!::scaled::delimited::at(fields, 10).empty()) {  // Short Sale Restriction Indicator
-            row.short_sale_restriction_indicator.set(::scaled::delimited::integer<std::int64_t>(::scaled::delimited::at(fields, 10), "Short Sale Restriction Indicator"));
+        if (!fields[10].empty()) {  // Short Sale Restriction Indicator
+            row.short_sale_restriction_indicator.set(::scaled::delimited::integer<std::int64_t>(fields[10], "Short Sale Restriction Indicator"));
         }
-        if (!::scaled::delimited::at(fields, 11).empty()) {  // Trading Action Code
-            row.trading_action_code.set(::scaled::delimited::at(fields, 11));
+        if (!fields[11].empty()) {  // Trading Action Code
+            row.trading_action_code.set(fields[11]);
         }
-        if (!::scaled::delimited::at(fields, 12).empty()) {  // Trading Action Sequence Number
-            row.trading_action_sequence_number.set(::scaled::delimited::integer<std::int64_t>(::scaled::delimited::at(fields, 12), "Trading Action Sequence Number"));
+        if (!fields[12].empty()) {  // Trading Action Sequence Number
+            row.trading_action_sequence_number.set(::scaled::delimited::integer<std::int64_t>(fields[12], "Trading Action Sequence Number"));
         }
-        if (!::scaled::delimited::at(fields, 13).empty()) {  // Trading Action Timestamp
-            row.trading_action_timestamp.set(static_cast<std::uint64_t>(::scaled::delimited::time_of_day(::scaled::delimited::at(fields, 13), 9, "Trading Action Timestamp")));
+        if (!fields[13].empty()) {  // Trading Action Timestamp
+            row.trading_action_timestamp.set(static_cast<std::uint64_t>(::scaled::delimited::time_of_day(fields[13], 9, "Trading Action Timestamp")));
         }
-        if (!::scaled::delimited::at(fields, 14).empty()) {  // Trading Action Reason
-            row.trading_action_reason.set(::scaled::delimited::at(fields, 14));
+        if (!fields[14].empty()) {  // Trading Action Reason
+            row.trading_action_reason.set(fields[14]);
         }
-        if (!::scaled::delimited::at(fields, 15).empty()) {  // LULD Lower Limit Price Band
-            row.luld_lower_limit_price_band.data = ::scaled::delimited::decimal(::scaled::delimited::at(fields, 15), 6, "LULD Lower Limit Price Band");
+        if (!fields[15].empty()) {  // LULD Lower Limit Price Band
+            row.luld_lower_limit_price_band.data = ::scaled::delimited::decimal(fields[15], 6, "LULD Lower Limit Price Band");
         }
-        if (!::scaled::delimited::at(fields, 16).empty()) {  // LULD Upper Limit Price Band
-            row.luld_upper_limit_price_band.data = ::scaled::delimited::decimal(::scaled::delimited::at(fields, 16), 6, "LULD Upper Limit Price Band");
+        if (!fields[16].empty()) {  // LULD Upper Limit Price Band
+            row.luld_upper_limit_price_band.data = ::scaled::delimited::decimal(fields[16], 6, "LULD Upper Limit Price Band");
         }
-        if (!::scaled::delimited::at(fields, 17).empty()) {  // LULDPrice Band Indicator
-            row.luldprice_band_indicator.set(::scaled::delimited::at(fields, 17));
+        if (!fields[17].empty()) {  // LULDPrice Band Indicator
+            row.luld_price_band_indicator.set(fields[17]);
         }
-        if (!::scaled::delimited::at(fields, 18).empty()) {  // Market Wide Circuit Breaker Decline Level 1
-            row.market_wide_circuit_breaker_decline_level_1.data = ::scaled::delimited::decimal(::scaled::delimited::at(fields, 18), 2, "Market Wide Circuit Breaker Decline Level 1");
+        if (!fields[18].empty()) {  // Market Wide Circuit Breaker Decline Level 1
+            row.market_wide_circuit_breaker_decline_level_1.data = ::scaled::delimited::decimal(fields[18], 2, "Market Wide Circuit Breaker Decline Level 1");
         }
-        if (!::scaled::delimited::at(fields, 19).empty()) {  // Market Wide Circuit Breaker Decline Level 2
-            row.market_wide_circuit_breaker_decline_level_2.data = ::scaled::delimited::decimal(::scaled::delimited::at(fields, 19), 2, "Market Wide Circuit Breaker Decline Level 2");
+        if (!fields[19].empty()) {  // Market Wide Circuit Breaker Decline Level 2
+            row.market_wide_circuit_breaker_decline_level_2.data = ::scaled::delimited::decimal(fields[19], 2, "Market Wide Circuit Breaker Decline Level 2");
         }
-        if (!::scaled::delimited::at(fields, 20).empty()) {  // Market Wide Circuit Breaker Decline Level 3
-            row.market_wide_circuit_breaker_decline_level_3.data = ::scaled::delimited::decimal(::scaled::delimited::at(fields, 20), 2, "Market Wide Circuit Breaker Decline Level 3");
+        if (!fields[20].empty()) {  // Market Wide Circuit Breaker Decline Level 3
+            row.market_wide_circuit_breaker_decline_level_3.data = ::scaled::delimited::decimal(fields[20], 2, "Market Wide Circuit Breaker Decline Level 3");
         }
-        if (!::scaled::delimited::at(fields, 21).empty()) {  // Market Wide Circuit Breaker Status
-            row.market_wide_circuit_breaker_status.set(::scaled::delimited::integer<std::int64_t>(::scaled::delimited::at(fields, 21), "Market Wide Circuit Breaker Status"));
+        if (!fields[21].empty()) {  // Market Wide Circuit Breaker Status
+            row.market_wide_circuit_breaker_status.set(::scaled::delimited::integer<std::int64_t>(fields[21], "Market Wide Circuit Breaker Status"));
         }
-        if (!::scaled::delimited::at(fields, 22).empty()) {  // Message Text
-            row.message_text.set(::scaled::delimited::at(fields, 22));
+        if (!fields[22].empty()) {  // Message Text
+            row.message_text.set(fields[22]);
         }
     }
 }

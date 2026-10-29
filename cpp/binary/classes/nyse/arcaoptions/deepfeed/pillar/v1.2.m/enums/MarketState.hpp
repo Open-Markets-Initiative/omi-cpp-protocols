@@ -8,7 +8,7 @@ namespace nyse::arcaoptions::deepfeed::pillar::v1_2_m {
 
 // The current Market State.
 enum class MarketState : char {
-    Preopening = 'P',             // Preopening
+    PreOpening = 'P',             // Pre Opening
     EarlySession = 'E',           // Early Session
     CoreSession = 'O',            // Core Session
     LateSessionNonNyseOnly = 'L', // Late Session Non Nyse Only

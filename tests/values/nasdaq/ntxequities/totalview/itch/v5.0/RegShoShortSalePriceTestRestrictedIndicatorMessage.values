@@ -1,0 +1,66 @@
+# Nasdaq.NtxEquities.TotalView.Itch.v5.0 RegShoShortSalePriceTestRestrictedIndicatorMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 
+packet.packetheader.sequencenumber = 0
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 20
+packet.messages.message[0].messageheader.messagetype = Y
+packet.messages.message[0].payload = packet.messages.message.payload.regshoshortsalepricetestrestrictedindicatormessage
+packet.messages.message[0].payload.regshoshortsalepricetestrestrictedindicatormessage.locatecode = 9405
+packet.messages.message[0].payload.regshoshortsalepricetestrestrictedindicatormessage.trackingnumber = 0
+packet.messages.message[0].payload.regshoshortsalepricetestrestrictedindicatormessage.timestamp = 34200116747479
+packet.messages.message[0].payload.regshoshortsalepricetestrestrictedindicatormessage.stock = SOPA
+packet.messages.message[0].payload.regshoshortsalepricetestrestrictedindicatormessage.regshoaction = 1
+datagram 1
+packet.packetheader.session = 
+packet.packetheader.sequencenumber = 0
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 20
+packet.messages.message[0].messageheader.messagetype = Y
+packet.messages.message[0].payload = packet.messages.message.payload.regshoshortsalepricetestrestrictedindicatormessage
+packet.messages.message[0].payload.regshoshortsalepricetestrestrictedindicatormessage.locatecode = 2282
+packet.messages.message[0].payload.regshoshortsalepricetestrestrictedindicatormessage.trackingnumber = 0
+packet.messages.message[0].payload.regshoshortsalepricetestrestrictedindicatormessage.timestamp = 34200150820268
+packet.messages.message[0].payload.regshoshortsalepricetestrestrictedindicatormessage.stock = CPHI
+packet.messages.message[0].payload.regshoshortsalepricetestrestrictedindicatormessage.regshoaction = 1
+datagram 2
+packet.packetheader.session = 
+packet.packetheader.sequencenumber = 0
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 20
+packet.messages.message[0].messageheader.messagetype = Y
+packet.messages.message[0].payload = packet.messages.message.payload.regshoshortsalepricetestrestrictedindicatormessage
+packet.messages.message[0].payload.regshoshortsalepricetestrestrictedindicatormessage.locatecode = 2453
+packet.messages.message[0].payload.regshoshortsalepricetestrestrictedindicatormessage.trackingnumber = 0
+packet.messages.message[0].payload.regshoshortsalepricetestrestrictedindicatormessage.timestamp = 34200156421273
+packet.messages.message[0].payload.regshoshortsalepricetestrestrictedindicatormessage.stock = CUENW
+packet.messages.message[0].payload.regshoshortsalepricetestrestrictedindicatormessage.regshoaction = 1
+datagram 3
+packet.packetheader.session = 
+packet.packetheader.sequencenumber = 0
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 20
+packet.messages.message[0].messageheader.messagetype = Y
+packet.messages.message[0].payload = packet.messages.message.payload.regshoshortsalepricetestrestrictedindicatormessage
+packet.messages.message[0].payload.regshoshortsalepricetestrestrictedindicatormessage.locatecode = 6806
+packet.messages.message[0].payload.regshoshortsalepricetestrestrictedindicatormessage.trackingnumber = 0
+packet.messages.message[0].payload.regshoshortsalepricetestrestrictedindicatormessage.timestamp = 34200156659304
+packet.messages.message[0].payload.regshoshortsalepricetestrestrictedindicatormessage.stock = MSGM
+packet.messages.message[0].payload.regshoshortsalepricetestrestrictedindicatormessage.regshoaction = 1
+datagram 4
+packet.packetheader.session = 
+packet.packetheader.sequencenumber = 0
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 20
+packet.messages.message[0].messageheader.messagetype = Y
+packet.messages.message[0].payload = packet.messages.message.payload.regshoshortsalepricetestrestrictedindicatormessage
+packet.messages.message[0].payload.regshoshortsalepricetestrestrictedindicatormessage.locatecode = 11203
+packet.messages.message[0].payload.regshoshortsalepricetestrestrictedindicatormessage.trackingnumber = 0
+packet.messages.message[0].payload.regshoshortsalepricetestrestrictedindicatormessage.timestamp = 34200161636819
+packet.messages.message[0].payload.regshoshortsalepricetestrestrictedindicatormessage.stock = YCBD-A
+packet.messages.message[0].payload.regshoshortsalepricetestrestrictedindicatormessage.regshoaction = 1

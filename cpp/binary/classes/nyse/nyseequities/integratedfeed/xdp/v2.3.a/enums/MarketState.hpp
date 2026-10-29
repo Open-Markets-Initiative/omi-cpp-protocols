@@ -9,7 +9,7 @@ namespace nyse::nyseequities::integratedfeed::xdp::v2_3_a {
 // The current Market State, which this msg updates if the Security Status field contains a
 // Market State Code.
 enum class MarketState : char {
-    Preopening = 'P',   // Preopening
+    PreOpening = 'P',   // Pre Opening
     EarlySession = 'E', // Early Session
     CoreSession = 'O',  // Core Session
     LateSession = 'L',  // Late Session

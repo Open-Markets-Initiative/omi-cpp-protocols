@@ -113,6 +113,7 @@ class LongEquityAndIndexQuoteMessage : public LongEquityAndIndexQuoteMessagePayl
 
     // LongEquityAndIndexQuoteMessagePayload
     LongEquityAndIndexQuoteMessagePayloadCode type() const override;
+    void set_type(LongEquityAndIndexQuoteMessagePayloadCode value);
     std::string_view name() const override;
     std::size_t decode(const std::byte* data, std::size_t length) override;
     std::size_t encode(std::byte* data, std::size_t capacity) const override;
@@ -142,6 +143,8 @@ class LongEquityAndIndexQuoteMessage : public LongEquityAndIndexQuoteMessagePayl
     std::optional<BestBidAppendage> best_bid_appendage_{};
     std::optional<BestOfferAppendage> best_offer_appendage_{};
     std::optional<BestBidAndOfferAppendage> best_bid_and_offer_appendage_{};
+    // The code it was read with, of the codes selecting it
+    LongEquityAndIndexQuoteMessagePayloadCode type_ = message_type;
 };
 
 } // namespace siac::opra::output::obi::v6_2

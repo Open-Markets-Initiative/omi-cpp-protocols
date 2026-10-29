@@ -19,13 +19,13 @@ struct market_status {
         end_of_morning_session = 19,
         afternoon_session_order_acceptance_time = 21,
         afternoon_session_trading_hours = 22,
-        afternoon_session_preclosing = 23,
+        afternoon_session_pre_closing = 23,
         end_of_afternoon_session = 29
     };
 
     static constexpr std::array<std::pair<std::string_view, enum_type>, 7> from_string_map = {{
         {"Afternoon Session Order Acceptance Time", enum_type::afternoon_session_order_acceptance_time},
-        {"Afternoon Session Preclosing", enum_type::afternoon_session_preclosing},
+        {"Afternoon Session Pre Closing", enum_type::afternoon_session_pre_closing},
         {"Afternoon Session Trading Hours", enum_type::afternoon_session_trading_hours},
         {"End Of Afternoon Session", enum_type::end_of_afternoon_session},
         {"End Of Morning Session", enum_type::end_of_morning_session},
@@ -40,7 +40,7 @@ struct market_status {
             case enum_type::end_of_morning_session: return "End Of Morning Session";
             case enum_type::afternoon_session_order_acceptance_time: return "Afternoon Session Order Acceptance Time";
             case enum_type::afternoon_session_trading_hours: return "Afternoon Session Trading Hours";
-            case enum_type::afternoon_session_preclosing: return "Afternoon Session Preclosing";
+            case enum_type::afternoon_session_pre_closing: return "Afternoon Session Pre Closing";
             case enum_type::end_of_afternoon_session: return "End Of Afternoon Session";
             default: return "unknown";
         }

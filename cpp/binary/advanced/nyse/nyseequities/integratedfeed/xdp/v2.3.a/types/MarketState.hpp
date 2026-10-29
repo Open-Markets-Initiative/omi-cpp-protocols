@@ -13,7 +13,7 @@ namespace nyse::nyseequities::integratedfeed::xdp::v2_3_a {
 struct market_state {
 
     enum class enum_type : char {
-        preopening = 'P',
+        pre_opening = 'P',
         early_session = 'E',
         core_session = 'O',
         late_session = 'L',
@@ -25,12 +25,12 @@ struct market_state {
         {"Core Session", enum_type::core_session},
         {"Early Session", enum_type::early_session},
         {"Late Session", enum_type::late_session},
-        {"Preopening", enum_type::preopening}
+        {"Pre Opening", enum_type::pre_opening}
     }};
 
     static constexpr std::string_view to_string(enum_type value) {
         switch (value) {
-            case enum_type::preopening: return "Preopening";
+            case enum_type::pre_opening: return "Pre Opening";
             case enum_type::early_session: return "Early Session";
             case enum_type::core_session: return "Core Session";
             case enum_type::late_session: return "Late Session";

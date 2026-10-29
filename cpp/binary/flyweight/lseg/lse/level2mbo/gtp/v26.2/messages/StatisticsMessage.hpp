@@ -37,19 +37,19 @@ class StatisticsMessage {
 
     Decimal volume() const { return Decimal(static_cast<std::int64_t>(wire::read_u64_le(at(18))), -4); }
 
-    Decimal volume_onbook_only() const { return Decimal(static_cast<std::int64_t>(wire::read_u64_le(at(26))), -4); }
+    Decimal volume_on_book_only() const { return Decimal(static_cast<std::int64_t>(wire::read_u64_le(at(26))), -4); }
 
     Decimal vwap() const { return Decimal(static_cast<std::int64_t>(wire::read_i64_le(at(34))), -4); }
 
-    Decimal vwap_onbook_only() const { return Decimal(static_cast<std::int64_t>(wire::read_i64_le(at(42))), -4); }
+    Decimal vwap_on_book_only() const { return Decimal(static_cast<std::int64_t>(wire::read_i64_le(at(42))), -4); }
 
     std::uint32_t number_of_trades() const { return wire::read_u32_le(at(50)); }
 
-    std::uint32_t number_of_trades_onbook_only() const { return wire::read_u32_le(at(54)); }
+    std::uint32_t number_of_trades_on_book_only() const { return wire::read_u32_le(at(54)); }
 
     Decimal turnover() const { return Decimal(static_cast<std::int64_t>(wire::read_i64_le(at(58))), -4); }
 
-    Decimal turnover_onbook_only() const { return Decimal(static_cast<std::int64_t>(wire::read_i64_le(at(66))), -4); }
+    Decimal turnover_on_book_only() const { return Decimal(static_cast<std::int64_t>(wire::read_i64_le(at(66))), -4); }
 
     void print(std::ostream& out) const {
         out << "StatisticsMessage{";
@@ -61,20 +61,20 @@ class StatisticsMessage {
         out << source_venue();
         out << ", volume=";
         out << volume();
-        out << ", volume_onbook_only=";
-        out << volume_onbook_only();
+        out << ", volume_on_book_only=";
+        out << volume_on_book_only();
         out << ", vwap=";
         out << vwap();
-        out << ", vwap_onbook_only=";
-        out << vwap_onbook_only();
+        out << ", vwap_on_book_only=";
+        out << vwap_on_book_only();
         out << ", number_of_trades=";
         out << number_of_trades();
-        out << ", number_of_trades_onbook_only=";
-        out << number_of_trades_onbook_only();
+        out << ", number_of_trades_on_book_only=";
+        out << number_of_trades_on_book_only();
         out << ", turnover=";
         out << turnover();
-        out << ", turnover_onbook_only=";
-        out << turnover_onbook_only();
+        out << ", turnover_on_book_only=";
+        out << turnover_on_book_only();
         out << '}';
     }
 

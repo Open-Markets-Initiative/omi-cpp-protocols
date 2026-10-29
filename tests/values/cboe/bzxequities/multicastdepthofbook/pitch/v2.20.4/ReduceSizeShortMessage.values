@@ -1,0 +1,17 @@
+# Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.20.4 ReduceSizeShortMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.length = 30
+packet.packetheader.messagecount = 2
+packet.packetheader.unit = 1
+packet.packetheader.sequence = 33
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 6
+packet.messages.message[0].messageheader.messagetype = 32
+packet.messages.message[0].payload = packet.messages.message.payload.timemessage
+packet.messages.message[0].payload.timemessage.time = 76336
+packet.messages.message[1].messageheader.messagelength = 16
+packet.messages.message[1].messageheader.messagetype = 38
+packet.messages.message[1].payload = packet.messages.message.payload.reducesizeshortmessage
+packet.messages.message[1].payload.reducesizeshortmessage.timeoffset = 95582000
+packet.messages.message[1].payload.reducesizeshortmessage.orderid = 245620911467925523
+packet.messages.message[1].payload.reducesizeshortmessage.canceledquantitybinary2 = 100

@@ -5,7 +5,7 @@ namespace siac::cts::output::cta::v2_11_b {
 std::string_view to_string(Category2 value) {
     switch (value) {
         case Category2::NoTradeThroughExemptReason: return "No Trade Through Exempt Reason";
-        case Category2::IntermarketSweepOrder: return "Intermarket Sweep Order";
+        case Category2::InterMarketSweepOrder: return "Inter Market Sweep Order";
         case Category2::DerivativelyPriced: return "Derivatively Priced";
         case Category2::MarketCenterReopeningTrade: return "Market Center Reopening Trade";
         case Category2::MarketCenterClosingTrade: return "Market Center Closing Trade";

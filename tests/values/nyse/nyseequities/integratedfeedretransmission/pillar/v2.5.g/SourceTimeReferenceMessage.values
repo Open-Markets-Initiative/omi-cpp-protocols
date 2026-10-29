@@ -1,0 +1,16 @@
+# Nyse.NyseEquities.IntegratedFeedRetransmission.Pillar.v2.5.g SourceTimeReferenceMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 32
+packet.packetheader.deliveryflag = 15
+packet.packetheader.numbermsgs = 1
+packet.packetheader.seqnum = 451794
+packet.packetheader.sendtime.seconds = 1692711003
+packet.packetheader.sendtime.nanoseconds = 321727000
+packet.packetheader.sendtime = 1692711003321727000
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 16
+packet.messages.message[0].messageheader.messagetype = 2
+packet.messages.message[0].payload = packet.messages.message.payload.sourcetimereferencemessage
+packet.messages.message[0].payload.sourcetimereferencemessage.id = 52
+packet.messages.message[0].payload.sourcetimereferencemessage.symbolseqnum = 0
+packet.messages.message[0].payload.sourcetimereferencemessage.sourcetime = 1692711002

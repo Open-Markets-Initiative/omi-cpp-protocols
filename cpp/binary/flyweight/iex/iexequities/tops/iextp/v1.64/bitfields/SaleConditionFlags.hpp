@@ -27,7 +27,7 @@ class SaleConditionFlags {
 
     std::uint8_t raw() const { return wire::read_u8(bytes_.data()); }
 
-    bool singleprice_cross_trade() const { return (raw() & static_cast<std::uint8_t>(0x8)) != 0; }
+    bool single_price_cross_trade() const { return (raw() & static_cast<std::uint8_t>(0x8)) != 0; }
 
     bool trade_through_exempt() const { return (raw() & static_cast<std::uint8_t>(0x10)) != 0; }
 
@@ -39,8 +39,8 @@ class SaleConditionFlags {
 
     void print(std::ostream& out) const {
         out << "SaleConditionFlags{";
-        out << "singleprice_cross_trade=";
-        out << (singleprice_cross_trade() ? "true" : "false");
+        out << "single_price_cross_trade=";
+        out << (single_price_cross_trade() ? "true" : "false");
         out << ", trade_through_exempt=";
         out << (trade_through_exempt() ? "true" : "false");
         out << ", odd_lot=";

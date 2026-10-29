@@ -37,6 +37,7 @@ class ControlMessage : public ControlMessagePayload {
 
     // ControlMessagePayload
     ControlMessagePayloadCode type() const override;
+    void set_type(ControlMessagePayloadCode value);
     std::string_view name() const override;
     std::size_t decode(const std::byte* data, std::size_t length) override;
     std::size_t encode(std::byte* data, std::size_t capacity) const override;
@@ -53,6 +54,8 @@ class ControlMessage : public ControlMessagePayload {
     char message_indicator_{};
     std::uint32_t transaction_id_{};
     std::uint32_t participant_reference_number_{};
+    // The code it was read with, of the codes selecting it
+    ControlMessagePayloadCode type_ = message_type;
 };
 
 } // namespace siac::opra::output::obi::v6_2

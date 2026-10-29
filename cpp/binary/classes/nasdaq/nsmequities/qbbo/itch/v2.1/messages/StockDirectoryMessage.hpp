@@ -15,7 +15,7 @@
 #include "../enums/InverseIndicator.hpp"
 #include "../enums/IpoFlag.hpp"
 #include "../enums/IssueClassification.hpp"
-#include "../enums/IssueSubtype.hpp"
+#include "../enums/IssueSubType.hpp"
 #include "../enums/LuldReferencePriceTier.hpp"
 #include "../enums/MarketCategory.hpp"
 #include "../enums/RoundLotsOnly.hpp"
@@ -36,7 +36,7 @@ class StockDirectoryMessage : public Message {
     static constexpr std::size_t wire_size = 36;
 
     StockDirectoryMessage() = default;
-    StockDirectoryMessage(std::uint16_t tracking_number, std::chrono::nanoseconds time_stamp, const std::string& stock, MarketCategory market_category, FinancialStatusIndicator financial_status_indicator, std::uint32_t round_lot_size, RoundLotsOnly round_lots_only, IssueClassification issue_classification, const std::string& issue_subtype, Authenticity authenticity, ShortSaleThresholdIndicator short_sale_threshold_indicator, IpoFlag ipo_flag, LuldReferencePriceTier luld_reference_price_tier, EtpFlag etp_flag, std::uint32_t etp_leverage_factor, InverseIndicator inverse_indicator);
+    StockDirectoryMessage(std::uint16_t tracking_number, std::chrono::nanoseconds time_stamp, const std::string& stock, MarketCategory market_category, FinancialStatusIndicator financial_status_indicator, std::uint32_t round_lot_size, RoundLotsOnly round_lots_only, IssueClassification issue_classification, const std::string& issue_sub_type, Authenticity authenticity, ShortSaleThresholdIndicator short_sale_threshold_indicator, IpoFlag ipo_flag, LuldReferencePriceTier luld_reference_price_tier, EtpFlag etp_flag, std::uint32_t etp_leverage_factor, InverseIndicator inverse_indicator);
 
     // Tracking Number: Nasdaq internal tracking number
     std::uint16_t tracking_number() const;
@@ -74,11 +74,11 @@ class StockDirectoryMessage : public Message {
     IssueClassification issue_classification() const;
     void set_issue_classification(IssueClassification value);
 
-    // Issue Subtype: Identifies the security sub-type for the issue as assigned by Nasdaq. See
-    // Appendix for allowable values.
-    const std::string& issue_subtype() const;
-    std::string& issue_subtype();
-    void set_issue_subtype(const std::string& value);
+    // Issue Sub Type: Identifies the security sub-type for the issue as assigned by Nasdaq.
+    // See Appendix for allowable values.
+    const std::string& issue_sub_type() const;
+    std::string& issue_sub_type();
+    void set_issue_sub_type(const std::string& value);
 
     // Authenticity: Denotes if an issue or quoting participant record is set-up in Nasdaq
     // systems in a live/production, test, or demo state.
@@ -136,7 +136,7 @@ class StockDirectoryMessage : public Message {
     std::uint32_t round_lot_size_{};
     RoundLotsOnly round_lots_only_{};
     IssueClassification issue_classification_{};
-    std::string issue_subtype_{};
+    std::string issue_sub_type_{};
     Authenticity authenticity_{};
     ShortSaleThresholdIndicator short_sale_threshold_indicator_{};
     IpoFlag ipo_flag_{};

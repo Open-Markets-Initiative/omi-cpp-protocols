@@ -1,0 +1,19 @@
+# Nasdaq.IseOptions.TopComboQuoteFeed.Itch.v1.0 StrategyBestAskUpdate: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 000008367I
+packet.packetheader.sequencenumber = 313084
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 40
+packet.messages.message[0].messageheader.messagetype = E
+packet.messages.message[0].payload = packet.messages.message.payload.strategybestaskupdate
+packet.messages.message[0].payload.strategybestaskupdate.timestamp = 50143811785730
+packet.messages.message[0].payload.strategybestaskupdate.strategyid = 2098852
+packet.messages.message[0].payload.strategybestaskupdate.quotecondition = 
+packet.messages.message[0].payload.strategybestaskupdate.price = 0.26
+packet.messages.message[0].payload.strategybestaskupdate.size = 100
+packet.messages.message[0].payload.strategybestaskupdate.custsize = 0
+packet.messages.message[0].payload.strategybestaskupdate.procustsize = 0
+packet.messages.message[0].payload.strategybestaskupdate.nttsize = 0
+packet.messages.message[0].payload.strategybestaskupdate.marketsize = 0
+packet.messages.message[0].payload.strategybestaskupdate.nttmarketsize = 0

@@ -16,7 +16,7 @@ struct series_status {
         trading_halt = '4',
         resume = '5',
         suspend = '6',
-        preopening = 'P',
+        pre_opening = 'P',
         begin_accepting_orders = 'B',
         core_session = 'O',
         closed = 'X'
@@ -26,7 +26,7 @@ struct series_status {
         {"Begin Accepting Orders", enum_type::begin_accepting_orders},
         {"Closed", enum_type::closed},
         {"Core Session", enum_type::core_session},
-        {"Preopening", enum_type::preopening},
+        {"Pre Opening", enum_type::pre_opening},
         {"Resume", enum_type::resume},
         {"Suspend", enum_type::suspend},
         {"Trading Halt", enum_type::trading_halt}
@@ -37,7 +37,7 @@ struct series_status {
             case enum_type::trading_halt: return "Trading Halt";
             case enum_type::resume: return "Resume";
             case enum_type::suspend: return "Suspend";
-            case enum_type::preopening: return "Preopening";
+            case enum_type::pre_opening: return "Pre Opening";
             case enum_type::begin_accepting_orders: return "Begin Accepting Orders";
             case enum_type::core_session: return "Core Session";
             case enum_type::closed: return "Closed";

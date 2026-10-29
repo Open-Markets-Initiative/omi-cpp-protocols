@@ -35,10 +35,10 @@ namespace variant_dailytaqquotes_v4_3 {
         ::scaled::delimited::Expected{ "Layout", "", '|', false, layout },
     } };
 
-    // Quote: a line of 23 fields, or as few as 20: its last 3 are optional, null where the line stops before them; onto a row
+    // Quote: a line of 23 fields, onto a row
     template <typename Row>
     void read(const ::scaled::delimited::Fields& fields, Row& row) {
-        ::scaled::delimited::expect(fields, 20, 23, "Quote");
+        ::scaled::delimited::expect(fields, 23, "Quote");
         row.time.set(static_cast<std::uint64_t>(::scaled::delimited::time_of_day(fields[0], 9, "Time")));  // Time
         row.exchange.set(fields[1]);  // Exchange
         row.symbol.set(fields[2]);  // Symbol
@@ -75,14 +75,14 @@ namespace variant_dailytaqquotes_v4_3 {
             row.national_bbo_luld_indicator.set(fields[18]);
         }
         row.participant_timestamp.set(static_cast<std::uint64_t>(::scaled::delimited::time_of_day(fields[19], 9, "Participant_Timestamp")));  // Participant_Timestamp
-        if (!::scaled::delimited::at(fields, 20).empty()) {  // FINRA_ADF_Timestamp
-            row.finra_adf_timestamp.set(static_cast<std::uint64_t>(::scaled::delimited::time_of_day(::scaled::delimited::at(fields, 20), 9, "FINRA_ADF_Timestamp")));
+        if (!fields[20].empty()) {  // FINRA_ADF_Timestamp
+            row.finra_adf_timestamp.set(static_cast<std::uint64_t>(::scaled::delimited::time_of_day(fields[20], 9, "FINRA_ADF_Timestamp")));
         }
-        if (!::scaled::delimited::at(fields, 21).empty()) {  // FINRA_ADF_Market_Participant_Quote_Indicator
-            row.finra_adf_market_participant_quote_indicator.set(::scaled::delimited::at(fields, 21));
+        if (!fields[21].empty()) {  // FINRA_ADF_Market_Participant_Quote_Indicator
+            row.finra_adf_market_participant_quote_indicator.set(fields[21]);
         }
-        if (!::scaled::delimited::at(fields, 22).empty()) {  // Security_Status_Indicator
-            row.security_status_indicator.set(::scaled::delimited::at(fields, 22));
+        if (!fields[22].empty()) {  // Security_Status_Indicator
+            row.security_status_indicator.set(fields[22]);
         }
     }
 }

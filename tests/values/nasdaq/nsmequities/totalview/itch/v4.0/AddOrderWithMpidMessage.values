@@ -1,0 +1,16 @@
+# Nasdaq.NsmEquities.TotalView.Itch.v4.0 AddOrderWithMpidMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.session = S032409v4.
+packet.packetheader.sequencenumber = 155843
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 32
+packet.messages.message[0].messageheader.messagetype = F
+packet.messages.message[0].payload = packet.messages.message.payload.addorderwithmpidmessage
+packet.messages.message[0].payload.addorderwithmpidmessage.nanoseconds = 353000000
+packet.messages.message[0].payload.addorderwithmpidmessage.orderreferencenumber = 7857
+packet.messages.message[0].payload.addorderwithmpidmessage.side = B
+packet.messages.message[0].payload.addorderwithmpidmessage.shares = 5400
+packet.messages.message[0].payload.addorderwithmpidmessage.stock = AIG
+packet.messages.message[0].payload.addorderwithmpidmessage.price = 1.38
+packet.messages.message[0].payload.addorderwithmpidmessage.attribution = BOOK

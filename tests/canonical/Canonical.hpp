@@ -118,7 +118,7 @@ inline std::string numeric(std::string value) {
     return negative && digits != "0" ? "-" + digits : digits;
 }
 
-// The model's values of a sample: one listing per datagram, in capture order
+// The model's values of a sample: one listing per datagram, or per stream, in capture order
 inline std::vector<Listing> load(const std::string& path) {
     std::ifstream file(path);
     std::vector<Listing> listings;
@@ -127,7 +127,7 @@ inline std::vector<Listing> load(const std::string& path) {
     while (std::getline(file, line)) {
         if (line.empty() || line[0] == '#') { continue; }
 
-        if (line.rfind("datagram ", 0) == 0) {
+        if (line.rfind("datagram ", 0) == 0 || line.rfind("stream ", 0) == 0) {
             listings.emplace_back();
             continue;
         }

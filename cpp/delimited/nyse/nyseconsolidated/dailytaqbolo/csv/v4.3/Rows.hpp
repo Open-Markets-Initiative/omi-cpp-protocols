@@ -44,7 +44,7 @@ namespace variant_dailytaqbolo_v4_3 {
         row.sequence_number.set(::scaled::delimited::integer<std::int64_t>(fields[2], "Sequence Number"));  // Sequence Number
         row.source_of_quote.set(fields[3]);  // Source of Quote
         if (!fields[4].empty()) {  // SIP-generated Message Identifier
-            row.sipgenerated_message_identifier.set(fields[4]);
+            row.sip_generated_message_identifier.set(fields[4]);
         }
         if (!fields[5].empty()) {  // BOLO Indicator
             row.bolo_indicator.set(fields[5]);

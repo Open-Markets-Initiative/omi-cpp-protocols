@@ -50,7 +50,7 @@ inline std::ostream& operator<<(std::ostream& os, const stock_directory_message&
        << ",round_lot_size=" << msg.fields.round_lot_size.get().value()
        << ",round_lots_only=\"" << itch_qbbo::round_lots_only::to_string(msg.fields.round_lots_only.get().value()) << '"'
        << ",issue_classification=\"" << itch_qbbo::issue_classification::to_string(msg.fields.issue_classification.get().value()) << '"'
-       << ",issue_subtype=\"" << msg.fields.issue_subtype.get_trimmed().value() << '"'
+       << ",issue_sub_type=\"" << msg.fields.issue_sub_type.get_trimmed().value() << '"'
        << ",authenticity=\"" << itch_qbbo::authenticity::to_string(msg.fields.authenticity.get().value()) << '"'
        << ",short_sale_threshold_indicator=\"" << itch_qbbo::short_sale_threshold_indicator::to_string(msg.fields.short_sale_threshold_indicator.get().value()) << '"'
        << ",ipo_flag=\"" << itch_qbbo::ipo_flag::to_string(msg.fields.ipo_flag.get().value()) << '"'

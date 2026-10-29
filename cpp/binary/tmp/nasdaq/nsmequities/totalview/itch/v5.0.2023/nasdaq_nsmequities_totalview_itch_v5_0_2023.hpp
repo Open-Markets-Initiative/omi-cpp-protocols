@@ -914,6 +914,9 @@ struct ipo_quotation_release_time {
     constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
     constexpr operator type() const noexcept { return value(); }
 
+    // ipo_quotation_release_time on a day: its seconds since midnight, America/New_York, as UTC Unix nanoseconds
+    std::int64_t utc(const calendar::Day& day) const { return calendar::midnight(day, "America/New_York").utc(static_cast<std::int64_t>(value()) * 1000000000); }
+
   protected:
     type value_;
 };
@@ -2601,9 +2604,9 @@ struct system_event_message {
 
 static_assert(sizeof(system_event_message) == system_event_message::size, "system_event_message lies over its bytes exactly");
 
-// Payload: Branch
-struct payload {
-    static constexpr std::string_view name = "Payload";
+// File Payload: Branch
+struct file_payload {
+    static constexpr std::string_view name = "File Payload";
     static constexpr bool is_message = false;
 };
 
@@ -2628,6 +2631,24 @@ struct message_header {
 };
 
 static_assert(sizeof(message_header) == message_header::size, "message_header lies over its bytes exactly");
+
+// File Message: Nasdaq historical file message: its length, then the message
+struct file_message {
+    static constexpr std::string_view name = "File Message";
+    static constexpr bool is_message = false;
+};
+
+// File: Nasdaq historical file: every message of the day, each preceded by its length
+struct file {
+    static constexpr std::string_view name = "File";
+    static constexpr bool is_message = false;
+};
+
+// Payload: Branch
+struct payload {
+    static constexpr std::string_view name = "Payload";
+    static constexpr bool is_message = false;
+};
 
 // Message: Mold Udp64 Message
 struct message {

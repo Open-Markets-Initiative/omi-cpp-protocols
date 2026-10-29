@@ -1,0 +1,26 @@
+# Nasdaq.IseOptions.TopComboQuoteFeed.Itch.v1.0 StrategyBestBidAndAskUpdate: canonical values, read by the model
+datagram 0
+packet.packetheader.session = 000008367I
+packet.packetheader.sequencenumber = 315317
+packet.packetheader.messagecount = 1
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 68
+packet.messages.message[0].messageheader.messagetype = C
+packet.messages.message[0].payload = packet.messages.message.payload.strategybestbidandaskupdate
+packet.messages.message[0].payload.strategybestbidandaskupdate.timestamp = 50316149285787
+packet.messages.message[0].payload.strategybestbidandaskupdate.strategyid = 2091776
+packet.messages.message[0].payload.strategybestbidandaskupdate.quotecondition = 
+packet.messages.message[0].payload.strategybestbidandaskupdate.bidprice = 2.5
+packet.messages.message[0].payload.strategybestbidandaskupdate.bidsize = 61
+packet.messages.message[0].payload.strategybestbidandaskupdate.bidcustsize = 0
+packet.messages.message[0].payload.strategybestbidandaskupdate.bidprocustsize = 0
+packet.messages.message[0].payload.strategybestbidandaskupdate.bidnttsize = 61
+packet.messages.message[0].payload.strategybestbidandaskupdate.bidmarketsize = 0
+packet.messages.message[0].payload.strategybestbidandaskupdate.bidnttmarketsize = 0
+packet.messages.message[0].payload.strategybestbidandaskupdate.askprice = 0
+packet.messages.message[0].payload.strategybestbidandaskupdate.asksize = 0
+packet.messages.message[0].payload.strategybestbidandaskupdate.askcustsize = 0
+packet.messages.message[0].payload.strategybestbidandaskupdate.askprocustsize = 0
+packet.messages.message[0].payload.strategybestbidandaskupdate.asknttsize = 0
+packet.messages.message[0].payload.strategybestbidandaskupdate.askmarketsize = 0
+packet.messages.message[0].payload.strategybestbidandaskupdate.asknttmarketsize = 0

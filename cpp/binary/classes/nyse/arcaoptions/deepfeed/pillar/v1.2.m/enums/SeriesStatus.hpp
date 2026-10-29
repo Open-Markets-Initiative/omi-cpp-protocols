@@ -11,7 +11,7 @@ enum class SeriesStatus : char {
     TradingHalt = '4',          // Trading Halt
     Resume = '5',               // Resume
     Suspend = '6',              // Suspend
-    Preopening = 'P',           // Preopening
+    PreOpening = 'P',           // Pre Opening
     BeginAcceptingOrders = 'B', // Begin Accepting Orders
     CoreSession = 'O',          // Core Session
     Closed = 'X',               // Closed

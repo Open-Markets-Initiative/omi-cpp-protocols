@@ -1,0 +1,33 @@
+# OtcMarkets.LinkAts.Multicast.Link.v4.3 QuoteUpdateMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.packetsize = 48
+packet.packetheader.seqnum = 743323
+packet.packetheader.packetflag.heartbeat = 0
+packet.packetheader.packetflag.seqnumreset = 0
+packet.packetheader.packetflag.replay = 0
+packet.packetheader.packetflag.test = 0
+packet.packetheader.messagecount = 1
+packet.packetheader.packetmilli = 60049834
+packet.messageblock = packet.messageblock.message
+packet.messageblock.message[0].messageheader.messagesize = 36
+packet.messageblock.message[0].messageheader.messagetype = 2
+packet.messageblock.message[0].payload = packet.messageblock.message.payload.quoteupdatemessage
+packet.messageblock.message[0].payload.quoteupdatemessage.channelseqnum = 23860576
+packet.messageblock.message[0].payload.quoteupdatemessage.quoteid = 14022212
+packet.messageblock.message[0].payload.quoteupdatemessage.quoteflags.updateside = 0
+packet.messageblock.message[0].payload.quoteupdatemessage.quoteflags.state = 1
+packet.messageblock.message[0].payload.quoteupdatemessage.quoteflags.askunsolicited = 0
+packet.messageblock.message[0].payload.quoteupdatemessage.quoteflags.askpriced = 1
+packet.messageblock.message[0].payload.quoteupdatemessage.quoteflags.askbidwanted = 0
+packet.messageblock.message[0].payload.quoteupdatemessage.quoteflags.bidunsolicited = 0
+packet.messageblock.message[0].payload.quoteupdatemessage.quoteflags.bidpriced = 1
+packet.messageblock.message[0].payload.quoteupdatemessage.quoteflags.bidaskwanted = 0
+packet.messageblock.message[0].payload.quoteupdatemessage.price = 4.56
+packet.messageblock.message[0].payload.quoteupdatemessage.size = 100
+packet.messageblock.message[0].payload.quoteupdatemessage.qap = -30
+packet.messageblock.message[0].payload.quoteupdatemessage.quotetimemilli = 1553892049792
+packet.messageblock.message[0].payload.quoteupdatemessage.quotereferenceid = 62828
+packet.messageblock.message[0].payload.quoteupdatemessage.extendedquoteflags.quotesaturated = 0
+packet.messageblock.message[0].payload.quoteupdatemessage.extendedquoteflags.bidautoex = 0
+packet.messageblock.message[0].payload.quoteupdatemessage.extendedquoteflags.offerautoex = 0
+packet.messageblock.message[0].payload.quoteupdatemessage.extendedquoteflags.nmsconditionalquote = 0

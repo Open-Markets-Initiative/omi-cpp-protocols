@@ -6,10 +6,10 @@
 
 namespace lseg::lse::level2mbo::gtp::v26_2 {
 
-// volume_onbook_only
-struct volume_onbook_only {
+// volume_on_book_only
+struct volume_on_book_only {
 
-    static constexpr const char* name = "volume_onbook_only";
+    static constexpr const char* name = "volume_on_book_only";
     static constexpr std::size_t size = 8;
     static constexpr bool is_optional = false;
     static constexpr int exponent = -4;
@@ -17,10 +17,10 @@ struct volume_onbook_only {
     using result_type = required<std::uint64_t>;
     using storage_type = result_type;
 
-    constexpr volume_onbook_only()
+    constexpr volume_on_book_only()
      : value{ 0 } {}
 
-    constexpr volume_onbook_only(std::uint64_t v)
+    constexpr volume_on_book_only(std::uint64_t v)
      : value{ v } {}
 
     [[nodiscard]] constexpr result_type get() const {

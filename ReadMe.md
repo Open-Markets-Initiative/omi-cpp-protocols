@@ -26,28 +26,33 @@ Updates are greatly appreciated; however, this entire repository is source gener
 
 | Parser | Protocol Count | Generated Lines |
 | --- | --- | --- |
-| Advanced | 44 | 376,658 |
-| Modern | 46 | 222,075 |
-| Classes | 46 | 513,373 |
-| Flyweight | 46 | 234,338 |
-| Tmp | 46 | 122,636 |
-| Delimited | 10 | 3,573 |
+| Advanced | 92 | 710,762 |
+| Modern | 96 | 412,351 |
+| Classes | 97 | 964,881 |
+| Flyweight | 96 | 447,349 |
+| Tmp | 98 | 239,702 |
+| Delimited | 10 | 3,577 |
 
 | Organization | Protocol Count | Generated Lines |
 | --- | --- | --- |
-| Asx | 1 | 28,728 |
-| B3 | 7 | 333,962 |
-| Cboe | 3 | 62,920 |
-| Cme | 3 | 288,771 |
-| Eurex | 2 | 76,850 |
+| Asx | 1 | 28,962 |
+| B3 | 10 | 547,854 |
+| Bse | 1 | 21,490 |
+| Cboe | 10 | 191,680 |
+| CixAts | 1 | 11,266 |
+| Cme | 4 | 358,096 |
+| Eurex | 4 | 124,455 |
 | Iex | 10 | 144,536 |
+| Jnx | 3 | 54,644 |
 | Jpx | 2 | 32,447 |
-| Lseg | 2 | 35,274 |
+| Lseg | 2 | 37,044 |
 | Memx | 1 | 12,740 |
-| Miax | 2 | 34,061 |
-| Nasdaq | 7 | 224,846 |
-| Nyse | 13 | 85,631 |
-| Siac | 3 | 110,855 |
+| Miax | 4 | 55,231 |
+| Nasdaq | 13 | 386,934 |
+| Nyse | 33 | 476,994 |
+| OtcMarkets | 1 | 13,572 |
+| Siac | 7 | 274,728 |
+| Tmx | 1 | 4,917 |
 
 ## Programs
 
@@ -61,6 +66,8 @@ exists in exactly one place. Each program reads through one format:
   protocol has a transport sequence and Modern where it does not
 - `executables/verify/` — holds every packet to the rules it was framed by and requires it to
   encode back to its own bytes, through Classes; exits non-zero on any failure
+- `executables/roundtrip/` — builds every message with each field set, writes them into a
+  capture of its own and reads it back, through Classes; each field must read as it was written
 
 The pcap reader they all share is `executables/pcap/`.
 
@@ -69,6 +76,7 @@ The pcap reader they all share is `executables/pcap/`.
 ./build/extractor_<protocol> capture.pcap output-directory
 ./build/statistics_<protocol> -i capture.pcap
 ./build/verify_<protocol> capture.pcap
+./build/roundtrip_<protocol> written.pcap
 ```
 
 ## Delimited
@@ -99,9 +107,9 @@ makes it where zlib is found.
 
 ## Tests
 
-`tests/` holds a test per protocol and format (167 of them), each written against the
+`tests/` holds a test per protocol and format (480 of them), each written against the
 surface that format's program uses, plus one run of each program on its protocol's first
-declared capture (130 of them):
+declared capture (306 of them):
 
 - `tests/binary/modern/` walks every payload with the Modern iterator and requires the declared
   message — what extractor reads through
@@ -112,6 +120,8 @@ declared capture (130 of them):
   dump reads through
 - the program runs require dump to print the message's class, statistics to count it,
   extractor to write a sample, and verify to pass the whole capture
+- roundtrip runs without a capture (416 of them): each must read back every
+  message it wrote as it was written
 
 Every build compiles them, so a test that does not build fails the build like anything under
 `checks/`. Running them reads the captures each protocol declares, which takes a packet
@@ -125,20 +135,29 @@ cmake --build build --parallel && ctest --test-dir build
 A protocol a format's generator refuses is left out of that format, and out of the programs
 and tests that read through it:
 
+- Cboe.C1Options.MarketDataFeed.Csm.v1.4.2, Modern: 'packet.message.payload.securitydefinitionmessage' has no size known before it is read, nor a Size rule stating one
 - Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d, Advanced: 'Heartbeat' is an action the model neither calls a message nor sets in a packet, so it has no place among the messages or the packets
 - Miax.MiaxOptions.TopOfMarket.Mach.v2.5, Advanced: 'Heartbeat' is an action the model neither calls a message nor sets in a packet, so it has no place among the messages or the packets
+- Miax.MiaxOptions.ComplexTopOfMarket.Mach.v1.1, Advanced: 'Heartbeat' is an action the model neither calls a message nor sets in a packet, so it has no place among the messages or the packets
+- Miax.OnyxFutures.TopOfMarket.Mach.v1.0.b, Advanced: 'Heartbeat' is an action the model neither calls a message nor sets in a packet, so it has no place among the messages or the packets
+- Miax.OnyxFutures.TopOfMarket.Mach.v1.0.b, Flyweight: 'packet.machmessage.payload.applicationmessage.data.simpleinstrumentdefinitionmessage.minimumsize' is named minimum_size, which its view declares for itself
+- OtcMarkets.LinkAts.Multicast.Link.v4.3, Advanced: Unrecognized C++ type for element 'Heartbeat' (size=1, addr=packet.packetheader.packetflag.heartbeat). Traits: [Size=1, Memory=Bits]. Add a kind in TypeKind.For(), or a branch in TypeKind.CppType.
+- OtcMarkets.LinkAts.Multicast.Link.v4.3, Modern: Unsupported C++ integer: 'Heartbeat' (1 bytes, signed=False, unsigned=False, isBytes=False)
+- Tmx.Tsx.QuantumFeedLevel2.Xmt.v2.10, Advanced: 'packet.frameheader.numbody' counts a group of 'packet.packetbody.heartbeatbody' but lies outside it
+- Tmx.Tsx.QuantumFeedLevel2.Xmt.v2.10, Classes: the payload branch selecting 'Business Bodies' has no dependency and data; default and composite dispatch keys are not yet supported by the Classes generator
+- Tmx.Tsx.QuantumFeedLevel2.Xmt.v2.10, Flyweight: the payload branch selecting 'Business Bodies' has no dependency and data; default and composite dispatch keys are not yet supported by the Flyweight generator
 
 ## Organizations
 
-> [Asx][Asx.Directory] · [B3][B3.Directory] · [Cboe][Cboe.Directory] · [Cme][Cme.Directory] · [Eurex][Eurex.Directory] · [Iex][Iex.Directory] · [Jpx][Jpx.Directory] · [Lseg][Lseg.Directory] · [Memx][Memx.Directory] · [Miax][Miax.Directory] · [Nasdaq][Nasdaq.Directory] · [Nyse][Nyse.Directory] · [Siac][Siac.Directory]
+> [Asx][Asx.Directory] · [B3][B3.Directory] · [Bse][Bse.Directory] · [Cboe][Cboe.Directory] · [CixAts][CixAts.Directory] · [Cme][Cme.Directory] · [Eurex][Eurex.Directory] · [Iex][Iex.Directory] · [Jnx][Jnx.Directory] · [Jpx][Jpx.Directory] · [Lseg][Lseg.Directory] · [Memx][Memx.Directory] · [Miax][Miax.Directory] · [Nasdaq][Nasdaq.Directory] · [Nyse][Nyse.Directory] · [OtcMarkets][OtcMarkets.Directory] · [Siac][Siac.Directory] · [Tmx][Tmx.Directory]
 
 ## Exchanges
 
-> [ArcaEquities][ArcaEquities.Exchange] · [ArcaOptions][ArcaOptions.Exchange] · [AsxDerivatives][AsxDerivatives.Exchange] · [B3Derivatives][B3Derivatives.Exchange] · [BzxEquities][BzxEquities.Exchange] · [CfeFutures][CfeFutures.Exchange] · [EdgxOptions][EdgxOptions.Exchange] · [IexEquities][IexEquities.Exchange] · [Lse][Lse.Exchange] · [MemxEquities][MemxEquities.Exchange] · [MiaxOptions][MiaxOptions.Exchange] · [NomOptions][NomOptions.Exchange] · [NordicEquities][NordicEquities.Exchange] · [NsmEquities][NsmEquities.Exchange] · [NyseEquities][NyseEquities.Exchange] · [OseDerivatives][OseDerivatives.Exchange] · [PearlEquities][PearlEquities.Exchange] · [PhlxOptions][PhlxOptions.Exchange] · [TseEquities][TseEquities.Exchange]
+> [AmexEquities][AmexEquities.Exchange] · [AmexOptions][AmexOptions.Exchange] · [ArcaEquities][ArcaEquities.Exchange] · [ArcaOptions][ArcaOptions.Exchange] · [AsxDerivatives][AsxDerivatives.Exchange] · [B3Derivatives][B3Derivatives.Exchange] · [BseIndia][BseIndia.Exchange] · [ByxEquities][ByxEquities.Exchange] · [BzxEquities][BzxEquities.Exchange] · [C1Options][C1Options.Exchange] · [CfeFutures][CfeFutures.Exchange] · [EdgaEquities][EdgaEquities.Exchange] · [EdgxEquities][EdgxEquities.Exchange] · [EdgxOptions][EdgxOptions.Exchange] · [IexEquities][IexEquities.Exchange] · [IseOptions][IseOptions.Exchange] · [JnxEquities][JnxEquities.Exchange] · [LinkAts][LinkAts.Ats] · [Lse][Lse.Exchange] · [MemxEquities][MemxEquities.Exchange] · [MiaxOptions][MiaxOptions.Exchange] · [NationalEquities][NationalEquities.Exchange] · [NomOptions][NomOptions.Exchange] · [NordicEquities][NordicEquities.Exchange] · [NsmEquities][NsmEquities.Exchange] · [NtxEquities][NtxEquities.Exchange] · [NyseEquities][NyseEquities.Exchange] · [OnyxFutures][OnyxFutures.Exchange] · [OseDerivatives][OseDerivatives.Exchange] · [PearlEquities][PearlEquities.Exchange] · [PhlxOptions][PhlxOptions.Exchange] · [PsxEquities][PsxEquities.Exchange] · [TexasEquities][TexasEquities.Exchange] · [TseEquities][TseEquities.Exchange] · [Tsx][Tsx.Exchange]
 
 ## Platforms
 
-> [Cme Globex][Globex.Platform] · [Lseg Millennium][Millennium.Platform] · [Eurex T7][T7.Platform]
+> [CixAts CixAspen][CixAspen.Platform] · [Cme Globex][Globex.Platform] · [Lseg Millennium][Millennium.Platform] · [Eurex T7][T7.Platform]
 
 ## Consolidators
 
@@ -146,40 +165,62 @@ and tests that read through it:
 
 [Asx.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Asx "Australian Securities Exchange"
 [B3.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/B3 "Brasil, Bolsa, Balcão"
+[Bse.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Bse "BSE Limited"
 [Cboe.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Cboe "Chicago Board Options Exchange"
+[CixAts.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/CixAts "CIX Trading Inc."
 [Cme.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Cme "CME Group"
 [Eurex.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Eurex "Eurex Exchange"
 [Iex.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Iex "Investors Exchange"
+[Jnx.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Jnx "Japannext Securities"
 [Jpx.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Jpx "Japan Exchange Group"
 [Lseg.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Lseg "London Stock Exchange"
 [Memx.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Memx "The Members Exchange"
 [Miax.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Miax "Miami International Holdings"
 [Nasdaq.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nasdaq "National Association of Securities Dealers Automated Quotations (Nasdaq)"
 [Nyse.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nyse "New York Stock Exchange"
+[OtcMarkets.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/OtcMarkets "OTC Markets Group"
 [Siac.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Siac "The Securities Industry Automation Corporation"
+[Tmx.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Tmx "TMX Group"
+[AmexEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nyse/Protocols/AmexEquities "Nyse Amex Equities"
+[AmexOptions.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nyse/Protocols/AmexOptions "Nyse Amex Options"
 [ArcaEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nyse/Protocols/ArcaEquities "Nyse Arca Equities"
 [ArcaOptions.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nyse/Protocols/ArcaOptions "Nyse Arca Options"
 [AsxDerivatives.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Asx/Protocols/AsxDerivatives "Asx Derivatives"
 [B3Derivatives.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/B3/Protocols/B3Derivatives "B3 Derivatives"
+[BseIndia.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Bse/Protocols/BseIndia "BSE India"
+[ByxEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Cboe/Protocols/ByxEquities "Cboe Byx Equities"
 [BzxEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Cboe/Protocols/BzxEquities "Cboe Bzx Equities"
+[C1Options.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Cboe/Protocols/C1Options "Cboe C1 Options"
 [CfeFutures.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Cboe/Protocols/CfeFutures "Cboe Futures Exchange"
+[CixAspen.Platform]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/CixAts/Protocols/CixAspen "CIX Aspen"
 [Cqs.Consolidator]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Siac/Protocols/Cqs "Consolidated Quotation System"
 [Cts.Consolidator]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Siac/Protocols/Cts "Consolidated Tape System"
+[EdgaEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Cboe/Protocols/EdgaEquities "Cboe Edga Equities"
+[EdgxEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Cboe/Protocols/EdgxEquities "Cboe Edgx Equities"
 [EdgxOptions.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Cboe/Protocols/EdgxOptions "Cboe Edgx Options"
 [Globex.Platform]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Cme/Protocols/Globex "CME Globex"
 [IexEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Iex/Protocols/IexEquities "IEX Equities"
+[IseOptions.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nasdaq/Protocols/IseOptions "Nasdaq ISE"
+[JnxEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Jnx/Protocols/JnxEquities "Japannext Equities"
+[LinkAts.Ats]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/OtcMarkets/Protocols/LinkAts "OTC Link ATS"
 [Lse.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Lseg/Protocols/Lse "London Stock Exchange"
 [MemxEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Memx/Protocols/MemxEquities "Memx Equities"
 [MiaxOptions.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Miax/Protocols/MiaxOptions "MIAX Options"
 [Millennium.Platform]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Lseg/Protocols/Millennium "Millennium Exchange"
+[NationalEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nyse/Protocols/NationalEquities "Nyse National Equities"
 [NomOptions.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nasdaq/Protocols/NomOptions "Nasdaq Options Market"
 [NordicEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nasdaq/Protocols/NordicEquities "Nasdaq Nordic Equities"
 [NsmEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nasdaq/Protocols/NsmEquities "Nasdaq Stock Market"
+[NtxEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nasdaq/Protocols/NtxEquities "Nasdaq Texas"
 [NyseConsolidated.Consolidator]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nyse/Protocols/NyseConsolidated "NYSE Consolidated"
 [NyseEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nyse/Protocols/NyseEquities "New York Stock Exchange Equities"
+[OnyxFutures.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Miax/Protocols/OnyxFutures "MIAX Futures Onyx"
 [Opra.Consolidator]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Siac/Protocols/Opra "Options Price Reporting Authority"
 [OseDerivatives.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Jpx/Protocols/OseDerivatives "Osaka Securities Exchange"
 [PearlEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Miax/Protocols/PearlEquities "MIAX Pearl Equities"
 [PhlxOptions.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nasdaq/Protocols/PhlxOptions "Nasdaq PHLX"
+[PsxEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nasdaq/Protocols/PsxEquities "Nasdaq PSX"
 [T7.Platform]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Eurex/Protocols/T7 "T7"
+[TexasEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nyse/Protocols/TexasEquities "Nyse Texas Equities"
 [TseEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Jpx/Protocols/TseEquities "Tokyo Stock Exchange Equities"
+[Tsx.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Tmx/Protocols/Tsx "Toronto Stock Exchange"
