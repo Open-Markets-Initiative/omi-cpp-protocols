@@ -93,4 +93,51 @@ class entries {
     std::size_t block_;
 };
 
+// A run of entries filling a byte budget its length field states, read where they lie until those
+// bytes run out rather than a stated number of times (Ouch's optional appendage).
+template <typename Entry>
+class filled {
+  public:
+    explicit filled(std::span<const std::byte> bytes) noexcept : bytes_{ bytes } {}
+
+    class iterator {
+      public:
+        using value_type = Entry;
+        using difference_type = std::ptrdiff_t;
+
+        iterator() = default;
+        explicit iterator(std::span<const std::byte> bytes) noexcept : bytes_{ bytes } {}
+
+        Entry operator*() const {
+            wire::require(Entry::name, Entry::minimum_size, bytes_.size());
+            return Entry{ bytes_ };
+        }
+
+        iterator& operator++() {
+            const std::size_t step = (**this).encoded_size();
+            wire::require(Entry::name, step, bytes_.size());
+            bytes_ = bytes_.subspan(step);
+            return *this;
+        }
+
+        iterator operator++(int) { auto was = *this; ++*this; return was; }
+
+        bool operator==(std::default_sentinel_t) const noexcept { return bytes_.size() < Entry::minimum_size; }
+
+        std::span<const std::byte> rest() const noexcept { return bytes_; }
+
+      private:
+        std::span<const std::byte> bytes_{};
+    };
+
+    iterator begin() const noexcept { return iterator{ bytes_ }; }
+    std::default_sentinel_t end() const noexcept { return {}; }
+
+    // the bytes the run takes together: the budget it was given
+    std::size_t encoded_size() const noexcept { return bytes_.size(); }
+
+  private:
+    std::span<const std::byte> bytes_;
+};
+
 } // namespace siac::cts::output::cta::v2_10::view

@@ -117,6 +117,20 @@ namespace tmp {
         throw short_read("no terminator in " + std::to_string(length) + " bytes");
     }
 
+    // The bytes before the first of a field's delimiters, which it leaves for what follows it; at
+    // most its maximum, and the bytes must hold a delimiter when they are shorter than that
+    template <std::size_t Count>
+    std::size_t delimited(const std::byte* data, std::size_t length, std::size_t maximum, const std::array<std::byte, Count>& delimiters) {
+        const std::size_t limit = std::min(maximum, length);
+        for (std::size_t index = 0; index < limit; ++index) {
+            for (const std::byte delimiter : delimiters) {
+                if (data[index] == delimiter) { return index; }
+            }
+        }
+        if (limit < length) { return limit; }
+        throw short_read("no delimiter in " + std::to_string(length) + " bytes");
+    }
+
     // The bytes of a frame ending on a terminator, the terminator included; none while the bytes
     // do not hold it yet
     inline std::size_t through(const std::byte* data, std::size_t length, std::byte terminator) noexcept {

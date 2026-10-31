@@ -29,29 +29,29 @@ Updates are greatly appreciated; however, this entire repository is source gener
 | Advanced | 92 | 710,762 |
 | Modern | 96 | 412,351 |
 | Classes | 97 | 964,881 |
-| Flyweight | 96 | 447,349 |
+| Flyweight | 96 | 451,861 |
 | Tmp | 98 | 239,702 |
 | Delimited | 10 | 3,577 |
 
 | Organization | Protocol Count | Generated Lines |
 | --- | --- | --- |
-| Asx | 1 | 28,962 |
-| B3 | 10 | 547,854 |
-| Bse | 1 | 21,490 |
-| Cboe | 10 | 191,680 |
-| CixAts | 1 | 11,266 |
-| Cme | 4 | 358,096 |
-| Eurex | 4 | 124,455 |
-| Iex | 10 | 144,536 |
-| Jnx | 3 | 54,644 |
-| Jpx | 2 | 32,447 |
-| Lseg | 2 | 37,044 |
-| Memx | 1 | 12,740 |
-| Miax | 4 | 55,231 |
-| Nasdaq | 13 | 386,934 |
-| Nyse | 33 | 476,994 |
-| OtcMarkets | 1 | 13,572 |
-| Siac | 7 | 274,728 |
+| Asx | 1 | 29,009 |
+| B3 | 10 | 548,324 |
+| Bse | 1 | 21,537 |
+| Cboe | 10 | 192,150 |
+| CixAts | 1 | 11,313 |
+| Cme | 4 | 358,284 |
+| Eurex | 4 | 124,643 |
+| Iex | 10 | 145,006 |
+| Jnx | 3 | 54,785 |
+| Jpx | 2 | 32,541 |
+| Lseg | 2 | 37,138 |
+| Memx | 1 | 12,787 |
+| Miax | 4 | 55,372 |
+| Nasdaq | 13 | 387,545 |
+| Nyse | 33 | 478,075 |
+| OtcMarkets | 1 | 13,619 |
+| Siac | 7 | 275,057 |
 | Tmx | 1 | 4,917 |
 
 ## Programs
