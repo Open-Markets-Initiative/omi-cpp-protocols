@@ -3,6 +3,7 @@
 #include "../NewOrderCrossMessage.hpp"
 #include <span>
 #include <cstring>
+#include <new>
 #include <stdexcept>
 #include <string_view>
 
@@ -30,6 +31,7 @@ public:
         header_->block_length.set(sizeof(new_order_cross_message_cross_sides_groups_entry));
         header_->num_in_group.set(0);
         pos_ += sizeof(sbe_binaryentrypoint::group_size_encoding);
+        if (pos_ + sizeof(new_order_cross_message_cross_sides_groups_entry) <= end_) ::new (static_cast<void*>(pos_)) new_order_cross_message_cross_sides_groups_entry{};
     }
 
     new_order_cross_message_cross_sides_groups_builder(std::byte* msg_start, std::byte* pos, std::byte* end, sbe_binaryentrypoint::group_size_encoding* header, uint16_t count)
@@ -76,6 +78,7 @@ public:
         entry->trading_sub_account.set(v);
         pos_ += header_->block_length.get().value();
         count_++;
+        if (pos_ + sizeof(new_order_cross_message_cross_sides_groups_entry) <= end_) ::new (static_cast<void*>(pos_)) new_order_cross_message_cross_sides_groups_entry{};
         return *this;
     }
 
@@ -104,10 +107,10 @@ public:
         : msg_start_(msg_start), pos_(pos), end_(end) {}
 
     std::span<std::byte> memo_and_finish(std::string_view v) {
-        if (pos_ + sizeof(uint32_t) + v.size() > end_) throw std::runtime_error("buffer overrun writing var-data");
-        *reinterpret_cast<uint32_t*>(pos_) = static_cast<uint32_t>(v.size());
-        std::memcpy(pos_ + sizeof(uint32_t), v.data(), v.size());
-        auto* final_pos = pos_ + sizeof(uint32_t) + v.size();
+        if (pos_ + sizeof(std::uint8_t) + v.size() > end_) throw std::runtime_error("buffer overrun writing var-data");
+        *reinterpret_cast<std::uint8_t*>(pos_) = static_cast<std::uint8_t>(v.size());
+        std::memcpy(pos_ + sizeof(std::uint8_t), v.data(), v.size());
+        auto* final_pos = pos_ + sizeof(std::uint8_t) + v.size();
         reinterpret_cast<sbe_binaryentrypoint::simple_open_framing_header*>(msg_start_)->message_length.set(static_cast<uint16_t>(final_pos - msg_start_));
         return { msg_start_, static_cast<size_t>(final_pos - msg_start_) };
     }
@@ -133,10 +136,10 @@ inline new_order_cross_message_after_cross_sides new_order_cross_message_cross_s
 }
 
 inline new_order_cross_message_after_desk_id new_order_cross_message_after_cross_sides::desk_id(std::string_view v) {
-    if (pos_ + sizeof(uint32_t) + v.size() > end_) throw std::runtime_error("buffer overrun writing var-data");
-    *reinterpret_cast<uint32_t*>(pos_) = static_cast<uint32_t>(v.size());
-    std::memcpy(pos_ + sizeof(uint32_t), v.data(), v.size());
-    auto* next_pos = pos_ + sizeof(uint32_t) + v.size();
+    if (pos_ + sizeof(std::uint8_t) + v.size() > end_) throw std::runtime_error("buffer overrun writing var-data");
+    *reinterpret_cast<std::uint8_t*>(pos_) = static_cast<std::uint8_t>(v.size());
+    std::memcpy(pos_ + sizeof(std::uint8_t), v.data(), v.size());
+    auto* next_pos = pos_ + sizeof(std::uint8_t) + v.size();
     return { msg_start_, next_pos, end_ };
 }
 

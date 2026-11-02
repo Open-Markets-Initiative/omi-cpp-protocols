@@ -19,7 +19,7 @@ struct settl_date_local_mkt_date_32_optional {
     using storage_type = result_type;
 
     constexpr settl_date_local_mkt_date_32_optional()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr settl_date_local_mkt_date_32_optional(std::int32_t v)
      : value{ v } {}

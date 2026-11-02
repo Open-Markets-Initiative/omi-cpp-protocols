@@ -29,7 +29,7 @@ struct corrected_trade_message {
         sbe_memoirdepthfeed::corrected_price corrected_price;
     };
 
-    sbe_memoirdepthfeed::sbe_header header = {{}, template_id::enum_type::corrected_trade_message, schema_id(2), version(259)};
+    sbe_memoirdepthfeed::sbe_header header = {block_length(sizeof(fields_type)), template_id::enum_type::corrected_trade_message, schema_id(2), version(259)};
 
     fields_type fields;
 

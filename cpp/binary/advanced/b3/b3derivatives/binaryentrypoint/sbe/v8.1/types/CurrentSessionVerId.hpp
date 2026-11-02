@@ -19,7 +19,7 @@ struct current_session_ver_id {
     using storage_type = result_type;
 
     constexpr current_session_ver_id()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr current_session_ver_id(std::uint64_t v)
      : value{ v } {}

@@ -20,7 +20,7 @@ struct low_limit_price {
     using storage_type = result_type;
 
     constexpr low_limit_price()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr low_limit_price(std::int64_t v)
      : value{ v } {}

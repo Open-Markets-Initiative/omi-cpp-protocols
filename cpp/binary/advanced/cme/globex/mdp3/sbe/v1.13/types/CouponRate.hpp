@@ -20,7 +20,7 @@ struct coupon_rate {
     using storage_type = result_type;
 
     constexpr coupon_rate()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr coupon_rate(std::int64_t v)
      : value{ v } {}

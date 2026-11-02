@@ -13,9 +13,9 @@ struct MdEntrySize {
     using type = std::int64_t;
 static const type no_value = 0x8000000000000000;
 
-    // default constructor
+    // default constructor: the null the model states, where it states one
     constexpr MdEntrySize()
-     : value{ 0 } {}
+     : value{ no_value } {}
 
     // standard constructor
     constexpr explicit MdEntrySize(const std::int64_t value)

@@ -72,7 +72,7 @@ struct order_category {
     using storage_type = result_type;
 
     constexpr order_category()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0) } {}
 
     constexpr order_category(enum_type v)
      : value{ v } {}

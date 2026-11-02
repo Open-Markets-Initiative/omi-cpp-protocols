@@ -15,9 +15,9 @@ struct HighLimitPriceEx {
     using type = std::int64_t;
 static const type no_value = 9223372036854775807;
 
-    // default constructor
+    // default constructor: the null the model states, where it states one
     constexpr HighLimitPriceEx()
-     : value{ 0 } {}
+     : value{ no_value } {}
 
     // constructor for HighLimitPriceEx field
     constexpr explicit HighLimitPriceEx(const std::int64_t value)

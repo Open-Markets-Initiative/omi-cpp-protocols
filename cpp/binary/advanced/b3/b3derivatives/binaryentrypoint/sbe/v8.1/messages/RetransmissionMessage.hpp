@@ -2,6 +2,7 @@
 
 #include <cstddef>
 #include "../structs/SimpleOpenFramingHeader.hpp"
+#include "../structs/MessageHeader.hpp"
 #include "../types/SessionId.hpp"
 #include "../types/RequestTimestamp.hpp"
 #include "../types/NextSeqNo.hpp"
@@ -24,7 +25,7 @@ struct retransmission_message {
     };
 
     sbe_binaryentrypoint::simple_open_framing_header header = {std::uint16_t(sizeof(sbe_binaryentrypoint::simple_open_framing_header) + sizeof(fields_type) + sizeof(sbe_binaryentrypoint::message_header)), encoding_type(60240)};
-    sbe_binaryentrypoint::message_header message_header;
+    sbe_binaryentrypoint::message_header message_header = {block_length(sizeof(fields_type)), template_id::enum_type::retransmission_message, schema_id(1), version(3)};
 
     fields_type fields;
 

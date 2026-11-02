@@ -19,7 +19,7 @@ struct underlying_min_days_to_maturity {
     using storage_type = result_type;
 
     constexpr underlying_min_days_to_maturity()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr underlying_min_days_to_maturity(std::uint16_t v)
      : value{ v } {}

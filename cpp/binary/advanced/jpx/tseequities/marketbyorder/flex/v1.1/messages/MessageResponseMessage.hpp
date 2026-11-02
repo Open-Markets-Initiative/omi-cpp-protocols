@@ -34,7 +34,7 @@ struct message_response_message {
     }
 
     // sequential access to variable-length regions
-    sbe_var_data data() const {
+    sbe_var_data<std::uint32_t> data() const {
         return { tail_begin(), tail_end() };
     }
 

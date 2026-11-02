@@ -20,7 +20,7 @@ struct bid_px {
     using storage_type = result_type;
 
     constexpr bid_px()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr bid_px(std::int64_t v)
      : value{ v } {}

@@ -19,7 +19,7 @@ struct crossid_optional {
     using storage_type = result_type;
 
     constexpr crossid_optional()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr crossid_optional(std::uint64_t v)
      : value{ v } {}

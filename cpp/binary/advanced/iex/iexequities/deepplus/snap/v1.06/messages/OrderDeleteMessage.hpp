@@ -2,6 +2,7 @@
 
 #include <cstddef>
 #include "../structs/MessageHeader.hpp"
+#include "../structs/IextpHeader.hpp"
 #include "../types/Reserved1.hpp"
 #include "../types/Timestamp.hpp"
 #include "../types/Symbol.hpp"

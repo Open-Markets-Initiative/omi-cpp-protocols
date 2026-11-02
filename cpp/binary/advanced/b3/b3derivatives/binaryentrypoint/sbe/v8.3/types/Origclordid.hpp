@@ -19,7 +19,7 @@ struct origclordid {
     using storage_type = result_type;
 
     constexpr origclordid()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr origclordid(std::uint64_t v)
      : value{ v } {}

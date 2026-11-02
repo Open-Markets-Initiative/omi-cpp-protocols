@@ -19,7 +19,7 @@ struct leg_security_id {
     using storage_type = result_type;
 
     constexpr leg_security_id()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr leg_security_id(std::int64_t v)
      : value{ v } {}

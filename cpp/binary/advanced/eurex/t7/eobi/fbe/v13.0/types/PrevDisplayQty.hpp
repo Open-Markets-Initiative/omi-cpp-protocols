@@ -20,7 +20,7 @@ struct prev_display_qty {
     using storage_type = result_type;
 
     constexpr prev_display_qty()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr prev_display_qty(std::int64_t v)
      : value{ v } {}

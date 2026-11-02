@@ -19,7 +19,7 @@ struct dated_date {
     using storage_type = result_type;
 
     constexpr dated_date()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr dated_date(std::int32_t v)
      : value{ v } {}

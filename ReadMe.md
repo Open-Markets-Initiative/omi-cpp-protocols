@@ -26,32 +26,33 @@ Updates are greatly appreciated; however, this entire repository is source gener
 
 | Parser | Protocol Count | Generated Lines |
 | --- | --- | --- |
-| Advanced | 92 | 710,762 |
-| Modern | 96 | 412,351 |
-| Classes | 97 | 964,881 |
-| Flyweight | 96 | 451,861 |
-| Tmp | 98 | 239,702 |
-| Delimited | 10 | 3,577 |
+| Advanced | 95 | 744,772 |
+| Modern | 99 | 433,521 |
+| Classes | 100 | 1,009,386 |
+| Flyweight | 99 | 470,508 |
+| Tmp | 101 | 250,664 |
+| Delimited | 11 | 4,050 |
 
 | Organization | Protocol Count | Generated Lines |
 | --- | --- | --- |
-| Asx | 1 | 29,009 |
-| B3 | 10 | 548,324 |
-| Bse | 1 | 21,537 |
-| Cboe | 10 | 192,150 |
-| CixAts | 1 | 11,313 |
-| Cme | 4 | 358,284 |
-| Eurex | 4 | 124,643 |
-| Iex | 10 | 145,006 |
-| Jnx | 3 | 54,785 |
-| Jpx | 2 | 32,541 |
-| Lseg | 2 | 37,138 |
-| Memx | 1 | 12,787 |
+| Asx | 1 | 29,010 |
+| B3 | 10 | 548,850 |
+| Bse | 1 | 21,538 |
+| Cboe | 10 | 192,162 |
+| CixAts | 1 | 11,314 |
+| Cme | 4 | 358,782 |
+| Databento | 3 | 128,113 |
+| Eurex | 4 | 124,647 |
+| Iex | 10 | 145,057 |
+| Jnx | 3 | 54,794 |
+| Jpx | 2 | 32,544 |
+| Lseg | 2 | 37,140 |
+| Memx | 2 | 12,938 |
 | Miax | 4 | 55,372 |
-| Nasdaq | 13 | 387,545 |
-| Nyse | 33 | 478,075 |
+| Nasdaq | 13 | 387,579 |
+| Nyse | 33 | 478,386 |
 | OtcMarkets | 1 | 13,619 |
-| Siac | 7 | 275,057 |
+| Siac | 7 | 275,070 |
 | Tmx | 1 | 4,917 |
 
 ## Programs
@@ -81,7 +82,7 @@ The pcap reader they all share is `executables/pcap/`.
 
 ## Delimited
 
-`cpp/delimited/` holds a reader per delimited protocol (10 of them, the NYSE Daily
+`cpp/delimited/` holds a reader per delimited protocol (11 of them, the NYSE Daily
 TAQ files): a csv's header row, which selects the layout variant the file is read by, then each
 data line read straight into typed C++ values, with no binary record between. A protocol's reader
 is two headers in its directory: `Rows.hpp`, the reading of a line onto a row, and `Row.hpp`, its
@@ -107,7 +108,7 @@ makes it where zlib is found.
 
 ## Tests
 
-`tests/` holds a test per protocol and format (480 of them), each written against the
+`tests/` holds a test per protocol and format (483 of them), each written against the
 surface that format's program uses, plus one run of each program on its protocol's first
 declared capture (306 of them):
 
@@ -149,7 +150,7 @@ and tests that read through it:
 
 ## Organizations
 
-> [Asx][Asx.Directory] · [B3][B3.Directory] · [Bse][Bse.Directory] · [Cboe][Cboe.Directory] · [CixAts][CixAts.Directory] · [Cme][Cme.Directory] · [Eurex][Eurex.Directory] · [Iex][Iex.Directory] · [Jnx][Jnx.Directory] · [Jpx][Jpx.Directory] · [Lseg][Lseg.Directory] · [Memx][Memx.Directory] · [Miax][Miax.Directory] · [Nasdaq][Nasdaq.Directory] · [Nyse][Nyse.Directory] · [OtcMarkets][OtcMarkets.Directory] · [Siac][Siac.Directory] · [Tmx][Tmx.Directory]
+> [Asx][Asx.Directory] · [B3][B3.Directory] · [Bse][Bse.Directory] · [Cboe][Cboe.Directory] · [CixAts][CixAts.Directory] · [Cme][Cme.Directory] · [Databento][Databento.Directory] · [Eurex][Eurex.Directory] · [Iex][Iex.Directory] · [Jnx][Jnx.Directory] · [Jpx][Jpx.Directory] · [Lseg][Lseg.Directory] · [Memx][Memx.Directory] · [Miax][Miax.Directory] · [Nasdaq][Nasdaq.Directory] · [Nyse][Nyse.Directory] · [OtcMarkets][OtcMarkets.Directory] · [Siac][Siac.Directory] · [Tmx][Tmx.Directory]
 
 ## Exchanges
 
@@ -157,11 +158,15 @@ and tests that read through it:
 
 ## Platforms
 
-> [CixAts CixAspen][CixAspen.Platform] · [Cme Globex][Globex.Platform] · [Lseg Millennium][Millennium.Platform] · [Eurex T7][T7.Platform]
+> [CixAts CixAspen][CixAspen.Platform] · [Cme Globex][Globex.Platform] · [Eurex T7][T7.Platform] · [Lseg Millennium][Millennium.Platform]
 
 ## Consolidators
 
 > [Cqs][Cqs.Consolidator] · [Cts][Cts.Consolidator] · [NyseConsolidated][NyseConsolidated.Consolidator] · [Opra][Opra.Consolidator]
+
+## Redistributors
+
+> [Databento][MarketData.Redistributor]
 
 [Asx.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Asx "Australian Securities Exchange"
 [B3.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/B3 "Brasil, Bolsa, Balcão"
@@ -169,6 +174,7 @@ and tests that read through it:
 [Cboe.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Cboe "Chicago Board Options Exchange"
 [CixAts.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/CixAts "CIX Trading Inc."
 [Cme.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Cme "CME Group"
+[Databento.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Databento "Databento"
 [Eurex.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Eurex "Eurex Exchange"
 [Iex.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Iex "Investors Exchange"
 [Jnx.Directory]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Jnx "Japannext Securities"
@@ -193,20 +199,22 @@ and tests that read through it:
 [C1Options.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Cboe/Protocols/C1Options "Cboe C1 Options"
 [CfeFutures.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Cboe/Protocols/CfeFutures "Cboe Futures Exchange"
 [CixAspen.Platform]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/CixAts/Protocols/CixAspen "CIX Aspen"
+[Globex.Platform]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Cme/Protocols/Globex "CME Globex"
 [Cqs.Consolidator]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Siac/Protocols/Cqs "Consolidated Quotation System"
 [Cts.Consolidator]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Siac/Protocols/Cts "Consolidated Tape System"
+[MarketData.Redistributor]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Databento/Protocols/MarketData "Databento Market Data"
 [EdgaEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Cboe/Protocols/EdgaEquities "Cboe Edga Equities"
 [EdgxEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Cboe/Protocols/EdgxEquities "Cboe Edgx Equities"
 [EdgxOptions.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Cboe/Protocols/EdgxOptions "Cboe Edgx Options"
-[Globex.Platform]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Cme/Protocols/Globex "CME Globex"
+[T7.Platform]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Eurex/Protocols/T7 "T7"
 [IexEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Iex/Protocols/IexEquities "IEX Equities"
 [IseOptions.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nasdaq/Protocols/IseOptions "Nasdaq ISE"
 [JnxEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Jnx/Protocols/JnxEquities "Japannext Equities"
 [LinkAts.Ats]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/OtcMarkets/Protocols/LinkAts "OTC Link ATS"
 [Lse.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Lseg/Protocols/Lse "London Stock Exchange"
+[Millennium.Platform]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Lseg/Protocols/Millennium "Millennium Exchange"
 [MemxEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Memx/Protocols/MemxEquities "Memx Equities"
 [MiaxOptions.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Miax/Protocols/MiaxOptions "MIAX Options"
-[Millennium.Platform]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Lseg/Protocols/Millennium "Millennium Exchange"
 [NationalEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nyse/Protocols/NationalEquities "Nyse National Equities"
 [NomOptions.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nasdaq/Protocols/NomOptions "Nasdaq Options Market"
 [NordicEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nasdaq/Protocols/NordicEquities "Nasdaq Nordic Equities"
@@ -220,7 +228,6 @@ and tests that read through it:
 [PearlEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Miax/Protocols/PearlEquities "MIAX Pearl Equities"
 [PhlxOptions.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nasdaq/Protocols/PhlxOptions "Nasdaq PHLX"
 [PsxEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nasdaq/Protocols/PsxEquities "Nasdaq PSX"
-[T7.Platform]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Eurex/Protocols/T7 "T7"
 [TexasEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Nyse/Protocols/TexasEquities "Nyse Texas Equities"
 [TseEquities.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Jpx/Protocols/TseEquities "Tokyo Stock Exchange Equities"
 [Tsx.Exchange]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/Organizations/Tmx/Protocols/Tsx "Toronto Stock Exchange"

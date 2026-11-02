@@ -61,7 +61,7 @@ struct price_band_type {
     using storage_type = result_type;
 
     constexpr price_band_type()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(255) } {}
 
     constexpr price_band_type(enum_type v)
      : value{ v } {}

@@ -55,7 +55,7 @@ struct security_trading_event {
     using storage_type = result_type;
 
     constexpr security_trading_event()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0xFF) } {}
 
     constexpr security_trading_event(enum_type v)
      : value{ v } {}

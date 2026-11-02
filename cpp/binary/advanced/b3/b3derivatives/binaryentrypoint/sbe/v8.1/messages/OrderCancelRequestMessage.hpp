@@ -2,6 +2,7 @@
 
 #include <cstddef>
 #include "../structs/SimpleOpenFramingHeader.hpp"
+#include "../structs/MessageHeader.hpp"
 #include "../structs/SbeGroupSupport.hpp"
 #include "../structs/InboundBusinessHeader.hpp"
 #include "../types/Offset18Padding2.hpp"
@@ -42,7 +43,7 @@ struct order_cancel_request_message {
     };
 
     sbe_binaryentrypoint::simple_open_framing_header header = {std::uint16_t(sizeof(sbe_binaryentrypoint::simple_open_framing_header) + sizeof(fields_type) + sizeof(sbe_binaryentrypoint::message_header)), encoding_type(60240)};
-    sbe_binaryentrypoint::message_header message_header;
+    sbe_binaryentrypoint::message_header message_header = {block_length(sizeof(fields_type)), template_id::enum_type::order_cancel_request_message, schema_id(1), version(3)};
 
     static constexpr std::size_t max_message_size = 1280;
     static constexpr std::size_t tail_capacity = max_message_size - sizeof(sbe_binaryentrypoint::simple_open_framing_header) - sizeof(fields_type) - sizeof(sbe_binaryentrypoint::message_header);
@@ -60,11 +61,11 @@ struct order_cancel_request_message {
     }
 
     // sequential access to variable-length regions
-    sbe_var_data desk_id() const {
+    sbe_var_data<std::uint8_t> desk_id() const {
         return { tail_begin(), tail_end() };
     }
 
-    sbe_var_data memo(const std::byte* position) const {
+    sbe_var_data<std::uint8_t> memo(const std::byte* position) const {
         return { position, tail_end() };
     }
 

@@ -13,9 +13,9 @@ struct CrossedIndicator {
     using type = std::uint16_t;
 static const type no_value = 0;
 
-    // default constructor
+    // default constructor: the null the model states, where it states one
     constexpr CrossedIndicator()
-     : value{ 0 } {}
+     : value{ no_value } {}
 
     // standard constructor
     constexpr explicit CrossedIndicator(const std::uint16_t value)

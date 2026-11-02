@@ -242,7 +242,7 @@ inline deprecated_security_definition_message_deprecated_instr_attribs_groups_re
     return { pos, msg.tail_end() };
 }
 
-inline sbe_var_data read_security_desc(const std::byte* pos, const deprecated_security_definition_message& msg) {
+inline sbe_var_data<std::uint8_t> read_security_desc(const std::byte* pos, const deprecated_security_definition_message& msg) {
     return { pos, msg.tail_end() };
 }
 

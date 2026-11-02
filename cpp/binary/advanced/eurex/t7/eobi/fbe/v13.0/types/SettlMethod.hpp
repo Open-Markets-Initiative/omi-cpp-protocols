@@ -55,7 +55,7 @@ struct settl_method {
     using storage_type = result_type;
 
     constexpr settl_method()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0xFF) } {}
 
     constexpr settl_method(enum_type v)
      : value{ v } {}

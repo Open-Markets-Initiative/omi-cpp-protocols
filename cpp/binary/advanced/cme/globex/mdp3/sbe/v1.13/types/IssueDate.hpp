@@ -19,7 +19,7 @@ struct issue_date {
     using storage_type = result_type;
 
     constexpr issue_date()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr issue_date(std::uint16_t v)
      : value{ v } {}

@@ -55,7 +55,7 @@ struct market_condition {
     using storage_type = result_type;
 
     constexpr market_condition()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0xFF) } {}
 
     constexpr market_condition(enum_type v)
      : value{ v } {}

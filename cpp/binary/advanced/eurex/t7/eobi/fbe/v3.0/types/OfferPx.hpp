@@ -20,7 +20,7 @@ struct offer_px {
     using storage_type = result_type;
 
     constexpr offer_px()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr offer_px(std::int64_t v)
      : value{ v } {}

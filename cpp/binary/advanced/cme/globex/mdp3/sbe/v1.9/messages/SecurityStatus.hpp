@@ -33,7 +33,7 @@ struct security_status {
         sbe_mdp3::security_trading_event security_trading_event;
     };
 
-    sbe_mdp3::message_header header = {std::uint16_t(sizeof(sbe_mdp3::message_header) + sizeof(fields_type)), {}};
+    sbe_mdp3::message_header header = {std::uint16_t(sizeof(sbe_mdp3::message_header) + sizeof(fields_type)), {block_length(sizeof(fields_type)), template_id::enum_type::security_status, schema_id::enum_type::mktdata, version(9)}};
 
     fields_type fields;
 

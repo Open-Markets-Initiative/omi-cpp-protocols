@@ -2,6 +2,7 @@
 
 #include <cstddef>
 #include "../structs/FramingHeader.hpp"
+#include "../structs/MessageHeader.hpp"
 #include "../structs/SbeGroupSupport.hpp"
 #include "../types/SecurityId.hpp"
 #include "../types/MdCorporateOffsetPriceOptional.hpp"
@@ -40,7 +41,7 @@ struct snapshot_full_refresh_orders_mb_o_71_message {
     };
 
     sbe_binaryumdf::framing_header header = {std::uint16_t(sizeof(sbe_binaryumdf::framing_header) + sizeof(fields_type) + sizeof(sbe_binaryumdf::message_header)), {}};
-    sbe_binaryumdf::message_header message_header;
+    sbe_binaryumdf::message_header message_header = {block_length(sizeof(fields_type)), template_id::enum_type::snapshot_full_refresh_orders_mb_o_71_message, schema_id(2), version(7)};
 
     static constexpr std::size_t max_message_size = 1280;
     static constexpr std::size_t tail_capacity = max_message_size - sizeof(sbe_binaryumdf::framing_header) - sizeof(fields_type) - sizeof(sbe_binaryumdf::message_header);

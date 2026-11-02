@@ -51,7 +51,7 @@ struct side {
     using storage_type = result_type;
 
     constexpr side()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0) } {}
 
     constexpr side(enum_type v)
      : value{ v } {}
@@ -68,7 +68,7 @@ struct side {
         if (value.has_value())
             set(value.value());
         else
-            set(enum_type::sell_order);
+            set(static_cast<enum_type>(0));
     }
 
   protected:

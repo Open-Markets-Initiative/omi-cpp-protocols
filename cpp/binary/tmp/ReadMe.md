@@ -24,7 +24,7 @@ matching the C++ namespace the code declares.
 Each protocol is one header, `<namespace>.hpp`; its benchmark under `executables/benchmark/tmp/`
 reads through it.
 
-## Protocols (98)
+## Protocols (101)
 
 - `Asx.AsxDerivatives.Ntp.Itch.v1.05`
 - `B3.B3Derivatives.BinaryUmdf.Sbe.v1.6`
@@ -53,6 +53,9 @@ reads through it.
 - `Cme.Globex.Mdp3.Sbe.v1.9`
 - `Cme.Globex.Mdp3.Sbe.v1.13`
 - `Cme.Globex.Mdp3.Sbe.v1.5`
+- `Databento.MarketData.Normalized.Dbn.v1`
+- `Databento.MarketData.Normalized.Dbn.v2`
+- `Databento.MarketData.Normalized.Dbn.v3`
 - `Eurex.T7.Eobi.Fbe.v13.0`
 - `Eurex.T7.Eobi.Fbe.v15.0`
 - `Eurex.T7.Eobi.Fbe.v3.0`

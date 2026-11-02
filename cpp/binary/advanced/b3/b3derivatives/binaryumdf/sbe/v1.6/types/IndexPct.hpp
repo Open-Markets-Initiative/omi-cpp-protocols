@@ -20,7 +20,7 @@ struct index_pct {
     using storage_type = result_type;
 
     constexpr index_pct()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr index_pct(std::int64_t v)
      : value{ v } {}

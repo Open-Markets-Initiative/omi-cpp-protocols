@@ -20,7 +20,7 @@ struct max_price_variation {
     using storage_type = result_type;
 
     constexpr max_price_variation()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr max_price_variation(std::int64_t v)
      : value{ v } {}

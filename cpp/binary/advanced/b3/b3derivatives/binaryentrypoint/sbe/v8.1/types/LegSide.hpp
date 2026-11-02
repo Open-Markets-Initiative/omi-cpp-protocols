@@ -54,7 +54,7 @@ struct leg_side {
     using storage_type = result_type;
 
     constexpr leg_side()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0) } {}
 
     constexpr leg_side(enum_type v)
      : value{ v } {}

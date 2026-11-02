@@ -19,7 +19,7 @@ struct received_time {
     using storage_type = result_type;
 
     constexpr received_time()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr received_time(std::uint64_t v)
      : value{ v } {}

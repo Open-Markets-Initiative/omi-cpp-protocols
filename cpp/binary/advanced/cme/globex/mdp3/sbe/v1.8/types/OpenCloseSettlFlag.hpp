@@ -55,7 +55,7 @@ struct open_close_settl_flag {
     using storage_type = result_type;
 
     constexpr open_close_settl_flag()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(255) } {}
 
     constexpr open_close_settl_flag(enum_type v)
      : value{ v } {}

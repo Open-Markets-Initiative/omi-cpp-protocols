@@ -55,7 +55,7 @@ struct account_type {
     using storage_type = result_type;
 
     constexpr account_type()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0) } {}
 
     constexpr account_type(enum_type v)
      : value{ v } {}

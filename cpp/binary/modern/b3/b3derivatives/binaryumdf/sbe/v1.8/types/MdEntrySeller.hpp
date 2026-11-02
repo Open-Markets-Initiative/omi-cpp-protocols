@@ -13,9 +13,9 @@ struct MdEntrySeller {
     using type = std::uint32_t;
 static const type no_value = 0;
 
-    // default constructor
+    // default constructor: the null the model states, where it states one
     constexpr MdEntrySeller()
-     : value{ 0 } {}
+     : value{ no_value } {}
 
     // standard constructor
     constexpr explicit MdEntrySeller(const std::uint32_t value)

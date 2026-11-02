@@ -19,7 +19,7 @@ struct traded_hidden_qty {
     using storage_type = result_type;
 
     constexpr traded_hidden_qty()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr traded_hidden_qty(std::int64_t v)
      : value{ v } {}

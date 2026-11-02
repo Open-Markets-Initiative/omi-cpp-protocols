@@ -19,8 +19,8 @@ struct best_bid {
     using result_type = std::optional<std::uint64_t>;
     using storage_type = result_type;
 
-    constexpr best_bid()
-     : value{ 0 } {}
+    best_bid()
+     : value{ static_cast<std::uint64_t>(__builtin_bswap64(null_value)) } {}
 
     best_bid(std::uint64_t v)
      : value{ static_cast<std::uint64_t>(__builtin_bswap64(v)) } {}

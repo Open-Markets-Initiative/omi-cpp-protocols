@@ -19,7 +19,7 @@ struct md_entry_position_no {
     using storage_type = result_type;
 
     constexpr md_entry_position_no()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr md_entry_position_no(std::uint32_t v)
      : value{ v } {}

@@ -19,7 +19,7 @@ struct action_requested_from_session_id {
     using storage_type = result_type;
 
     constexpr action_requested_from_session_id()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr action_requested_from_session_id(std::uint32_t v)
      : value{ v } {}

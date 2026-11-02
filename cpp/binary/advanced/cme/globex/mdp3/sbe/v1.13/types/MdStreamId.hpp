@@ -61,7 +61,7 @@ struct md_stream_id {
     using storage_type = result_type;
 
     constexpr md_stream_id()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(255) } {}
 
     constexpr md_stream_id(enum_type v)
      : value{ v } {}

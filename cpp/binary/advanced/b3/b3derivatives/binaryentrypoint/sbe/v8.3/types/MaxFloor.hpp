@@ -19,7 +19,7 @@ struct max_floor {
     using storage_type = result_type;
 
     constexpr max_floor()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr max_floor(std::uint64_t v)
      : value{ v } {}

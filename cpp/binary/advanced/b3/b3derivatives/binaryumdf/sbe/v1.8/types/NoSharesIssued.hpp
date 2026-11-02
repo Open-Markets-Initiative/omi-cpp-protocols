@@ -19,7 +19,7 @@ struct no_shares_issued {
     using storage_type = result_type;
 
     constexpr no_shares_issued()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr no_shares_issued(std::uint64_t v)
      : value{ v } {}

@@ -19,7 +19,7 @@ struct side {
     using storage_type = result_type;
 
     constexpr side()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr side(std::int8_t v)
      : value{ v } {}

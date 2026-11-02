@@ -3,6 +3,7 @@
 #include "../MdInstrumentDefinitionFx.hpp"
 #include <span>
 #include <cstring>
+#include <new>
 #include <stdexcept>
 #include <string_view>
 
@@ -36,6 +37,7 @@ public:
         header_->block_length.set(sizeof(md_instrument_definition_fx_events_groups_entry));
         header_->num_in_group.set(0);
         pos_ += sizeof(sbe_mdp3::group_size);
+        if (pos_ + sizeof(md_instrument_definition_fx_events_groups_entry) <= end_) ::new (static_cast<void*>(pos_)) md_instrument_definition_fx_events_groups_entry{};
     }
 
     md_instrument_definition_fx_events_groups_builder(std::byte* msg_start, std::byte* pos, std::byte* end, sbe_mdp3::group_size* header, uint16_t count)
@@ -54,6 +56,7 @@ public:
         entry->event_time.set(v);
         pos_ += header_->block_length.get().value();
         count_++;
+        if (pos_ + sizeof(md_instrument_definition_fx_events_groups_entry) <= end_) ::new (static_cast<void*>(pos_)) md_instrument_definition_fx_events_groups_entry{};
         return *this;
     }
 
@@ -75,6 +78,7 @@ public:
         header_->block_length.set(sizeof(md_instrument_definition_fx_feed_types_groups_entry));
         header_->num_in_group.set(0);
         pos_ += sizeof(sbe_mdp3::group_size);
+        if (pos_ + sizeof(md_instrument_definition_fx_feed_types_groups_entry) <= end_) ::new (static_cast<void*>(pos_)) md_instrument_definition_fx_feed_types_groups_entry{};
     }
 
     md_instrument_definition_fx_feed_types_groups_builder(std::byte* msg_start, std::byte* pos, std::byte* end, sbe_mdp3::group_size* header, uint16_t count)
@@ -93,6 +97,7 @@ public:
         entry->market_depth.set(v);
         pos_ += header_->block_length.get().value();
         count_++;
+        if (pos_ + sizeof(md_instrument_definition_fx_feed_types_groups_entry) <= end_) ::new (static_cast<void*>(pos_)) md_instrument_definition_fx_feed_types_groups_entry{};
         return *this;
     }
 
@@ -114,6 +119,7 @@ public:
         header_->block_length.set(sizeof(md_instrument_definition_fx_inst_attrib_groups_entry));
         header_->num_in_group.set(0);
         pos_ += sizeof(sbe_mdp3::group_size);
+        if (pos_ + sizeof(md_instrument_definition_fx_inst_attrib_groups_entry) <= end_) ::new (static_cast<void*>(pos_)) md_instrument_definition_fx_inst_attrib_groups_entry{};
     }
 
     md_instrument_definition_fx_inst_attrib_groups_builder(std::byte* msg_start, std::byte* pos, std::byte* end, sbe_mdp3::group_size* header, uint16_t count)
@@ -125,6 +131,7 @@ public:
         entry->inst_attrib_value.set(v);
         pos_ += header_->block_length.get().value();
         count_++;
+        if (pos_ + sizeof(md_instrument_definition_fx_inst_attrib_groups_entry) <= end_) ::new (static_cast<void*>(pos_)) md_instrument_definition_fx_inst_attrib_groups_entry{};
         return *this;
     }
 
@@ -146,6 +153,7 @@ public:
         header_->block_length.set(sizeof(md_instrument_definition_fx_fx_lot_type_rules_groups_entry));
         header_->num_in_group.set(0);
         pos_ += sizeof(sbe_mdp3::group_size);
+        if (pos_ + sizeof(md_instrument_definition_fx_fx_lot_type_rules_groups_entry) <= end_) ::new (static_cast<void*>(pos_)) md_instrument_definition_fx_fx_lot_type_rules_groups_entry{};
     }
 
     md_instrument_definition_fx_fx_lot_type_rules_groups_builder(std::byte* msg_start, std::byte* pos, std::byte* end, sbe_mdp3::group_size* header, uint16_t count)
@@ -164,6 +172,7 @@ public:
         entry->min_lot_size_u_int_64.set(v);
         pos_ += header_->block_length.get().value();
         count_++;
+        if (pos_ + sizeof(md_instrument_definition_fx_fx_lot_type_rules_groups_entry) <= end_) ::new (static_cast<void*>(pos_)) md_instrument_definition_fx_fx_lot_type_rules_groups_entry{};
         return *this;
     }
 
@@ -185,6 +194,7 @@ public:
         header_->block_length.set(sizeof(md_instrument_definition_fx_trading_sessions_groups_entry));
         header_->num_in_group.set(0);
         pos_ += sizeof(sbe_mdp3::group_size);
+        if (pos_ + sizeof(md_instrument_definition_fx_trading_sessions_groups_entry) <= end_) ::new (static_cast<void*>(pos_)) md_instrument_definition_fx_trading_sessions_groups_entry{};
     }
 
     md_instrument_definition_fx_trading_sessions_groups_builder(std::byte* msg_start, std::byte* pos, std::byte* end, sbe_mdp3::group_size* header, uint16_t count)
@@ -217,6 +227,7 @@ public:
         entry->security_alt_id.set(v);
         pos_ += header_->block_length.get().value();
         count_++;
+        if (pos_ + sizeof(md_instrument_definition_fx_trading_sessions_groups_entry) <= end_) ::new (static_cast<void*>(pos_)) md_instrument_definition_fx_trading_sessions_groups_entry{};
         return *this;
     }
 

@@ -19,7 +19,7 @@ struct md_order_priority {
     using storage_type = result_type;
 
     constexpr md_order_priority()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr md_order_priority(std::uint64_t v)
      : value{ v } {}

@@ -61,7 +61,7 @@ struct tes_security_mass_status {
     using storage_type = result_type;
 
     constexpr tes_security_mass_status()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0xFF) } {}
 
     constexpr tes_security_mass_status(enum_type v)
      : value{ v } {}

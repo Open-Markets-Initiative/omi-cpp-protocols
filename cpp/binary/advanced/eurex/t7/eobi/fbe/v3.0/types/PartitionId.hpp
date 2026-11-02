@@ -19,7 +19,7 @@ struct partition_id {
     using storage_type = result_type;
 
     constexpr partition_id()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr partition_id(std::uint8_t v)
      : value{ v } {}

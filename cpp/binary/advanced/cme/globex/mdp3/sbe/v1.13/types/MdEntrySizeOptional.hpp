@@ -19,7 +19,7 @@ struct md_entry_size_optional {
     using storage_type = result_type;
 
     constexpr md_entry_size_optional()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr md_entry_size_optional(std::uint64_t v)
      : value{ v } {}

@@ -19,7 +19,7 @@ struct md_entry_seller {
     using storage_type = result_type;
 
     constexpr md_entry_seller()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr md_entry_seller(std::uint32_t v)
      : value{ v } {}

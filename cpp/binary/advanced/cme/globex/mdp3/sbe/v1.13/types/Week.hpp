@@ -19,7 +19,7 @@ struct week {
     using storage_type = result_type;
 
     constexpr week()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr week(std::uint8_t v)
      : value{ v } {}

@@ -13,9 +13,9 @@ struct LegRatioQty {
     using type = std::int32_t;
 static const type no_value = -2147483648;
 
-    // default constructor
+    // default constructor: the null the model states, where it states one
     constexpr LegRatioQty()
-     : value{ 0 } {}
+     : value{ no_value } {}
 
     // standard constructor
     constexpr explicit LegRatioQty(const std::int32_t value)

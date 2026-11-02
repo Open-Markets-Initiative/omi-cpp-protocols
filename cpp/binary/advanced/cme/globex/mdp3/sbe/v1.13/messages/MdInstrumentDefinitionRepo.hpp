@@ -193,7 +193,7 @@ struct md_instrument_definition_repo {
         sbe_mdp3::broken_date_term_type broken_date_term_type;
     };
 
-    sbe_mdp3::message_header header = {std::uint16_t(sizeof(sbe_mdp3::message_header) + sizeof(fields_type)), {}};
+    sbe_mdp3::message_header header = {std::uint16_t(sizeof(sbe_mdp3::message_header) + sizeof(fields_type)), {block_length(sizeof(fields_type)), template_id::enum_type::md_instrument_definition_repo, schema_id::enum_type::mktdata, version(13)}};
 
     static constexpr std::size_t max_message_size = 1280;
     static constexpr std::size_t tail_capacity = max_message_size - sizeof(sbe_mdp3::message_header) - sizeof(fields_type);

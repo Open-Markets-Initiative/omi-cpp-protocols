@@ -19,7 +19,7 @@ struct account {
     using storage_type = result_type;
 
     constexpr account()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr account(std::uint32_t v)
      : value{ v } {}

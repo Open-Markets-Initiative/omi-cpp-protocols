@@ -19,7 +19,7 @@ struct broken_date_start {
     using storage_type = result_type;
 
     constexpr broken_date_start()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr broken_date_start(std::uint16_t v)
      : value{ v } {}

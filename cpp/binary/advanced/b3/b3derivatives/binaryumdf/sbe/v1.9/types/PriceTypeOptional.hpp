@@ -58,7 +58,7 @@ struct price_type_optional {
     using storage_type = result_type;
 
     constexpr price_type_optional()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0) } {}
 
     constexpr price_type_optional(enum_type v)
      : value{ v } {}

@@ -12,7 +12,7 @@ namespace sbe_mdp3 = ::cme::mdp3::v5;
 // Subscriber Heartbeat
 struct subscriber_heartbeat {
 
-    sbe_mdp3::message_header header = {std::uint16_t(sizeof(sbe_mdp3::message_header)), {}};
+    sbe_mdp3::message_header header = {std::uint16_t(sizeof(sbe_mdp3::message_header)), {{}, template_id::enum_type::subscriber_heartbeat, schema_id::enum_type::mdpsessionmgmt, version(5)}};
 
     // parse method
     static subscriber_heartbeat* parse(std::byte* buffer) {

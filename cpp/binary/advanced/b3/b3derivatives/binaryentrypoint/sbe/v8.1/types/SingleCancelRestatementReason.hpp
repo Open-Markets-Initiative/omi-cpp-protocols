@@ -52,7 +52,7 @@ struct single_cancel_restatement_reason {
     using storage_type = result_type;
 
     constexpr single_cancel_restatement_reason()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0) } {}
 
     constexpr single_cancel_restatement_reason(enum_type v)
      : value{ v } {}

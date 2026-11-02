@@ -58,7 +58,7 @@ struct trad_ses_status {
     using storage_type = result_type;
 
     constexpr trad_ses_status()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0xFF) } {}
 
     constexpr trad_ses_status(enum_type v)
      : value{ v } {}

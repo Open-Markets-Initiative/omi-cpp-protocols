@@ -41,7 +41,7 @@ struct index_value_message {
     const std::byte* tail_end() const { return tail + tail_capacity; }
 
     // sequential access to variable-length regions
-    sbe_var_data symbol() const {
+    sbe_var_data<std::uint8_t> symbol() const {
         return { tail_begin(), tail_end() };
     }
 

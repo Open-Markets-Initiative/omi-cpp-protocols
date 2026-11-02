@@ -20,7 +20,7 @@ struct price_optional {
     using storage_type = result_type;
 
     constexpr price_optional()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr price_optional(std::int64_t v)
      : value{ v } {}

@@ -20,7 +20,7 @@ struct non_disclosed_trade_volume {
     using storage_type = result_type;
 
     constexpr non_disclosed_trade_volume()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr non_disclosed_trade_volume(std::int64_t v)
      : value{ v } {}

@@ -20,7 +20,7 @@ struct leg_price {
     using storage_type = result_type;
 
     constexpr leg_price()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr leg_price(std::int64_t v)
      : value{ v } {}

@@ -19,7 +19,7 @@ struct trans_bkd_time {
     using storage_type = result_type;
 
     constexpr trans_bkd_time()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr trans_bkd_time(std::uint64_t v)
      : value{ v } {}

@@ -58,7 +58,7 @@ struct price_band_midpoint_price_type {
     using storage_type = result_type;
 
     constexpr price_band_midpoint_price_type()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(255) } {}
 
     constexpr price_band_midpoint_price_type(enum_type v)
      : value{ v } {}

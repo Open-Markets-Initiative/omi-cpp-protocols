@@ -19,7 +19,7 @@ struct resting_cxl_qty {
     using storage_type = result_type;
 
     constexpr resting_cxl_qty()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr resting_cxl_qty(std::int32_t v)
      : value{ v } {}

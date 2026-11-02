@@ -19,7 +19,7 @@ struct trd_match_id {
     using storage_type = result_type;
 
     constexpr trd_match_id()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr trd_match_id(std::uint32_t v)
      : value{ v } {}

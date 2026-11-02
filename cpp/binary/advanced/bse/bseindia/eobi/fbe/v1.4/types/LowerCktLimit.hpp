@@ -20,7 +20,7 @@ struct lower_ckt_limit {
     using storage_type = result_type;
 
     constexpr lower_ckt_limit()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr lower_ckt_limit(std::int64_t v)
      : value{ v } {}

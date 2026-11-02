@@ -20,7 +20,7 @@ struct low_px {
     using storage_type = result_type;
 
     constexpr low_px()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr low_px(std::int64_t v)
      : value{ v } {}

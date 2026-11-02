@@ -19,7 +19,7 @@ struct settl_type {
     using storage_type = result_type;
 
     constexpr settl_type()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr settl_type(std::uint16_t v)
      : value{ v } {}

@@ -20,7 +20,7 @@ struct price_ratio_ex {
     using storage_type = result_type;
 
     constexpr price_ratio_ex()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr price_ratio_ex(std::int64_t v)
      : value{ v } {}

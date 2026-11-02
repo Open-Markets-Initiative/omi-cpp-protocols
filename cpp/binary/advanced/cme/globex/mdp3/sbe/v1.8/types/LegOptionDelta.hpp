@@ -20,7 +20,7 @@ struct leg_option_delta {
     using storage_type = result_type;
 
     constexpr leg_option_delta()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr leg_option_delta(std::int32_t v)
      : value{ v } {}

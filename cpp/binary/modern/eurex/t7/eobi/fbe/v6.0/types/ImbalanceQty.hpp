@@ -15,9 +15,9 @@ static const type no_value = 0x80000000;
 static const type maximum_value = 2147483647;
 static const type minimum_value = -2147483647;
 
-    // default constructor
+    // default constructor: the null the model states, where it states one
     constexpr ImbalanceQty()
-     : value{ 0 } {}
+     : value{ no_value } {}
 
     // standard constructor
     constexpr explicit ImbalanceQty(const std::int32_t value)

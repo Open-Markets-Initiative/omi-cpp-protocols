@@ -2,6 +2,7 @@
 
 #include <cstddef>
 #include "../structs/SimpleOpenFramingHeader.hpp"
+#include "../structs/MessageHeader.hpp"
 #include "../structs/SbeGroupSupport.hpp"
 #include "../structs/OutboundBusinessHeader.hpp"
 #include "../types/MassActionType.hpp"
@@ -48,7 +49,7 @@ struct order_mass_action_report_message {
     };
 
     sbe_binaryentrypoint::simple_open_framing_header header = {std::uint16_t(sizeof(sbe_binaryentrypoint::simple_open_framing_header) + sizeof(fields_type) + sizeof(sbe_binaryentrypoint::message_header)), encoding_type(60240)};
-    sbe_binaryentrypoint::message_header message_header;
+    sbe_binaryentrypoint::message_header message_header = {block_length(sizeof(fields_type)), template_id::enum_type::order_mass_action_report_message, schema_id(1), version(5)};
 
     static constexpr std::size_t max_message_size = 1280;
     static constexpr std::size_t tail_capacity = max_message_size - sizeof(sbe_binaryentrypoint::simple_open_framing_header) - sizeof(fields_type) - sizeof(sbe_binaryentrypoint::message_header);
@@ -66,7 +67,7 @@ struct order_mass_action_report_message {
     }
 
     // sequential access to variable-length regions
-    sbe_var_data text() const {
+    sbe_var_data<std::uint8_t> text() const {
         return { tail_begin(), tail_end() };
     }
 

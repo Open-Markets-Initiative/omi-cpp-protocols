@@ -3,6 +3,7 @@
 #include "../SecurityDefinitionRequestMessage.hpp"
 #include <span>
 #include <cstring>
+#include <new>
 #include <stdexcept>
 #include <string_view>
 
@@ -28,6 +29,7 @@ public:
         header_->block_length.set(sizeof(security_definition_request_message_legs_groups_entry));
         header_->num_in_group.set(0);
         pos_ += sizeof(sbe_binaryentrypoint::group_size_encoding);
+        if (pos_ + sizeof(security_definition_request_message_legs_groups_entry) <= end_) ::new (static_cast<void*>(pos_)) security_definition_request_message_legs_groups_entry{};
     }
 
     security_definition_request_message_legs_groups_builder(std::byte* msg_start, std::byte* pos, std::byte* end, sbe_binaryentrypoint::group_size_encoding* header, uint16_t count)
@@ -60,6 +62,7 @@ public:
         entry->padding_1.set(v);
         pos_ += header_->block_length.get().value();
         count_++;
+        if (pos_ + sizeof(security_definition_request_message_legs_groups_entry) <= end_) ::new (static_cast<void*>(pos_)) security_definition_request_message_legs_groups_entry{};
         return *this;
     }
 

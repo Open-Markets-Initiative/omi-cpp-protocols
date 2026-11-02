@@ -19,7 +19,7 @@ struct flow_schedule_type {
     using storage_type = result_type;
 
     constexpr flow_schedule_type()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr flow_schedule_type(std::int8_t v)
      : value{ v } {}

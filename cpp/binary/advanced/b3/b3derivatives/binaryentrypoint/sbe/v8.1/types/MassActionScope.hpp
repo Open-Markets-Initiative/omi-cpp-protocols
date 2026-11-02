@@ -52,7 +52,7 @@ struct mass_action_scope {
     using storage_type = result_type;
 
     constexpr mass_action_scope()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0) } {}
 
     constexpr mass_action_scope(enum_type v)
      : value{ v } {}

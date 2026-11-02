@@ -19,8 +19,9 @@ Each directory holds only the program and what it alone needs: it includes its p
 from `cpp/delimited/` and the headers the readers share from `cpp/delimited/delimited/`, both on its include path
 from the repository root, so no program carries a copy of either. Built where zlib is found; nothing needs Arrow.
 
-## Protocols (10)
+## Protocols (11)
 
+- `Memx.MemxEquities.InstrumentDirectory.Csv.v2026.10.14`
 - `Nyse.NyseConsolidated.DailyTaqMaster.Csv.v4.3`
 - `Nyse.NyseConsolidated.DailyTaqTrades.Csv.v4.3`
 - `Nyse.NyseConsolidated.DailyTaqQuotes.Csv.v4.3`

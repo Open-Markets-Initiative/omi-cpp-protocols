@@ -23,7 +23,7 @@ struct negotiation_response {
         sbe_mdp3::padding_4 padding_4;
     };
 
-    sbe_mdp3::message_header header = {std::uint16_t(sizeof(sbe_mdp3::message_header) + sizeof(fields_type)), {}};
+    sbe_mdp3::message_header header = {std::uint16_t(sizeof(sbe_mdp3::message_header) + sizeof(fields_type)), {block_length(sizeof(fields_type)), template_id::enum_type::negotiation_response, schema_id::enum_type::mdpsessionmgmt, version(5)}};
 
     fields_type fields;
 

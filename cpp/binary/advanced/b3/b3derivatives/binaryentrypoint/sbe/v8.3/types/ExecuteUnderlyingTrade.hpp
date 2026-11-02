@@ -54,7 +54,7 @@ struct execute_underlying_trade {
     using storage_type = result_type;
 
     constexpr execute_underlying_trade()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0) } {}
 
     constexpr execute_underlying_trade(enum_type v)
      : value{ v } {}

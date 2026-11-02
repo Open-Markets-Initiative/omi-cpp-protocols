@@ -13,56 +13,56 @@ namespace nyse::nyseconsolidated::dailytaqnbbo::csv::v4_3 {
 
 // Nbbo: a data line of the model, its fields typed as the model states them
 struct Nbbo {
-    // Time: nanoseconds since midnight, America/New_York
-    ::scaled::delimited::values::Required<std::uint64_t> time;
-    // Exchange: text
-    ::scaled::delimited::values::Required<std::string_view> exchange;
-    // Symbol: text
-    ::scaled::delimited::values::Required<std::string_view> symbol;
-    // Bid_Price: a decimal, the integer of its 6 places
-    ::scaled::delimited::values::Required<std::int64_t> bid_price;
+    // Time: nanoseconds since midnight, America/New_York; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::uint64_t> time;
+    // Exchange: text; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::string_view> exchange;
+    // Symbol: text; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::string_view> symbol;
+    // Bid_Price: a decimal, the integer of its 6 places; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> bid_price;
     static constexpr int bid_price_places = 6;
-    // Bid_Size: an integer
-    ::scaled::delimited::values::Required<std::int64_t> bid_size;
-    // Offer_Price: a decimal, the integer of its 6 places
-    ::scaled::delimited::values::Required<std::int64_t> offer_price;
+    // Bid_Size: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> bid_size;
+    // Offer_Price: a decimal, the integer of its 6 places; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> offer_price;
     static constexpr int offer_price_places = 6;
-    // Offer_Size: an integer
-    ::scaled::delimited::values::Required<std::int64_t> offer_size;
-    // Quote_Condition: text
-    ::scaled::delimited::values::Required<std::string_view> quote_condition;
-    // Sequence_Number: an integer
-    ::scaled::delimited::values::Required<std::int64_t> sequence_number;
-    // National_BBO_Ind: text
-    ::scaled::delimited::values::Required<std::string_view> national_bbo_ind;
+    // Offer_Size: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> offer_size;
+    // Quote_Condition: text; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::string_view> quote_condition;
+    // Sequence_Number: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> sequence_number;
+    // National_BBO_Ind: text; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::string_view> national_bbo_ind;
     // FINRA_BBO_Indicator: text; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::string_view> finra_bbo_indicator;
     // FINRA_ADF_MPID_Indicator: an integer; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::int64_t> finra_adf_mpid_indicator;
     // Quote_Cancel_Correction: text; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::string_view> quote_cancel_correction;
-    // Source_Of_Quote: text
-    ::scaled::delimited::values::Required<std::string_view> source_of_quote;
+    // Source_Of_Quote: text; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::string_view> source_of_quote;
     // Best Bid Quote Condition: text; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::string_view> best_bid_quote_condition;
     // Best_Bid_Exchange: text; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::string_view> best_bid_exchange;
-    // Best_Bid_Price: a decimal, the integer of its 6 places
-    ::scaled::delimited::values::Required<std::int64_t> best_bid_price;
+    // Best_Bid_Price: a decimal, the integer of its 6 places; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> best_bid_price;
     static constexpr int best_bid_price_places = 6;
-    // Best_Bid_Size: an integer
-    ::scaled::delimited::values::Required<std::int64_t> best_bid_size;
+    // Best_Bid_Size: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> best_bid_size;
     // Best_Bid_FINRA_Market_Maker_ID: text; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::string_view> best_bid_finra_market_maker_id;
     // Best_Offer_Quote_Condition: text; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::string_view> best_offer_quote_condition;
     // Best_Offer_Exchange: text; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::string_view> best_offer_exchange;
-    // Best_Offer_Price: a decimal, the integer of its 6 places
-    ::scaled::delimited::values::Required<std::int64_t> best_offer_price;
+    // Best_Offer_Price: a decimal, the integer of its 6 places; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> best_offer_price;
     static constexpr int best_offer_price_places = 6;
-    // Best_Offer_Size: an integer
-    ::scaled::delimited::values::Required<std::int64_t> best_offer_size;
+    // Best_Offer_Size: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> best_offer_size;
     // Best_Offer_FINRA_Market_Maker_ID: text; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::string_view> best_offer_finra_market_maker_id;
     // LULD_Indicator: text; none where the line leaves it empty
@@ -71,8 +71,8 @@ struct Nbbo {
     ::scaled::delimited::values::Optional<std::string_view> luld_nbbo_indicator;
     // SIP_Generated_Message_Identifier: text; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::string_view> sip_generated_message_identifier;
-    // Participant_Timestamp: nanoseconds since midnight, America/New_York
-    ::scaled::delimited::values::Required<std::uint64_t> participant_timestamp;
+    // Participant_Timestamp: nanoseconds since midnight, America/New_York; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::uint64_t> participant_timestamp;
     // FINRA_ADF_Timestamp: nanoseconds since midnight, America/New_York; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::uint64_t> finra_adf_timestamp;
     // Security_Status_Indicator: text; none where the line leaves it empty
@@ -112,13 +112,21 @@ struct Nbbo {
         security_status_indicator.reset();
     }
 
-    // Time on a day: its nanoseconds since midnight, America/New_York, as UTC Unix nanoseconds
-    std::int64_t time_utc(const ::scaled::delimited::calendar::Day& day) const {
+    // Time on a day: its nanoseconds since midnight, America/New_York, as UTC Unix nanoseconds;
+    // none where the line leaves it empty
+    std::optional<std::int64_t> time_utc(const ::scaled::delimited::calendar::Day& day) const {
+        if (!time.has_value()) {
+            return std::nullopt;
+        }
         return ::scaled::delimited::calendar::midnight(day, "America/New_York").utc(static_cast<std::int64_t>(time.value()));
     }
 
-    // Participant_Timestamp on a day: its nanoseconds since midnight, America/New_York, as UTC Unix nanoseconds
-    std::int64_t participant_timestamp_utc(const ::scaled::delimited::calendar::Day& day) const {
+    // Participant_Timestamp on a day: its nanoseconds since midnight, America/New_York, as UTC Unix nanoseconds;
+    // none where the line leaves it empty
+    std::optional<std::int64_t> participant_timestamp_utc(const ::scaled::delimited::calendar::Day& day) const {
+        if (!participant_timestamp.has_value()) {
+            return std::nullopt;
+        }
         return ::scaled::delimited::calendar::midnight(day, "America/New_York").utc(static_cast<std::int64_t>(participant_timestamp.value()));
     }
 

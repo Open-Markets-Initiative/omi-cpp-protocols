@@ -64,7 +64,7 @@ struct match_type {
     using storage_type = result_type;
 
     constexpr match_type()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0xFF) } {}
 
     constexpr match_type(enum_type v)
      : value{ v } {}

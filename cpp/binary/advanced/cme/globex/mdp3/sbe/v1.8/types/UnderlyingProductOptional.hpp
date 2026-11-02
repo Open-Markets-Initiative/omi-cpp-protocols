@@ -19,7 +19,7 @@ struct underlying_product_optional {
     using storage_type = result_type;
 
     constexpr underlying_product_optional()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr underlying_product_optional(std::uint8_t v)
      : value{ v } {}

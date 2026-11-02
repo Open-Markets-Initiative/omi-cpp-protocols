@@ -19,7 +19,7 @@ struct leg_ratio_multiplier {
     using storage_type = result_type;
 
     constexpr leg_ratio_multiplier()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr leg_ratio_multiplier(std::uint32_t v)
      : value{ v } {}

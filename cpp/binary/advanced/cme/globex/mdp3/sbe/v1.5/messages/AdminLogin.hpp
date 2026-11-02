@@ -17,7 +17,7 @@ struct admin_login {
         sbe_mdp3::heart_bt_int heart_bt_int;
     };
 
-    sbe_mdp3::message_header header = {std::uint16_t(sizeof(sbe_mdp3::message_header) + sizeof(fields_type)), {}};
+    sbe_mdp3::message_header header = {std::uint16_t(sizeof(sbe_mdp3::message_header) + sizeof(fields_type)), {block_length(sizeof(fields_type)), template_id::enum_type::admin_login, schema_id::enum_type::mktdata, version(5)}};
 
     fields_type fields;
 

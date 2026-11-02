@@ -19,7 +19,7 @@ struct security_reference_data_supplement {
     using storage_type = result_type;
 
     constexpr security_reference_data_supplement()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr security_reference_data_supplement(std::uint32_t v)
      : value{ v } {}

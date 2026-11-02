@@ -19,7 +19,7 @@ struct reference_id {
     using storage_type = result_type;
 
     constexpr reference_id()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr reference_id(std::uint8_t v)
      : value{ v } {}

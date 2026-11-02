@@ -19,7 +19,7 @@ struct decay_quantity {
     using storage_type = result_type;
 
     constexpr decay_quantity()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr decay_quantity(std::int32_t v)
      : value{ v } {}

@@ -52,7 +52,7 @@ struct trade_condition {
     using storage_type = result_type;
 
     constexpr trade_condition()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(255) } {}
 
     constexpr trade_condition(enum_type v)
      : value{ v } {}

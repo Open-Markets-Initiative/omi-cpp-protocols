@@ -71,27 +71,27 @@ struct security_definition_message {
     const std::byte* tail_end() const { return tail + tail_capacity; }
 
     // sequential access to variable-length regions
-    sbe_var_data security_type() const {
+    sbe_var_data<std::uint8_t> security_type() const {
         return { tail_begin(), tail_end() };
     }
 
-    sbe_var_data symbol(const std::byte* position) const {
+    sbe_var_data<std::uint8_t> symbol(const std::byte* position) const {
         return { position, tail_end() };
     }
 
-    sbe_var_data target_location_id(const std::byte* position) const {
+    sbe_var_data<std::uint8_t> target_location_id(const std::byte* position) const {
         return { position, tail_end() };
     }
 
-    sbe_var_data currency_code(const std::byte* position) const {
+    sbe_var_data<std::uint8_t> currency_code(const std::byte* position) const {
         return { position, tail_end() };
     }
 
-    sbe_var_data underlying_symbol(const std::byte* position) const {
+    sbe_var_data<std::uint8_t> underlying_symbol(const std::byte* position) const {
         return { position, tail_end() };
     }
 
-    sbe_var_data underlying_type(const std::byte* position) const {
+    sbe_var_data<std::uint8_t> underlying_type(const std::byte* position) const {
         return { position, tail_end() };
     }
 

@@ -19,7 +19,7 @@ struct clearing_house_id {
     using storage_type = result_type;
 
     constexpr clearing_house_id()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr clearing_house_id(std::uint64_t v)
      : value{ v } {}

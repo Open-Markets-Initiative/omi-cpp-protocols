@@ -19,7 +19,7 @@ struct alloc_rej_code {
     using storage_type = result_type;
 
     constexpr alloc_rej_code()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr alloc_rej_code(std::uint32_t v)
      : value{ v } {}

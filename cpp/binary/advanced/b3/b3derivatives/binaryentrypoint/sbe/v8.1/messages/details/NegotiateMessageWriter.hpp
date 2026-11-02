@@ -3,6 +3,7 @@
 #include "../NegotiateMessage.hpp"
 #include <span>
 #include <cstring>
+#include <new>
 #include <stdexcept>
 #include <string_view>
 
@@ -49,10 +50,10 @@ public:
         : msg_start_(msg_start), pos_(pos), end_(end) {}
 
     std::span<std::byte> client_app_version_and_finish(std::string_view v) {
-        if (pos_ + sizeof(uint32_t) + v.size() > end_) throw std::runtime_error("buffer overrun writing var-data");
-        *reinterpret_cast<uint32_t*>(pos_) = static_cast<uint32_t>(v.size());
-        std::memcpy(pos_ + sizeof(uint32_t), v.data(), v.size());
-        auto* final_pos = pos_ + sizeof(uint32_t) + v.size();
+        if (pos_ + sizeof(std::uint8_t) + v.size() > end_) throw std::runtime_error("buffer overrun writing var-data");
+        *reinterpret_cast<std::uint8_t*>(pos_) = static_cast<std::uint8_t>(v.size());
+        std::memcpy(pos_ + sizeof(std::uint8_t), v.data(), v.size());
+        auto* final_pos = pos_ + sizeof(std::uint8_t) + v.size();
         reinterpret_cast<sbe_binaryentrypoint::simple_open_framing_header*>(msg_start_)->message_length.set(static_cast<uint16_t>(final_pos - msg_start_));
         return { msg_start_, static_cast<size_t>(final_pos - msg_start_) };
     }
@@ -68,27 +69,27 @@ public:
         : msg_start_(msg_start), pos_(pos), end_(end) {}
 
     negotiate_message_after_credentials credentials(std::string_view v) {
-        if (pos_ + sizeof(uint32_t) + v.size() > end_) throw std::runtime_error("buffer overrun writing var-data");
-        *reinterpret_cast<uint32_t*>(pos_) = static_cast<uint32_t>(v.size());
-        std::memcpy(pos_ + sizeof(uint32_t), v.data(), v.size());
-        auto* next_pos = pos_ + sizeof(uint32_t) + v.size();
+        if (pos_ + sizeof(std::uint8_t) + v.size() > end_) throw std::runtime_error("buffer overrun writing var-data");
+        *reinterpret_cast<std::uint8_t*>(pos_) = static_cast<std::uint8_t>(v.size());
+        std::memcpy(pos_ + sizeof(std::uint8_t), v.data(), v.size());
+        auto* next_pos = pos_ + sizeof(std::uint8_t) + v.size();
         return { msg_start_, next_pos, end_ };
     }
 };
 
 inline negotiate_message_after_client_ip negotiate_message_after_credentials::client_ip(std::string_view v) {
-    if (pos_ + sizeof(uint32_t) + v.size() > end_) throw std::runtime_error("buffer overrun writing var-data");
-    *reinterpret_cast<uint32_t*>(pos_) = static_cast<uint32_t>(v.size());
-    std::memcpy(pos_ + sizeof(uint32_t), v.data(), v.size());
-    auto* next_pos = pos_ + sizeof(uint32_t) + v.size();
+    if (pos_ + sizeof(std::uint8_t) + v.size() > end_) throw std::runtime_error("buffer overrun writing var-data");
+    *reinterpret_cast<std::uint8_t*>(pos_) = static_cast<std::uint8_t>(v.size());
+    std::memcpy(pos_ + sizeof(std::uint8_t), v.data(), v.size());
+    auto* next_pos = pos_ + sizeof(std::uint8_t) + v.size();
     return { msg_start_, next_pos, end_ };
 }
 
 inline negotiate_message_after_client_app_name negotiate_message_after_client_ip::client_app_name(std::string_view v) {
-    if (pos_ + sizeof(uint32_t) + v.size() > end_) throw std::runtime_error("buffer overrun writing var-data");
-    *reinterpret_cast<uint32_t*>(pos_) = static_cast<uint32_t>(v.size());
-    std::memcpy(pos_ + sizeof(uint32_t), v.data(), v.size());
-    auto* next_pos = pos_ + sizeof(uint32_t) + v.size();
+    if (pos_ + sizeof(std::uint8_t) + v.size() > end_) throw std::runtime_error("buffer overrun writing var-data");
+    *reinterpret_cast<std::uint8_t*>(pos_) = static_cast<std::uint8_t>(v.size());
+    std::memcpy(pos_ + sizeof(std::uint8_t), v.data(), v.size());
+    auto* next_pos = pos_ + sizeof(std::uint8_t) + v.size();
     return { msg_start_, next_pos, end_ };
 }
 

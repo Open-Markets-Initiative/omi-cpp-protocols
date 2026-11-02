@@ -19,7 +19,7 @@ struct trading_hhi_indicator {
     using storage_type = result_type;
 
     constexpr trading_hhi_indicator()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr trading_hhi_indicator(std::uint8_t v)
      : value{ v } {}

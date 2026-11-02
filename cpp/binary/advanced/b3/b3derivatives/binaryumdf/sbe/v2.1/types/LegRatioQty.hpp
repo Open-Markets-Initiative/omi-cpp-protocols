@@ -20,7 +20,7 @@ struct leg_ratio_qty {
     using storage_type = result_type;
 
     constexpr leg_ratio_qty()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr leg_ratio_qty(std::int64_t v)
      : value{ v } {}

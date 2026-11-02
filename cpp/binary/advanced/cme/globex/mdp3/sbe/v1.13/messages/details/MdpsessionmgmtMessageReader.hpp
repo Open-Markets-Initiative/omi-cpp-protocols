@@ -10,7 +10,7 @@ namespace cme::mdp3::v13 {
 namespace sbe_mdp3 = ::cme::mdp3::v13;
 
 
-inline sbe_var_data read_mdpsessionmgmt_payload(const mdpsessionmgmt_message& msg) {
+inline sbe_var_data<std::uint32_t> read_mdpsessionmgmt_payload(const mdpsessionmgmt_message& msg) {
     return { msg.tail_begin(), msg.tail_end() };
 }
 

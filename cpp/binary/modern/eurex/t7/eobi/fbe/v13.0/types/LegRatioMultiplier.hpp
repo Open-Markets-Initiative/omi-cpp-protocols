@@ -15,9 +15,9 @@ static const type no_value = 0xFFFFFFFF;
 static const type maximum_value = 2147483647;
 static const type minimum_value = 1;
 
-    // default constructor
+    // default constructor: the null the model states, where it states one
     constexpr LegRatioMultiplier()
-     : value{ 0 } {}
+     : value{ no_value } {}
 
     // standard constructor
     constexpr explicit LegRatioMultiplier(const std::uint32_t value)

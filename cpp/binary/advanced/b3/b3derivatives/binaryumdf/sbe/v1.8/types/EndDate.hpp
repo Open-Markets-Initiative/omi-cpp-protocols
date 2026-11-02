@@ -19,7 +19,7 @@ struct end_date {
     using storage_type = result_type;
 
     constexpr end_date()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr end_date(std::int32_t v)
      : value{ v } {}

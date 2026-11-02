@@ -19,7 +19,7 @@ struct strategy_id {
     using storage_type = result_type;
 
     constexpr strategy_id()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr strategy_id(std::int32_t v)
      : value{ v } {}

@@ -19,7 +19,7 @@ struct onbehalf_firm {
     using storage_type = result_type;
 
     constexpr onbehalf_firm()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr onbehalf_firm(std::uint32_t v)
      : value{ v } {}

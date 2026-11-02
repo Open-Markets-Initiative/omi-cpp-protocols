@@ -20,7 +20,7 @@ struct protection_price {
     using storage_type = result_type;
 
     constexpr protection_price()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr protection_price(std::int64_t v)
      : value{ v } {}

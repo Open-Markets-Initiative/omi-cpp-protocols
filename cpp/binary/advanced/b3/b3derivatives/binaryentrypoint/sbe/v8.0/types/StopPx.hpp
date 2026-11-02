@@ -20,7 +20,7 @@ struct stop_px {
     using storage_type = result_type;
 
     constexpr stop_px()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr stop_px(std::int64_t v)
      : value{ v } {}

@@ -15,9 +15,9 @@ struct MinLotSizeDecimalQty {
     using type = std::int32_t;
 static const type no_value = 2147483647;
 
-    // default constructor
+    // default constructor: the null the model states, where it states one
     constexpr MinLotSizeDecimalQty()
-     : value{ 0 } {}
+     : value{ no_value } {}
 
     // constructor for MinLotSizeDecimalQty field
     constexpr explicit MinLotSizeDecimalQty(const std::int32_t value)

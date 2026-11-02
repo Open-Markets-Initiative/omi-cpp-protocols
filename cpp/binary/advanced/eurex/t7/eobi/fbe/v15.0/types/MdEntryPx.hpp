@@ -20,7 +20,7 @@ struct md_entry_px {
     using storage_type = result_type;
 
     constexpr md_entry_px()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr md_entry_px(std::int64_t v)
      : value{ v } {}

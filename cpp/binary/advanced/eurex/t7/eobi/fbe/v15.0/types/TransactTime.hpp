@@ -19,7 +19,7 @@ struct transact_time {
     using storage_type = result_type;
 
     constexpr transact_time()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr transact_time(std::uint64_t v)
      : value{ v } {}

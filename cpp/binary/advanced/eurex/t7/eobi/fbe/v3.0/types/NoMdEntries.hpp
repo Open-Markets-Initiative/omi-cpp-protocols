@@ -19,7 +19,7 @@ struct no_md_entries {
     using storage_type = result_type;
 
     constexpr no_md_entries()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr no_md_entries(std::uint8_t v)
      : value{ v } {}

@@ -20,7 +20,7 @@ struct net_chg_prev_day {
     using storage_type = result_type;
 
     constexpr net_chg_prev_day()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr net_chg_prev_day(std::int64_t v)
      : value{ v } {}

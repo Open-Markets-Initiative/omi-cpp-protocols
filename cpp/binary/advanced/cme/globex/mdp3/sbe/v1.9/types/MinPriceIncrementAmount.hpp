@@ -20,7 +20,7 @@ struct min_price_increment_amount {
     using storage_type = result_type;
 
     constexpr min_price_increment_amount()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr min_price_increment_amount(std::int64_t v)
      : value{ v } {}

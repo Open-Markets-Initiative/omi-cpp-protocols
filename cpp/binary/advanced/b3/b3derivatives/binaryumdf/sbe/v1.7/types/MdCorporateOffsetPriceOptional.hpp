@@ -20,7 +20,7 @@ struct md_corporate_offset_price_optional {
     using storage_type = result_type;
 
     constexpr md_corporate_offset_price_optional()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr md_corporate_offset_price_optional(std::int64_t v)
      : value{ v } {}

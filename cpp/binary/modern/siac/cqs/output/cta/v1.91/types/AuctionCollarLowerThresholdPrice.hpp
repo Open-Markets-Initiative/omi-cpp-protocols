@@ -16,9 +16,9 @@ struct AuctionCollarLowerThresholdPrice {
     using type = std::uint64_t;
 static const type no_value = 0;
 
-    // default constructor
+    // default constructor: the null the model states, where it states one
     constexpr AuctionCollarLowerThresholdPrice()
-     : value{ 0 } {}
+     : value{ std::byteswap(no_value) } {}
 
     // constructor for AuctionCollarLowerThresholdPrice field
     constexpr explicit AuctionCollarLowerThresholdPrice(const std::uint64_t value)

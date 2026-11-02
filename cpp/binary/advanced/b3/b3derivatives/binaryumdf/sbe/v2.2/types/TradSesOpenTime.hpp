@@ -19,7 +19,7 @@ struct trad_ses_open_time {
     using storage_type = result_type;
 
     constexpr trad_ses_open_time()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr trad_ses_open_time(std::uint64_t v)
      : value{ v } {}

@@ -20,7 +20,7 @@ struct strike_price {
     using storage_type = result_type;
 
     constexpr strike_price()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr strike_price(std::int64_t v)
      : value{ v } {}

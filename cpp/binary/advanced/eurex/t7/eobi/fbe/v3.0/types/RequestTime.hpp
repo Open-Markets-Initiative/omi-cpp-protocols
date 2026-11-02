@@ -19,7 +19,7 @@ struct request_time {
     using storage_type = result_type;
 
     constexpr request_time()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr request_time(std::uint64_t v)
      : value{ v } {}

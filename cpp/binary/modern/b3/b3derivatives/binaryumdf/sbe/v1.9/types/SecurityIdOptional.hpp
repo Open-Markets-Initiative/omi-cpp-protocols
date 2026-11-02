@@ -13,9 +13,9 @@ struct SecurityIdOptional {
     using type = std::uint64_t;
 static const type no_value = 0;
 
-    // default constructor
+    // default constructor: the null the model states, where it states one
     constexpr SecurityIdOptional()
-     : value{ 0 } {}
+     : value{ no_value } {}
 
     // standard constructor
     constexpr explicit SecurityIdOptional(const std::uint64_t value)

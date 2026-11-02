@@ -19,7 +19,7 @@ struct bid_size {
     using storage_type = result_type;
 
     constexpr bid_size()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr bid_size(std::int32_t v)
      : value{ v } {}

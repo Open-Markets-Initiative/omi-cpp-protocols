@@ -15,9 +15,9 @@ struct MinPriceIncrementAmountEx {
     using type = std::int64_t;
 static const type no_value = 9223372036854775807;
 
-    // default constructor
+    // default constructor: the null the model states, where it states one
     constexpr MinPriceIncrementAmountEx()
-     : value{ 0 } {}
+     : value{ no_value } {}
 
     // constructor for MinPriceIncrementAmountEx field
     constexpr explicit MinPriceIncrementAmountEx(const std::int64_t value)

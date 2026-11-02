@@ -20,7 +20,7 @@ struct trading_reference_price_legacy {
     using storage_type = result_type;
 
     constexpr trading_reference_price_legacy()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr trading_reference_price_legacy(std::int64_t v)
      : value{ v } {}

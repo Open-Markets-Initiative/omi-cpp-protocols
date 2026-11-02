@@ -13,9 +13,9 @@ struct MdOrderPriorityOptional {
     using type = std::uint64_t;
 static const type no_value = 18446744073709551615ULL;
 
-    // default constructor
+    // default constructor: the null the model states, where it states one
     constexpr MdOrderPriorityOptional()
-     : value{ 0 } {}
+     : value{ no_value } {}
 
     // standard constructor
     constexpr explicit MdOrderPriorityOptional(const std::uint64_t value)

@@ -19,7 +19,7 @@ struct cxl_qty {
     using storage_type = result_type;
 
     constexpr cxl_qty()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr cxl_qty(std::int64_t v)
      : value{ v } {}

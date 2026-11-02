@@ -39,15 +39,27 @@ namespace variant_dailytaqquoteluld_v4_3 {
     template <typename Row>
     void read(const ::scaled::delimited::Fields& fields, Row& row) {
         ::scaled::delimited::expect(fields, 10, "Quote Luld");
-        row.time.set(static_cast<std::uint64_t>(::scaled::delimited::time_of_day(fields[0], 9, "Time")));  // Time
-        row.sequence_number.set(::scaled::delimited::integer<std::int64_t>(fields[1], "Sequence_Number"));  // Sequence_Number
-        row.source.set(fields[2]);  // Source
-        row.symbol.set(fields[3]);  // Symbol
+        if (!fields[0].empty()) {  // Time
+            row.time.set(static_cast<std::uint64_t>(::scaled::delimited::time_of_day(fields[0], 9, "Time")));
+        }
+        if (!fields[1].empty()) {  // Sequence_Number
+            row.sequence_number.set(::scaled::delimited::integer<std::int64_t>(fields[1], "Sequence_Number"));
+        }
+        if (!fields[2].empty()) {  // Source
+            row.source.set(fields[2]);
+        }
+        if (!fields[3].empty()) {  // Symbol
+            row.symbol.set(fields[3]);
+        }
         if (!fields[4].empty()) {  // LULD_Price_Band_Indicator
             row.luld_price_band_indicator.set(fields[4]);
         }
-        row.low_price.data = ::scaled::delimited::decimal(fields[5], 6, "Low_Price");  // Low_Price
-        row.high_price.data = ::scaled::delimited::decimal(fields[6], 6, "High_Price");  // High_Price
+        if (!fields[5].empty()) {  // Low_Price
+            row.low_price.data = ::scaled::delimited::decimal(fields[5], 6, "Low_Price");
+        }
+        if (!fields[6].empty()) {  // High_Price
+            row.high_price.data = ::scaled::delimited::decimal(fields[6], 6, "High_Price");
+        }
         if (!fields[7].empty()) {  // National_BBO_LULD_Indicator
             row.national_bbo_luld_indicator.set(fields[7]);
         }

@@ -19,7 +19,7 @@ struct tot_no_orders {
     using storage_type = result_type;
 
     constexpr tot_no_orders()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr tot_no_orders(std::uint16_t v)
      : value{ v } {}

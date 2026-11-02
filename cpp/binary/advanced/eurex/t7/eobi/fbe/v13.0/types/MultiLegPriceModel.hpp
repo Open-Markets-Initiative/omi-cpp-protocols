@@ -55,7 +55,7 @@ struct multi_leg_price_model {
     using storage_type = result_type;
 
     constexpr multi_leg_price_model()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0xFF) } {}
 
     constexpr multi_leg_price_model(enum_type v)
      : value{ v } {}

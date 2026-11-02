@@ -20,7 +20,7 @@ struct min_lot_size_decimal_qty {
     using storage_type = result_type;
 
     constexpr min_lot_size_decimal_qty()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr min_lot_size_decimal_qty(std::int32_t v)
      : value{ v } {}

@@ -3,6 +3,7 @@
 #include "../SecurityStatusRequest.hpp"
 #include <span>
 #include <cstring>
+#include <new>
 #include <stdexcept>
 #include <string_view>
 
@@ -30,6 +31,7 @@ public:
         header_->block_length.set(sizeof(security_status_request_security_groups_entry));
         header_->num_in_group.set(0);
         pos_ += sizeof(sbe_mdp3::group_size);
+        if (pos_ + sizeof(security_status_request_security_groups_entry) <= end_) ::new (static_cast<void*>(pos_)) security_status_request_security_groups_entry{};
     }
 
     security_status_request_security_groups_builder(std::byte* msg_start, std::byte* pos, std::byte* end, sbe_mdp3::group_size* header, uint16_t count)
@@ -41,6 +43,7 @@ public:
         entry->security_group.set(v);
         pos_ += header_->block_length.get().value();
         count_++;
+        if (pos_ + sizeof(security_status_request_security_groups_entry) <= end_) ::new (static_cast<void*>(pos_)) security_status_request_security_groups_entry{};
         return *this;
     }
 
@@ -62,6 +65,7 @@ public:
         header_->block_length.set(sizeof(security_status_request_related_symbol_groups_entry));
         header_->num_in_group.set(0);
         pos_ += sizeof(sbe_mdp3::group_size);
+        if (pos_ + sizeof(security_status_request_related_symbol_groups_entry) <= end_) ::new (static_cast<void*>(pos_)) security_status_request_related_symbol_groups_entry{};
     }
 
     security_status_request_related_symbol_groups_builder(std::byte* msg_start, std::byte* pos, std::byte* end, sbe_mdp3::group_size* header, uint16_t count)
@@ -73,6 +77,7 @@ public:
         entry->security_id.set(v);
         pos_ += header_->block_length.get().value();
         count_++;
+        if (pos_ + sizeof(security_status_request_related_symbol_groups_entry) <= end_) ::new (static_cast<void*>(pos_)) security_status_request_related_symbol_groups_entry{};
         return *this;
     }
 

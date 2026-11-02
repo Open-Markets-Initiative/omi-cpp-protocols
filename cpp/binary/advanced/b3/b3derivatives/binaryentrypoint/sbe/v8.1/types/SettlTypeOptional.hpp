@@ -57,7 +57,7 @@ struct settl_type_optional {
     using storage_type = result_type;
 
     constexpr settl_type_optional()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0) } {}
 
     constexpr settl_type_optional(enum_type v)
      : value{ v } {}

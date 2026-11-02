@@ -19,7 +19,7 @@ struct last_rpt_seq {
     using storage_type = result_type;
 
     constexpr last_rpt_seq()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr last_rpt_seq(std::uint32_t v)
      : value{ v } {}

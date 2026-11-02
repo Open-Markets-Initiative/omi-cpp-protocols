@@ -19,7 +19,7 @@ struct business_reject_ref_id {
     using storage_type = result_type;
 
     constexpr business_reject_ref_id()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr business_reject_ref_id(std::uint64_t v)
      : value{ v } {}

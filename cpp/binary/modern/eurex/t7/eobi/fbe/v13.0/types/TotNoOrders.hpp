@@ -15,9 +15,9 @@ static const type no_value = 0xFFFF;
 static const type maximum_value = 65534;
 static const type minimum_value = 0;
 
-    // default constructor
+    // default constructor: the null the model states, where it states one
     constexpr TotNoOrders()
-     : value{ 0 } {}
+     : value{ no_value } {}
 
     // standard constructor
     constexpr explicit TotNoOrders(const std::uint16_t value)

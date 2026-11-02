@@ -51,7 +51,7 @@ struct trade_qualifier {
     using storage_type = result_type;
 
     constexpr trade_qualifier()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0) } {}
 
     constexpr trade_qualifier(enum_type v)
      : value{ v } {}
@@ -68,7 +68,7 @@ struct trade_qualifier {
         if (value.has_value())
             set(value.value());
         else
-            set(enum_type::closing_price_cross_cpx);
+            set(static_cast<enum_type>(0));
     }
 
   protected:

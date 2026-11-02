@@ -2,6 +2,7 @@
 
 #include <cstddef>
 #include "../structs/FramingHeader.hpp"
+#include "../structs/MessageHeader.hpp"
 #include "../types/SecurityGroup.hpp"
 #include "../types/Offset3Padding5.hpp"
 #include "../types/MatchEventIndicator.hpp"
@@ -36,7 +37,7 @@ struct security_group_phase_10_message {
     };
 
     sbe_binaryumdf::framing_header header = {std::uint16_t(sizeof(sbe_binaryumdf::framing_header) + sizeof(fields_type) + sizeof(sbe_binaryumdf::message_header)), {}};
-    sbe_binaryumdf::message_header message_header;
+    sbe_binaryumdf::message_header message_header = {block_length(sizeof(fields_type)), template_id::enum_type::security_group_phase_10_message, schema_id(2), version(17)};
 
     fields_type fields;
 

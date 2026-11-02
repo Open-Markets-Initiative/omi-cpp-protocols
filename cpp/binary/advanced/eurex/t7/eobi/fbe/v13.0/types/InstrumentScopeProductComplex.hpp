@@ -88,7 +88,7 @@ struct instrument_scope_product_complex {
     using storage_type = result_type;
 
     constexpr instrument_scope_product_complex()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0xFF) } {}
 
     constexpr instrument_scope_product_complex(enum_type v)
      : value{ v } {}

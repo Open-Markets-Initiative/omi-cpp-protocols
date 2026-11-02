@@ -52,7 +52,7 @@ struct offer_ord_type {
     using storage_type = result_type;
 
     constexpr offer_ord_type()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0xFF) } {}
 
     constexpr offer_ord_type(enum_type v)
      : value{ v } {}

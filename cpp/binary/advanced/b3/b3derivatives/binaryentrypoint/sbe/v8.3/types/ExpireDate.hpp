@@ -19,7 +19,7 @@ struct expire_date {
     using storage_type = result_type;
 
     constexpr expire_date()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr expire_date(std::uint16_t v)
      : value{ v } {}

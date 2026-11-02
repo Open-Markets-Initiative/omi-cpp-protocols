@@ -15,9 +15,9 @@ struct IndexPct {
     using type = std::int64_t;
 static const type no_value = 0;
 
-    // default constructor
+    // default constructor: the null the model states, where it states one
     constexpr IndexPct()
-     : value{ 0 } {}
+     : value{ no_value } {}
 
     // constructor for IndexPct field
     constexpr explicit IndexPct(const std::int64_t value)

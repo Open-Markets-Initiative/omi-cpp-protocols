@@ -19,7 +19,7 @@ struct md_insert_timestamp {
     using storage_type = result_type;
 
     constexpr md_insert_timestamp()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr md_insert_timestamp(std::uint64_t v)
      : value{ v } {}

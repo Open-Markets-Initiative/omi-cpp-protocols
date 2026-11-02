@@ -19,7 +19,7 @@ struct security_validity_timestamp {
     using storage_type = result_type;
 
     constexpr security_validity_timestamp()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr security_validity_timestamp(std::int64_t v)
      : value{ v } {}

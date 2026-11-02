@@ -55,7 +55,7 @@ struct trading_session_id {
     using storage_type = result_type;
 
     constexpr trading_session_id()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0) } {}
 
     constexpr trading_session_id(enum_type v)
      : value{ v } {}

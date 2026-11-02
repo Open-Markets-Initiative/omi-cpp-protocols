@@ -55,7 +55,7 @@ struct money_or_par {
     using storage_type = result_type;
 
     constexpr money_or_par()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(255) } {}
 
     constexpr money_or_par(enum_type v)
      : value{ v } {}

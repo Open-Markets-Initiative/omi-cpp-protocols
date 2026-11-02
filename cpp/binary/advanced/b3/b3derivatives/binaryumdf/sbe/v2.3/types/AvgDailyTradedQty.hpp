@@ -19,7 +19,7 @@ struct avg_daily_traded_qty {
     using storage_type = result_type;
 
     constexpr avg_daily_traded_qty()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr avg_daily_traded_qty(std::int64_t v)
      : value{ v } {}

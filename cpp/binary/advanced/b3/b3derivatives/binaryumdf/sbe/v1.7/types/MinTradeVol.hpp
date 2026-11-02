@@ -19,7 +19,7 @@ struct min_trade_vol {
     using storage_type = result_type;
 
     constexpr min_trade_vol()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr min_trade_vol(std::int64_t v)
      : value{ v } {}

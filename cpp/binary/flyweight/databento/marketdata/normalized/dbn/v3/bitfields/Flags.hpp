@@ -1,0 +1,78 @@
+#pragma once
+
+#include <cstddef>
+#include <cstdint>
+#include <ostream>
+#include <span>
+
+#include "../common/Wire.hpp"
+#include "../common/Print.hpp"
+#include "../common/View.hpp"
+
+namespace databento::marketdata::normalized::dbn::v3 {
+
+// A bit field indicating event end, message characteristics, and data quality; declared least
+// significant bit first
+class Flags {
+  public:
+    static constexpr const char* name = "Flags";
+
+    // the bytes it reads, which it does not own: they must outlive it
+    explicit Flags(std::span<const std::byte> bytes) noexcept : bytes_{ bytes } {}
+
+    std::span<const std::byte> bytes() const noexcept { return bytes_; }
+
+    static constexpr std::size_t minimum_size = 1;
+    static constexpr std::size_t fixed_size = 1;
+    std::size_t encoded_size() const { return 1; }
+
+    std::uint8_t raw() const { return wire::read_u8(bytes_.data()); }
+
+    bool reserved_flag() const { return (raw() & static_cast<std::uint8_t>(0x1)) != 0; }
+
+    bool publisher_specific() const { return (raw() & static_cast<std::uint8_t>(0x2)) != 0; }
+
+    bool maybe_bad_book() const { return (raw() & static_cast<std::uint8_t>(0x4)) != 0; }
+
+    bool bad_ts_recv() const { return (raw() & static_cast<std::uint8_t>(0x8)) != 0; }
+
+    bool mbp() const { return (raw() & static_cast<std::uint8_t>(0x10)) != 0; }
+
+    bool snapshot() const { return (raw() & static_cast<std::uint8_t>(0x20)) != 0; }
+
+    bool tob() const { return (raw() & static_cast<std::uint8_t>(0x40)) != 0; }
+
+    bool last() const { return (raw() & static_cast<std::uint8_t>(0x80)) != 0; }
+
+    void print(std::ostream& out) const {
+        out << "Flags{";
+        out << "reserved_flag=";
+        out << (reserved_flag() ? "true" : "false");
+        out << ", publisher_specific=";
+        out << (publisher_specific() ? "true" : "false");
+        out << ", maybe_bad_book=";
+        out << (maybe_bad_book() ? "true" : "false");
+        out << ", bad_ts_recv=";
+        out << (bad_ts_recv() ? "true" : "false");
+        out << ", mbp=";
+        out << (mbp() ? "true" : "false");
+        out << ", snapshot=";
+        out << (snapshot() ? "true" : "false");
+        out << ", tob=";
+        out << (tob() ? "true" : "false");
+        out << ", last=";
+        out << (last() ? "true" : "false");
+        out << '}';
+    }
+
+  private:
+
+    std::span<const std::byte> bytes_;
+};
+
+inline std::ostream& operator<<(std::ostream& out, const Flags& value) {
+    value.print(out);
+    return out;
+}
+
+} // namespace databento::marketdata::normalized::dbn::v3

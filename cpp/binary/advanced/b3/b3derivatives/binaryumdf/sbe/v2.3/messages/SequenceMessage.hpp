@@ -2,6 +2,7 @@
 
 #include <cstddef>
 #include "../structs/FramingHeader.hpp"
+#include "../structs/MessageHeader.hpp"
 #include "../types/NextSeqNo.hpp"
 
 namespace b3::b3derivatives::binaryumdf::sbe::v2_3 {
@@ -18,7 +19,7 @@ struct sequence_message {
     };
 
     sbe_binaryumdf::framing_header header = {std::uint16_t(sizeof(sbe_binaryumdf::framing_header) + sizeof(fields_type) + sizeof(sbe_binaryumdf::message_header)), {}};
-    sbe_binaryumdf::message_header message_header;
+    sbe_binaryumdf::message_header message_header = {block_length(sizeof(fields_type)), template_id::enum_type::sequence_2_message, schema_id(2), version(17)};
 
     fields_type fields;
 

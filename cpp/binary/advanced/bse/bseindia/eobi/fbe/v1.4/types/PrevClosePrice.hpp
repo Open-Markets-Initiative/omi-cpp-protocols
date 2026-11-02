@@ -20,7 +20,7 @@ struct prev_close_price {
     using storage_type = result_type;
 
     constexpr prev_close_price()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr prev_close_price(std::int64_t v)
      : value{ v } {}

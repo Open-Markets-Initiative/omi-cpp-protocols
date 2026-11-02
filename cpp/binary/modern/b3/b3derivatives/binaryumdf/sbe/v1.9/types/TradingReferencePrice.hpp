@@ -15,9 +15,9 @@ struct TradingReferencePrice {
     using type = std::int64_t;
 static const type no_value = (-9223372036854775807LL - 1);
 
-    // default constructor
+    // default constructor: the null the model states, where it states one
     constexpr TradingReferencePrice()
-     : value{ 0 } {}
+     : value{ no_value } {}
 
     // constructor for TradingReferencePrice field
     constexpr explicit TradingReferencePrice(const std::int64_t value)

@@ -19,7 +19,7 @@ struct tot_num_reports_optional {
     using storage_type = result_type;
 
     constexpr tot_num_reports_optional()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr tot_num_reports_optional(std::uint32_t v)
      : value{ v } {}

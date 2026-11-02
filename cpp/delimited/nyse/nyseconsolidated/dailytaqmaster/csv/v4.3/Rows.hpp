@@ -39,21 +39,39 @@ namespace variant_dailytaqmaster_v4_3 {
     template <typename Row>
     void read(const ::scaled::delimited::Fields& fields, Row& row) {
         ::scaled::delimited::expect(fields, 41, "Security");
-        row.symbol.set(fields[0]);  // Symbol
-        row.security_description.set(fields[1]);  // Security_Description
+        if (!fields[0].empty()) {  // Symbol
+            row.symbol.set(fields[0]);
+        }
+        if (!fields[1].empty()) {  // Security_Description
+            row.security_description.set(fields[1]);
+        }
         if (!fields[2].empty()) {  // CUSIP
             row.cusip.set(fields[2]);
         }
-        row.security_type.set(fields[3]);  // Security_Type
-        row.sip_symbol.set(fields[4]);  // SIP_Symbol
+        if (!fields[3].empty()) {  // Security_Type
+            row.security_type.set(fields[3]);
+        }
+        if (!fields[4].empty()) {  // SIP_Symbol
+            row.sip_symbol.set(fields[4]);
+        }
         if (!fields[5].empty()) {  // Old_Symbol
             row.old_symbol.set(fields[5]);
         }
-        row.test_symbol_flag.set(fields[6]);  // Test_Symbol_Flag
-        row.listed_exchange.set(fields[7]);  // Listed_Exchange
-        row.tape.set(fields[8]);  // Tape
-        row.unit_of_trade.set(::scaled::delimited::integer<std::int64_t>(fields[9], "Unit_Of_Trade"));  // Unit_Of_Trade
-        row.round_lot.set(::scaled::delimited::integer<std::int64_t>(fields[10], "Round_Lot"));  // Round_Lot
+        if (!fields[6].empty()) {  // Test_Symbol_Flag
+            row.test_symbol_flag.set(fields[6]);
+        }
+        if (!fields[7].empty()) {  // Listed_Exchange
+            row.listed_exchange.set(fields[7]);
+        }
+        if (!fields[8].empty()) {  // Tape
+            row.tape.set(fields[8]);
+        }
+        if (!fields[9].empty()) {  // Unit_Of_Trade
+            row.unit_of_trade.set(::scaled::delimited::integer<std::int64_t>(fields[9], "Unit_Of_Trade"));
+        }
+        if (!fields[10].empty()) {  // Round_Lot
+            row.round_lot.set(::scaled::delimited::integer<std::int64_t>(fields[10], "Round_Lot"));
+        }
         if (!fields[11].empty()) {  // NYSE_Industry_Code
             row.nyse_industry_code.set(fields[11]);
         }
@@ -75,33 +93,75 @@ namespace variant_dailytaqmaster_v4_3 {
         if (!fields[17].empty()) {  // Specialist_Panel
             row.specialist_panel.set(fields[17]);
         }
-        row.traded_on_nysemkt.set(::scaled::delimited::integer<std::int64_t>(fields[18], "TradedOnNYSEMKT"));  // TradedOnNYSEMKT
-        row.traded_on_nasdaqbx.set(::scaled::delimited::integer<std::int64_t>(fields[19], "TradedOnNASDAQBX"));  // TradedOnNASDAQBX
-        row.traded_on_nsx.set(::scaled::delimited::integer<std::int64_t>(fields[20], "TradedOnNSX"));  // TradedOnNSX
-        row.traded_on_finra.set(::scaled::delimited::integer<std::int64_t>(fields[21], "TradedOnFINRA"));  // TradedOnFINRA
-        row.traded_on_ise.set(::scaled::delimited::integer<std::int64_t>(fields[22], "TradedOnISE"));  // TradedOnISE
-        row.traded_on_edge_a.set(::scaled::delimited::integer<std::int64_t>(fields[23], "TradedOnEdgeA"));  // TradedOnEdgeA
-        row.traded_on_edge_x.set(::scaled::delimited::integer<std::int64_t>(fields[24], "TradedOnEdgeX"));  // TradedOnEdgeX
-        row.traded_on_nyse_texas.set(::scaled::delimited::integer<std::int64_t>(fields[25], "TradedOnNYSETexas"));  // TradedOnNYSETexas
-        row.traded_on_nyse.set(::scaled::delimited::integer<std::int64_t>(fields[26], "TradedOnNYSE"));  // TradedOnNYSE
-        row.traded_on_arca.set(::scaled::delimited::integer<std::int64_t>(fields[27], "TradedOnArca"));  // TradedOnArca
-        row.traded_on_nasdaq.set(::scaled::delimited::integer<std::int64_t>(fields[28], "TradedOnNasdaq"));  // TradedOnNasdaq
-        row.traded_on_cboe.set(::scaled::delimited::integer<std::int64_t>(fields[29], "TradedOnCBOE"));  // TradedOnCBOE
-        row.traded_on_psx.set(::scaled::delimited::integer<std::int64_t>(fields[30], "TradedOnPSX"));  // TradedOnPSX
-        row.traded_on_batsy.set(::scaled::delimited::integer<std::int64_t>(fields[31], "TradedOnBATSY"));  // TradedOnBATSY
-        row.traded_on_bats.set(::scaled::delimited::integer<std::int64_t>(fields[32], "TradedOnBATS"));  // TradedOnBATS
-        row.traded_on_iex.set(::scaled::delimited::integer<std::int64_t>(fields[33], "TradedOnIEX"));  // TradedOnIEX
+        if (!fields[18].empty()) {  // TradedOnNYSEMKT
+            row.traded_on_nysemkt.set(::scaled::delimited::integer<std::int64_t>(fields[18], "TradedOnNYSEMKT"));
+        }
+        if (!fields[19].empty()) {  // TradedOnNASDAQBX
+            row.traded_on_nasdaqbx.set(::scaled::delimited::integer<std::int64_t>(fields[19], "TradedOnNASDAQBX"));
+        }
+        if (!fields[20].empty()) {  // TradedOnNSX
+            row.traded_on_nsx.set(::scaled::delimited::integer<std::int64_t>(fields[20], "TradedOnNSX"));
+        }
+        if (!fields[21].empty()) {  // TradedOnFINRA
+            row.traded_on_finra.set(::scaled::delimited::integer<std::int64_t>(fields[21], "TradedOnFINRA"));
+        }
+        if (!fields[22].empty()) {  // TradedOnISE
+            row.traded_on_ise.set(::scaled::delimited::integer<std::int64_t>(fields[22], "TradedOnISE"));
+        }
+        if (!fields[23].empty()) {  // TradedOnEdgeA
+            row.traded_on_edge_a.set(::scaled::delimited::integer<std::int64_t>(fields[23], "TradedOnEdgeA"));
+        }
+        if (!fields[24].empty()) {  // TradedOnEdgeX
+            row.traded_on_edge_x.set(::scaled::delimited::integer<std::int64_t>(fields[24], "TradedOnEdgeX"));
+        }
+        if (!fields[25].empty()) {  // TradedOnNYSETexas
+            row.traded_on_nyse_texas.set(::scaled::delimited::integer<std::int64_t>(fields[25], "TradedOnNYSETexas"));
+        }
+        if (!fields[26].empty()) {  // TradedOnNYSE
+            row.traded_on_nyse.set(::scaled::delimited::integer<std::int64_t>(fields[26], "TradedOnNYSE"));
+        }
+        if (!fields[27].empty()) {  // TradedOnArca
+            row.traded_on_arca.set(::scaled::delimited::integer<std::int64_t>(fields[27], "TradedOnArca"));
+        }
+        if (!fields[28].empty()) {  // TradedOnNasdaq
+            row.traded_on_nasdaq.set(::scaled::delimited::integer<std::int64_t>(fields[28], "TradedOnNasdaq"));
+        }
+        if (!fields[29].empty()) {  // TradedOnCBOE
+            row.traded_on_cboe.set(::scaled::delimited::integer<std::int64_t>(fields[29], "TradedOnCBOE"));
+        }
+        if (!fields[30].empty()) {  // TradedOnPSX
+            row.traded_on_psx.set(::scaled::delimited::integer<std::int64_t>(fields[30], "TradedOnPSX"));
+        }
+        if (!fields[31].empty()) {  // TradedOnBATSY
+            row.traded_on_batsy.set(::scaled::delimited::integer<std::int64_t>(fields[31], "TradedOnBATSY"));
+        }
+        if (!fields[32].empty()) {  // TradedOnBATS
+            row.traded_on_bats.set(::scaled::delimited::integer<std::int64_t>(fields[32], "TradedOnBATS"));
+        }
+        if (!fields[33].empty()) {  // TradedOnIEX
+            row.traded_on_iex.set(::scaled::delimited::integer<std::int64_t>(fields[33], "TradedOnIEX"));
+        }
         if (!fields[34].empty()) {  // Tick_Pilot_Indicator
             row.tick_pilot_indicator.set(fields[34]);
         }
         if (!fields[35].empty()) {  // Effective_Date
             row.effective_date.set(static_cast<std::int32_t>(::scaled::delimited::days(fields[35], "Effective_Date")));
         }
-        row.traded_on_ltse.set(::scaled::delimited::integer<std::int64_t>(fields[36], "TradedOnLTSE"));  // TradedOnLTSE
-        row.traded_on_memx.set(::scaled::delimited::integer<std::int64_t>(fields[37], "TradedOnMEMX"));  // TradedOnMEMX
-        row.traded_on_miax.set(::scaled::delimited::integer<std::int64_t>(fields[38], "TradedOnMIAX"));  // TradedOnMIAX
-        row.traded_on_24x.set(::scaled::delimited::integer<std::int64_t>(fields[39], "TradedOn24X"));  // TradedOn24X
-        row.traded_on_txse.set(::scaled::delimited::integer<std::int64_t>(fields[40], "TradedOnTXSE"));  // TradedOnTXSE
+        if (!fields[36].empty()) {  // TradedOnLTSE
+            row.traded_on_ltse.set(::scaled::delimited::integer<std::int64_t>(fields[36], "TradedOnLTSE"));
+        }
+        if (!fields[37].empty()) {  // TradedOnMEMX
+            row.traded_on_memx.set(::scaled::delimited::integer<std::int64_t>(fields[37], "TradedOnMEMX"));
+        }
+        if (!fields[38].empty()) {  // TradedOnMIAX
+            row.traded_on_miax.set(::scaled::delimited::integer<std::int64_t>(fields[38], "TradedOnMIAX"));
+        }
+        if (!fields[39].empty()) {  // TradedOn24X
+            row.traded_on_24x.set(::scaled::delimited::integer<std::int64_t>(fields[39], "TradedOn24X"));
+        }
+        if (!fields[40].empty()) {  // TradedOnTXSE
+            row.traded_on_txse.set(::scaled::delimited::integer<std::int64_t>(fields[40], "TradedOnTXSE"));
+        }
     }
 }
 

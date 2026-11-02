@@ -13,19 +13,19 @@ namespace nyse::nyseconsolidated::dailytaqtradeluld::csv::v4_3 {
 
 // Trade Luld: a data line of the model, its fields typed as the model states them
 struct TradeLuld {
-    // Time: nanoseconds since midnight, America/New_York
-    ::scaled::delimited::values::Required<std::uint64_t> time;
-    // Sequence Number: an integer
-    ::scaled::delimited::values::Required<std::int64_t> sequence_number;
-    // Source: text
-    ::scaled::delimited::values::Required<std::string_view> source;
-    // Symbol: text
-    ::scaled::delimited::values::Required<std::string_view> symbol;
-    // Low Price: a decimal, the integer of its 6 places
-    ::scaled::delimited::values::Required<std::int64_t> low_price;
+    // Time: nanoseconds since midnight, America/New_York; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::uint64_t> time;
+    // Sequence Number: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> sequence_number;
+    // Source: text; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::string_view> source;
+    // Symbol: text; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::string_view> symbol;
+    // Low Price: a decimal, the integer of its 6 places; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> low_price;
     static constexpr int low_price_places = 6;
-    // High Price: a decimal, the integer of its 6 places
-    ::scaled::delimited::values::Required<std::int64_t> high_price;
+    // High Price: a decimal, the integer of its 6 places; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> high_price;
     static constexpr int high_price_places = 6;
     // LULD Price Band Indicator: text; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::string_view> luld_price_band_indicator;
@@ -48,8 +48,12 @@ struct TradeLuld {
         num_extensions.reset();
     }
 
-    // Time on a day: its nanoseconds since midnight, America/New_York, as UTC Unix nanoseconds
-    std::int64_t time_utc(const ::scaled::delimited::calendar::Day& day) const {
+    // Time on a day: its nanoseconds since midnight, America/New_York, as UTC Unix nanoseconds;
+    // none where the line leaves it empty
+    std::optional<std::int64_t> time_utc(const ::scaled::delimited::calendar::Day& day) const {
+        if (!time.has_value()) {
+            return std::nullopt;
+        }
         return ::scaled::delimited::calendar::midnight(day, "America/New_York").utc(static_cast<std::int64_t>(time.value()));
     }
 

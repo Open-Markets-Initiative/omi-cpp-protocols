@@ -13,9 +13,9 @@ struct MinTradeVol {
     using type = std::int64_t;
 static const type no_value = (-9223372036854775807LL - 1);
 
-    // default constructor
+    // default constructor: the null the model states, where it states one
     constexpr MinTradeVol()
-     : value{ 0 } {}
+     : value{ no_value } {}
 
     // standard constructor
     constexpr explicit MinTradeVol(const std::int64_t value)

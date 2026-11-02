@@ -19,7 +19,7 @@ struct exec_ref_id {
     using storage_type = result_type;
 
     constexpr exec_ref_id()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr exec_ref_id(std::uint64_t v)
      : value{ v } {}

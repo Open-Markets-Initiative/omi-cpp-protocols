@@ -20,7 +20,7 @@ struct unit_of_measure_qty_ex {
     using storage_type = result_type;
 
     constexpr unit_of_measure_qty_ex()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr unit_of_measure_qty_ex(std::int64_t v)
      : value{ v } {}

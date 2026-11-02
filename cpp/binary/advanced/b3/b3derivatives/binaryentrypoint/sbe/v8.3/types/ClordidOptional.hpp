@@ -19,7 +19,7 @@ struct clordid_optional {
     using storage_type = result_type;
 
     constexpr clordid_optional()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr clordid_optional(std::uint64_t v)
      : value{ v } {}

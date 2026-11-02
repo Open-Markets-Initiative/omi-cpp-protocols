@@ -19,7 +19,7 @@ struct trade_date {
     using storage_type = result_type;
 
     constexpr trade_date()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr trade_date(std::uint16_t v)
      : value{ v } {}

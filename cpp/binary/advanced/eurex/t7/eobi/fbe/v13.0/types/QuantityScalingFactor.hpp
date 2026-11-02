@@ -19,7 +19,7 @@ struct quantity_scaling_factor {
     using storage_type = result_type;
 
     constexpr quantity_scaling_factor()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr quantity_scaling_factor(std::uint16_t v)
      : value{ v } {}

@@ -19,7 +19,7 @@ struct corporate_action_event_id {
     using storage_type = result_type;
 
     constexpr corporate_action_event_id()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr corporate_action_event_id(std::uint32_t v)
      : value{ v } {}

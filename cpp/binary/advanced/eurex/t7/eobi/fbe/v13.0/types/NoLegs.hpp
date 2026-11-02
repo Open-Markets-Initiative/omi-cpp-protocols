@@ -19,7 +19,7 @@ struct no_legs {
     using storage_type = result_type;
 
     constexpr no_legs()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr no_legs(std::uint8_t v)
      : value{ v } {}

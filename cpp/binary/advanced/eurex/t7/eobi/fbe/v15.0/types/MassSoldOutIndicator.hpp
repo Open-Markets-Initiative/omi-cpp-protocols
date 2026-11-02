@@ -52,7 +52,7 @@ struct mass_sold_out_indicator {
     using storage_type = result_type;
 
     constexpr mass_sold_out_indicator()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0xFF) } {}
 
     constexpr mass_sold_out_indicator(enum_type v)
      : value{ v } {}

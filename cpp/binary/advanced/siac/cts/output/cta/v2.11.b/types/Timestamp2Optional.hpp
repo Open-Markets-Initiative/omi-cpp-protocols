@@ -19,7 +19,7 @@ struct timestamp_2_optional {
     using storage_type = result_type;
 
     constexpr timestamp_2_optional()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr timestamp_2_optional(std::uint64_t v)
      : value{ v } {}

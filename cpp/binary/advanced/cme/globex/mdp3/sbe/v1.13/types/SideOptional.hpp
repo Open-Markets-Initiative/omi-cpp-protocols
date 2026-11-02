@@ -19,7 +19,7 @@ struct side_optional {
     using storage_type = result_type;
 
     constexpr side_optional()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr side_optional(std::int8_t v)
      : value{ v } {}

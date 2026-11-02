@@ -13,38 +13,38 @@ namespace nyse::nyseconsolidated::dailytaqtrades::csv::v4_3 {
 
 // Trade: a data line of the model, its fields typed as the model states them
 struct Trade {
-    // Time: nanoseconds since midnight, America/New_York
-    ::scaled::delimited::values::Required<std::uint64_t> time;
-    // Exchange: text
-    ::scaled::delimited::values::Required<std::string_view> exchange;
-    // Symbol: text
-    ::scaled::delimited::values::Required<std::string_view> symbol;
+    // Time: nanoseconds since midnight, America/New_York; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::uint64_t> time;
+    // Exchange: text; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::string_view> exchange;
+    // Symbol: text; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::string_view> symbol;
     // Sale Condition: text; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::string_view> sale_condition;
-    // Trade Volume: a decimal, the integer of its 6 places
-    ::scaled::delimited::values::Required<std::int64_t> trade_volume;
+    // Trade Volume: a decimal, the integer of its 6 places; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> trade_volume;
     static constexpr int trade_volume_places = 6;
-    // Trade Price: a decimal, the integer of its 6 places
-    ::scaled::delimited::values::Required<std::int64_t> trade_price;
+    // Trade Price: a decimal, the integer of its 6 places; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> trade_price;
     static constexpr int trade_price_places = 6;
     // Trade Stop Stock Indicator: text; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::string_view> trade_stop_stock_indicator;
-    // Trade Correction Indicator: text
-    ::scaled::delimited::values::Required<std::string_view> trade_correction_indicator;
-    // Sequence Number: an integer
-    ::scaled::delimited::values::Required<std::int64_t> sequence_number;
-    // Trade Id: text
-    ::scaled::delimited::values::Required<std::string_view> trade_id;
-    // Source of Trade: text
-    ::scaled::delimited::values::Required<std::string_view> source_of_trade;
+    // Trade Correction Indicator: text; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::string_view> trade_correction_indicator;
+    // Sequence Number: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> sequence_number;
+    // Trade Id: text; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::string_view> trade_id;
+    // Source of Trade: text; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::string_view> source_of_trade;
     // Trade Reporting Facility: text; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::string_view> trade_reporting_facility;
-    // Participant Timestamp: nanoseconds since midnight, America/New_York
-    ::scaled::delimited::values::Required<std::uint64_t> participant_timestamp;
+    // Participant Timestamp: nanoseconds since midnight, America/New_York; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::uint64_t> participant_timestamp;
     // Trade Reporting Facility TRF Timestamp: nanoseconds since midnight, America/New_York; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::uint64_t> trade_reporting_facility_trf_timestamp;
-    // Trade Through Exempt Indicator: an integer
-    ::scaled::delimited::values::Required<std::int64_t> trade_through_exempt_indicator;
+    // Trade Through Exempt Indicator: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> trade_through_exempt_indicator;
 
     // every field emptied: a row is reset before a line is read onto it
     void reset() {
@@ -65,13 +65,21 @@ struct Trade {
         trade_through_exempt_indicator.reset();
     }
 
-    // Time on a day: its nanoseconds since midnight, America/New_York, as UTC Unix nanoseconds
-    std::int64_t time_utc(const ::scaled::delimited::calendar::Day& day) const {
+    // Time on a day: its nanoseconds since midnight, America/New_York, as UTC Unix nanoseconds;
+    // none where the line leaves it empty
+    std::optional<std::int64_t> time_utc(const ::scaled::delimited::calendar::Day& day) const {
+        if (!time.has_value()) {
+            return std::nullopt;
+        }
         return ::scaled::delimited::calendar::midnight(day, "America/New_York").utc(static_cast<std::int64_t>(time.value()));
     }
 
-    // Participant Timestamp on a day: its nanoseconds since midnight, America/New_York, as UTC Unix nanoseconds
-    std::int64_t participant_timestamp_utc(const ::scaled::delimited::calendar::Day& day) const {
+    // Participant Timestamp on a day: its nanoseconds since midnight, America/New_York, as UTC Unix nanoseconds;
+    // none where the line leaves it empty
+    std::optional<std::int64_t> participant_timestamp_utc(const ::scaled::delimited::calendar::Day& day) const {
+        if (!participant_timestamp.has_value()) {
+            return std::nullopt;
+        }
         return ::scaled::delimited::calendar::midnight(day, "America/New_York").utc(static_cast<std::int64_t>(participant_timestamp.value()));
     }
 

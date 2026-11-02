@@ -20,7 +20,7 @@ struct high_px {
     using storage_type = result_type;
 
     constexpr high_px()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr high_px(std::int64_t v)
      : value{ v } {}

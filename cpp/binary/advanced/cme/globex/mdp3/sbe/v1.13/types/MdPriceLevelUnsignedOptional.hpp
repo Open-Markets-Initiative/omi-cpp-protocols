@@ -19,7 +19,7 @@ struct md_price_level_unsigned_optional {
     using storage_type = result_type;
 
     constexpr md_price_level_unsigned_optional()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr md_price_level_unsigned_optional(std::uint8_t v)
      : value{ v } {}

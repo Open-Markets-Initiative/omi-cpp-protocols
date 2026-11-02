@@ -19,7 +19,7 @@ struct month {
     using storage_type = result_type;
 
     constexpr month()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr month(std::uint8_t v)
      : value{ v } {}

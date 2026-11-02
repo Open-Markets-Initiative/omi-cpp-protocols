@@ -19,7 +19,7 @@ struct imbalance_qty {
     using storage_type = result_type;
 
     constexpr imbalance_qty()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr imbalance_qty(std::int32_t v)
      : value{ v } {}

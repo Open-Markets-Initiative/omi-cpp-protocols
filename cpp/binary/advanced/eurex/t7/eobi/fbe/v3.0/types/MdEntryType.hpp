@@ -82,7 +82,7 @@ struct md_entry_type {
     using storage_type = result_type;
 
     constexpr md_entry_type()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0xFF) } {}
 
     constexpr md_entry_type(enum_type v)
      : value{ v } {}

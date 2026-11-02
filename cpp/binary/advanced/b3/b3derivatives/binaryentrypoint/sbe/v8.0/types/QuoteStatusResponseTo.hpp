@@ -60,7 +60,7 @@ struct quote_status_response_to {
     using storage_type = result_type;
 
     constexpr quote_status_response_to()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0) } {}
 
     constexpr quote_status_response_to(enum_type v)
      : value{ v } {}

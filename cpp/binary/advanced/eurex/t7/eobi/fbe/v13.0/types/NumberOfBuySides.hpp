@@ -19,7 +19,7 @@ struct number_of_buy_sides {
     using storage_type = result_type;
 
     constexpr number_of_buy_sides()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr number_of_buy_sides(std::uint16_t v)
      : value{ v } {}

@@ -18,7 +18,7 @@ Within a protocol:
 
 The extractor and the tests under `tests/binary/modern/` are written against these.
 
-## Protocols (98)
+## Protocols (101)
 
 - `Asx.AsxDerivatives.Ntp.Itch.v1.05`
 - `B3.B3Derivatives.BinaryUmdf.Sbe.v1.6`
@@ -47,6 +47,9 @@ The extractor and the tests under `tests/binary/modern/` are written against the
 - `Cme.Globex.Mdp3.Sbe.v1.9`
 - `Cme.Globex.Mdp3.Sbe.v1.13`
 - `Cme.Globex.Mdp3.Sbe.v1.5`
+- `Databento.MarketData.Normalized.Dbn.v1`
+- `Databento.MarketData.Normalized.Dbn.v2`
+- `Databento.MarketData.Normalized.Dbn.v3`
 - `Eurex.T7.Eobi.Fbe.v13.0`
 - `Eurex.T7.Eobi.Fbe.v15.0`
 - `Eurex.T7.Eobi.Fbe.v3.0`

@@ -60,7 +60,7 @@ struct auction_info {
     using storage_type = result_type;
 
     constexpr auction_info()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0) } {}
 
     constexpr auction_info(enum_type v)
      : value{ v } {}
@@ -77,7 +77,7 @@ struct auction_info {
         if (value.has_value())
             set(value.value());
         else
-            set(enum_type::sell_imbalance);
+            set(static_cast<enum_type>(0));
     }
 
   protected:

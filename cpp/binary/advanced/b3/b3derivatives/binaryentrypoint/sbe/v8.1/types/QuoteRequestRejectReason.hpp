@@ -19,7 +19,7 @@ struct quote_request_reject_reason {
     using storage_type = result_type;
 
     constexpr quote_request_reject_reason()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr quote_request_reject_reason(std::uint32_t v)
      : value{ v } {}

@@ -19,7 +19,7 @@ struct tick_size_denominator {
     using storage_type = result_type;
 
     constexpr tick_size_denominator()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr tick_size_denominator(std::uint8_t v)
      : value{ v } {}

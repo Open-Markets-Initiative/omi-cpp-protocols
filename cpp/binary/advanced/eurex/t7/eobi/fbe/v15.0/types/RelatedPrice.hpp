@@ -20,7 +20,7 @@ struct related_price {
     using storage_type = result_type;
 
     constexpr related_price()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr related_price(std::int64_t v)
      : value{ v } {}

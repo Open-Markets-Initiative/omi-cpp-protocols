@@ -19,7 +19,7 @@ struct security_id_optional {
     using storage_type = result_type;
 
     constexpr security_id_optional()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr security_id_optional(std::int32_t v)
      : value{ v } {}

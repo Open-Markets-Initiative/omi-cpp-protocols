@@ -19,8 +19,8 @@ struct auction_collar_reference_price {
     using result_type = std::optional<std::uint64_t>;
     using storage_type = result_type;
 
-    constexpr auction_collar_reference_price()
-     : value{ 0 } {}
+    auction_collar_reference_price()
+     : value{ static_cast<std::uint64_t>(__builtin_bswap64(null_value)) } {}
 
     auction_collar_reference_price(std::uint64_t v)
      : value{ static_cast<std::uint64_t>(__builtin_bswap64(v)) } {}

@@ -3,6 +3,7 @@
 #include "../UnsequencedDataPacket.hpp"
 #include <span>
 #include <cstring>
+#include <new>
 #include <stdexcept>
 #include <string_view>
 

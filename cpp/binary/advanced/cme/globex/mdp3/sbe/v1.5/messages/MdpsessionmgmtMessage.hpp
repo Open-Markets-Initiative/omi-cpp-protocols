@@ -17,7 +17,7 @@ struct mdpsessionmgmt_message {
     struct fields_type {
     };
 
-    sbe_mdp3::message_header header = {std::uint16_t(sizeof(sbe_mdp3::message_header)), {}};
+    sbe_mdp3::message_header header = {std::uint16_t(sizeof(sbe_mdp3::message_header)), {{}, {}, schema_id::enum_type::mdpsessionmgmt, version(5)}};
 
     static constexpr std::size_t max_message_size = 1280;
     static constexpr std::size_t tail_capacity = max_message_size - sizeof(sbe_mdp3::message_header);
@@ -34,7 +34,7 @@ struct mdpsessionmgmt_message {
     }
 
     // sequential access to variable-length regions
-    sbe_var_data mdpsessionmgmt_payload() const {
+    sbe_var_data<std::uint32_t> mdpsessionmgmt_payload() const {
         return { tail_begin(), tail_end() };
     }
 

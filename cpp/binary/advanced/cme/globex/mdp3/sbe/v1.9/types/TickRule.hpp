@@ -19,7 +19,7 @@ struct tick_rule {
     using storage_type = result_type;
 
     constexpr tick_rule()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr tick_rule(std::int8_t v)
      : value{ v } {}

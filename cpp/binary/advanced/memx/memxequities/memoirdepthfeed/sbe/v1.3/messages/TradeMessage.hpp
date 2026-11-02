@@ -25,7 +25,7 @@ struct trade_message {
         sbe_memoirdepthfeed::price price;
     };
 
-    sbe_memoirdepthfeed::sbe_header header = {{}, template_id::enum_type::trade_message, schema_id(2), version(259)};
+    sbe_memoirdepthfeed::sbe_header header = {block_length(sizeof(fields_type)), template_id::enum_type::trade_message, schema_id(2), version(259)};
 
     fields_type fields;
 

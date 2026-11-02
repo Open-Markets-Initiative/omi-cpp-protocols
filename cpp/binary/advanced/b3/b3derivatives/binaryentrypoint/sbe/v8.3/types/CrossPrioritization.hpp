@@ -58,7 +58,7 @@ struct cross_prioritization {
     using storage_type = result_type;
 
     constexpr cross_prioritization()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(255) } {}
 
     constexpr cross_prioritization(enum_type v)
      : value{ v } {}

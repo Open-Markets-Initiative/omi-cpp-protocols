@@ -19,7 +19,7 @@ struct trading_sub_account {
     using storage_type = result_type;
 
     constexpr trading_sub_account()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr trading_sub_account(std::uint32_t v)
      : value{ v } {}

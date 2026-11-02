@@ -52,7 +52,7 @@ struct input_source {
     using storage_type = result_type;
 
     constexpr input_source()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0xFF) } {}
 
     constexpr input_source(enum_type v)
      : value{ v } {}

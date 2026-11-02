@@ -39,23 +39,45 @@ namespace variant_dailytaqoddlotquotes_v4_3 {
     template <typename Row>
     void read(const ::scaled::delimited::Fields& fields, Row& row) {
         ::scaled::delimited::expect(fields, 13, "Odd Lot Quote");
-        row.time.set(static_cast<std::uint64_t>(::scaled::delimited::time_of_day(fields[0], 9, "Time")));  // Time
-        row.exchange.set(fields[1]);  // Exchange
-        row.symbol.set(fields[2]);  // Symbol
-        row.sequence_number.set(::scaled::delimited::integer<std::int64_t>(fields[3], "Sequence Number"));  // Sequence Number
-        row.participant_timestamp.set(static_cast<std::uint64_t>(::scaled::delimited::time_of_day(fields[4], 9, "Participant Timestamp")));  // Participant Timestamp
+        if (!fields[0].empty()) {  // Time
+            row.time.set(static_cast<std::uint64_t>(::scaled::delimited::time_of_day(fields[0], 9, "Time")));
+        }
+        if (!fields[1].empty()) {  // Exchange
+            row.exchange.set(fields[1]);
+        }
+        if (!fields[2].empty()) {  // Symbol
+            row.symbol.set(fields[2]);
+        }
+        if (!fields[3].empty()) {  // Sequence Number
+            row.sequence_number.set(::scaled::delimited::integer<std::int64_t>(fields[3], "Sequence Number"));
+        }
+        if (!fields[4].empty()) {  // Participant Timestamp
+            row.participant_timestamp.set(static_cast<std::uint64_t>(::scaled::delimited::time_of_day(fields[4], 9, "Participant Timestamp")));
+        }
         if (!fields[5].empty()) {  // FINRA ADF Timestamp
             row.finra_adf_timestamp.set(static_cast<std::uint64_t>(::scaled::delimited::time_of_day(fields[5], 9, "FINRA ADF Timestamp")));
         }
-        row.source_of_quote.set(fields[6]);  // Source of Quote
-        row.bolo_indicator.set(fields[7]);  // BOLO Indicator
+        if (!fields[6].empty()) {  // Source of Quote
+            row.source_of_quote.set(fields[6]);
+        }
+        if (!fields[7].empty()) {  // BOLO Indicator
+            row.bolo_indicator.set(fields[7]);
+        }
         if (!fields[8].empty()) {  // Clear Prior Odd Lot Quotes
             row.clear_prior_odd_lot_quotes.set(fields[8]);
         }
-        row.side.set(fields[9]);  // Side
-        row.odd_lot_quote_price.data = ::scaled::delimited::decimal(fields[10], 6, "Odd Lot Quote Price");  // Odd Lot Quote Price
-        row.odd_lot_quote_size.set(::scaled::delimited::integer<std::int64_t>(fields[11], "Odd Lot Quote Size"));  // Odd Lot Quote Size
-        row.odd_lot_finra_market_maker_id.set(fields[12]);  // Odd Lot FINRA Market Maker ID
+        if (!fields[9].empty()) {  // Side
+            row.side.set(fields[9]);
+        }
+        if (!fields[10].empty()) {  // Odd Lot Quote Price
+            row.odd_lot_quote_price.data = ::scaled::delimited::decimal(fields[10], 6, "Odd Lot Quote Price");
+        }
+        if (!fields[11].empty()) {  // Odd Lot Quote Size
+            row.odd_lot_quote_size.set(::scaled::delimited::integer<std::int64_t>(fields[11], "Odd Lot Quote Size"));
+        }
+        if (!fields[12].empty()) {  // Odd Lot FINRA Market Maker ID
+            row.odd_lot_finra_market_maker_id.set(fields[12]);
+        }
     }
 }
 

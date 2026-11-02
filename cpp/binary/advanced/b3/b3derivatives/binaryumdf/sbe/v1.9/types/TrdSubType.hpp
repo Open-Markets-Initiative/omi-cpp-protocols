@@ -76,7 +76,7 @@ struct trd_sub_type {
     using storage_type = result_type;
 
     constexpr trd_sub_type()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0) } {}
 
     constexpr trd_sub_type(enum_type v)
      : value{ v } {}

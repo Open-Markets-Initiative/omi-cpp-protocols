@@ -20,7 +20,7 @@ struct upper_ckt_limit {
     using storage_type = result_type;
 
     constexpr upper_ckt_limit()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr upper_ckt_limit(std::int64_t v)
      : value{ v } {}

@@ -82,7 +82,7 @@ struct md_security_trading_status {
     using storage_type = result_type;
 
     constexpr md_security_trading_status()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(255) } {}
 
     constexpr md_security_trading_status(enum_type v)
      : value{ v } {}

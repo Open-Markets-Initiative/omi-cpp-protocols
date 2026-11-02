@@ -19,7 +19,7 @@ struct min_qty {
     using storage_type = result_type;
 
     constexpr min_qty()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr min_qty(std::uint64_t v)
      : value{ v } {}

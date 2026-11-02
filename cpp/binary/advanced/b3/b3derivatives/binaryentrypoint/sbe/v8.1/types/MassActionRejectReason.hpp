@@ -58,7 +58,7 @@ struct mass_action_reject_reason {
     using storage_type = result_type;
 
     constexpr mass_action_reject_reason()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(255) } {}
 
     constexpr mass_action_reject_reason(enum_type v)
      : value{ v } {}

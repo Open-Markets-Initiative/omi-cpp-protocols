@@ -99,11 +99,11 @@ inline new_order_cross_message_cross_sides_groups_reader read_cross_sides(const 
     return { msg.tail_begin(), msg.tail_end() };
 }
 
-inline sbe_var_data read_desk_id(const std::byte* pos, const new_order_cross_message& msg) {
+inline sbe_var_data<std::uint8_t> read_desk_id(const std::byte* pos, const new_order_cross_message& msg) {
     return { pos, msg.tail_end() };
 }
 
-inline sbe_var_data read_memo(const std::byte* pos, const new_order_cross_message& msg) {
+inline sbe_var_data<std::uint8_t> read_memo(const std::byte* pos, const new_order_cross_message& msg) {
     return { pos, msg.tail_end() };
 }
 

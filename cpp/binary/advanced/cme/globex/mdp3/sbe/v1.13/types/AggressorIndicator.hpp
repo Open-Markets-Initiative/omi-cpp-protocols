@@ -55,7 +55,7 @@ struct aggressor_indicator {
     using storage_type = result_type;
 
     constexpr aggressor_indicator()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(255) } {}
 
     constexpr aggressor_indicator(enum_type v)
      : value{ v } {}

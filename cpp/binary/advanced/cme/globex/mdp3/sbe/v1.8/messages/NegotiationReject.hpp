@@ -25,7 +25,7 @@ struct negotiation_reject {
         sbe_mdp3::padding_5 padding_5;
     };
 
-    sbe_mdp3::message_header header = {std::uint16_t(sizeof(sbe_mdp3::message_header) + sizeof(fields_type)), {}};
+    sbe_mdp3::message_header header = {std::uint16_t(sizeof(sbe_mdp3::message_header) + sizeof(fields_type)), {block_length(sizeof(fields_type)), template_id::enum_type::negotiation_reject, schema_id::enum_type::mdpsessionmgmt, version(8)}};
 
     fields_type fields;
 

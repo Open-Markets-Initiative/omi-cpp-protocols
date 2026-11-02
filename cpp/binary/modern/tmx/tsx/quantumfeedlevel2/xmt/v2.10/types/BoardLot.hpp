@@ -13,9 +13,9 @@ struct BoardLot {
     using type = std::uint16_t;
 static const type no_value = 0;
 
-    // default constructor
+    // default constructor: the null the model states, where it states one
     constexpr BoardLot()
-     : value{ 0 } {}
+     : value{ no_value } {}
 
     // standard constructor
     constexpr explicit BoardLot(const std::uint16_t value)

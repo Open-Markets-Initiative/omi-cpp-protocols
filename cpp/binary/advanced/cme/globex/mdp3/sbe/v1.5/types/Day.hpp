@@ -19,7 +19,7 @@ struct day {
     using storage_type = result_type;
 
     constexpr day()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr day(std::uint8_t v)
      : value{ v } {}

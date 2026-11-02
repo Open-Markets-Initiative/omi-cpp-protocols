@@ -52,7 +52,7 @@ struct security_match_type {
     using storage_type = result_type;
 
     constexpr security_match_type()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(255) } {}
 
     constexpr security_match_type(enum_type v)
      : value{ v } {}

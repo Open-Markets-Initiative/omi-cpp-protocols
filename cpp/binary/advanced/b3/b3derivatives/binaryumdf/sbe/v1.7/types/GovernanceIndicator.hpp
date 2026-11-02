@@ -70,7 +70,7 @@ struct governance_indicator {
     using storage_type = result_type;
 
     constexpr governance_indicator()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(255) } {}
 
     constexpr governance_indicator(enum_type v)
      : value{ v } {}

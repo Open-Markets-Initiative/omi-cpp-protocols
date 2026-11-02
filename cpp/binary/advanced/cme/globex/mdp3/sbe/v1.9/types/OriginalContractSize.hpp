@@ -19,7 +19,7 @@ struct original_contract_size {
     using storage_type = result_type;
 
     constexpr original_contract_size()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr original_contract_size(std::int32_t v)
      : value{ v } {}

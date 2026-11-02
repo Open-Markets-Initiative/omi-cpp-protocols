@@ -52,7 +52,7 @@ struct algorithmic_trade_indicator {
     using storage_type = result_type;
 
     constexpr algorithmic_trade_indicator()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0xFF) } {}
 
     constexpr algorithmic_trade_indicator(enum_type v)
      : value{ v } {}

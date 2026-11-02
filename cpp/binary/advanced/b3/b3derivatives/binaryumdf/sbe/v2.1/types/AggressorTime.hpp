@@ -19,7 +19,7 @@ struct aggressor_time {
     using storage_type = result_type;
 
     constexpr aggressor_time()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr aggressor_time(std::uint64_t v)
      : value{ v } {}

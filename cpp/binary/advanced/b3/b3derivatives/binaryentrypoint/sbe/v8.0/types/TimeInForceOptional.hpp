@@ -69,7 +69,7 @@ struct time_in_force_optional {
     using storage_type = result_type;
 
     constexpr time_in_force_optional()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0) } {}
 
     constexpr time_in_force_optional(enum_type v)
      : value{ v } {}

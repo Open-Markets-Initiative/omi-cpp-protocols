@@ -61,7 +61,7 @@ struct routing_instruction {
     using storage_type = result_type;
 
     constexpr routing_instruction()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0) } {}
 
     constexpr routing_instruction(enum_type v)
      : value{ v } {}

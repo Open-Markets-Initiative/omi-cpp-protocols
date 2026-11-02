@@ -3,6 +3,7 @@
 #include "../SnapshotFullRefreshLegacy.hpp"
 #include <span>
 #include <cstring>
+#include <new>
 #include <stdexcept>
 #include <string_view>
 
@@ -28,6 +29,7 @@ public:
         header_->block_length.set(sizeof(snapshot_full_refresh_legacy_snapshot_full_refresh_groups_entry));
         header_->num_in_group.set(0);
         pos_ += sizeof(sbe_mdp3::group_size);
+        if (pos_ + sizeof(snapshot_full_refresh_legacy_snapshot_full_refresh_groups_entry) <= end_) ::new (static_cast<void*>(pos_)) snapshot_full_refresh_legacy_snapshot_full_refresh_groups_entry{};
     }
 
     snapshot_full_refresh_legacy_snapshot_full_refresh_groups_builder(std::byte* msg_start, std::byte* pos, std::byte* end, sbe_mdp3::group_size* header, uint16_t count)
@@ -88,6 +90,7 @@ public:
         entry->md_entry_type.set(v);
         pos_ += header_->block_length.get().value();
         count_++;
+        if (pos_ + sizeof(snapshot_full_refresh_legacy_snapshot_full_refresh_groups_entry) <= end_) ::new (static_cast<void*>(pos_)) snapshot_full_refresh_legacy_snapshot_full_refresh_groups_entry{};
         return *this;
     }
 

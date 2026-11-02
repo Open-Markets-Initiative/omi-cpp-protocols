@@ -19,7 +19,7 @@ struct min_cross_qty {
     using storage_type = result_type;
 
     constexpr min_cross_qty()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr min_cross_qty(std::int64_t v)
      : value{ v } {}

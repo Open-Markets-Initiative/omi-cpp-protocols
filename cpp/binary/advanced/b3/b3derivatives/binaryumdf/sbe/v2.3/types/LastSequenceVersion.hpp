@@ -19,7 +19,7 @@ struct last_sequence_version {
     using storage_type = result_type;
 
     constexpr last_sequence_version()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr last_sequence_version(std::uint16_t v)
      : value{ v } {}

@@ -57,7 +57,7 @@ struct multi_leg_reporting_type {
     using storage_type = result_type;
 
     constexpr multi_leg_reporting_type()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0) } {}
 
     constexpr multi_leg_reporting_type(enum_type v)
      : value{ v } {}

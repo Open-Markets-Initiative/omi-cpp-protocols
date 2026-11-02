@@ -39,29 +39,51 @@ namespace variant_dailytaqtrades_v4_3 {
     template <typename Row>
     void read(const ::scaled::delimited::Fields& fields, Row& row) {
         ::scaled::delimited::expect(fields, 15, "Trade");
-        row.time.set(static_cast<std::uint64_t>(::scaled::delimited::time_of_day(fields[0], 9, "Time")));  // Time
-        row.exchange.set(fields[1]);  // Exchange
-        row.symbol.set(fields[2]);  // Symbol
+        if (!fields[0].empty()) {  // Time
+            row.time.set(static_cast<std::uint64_t>(::scaled::delimited::time_of_day(fields[0], 9, "Time")));
+        }
+        if (!fields[1].empty()) {  // Exchange
+            row.exchange.set(fields[1]);
+        }
+        if (!fields[2].empty()) {  // Symbol
+            row.symbol.set(fields[2]);
+        }
         if (!fields[3].empty()) {  // Sale Condition
             row.sale_condition.set(fields[3]);
         }
-        row.trade_volume.data = ::scaled::delimited::decimal(fields[4], 6, "Trade Volume");  // Trade Volume
-        row.trade_price.data = ::scaled::delimited::decimal(fields[5], 6, "Trade Price");  // Trade Price
+        if (!fields[4].empty()) {  // Trade Volume
+            row.trade_volume.data = ::scaled::delimited::decimal(fields[4], 6, "Trade Volume");
+        }
+        if (!fields[5].empty()) {  // Trade Price
+            row.trade_price.data = ::scaled::delimited::decimal(fields[5], 6, "Trade Price");
+        }
         if (!fields[6].empty()) {  // Trade Stop Stock Indicator
             row.trade_stop_stock_indicator.set(fields[6]);
         }
-        row.trade_correction_indicator.set(fields[7]);  // Trade Correction Indicator
-        row.sequence_number.set(::scaled::delimited::integer<std::int64_t>(fields[8], "Sequence Number"));  // Sequence Number
-        row.trade_id.set(fields[9]);  // Trade Id
-        row.source_of_trade.set(fields[10]);  // Source of Trade
+        if (!fields[7].empty()) {  // Trade Correction Indicator
+            row.trade_correction_indicator.set(fields[7]);
+        }
+        if (!fields[8].empty()) {  // Sequence Number
+            row.sequence_number.set(::scaled::delimited::integer<std::int64_t>(fields[8], "Sequence Number"));
+        }
+        if (!fields[9].empty()) {  // Trade Id
+            row.trade_id.set(fields[9]);
+        }
+        if (!fields[10].empty()) {  // Source of Trade
+            row.source_of_trade.set(fields[10]);
+        }
         if (!fields[11].empty()) {  // Trade Reporting Facility
             row.trade_reporting_facility.set(fields[11]);
         }
-        row.participant_timestamp.set(static_cast<std::uint64_t>(::scaled::delimited::time_of_day(fields[12], 9, "Participant Timestamp")));  // Participant Timestamp
+        if (!fields[12].empty()) {  // Participant Timestamp
+            row.participant_timestamp.set(static_cast<std::uint64_t>(::scaled::delimited::time_of_day(fields[12], 9, "Participant Timestamp")));
+        }
         if (!fields[13].empty()) {  // Trade Reporting Facility TRF Timestamp
             row.trade_reporting_facility_trf_timestamp.set(static_cast<std::uint64_t>(::scaled::delimited::time_of_day(fields[13], 9, "Trade Reporting Facility TRF Timestamp")));
         }
-        row.trade_through_exempt_indicator.set(::scaled::delimited::integer<std::int64_t>(fields[14], "Trade Through Exempt Indicator"));  // Trade Through Exempt Indicator
+        if (!fields[14].empty()) {  // Trade Through Exempt Indicator
+            row.trade_through_exempt_indicator.set(::scaled::delimited::integer<std::int64_t>(fields[14], "Trade Through Exempt Indicator"));
+        }
     }
 }
 

@@ -55,7 +55,7 @@ struct mm_protection_reset_optional {
     using storage_type = result_type;
 
     constexpr mm_protection_reset_optional()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(255) } {}
 
     constexpr mm_protection_reset_optional(enum_type v)
      : value{ v } {}

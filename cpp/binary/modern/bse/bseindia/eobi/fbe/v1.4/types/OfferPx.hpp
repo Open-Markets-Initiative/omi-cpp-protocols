@@ -15,9 +15,9 @@ struct OfferPx {
     using type = std::int64_t;
 static const type no_value = 0x8000000000000000;
 
-    // default constructor
+    // default constructor: the null the model states, where it states one
     constexpr OfferPx()
-     : value{ 0 } {}
+     : value{ no_value } {}
 
     // constructor for OfferPx field
     constexpr explicit OfferPx(const std::int64_t value)

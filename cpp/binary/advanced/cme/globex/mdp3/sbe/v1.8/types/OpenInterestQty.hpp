@@ -19,7 +19,7 @@ struct open_interest_qty {
     using storage_type = result_type;
 
     constexpr open_interest_qty()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr open_interest_qty(std::int32_t v)
      : value{ v } {}

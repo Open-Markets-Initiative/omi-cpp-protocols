@@ -19,8 +19,8 @@ struct price {
     using result_type = std::optional<std::uint64_t>;
     using storage_type = result_type;
 
-    constexpr price()
-     : value{ 0 } {}
+    price()
+     : value{ static_cast<std::uint64_t>(__builtin_bswap64(null_value)) } {}
 
     price(std::uint64_t v)
      : value{ static_cast<std::uint64_t>(__builtin_bswap64(v)) } {}

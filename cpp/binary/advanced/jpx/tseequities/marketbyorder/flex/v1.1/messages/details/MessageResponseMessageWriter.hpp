@@ -3,6 +3,7 @@
 #include "../MessageResponseMessage.hpp"
 #include <span>
 #include <cstring>
+#include <new>
 #include <stdexcept>
 #include <string_view>
 
@@ -22,10 +23,10 @@ public:
         : msg_start_(msg_start), pos_(pos), end_(end) {}
 
     std::span<std::byte> data_and_finish(std::string_view v) {
-        if (pos_ + sizeof(uint32_t) + v.size() > end_) throw std::runtime_error("buffer overrun writing var-data");
-        *reinterpret_cast<uint32_t*>(pos_) = static_cast<uint32_t>(v.size());
-        std::memcpy(pos_ + sizeof(uint32_t), v.data(), v.size());
-        auto* next_pos = pos_ + sizeof(uint32_t) + v.size();
+        if (pos_ + sizeof(std::uint32_t) + v.size() > end_) throw std::runtime_error("buffer overrun writing var-data");
+        *reinterpret_cast<std::uint32_t*>(pos_) = static_cast<std::uint32_t>(v.size());
+        std::memcpy(pos_ + sizeof(std::uint32_t), v.data(), v.size());
+        auto* next_pos = pos_ + sizeof(std::uint32_t) + v.size();
         reinterpret_cast<flex_marketbyorder::tcp_packet_header*>(msg_start_)->packet_length.set(static_cast<uint16_t>(next_pos - msg_start_ - 2));
         return { msg_start_, static_cast<size_t>(next_pos - msg_start_) };
     }

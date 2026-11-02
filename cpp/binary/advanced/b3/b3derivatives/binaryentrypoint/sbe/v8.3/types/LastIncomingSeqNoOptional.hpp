@@ -19,7 +19,7 @@ struct last_incoming_seq_no_optional {
     using storage_type = result_type;
 
     constexpr last_incoming_seq_no_optional()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr last_incoming_seq_no_optional(std::uint32_t v)
      : value{ v } {}

@@ -19,7 +19,7 @@ struct rpt_seq {
     using storage_type = result_type;
 
     constexpr rpt_seq()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr rpt_seq(std::uint32_t v)
      : value{ v } {}

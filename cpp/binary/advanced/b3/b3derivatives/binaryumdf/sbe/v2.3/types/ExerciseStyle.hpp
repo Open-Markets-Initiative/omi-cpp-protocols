@@ -55,7 +55,7 @@ struct exercise_style {
     using storage_type = result_type;
 
     constexpr exercise_style()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(255) } {}
 
     constexpr exercise_style(enum_type v)
      : value{ v } {}

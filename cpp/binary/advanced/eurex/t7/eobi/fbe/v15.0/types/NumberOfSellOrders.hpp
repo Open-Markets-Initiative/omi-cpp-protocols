@@ -19,7 +19,7 @@ struct number_of_sell_orders {
     using storage_type = result_type;
 
     constexpr number_of_sell_orders()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr number_of_sell_orders(std::uint16_t v)
      : value{ v } {}

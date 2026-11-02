@@ -20,7 +20,7 @@ struct threshold_amount {
     using storage_type = result_type;
 
     constexpr threshold_amount()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr threshold_amount(std::int64_t v)
      : value{ v } {}

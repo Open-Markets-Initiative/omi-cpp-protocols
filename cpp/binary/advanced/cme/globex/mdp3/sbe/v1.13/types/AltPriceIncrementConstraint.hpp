@@ -20,7 +20,7 @@ struct alt_price_increment_constraint {
     using storage_type = result_type;
 
     constexpr alt_price_increment_constraint()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr alt_price_increment_constraint(std::int64_t v)
      : value{ v } {}

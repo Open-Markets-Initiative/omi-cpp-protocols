@@ -19,7 +19,7 @@ struct underlying_maturity_date {
     using storage_type = result_type;
 
     constexpr underlying_maturity_date()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr underlying_maturity_date(std::uint16_t v)
      : value{ v } {}

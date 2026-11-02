@@ -2,6 +2,7 @@
 
 #include <cstddef>
 #include "../structs/FramingHeader.hpp"
+#include "../structs/MessageHeader.hpp"
 #include "../structs/SbeGroupSupport.hpp"
 #include "../types/SecurityId.hpp"
 #include "../types/SecurityExchange.hpp"
@@ -158,7 +159,7 @@ struct deprecated_security_definition_message {
     };
 
     sbe_binaryumdf::framing_header header = {std::uint16_t(sizeof(sbe_binaryumdf::framing_header) + sizeof(fields_type) + sizeof(sbe_binaryumdf::message_header)), {}};
-    sbe_binaryumdf::message_header message_header;
+    sbe_binaryumdf::message_header message_header = {block_length(sizeof(fields_type)), template_id::enum_type::deprecatedsecurity_definition_message, schema_id(2), version(9)};
 
     static constexpr std::size_t max_message_size = 1280;
     static constexpr std::size_t tail_capacity = max_message_size - sizeof(sbe_binaryumdf::framing_header) - sizeof(fields_type) - sizeof(sbe_binaryumdf::message_header);
@@ -188,7 +189,7 @@ struct deprecated_security_definition_message {
         return { position, tail_end() };
     }
 
-    sbe_var_data security_desc(const std::byte* position) const {
+    sbe_var_data<std::uint8_t> security_desc(const std::byte* position) const {
         return { position, tail_end() };
     }
 

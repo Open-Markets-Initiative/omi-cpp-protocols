@@ -15,9 +15,9 @@ static const type no_value = 0x8000000000000000;
 static const type maximum_value = 9223372036854775807;
 static const type minimum_value = -9223372036854775807;
 
-    // default constructor
+    // default constructor: the null the model states, where it states one
     constexpr RelatedSecurityId()
-     : value{ 0 } {}
+     : value{ no_value } {}
 
     // standard constructor
     constexpr explicit RelatedSecurityId(const std::int64_t value)

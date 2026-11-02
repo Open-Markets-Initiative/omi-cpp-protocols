@@ -19,7 +19,7 @@ struct instrument_guid {
     using storage_type = result_type;
 
     constexpr instrument_guid()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr instrument_guid(std::uint64_t v)
      : value{ v } {}

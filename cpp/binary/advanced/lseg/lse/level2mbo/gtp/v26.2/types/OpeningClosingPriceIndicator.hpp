@@ -66,7 +66,7 @@ struct opening_closing_price_indicator {
     using storage_type = result_type;
 
     constexpr opening_closing_price_indicator()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0) } {}
 
     constexpr opening_closing_price_indicator(enum_type v)
      : value{ v } {}
@@ -83,7 +83,7 @@ struct opening_closing_price_indicator {
         if (value.has_value())
             set(value.value());
         else
-            set(enum_type::previous_close);
+            set(static_cast<enum_type>(0));
     }
 
   protected:

@@ -84,15 +84,15 @@ inline position_maintenance_report_message_positions_groups_reader read_position
     return { msg.tail_begin(), msg.tail_end() };
 }
 
-inline sbe_var_data read_desk_id(const std::byte* pos, const position_maintenance_report_message& msg) {
+inline sbe_var_data<std::uint8_t> read_desk_id(const std::byte* pos, const position_maintenance_report_message& msg) {
     return { pos, msg.tail_end() };
 }
 
-inline sbe_var_data read_memo(const std::byte* pos, const position_maintenance_report_message& msg) {
+inline sbe_var_data<std::uint8_t> read_memo(const std::byte* pos, const position_maintenance_report_message& msg) {
     return { pos, msg.tail_end() };
 }
 
-inline sbe_var_data read_text(const std::byte* pos, const position_maintenance_report_message& msg) {
+inline sbe_var_data<std::uint8_t> read_text(const std::byte* pos, const position_maintenance_report_message& msg) {
     return { pos, msg.tail_end() };
 }
 

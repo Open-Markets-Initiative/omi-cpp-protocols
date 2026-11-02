@@ -19,7 +19,7 @@ struct secondary_exec_id {
     using storage_type = result_type;
 
     constexpr secondary_exec_id()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr secondary_exec_id(std::uint64_t v)
      : value{ v } {}

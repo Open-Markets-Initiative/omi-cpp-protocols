@@ -55,7 +55,7 @@ struct md_origin_type {
     using storage_type = result_type;
 
     constexpr md_origin_type()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0xFF) } {}
 
     constexpr md_origin_type(enum_type v)
      : value{ v } {}

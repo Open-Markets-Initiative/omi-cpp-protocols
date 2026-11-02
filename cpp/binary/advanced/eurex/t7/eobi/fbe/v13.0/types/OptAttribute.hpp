@@ -19,7 +19,7 @@ struct opt_attribute {
     using storage_type = result_type;
 
     constexpr opt_attribute()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr opt_attribute(std::uint32_t v)
      : value{ v } {}

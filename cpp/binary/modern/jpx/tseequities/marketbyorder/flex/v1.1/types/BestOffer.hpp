@@ -16,9 +16,9 @@ struct BestOffer {
     using type = std::uint64_t;
 static const type no_value = 0;
 
-    // default constructor
+    // default constructor: the null the model states, where it states one
     constexpr BestOffer()
-     : value{ 0 } {}
+     : value{ std::byteswap(no_value) } {}
 
     // constructor for BestOffer field
     constexpr explicit BestOffer(const std::uint64_t value)

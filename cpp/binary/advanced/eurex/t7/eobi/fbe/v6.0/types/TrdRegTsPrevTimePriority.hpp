@@ -19,7 +19,7 @@ struct trd_reg_ts_prev_time_priority {
     using storage_type = result_type;
 
     constexpr trd_reg_ts_prev_time_priority()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr trd_reg_ts_prev_time_priority(std::uint64_t v)
      : value{ v } {}

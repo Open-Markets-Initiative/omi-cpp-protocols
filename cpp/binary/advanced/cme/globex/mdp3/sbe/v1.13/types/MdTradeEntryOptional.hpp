@@ -19,7 +19,7 @@ struct md_trade_entry_optional {
     using storage_type = result_type;
 
     constexpr md_trade_entry_optional()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr md_trade_entry_optional(std::uint32_t v)
      : value{ v } {}

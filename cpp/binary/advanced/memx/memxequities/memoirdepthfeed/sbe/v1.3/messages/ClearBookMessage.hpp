@@ -19,7 +19,7 @@ struct clear_book_message {
         sbe_memoirdepthfeed::security_id security_id;
     };
 
-    sbe_memoirdepthfeed::sbe_header header = {{}, template_id::enum_type::clear_book_message, schema_id(2), version(259)};
+    sbe_memoirdepthfeed::sbe_header header = {block_length(sizeof(fields_type)), template_id::enum_type::clear_book_message, schema_id(2), version(259)};
 
     fields_type fields;
 

@@ -20,7 +20,7 @@ struct md_entry_px_optional_ex {
     using storage_type = result_type;
 
     constexpr md_entry_px_optional_ex()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr md_entry_px_optional_ex(std::int64_t v)
      : value{ v } {}

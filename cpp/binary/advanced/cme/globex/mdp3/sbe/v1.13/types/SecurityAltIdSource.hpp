@@ -55,7 +55,7 @@ struct security_alt_id_source {
     using storage_type = result_type;
 
     constexpr security_alt_id_source()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(255) } {}
 
     constexpr security_alt_id_source(enum_type v)
      : value{ v } {}

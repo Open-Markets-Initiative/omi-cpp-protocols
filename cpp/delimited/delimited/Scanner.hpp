@@ -132,14 +132,16 @@ inline std::string_view at(const Fields& fields, const std::size_t position) {
 // a header line a layout variant states, from the model's header records:
 // its record's name, the prefix its line starts with, the delimiter its
 // fields are split at after the prefix, whether it is split once (a
-// name=value pair, the value holding the rest of the line), and each field's
-// constant text, its key first (a layout's letter, a property's name)
+// name=value pair, the value holding the rest of the line), each field's
+// constant text, its key first (a layout's letter, a property's name), and
+// the quote its fields may be quoted by, none ('\0') where they are not
 struct Expected {
     std::string_view name;
     std::string_view prefix;
     char delimiter;
     bool pair;
     std::span<const std::string_view> constants;
+    char quote = '\0';
 };
 
 // how a file's header differs from a variant's: the fields that match (the
@@ -154,9 +156,14 @@ struct Difference {
     std::string found;
 };
 
-// a header line's fields after its prefix, as the header line it is splits them
-inline void header_fields(const std::string_view line, const Expected& expected, Fields& fields) {
+// a header line's fields after its prefix, as the header line it is splits them:
+// outside its quotes where its fields are quoted (unquoted holding such fields)
+inline void header_fields(const std::string_view line, const Expected& expected, Fields& fields, std::deque<std::string>& unquoted) {
     const auto text = line.substr(expected.prefix.size());
+    if (!expected.pair && expected.quote != '\0') {
+        split(text, expected.delimiter, expected.quote, fields, unquoted);
+        return;
+    }
     if (!expected.pair) {
         split(text, expected.delimiter, fields);
         return;
@@ -191,6 +198,7 @@ Difference compare(const std::vector<std::string>& lines, const std::array<Expec
 
     std::array<bool, N> stated{};
     Fields fields;
+    std::deque<std::string> unquoted;
     for (const auto& line : lines) {
         bool known = false;
         for (std::size_t index = 0; index < N && !known; ++index) {
@@ -198,7 +206,7 @@ Difference compare(const std::vector<std::string>& lines, const std::array<Expec
             if (!line.starts_with(expected.prefix)) {
                 continue;
             }
-            header_fields(line, expected, fields);
+            header_fields(line, expected, fields, unquoted);
             if (fields[0] != expected.constants[0]) {
                 continue;
             }
@@ -367,15 +375,20 @@ inline std::optional<std::int64_t> clock(const std::string_view text, const int 
     return static_cast<std::int64_t>(value.magnitude);
 }
 
-// a boolean's text, 0 or 1
-inline std::uint8_t boolean(const std::string_view text, const std::string_view name) {
-    if (text == "0") {
+// a boolean's text, its true text (1) or its false text (0), as its Format states them
+inline std::uint8_t boolean(const std::string_view text, const std::string_view yes, const std::string_view no, const std::string_view name) {
+    if (text == no) {
         return 0;
     }
-    if (text == "1") {
+    if (text == yes) {
         return 1;
     }
-    throw Error{ quote(name, text) + " is not 0 or 1" };
+    throw Error{ quote(name, text) + " is not " + std::string{ yes } + " or " + std::string{ no } };
+}
+
+// a boolean's text, 0 or 1
+inline std::uint8_t boolean(const std::string_view text, const std::string_view name) {
+    return boolean(text, "1", "0", name);
 }
 
 // digits as a number
@@ -399,6 +412,21 @@ inline std::int64_t days(const std::string_view text, const std::string_view nam
         std::chrono::year{ static_cast<int>(digits(text.substr(0, 4), text, name)) },
         std::chrono::month{ static_cast<unsigned>(digits(text.substr(4, 2), text, name)) },
         std::chrono::day{ static_cast<unsigned>(digits(text.substr(6, 2), text, name)) } };
+    if (!date.ok()) {
+        throw Error{ quote(name, text) + " is not a date" };
+    }
+    return std::chrono::sys_days{ date }.time_since_epoch().count();
+}
+
+// a yyyy-mm-dd date (ISO 8601) as days since 1970-01-01
+inline std::int64_t iso_days(const std::string_view text, const std::string_view name) {
+    if (text.size() != 10 || text[4] != '-' || text[7] != '-') {
+        throw Error{ quote(name, text) + " is not a yyyy-mm-dd date" };
+    }
+    const std::chrono::year_month_day date{
+        std::chrono::year{ static_cast<int>(digits(text.substr(0, 4), text, name)) },
+        std::chrono::month{ static_cast<unsigned>(digits(text.substr(5, 2), text, name)) },
+        std::chrono::day{ static_cast<unsigned>(digits(text.substr(8, 2), text, name)) } };
     if (!date.ok()) {
         throw Error{ quote(name, text) + " is not a date" };
     }

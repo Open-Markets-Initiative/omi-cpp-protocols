@@ -143,6 +143,21 @@ add_library(protocols_check OBJECT
   checks/cme_globex_mdp3_sbe_v1.5_classes.cpp
   checks/cme_globex_mdp3_sbe_v1.5_flyweight.cpp
   checks/cme_globex_mdp3_sbe_v1.5_tmp.cpp
+  checks/databento_marketdata_normalized_dbn_v1_advanced.cpp
+  checks/databento_marketdata_normalized_dbn_v1_modern.cpp
+  checks/databento_marketdata_normalized_dbn_v1_classes.cpp
+  checks/databento_marketdata_normalized_dbn_v1_flyweight.cpp
+  checks/databento_marketdata_normalized_dbn_v1_tmp.cpp
+  checks/databento_marketdata_normalized_dbn_v2_advanced.cpp
+  checks/databento_marketdata_normalized_dbn_v2_modern.cpp
+  checks/databento_marketdata_normalized_dbn_v2_classes.cpp
+  checks/databento_marketdata_normalized_dbn_v2_flyweight.cpp
+  checks/databento_marketdata_normalized_dbn_v2_tmp.cpp
+  checks/databento_marketdata_normalized_dbn_v3_advanced.cpp
+  checks/databento_marketdata_normalized_dbn_v3_modern.cpp
+  checks/databento_marketdata_normalized_dbn_v3_classes.cpp
+  checks/databento_marketdata_normalized_dbn_v3_flyweight.cpp
+  checks/databento_marketdata_normalized_dbn_v3_tmp.cpp
   checks/eurex_t7_eobi_fbe_v13.0_advanced.cpp
   checks/eurex_t7_eobi_fbe_v13.0_modern.cpp
   checks/eurex_t7_eobi_fbe_v13.0_classes.cpp
@@ -3486,6 +3501,300 @@ add_library(flyweight_cme_globex_mdp3_sbe_v1.5 STATIC
 )
 target_include_directories(flyweight_cme_globex_mdp3_sbe_v1.5 PUBLIC ${CMAKE_SOURCE_DIR})
 target_precompile_headers(flyweight_cme_globex_mdp3_sbe_v1.5 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(classes_databento_marketdata_normalized_dbn_v1 STATIC
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/enums/Schema.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/enums/StypeIn.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/enums/StypeOut.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/enums/TsOut.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/enums/Rtype.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/enums/Action.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/enums/Side.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/enums/StatusAction.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/enums/StatusReason.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/enums/TradingEvent.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/enums/IsTrading.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/enums/IsQuoting.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/enums/IsShortSellRestricted.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/enums/InstrumentClass.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/enums/MatchAlgorithm.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/enums/SecurityUpdateAction.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/enums/UserDefinedInstrument.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/enums/UnpairedSide.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/enums/StatType.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/enums/UpdateAction.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/groups/MappingInterval.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/groups/SymbolMapping.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/structs/Metadata.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/structs/RecordHeader.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/bitfields/Flags.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/messages/TradeMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/structs/BidAskPair.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/messages/Mbp1Msg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/groups/Mbp10MsgBidAskPair.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/messages/Mbp10Msg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/messages/OhlcvMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/messages/StatusMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/messages/InstrumentDefMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/messages/ImbalanceMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/messages/ErrorMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/messages/SymbolMappingMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/messages/SystemMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/messages/StatMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/messages/MboMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/structs/ConsolidatedBidAskPair.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/messages/Cmbp1Msg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/messages/CbboMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/messages/BboMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/structs/Greeting.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/structs/ChallengeRequest.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/structs/AuthenticationResponse.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/messages/RecordBodyTradeMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/messages/RecordBodyMbp1Msg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/messages/RecordBodyMbp10Msg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/messages/RecordBodyOhlcvMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/messages/RecordBodyStatusMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/messages/RecordBodyInstrumentDefMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/messages/RecordBodyImbalanceMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/messages/RecordBodyErrorMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/messages/RecordBodySymbolMappingMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/messages/RecordBodySystemMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/messages/RecordBodyStatMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/messages/RecordBodyMboMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/messages/RecordBodyCmbp1Msg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/messages/RecordBodyCbboMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/messages/RecordBodyBboMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/messages/UnknownMessage.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/messages/UnknownGatewayMessage.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/Factory.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/File.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v1/GatewayStream.cpp
+)
+target_include_directories(classes_databento_marketdata_normalized_dbn_v1 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(classes_databento_marketdata_normalized_dbn_v1 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(flyweight_databento_marketdata_normalized_dbn_v1 STATIC
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v1/enums/Schema.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v1/enums/StypeIn.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v1/enums/StypeOut.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v1/enums/TsOut.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v1/enums/Rtype.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v1/enums/Action.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v1/enums/Side.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v1/enums/StatusAction.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v1/enums/StatusReason.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v1/enums/TradingEvent.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v1/enums/IsTrading.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v1/enums/IsQuoting.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v1/enums/IsShortSellRestricted.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v1/enums/InstrumentClass.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v1/enums/MatchAlgorithm.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v1/enums/SecurityUpdateAction.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v1/enums/UserDefinedInstrument.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v1/enums/UnpairedSide.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v1/enums/StatType.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v1/enums/UpdateAction.cpp
+)
+target_include_directories(flyweight_databento_marketdata_normalized_dbn_v1 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(flyweight_databento_marketdata_normalized_dbn_v1 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(classes_databento_marketdata_normalized_dbn_v2 STATIC
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/enums/Schema.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/enums/StypeIn.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/enums/StypeOut.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/enums/TsOut.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/enums/Rtype.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/enums/Action.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/enums/Side.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/enums/StatusAction.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/enums/StatusReason.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/enums/TradingEvent.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/enums/IsTrading.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/enums/IsQuoting.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/enums/IsShortSellRestricted.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/enums/InstrumentClass.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/enums/MatchAlgorithm.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/enums/SecurityUpdateAction.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/enums/UserDefinedInstrument.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/enums/UnpairedSide.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/enums/ErrorCode.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/enums/SystemCode.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/enums/StatType.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/enums/UpdateAction.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/groups/MappingInterval.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/groups/SymbolMapping.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/structs/Metadata.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/structs/RecordHeader.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/bitfields/Flags.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/messages/TradeMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/structs/BidAskPair.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/messages/Mbp1Msg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/groups/Mbp10MsgBidAskPair.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/messages/Mbp10Msg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/messages/OhlcvMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/messages/StatusMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/messages/InstrumentDefMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/messages/ImbalanceMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/messages/ErrorMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/messages/SymbolMappingMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/messages/SystemMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/messages/StatMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/messages/MboMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/structs/ConsolidatedBidAskPair.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/messages/Cmbp1Msg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/messages/CbboMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/messages/BboMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/structs/Greeting.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/structs/ChallengeRequest.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/structs/AuthenticationResponse.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/messages/RecordBodyTradeMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/messages/RecordBodyMbp1Msg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/messages/RecordBodyMbp10Msg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/messages/RecordBodyOhlcvMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/messages/RecordBodyStatusMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/messages/RecordBodyInstrumentDefMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/messages/RecordBodyImbalanceMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/messages/RecordBodyErrorMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/messages/RecordBodySymbolMappingMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/messages/RecordBodySystemMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/messages/RecordBodyStatMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/messages/RecordBodyMboMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/messages/RecordBodyCmbp1Msg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/messages/RecordBodyCbboMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/messages/RecordBodyBboMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/messages/UnknownMessage.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/messages/UnknownGatewayMessage.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/Factory.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/File.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v2/GatewayStream.cpp
+)
+target_include_directories(classes_databento_marketdata_normalized_dbn_v2 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(classes_databento_marketdata_normalized_dbn_v2 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(flyweight_databento_marketdata_normalized_dbn_v2 STATIC
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v2/enums/Schema.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v2/enums/StypeIn.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v2/enums/StypeOut.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v2/enums/TsOut.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v2/enums/Rtype.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v2/enums/Action.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v2/enums/Side.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v2/enums/StatusAction.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v2/enums/StatusReason.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v2/enums/TradingEvent.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v2/enums/IsTrading.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v2/enums/IsQuoting.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v2/enums/IsShortSellRestricted.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v2/enums/InstrumentClass.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v2/enums/MatchAlgorithm.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v2/enums/SecurityUpdateAction.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v2/enums/UserDefinedInstrument.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v2/enums/UnpairedSide.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v2/enums/ErrorCode.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v2/enums/SystemCode.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v2/enums/StatType.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v2/enums/UpdateAction.cpp
+)
+target_include_directories(flyweight_databento_marketdata_normalized_dbn_v2 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(flyweight_databento_marketdata_normalized_dbn_v2 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(classes_databento_marketdata_normalized_dbn_v3 STATIC
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/enums/Schema.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/enums/StypeIn.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/enums/StypeOut.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/enums/TsOut.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/enums/Rtype.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/enums/Action.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/enums/Side.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/enums/StatusAction.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/enums/StatusReason.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/enums/TradingEvent.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/enums/IsTrading.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/enums/IsQuoting.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/enums/IsShortSellRestricted.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/enums/InstrumentClass.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/enums/MatchAlgorithm.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/enums/SecurityUpdateAction.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/enums/UserDefinedInstrument.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/enums/LegInstrumentClass.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/enums/LegSide.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/enums/UnpairedSide.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/enums/ErrorCode.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/enums/SystemCode.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/enums/StatType.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/enums/UpdateAction.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/groups/MappingInterval.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/groups/SymbolMapping.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/structs/Metadata.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/structs/RecordHeader.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/bitfields/Flags.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/messages/TradeMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/structs/BidAskPair.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/messages/Mbp1Msg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/groups/Mbp10MsgBidAskPair.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/messages/Mbp10Msg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/messages/OhlcvMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/messages/StatusMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/messages/InstrumentDefMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/messages/ImbalanceMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/messages/ErrorMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/messages/SymbolMappingMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/messages/SystemMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/messages/StatMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/messages/MboMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/structs/ConsolidatedBidAskPair.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/messages/Cmbp1Msg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/messages/CbboMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/messages/BboMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/structs/Greeting.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/structs/ChallengeRequest.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/structs/AuthenticationResponse.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/messages/RecordBodyTradeMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/messages/RecordBodyMbp1Msg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/messages/RecordBodyMbp10Msg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/messages/RecordBodyOhlcvMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/messages/RecordBodyStatusMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/messages/RecordBodyInstrumentDefMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/messages/RecordBodyImbalanceMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/messages/RecordBodyErrorMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/messages/RecordBodySymbolMappingMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/messages/RecordBodySystemMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/messages/RecordBodyStatMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/messages/RecordBodyMboMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/messages/RecordBodyCmbp1Msg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/messages/RecordBodyCbboMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/messages/RecordBodyBboMsg.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/messages/UnknownMessage.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/messages/UnknownGatewayMessage.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/Factory.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/File.cpp
+  cpp/binary/classes/databento/marketdata/normalized/dbn/v3/GatewayStream.cpp
+)
+target_include_directories(classes_databento_marketdata_normalized_dbn_v3 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(classes_databento_marketdata_normalized_dbn_v3 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(flyweight_databento_marketdata_normalized_dbn_v3 STATIC
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v3/enums/Schema.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v3/enums/StypeIn.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v3/enums/StypeOut.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v3/enums/TsOut.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v3/enums/Rtype.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v3/enums/Action.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v3/enums/Side.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v3/enums/StatusAction.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v3/enums/StatusReason.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v3/enums/TradingEvent.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v3/enums/IsTrading.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v3/enums/IsQuoting.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v3/enums/IsShortSellRestricted.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v3/enums/InstrumentClass.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v3/enums/MatchAlgorithm.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v3/enums/SecurityUpdateAction.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v3/enums/UserDefinedInstrument.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v3/enums/LegInstrumentClass.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v3/enums/LegSide.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v3/enums/UnpairedSide.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v3/enums/ErrorCode.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v3/enums/SystemCode.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v3/enums/StatType.cpp
+  cpp/binary/flyweight/databento/marketdata/normalized/dbn/v3/enums/UpdateAction.cpp
+)
+target_include_directories(flyweight_databento_marketdata_normalized_dbn_v3 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(flyweight_databento_marketdata_normalized_dbn_v3 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
 add_library(classes_eurex_t7_eobi_fbe_v13.0 STATIC
   cpp/binary/classes/eurex/t7/eobi/fbe/v13.0/enums/TemplateId.cpp
   cpp/binary/classes/eurex/t7/eobi/fbe/v13.0/enums/CompletionIndicator.cpp
@@ -9360,6 +9669,36 @@ target_link_libraries(benchmark_classes_cme_globex_mdp3_sbe_v1.5 PRIVATE classes
 add_executable(benchmark_flyweight_cme_globex_mdp3_sbe_v1.5 executables/benchmark/flyweight/cme/globex/mdp3/sbe/v1.5/main.cpp)
 target_include_directories(benchmark_flyweight_cme_globex_mdp3_sbe_v1.5 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/flyweight/cme/globex/mdp3/sbe/v1.5)
 target_link_libraries(benchmark_flyweight_cme_globex_mdp3_sbe_v1.5 PRIVATE flyweight_cme_globex_mdp3_sbe_v1.5)
+add_executable(statistics_databento_marketdata_normalized_dbn_v1 executables/statistics/databento/marketdata/normalized/dbn/v1/main.cpp)
+target_include_directories(statistics_databento_marketdata_normalized_dbn_v1 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/databento/marketdata/normalized/dbn/v1)
+add_executable(extractor_databento_marketdata_normalized_dbn_v1 executables/extractor/databento/marketdata/normalized/dbn/v1/main.cpp)
+target_include_directories(extractor_databento_marketdata_normalized_dbn_v1 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/extractor/databento/marketdata/normalized/dbn/v1)
+add_executable(dump_databento_marketdata_normalized_dbn_v1 executables/dump/databento/marketdata/normalized/dbn/v1/main.cpp)
+target_include_directories(dump_databento_marketdata_normalized_dbn_v1 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/dump/databento/marketdata/normalized/dbn/v1)
+target_link_libraries(dump_databento_marketdata_normalized_dbn_v1 PRIVATE classes_databento_marketdata_normalized_dbn_v1)
+add_executable(verify_databento_marketdata_normalized_dbn_v1 executables/verify/databento/marketdata/normalized/dbn/v1/main.cpp)
+target_include_directories(verify_databento_marketdata_normalized_dbn_v1 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/databento/marketdata/normalized/dbn/v1)
+target_link_libraries(verify_databento_marketdata_normalized_dbn_v1 PRIVATE classes_databento_marketdata_normalized_dbn_v1)
+add_executable(statistics_databento_marketdata_normalized_dbn_v2 executables/statistics/databento/marketdata/normalized/dbn/v2/main.cpp)
+target_include_directories(statistics_databento_marketdata_normalized_dbn_v2 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/databento/marketdata/normalized/dbn/v2)
+add_executable(extractor_databento_marketdata_normalized_dbn_v2 executables/extractor/databento/marketdata/normalized/dbn/v2/main.cpp)
+target_include_directories(extractor_databento_marketdata_normalized_dbn_v2 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/extractor/databento/marketdata/normalized/dbn/v2)
+add_executable(dump_databento_marketdata_normalized_dbn_v2 executables/dump/databento/marketdata/normalized/dbn/v2/main.cpp)
+target_include_directories(dump_databento_marketdata_normalized_dbn_v2 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/dump/databento/marketdata/normalized/dbn/v2)
+target_link_libraries(dump_databento_marketdata_normalized_dbn_v2 PRIVATE classes_databento_marketdata_normalized_dbn_v2)
+add_executable(verify_databento_marketdata_normalized_dbn_v2 executables/verify/databento/marketdata/normalized/dbn/v2/main.cpp)
+target_include_directories(verify_databento_marketdata_normalized_dbn_v2 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/databento/marketdata/normalized/dbn/v2)
+target_link_libraries(verify_databento_marketdata_normalized_dbn_v2 PRIVATE classes_databento_marketdata_normalized_dbn_v2)
+add_executable(statistics_databento_marketdata_normalized_dbn_v3 executables/statistics/databento/marketdata/normalized/dbn/v3/main.cpp)
+target_include_directories(statistics_databento_marketdata_normalized_dbn_v3 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/databento/marketdata/normalized/dbn/v3)
+add_executable(extractor_databento_marketdata_normalized_dbn_v3 executables/extractor/databento/marketdata/normalized/dbn/v3/main.cpp)
+target_include_directories(extractor_databento_marketdata_normalized_dbn_v3 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/extractor/databento/marketdata/normalized/dbn/v3)
+add_executable(dump_databento_marketdata_normalized_dbn_v3 executables/dump/databento/marketdata/normalized/dbn/v3/main.cpp)
+target_include_directories(dump_databento_marketdata_normalized_dbn_v3 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/dump/databento/marketdata/normalized/dbn/v3)
+target_link_libraries(dump_databento_marketdata_normalized_dbn_v3 PRIVATE classes_databento_marketdata_normalized_dbn_v3)
+add_executable(verify_databento_marketdata_normalized_dbn_v3 executables/verify/databento/marketdata/normalized/dbn/v3/main.cpp)
+target_include_directories(verify_databento_marketdata_normalized_dbn_v3 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/databento/marketdata/normalized/dbn/v3)
+target_link_libraries(verify_databento_marketdata_normalized_dbn_v3 PRIVATE classes_databento_marketdata_normalized_dbn_v3)
 add_executable(statistics_eurex_t7_eobi_fbe_v13.0 executables/statistics/eurex/t7/eobi/fbe/v13.0/main.cpp)
 target_include_directories(statistics_eurex_t7_eobi_fbe_v13.0 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/eurex/t7/eobi/fbe/v13.0)
 add_executable(extractor_eurex_t7_eobi_fbe_v13.0 executables/extractor/eurex/t7/eobi/fbe/v13.0/main.cpp)
@@ -10886,6 +11225,7 @@ target_include_directories(extractor_tmx_tsx_quantumfeedlevel2_xmt_v2.10 PRIVATE
 # shares as ../delimited/; those are emitted once, at cpp/delimited/delimited/, and resolve with it
 # on the include path.
 add_library(delimited_check OBJECT
+  checks/memx_memxequities_instrumentdirectory_csv_v2026.10.14_delimited.cpp
   checks/nyse_nyseconsolidated_dailytaqmaster_csv_v4.3_delimited.cpp
   checks/nyse_nyseconsolidated_dailytaqtrades_csv_v4.3_delimited.cpp
   checks/nyse_nyseconsolidated_dailytaqquotes_csv_v4.3_delimited.cpp
@@ -10904,6 +11244,9 @@ target_include_directories(delimited_check PRIVATE ${CMAKE_SOURCE_DIR}/cpp/delim
 find_package(ZLIB)
 
 if(ZLIB_FOUND)
+  add_executable(rows_memx_memxequities_instrumentdirectory_csv_v2026.10.14 executables/rows/memx/memxequities/instrumentdirectory/csv/v2026.10.14/main.cpp)
+  target_include_directories(rows_memx_memxequities_instrumentdirectory_csv_v2026.10.14 PRIVATE ${CMAKE_SOURCE_DIR}/cpp/delimited/memx/memxequities/instrumentdirectory/csv/v2026.10.14 ${CMAKE_SOURCE_DIR}/cpp/delimited/delimited)
+  target_link_libraries(rows_memx_memxequities_instrumentdirectory_csv_v2026.10.14 PRIVATE ZLIB::ZLIB)
   add_executable(rows_nyse_nyseconsolidated_dailytaqmaster_csv_v4.3 executables/rows/nyse/nyseconsolidated/dailytaqmaster/csv/v4.3/main.cpp)
   target_include_directories(rows_nyse_nyseconsolidated_dailytaqmaster_csv_v4.3 PRIVATE ${CMAKE_SOURCE_DIR}/cpp/delimited/nyse/nyseconsolidated/dailytaqmaster/csv/v4.3 ${CMAKE_SOURCE_DIR}/cpp/delimited/delimited)
   target_link_libraries(rows_nyse_nyseconsolidated_dailytaqmaster_csv_v4.3 PRIVATE ZLIB::ZLIB)
@@ -12109,6 +12452,25 @@ target_link_libraries(flyweight_siac_cts_output_cta_v2.9_values_test PRIVATE fly
 add_executable(modern_tmx_tsx_quantumfeedlevel2_xmt_v2.10_test tests/binary/modern/tmx_tsx_quantumfeedlevel2_xmt_v2.10.cpp)
 target_include_directories(modern_tmx_tsx_quantumfeedlevel2_xmt_v2.10_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 
+# The tests reading file excerpts, which the corpus holds gzipped: built where zlib is found,
+# reading through the pcap reader's gzip decompressor, so the repository builds without it.
+find_package(ZLIB)
+
+if(ZLIB_FOUND)
+  add_executable(modern_databento_marketdata_normalized_dbn_v1_file_values_test tests/binary/modern/databento_marketdata_normalized_dbn_v1_file_values.cpp)
+  target_include_directories(modern_databento_marketdata_normalized_dbn_v1_file_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+  target_compile_definitions(modern_databento_marketdata_normalized_dbn_v1_file_values_test PRIVATE HAS_ZLIB)
+  target_link_libraries(modern_databento_marketdata_normalized_dbn_v1_file_values_test PRIVATE ZLIB::ZLIB)
+  add_executable(modern_databento_marketdata_normalized_dbn_v2_file_values_test tests/binary/modern/databento_marketdata_normalized_dbn_v2_file_values.cpp)
+  target_include_directories(modern_databento_marketdata_normalized_dbn_v2_file_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+  target_compile_definitions(modern_databento_marketdata_normalized_dbn_v2_file_values_test PRIVATE HAS_ZLIB)
+  target_link_libraries(modern_databento_marketdata_normalized_dbn_v2_file_values_test PRIVATE ZLIB::ZLIB)
+  add_executable(modern_databento_marketdata_normalized_dbn_v3_file_values_test tests/binary/modern/databento_marketdata_normalized_dbn_v3_file_values.cpp)
+  target_include_directories(modern_databento_marketdata_normalized_dbn_v3_file_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+  target_compile_definitions(modern_databento_marketdata_normalized_dbn_v3_file_values_test PRIVATE HAS_ZLIB)
+  target_link_libraries(modern_databento_marketdata_normalized_dbn_v3_file_values_test PRIVATE ZLIB::ZLIB)
+endif()
+
 # Running them reads the captures each protocol declares, and each program is run on its
 # protocol's first declared capture. Point OMI_PACKETS_DIR at the corpus checkout:
 #
@@ -12412,6 +12774,21 @@ if(OMI_PACKETS_DIR)
 
   add_test(NAME flyweight_cme_globex_mdp3_sbe_v1.5_values COMMAND flyweight_cme_globex_mdp3_sbe_v1.5_values_test)
   set_tests_properties(flyweight_cme_globex_mdp3_sbe_v1.5_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  if(TARGET modern_databento_marketdata_normalized_dbn_v1_file_values_test)
+    add_test(NAME modern_databento_marketdata_normalized_dbn_v1_file_values COMMAND modern_databento_marketdata_normalized_dbn_v1_file_values_test)
+    set_tests_properties(modern_databento_marketdata_normalized_dbn_v1_file_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+  endif()
+
+  if(TARGET modern_databento_marketdata_normalized_dbn_v2_file_values_test)
+    add_test(NAME modern_databento_marketdata_normalized_dbn_v2_file_values COMMAND modern_databento_marketdata_normalized_dbn_v2_file_values_test)
+    set_tests_properties(modern_databento_marketdata_normalized_dbn_v2_file_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+  endif()
+
+  if(TARGET modern_databento_marketdata_normalized_dbn_v3_file_values_test)
+    add_test(NAME modern_databento_marketdata_normalized_dbn_v3_file_values COMMAND modern_databento_marketdata_normalized_dbn_v3_file_values_test)
+    set_tests_properties(modern_databento_marketdata_normalized_dbn_v3_file_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+  endif()
 
   add_test(NAME modern_eurex_t7_eobi_fbe_v13.0 COMMAND modern_eurex_t7_eobi_fbe_v13.0_test)
   set_tests_properties(modern_eurex_t7_eobi_fbe_v13.0 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")

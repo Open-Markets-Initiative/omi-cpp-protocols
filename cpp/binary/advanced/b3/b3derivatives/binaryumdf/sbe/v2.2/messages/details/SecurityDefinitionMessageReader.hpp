@@ -232,7 +232,7 @@ inline security_definition_message_instr_attribs_groups_reader read_instr_attrib
     return { pos, msg.tail_end() };
 }
 
-inline sbe_var_data read_security_desc(const std::byte* pos, const security_definition_message& msg) {
+inline sbe_var_data<std::uint8_t> read_security_desc(const std::byte* pos, const security_definition_message& msg) {
     return { pos, msg.tail_end() };
 }
 

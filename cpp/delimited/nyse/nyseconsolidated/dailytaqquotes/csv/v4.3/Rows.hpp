@@ -39,16 +39,36 @@ namespace variant_dailytaqquotes_v4_3 {
     template <typename Row>
     void read(const ::scaled::delimited::Fields& fields, Row& row) {
         ::scaled::delimited::expect(fields, 23, "Quote");
-        row.time.set(static_cast<std::uint64_t>(::scaled::delimited::time_of_day(fields[0], 9, "Time")));  // Time
-        row.exchange.set(fields[1]);  // Exchange
-        row.symbol.set(fields[2]);  // Symbol
-        row.bid_price.data = ::scaled::delimited::decimal(fields[3], 6, "Bid_Price");  // Bid_Price
-        row.bid_size.set(::scaled::delimited::integer<std::int64_t>(fields[4], "Bid_Size"));  // Bid_Size
-        row.offer_price.data = ::scaled::delimited::decimal(fields[5], 6, "Offer_Price");  // Offer_Price
-        row.offer_size.set(::scaled::delimited::integer<std::int64_t>(fields[6], "Offer_Size"));  // Offer_Size
-        row.quote_condition.set(fields[7]);  // Quote_Condition
-        row.sequence_number.set(::scaled::delimited::integer<std::int64_t>(fields[8], "Sequence_Number"));  // Sequence_Number
-        row.national_bbo_ind.set(fields[9]);  // National_BBO_Ind
+        if (!fields[0].empty()) {  // Time
+            row.time.set(static_cast<std::uint64_t>(::scaled::delimited::time_of_day(fields[0], 9, "Time")));
+        }
+        if (!fields[1].empty()) {  // Exchange
+            row.exchange.set(fields[1]);
+        }
+        if (!fields[2].empty()) {  // Symbol
+            row.symbol.set(fields[2]);
+        }
+        if (!fields[3].empty()) {  // Bid_Price
+            row.bid_price.data = ::scaled::delimited::decimal(fields[3], 6, "Bid_Price");
+        }
+        if (!fields[4].empty()) {  // Bid_Size
+            row.bid_size.set(::scaled::delimited::integer<std::int64_t>(fields[4], "Bid_Size"));
+        }
+        if (!fields[5].empty()) {  // Offer_Price
+            row.offer_price.data = ::scaled::delimited::decimal(fields[5], 6, "Offer_Price");
+        }
+        if (!fields[6].empty()) {  // Offer_Size
+            row.offer_size.set(::scaled::delimited::integer<std::int64_t>(fields[6], "Offer_Size"));
+        }
+        if (!fields[7].empty()) {  // Quote_Condition
+            row.quote_condition.set(fields[7]);
+        }
+        if (!fields[8].empty()) {  // Sequence_Number
+            row.sequence_number.set(::scaled::delimited::integer<std::int64_t>(fields[8], "Sequence_Number"));
+        }
+        if (!fields[9].empty()) {  // National_BBO_Ind
+            row.national_bbo_ind.set(fields[9]);
+        }
         if (!fields[10].empty()) {  // FINRA_BBO_Indicator
             row.finra_bbo_indicator.set(fields[10]);
         }
@@ -58,7 +78,9 @@ namespace variant_dailytaqquotes_v4_3 {
         if (!fields[12].empty()) {  // Quote_Cancel_Correction
             row.quote_cancel_correction.set(fields[12]);
         }
-        row.source_of_quote.set(fields[13]);  // Source_Of_Quote
+        if (!fields[13].empty()) {  // Source_Of_Quote
+            row.source_of_quote.set(fields[13]);
+        }
         if (!fields[14].empty()) {  // Retail_Interest_Indicator
             row.retail_interest_indicator.set(fields[14]);
         }
@@ -74,7 +96,9 @@ namespace variant_dailytaqquotes_v4_3 {
         if (!fields[18].empty()) {  // National_BBO_LULD_Indicator
             row.national_bbo_luld_indicator.set(fields[18]);
         }
-        row.participant_timestamp.set(static_cast<std::uint64_t>(::scaled::delimited::time_of_day(fields[19], 9, "Participant_Timestamp")));  // Participant_Timestamp
+        if (!fields[19].empty()) {  // Participant_Timestamp
+            row.participant_timestamp.set(static_cast<std::uint64_t>(::scaled::delimited::time_of_day(fields[19], 9, "Participant_Timestamp")));
+        }
         if (!fields[20].empty()) {  // FINRA_ADF_Timestamp
             row.finra_adf_timestamp.set(static_cast<std::uint64_t>(::scaled::delimited::time_of_day(fields[20], 9, "FINRA_ADF_Timestamp")));
         }

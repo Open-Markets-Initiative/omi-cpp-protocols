@@ -115,6 +115,15 @@ inline void integer(std::ostream& out, const std::int64_t value) {
     out << value;
 }
 
+// a boolean, true or false
+inline void boolean(std::ostream& out, const bool value) {
+    if (value) {
+        out << "true";
+        return;
+    }
+    out << "false";
+}
+
 // a decimal's integer of its places, as the decimal it is: 1234500 of 4 places is 123.4500
 inline void decimal(std::ostream& out, const std::int64_t value, const int places) {
     std::array<char, 24> digits{};

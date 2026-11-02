@@ -19,7 +19,7 @@ struct max_sweep_qty {
     using storage_type = result_type;
 
     constexpr max_sweep_qty()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr max_sweep_qty(std::uint64_t v)
      : value{ v } {}

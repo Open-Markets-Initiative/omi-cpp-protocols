@@ -19,7 +19,7 @@ struct coupon_frequency_period {
     using storage_type = result_type;
 
     constexpr coupon_frequency_period()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr coupon_frequency_period(std::uint16_t v)
      : value{ v } {}

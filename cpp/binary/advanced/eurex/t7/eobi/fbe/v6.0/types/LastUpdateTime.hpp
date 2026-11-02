@@ -19,7 +19,7 @@ struct last_update_time {
     using storage_type = result_type;
 
     constexpr last_update_time()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr last_update_time(std::uint64_t v)
      : value{ v } {}

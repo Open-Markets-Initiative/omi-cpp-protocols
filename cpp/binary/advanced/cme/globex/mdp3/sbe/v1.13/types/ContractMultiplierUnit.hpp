@@ -19,7 +19,7 @@ struct contract_multiplier_unit {
     using storage_type = result_type;
 
     constexpr contract_multiplier_unit()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr contract_multiplier_unit(std::int8_t v)
      : value{ v } {}

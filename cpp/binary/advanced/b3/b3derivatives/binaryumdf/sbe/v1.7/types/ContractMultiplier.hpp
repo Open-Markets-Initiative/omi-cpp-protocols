@@ -20,7 +20,7 @@ struct contract_multiplier {
     using storage_type = result_type;
 
     constexpr contract_multiplier()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr contract_multiplier(std::int64_t v)
      : value{ v } {}

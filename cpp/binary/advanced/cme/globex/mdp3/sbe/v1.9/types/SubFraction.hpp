@@ -19,7 +19,7 @@ struct sub_fraction {
     using storage_type = result_type;
 
     constexpr sub_fraction()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr sub_fraction(std::uint8_t v)
      : value{ v } {}

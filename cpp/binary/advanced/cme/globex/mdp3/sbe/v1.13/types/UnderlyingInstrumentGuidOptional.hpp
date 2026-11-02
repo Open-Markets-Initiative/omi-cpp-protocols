@@ -19,7 +19,7 @@ struct underlying_instrument_guid_optional {
     using storage_type = result_type;
 
     constexpr underlying_instrument_guid_optional()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr underlying_instrument_guid_optional(std::uint64_t v)
      : value{ v } {}

@@ -19,7 +19,7 @@ struct news_id {
     using storage_type = result_type;
 
     constexpr news_id()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr news_id(std::uint64_t v)
      : value{ v } {}

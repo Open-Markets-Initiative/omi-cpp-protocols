@@ -13,36 +13,36 @@ namespace nyse::nyseconsolidated::dailytaqbolo::csv::v4_3 {
 
 // Bolo: a data line of the model, its fields typed as the model states them
 struct Bolo {
-    // Time: nanoseconds since midnight, America/New_York
-    ::scaled::delimited::values::Required<std::uint64_t> time;
-    // Symbol: text
-    ::scaled::delimited::values::Required<std::string_view> symbol;
-    // Sequence Number: an integer
-    ::scaled::delimited::values::Required<std::int64_t> sequence_number;
-    // Source of Quote: text
-    ::scaled::delimited::values::Required<std::string_view> source_of_quote;
+    // Time: nanoseconds since midnight, America/New_York; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::uint64_t> time;
+    // Symbol: text; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::string_view> symbol;
+    // Sequence Number: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> sequence_number;
+    // Source of Quote: text; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::string_view> source_of_quote;
     // SIP-generated Message Identifier: text; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::string_view> sip_generated_message_identifier;
     // BOLO Indicator: text; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::string_view> bolo_indicator;
-    // Odd Lot Best Bid Participant ID: text
-    ::scaled::delimited::values::Required<std::string_view> odd_lot_best_bid_participant_id;
-    // Odd Lot Best Bid Quote Price: a decimal, the integer of its 6 places
-    ::scaled::delimited::values::Required<std::int64_t> odd_lot_best_bid_quote_price;
+    // Odd Lot Best Bid Participant ID: text; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::string_view> odd_lot_best_bid_participant_id;
+    // Odd Lot Best Bid Quote Price: a decimal, the integer of its 6 places; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> odd_lot_best_bid_quote_price;
     static constexpr int odd_lot_best_bid_quote_price_places = 6;
-    // Odd Lot Best Bid Quote Size: an integer
-    ::scaled::delimited::values::Required<std::int64_t> odd_lot_best_bid_quote_size;
-    // Odd Lot FINRA Best Bid Market Maker ID: text
-    ::scaled::delimited::values::Required<std::string_view> odd_lot_finra_best_bid_market_maker_id;
-    // Odd Lot Best Offer Participant ID: text
-    ::scaled::delimited::values::Required<std::string_view> odd_lot_best_offer_participant_id;
-    // Odd Lot Best Offer Quote Price: a decimal, the integer of its 6 places
-    ::scaled::delimited::values::Required<std::int64_t> odd_lot_best_offer_quote_price;
+    // Odd Lot Best Bid Quote Size: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> odd_lot_best_bid_quote_size;
+    // Odd Lot FINRA Best Bid Market Maker ID: text; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::string_view> odd_lot_finra_best_bid_market_maker_id;
+    // Odd Lot Best Offer Participant ID: text; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::string_view> odd_lot_best_offer_participant_id;
+    // Odd Lot Best Offer Quote Price: a decimal, the integer of its 6 places; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> odd_lot_best_offer_quote_price;
     static constexpr int odd_lot_best_offer_quote_price_places = 6;
-    // Odd Lot Best Offer Quote Size: an integer
-    ::scaled::delimited::values::Required<std::int64_t> odd_lot_best_offer_quote_size;
-    // Odd Lot FINRA Best Offer Market Maker ID: text
-    ::scaled::delimited::values::Required<std::string_view> odd_lot_finra_best_offer_market_maker_id;
+    // Odd Lot Best Offer Quote Size: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> odd_lot_best_offer_quote_size;
+    // Odd Lot FINRA Best Offer Market Maker ID: text; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::string_view> odd_lot_finra_best_offer_market_maker_id;
 
     // every field emptied: a row is reset before a line is read onto it
     void reset() {
@@ -62,8 +62,12 @@ struct Bolo {
         odd_lot_finra_best_offer_market_maker_id.reset();
     }
 
-    // Time on a day: its nanoseconds since midnight, America/New_York, as UTC Unix nanoseconds
-    std::int64_t time_utc(const ::scaled::delimited::calendar::Day& day) const {
+    // Time on a day: its nanoseconds since midnight, America/New_York, as UTC Unix nanoseconds;
+    // none where the line leaves it empty
+    std::optional<std::int64_t> time_utc(const ::scaled::delimited::calendar::Day& day) const {
+        if (!time.has_value()) {
+            return std::nullopt;
+        }
         return ::scaled::delimited::calendar::midnight(day, "America/New_York").utc(static_cast<std::int64_t>(time.value()));
     }
 

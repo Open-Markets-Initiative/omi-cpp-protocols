@@ -20,7 +20,7 @@ struct md_entry_size {
     using storage_type = result_type;
 
     constexpr md_entry_size()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr md_entry_size(std::int64_t v)
      : value{ v } {}

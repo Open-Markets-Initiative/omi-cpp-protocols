@@ -51,7 +51,7 @@ struct event_code {
     using storage_type = result_type;
 
     constexpr event_code()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0) } {}
 
     constexpr event_code(enum_type v)
      : value{ v } {}
@@ -68,7 +68,7 @@ struct event_code {
         if (value.has_value())
             set(value.value());
         else
-            set(enum_type::start_of_day);
+            set(static_cast<enum_type>(0));
     }
 
   protected:

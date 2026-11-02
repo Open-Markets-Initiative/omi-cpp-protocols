@@ -19,7 +19,7 @@ struct secret_key_secure_id_expiration {
     using storage_type = result_type;
 
     constexpr secret_key_secure_id_expiration()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr secret_key_secure_id_expiration(std::uint16_t v)
      : value{ v } {}

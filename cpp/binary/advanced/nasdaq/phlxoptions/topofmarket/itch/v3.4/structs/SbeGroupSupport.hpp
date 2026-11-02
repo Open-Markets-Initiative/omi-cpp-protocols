@@ -50,6 +50,7 @@ class sbe_group_iterator {
     }
 };
 
+template <typename Length>
 class sbe_var_data {
     const std::byte* begin_;
     const std::byte* end_;
@@ -57,19 +58,19 @@ class sbe_var_data {
   public:
     sbe_var_data(const std::byte* data, const std::byte* buffer_end)
         : begin_(data), end_(buffer_end) {
-        if (begin_ + sizeof(uint32_t) > end_) throw std::runtime_error("buffer overrun reading var-data length");
+        if (begin_ + sizeof(Length) > end_) throw std::runtime_error("buffer overrun reading var-data length");
     }
 
-    uint32_t length() const { return *reinterpret_cast<const uint32_t*>(begin_); }
-    const char* data() const { return reinterpret_cast<const char*>(begin_ + sizeof(uint32_t)); }
+    Length length() const { return *reinterpret_cast<const Length*>(begin_); }
+    const char* data() const { return reinterpret_cast<const char*>(begin_ + sizeof(Length)); }
 
     std::string_view view() const {
-        if (begin_ + sizeof(uint32_t) + length() > end_) throw std::runtime_error("buffer overrun reading var-data content");
+        if (begin_ + sizeof(Length) + length() > end_) throw std::runtime_error("buffer overrun reading var-data content");
         return { data(), length() };
     }
 
     const std::byte* finalize() const {
-        auto* past = begin_ + sizeof(uint32_t) + length();
+        auto* past = begin_ + sizeof(Length) + length();
         if (past > end_) throw std::runtime_error("buffer overrun finalizing var-data");
         return past;
     }

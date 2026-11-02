@@ -19,7 +19,7 @@ struct orig_time {
     using storage_type = result_type;
 
     constexpr orig_time()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr orig_time(std::uint64_t v)
      : value{ v } {}

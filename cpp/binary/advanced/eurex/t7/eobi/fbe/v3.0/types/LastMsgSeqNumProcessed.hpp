@@ -19,7 +19,7 @@ struct last_msg_seq_num_processed {
     using storage_type = result_type;
 
     constexpr last_msg_seq_num_processed()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr last_msg_seq_num_processed(std::uint32_t v)
      : value{ v } {}

@@ -19,7 +19,7 @@ struct orig_pos_req_ref_id {
     using storage_type = result_type;
 
     constexpr orig_pos_req_ref_id()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr orig_pos_req_ref_id(std::uint64_t v)
      : value{ v } {}

@@ -2,6 +2,7 @@
 
 #include <cstddef>
 #include "../structs/FramingHeader.hpp"
+#include "../structs/MessageHeader.hpp"
 #include "../types/SecurityId.hpp"
 #include "../types/MatchEventIndicator.hpp"
 #include "../types/MdUpdateAction.hpp"
@@ -42,7 +43,7 @@ struct order_mb_o_50_message {
     };
 
     sbe_binaryumdf::framing_header header = {std::uint16_t(sizeof(sbe_binaryumdf::framing_header) + sizeof(fields_type) + sizeof(sbe_binaryumdf::message_header)), {}};
-    sbe_binaryumdf::message_header message_header;
+    sbe_binaryumdf::message_header message_header = {block_length(sizeof(fields_type)), template_id::enum_type::order_mb_o_50_message, schema_id(2), version(10)};
 
     fields_type fields;
 

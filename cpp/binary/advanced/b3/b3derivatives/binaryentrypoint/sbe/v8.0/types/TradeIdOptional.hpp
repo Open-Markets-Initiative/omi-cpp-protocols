@@ -19,7 +19,7 @@ struct trade_id_optional {
     using storage_type = result_type;
 
     constexpr trade_id_optional()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr trade_id_optional(std::uint32_t v)
      : value{ v } {}

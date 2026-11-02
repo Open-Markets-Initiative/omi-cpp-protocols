@@ -19,7 +19,7 @@ struct year {
     using storage_type = result_type;
 
     constexpr year()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr year(std::uint16_t v)
      : value{ v } {}

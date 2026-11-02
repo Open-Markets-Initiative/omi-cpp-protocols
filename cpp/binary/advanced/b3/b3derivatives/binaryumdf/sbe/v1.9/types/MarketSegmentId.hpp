@@ -19,7 +19,7 @@ struct market_segment_id {
     using storage_type = result_type;
 
     constexpr market_segment_id()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr market_segment_id(std::uint8_t v)
      : value{ v } {}

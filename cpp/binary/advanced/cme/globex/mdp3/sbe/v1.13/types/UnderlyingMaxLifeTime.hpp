@@ -19,7 +19,7 @@ struct underlying_max_life_time {
     using storage_type = result_type;
 
     constexpr underlying_max_life_time()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr underlying_max_life_time(std::uint8_t v)
      : value{ v } {}

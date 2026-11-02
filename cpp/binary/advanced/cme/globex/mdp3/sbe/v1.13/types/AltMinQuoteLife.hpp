@@ -19,7 +19,7 @@ struct alt_min_quote_life {
     using storage_type = result_type;
 
     constexpr alt_min_quote_life()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr alt_min_quote_life(std::uint32_t v)
      : value{ v } {}

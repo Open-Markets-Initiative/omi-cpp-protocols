@@ -55,7 +55,7 @@ struct cross_request_type {
     using storage_type = result_type;
 
     constexpr cross_request_type()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0xFF) } {}
 
     constexpr cross_request_type(enum_type v)
      : value{ v } {}

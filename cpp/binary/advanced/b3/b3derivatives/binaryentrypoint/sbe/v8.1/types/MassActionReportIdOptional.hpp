@@ -19,7 +19,7 @@ struct mass_action_report_id_optional {
     using storage_type = result_type;
 
     constexpr mass_action_report_id_optional()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr mass_action_report_id_optional(std::uint64_t v)
      : value{ v } {}

@@ -61,7 +61,7 @@ struct cross_type {
     using storage_type = result_type;
 
     constexpr cross_type()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0) } {}
 
     constexpr cross_type(enum_type v)
      : value{ v } {}

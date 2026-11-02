@@ -39,14 +39,24 @@ namespace variant_dailytaqutpadmin_v4_3 {
     template <typename Row>
     void read(const ::scaled::delimited::Fields& fields, Row& row) {
         ::scaled::delimited::expect(fields, 23, "Utp Admin");
-        row.timestamp.set(static_cast<std::uint64_t>(::scaled::delimited::time_of_day(fields[0], 9, "Timestamp")));  // Timestamp
+        if (!fields[0].empty()) {  // Timestamp
+            row.timestamp.set(static_cast<std::uint64_t>(::scaled::delimited::time_of_day(fields[0], 9, "Timestamp")));
+        }
         if (!fields[1].empty()) {  // Symbol
             row.symbol.set(fields[1]);
         }
-        row.message_category.set(fields[2]);  // Message Category
-        row.message_type.set(fields[3]);  // Message Type
-        row.message_sequence_number.set(::scaled::delimited::integer<std::int64_t>(fields[4], "Message Sequence Number"));  // Message Sequence Number
-        row.market_center_originator_id.set(fields[5]);  // Market Center Originator ID
+        if (!fields[2].empty()) {  // Message Category
+            row.message_category.set(fields[2]);
+        }
+        if (!fields[3].empty()) {  // Message Type
+            row.message_type.set(fields[3]);
+        }
+        if (!fields[4].empty()) {  // Message Sequence Number
+            row.message_sequence_number.set(::scaled::delimited::integer<std::int64_t>(fields[4], "Message Sequence Number"));
+        }
+        if (!fields[5].empty()) {  // Market Center Originator ID
+            row.market_center_originator_id.set(fields[5]);
+        }
         if (!fields[6].empty()) {  // Sub Market Center Originator ID
             row.sub_market_center_originator_id.set(fields[6]);
         }

@@ -19,7 +19,7 @@ struct contract_date {
     using storage_type = result_type;
 
     constexpr contract_date()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr contract_date(std::uint32_t v)
      : value{ v } {}

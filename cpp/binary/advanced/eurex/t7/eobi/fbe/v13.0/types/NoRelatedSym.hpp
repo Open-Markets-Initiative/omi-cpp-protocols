@@ -19,7 +19,7 @@ struct no_related_sym {
     using storage_type = result_type;
 
     constexpr no_related_sym()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr no_related_sym(std::uint8_t v)
      : value{ v } {}

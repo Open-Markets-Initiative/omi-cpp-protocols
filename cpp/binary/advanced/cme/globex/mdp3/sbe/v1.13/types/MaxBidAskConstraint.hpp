@@ -20,7 +20,7 @@ struct max_bid_ask_constraint {
     using storage_type = result_type;
 
     constexpr max_bid_ask_constraint()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr max_bid_ask_constraint(std::int64_t v)
      : value{ v } {}

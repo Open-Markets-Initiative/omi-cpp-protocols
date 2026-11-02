@@ -3,6 +3,7 @@
 #include "../MdIncrementalRefreshBook.hpp"
 #include <span>
 #include <cstring>
+#include <new>
 #include <stdexcept>
 #include <string_view>
 
@@ -30,6 +31,7 @@ public:
         header_->block_length.set(sizeof(md_incremental_refresh_book_incremental_refresh_book_groups_entry));
         header_->num_in_group.set(0);
         pos_ += sizeof(sbe_mdp3::group_size);
+        if (pos_ + sizeof(md_incremental_refresh_book_incremental_refresh_book_groups_entry) <= end_) ::new (static_cast<void*>(pos_)) md_incremental_refresh_book_incremental_refresh_book_groups_entry{};
     }
 
     md_incremental_refresh_book_incremental_refresh_book_groups_builder(std::byte* msg_start, std::byte* pos, std::byte* end, sbe_mdp3::group_size* header, uint16_t count)
@@ -104,6 +106,7 @@ public:
         entry->padding_1.set(v);
         pos_ += header_->block_length.get().value();
         count_++;
+        if (pos_ + sizeof(md_incremental_refresh_book_incremental_refresh_book_groups_entry) <= end_) ::new (static_cast<void*>(pos_)) md_incremental_refresh_book_incremental_refresh_book_groups_entry{};
         return *this;
     }
 
@@ -125,6 +128,7 @@ public:
         header_->block_length.set(sizeof(md_incremental_refresh_book_incremental_refresh_book_order_id_groups_entry));
         header_->num_in_group.set(0);
         pos_ += sizeof(sbe_mdp3::group_size_8_byte);
+        if (pos_ + sizeof(md_incremental_refresh_book_incremental_refresh_book_order_id_groups_entry) <= end_) ::new (static_cast<void*>(pos_)) md_incremental_refresh_book_incremental_refresh_book_order_id_groups_entry{};
     }
 
     md_incremental_refresh_book_incremental_refresh_book_order_id_groups_builder(std::byte* msg_start, std::byte* pos, std::byte* end, sbe_mdp3::group_size_8_byte* header, uint16_t count)
@@ -171,6 +175,7 @@ public:
         entry->padding_2.set(v);
         pos_ += header_->block_length.get().value();
         count_++;
+        if (pos_ + sizeof(md_incremental_refresh_book_incremental_refresh_book_order_id_groups_entry) <= end_) ::new (static_cast<void*>(pos_)) md_incremental_refresh_book_incremental_refresh_book_order_id_groups_entry{};
         return *this;
     }
 

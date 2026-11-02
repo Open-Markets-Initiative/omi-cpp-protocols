@@ -20,7 +20,7 @@ struct display_qty {
     using storage_type = result_type;
 
     constexpr display_qty()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr display_qty(std::int64_t v)
      : value{ v } {}

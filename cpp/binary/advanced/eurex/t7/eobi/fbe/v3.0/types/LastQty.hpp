@@ -19,7 +19,7 @@ struct last_qty {
     using storage_type = result_type;
 
     constexpr last_qty()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr last_qty(std::int32_t v)
      : value{ v } {}

@@ -61,7 +61,7 @@ struct trading_style {
     using storage_type = result_type;
 
     constexpr trading_style()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0xFF) } {}
 
     constexpr trading_style(enum_type v)
      : value{ v } {}

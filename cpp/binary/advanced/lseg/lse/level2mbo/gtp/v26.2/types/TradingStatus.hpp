@@ -111,7 +111,7 @@ struct trading_status {
     using storage_type = result_type;
 
     constexpr trading_status()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0) } {}
 
     constexpr trading_status(enum_type v)
      : value{ v } {}
@@ -128,7 +128,7 @@ struct trading_status {
         if (value.has_value())
             set(value.value());
         else
-            set(enum_type::closing_price_crossing_session);
+            set(static_cast<enum_type>(0));
     }
 
   protected:

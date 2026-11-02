@@ -19,7 +19,7 @@ struct main_fraction {
     using storage_type = result_type;
 
     constexpr main_fraction()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr main_fraction(std::uint8_t v)
      : value{ v } {}

@@ -19,7 +19,7 @@ struct broken_date_term_type {
     using storage_type = result_type;
 
     constexpr broken_date_term_type()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr broken_date_term_type(std::uint8_t v)
      : value{ v } {}

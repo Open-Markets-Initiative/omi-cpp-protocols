@@ -19,7 +19,7 @@ struct market_segment_received_time {
     using storage_type = result_type;
 
     constexpr market_segment_received_time()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr market_segment_received_time(std::uint64_t v)
      : value{ v } {}

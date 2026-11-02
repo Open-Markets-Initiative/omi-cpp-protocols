@@ -19,7 +19,7 @@ struct short_qty {
     using storage_type = result_type;
 
     constexpr short_qty()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr short_qty(std::uint64_t v)
      : value{ v } {}

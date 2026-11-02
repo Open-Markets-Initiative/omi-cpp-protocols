@@ -19,7 +19,7 @@ struct security_sub_type {
     using storage_type = result_type;
 
     constexpr security_sub_type()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr security_sub_type(std::int32_t v)
      : value{ v } {}

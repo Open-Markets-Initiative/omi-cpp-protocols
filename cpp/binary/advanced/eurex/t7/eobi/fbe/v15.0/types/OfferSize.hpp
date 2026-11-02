@@ -20,7 +20,7 @@ struct offer_size {
     using storage_type = result_type;
 
     constexpr offer_size()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr offer_size(std::int64_t v)
      : value{ v } {}

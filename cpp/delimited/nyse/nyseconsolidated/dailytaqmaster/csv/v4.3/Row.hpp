@@ -13,28 +13,28 @@ namespace nyse::nyseconsolidated::dailytaqmaster::csv::v4_3 {
 
 // Security: a data line of the model, its fields typed as the model states them
 struct Security {
-    // Symbol: text
-    ::scaled::delimited::values::Required<std::string_view> symbol;
-    // Security_Description: text, its Windows1252 decoded to UTF-8
-    ::scaled::delimited::values::RequiredText<::scaled::delimited::encoding::Encoding::windows1252> security_description;
+    // Symbol: text; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::string_view> symbol;
+    // Security_Description: text, its Windows1252 decoded to UTF-8; none where the line leaves it empty
+    ::scaled::delimited::values::OptionalText<::scaled::delimited::encoding::Encoding::windows1252> security_description;
     // CUSIP: text; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::string_view> cusip;
-    // Security_Type: text
-    ::scaled::delimited::values::Required<std::string_view> security_type;
-    // SIP_Symbol: text
-    ::scaled::delimited::values::Required<std::string_view> sip_symbol;
+    // Security_Type: text; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::string_view> security_type;
+    // SIP_Symbol: text; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::string_view> sip_symbol;
     // Old_Symbol: text; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::string_view> old_symbol;
-    // Test_Symbol_Flag: text
-    ::scaled::delimited::values::Required<std::string_view> test_symbol_flag;
-    // Listed_Exchange: text
-    ::scaled::delimited::values::Required<std::string_view> listed_exchange;
-    // Tape: text
-    ::scaled::delimited::values::Required<std::string_view> tape;
-    // Unit_Of_Trade: an integer
-    ::scaled::delimited::values::Required<std::int64_t> unit_of_trade;
-    // Round_Lot: an integer
-    ::scaled::delimited::values::Required<std::int64_t> round_lot;
+    // Test_Symbol_Flag: text; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::string_view> test_symbol_flag;
+    // Listed_Exchange: text; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::string_view> listed_exchange;
+    // Tape: text; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::string_view> tape;
+    // Unit_Of_Trade: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> unit_of_trade;
+    // Round_Lot: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> round_lot;
     // NYSE_Industry_Code: text; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::string_view> nyse_industry_code;
     // Shares_Outstanding: a decimal, the integer of its 2 places; none where the line leaves it empty
@@ -50,52 +50,52 @@ struct Security {
     ::scaled::delimited::values::Optional<std::int64_t> specialist_post_number;
     // Specialist_Panel: text; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::string_view> specialist_panel;
-    // TradedOnNYSEMKT: an integer
-    ::scaled::delimited::values::Required<std::int64_t> traded_on_nysemkt;
-    // TradedOnNASDAQBX: an integer
-    ::scaled::delimited::values::Required<std::int64_t> traded_on_nasdaqbx;
-    // TradedOnNSX: an integer
-    ::scaled::delimited::values::Required<std::int64_t> traded_on_nsx;
-    // TradedOnFINRA: an integer
-    ::scaled::delimited::values::Required<std::int64_t> traded_on_finra;
-    // TradedOnISE: an integer
-    ::scaled::delimited::values::Required<std::int64_t> traded_on_ise;
-    // TradedOnEdgeA: an integer
-    ::scaled::delimited::values::Required<std::int64_t> traded_on_edge_a;
-    // TradedOnEdgeX: an integer
-    ::scaled::delimited::values::Required<std::int64_t> traded_on_edge_x;
-    // TradedOnNYSETexas: an integer
-    ::scaled::delimited::values::Required<std::int64_t> traded_on_nyse_texas;
-    // TradedOnNYSE: an integer
-    ::scaled::delimited::values::Required<std::int64_t> traded_on_nyse;
-    // TradedOnArca: an integer
-    ::scaled::delimited::values::Required<std::int64_t> traded_on_arca;
-    // TradedOnNasdaq: an integer
-    ::scaled::delimited::values::Required<std::int64_t> traded_on_nasdaq;
-    // TradedOnCBOE: an integer
-    ::scaled::delimited::values::Required<std::int64_t> traded_on_cboe;
-    // TradedOnPSX: an integer
-    ::scaled::delimited::values::Required<std::int64_t> traded_on_psx;
-    // TradedOnBATSY: an integer
-    ::scaled::delimited::values::Required<std::int64_t> traded_on_batsy;
-    // TradedOnBATS: an integer
-    ::scaled::delimited::values::Required<std::int64_t> traded_on_bats;
-    // TradedOnIEX: an integer
-    ::scaled::delimited::values::Required<std::int64_t> traded_on_iex;
+    // TradedOnNYSEMKT: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> traded_on_nysemkt;
+    // TradedOnNASDAQBX: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> traded_on_nasdaqbx;
+    // TradedOnNSX: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> traded_on_nsx;
+    // TradedOnFINRA: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> traded_on_finra;
+    // TradedOnISE: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> traded_on_ise;
+    // TradedOnEdgeA: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> traded_on_edge_a;
+    // TradedOnEdgeX: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> traded_on_edge_x;
+    // TradedOnNYSETexas: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> traded_on_nyse_texas;
+    // TradedOnNYSE: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> traded_on_nyse;
+    // TradedOnArca: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> traded_on_arca;
+    // TradedOnNasdaq: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> traded_on_nasdaq;
+    // TradedOnCBOE: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> traded_on_cboe;
+    // TradedOnPSX: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> traded_on_psx;
+    // TradedOnBATSY: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> traded_on_batsy;
+    // TradedOnBATS: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> traded_on_bats;
+    // TradedOnIEX: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> traded_on_iex;
     // Tick_Pilot_Indicator: text; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::string_view> tick_pilot_indicator;
     // Effective_Date: a date, days since 1970-01-01; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::int32_t> effective_date;
-    // TradedOnLTSE: an integer
-    ::scaled::delimited::values::Required<std::int64_t> traded_on_ltse;
-    // TradedOnMEMX: an integer
-    ::scaled::delimited::values::Required<std::int64_t> traded_on_memx;
-    // TradedOnMIAX: an integer
-    ::scaled::delimited::values::Required<std::int64_t> traded_on_miax;
-    // TradedOn24X: an integer
-    ::scaled::delimited::values::Required<std::int64_t> traded_on_24x;
-    // TradedOnTXSE: an integer
-    ::scaled::delimited::values::Required<std::int64_t> traded_on_txse;
+    // TradedOnLTSE: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> traded_on_ltse;
+    // TradedOnMEMX: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> traded_on_memx;
+    // TradedOnMIAX: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> traded_on_miax;
+    // TradedOn24X: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> traded_on_24x;
+    // TradedOnTXSE: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> traded_on_txse;
 
     // every field emptied: a row is reset before a line is read onto it
     void reset() {

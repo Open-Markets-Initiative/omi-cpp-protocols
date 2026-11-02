@@ -20,7 +20,7 @@ struct price_divisor {
     using storage_type = result_type;
 
     constexpr price_divisor()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr price_divisor(std::int64_t v)
      : value{ v } {}

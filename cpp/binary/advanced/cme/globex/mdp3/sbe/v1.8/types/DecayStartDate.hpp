@@ -19,7 +19,7 @@ struct decay_start_date {
     using storage_type = result_type;
 
     constexpr decay_start_date()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr decay_start_date(std::uint16_t v)
      : value{ v } {}

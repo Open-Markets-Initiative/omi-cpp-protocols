@@ -33,8 +33,9 @@ A reader includes them as `../delimited/`, which resolves with `cpp/delimited/de
 include path. `checks/` compiles each reader that way, and the programs under `executables/rows/`
 read through them. Nothing here needs Arrow.
 
-## Protocols (10)
+## Protocols (11)
 
+- `Memx.MemxEquities.InstrumentDirectory.Csv.v2026.10.14`
 - `Nyse.NyseConsolidated.DailyTaqMaster.Csv.v4.3`
 - `Nyse.NyseConsolidated.DailyTaqTrades.Csv.v4.3`
 - `Nyse.NyseConsolidated.DailyTaqQuotes.Csv.v4.3`

@@ -84,15 +84,15 @@ inline quote_request_reject_message_sides_groups_reader read_sides(const quote_r
     return { msg.tail_begin(), msg.tail_end() };
 }
 
-inline sbe_var_data read_desk_id(const std::byte* pos, const quote_request_reject_message& msg) {
+inline sbe_var_data<std::uint8_t> read_desk_id(const std::byte* pos, const quote_request_reject_message& msg) {
     return { pos, msg.tail_end() };
 }
 
-inline sbe_var_data read_memo(const std::byte* pos, const quote_request_reject_message& msg) {
+inline sbe_var_data<std::uint8_t> read_memo(const std::byte* pos, const quote_request_reject_message& msg) {
     return { pos, msg.tail_end() };
 }
 
-inline sbe_var_data read_text(const std::byte* pos, const quote_request_reject_message& msg) {
+inline sbe_var_data<std::uint8_t> read_text(const std::byte* pos, const quote_request_reject_message& msg) {
     return { pos, msg.tail_end() };
 }
 

@@ -20,7 +20,7 @@ struct par_value {
     using storage_type = result_type;
 
     constexpr par_value()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr par_value(std::int64_t v)
      : value{ v } {}

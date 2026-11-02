@@ -19,7 +19,7 @@ struct pos_maint_result {
     using storage_type = result_type;
 
     constexpr pos_maint_result()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr pos_maint_result(std::uint32_t v)
      : value{ v } {}

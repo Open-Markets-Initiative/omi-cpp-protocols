@@ -58,7 +58,7 @@ struct opt_payout_type {
     using storage_type = result_type;
 
     constexpr opt_payout_type()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0) } {}
 
     constexpr opt_payout_type(enum_type v)
      : value{ v } {}

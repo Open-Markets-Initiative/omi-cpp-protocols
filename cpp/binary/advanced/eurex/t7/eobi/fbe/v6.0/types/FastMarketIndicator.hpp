@@ -55,7 +55,7 @@ struct fast_market_indicator {
     using storage_type = result_type;
 
     constexpr fast_market_indicator()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0xFF) } {}
 
     constexpr fast_market_indicator(enum_type v)
      : value{ v } {}

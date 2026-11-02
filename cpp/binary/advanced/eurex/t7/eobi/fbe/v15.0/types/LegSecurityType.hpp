@@ -55,7 +55,7 @@ struct leg_security_type {
     using storage_type = result_type;
 
     constexpr leg_security_type()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0xFF) } {}
 
     constexpr leg_security_type(enum_type v)
      : value{ v } {}

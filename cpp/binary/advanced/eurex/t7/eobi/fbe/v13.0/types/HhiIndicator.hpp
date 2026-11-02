@@ -52,7 +52,7 @@ struct hhi_indicator {
     using storage_type = result_type;
 
     constexpr hhi_indicator()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0x80) } {}
 
     constexpr hhi_indicator(enum_type v)
      : value{ v } {}

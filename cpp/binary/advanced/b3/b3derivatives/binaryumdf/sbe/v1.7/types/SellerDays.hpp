@@ -19,7 +19,7 @@ struct seller_days {
     using storage_type = result_type;
 
     constexpr seller_days()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr seller_days(std::uint16_t v)
      : value{ v } {}

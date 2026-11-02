@@ -19,7 +19,7 @@ struct md_entry_buyer {
     using storage_type = result_type;
 
     constexpr md_entry_buyer()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr md_entry_buyer(std::uint32_t v)
      : value{ v } {}

@@ -55,7 +55,7 @@ struct completion_indicator {
     using storage_type = result_type;
 
     constexpr completion_indicator()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0xFF) } {}
 
     constexpr completion_indicator(enum_type v)
      : value{ v } {}

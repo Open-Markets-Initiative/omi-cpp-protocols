@@ -20,7 +20,7 @@ struct md_entry_interest_rate {
     using storage_type = result_type;
 
     constexpr md_entry_interest_rate()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr md_entry_interest_rate(std::int64_t v)
      : value{ v } {}

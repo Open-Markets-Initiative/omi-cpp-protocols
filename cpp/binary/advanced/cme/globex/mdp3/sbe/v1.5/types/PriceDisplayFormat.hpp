@@ -19,7 +19,7 @@ struct price_display_format {
     using storage_type = result_type;
 
     constexpr price_display_format()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr price_display_format(std::uint8_t v)
      : value{ v } {}

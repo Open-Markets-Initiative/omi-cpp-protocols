@@ -136,7 +136,7 @@ struct quote_reject_reason {
     using storage_type = result_type;
 
     constexpr quote_reject_reason()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0) } {}
 
     constexpr quote_reject_reason(enum_type v)
      : value{ v } {}

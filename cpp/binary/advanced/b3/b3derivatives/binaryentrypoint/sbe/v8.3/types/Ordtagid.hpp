@@ -19,7 +19,7 @@ struct ordtagid {
     using storage_type = result_type;
 
     constexpr ordtagid()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr ordtagid(std::uint8_t v)
      : value{ v } {}

@@ -19,7 +19,7 @@ struct leg_symbol {
     using storage_type = result_type;
 
     constexpr leg_symbol()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr leg_symbol(std::int32_t v)
      : value{ v } {}

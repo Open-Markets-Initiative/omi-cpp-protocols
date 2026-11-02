@@ -19,7 +19,7 @@ struct trading_session_status_message {
         sbe_memoirdepthfeed::trading_session trading_session;
     };
 
-    sbe_memoirdepthfeed::sbe_header header = {{}, template_id::enum_type::trading_session_status_message, schema_id(2), version(259)};
+    sbe_memoirdepthfeed::sbe_header header = {block_length(sizeof(fields_type)), template_id::enum_type::trading_session_status_message, schema_id(2), version(259)};
 
     fields_type fields;
 

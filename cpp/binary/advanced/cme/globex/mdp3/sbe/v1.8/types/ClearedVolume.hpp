@@ -19,7 +19,7 @@ struct cleared_volume {
     using storage_type = result_type;
 
     constexpr cleared_volume()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr cleared_volume(std::int32_t v)
      : value{ v } {}

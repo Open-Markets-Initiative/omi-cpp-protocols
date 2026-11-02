@@ -20,7 +20,7 @@ struct vwap_px {
     using storage_type = result_type;
 
     constexpr vwap_px()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr vwap_px(std::int64_t v)
      : value{ v } {}

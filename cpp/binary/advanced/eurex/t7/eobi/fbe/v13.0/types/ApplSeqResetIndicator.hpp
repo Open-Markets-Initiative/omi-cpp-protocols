@@ -55,7 +55,7 @@ struct appl_seq_reset_indicator {
     using storage_type = result_type;
 
     constexpr appl_seq_reset_indicator()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0xFF) } {}
 
     constexpr appl_seq_reset_indicator(enum_type v)
      : value{ v } {}

@@ -2,6 +2,7 @@
 
 #include <cstddef>
 #include "../structs/MessageHeader.hpp"
+#include "../structs/IextpHeader.hpp"
 #include "../types/SystemEvent.hpp"
 #include "../types/Timestamp.hpp"
 #include "../types/IexTpMessageBlockLength.hpp"

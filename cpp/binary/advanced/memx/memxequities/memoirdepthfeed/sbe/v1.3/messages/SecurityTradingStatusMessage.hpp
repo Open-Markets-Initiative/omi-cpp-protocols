@@ -23,7 +23,7 @@ struct security_trading_status_message {
         sbe_memoirdepthfeed::security_trading_status_reason security_trading_status_reason;
     };
 
-    sbe_memoirdepthfeed::sbe_header header = {{}, template_id::enum_type::security_trading_status_message, schema_id(2), version(259)};
+    sbe_memoirdepthfeed::sbe_header header = {block_length(sizeof(fields_type)), template_id::enum_type::security_trading_status_message, schema_id(2), version(259)};
 
     fields_type fields;
 

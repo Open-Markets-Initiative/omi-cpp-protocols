@@ -58,7 +58,7 @@ struct crossed_indicator {
     using storage_type = result_type;
 
     constexpr crossed_indicator()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0) } {}
 
     constexpr crossed_indicator(enum_type v)
      : value{ v } {}

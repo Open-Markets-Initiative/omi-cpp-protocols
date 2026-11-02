@@ -17,9 +17,9 @@ static const type no_value = 0x8000000000000000;
 static const type maximum_value = 92233720368.54775807;
 static const type minimum_value = -92233720368.54775807;
 
-    // default constructor
+    // default constructor: the null the model states, where it states one
     constexpr BidPx()
-     : value{ 0 } {}
+     : value{ no_value } {}
 
     // constructor for BidPx field
     constexpr explicit BidPx(const std::int64_t value)

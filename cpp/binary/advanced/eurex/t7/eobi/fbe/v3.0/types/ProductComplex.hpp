@@ -64,7 +64,7 @@ struct product_complex {
     using storage_type = result_type;
 
     constexpr product_complex()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0xFF) } {}
 
     constexpr product_complex(enum_type v)
      : value{ v } {}

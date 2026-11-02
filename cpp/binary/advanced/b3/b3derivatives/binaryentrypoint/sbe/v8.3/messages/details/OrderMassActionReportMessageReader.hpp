@@ -10,7 +10,7 @@ namespace b3::b3derivatives::binaryentrypoint::sbe::v8_3 {
 namespace sbe_binaryentrypoint = ::b3::b3derivatives::binaryentrypoint::sbe::v8_3;
 
 
-inline sbe_var_data read_text(const order_mass_action_report_message& msg) {
+inline sbe_var_data<std::uint8_t> read_text(const order_mass_action_report_message& msg) {
     return { msg.tail_begin(), msg.tail_end() };
 }
 

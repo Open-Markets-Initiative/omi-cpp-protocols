@@ -19,7 +19,7 @@ struct max_trade_vol {
     using storage_type = result_type;
 
     constexpr max_trade_vol()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr max_trade_vol(std::int64_t v)
      : value{ v } {}

@@ -19,7 +19,7 @@ struct trd_reg_ts_execution_time {
     using storage_type = result_type;
 
     constexpr trd_reg_ts_execution_time()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr trd_reg_ts_execution_time(std::uint64_t v)
      : value{ v } {}

@@ -55,7 +55,7 @@ struct related_price_type {
     using storage_type = result_type;
 
     constexpr related_price_type()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0xFF) } {}
 
     constexpr related_price_type(enum_type v)
      : value{ v } {}

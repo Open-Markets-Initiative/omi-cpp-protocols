@@ -28,7 +28,7 @@ Within a protocol:
 Each library is compiled as `flyweight_<protocol>` by the repository's `CMakeLists.txt`, its
 enumerations being the only sources a header-only view library has.
 
-## Protocols (98)
+## Protocols (101)
 
 - `Asx.AsxDerivatives.Ntp.Itch.v1.05`
 - `B3.B3Derivatives.BinaryUmdf.Sbe.v1.6`
@@ -57,6 +57,9 @@ enumerations being the only sources a header-only view library has.
 - `Cme.Globex.Mdp3.Sbe.v1.9`
 - `Cme.Globex.Mdp3.Sbe.v1.13`
 - `Cme.Globex.Mdp3.Sbe.v1.5`
+- `Databento.MarketData.Normalized.Dbn.v1`
+- `Databento.MarketData.Normalized.Dbn.v2`
+- `Databento.MarketData.Normalized.Dbn.v3`
 - `Eurex.T7.Eobi.Fbe.v13.0`
 - `Eurex.T7.Eobi.Fbe.v15.0`
 - `Eurex.T7.Eobi.Fbe.v3.0`

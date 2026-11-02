@@ -63,7 +63,7 @@ struct auction_type {
     using storage_type = result_type;
 
     constexpr auction_type()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0) } {}
 
     constexpr auction_type(enum_type v)
      : value{ v } {}
@@ -80,7 +80,7 @@ struct auction_type {
         if (value.has_value())
             set(value.value());
         else
-            set(enum_type::periodic_auction);
+            set(static_cast<enum_type>(0));
     }
 
   protected:

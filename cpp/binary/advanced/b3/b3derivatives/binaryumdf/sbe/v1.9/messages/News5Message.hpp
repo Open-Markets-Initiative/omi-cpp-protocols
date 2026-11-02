@@ -2,6 +2,7 @@
 
 #include <cstddef>
 #include "../structs/FramingHeader.hpp"
+#include "../structs/MessageHeader.hpp"
 #include "../structs/SbeGroupSupport.hpp"
 #include "../types/SecurityIdOptional.hpp"
 #include "../types/MatchEventIndicator.hpp"
@@ -36,7 +37,7 @@ struct news_5_message {
     };
 
     sbe_binaryumdf::framing_header header = {std::uint16_t(sizeof(sbe_binaryumdf::framing_header) + sizeof(fields_type) + sizeof(sbe_binaryumdf::message_header)), {}};
-    sbe_binaryumdf::message_header message_header;
+    sbe_binaryumdf::message_header message_header = {block_length(sizeof(fields_type)), template_id::enum_type::news_5_message, schema_id(2), version(10)};
 
     static constexpr std::size_t max_message_size = 1280;
     static constexpr std::size_t tail_capacity = max_message_size - sizeof(sbe_binaryumdf::framing_header) - sizeof(fields_type) - sizeof(sbe_binaryumdf::message_header);
@@ -54,15 +55,15 @@ struct news_5_message {
     }
 
     // sequential access to variable-length regions
-    sbe_var_data headline() const {
+    sbe_var_data<std::uint16_t> headline() const {
         return { tail_begin(), tail_end() };
     }
 
-    sbe_var_data text(const std::byte* position) const {
+    sbe_var_data<std::uint16_t> text(const std::byte* position) const {
         return { position, tail_end() };
     }
 
-    sbe_var_data url_link(const std::byte* position) const {
+    sbe_var_data<std::uint16_t> url_link(const std::byte* position) const {
         return { position, tail_end() };
     }
 

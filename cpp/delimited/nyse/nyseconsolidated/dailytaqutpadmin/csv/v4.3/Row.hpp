@@ -13,18 +13,18 @@ namespace nyse::nyseconsolidated::dailytaqutpadmin::csv::v4_3 {
 
 // Utp Admin: a data line of the model, its fields typed as the model states them
 struct UtpAdmin {
-    // Timestamp: nanoseconds since midnight, America/New_York
-    ::scaled::delimited::values::Required<std::uint64_t> timestamp;
+    // Timestamp: nanoseconds since midnight, America/New_York; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::uint64_t> timestamp;
     // Symbol: text; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::string_view> symbol;
-    // Message Category: text
-    ::scaled::delimited::values::Required<std::string_view> message_category;
-    // Message Type: text
-    ::scaled::delimited::values::Required<std::string_view> message_type;
-    // Message Sequence Number: an integer
-    ::scaled::delimited::values::Required<std::int64_t> message_sequence_number;
-    // Market Center Originator ID: text
-    ::scaled::delimited::values::Required<std::string_view> market_center_originator_id;
+    // Message Category: text; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::string_view> message_category;
+    // Message Type: text; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::string_view> message_type;
+    // Message Sequence Number: an integer; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::int64_t> message_sequence_number;
+    // Market Center Originator ID: text; none where the line leaves it empty
+    ::scaled::delimited::values::Optional<std::string_view> market_center_originator_id;
     // Sub Market Center Originator ID: text; none where the line leaves it empty
     ::scaled::delimited::values::Optional<std::string_view> sub_market_center_originator_id;
     // Participant Timestamp: nanoseconds since midnight, America/New_York; none where the line leaves it empty
@@ -92,8 +92,12 @@ struct UtpAdmin {
         message_text.reset();
     }
 
-    // Timestamp on a day: its nanoseconds since midnight, America/New_York, as UTC Unix nanoseconds
-    std::int64_t timestamp_utc(const ::scaled::delimited::calendar::Day& day) const {
+    // Timestamp on a day: its nanoseconds since midnight, America/New_York, as UTC Unix nanoseconds;
+    // none where the line leaves it empty
+    std::optional<std::int64_t> timestamp_utc(const ::scaled::delimited::calendar::Day& day) const {
+        if (!timestamp.has_value()) {
+            return std::nullopt;
+        }
         return ::scaled::delimited::calendar::midnight(day, "America/New_York").utc(static_cast<std::int64_t>(timestamp.value()));
     }
 
