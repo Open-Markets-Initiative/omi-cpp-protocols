@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v1.91: enums/MarketCondition.cpp
 #include "MarketCondition.hpp"
 
 namespace siac::cqs::output::cta::v1_91 {

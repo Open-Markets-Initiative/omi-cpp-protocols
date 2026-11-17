@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: messages/ExecutionReportForwardMessage.hpp
 #pragma once
 
 #include <cstddef>
@@ -7,7 +8,7 @@
 #include "../structs/OutboundBusinessHeader.hpp"
 #include "../types/Side.hpp"
 #include "../types/OrdStatus.hpp"
-#include "../types/ClordidOptional.hpp"
+#include "../types/ClOrdIdOptional.hpp"
 #include "../types/SecondaryOrderId.hpp"
 #include "../types/SecurityId.hpp"
 #include "../types/Account.hpp"
@@ -44,7 +45,7 @@ struct execution_report_forward_message {
         sbe_binaryentrypoint::outbound_business_header outbound_business_header;
         sbe_binaryentrypoint::side side;
         sbe_binaryentrypoint::ord_status ord_status;
-        sbe_binaryentrypoint::clordid_optional clordid_optional;
+        sbe_binaryentrypoint::cl_ord_id_optional cl_ord_id_optional;
         sbe_binaryentrypoint::secondary_order_id secondary_order_id;
         sbe_binaryentrypoint::security_id security_id;
         sbe_binaryentrypoint::account account;
@@ -112,7 +113,7 @@ struct execution_report_forward_message {
 static_assert(offsetof(execution_report_forward_message::fields_type, outbound_business_header) == 0, "unexpected offset of execution_report_forward_message::fields_type::outbound_business_header");
 static_assert(offsetof(execution_report_forward_message::fields_type, side) == 18, "unexpected offset of execution_report_forward_message::fields_type::side");
 static_assert(offsetof(execution_report_forward_message::fields_type, ord_status) == 19, "unexpected offset of execution_report_forward_message::fields_type::ord_status");
-static_assert(offsetof(execution_report_forward_message::fields_type, clordid_optional) == 20, "unexpected offset of execution_report_forward_message::fields_type::clordid_optional");
+static_assert(offsetof(execution_report_forward_message::fields_type, cl_ord_id_optional) == 20, "unexpected offset of execution_report_forward_message::fields_type::cl_ord_id_optional");
 static_assert(offsetof(execution_report_forward_message::fields_type, secondary_order_id) == 28, "unexpected offset of execution_report_forward_message::fields_type::secondary_order_id");
 static_assert(offsetof(execution_report_forward_message::fields_type, security_id) == 36, "unexpected offset of execution_report_forward_message::fields_type::security_id");
 static_assert(offsetof(execution_report_forward_message::fields_type, account) == 44, "unexpected offset of execution_report_forward_message::fields_type::account");

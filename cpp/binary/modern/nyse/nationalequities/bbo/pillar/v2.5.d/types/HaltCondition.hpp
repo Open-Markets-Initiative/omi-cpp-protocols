@@ -1,3 +1,4 @@
+// Nyse.NationalEquities.Bbo.Pillar.v2.5.d: types/HaltCondition.hpp
 #pragma once
 
 #include <cstddef>

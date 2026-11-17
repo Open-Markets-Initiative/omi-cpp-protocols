@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.TopOfMarket.Mach.v2.5: enums/BidCondition.cpp
 #include "BidCondition.hpp"
 
 namespace miax::miaxoptions::topofmarket::mach::v2_5 {

@@ -1,3 +1,4 @@
+// CixAts.CixAspen.MarketDataFeed.Aspen.v1.4: types/Symbol.hpp
 #pragma once
 
 #include <array>

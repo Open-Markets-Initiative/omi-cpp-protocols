@@ -1,7 +1,7 @@
+// Siac.Cts.Output.Cta.v2.10: messages/LongTradeMessage.hpp
 #pragma once
 
 #include <cstddef>
-#include "../structs/BlockHeader.hpp"
 #include "../types/ParticipantId.hpp"
 #include "../structs/Timestamp1.hpp"
 #include "../types/MessageId.hpp"
@@ -60,7 +60,6 @@ struct long_trade_message {
         cta_output::participant_open_high_low_last_indicator participant_open_high_low_last_indicator;
     };
 
-    cta_output::block_header header = {{}, {}, {}, {}, {}, {}, {}, {}};
     // Transport framing: message size precedes the SBE header on the wire
     cta_output::message_length message_length;
     cta_output::message_category message_category = cta_output::message_category::enum_type::trade;
@@ -103,7 +102,7 @@ static_assert(offsetof(long_trade_message::fields_type, held_trade_indicator) ==
 static_assert(offsetof(long_trade_message::fields_type, consolidated_high_low_last_indicator) == 66, "unexpected offset of long_trade_message::fields_type::consolidated_high_low_last_indicator");
 static_assert(offsetof(long_trade_message::fields_type, participant_open_high_low_last_indicator) == 67, "unexpected offset of long_trade_message::fields_type::participant_open_high_low_last_indicator");
 static_assert(sizeof(long_trade_message::fields_type) == 68, "unexpected sizeof long_trade_message::fields_type");
-static_assert(sizeof(long_trade_message) == sizeof(cta_output::block_header) + sizeof(cta_output::message_length) + sizeof(cta_output::message_category) + sizeof(cta_output::trade_message_type) + 68, "unexpected sizeof long_trade_message");
+static_assert(sizeof(long_trade_message) == sizeof(cta_output::message_length) + sizeof(cta_output::message_category) + sizeof(cta_output::trade_message_type) + 68, "unexpected sizeof long_trade_message");
 
 #pragma pack(pop)
 }

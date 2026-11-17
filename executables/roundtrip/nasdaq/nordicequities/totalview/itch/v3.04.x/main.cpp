@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: main.cpp
 // Nasdaq.NordicEquities.TotalView.Itch.v3.04.X write and read: every message built with each field it sets, written
 // into a capture through the Classes encoder, then read back - each field set must read as it was written.
 // 

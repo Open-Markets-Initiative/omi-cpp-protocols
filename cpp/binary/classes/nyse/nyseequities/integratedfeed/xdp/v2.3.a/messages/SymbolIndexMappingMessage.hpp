@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeed.Xdp.v2.3.a: messages/SymbolIndexMappingMessage.hpp
 #pragma once
 
 #include <array>

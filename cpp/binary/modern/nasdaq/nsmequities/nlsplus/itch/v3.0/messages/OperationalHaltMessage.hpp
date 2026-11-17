@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: messages/OperationalHaltMessage.hpp
 #pragma once
 
 #include "../types/Stock.hpp"

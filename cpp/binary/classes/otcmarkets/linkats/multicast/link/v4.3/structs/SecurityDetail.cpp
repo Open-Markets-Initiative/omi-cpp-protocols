@@ -1,3 +1,4 @@
+// OtcMarkets.LinkAts.Multicast.Link.v4.3: structs/SecurityDetail.cpp
 #include "SecurityDetail.hpp"
 
 #include "../common/Print.hpp"

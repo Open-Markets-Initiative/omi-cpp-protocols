@@ -1,3 +1,4 @@
+// Asx.AsxDerivatives.Ntp.Itch.v1.05: structs/BundleLeg.hpp
 #pragma once
 
 #include "../types/TradeableInstrumentIdLeg.hpp"

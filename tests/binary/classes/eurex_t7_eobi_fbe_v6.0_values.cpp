@@ -31,10 +31,10 @@ canonical::Listing read(const packet::Frame& frame) {
         return values;
     }
 
-    values["packet.packetheader.eobiheader.bodylen"] = canonical::number(packet.packet_header().eobi_header().body_len());
-    values["packet.packetheader.eobiheader.templateid"] = canonical::number(packet.packet_header().eobi_header().template_id());
-    values["packet.packetheader.eobiheader.msgseqnum"] = canonical::number(packet.packet_header().eobi_header().msg_seq_num());
-    values["packet.packetheader.applseqnum"] = canonical::number(packet.packet_header().appl_seq_num());
+    values["packet.packetheader.eobiheader.bodylen"] = (packet.packet_header().eobi_header().body_len().has_value() ? canonical::number((*packet.packet_header().eobi_header().body_len())) : canonical::absent());
+    values["packet.packetheader.eobiheader.templateid"] = (packet.packet_header().eobi_header().template_id().has_value() ? canonical::number((*packet.packet_header().eobi_header().template_id())) : canonical::absent());
+    values["packet.packetheader.eobiheader.msgseqnum"] = (packet.packet_header().eobi_header().msg_seq_num().has_value() ? canonical::number((*packet.packet_header().eobi_header().msg_seq_num())) : canonical::absent());
+    values["packet.packetheader.applseqnum"] = (packet.packet_header().appl_seq_num().has_value() ? canonical::number((*packet.packet_header().appl_seq_num())) : canonical::absent());
     values["packet.packetheader.marketsegmentid"] = (packet.packet_header().market_segment_id().has_value() ? canonical::number((*packet.packet_header().market_segment_id())) : canonical::absent());
     values["packet.packetheader.partitionid"] = (packet.packet_header().partition_id().has_value() ? canonical::number((*packet.packet_header().partition_id())) : canonical::absent());
     values["packet.packetheader.completionindicator"] = (packet.packet_header().completion_indicator().has_value() ? canonical::number((*packet.packet_header().completion_indicator())) : canonical::absent());
@@ -45,9 +45,9 @@ canonical::Listing read(const packet::Frame& frame) {
 
     for (const auto& each : packet.frames()) {
         const std::string entry = "packet.message[" + std::to_string(index++) + "]";
-        values[entry + ".messageheadercomp.bodylen"] = canonical::number(each.message_header_comp().body_len());
-        values[entry + ".messageheadercomp.templateid"] = canonical::number(each.message_header_comp().template_id());
-        values[entry + ".messageheadercomp.msgseqnum"] = canonical::number(each.message_header_comp().msg_seq_num());
+        values[entry + ".messageheadercomp.bodylen"] = (each.message_header_comp().body_len().has_value() ? canonical::number((*each.message_header_comp().body_len())) : canonical::absent());
+        values[entry + ".messageheadercomp.templateid"] = (each.message_header_comp().template_id().has_value() ? canonical::number((*each.message_header_comp().template_id())) : canonical::absent());
+        values[entry + ".messageheadercomp.msgseqnum"] = (each.message_header_comp().msg_seq_num().has_value() ? canonical::number((*each.message_header_comp().msg_seq_num())) : canonical::absent());
 
         if (const auto* message = dynamic_cast<const protocol::AddComplexInstrument*>(each.message())) {
             values[entry + ".payload"] = "packet.message.payload.addcomplexinstrument";

@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v13.0: messages/AuctionBbo.hpp
 #pragma once
 
 #include <array>
@@ -34,7 +35,7 @@ class AuctionBbo : public Message {
     std::optional<std::chrono::nanoseconds> transact_time() const;
     void set_transact_time(std::optional<std::chrono::nanoseconds> value);
 
-    // Security Id:
+    // Security Id: Unique instrument identifier
     std::optional<std::int64_t> security_id() const;
     void set_security_id(std::optional<std::int64_t> value);
 

@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.10: structs/OriginalTrade.cpp
 #include "OriginalTrade.hpp"
 
 #include "../common/Print.hpp"

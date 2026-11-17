@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.DeepFeed.Pillar.v1.2.m: groups/ComplexSeriesIndexMappingLeg.hpp
 #pragma once
 
 #include <cstddef>

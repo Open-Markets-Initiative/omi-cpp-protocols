@@ -1,0 +1,22 @@
+# Nyse.ArcaOptions.DeepFeed.Pillar.v1.2.m OptionsModifyOrderMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 51
+packet.packetheader.deliveryflag = 11
+packet.packetheader.numbermsgs = 1
+packet.packetheader.seqnum = 544992
+packet.packetheader.sendtime.seconds = 1639231443
+packet.packetheader.sendtime.nanoseconds = 866260480
+packet.packetheader.sendtime = 1639231443866260480
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 35
+packet.messages.message[0].messageheader.messagetype = 301
+packet.messages.message[0].payload = packet.messages.message.payload.optionsmodifyordermessage
+packet.messages.message[0].payload.optionsmodifyordermessage.sourcetimens = 866252032
+packet.messages.message[0].payload.optionsmodifyordermessage.seriesindex = 35877229
+packet.messages.message[0].payload.optionsmodifyordermessage.seriesseqnum = 5
+packet.messages.message[0].payload.optionsmodifyordermessage.orderid = 14355240992112655
+packet.messages.message[0].payload.optionsmodifyordermessage.price = 106000
+packet.messages.message[0].payload.optionsmodifyordermessage.volume = 3
+packet.messages.message[0].payload.optionsmodifyordermessage.positionchange = 0
+packet.messages.message[0].payload.optionsmodifyordermessage.side = 
+packet.messages.message[0].payload.optionsmodifyordermessage.custindicator = 

@@ -1,3 +1,4 @@
+// Cboe.EdgaEquities.MulticastDepthOfBook.Pitch.v2.41.29: main.cpp
 // Cboe.EdgaEquities.MulticastDepthOfBook.Pitch.v2.41.29 write and read: every message built with each field it sets, written
 // into a capture through the Classes encoder, then read back - each field set must read as it was written.
 // 
@@ -248,7 +249,7 @@ std::unique_ptr<protocol::Message> build_TradeBreakMessage() {
 // EndOfSession built with each field it sets
 std::unique_ptr<protocol::Message> build_EndOfSession() {
     auto message = std::make_unique<protocol::EndOfSession>();
-    message->set_last_timestamp(static_cast<std::uint32_t>(1));
+    message->set_time_offset(std::chrono::nanoseconds{1});
     return message;
 }
 
@@ -792,8 +793,8 @@ int check_EndOfSession(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->last_timestamp() == static_cast<std::uint32_t>(1))) {
-        std::printf("FAIL EndOfSession: last_timestamp does not read as it was written\n");
+    if (!(message->time_offset() == std::chrono::nanoseconds{1})) {
+        std::printf("FAIL EndOfSession: time_offset does not read as it was written\n");
         ++failures;
     }
     return failures;

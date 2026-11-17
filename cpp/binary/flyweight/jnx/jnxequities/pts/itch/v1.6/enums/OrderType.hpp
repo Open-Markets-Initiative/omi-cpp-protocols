@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.6: enums/OrderType.hpp
 #pragma once
 
 #include <cstdint>

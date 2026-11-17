@@ -1,3 +1,4 @@
+// Iex.IexEquities.Deep.Snap.v1.6: messages/AuctionInformationMessage.cpp
 #include "AuctionInformationMessage.hpp"
 
 #include "../common/Print.hpp"

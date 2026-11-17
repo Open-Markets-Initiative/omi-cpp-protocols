@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.7: types/PriceTickSizeTableId.hpp
 #pragma once
 
 #include <bit>

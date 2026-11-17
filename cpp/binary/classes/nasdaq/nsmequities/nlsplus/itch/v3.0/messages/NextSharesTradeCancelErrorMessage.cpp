@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: messages/NextSharesTradeCancelErrorMessage.cpp
 #include "NextSharesTradeCancelErrorMessage.hpp"
 
 #include "../common/Print.hpp"

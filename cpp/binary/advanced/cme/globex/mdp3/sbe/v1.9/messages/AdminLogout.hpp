@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.9: messages/AdminLogout.hpp
 #pragma once
 
 #include <cstddef>
@@ -35,8 +36,8 @@ struct admin_logout {
 
 // layout verification
 static_assert(offsetof(admin_logout::fields_type, text) == 0, "unexpected offset of admin_logout::fields_type::text");
-static_assert(sizeof(admin_logout::fields_type) == 100, "unexpected sizeof admin_logout::fields_type");
-static_assert(sizeof(admin_logout) == sizeof(sbe_mdp3::message_header) + 100, "unexpected sizeof admin_logout");
+static_assert(sizeof(admin_logout::fields_type) == 180, "unexpected sizeof admin_logout::fields_type");
+static_assert(sizeof(admin_logout) == sizeof(sbe_mdp3::message_header) + 180, "unexpected sizeof admin_logout");
 
 #pragma pack(pop)
 }

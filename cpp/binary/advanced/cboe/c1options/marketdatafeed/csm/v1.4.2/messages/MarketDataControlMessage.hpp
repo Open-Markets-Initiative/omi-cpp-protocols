@@ -1,3 +1,4 @@
+// Cboe.C1Options.MarketDataFeed.Csm.v1.4.2: messages/MarketDataControlMessage.hpp
 #pragma once
 
 #include <cstddef>
@@ -17,7 +18,7 @@ struct market_data_control_message {
         csm_marketdatafeed::md_control_type md_control_type;
     };
 
-    csm_marketdatafeed::message_header header = {{}, template_id::enum_type::market_data_control_message, {}, {}};
+    csm_marketdatafeed::message_header header = {std::uint16_t(sizeof(csm_marketdatafeed::message_header) + sizeof(fields_type)), template_id::enum_type::market_data_control_message, {}, {}};
 
     fields_type fields;
 

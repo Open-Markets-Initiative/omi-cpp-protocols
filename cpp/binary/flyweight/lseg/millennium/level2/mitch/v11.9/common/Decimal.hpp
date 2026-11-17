@@ -1,3 +1,4 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: common/Decimal.hpp
 #pragma once
 
 #include <cmath>

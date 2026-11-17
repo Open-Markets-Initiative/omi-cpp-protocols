@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.7: messages/DeleteOrderMbO51Message.hpp
 #pragma once
 
 #include <cstddef>
@@ -9,7 +10,7 @@
 #include "../types/MdEntryType.hpp"
 #include "../types/Offset11Padding1.hpp"
 #include "../types/MdEntryPositionNo.hpp"
-#include "../types/MdEntrySizeQuantityOptional.hpp"
+#include "../types/MdEntrySizeOptional.hpp"
 #include "../types/SecondaryOrderId.hpp"
 #include "../types/MdEntryTimestamp.hpp"
 #include "../types/RptSeq.hpp"
@@ -30,7 +31,7 @@ struct delete_order_mb_o_51_message {
         sbe_binaryumdf::md_entry_type md_entry_type;
         sbe_binaryumdf::offset_11_padding_1 offset_11_padding_1;
         sbe_binaryumdf::md_entry_position_no md_entry_position_no;
-        sbe_binaryumdf::md_entry_size_quantity_optional md_entry_size_quantity_optional;
+        sbe_binaryumdf::md_entry_size_optional md_entry_size_optional;
         sbe_binaryumdf::secondary_order_id secondary_order_id;
         sbe_binaryumdf::md_entry_timestamp md_entry_timestamp;
         sbe_binaryumdf::rpt_seq rpt_seq;
@@ -60,7 +61,7 @@ static_assert(offsetof(delete_order_mb_o_51_message::fields_type, offset_9_paddi
 static_assert(offsetof(delete_order_mb_o_51_message::fields_type, md_entry_type) == 10, "unexpected offset of delete_order_mb_o_51_message::fields_type::md_entry_type");
 static_assert(offsetof(delete_order_mb_o_51_message::fields_type, offset_11_padding_1) == 11, "unexpected offset of delete_order_mb_o_51_message::fields_type::offset_11_padding_1");
 static_assert(offsetof(delete_order_mb_o_51_message::fields_type, md_entry_position_no) == 12, "unexpected offset of delete_order_mb_o_51_message::fields_type::md_entry_position_no");
-static_assert(offsetof(delete_order_mb_o_51_message::fields_type, md_entry_size_quantity_optional) == 16, "unexpected offset of delete_order_mb_o_51_message::fields_type::md_entry_size_quantity_optional");
+static_assert(offsetof(delete_order_mb_o_51_message::fields_type, md_entry_size_optional) == 16, "unexpected offset of delete_order_mb_o_51_message::fields_type::md_entry_size_optional");
 static_assert(offsetof(delete_order_mb_o_51_message::fields_type, secondary_order_id) == 24, "unexpected offset of delete_order_mb_o_51_message::fields_type::secondary_order_id");
 static_assert(offsetof(delete_order_mb_o_51_message::fields_type, md_entry_timestamp) == 32, "unexpected offset of delete_order_mb_o_51_message::fields_type::md_entry_timestamp");
 static_assert(offsetof(delete_order_mb_o_51_message::fields_type, rpt_seq) == 40, "unexpected offset of delete_order_mb_o_51_message::fields_type::rpt_seq");

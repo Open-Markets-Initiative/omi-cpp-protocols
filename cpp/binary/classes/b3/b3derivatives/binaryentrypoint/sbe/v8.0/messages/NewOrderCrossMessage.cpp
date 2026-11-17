@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: messages/NewOrderCrossMessage.cpp
 #include "NewOrderCrossMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,8 +7,8 @@
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_0 {
 
-NewOrderCrossMessage::NewOrderCrossMessage(const InboundBusinessHeader& inbound_business_header, const std::array<std::byte, 2>& offset_18_padding_2, std::uint64_t crossid, const std::string& sender_location, const std::string& entering_trader, const std::string& executing_trader_optional, std::uint64_t security_id, std::uint64_t order_qty, Decimal price, std::optional<CrossedIndicator> crossed_indicator, const CrossSidesGroups& cross_sides_groups, const DeskId& desk_id, const Memo& memo)
-  : inbound_business_header_(inbound_business_header), offset_18_padding_2_(offset_18_padding_2), crossid_(crossid), sender_location_(sender_location), entering_trader_(entering_trader), executing_trader_optional_(executing_trader_optional), security_id_(security_id), order_qty_(order_qty), price_(price), crossed_indicator_(crossed_indicator), cross_sides_groups_(cross_sides_groups), desk_id_(desk_id), memo_(memo) {}
+NewOrderCrossMessage::NewOrderCrossMessage(const InboundBusinessHeader& inbound_business_header, const std::array<std::byte, 2>& offset_18_padding_2, std::uint64_t cross_id, const std::string& sender_location, const std::string& entering_trader, const std::string& executing_trader_optional, std::uint64_t security_id, std::uint64_t order_qty, Decimal price, std::optional<CrossedIndicator> crossed_indicator, const CrossSidesGroups& cross_sides_groups, const DeskId& desk_id, const Memo& memo)
+  : inbound_business_header_(inbound_business_header), offset_18_padding_2_(offset_18_padding_2), cross_id_(cross_id), sender_location_(sender_location), entering_trader_(entering_trader), executing_trader_optional_(executing_trader_optional), security_id_(security_id), order_qty_(order_qty), price_(price), crossed_indicator_(crossed_indicator), cross_sides_groups_(cross_sides_groups), desk_id_(desk_id), memo_(memo) {}
 
 const InboundBusinessHeader& NewOrderCrossMessage::inbound_business_header() const { return inbound_business_header_; }
 InboundBusinessHeader& NewOrderCrossMessage::inbound_business_header() { return inbound_business_header_; }
@@ -17,8 +18,8 @@ const std::array<std::byte, 2>& NewOrderCrossMessage::offset_18_padding_2() cons
 std::array<std::byte, 2>& NewOrderCrossMessage::offset_18_padding_2() { return offset_18_padding_2_; }
 void NewOrderCrossMessage::set_offset_18_padding_2(const std::array<std::byte, 2>& value) { offset_18_padding_2_ = value; }
 
-std::uint64_t NewOrderCrossMessage::crossid() const { return crossid_; }
-void NewOrderCrossMessage::set_crossid(std::uint64_t value) { crossid_ = value; }
+std::uint64_t NewOrderCrossMessage::cross_id() const { return cross_id_; }
+void NewOrderCrossMessage::set_cross_id(std::uint64_t value) { cross_id_ = value; }
 
 const std::string& NewOrderCrossMessage::sender_location() const { return sender_location_; }
 std::string& NewOrderCrossMessage::sender_location() { return sender_location_; }
@@ -70,7 +71,7 @@ std::size_t NewOrderCrossMessage::decode(const std::byte* data, std::size_t leng
     offset += 2;
 
     wire::require("NewOrderCrossMessage", offset + 8, length);
-    crossid_ = wire::read_u64_le(data + offset);
+    cross_id_ = wire::read_u64_le(data + offset);
     offset += 8;
 
     wire::require("NewOrderCrossMessage", offset + 10, length);
@@ -119,7 +120,7 @@ std::size_t NewOrderCrossMessage::encode(std::byte* data, std::size_t capacity) 
     wire::write_bytes(data + offset, offset_18_padding_2_.data(), 2);
     offset += 2;
 
-    wire::write_u64_le(data + offset, static_cast<std::uint64_t>(crossid_));
+    wire::write_u64_le(data + offset, static_cast<std::uint64_t>(cross_id_));
     offset += 8;
 
     wire::write_text(data + offset, 10, '\0', sender_location_);
@@ -170,8 +171,8 @@ void NewOrderCrossMessage::print(std::ostream& out) const {
     inbound_business_header_.print(out);
     out << ", offset_18_padding_2=";
     print::hex(out, offset_18_padding_2_.data(), offset_18_padding_2_.size());
-    out << ", crossid=";
-    out << crossid_;
+    out << ", cross_id=";
+    out << cross_id_;
     out << ", sender_location=";
     print::text(out, sender_location_);
     out << ", entering_trader=";
@@ -203,7 +204,7 @@ bool NewOrderCrossMessage::equals(const Message& other) const {
 bool NewOrderCrossMessage::operator==(const NewOrderCrossMessage& other) const {
     return inbound_business_header_ == other.inbound_business_header_
         && offset_18_padding_2_ == other.offset_18_padding_2_
-        && crossid_ == other.crossid_
+        && cross_id_ == other.cross_id_
         && sender_location_ == other.sender_location_
         && entering_trader_ == other.entering_trader_
         && executing_trader_optional_ == other.executing_trader_optional_

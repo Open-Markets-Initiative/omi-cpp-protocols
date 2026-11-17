@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v3: types/LowerCollar.hpp
 #pragma once
 
 #include <cstddef>

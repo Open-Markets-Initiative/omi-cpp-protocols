@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.3: messages/details/News5MessageWriter.hpp
 #pragma once
 
 #include "../News5Message.hpp"

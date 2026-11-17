@@ -1,5 +1,7 @@
+// Siac.Cts.Output.Cta.v2.11.b: messages/SymbolReferenceDataMessage.hpp
 #pragma once
 
+#include <array>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
@@ -34,7 +36,7 @@ class SymbolReferenceDataMessage : public AdministrativeMessagePayload {
     static constexpr std::size_t wire_size = 205;
 
     SymbolReferenceDataMessage() = default;
-    SymbolReferenceDataMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol, const std::string& prior_security_symbol, PrimaryListingMarketParticipantId primary_listing_market_participant_id, Decimal primary_listing_market_previous_closing_price, Decimal consolidated_closing_price, std::uint16_t round_lot_size, MinimumPriceIncrementIndicator minimum_price_increment_indicator, LuldTier luld_tier, Decimal luld_leverage_ratio, Test test, Ipo ipo, FinancialStatusIndicator financial_status_indicator, ShortSaleRestrictionIndicator short_sale_restriction_indicator, HaltReason halt_reason, InstrumentType instrument_type, char reserved, char second_reserved, const std::string& reserved_128);
+    SymbolReferenceDataMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol, const std::string& prior_security_symbol, PrimaryListingMarketParticipantId primary_listing_market_participant_id, Decimal primary_listing_market_previous_closing_price, Decimal consolidated_closing_price, std::uint16_t round_lot_size, MinimumPriceIncrementIndicator minimum_price_increment_indicator, LuldTier luld_tier, Decimal luld_leverage_ratio, Test test, Ipo ipo, FinancialStatusIndicator financial_status_indicator, ShortSaleRestrictionIndicator short_sale_restriction_indicator, HaltReason halt_reason, InstrumentType instrument_type, const std::array<std::byte, 1>& reserved, const std::array<std::byte, 1>& second_reserved, const std::array<std::byte, 128>& reserved_128);
 
     // Participant Id: Identifies the Participant or Processor that initiated the message
     ParticipantId participant_id() const;
@@ -126,17 +128,19 @@ class SymbolReferenceDataMessage : public AdministrativeMessagePayload {
     void set_instrument_type(InstrumentType value);
 
     // Reserved: Space-filled. Field is reserved for future use
-    char reserved() const;
-    void set_reserved(char value);
+    const std::array<std::byte, 1>& reserved() const;
+    std::array<std::byte, 1>& reserved();
+    void set_reserved(const std::array<std::byte, 1>& value);
 
     // Second Reserved: Space-filled. Field is reserved for future use
-    char second_reserved() const;
-    void set_second_reserved(char value);
+    const std::array<std::byte, 1>& second_reserved() const;
+    std::array<std::byte, 1>& second_reserved();
+    void set_second_reserved(const std::array<std::byte, 1>& value);
 
     // Reserved 128: Space-filled. Field is reserved for future use
-    const std::string& reserved_128() const;
-    std::string& reserved_128();
-    void set_reserved_128(const std::string& value);
+    const std::array<std::byte, 128>& reserved_128() const;
+    std::array<std::byte, 128>& reserved_128();
+    void set_reserved_128(const std::array<std::byte, 128>& value);
 
     // AdministrativeMessagePayload
     AdministrativeMessagePayloadCode type() const override;
@@ -173,9 +177,9 @@ class SymbolReferenceDataMessage : public AdministrativeMessagePayload {
     ShortSaleRestrictionIndicator short_sale_restriction_indicator_{};
     HaltReason halt_reason_{};
     InstrumentType instrument_type_{};
-    char reserved_{};
-    char second_reserved_{};
-    std::string reserved_128_{};
+    std::array<std::byte, 1> reserved_{};
+    std::array<std::byte, 1> second_reserved_{};
+    std::array<std::byte, 128> reserved_128_{};
 };
 
 } // namespace siac::cts::output::cta::v2_11_b

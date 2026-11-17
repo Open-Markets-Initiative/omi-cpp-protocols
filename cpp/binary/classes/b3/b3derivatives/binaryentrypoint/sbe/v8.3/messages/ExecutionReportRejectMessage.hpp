@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: messages/ExecutionReportRejectMessage.hpp
 #pragma once
 
 #include <array>
@@ -34,7 +35,7 @@ class ExecutionReportRejectMessage : public Message {
     static constexpr MessageCode message_type = TemplateId::ExecutionReportRejectMessage;
 
     ExecutionReportRejectMessage() = default;
-    ExecutionReportRejectMessage(const OutboundBusinessHeader& outbound_business_header, Side side, CxlRejResponseTo cxl_rej_response_to, std::uint64_t clordid, std::optional<std::uint64_t> secondary_order_id_optional, std::uint64_t security_id, OrdRejReason ord_rej_reason, std::chrono::nanoseconds transact_time, std::uint64_t exec_id, std::optional<std::uint64_t> order_id_optional, std::optional<std::uint64_t> origclordid, std::optional<std::uint32_t> account, Ordtype ordtype, TimeInForce time_in_force, std::optional<std::uint16_t> expire_date, std::optional<std::uint64_t> order_qty_optional, std::optional<Decimal> price_optional, std::optional<Decimal> stop_px, std::optional<std::uint64_t> min_qty, std::optional<std::uint64_t> max_floor, std::optional<std::uint64_t> crossid_optional, std::optional<CrossedIndicator> crossed_indicator, std::optional<std::chrono::nanoseconds> received_time, const std::array<std::byte, 3>& offset_146_padding_3, std::optional<std::uint8_t> ordtagid, const InvestorId& investor_id, std::optional<std::int32_t> strategy_id, std::optional<std::uint32_t> trading_sub_account, const DeskId& desk_id, const Memo& memo, const Text& text);
+    ExecutionReportRejectMessage(const OutboundBusinessHeader& outbound_business_header, Side side, CxlRejResponseTo cxl_rej_response_to, std::uint64_t cl_ord_id, std::optional<std::uint64_t> secondary_order_id_optional, std::uint64_t security_id, OrdRejReason ord_rej_reason, std::chrono::nanoseconds transact_time, std::uint64_t exec_id, std::optional<std::uint64_t> order_id_optional, std::optional<std::uint64_t> origclordid, std::optional<std::uint32_t> account, Ordtype ordtype, TimeInForce time_in_force, std::optional<std::uint16_t> expire_date, std::optional<std::uint64_t> order_qty_optional, std::optional<Decimal> price_optional, std::optional<Decimal> stop_px, std::optional<std::uint64_t> min_qty, std::optional<std::uint64_t> max_floor, std::optional<std::uint64_t> cross_id_optional, std::optional<CrossedIndicator> crossed_indicator, std::optional<std::chrono::nanoseconds> received_time, const std::array<std::byte, 3>& offset_146_padding_3, std::optional<std::uint8_t> ordtagid, const InvestorId& investor_id, std::optional<std::int32_t> strategy_id, std::optional<std::uint32_t> trading_sub_account, const DeskId& desk_id, const Memo& memo, const Text& text);
 
     // Outbound Business Header: OutboundBusinessHeader
     const OutboundBusinessHeader& outbound_business_header() const;
@@ -49,9 +50,9 @@ class ExecutionReportRejectMessage : public Message {
     CxlRejResponseTo cxl_rej_response_to() const;
     void set_cxl_rej_response_to(CxlRejResponseTo value);
 
-    // ClOrdId: clOrdID
-    std::uint64_t clordid() const;
-    void set_clordid(std::uint64_t value);
+    // Cl Ord Id: clOrdID
+    std::uint64_t cl_ord_id() const;
+    void set_cl_ord_id(std::uint64_t value);
 
     // Secondary Order Id Optional: secondaryOrderID
     std::optional<std::uint64_t> secondary_order_id_optional() const;
@@ -117,9 +118,9 @@ class ExecutionReportRejectMessage : public Message {
     std::optional<std::uint64_t> max_floor() const;
     void set_max_floor(std::optional<std::uint64_t> value);
 
-    // CrossId Optional: crossID
-    std::optional<std::uint64_t> crossid_optional() const;
-    void set_crossid_optional(std::optional<std::uint64_t> value);
+    // Cross Id Optional: crossID
+    std::optional<std::uint64_t> cross_id_optional() const;
+    void set_cross_id_optional(std::optional<std::uint64_t> value);
 
     // Crossed Indicator: crossedIndicator
     std::optional<CrossedIndicator> crossed_indicator() const;
@@ -184,7 +185,7 @@ class ExecutionReportRejectMessage : public Message {
     OutboundBusinessHeader outbound_business_header_{};
     Side side_{};
     CxlRejResponseTo cxl_rej_response_to_{};
-    std::uint64_t clordid_{};
+    std::uint64_t cl_ord_id_{};
     std::optional<std::uint64_t> secondary_order_id_optional_{};
     std::uint64_t security_id_{};
     OrdRejReason ord_rej_reason_{};
@@ -201,7 +202,7 @@ class ExecutionReportRejectMessage : public Message {
     std::optional<Decimal> stop_px_{};
     std::optional<std::uint64_t> min_qty_{};
     std::optional<std::uint64_t> max_floor_{};
-    std::optional<std::uint64_t> crossid_optional_{};
+    std::optional<std::uint64_t> cross_id_optional_{};
     std::optional<CrossedIndicator> crossed_indicator_{};
     std::optional<std::chrono::nanoseconds> received_time_{};
     std::array<std::byte, 3> offset_146_padding_3_{};

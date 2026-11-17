@@ -1,3 +1,4 @@
+// Iex.IexEquities.Tops.IexTp.v1.66: bitfields/SaleConditionFlags.hpp
 #pragma once
 
 #include <cstddef>

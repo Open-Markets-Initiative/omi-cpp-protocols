@@ -1,3 +1,4 @@
+// Asx.AsxDerivatives.Ntp.Itch.v1.05: messages/EndOfBusinessTradeDateMessage.cpp
 #include "EndOfBusinessTradeDateMessage.hpp"
 
 #include "../common/Print.hpp"

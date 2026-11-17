@@ -1,3 +1,4 @@
+// Jpx.OseDerivatives.GeniumInet.Itch.v5.0.6: enums/FinancialProduct.hpp
 #pragma once
 
 #include <cstdint>

@@ -1,3 +1,4 @@
+// CixAts.CixAspen.MarketDataFeed.Aspen.v1.4: definitions.hpp
 #pragma once
 
 // Every flyweight view and reader of CixAts.CixAspen.MarketDataFeed.Aspen.v1.4.

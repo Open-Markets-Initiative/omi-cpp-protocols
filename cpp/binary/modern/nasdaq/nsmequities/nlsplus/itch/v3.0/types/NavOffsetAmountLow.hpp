@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: types/NavOffsetAmountLow.hpp
 #pragma once
 
 #include <bit>

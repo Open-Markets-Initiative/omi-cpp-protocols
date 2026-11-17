@@ -1,9 +1,10 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1: messages/ExecutionReportNewMessage.hpp
 #pragma once
 
 #include "../structs/OutboundBusinessHeader.hpp"
 #include "../types/Side.hpp"
 #include "../types/OrdStatus.hpp"
-#include "../types/Clordid.hpp"
+#include "../types/ClOrdId.hpp"
 #include "../types/SecondaryOrderId.hpp"
 #include "../types/SecurityId.hpp"
 #include "../types/OrderId.hpp"
@@ -23,7 +24,7 @@
 #include "../types/StopPx.hpp"
 #include "../types/MinQty.hpp"
 #include "../types/MaxFloor.hpp"
-#include "../types/CrossidOptional.hpp"
+#include "../types/CrossIdOptional.hpp"
 #include "../types/ReceivedTime.hpp"
 #include "../types/Offset152Padding3.hpp"
 #include "../types/Ordtagid.hpp"
@@ -44,7 +45,7 @@ struct ExecutionReportNewMessage {
     OutboundBusinessHeader outbound_business_header;
     Side side;
     OrdStatus ord_status;
-    Clordid clordid;
+    ClOrdId cl_ord_id;
     SecondaryOrderId secondary_order_id;
     SecurityId security_id;
     OrderId order_id;
@@ -64,7 +65,7 @@ struct ExecutionReportNewMessage {
     StopPx stop_px;
     MinQty min_qty;
     MaxFloor max_floor;
-    CrossidOptional crossid_optional;
+    CrossIdOptional cross_id_optional;
     ReceivedTime received_time;
     Offset152Padding3 offset_152_padding_3;
     Ordtagid ordtagid;

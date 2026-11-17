@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeed.Xdp.v2.1.g: main.cpp
 // Nyse.AmexEquities.IntegratedFeed.Xdp.v2.1.g benchmark, through the Classes Packet: every value it reads from every message of the simulated
 // sequence (tests/simulated/nyse/amexequities/integratedfeed/xdp/v2.1.g.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 

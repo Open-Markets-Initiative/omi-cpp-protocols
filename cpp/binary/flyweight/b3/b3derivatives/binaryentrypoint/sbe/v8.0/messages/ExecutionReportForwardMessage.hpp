@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: messages/ExecutionReportForwardMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -41,7 +42,7 @@ class ExecutionReportForwardMessage {
 
     OrdStatus ord_status() const { return static_cast<OrdStatus>(wire::read_char(at(19))); }
 
-    std::optional<std::uint64_t> clordid_optional() const { return wire::nullable(wire::read_u64_le(at(20)), static_cast<std::uint64_t>(0ULL)); }
+    std::optional<std::uint64_t> cl_ord_id_optional() const { return wire::nullable(wire::read_u64_le(at(20)), static_cast<std::uint64_t>(0ULL)); }
 
     std::uint64_t secondary_order_id() const { return wire::read_u64_le(at(28)); }
 
@@ -100,8 +101,8 @@ class ExecutionReportForwardMessage {
         out << side();
         out << ", ord_status=";
         out << ord_status();
-        out << ", clordid_optional=";
-        print::optional(out, clordid_optional());
+        out << ", cl_ord_id_optional=";
+        print::optional(out, cl_ord_id_optional());
         out << ", secondary_order_id=";
         out << secondary_order_id();
         out << ", security_id=";

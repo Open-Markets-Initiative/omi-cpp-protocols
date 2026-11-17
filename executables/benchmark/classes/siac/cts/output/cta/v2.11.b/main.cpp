@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: main.cpp
 // Siac.Cts.Output.Cta.v2.11.b benchmark, through the Classes Packet: every value it reads from every message of the simulated
 // sequence (tests/simulated/siac/cts/output/cta/v2.11.b.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -100,9 +101,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest((*message_2).short_sale_restriction_indicator());
                 checksum += bench::digest((*message_2).halt_reason());
                 checksum += bench::digest((*message_2).instrument_type());
-                checksum += bench::digest((*message_2).reserved());
-                checksum += bench::digest((*message_2).second_reserved());
-                checksum += bench::digest((*message_2).reserved_128());
             }
         } else if (const auto* message = dynamic_cast<const protocol::ControlMessage*>(each.message())) {
             checksum += bench::digest((*message).control_message_type());
@@ -176,7 +174,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest((*message_2).mwcb_level_1().mantissa());
                 checksum += bench::digest((*message_2).mwcb_level_2().mantissa());
                 checksum += bench::digest((*message_2).mwcb_level_3().mantissa());
-                checksum += bench::digest((*message_2).reserved());
             } else if (const auto* message_2 = dynamic_cast<const protocol::MarketWideCircuitBreakerStatusMessage*>(message->market_status_message_payload())) {
                 checksum += bench::digest((*message_2).participant_id());
                 checksum += bench::digest((*message_2).timestamp_1().seconds());
@@ -185,7 +182,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest((*message_2).transaction_id());
                 checksum += bench::digest((*message_2).participant_reference_number());
                 checksum += bench::digest((*message_2).market_wide_circuit_breaker_level_indicator());
-                checksum += bench::digest((*message_2).reserved());
             } else if (const auto* message_2 = dynamic_cast<const protocol::ApproximateAdjustedVolumeMarketCenterMessage*>(message->market_status_message_payload())) {
                 checksum += bench::digest((*message_2).participant_id());
                 checksum += bench::digest((*message_2).timestamp_1().seconds());
@@ -486,7 +482,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest((*message_2).short_sale_restriction_indicator());
                 checksum += bench::digest((*message_2).primary_listing_market_participant_id());
                 checksum += bench::digest((*message_2).financial_status_indicator());
-                checksum += bench::digest((*message_2).reserved_62());
             } else if (const auto* message_2 = dynamic_cast<const protocol::TradeCorrectionMessage*>(message->trade_message_payload())) {
                 checksum += bench::digest((*message_2).participant_id());
                 checksum += bench::digest((*message_2).timestamp_1().seconds());

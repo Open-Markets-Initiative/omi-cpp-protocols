@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeedRetransmission.Pillar.v2.5.g: common/Decimal.hpp
 #pragma once
 
 #include <cmath>

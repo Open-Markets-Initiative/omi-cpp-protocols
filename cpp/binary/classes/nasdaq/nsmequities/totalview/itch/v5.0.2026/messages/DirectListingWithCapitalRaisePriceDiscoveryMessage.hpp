@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2026: messages/DirectListingWithCapitalRaisePriceDiscoveryMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -26,7 +27,7 @@ class DirectListingWithCapitalRaisePriceDiscoveryMessage : public SequencedMessa
     static constexpr std::size_t wire_size = 47;
 
     DirectListingWithCapitalRaisePriceDiscoveryMessage() = default;
-    DirectListingWithCapitalRaisePriceDiscoveryMessage(std::uint16_t stock_locate, std::uint16_t tracking_number, std::chrono::nanoseconds timestamp, const std::string& stock, OpenEligibilityStatus open_eligibility_status, Decimal minimum_allowable_price, Decimal maximum_allowable_price, Decimal near_execution_price, std::uint64_t near_execution_time, Decimal lower_price_range_collar, Decimal upper_price_range_collar);
+    DirectListingWithCapitalRaisePriceDiscoveryMessage(std::uint16_t stock_locate, std::uint16_t tracking_number, std::chrono::nanoseconds timestamp, const std::string& stock, OpenEligibilityStatus open_eligibility_status, Decimal minimum_allowable_price, Decimal maximum_allowable_price, Decimal near_execution_price, std::chrono::nanoseconds near_execution_time, Decimal lower_price_range_collar, Decimal upper_price_range_collar);
 
     // Stock Locate: Locate Code uniquely assigned to the security symbol for the day
     std::uint16_t stock_locate() const;
@@ -65,8 +66,9 @@ class DirectListingWithCapitalRaisePriceDiscoveryMessage : public SequencedMessa
     void set_near_execution_price(Decimal value);
 
     // Near Execution Time: The time at which the Near Execution Price was determined
-    std::uint64_t near_execution_time() const;
-    void set_near_execution_time(std::uint64_t value);
+    std::chrono::nanoseconds near_execution_time() const;
+    void set_near_execution_time(std::chrono::nanoseconds value);
+    std::int64_t near_execution_time_utc(const calendar::Day& day) const;
 
     // Lower Price Range Collar: Indicates the price of the Lower Auction Collar Threshold
     Decimal lower_price_range_collar() const;
@@ -99,7 +101,7 @@ class DirectListingWithCapitalRaisePriceDiscoveryMessage : public SequencedMessa
     Decimal minimum_allowable_price_{ 0, -4 };
     Decimal maximum_allowable_price_{ 0, -4 };
     Decimal near_execution_price_{ 0, -4 };
-    std::uint64_t near_execution_time_{};
+    std::chrono::nanoseconds near_execution_time_{};
     Decimal lower_price_range_collar_{ 0, -4 };
     Decimal upper_price_range_collar_{ 0, -4 };
 };

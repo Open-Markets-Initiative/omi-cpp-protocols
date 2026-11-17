@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.TopOfMarket.Mach.v2.5: miax_miaxoptions_topofmarket_mach_v2_5.hpp
 // Miax MiaxOptions TopOfMarket Mach 2.5 Template Meta Programming
 
 #pragma once
@@ -330,6 +331,7 @@ struct expected_event_time_seconds_part {
     using type = std::uint32_t;
     static constexpr std::size_t size = 4;
     static constexpr std::endian order = std::endian::little;
+    static constexpr type no_value = static_cast<type>(0ULL);
 
     constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
     constexpr operator type() const noexcept { return value(); }
@@ -802,7 +804,7 @@ struct packet_length {
     type value_;
 };
 
-// Packet Type: protocol packet type
+// Packet Type: Mach protocol packet type
 struct packet_type {
     enum class type : std::uint8_t {
         heartbeat = 0,
@@ -1064,7 +1066,7 @@ struct session_id {
     type value_;
 };
 
-// Session Number: protocol packet type
+// Session Number: The Session this packet was generated from
 struct session_number {
     using type = std::uint8_t;
     static constexpr std::size_t size = 1;

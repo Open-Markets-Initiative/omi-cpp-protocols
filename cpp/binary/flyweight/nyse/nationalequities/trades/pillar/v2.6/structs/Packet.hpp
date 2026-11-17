@@ -1,3 +1,4 @@
+// Nyse.NationalEquities.Trades.Pillar.v2.6: structs/Packet.hpp
 #pragma once
 
 #include <cstddef>

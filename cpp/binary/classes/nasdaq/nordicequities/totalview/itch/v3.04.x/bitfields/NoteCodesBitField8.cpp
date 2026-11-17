@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: bitfields/NoteCodesBitField8.cpp
 #include "NoteCodesBitField8.hpp"
 
 #include "../common/Print.hpp"

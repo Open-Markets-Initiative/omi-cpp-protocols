@@ -1,3 +1,4 @@
+// Memx.MemxEquities.MemoirDepthFeed.Sbe.v1.3: memx_memxequities_memoirdepthfeed_sbe_v1_3.hpp
 // Memx MemxEquities MemoirDepthFeed Sbe 1.3 Template Meta Programming
 
 #pragma once

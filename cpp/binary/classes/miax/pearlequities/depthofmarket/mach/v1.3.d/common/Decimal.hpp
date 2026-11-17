@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: common/Decimal.hpp
 #pragma once
 
 #include <cmath>

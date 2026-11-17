@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.6: groups/SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup.hpp
 #pragma once
 
 #include <chrono>
@@ -18,15 +19,15 @@ class SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup {
     static constexpr std::size_t wire_size = 41;
 
     SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup() = default;
-    SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup(std::optional<Decimal> md_corporate_offset_price_optional, std::int64_t md_entry_size_quantity, std::uint32_t md_entry_position_no, std::optional<std::uint32_t> entering_firm, std::optional<std::chrono::nanoseconds> md_insert_timestamp, std::uint64_t secondary_order_id, MdEntryType md_entry_type);
+    SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup(std::optional<Decimal> md_corporate_offset_price_optional, std::int64_t md_entry_size, std::uint32_t md_entry_position_no, std::optional<std::uint32_t> entering_firm, std::optional<std::chrono::nanoseconds> md_insert_timestamp, std::uint64_t secondary_order_id, MdEntryType md_entry_type);
 
     // Md Corporate Offset Price Optional: mDEntryPx
     std::optional<Decimal> md_corporate_offset_price_optional() const;
     void set_md_corporate_offset_price_optional(std::optional<Decimal> value);
 
-    // Md Entry Size Quantity: mDEntrySize
-    std::int64_t md_entry_size_quantity() const;
-    void set_md_entry_size_quantity(std::int64_t value);
+    // Md Entry Size: mDEntrySize
+    std::int64_t md_entry_size() const;
+    void set_md_entry_size(std::int64_t value);
 
     // Md Entry Position No: mDEntryPositionNo
     std::uint32_t md_entry_position_no() const;
@@ -61,7 +62,7 @@ class SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup {
 
   private:
     std::optional<Decimal> md_corporate_offset_price_optional_{};
-    std::int64_t md_entry_size_quantity_{};
+    std::int64_t md_entry_size_{};
     std::uint32_t md_entry_position_no_{};
     std::optional<std::uint32_t> entering_firm_{};
     std::optional<std::chrono::nanoseconds> md_insert_timestamp_{};

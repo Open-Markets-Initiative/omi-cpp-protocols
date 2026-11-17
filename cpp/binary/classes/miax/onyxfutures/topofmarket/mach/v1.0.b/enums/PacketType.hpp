@@ -1,3 +1,4 @@
+// Miax.OnyxFutures.TopOfMarket.Mach.v1.0.b: enums/PacketType.hpp
 #pragma once
 
 #include <cstdint>
@@ -6,7 +7,7 @@
 
 namespace miax::onyxfutures::topofmarket::mach::v1_0_b {
 
-// protocol packet type
+// Mach protocol packet type
 enum class PacketType : std::uint8_t {
     Heartbeat = 0,          // Heartbeat
     StartOfSession = 1,     // Start Of Session

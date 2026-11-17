@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: definitions.hpp
 #pragma once
 
 // Every flyweight view and reader of Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d.
@@ -24,12 +25,15 @@
 #include "messages/RefreshResponseMessage.hpp"
 #include "messages/EndOfRefreshNotificationMessage.hpp"
 #include "messages/UnsequencedDataPacket.hpp"
+#include "groups/RequestedMatchingEngine.hpp"
 #include "messages/LoginRequest.hpp"
+#include "groups/LoginMatchingEngine.hpp"
 #include "messages/LoginResponse.hpp"
 #include "messages/SynchronizationComplete.hpp"
 #include "messages/RetransmissionRequest.hpp"
 #include "messages/LogoutRequest.hpp"
 #include "messages/GoodbyePacket.hpp"
+#include "messages/TradingSessionUpdate.hpp"
 #include "messages/TestPacket.hpp"
 #include "structs/UdpPacket.hpp"
 #include "structs/Frame.hpp"

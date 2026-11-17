@@ -1,3 +1,4 @@
+// Cboe.C1Options.MarketDataFeed.Csm.v1.4.2: structs/TradeCondition.cpp
 #include "TradeCondition.hpp"
 
 #include "../common/Print.hpp"

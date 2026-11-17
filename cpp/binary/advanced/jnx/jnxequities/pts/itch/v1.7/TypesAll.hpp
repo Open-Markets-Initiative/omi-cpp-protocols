@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.7: TypesAll.hpp
 #pragma once
 
 // All type headers for this protocol schema

@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v4.0: messages/TimestampMessage.hpp
 #pragma once
 
 #include <chrono>

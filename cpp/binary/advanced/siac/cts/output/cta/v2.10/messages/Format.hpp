@@ -1,12 +1,13 @@
+// Siac.Cts.Output.Cta.v2.10: messages/Format.hpp
 #pragma once
 
 #include <ostream>
 #include <string_view>
 
-#include "StartOfEndOfDayMessage.hpp"
-#include "EndOfEndOfDayMessage.hpp"
-#include "StartOfStartOfDayMessage.hpp"
-#include "EndOfStartOfDayMessage.hpp"
+#include "StartOfEndOfDaySummaryMessage.hpp"
+#include "EndOfEndOfDaySummaryMessage.hpp"
+#include "StartOfStartOfDaySummaryMessage.hpp"
+#include "EndOfStartOfDaySummaryMessage.hpp"
 #include "StartOfDayMessage.hpp"
 #include "ResetBlockSequenceNumberMessage.hpp"
 #include "DisasterRecoveryDataCenterActivationMessage.hpp"
@@ -104,7 +105,7 @@ inline std::ostream& operator<<(std::ostream& os, const timestamp_2& value) {
     return os;
 }
 
-inline std::ostream& operator<<(std::ostream& os, const start_of_end_of_day_message& msg) {
+inline std::ostream& operator<<(std::ostream& os, const start_of_end_of_day_summary_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
        << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
        << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
@@ -115,7 +116,7 @@ inline std::ostream& operator<<(std::ostream& os, const start_of_end_of_day_mess
     return os;
 }
 
-inline std::ostream& operator<<(std::ostream& os, const end_of_end_of_day_message& msg) {
+inline std::ostream& operator<<(std::ostream& os, const end_of_end_of_day_summary_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
        << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
        << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
@@ -126,7 +127,7 @@ inline std::ostream& operator<<(std::ostream& os, const end_of_end_of_day_messag
     return os;
 }
 
-inline std::ostream& operator<<(std::ostream& os, const start_of_start_of_day_message& msg) {
+inline std::ostream& operator<<(std::ostream& os, const start_of_start_of_day_summary_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
        << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
        << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
@@ -137,7 +138,7 @@ inline std::ostream& operator<<(std::ostream& os, const start_of_start_of_day_me
     return os;
 }
 
-inline std::ostream& operator<<(std::ostream& os, const end_of_start_of_day_message& msg) {
+inline std::ostream& operator<<(std::ostream& os, const end_of_start_of_day_summary_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
        << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
        << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()

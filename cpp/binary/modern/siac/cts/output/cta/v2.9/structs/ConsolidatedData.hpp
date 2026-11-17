@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.9: structs/ConsolidatedData.hpp
 #pragma once
 
 #include "../types/PreviousClosePriceDate.hpp"

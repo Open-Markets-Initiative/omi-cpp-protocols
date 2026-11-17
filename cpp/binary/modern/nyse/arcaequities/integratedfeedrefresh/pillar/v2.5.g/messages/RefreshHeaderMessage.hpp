@@ -1,3 +1,4 @@
+// Nyse.ArcaEquities.IntegratedFeedRefresh.Pillar.v2.5.g: messages/RefreshHeaderMessage.hpp
 #pragma once
 
 #include "../types/CurrentRefreshPkt.hpp"

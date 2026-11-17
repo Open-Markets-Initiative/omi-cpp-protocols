@@ -1,3 +1,4 @@
+// Iex.IexEquities.Deep.IexTp.v1.06: messages/TradingStatusMessage.cpp
 #include "TradingStatusMessage.hpp"
 
 #include "../common/Print.hpp"

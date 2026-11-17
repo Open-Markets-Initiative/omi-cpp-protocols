@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: main.cpp
 // Nasdaq.NsmEquities.NlsPlus.Itch.v3.0 write and read: every message built with each field it sets, written
 // into a capture through the Classes encoder, then read back - each field set must read as it was written.
 // 
@@ -225,7 +226,6 @@ std::unique_ptr<protocol::Message> build_NextSharesTradeCorrectionMessage() {
 // StockTradingActionMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_StockTradingActionMessage() {
     auto message = std::make_unique<protocol::StockTradingActionMessage>();
-    message->set_reserved('B');
     message->set_issue_symbol(std::string("CDE"));
     message->set_security_class(protocol::SecurityClass::NyseArca);
     message->set_current_trading_state(protocol::CurrentTradingState::Halted);
@@ -353,7 +353,7 @@ std::unique_ptr<protocol::Message> build_MwcbStatusMessage() {
 std::unique_ptr<protocol::Message> build_IpoQuotingPeriodUpdateMessage() {
     auto message = std::make_unique<protocol::IpoQuotingPeriodUpdateMessage>();
     message->set_stock(std::string("BCD"));
-    message->set_ipo_quotation_release_time(static_cast<std::uint32_t>(2));
+    message->set_ipo_quotation_release_time(std::chrono::seconds{2});
     message->set_ipo_quotation_release_qualifier(protocol::IpoQuotationReleaseQualifier::Cancelled);
     message->set_ipo_price(protocol::Decimal(4, -4));
     return message;
@@ -1008,10 +1008,6 @@ int check_StockTradingActionMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->reserved() == 'B')) {
-        std::printf("FAIL StockTradingActionMessage: reserved does not read as it was written\n");
-        ++failures;
-    }
     if (!(message->issue_symbol() == std::string("CDE"))) {
         std::printf("FAIL StockTradingActionMessage: issue_symbol does not read as it was written\n");
         ++failures;
@@ -1399,7 +1395,7 @@ int check_IpoQuotingPeriodUpdateMessage(const protocol::Message* read) {
         std::printf("FAIL IpoQuotingPeriodUpdateMessage: stock does not read as it was written\n");
         ++failures;
     }
-    if (!(message->ipo_quotation_release_time() == static_cast<std::uint32_t>(2))) {
+    if (!(message->ipo_quotation_release_time() == std::chrono::seconds{2})) {
         std::printf("FAIL IpoQuotingPeriodUpdateMessage: ipo_quotation_release_time does not read as it was written\n");
         ++failures;
     }

@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: messages/SystemEventMessage.hpp
 #pragma once
 
 #include "../types/EventCode.hpp"

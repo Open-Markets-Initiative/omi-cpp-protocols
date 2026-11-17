@@ -1,3 +1,4 @@
+// Nasdaq.IseOptions.OrderComboFeed.Itch.v1.1: enums/AuctionType.cpp
 #include "AuctionType.hpp"
 
 namespace nasdaq::iseoptions::ordercombofeed::itch::v1_1 {

@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v1: Settings.hpp
 #pragma once
 
 #include <iostream>

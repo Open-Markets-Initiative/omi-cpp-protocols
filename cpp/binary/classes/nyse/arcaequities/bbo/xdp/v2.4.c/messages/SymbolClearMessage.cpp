@@ -1,3 +1,4 @@
+// Nyse.ArcaEquities.Bbo.Xdp.v2.4.c: messages/SymbolClearMessage.cpp
 #include "SymbolClearMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,14 +7,14 @@
 
 namespace nyse::arcaequities::bbo::xdp::v2_4_c {
 
-SymbolClearMessage::SymbolClearMessage(std::uint32_t source_time, std::uint32_t source_time_ns, std::uint32_t symbol_index, std::uint32_t next_source_seq_num)
+SymbolClearMessage::SymbolClearMessage(std::chrono::seconds source_time, std::chrono::nanoseconds source_time_ns, std::uint32_t symbol_index, std::uint32_t next_source_seq_num)
   : source_time_(source_time), source_time_ns_(source_time_ns), symbol_index_(symbol_index), next_source_seq_num_(next_source_seq_num) {}
 
-std::uint32_t SymbolClearMessage::source_time() const { return source_time_; }
-void SymbolClearMessage::set_source_time(std::uint32_t value) { source_time_ = value; }
+std::chrono::seconds SymbolClearMessage::source_time() const { return source_time_; }
+void SymbolClearMessage::set_source_time(std::chrono::seconds value) { source_time_ = value; }
 
-std::uint32_t SymbolClearMessage::source_time_ns() const { return source_time_ns_; }
-void SymbolClearMessage::set_source_time_ns(std::uint32_t value) { source_time_ns_ = value; }
+std::chrono::nanoseconds SymbolClearMessage::source_time_ns() const { return source_time_ns_; }
+void SymbolClearMessage::set_source_time_ns(std::chrono::nanoseconds value) { source_time_ns_ = value; }
 
 std::uint32_t SymbolClearMessage::symbol_index() const { return symbol_index_; }
 void SymbolClearMessage::set_symbol_index(std::uint32_t value) { symbol_index_ = value; }
@@ -29,10 +30,10 @@ std::size_t SymbolClearMessage::decode(const std::byte* data, std::size_t length
     std::size_t offset = 0;
     wire::require("SymbolClearMessage", wire_size, length);
 
-    source_time_ = wire::read_u32_le(data + offset);
+    source_time_ = std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
-    source_time_ns_ = wire::read_u32_le(data + offset);
+    source_time_ns_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     symbol_index_ = wire::read_u32_le(data + offset);
@@ -48,10 +49,10 @@ std::size_t SymbolClearMessage::encode(std::byte* data, std::size_t capacity) co
     std::size_t offset = 0;
     wire::require_capacity("SymbolClearMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_.count()));
     offset += 4;
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_.count()));
     offset += 4;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(symbol_index_));
@@ -78,9 +79,9 @@ std::unique_ptr<Message> SymbolClearMessage::clone() const {
 void SymbolClearMessage::print(std::ostream& out) const {
     out << "SymbolClearMessage{";
     out << "source_time=";
-    out << source_time_;
+    out << source_time_.count();
     out << ", source_time_ns=";
-    out << source_time_ns_;
+    out << source_time_ns_.count();
     out << ", symbol_index=";
     out << symbol_index_;
     out << ", next_source_seq_num=";

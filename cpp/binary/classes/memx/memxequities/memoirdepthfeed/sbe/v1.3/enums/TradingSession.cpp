@@ -1,3 +1,4 @@
+// Memx.MemxEquities.MemoirDepthFeed.Sbe.v1.3: enums/TradingSession.cpp
 #include "TradingSession.hpp"
 
 namespace memx::memxequities::memoirdepthfeed::sbe::v1_3 {

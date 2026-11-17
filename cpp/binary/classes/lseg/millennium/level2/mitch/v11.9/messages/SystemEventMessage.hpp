@@ -1,7 +1,8 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/SystemEventMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
-#include <cstdint>
 #include <memory>
 #include <ostream>
 #include <string_view>
@@ -22,11 +23,11 @@ class SystemEventMessage : public Message {
     static constexpr std::size_t wire_size = 5;
 
     SystemEventMessage() = default;
-    SystemEventMessage(std::uint32_t nanosecond, EventCode event_code);
+    SystemEventMessage(std::chrono::nanoseconds nanosecond, EventCode event_code);
 
     // Nanosecond: Nanoseconds since last message, accurate to the nearest microsecond.
-    std::uint32_t nanosecond() const;
-    void set_nanosecond(std::uint32_t value);
+    std::chrono::nanoseconds nanosecond() const;
+    void set_nanosecond(std::chrono::nanoseconds value);
 
     // Event Code: Refer to System Event Codes below
     EventCode event_code() const;
@@ -47,7 +48,7 @@ class SystemEventMessage : public Message {
     bool operator!=(const SystemEventMessage& other) const;
 
   private:
-    std::uint32_t nanosecond_{};
+    std::chrono::nanoseconds nanosecond_{};
     EventCode event_code_{};
 };
 

@@ -1,3 +1,4 @@
+// Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.20.4: enums/RegShoAction.hpp
 #pragma once
 
 #include <cstdint>

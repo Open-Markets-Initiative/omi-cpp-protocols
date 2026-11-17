@@ -219,7 +219,6 @@ struct Reader {
     void on(const protocol::StockTradingActionMessage& message) {
         const std::string entry = "packet.messages.message[" + std::to_string(index++) + "]";
         values[entry + ".payload"] = "packet.messages.message.payload.stocktradingactionmessage";
-        values[entry + ".payload.stocktradingactionmessage.reserved"] = canonical::text(canonical::character(message.reserved()), ' ', false);
         values[entry + ".payload.stocktradingactionmessage.issuesymbol"] = canonical::text(std::string(message.issue_symbol()), ' ', false);
         values[entry + ".payload.stocktradingactionmessage.securityclass"] = canonical::text(canonical::character(message.security_class()), ' ', false);
         values[entry + ".payload.stocktradingactionmessage.currenttradingstate"] = canonical::text(canonical::character(message.current_trading_state()), ' ', false);

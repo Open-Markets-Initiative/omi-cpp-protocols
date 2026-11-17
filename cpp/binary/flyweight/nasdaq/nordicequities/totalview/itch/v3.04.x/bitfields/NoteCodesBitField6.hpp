@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: bitfields/NoteCodesBitField6.hpp
 #pragma once
 
 #include <cstddef>

@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.9: enums/CancelErrorAction.hpp
 #pragma once
 
 #include <cstdint>

@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1: types/ClOrdId.hpp
 #pragma once
 
 #include <cstddef>
@@ -6,21 +7,21 @@
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_1 {
 
 // clOrdID
-struct Clordid {
+struct ClOrdId {
 
-    static constexpr const char* name = "ClOrdId";
+    static constexpr const char* name = "Cl Ord Id";
     static constexpr std::size_t size =  8;
     using type = std::uint64_t;
 
     // default constructor
-    constexpr Clordid()
+    constexpr ClOrdId()
      : value{ 0 } {}
 
     // standard constructor
-    constexpr explicit Clordid(const std::uint64_t value)
+    constexpr explicit ClOrdId(const std::uint64_t value)
      : value{ value } {}
 
-    // get value of Clordid field
+    // get value of ClOrdId field
     [[nodiscard]] std::uint64_t get() const {
         return value;
     }

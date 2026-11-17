@@ -1,3 +1,4 @@
+// Cboe.C1Options.MulticastDepthOfBook.Pitch.v2.39.4: enums/AuctionType.cpp
 #include "AuctionType.hpp"
 
 namespace cboe::c1options::multicastdepthofbook::pitch::v2_39_4 {

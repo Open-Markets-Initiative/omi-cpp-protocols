@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: siac_cts_output_cta_v2_11_b.hpp
 // Siac Cts Output Cta 2.11.b Template Meta Programming
 
 #pragma once
@@ -278,6 +279,7 @@ struct category_2 {
     enum class type : char {
         no_trade_through_exempt_reason = ' ',
         inter_market_sweep_order = 'F',
+        market_center_opening_trade = 'O',
         derivatively_priced = '4',
         market_center_reopening_trade = '5',
         market_center_closing_trade = '6',
@@ -301,7 +303,6 @@ struct category_3 {
     enum class type : char {
         not_extended_hours_or_sold_out_of_sequence = ' ',
         sold_last_late_reporting = 'L',
-        market_center_opening_trade = 'O',
         extended_hours_trade = 'T',
         extended_hours_sold_out_of_sequence = 'U',
         sold_out_of_sequence = 'Z',
@@ -865,8 +866,8 @@ struct index_value {
 // Indices Message Type: Identifies the type of Index message
 struct indices_message_type {
     enum class type : char {
-        indices = 'I',
-        bid_and_offer_index = 'Q',
+        index_message = 'I',
+        bid_and_offer_index_message = 'Q',
     };
 
     static constexpr std::size_t size = 1;
@@ -1669,40 +1670,38 @@ struct prior_security_symbol {
 
 // Reserved: Space-filled. Field is reserved for future use
 struct reserved {
-    using type = char;
+    using type = std::uint8_t;
     static constexpr std::size_t size = 1;
 
     constexpr type value() const noexcept { return value_; }
     constexpr operator type() const noexcept { return value(); }
 
   protected:
-    char value_;
+    type value_;
 };
 
 // Reserved 128: Space-filled. Field is reserved for future use
 struct reserved_128 {
-    using type = std::string_view;
+    using type = std::span<const std::byte, 128>;
     static constexpr std::size_t size = 128;
-    static constexpr char fill = ' ';
 
-    constexpr type value() const noexcept { return tmp::trimmed(value_, fill); }
+    constexpr type value() const noexcept { return type{ value_ }; }
     constexpr operator type() const noexcept { return value(); }
 
   protected:
-    std::array<char, 128> value_;
+    std::array<std::byte, 128> value_;
 };
 
 // Reserved 62: Space-filled. Field is reserved for future use
 struct reserved_62 {
-    using type = std::string_view;
+    using type = std::span<const std::byte, 62>;
     static constexpr std::size_t size = 62;
-    static constexpr char fill = ' ';
 
-    constexpr type value() const noexcept { return tmp::trimmed(value_, fill); }
+    constexpr type value() const noexcept { return type{ value_ }; }
     constexpr operator type() const noexcept { return value(); }
 
   protected:
-    std::array<char, 62> value_;
+    std::array<std::byte, 62> value_;
 };
 
 // Retransmission Indicator
@@ -1793,14 +1792,14 @@ struct sale_condition_category {
 
 // Second Reserved: Space-filled. Field is reserved for future use
 struct second_reserved {
-    using type = char;
+    using type = std::uint8_t;
     static constexpr std::size_t size = 1;
 
     constexpr type value() const noexcept { return value_; }
     constexpr operator type() const noexcept { return value(); }
 
   protected:
-    char value_;
+    type value_;
 };
 
 // Seconds: Contains The Number Seconds From Epoch 111970000000 Utc

@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v6.0: enums/TradingSessionId.cpp
 #include "TradingSessionId.hpp"
 
 namespace eurex::t7::eobi::fbe::v6_0 {

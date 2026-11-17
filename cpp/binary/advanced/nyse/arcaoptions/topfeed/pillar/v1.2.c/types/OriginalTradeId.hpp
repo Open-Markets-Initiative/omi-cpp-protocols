@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.TopFeed.Pillar.v1.2.c: types/OriginalTradeId.hpp
 #pragma once
 
 #include <cstddef>

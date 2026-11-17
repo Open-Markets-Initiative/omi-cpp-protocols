@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.8: groups/SecurityStatusRequestRelatedSymbolGroup.cpp
 #include "SecurityStatusRequestRelatedSymbolGroup.hpp"
 
 #include "../common/Print.hpp"

@@ -1,5 +1,7 @@
+// Nyse.AmexOptions.DeepFeed.Xdp.v1.3.a: messages/OutrightMarketDepthBuyMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <ostream>
@@ -28,7 +30,7 @@ class OutrightMarketDepthBuyMessage {
     static constexpr std::size_t fixed_size = 44;
     std::size_t encoded_size() const { return 44; }
 
-    std::uint32_t source_time() const { return wire::read_u32_le(at(0)); }
+    std::chrono::seconds source_time() const { return std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_le(at(0)))); }
 
     std::uint32_t source_ns() const { return wire::read_u32_le(at(4)); }
 
@@ -63,7 +65,7 @@ class OutrightMarketDepthBuyMessage {
     void print(std::ostream& out) const {
         out << "OutrightMarketDepthBuyMessage{";
         out << "source_time=";
-        out << source_time();
+        out << source_time().count();
         out << ", source_ns=";
         out << source_ns();
         out << ", series_index=";

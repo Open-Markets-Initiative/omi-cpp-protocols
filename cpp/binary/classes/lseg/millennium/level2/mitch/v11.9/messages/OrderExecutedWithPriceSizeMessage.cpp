@@ -1,3 +1,4 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/OrderExecutedWithPriceSizeMessage.cpp
 #include "OrderExecutedWithPriceSizeMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,11 +7,11 @@
 
 namespace lseg::millennium::level2::mitch::v11_9 {
 
-OrderExecutedWithPriceSizeMessage::OrderExecutedWithPriceSizeMessage(std::uint32_t nanosecond, std::uint64_t order_id, std::uint32_t executed_quantity, std::uint32_t display_quantity, std::uint64_t trade_match_id, Printable printable, std::int64_t price)
+OrderExecutedWithPriceSizeMessage::OrderExecutedWithPriceSizeMessage(std::chrono::nanoseconds nanosecond, std::uint64_t order_id, std::uint32_t executed_quantity, std::uint32_t display_quantity, std::uint64_t trade_match_id, Printable printable, Decimal price)
   : nanosecond_(nanosecond), order_id_(order_id), executed_quantity_(executed_quantity), display_quantity_(display_quantity), trade_match_id_(trade_match_id), printable_(printable), price_(price) {}
 
-std::uint32_t OrderExecutedWithPriceSizeMessage::nanosecond() const { return nanosecond_; }
-void OrderExecutedWithPriceSizeMessage::set_nanosecond(std::uint32_t value) { nanosecond_ = value; }
+std::chrono::nanoseconds OrderExecutedWithPriceSizeMessage::nanosecond() const { return nanosecond_; }
+void OrderExecutedWithPriceSizeMessage::set_nanosecond(std::chrono::nanoseconds value) { nanosecond_ = value; }
 
 std::uint64_t OrderExecutedWithPriceSizeMessage::order_id() const { return order_id_; }
 void OrderExecutedWithPriceSizeMessage::set_order_id(std::uint64_t value) { order_id_ = value; }
@@ -27,8 +28,8 @@ void OrderExecutedWithPriceSizeMessage::set_trade_match_id(std::uint64_t value) 
 Printable OrderExecutedWithPriceSizeMessage::printable() const { return printable_; }
 void OrderExecutedWithPriceSizeMessage::set_printable(Printable value) { printable_ = value; }
 
-std::int64_t OrderExecutedWithPriceSizeMessage::price() const { return price_; }
-void OrderExecutedWithPriceSizeMessage::set_price(std::int64_t value) { price_ = value; }
+Decimal OrderExecutedWithPriceSizeMessage::price() const { return price_; }
+void OrderExecutedWithPriceSizeMessage::set_price(Decimal value) { price_ = value; }
 
 MessageCode OrderExecutedWithPriceSizeMessage::type() const { return message_type; }
 
@@ -38,7 +39,7 @@ std::size_t OrderExecutedWithPriceSizeMessage::decode(const std::byte* data, std
     std::size_t offset = 0;
     wire::require("OrderExecutedWithPriceSizeMessage", wire_size, length);
 
-    nanosecond_ = wire::read_u32_le(data + offset);
+    nanosecond_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     order_id_ = wire::read_u64_le(data + offset);
@@ -56,7 +57,7 @@ std::size_t OrderExecutedWithPriceSizeMessage::decode(const std::byte* data, std
     printable_ = static_cast<Printable>(wire::read_char(data + offset));
     offset += 1;
 
-    price_ = wire::read_i64_le(data + offset);
+    price_ = Decimal(static_cast<std::int64_t>(wire::read_i64_le(data + offset)), -8);
     offset += 8;
 
     return offset;
@@ -66,7 +67,7 @@ std::size_t OrderExecutedWithPriceSizeMessage::encode(std::byte* data, std::size
     std::size_t offset = 0;
     wire::require_capacity("OrderExecutedWithPriceSizeMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(nanosecond_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(nanosecond_.count()));
     offset += 4;
 
     wire::write_u64_le(data + offset, static_cast<std::uint64_t>(order_id_));
@@ -84,7 +85,7 @@ std::size_t OrderExecutedWithPriceSizeMessage::encode(std::byte* data, std::size
     wire::write_char(data + offset, static_cast<char>(printable_));
     offset += 1;
 
-    wire::write_i64_le(data + offset, static_cast<std::int64_t>(price_));
+    wire::write_i64_le(data + offset, static_cast<std::int64_t>(price_.mantissa()));
     offset += 8;
 
     return offset;
@@ -105,7 +106,7 @@ std::unique_ptr<Message> OrderExecutedWithPriceSizeMessage::clone() const {
 void OrderExecutedWithPriceSizeMessage::print(std::ostream& out) const {
     out << "OrderExecutedWithPriceSizeMessage{";
     out << "nanosecond=";
-    out << nanosecond_;
+    out << nanosecond_.count();
     out << ", order_id=";
     out << order_id_;
     out << ", executed_quantity=";

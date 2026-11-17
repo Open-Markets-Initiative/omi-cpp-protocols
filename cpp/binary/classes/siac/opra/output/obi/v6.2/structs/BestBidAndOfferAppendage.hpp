@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: structs/BestBidAndOfferAppendage.hpp
 #pragma once
 
 #include <cstddef>

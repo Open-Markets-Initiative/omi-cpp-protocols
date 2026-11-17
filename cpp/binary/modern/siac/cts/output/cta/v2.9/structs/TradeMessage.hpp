@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.9: structs/TradeMessage.hpp
 #pragma once
 
 #include "../types/TradeMessageType.hpp"

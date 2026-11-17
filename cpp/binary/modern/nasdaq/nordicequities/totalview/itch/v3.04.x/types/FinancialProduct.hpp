@@ -1,6 +1,6 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: types/FinancialProduct.hpp
 #pragma once
 
-#include <bit>
 #include <cstddef>
 #include <cstdint>
 

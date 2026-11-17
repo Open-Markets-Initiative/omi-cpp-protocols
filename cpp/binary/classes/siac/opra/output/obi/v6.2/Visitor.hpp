@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: Visitor.hpp
 #pragma once
 
 namespace siac::opra::output::obi::v6_2 {

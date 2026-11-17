@@ -1,3 +1,4 @@
+// Cboe.CfeFutures.MulticastDepthOfBook.Pitch.v1.2.22: messages/ReduceSizeShortMessage.cpp
 #include "ReduceSizeShortMessage.hpp"
 
 #include "../common/Print.hpp"

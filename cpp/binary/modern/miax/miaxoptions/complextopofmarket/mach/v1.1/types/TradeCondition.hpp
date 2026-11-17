@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.ComplexTopOfMarket.Mach.v1.1: types/TradeCondition.hpp
 #pragma once
 
 #include <cstddef>

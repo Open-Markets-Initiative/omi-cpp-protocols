@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: messages/LongFormAdjustedClosingPriceMessage.hpp
 #pragma once
 
 #include <cstddef>

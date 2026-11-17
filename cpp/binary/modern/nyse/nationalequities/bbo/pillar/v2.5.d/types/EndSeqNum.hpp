@@ -1,3 +1,4 @@
+// Nyse.NationalEquities.Bbo.Pillar.v2.5.d: types/EndSeqNum.hpp
 #pragma once
 
 #include <cstddef>

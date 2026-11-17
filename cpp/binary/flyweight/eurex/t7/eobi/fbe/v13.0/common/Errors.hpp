@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v13.0: common/Errors.hpp
 #pragma once
 
 #include <cstddef>

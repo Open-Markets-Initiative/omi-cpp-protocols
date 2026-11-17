@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v13.0: messages/QuoteRequest.hpp
 #pragma once
 
 #include <array>
@@ -28,11 +29,11 @@ class QuoteRequest : public Message {
     QuoteRequest() = default;
     QuoteRequest(std::optional<std::int64_t> security_id, std::optional<Decimal> last_qty, std::optional<Side> side, const std::array<std::byte, 7>& pad7, std::optional<std::chrono::nanoseconds> transact_time);
 
-    // Security Id:
+    // Security Id: Unique instrument identifier
     std::optional<std::int64_t> security_id() const;
     void set_security_id(std::optional<std::int64_t> value);
 
-    // Last Qty:
+    // Last Qty: Total executed matched quantity of this match event
     std::optional<Decimal> last_qty() const;
     void set_last_qty(std::optional<Decimal> value);
 

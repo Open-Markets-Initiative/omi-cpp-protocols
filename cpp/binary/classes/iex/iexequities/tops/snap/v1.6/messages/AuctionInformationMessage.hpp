@@ -1,3 +1,4 @@
+// Iex.IexEquities.Tops.Snap.v1.6: messages/AuctionInformationMessage.hpp
 #pragma once
 
 #include <chrono>

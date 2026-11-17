@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.5: main.cpp
 // Cme.Globex.Mdp3.Sbe.v1.5 benchmark, through the Classes Packet: every value it reads from every message of the simulated
 // sequence (tests/simulated/cme/globex/mdp3/sbe/v1.5.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -53,7 +54,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest((*message_2).match_event_indicator().last_stats_msg());
                 checksum += bench::digest((*message_2).match_event_indicator().last_implied_msg());
                 checksum += bench::digest((*message_2).match_event_indicator().recovery_msg());
-                checksum += bench::digest((*message_2).match_event_indicator().reserved());
                 checksum += bench::digest((*message_2).match_event_indicator().end_of_event());
             } else if (const auto* message_2 = dynamic_cast<const protocol::AdminLogin*>(message->mktdata_payload())) {
                 checksum += bench::digest((*message_2).heart_bt_int());
@@ -66,7 +66,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest((*message_2).match_event_indicator().last_stats_msg());
                 checksum += bench::digest((*message_2).match_event_indicator().last_implied_msg());
                 checksum += bench::digest((*message_2).match_event_indicator().recovery_msg());
-                checksum += bench::digest((*message_2).match_event_indicator().reserved());
                 checksum += bench::digest((*message_2).match_event_indicator().end_of_event());
                 checksum += ((*message_2).tot_num_reports_optional().has_value() ? bench::digest((*(*message_2).tot_num_reports_optional())) : std::uint64_t{0});
                 checksum += bench::digest((*message_2).security_update_action());
@@ -103,9 +102,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest((*message_2).settl_price_type().actual());
                 checksum += bench::digest((*message_2).settl_price_type().rounded());
                 checksum += bench::digest((*message_2).settl_price_type().intraday());
-                checksum += bench::digest((*message_2).settl_price_type().reserved_bits());
-                checksum += bench::digest((*message_2).settl_price_type().unused_settl_price_type_5());
-                checksum += bench::digest((*message_2).settl_price_type().unused_settl_price_type_6());
                 checksum += bench::digest((*message_2).settl_price_type().null_value());
                 checksum += ((*message_2).open_interest_qty().has_value() ? bench::digest((*(*message_2).open_interest_qty())) : std::uint64_t{0});
                 checksum += ((*message_2).cleared_volume().has_value() ? bench::digest((*(*message_2).cleared_volume())) : std::uint64_t{0});
@@ -127,7 +123,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest((*message_2).match_event_indicator().last_stats_msg());
                 checksum += bench::digest((*message_2).match_event_indicator().last_implied_msg());
                 checksum += bench::digest((*message_2).match_event_indicator().recovery_msg());
-                checksum += bench::digest((*message_2).match_event_indicator().reserved());
                 checksum += bench::digest((*message_2).match_event_indicator().end_of_event());
                 checksum += ((*message_2).tot_num_reports_optional().has_value() ? bench::digest((*(*message_2).tot_num_reports_optional())) : std::uint64_t{0});
                 checksum += bench::digest((*message_2).security_update_action());
@@ -164,9 +159,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest((*message_2).settl_price_type().actual());
                 checksum += bench::digest((*message_2).settl_price_type().rounded());
                 checksum += bench::digest((*message_2).settl_price_type().intraday());
-                checksum += bench::digest((*message_2).settl_price_type().reserved_bits());
-                checksum += bench::digest((*message_2).settl_price_type().unused_settl_price_type_5());
-                checksum += bench::digest((*message_2).settl_price_type().unused_settl_price_type_6());
                 checksum += bench::digest((*message_2).settl_price_type().null_value());
                 checksum += ((*message_2).open_interest_qty().has_value() ? bench::digest((*(*message_2).open_interest_qty())) : std::uint64_t{0});
                 checksum += ((*message_2).cleared_volume().has_value() ? bench::digest((*(*message_2).cleared_volume())) : std::uint64_t{0});
@@ -187,7 +179,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest((*message_2).match_event_indicator().last_stats_msg());
                 checksum += bench::digest((*message_2).match_event_indicator().last_implied_msg());
                 checksum += bench::digest((*message_2).match_event_indicator().recovery_msg());
-                checksum += bench::digest((*message_2).match_event_indicator().reserved());
                 checksum += bench::digest((*message_2).match_event_indicator().end_of_event());
                 checksum += ((*message_2).security_trading_status().has_value() ? bench::digest((*(*message_2).security_trading_status())) : std::uint64_t{0});
                 checksum += bench::digest((*message_2).halt_reason());
@@ -200,7 +191,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest((*message_2).match_event_indicator().last_stats_msg());
                 checksum += bench::digest((*message_2).match_event_indicator().last_implied_msg());
                 checksum += bench::digest((*message_2).match_event_indicator().recovery_msg());
-                checksum += bench::digest((*message_2).match_event_indicator().reserved());
                 checksum += bench::digest((*message_2).match_event_indicator().end_of_event());
             } else if (const auto* message_2 = dynamic_cast<const protocol::MdIncrementalRefreshDailyStatistics*>(message->mktdata_payload())) {
                 checksum += bench::digest((*message_2).transact_time());
@@ -210,7 +200,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest((*message_2).match_event_indicator().last_stats_msg());
                 checksum += bench::digest((*message_2).match_event_indicator().last_implied_msg());
                 checksum += bench::digest((*message_2).match_event_indicator().recovery_msg());
-                checksum += bench::digest((*message_2).match_event_indicator().reserved());
                 checksum += bench::digest((*message_2).match_event_indicator().end_of_event());
             } else if (const auto* message_2 = dynamic_cast<const protocol::MdIncrementalRefreshLimitsBanding*>(message->mktdata_payload())) {
                 checksum += bench::digest((*message_2).transact_time());
@@ -220,7 +209,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest((*message_2).match_event_indicator().last_stats_msg());
                 checksum += bench::digest((*message_2).match_event_indicator().last_implied_msg());
                 checksum += bench::digest((*message_2).match_event_indicator().recovery_msg());
-                checksum += bench::digest((*message_2).match_event_indicator().reserved());
                 checksum += bench::digest((*message_2).match_event_indicator().end_of_event());
             } else if (const auto* message_2 = dynamic_cast<const protocol::MdIncrementalRefreshSessionStatistics*>(message->mktdata_payload())) {
                 checksum += bench::digest((*message_2).transact_time());
@@ -230,7 +218,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest((*message_2).match_event_indicator().last_stats_msg());
                 checksum += bench::digest((*message_2).match_event_indicator().last_implied_msg());
                 checksum += bench::digest((*message_2).match_event_indicator().recovery_msg());
-                checksum += bench::digest((*message_2).match_event_indicator().reserved());
                 checksum += bench::digest((*message_2).match_event_indicator().end_of_event());
             } else if (const auto* message_2 = dynamic_cast<const protocol::MdIncrementalRefreshTrade*>(message->mktdata_payload())) {
                 checksum += bench::digest((*message_2).transact_time());
@@ -240,7 +227,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest((*message_2).match_event_indicator().last_stats_msg());
                 checksum += bench::digest((*message_2).match_event_indicator().last_implied_msg());
                 checksum += bench::digest((*message_2).match_event_indicator().recovery_msg());
-                checksum += bench::digest((*message_2).match_event_indicator().reserved());
                 checksum += bench::digest((*message_2).match_event_indicator().end_of_event());
             } else if (const auto* message_2 = dynamic_cast<const protocol::MdIncrementalRefreshVolume*>(message->mktdata_payload())) {
                 checksum += bench::digest((*message_2).transact_time());
@@ -250,7 +236,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest((*message_2).match_event_indicator().last_stats_msg());
                 checksum += bench::digest((*message_2).match_event_indicator().last_implied_msg());
                 checksum += bench::digest((*message_2).match_event_indicator().recovery_msg());
-                checksum += bench::digest((*message_2).match_event_indicator().reserved());
                 checksum += bench::digest((*message_2).match_event_indicator().end_of_event());
             } else if (const auto* message_2 = dynamic_cast<const protocol::SnapshotFullRefresh*>(message->mktdata_payload())) {
                 checksum += bench::digest((*message_2).last_msg_seq_num_processed());
@@ -273,7 +258,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest((*message_2).match_event_indicator().last_stats_msg());
                 checksum += bench::digest((*message_2).match_event_indicator().last_implied_msg());
                 checksum += bench::digest((*message_2).match_event_indicator().recovery_msg());
-                checksum += bench::digest((*message_2).match_event_indicator().reserved());
                 checksum += bench::digest((*message_2).match_event_indicator().end_of_event());
             } else if (const auto* message_2 = dynamic_cast<const protocol::MdInstrumentDefinitionOption*>(message->mktdata_payload())) {
                 checksum += bench::digest((*message_2).match_event_indicator().last_trade_msg());
@@ -282,7 +266,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest((*message_2).match_event_indicator().last_stats_msg());
                 checksum += bench::digest((*message_2).match_event_indicator().last_implied_msg());
                 checksum += bench::digest((*message_2).match_event_indicator().recovery_msg());
-                checksum += bench::digest((*message_2).match_event_indicator().reserved());
                 checksum += bench::digest((*message_2).match_event_indicator().end_of_event());
                 checksum += ((*message_2).tot_num_reports_optional().has_value() ? bench::digest((*(*message_2).tot_num_reports_optional())) : std::uint64_t{0});
                 checksum += bench::digest((*message_2).security_update_action());
@@ -325,9 +308,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest((*message_2).settl_price_type().actual());
                 checksum += bench::digest((*message_2).settl_price_type().rounded());
                 checksum += bench::digest((*message_2).settl_price_type().intraday());
-                checksum += bench::digest((*message_2).settl_price_type().reserved_bits());
-                checksum += bench::digest((*message_2).settl_price_type().unused_settl_price_type_5());
-                checksum += bench::digest((*message_2).settl_price_type().unused_settl_price_type_6());
                 checksum += bench::digest((*message_2).settl_price_type().null_value());
                 checksum += ((*message_2).cleared_volume().has_value() ? bench::digest((*(*message_2).cleared_volume())) : std::uint64_t{0});
                 checksum += ((*message_2).open_interest_qty().has_value() ? bench::digest((*(*message_2).open_interest_qty())) : std::uint64_t{0});
@@ -342,7 +322,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest((*message_2).match_event_indicator().last_stats_msg());
                 checksum += bench::digest((*message_2).match_event_indicator().last_implied_msg());
                 checksum += bench::digest((*message_2).match_event_indicator().recovery_msg());
-                checksum += bench::digest((*message_2).match_event_indicator().reserved());
                 checksum += bench::digest((*message_2).match_event_indicator().end_of_event());
             }
         } else if (const auto* message = dynamic_cast<const protocol::MdpsessionmgmtMessage*>(each.message())) {
@@ -377,7 +356,7 @@ std::uint64_t read(const packet::Frame& frame) {
             } else if (const auto* message_2 = dynamic_cast<const protocol::RequestReject*>(message->mdpsessionmgmt_payload())) {
                 checksum += ((*message_2).md_req_id_optional().has_value() ? bench::digest((*(*message_2).md_req_id_optional())) : std::uint64_t{0});
                 checksum += bench::digest((*message_2).md_req_rej_reason());
-                checksum += bench::digest((*message_2).text());
+                checksum += bench::digest((*message_2).session_text());
             } else if (const auto* message_2 = dynamic_cast<const protocol::SecurityListRequest*>(message->mdpsessionmgmt_payload())) {
                 checksum += bench::digest((*message_2).md_req_id());
                 checksum += bench::digest((*message_2).subscription_req_type());

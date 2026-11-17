@@ -1,3 +1,4 @@
+// Nyse.ArcaEquities.IntegratedFeedRefresh.Pillar.v2.5.g: enums/MessageType.hpp
 #pragma once
 
 #include <cstdint>

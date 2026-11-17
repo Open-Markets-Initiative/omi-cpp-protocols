@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.8: messages/Terminate.hpp
 #pragma once
 
 #include <chrono>

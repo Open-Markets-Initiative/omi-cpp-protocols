@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: structs/ImpliedEventId.cpp
 #include "ImpliedEventId.hpp"
 
 #include "../common/Print.hpp"
@@ -5,23 +6,23 @@
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_3 {
 
-ImpliedEventId::ImpliedEventId(std::uint32_t event_id, std::uint16_t no_related_trades)
+ImpliedEventId::ImpliedEventId(std::optional<std::uint32_t> event_id, std::optional<std::uint16_t> no_related_trades)
   : event_id_(event_id), no_related_trades_(no_related_trades) {}
 
-std::uint32_t ImpliedEventId::event_id() const { return event_id_; }
-void ImpliedEventId::set_event_id(std::uint32_t value) { event_id_ = value; }
+std::optional<std::uint32_t> ImpliedEventId::event_id() const { return event_id_; }
+void ImpliedEventId::set_event_id(std::optional<std::uint32_t> value) { event_id_ = value; }
 
-std::uint16_t ImpliedEventId::no_related_trades() const { return no_related_trades_; }
-void ImpliedEventId::set_no_related_trades(std::uint16_t value) { no_related_trades_ = value; }
+std::optional<std::uint16_t> ImpliedEventId::no_related_trades() const { return no_related_trades_; }
+void ImpliedEventId::set_no_related_trades(std::optional<std::uint16_t> value) { no_related_trades_ = value; }
 
 std::size_t ImpliedEventId::decode(const std::byte* data, std::size_t length) {
     std::size_t offset = 0;
     wire::require("ImpliedEventId", wire_size, length);
 
-    event_id_ = wire::read_u32_le(data + offset);
+    event_id_ = wire::nullable(wire::read_u32_le(data + offset), static_cast<std::uint32_t>(0ULL));
     offset += 4;
 
-    no_related_trades_ = wire::read_u16_le(data + offset);
+    no_related_trades_ = wire::nullable(wire::read_u16_le(data + offset), static_cast<std::uint16_t>(0ULL));
     offset += 2;
 
     return offset;
@@ -31,10 +32,10 @@ std::size_t ImpliedEventId::encode(std::byte* data, std::size_t capacity) const 
     std::size_t offset = 0;
     wire::require_capacity("ImpliedEventId", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(event_id_));
+    wire::write_u32_le(data + offset, event_id_.value_or(static_cast<std::uint32_t>(0ULL)));
     offset += 4;
 
-    wire::write_u16_le(data + offset, static_cast<std::uint16_t>(no_related_trades_));
+    wire::write_u16_le(data + offset, no_related_trades_.value_or(static_cast<std::uint16_t>(0ULL)));
     offset += 2;
 
     return offset;
@@ -47,9 +48,9 @@ std::size_t ImpliedEventId::encoded_size() const {
 void ImpliedEventId::print(std::ostream& out) const {
     out << "ImpliedEventId{";
     out << "event_id=";
-    out << event_id_;
+    print::optional(out, event_id_);
     out << ", no_related_trades=";
-    out << no_related_trades_;
+    print::optional(out, no_related_trades_);
     out << '}';
 }
 

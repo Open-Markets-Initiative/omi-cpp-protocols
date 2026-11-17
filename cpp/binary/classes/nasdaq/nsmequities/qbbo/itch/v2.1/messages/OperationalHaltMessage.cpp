@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.Qbbo.Itch.v2.1: messages/OperationalHaltMessage.cpp
 #include "OperationalHaltMessage.hpp"
 
 #include "../common/Print.hpp"

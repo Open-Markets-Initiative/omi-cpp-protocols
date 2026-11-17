@@ -1,0 +1,28 @@
+# Nyse.ArcaOptions.DeepFeed.Pillar.v1.2.m SourceTimeReferenceMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 72
+packet.packetheader.deliveryflag = 11
+packet.packetheader.numbermsgs = 2
+packet.packetheader.seqnum = 544967
+packet.packetheader.sendtime.seconds = 1639231430
+packet.packetheader.sendtime.nanoseconds = 835303168
+packet.packetheader.sendtime = 1639231430835303168
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 16
+packet.messages.message[0].messageheader.messagetype = 2
+packet.messages.message[0].payload = packet.messages.message.payload.sourcetimereferencemessage
+packet.messages.message[0].payload.sourcetimereferencemessage.id = 51
+packet.messages.message[0].payload.sourcetimereferencemessage.symbolseqnum = 0
+packet.messages.message[0].payload.sourcetimereferencemessage.sourcetime = 1639231430
+packet.messages.message[1].messageheader.messagesize = 40
+packet.messages.message[1].messageheader.messagetype = 300
+packet.messages.message[1].payload = packet.messages.message.payload.optionsaddordermessage
+packet.messages.message[1].payload.optionsaddordermessage.sourcetimens = 835285504
+packet.messages.message[1].payload.optionsaddordermessage.seriesindex = 35499892
+packet.messages.message[1].payload.optionsaddordermessage.seriesseqnum = 4
+packet.messages.message[1].payload.optionsaddordermessage.orderid = 14355240992112642
+packet.messages.message[1].payload.optionsaddordermessage.price = 134000
+packet.messages.message[1].payload.optionsaddordermessage.volume = 10
+packet.messages.message[1].payload.optionsaddordermessage.side = S
+packet.messages.message[1].payload.optionsaddordermessage.firmid = 
+packet.messages.message[1].payload.optionsaddordermessage.custindicator = C

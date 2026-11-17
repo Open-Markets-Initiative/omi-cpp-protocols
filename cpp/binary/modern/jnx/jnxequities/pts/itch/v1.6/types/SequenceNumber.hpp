@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.6: types/SequenceNumber.hpp
 #pragma once
 
 #include <bit>

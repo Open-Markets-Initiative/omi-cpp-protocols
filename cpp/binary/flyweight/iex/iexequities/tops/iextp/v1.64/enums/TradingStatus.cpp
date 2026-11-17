@@ -1,3 +1,4 @@
+// Iex.IexEquities.Tops.IexTp.v1.64: enums/TradingStatus.cpp
 #include "TradingStatus.hpp"
 
 namespace iex::iexequities::tops::iextp::v1_64 {

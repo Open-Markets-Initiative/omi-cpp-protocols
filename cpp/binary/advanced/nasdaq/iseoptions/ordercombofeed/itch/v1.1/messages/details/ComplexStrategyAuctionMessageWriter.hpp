@@ -1,3 +1,4 @@
+// Nasdaq.IseOptions.OrderComboFeed.Itch.v1.1: messages/details/ComplexStrategyAuctionMessageWriter.hpp
 #pragma once
 
 #include "../ComplexStrategyAuctionMessage.hpp"

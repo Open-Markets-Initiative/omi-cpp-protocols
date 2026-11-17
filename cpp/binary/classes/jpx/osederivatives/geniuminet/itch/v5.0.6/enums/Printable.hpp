@@ -1,3 +1,4 @@
+// Jpx.OseDerivatives.GeniumInet.Itch.v5.0.6: enums/Printable.hpp
 #pragma once
 
 #include <cstdint>

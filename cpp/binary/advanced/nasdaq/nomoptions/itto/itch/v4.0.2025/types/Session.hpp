@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: types/Session.hpp
 #pragma once
 
 #include <cstddef>

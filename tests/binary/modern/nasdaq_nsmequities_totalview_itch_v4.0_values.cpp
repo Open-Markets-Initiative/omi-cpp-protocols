@@ -59,7 +59,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.stocktradingactionmessage.nanoseconds"] = canonical::number(message->nanoseconds.get());
             values[entry + ".payload.stocktradingactionmessage.stock"] = canonical::text(std::string(message->stock.get()), ' ', false);
             values[entry + ".payload.stocktradingactionmessage.tradingstate"] = canonical::text(canonical::character(message->trading_state.get()), ' ', false);
-            values[entry + ".payload.stocktradingactionmessage.reserved"] = canonical::text(canonical::character(message->reserved.get()), ' ', false);
             values[entry + ".payload.stocktradingactionmessage.reason"] = canonical::text(std::string(message->reason.get()), ' ', false);
         } else if (iterator.message_type == protocol::MarketParticipantPositionMessage::message_type) {
             values[entry + ".payload"] = "packet.messages.message.payload.marketparticipantpositionmessage";

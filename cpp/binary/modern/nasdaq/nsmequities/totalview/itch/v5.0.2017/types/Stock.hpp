@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2017: types/Stock.hpp
 #pragma once
 
 #include <array>

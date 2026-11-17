@@ -74,7 +74,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.stocktradingactionmessage.timestamp"] = canonical::number((*message).timestamp());
             values[entry + ".payload.stocktradingactionmessage.stock"] = canonical::text(std::string((*message).stock()), ' ', false);
             values[entry + ".payload.stocktradingactionmessage.tradingstate"] = canonical::text(canonical::character((*message).trading_state()), ' ', false);
-            values[entry + ".payload.stocktradingactionmessage.reserved"] = canonical::text(canonical::character((*message).reserved()), ' ', false);
             values[entry + ".payload.stocktradingactionmessage.tradingactionreason"] = canonical::text(std::string((*message).trading_action_reason()), ' ', false);
         } else if (const auto* message = dynamic_cast<const protocol::RegShoShortSalePriceTestRestrictedIndicatorMessage*>(each.message())) {
             values[entry + ".payload"] = "packet.messages.message.payload.regshoshortsalepricetestrestrictedindicatormessage";

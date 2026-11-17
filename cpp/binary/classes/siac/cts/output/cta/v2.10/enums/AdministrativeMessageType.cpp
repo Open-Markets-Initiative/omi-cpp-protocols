@@ -1,13 +1,14 @@
+// Siac.Cts.Output.Cta.v2.10: enums/AdministrativeMessageType.cpp
 #include "AdministrativeMessageType.hpp"
 
 namespace siac::cts::output::cta::v2_10 {
 
 std::string_view to_string(AdministrativeMessageType value) {
     switch (value) {
-        case AdministrativeMessageType::StartOfEndOfDayMessage: return "Start Of End Of Day Message";
-        case AdministrativeMessageType::EndOfEndOfDayMessage: return "End Of End Of Day Message";
-        case AdministrativeMessageType::StartOfStartOfDayMessage: return "Start Of Start Of Day Message";
-        case AdministrativeMessageType::EndOfStartOfDayMessage: return "End Of Start Of Day Message";
+        case AdministrativeMessageType::StartOfEndOfDaySummaryMessage: return "Start Of End Of Day Summary Message";
+        case AdministrativeMessageType::EndOfEndOfDaySummaryMessage: return "End Of End Of Day Summary Message";
+        case AdministrativeMessageType::StartOfStartOfDaySummaryMessage: return "Start Of Start Of Day Summary Message";
+        case AdministrativeMessageType::EndOfStartOfDaySummaryMessage: return "End Of Start Of Day Summary Message";
         default: return {};
     }
 }

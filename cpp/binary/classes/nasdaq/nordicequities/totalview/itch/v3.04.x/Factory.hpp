@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: Factory.hpp
 #pragma once
 
 #include <memory>

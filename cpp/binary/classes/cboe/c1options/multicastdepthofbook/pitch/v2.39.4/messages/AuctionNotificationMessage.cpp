@@ -1,3 +1,4 @@
+// Cboe.C1Options.MulticastDepthOfBook.Pitch.v2.39.4: messages/AuctionNotificationMessage.cpp
 #include "AuctionNotificationMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,7 +7,7 @@
 
 namespace cboe::c1options::multicastdepthofbook::pitch::v2_39_4 {
 
-AuctionNotificationMessage::AuctionNotificationMessage(std::chrono::nanoseconds time_offset, const std::string& symbol, std::uint64_t auction_id, AuctionType auction_type, SideIndicator side_indicator, Decimal long_price, std::uint32_t contracts, CustomerIndicator customer_indicator, const std::string& participant_id, std::uint32_t auction_end_offset)
+AuctionNotificationMessage::AuctionNotificationMessage(std::chrono::nanoseconds time_offset, const std::string& symbol, std::uint64_t auction_id, AuctionType auction_type, SideIndicator side_indicator, Decimal long_price, std::uint32_t contracts, CustomerIndicator customer_indicator, const std::string& participant_id, std::chrono::nanoseconds auction_end_offset)
   : time_offset_(time_offset), symbol_(symbol), auction_id_(auction_id), auction_type_(auction_type), side_indicator_(side_indicator), long_price_(long_price), contracts_(contracts), customer_indicator_(customer_indicator), participant_id_(participant_id), auction_end_offset_(auction_end_offset) {}
 
 std::chrono::nanoseconds AuctionNotificationMessage::time_offset() const { return time_offset_; }
@@ -38,8 +39,8 @@ const std::string& AuctionNotificationMessage::participant_id() const { return p
 std::string& AuctionNotificationMessage::participant_id() { return participant_id_; }
 void AuctionNotificationMessage::set_participant_id(const std::string& value) { participant_id_ = value; }
 
-std::uint32_t AuctionNotificationMessage::auction_end_offset() const { return auction_end_offset_; }
-void AuctionNotificationMessage::set_auction_end_offset(std::uint32_t value) { auction_end_offset_ = value; }
+std::chrono::nanoseconds AuctionNotificationMessage::auction_end_offset() const { return auction_end_offset_; }
+void AuctionNotificationMessage::set_auction_end_offset(std::chrono::nanoseconds value) { auction_end_offset_ = value; }
 
 MessageCode AuctionNotificationMessage::type() const { return message_type; }
 
@@ -76,7 +77,7 @@ std::size_t AuctionNotificationMessage::decode(const std::byte* data, std::size_
     participant_id_ = wire::read_text(data + offset, 4, ' ');
     offset += 4;
 
-    auction_end_offset_ = wire::read_u32_le(data + offset);
+    auction_end_offset_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     return offset;
@@ -113,7 +114,7 @@ std::size_t AuctionNotificationMessage::encode(std::byte* data, std::size_t capa
     wire::write_text(data + offset, 4, ' ', participant_id_);
     offset += 4;
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(auction_end_offset_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(auction_end_offset_.count()));
     offset += 4;
 
     return offset;
@@ -152,7 +153,7 @@ void AuctionNotificationMessage::print(std::ostream& out) const {
     out << ", participant_id=";
     print::text(out, participant_id_);
     out << ", auction_end_offset=";
-    out << auction_end_offset_;
+    out << auction_end_offset_.count();
     out << '}';
 }
 

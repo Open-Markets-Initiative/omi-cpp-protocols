@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.5: messages/details/MdIncrementalRefreshBookReader.hpp
 #pragma once
 
 #include "MdIncrementalRefreshBookWriter.hpp"

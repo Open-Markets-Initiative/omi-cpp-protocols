@@ -1,5 +1,7 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/TradeMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <optional>
@@ -9,6 +11,7 @@
 #include "../common/Wire.hpp"
 #include "../common/Print.hpp"
 #include "../common/View.hpp"
+#include "../common/Decimal.hpp"
 #include "../enums/CrossType.hpp"
 #include "../enums/SubBook.hpp"
 #include "../bitfields/PtModFlags.hpp"
@@ -30,7 +33,7 @@ class TradeMessage {
     static constexpr std::size_t fixed_size = 33;
     std::size_t encoded_size() const { return 33; }
 
-    std::uint32_t nanosecond() const { return wire::read_u32_le(at(0)); }
+    std::chrono::nanoseconds nanosecond() const { return std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(at(0)))); }
 
     std::uint32_t executed_quantity() const { return wire::read_u32_le(at(4)); }
 
@@ -40,7 +43,7 @@ class TradeMessage {
 
     std::span<const std::byte, 1> reserved_b() const { return bytes_.subspan(13).template first<1>(); }
 
-    std::int64_t price() const { return wire::read_i64_le(at(14)); }
+    Decimal price() const { return Decimal(static_cast<std::int64_t>(wire::read_i64_le(at(14))), -8); }
 
     std::uint64_t trade_match_id() const { return wire::read_u64_le(at(22)); }
 
@@ -53,7 +56,7 @@ class TradeMessage {
     void print(std::ostream& out) const {
         out << "TradeMessage{";
         out << "nanosecond=";
-        out << nanosecond();
+        out << nanosecond().count();
         out << ", executed_quantity=";
         out << executed_quantity();
         out << ", instrument_id=";

@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: messages/UdpPayloadSingleSideReplaceMessageShortForm.hpp
 #pragma once
 
 #include <chrono>
@@ -74,7 +75,7 @@ class UdpPayloadSingleSideReplaceMessageShortForm : public PacketMessage {
     std::chrono::nanoseconds timestamp_{};
     std::uint64_t original_reference_number_{};
     std::uint64_t new_reference_number_{};
-    Decimal price_short_{ 0, -4 };
+    Decimal price_short_{ 0, -2 };
     std::uint16_t volume_short_{};
 };
 

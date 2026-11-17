@@ -1,3 +1,4 @@
+// Cboe.C1Options.MarketDataFeed.Csm.v1.4.2: structs/CurrencyCode.hpp
 #pragma once
 
 #include <cstddef>

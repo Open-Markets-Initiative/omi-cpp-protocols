@@ -1,3 +1,4 @@
+// OtcMarkets.LinkAts.Multicast.Link.v4.3: messages/QuoteMessage.cpp
 #include "QuoteMessage.hpp"
 
 #include "../common/Print.hpp"

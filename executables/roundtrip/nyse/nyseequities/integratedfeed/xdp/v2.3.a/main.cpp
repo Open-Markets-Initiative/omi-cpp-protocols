@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeed.Xdp.v2.3.a: main.cpp
 // Nyse.NyseEquities.IntegratedFeed.Xdp.v2.3.a write and read: every message built with each field it sets, written
 // into a capture through the Classes encoder, then read back - each field set must read as it was written.
 // 
@@ -76,8 +77,8 @@ class Capture {
 // SequenceNumberResetMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_SequenceNumberResetMessage() {
     auto message = std::make_unique<protocol::SequenceNumberResetMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
-    message->set_source_time_ns(static_cast<std::uint32_t>(2));
+    message->set_source_time(std::chrono::seconds{1});
+    message->set_source_time_ns(std::chrono::nanoseconds{2});
     message->set_product_id(static_cast<std::uint8_t>(3));
     message->set_channel_id(static_cast<std::uint8_t>(4));
     return message;
@@ -88,7 +89,7 @@ std::unique_ptr<protocol::Message> build_SourceTimeReferenceMessage() {
     auto message = std::make_unique<protocol::SourceTimeReferenceMessage>();
     message->set_id(static_cast<std::uint32_t>(1));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(2));
-    message->set_source_time(static_cast<std::uint32_t>(3));
+    message->set_source_time(std::chrono::seconds{3});
     return message;
 }
 
@@ -177,8 +178,8 @@ std::unique_ptr<protocol::Message> build_MessageUnavailableMessage() {
 // SymbolClearMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_SymbolClearMessage() {
     auto message = std::make_unique<protocol::SymbolClearMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
-    message->set_source_time_ns(static_cast<std::uint32_t>(2));
+    message->set_source_time(std::chrono::seconds{1});
+    message->set_source_time_ns(std::chrono::nanoseconds{2});
     message->set_symbol_index(static_cast<std::uint32_t>(3));
     message->set_next_source_seq_num(static_cast<std::uint32_t>(4));
     return message;
@@ -187,8 +188,8 @@ std::unique_ptr<protocol::Message> build_SymbolClearMessage() {
 // SecurityStatusMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_SecurityStatusMessage() {
     auto message = std::make_unique<protocol::SecurityStatusMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
-    message->set_source_time_ns(static_cast<std::uint32_t>(2));
+    message->set_source_time(std::chrono::seconds{1});
+    message->set_source_time_ns(std::chrono::nanoseconds{2});
     message->set_symbol_index(static_cast<std::uint32_t>(3));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(4));
     message->set_security_status(protocol::SecurityStatus::PreOpening);
@@ -207,7 +208,7 @@ std::unique_ptr<protocol::Message> build_SecurityStatusMessage() {
 // AddOrderMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_AddOrderMessage() {
     auto message = std::make_unique<protocol::AddOrderMessage>();
-    message->set_source_time_ns(static_cast<std::uint32_t>(1));
+    message->set_source_time_ns(std::chrono::nanoseconds{1});
     message->set_symbol_index(static_cast<std::uint32_t>(2));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(3));
     message->set_order_id(static_cast<std::uint64_t>(4));
@@ -222,7 +223,7 @@ std::unique_ptr<protocol::Message> build_AddOrderMessage() {
 // ModifyOrderMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_ModifyOrderMessage() {
     auto message = std::make_unique<protocol::ModifyOrderMessage>();
-    message->set_source_time_ns(static_cast<std::uint32_t>(1));
+    message->set_source_time_ns(std::chrono::nanoseconds{1});
     message->set_symbol_index(static_cast<std::uint32_t>(2));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(3));
     message->set_order_id(static_cast<std::uint64_t>(4));
@@ -237,7 +238,7 @@ std::unique_ptr<protocol::Message> build_ModifyOrderMessage() {
 // ReplaceOrderMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_ReplaceOrderMessage() {
     auto message = std::make_unique<protocol::ReplaceOrderMessage>();
-    message->set_source_time_ns(static_cast<std::uint32_t>(1));
+    message->set_source_time_ns(std::chrono::nanoseconds{1});
     message->set_symbol_index(static_cast<std::uint32_t>(2));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(3));
     message->set_order_id(static_cast<std::uint64_t>(4));
@@ -252,7 +253,7 @@ std::unique_ptr<protocol::Message> build_ReplaceOrderMessage() {
 // DeleteOrderMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_DeleteOrderMessage() {
     auto message = std::make_unique<protocol::DeleteOrderMessage>();
-    message->set_source_time_ns(static_cast<std::uint32_t>(1));
+    message->set_source_time_ns(std::chrono::nanoseconds{1});
     message->set_symbol_index(static_cast<std::uint32_t>(2));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(3));
     message->set_order_id(static_cast<std::uint64_t>(4));
@@ -263,7 +264,7 @@ std::unique_ptr<protocol::Message> build_DeleteOrderMessage() {
 // OrderExecutionMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_OrderExecutionMessage() {
     auto message = std::make_unique<protocol::OrderExecutionMessage>();
-    message->set_source_time_ns(static_cast<std::uint32_t>(1));
+    message->set_source_time_ns(std::chrono::nanoseconds{1});
     message->set_symbol_index(static_cast<std::uint32_t>(2));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(3));
     message->set_order_id(static_cast<std::uint64_t>(4));
@@ -279,7 +280,7 @@ std::unique_ptr<protocol::Message> build_OrderExecutionMessage() {
 // NonDisplayedTradeMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_NonDisplayedTradeMessage() {
     auto message = std::make_unique<protocol::NonDisplayedTradeMessage>();
-    message->set_source_time_ns(static_cast<std::uint32_t>(1));
+    message->set_source_time_ns(std::chrono::nanoseconds{1});
     message->set_symbol_index(static_cast<std::uint32_t>(2));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(3));
     message->set_trade_id(static_cast<std::uint32_t>(4));
@@ -293,7 +294,7 @@ std::unique_ptr<protocol::Message> build_NonDisplayedTradeMessage() {
 // TradeCancelMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_TradeCancelMessage() {
     auto message = std::make_unique<protocol::TradeCancelMessage>();
-    message->set_source_time_ns(static_cast<std::uint32_t>(1));
+    message->set_source_time_ns(std::chrono::nanoseconds{1});
     message->set_symbol_index(static_cast<std::uint32_t>(2));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(3));
     message->set_trade_id(static_cast<std::uint32_t>(4));
@@ -303,7 +304,7 @@ std::unique_ptr<protocol::Message> build_TradeCancelMessage() {
 // RetailPriceImprovementMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_RetailPriceImprovementMessage() {
     auto message = std::make_unique<protocol::RetailPriceImprovementMessage>();
-    message->set_source_time_ns(static_cast<std::uint32_t>(1));
+    message->set_source_time_ns(std::chrono::nanoseconds{1});
     message->set_symbol_index(static_cast<std::uint32_t>(2));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(3));
     message->set_rpi_indicator(protocol::RpiIndicator::NoRetailInterest);
@@ -313,7 +314,7 @@ std::unique_ptr<protocol::Message> build_RetailPriceImprovementMessage() {
 // CrossTradeMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_CrossTradeMessage() {
     auto message = std::make_unique<protocol::CrossTradeMessage>();
-    message->set_source_time_ns(static_cast<std::uint32_t>(1));
+    message->set_source_time_ns(std::chrono::nanoseconds{1});
     message->set_symbol_index(static_cast<std::uint32_t>(2));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(3));
     message->set_cross_id(static_cast<std::uint32_t>(4));
@@ -326,7 +327,7 @@ std::unique_ptr<protocol::Message> build_CrossTradeMessage() {
 // CrossCorrectionMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_CrossCorrectionMessage() {
     auto message = std::make_unique<protocol::CrossCorrectionMessage>();
-    message->set_source_time_ns(static_cast<std::uint32_t>(1));
+    message->set_source_time_ns(std::chrono::nanoseconds{1});
     message->set_symbol_index(static_cast<std::uint32_t>(2));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(3));
     message->set_cross_id(static_cast<std::uint32_t>(4));
@@ -337,8 +338,8 @@ std::unique_ptr<protocol::Message> build_CrossCorrectionMessage() {
 // ImbalanceMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_ImbalanceMessage() {
     auto message = std::make_unique<protocol::ImbalanceMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
-    message->set_source_time_ns(static_cast<std::uint32_t>(2));
+    message->set_source_time(std::chrono::seconds{1});
+    message->set_source_time_ns(std::chrono::nanoseconds{2});
     message->set_symbol_index(static_cast<std::uint32_t>(3));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(4));
     message->set_reference_price(static_cast<std::uint32_t>(5));
@@ -366,8 +367,8 @@ std::unique_ptr<protocol::Message> build_ImbalanceMessage() {
 // AddOrderRefreshMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_AddOrderRefreshMessage() {
     auto message = std::make_unique<protocol::AddOrderRefreshMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
-    message->set_source_time_ns(static_cast<std::uint32_t>(2));
+    message->set_source_time(std::chrono::seconds{1});
+    message->set_source_time_ns(std::chrono::nanoseconds{2});
     message->set_symbol_index(static_cast<std::uint32_t>(3));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(4));
     message->set_order_id(static_cast<std::uint64_t>(5));
@@ -382,8 +383,8 @@ std::unique_ptr<protocol::Message> build_AddOrderRefreshMessage() {
 // StockSummaryMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_StockSummaryMessage() {
     auto message = std::make_unique<protocol::StockSummaryMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
-    message->set_source_time_ns(static_cast<std::uint32_t>(2));
+    message->set_source_time(std::chrono::seconds{1});
+    message->set_source_time_ns(std::chrono::nanoseconds{2});
     message->set_symbol_index(static_cast<std::uint32_t>(3));
     message->set_high_price(static_cast<std::uint32_t>(4));
     message->set_low_price(static_cast<std::uint32_t>(5));
@@ -403,11 +404,11 @@ int check_SequenceNumberResetMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL SequenceNumberResetMessage: source_time does not read as it was written\n");
         ++failures;
     }
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(2))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{2})) {
         std::printf("FAIL SequenceNumberResetMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -440,7 +441,7 @@ int check_SourceTimeReferenceMessage(const protocol::Message* read) {
         std::printf("FAIL SourceTimeReferenceMessage: symbol_seq_num does not read as it was written\n");
         ++failures;
     }
-    if (!(message->source_time() == static_cast<std::uint32_t>(3))) {
+    if (!(message->source_time() == std::chrono::seconds{3})) {
         std::printf("FAIL SourceTimeReferenceMessage: source_time does not read as it was written\n");
         ++failures;
     }
@@ -708,11 +709,11 @@ int check_SymbolClearMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL SymbolClearMessage: source_time does not read as it was written\n");
         ++failures;
     }
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(2))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{2})) {
         std::printf("FAIL SymbolClearMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -737,11 +738,11 @@ int check_SecurityStatusMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL SecurityStatusMessage: source_time does not read as it was written\n");
         ++failures;
     }
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(2))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{2})) {
         std::printf("FAIL SecurityStatusMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -806,7 +807,7 @@ int check_AddOrderMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{1})) {
         std::printf("FAIL AddOrderMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -855,7 +856,7 @@ int check_ModifyOrderMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{1})) {
         std::printf("FAIL ModifyOrderMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -904,7 +905,7 @@ int check_ReplaceOrderMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{1})) {
         std::printf("FAIL ReplaceOrderMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -953,7 +954,7 @@ int check_DeleteOrderMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{1})) {
         std::printf("FAIL DeleteOrderMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -986,7 +987,7 @@ int check_OrderExecutionMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{1})) {
         std::printf("FAIL OrderExecutionMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -1039,7 +1040,7 @@ int check_NonDisplayedTradeMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{1})) {
         std::printf("FAIL NonDisplayedTradeMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -1084,7 +1085,7 @@ int check_TradeCancelMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{1})) {
         std::printf("FAIL TradeCancelMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -1113,7 +1114,7 @@ int check_RetailPriceImprovementMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{1})) {
         std::printf("FAIL RetailPriceImprovementMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -1142,7 +1143,7 @@ int check_CrossTradeMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{1})) {
         std::printf("FAIL CrossTradeMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -1183,7 +1184,7 @@ int check_CrossCorrectionMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{1})) {
         std::printf("FAIL CrossCorrectionMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -1216,11 +1217,11 @@ int check_ImbalanceMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL ImbalanceMessage: source_time does not read as it was written\n");
         ++failures;
     }
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(2))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{2})) {
         std::printf("FAIL ImbalanceMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -1321,11 +1322,11 @@ int check_AddOrderRefreshMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL AddOrderRefreshMessage: source_time does not read as it was written\n");
         ++failures;
     }
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(2))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{2})) {
         std::printf("FAIL AddOrderRefreshMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -1374,11 +1375,11 @@ int check_StockSummaryMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL StockSummaryMessage: source_time does not read as it was written\n");
         ++failures;
     }
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(2))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{2})) {
         std::printf("FAIL StockSummaryMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }

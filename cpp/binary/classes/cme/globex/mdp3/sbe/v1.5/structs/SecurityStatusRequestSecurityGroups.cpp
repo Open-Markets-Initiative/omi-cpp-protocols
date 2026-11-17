@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.5: structs/SecurityStatusRequestSecurityGroups.cpp
 #include "SecurityStatusRequestSecurityGroups.hpp"
 
 #include "../common/Print.hpp"

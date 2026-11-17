@@ -1,3 +1,4 @@
+// OtcMarkets.LinkAts.Multicast.Link.v4.3: messages/ReferencePriceUpdateMessage.cpp
 #include "ReferencePriceUpdateMessage.hpp"
 
 #include "../common/Print.hpp"

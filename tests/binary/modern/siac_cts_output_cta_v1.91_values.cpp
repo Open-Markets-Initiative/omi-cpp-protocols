@@ -46,41 +46,41 @@ canonical::Listing read(const packet::Frame& frame) {
             [[maybe_unused]] const auto* message = protocol::AdministrativeMessage::parse(iterator.message);
             values[entry + ".categorypayload.administrativemessage.administrativemessagetype"] = canonical::text(canonical::character(message->administrative_message_type.get()));
             if (message->administrative_message_type.get() == 'A') {
-                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload"] = "packet.message.categorypayload.administrativemessage.administrativemessagepayload.startofendofdaymessage";
-                [[maybe_unused]] const auto* message_2 = protocol::StartOfEndOfDayMessage::parse(iterator.message + sizeof(protocol::AdministrativeMessage));
-                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofendofdaymessage.participantid"] = canonical::text(canonical::character(message_2->participant_id.get()));
-                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofendofdaymessage.timestamp1.seconds"] = canonical::number(message_2->timestamp_1.seconds.get());
-                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofendofdaymessage.timestamp1.nanoseconds"] = canonical::number(message_2->timestamp_1.nanoseconds.get());
-                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofendofdaymessage.messageid"] = canonical::number(message_2->message_id.get());
-                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofendofdaymessage.transactionid"] = canonical::number(message_2->transaction_id.get());
-                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofendofdaymessage.participantreferencenumber"] = canonical::number(message_2->participant_reference_number.get());
+                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload"] = "packet.message.categorypayload.administrativemessage.administrativemessagepayload.startofendofdaysummarymessage";
+                [[maybe_unused]] const auto* message_2 = protocol::StartOfEndOfDaySummaryMessage::parse(iterator.message + sizeof(protocol::AdministrativeMessage));
+                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofendofdaysummarymessage.participantid"] = canonical::text(canonical::character(message_2->participant_id.get()));
+                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofendofdaysummarymessage.timestamp1.seconds"] = canonical::number(message_2->timestamp_1.seconds.get());
+                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofendofdaysummarymessage.timestamp1.nanoseconds"] = canonical::number(message_2->timestamp_1.nanoseconds.get());
+                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofendofdaysummarymessage.messageid"] = canonical::number(message_2->message_id.get());
+                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofendofdaysummarymessage.transactionid"] = canonical::number(message_2->transaction_id.get());
+                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofendofdaysummarymessage.participantreferencenumber"] = canonical::number(message_2->participant_reference_number.get());
             } else if (message->administrative_message_type.get() == 'B') {
-                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload"] = "packet.message.categorypayload.administrativemessage.administrativemessagepayload.endofendofdaymessage";
-                [[maybe_unused]] const auto* message_2 = protocol::EndOfEndOfDayMessage::parse(iterator.message + sizeof(protocol::AdministrativeMessage));
-                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofendofdaymessage.participantid"] = canonical::text(canonical::character(message_2->participant_id.get()));
-                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofendofdaymessage.timestamp1.seconds"] = canonical::number(message_2->timestamp_1.seconds.get());
-                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofendofdaymessage.timestamp1.nanoseconds"] = canonical::number(message_2->timestamp_1.nanoseconds.get());
-                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofendofdaymessage.messageid"] = canonical::number(message_2->message_id.get());
-                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofendofdaymessage.transactionid"] = canonical::number(message_2->transaction_id.get());
-                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofendofdaymessage.participantreferencenumber"] = canonical::number(message_2->participant_reference_number.get());
+                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload"] = "packet.message.categorypayload.administrativemessage.administrativemessagepayload.endofendofdaysummarymessage";
+                [[maybe_unused]] const auto* message_2 = protocol::EndOfEndOfDaySummaryMessage::parse(iterator.message + sizeof(protocol::AdministrativeMessage));
+                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofendofdaysummarymessage.participantid"] = canonical::text(canonical::character(message_2->participant_id.get()));
+                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofendofdaysummarymessage.timestamp1.seconds"] = canonical::number(message_2->timestamp_1.seconds.get());
+                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofendofdaysummarymessage.timestamp1.nanoseconds"] = canonical::number(message_2->timestamp_1.nanoseconds.get());
+                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofendofdaysummarymessage.messageid"] = canonical::number(message_2->message_id.get());
+                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofendofdaysummarymessage.transactionid"] = canonical::number(message_2->transaction_id.get());
+                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofendofdaysummarymessage.participantreferencenumber"] = canonical::number(message_2->participant_reference_number.get());
             } else if (message->administrative_message_type.get() == 'C') {
-                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload"] = "packet.message.categorypayload.administrativemessage.administrativemessagepayload.startofstartofdaymessage";
-                [[maybe_unused]] const auto* message_2 = protocol::StartOfStartOfDayMessage::parse(iterator.message + sizeof(protocol::AdministrativeMessage));
-                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofstartofdaymessage.participantid"] = canonical::text(canonical::character(message_2->participant_id.get()));
-                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofstartofdaymessage.timestamp1.seconds"] = canonical::number(message_2->timestamp_1.seconds.get());
-                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofstartofdaymessage.timestamp1.nanoseconds"] = canonical::number(message_2->timestamp_1.nanoseconds.get());
-                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofstartofdaymessage.messageid"] = canonical::number(message_2->message_id.get());
-                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofstartofdaymessage.transactionid"] = canonical::number(message_2->transaction_id.get());
-                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofstartofdaymessage.participantreferencenumber"] = canonical::number(message_2->participant_reference_number.get());
+                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload"] = "packet.message.categorypayload.administrativemessage.administrativemessagepayload.startofstartofdaysummarymessage";
+                [[maybe_unused]] const auto* message_2 = protocol::StartOfStartOfDaySummaryMessage::parse(iterator.message + sizeof(protocol::AdministrativeMessage));
+                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofstartofdaysummarymessage.participantid"] = canonical::text(canonical::character(message_2->participant_id.get()));
+                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofstartofdaysummarymessage.timestamp1.seconds"] = canonical::number(message_2->timestamp_1.seconds.get());
+                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofstartofdaysummarymessage.timestamp1.nanoseconds"] = canonical::number(message_2->timestamp_1.nanoseconds.get());
+                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofstartofdaysummarymessage.messageid"] = canonical::number(message_2->message_id.get());
+                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofstartofdaysummarymessage.transactionid"] = canonical::number(message_2->transaction_id.get());
+                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofstartofdaysummarymessage.participantreferencenumber"] = canonical::number(message_2->participant_reference_number.get());
             } else if (message->administrative_message_type.get() == 'D') {
-                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload"] = "packet.message.categorypayload.administrativemessage.administrativemessagepayload.endofstartofdaymessage";
-                [[maybe_unused]] const auto* message_2 = protocol::EndOfStartOfDayMessage::parse(iterator.message + sizeof(protocol::AdministrativeMessage));
-                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofstartofdaymessage.participantid"] = canonical::text(canonical::character(message_2->participant_id.get()));
-                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofstartofdaymessage.timestamp1.seconds"] = canonical::number(message_2->timestamp_1.seconds.get());
-                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofstartofdaymessage.timestamp1.nanoseconds"] = canonical::number(message_2->timestamp_1.nanoseconds.get());
-                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofstartofdaymessage.messageid"] = canonical::number(message_2->message_id.get());
-                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofstartofdaymessage.transactionid"] = canonical::number(message_2->transaction_id.get());
-                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofstartofdaymessage.participantreferencenumber"] = canonical::number(message_2->participant_reference_number.get());
+                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload"] = "packet.message.categorypayload.administrativemessage.administrativemessagepayload.endofstartofdaysummarymessage";
+                [[maybe_unused]] const auto* message_2 = protocol::EndOfStartOfDaySummaryMessage::parse(iterator.message + sizeof(protocol::AdministrativeMessage));
+                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofstartofdaysummarymessage.participantid"] = canonical::text(canonical::character(message_2->participant_id.get()));
+                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofstartofdaysummarymessage.timestamp1.seconds"] = canonical::number(message_2->timestamp_1.seconds.get());
+                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofstartofdaysummarymessage.timestamp1.nanoseconds"] = canonical::number(message_2->timestamp_1.nanoseconds.get());
+                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofstartofdaysummarymessage.messageid"] = canonical::number(message_2->message_id.get());
+                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofstartofdaysummarymessage.transactionid"] = canonical::number(message_2->transaction_id.get());
+                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofstartofdaysummarymessage.participantreferencenumber"] = canonical::number(message_2->participant_reference_number.get());
             } else if (message->administrative_message_type.get() == 'H') {
                 values[entry + ".categorypayload.administrativemessage.administrativemessagepayload"] = "packet.message.categorypayload.administrativemessage.administrativemessagepayload.administrativeunformattedmessage";
                 [[maybe_unused]] const auto* message_2 = protocol::AdministrativeUnformattedMessage::parse(iterator.message + sizeof(protocol::AdministrativeMessage));
@@ -204,7 +204,6 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerdeclinelevelstatusmessage.mwcblevel1"] = canonical::scaled(message_2->mwcb_level_1.integer(), -6);
                 values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerdeclinelevelstatusmessage.mwcblevel2"] = canonical::scaled(message_2->mwcb_level_2.integer(), -6);
                 values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerdeclinelevelstatusmessage.mwcblevel3"] = canonical::scaled(message_2->mwcb_level_3.integer(), -6);
-                values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerdeclinelevelstatusmessage.reserved"] = canonical::number(message_2->reserved.get());
             } else if (message->market_status_message_type.get() == 'L') {
                 values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload"] = "packet.message.categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerstatusmessage";
                 [[maybe_unused]] const auto* message_2 = protocol::MarketWideCircuitBreakerStatusMessage::parse(iterator.message + sizeof(protocol::MarketStatusMessage));
@@ -215,7 +214,6 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerstatusmessage.transactionid"] = canonical::number(message_2->transaction_id.get());
                 values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerstatusmessage.participantreferencenumber"] = canonical::number(message_2->participant_reference_number.get());
                 values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerstatusmessage.marketwidecircuitbreakerlevelindicator"] = canonical::text(canonical::character(message_2->market_wide_circuit_breaker_level_indicator.get()));
-                values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerstatusmessage.reserved"] = canonical::number(message_2->reserved.get());
             } else if (message->market_status_message_type.get() == 'N') {
                 values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload"] = "packet.message.categorypayload.marketstatusmessage.marketstatusmessagepayload.approximateadjustedvolumemarketcentermessage";
                 [[maybe_unused]] const auto* message_2 = protocol::ApproximateAdjustedVolumeMarketCenterMessage::parse(iterator.message + sizeof(protocol::MarketStatusMessage));

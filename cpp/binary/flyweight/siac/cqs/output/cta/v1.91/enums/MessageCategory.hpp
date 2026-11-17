@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v1.91: enums/MessageCategory.hpp
 #pragma once
 
 #include <cstdint>

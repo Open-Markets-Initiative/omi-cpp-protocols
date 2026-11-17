@@ -126,6 +126,7 @@ int main() {
     expect<protocol::Packet, protocol::Visitor, protocol::AddOrderMessage>("AddOrderMessage", "Nyse/ArcaEquities.IntegratedFeed.Pillar.v2.5.g/AddOrderMessage.pcap");
     expect<protocol::Packet, protocol::Visitor, protocol::CrossTradeMessage>("CrossTradeMessage", "Nyse/ArcaEquities.IntegratedFeed.Pillar.v2.5.g/CrossTradeMessage.pcap");
     expect<protocol::Packet, protocol::Visitor, protocol::DeleteOrderMessage>("DeleteOrderMessage", "Nyse/ArcaEquities.IntegratedFeed.Pillar.v2.5.g/DeleteOrderMessage.pcap");
+    expect<protocol::Packet, protocol::Visitor, protocol::ImbalanceMessage>("ImbalanceMessage", "Nyse/ArcaEquities.IntegratedFeed.Pillar.v2.5.g/ImbalanceMessage.pcap");
     expect<protocol::Packet, protocol::Visitor, protocol::ModifyOrderMessage>("ModifyOrderMessage", "Nyse/ArcaEquities.IntegratedFeed.Pillar.v2.5.g/ModifyOrderMessage.pcap");
     expect<protocol::Packet, protocol::Visitor, protocol::NonDisplayedTradeMessage>("NonDisplayedTradeMessage", "Nyse/ArcaEquities.IntegratedFeed.Pillar.v2.5.g/NonDisplayedTradeMessage.pcap");
     expect<protocol::Packet, protocol::Visitor, protocol::OrderExecutionMessage>("OrderExecutionMessage", "Nyse/ArcaEquities.IntegratedFeed.Pillar.v2.5.g/OrderExecutionMessage.pcap");

@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeedRefresh.Pillar.v2.5.g: messages/SequenceNumberResetMessage.hpp
 #pragma once
 
 #include "../types/SourceTime.hpp"

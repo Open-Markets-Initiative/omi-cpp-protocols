@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v1.91: types/BestOfferQuoteCondition.hpp
 #pragma once
 
 #include <cstddef>

@@ -1,3 +1,4 @@
+// Asx.AsxDerivatives.Ntp.Itch.v1.05: enums/ParticipantIdBuyer.hpp
 #pragma once
 
 #include <string_view>

@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: messages/IpoInformationMessage.hpp
 #pragma once
 
 #include "../types/IssueSymbol.hpp"

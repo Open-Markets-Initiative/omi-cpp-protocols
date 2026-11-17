@@ -1,3 +1,4 @@
+// Nyse.TexasEquities.IntegratedFeed.Pillar.v2.5.g: types/TradeId.hpp
 #pragma once
 
 #include <cstddef>

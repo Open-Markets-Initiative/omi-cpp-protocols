@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: messages/OrderCancelReplaceRequestMessage.hpp
 #pragma once
 
 #include <cstddef>
@@ -34,7 +35,7 @@ class OrderCancelReplaceRequestMessage : public Message {
     static constexpr MessageCode message_type = TemplateId::OrderCancelReplaceRequestMessage;
 
     OrderCancelReplaceRequestMessage() = default;
-    OrderCancelReplaceRequestMessage(const InboundBusinessHeader& inbound_business_header, std::optional<std::uint8_t> ordtagid, MmProtectionReset mm_protection_reset, std::uint64_t clordid, std::optional<std::uint32_t> account, const std::string& sender_location, const std::string& entering_trader, SelfTradePreventionInstruction self_trade_prevention_instruction, std::uint64_t security_id, Side side, Ordtype ordtype, TimeInForceOptional time_in_force_optional, std::optional<RoutingInstruction> routing_instruction, std::uint64_t order_qty, std::optional<Decimal> price_optional, std::optional<std::uint64_t> order_id_optional, std::optional<std::uint64_t> origclordid, std::optional<Decimal> stop_px, std::optional<std::uint64_t> min_qty, std::optional<std::uint64_t> max_floor, const std::string& executing_trader_optional, std::optional<AccountType> account_type, std::optional<std::uint16_t> expire_date, const CustodianInfo& custodian_info, const InvestorId& investor_id, const DeskId& desk_id, const Memo& memo);
+    OrderCancelReplaceRequestMessage(const InboundBusinessHeader& inbound_business_header, std::optional<std::uint8_t> ordtagid, MmProtectionReset mm_protection_reset, std::uint64_t cl_ord_id, std::optional<std::uint32_t> account, const std::string& sender_location, const std::string& entering_trader, SelfTradePreventionInstruction self_trade_prevention_instruction, std::uint64_t security_id, Side side, Ordtype ordtype, TimeInForceOptional time_in_force_optional, std::optional<RoutingInstruction> routing_instruction, std::uint64_t order_qty, std::optional<Decimal> price_optional, std::optional<std::uint64_t> order_id_optional, std::optional<std::uint64_t> origclordid, std::optional<Decimal> stop_px, std::optional<std::uint64_t> min_qty, std::optional<std::uint64_t> max_floor, const std::string& executing_trader_optional, std::optional<AccountType> account_type, std::optional<std::uint16_t> expire_date, const CustodianInfo& custodian_info, const InvestorId& investor_id, const DeskId& desk_id, const Memo& memo);
 
     // Inbound Business Header: InboundBusinessHeader
     const InboundBusinessHeader& inbound_business_header() const;
@@ -49,9 +50,9 @@ class OrderCancelReplaceRequestMessage : public Message {
     MmProtectionReset mm_protection_reset() const;
     void set_mm_protection_reset(MmProtectionReset value);
 
-    // ClOrdId: clOrdID
-    std::uint64_t clordid() const;
-    void set_clordid(std::uint64_t value);
+    // Cl Ord Id: clOrdID
+    std::uint64_t cl_ord_id() const;
+    void set_cl_ord_id(std::uint64_t value);
 
     // Account: account
     std::optional<std::uint32_t> account() const;
@@ -170,7 +171,7 @@ class OrderCancelReplaceRequestMessage : public Message {
     InboundBusinessHeader inbound_business_header_{};
     std::optional<std::uint8_t> ordtagid_{};
     MmProtectionReset mm_protection_reset_{};
-    std::uint64_t clordid_{};
+    std::uint64_t cl_ord_id_{};
     std::optional<std::uint32_t> account_{};
     std::string sender_location_{};
     std::string entering_trader_{};

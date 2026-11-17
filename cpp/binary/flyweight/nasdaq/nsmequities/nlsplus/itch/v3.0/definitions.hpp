@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: definitions.hpp
 #pragma once
 
 // Every flyweight view and reader of Nasdaq.NsmEquities.NlsPlus.Itch.v3.0.

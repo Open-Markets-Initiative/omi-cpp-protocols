@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.7: messages/OrderAddedWithAttributesMessage.hpp
 #pragma once
 
 #include <chrono>

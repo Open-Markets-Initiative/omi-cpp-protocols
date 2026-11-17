@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2017: enums/ClientPacketType.hpp
 #pragma once
 
 #include <cstdint>

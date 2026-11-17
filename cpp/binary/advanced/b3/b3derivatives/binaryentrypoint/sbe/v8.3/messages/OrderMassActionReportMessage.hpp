@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: messages/OrderMassActionReportMessage.hpp
 #pragma once
 
 #include <cstddef>
@@ -7,7 +8,7 @@
 #include "../structs/OutboundBusinessHeader.hpp"
 #include "../types/MassActionType.hpp"
 #include "../types/MassActionScope.hpp"
-#include "../types/Clordid.hpp"
+#include "../types/ClOrdId.hpp"
 #include "../types/MassActionReportId.hpp"
 #include "../types/TransactTime.hpp"
 #include "../types/MassActionResponse.hpp"
@@ -34,7 +35,7 @@ struct order_mass_action_report_message {
         sbe_binaryentrypoint::outbound_business_header outbound_business_header;
         sbe_binaryentrypoint::mass_action_type mass_action_type;
         sbe_binaryentrypoint::mass_action_scope mass_action_scope;
-        sbe_binaryentrypoint::clordid clordid;
+        sbe_binaryentrypoint::cl_ord_id cl_ord_id;
         sbe_binaryentrypoint::mass_action_report_id mass_action_report_id;
         sbe_binaryentrypoint::transact_time transact_time;
         sbe_binaryentrypoint::mass_action_response mass_action_response;
@@ -88,7 +89,7 @@ struct order_mass_action_report_message {
 static_assert(offsetof(order_mass_action_report_message::fields_type, outbound_business_header) == 0, "unexpected offset of order_mass_action_report_message::fields_type::outbound_business_header");
 static_assert(offsetof(order_mass_action_report_message::fields_type, mass_action_type) == 18, "unexpected offset of order_mass_action_report_message::fields_type::mass_action_type");
 static_assert(offsetof(order_mass_action_report_message::fields_type, mass_action_scope) == 19, "unexpected offset of order_mass_action_report_message::fields_type::mass_action_scope");
-static_assert(offsetof(order_mass_action_report_message::fields_type, clordid) == 20, "unexpected offset of order_mass_action_report_message::fields_type::clordid");
+static_assert(offsetof(order_mass_action_report_message::fields_type, cl_ord_id) == 20, "unexpected offset of order_mass_action_report_message::fields_type::cl_ord_id");
 static_assert(offsetof(order_mass_action_report_message::fields_type, mass_action_report_id) == 28, "unexpected offset of order_mass_action_report_message::fields_type::mass_action_report_id");
 static_assert(offsetof(order_mass_action_report_message::fields_type, transact_time) == 36, "unexpected offset of order_mass_action_report_message::fields_type::transact_time");
 static_assert(offsetof(order_mass_action_report_message::fields_type, mass_action_response) == 44, "unexpected offset of order_mass_action_report_message::fields_type::mass_action_response");

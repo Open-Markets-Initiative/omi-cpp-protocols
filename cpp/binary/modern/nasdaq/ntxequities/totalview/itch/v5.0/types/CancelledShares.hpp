@@ -1,3 +1,4 @@
+// Nasdaq.NtxEquities.TotalView.Itch.v5.0: types/CancelledShares.hpp
 #pragma once
 
 #include <bit>

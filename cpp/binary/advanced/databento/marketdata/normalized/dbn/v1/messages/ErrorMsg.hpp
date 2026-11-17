@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v1: messages/ErrorMsg.hpp
 #pragma once
 
 #include <cstddef>

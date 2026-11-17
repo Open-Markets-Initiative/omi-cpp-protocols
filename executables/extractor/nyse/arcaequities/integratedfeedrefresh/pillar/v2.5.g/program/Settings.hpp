@@ -1,3 +1,4 @@
+// Nyse.ArcaEquities.IntegratedFeedRefresh.Pillar.v2.5.g: program/Settings.hpp
 #pragma once
 
 #include <filesystem>

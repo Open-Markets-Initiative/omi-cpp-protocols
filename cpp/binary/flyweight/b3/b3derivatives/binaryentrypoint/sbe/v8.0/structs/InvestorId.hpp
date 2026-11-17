@@ -1,7 +1,9 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: structs/InvestorId.hpp
 #pragma once
 
 #include <cstddef>
 #include <cstdint>
+#include <optional>
 #include <ostream>
 #include <span>
 
@@ -26,20 +28,20 @@ class InvestorId {
     static constexpr std::size_t fixed_size = 8;
     std::size_t encoded_size() const { return 8; }
 
-    std::uint16_t prefix() const { return wire::read_u16_le(at(0)); }
+    std::optional<std::uint16_t> prefix() const { return wire::nullable(wire::read_u16_le(at(0)), static_cast<std::uint16_t>(0ULL)); }
 
     std::span<const std::byte, 2> offset_2_padding_2() const { return bytes_.subspan(2).template first<2>(); }
 
-    std::uint32_t document() const { return wire::read_u32_le(at(4)); }
+    std::optional<std::uint32_t> document() const { return wire::nullable(wire::read_u32_le(at(4)), static_cast<std::uint32_t>(0ULL)); }
 
     void print(std::ostream& out) const {
         out << "InvestorId{";
         out << "prefix=";
-        out << prefix();
+        print::optional(out, prefix());
         out << ", offset_2_padding_2=";
         print::hex(out, offset_2_padding_2().data(), offset_2_padding_2().size());
         out << ", document=";
-        out << document();
+        print::optional(out, document());
         out << '}';
     }
 

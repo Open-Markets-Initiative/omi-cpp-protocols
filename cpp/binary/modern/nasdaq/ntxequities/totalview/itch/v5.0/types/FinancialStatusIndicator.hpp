@@ -1,3 +1,4 @@
+// Nasdaq.NtxEquities.TotalView.Itch.v5.0: types/FinancialStatusIndicator.hpp
 #pragma once
 
 #include <cstddef>

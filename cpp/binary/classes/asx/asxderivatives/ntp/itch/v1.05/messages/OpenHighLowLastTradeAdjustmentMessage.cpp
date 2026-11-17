@@ -1,3 +1,4 @@
+// Asx.AsxDerivatives.Ntp.Itch.v1.05: messages/OpenHighLowLastTradeAdjustmentMessage.cpp
 #include "OpenHighLowLastTradeAdjustmentMessage.hpp"
 
 #include "../common/Print.hpp"

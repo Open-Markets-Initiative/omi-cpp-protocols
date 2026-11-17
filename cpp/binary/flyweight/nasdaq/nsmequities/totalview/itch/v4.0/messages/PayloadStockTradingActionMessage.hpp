@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v4.0: messages/PayloadStockTradingActionMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -37,7 +38,7 @@ class PayloadStockTradingActionMessage {
 
     TradingState trading_state() const { return static_cast<TradingState>(wire::read_char(at(10))); }
 
-    char reserved() const { return wire::read_char(at(11)); }
+    std::span<const std::byte, 1> reserved() const { return bytes_.subspan(11).template first<1>(); }
 
     std::string_view reason() const { return view::text(at(12), 4, ' '); }
 
@@ -50,7 +51,7 @@ class PayloadStockTradingActionMessage {
         out << ", trading_state=";
         out << trading_state();
         out << ", reserved=";
-        print::character(out, reserved());
+        print::hex(out, reserved().data(), reserved().size());
         out << ", reason=";
         print::text(out, reason());
         out << '}';

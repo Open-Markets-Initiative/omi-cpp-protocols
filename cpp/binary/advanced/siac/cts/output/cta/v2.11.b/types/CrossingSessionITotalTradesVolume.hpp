@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: types/CrossingSessionITotalTradesVolume.hpp
 #pragma once
 
 #include <cstddef>

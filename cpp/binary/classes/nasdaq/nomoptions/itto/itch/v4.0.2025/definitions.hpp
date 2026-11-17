@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: definitions.hpp
 #pragma once
 
 #include "common/Day.hpp"

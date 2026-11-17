@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2023: types/CurrentReferencePrice.hpp
 #pragma once
 
 #include <bit>

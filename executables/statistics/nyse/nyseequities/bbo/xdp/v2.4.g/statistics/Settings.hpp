@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.Bbo.Xdp.v2.4.g: statistics/Settings.hpp
 #pragma once
 
 #include <string>

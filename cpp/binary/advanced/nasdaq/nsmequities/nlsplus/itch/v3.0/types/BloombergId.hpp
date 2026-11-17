@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: types/BloombergId.hpp
 #pragma once
 
 #include <cstddef>

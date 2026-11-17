@@ -1,3 +1,4 @@
+// Cboe.C1Options.MarketDataFeed.Csm.v1.4.2: messages/SecurityDefinitionMessage.hpp
 #pragma once
 
 #include <cstddef>
@@ -58,7 +59,7 @@ struct security_definition_message {
         csm_marketdatafeed::no_legs no_legs;
     };
 
-    csm_marketdatafeed::message_header header = {{}, template_id::enum_type::security_definition_message, {}, {}};
+    csm_marketdatafeed::message_header header = {std::uint16_t(sizeof(csm_marketdatafeed::message_header) + sizeof(fields_type)), template_id::enum_type::security_definition_message, {}, {}};
 
     static constexpr std::size_t max_message_size = 1280;
     static constexpr std::size_t tail_capacity = max_message_size - sizeof(csm_marketdatafeed::message_header) - sizeof(fields_type);
@@ -68,7 +69,12 @@ struct security_definition_message {
 
     // tail buffer accessors
     const std::byte* tail_begin() const { return tail; }
-    const std::byte* tail_end() const { return tail + tail_capacity; }
+    const std::byte* tail_end() const {
+        auto sz = header.message_length.get().value();
+        return sz == sizeof(csm_marketdatafeed::message_header) + sizeof(fields_type)
+            ? tail + tail_capacity
+            : tail + (sz - sizeof(csm_marketdatafeed::message_header) - sizeof(fields_type));
+    }
 
     // sequential access to variable-length regions
     sbe_var_data<std::uint8_t> security_type() const {
@@ -132,3 +138,6 @@ static_assert(sizeof(security_definition_message::fields_type) == 55, "unexpecte
 
 #pragma pack(pop)
 }
+
+#include "details/SecurityDefinitionMessageWriter.hpp"
+#include "details/SecurityDefinitionMessageReader.hpp"

@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.ComplexTopOfMarket.Mach.v1.1: miax_miaxoptions_complextopofmarket_mach_v1_1.hpp
 // Miax MiaxOptions ComplexTopOfMarket Mach 1.1 Template Meta Programming
 
 #pragma once
@@ -290,6 +291,20 @@ struct expected_event_time_nano_seconds_part {
     type value_;
 };
 
+// Expected Event Time Seconds Part: Seconds portion of the expected time of the event. Always use in conjunction with the Nano-seconds part field.
+struct expected_event_time_seconds_part {
+    using type = std::uint32_t;
+    static constexpr std::size_t size = 4;
+    static constexpr std::endian order = std::endian::little;
+    static constexpr type no_value = static_cast<type>(0ULL);
+
+    constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
+    constexpr operator type() const noexcept { return value(); }
+
+  protected:
+    type value_;
+};
+
 // Expiration Date: Expiration date of the option in YYYYMMDD format
 struct expiration_date {
     using type = std::string_view;
@@ -532,7 +547,7 @@ struct packet_length {
     type value_;
 };
 
-// Packet Type: protocol packet type
+// Packet Type: Mach protocol packet type
 struct packet_type {
     enum class type : std::uint8_t {
         heartbeat = 0,
@@ -683,19 +698,6 @@ struct seconds {
     type value_;
 };
 
-// Seconds Part: Seconds portion of the expected time of the event. Always use in conjunction with the Nano-seconds part field.
-struct seconds_part {
-    using type = std::uint32_t;
-    static constexpr std::size_t size = 4;
-    static constexpr std::endian order = std::endian::little;
-
-    constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
-    constexpr operator type() const noexcept { return value(); }
-
-  protected:
-    type value_;
-};
-
 // Security Symbol: Option Security Symbol
 struct security_symbol {
     using type = std::string_view;
@@ -735,7 +737,7 @@ struct session_id {
     type value_;
 };
 
-// Session Number: protocol packet type
+// Session Number: The Session this packet was generated from
 struct session_number {
     using type = std::uint8_t;
     static constexpr std::size_t size = 1;
@@ -1002,7 +1004,7 @@ struct underlying_trading_status_message {
         underlying_symbol,
         trading_status,
         event_reason,
-        seconds_part,
+        expected_event_time_seconds_part,
         expected_event_time_nano_seconds_part>;
 
     // the member of the type asked for
@@ -1014,7 +1016,7 @@ struct underlying_trading_status_message {
     MACHFIELD(underlying_symbol);
     MACHFIELD(trading_status);
     MACHFIELD(event_reason);
-    MACHFIELD(seconds_part);
+    MACHFIELD(expected_event_time_seconds_part);
     MACHFIELD(expected_event_time_nano_seconds_part);
 };
 

@@ -1,3 +1,4 @@
+// Iex.IexEquities.Tops.IexTp.v1.56: main.cpp
 // Iex.IexEquities.Tops.IexTp.v1.56 benchmark, through the Flyweight reader: every value it reads from every message of the simulated
 // sequence (tests/simulated/iex/iexequities/tops/iextp/v1.56.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -70,7 +71,6 @@ struct Reader {
         checksum += bench::digest(message.size());
         checksum += bench::digest(message.price().mantissa());
         checksum += bench::digest(message.trade_id());
-        checksum += bench::digest(message.reserved_4());
     }
 
     void on(const protocol::TradeBreakMessage& message) {
@@ -84,7 +84,6 @@ struct Reader {
         checksum += bench::digest(message.size());
         checksum += bench::digest(message.price().mantissa());
         checksum += bench::digest(message.trade_id());
-        checksum += bench::digest(message.reserved_4());
     }
 };
 

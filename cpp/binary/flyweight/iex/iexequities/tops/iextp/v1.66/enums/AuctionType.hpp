@@ -1,3 +1,4 @@
+// Iex.IexEquities.Tops.IexTp.v1.66: enums/AuctionType.hpp
 #pragma once
 
 #include <cstdint>

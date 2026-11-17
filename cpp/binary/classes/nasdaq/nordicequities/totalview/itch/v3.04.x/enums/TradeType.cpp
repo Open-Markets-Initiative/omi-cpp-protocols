@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: enums/TradeType.cpp
 #include "TradeType.hpp"
 
 namespace nasdaq::nordicequities::totalview::itch::v3_04_x {

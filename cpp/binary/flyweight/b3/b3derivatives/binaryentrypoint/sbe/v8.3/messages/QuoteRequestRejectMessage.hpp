@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: messages/QuoteRequestRejectMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -32,42 +33,42 @@ class QuoteRequestRejectMessage {
     std::span<const std::byte> bytes() const noexcept { return bytes_; }
 
     // the bytes every QuoteRequestRejectMessage has, which a reader checks before it views them
-    static constexpr std::size_t minimum_size = 110;
+    static constexpr std::size_t minimum_size = 111;
     std::size_t encoded_size() const { return text_end(); }
 
     BidirectionalBusinessHeader bidirectional_business_header() const { return BidirectionalBusinessHeader{ bytes_.subspan(0) }; }
 
-    std::optional<std::uint32_t> quote_request_reject_reason() const { return wire::nullable(wire::read_u32_le(at(19)), static_cast<std::uint32_t>(0ULL)); }
+    std::optional<std::uint32_t> quote_request_reject_reason() const { return wire::nullable(wire::read_u32_le(at(20)), static_cast<std::uint32_t>(0ULL)); }
 
-    std::uint64_t security_id() const { return wire::read_u64_le(at(23)); }
+    std::uint64_t security_id() const { return wire::read_u64_le(at(24)); }
 
-    std::uint64_t quote_req_id() const { return wire::read_u64_le(at(31)); }
+    std::uint64_t quote_req_id() const { return wire::read_u64_le(at(32)); }
 
-    std::optional<std::uint64_t> quote_id_optional() const { return wire::nullable(wire::read_u64_le(at(39)), static_cast<std::uint64_t>(0ULL)); }
+    std::optional<std::uint64_t> quote_id_optional() const { return wire::nullable(wire::read_u64_le(at(40)), static_cast<std::uint64_t>(0ULL)); }
 
-    std::optional<std::uint32_t> trade_id_optional() const { return wire::nullable(wire::read_u32_le(at(47)), static_cast<std::uint32_t>(0ULL)); }
+    std::optional<std::uint32_t> trade_id_optional() const { return wire::nullable(wire::read_u32_le(at(48)), static_cast<std::uint32_t>(0ULL)); }
 
-    std::uint32_t contra_broker() const { return wire::read_u32_le(at(51)); }
+    std::uint32_t contra_broker() const { return wire::read_u32_le(at(52)); }
 
-    std::chrono::nanoseconds transact_time() const { return std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u64_le(at(55)))); }
+    std::chrono::nanoseconds transact_time() const { return std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u64_le(at(56)))); }
 
-    std::string_view entering_trader() const { return view::text(at(63), 5, '\0'); }
+    std::string_view entering_trader() const { return view::text(at(64), 5, '\0'); }
 
-    SettlTypeOptional settl_type_optional() const { return static_cast<SettlTypeOptional>(wire::read_char(at(68))); }
+    SettlTypeOptional settl_type_optional() const { return static_cast<SettlTypeOptional>(wire::read_char(at(69))); }
 
-    std::optional<Decimal> price_8_optional() const { return wire::nullable_decimal(wire::read_i64_le(at(69)), static_cast<std::int64_t>(-9223372036854775807LL - 1), -8); }
+    std::optional<Decimal> price_8_optional() const { return wire::nullable_decimal(wire::read_i64_le(at(70)), static_cast<std::int64_t>(-9223372036854775807LL - 1), -8); }
 
-    std::optional<std::uint64_t> order_qty_optional() const { return wire::nullable(wire::read_u64_le(at(77)), static_cast<std::uint64_t>(0ULL)); }
+    std::optional<std::uint64_t> order_qty_optional() const { return wire::nullable(wire::read_u64_le(at(78)), static_cast<std::uint64_t>(0ULL)); }
 
-    std::string_view sender_location() const { return view::text(at(85), 10, '\0'); }
+    std::string_view sender_location() const { return view::text(at(86), 10, '\0'); }
 
-    std::string_view executing_trader() const { return view::text(at(95), 5, '\0'); }
+    std::string_view executing_trader() const { return view::text(at(96), 5, '\0'); }
 
-    std::optional<Decimal> fixed_rate_percentage_8_optional() const { return wire::nullable_decimal(wire::read_i64_le(at(100)), static_cast<std::int64_t>(-9223372036854775807LL - 1), -8); }
+    std::optional<Decimal> fixed_rate_optional() const { return wire::nullable_decimal(wire::read_i64_le(at(101)), static_cast<std::int64_t>(-9223372036854775807LL - 1), -8); }
 
-    std::optional<std::uint16_t> days_to_settlement_optional() const { return wire::nullable(wire::read_u16_le(at(108)), static_cast<std::uint16_t>(65535ULL)); }
+    std::optional<std::uint16_t> days_to_settlement_optional() const { return wire::nullable(wire::read_u16_le(at(109)), static_cast<std::uint16_t>(65535ULL)); }
 
-    SidesGroups sides_groups() const { return SidesGroups{ bytes_.subspan(110) }; }
+    SidesGroups sides_groups() const { return SidesGroups{ bytes_.subspan(111) }; }
 
     DeskId desk_id() const {
         wire::require("QuoteRequestRejectMessage", sides_groups_end() + DeskId::minimum_size, bytes_.size());
@@ -114,8 +115,8 @@ class QuoteRequestRejectMessage {
         print::text(out, sender_location());
         out << ", executing_trader=";
         print::text(out, executing_trader());
-        out << ", fixed_rate_percentage_8_optional=";
-        print::optional(out, fixed_rate_percentage_8_optional());
+        out << ", fixed_rate_optional=";
+        print::optional(out, fixed_rate_optional());
         out << ", days_to_settlement_optional=";
         print::optional(out, days_to_settlement_optional());
         out << ", sides_groups=";
@@ -131,7 +132,7 @@ class QuoteRequestRejectMessage {
 
   private:
     const std::byte* at(std::size_t offset) const noexcept { return bytes_.data() + offset; }
-    std::size_t sides_groups_end() const { return 110 + sides_groups().encoded_size(); }
+    std::size_t sides_groups_end() const { return 111 + sides_groups().encoded_size(); }
     std::size_t desk_id_end() const { return sides_groups_end() + desk_id().encoded_size(); }
     std::size_t memo_end() const { return desk_id_end() + memo().encoded_size(); }
     std::size_t text_end() const { return memo_end() + text().encoded_size(); }

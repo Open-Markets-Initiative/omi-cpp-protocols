@@ -1,3 +1,4 @@
+// Cboe.ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29: enums/RegShoAction.cpp
 #include "RegShoAction.hpp"
 
 namespace cboe::byxequities::multicastdepthofbook::pitch::v2_41_29 {

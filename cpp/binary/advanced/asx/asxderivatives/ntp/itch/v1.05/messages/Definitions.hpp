@@ -1,3 +1,4 @@
+// Asx.AsxDerivatives.Ntp.Itch.v1.05: messages/Definitions.hpp
 #pragma once
 
 #include "../structs/PacketHeader.hpp"

@@ -1,3 +1,4 @@
+// Nasdaq.IseOptions.TopComboQuoteFeed.Itch.v1.0: main.cpp
 // Nasdaq.IseOptions.TopComboQuoteFeed.Itch.v1.0 write and read: every message built with each field it sets, written
 // into a capture through the Classes encoder, then read back - each field set must read as it was written.
 // 
@@ -178,9 +179,9 @@ std::unique_ptr<protocol::Message> build_ComplexStrategyTickerMessage() {
     message->set_last_price(protocol::Decimal(3, -8));
     message->set_size(static_cast<std::uint32_t>(4));
     message->set_volume(static_cast<std::uint32_t>(5));
-    message->set_high(static_cast<std::uint64_t>(6));
-    message->set_low(static_cast<std::uint64_t>(7));
-    message->set_first(static_cast<std::uint64_t>(8));
+    message->set_high(protocol::Decimal(6, -8));
+    message->set_low(protocol::Decimal(7, -8));
+    message->set_first(protocol::Decimal(8, -8));
     message->set_trade_condition('J');
     return message;
 }
@@ -526,15 +527,15 @@ int check_ComplexStrategyTickerMessage(const protocol::Message* read) {
         std::printf("FAIL ComplexStrategyTickerMessage: volume does not read as it was written\n");
         ++failures;
     }
-    if (!(message->high() == static_cast<std::uint64_t>(6))) {
+    if (!(message->high() == protocol::Decimal(6, -8))) {
         std::printf("FAIL ComplexStrategyTickerMessage: high does not read as it was written\n");
         ++failures;
     }
-    if (!(message->low() == static_cast<std::uint64_t>(7))) {
+    if (!(message->low() == protocol::Decimal(7, -8))) {
         std::printf("FAIL ComplexStrategyTickerMessage: low does not read as it was written\n");
         ++failures;
     }
-    if (!(message->first() == static_cast<std::uint64_t>(8))) {
+    if (!(message->first() == protocol::Decimal(8, -8))) {
         std::printf("FAIL ComplexStrategyTickerMessage: first does not read as it was written\n");
         ++failures;
     }

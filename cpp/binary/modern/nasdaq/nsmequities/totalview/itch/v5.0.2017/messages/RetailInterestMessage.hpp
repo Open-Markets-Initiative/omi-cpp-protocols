@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2017: messages/RetailInterestMessage.hpp
 #pragma once
 
 #include "../types/StockLocate.hpp"

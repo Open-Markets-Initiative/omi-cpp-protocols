@@ -1,7 +1,8 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: messages/IpoQuotingPeriodUpdateMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
-#include <cstdint>
 #include <memory>
 #include <ostream>
 #include <string>
@@ -24,7 +25,7 @@ class IpoQuotingPeriodUpdateMessage : public Message {
     static constexpr std::size_t wire_size = 17;
 
     IpoQuotingPeriodUpdateMessage() = default;
-    IpoQuotingPeriodUpdateMessage(const std::string& stock, std::uint32_t ipo_quotation_release_time, IpoQuotationReleaseQualifier ipo_quotation_release_qualifier, Decimal ipo_price);
+    IpoQuotingPeriodUpdateMessage(const std::string& stock, std::chrono::seconds ipo_quotation_release_time, IpoQuotationReleaseQualifier ipo_quotation_release_qualifier, Decimal ipo_price);
 
     // Stock: Denotes the security symbol for the issue in the Nasdaq execution system
     const std::string& stock() const;
@@ -33,8 +34,8 @@ class IpoQuotingPeriodUpdateMessage : public Message {
 
     // Ipo Quotation Release Time: Denotes the Ipo release time, in seconds since midnight, for
     // quotation to the nearest second
-    std::uint32_t ipo_quotation_release_time() const;
-    void set_ipo_quotation_release_time(std::uint32_t value);
+    std::chrono::seconds ipo_quotation_release_time() const;
+    void set_ipo_quotation_release_time(std::chrono::seconds value);
 
     // Ipo Quotation Release Qualifier: Denotes whether the release time is anticipated or the
     // release has been cancelled or postponed
@@ -61,7 +62,7 @@ class IpoQuotingPeriodUpdateMessage : public Message {
 
   private:
     std::string stock_{};
-    std::uint32_t ipo_quotation_release_time_{};
+    std::chrono::seconds ipo_quotation_release_time_{};
     IpoQuotationReleaseQualifier ipo_quotation_release_qualifier_{};
     Decimal ipo_price_{ 0, -4 };
 };

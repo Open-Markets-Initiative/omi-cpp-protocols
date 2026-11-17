@@ -1,3 +1,4 @@
+// OtcMarkets.LinkAts.Multicast.Link.v4.3: main.cpp
 // OtcMarkets.LinkAts.Multicast.Link.v4.3 write and read: every message built with each field it sets, written
 // into a capture through the Classes encoder, then read back - each field set must read as it was written.
 // 
@@ -99,7 +100,7 @@ std::unique_ptr<protocol::Message> build_MarketOpenMessage() {
     auto message = std::make_unique<protocol::MarketOpenMessage>();
     message->set_channel_seq_num(static_cast<std::uint32_t>(1));
     message->set_market_open(std::chrono::milliseconds{2});
-    message->set_market_close(static_cast<std::uint64_t>(3));
+    message->set_market_close(std::chrono::milliseconds{3});
     return message;
 }
 
@@ -107,7 +108,7 @@ std::unique_ptr<protocol::Message> build_MarketOpenMessage() {
 std::unique_ptr<protocol::Message> build_MarketCloseMessage() {
     auto message = std::make_unique<protocol::MarketCloseMessage>();
     message->set_channel_seq_num(static_cast<std::uint32_t>(1));
-    message->set_market_close_time_milli(static_cast<std::uint64_t>(2));
+    message->set_market_close_time_milli(std::chrono::milliseconds{2});
     message->set_market_msg_ct(static_cast<std::uint32_t>(3));
     return message;
 }
@@ -383,7 +384,7 @@ int check_MarketOpenMessage(const protocol::Message* read) {
         std::printf("FAIL MarketOpenMessage: market_open does not read as it was written\n");
         ++failures;
     }
-    if (!(message->market_close() == static_cast<std::uint64_t>(3))) {
+    if (!(message->market_close() == std::chrono::milliseconds{3})) {
         std::printf("FAIL MarketOpenMessage: market_close does not read as it was written\n");
         ++failures;
     }
@@ -404,7 +405,7 @@ int check_MarketCloseMessage(const protocol::Message* read) {
         std::printf("FAIL MarketCloseMessage: channel_seq_num does not read as it was written\n");
         ++failures;
     }
-    if (!(message->market_close_time_milli() == static_cast<std::uint64_t>(2))) {
+    if (!(message->market_close_time_milli() == std::chrono::milliseconds{2})) {
         std::printf("FAIL MarketCloseMessage: market_close_time_milli does not read as it was written\n");
         ++failures;
     }

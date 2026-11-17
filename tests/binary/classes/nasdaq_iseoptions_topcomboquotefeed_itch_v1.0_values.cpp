@@ -119,9 +119,9 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.complexstrategytickermessage.lastprice"] = canonical::scaled((*message).last_price().mantissa(), (*message).last_price().exponent());
             values[entry + ".payload.complexstrategytickermessage.size"] = canonical::number((*message).size());
             values[entry + ".payload.complexstrategytickermessage.volume"] = canonical::number((*message).volume());
-            values[entry + ".payload.complexstrategytickermessage.high"] = canonical::number((*message).high());
-            values[entry + ".payload.complexstrategytickermessage.low"] = canonical::number((*message).low());
-            values[entry + ".payload.complexstrategytickermessage.first"] = canonical::number((*message).first());
+            values[entry + ".payload.complexstrategytickermessage.high"] = canonical::scaled((*message).high().mantissa(), (*message).high().exponent());
+            values[entry + ".payload.complexstrategytickermessage.low"] = canonical::scaled((*message).low().mantissa(), (*message).low().exponent());
+            values[entry + ".payload.complexstrategytickermessage.first"] = canonical::scaled((*message).first().mantissa(), (*message).first().exponent());
             values[entry + ".payload.complexstrategytickermessage.tradecondition"] = canonical::text(canonical::character((*message).trade_condition()), ' ', false);
         }
     }

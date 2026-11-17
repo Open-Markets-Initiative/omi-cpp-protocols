@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.TopFeed.Pillar.v1.2.c: enums/HaltCondition.cpp
 #include "HaltCondition.hpp"
 
 namespace nyse::arcaoptions::topfeed::pillar::v1_2_c {

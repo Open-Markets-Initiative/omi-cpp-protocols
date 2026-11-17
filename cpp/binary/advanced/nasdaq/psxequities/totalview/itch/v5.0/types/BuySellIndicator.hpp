@@ -1,3 +1,4 @@
+// Nasdaq.PsxEquities.TotalView.Itch.v5.0: types/BuySellIndicator.hpp
 #pragma once
 
 #include <cstddef>

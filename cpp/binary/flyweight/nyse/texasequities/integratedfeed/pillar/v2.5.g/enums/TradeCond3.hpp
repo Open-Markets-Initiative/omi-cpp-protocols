@@ -1,3 +1,4 @@
+// Nyse.TexasEquities.IntegratedFeed.Pillar.v2.5.g: enums/TradeCond3.hpp
 #pragma once
 
 #include <cstdint>

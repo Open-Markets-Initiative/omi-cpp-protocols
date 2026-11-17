@@ -1,7 +1,7 @@
+// Siac.Cts.Output.Cta.v2.10: messages/FractionalPriorDayTradeCorrectionMessage.hpp
 #pragma once
 
 #include <cstddef>
-#include "../structs/BlockHeader.hpp"
 #include "../types/ParticipantId.hpp"
 #include "../structs/Timestamp1.hpp"
 #include "../types/MessageId.hpp"
@@ -38,7 +38,6 @@ struct fractional_prior_day_trade_correction_message {
         cta_output::fractional_prior_day_original_trade fractional_prior_day_original_trade;
     };
 
-    cta_output::block_header header = {{}, {}, {}, {}, {}, {}, {}, {}};
     // Transport framing: message size precedes the SBE header on the wire
     cta_output::message_length message_length;
     cta_output::message_category message_category = cta_output::message_category::enum_type::prior_day;
@@ -70,7 +69,7 @@ static_assert(offsetof(fractional_prior_day_trade_correction_message::fields_typ
 static_assert(offsetof(fractional_prior_day_trade_correction_message::fields_type, trade_reporting_facility_id) == 66, "unexpected offset of fractional_prior_day_trade_correction_message::fields_type::trade_reporting_facility_id");
 static_assert(offsetof(fractional_prior_day_trade_correction_message::fields_type, fractional_prior_day_original_trade) == 67, "unexpected offset of fractional_prior_day_trade_correction_message::fields_type::fractional_prior_day_original_trade");
 static_assert(sizeof(fractional_prior_day_trade_correction_message::fields_type) == 99, "unexpected sizeof fractional_prior_day_trade_correction_message::fields_type");
-static_assert(sizeof(fractional_prior_day_trade_correction_message) == sizeof(cta_output::block_header) + sizeof(cta_output::message_length) + sizeof(cta_output::message_category) + sizeof(cta_output::prior_day_message_type) + 99, "unexpected sizeof fractional_prior_day_trade_correction_message");
+static_assert(sizeof(fractional_prior_day_trade_correction_message) == sizeof(cta_output::message_length) + sizeof(cta_output::message_category) + sizeof(cta_output::prior_day_message_type) + 99, "unexpected sizeof fractional_prior_day_trade_correction_message");
 
 #pragma pack(pop)
 }

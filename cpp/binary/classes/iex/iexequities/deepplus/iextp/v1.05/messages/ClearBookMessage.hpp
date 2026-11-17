@@ -1,5 +1,7 @@
+// Iex.IexEquities.DeepPlus.IexTp.v1.05: messages/ClearBookMessage.hpp
 #pragma once
 
+#include <array>
 #include <chrono>
 #include <cstddef>
 #include <memory>
@@ -23,11 +25,12 @@ class ClearBookMessage : public Message {
     static constexpr std::size_t wire_size = 17;
 
     ClearBookMessage() = default;
-    ClearBookMessage(char reserved_1, std::chrono::nanoseconds timestamp, const std::string& symbol);
+    ClearBookMessage(const std::array<std::byte, 1>& reserved_1, std::chrono::nanoseconds timestamp, const std::string& symbol);
 
     // Reserved 1: Reserved for future use
-    char reserved_1() const;
-    void set_reserved_1(char value);
+    const std::array<std::byte, 1>& reserved_1() const;
+    std::array<std::byte, 1>& reserved_1();
+    void set_reserved_1(const std::array<std::byte, 1>& value);
 
     // Timestamp: Time stamp of the system event
     std::chrono::nanoseconds timestamp() const;
@@ -53,7 +56,7 @@ class ClearBookMessage : public Message {
     bool operator!=(const ClearBookMessage& other) const;
 
   private:
-    char reserved_1_{};
+    std::array<std::byte, 1> reserved_1_{};
     std::chrono::nanoseconds timestamp_{};
     std::string symbol_{};
 };

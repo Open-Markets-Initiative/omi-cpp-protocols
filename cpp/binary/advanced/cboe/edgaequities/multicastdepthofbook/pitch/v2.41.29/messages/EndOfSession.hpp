@@ -1,8 +1,9 @@
+// Cboe.EdgaEquities.MulticastDepthOfBook.Pitch.v2.41.29: messages/EndOfSession.hpp
 #pragma once
 
 #include <cstddef>
 #include "../structs/MessageHeader.hpp"
-#include "../types/LastTimestamp.hpp"
+#include "../types/TimeOffset.hpp"
 
 namespace cboe::edgaequities::multicastdepthofbook::pitch::v2_41_29 {
 
@@ -14,7 +15,7 @@ namespace pitch_multicastdepthofbook = ::cboe::edgaequities::multicastdepthofboo
 struct end_of_session {
 
     struct fields_type {
-        pitch_multicastdepthofbook::last_timestamp last_timestamp;
+        pitch_multicastdepthofbook::time_offset time_offset;
     };
 
     pitch_multicastdepthofbook::message_header header = {std::uint16_t(sizeof(pitch_multicastdepthofbook::message_header) + sizeof(fields_type)), message_type::enum_type::end_of_session};
@@ -34,7 +35,7 @@ struct end_of_session {
 };
 
 // layout verification
-static_assert(offsetof(end_of_session::fields_type, last_timestamp) == 0, "unexpected offset of end_of_session::fields_type::last_timestamp");
+static_assert(offsetof(end_of_session::fields_type, time_offset) == 0, "unexpected offset of end_of_session::fields_type::time_offset");
 static_assert(sizeof(end_of_session::fields_type) == 4, "unexpected sizeof end_of_session::fields_type");
 static_assert(sizeof(end_of_session) == sizeof(pitch_multicastdepthofbook::message_header) + 4, "unexpected sizeof end_of_session");
 

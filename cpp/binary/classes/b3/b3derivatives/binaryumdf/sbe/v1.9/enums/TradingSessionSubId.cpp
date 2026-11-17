@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.9: enums/TradingSessionSubId.cpp
 #include "TradingSessionSubId.hpp"
 
 namespace b3::b3derivatives::binaryumdf::sbe::v1_9 {

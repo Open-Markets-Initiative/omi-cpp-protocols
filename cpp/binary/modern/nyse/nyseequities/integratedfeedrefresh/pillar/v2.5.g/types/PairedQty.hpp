@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeedRefresh.Pillar.v2.5.g: types/PairedQty.hpp
 #pragma once
 
 #include <cstddef>

@@ -1,3 +1,4 @@
+// Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.20.4: messages/AuctionSummaryMessage.cpp
 #include "AuctionSummaryMessage.hpp"
 
 #include "../common/Print.hpp"

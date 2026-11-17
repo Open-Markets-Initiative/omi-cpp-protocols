@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: types/Category2.hpp
 #pragma once
 
 #include <cstddef>
@@ -15,6 +16,7 @@ struct category_2 {
     enum class enum_type : char {
         no_trade_through_exempt_reason = ' ',
         inter_market_sweep_order = 'F',
+        market_center_opening_trade = 'O',
         derivatively_priced = '4',
         market_center_reopening_trade = '5',
         market_center_closing_trade = '6',
@@ -23,11 +25,12 @@ struct category_2 {
         corrected_consolidated_close_price_as_per_listing_market = '9'
     };
 
-    static constexpr std::array<std::pair<std::string_view, enum_type>, 8> from_string_map = {{
+    static constexpr std::array<std::pair<std::string_view, enum_type>, 9> from_string_map = {{
         {"Corrected Consolidated Close Price As Per Listing Market", enum_type::corrected_consolidated_close_price_as_per_listing_market},
         {"Derivatively Priced", enum_type::derivatively_priced},
         {"Inter Market Sweep Order", enum_type::inter_market_sweep_order},
         {"Market Center Closing Trade", enum_type::market_center_closing_trade},
+        {"Market Center Opening Trade", enum_type::market_center_opening_trade},
         {"Market Center Reopening Trade", enum_type::market_center_reopening_trade},
         {"No Trade Through Exempt Reason", enum_type::no_trade_through_exempt_reason},
         {"Qualified Contingent Trade", enum_type::qualified_contingent_trade},
@@ -38,6 +41,7 @@ struct category_2 {
         switch (value) {
             case enum_type::no_trade_through_exempt_reason: return "No Trade Through Exempt Reason";
             case enum_type::inter_market_sweep_order: return "Inter Market Sweep Order";
+            case enum_type::market_center_opening_trade: return "Market Center Opening Trade";
             case enum_type::derivatively_priced: return "Derivatively Priced";
             case enum_type::market_center_reopening_trade: return "Market Center Reopening Trade";
             case enum_type::market_center_closing_trade: return "Market Center Closing Trade";

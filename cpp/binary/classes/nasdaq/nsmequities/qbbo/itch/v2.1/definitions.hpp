@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.Qbbo.Itch.v2.1: definitions.hpp
 #pragma once
 
 #include "common/Day.hpp"

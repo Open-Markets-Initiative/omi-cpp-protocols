@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: common/Decimal.hpp
 #pragma once
 
 #include <cmath>

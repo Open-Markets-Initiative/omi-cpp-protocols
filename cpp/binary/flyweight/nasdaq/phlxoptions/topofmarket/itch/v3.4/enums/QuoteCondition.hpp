@@ -1,3 +1,4 @@
+// Nasdaq.PhlxOptions.TopOfMarket.Itch.v3.4: enums/QuoteCondition.hpp
 #pragma once
 
 #include <cstdint>

@@ -1,3 +1,4 @@
+// Jpx.OseDerivatives.GeniumInet.Itch.v5.0.6: messages/TickSizeTableEntry.hpp
 #pragma once
 
 #include "../types/Nanoseconds.hpp"

@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: messages/NewOrderCrossMessage.hpp
 #pragma once
 
 #include <array>
@@ -28,7 +29,7 @@ class NewOrderCrossMessage : public Message {
     static constexpr MessageCode message_type = TemplateId::NewOrderCrossMessage;
 
     NewOrderCrossMessage() = default;
-    NewOrderCrossMessage(const InboundBusinessHeader& inbound_business_header, const std::array<std::byte, 2>& offset_18_padding_2, std::uint64_t crossid, const std::string& sender_location, const std::string& entering_trader, const std::string& executing_trader_optional, std::uint64_t security_id, std::uint64_t order_qty, Decimal price, std::optional<CrossedIndicator> crossed_indicator, const CrossSidesGroups& cross_sides_groups, const DeskId& desk_id, const Memo& memo);
+    NewOrderCrossMessage(const InboundBusinessHeader& inbound_business_header, const std::array<std::byte, 2>& offset_18_padding_2, std::uint64_t cross_id, const std::string& sender_location, const std::string& entering_trader, const std::string& executing_trader_optional, std::uint64_t security_id, std::uint64_t order_qty, Decimal price, std::optional<CrossedIndicator> crossed_indicator, const CrossSidesGroups& cross_sides_groups, const DeskId& desk_id, const Memo& memo);
 
     // Inbound Business Header: InboundBusinessHeader
     const InboundBusinessHeader& inbound_business_header() const;
@@ -40,9 +41,9 @@ class NewOrderCrossMessage : public Message {
     std::array<std::byte, 2>& offset_18_padding_2();
     void set_offset_18_padding_2(const std::array<std::byte, 2>& value);
 
-    // CrossId: crossID
-    std::uint64_t crossid() const;
-    void set_crossid(std::uint64_t value);
+    // Cross Id: crossID
+    std::uint64_t cross_id() const;
+    void set_cross_id(std::uint64_t value);
 
     // Sender Location: senderLocation
     const std::string& sender_location() const;
@@ -107,7 +108,7 @@ class NewOrderCrossMessage : public Message {
   private:
     InboundBusinessHeader inbound_business_header_{};
     std::array<std::byte, 2> offset_18_padding_2_{};
-    std::uint64_t crossid_{};
+    std::uint64_t cross_id_{};
     std::string sender_location_{};
     std::string entering_trader_{};
     std::string executing_trader_optional_{};

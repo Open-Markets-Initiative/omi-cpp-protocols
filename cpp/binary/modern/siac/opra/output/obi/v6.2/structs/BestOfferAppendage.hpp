@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: structs/BestOfferAppendage.hpp
 #pragma once
 
 #include "../types/BestOfferParticipantId.hpp"

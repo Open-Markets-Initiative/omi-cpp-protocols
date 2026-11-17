@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Ouch.v1.11: definitions.hpp
 #pragma once
 
 #include "common/Day.hpp"

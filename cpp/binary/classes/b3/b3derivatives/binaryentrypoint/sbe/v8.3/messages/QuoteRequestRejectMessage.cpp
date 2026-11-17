@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: messages/QuoteRequestRejectMessage.cpp
 #include "QuoteRequestRejectMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,8 +7,8 @@
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_3 {
 
-QuoteRequestRejectMessage::QuoteRequestRejectMessage(const BidirectionalBusinessHeader& bidirectional_business_header, std::optional<std::uint32_t> quote_request_reject_reason, std::uint64_t security_id, std::uint64_t quote_req_id, std::optional<std::uint64_t> quote_id_optional, std::optional<std::uint32_t> trade_id_optional, std::uint32_t contra_broker, std::chrono::nanoseconds transact_time, const std::string& entering_trader, SettlTypeOptional settl_type_optional, std::optional<Decimal> price_8_optional, std::optional<std::uint64_t> order_qty_optional, const std::string& sender_location, const std::string& executing_trader, std::optional<Decimal> fixed_rate_percentage_8_optional, std::optional<std::uint16_t> days_to_settlement_optional, const SidesGroups& sides_groups, const DeskId& desk_id, const Memo& memo, const Text& text)
-  : bidirectional_business_header_(bidirectional_business_header), quote_request_reject_reason_(quote_request_reject_reason), security_id_(security_id), quote_req_id_(quote_req_id), quote_id_optional_(quote_id_optional), trade_id_optional_(trade_id_optional), contra_broker_(contra_broker), transact_time_(transact_time), entering_trader_(entering_trader), settl_type_optional_(settl_type_optional), price_8_optional_(price_8_optional), order_qty_optional_(order_qty_optional), sender_location_(sender_location), executing_trader_(executing_trader), fixed_rate_percentage_8_optional_(fixed_rate_percentage_8_optional), days_to_settlement_optional_(days_to_settlement_optional), sides_groups_(sides_groups), desk_id_(desk_id), memo_(memo), text_(text) {}
+QuoteRequestRejectMessage::QuoteRequestRejectMessage(const BidirectionalBusinessHeader& bidirectional_business_header, std::optional<std::uint32_t> quote_request_reject_reason, std::uint64_t security_id, std::uint64_t quote_req_id, std::optional<std::uint64_t> quote_id_optional, std::optional<std::uint32_t> trade_id_optional, std::uint32_t contra_broker, std::chrono::nanoseconds transact_time, const std::string& entering_trader, SettlTypeOptional settl_type_optional, std::optional<Decimal> price_8_optional, std::optional<std::uint64_t> order_qty_optional, const std::string& sender_location, const std::string& executing_trader, std::optional<Decimal> fixed_rate_optional, std::optional<std::uint16_t> days_to_settlement_optional, const SidesGroups& sides_groups, const DeskId& desk_id, const Memo& memo, const Text& text)
+  : bidirectional_business_header_(bidirectional_business_header), quote_request_reject_reason_(quote_request_reject_reason), security_id_(security_id), quote_req_id_(quote_req_id), quote_id_optional_(quote_id_optional), trade_id_optional_(trade_id_optional), contra_broker_(contra_broker), transact_time_(transact_time), entering_trader_(entering_trader), settl_type_optional_(settl_type_optional), price_8_optional_(price_8_optional), order_qty_optional_(order_qty_optional), sender_location_(sender_location), executing_trader_(executing_trader), fixed_rate_optional_(fixed_rate_optional), days_to_settlement_optional_(days_to_settlement_optional), sides_groups_(sides_groups), desk_id_(desk_id), memo_(memo), text_(text) {}
 
 const BidirectionalBusinessHeader& QuoteRequestRejectMessage::bidirectional_business_header() const { return bidirectional_business_header_; }
 BidirectionalBusinessHeader& QuoteRequestRejectMessage::bidirectional_business_header() { return bidirectional_business_header_; }
@@ -55,8 +56,8 @@ const std::string& QuoteRequestRejectMessage::executing_trader() const { return 
 std::string& QuoteRequestRejectMessage::executing_trader() { return executing_trader_; }
 void QuoteRequestRejectMessage::set_executing_trader(const std::string& value) { executing_trader_ = value; }
 
-std::optional<Decimal> QuoteRequestRejectMessage::fixed_rate_percentage_8_optional() const { return fixed_rate_percentage_8_optional_; }
-void QuoteRequestRejectMessage::set_fixed_rate_percentage_8_optional(std::optional<Decimal> value) { fixed_rate_percentage_8_optional_ = value; }
+std::optional<Decimal> QuoteRequestRejectMessage::fixed_rate_optional() const { return fixed_rate_optional_; }
+void QuoteRequestRejectMessage::set_fixed_rate_optional(std::optional<Decimal> value) { fixed_rate_optional_ = value; }
 
 std::optional<std::uint16_t> QuoteRequestRejectMessage::days_to_settlement_optional() const { return days_to_settlement_optional_; }
 void QuoteRequestRejectMessage::set_days_to_settlement_optional(std::optional<std::uint16_t> value) { days_to_settlement_optional_ = value; }
@@ -139,7 +140,7 @@ std::size_t QuoteRequestRejectMessage::decode(const std::byte* data, std::size_t
     offset += 5;
 
     wire::require("QuoteRequestRejectMessage", offset + 8, length);
-    fixed_rate_percentage_8_optional_ = wire::nullable_decimal(wire::read_i64_le(data + offset), static_cast<std::int64_t>(-9223372036854775807LL - 1), -8);
+    fixed_rate_optional_ = wire::nullable_decimal(wire::read_i64_le(data + offset), static_cast<std::int64_t>(-9223372036854775807LL - 1), -8);
     offset += 8;
 
     wire::require("QuoteRequestRejectMessage", offset + 2, length);
@@ -202,7 +203,7 @@ std::size_t QuoteRequestRejectMessage::encode(std::byte* data, std::size_t capac
     wire::write_text(data + offset, 5, '\0', executing_trader_);
     offset += 5;
 
-    wire::write_i64_le(data + offset, fixed_rate_percentage_8_optional_ ? static_cast<std::int64_t>(fixed_rate_percentage_8_optional_->mantissa()) : static_cast<std::int64_t>(-9223372036854775807LL - 1));
+    wire::write_i64_le(data + offset, fixed_rate_optional_ ? static_cast<std::int64_t>(fixed_rate_optional_->mantissa()) : static_cast<std::int64_t>(-9223372036854775807LL - 1));
     offset += 8;
 
     wire::write_u16_le(data + offset, days_to_settlement_optional_.value_or(static_cast<std::uint16_t>(65535ULL)));
@@ -261,8 +262,8 @@ void QuoteRequestRejectMessage::print(std::ostream& out) const {
     print::text(out, sender_location_);
     out << ", executing_trader=";
     print::text(out, executing_trader_);
-    out << ", fixed_rate_percentage_8_optional=";
-    print::optional(out, fixed_rate_percentage_8_optional_);
+    out << ", fixed_rate_optional=";
+    print::optional(out, fixed_rate_optional_);
     out << ", days_to_settlement_optional=";
     print::optional(out, days_to_settlement_optional_);
     out << ", sides_groups=";
@@ -296,7 +297,7 @@ bool QuoteRequestRejectMessage::operator==(const QuoteRequestRejectMessage& othe
         && order_qty_optional_ == other.order_qty_optional_
         && sender_location_ == other.sender_location_
         && executing_trader_ == other.executing_trader_
-        && fixed_rate_percentage_8_optional_ == other.fixed_rate_percentage_8_optional_
+        && fixed_rate_optional_ == other.fixed_rate_optional_
         && days_to_settlement_optional_ == other.days_to_settlement_optional_
         && sides_groups_ == other.sides_groups_
         && desk_id_ == other.desk_id_

@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: main.cpp
 #include "Settings.hpp"
 
 int main(const int argc, char** argv) {

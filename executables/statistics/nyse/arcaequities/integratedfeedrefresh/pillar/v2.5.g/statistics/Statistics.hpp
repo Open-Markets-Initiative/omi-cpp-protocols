@@ -1,3 +1,4 @@
+// Nyse.ArcaEquities.IntegratedFeedRefresh.Pillar.v2.5.g: statistics/Statistics.hpp
 #pragma once
 
 #include <cstdint>

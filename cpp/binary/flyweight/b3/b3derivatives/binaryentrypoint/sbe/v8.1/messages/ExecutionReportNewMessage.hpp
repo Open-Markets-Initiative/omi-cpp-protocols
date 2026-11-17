@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1: messages/ExecutionReportNewMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -47,7 +48,7 @@ class ExecutionReportNewMessage {
 
     OrdStatus ord_status() const { return static_cast<OrdStatus>(wire::read_char(at(19))); }
 
-    std::uint64_t clordid() const { return wire::read_u64_le(at(20)); }
+    std::uint64_t cl_ord_id() const { return wire::read_u64_le(at(20)); }
 
     std::uint64_t secondary_order_id() const { return wire::read_u64_le(at(28)); }
 
@@ -87,7 +88,7 @@ class ExecutionReportNewMessage {
 
     std::optional<std::uint64_t> max_floor() const { return wire::nullable(wire::read_u64_le(at(128)), static_cast<std::uint64_t>(0ULL)); }
 
-    std::optional<std::uint64_t> crossid_optional() const { return wire::nullable(wire::read_u64_le(at(136)), static_cast<std::uint64_t>(0ULL)); }
+    std::optional<std::uint64_t> cross_id_optional() const { return wire::nullable(wire::read_u64_le(at(136)), static_cast<std::uint64_t>(0ULL)); }
 
     std::optional<std::chrono::nanoseconds> received_time() const { return wire::nullable_duration<std::chrono::nanoseconds>(wire::read_u64_le(at(144)), static_cast<std::uint64_t>(0ULL)); }
 
@@ -122,8 +123,8 @@ class ExecutionReportNewMessage {
         out << side();
         out << ", ord_status=";
         out << ord_status();
-        out << ", clordid=";
-        out << clordid();
+        out << ", cl_ord_id=";
+        out << cl_ord_id();
         out << ", secondary_order_id=";
         out << secondary_order_id();
         out << ", security_id=";
@@ -162,8 +163,8 @@ class ExecutionReportNewMessage {
         print::optional(out, min_qty());
         out << ", max_floor=";
         print::optional(out, max_floor());
-        out << ", crossid_optional=";
-        print::optional(out, crossid_optional());
+        out << ", cross_id_optional=";
+        print::optional(out, cross_id_optional());
         out << ", received_time=";
         print::optional_duration(out, received_time());
         out << ", offset_152_padding_3=";

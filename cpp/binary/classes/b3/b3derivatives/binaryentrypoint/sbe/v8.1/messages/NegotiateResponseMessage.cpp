@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1: messages/NegotiateResponseMessage.cpp
 #include "NegotiateResponseMessage.hpp"
 
 #include "../common/Print.hpp"

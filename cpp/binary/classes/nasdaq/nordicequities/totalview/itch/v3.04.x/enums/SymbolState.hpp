@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: enums/SymbolState.hpp
 #pragma once
 
 #include <cstdint>

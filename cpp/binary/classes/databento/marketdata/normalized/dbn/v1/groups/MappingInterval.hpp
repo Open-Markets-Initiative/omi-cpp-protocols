@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v1: groups/MappingInterval.hpp
 #pragma once
 
 #include <cstddef>

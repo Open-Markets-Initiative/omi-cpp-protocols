@@ -1,3 +1,4 @@
+// Miax.OnyxFutures.TopOfMarket.Mach.v1.0.b: types/TradingCollarVariation.hpp
 #pragma once
 
 #include <cstddef>

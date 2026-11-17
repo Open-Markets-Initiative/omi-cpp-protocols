@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: statistics/Settings.hpp
 #pragma once
 
 #include <string>

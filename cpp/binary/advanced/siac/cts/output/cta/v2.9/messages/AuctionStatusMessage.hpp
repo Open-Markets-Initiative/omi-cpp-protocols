@@ -1,7 +1,7 @@
+// Siac.Cts.Output.Cta.v2.9: messages/AuctionStatusMessage.hpp
 #pragma once
 
 #include <cstddef>
-#include "../structs/BlockHeader.hpp"
 #include "../types/ParticipantId.hpp"
 #include "../structs/Timestamp1.hpp"
 #include "../types/MessageId.hpp"
@@ -48,7 +48,6 @@ struct auction_status_message {
         cta_output::future_use future_use;
     };
 
-    cta_output::block_header header = {{}, {}, {}, {}, {}, {}, {}, {}};
     // Transport framing: message size precedes the SBE header on the wire
     cta_output::message_length message_length;
     cta_output::message_category message_category = cta_output::message_category::enum_type::trade;
@@ -85,7 +84,7 @@ static_assert(offsetof(auction_status_message::fields_type, primary_listing_mark
 static_assert(offsetof(auction_status_message::fields_type, financial_status_indicator) == 61, "unexpected offset of auction_status_message::fields_type::financial_status_indicator");
 static_assert(offsetof(auction_status_message::fields_type, future_use) == 62, "unexpected offset of auction_status_message::fields_type::future_use");
 static_assert(sizeof(auction_status_message::fields_type) == 124, "unexpected sizeof auction_status_message::fields_type");
-static_assert(sizeof(auction_status_message) == sizeof(cta_output::block_header) + sizeof(cta_output::message_length) + sizeof(cta_output::message_category) + sizeof(cta_output::trade_message_type) + 124, "unexpected sizeof auction_status_message");
+static_assert(sizeof(auction_status_message) == sizeof(cta_output::message_length) + sizeof(cta_output::message_category) + sizeof(cta_output::trade_message_type) + 124, "unexpected sizeof auction_status_message");
 
 #pragma pack(pop)
 }

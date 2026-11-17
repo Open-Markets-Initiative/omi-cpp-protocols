@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.7: iterators/ClientSoupBinTcpPacketIterator.hpp
 #pragma once
 
 #include "../definitions.hpp"

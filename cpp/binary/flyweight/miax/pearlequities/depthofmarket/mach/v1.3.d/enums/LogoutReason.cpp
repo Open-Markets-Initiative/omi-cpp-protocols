@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: enums/LogoutReason.cpp
 #include "LogoutReason.hpp"
 
 namespace miax::pearlequities::depthofmarket::mach::v1_3_d {

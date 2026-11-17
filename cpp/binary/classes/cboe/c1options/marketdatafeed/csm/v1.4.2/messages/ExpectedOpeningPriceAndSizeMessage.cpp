@@ -1,3 +1,4 @@
+// Cboe.C1Options.MarketDataFeed.Csm.v1.4.2: messages/ExpectedOpeningPriceAndSizeMessage.cpp
 #include "ExpectedOpeningPriceAndSizeMessage.hpp"
 
 #include "../common/Print.hpp"

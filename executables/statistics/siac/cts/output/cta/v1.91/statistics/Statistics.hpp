@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v1.91: statistics/Statistics.hpp
 #pragma once
 
 #include <cstdint>
@@ -26,10 +27,10 @@ struct Statistics {
 
     // message counters
     uint64_t administrative_message = 0;
-    uint64_t start_of_end_of_day_message = 0;
-    uint64_t end_of_end_of_day_message = 0;
-    uint64_t start_of_start_of_day_message = 0;
-    uint64_t end_of_start_of_day_message = 0;
+    uint64_t start_of_end_of_day_summary_message = 0;
+    uint64_t end_of_end_of_day_summary_message = 0;
+    uint64_t start_of_start_of_day_summary_message = 0;
+    uint64_t end_of_start_of_day_summary_message = 0;
     uint64_t administrative_unformatted_message = 0;
     uint64_t control_message = 0;
     uint64_t start_of_day_message = 0;
@@ -97,16 +98,16 @@ struct Statistics {
                     const char administrative_message_type = sub_header->administrative_message_type.get();
                     switch (administrative_message_type) {
                         case 'A':
-                            ++start_of_end_of_day_message;
+                            ++start_of_end_of_day_summary_message;
                             break;
                         case 'B':
-                            ++end_of_end_of_day_message;
+                            ++end_of_end_of_day_summary_message;
                             break;
                         case 'C':
-                            ++start_of_start_of_day_message;
+                            ++start_of_start_of_day_summary_message;
                             break;
                         case 'D':
-                            ++end_of_start_of_day_message;
+                            ++end_of_start_of_day_summary_message;
                             break;
                         case 'H':
                             ++administrative_unformatted_message;
@@ -302,10 +303,10 @@ struct Statistics {
         std::cout << "Message Counts:" << std::endl;
         std::cout << "--------------" << std::endl;
         std::cout << "  AdministrativeMessage (A)                              " << administrative_message << std::endl;
-        std::cout << "  StartOfEndOfDayMessage (A)                             " << start_of_end_of_day_message << std::endl;
-        std::cout << "  EndOfEndOfDayMessage (B)                               " << end_of_end_of_day_message << std::endl;
-        std::cout << "  StartOfStartOfDayMessage (C)                           " << start_of_start_of_day_message << std::endl;
-        std::cout << "  EndOfStartOfDayMessage (D)                             " << end_of_start_of_day_message << std::endl;
+        std::cout << "  StartOfEndOfDaySummaryMessage (A)                      " << start_of_end_of_day_summary_message << std::endl;
+        std::cout << "  EndOfEndOfDaySummaryMessage (B)                        " << end_of_end_of_day_summary_message << std::endl;
+        std::cout << "  StartOfStartOfDaySummaryMessage (C)                    " << start_of_start_of_day_summary_message << std::endl;
+        std::cout << "  EndOfStartOfDaySummaryMessage (D)                      " << end_of_start_of_day_summary_message << std::endl;
         std::cout << "  AdministrativeUnformattedMessage (H)                   " << administrative_unformatted_message << std::endl;
         std::cout << "  ControlMessage (C)                                     " << control_message << std::endl;
         std::cout << "  StartOfDayMessage (A)                                  " << start_of_day_message << std::endl;

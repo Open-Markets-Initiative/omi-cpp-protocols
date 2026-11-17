@@ -1,5 +1,7 @@
+// Siac.Cts.Output.Cta.v2.11.b: types/SecondReserved.hpp
 #pragma once
 
+#include <array>
 #include <cstddef>
 
 namespace siac::cts::output::cta::v2_11_b {
@@ -11,20 +13,14 @@ struct SecondReserved {
     static constexpr auto name = "Second Reserved";
     static constexpr std::size_t size = 1;
 
+    // underlying type
+    using type = std::array<std::uint8_t, size>;
+
     // default constructor
     constexpr SecondReserved()
-     : value{ 0 } {}
-
-    // standard constructor
-    constexpr explicit SecondReserved(const char &value)
-     : value{ value } {}
-
-    // get value of SecondReserved field
-    [[nodiscard]] char get() const {
-        return value;
-    }
+     : value{} {}
 
   protected:
-    char value;
+    type value;
 };
 }

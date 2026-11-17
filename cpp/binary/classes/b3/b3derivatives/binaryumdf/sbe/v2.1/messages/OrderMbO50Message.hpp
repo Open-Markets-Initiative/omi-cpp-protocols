@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.1: messages/OrderMbO50Message.hpp
 #pragma once
 
 #include <array>
@@ -28,7 +29,7 @@ class OrderMbO50Message : public Message {
     static constexpr std::size_t wire_size = 64;
 
     OrderMbO50Message() = default;
-    OrderMbO50Message(std::uint64_t security_id, const MatchEventIndicator& match_event_indicator, MdUpdateAction md_update_action, MdEntryType md_entry_type, const std::array<std::byte, 1>& offset_11_padding_1, std::optional<Decimal> md_corporate_offset_price_optional, std::int64_t md_entry_size_quantity, std::optional<std::uint32_t> md_entry_position_no, std::optional<std::uint32_t> entering_firm, std::optional<std::chrono::nanoseconds> md_insert_timestamp, std::uint64_t secondary_order_id, std::optional<std::uint32_t> rpt_seq, std::optional<std::uint64_t> transact_time);
+    OrderMbO50Message(std::uint64_t security_id, const MatchEventIndicator& match_event_indicator, MdUpdateAction md_update_action, MdEntryType md_entry_type, const std::array<std::byte, 1>& offset_11_padding_1, std::optional<Decimal> md_corporate_offset_price_optional, std::int64_t md_entry_size, std::optional<std::uint32_t> md_entry_position_no, std::optional<std::uint32_t> entering_firm, std::optional<std::chrono::nanoseconds> md_insert_timestamp, std::uint64_t secondary_order_id, std::optional<std::uint32_t> rpt_seq, std::optional<std::chrono::nanoseconds> transact_time);
 
     // Security Id: securityID
     std::uint64_t security_id() const;
@@ -56,9 +57,9 @@ class OrderMbO50Message : public Message {
     std::optional<Decimal> md_corporate_offset_price_optional() const;
     void set_md_corporate_offset_price_optional(std::optional<Decimal> value);
 
-    // Md Entry Size Quantity: mDEntrySize
-    std::int64_t md_entry_size_quantity() const;
-    void set_md_entry_size_quantity(std::int64_t value);
+    // Md Entry Size: mDEntrySize
+    std::int64_t md_entry_size() const;
+    void set_md_entry_size(std::int64_t value);
 
     // Md Entry Position No: mDEntryPositionNo
     std::optional<std::uint32_t> md_entry_position_no() const;
@@ -81,8 +82,8 @@ class OrderMbO50Message : public Message {
     void set_rpt_seq(std::optional<std::uint32_t> value);
 
     // Transact Time: transactTime
-    std::optional<std::uint64_t> transact_time() const;
-    void set_transact_time(std::optional<std::uint64_t> value);
+    std::optional<std::chrono::nanoseconds> transact_time() const;
+    void set_transact_time(std::optional<std::chrono::nanoseconds> value);
 
     // Message
     MessageCode type() const override;
@@ -105,13 +106,13 @@ class OrderMbO50Message : public Message {
     MdEntryType md_entry_type_{};
     std::array<std::byte, 1> offset_11_padding_1_{};
     std::optional<Decimal> md_corporate_offset_price_optional_{};
-    std::int64_t md_entry_size_quantity_{};
+    std::int64_t md_entry_size_{};
     std::optional<std::uint32_t> md_entry_position_no_{};
     std::optional<std::uint32_t> entering_firm_{};
     std::optional<std::chrono::nanoseconds> md_insert_timestamp_{};
     std::uint64_t secondary_order_id_{};
     std::optional<std::uint32_t> rpt_seq_{};
-    std::optional<std::uint64_t> transact_time_{};
+    std::optional<std::chrono::nanoseconds> transact_time_{};
 };
 
 } // namespace b3::b3derivatives::binaryumdf::sbe::v2_1

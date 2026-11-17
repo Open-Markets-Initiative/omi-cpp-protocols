@@ -1,3 +1,4 @@
+// Bse.BseIndia.Eobi.Fbe.v1.4: main.cpp
 // Bse.BseIndia.Eobi.Fbe.v1.4 benchmark, through the Flyweight reader: every value it reads from every message of the simulated
 // sequence (tests/simulated/bse/bseindia/eobi/fbe/v1.4.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 

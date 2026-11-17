@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: messages/details/NewOrderCrossMessageReader.hpp
 #pragma once
 
 #include "NewOrderCrossMessageWriter.hpp"
@@ -43,9 +44,9 @@ public:
         return entry->entering_firm_optional.get();
     }
 
-    std::uint64_t clordid() const {
+    std::uint64_t cl_ord_id() const {
         auto* entry = reinterpret_cast<const new_order_cross_message_cross_sides_groups_entry*>(pos_);
-        return entry->clordid.get().value();
+        return entry->cl_ord_id.get().value();
     }
 
     std::optional<std::uint32_t> trading_sub_account() const {

@@ -1,3 +1,4 @@
+// CixAts.CixAspen.MarketDataFeed.Aspen.v1.4: messages/TradeMessage.cpp
 #include "TradeMessage.hpp"
 
 #include "../common/Print.hpp"

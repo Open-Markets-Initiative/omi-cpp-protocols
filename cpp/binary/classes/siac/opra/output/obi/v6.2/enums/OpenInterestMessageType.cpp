@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: enums/OpenInterestMessageType.cpp
 #include "OpenInterestMessageType.hpp"
 
 namespace siac::opra::output::obi::v6_2 {

@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v3.0: PacketReader.hpp
 #pragma once
 
 #include <cstddef>
@@ -63,7 +64,7 @@ struct PacketReader {
   private:
     template <typename Handler>
     static std::size_t dispatch(const Frame& frame, std::span<const std::byte> body, Handler& handler) {
-        switch (frame.message_header_comp().template_id()) {
+        switch (frame.message_header_comp().template_id().value_or(static_cast<TemplateId>(static_cast<std::uint16_t>(0xFFFFULL)))) {
             case TemplateId::AddComplexInstrument: return handle<AddComplexInstrument>(body, handler);
             case TemplateId::AuctionBbo: return handle<AuctionBbo>(body, handler);
             case TemplateId::AuctionClearingPrice: return handle<AuctionClearingPrice>(body, handler);
@@ -87,7 +88,7 @@ struct PacketReader {
             case TemplateId::TradeReport: return handle<TradeReport>(body, handler);
             case TemplateId::TradeReversal: return handle<TradeReversal>(body, handler);
             default:
-                if constexpr (requires { handler.on_unknown(frame.message_header_comp().template_id(), body); }) { handler.on_unknown(frame.message_header_comp().template_id(), body); }
+                if constexpr (requires { handler.on_unknown(frame.message_header_comp().template_id().value_or(static_cast<TemplateId>(static_cast<std::uint16_t>(0xFFFFULL))), body); }) { handler.on_unknown(frame.message_header_comp().template_id().value_or(static_cast<TemplateId>(static_cast<std::uint16_t>(0xFFFFULL))), body); }
                 return body.size();
         }
     }

@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.3: types/EncodingType.hpp
 #pragma once
 
 #include <cstddef>

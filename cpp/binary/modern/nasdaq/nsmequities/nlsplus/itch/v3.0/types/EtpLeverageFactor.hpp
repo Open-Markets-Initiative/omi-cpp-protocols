@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: types/EtpLeverageFactor.hpp
 #pragma once
 
 #include <bit>

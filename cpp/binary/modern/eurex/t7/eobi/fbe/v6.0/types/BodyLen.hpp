@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v6.0: types/BodyLen.hpp
 #pragma once
 
 #include <cstddef>
@@ -15,9 +16,9 @@ static const type no_value = 0xFFFF;
 static const type maximum_value = 65534;
 static const type minimum_value = 0;
 
-    // default constructor
+    // default constructor: the null the model states, where it states one
     constexpr BodyLen()
-     : value{ 0 } {}
+     : value{ no_value } {}
 
     // standard constructor
     constexpr explicit BodyLen(const std::uint16_t value)

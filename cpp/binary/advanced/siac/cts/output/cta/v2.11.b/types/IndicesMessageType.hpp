@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: types/IndicesMessageType.hpp
 #pragma once
 
 #include <cstddef>
@@ -13,19 +14,19 @@ namespace siac::cts::output::cta::v2_11_b {
 struct indices_message_type {
 
     enum class enum_type : char {
-        indices = 'I',
-        bid_and_offer_index = 'Q'
+        index_message = 'I',
+        bid_and_offer_index_message = 'Q'
     };
 
     static constexpr std::array<std::pair<std::string_view, enum_type>, 2> from_string_map = {{
-        {"Bid And Offer Index", enum_type::bid_and_offer_index},
-        {"Indices", enum_type::indices}
+        {"Bid And Offer Index Message", enum_type::bid_and_offer_index_message},
+        {"Index Message", enum_type::index_message}
     }};
 
     static constexpr std::string_view to_string(enum_type value) {
         switch (value) {
-            case enum_type::indices: return "Indices";
-            case enum_type::bid_and_offer_index: return "Bid And Offer Index";
+            case enum_type::index_message: return "Index Message";
+            case enum_type::bid_and_offer_index_message: return "Bid And Offer Index Message";
             default: return "unknown";
         }
     }
@@ -68,7 +69,7 @@ struct indices_message_type {
         if (value.has_value())
             set(value.value());
         else
-            set(enum_type::bid_and_offer_index);
+            set(enum_type::bid_and_offer_index_message);
     }
 
   protected:

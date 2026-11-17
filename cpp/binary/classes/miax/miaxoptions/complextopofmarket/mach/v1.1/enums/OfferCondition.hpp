@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.ComplexTopOfMarket.Mach.v1.1: enums/OfferCondition.hpp
 #pragma once
 
 #include <cstdint>

@@ -1,3 +1,4 @@
+// Bse.BseIndia.Eobi.Fbe.v1.4: program/Settings.hpp
 #pragma once
 
 #include <filesystem>

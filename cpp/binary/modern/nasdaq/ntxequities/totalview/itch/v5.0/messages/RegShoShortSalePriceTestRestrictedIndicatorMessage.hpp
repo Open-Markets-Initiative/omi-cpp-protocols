@@ -1,3 +1,4 @@
+// Nasdaq.NtxEquities.TotalView.Itch.v5.0: messages/RegShoShortSalePriceTestRestrictedIndicatorMessage.hpp
 #pragma once
 
 #include "../types/LocateCode.hpp"

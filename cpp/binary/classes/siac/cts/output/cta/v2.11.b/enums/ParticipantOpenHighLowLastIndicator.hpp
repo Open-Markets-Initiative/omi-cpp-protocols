@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: enums/ParticipantOpenHighLowLastIndicator.hpp
 #pragma once
 
 #include <cstdint>

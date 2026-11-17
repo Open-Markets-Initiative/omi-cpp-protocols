@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.Bbo.Xdp.v2.4.g: messages/SymbolIndexMappingRequestMessage.hpp
 #pragma once
 
 #include "../types/SymbolIndex.hpp"

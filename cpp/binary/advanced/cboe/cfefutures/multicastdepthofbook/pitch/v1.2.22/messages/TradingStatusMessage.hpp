@@ -1,3 +1,4 @@
+// Cboe.CfeFutures.MulticastDepthOfBook.Pitch.v1.2.22: messages/TradingStatusMessage.hpp
 #pragma once
 
 #include <cstddef>

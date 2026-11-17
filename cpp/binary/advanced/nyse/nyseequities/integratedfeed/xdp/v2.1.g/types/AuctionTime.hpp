@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeed.Xdp.v2.1.g: types/AuctionTime.hpp
 #pragma once
 
 #include <cstddef>

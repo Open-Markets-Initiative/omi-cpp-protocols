@@ -1,3 +1,4 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/OrderBookClearMessage.cpp
 #include "OrderBookClearMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,11 +7,11 @@
 
 namespace lseg::millennium::level2::mitch::v11_9 {
 
-OrderBookClearMessage::OrderBookClearMessage(std::uint32_t nanosecond, std::uint32_t instrument_id, const std::array<std::byte, 1>& reserved_a, const std::array<std::byte, 1>& reserved_b, const OrderBookClearFlags& order_book_clear_flags)
+OrderBookClearMessage::OrderBookClearMessage(std::chrono::nanoseconds nanosecond, std::uint32_t instrument_id, const std::array<std::byte, 1>& reserved_a, const std::array<std::byte, 1>& reserved_b, const OrderBookClearFlags& order_book_clear_flags)
   : nanosecond_(nanosecond), instrument_id_(instrument_id), reserved_a_(reserved_a), reserved_b_(reserved_b), order_book_clear_flags_(order_book_clear_flags) {}
 
-std::uint32_t OrderBookClearMessage::nanosecond() const { return nanosecond_; }
-void OrderBookClearMessage::set_nanosecond(std::uint32_t value) { nanosecond_ = value; }
+std::chrono::nanoseconds OrderBookClearMessage::nanosecond() const { return nanosecond_; }
+void OrderBookClearMessage::set_nanosecond(std::chrono::nanoseconds value) { nanosecond_ = value; }
 
 std::uint32_t OrderBookClearMessage::instrument_id() const { return instrument_id_; }
 void OrderBookClearMessage::set_instrument_id(std::uint32_t value) { instrument_id_ = value; }
@@ -35,7 +36,7 @@ std::size_t OrderBookClearMessage::decode(const std::byte* data, std::size_t len
     std::size_t offset = 0;
     wire::require("OrderBookClearMessage", wire_size, length);
 
-    nanosecond_ = wire::read_u32_le(data + offset);
+    nanosecond_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     instrument_id_ = wire::read_u32_le(data + offset);
@@ -56,7 +57,7 @@ std::size_t OrderBookClearMessage::encode(std::byte* data, std::size_t capacity)
     std::size_t offset = 0;
     wire::require_capacity("OrderBookClearMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(nanosecond_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(nanosecond_.count()));
     offset += 4;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(instrument_id_));
@@ -88,7 +89,7 @@ std::unique_ptr<Message> OrderBookClearMessage::clone() const {
 void OrderBookClearMessage::print(std::ostream& out) const {
     out << "OrderBookClearMessage{";
     out << "nanosecond=";
-    out << nanosecond_;
+    out << nanosecond_.count();
     out << ", instrument_id=";
     out << instrument_id_;
     out << ", reserved_a=";

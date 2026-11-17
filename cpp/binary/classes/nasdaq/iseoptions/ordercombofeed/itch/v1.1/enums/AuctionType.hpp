@@ -1,3 +1,4 @@
+// Nasdaq.IseOptions.OrderComboFeed.Itch.v1.1: enums/AuctionType.hpp
 #pragma once
 
 #include <cstdint>

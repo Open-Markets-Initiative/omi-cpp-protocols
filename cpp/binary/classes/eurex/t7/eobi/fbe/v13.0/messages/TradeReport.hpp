@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v13.0: messages/TradeReport.hpp
 #pragma once
 
 #include <array>
@@ -31,7 +32,7 @@ class TradeReport : public Message {
     TradeReport() = default;
     TradeReport(std::optional<std::int64_t> security_id, std::optional<std::chrono::nanoseconds> transact_time, std::optional<Decimal> last_qty, std::optional<Decimal> last_px, std::optional<std::uint32_t> trd_match_id, std::optional<MatchType> match_type, std::optional<MatchSubType> match_sub_type, std::optional<AlgorithmicTradeIndicator> algorithmic_trade_indicator, const std::array<std::byte, 1>& pad1, std::optional<TradeCondition> trade_condition, const std::array<std::byte, 6>& pad6);
 
-    // Security Id:
+    // Security Id: Unique instrument identifier
     std::optional<std::int64_t> security_id() const;
     void set_security_id(std::optional<std::int64_t> value);
 
@@ -39,7 +40,7 @@ class TradeReport : public Message {
     std::optional<std::chrono::nanoseconds> transact_time() const;
     void set_transact_time(std::optional<std::chrono::nanoseconds> value);
 
-    // Last Qty:
+    // Last Qty: Total executed matched quantity of this match event
     std::optional<Decimal> last_qty() const;
     void set_last_qty(std::optional<Decimal> value);
 

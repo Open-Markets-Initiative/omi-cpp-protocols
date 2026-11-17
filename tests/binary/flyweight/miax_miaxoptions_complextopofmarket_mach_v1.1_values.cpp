@@ -143,7 +143,7 @@ struct DataHandler {
         values[entry + ".payload.applicationmessage.data.underlyingtradingstatusmessage.underlyingsymbol"] = canonical::text(std::string(message.underlying_symbol()), ' ', false);
         values[entry + ".payload.applicationmessage.data.underlyingtradingstatusmessage.tradingstatus"] = canonical::text(canonical::character(message.trading_status()), ' ', false);
         values[entry + ".payload.applicationmessage.data.underlyingtradingstatusmessage.eventreason"] = canonical::text(canonical::character(message.event_reason()), ' ', false);
-        values[entry + ".payload.applicationmessage.data.underlyingtradingstatusmessage.secondspart"] = canonical::number(message.seconds_part());
+        values[entry + ".payload.applicationmessage.data.underlyingtradingstatusmessage.expectedeventtimesecondspart"] = (message.expected_event_time_seconds_part().has_value() ? canonical::number((*message.expected_event_time_seconds_part())) : canonical::absent());
         values[entry + ".payload.applicationmessage.data.underlyingtradingstatusmessage.expectedeventtimenanosecondspart"] = canonical::number(message.expected_event_time_nano_seconds_part());
     }
 };

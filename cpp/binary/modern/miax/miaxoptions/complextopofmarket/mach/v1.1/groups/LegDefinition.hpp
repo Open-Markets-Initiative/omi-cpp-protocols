@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.ComplexTopOfMarket.Mach.v1.1: groups/LegDefinition.hpp
 #pragma once
 
 #include "../types/ProductId.hpp"

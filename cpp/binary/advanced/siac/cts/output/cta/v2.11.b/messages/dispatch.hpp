@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: messages/dispatch.hpp
 #pragma once
 
 #include <cstdint>
@@ -66,10 +67,10 @@ void dispatch(Handler& handler, const std::byte* buffer, std::size_t length, std
         }
         case message_category::enum_type::indices: {
             switch (index_message::parse(buffer)->indices_message_type.get().value()) {
-                case indices_message_type::enum_type::indices:
+                case indices_message_type::enum_type::index_message:
                     handler.on_message(*index_message::parse(buffer), packet_receive_time, transport);
                     break;
-                case indices_message_type::enum_type::bid_and_offer_index:
+                case indices_message_type::enum_type::bid_and_offer_index_message:
                     handler.on_message(*bid_and_offer_index_message::parse(buffer), packet_receive_time, transport);
                     break;
                 default:

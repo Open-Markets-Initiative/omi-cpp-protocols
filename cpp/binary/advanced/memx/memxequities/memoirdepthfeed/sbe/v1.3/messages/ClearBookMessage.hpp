@@ -1,3 +1,4 @@
+// Memx.MemxEquities.MemoirDepthFeed.Sbe.v1.3: messages/ClearBookMessage.hpp
 #pragma once
 
 #include <cstddef>

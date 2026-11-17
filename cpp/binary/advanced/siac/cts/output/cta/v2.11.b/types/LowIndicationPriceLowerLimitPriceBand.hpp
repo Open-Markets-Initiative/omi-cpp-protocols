@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: types/LowIndicationPriceLowerLimitPriceBand.hpp
 #pragma once
 
 #include <cstddef>

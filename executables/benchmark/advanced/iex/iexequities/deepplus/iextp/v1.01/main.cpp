@@ -1,3 +1,4 @@
+// Iex.IexEquities.DeepPlus.IexTp.v1.01: main.cpp
 // Iex.IexEquities.DeepPlus.IexTp.v1.01 benchmark, through the Advanced session layer: every value it reads from every message of the simulated
 // sequence (tests/simulated/iex/iexequities/deepplus/iextp/v1.01.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -139,7 +140,6 @@ struct Reader {
         checksum += index++;
         checksum += bench::digest(message.header.message_length.get().value());
         checksum += bench::digest(message.header.message_type.get().value());
-        checksum += bench::digest(message.fields.reserved_1.get().value());
         checksum += bench::digest(message.fields.timestamp.get().value());
         checksum += bench::digest(message.fields.symbol.get().value());
         checksum += bench::digest(message.fields.order_id_reference.get().value());
@@ -198,7 +198,6 @@ struct Reader {
         checksum += index++;
         checksum += bench::digest(message.header.message_length.get().value());
         checksum += bench::digest(message.header.message_type.get().value());
-        checksum += bench::digest(message.fields.reserved_1.get().value());
         checksum += bench::digest(message.fields.timestamp.get().value());
         checksum += bench::digest(message.fields.symbol.get().value());
     }

@@ -1,3 +1,4 @@
+// Lseg.Lse.Level2Mbo.Gtp.v26.2: bitfields/AllowedBookTypes.cpp
 #include "AllowedBookTypes.hpp"
 
 #include "../common/Print.hpp"

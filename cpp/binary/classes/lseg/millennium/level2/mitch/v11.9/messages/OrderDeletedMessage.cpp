@@ -1,3 +1,4 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/OrderDeletedMessage.cpp
 #include "OrderDeletedMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,11 +7,11 @@
 
 namespace lseg::millennium::level2::mitch::v11_9 {
 
-OrderDeletedMessage::OrderDeletedMessage(std::uint32_t nanosecond, std::uint64_t order_id, const OrderDeletedFlags& order_deleted_flags, std::uint32_t instrument_id)
+OrderDeletedMessage::OrderDeletedMessage(std::chrono::nanoseconds nanosecond, std::uint64_t order_id, const OrderDeletedFlags& order_deleted_flags, std::uint32_t instrument_id)
   : nanosecond_(nanosecond), order_id_(order_id), order_deleted_flags_(order_deleted_flags), instrument_id_(instrument_id) {}
 
-std::uint32_t OrderDeletedMessage::nanosecond() const { return nanosecond_; }
-void OrderDeletedMessage::set_nanosecond(std::uint32_t value) { nanosecond_ = value; }
+std::chrono::nanoseconds OrderDeletedMessage::nanosecond() const { return nanosecond_; }
+void OrderDeletedMessage::set_nanosecond(std::chrono::nanoseconds value) { nanosecond_ = value; }
 
 std::uint64_t OrderDeletedMessage::order_id() const { return order_id_; }
 void OrderDeletedMessage::set_order_id(std::uint64_t value) { order_id_ = value; }
@@ -30,7 +31,7 @@ std::size_t OrderDeletedMessage::decode(const std::byte* data, std::size_t lengt
     std::size_t offset = 0;
     wire::require("OrderDeletedMessage", wire_size, length);
 
-    nanosecond_ = wire::read_u32_le(data + offset);
+    nanosecond_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     order_id_ = wire::read_u64_le(data + offset);
@@ -48,7 +49,7 @@ std::size_t OrderDeletedMessage::encode(std::byte* data, std::size_t capacity) c
     std::size_t offset = 0;
     wire::require_capacity("OrderDeletedMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(nanosecond_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(nanosecond_.count()));
     offset += 4;
 
     wire::write_u64_le(data + offset, static_cast<std::uint64_t>(order_id_));
@@ -77,7 +78,7 @@ std::unique_ptr<Message> OrderDeletedMessage::clone() const {
 void OrderDeletedMessage::print(std::ostream& out) const {
     out << "OrderDeletedMessage{";
     out << "nanosecond=";
-    out << nanosecond_;
+    out << nanosecond_.count();
     out << ", order_id=";
     out << order_id_;
     out << ", order_deleted_flags=";

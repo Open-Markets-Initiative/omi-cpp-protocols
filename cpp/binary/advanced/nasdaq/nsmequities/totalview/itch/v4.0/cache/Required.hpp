@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v4.0: cache/Required.hpp
 #pragma once
 
 #include <string_view>

@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeed.Pillar.v2.5.g: types/TradeCond4.hpp
 #pragma once
 
 #include <cstddef>

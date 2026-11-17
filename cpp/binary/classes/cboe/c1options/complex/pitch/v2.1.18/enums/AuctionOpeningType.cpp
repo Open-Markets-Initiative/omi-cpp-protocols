@@ -1,3 +1,4 @@
+// Cboe.C1Options.Complex.Pitch.v2.1.18: enums/AuctionOpeningType.cpp
 #include "AuctionOpeningType.hpp"
 
 namespace cboe::c1options::complex::pitch::v2_1_18 {

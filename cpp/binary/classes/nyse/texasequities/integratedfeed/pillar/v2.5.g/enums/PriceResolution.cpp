@@ -1,3 +1,4 @@
+// Nyse.TexasEquities.IntegratedFeed.Pillar.v2.5.g: enums/PriceResolution.cpp
 #include "PriceResolution.hpp"
 
 namespace nyse::texasequities::integratedfeed::pillar::v2_5_g {

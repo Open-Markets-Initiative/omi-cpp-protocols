@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v4.0: messages/LoginRejectedPacket.cpp
 #include "LoginRejectedPacket.hpp"
 
 #include "../common/Print.hpp"

@@ -1,3 +1,4 @@
+// Jpx.TseEquities.MarketByOrder.Flex.v1.1: messages/LoginResultAcceptedMessage.hpp
 #pragma once
 
 #include <cstddef>

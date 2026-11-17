@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v1.91: types/CrossingSessionIiDollarValue.hpp
 #pragma once
 
 #include <bit>

@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: messages/CrossTradeMessage.cpp
 #include "CrossTradeMessage.hpp"
 
 #include "../common/Print.hpp"

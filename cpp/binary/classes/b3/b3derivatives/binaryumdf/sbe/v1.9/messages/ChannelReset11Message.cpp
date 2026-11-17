@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.9: messages/ChannelReset11Message.cpp
 #include "ChannelReset11Message.hpp"
 
 #include "../common/Print.hpp"

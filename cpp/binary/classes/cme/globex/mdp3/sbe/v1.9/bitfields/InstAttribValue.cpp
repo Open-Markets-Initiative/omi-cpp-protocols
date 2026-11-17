@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.9: bitfields/InstAttribValue.cpp
 #include "InstAttribValue.hpp"
 
 #include "../common/Print.hpp"
@@ -73,9 +74,6 @@ void InstAttribValue::set_triangulation_eligible(bool value) { raw_ = static_cas
 bool InstAttribValue::variable_cab_eligible() const { return (raw_ & static_cast<std::uint32_t>(0x200000)) != 0; }
 void InstAttribValue::set_variable_cab_eligible(bool value) { raw_ = static_cast<std::uint32_t>(value ? (raw_ | static_cast<std::uint32_t>(0x200000)) : (raw_ & ~static_cast<std::uint32_t>(0x200000))); }
 
-std::uint16_t InstAttribValue::reserved_10() const { return static_cast<std::uint16_t>((raw_ & static_cast<std::uint32_t>(0xFFC00000)) >> 22); }
-void InstAttribValue::set_reserved_10(std::uint16_t value) { raw_ = static_cast<std::uint32_t>((raw_ & ~static_cast<std::uint32_t>(0xFFC00000)) | ((static_cast<std::uint32_t>(value) << 22) & static_cast<std::uint32_t>(0xFFC00000))); }
-
 std::uint32_t InstAttribValue::raw() const { return raw_; }
 void InstAttribValue::set_raw(std::uint32_t value) { raw_ = value; }
 
@@ -141,8 +139,6 @@ void InstAttribValue::print(std::ostream& out) const {
     out << (triangulation_eligible() ? "true" : "false");
     out << ", variable_cab_eligible=";
     out << (variable_cab_eligible() ? "true" : "false");
-    out << ", reserved_10=";
-    out << static_cast<unsigned long long>(reserved_10());
     out << '}';
 }
 

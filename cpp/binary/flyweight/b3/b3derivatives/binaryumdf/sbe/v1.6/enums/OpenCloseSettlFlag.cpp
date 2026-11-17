@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.6: enums/OpenCloseSettlFlag.cpp
 #include "OpenCloseSettlFlag.hpp"
 
 namespace b3::b3derivatives::binaryumdf::sbe::v1_6 {

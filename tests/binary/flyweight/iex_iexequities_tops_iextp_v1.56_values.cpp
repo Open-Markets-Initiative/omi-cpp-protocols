@@ -72,7 +72,6 @@ struct Reader {
         values[entry + ".messagedata.tradereportmessage.size"] = canonical::number(message.size());
         values[entry + ".messagedata.tradereportmessage.price"] = canonical::scaled(message.price().mantissa(), message.price().exponent());
         values[entry + ".messagedata.tradereportmessage.tradeid"] = canonical::number(message.trade_id());
-        values[entry + ".messagedata.tradereportmessage.reserved4"] = canonical::number(message.reserved_4());
     }
 
     void on(const protocol::TradeBreakMessage& message) {
@@ -87,7 +86,6 @@ struct Reader {
         values[entry + ".messagedata.tradebreakmessage.size"] = canonical::number(message.size());
         values[entry + ".messagedata.tradebreakmessage.price"] = canonical::scaled(message.price().mantissa(), message.price().exponent());
         values[entry + ".messagedata.tradebreakmessage.tradeid"] = canonical::number(message.trade_id());
-        values[entry + ".messagedata.tradebreakmessage.reserved4"] = canonical::number(message.reserved_4());
     }
 };
 

@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.ComplexTopOfMarket.Mach.v1.1: enums/TopOfMarketQuoteCondition.hpp
 #pragma once
 
 #include <cstdint>

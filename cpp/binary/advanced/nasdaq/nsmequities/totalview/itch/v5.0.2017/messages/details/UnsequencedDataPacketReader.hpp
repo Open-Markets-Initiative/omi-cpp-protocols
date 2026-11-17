@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2017: messages/details/UnsequencedDataPacketReader.hpp
 #pragma once
 
 #include "UnsequencedDataPacketWriter.hpp"

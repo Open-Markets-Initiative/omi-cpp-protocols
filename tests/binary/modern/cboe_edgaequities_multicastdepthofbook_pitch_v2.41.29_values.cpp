@@ -165,7 +165,7 @@ canonical::Listing read(const packet::Frame& frame) {
         } else if (iterator.message_type == protocol::EndOfSession::message_type) {
             values[entry + ".payload"] = "packet.messages.message.payload.endofsession";
             [[maybe_unused]] const auto* message = protocol::EndOfSession::parse(iterator.message);
-            values[entry + ".payload.endofsession.lasttimestamp"] = canonical::number(message->last_timestamp.get());
+            values[entry + ".payload.endofsession.timeoffset"] = canonical::number(message->time_offset.get());
         } else if (iterator.message_type == protocol::TradingStatusMessage::message_type) {
             values[entry + ".payload"] = "packet.messages.message.payload.tradingstatusmessage";
             [[maybe_unused]] const auto* message = protocol::TradingStatusMessage::parse(iterator.message);

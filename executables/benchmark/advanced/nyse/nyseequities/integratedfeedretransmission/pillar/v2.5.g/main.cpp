@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeedRetransmission.Pillar.v2.5.g: main.cpp
 // Nyse.NyseEquities.IntegratedFeedRetransmission.Pillar.v2.5.g benchmark, through the Advanced session layer: every value it reads from every message of the simulated
 // sequence (tests/simulated/nyse/nyseequities/integratedfeedretransmission/pillar/v2.5.g.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 

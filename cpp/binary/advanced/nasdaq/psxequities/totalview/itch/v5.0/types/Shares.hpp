@@ -1,3 +1,4 @@
+// Nasdaq.PsxEquities.TotalView.Itch.v5.0: types/Shares.hpp
 #pragma once
 
 #include <cstddef>

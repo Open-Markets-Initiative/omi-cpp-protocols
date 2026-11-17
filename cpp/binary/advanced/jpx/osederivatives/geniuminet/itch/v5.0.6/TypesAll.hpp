@@ -1,3 +1,4 @@
+// Jpx.OseDerivatives.GeniumInet.Itch.v5.0.6: TypesAll.hpp
 #pragma once
 
 // All type headers for this protocol schema

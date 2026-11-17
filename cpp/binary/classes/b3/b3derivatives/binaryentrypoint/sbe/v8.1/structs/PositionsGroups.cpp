@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1: structs/PositionsGroups.cpp
 #include "PositionsGroups.hpp"
 
 #include "../common/Print.hpp"

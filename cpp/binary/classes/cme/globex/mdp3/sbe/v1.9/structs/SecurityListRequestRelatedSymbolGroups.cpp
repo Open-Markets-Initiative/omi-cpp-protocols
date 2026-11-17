@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.9: structs/SecurityListRequestRelatedSymbolGroups.cpp
 #include "SecurityListRequestRelatedSymbolGroups.hpp"
 
 #include "../common/Print.hpp"

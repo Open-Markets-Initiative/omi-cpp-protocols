@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: messages/SynchronizationComplete.cpp
 #include "SynchronizationComplete.hpp"
 
 #include "../common/Print.hpp"
@@ -6,11 +7,11 @@
 
 namespace miax::pearlequities::depthofmarket::mach::v1_3_d {
 
-SynchronizationComplete::SynchronizationComplete(std::uint8_t number_of_matching_engines)
-  : number_of_matching_engines_(number_of_matching_engines) {}
+SynchronizationComplete::SynchronizationComplete(std::uint8_t matching_engine_id)
+  : matching_engine_id_(matching_engine_id) {}
 
-std::uint8_t SynchronizationComplete::number_of_matching_engines() const { return number_of_matching_engines_; }
-void SynchronizationComplete::set_number_of_matching_engines(std::uint8_t value) { number_of_matching_engines_ = value; }
+std::uint8_t SynchronizationComplete::matching_engine_id() const { return matching_engine_id_; }
+void SynchronizationComplete::set_matching_engine_id(std::uint8_t value) { matching_engine_id_ = value; }
 
 TcpMessageCode SynchronizationComplete::type() const { return message_type; }
 
@@ -20,7 +21,7 @@ std::size_t SynchronizationComplete::decode(const std::byte* data, std::size_t l
     std::size_t offset = 0;
     wire::require("SynchronizationComplete", wire_size, length);
 
-    number_of_matching_engines_ = wire::read_u8(data + offset);
+    matching_engine_id_ = wire::read_u8(data + offset);
     offset += 1;
 
     return offset;
@@ -30,7 +31,7 @@ std::size_t SynchronizationComplete::encode(std::byte* data, std::size_t capacit
     std::size_t offset = 0;
     wire::require_capacity("SynchronizationComplete", wire_size, capacity);
 
-    wire::write_u8(data + offset, static_cast<std::uint8_t>(number_of_matching_engines_));
+    wire::write_u8(data + offset, static_cast<std::uint8_t>(matching_engine_id_));
     offset += 1;
 
     return offset;
@@ -50,8 +51,8 @@ std::unique_ptr<TcpMessage> SynchronizationComplete::clone() const {
 
 void SynchronizationComplete::print(std::ostream& out) const {
     out << "SynchronizationComplete{";
-    out << "number_of_matching_engines=";
-    out << static_cast<int>(number_of_matching_engines_);
+    out << "matching_engine_id=";
+    out << static_cast<int>(matching_engine_id_);
     out << '}';
 }
 
@@ -61,7 +62,7 @@ bool SynchronizationComplete::equals(const TcpMessage& other) const {
 }
 
 bool SynchronizationComplete::operator==(const SynchronizationComplete& other) const {
-    return number_of_matching_engines_ == other.number_of_matching_engines_;
+    return matching_engine_id_ == other.matching_engine_id_;
 }
 
 bool SynchronizationComplete::operator!=(const SynchronizationComplete& other) const {

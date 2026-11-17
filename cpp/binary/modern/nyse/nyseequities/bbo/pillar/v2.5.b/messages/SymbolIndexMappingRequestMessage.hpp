@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.Bbo.Pillar.v2.5.b: messages/SymbolIndexMappingRequestMessage.hpp
 #pragma once
 
 #include "../types/SymbolIndex.hpp"

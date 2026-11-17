@@ -231,7 +231,7 @@ struct Reader {
         values[entry + ".messageheader.messagelength"] = canonical::number(message.header.message_length.get().value());
         values[entry + ".messageheader.messagetype"] = canonical::number(message.header.message_type.get().value());
         values[entry + ".payload"] = "packet.messages.message.payload.endofsessionmessage";
-        values[entry + ".payload.endofsessionmessage.timestamp"] = canonical::number(message.fields.timestamp.get().value());
+        values[entry + ".payload.endofsessionmessage.timeoffset"] = canonical::number(message.fields.time_offset.get().value());
     }
 
     void on_message(const protocol::symbol_mapping_message& message, std::uint64_t, const protocol::packet_header&) {
@@ -253,8 +253,6 @@ struct Reader {
         values[entry + ".payload.tradingstatusmessage.symbollong"] = canonical::text(std::string(message.fields.symbol_long.get().value()), ' ', false);
         values[entry + ".payload.tradingstatusmessage.tradingstatus"] = canonical::text(canonical::character(message.fields.trading_status.get().value()), ' ', false);
         values[entry + ".payload.tradingstatusmessage.regshoaction"] = canonical::text(canonical::character(message.fields.reg_sho_action.get().value()), ' ', false);
-        values[entry + ".payload.tradingstatusmessage.reserved1"] = canonical::text(canonical::character(message.fields.reserved_1.get().value()), ' ', false);
-        values[entry + ".payload.tradingstatusmessage.secondreserved1"] = canonical::text(canonical::character(message.fields.second_reserved_1.get().value()), ' ', false);
     }
 
     void on_message(const protocol::auction_update_message& message, std::uint64_t, const protocol::packet_header&) {

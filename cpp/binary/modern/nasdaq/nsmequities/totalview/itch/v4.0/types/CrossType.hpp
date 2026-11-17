@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v4.0: types/CrossType.hpp
 #pragma once
 
 #include <cstddef>

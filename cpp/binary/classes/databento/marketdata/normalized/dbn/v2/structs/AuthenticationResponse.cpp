@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v2: structs/AuthenticationResponse.cpp
 #include "AuthenticationResponse.hpp"
 
 #include "../common/Print.hpp"

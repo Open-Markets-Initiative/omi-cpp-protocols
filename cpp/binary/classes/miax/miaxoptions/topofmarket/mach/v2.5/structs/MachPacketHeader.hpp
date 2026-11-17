@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.TopOfMarket.Mach.v2.5: structs/MachPacketHeader.hpp
 #pragma once
 
 #include <cstddef>
@@ -25,11 +26,11 @@ class MachPacketHeader {
     std::uint16_t packet_length() const;
     void set_packet_length(std::uint16_t value);
 
-    // Packet Type: protocol packet type
+    // Packet Type: Mach protocol packet type
     PacketType packet_type() const;
     void set_packet_type(PacketType value);
 
-    // Session Number: protocol packet type
+    // Session Number: The Session this packet was generated from
     std::uint8_t session_number() const;
     void set_session_number(std::uint8_t value);
 

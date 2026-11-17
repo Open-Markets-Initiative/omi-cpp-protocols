@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: messages/ExecutionReportCancelMessage.hpp
 #pragma once
 
 #include <array>
@@ -32,7 +33,7 @@ class ExecutionReportCancelMessage : public Message {
     static constexpr MessageCode message_type = TemplateId::ExecutionReportCancelMessage;
 
     ExecutionReportCancelMessage() = default;
-    ExecutionReportCancelMessage(const OutboundBusinessHeader& outbound_business_header, Side side, OrdStatus ord_status, std::uint64_t clordid, std::uint64_t secondary_order_id, std::uint64_t security_id, std::uint64_t cum_qty, std::optional<std::uint32_t> account, std::uint64_t exec_id, std::chrono::nanoseconds transact_time, std::optional<std::chrono::nanoseconds> market_segment_received_time, std::uint64_t order_id, std::optional<std::uint64_t> origclordid, std::uint16_t trade_date, WorkingIndicator working_indicator, std::optional<ExecRestatementReason> exec_restatement_reason, const std::array<std::byte, 4>& offset_100_padding_4, std::optional<std::uint64_t> mass_action_report_id_optional, Ordtype ordtype, TimeInForce time_in_force, std::optional<std::uint16_t> expire_date, std::uint64_t order_qty, std::optional<Decimal> price_optional, std::optional<Decimal> stop_px, std::optional<std::uint64_t> min_qty, std::optional<std::uint64_t> max_floor, const DeskId& desk_id, const Memo& memo);
+    ExecutionReportCancelMessage(const OutboundBusinessHeader& outbound_business_header, Side side, OrdStatus ord_status, std::uint64_t cl_ord_id, std::uint64_t secondary_order_id, std::uint64_t security_id, std::uint64_t cum_qty, std::optional<std::uint32_t> account, std::uint64_t exec_id, std::chrono::nanoseconds transact_time, std::optional<std::chrono::nanoseconds> market_segment_received_time, std::uint64_t order_id, std::optional<std::uint64_t> origclordid, std::uint16_t trade_date, WorkingIndicator working_indicator, std::optional<ExecRestatementReason> exec_restatement_reason, const std::array<std::byte, 4>& offset_100_padding_4, std::optional<std::uint64_t> mass_action_report_id_optional, Ordtype ordtype, TimeInForce time_in_force, std::optional<std::uint16_t> expire_date, std::uint64_t order_qty, std::optional<Decimal> price_optional, std::optional<Decimal> stop_px, std::optional<std::uint64_t> min_qty, std::optional<std::uint64_t> max_floor, const DeskId& desk_id, const Memo& memo);
 
     // Outbound Business Header: OutboundBusinessHeader
     const OutboundBusinessHeader& outbound_business_header() const;
@@ -47,9 +48,9 @@ class ExecutionReportCancelMessage : public Message {
     OrdStatus ord_status() const;
     void set_ord_status(OrdStatus value);
 
-    // ClOrdId: clOrdID
-    std::uint64_t clordid() const;
-    void set_clordid(std::uint64_t value);
+    // Cl Ord Id: clOrdID
+    std::uint64_t cl_ord_id() const;
+    void set_cl_ord_id(std::uint64_t value);
 
     // Secondary Order Id: secondaryOrderID
     std::uint64_t secondary_order_id() const;
@@ -168,7 +169,7 @@ class ExecutionReportCancelMessage : public Message {
     OutboundBusinessHeader outbound_business_header_{};
     Side side_{};
     OrdStatus ord_status_{};
-    std::uint64_t clordid_{};
+    std::uint64_t cl_ord_id_{};
     std::uint64_t secondary_order_id_{};
     std::uint64_t security_id_{};
     std::uint64_t cum_qty_{};

@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: messages/OrderMassActionReportMessage.cpp
 #include "OrderMassActionReportMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,8 +7,8 @@
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_0 {
 
-OrderMassActionReportMessage::OrderMassActionReportMessage(const OutboundBusinessHeader& outbound_business_header, MassActionType mass_action_type, std::optional<MassActionScope> mass_action_scope, std::uint64_t clordid, std::uint64_t mass_action_report_id, std::chrono::nanoseconds transact_time, MassActionResponse mass_action_response, std::optional<MassActionRejectReason> mass_action_reject_reason, std::optional<MassCancelRestatementReason> mass_cancel_restatement_reason, std::optional<std::uint8_t> ordtagid, SideOptional side_optional, const std::array<std::byte, 1>& offset_49_padding_1, const std::string& asset, std::optional<std::uint64_t> security_id_optional, const InvestorId& investor_id, const Text& text)
-  : outbound_business_header_(outbound_business_header), mass_action_type_(mass_action_type), mass_action_scope_(mass_action_scope), clordid_(clordid), mass_action_report_id_(mass_action_report_id), transact_time_(transact_time), mass_action_response_(mass_action_response), mass_action_reject_reason_(mass_action_reject_reason), mass_cancel_restatement_reason_(mass_cancel_restatement_reason), ordtagid_(ordtagid), side_optional_(side_optional), offset_49_padding_1_(offset_49_padding_1), asset_(asset), security_id_optional_(security_id_optional), investor_id_(investor_id), text_(text) {}
+OrderMassActionReportMessage::OrderMassActionReportMessage(const OutboundBusinessHeader& outbound_business_header, MassActionType mass_action_type, std::optional<MassActionScope> mass_action_scope, std::uint64_t cl_ord_id, std::uint64_t mass_action_report_id, std::chrono::nanoseconds transact_time, MassActionResponse mass_action_response, std::optional<MassActionRejectReason> mass_action_reject_reason, std::optional<MassCancelRestatementReason> mass_cancel_restatement_reason, std::optional<std::uint8_t> ordtagid, SideOptional side_optional, const std::array<std::byte, 1>& offset_49_padding_1, const std::string& asset, std::optional<std::uint64_t> security_id_optional, const InvestorId& investor_id, const Text& text)
+  : outbound_business_header_(outbound_business_header), mass_action_type_(mass_action_type), mass_action_scope_(mass_action_scope), cl_ord_id_(cl_ord_id), mass_action_report_id_(mass_action_report_id), transact_time_(transact_time), mass_action_response_(mass_action_response), mass_action_reject_reason_(mass_action_reject_reason), mass_cancel_restatement_reason_(mass_cancel_restatement_reason), ordtagid_(ordtagid), side_optional_(side_optional), offset_49_padding_1_(offset_49_padding_1), asset_(asset), security_id_optional_(security_id_optional), investor_id_(investor_id), text_(text) {}
 
 const OutboundBusinessHeader& OrderMassActionReportMessage::outbound_business_header() const { return outbound_business_header_; }
 OutboundBusinessHeader& OrderMassActionReportMessage::outbound_business_header() { return outbound_business_header_; }
@@ -19,8 +20,8 @@ void OrderMassActionReportMessage::set_mass_action_type(MassActionType value) { 
 std::optional<MassActionScope> OrderMassActionReportMessage::mass_action_scope() const { return mass_action_scope_; }
 void OrderMassActionReportMessage::set_mass_action_scope(std::optional<MassActionScope> value) { mass_action_scope_ = value; }
 
-std::uint64_t OrderMassActionReportMessage::clordid() const { return clordid_; }
-void OrderMassActionReportMessage::set_clordid(std::uint64_t value) { clordid_ = value; }
+std::uint64_t OrderMassActionReportMessage::cl_ord_id() const { return cl_ord_id_; }
+void OrderMassActionReportMessage::set_cl_ord_id(std::uint64_t value) { cl_ord_id_ = value; }
 
 std::uint64_t OrderMassActionReportMessage::mass_action_report_id() const { return mass_action_report_id_; }
 void OrderMassActionReportMessage::set_mass_action_report_id(std::uint64_t value) { mass_action_report_id_ = value; }
@@ -80,7 +81,7 @@ std::size_t OrderMassActionReportMessage::decode(const std::byte* data, std::siz
     offset += 1;
 
     wire::require("OrderMassActionReportMessage", offset + 8, length);
-    clordid_ = wire::read_u64_le(data + offset);
+    cl_ord_id_ = wire::read_u64_le(data + offset);
     offset += 8;
 
     wire::require("OrderMassActionReportMessage", offset + 8, length);
@@ -142,7 +143,7 @@ std::size_t OrderMassActionReportMessage::encode(std::byte* data, std::size_t ca
     wire::write_u8(data + offset, mass_action_scope_ ? static_cast<std::uint8_t>(*mass_action_scope_) : static_cast<std::uint8_t>(0ULL));
     offset += 1;
 
-    wire::write_u64_le(data + offset, static_cast<std::uint64_t>(clordid_));
+    wire::write_u64_le(data + offset, static_cast<std::uint64_t>(cl_ord_id_));
     offset += 8;
 
     wire::write_u64_le(data + offset, static_cast<std::uint64_t>(mass_action_report_id_));
@@ -202,8 +203,8 @@ void OrderMassActionReportMessage::print(std::ostream& out) const {
     out << mass_action_type_;
     out << ", mass_action_scope=";
     print::optional(out, mass_action_scope_);
-    out << ", clordid=";
-    out << clordid_;
+    out << ", cl_ord_id=";
+    out << cl_ord_id_;
     out << ", mass_action_report_id=";
     out << mass_action_report_id_;
     out << ", transact_time=";
@@ -240,7 +241,7 @@ bool OrderMassActionReportMessage::operator==(const OrderMassActionReportMessage
     return outbound_business_header_ == other.outbound_business_header_
         && mass_action_type_ == other.mass_action_type_
         && mass_action_scope_ == other.mass_action_scope_
-        && clordid_ == other.clordid_
+        && cl_ord_id_ == other.cl_ord_id_
         && mass_action_report_id_ == other.mass_action_report_id_
         && transact_time_ == other.transact_time_
         && mass_action_response_ == other.mass_action_response_

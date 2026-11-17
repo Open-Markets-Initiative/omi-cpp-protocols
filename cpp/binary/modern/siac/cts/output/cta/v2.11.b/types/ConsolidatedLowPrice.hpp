@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: types/ConsolidatedLowPrice.hpp
 #pragma once
 
 #include <bit>

@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v1.91: messages/MarketWideCircuitBreakerStatusMessage.cpp
 #include "MarketWideCircuitBreakerStatusMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,7 +7,7 @@
 
 namespace siac::cts::output::cta::v1_91 {
 
-MarketWideCircuitBreakerStatusMessage::MarketWideCircuitBreakerStatusMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, MarketWideCircuitBreakerLevelIndicator market_wide_circuit_breaker_level_indicator, std::uint8_t reserved)
+MarketWideCircuitBreakerStatusMessage::MarketWideCircuitBreakerStatusMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, MarketWideCircuitBreakerLevelIndicator market_wide_circuit_breaker_level_indicator, const std::array<std::byte, 1>& reserved)
   : participant_id_(participant_id), timestamp_1_(timestamp_1), message_id_(message_id), transaction_id_(transaction_id), participant_reference_number_(participant_reference_number), market_wide_circuit_breaker_level_indicator_(market_wide_circuit_breaker_level_indicator), reserved_(reserved) {}
 
 ParticipantId MarketWideCircuitBreakerStatusMessage::participant_id() const { return participant_id_; }
@@ -28,8 +29,9 @@ void MarketWideCircuitBreakerStatusMessage::set_participant_reference_number(std
 MarketWideCircuitBreakerLevelIndicator MarketWideCircuitBreakerStatusMessage::market_wide_circuit_breaker_level_indicator() const { return market_wide_circuit_breaker_level_indicator_; }
 void MarketWideCircuitBreakerStatusMessage::set_market_wide_circuit_breaker_level_indicator(MarketWideCircuitBreakerLevelIndicator value) { market_wide_circuit_breaker_level_indicator_ = value; }
 
-std::uint8_t MarketWideCircuitBreakerStatusMessage::reserved() const { return reserved_; }
-void MarketWideCircuitBreakerStatusMessage::set_reserved(std::uint8_t value) { reserved_ = value; }
+const std::array<std::byte, 1>& MarketWideCircuitBreakerStatusMessage::reserved() const { return reserved_; }
+std::array<std::byte, 1>& MarketWideCircuitBreakerStatusMessage::reserved() { return reserved_; }
+void MarketWideCircuitBreakerStatusMessage::set_reserved(const std::array<std::byte, 1>& value) { reserved_ = value; }
 
 MarketStatusMessagePayloadCode MarketWideCircuitBreakerStatusMessage::type() const { return message_type; }
 
@@ -56,7 +58,7 @@ std::size_t MarketWideCircuitBreakerStatusMessage::decode(const std::byte* data,
     market_wide_circuit_breaker_level_indicator_ = static_cast<MarketWideCircuitBreakerLevelIndicator>(wire::read_char(data + offset));
     offset += 1;
 
-    reserved_ = wire::read_u8(data + offset);
+    wire::read_bytes(data + offset, reserved_.data(), 1);
     offset += 1;
 
     return offset;
@@ -83,7 +85,7 @@ std::size_t MarketWideCircuitBreakerStatusMessage::encode(std::byte* data, std::
     wire::write_char(data + offset, static_cast<char>(market_wide_circuit_breaker_level_indicator_));
     offset += 1;
 
-    wire::write_u8(data + offset, static_cast<std::uint8_t>(reserved_));
+    wire::write_bytes(data + offset, reserved_.data(), 1);
     offset += 1;
 
     return offset;
@@ -116,7 +118,7 @@ void MarketWideCircuitBreakerStatusMessage::print(std::ostream& out) const {
     out << ", market_wide_circuit_breaker_level_indicator=";
     out << market_wide_circuit_breaker_level_indicator_;
     out << ", reserved=";
-    out << static_cast<int>(reserved_);
+    print::hex(out, reserved_.data(), reserved_.size());
     out << '}';
 }
 

@@ -1,3 +1,4 @@
+// Iex.IexEquities.Deep.IexTp.v1.06: enums/OperationalHaltStatus.hpp
 #pragma once
 
 #include <cstdint>

@@ -1,5 +1,7 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: messages/StockTradingActionMessage.hpp
 #pragma once
 
+#include <array>
 #include <cstddef>
 #include <memory>
 #include <ostream>
@@ -24,11 +26,12 @@ class StockTradingActionMessage : public Message {
     static constexpr std::size_t wire_size = 15;
 
     StockTradingActionMessage() = default;
-    StockTradingActionMessage(char reserved, const std::string& issue_symbol, SecurityClass security_class, CurrentTradingState current_trading_state, const std::string& reason);
+    StockTradingActionMessage(const std::array<std::byte, 1>& reserved, const std::string& issue_symbol, SecurityClass security_class, CurrentTradingState current_trading_state, const std::string& reason);
 
     // Reserved: Reserved for future use; space filled in the initial release
-    char reserved() const;
-    void set_reserved(char value);
+    const std::array<std::byte, 1>& reserved() const;
+    std::array<std::byte, 1>& reserved();
+    void set_reserved(const std::array<std::byte, 1>& value);
 
     // Issue Symbol: Denotes the Nasdaq-assigned issue symbol of the security for which the
     // trade report is being generated
@@ -64,7 +67,7 @@ class StockTradingActionMessage : public Message {
     bool operator!=(const StockTradingActionMessage& other) const;
 
   private:
-    char reserved_{};
+    std::array<std::byte, 1> reserved_{};
     std::string issue_symbol_{};
     SecurityClass security_class_{};
     CurrentTradingState current_trading_state_{};

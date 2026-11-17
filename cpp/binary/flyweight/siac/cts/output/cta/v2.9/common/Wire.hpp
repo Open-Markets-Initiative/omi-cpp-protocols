@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.9: common/Wire.hpp
 #pragma once
 
 #include <bit>

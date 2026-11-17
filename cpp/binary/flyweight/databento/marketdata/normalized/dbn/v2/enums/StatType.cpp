@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v2: enums/StatType.cpp
 #include "StatType.hpp"
 
 namespace databento::marketdata::normalized::dbn::v2 {

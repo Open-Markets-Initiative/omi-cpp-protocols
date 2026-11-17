@@ -1,3 +1,4 @@
+// Jpx.TseEquities.MarketByOrder.Flex.v1.1: enums/CommunicationStartEndFlag.hpp
 #pragma once
 
 #include <cstdint>

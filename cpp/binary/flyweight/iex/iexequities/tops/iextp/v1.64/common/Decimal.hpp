@@ -1,3 +1,4 @@
+// Iex.IexEquities.Tops.IexTp.v1.64: common/Decimal.hpp
 #pragma once
 
 #include <cmath>

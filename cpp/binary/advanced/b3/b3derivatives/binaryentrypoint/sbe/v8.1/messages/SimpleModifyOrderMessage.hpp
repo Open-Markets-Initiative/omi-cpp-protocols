@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1: messages/SimpleModifyOrderMessage.hpp
 #pragma once
 
 #include <cstddef>
@@ -7,7 +8,7 @@
 #include "../structs/InboundBusinessHeader.hpp"
 #include "../types/Ordtagid.hpp"
 #include "../types/MmProtectionReset.hpp"
-#include "../types/Clordid.hpp"
+#include "../types/ClOrdId.hpp"
 #include "../types/Account.hpp"
 #include "../types/SenderLocation.hpp"
 #include "../types/EnteringTrader.hpp"
@@ -37,7 +38,7 @@ struct simple_modify_order_message {
         sbe_binaryentrypoint::inbound_business_header inbound_business_header;
         sbe_binaryentrypoint::ordtagid ordtagid;
         sbe_binaryentrypoint::mm_protection_reset mm_protection_reset;
-        sbe_binaryentrypoint::clordid clordid;
+        sbe_binaryentrypoint::cl_ord_id cl_ord_id;
         sbe_binaryentrypoint::account account;
         sbe_binaryentrypoint::sender_location sender_location;
         sbe_binaryentrypoint::entering_trader entering_trader;
@@ -94,7 +95,7 @@ struct simple_modify_order_message {
 static_assert(offsetof(simple_modify_order_message::fields_type, inbound_business_header) == 0, "unexpected offset of simple_modify_order_message::fields_type::inbound_business_header");
 static_assert(offsetof(simple_modify_order_message::fields_type, ordtagid) == 18, "unexpected offset of simple_modify_order_message::fields_type::ordtagid");
 static_assert(offsetof(simple_modify_order_message::fields_type, mm_protection_reset) == 19, "unexpected offset of simple_modify_order_message::fields_type::mm_protection_reset");
-static_assert(offsetof(simple_modify_order_message::fields_type, clordid) == 20, "unexpected offset of simple_modify_order_message::fields_type::clordid");
+static_assert(offsetof(simple_modify_order_message::fields_type, cl_ord_id) == 20, "unexpected offset of simple_modify_order_message::fields_type::cl_ord_id");
 static_assert(offsetof(simple_modify_order_message::fields_type, account) == 28, "unexpected offset of simple_modify_order_message::fields_type::account");
 static_assert(offsetof(simple_modify_order_message::fields_type, sender_location) == 32, "unexpected offset of simple_modify_order_message::fields_type::sender_location");
 static_assert(offsetof(simple_modify_order_message::fields_type, entering_trader) == 42, "unexpected offset of simple_modify_order_message::fields_type::entering_trader");

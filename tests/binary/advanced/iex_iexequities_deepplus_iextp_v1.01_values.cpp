@@ -149,7 +149,6 @@ struct Reader {
         values[entry + ".messageheader.messagelength"] = canonical::number(message.header.message_length.get().value());
         values[entry + ".messageheader.messagetype"] = canonical::text(canonical::character(message.header.message_type.get().value()));
         values[entry + ".messagedata"] = "packet.messages.message.messagedata.orderdeletemessage";
-        values[entry + ".messagedata.orderdeletemessage.reserved1"] = canonical::text(canonical::character(message.fields.reserved_1.get().value()));
         values[entry + ".messagedata.orderdeletemessage.timestamp"] = canonical::number(message.fields.timestamp.get().value());
         values[entry + ".messagedata.orderdeletemessage.symbol"] = canonical::text(std::string(message.fields.symbol.get().value()), ' ', false);
         values[entry + ".messagedata.orderdeletemessage.orderidreference"] = canonical::number(message.fields.order_id_reference.get().value());
@@ -212,7 +211,6 @@ struct Reader {
         values[entry + ".messageheader.messagelength"] = canonical::number(message.header.message_length.get().value());
         values[entry + ".messageheader.messagetype"] = canonical::text(canonical::character(message.header.message_type.get().value()));
         values[entry + ".messagedata"] = "packet.messages.message.messagedata.clearbookmessage";
-        values[entry + ".messagedata.clearbookmessage.reserved1"] = canonical::text(canonical::character(message.fields.reserved_1.get().value()));
         values[entry + ".messagedata.clearbookmessage.timestamp"] = canonical::number(message.fields.timestamp.get().value());
         values[entry + ".messagedata.clearbookmessage.symbol"] = canonical::text(std::string(message.fields.symbol.get().value()), ' ', false);
     }

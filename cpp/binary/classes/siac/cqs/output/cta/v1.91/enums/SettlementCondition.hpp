@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v1.91: enums/SettlementCondition.hpp
 #pragma once
 
 #include <cstdint>

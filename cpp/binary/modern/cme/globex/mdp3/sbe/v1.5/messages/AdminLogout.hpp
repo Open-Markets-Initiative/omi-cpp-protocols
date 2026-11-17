@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.5: messages/AdminLogout.hpp
 #pragma once
 
 #include "../types/Text.hpp"

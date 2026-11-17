@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeed.Xdp.v2.3.a: Settings.hpp
 #pragma once
 
 #include <iostream>

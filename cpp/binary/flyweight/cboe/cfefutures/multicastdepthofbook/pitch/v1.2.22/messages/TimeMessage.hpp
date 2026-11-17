@@ -1,3 +1,4 @@
+// Cboe.CfeFutures.MulticastDepthOfBook.Pitch.v1.2.22: messages/TimeMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -32,14 +33,14 @@ class TimeMessage {
     std::chrono::seconds time_reference() const { return std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_le(at(0)))); }
     std::int64_t time_reference_utc(const calendar::Day& day) const { return calendar::midnight(day, "America/Chicago").utc(static_cast<std::int64_t>(time_reference().count()) * 1000000000); }
 
-    std::uint32_t epoch_time() const { return wire::read_u32_le(at(4)); }
+    std::chrono::seconds epoch_time() const { return std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_le(at(4)))); }
 
     void print(std::ostream& out) const {
         out << "TimeMessage{";
         out << "time_reference=";
         calendar::print(out, time_reference().count(), 1000000000, "America/Chicago");
         out << ", epoch_time=";
-        out << epoch_time();
+        out << epoch_time().count();
         out << '}';
     }
 

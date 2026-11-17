@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.10: messages/ParticipantEndOfDaySummaryMessage.hpp
 #pragma once
 
 #include <cstddef>

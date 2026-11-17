@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.6: messages/session.hpp
 #pragma once
 
 #include <cstddef>

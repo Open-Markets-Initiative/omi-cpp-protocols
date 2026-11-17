@@ -1,3 +1,4 @@
+// Cboe.C1Options.Complex.Pitch.v2.1.18: enums/AuctionType.hpp
 #pragma once
 
 #include <cstdint>

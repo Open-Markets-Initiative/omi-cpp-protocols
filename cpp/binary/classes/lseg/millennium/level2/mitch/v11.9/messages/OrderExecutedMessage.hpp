@@ -1,5 +1,7 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/OrderExecutedMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
@@ -22,11 +24,11 @@ class OrderExecutedMessage : public Message {
     static constexpr std::size_t wire_size = 24;
 
     OrderExecutedMessage() = default;
-    OrderExecutedMessage(std::uint32_t nanosecond, std::uint64_t order_id, std::uint32_t executed_quantity, std::uint64_t trade_match_id);
+    OrderExecutedMessage(std::chrono::nanoseconds nanosecond, std::uint64_t order_id, std::uint32_t executed_quantity, std::uint64_t trade_match_id);
 
     // Nanosecond: Nanoseconds since last message, accurate to the nearest microsecond.
-    std::uint32_t nanosecond() const;
-    void set_nanosecond(std::uint32_t value);
+    std::chrono::nanoseconds nanosecond() const;
+    void set_nanosecond(std::chrono::nanoseconds value);
 
     // Order Id: Unique identifier of the order.
     std::uint64_t order_id() const;
@@ -55,7 +57,7 @@ class OrderExecutedMessage : public Message {
     bool operator!=(const OrderExecutedMessage& other) const;
 
   private:
-    std::uint32_t nanosecond_{};
+    std::chrono::nanoseconds nanosecond_{};
     std::uint64_t order_id_{};
     std::uint32_t executed_quantity_{};
     std::uint64_t trade_match_id_{};

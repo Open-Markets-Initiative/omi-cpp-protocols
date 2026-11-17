@@ -1,3 +1,4 @@
+// Memx.MemxEquities.MemoirDepthFeed.Sbe.v1.3: messages/BrokenTradeMessage.hpp
 #pragma once
 
 #include <chrono>

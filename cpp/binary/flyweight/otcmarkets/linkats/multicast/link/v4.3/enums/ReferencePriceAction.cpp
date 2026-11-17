@@ -1,3 +1,4 @@
+// OtcMarkets.LinkAts.Multicast.Link.v4.3: enums/ReferencePriceAction.cpp
 #include "ReferencePriceAction.hpp"
 
 namespace otcmarkets::linkats::multicast::link::v4_3 {

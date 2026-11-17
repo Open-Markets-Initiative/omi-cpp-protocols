@@ -1,3 +1,4 @@
+// Nyse.NationalEquities.Trades.Pillar.v2.6: enums/ExchangeCode.hpp
 #pragma once
 
 #include <cstdint>

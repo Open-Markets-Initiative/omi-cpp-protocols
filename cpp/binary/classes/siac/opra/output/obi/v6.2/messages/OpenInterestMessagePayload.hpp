@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: messages/OpenInterestMessagePayload.hpp
 #pragma once
 
 #include <cstddef>

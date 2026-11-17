@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v1.91: types/ConsolidatedHighLowLastIndicator.hpp
 #pragma once
 
 #include <cstddef>

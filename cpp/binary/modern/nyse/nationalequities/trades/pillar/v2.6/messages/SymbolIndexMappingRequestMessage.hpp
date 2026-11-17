@@ -1,3 +1,4 @@
+// Nyse.NationalEquities.Trades.Pillar.v2.6: messages/SymbolIndexMappingRequestMessage.hpp
 #pragma once
 
 #include "../types/SymbolIndex.hpp"

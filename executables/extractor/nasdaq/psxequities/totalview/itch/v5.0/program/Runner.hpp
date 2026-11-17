@@ -1,3 +1,4 @@
+// Nasdaq.PsxEquities.TotalView.Itch.v5.0: program/Runner.hpp
 #pragma once
 
 #include "Settings.hpp"

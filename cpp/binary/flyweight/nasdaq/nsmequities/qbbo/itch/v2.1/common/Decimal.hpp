@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.Qbbo.Itch.v2.1: common/Decimal.hpp
 #pragma once
 
 #include <cmath>

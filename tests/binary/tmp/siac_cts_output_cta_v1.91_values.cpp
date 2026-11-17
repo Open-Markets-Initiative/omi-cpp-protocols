@@ -457,25 +457,25 @@ std::size_t parse_administrative_message_payload([[maybe_unused]] const std::byt
     if (static_cast<bool>(tmp::rule(administrative_message_type_) == 'A')) {
         std::size_t offset = 0;
         [[maybe_unused]] const std::size_t bound = length;
-        [[maybe_unused]] const auto& start_of_end_of_day_message_ = tmp::read<start_of_end_of_day_message>(data + offset, bound - offset, handler); offset += start_of_end_of_day_message::size;
+        [[maybe_unused]] const auto& start_of_end_of_day_summary_message_ = tmp::read<start_of_end_of_day_summary_message>(data + offset, bound - offset, handler); offset += start_of_end_of_day_summary_message::size;
         return offset;
     }
     if (static_cast<bool>(tmp::rule(administrative_message_type_) == 'B')) {
         std::size_t offset = 0;
         [[maybe_unused]] const std::size_t bound = length;
-        [[maybe_unused]] const auto& end_of_end_of_day_message_ = tmp::read<end_of_end_of_day_message>(data + offset, bound - offset, handler); offset += end_of_end_of_day_message::size;
+        [[maybe_unused]] const auto& end_of_end_of_day_summary_message_ = tmp::read<end_of_end_of_day_summary_message>(data + offset, bound - offset, handler); offset += end_of_end_of_day_summary_message::size;
         return offset;
     }
     if (static_cast<bool>(tmp::rule(administrative_message_type_) == 'C')) {
         std::size_t offset = 0;
         [[maybe_unused]] const std::size_t bound = length;
-        [[maybe_unused]] const auto& start_of_start_of_day_message_ = tmp::read<start_of_start_of_day_message>(data + offset, bound - offset, handler); offset += start_of_start_of_day_message::size;
+        [[maybe_unused]] const auto& start_of_start_of_day_summary_message_ = tmp::read<start_of_start_of_day_summary_message>(data + offset, bound - offset, handler); offset += start_of_start_of_day_summary_message::size;
         return offset;
     }
     if (static_cast<bool>(tmp::rule(administrative_message_type_) == 'D')) {
         std::size_t offset = 0;
         [[maybe_unused]] const std::size_t bound = length;
-        [[maybe_unused]] const auto& end_of_start_of_day_message_ = tmp::read<end_of_start_of_day_message>(data + offset, bound - offset, handler); offset += end_of_start_of_day_message::size;
+        [[maybe_unused]] const auto& end_of_start_of_day_summary_message_ = tmp::read<end_of_start_of_day_summary_message>(data + offset, bound - offset, handler); offset += end_of_start_of_day_summary_message::size;
         return offset;
     }
     if (static_cast<bool>(tmp::rule(administrative_message_type_) == 'H')) {

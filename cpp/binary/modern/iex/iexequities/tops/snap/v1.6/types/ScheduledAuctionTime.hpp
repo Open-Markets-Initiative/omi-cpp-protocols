@@ -1,3 +1,4 @@
+// Iex.IexEquities.Tops.Snap.v1.6: types/ScheduledAuctionTime.hpp
 #pragma once
 
 #include <cstddef>

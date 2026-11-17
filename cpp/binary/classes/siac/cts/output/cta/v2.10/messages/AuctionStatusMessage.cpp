@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.10: messages/AuctionStatusMessage.cpp
 #include "AuctionStatusMessage.hpp"
 
 #include "../common/Print.hpp"

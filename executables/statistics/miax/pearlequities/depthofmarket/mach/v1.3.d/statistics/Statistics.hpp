@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: statistics/Statistics.hpp
 #pragma once
 
 #include <cstdint>
@@ -55,6 +56,7 @@ struct Statistics {
     uint64_t retransmission_request = 0;
     uint64_t logout_request = 0;
     uint64_t goodbye_packet = 0;
+    uint64_t trading_session_update = 0;
     uint64_t test_packet = 0;
 
     explicit Statistics(const statistics::Options& options, packet::Parser& parser)
@@ -105,7 +107,7 @@ struct Statistics {
             if (esesm_tcp_packet.current > esesm_tcp_packet.end) { break; }   // the packet's bytes have not all arrived
 
             consumed = static_cast<std::size_t>(esesm_tcp_packet.current - base);
-            if (esesm_tcp_packet.esesm_packet_type == 'u' || esesm_tcp_packet.esesm_packet_type == '0' || esesm_tcp_packet.esesm_packet_type == '1') {
+            if (esesm_tcp_packet.esesm_packet_type == '0' || esesm_tcp_packet.esesm_packet_type == '1') {
                 ++heartbeats;
                 continue;
             }
@@ -232,6 +234,10 @@ struct Statistics {
                 ++total_messages;
                 ++goodbye_packet;
                 break;
+            case 'u':
+                ++total_messages;
+                ++trading_session_update;
+                break;
             case 'T':
                 ++total_messages;
                 ++test_packet;
@@ -284,6 +290,7 @@ struct Statistics {
         std::cout << "  RetransmissionRequest (a)                     " << retransmission_request << std::endl;
         std::cout << "  LogoutRequest (X)                             " << logout_request << std::endl;
         std::cout << "  GoodbyePacket (G)                             " << goodbye_packet << std::endl;
+        std::cout << "  TradingSessionUpdate (u)                      " << trading_session_update << std::endl;
         std::cout << "  TestPacket (T)                                " << test_packet << std::endl;
     }
 };

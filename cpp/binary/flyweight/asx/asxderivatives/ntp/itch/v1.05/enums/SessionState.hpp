@@ -1,3 +1,4 @@
+// Asx.AsxDerivatives.Ntp.Itch.v1.05: enums/SessionState.hpp
 #pragma once
 
 #include <cstdint>

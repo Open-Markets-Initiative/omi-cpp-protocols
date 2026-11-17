@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeedRetransmission.Pillar.v2.5.g: messages/NonDisplayedTradeMessage.hpp
 #pragma once
 
 #include <cstddef>

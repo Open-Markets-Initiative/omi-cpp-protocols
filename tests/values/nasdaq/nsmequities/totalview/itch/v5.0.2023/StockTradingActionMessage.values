@@ -12,7 +12,6 @@ packet.messages.message[0].payload.stocktradingactionmessage.trackingnumber = 0
 packet.messages.message[0].payload.stocktradingactionmessage.timestamp = 34215592125541
 packet.messages.message[0].payload.stocktradingactionmessage.stock = ZXZZT
 packet.messages.message[0].payload.stocktradingactionmessage.tradingstate = P
-packet.messages.message[0].payload.stocktradingactionmessage.reserved = 
 packet.messages.message[0].payload.stocktradingactionmessage.reasoncode = LUDP
 datagram 1
 packet.packetheader.session = 
@@ -27,7 +26,6 @@ packet.messages.message[0].payload.stocktradingactionmessage.trackingnumber = 0
 packet.messages.message[0].payload.stocktradingactionmessage.timestamp = 34216302093801
 packet.messages.message[0].payload.stocktradingactionmessage.stock = ZVZZT
 packet.messages.message[0].payload.stocktradingactionmessage.tradingstate = P
-packet.messages.message[0].payload.stocktradingactionmessage.reserved = 
 packet.messages.message[0].payload.stocktradingactionmessage.reasoncode = LUDP
 datagram 2
 packet.packetheader.session = 
@@ -42,7 +40,6 @@ packet.messages.message[0].payload.stocktradingactionmessage.trackingnumber = 0
 packet.messages.message[0].payload.stocktradingactionmessage.timestamp = 34220599106486
 packet.messages.message[0].payload.stocktradingactionmessage.stock = CAML
 packet.messages.message[0].payload.stocktradingactionmessage.tradingstate = H
-packet.messages.message[0].payload.stocktradingactionmessage.reserved = 
 packet.messages.message[0].payload.stocktradingactionmessage.reasoncode = 
 datagram 3
 packet.packetheader.session = 
@@ -57,7 +54,6 @@ packet.messages.message[0].payload.stocktradingactionmessage.trackingnumber = 0
 packet.messages.message[0].payload.stocktradingactionmessage.timestamp = 34241583109014
 packet.messages.message[0].payload.stocktradingactionmessage.stock = LTRY
 packet.messages.message[0].payload.stocktradingactionmessage.tradingstate = P
-packet.messages.message[0].payload.stocktradingactionmessage.reserved = 
 packet.messages.message[0].payload.stocktradingactionmessage.reasoncode = LUDP
 datagram 4
 packet.packetheader.session = 
@@ -72,5 +68,4 @@ packet.messages.message[0].payload.stocktradingactionmessage.trackingnumber = 0
 packet.messages.message[0].payload.stocktradingactionmessage.timestamp = 34260849901211
 packet.messages.message[0].payload.stocktradingactionmessage.stock = CSMD
 packet.messages.message[0].payload.stocktradingactionmessage.tradingstate = H
-packet.messages.message[0].payload.stocktradingactionmessage.reserved = 
 packet.messages.message[0].payload.stocktradingactionmessage.reasoncode = 

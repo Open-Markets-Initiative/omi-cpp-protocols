@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeed.Xdp.v2.3.a: messages/RefreshHeaderMessage.hpp
 #pragma once
 
 #include "../types/CurrentRefreshPkt.hpp"

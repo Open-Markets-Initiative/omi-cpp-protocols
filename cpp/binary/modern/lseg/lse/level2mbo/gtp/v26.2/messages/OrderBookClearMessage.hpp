@@ -1,3 +1,4 @@
+// Lseg.Lse.Level2Mbo.Gtp.v26.2: messages/OrderBookClearMessage.hpp
 #pragma once
 
 #include "../types/Timestamp.hpp"

@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.DeepFeed.Pillar.v1.2.m: types/OptionSymbolRoot.hpp
 #pragma once
 
 #include <array>

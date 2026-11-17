@@ -1,3 +1,4 @@
+// Jpx.OseDerivatives.GeniumInet.Itch.v5.0.6: enums/LotType.cpp
 #include "LotType.hpp"
 
 namespace jpx::osederivatives::geniuminet::itch::v5_0_6 {

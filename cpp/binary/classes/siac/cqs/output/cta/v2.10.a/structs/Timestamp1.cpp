@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v2.10.a: structs/Timestamp1.cpp
 #include "Timestamp1.hpp"
 
 #include "../common/Print.hpp"

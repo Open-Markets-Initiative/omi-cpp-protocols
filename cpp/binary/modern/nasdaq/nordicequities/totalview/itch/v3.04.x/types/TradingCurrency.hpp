@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: types/TradingCurrency.hpp
 #pragma once
 
 #include <array>

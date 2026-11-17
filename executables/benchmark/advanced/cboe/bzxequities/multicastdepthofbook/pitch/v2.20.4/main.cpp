@@ -1,3 +1,4 @@
+// Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.20.4: main.cpp
 // Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.20.4 benchmark, through the Advanced session layer: every value it reads from every message of the simulated
 // sequence (tests/simulated/cboe/bzxequities/multicastdepthofbook/pitch/v2.20.4.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -214,7 +215,7 @@ struct Reader {
         checksum += index++;
         checksum += bench::digest(message.header.message_length.get().value());
         checksum += bench::digest(message.header.message_type.get().value());
-        checksum += bench::digest(message.fields.timestamp.get().value());
+        checksum += bench::digest(message.fields.time_offset.get().value());
     }
 
     void on_message(const protocol::symbol_mapping_message& message, std::uint64_t, const protocol::packet_header&) {
@@ -234,8 +235,6 @@ struct Reader {
         checksum += bench::digest(message.fields.symbol_long.get().value());
         checksum += bench::digest(message.fields.trading_status.get().value());
         checksum += bench::digest(message.fields.reg_sho_action.get().value());
-        checksum += bench::digest(message.fields.reserved_1.get().value());
-        checksum += bench::digest(message.fields.second_reserved_1.get().value());
     }
 
     void on_message(const protocol::auction_update_message& message, std::uint64_t, const protocol::packet_header&) {

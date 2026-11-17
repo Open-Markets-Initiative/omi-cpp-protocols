@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.TopFeed.Pillar.v1.2.c: messages/SeriesRfqMessage.cpp
 #include "SeriesRfqMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,14 +7,14 @@
 
 namespace nyse::arcaoptions::topfeed::pillar::v1_2_c {
 
-SeriesRfqMessage::SeriesRfqMessage(std::uint32_t source_time, std::uint32_t source_time_ns, std::uint32_t series_index, std::uint32_t series_seq_num, Side side, Type type_field, Capacity capacity, std::uint32_t total_quantity, std::int32_t working_price, std::uint32_t participant, std::uint64_t auction_id, RfqStatus rfq_status)
+SeriesRfqMessage::SeriesRfqMessage(std::chrono::seconds source_time, std::chrono::nanoseconds source_time_ns, std::uint32_t series_index, std::uint32_t series_seq_num, Side side, Type type_field, Capacity capacity, std::uint32_t total_quantity, std::int32_t working_price, std::uint32_t participant, std::uint64_t auction_id, RfqStatus rfq_status)
   : source_time_(source_time), source_time_ns_(source_time_ns), series_index_(series_index), series_seq_num_(series_seq_num), side_(side), type_field_(type_field), capacity_(capacity), total_quantity_(total_quantity), working_price_(working_price), participant_(participant), auction_id_(auction_id), rfq_status_(rfq_status) {}
 
-std::uint32_t SeriesRfqMessage::source_time() const { return source_time_; }
-void SeriesRfqMessage::set_source_time(std::uint32_t value) { source_time_ = value; }
+std::chrono::seconds SeriesRfqMessage::source_time() const { return source_time_; }
+void SeriesRfqMessage::set_source_time(std::chrono::seconds value) { source_time_ = value; }
 
-std::uint32_t SeriesRfqMessage::source_time_ns() const { return source_time_ns_; }
-void SeriesRfqMessage::set_source_time_ns(std::uint32_t value) { source_time_ns_ = value; }
+std::chrono::nanoseconds SeriesRfqMessage::source_time_ns() const { return source_time_ns_; }
+void SeriesRfqMessage::set_source_time_ns(std::chrono::nanoseconds value) { source_time_ns_ = value; }
 
 std::uint32_t SeriesRfqMessage::series_index() const { return series_index_; }
 void SeriesRfqMessage::set_series_index(std::uint32_t value) { series_index_ = value; }
@@ -53,10 +54,10 @@ std::size_t SeriesRfqMessage::decode(const std::byte* data, std::size_t length) 
     std::size_t offset = 0;
     wire::require("SeriesRfqMessage", wire_size, length);
 
-    source_time_ = wire::read_u32_le(data + offset);
+    source_time_ = std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
-    source_time_ns_ = wire::read_u32_le(data + offset);
+    source_time_ns_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     series_index_ = wire::read_u32_le(data + offset);
@@ -96,10 +97,10 @@ std::size_t SeriesRfqMessage::encode(std::byte* data, std::size_t capacity) cons
     std::size_t offset = 0;
     wire::require_capacity("SeriesRfqMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_.count()));
     offset += 4;
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_.count()));
     offset += 4;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(series_index_));
@@ -150,9 +151,9 @@ std::unique_ptr<Message> SeriesRfqMessage::clone() const {
 void SeriesRfqMessage::print(std::ostream& out) const {
     out << "SeriesRfqMessage{";
     out << "source_time=";
-    out << source_time_;
+    out << source_time_.count();
     out << ", source_time_ns=";
-    out << source_time_ns_;
+    out << source_time_ns_.count();
     out << ", series_index=";
     out << series_index_;
     out << ", series_seq_num=";

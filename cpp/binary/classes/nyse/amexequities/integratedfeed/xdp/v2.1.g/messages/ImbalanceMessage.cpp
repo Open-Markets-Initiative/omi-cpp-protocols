@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeed.Xdp.v2.1.g: messages/ImbalanceMessage.cpp
 #include "ImbalanceMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,14 +7,14 @@
 
 namespace nyse::amexequities::integratedfeed::xdp::v2_1_g {
 
-ImbalanceMessage::ImbalanceMessage(std::uint32_t source_time, std::uint32_t source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, std::uint32_t reference_price, std::uint32_t paired_qty, std::uint32_t total_imbalance_qty, std::uint32_t market_imbalance_qty, std::uint16_t auction_time, AuctionType auction_type, ImbalanceSide imbalance_side, std::uint32_t continuous_book_clearing_price, std::uint32_t closing_only_clearing_price, std::uint32_t ssr_filing_price, std::uint32_t indicative_match_price, std::uint32_t upper_collar, std::uint32_t lower_collar, AuctionStatus auction_status, FreezeStatus freeze_status, std::uint8_t num_extensions)
+ImbalanceMessage::ImbalanceMessage(std::chrono::seconds source_time, std::chrono::nanoseconds source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, std::uint32_t reference_price, std::uint32_t paired_qty, std::uint32_t total_imbalance_qty, std::uint32_t market_imbalance_qty, std::uint16_t auction_time, AuctionType auction_type, ImbalanceSide imbalance_side, std::uint32_t continuous_book_clearing_price, std::uint32_t closing_only_clearing_price, std::uint32_t ssr_filing_price, std::uint32_t indicative_match_price, std::uint32_t upper_collar, std::uint32_t lower_collar, AuctionStatus auction_status, FreezeStatus freeze_status, std::uint8_t num_extensions)
   : source_time_(source_time), source_time_ns_(source_time_ns), symbol_index_(symbol_index), symbol_seq_num_(symbol_seq_num), reference_price_(reference_price), paired_qty_(paired_qty), total_imbalance_qty_(total_imbalance_qty), market_imbalance_qty_(market_imbalance_qty), auction_time_(auction_time), auction_type_(auction_type), imbalance_side_(imbalance_side), continuous_book_clearing_price_(continuous_book_clearing_price), closing_only_clearing_price_(closing_only_clearing_price), ssr_filing_price_(ssr_filing_price), indicative_match_price_(indicative_match_price), upper_collar_(upper_collar), lower_collar_(lower_collar), auction_status_(auction_status), freeze_status_(freeze_status), num_extensions_(num_extensions) {}
 
-std::uint32_t ImbalanceMessage::source_time() const { return source_time_; }
-void ImbalanceMessage::set_source_time(std::uint32_t value) { source_time_ = value; }
+std::chrono::seconds ImbalanceMessage::source_time() const { return source_time_; }
+void ImbalanceMessage::set_source_time(std::chrono::seconds value) { source_time_ = value; }
 
-std::uint32_t ImbalanceMessage::source_time_ns() const { return source_time_ns_; }
-void ImbalanceMessage::set_source_time_ns(std::uint32_t value) { source_time_ns_ = value; }
+std::chrono::nanoseconds ImbalanceMessage::source_time_ns() const { return source_time_ns_; }
+void ImbalanceMessage::set_source_time_ns(std::chrono::nanoseconds value) { source_time_ns_ = value; }
 
 std::uint32_t ImbalanceMessage::symbol_index() const { return symbol_index_; }
 void ImbalanceMessage::set_symbol_index(std::uint32_t value) { symbol_index_ = value; }
@@ -77,10 +78,10 @@ std::size_t ImbalanceMessage::decode(const std::byte* data, std::size_t length) 
     std::size_t offset = 0;
     wire::require("ImbalanceMessage", wire_size, length);
 
-    source_time_ = wire::read_u32_le(data + offset);
+    source_time_ = std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
-    source_time_ns_ = wire::read_u32_le(data + offset);
+    source_time_ns_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     symbol_index_ = wire::read_u32_le(data + offset);
@@ -144,10 +145,10 @@ std::size_t ImbalanceMessage::encode(std::byte* data, std::size_t capacity) cons
     std::size_t offset = 0;
     wire::require_capacity("ImbalanceMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_.count()));
     offset += 4;
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_.count()));
     offset += 4;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(symbol_index_));
@@ -222,9 +223,9 @@ std::unique_ptr<Message> ImbalanceMessage::clone() const {
 void ImbalanceMessage::print(std::ostream& out) const {
     out << "ImbalanceMessage{";
     out << "source_time=";
-    out << source_time_;
+    out << source_time_.count();
     out << ", source_time_ns=";
-    out << source_time_ns_;
+    out << source_time_ns_.count();
     out << ", symbol_index=";
     out << symbol_index_;
     out << ", symbol_seq_num=";

@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v3.0: enums/MdEntryType.hpp
 #pragma once
 
 #include <cstdint>

@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v3: structs/AuthenticationResponse.hpp
 #pragma once
 
 #include "../types/ControlFields.hpp"

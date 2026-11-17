@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v1: types/StrikePriceCurrency.hpp
 #pragma once
 
 #include <array>

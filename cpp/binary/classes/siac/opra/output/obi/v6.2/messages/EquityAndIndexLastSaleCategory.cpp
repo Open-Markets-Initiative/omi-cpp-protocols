@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: messages/EquityAndIndexLastSaleCategory.cpp
 #include "EquityAndIndexLastSaleCategory.hpp"
 
 #include "../common/Print.hpp"

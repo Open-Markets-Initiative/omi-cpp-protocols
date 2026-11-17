@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: messages/OrderCancelRequestMessage.hpp
 #pragma once
 
 #include <cstddef>
@@ -6,7 +7,7 @@
 #include "../structs/SbeGroupSupport.hpp"
 #include "../structs/InboundBusinessHeader.hpp"
 #include "../types/Offset18Padding2.hpp"
-#include "../types/Clordid.hpp"
+#include "../types/ClOrdId.hpp"
 #include "../types/SecurityId.hpp"
 #include "../types/OrderIdOptional.hpp"
 #include "../types/Origclordid.hpp"
@@ -30,7 +31,7 @@ struct order_cancel_request_message {
     struct fields_type {
         sbe_binaryentrypoint::inbound_business_header inbound_business_header;
         sbe_binaryentrypoint::offset_18_padding_2 offset_18_padding_2;
-        sbe_binaryentrypoint::clordid clordid;
+        sbe_binaryentrypoint::cl_ord_id cl_ord_id;
         sbe_binaryentrypoint::security_id security_id;
         sbe_binaryentrypoint::order_id_optional order_id_optional;
         sbe_binaryentrypoint::origclordid origclordid;
@@ -85,7 +86,7 @@ struct order_cancel_request_message {
 // layout verification
 static_assert(offsetof(order_cancel_request_message::fields_type, inbound_business_header) == 0, "unexpected offset of order_cancel_request_message::fields_type::inbound_business_header");
 static_assert(offsetof(order_cancel_request_message::fields_type, offset_18_padding_2) == 18, "unexpected offset of order_cancel_request_message::fields_type::offset_18_padding_2");
-static_assert(offsetof(order_cancel_request_message::fields_type, clordid) == 20, "unexpected offset of order_cancel_request_message::fields_type::clordid");
+static_assert(offsetof(order_cancel_request_message::fields_type, cl_ord_id) == 20, "unexpected offset of order_cancel_request_message::fields_type::cl_ord_id");
 static_assert(offsetof(order_cancel_request_message::fields_type, security_id) == 28, "unexpected offset of order_cancel_request_message::fields_type::security_id");
 static_assert(offsetof(order_cancel_request_message::fields_type, order_id_optional) == 36, "unexpected offset of order_cancel_request_message::fields_type::order_id_optional");
 static_assert(offsetof(order_cancel_request_message::fields_type, origclordid) == 44, "unexpected offset of order_cancel_request_message::fields_type::origclordid");

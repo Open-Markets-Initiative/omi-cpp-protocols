@@ -1,5 +1,7 @@
+// Nyse.AmexEquities.IntegratedFeed.Xdp.v2.1.g: messages/TradeCancelMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
@@ -23,11 +25,11 @@ class TradeCancelMessage : public Message {
     static constexpr std::size_t wire_size = 16;
 
     TradeCancelMessage() = default;
-    TradeCancelMessage(std::uint32_t source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, std::uint32_t trade_id);
+    TradeCancelMessage(std::chrono::nanoseconds source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, std::uint32_t trade_id);
 
     // Source Time Ns: The nanosecond offset from the SourceTime
-    std::uint32_t source_time_ns() const;
-    void set_source_time_ns(std::uint32_t value);
+    std::chrono::nanoseconds source_time_ns() const;
+    void set_source_time_ns(std::chrono::nanoseconds value);
 
     // Symbol Index: The unique ID of this symbol for all products within this market. This ID
     // cannot be used to cross reference a security between markets.
@@ -58,7 +60,7 @@ class TradeCancelMessage : public Message {
     bool operator!=(const TradeCancelMessage& other) const;
 
   private:
-    std::uint32_t source_time_ns_{};
+    std::chrono::nanoseconds source_time_ns_{};
     std::uint32_t symbol_index_{};
     std::uint32_t symbol_seq_num_{};
     std::uint32_t trade_id_{};

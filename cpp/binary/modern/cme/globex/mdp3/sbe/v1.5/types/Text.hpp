@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.5: types/Text.hpp
 #pragma once
 
 #include <array>
@@ -7,11 +8,11 @@
 namespace cme::mdp3::v5 {
 
 
-// Reject reason details
+// Free format text string. May include logout confirmation or reason for logout
 struct Text {
 
     static constexpr auto name = "Text";
-    static constexpr std::size_t size = 100;
+    static constexpr std::size_t size = 180;
 
     // underlying type
     using type = std::array<char, size>;

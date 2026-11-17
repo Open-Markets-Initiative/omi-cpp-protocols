@@ -1,3 +1,4 @@
+// Jpx.OseDerivatives.GeniumInet.Itch.v5.0.6: statistics/Settings.hpp
 #pragma once
 
 #include <string>

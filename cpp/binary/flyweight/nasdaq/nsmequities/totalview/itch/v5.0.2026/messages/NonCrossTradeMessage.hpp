@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2026: messages/NonCrossTradeMessage.hpp
 #pragma once
 
 #include <chrono>

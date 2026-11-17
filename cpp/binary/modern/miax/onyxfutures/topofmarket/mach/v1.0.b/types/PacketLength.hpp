@@ -1,3 +1,4 @@
+// Miax.OnyxFutures.TopOfMarket.Mach.v1.0.b: types/PacketLength.hpp
 #pragma once
 
 #include <cstddef>
@@ -5,7 +6,7 @@
 
 namespace miax::onyxfutures::topofmarket::mach::v1_0_b {
 
-// Length of the packet.  This includes the header and application data
+// Length of the packet, including the header and application data
 struct PacketLength {
 
     static constexpr const char* name = "Packet Length";

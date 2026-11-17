@@ -1,3 +1,4 @@
+// Bse.BseIndia.Eobi.Fbe.v1.4: definitions.hpp
 #pragma once
 
 // Every flyweight view and reader of Bse.BseIndia.Eobi.Fbe.v1.4.

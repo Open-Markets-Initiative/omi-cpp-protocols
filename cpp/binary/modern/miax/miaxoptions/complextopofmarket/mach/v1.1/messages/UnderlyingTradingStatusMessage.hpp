@@ -1,10 +1,11 @@
+// Miax.MiaxOptions.ComplexTopOfMarket.Mach.v1.1: messages/UnderlyingTradingStatusMessage.hpp
 #pragma once
 
 #include "../types/Nanoseconds.hpp"
 #include "../types/UnderlyingSymbol.hpp"
 #include "../types/TradingStatus.hpp"
 #include "../types/EventReason.hpp"
-#include "../types/SecondsPart.hpp"
+#include "../types/ExpectedEventTimeSecondsPart.hpp"
 #include "../types/ExpectedEventTimeNanoSecondsPart.hpp"
 #include "../structs/ApplicationMessage.hpp"
 
@@ -19,7 +20,7 @@ struct UnderlyingTradingStatusMessage {
     UnderlyingSymbol underlying_symbol;
     TradingStatus trading_status;
     EventReason event_reason;
-    SecondsPart seconds_part;
+    ExpectedEventTimeSecondsPart expected_event_time_seconds_part;
     ExpectedEventTimeNanoSecondsPart expected_event_time_nano_seconds_part;
 
     // the type code that selects this message in the dispatch switch

@@ -1,7 +1,7 @@
+// Siac.Cts.Output.Cta.v2.11.b: messages/PriorDayTradeMessage.hpp
 #pragma once
 
 #include <cstddef>
-#include "../structs/BlockHeader.hpp"
 #include "../types/ParticipantId.hpp"
 #include "../structs/Timestamp1.hpp"
 #include "../types/MessageId.hpp"
@@ -50,7 +50,6 @@ struct prior_day_trade_message {
         cta_output::prior_day_trade_date_and_time prior_day_trade_date_and_time;
     };
 
-    cta_output::block_header header = {{}, {}, {}, {}, {}, {}, {}, {}};
     // Transport framing: message size precedes the SBE header on the wire
     cta_output::message_length message_length;
     cta_output::message_category message_category = cta_output::message_category::enum_type::prior_day;
@@ -88,7 +87,7 @@ static_assert(offsetof(prior_day_trade_message::fields_type, short_sale_restrict
 static_assert(offsetof(prior_day_trade_message::fields_type, trade_reporting_facility_id) == 54, "unexpected offset of prior_day_trade_message::fields_type::trade_reporting_facility_id");
 static_assert(offsetof(prior_day_trade_message::fields_type, prior_day_trade_date_and_time) == 55, "unexpected offset of prior_day_trade_message::fields_type::prior_day_trade_date_and_time");
 static_assert(sizeof(prior_day_trade_message::fields_type) == 63, "unexpected sizeof prior_day_trade_message::fields_type");
-static_assert(sizeof(prior_day_trade_message) == sizeof(cta_output::block_header) + sizeof(cta_output::message_length) + sizeof(cta_output::message_category) + sizeof(cta_output::prior_day_message_type) + 63, "unexpected sizeof prior_day_trade_message");
+static_assert(sizeof(prior_day_trade_message) == sizeof(cta_output::message_length) + sizeof(cta_output::message_category) + sizeof(cta_output::prior_day_message_type) + 63, "unexpected sizeof prior_day_trade_message");
 
 #pragma pack(pop)
 }

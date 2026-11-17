@@ -1,3 +1,4 @@
+// Memx.MemxEquities.MemoirDepthFeed.Sbe.v1.3: messages/InstrumentDirectoryMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -40,7 +41,7 @@ class InstrumentDirectoryMessage {
 
     std::uint32_t round_lot() const { return wire::read_u32_be(at(22)); }
 
-    std::uint8_t reserved() const { return wire::read_u8(at(26)); }
+    std::span<const std::byte, 1> reserved() const { return bytes_.subspan(26).template first<1>(); }
 
     IsTestSymbol is_test_symbol() const { return static_cast<IsTestSymbol>(wire::read_u8(at(27))); }
 
@@ -59,7 +60,7 @@ class InstrumentDirectoryMessage {
         out << ", round_lot=";
         out << round_lot();
         out << ", reserved=";
-        out << static_cast<int>(reserved());
+        print::hex(out, reserved().data(), reserved().size());
         out << ", is_test_symbol=";
         out << is_test_symbol();
         out << ", mpv=";

@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: messages/details/QuoteRequestRejectMessageWriter.hpp
 #pragma once
 
 #include "../QuoteRequestRejectMessage.hpp"

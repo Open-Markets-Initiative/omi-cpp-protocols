@@ -1,3 +1,4 @@
+// Nasdaq.NtxEquities.TotalView.Itch.v5.0: types/MarketParticipantState.hpp
 #pragma once
 
 #include <cstddef>

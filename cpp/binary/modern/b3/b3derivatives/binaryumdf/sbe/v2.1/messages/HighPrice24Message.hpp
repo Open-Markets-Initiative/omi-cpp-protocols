@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.1: messages/HighPrice24Message.hpp
 #pragma once
 
 #include "../types/SecurityId.hpp"

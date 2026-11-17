@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v2: structs/GatewayStream.hpp
 #pragma once
 
 #include <cstddef>

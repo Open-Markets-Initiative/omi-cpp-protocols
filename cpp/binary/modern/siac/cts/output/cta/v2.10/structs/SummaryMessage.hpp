@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.10: structs/SummaryMessage.hpp
 #pragma once
 
 #include "../types/SummaryMessageType.hpp"

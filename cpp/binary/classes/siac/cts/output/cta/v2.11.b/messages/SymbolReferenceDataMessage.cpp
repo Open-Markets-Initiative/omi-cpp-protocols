@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: messages/SymbolReferenceDataMessage.cpp
 #include "SymbolReferenceDataMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,7 +7,7 @@
 
 namespace siac::cts::output::cta::v2_11_b {
 
-SymbolReferenceDataMessage::SymbolReferenceDataMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol, const std::string& prior_security_symbol, PrimaryListingMarketParticipantId primary_listing_market_participant_id, Decimal primary_listing_market_previous_closing_price, Decimal consolidated_closing_price, std::uint16_t round_lot_size, MinimumPriceIncrementIndicator minimum_price_increment_indicator, LuldTier luld_tier, Decimal luld_leverage_ratio, Test test, Ipo ipo, FinancialStatusIndicator financial_status_indicator, ShortSaleRestrictionIndicator short_sale_restriction_indicator, HaltReason halt_reason, InstrumentType instrument_type, char reserved, char second_reserved, const std::string& reserved_128)
+SymbolReferenceDataMessage::SymbolReferenceDataMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol, const std::string& prior_security_symbol, PrimaryListingMarketParticipantId primary_listing_market_participant_id, Decimal primary_listing_market_previous_closing_price, Decimal consolidated_closing_price, std::uint16_t round_lot_size, MinimumPriceIncrementIndicator minimum_price_increment_indicator, LuldTier luld_tier, Decimal luld_leverage_ratio, Test test, Ipo ipo, FinancialStatusIndicator financial_status_indicator, ShortSaleRestrictionIndicator short_sale_restriction_indicator, HaltReason halt_reason, InstrumentType instrument_type, const std::array<std::byte, 1>& reserved, const std::array<std::byte, 1>& second_reserved, const std::array<std::byte, 128>& reserved_128)
   : participant_id_(participant_id), timestamp_1_(timestamp_1), message_id_(message_id), transaction_id_(transaction_id), participant_reference_number_(participant_reference_number), security_symbol_(security_symbol), prior_security_symbol_(prior_security_symbol), primary_listing_market_participant_id_(primary_listing_market_participant_id), primary_listing_market_previous_closing_price_(primary_listing_market_previous_closing_price), consolidated_closing_price_(consolidated_closing_price), round_lot_size_(round_lot_size), minimum_price_increment_indicator_(minimum_price_increment_indicator), luld_tier_(luld_tier), luld_leverage_ratio_(luld_leverage_ratio), test_(test), ipo_(ipo), financial_status_indicator_(financial_status_indicator), short_sale_restriction_indicator_(short_sale_restriction_indicator), halt_reason_(halt_reason), instrument_type_(instrument_type), reserved_(reserved), second_reserved_(second_reserved), reserved_128_(reserved_128) {}
 
 ParticipantId SymbolReferenceDataMessage::participant_id() const { return participant_id_; }
@@ -72,15 +73,17 @@ void SymbolReferenceDataMessage::set_halt_reason(HaltReason value) { halt_reason
 InstrumentType SymbolReferenceDataMessage::instrument_type() const { return instrument_type_; }
 void SymbolReferenceDataMessage::set_instrument_type(InstrumentType value) { instrument_type_ = value; }
 
-char SymbolReferenceDataMessage::reserved() const { return reserved_; }
-void SymbolReferenceDataMessage::set_reserved(char value) { reserved_ = value; }
+const std::array<std::byte, 1>& SymbolReferenceDataMessage::reserved() const { return reserved_; }
+std::array<std::byte, 1>& SymbolReferenceDataMessage::reserved() { return reserved_; }
+void SymbolReferenceDataMessage::set_reserved(const std::array<std::byte, 1>& value) { reserved_ = value; }
 
-char SymbolReferenceDataMessage::second_reserved() const { return second_reserved_; }
-void SymbolReferenceDataMessage::set_second_reserved(char value) { second_reserved_ = value; }
+const std::array<std::byte, 1>& SymbolReferenceDataMessage::second_reserved() const { return second_reserved_; }
+std::array<std::byte, 1>& SymbolReferenceDataMessage::second_reserved() { return second_reserved_; }
+void SymbolReferenceDataMessage::set_second_reserved(const std::array<std::byte, 1>& value) { second_reserved_ = value; }
 
-const std::string& SymbolReferenceDataMessage::reserved_128() const { return reserved_128_; }
-std::string& SymbolReferenceDataMessage::reserved_128() { return reserved_128_; }
-void SymbolReferenceDataMessage::set_reserved_128(const std::string& value) { reserved_128_ = value; }
+const std::array<std::byte, 128>& SymbolReferenceDataMessage::reserved_128() const { return reserved_128_; }
+std::array<std::byte, 128>& SymbolReferenceDataMessage::reserved_128() { return reserved_128_; }
+void SymbolReferenceDataMessage::set_reserved_128(const std::array<std::byte, 128>& value) { reserved_128_ = value; }
 
 AdministrativeMessagePayloadCode SymbolReferenceDataMessage::type() const { return message_type; }
 
@@ -149,13 +152,13 @@ std::size_t SymbolReferenceDataMessage::decode(const std::byte* data, std::size_
     instrument_type_ = static_cast<InstrumentType>(wire::read_char(data + offset));
     offset += 1;
 
-    reserved_ = wire::read_char(data + offset);
+    wire::read_bytes(data + offset, reserved_.data(), 1);
     offset += 1;
 
-    second_reserved_ = wire::read_char(data + offset);
+    wire::read_bytes(data + offset, second_reserved_.data(), 1);
     offset += 1;
 
-    reserved_128_ = wire::read_text(data + offset, 128, ' ');
+    wire::read_bytes(data + offset, reserved_128_.data(), 128);
     offset += 128;
 
     return offset;
@@ -224,13 +227,13 @@ std::size_t SymbolReferenceDataMessage::encode(std::byte* data, std::size_t capa
     wire::write_char(data + offset, static_cast<char>(instrument_type_));
     offset += 1;
 
-    wire::write_char(data + offset, reserved_);
+    wire::write_bytes(data + offset, reserved_.data(), 1);
     offset += 1;
 
-    wire::write_char(data + offset, second_reserved_);
+    wire::write_bytes(data + offset, second_reserved_.data(), 1);
     offset += 1;
 
-    wire::write_text(data + offset, 128, ' ', reserved_128_);
+    wire::write_bytes(data + offset, reserved_128_.data(), 128);
     offset += 128;
 
     return offset;
@@ -291,11 +294,11 @@ void SymbolReferenceDataMessage::print(std::ostream& out) const {
     out << ", instrument_type=";
     out << instrument_type_;
     out << ", reserved=";
-    print::character(out, reserved_);
+    print::hex(out, reserved_.data(), reserved_.size());
     out << ", second_reserved=";
-    print::character(out, second_reserved_);
+    print::hex(out, second_reserved_.data(), second_reserved_.size());
     out << ", reserved_128=";
-    print::text(out, reserved_128_);
+    print::hex(out, reserved_128_.data(), reserved_128_.size());
     out << '}';
 }
 

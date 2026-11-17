@@ -1,3 +1,4 @@
+// CixAts.CixAspen.MarketDataFeed.Aspen.v1.4: types/MarketDayIdentifier.hpp
 #pragma once
 
 #include <cstddef>

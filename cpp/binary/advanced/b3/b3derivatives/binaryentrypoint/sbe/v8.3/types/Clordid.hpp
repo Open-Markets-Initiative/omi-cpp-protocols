@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: types/ClOrdId.hpp
 #pragma once
 
 #include <cstddef>
@@ -6,20 +7,20 @@
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_3 {
 
-// clordid
-struct clordid {
+// cl_ord_id
+struct cl_ord_id {
 
-    static constexpr const char* name = "clordid";
+    static constexpr const char* name = "cl_ord_id";
     static constexpr std::size_t size = 8;
     static constexpr bool is_optional = false;
 
     using result_type = required<std::uint64_t>;
     using storage_type = result_type;
 
-    constexpr clordid()
+    constexpr cl_ord_id()
      : value{ 0 } {}
 
-    constexpr clordid(std::uint64_t v)
+    constexpr cl_ord_id(std::uint64_t v)
      : value{ v } {}
 
     [[nodiscard]] constexpr result_type get() const {

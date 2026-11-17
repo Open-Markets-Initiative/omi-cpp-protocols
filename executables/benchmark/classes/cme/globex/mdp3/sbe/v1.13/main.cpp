@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.13: main.cpp
 // Cme.Globex.Mdp3.Sbe.v1.13 benchmark, through the Classes Packet: every value it reads from every message of the simulated
 // sequence (tests/simulated/cme/globex/mdp3/sbe/v1.13.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -221,8 +222,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest((*message_2).settl_price_type().rounded());
                 checksum += bench::digest((*message_2).settl_price_type().intraday());
                 checksum += bench::digest((*message_2).settl_price_type().reserved_bits());
-                checksum += bench::digest((*message_2).settl_price_type().unused_settl_price_type_5());
-                checksum += bench::digest((*message_2).settl_price_type().unused_settl_price_type_6());
                 checksum += bench::digest((*message_2).settl_price_type().null_value());
                 checksum += ((*message_2).open_interest_qty().has_value() ? bench::digest((*(*message_2).open_interest_qty())) : std::uint64_t{0});
                 checksum += ((*message_2).cleared_volume().has_value() ? bench::digest((*(*message_2).cleared_volume())) : std::uint64_t{0});
@@ -290,8 +289,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest((*message_2).settl_price_type().rounded());
                 checksum += bench::digest((*message_2).settl_price_type().intraday());
                 checksum += bench::digest((*message_2).settl_price_type().reserved_bits());
-                checksum += bench::digest((*message_2).settl_price_type().unused_settl_price_type_5());
-                checksum += bench::digest((*message_2).settl_price_type().unused_settl_price_type_6());
                 checksum += bench::digest((*message_2).settl_price_type().null_value());
                 checksum += ((*message_2).cleared_volume().has_value() ? bench::digest((*(*message_2).cleared_volume())) : std::uint64_t{0});
                 checksum += ((*message_2).open_interest_qty().has_value() ? bench::digest((*(*message_2).open_interest_qty())) : std::uint64_t{0});
@@ -345,8 +342,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest((*message_2).settl_price_type().rounded());
                 checksum += bench::digest((*message_2).settl_price_type().intraday());
                 checksum += bench::digest((*message_2).settl_price_type().reserved_bits());
-                checksum += bench::digest((*message_2).settl_price_type().unused_settl_price_type_5());
-                checksum += bench::digest((*message_2).settl_price_type().unused_settl_price_type_6());
                 checksum += bench::digest((*message_2).settl_price_type().null_value());
                 checksum += ((*message_2).open_interest_qty().has_value() ? bench::digest((*(*message_2).open_interest_qty())) : std::uint64_t{0});
                 checksum += ((*message_2).cleared_volume().has_value() ? bench::digest((*(*message_2).cleared_volume())) : std::uint64_t{0});
@@ -682,7 +677,7 @@ std::uint64_t read(const packet::Frame& frame) {
             } else if (const auto* message_2 = dynamic_cast<const protocol::RequestReject*>(message->mdpsessionmgmt_payload())) {
                 checksum += ((*message_2).md_req_id_optional().has_value() ? bench::digest((*(*message_2).md_req_id_optional())) : std::uint64_t{0});
                 checksum += bench::digest((*message_2).md_req_rej_reason());
-                checksum += bench::digest((*message_2).text());
+                checksum += bench::digest((*message_2).session_text());
             } else if (const auto* message_2 = dynamic_cast<const protocol::SecurityListRequest*>(message->mdpsessionmgmt_payload())) {
                 checksum += bench::digest((*message_2).md_req_id());
                 checksum += bench::digest((*message_2).subscription_req_type());

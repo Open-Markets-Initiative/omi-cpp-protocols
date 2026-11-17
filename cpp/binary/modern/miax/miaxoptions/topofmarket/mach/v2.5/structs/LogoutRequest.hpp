@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.TopOfMarket.Mach.v2.5: structs/LogoutRequest.hpp
 #pragma once
 
 #include "../types/LogoutReason.hpp"

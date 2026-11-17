@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.7: messages/LoginRejectedPacket.cpp
 #include "LoginRejectedPacket.hpp"
 
 #include "../common/Print.hpp"

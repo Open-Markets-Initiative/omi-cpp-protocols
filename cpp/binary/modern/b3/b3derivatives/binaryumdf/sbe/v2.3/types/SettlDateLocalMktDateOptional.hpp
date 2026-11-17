@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.3: types/SettlDateLocalMktDateOptional.hpp
 #pragma once
 
 #include <cstddef>
@@ -8,7 +9,7 @@ namespace b3::b3derivatives::binaryumdf::sbe::v2_3 {
 // settlDate
 struct SettlDateLocalMktDateOptional {
 
-    static constexpr const char* name = "Settl Date Local Mkt Date optional";
+    static constexpr const char* name = "Settl Date Local Mkt Date Optional";
     static constexpr std::size_t size =  2;
     using type = std::uint16_t;
 static const type no_value = 65535;

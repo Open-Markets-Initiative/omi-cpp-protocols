@@ -1,3 +1,4 @@
+// Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.20.4: main.cpp
 // Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.20.4 benchmark, through the Classes Packet: every value it reads from every message of the simulated
 // sequence (tests/simulated/cboe/bzxequities/multicastdepthofbook/pitch/v2.20.4.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -137,7 +138,7 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest((*message).time_offset());
             checksum += bench::digest((*message).execution_id());
         } else if (const auto* message = dynamic_cast<const protocol::EndOfSessionMessage*>(each.message())) {
-            checksum += bench::digest((*message).timestamp());
+            checksum += bench::digest((*message).time_offset());
         } else if (const auto* message = dynamic_cast<const protocol::SymbolMappingMessage*>(each.message())) {
             checksum += bench::digest((*message).feed_symbol());
             checksum += bench::digest((*message).osi_symbol());
@@ -147,8 +148,6 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest((*message).symbol_long());
             checksum += bench::digest((*message).trading_status());
             checksum += bench::digest((*message).reg_sho_action());
-            checksum += bench::digest((*message).reserved_1());
-            checksum += bench::digest((*message).second_reserved_1());
         } else if (const auto* message = dynamic_cast<const protocol::AuctionUpdateMessage*>(each.message())) {
             checksum += bench::digest((*message).time_offset());
             checksum += bench::digest((*message).stock_symbol());

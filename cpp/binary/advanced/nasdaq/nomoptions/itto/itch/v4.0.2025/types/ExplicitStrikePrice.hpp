@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: types/ExplicitStrikePrice.hpp
 #pragma once
 
 #include <cstddef>
@@ -14,20 +15,20 @@ struct explicit_strike_price {
     static constexpr bool is_optional = false;
     static constexpr int exponent = -4;
 
-    using result_type = required<std::uint32_t>;
+    using result_type = required<std::int32_t>;
     using storage_type = result_type;
 
     constexpr explicit_strike_price()
      : value{ 0 } {}
 
-    explicit_strike_price(std::uint32_t v)
-     : value{ static_cast<std::uint32_t>(__builtin_bswap32(v)) } {}
+    explicit_strike_price(std::int32_t v)
+     : value{ static_cast<std::int32_t>(__builtin_bswap32(v)) } {}
 
     [[nodiscard]] result_type get() const {
-        return result_type{static_cast<std::uint32_t>(__builtin_bswap32(value))};
+        return result_type{static_cast<std::int32_t>(__builtin_bswap32(value))};
     }
 
-    void set(std::uint32_t v) {
+    void set(std::int32_t v) {
         value = __builtin_bswap32(v);
     }
 
@@ -39,6 +40,6 @@ struct explicit_strike_price {
     }
 
   protected:
-    std::uint32_t value;
+    std::int32_t value;
 };
 }

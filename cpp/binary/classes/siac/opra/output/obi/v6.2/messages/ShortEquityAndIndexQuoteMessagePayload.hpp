@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: messages/ShortEquityAndIndexQuoteMessagePayload.hpp
 #pragma once
 
 #include <cstddef>

@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.9: messages/MarketStatusMessage.hpp
 #pragma once
 
 #include <cstddef>

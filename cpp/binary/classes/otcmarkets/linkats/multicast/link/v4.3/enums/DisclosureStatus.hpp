@@ -1,3 +1,4 @@
+// OtcMarkets.LinkAts.Multicast.Link.v4.3: enums/DisclosureStatus.hpp
 #pragma once
 
 #include <cstdint>

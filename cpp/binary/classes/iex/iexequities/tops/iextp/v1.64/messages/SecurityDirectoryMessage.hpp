@@ -1,3 +1,4 @@
+// Iex.IexEquities.Tops.IexTp.v1.64: messages/SecurityDirectoryMessage.hpp
 #pragma once
 
 #include <chrono>

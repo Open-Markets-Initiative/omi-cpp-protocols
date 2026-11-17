@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: messages/SymbolClearMessage.cpp
 #include "SymbolClearMessage.hpp"
 
 #include "../common/Print.hpp"

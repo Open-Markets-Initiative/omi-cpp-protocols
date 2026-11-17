@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.8: bitfields/MatchEventIndicator.hpp
 #pragma once
 
 #include <cstddef>
@@ -21,7 +22,6 @@ struct MatchEventIndicator {
         static const type LastStatsMsg = 0x08;
         static const type LastImpliedMsg = 0x10;
         static const type RecoveryMsg = 0x20;
-        static const type Reserved = 0x40;
         static const type EndOfEvent = 0x80;
     };
 
@@ -57,11 +57,6 @@ struct MatchEventIndicator {
     // RecoveryMsg
     [[nodiscard]] constexpr bool RecoveryMsg() const {
         return value & mask::RecoveryMsg;
-    }
-
-    // Reserved
-    [[nodiscard]] constexpr bool Reserved() const {
-        return value & mask::Reserved;
     }
 
     // EndOfEvent

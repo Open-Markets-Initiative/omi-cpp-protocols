@@ -1,7 +1,7 @@
+// Siac.Cts.Output.Cta.v2.11.b: messages/TradeCorrectionMessage.hpp
 #pragma once
 
 #include <cstddef>
-#include "../structs/BlockHeader.hpp"
 #include "../types/ParticipantId.hpp"
 #include "../structs/Timestamp1.hpp"
 #include "../types/MessageId.hpp"
@@ -98,7 +98,6 @@ struct trade_correction_message {
         cta_output::participant_tick participant_tick;
     };
 
-    cta_output::block_header header = {{}, {}, {}, {}, {}, {}, {}, {}};
     // Transport framing: message size precedes the SBE header on the wire
     cta_output::message_length message_length;
     cta_output::message_category message_category = cta_output::message_category::enum_type::trade;
@@ -160,7 +159,7 @@ static_assert(offsetof(trade_correction_message::fields_type, participant_open_p
 static_assert(offsetof(trade_correction_message::fields_type, participant_total_volume) == 163, "unexpected offset of trade_correction_message::fields_type::participant_total_volume");
 static_assert(offsetof(trade_correction_message::fields_type, participant_tick) == 167, "unexpected offset of trade_correction_message::fields_type::participant_tick");
 static_assert(sizeof(trade_correction_message::fields_type) == 168, "unexpected sizeof trade_correction_message::fields_type");
-static_assert(sizeof(trade_correction_message) == sizeof(cta_output::block_header) + sizeof(cta_output::message_length) + sizeof(cta_output::message_category) + sizeof(cta_output::trade_message_type) + 168, "unexpected sizeof trade_correction_message");
+static_assert(sizeof(trade_correction_message) == sizeof(cta_output::message_length) + sizeof(cta_output::message_category) + sizeof(cta_output::trade_message_type) + 168, "unexpected sizeof trade_correction_message");
 
 #pragma pack(pop)
 }

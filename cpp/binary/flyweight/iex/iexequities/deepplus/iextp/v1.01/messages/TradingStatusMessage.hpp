@@ -1,3 +1,4 @@
+// Iex.IexEquities.DeepPlus.IexTp.v1.01: messages/TradingStatusMessage.hpp
 #pragma once
 
 #include <chrono>

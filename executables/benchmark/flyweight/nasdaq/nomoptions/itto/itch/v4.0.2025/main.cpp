@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: main.cpp
 // Nasdaq.NomOptions.Itto.Itch.v4.0.2025 benchmark, through the Flyweight reader: every value it reads from every message of the simulated
 // sequence (tests/simulated/nasdaq/nomoptions/itto/itch/v4.0.2025.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -124,9 +125,9 @@ struct Reader {
         checksum += bench::digest(message.bid_reference_number());
         checksum += bench::digest(message.ask_reference_number());
         checksum += bench::digest(message.option_id());
-        checksum += bench::digest(message.bid());
+        checksum += bench::digest(message.bid().mantissa());
         checksum += bench::digest(message.bid_size_long());
-        checksum += bench::digest(message.ask());
+        checksum += bench::digest(message.ask().mantissa());
         checksum += bench::digest(message.ask_size_long());
     }
 

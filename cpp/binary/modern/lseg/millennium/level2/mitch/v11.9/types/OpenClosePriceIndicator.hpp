@@ -1,3 +1,4 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: types/OpenClosePriceIndicator.hpp
 #pragma once
 
 #include <cstddef>

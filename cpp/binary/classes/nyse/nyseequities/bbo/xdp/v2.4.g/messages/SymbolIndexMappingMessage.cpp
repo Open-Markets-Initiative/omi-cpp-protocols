@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.Bbo.Xdp.v2.4.g: messages/SymbolIndexMappingMessage.cpp
 #include "SymbolIndexMappingMessage.hpp"
 
 #include "../common/Print.hpp"

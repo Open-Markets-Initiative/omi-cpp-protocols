@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.TopFeed.Pillar.v1.2.c: messages/OptionsTradeCorrectionMessage.cpp
 #include "OptionsTradeCorrectionMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,14 +7,14 @@
 
 namespace nyse::arcaoptions::topfeed::pillar::v1_2_c {
 
-OptionsTradeCorrectionMessage::OptionsTradeCorrectionMessage(std::uint32_t source_time, std::uint32_t source_time_ns, std::uint32_t series_index, std::uint32_t series_seq_num, std::uint32_t original_trade_id, std::uint32_t trade_id, std::int32_t price, std::uint32_t volume, const CorrectionCondition& correction_condition)
+OptionsTradeCorrectionMessage::OptionsTradeCorrectionMessage(std::chrono::seconds source_time, std::chrono::nanoseconds source_time_ns, std::uint32_t series_index, std::uint32_t series_seq_num, std::uint32_t original_trade_id, std::uint32_t trade_id, std::int32_t price, std::uint32_t volume, const CorrectionCondition& correction_condition)
   : source_time_(source_time), source_time_ns_(source_time_ns), series_index_(series_index), series_seq_num_(series_seq_num), original_trade_id_(original_trade_id), trade_id_(trade_id), price_(price), volume_(volume), correction_condition_(correction_condition) {}
 
-std::uint32_t OptionsTradeCorrectionMessage::source_time() const { return source_time_; }
-void OptionsTradeCorrectionMessage::set_source_time(std::uint32_t value) { source_time_ = value; }
+std::chrono::seconds OptionsTradeCorrectionMessage::source_time() const { return source_time_; }
+void OptionsTradeCorrectionMessage::set_source_time(std::chrono::seconds value) { source_time_ = value; }
 
-std::uint32_t OptionsTradeCorrectionMessage::source_time_ns() const { return source_time_ns_; }
-void OptionsTradeCorrectionMessage::set_source_time_ns(std::uint32_t value) { source_time_ns_ = value; }
+std::chrono::nanoseconds OptionsTradeCorrectionMessage::source_time_ns() const { return source_time_ns_; }
+void OptionsTradeCorrectionMessage::set_source_time_ns(std::chrono::nanoseconds value) { source_time_ns_ = value; }
 
 std::uint32_t OptionsTradeCorrectionMessage::series_index() const { return series_index_; }
 void OptionsTradeCorrectionMessage::set_series_index(std::uint32_t value) { series_index_ = value; }
@@ -45,10 +46,10 @@ std::size_t OptionsTradeCorrectionMessage::decode(const std::byte* data, std::si
     std::size_t offset = 0;
     wire::require("OptionsTradeCorrectionMessage", wire_size, length);
 
-    source_time_ = wire::read_u32_le(data + offset);
+    source_time_ = std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
-    source_time_ns_ = wire::read_u32_le(data + offset);
+    source_time_ns_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     series_index_ = wire::read_u32_le(data + offset);
@@ -78,10 +79,10 @@ std::size_t OptionsTradeCorrectionMessage::encode(std::byte* data, std::size_t c
     std::size_t offset = 0;
     wire::require_capacity("OptionsTradeCorrectionMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_.count()));
     offset += 4;
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_.count()));
     offset += 4;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(series_index_));
@@ -122,9 +123,9 @@ std::unique_ptr<Message> OptionsTradeCorrectionMessage::clone() const {
 void OptionsTradeCorrectionMessage::print(std::ostream& out) const {
     out << "OptionsTradeCorrectionMessage{";
     out << "source_time=";
-    out << source_time_;
+    out << source_time_.count();
     out << ", source_time_ns=";
-    out << source_time_ns_;
+    out << source_time_ns_.count();
     out << ", series_index=";
     out << series_index_;
     out << ", series_seq_num=";

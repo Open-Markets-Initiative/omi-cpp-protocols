@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.TopOfMarket.Mach.v2.5: types/ExpectedEventTimeSecondsPart.hpp
 #pragma once
 
 #include <cstddef>
@@ -11,10 +12,11 @@ struct ExpectedEventTimeSecondsPart {
     static constexpr const char* name = "Expected Event Time Seconds Part";
     static constexpr std::size_t size =  4;
     using type = std::uint32_t;
+static const type no_value = 0;
 
-    // default constructor
+    // default constructor: the null the model states, where it states one
     constexpr ExpectedEventTimeSecondsPart()
-     : value{ 0 } {}
+     : value{ no_value } {}
 
     // standard constructor
     constexpr explicit ExpectedEventTimeSecondsPart(const std::uint32_t value)

@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v1.91: messages/AdministrativeMessage.hpp
 #pragma once
 
 #include <cstddef>
@@ -9,10 +10,10 @@
 #include "../common/Print.hpp"
 #include "../common/View.hpp"
 #include "../enums/AdministrativeMessageType.hpp"
-#include "../messages/StartOfEndOfDayMessage.hpp"
-#include "../messages/EndOfEndOfDayMessage.hpp"
-#include "../messages/StartOfStartOfDayMessage.hpp"
-#include "../messages/EndOfStartOfDayMessage.hpp"
+#include "../messages/StartOfEndOfDaySummaryMessage.hpp"
+#include "../messages/EndOfEndOfDaySummaryMessage.hpp"
+#include "../messages/StartOfStartOfDaySummaryMessage.hpp"
+#include "../messages/EndOfStartOfDaySummaryMessage.hpp"
 #include "../messages/AdministrativeUnformattedMessage.hpp"
 
 namespace siac::cts::output::cta::v1_91 {
@@ -44,27 +45,27 @@ class AdministrativeMessage {
     void administrative_message_payload(Handler& handler) const {
         const auto bytes = administrative_message_payload_bytes();
         switch (administrative_message_type()) {
-            case AdministrativeMessageType::StartOfEndOfDayMessage: {
-                wire::require(StartOfEndOfDayMessage::name, StartOfEndOfDayMessage::minimum_size, bytes.size());
-                const StartOfEndOfDayMessage message{ bytes };
+            case AdministrativeMessageType::StartOfEndOfDaySummaryMessage: {
+                wire::require(StartOfEndOfDaySummaryMessage::name, StartOfEndOfDaySummaryMessage::minimum_size, bytes.size());
+                const StartOfEndOfDaySummaryMessage message{ bytes };
                 if constexpr (requires { handler.on(message); }) { handler.on(message); }
                 return;
             }
-            case AdministrativeMessageType::EndOfEndOfDayMessage: {
-                wire::require(EndOfEndOfDayMessage::name, EndOfEndOfDayMessage::minimum_size, bytes.size());
-                const EndOfEndOfDayMessage message{ bytes };
+            case AdministrativeMessageType::EndOfEndOfDaySummaryMessage: {
+                wire::require(EndOfEndOfDaySummaryMessage::name, EndOfEndOfDaySummaryMessage::minimum_size, bytes.size());
+                const EndOfEndOfDaySummaryMessage message{ bytes };
                 if constexpr (requires { handler.on(message); }) { handler.on(message); }
                 return;
             }
-            case AdministrativeMessageType::StartOfStartOfDayMessage: {
-                wire::require(StartOfStartOfDayMessage::name, StartOfStartOfDayMessage::minimum_size, bytes.size());
-                const StartOfStartOfDayMessage message{ bytes };
+            case AdministrativeMessageType::StartOfStartOfDaySummaryMessage: {
+                wire::require(StartOfStartOfDaySummaryMessage::name, StartOfStartOfDaySummaryMessage::minimum_size, bytes.size());
+                const StartOfStartOfDaySummaryMessage message{ bytes };
                 if constexpr (requires { handler.on(message); }) { handler.on(message); }
                 return;
             }
-            case AdministrativeMessageType::EndOfStartOfDayMessage: {
-                wire::require(EndOfStartOfDayMessage::name, EndOfStartOfDayMessage::minimum_size, bytes.size());
-                const EndOfStartOfDayMessage message{ bytes };
+            case AdministrativeMessageType::EndOfStartOfDaySummaryMessage: {
+                wire::require(EndOfStartOfDaySummaryMessage::name, EndOfStartOfDaySummaryMessage::minimum_size, bytes.size());
+                const EndOfStartOfDaySummaryMessage message{ bytes };
                 if constexpr (requires { handler.on(message); }) { handler.on(message); }
                 return;
             }
@@ -84,10 +85,10 @@ class AdministrativeMessage {
     std::size_t administrative_message_payload_size() const {
         const auto bytes = administrative_message_payload_bytes();
         switch (administrative_message_type()) {
-            case AdministrativeMessageType::StartOfEndOfDayMessage: return StartOfEndOfDayMessage{ bytes }.encoded_size();
-            case AdministrativeMessageType::EndOfEndOfDayMessage: return EndOfEndOfDayMessage{ bytes }.encoded_size();
-            case AdministrativeMessageType::StartOfStartOfDayMessage: return StartOfStartOfDayMessage{ bytes }.encoded_size();
-            case AdministrativeMessageType::EndOfStartOfDayMessage: return EndOfStartOfDayMessage{ bytes }.encoded_size();
+            case AdministrativeMessageType::StartOfEndOfDaySummaryMessage: return StartOfEndOfDaySummaryMessage{ bytes }.encoded_size();
+            case AdministrativeMessageType::EndOfEndOfDaySummaryMessage: return EndOfEndOfDaySummaryMessage{ bytes }.encoded_size();
+            case AdministrativeMessageType::StartOfStartOfDaySummaryMessage: return StartOfStartOfDaySummaryMessage{ bytes }.encoded_size();
+            case AdministrativeMessageType::EndOfStartOfDaySummaryMessage: return EndOfStartOfDaySummaryMessage{ bytes }.encoded_size();
             case AdministrativeMessageType::AdministrativeUnformattedMessage: return AdministrativeUnformattedMessage{ bytes }.encoded_size();
             default: return bytes.size();
         }
@@ -97,10 +98,10 @@ class AdministrativeMessage {
     void administrative_message_payload_print(std::ostream& out) const {
         const auto bytes = administrative_message_payload_bytes();
         switch (administrative_message_type()) {
-            case AdministrativeMessageType::StartOfEndOfDayMessage: StartOfEndOfDayMessage{ bytes }.print(out); return;
-            case AdministrativeMessageType::EndOfEndOfDayMessage: EndOfEndOfDayMessage{ bytes }.print(out); return;
-            case AdministrativeMessageType::StartOfStartOfDayMessage: StartOfStartOfDayMessage{ bytes }.print(out); return;
-            case AdministrativeMessageType::EndOfStartOfDayMessage: EndOfStartOfDayMessage{ bytes }.print(out); return;
+            case AdministrativeMessageType::StartOfEndOfDaySummaryMessage: StartOfEndOfDaySummaryMessage{ bytes }.print(out); return;
+            case AdministrativeMessageType::EndOfEndOfDaySummaryMessage: EndOfEndOfDaySummaryMessage{ bytes }.print(out); return;
+            case AdministrativeMessageType::StartOfStartOfDaySummaryMessage: StartOfStartOfDaySummaryMessage{ bytes }.print(out); return;
+            case AdministrativeMessageType::EndOfStartOfDaySummaryMessage: EndOfStartOfDaySummaryMessage{ bytes }.print(out); return;
             case AdministrativeMessageType::AdministrativeUnformattedMessage: AdministrativeUnformattedMessage{ bytes }.print(out); return;
             default:
                 out << "UnknownAdministrativeMessagePayload{type=" << administrative_message_type() << ", body=";

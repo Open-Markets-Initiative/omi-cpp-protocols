@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1: messages/details/BusinessMessageRejectMessageReader.hpp
 #pragma once
 
 #include "BusinessMessageRejectMessageWriter.hpp"

@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: enums/BuySellIndicator.hpp
 #pragma once
 
 #include <cstdint>

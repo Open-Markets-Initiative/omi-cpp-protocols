@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.7: messages/SequencedDataPacket.hpp
 #pragma once
 
 #include "../types/SequencedMessageType.hpp"

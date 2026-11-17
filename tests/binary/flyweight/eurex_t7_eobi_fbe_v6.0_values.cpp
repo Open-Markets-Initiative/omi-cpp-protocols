@@ -25,10 +25,10 @@ struct Reader {
     std::size_t index = 0;
 
     void on(const protocol::Packet& packet) {
-        values["packet.packetheader.eobiheader.bodylen"] = canonical::number(packet.packet_header().eobi_header().body_len());
-        values["packet.packetheader.eobiheader.templateid"] = canonical::number(packet.packet_header().eobi_header().template_id());
-        values["packet.packetheader.eobiheader.msgseqnum"] = canonical::number(packet.packet_header().eobi_header().msg_seq_num());
-        values["packet.packetheader.applseqnum"] = canonical::number(packet.packet_header().appl_seq_num());
+        values["packet.packetheader.eobiheader.bodylen"] = (packet.packet_header().eobi_header().body_len().has_value() ? canonical::number((*packet.packet_header().eobi_header().body_len())) : canonical::absent());
+        values["packet.packetheader.eobiheader.templateid"] = (packet.packet_header().eobi_header().template_id().has_value() ? canonical::number((*packet.packet_header().eobi_header().template_id())) : canonical::absent());
+        values["packet.packetheader.eobiheader.msgseqnum"] = (packet.packet_header().eobi_header().msg_seq_num().has_value() ? canonical::number((*packet.packet_header().eobi_header().msg_seq_num())) : canonical::absent());
+        values["packet.packetheader.applseqnum"] = (packet.packet_header().appl_seq_num().has_value() ? canonical::number((*packet.packet_header().appl_seq_num())) : canonical::absent());
         values["packet.packetheader.marketsegmentid"] = (packet.packet_header().market_segment_id().has_value() ? canonical::number((*packet.packet_header().market_segment_id())) : canonical::absent());
         values["packet.packetheader.partitionid"] = (packet.packet_header().partition_id().has_value() ? canonical::number((*packet.packet_header().partition_id())) : canonical::absent());
         values["packet.packetheader.completionindicator"] = (packet.packet_header().completion_indicator().has_value() ? canonical::number((*packet.packet_header().completion_indicator())) : canonical::absent());

@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: messages/QuoteCancelMessage.cpp
 #include "QuoteCancelMessage.hpp"
 
 #include "../common/Print.hpp"

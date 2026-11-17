@@ -1,8 +1,10 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2023: types/NearExecutionTime.hpp
 #pragma once
 
 #include <cstddef>
 #include <cstdint>
 #include "../cache/Required.hpp"
+#include "../common/Day.hpp"
 
 namespace nasdaq::nsmequities::totalview::itch::v5_0_2023 {
 
@@ -35,6 +37,16 @@ struct near_execution_time {
             set(value.value());
         else
             set(0);
+    }
+
+    // near_execution_time on a day: its nanoseconds since midnight, America/New_York, as UTC Unix nanoseconds;
+    // none where it has no value
+    [[nodiscard]] std::optional<std::int64_t> utc(const calendar::Day& day) const {
+        const auto held = get();
+        if (!held.has_value()) {
+            return std::nullopt;
+        }
+        return calendar::midnight(day, "America/New_York").utc(static_cast<std::int64_t>(held.value()));
     }
 
   protected:

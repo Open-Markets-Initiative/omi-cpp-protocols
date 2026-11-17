@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: types/SessionNumber.hpp
 #pragma once
 
 #include <cstddef>
@@ -6,7 +7,7 @@
 namespace miax::pearlequities::depthofmarket::mach::v1_3_d {
 
 
-// protocol packet type
+// The Session this packet was generated from
 struct SessionNumber {
 
     static constexpr auto name = "Session Number";

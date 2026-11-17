@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: enums/MarketStatusMessageType.cpp
 #include "MarketStatusMessageType.hpp"
 
 namespace siac::cts::output::cta::v2_11_b {

@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeed.Xdp.v2.1.g: enums/MessageType.hpp
 #pragma once
 
 #include <cstdint>

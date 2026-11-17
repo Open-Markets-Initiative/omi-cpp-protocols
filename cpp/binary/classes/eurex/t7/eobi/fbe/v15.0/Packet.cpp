@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v15.0: Packet.cpp
 #include "Packet.hpp"
 
 #include "Factory.hpp"
@@ -102,7 +103,7 @@ std::size_t Packet::decode(const std::byte* data, std::size_t length) {
         const std::size_t frame_size = wire::count(frame.message_header_comp().body_len());
         wire::require("Packet", start + frame_size, length);
         const std::size_t body = start + frame_size - offset;
-        std::unique_ptr<Message> message = Factory::create(frame.message_header_comp().template_id());
+        std::unique_ptr<Message> message = Factory::create(frame.message_header_comp().template_id().value_or(static_cast<TemplateId>(static_cast<std::uint16_t>(0xFFFFULL))));
         // What the message left of its frame: bytes the model does not describe, kept as they came
         const std::size_t used = message->decode(data + offset, body);
         frame.trailer().assign(data + offset + used, data + start + frame_size);

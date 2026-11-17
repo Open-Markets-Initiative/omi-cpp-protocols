@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: types/BidPriceShort.hpp
 #pragma once
 
 #include <cstddef>
@@ -12,7 +13,7 @@ struct bid_price_short {
     static constexpr const char* name = "bid_price_short";
     static constexpr std::size_t size = 2;
     static constexpr bool is_optional = false;
-    static constexpr int exponent = -4;
+    static constexpr int exponent = -2;
 
     using result_type = required<std::uint16_t>;
     using storage_type = result_type;

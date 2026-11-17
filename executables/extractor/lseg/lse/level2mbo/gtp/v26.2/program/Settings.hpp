@@ -1,3 +1,4 @@
+// Lseg.Lse.Level2Mbo.Gtp.v26.2: program/Settings.hpp
 #pragma once
 
 #include <filesystem>

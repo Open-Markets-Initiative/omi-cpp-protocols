@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.6: b3_b3derivatives_binaryumdf_sbe_v1_6.hpp
 // B3 B3Derivatives BinaryUmdf Sbe 1.6 Template Meta Programming
 
 #pragma once
@@ -309,6 +310,7 @@ struct dated_date {
 struct day {
     using type = std::uint8_t;
     static constexpr std::size_t size = 1;
+    static constexpr type no_value = static_cast<type>(0ULL);
 
     constexpr type value() const noexcept { return value_; }
     constexpr operator type() const noexcept { return value(); }
@@ -963,8 +965,8 @@ struct md_entry_seller {
     type value_;
 };
 
-// Md Entry Size Quantity: mDEntrySize
-struct md_entry_size_quantity {
+// Md Entry Size: mDEntrySize
+struct md_entry_size {
     using type = std::int64_t;
     static constexpr std::size_t size = 8;
     static constexpr std::endian order = std::endian::little;
@@ -976,8 +978,8 @@ struct md_entry_size_quantity {
     type value_;
 };
 
-// Md Entry Size Quantity Optional: mDEntrySize
-struct md_entry_size_quantity_optional {
+// Md Entry Size Optional: mDEntrySize
+struct md_entry_size_optional {
     using type = std::int64_t;
     static constexpr std::size_t size = 8;
     static constexpr std::endian order = std::endian::little;
@@ -1177,6 +1179,7 @@ struct min_trade_vol {
 struct month {
     using type = std::uint8_t;
     static constexpr std::size_t size = 1;
+    static constexpr type no_value = static_cast<type>(0ULL);
 
     constexpr type value() const noexcept { return value_; }
     constexpr operator type() const noexcept { return value(); }
@@ -2541,123 +2544,32 @@ struct unused {
     static constexpr int shift = 6;
 };
 
-// Unused Imbalance Condition 0: Unused ImbalanceCondition 0
-struct unused_imbalance_condition_0 {
-    using type = bool;
-    static constexpr std::uint64_t mask = 0x1ULL;
-    static constexpr int shift = 0;
-};
-
-// Unused Imbalance Condition 1: Unused ImbalanceCondition 1
-struct unused_imbalance_condition_1 {
-    using type = bool;
-    static constexpr std::uint64_t mask = 0x2ULL;
-    static constexpr int shift = 1;
-};
-
-// Unused Imbalance Condition 2: Unused ImbalanceCondition 2
-struct unused_imbalance_condition_2 {
-    using type = bool;
-    static constexpr std::uint64_t mask = 0x4ULL;
-    static constexpr int shift = 2;
-};
-
-// Unused Imbalance Condition 3: Unused ImbalanceCondition 3
-struct unused_imbalance_condition_3 {
-    using type = bool;
-    static constexpr std::uint64_t mask = 0x8ULL;
-    static constexpr int shift = 3;
-};
-
-// Unused Imbalance Condition 4: Unused ImbalanceCondition 4
-struct unused_imbalance_condition_4 {
-    using type = bool;
-    static constexpr std::uint64_t mask = 0x10ULL;
-    static constexpr int shift = 4;
-};
-
-// Unused Imbalance Condition 5: Unused ImbalanceCondition 5
-struct unused_imbalance_condition_5 {
-    using type = bool;
-    static constexpr std::uint64_t mask = 0x20ULL;
-    static constexpr int shift = 5;
-};
-
-// Unused Imbalance Condition 6: Unused ImbalanceCondition 6
-struct unused_imbalance_condition_6 {
-    using type = bool;
-    static constexpr std::uint64_t mask = 0x40ULL;
-    static constexpr int shift = 6;
-};
-
-// Unused Imbalance Condition 7: Unused ImbalanceCondition 7
-struct unused_imbalance_condition_7 {
-    using type = bool;
-    static constexpr std::uint64_t mask = 0x80ULL;
-    static constexpr int shift = 7;
-};
-
-// Unused Trade Condition 10: Unused TradeCondition 10
-struct unused_trade_condition_10 {
-    using type = bool;
-    static constexpr std::uint64_t mask = 0x400ULL;
-    static constexpr int shift = 10;
-};
-
-// Unused Trade Condition 11: Unused TradeCondition 11
-struct unused_trade_condition_11 {
-    using type = bool;
-    static constexpr std::uint64_t mask = 0x800ULL;
-    static constexpr int shift = 11;
-};
-
-// Unused Trade Condition 12: Unused TradeCondition 12
-struct unused_trade_condition_12 {
-    using type = bool;
-    static constexpr std::uint64_t mask = 0x1000ULL;
-    static constexpr int shift = 12;
-};
-
-// Unused Trade Condition 15: Unused TradeCondition 15
-struct unused_trade_condition_15 {
+// Unused 1: 1 unused bit
+struct unused_1 {
     using type = bool;
     static constexpr std::uint64_t mask = 0x8000ULL;
     static constexpr int shift = 15;
 };
 
-// Unused Trade Condition 4: Unused TradeCondition 4
-struct unused_trade_condition_4 {
-    using type = bool;
-    static constexpr std::uint64_t mask = 0x10ULL;
+// Unused 2: 2 unused bits
+struct unused_2 {
+    using type = std::uint16_t;
+    static constexpr std::uint64_t mask = 0x30ULL;
     static constexpr int shift = 4;
 };
 
-// Unused Trade Condition 5: Unused TradeCondition 5
-struct unused_trade_condition_5 {
-    using type = bool;
-    static constexpr std::uint64_t mask = 0x20ULL;
-    static constexpr int shift = 5;
-};
-
-// Unused Trade Condition 7: Unused TradeCondition 7
-struct unused_trade_condition_7 {
-    using type = bool;
-    static constexpr std::uint64_t mask = 0x80ULL;
+// Unused 6: 6 unused bits
+struct unused_6 {
+    using type = std::uint16_t;
+    static constexpr std::uint64_t mask = 0x1F80ULL;
     static constexpr int shift = 7;
 };
 
-// Unused Trade Condition 8: Unused TradeCondition 8
-struct unused_trade_condition_8 {
-    using type = bool;
-    static constexpr std::uint64_t mask = 0x100ULL;
-    static constexpr int shift = 8;
-};
-
-// Unused Trade Condition 9: Unused TradeCondition 9
-struct unused_trade_condition_9 {
-    using type = bool;
-    static constexpr std::uint64_t mask = 0x200ULL;
-    static constexpr int shift = 9;
+// Unused 8: 8 unused bits
+struct unused_8 {
+    using type = std::uint16_t;
+    static constexpr std::uint64_t mask = 0xFFULL;
+    static constexpr int shift = 0;
 };
 
 // Url Link Data: Bytes of the string, encoded in UTF-8.
@@ -2722,6 +2634,7 @@ struct vwap_px {
 struct week {
     using type = std::uint8_t;
     static constexpr std::size_t size = 1;
+    static constexpr type no_value = static_cast<type>(0ULL);
 
     constexpr type value() const noexcept { return value_; }
     constexpr operator type() const noexcept { return value(); }
@@ -2735,6 +2648,7 @@ struct year {
     using type = std::uint16_t;
     static constexpr std::size_t size = 2;
     static constexpr std::endian order = std::endian::little;
+    static constexpr type no_value = static_cast<type>(0ULL);
 
     constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
     constexpr operator type() const noexcept { return value(); }
@@ -2750,16 +2664,16 @@ struct year {
 
 #pragma pack(push, 1)
 
-// Snapshot Full Refresh Orders Mb O 71 Message no M D Entries Group: noMDEntries
+// Snapshot Full Refresh Orders Mb O 71 Message No M D Entries Group: noMDEntries
 struct snapshot_full_refresh_orders_mb_o_71_message_no_m_d_entries_group {
-    static constexpr std::string_view name = "Snapshot Full Refresh Orders Mb O 71 Message no M D Entries Group";
+    static constexpr std::string_view name = "Snapshot Full Refresh Orders Mb O 71 Message No M D Entries Group";
     static constexpr std::size_t size = 41;
     static constexpr bool is_message = false;
 
     // the types of its members, in wire order
     using fields = tmp::list<
         md_corporate_offset_price_optional,
-        md_entry_size_quantity,
+        md_entry_size,
         md_entry_position_no,
         entering_firm,
         md_insert_timestamp,
@@ -2772,7 +2686,7 @@ struct snapshot_full_refresh_orders_mb_o_71_message_no_m_d_entries_group {
 
   protected:
     BINARYUMDFFIELD(md_corporate_offset_price_optional);
-    BINARYUMDFFIELD(md_entry_size_quantity);
+    BINARYUMDFFIELD(md_entry_size);
     BINARYUMDFFIELD(md_entry_position_no);
     BINARYUMDFFIELD(entering_firm);
     BINARYUMDFFIELD(md_insert_timestamp);
@@ -2804,9 +2718,9 @@ struct group_size_encoding {
 
 static_assert(sizeof(group_size_encoding) == group_size_encoding::size, "group_size_encoding lies over its bytes exactly");
 
-// Snapshot Full Refresh Orders Mb O 71 Message no M D Entries Groups: noMDEntries Block
+// Snapshot Full Refresh Orders Mb O 71 Message No M D Entries Groups: noMDEntries Block
 struct snapshot_full_refresh_orders_mb_o_71_message_no_m_d_entries_groups {
-    static constexpr std::string_view name = "Snapshot Full Refresh Orders Mb O 71 Message no M D Entries Groups";
+    static constexpr std::string_view name = "Snapshot Full Refresh Orders Mb O 71 Message No M D Entries Groups";
     static constexpr bool is_message = false;
 
     // its repeating groups, whose entries the parse hands over one at a time
@@ -2872,7 +2786,7 @@ struct trade_bust_57_message {
         trading_session_id,
         offset_10_padding_2,
         md_future_price,
-        md_entry_size_quantity,
+        md_entry_size,
         trade_id,
         trade_date,
         offset_34_padding_2,
@@ -2889,7 +2803,7 @@ struct trade_bust_57_message {
     BINARYUMDFFIELD(trading_session_id);
     BINARYUMDFFIELD(offset_10_padding_2);
     BINARYUMDFFIELD(md_future_price);
-    BINARYUMDFFIELD(md_entry_size_quantity);
+    BINARYUMDFFIELD(md_entry_size);
     BINARYUMDFFIELD(trade_id);
     BINARYUMDFFIELD(trade_date);
     BINARYUMDFFIELD(offset_34_padding_2);
@@ -3009,7 +2923,7 @@ struct forward_trade_54_message {
         trading_session_id,
         trade_condition,
         md_future_price,
-        md_entry_size_quantity,
+        md_entry_size,
         trade_id,
         md_entry_buyer,
         md_entry_seller,
@@ -3031,7 +2945,7 @@ struct forward_trade_54_message {
     BINARYUMDFFIELD(trading_session_id);
     BINARYUMDFFIELD(trade_condition);
     BINARYUMDFFIELD(md_future_price);
-    BINARYUMDFFIELD(md_entry_size_quantity);
+    BINARYUMDFFIELD(md_entry_size);
     BINARYUMDFFIELD(trade_id);
     BINARYUMDFFIELD(md_entry_buyer);
     BINARYUMDFFIELD(md_entry_seller);
@@ -3059,7 +2973,7 @@ struct trade_53_message {
         trading_session_id,
         trade_condition,
         md_future_price,
-        md_entry_size_quantity,
+        md_entry_size,
         trade_id,
         md_entry_buyer,
         md_entry_seller,
@@ -3079,7 +2993,7 @@ struct trade_53_message {
     BINARYUMDFFIELD(trading_session_id);
     BINARYUMDFFIELD(trade_condition);
     BINARYUMDFFIELD(md_future_price);
-    BINARYUMDFFIELD(md_entry_size_quantity);
+    BINARYUMDFFIELD(md_entry_size);
     BINARYUMDFFIELD(trade_id);
     BINARYUMDFFIELD(md_entry_buyer);
     BINARYUMDFFIELD(md_entry_seller);
@@ -3140,7 +3054,7 @@ struct delete_order_mb_o_51_message {
         md_entry_type,
         offset_11_padding_1,
         md_entry_position_no,
-        md_entry_size_quantity_optional,
+        md_entry_size_optional,
         secondary_order_id,
         md_entry_timestamp,
         rpt_seq>;
@@ -3156,7 +3070,7 @@ struct delete_order_mb_o_51_message {
     BINARYUMDFFIELD(md_entry_type);
     BINARYUMDFFIELD(offset_11_padding_1);
     BINARYUMDFFIELD(md_entry_position_no);
-    BINARYUMDFFIELD(md_entry_size_quantity_optional);
+    BINARYUMDFFIELD(md_entry_size_optional);
     BINARYUMDFFIELD(secondary_order_id);
     BINARYUMDFFIELD(md_entry_timestamp);
     BINARYUMDFFIELD(rpt_seq);
@@ -3178,7 +3092,7 @@ struct order_mb_o_50_message {
         md_entry_type,
         offset_11_padding_1,
         md_corporate_offset_price_optional,
-        md_entry_size_quantity,
+        md_entry_size,
         md_entry_position_no,
         entering_firm,
         md_insert_timestamp,
@@ -3197,7 +3111,7 @@ struct order_mb_o_50_message {
     BINARYUMDFFIELD(md_entry_type);
     BINARYUMDFFIELD(offset_11_padding_1);
     BINARYUMDFFIELD(md_corporate_offset_price_optional);
-    BINARYUMDFFIELD(md_entry_size_quantity);
+    BINARYUMDFFIELD(md_entry_size);
     BINARYUMDFFIELD(md_entry_position_no);
     BINARYUMDFFIELD(entering_firm);
     BINARYUMDFFIELD(md_insert_timestamp);
@@ -3255,7 +3169,7 @@ struct last_trade_price_27_message {
         trading_session_id,
         trade_condition,
         md_future_price,
-        md_entry_size_quantity,
+        md_entry_size,
         trade_id,
         md_entry_buyer,
         md_entry_seller,
@@ -3277,7 +3191,7 @@ struct last_trade_price_27_message {
     BINARYUMDFFIELD(trading_session_id);
     BINARYUMDFFIELD(trade_condition);
     BINARYUMDFFIELD(md_future_price);
-    BINARYUMDFFIELD(md_entry_size_quantity);
+    BINARYUMDFFIELD(md_entry_size);
     BINARYUMDFFIELD(trade_id);
     BINARYUMDFFIELD(md_entry_buyer);
     BINARYUMDFFIELD(md_entry_seller);
@@ -3457,7 +3371,7 @@ struct auction_imbalance_19_message {
         match_event_indicator,
         md_update_action,
         imbalance_condition,
-        md_entry_size_quantity_optional,
+        md_entry_size_optional,
         md_entry_timestamp,
         rpt_seq>;
 
@@ -3470,7 +3384,7 @@ struct auction_imbalance_19_message {
     BINARYUMDFFIELD(match_event_indicator);
     BINARYUMDFFIELD(md_update_action);
     BINARYUMDFFIELD(imbalance_condition);
-    BINARYUMDFFIELD(md_entry_size_quantity_optional);
+    BINARYUMDFFIELD(md_entry_size_optional);
     BINARYUMDFFIELD(md_entry_timestamp);
     BINARYUMDFFIELD(rpt_seq);
 };
@@ -3526,7 +3440,7 @@ struct theoretical_opening_price_16_message {
         md_update_action,
         trade_date,
         md_corporate_offset_price_optional,
-        md_entry_size_quantity_optional,
+        md_entry_size_optional,
         md_entry_timestamp,
         rpt_seq>;
 
@@ -3540,7 +3454,7 @@ struct theoretical_opening_price_16_message {
     BINARYUMDFFIELD(md_update_action);
     BINARYUMDFFIELD(trade_date);
     BINARYUMDFFIELD(md_corporate_offset_price_optional);
-    BINARYUMDFFIELD(md_entry_size_quantity_optional);
+    BINARYUMDFFIELD(md_entry_size_optional);
     BINARYUMDFFIELD(md_entry_timestamp);
     BINARYUMDFFIELD(rpt_seq);
 };

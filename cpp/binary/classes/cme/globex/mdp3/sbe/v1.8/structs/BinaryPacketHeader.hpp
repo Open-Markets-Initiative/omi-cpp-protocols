@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.8: structs/BinaryPacketHeader.hpp
 #pragma once
 
 #include <chrono>

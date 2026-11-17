@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: messages/OptionsCrossTradeMessage.cpp
 #include "OptionsCrossTradeMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -60,7 +61,7 @@ std::size_t OptionsCrossTradeMessage::decode(const std::byte* data, std::size_t 
     cross_type_ = static_cast<CrossType>(wire::read_char(data + offset));
     offset += 1;
 
-    price_long_ = Decimal(static_cast<std::int64_t>(wire::read_u32_be(data + offset)), -4);
+    price_long_ = Decimal(static_cast<std::int64_t>(wire::read_i32_be(data + offset)), -4);
     offset += 4;
 
     volume_long_ = wire::read_u32_be(data + offset);
@@ -91,7 +92,7 @@ std::size_t OptionsCrossTradeMessage::encode(std::byte* data, std::size_t capaci
     wire::write_char(data + offset, static_cast<char>(cross_type_));
     offset += 1;
 
-    wire::write_u32_be(data + offset, static_cast<std::uint32_t>(price_long_.mantissa()));
+    wire::write_i32_be(data + offset, static_cast<std::int32_t>(price_long_.mantissa()));
     offset += 4;
 
     wire::write_u32_be(data + offset, static_cast<std::uint32_t>(volume_long_));

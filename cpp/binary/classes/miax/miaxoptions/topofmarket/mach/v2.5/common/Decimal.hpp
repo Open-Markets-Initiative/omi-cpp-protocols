@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.TopOfMarket.Mach.v2.5: common/Decimal.hpp
 #pragma once
 
 #include <cmath>

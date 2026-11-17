@@ -1,3 +1,4 @@
+// CixAts.CixAspen.MarketDataFeed.Aspen.v1.4: Settings.hpp
 #pragma once
 
 #include <iostream>

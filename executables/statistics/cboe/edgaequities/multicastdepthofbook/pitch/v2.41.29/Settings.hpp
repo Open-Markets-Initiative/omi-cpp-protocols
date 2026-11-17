@@ -1,3 +1,4 @@
+// Cboe.EdgaEquities.MulticastDepthOfBook.Pitch.v2.41.29: Settings.hpp
 #pragma once
 
 #include <iostream>

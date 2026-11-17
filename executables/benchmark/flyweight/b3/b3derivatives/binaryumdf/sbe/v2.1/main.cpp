@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.1: main.cpp
 // B3.B3Derivatives.BinaryUmdf.Sbe.v2.1 benchmark, through the Flyweight reader: every value it reads from every message of the simulated
 // sequence (tests/simulated/b3/b3derivatives/binaryumdf/sbe/v2.1.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -51,26 +52,16 @@ struct Reader {
     void on(const protocol::EmptyBookMessage& message) {
         checksum += index++;
         checksum += bench::digest(message.security_id());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_0());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_1());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_2());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_3());
         checksum += bench::digest(message.match_event_indicator().implied());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_6());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += (message.md_entry_timestamp().has_value() ? bench::digest((*message.md_entry_timestamp())) : std::uint64_t{0});
     }
 
     void on(const protocol::ChannelReset11Message& message) {
         checksum += index++;
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_0());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_1());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_2());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_3());
         checksum += bench::digest(message.match_event_indicator().implied());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_6());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += (message.md_entry_timestamp().has_value() ? bench::digest((*message.md_entry_timestamp())) : std::uint64_t{0});
     }
@@ -78,13 +69,8 @@ struct Reader {
     void on(const protocol::SecurityStatus3Message& message) {
         checksum += index++;
         checksum += bench::digest(message.security_id());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_0());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_1());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_2());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_3());
         checksum += bench::digest(message.match_event_indicator().implied());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_6());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.trading_session_id());
         checksum += bench::digest(message.security_trading_status());
@@ -98,13 +84,8 @@ struct Reader {
     void on(const protocol::SecurityGroupPhase10Message& message) {
         checksum += index++;
         checksum += bench::digest(message.security_group());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_0());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_1());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_2());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_3());
         checksum += bench::digest(message.match_event_indicator().implied());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_6());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.trading_session_id());
         checksum += bench::digest(message.trading_session_sub_id());
@@ -146,14 +127,14 @@ struct Reader {
         checksum += (message.dated_date().has_value() ? bench::digest((*message.dated_date())) : std::uint64_t{0});
         checksum += bench::digest(message.asset());
         checksum += bench::digest(message.cfi_code());
-        checksum += bench::digest(message.maturity_month_year().year());
-        checksum += bench::digest(message.maturity_month_year().month());
-        checksum += bench::digest(message.maturity_month_year().day());
-        checksum += bench::digest(message.maturity_month_year().week());
-        checksum += bench::digest(message.contract_settl_month().year());
-        checksum += bench::digest(message.contract_settl_month().month());
-        checksum += bench::digest(message.contract_settl_month().day());
-        checksum += bench::digest(message.contract_settl_month().week());
+        checksum += (message.maturity_month_year().year().has_value() ? bench::digest((*message.maturity_month_year().year())) : std::uint64_t{0});
+        checksum += (message.maturity_month_year().month().has_value() ? bench::digest((*message.maturity_month_year().month())) : std::uint64_t{0});
+        checksum += (message.maturity_month_year().day().has_value() ? bench::digest((*message.maturity_month_year().day())) : std::uint64_t{0});
+        checksum += (message.maturity_month_year().week().has_value() ? bench::digest((*message.maturity_month_year().week())) : std::uint64_t{0});
+        checksum += (message.contract_settl_month().year().has_value() ? bench::digest((*message.contract_settl_month().year())) : std::uint64_t{0});
+        checksum += (message.contract_settl_month().month().has_value() ? bench::digest((*message.contract_settl_month().month())) : std::uint64_t{0});
+        checksum += (message.contract_settl_month().day().has_value() ? bench::digest((*message.contract_settl_month().day())) : std::uint64_t{0});
+        checksum += (message.contract_settl_month().week().has_value() ? bench::digest((*message.contract_settl_month().week())) : std::uint64_t{0});
         checksum += bench::digest(message.currency());
         checksum += (message.lot_type().has_value() ? bench::digest((*message.lot_type())) : std::uint64_t{0});
         checksum += (message.tick_size_denominator().has_value() ? bench::digest((*message.tick_size_denominator())) : std::uint64_t{0});
@@ -174,13 +155,8 @@ struct Reader {
     void on(const protocol::News5Message& message) {
         checksum += index++;
         checksum += (message.security_id_optional().has_value() ? bench::digest((*message.security_id_optional())) : std::uint64_t{0});
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_0());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_1());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_2());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_3());
         checksum += bench::digest(message.match_event_indicator().implied());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_6());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.news_source());
         checksum += bench::digest(message.part_count());
@@ -193,13 +169,8 @@ struct Reader {
     void on(const protocol::OpeningPrice15Message& message) {
         checksum += index++;
         checksum += bench::digest(message.security_id());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_0());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_1());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_2());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_3());
         checksum += bench::digest(message.match_event_indicator().implied());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_6());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.md_update_action());
         checksum += bench::digest(message.open_close_settl_flag());
@@ -213,18 +184,13 @@ struct Reader {
     void on(const protocol::TheoreticalOpeningPrice16Message& message) {
         checksum += index++;
         checksum += bench::digest(message.security_id());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_0());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_1());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_2());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_3());
         checksum += bench::digest(message.match_event_indicator().implied());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_6());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.md_update_action());
         checksum += bench::digest(message.trade_date());
         checksum += (message.md_corporate_offset_price_optional().has_value() ? bench::digest((*message.md_corporate_offset_price_optional()).mantissa()) : std::uint64_t{0});
-        checksum += (message.md_entry_size_quantity_optional().has_value() ? bench::digest((*message.md_entry_size_quantity_optional())) : std::uint64_t{0});
+        checksum += (message.md_entry_size_optional().has_value() ? bench::digest((*message.md_entry_size_optional())) : std::uint64_t{0});
         checksum += (message.md_entry_timestamp().has_value() ? bench::digest((*message.md_entry_timestamp())) : std::uint64_t{0});
         checksum += (message.rpt_seq().has_value() ? bench::digest((*message.rpt_seq())) : std::uint64_t{0});
     }
@@ -232,13 +198,8 @@ struct Reader {
     void on(const protocol::ClosingPrice17Message& message) {
         checksum += index++;
         checksum += bench::digest(message.security_id());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_0());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_1());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_2());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_3());
         checksum += bench::digest(message.match_event_indicator().implied());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_6());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.open_close_settl_flag());
         checksum += bench::digest(message.md_corporate_price().mantissa());
@@ -251,27 +212,13 @@ struct Reader {
     void on(const protocol::AuctionImbalance19Message& message) {
         checksum += index++;
         checksum += bench::digest(message.security_id());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_0());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_1());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_2());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_3());
         checksum += bench::digest(message.match_event_indicator().implied());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_6());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.md_update_action());
-        checksum += bench::digest(message.imbalance_condition().unused_imbalance_condition_0());
-        checksum += bench::digest(message.imbalance_condition().unused_imbalance_condition_1());
-        checksum += bench::digest(message.imbalance_condition().unused_imbalance_condition_2());
-        checksum += bench::digest(message.imbalance_condition().unused_imbalance_condition_3());
-        checksum += bench::digest(message.imbalance_condition().unused_imbalance_condition_4());
-        checksum += bench::digest(message.imbalance_condition().unused_imbalance_condition_5());
-        checksum += bench::digest(message.imbalance_condition().unused_imbalance_condition_6());
-        checksum += bench::digest(message.imbalance_condition().unused_imbalance_condition_7());
         checksum += bench::digest(message.imbalance_condition().imbalance_more_buyers());
         checksum += bench::digest(message.imbalance_condition().imbalance_more_sellers());
-        checksum += bench::digest(message.imbalance_condition().reserved_6());
-        checksum += (message.md_entry_size_quantity_optional().has_value() ? bench::digest((*message.md_entry_size_quantity_optional())) : std::uint64_t{0});
+        checksum += (message.md_entry_size_optional().has_value() ? bench::digest((*message.md_entry_size_optional())) : std::uint64_t{0});
         checksum += (message.md_entry_timestamp().has_value() ? bench::digest((*message.md_entry_timestamp())) : std::uint64_t{0});
         checksum += (message.rpt_seq().has_value() ? bench::digest((*message.rpt_seq())) : std::uint64_t{0});
     }
@@ -279,13 +226,8 @@ struct Reader {
     void on(const protocol::QuantityBand21Message& message) {
         checksum += index++;
         checksum += bench::digest(message.security_id());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_0());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_1());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_2());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_3());
         checksum += bench::digest(message.match_event_indicator().implied());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_6());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += (message.avg_daily_traded_qty().has_value() ? bench::digest((*message.avg_daily_traded_qty())) : std::uint64_t{0});
         checksum += (message.max_trade_vol().has_value() ? bench::digest((*message.max_trade_vol())) : std::uint64_t{0});
@@ -296,13 +238,8 @@ struct Reader {
     void on(const protocol::PriceBand22Message& message) {
         checksum += index++;
         checksum += bench::digest(message.security_id());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_0());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_1());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_2());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_3());
         checksum += bench::digest(message.match_event_indicator().implied());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_6());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += (message.price_band_type().has_value() ? bench::digest((*message.price_band_type())) : std::uint64_t{0});
         checksum += (message.price_limit_type().has_value() ? bench::digest((*message.price_limit_type())) : std::uint64_t{0});
@@ -317,13 +254,8 @@ struct Reader {
     void on(const protocol::HighPrice24Message& message) {
         checksum += index++;
         checksum += bench::digest(message.security_id());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_0());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_1());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_2());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_3());
         checksum += bench::digest(message.match_event_indicator().implied());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_6());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.md_update_action());
         checksum += bench::digest(message.trade_date());
@@ -335,13 +267,8 @@ struct Reader {
     void on(const protocol::LowPrice25Message& message) {
         checksum += index++;
         checksum += bench::digest(message.security_id());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_0());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_1());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_2());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_3());
         checksum += bench::digest(message.match_event_indicator().implied());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_6());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.md_update_action());
         checksum += bench::digest(message.trade_date());
@@ -353,33 +280,19 @@ struct Reader {
     void on(const protocol::LastTradePrice27Message& message) {
         checksum += index++;
         checksum += bench::digest(message.security_id());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_0());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_1());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_2());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_3());
         checksum += bench::digest(message.match_event_indicator().implied());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_6());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.trading_session_id());
         checksum += bench::digest(message.trade_condition().opening_price());
         checksum += bench::digest(message.trade_condition().crossed());
         checksum += bench::digest(message.trade_condition().last_trade_at_the_same_price());
         checksum += bench::digest(message.trade_condition().out_of_sequence());
-        checksum += bench::digest(message.trade_condition().unused_trade_condition_4());
-        checksum += bench::digest(message.trade_condition().unused_trade_condition_5());
         checksum += bench::digest(message.trade_condition().trade_on_behalf());
-        checksum += bench::digest(message.trade_condition().unused_trade_condition_7());
-        checksum += bench::digest(message.trade_condition().unused_trade_condition_8());
-        checksum += bench::digest(message.trade_condition().unused_trade_condition_9());
-        checksum += bench::digest(message.trade_condition().unused_trade_condition_10());
-        checksum += bench::digest(message.trade_condition().unused_trade_condition_11());
-        checksum += bench::digest(message.trade_condition().unused_trade_condition_12());
         checksum += bench::digest(message.trade_condition().regular_trade());
         checksum += bench::digest(message.trade_condition().block_trade());
-        checksum += bench::digest(message.trade_condition().unused_trade_condition_15());
         checksum += bench::digest(message.md_future_price().mantissa());
-        checksum += bench::digest(message.md_entry_size_quantity());
+        checksum += bench::digest(message.md_entry_size());
         checksum += bench::digest(message.trade_id());
         checksum += (message.md_entry_buyer().has_value() ? bench::digest((*message.md_entry_buyer())) : std::uint64_t{0});
         checksum += (message.md_entry_seller().has_value() ? bench::digest((*message.md_entry_seller())) : std::uint64_t{0});
@@ -394,13 +307,8 @@ struct Reader {
     void on(const protocol::SettlementPrice28Message& message) {
         checksum += index++;
         checksum += bench::digest(message.security_id());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_0());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_1());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_2());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_3());
         checksum += bench::digest(message.match_event_indicator().implied());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_6());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.trade_date());
         checksum += bench::digest(message.md_future_price().mantissa());
@@ -414,16 +322,11 @@ struct Reader {
     void on(const protocol::OpenInterest29Message& message) {
         checksum += index++;
         checksum += bench::digest(message.security_id());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_0());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_1());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_2());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_3());
         checksum += bench::digest(message.match_event_indicator().implied());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_6());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.trade_date());
-        checksum += bench::digest(message.md_entry_size_quantity());
+        checksum += bench::digest(message.md_entry_size());
         checksum += (message.md_entry_timestamp().has_value() ? bench::digest((*message.md_entry_timestamp())) : std::uint64_t{0});
         checksum += (message.rpt_seq().has_value() ? bench::digest((*message.rpt_seq())) : std::uint64_t{0});
     }
@@ -443,18 +346,13 @@ struct Reader {
     void on(const protocol::OrderMbO50Message& message) {
         checksum += index++;
         checksum += bench::digest(message.security_id());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_0());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_1());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_2());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_3());
         checksum += bench::digest(message.match_event_indicator().implied());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_6());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.md_update_action());
         checksum += bench::digest(message.md_entry_type());
         checksum += (message.md_corporate_offset_price_optional().has_value() ? bench::digest((*message.md_corporate_offset_price_optional()).mantissa()) : std::uint64_t{0});
-        checksum += bench::digest(message.md_entry_size_quantity());
+        checksum += bench::digest(message.md_entry_size());
         checksum += (message.md_entry_position_no().has_value() ? bench::digest((*message.md_entry_position_no())) : std::uint64_t{0});
         checksum += (message.entering_firm().has_value() ? bench::digest((*message.entering_firm())) : std::uint64_t{0});
         checksum += (message.md_insert_timestamp().has_value() ? bench::digest((*message.md_insert_timestamp())) : std::uint64_t{0});
@@ -466,17 +364,12 @@ struct Reader {
     void on(const protocol::DeleteOrderMbO51Message& message) {
         checksum += index++;
         checksum += bench::digest(message.security_id());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_0());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_1());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_2());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_3());
         checksum += bench::digest(message.match_event_indicator().implied());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_6());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.md_entry_type());
         checksum += (message.md_entry_position_no().has_value() ? bench::digest((*message.md_entry_position_no())) : std::uint64_t{0});
-        checksum += bench::digest(message.md_entry_size_quantity());
+        checksum += bench::digest(message.md_entry_size());
         checksum += bench::digest(message.secondary_order_id());
         checksum += (message.transact_time().has_value() ? bench::digest((*message.transact_time())) : std::uint64_t{0});
         checksum += (message.rpt_seq().has_value() ? bench::digest((*message.rpt_seq())) : std::uint64_t{0});
@@ -486,13 +379,8 @@ struct Reader {
     void on(const protocol::MassDeleteOrdersMbO52Message& message) {
         checksum += index++;
         checksum += bench::digest(message.security_id());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_0());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_1());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_2());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_3());
         checksum += bench::digest(message.match_event_indicator().implied());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_6());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.md_update_action());
         checksum += bench::digest(message.md_entry_type());
@@ -504,33 +392,19 @@ struct Reader {
     void on(const protocol::Trade53Message& message) {
         checksum += index++;
         checksum += bench::digest(message.security_id());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_0());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_1());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_2());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_3());
         checksum += bench::digest(message.match_event_indicator().implied());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_6());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.trading_session_id());
         checksum += bench::digest(message.trade_condition().opening_price());
         checksum += bench::digest(message.trade_condition().crossed());
         checksum += bench::digest(message.trade_condition().last_trade_at_the_same_price());
         checksum += bench::digest(message.trade_condition().out_of_sequence());
-        checksum += bench::digest(message.trade_condition().unused_trade_condition_4());
-        checksum += bench::digest(message.trade_condition().unused_trade_condition_5());
         checksum += bench::digest(message.trade_condition().trade_on_behalf());
-        checksum += bench::digest(message.trade_condition().unused_trade_condition_7());
-        checksum += bench::digest(message.trade_condition().unused_trade_condition_8());
-        checksum += bench::digest(message.trade_condition().unused_trade_condition_9());
-        checksum += bench::digest(message.trade_condition().unused_trade_condition_10());
-        checksum += bench::digest(message.trade_condition().unused_trade_condition_11());
-        checksum += bench::digest(message.trade_condition().unused_trade_condition_12());
         checksum += bench::digest(message.trade_condition().regular_trade());
         checksum += bench::digest(message.trade_condition().block_trade());
-        checksum += bench::digest(message.trade_condition().unused_trade_condition_15());
         checksum += bench::digest(message.md_future_price().mantissa());
-        checksum += bench::digest(message.md_entry_size_quantity());
+        checksum += bench::digest(message.md_entry_size());
         checksum += bench::digest(message.trade_id());
         checksum += (message.md_entry_buyer().has_value() ? bench::digest((*message.md_entry_buyer())) : std::uint64_t{0});
         checksum += (message.md_entry_seller().has_value() ? bench::digest((*message.md_entry_seller())) : std::uint64_t{0});
@@ -543,33 +417,19 @@ struct Reader {
     void on(const protocol::ForwardTrade54Message& message) {
         checksum += index++;
         checksum += bench::digest(message.security_id());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_0());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_1());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_2());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_3());
         checksum += bench::digest(message.match_event_indicator().implied());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_6());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.trading_session_id());
         checksum += bench::digest(message.trade_condition().opening_price());
         checksum += bench::digest(message.trade_condition().crossed());
         checksum += bench::digest(message.trade_condition().last_trade_at_the_same_price());
         checksum += bench::digest(message.trade_condition().out_of_sequence());
-        checksum += bench::digest(message.trade_condition().unused_trade_condition_4());
-        checksum += bench::digest(message.trade_condition().unused_trade_condition_5());
         checksum += bench::digest(message.trade_condition().trade_on_behalf());
-        checksum += bench::digest(message.trade_condition().unused_trade_condition_7());
-        checksum += bench::digest(message.trade_condition().unused_trade_condition_8());
-        checksum += bench::digest(message.trade_condition().unused_trade_condition_9());
-        checksum += bench::digest(message.trade_condition().unused_trade_condition_10());
-        checksum += bench::digest(message.trade_condition().unused_trade_condition_11());
-        checksum += bench::digest(message.trade_condition().unused_trade_condition_12());
         checksum += bench::digest(message.trade_condition().regular_trade());
         checksum += bench::digest(message.trade_condition().block_trade());
-        checksum += bench::digest(message.trade_condition().unused_trade_condition_15());
         checksum += bench::digest(message.md_future_price().mantissa());
-        checksum += bench::digest(message.md_entry_size_quantity());
+        checksum += bench::digest(message.md_entry_size());
         checksum += bench::digest(message.trade_id());
         checksum += (message.md_entry_buyer().has_value() ? bench::digest((*message.md_entry_buyer())) : std::uint64_t{0});
         checksum += (message.md_entry_seller().has_value() ? bench::digest((*message.md_entry_seller())) : std::uint64_t{0});
@@ -597,13 +457,8 @@ struct Reader {
     void on(const protocol::ExecutionStatistics56Message& message) {
         checksum += index++;
         checksum += bench::digest(message.security_id());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_0());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_1());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_2());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_3());
         checksum += bench::digest(message.match_event_indicator().implied());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_6());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.trading_session_id());
         checksum += bench::digest(message.trade_date());
@@ -618,17 +473,12 @@ struct Reader {
     void on(const protocol::TradeBust57Message& message) {
         checksum += index++;
         checksum += bench::digest(message.security_id());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_0());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_1());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_2());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_3());
         checksum += bench::digest(message.match_event_indicator().implied());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().unused_match_event_indicator_6());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.trading_session_id());
         checksum += bench::digest(message.md_future_price().mantissa());
-        checksum += bench::digest(message.md_entry_size_quantity());
+        checksum += bench::digest(message.md_entry_size());
         checksum += bench::digest(message.trade_id());
         checksum += bench::digest(message.trade_date());
         checksum += (message.transact_time().has_value() ? bench::digest((*message.transact_time())) : std::uint64_t{0});

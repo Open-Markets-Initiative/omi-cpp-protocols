@@ -1,6 +1,8 @@
+// Nyse.ArcaOptions.TopFeed.Pillar.v1.2.c: messages/OptionsQuoteMessage.hpp
 #pragma once
 
 #include <array>
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
@@ -24,11 +26,11 @@ class OptionsQuoteMessage : public Message {
     static constexpr std::size_t wire_size = 38;
 
     OptionsQuoteMessage() = default;
-    OptionsQuoteMessage(std::uint32_t source_time_ns, std::uint32_t series_index, std::uint32_t series_seq_num, std::int32_t ask_price, std::uint32_t ask_volume, std::int32_t bid_price, std::uint32_t bid_volume, QuoteCondition quote_condition, const std::array<std::byte, 1>& reserved_1, std::uint32_t ask_customer_volume, std::uint32_t bid_customer_volume);
+    OptionsQuoteMessage(std::chrono::nanoseconds source_time_ns, std::uint32_t series_index, std::uint32_t series_seq_num, std::int32_t ask_price, std::uint32_t ask_volume, std::int32_t bid_price, std::uint32_t bid_volume, QuoteCondition quote_condition, const std::array<std::byte, 1>& reserved_1, std::uint32_t ask_customer_volume, std::uint32_t bid_customer_volume);
 
     // Source Time Ns: The nanosecond offset from the SourceTime
-    std::uint32_t source_time_ns() const;
-    void set_source_time_ns(std::uint32_t value);
+    std::chrono::nanoseconds source_time_ns() const;
+    void set_source_time_ns(std::chrono::nanoseconds value);
 
     // Series Index: The unique ID of this series for all products within this market
     std::uint32_t series_index() const;
@@ -87,7 +89,7 @@ class OptionsQuoteMessage : public Message {
     bool operator!=(const OptionsQuoteMessage& other) const;
 
   private:
-    std::uint32_t source_time_ns_{};
+    std::chrono::nanoseconds source_time_ns_{};
     std::uint32_t series_index_{};
     std::uint32_t series_seq_num_{};
     std::int32_t ask_price_{};

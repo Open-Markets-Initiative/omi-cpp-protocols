@@ -1,3 +1,4 @@
+// Cboe.C1Options.MarketDataFeed.Csm.v1.4.2: structs/Eop.cpp
 #include "Eop.hpp"
 
 #include "../common/Print.hpp"

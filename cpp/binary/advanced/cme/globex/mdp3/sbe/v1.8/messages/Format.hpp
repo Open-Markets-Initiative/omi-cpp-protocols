@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.8: messages/Format.hpp
 #pragma once
 
 #include <ostream>
@@ -5,7 +6,6 @@
 
 #include "MktdataMessage.hpp"
 #include "ChannelReset.hpp"
-#include "AdminHeartbeat.hpp"
 #include "AdminLogin.hpp"
 #include "AdminLogout.hpp"
 #include "MdInstrumentDefinitionFuture.hpp"
@@ -33,7 +33,6 @@
 #include "RequestReject.hpp"
 #include "SecurityListRequest.hpp"
 #include "SecurityStatusRequest.hpp"
-#include "SubscriberHeartbeat.hpp"
 #include "../json/messages/mktdata_message_json.hpp"
 #include "../json/messages/channel_reset_json.hpp"
 #include "../json/messages/md_instrument_definition_future_json.hpp"
@@ -316,10 +315,6 @@ inline std::ostream& operator<<(std::ostream& os, const channel_reset& msg) {
        << ",match_event_indicator=" << static_cast<unsigned>(msg.fields.match_event_indicator.get().value())
        << ",tail=" << json::tail_to_json_string(msg)
        ;
-    return os;
-}
-
-inline std::ostream& operator<<(std::ostream& os, const admin_heartbeat&) {
     return os;
 }
 
@@ -665,7 +660,7 @@ inline std::ostream& operator<<(std::ostream& os, const request_ack& msg) {
 inline std::ostream& operator<<(std::ostream& os, const request_reject& msg) {
     os << "md_req_id_optional=" << (msg.fields.md_req_id_optional.get().has_value() ? std::to_string(msg.fields.md_req_id_optional.get().value()) : std::string_view("null"))
        << ",md_req_rej_reason=\"" << sbe_mdp3::md_req_rej_reason::to_string(msg.fields.md_req_rej_reason.get().value()) << '"'
-       << ",text=\"" << msg.fields.text.get_trimmed().value() << '"'
+       << ",session_text=\"" << msg.fields.session_text.get_trimmed().value() << '"'
        ;
     return os;
 }
@@ -683,10 +678,6 @@ inline std::ostream& operator<<(std::ostream& os, const security_status_request&
        << ",subscription_req_type=\"" << sbe_mdp3::subscription_req_type::to_string(msg.fields.subscription_req_type.get().value()) << '"'
        << ",tail=" << json::tail_to_json_string(msg)
        ;
-    return os;
-}
-
-inline std::ostream& operator<<(std::ostream& os, const subscriber_heartbeat&) {
     return os;
 }
 

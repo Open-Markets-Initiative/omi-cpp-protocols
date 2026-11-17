@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1: messages/QuoteStatusReportMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -33,7 +34,7 @@ class QuoteStatusReportMessage : public Message {
     static constexpr MessageCode message_type = TemplateId::QuoteStatusReportMessage;
 
     QuoteStatusReportMessage() = default;
-    QuoteStatusReportMessage(const BidirectionalBusinessHeader& bidirectional_business_header, std::optional<QuoteRejectReason> quote_reject_reason, std::uint64_t security_id, std::uint64_t quote_req_id, std::uint64_t quote_id, std::optional<std::uint32_t> trade_id_optional, std::uint32_t contra_broker, std::chrono::nanoseconds transact_time, QuoteStatus quote_status, QuoteStatusResponseTo quote_status_response_to, std::optional<std::uint32_t> account, SideOptional side_optional, SettlTypeOptional settl_type_optional, std::optional<Decimal> price_8_optional, std::uint64_t order_qty, const std::string& sender_location, const std::string& entering_trader, const std::string& executing_trader, std::optional<Decimal> fixed_rate_percentage_8_optional, ExecuteUnderlyingTrade execute_underlying_trade, std::optional<std::uint16_t> days_to_settlement_optional, const DeskId& desk_id, const Memo& memo, const Text& text);
+    QuoteStatusReportMessage(const BidirectionalBusinessHeader& bidirectional_business_header, std::optional<QuoteRejectReason> quote_reject_reason, std::uint64_t security_id, std::uint64_t quote_req_id, std::uint64_t quote_id, std::optional<std::uint32_t> trade_id_optional, std::uint32_t contra_broker, std::chrono::nanoseconds transact_time, QuoteStatus quote_status, QuoteStatusResponseTo quote_status_response_to, std::optional<std::uint32_t> account, SideOptional side_optional, SettlTypeOptional settl_type_optional, std::optional<Decimal> price_8_optional, std::uint64_t order_qty, const std::string& sender_location, const std::string& entering_trader, const std::string& executing_trader, std::optional<Decimal> fixed_rate_optional, ExecuteUnderlyingTrade execute_underlying_trade, std::optional<std::uint16_t> days_to_settlement_optional, const DeskId& desk_id, const Memo& memo, const Text& text);
 
     // Bidirectional Business Header: BidirectionalBusinessHeader
     const BidirectionalBusinessHeader& bidirectional_business_header() const;
@@ -111,9 +112,9 @@ class QuoteStatusReportMessage : public Message {
     std::string& executing_trader();
     void set_executing_trader(const std::string& value);
 
-    // Fixed Rate Percentage 8 Optional: fixedRate
-    std::optional<Decimal> fixed_rate_percentage_8_optional() const;
-    void set_fixed_rate_percentage_8_optional(std::optional<Decimal> value);
+    // Fixed Rate Optional: fixedRate
+    std::optional<Decimal> fixed_rate_optional() const;
+    void set_fixed_rate_optional(std::optional<Decimal> value);
 
     // Execute Underlying Trade: executeUnderlyingTrade
     ExecuteUnderlyingTrade execute_underlying_trade() const;
@@ -171,7 +172,7 @@ class QuoteStatusReportMessage : public Message {
     std::string sender_location_{};
     std::string entering_trader_{};
     std::string executing_trader_{};
-    std::optional<Decimal> fixed_rate_percentage_8_optional_{};
+    std::optional<Decimal> fixed_rate_optional_{};
     ExecuteUnderlyingTrade execute_underlying_trade_{};
     std::optional<std::uint16_t> days_to_settlement_optional_{};
     DeskId desk_id_{};

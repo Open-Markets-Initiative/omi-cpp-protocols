@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v1.91: structs/QuoteMessage.hpp
 #pragma once
 
 #include "../types/QuoteMessageType.hpp"

@@ -1,3 +1,4 @@
+// Cboe.C1Options.MulticastDepthOfBook.Pitch.v2.39.4: messages/AuctionCancelMessage.hpp
 #pragma once
 
 #include "../types/TimeOffset.hpp"

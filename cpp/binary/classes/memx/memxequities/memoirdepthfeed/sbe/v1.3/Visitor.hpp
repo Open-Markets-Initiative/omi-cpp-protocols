@@ -1,3 +1,4 @@
+// Memx.MemxEquities.MemoirDepthFeed.Sbe.v1.3: Visitor.hpp
 #pragma once
 
 namespace memx::memxequities::memoirdepthfeed::sbe::v1_3 {

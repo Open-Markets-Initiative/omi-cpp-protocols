@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v1.91: main.cpp
 // Siac.Cts.Output.Cta.v1.91 benchmark, through the Flyweight reader: every value it reads from every message of the simulated
 // sequence (tests/simulated/siac/cts/output/cta/v1.91.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -23,7 +24,7 @@ namespace {
 struct AdministrativeMessagePayloadHandler {
     std::uint64_t& checksum;
 
-    void on(const protocol::StartOfEndOfDayMessage& message) {
+    void on(const protocol::StartOfEndOfDaySummaryMessage& message) {
         checksum += bench::digest(message.participant_id());
         checksum += bench::digest(message.timestamp_1().seconds());
         checksum += bench::digest(message.timestamp_1().nanoseconds());
@@ -32,7 +33,7 @@ struct AdministrativeMessagePayloadHandler {
         checksum += bench::digest(message.participant_reference_number());
     }
 
-    void on(const protocol::EndOfEndOfDayMessage& message) {
+    void on(const protocol::EndOfEndOfDaySummaryMessage& message) {
         checksum += bench::digest(message.participant_id());
         checksum += bench::digest(message.timestamp_1().seconds());
         checksum += bench::digest(message.timestamp_1().nanoseconds());
@@ -41,7 +42,7 @@ struct AdministrativeMessagePayloadHandler {
         checksum += bench::digest(message.participant_reference_number());
     }
 
-    void on(const protocol::StartOfStartOfDayMessage& message) {
+    void on(const protocol::StartOfStartOfDaySummaryMessage& message) {
         checksum += bench::digest(message.participant_id());
         checksum += bench::digest(message.timestamp_1().seconds());
         checksum += bench::digest(message.timestamp_1().nanoseconds());
@@ -50,7 +51,7 @@ struct AdministrativeMessagePayloadHandler {
         checksum += bench::digest(message.participant_reference_number());
     }
 
-    void on(const protocol::EndOfStartOfDayMessage& message) {
+    void on(const protocol::EndOfStartOfDaySummaryMessage& message) {
         checksum += bench::digest(message.participant_id());
         checksum += bench::digest(message.timestamp_1().seconds());
         checksum += bench::digest(message.timestamp_1().nanoseconds());
@@ -180,7 +181,6 @@ struct MarketStatusMessagePayloadHandler {
         checksum += bench::digest(message.mwcb_level_1().mantissa());
         checksum += bench::digest(message.mwcb_level_2().mantissa());
         checksum += bench::digest(message.mwcb_level_3().mantissa());
-        checksum += bench::digest(message.reserved());
     }
 
     void on(const protocol::MarketWideCircuitBreakerStatusMessage& message) {
@@ -191,7 +191,6 @@ struct MarketStatusMessagePayloadHandler {
         checksum += bench::digest(message.transaction_id());
         checksum += bench::digest(message.participant_reference_number());
         checksum += bench::digest(message.market_wide_circuit_breaker_level_indicator());
-        checksum += bench::digest(message.reserved());
     }
 
     void on(const protocol::ApproximateAdjustedVolumeMarketCenterMessage& message) {

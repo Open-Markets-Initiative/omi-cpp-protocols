@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.10: structs/PriorDayTradeDateAndTime.hpp
 #pragma once
 
 #include "../types/Seconds.hpp"

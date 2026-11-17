@@ -1,3 +1,4 @@
+// Nasdaq.PsxEquities.TotalView.Itch.v5.0: main.cpp
 // Nasdaq.PsxEquities.TotalView.Itch.v5.0 benchmark, through the Tmp header: every value it reads from every message of the simulated
 // sequence (tests/simulated/nasdaq/psxequities/totalview/itch/v5.0.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -414,7 +415,6 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::timestamp>(); }) { checksum += bench::digest(message.template get<protocol::timestamp>().value()); }
         if constexpr (requires { message.template get<protocol::stock>(); }) { checksum += bench::digest(message.template get<protocol::stock>().value()); }
         if constexpr (requires { message.template get<protocol::trading_state>(); }) { checksum += bench::digest(message.template get<protocol::trading_state>().value()); }
-        if constexpr (requires { message.template get<protocol::reserved>(); }) { checksum += bench::digest(message.template get<protocol::reserved>().value()); }
         if constexpr (requires { message.template get<protocol::reason>(); }) { checksum += bench::digest(message.template get<protocol::reason>().value()); }
     }
 

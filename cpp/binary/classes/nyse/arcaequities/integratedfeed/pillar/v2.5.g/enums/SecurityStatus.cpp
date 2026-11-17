@@ -1,3 +1,4 @@
+// Nyse.ArcaEquities.IntegratedFeed.Pillar.v2.5.g: enums/SecurityStatus.cpp
 #include "SecurityStatus.hpp"
 
 namespace nyse::arcaequities::integratedfeed::pillar::v2_5_g {

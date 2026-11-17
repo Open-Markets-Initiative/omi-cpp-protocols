@@ -1,10 +1,11 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.3: messages/OpenInterest29Message.hpp
 #pragma once
 
 #include "../types/SecurityId.hpp"
 #include "../bitfields/MatchEventIndicator.hpp"
 #include "../types/Offset9Padding1.hpp"
 #include "../types/TradeDate.hpp"
-#include "../types/MdEntrySizeQuantity.hpp"
+#include "../types/MdEntrySize.hpp"
 #include "../types/MdEntryTimestamp.hpp"
 #include "../types/RptSeq.hpp"
 
@@ -19,7 +20,7 @@ struct OpenInterest29Message {
     MatchEventIndicator match_event_indicator;
     Offset9Padding1 offset_9_padding_1;
     TradeDate trade_date;
-    MdEntrySizeQuantity md_entry_size_quantity;
+    MdEntrySize md_entry_size;
     MdEntryTimestamp md_entry_timestamp;
     RptSeq rpt_seq;
 

@@ -1,6 +1,8 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/AddOrderMessage.hpp
 #pragma once
 
 #include <array>
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
@@ -8,6 +10,7 @@
 #include <string_view>
 
 #include "../bitfields/AddOrderFlags.hpp"
+#include "../common/Decimal.hpp"
 #include "../enums/Side.hpp"
 #include "../messages/Message.hpp"
 
@@ -24,11 +27,11 @@ class AddOrderMessage : public Message {
     static constexpr std::size_t wire_size = 42;
 
     AddOrderMessage() = default;
-    AddOrderMessage(std::uint32_t nanosecond, std::uint64_t order_id, Side side, std::uint32_t quantity, std::uint32_t instrument_id, const std::array<std::byte, 1>& reserved_a, const std::array<std::byte, 1>& reserved_b, std::int64_t price, const AddOrderFlags& add_order_flags, const std::array<std::byte, 10>& reserved_10);
+    AddOrderMessage(std::chrono::nanoseconds nanosecond, std::uint64_t order_id, Side side, std::uint32_t quantity, std::uint32_t instrument_id, const std::array<std::byte, 1>& reserved_a, const std::array<std::byte, 1>& reserved_b, Decimal price, const AddOrderFlags& add_order_flags, const std::array<std::byte, 10>& reserved_10);
 
     // Nanosecond: Nanoseconds since last message, accurate to the nearest microsecond.
-    std::uint32_t nanosecond() const;
-    void set_nanosecond(std::uint32_t value);
+    std::chrono::nanoseconds nanosecond() const;
+    void set_nanosecond(std::chrono::nanoseconds value);
 
     // Order Id: Unique identifier of the order.
     std::uint64_t order_id() const;
@@ -57,8 +60,8 @@ class AddOrderMessage : public Message {
     void set_reserved_b(const std::array<std::byte, 1>& value);
 
     // Price: Limit price of the order.
-    std::int64_t price() const;
-    void set_price(std::int64_t value);
+    Decimal price() const;
+    void set_price(Decimal value);
 
     // Add Order Flags: Add Order Flags
     const AddOrderFlags& add_order_flags() const;
@@ -85,14 +88,14 @@ class AddOrderMessage : public Message {
     bool operator!=(const AddOrderMessage& other) const;
 
   private:
-    std::uint32_t nanosecond_{};
+    std::chrono::nanoseconds nanosecond_{};
     std::uint64_t order_id_{};
     Side side_{};
     std::uint32_t quantity_{};
     std::uint32_t instrument_id_{};
     std::array<std::byte, 1> reserved_a_{};
     std::array<std::byte, 1> reserved_b_{};
-    std::int64_t price_{};
+    Decimal price_{ 0, -8 };
     AddOrderFlags add_order_flags_{};
     std::array<std::byte, 10> reserved_10_{};
 };

@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.9: messages/AuctionImbalance19Message.hpp
 #pragma once
 
 #include <chrono>
@@ -39,7 +40,7 @@ class AuctionImbalance19Message {
 
     ImbalanceCondition imbalance_condition() const { return ImbalanceCondition{ bytes_.subspan(10) }; }
 
-    std::optional<std::int64_t> md_entry_size_quantity_optional() const { return wire::nullable(wire::read_i64_le(at(12)), static_cast<std::int64_t>(-9223372036854775807LL - 1)); }
+    std::optional<std::int64_t> md_entry_size_optional() const { return wire::nullable(wire::read_i64_le(at(12)), static_cast<std::int64_t>(-9223372036854775807LL - 1)); }
 
     std::optional<std::chrono::nanoseconds> md_entry_timestamp() const { return wire::nullable_duration<std::chrono::nanoseconds>(wire::read_u64_le(at(20)), static_cast<std::uint64_t>(0ULL)); }
 
@@ -55,8 +56,8 @@ class AuctionImbalance19Message {
         out << md_update_action();
         out << ", imbalance_condition=";
         imbalance_condition().print(out);
-        out << ", md_entry_size_quantity_optional=";
-        print::optional(out, md_entry_size_quantity_optional());
+        out << ", md_entry_size_optional=";
+        print::optional(out, md_entry_size_optional());
         out << ", md_entry_timestamp=";
         print::optional_duration(out, md_entry_timestamp());
         out << ", rpt_seq=";

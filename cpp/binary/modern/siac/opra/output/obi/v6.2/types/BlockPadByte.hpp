@@ -1,6 +1,6 @@
+// Siac.Opra.Output.Obi.v6.2: types/BlockPadByte.hpp
 #pragma once
 
-#include <bit>
 #include <cstddef>
 #include <cstdint>
 

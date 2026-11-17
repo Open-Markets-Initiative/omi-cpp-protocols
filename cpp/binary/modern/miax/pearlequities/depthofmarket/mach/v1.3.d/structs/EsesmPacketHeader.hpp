@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: structs/EsesmPacketHeader.hpp
 #pragma once
 
 #include "../types/EsesmPacketLength.hpp"

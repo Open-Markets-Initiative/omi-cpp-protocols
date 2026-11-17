@@ -1,5 +1,7 @@
+// Iex.IexEquities.Tops.IexTp.v1.56: messages/TradeBreakMessage.hpp
 #pragma once
 
+#include <array>
 #include <chrono>
 #include <cstddef>
 #include <cstdint>
@@ -25,7 +27,7 @@ class TradeBreakMessage : public Message {
     static constexpr std::size_t wire_size = 41;
 
     TradeBreakMessage() = default;
-    TradeBreakMessage(const SaleConditionFlags& sale_condition_flags, std::chrono::nanoseconds timestamp, const std::string& symbol, std::uint32_t size, Decimal price, std::uint64_t trade_id, std::uint32_t reserved_4);
+    TradeBreakMessage(const SaleConditionFlags& sale_condition_flags, std::chrono::nanoseconds timestamp, const std::string& symbol, std::uint32_t size, Decimal price, std::uint64_t trade_id, const std::array<std::byte, 4>& reserved_4);
 
     // Sale Condition Flags: Sale Condition Flags
     const SaleConditionFlags& sale_condition_flags() const;
@@ -54,8 +56,9 @@ class TradeBreakMessage : public Message {
     void set_trade_id(std::uint64_t value);
 
     // Reserved 4: Reserved bytes
-    std::uint32_t reserved_4() const;
-    void set_reserved_4(std::uint32_t value);
+    const std::array<std::byte, 4>& reserved_4() const;
+    std::array<std::byte, 4>& reserved_4();
+    void set_reserved_4(const std::array<std::byte, 4>& value);
 
     // Message
     MessageCode type() const override;
@@ -78,7 +81,7 @@ class TradeBreakMessage : public Message {
     std::uint32_t size_{};
     Decimal price_{ 0, -4 };
     std::uint64_t trade_id_{};
-    std::uint32_t reserved_4_{};
+    std::array<std::byte, 4> reserved_4_{};
 };
 
 } // namespace iex::iexequities::tops::iextp::v1_56

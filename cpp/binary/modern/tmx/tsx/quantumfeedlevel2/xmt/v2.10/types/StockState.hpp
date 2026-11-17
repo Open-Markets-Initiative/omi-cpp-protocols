@@ -1,3 +1,4 @@
+// Tmx.Tsx.QuantumFeedLevel2.Xmt.v2.10: types/StockState.hpp
 #pragma once
 
 #include <array>

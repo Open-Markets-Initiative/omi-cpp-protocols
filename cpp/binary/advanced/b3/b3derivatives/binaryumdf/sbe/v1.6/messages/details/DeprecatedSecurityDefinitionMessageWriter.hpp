@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.6: messages/details/DeprecatedSecurityDefinitionMessageWriter.hpp
 #pragma once
 
 #include "../DeprecatedSecurityDefinitionMessage.hpp"

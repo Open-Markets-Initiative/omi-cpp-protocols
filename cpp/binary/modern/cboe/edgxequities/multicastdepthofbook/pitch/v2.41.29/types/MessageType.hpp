@@ -1,3 +1,4 @@
+// Cboe.EdgxEquities.MulticastDepthOfBook.Pitch.v2.41.29: types/MessageType.hpp
 #pragma once
 
 #include <cstddef>

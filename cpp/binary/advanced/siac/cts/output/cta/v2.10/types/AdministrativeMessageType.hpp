@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.10: types/AdministrativeMessageType.hpp
 #pragma once
 
 #include <cstddef>
@@ -13,25 +14,25 @@ namespace siac::cts::output::cta::v2_10 {
 struct administrative_message_type {
 
     enum class enum_type : char {
-        start_of_end_of_day_message = 'A',
-        end_of_end_of_day_message = 'B',
-        start_of_start_of_day_message = 'C',
-        end_of_start_of_day_message = 'D'
+        start_of_end_of_day_summary_message = 'A',
+        end_of_end_of_day_summary_message = 'B',
+        start_of_start_of_day_summary_message = 'C',
+        end_of_start_of_day_summary_message = 'D'
     };
 
     static constexpr std::array<std::pair<std::string_view, enum_type>, 4> from_string_map = {{
-        {"End Of End Of Day Message", enum_type::end_of_end_of_day_message},
-        {"End Of Start Of Day Message", enum_type::end_of_start_of_day_message},
-        {"Start Of End Of Day Message", enum_type::start_of_end_of_day_message},
-        {"Start Of Start Of Day Message", enum_type::start_of_start_of_day_message}
+        {"End Of End Of Day Summary Message", enum_type::end_of_end_of_day_summary_message},
+        {"End Of Start Of Day Summary Message", enum_type::end_of_start_of_day_summary_message},
+        {"Start Of End Of Day Summary Message", enum_type::start_of_end_of_day_summary_message},
+        {"Start Of Start Of Day Summary Message", enum_type::start_of_start_of_day_summary_message}
     }};
 
     static constexpr std::string_view to_string(enum_type value) {
         switch (value) {
-            case enum_type::start_of_end_of_day_message: return "Start Of End Of Day Message";
-            case enum_type::end_of_end_of_day_message: return "End Of End Of Day Message";
-            case enum_type::start_of_start_of_day_message: return "Start Of Start Of Day Message";
-            case enum_type::end_of_start_of_day_message: return "End Of Start Of Day Message";
+            case enum_type::start_of_end_of_day_summary_message: return "Start Of End Of Day Summary Message";
+            case enum_type::end_of_end_of_day_summary_message: return "End Of End Of Day Summary Message";
+            case enum_type::start_of_start_of_day_summary_message: return "Start Of Start Of Day Summary Message";
+            case enum_type::end_of_start_of_day_summary_message: return "End Of Start Of Day Summary Message";
             default: return "unknown";
         }
     }
@@ -74,7 +75,7 @@ struct administrative_message_type {
         if (value.has_value())
             set(value.value());
         else
-            set(enum_type::end_of_start_of_day_message);
+            set(enum_type::end_of_start_of_day_summary_message);
     }
 
   protected:

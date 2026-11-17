@@ -1,5 +1,7 @@
+// Iex.IexEquities.DeepPlus.IexTp.v1.01: messages/OrderDeleteMessage.hpp
 #pragma once
 
+#include <array>
 #include <chrono>
 #include <cstddef>
 #include <cstdint>
@@ -23,11 +25,12 @@ class OrderDeleteMessage : public Message {
     static constexpr std::size_t wire_size = 25;
 
     OrderDeleteMessage() = default;
-    OrderDeleteMessage(char reserved_1, std::chrono::nanoseconds timestamp, const std::string& symbol, std::uint64_t order_id_reference);
+    OrderDeleteMessage(const std::array<std::byte, 1>& reserved_1, std::chrono::nanoseconds timestamp, const std::string& symbol, std::uint64_t order_id_reference);
 
     // Reserved 1: Reserved for future use
-    char reserved_1() const;
-    void set_reserved_1(char value);
+    const std::array<std::byte, 1>& reserved_1() const;
+    std::array<std::byte, 1>& reserved_1();
+    void set_reserved_1(const std::array<std::byte, 1>& value);
 
     // Timestamp: Time stamp of the system event
     std::chrono::nanoseconds timestamp() const;
@@ -57,7 +60,7 @@ class OrderDeleteMessage : public Message {
     bool operator!=(const OrderDeleteMessage& other) const;
 
   private:
-    char reserved_1_{};
+    std::array<std::byte, 1> reserved_1_{};
     std::chrono::nanoseconds timestamp_{};
     std::string symbol_{};
     std::uint64_t order_id_reference_{};

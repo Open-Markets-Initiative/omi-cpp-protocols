@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v1.91: main.cpp
 // Siac.Cqs.Output.Cta.v1.91 benchmark, through the Flyweight reader: every value it reads from every message of the simulated
 // sequence (tests/simulated/siac/cqs/output/cta/v1.91.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -134,7 +135,6 @@ struct MarketStatusMessagePayloadHandler {
         checksum += bench::digest(message.mwcb_level_1().mantissa());
         checksum += bench::digest(message.mwcb_level_2().mantissa());
         checksum += bench::digest(message.mwcb_level_3().mantissa());
-        checksum += bench::digest(message.reserved());
     }
 
     void on(const protocol::MarketWideCircuitBreakerStatusMessage& message) {
@@ -145,7 +145,6 @@ struct MarketStatusMessagePayloadHandler {
         checksum += bench::digest(message.transaction_id());
         checksum += bench::digest(message.participant_reference_number());
         checksum += bench::digest(message.market_wide_circuit_breaker_level_indicator());
-        checksum += bench::digest(message.reserved());
     }
 };
 

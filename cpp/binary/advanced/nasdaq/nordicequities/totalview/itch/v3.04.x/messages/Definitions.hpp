@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: messages/Definitions.hpp
 #pragma once
 
 #include "../structs/PacketHeader.hpp"

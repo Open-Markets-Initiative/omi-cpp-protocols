@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v4.0: types/RequestedSession.hpp
 #pragma once
 
 #include <array>

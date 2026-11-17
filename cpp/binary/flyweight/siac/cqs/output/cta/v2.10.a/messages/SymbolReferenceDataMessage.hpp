@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v2.10.a: messages/SymbolReferenceDataMessage.hpp
 #pragma once
 
 #include <cstddef>
@@ -59,7 +60,7 @@ class SymbolReferenceDataMessage {
 
     std::uint16_t round_lot_size() const { return wire::read_u16_be(at(61)); }
 
-    char reserved() const { return wire::read_char(at(63)); }
+    std::span<const std::byte, 1> reserved() const { return bytes_.subspan(63).template first<1>(); }
 
     LuldTier luld_tier() const { return static_cast<LuldTier>(wire::read_char(at(64))); }
 
@@ -77,11 +78,11 @@ class SymbolReferenceDataMessage {
 
     InstrumentType instrument_type() const { return static_cast<InstrumentType>(wire::read_char(at(74))); }
 
-    char second_reserved() const { return wire::read_char(at(75)); }
+    std::span<const std::byte, 1> second_reserved() const { return bytes_.subspan(75).template first<1>(); }
 
-    char third_reserved() const { return wire::read_char(at(76)); }
+    std::span<const std::byte, 1> third_reserved() const { return bytes_.subspan(76).template first<1>(); }
 
-    std::string_view reserved_128() const { return view::text(at(77), 128, ' '); }
+    std::span<const std::byte, 128> reserved_128() const { return bytes_.subspan(77).template first<128>(); }
 
     void print(std::ostream& out) const {
         out << "SymbolReferenceDataMessage{";
@@ -108,7 +109,7 @@ class SymbolReferenceDataMessage {
         out << ", round_lot_size=";
         out << round_lot_size();
         out << ", reserved=";
-        print::character(out, reserved());
+        print::hex(out, reserved().data(), reserved().size());
         out << ", luld_tier=";
         out << luld_tier();
         out << ", luld_leverage_ratio=";
@@ -126,11 +127,11 @@ class SymbolReferenceDataMessage {
         out << ", instrument_type=";
         out << instrument_type();
         out << ", second_reserved=";
-        print::character(out, second_reserved());
+        print::hex(out, second_reserved().data(), second_reserved().size());
         out << ", third_reserved=";
-        print::character(out, third_reserved());
+        print::hex(out, third_reserved().data(), third_reserved().size());
         out << ", reserved_128=";
-        print::text(out, reserved_128());
+        print::hex(out, reserved_128().data(), reserved_128().size());
         out << '}';
     }
 

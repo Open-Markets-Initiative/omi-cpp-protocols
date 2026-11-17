@@ -33,7 +33,6 @@ struct MktdataPayloadHandler {
         values[entry + ".payload.mktdatamessage.mktdatapayload.channelreset.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_stats_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.channelreset.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_implied_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.channelreset.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().recovery_msg()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.channelreset.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().reserved()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.channelreset.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().end_of_event()));
     }
 
@@ -55,7 +54,6 @@ struct MktdataPayloadHandler {
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuturelegacy.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_stats_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuturelegacy.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_implied_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuturelegacy.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().recovery_msg()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuturelegacy.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().reserved()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuturelegacy.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().end_of_event()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuturelegacy.totnumreportsoptional"] = (message.tot_num_reports_optional().has_value() ? canonical::number((*message.tot_num_reports_optional())) : canonical::absent());
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuturelegacy.securityupdateaction"] = canonical::text(canonical::character(message.security_update_action()));
@@ -92,9 +90,6 @@ struct MktdataPayloadHandler {
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuturelegacy.settlpricetype.actual"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().actual()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuturelegacy.settlpricetype.rounded"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().rounded()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuturelegacy.settlpricetype.intraday"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().intraday()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuturelegacy.settlpricetype.reservedbits"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().reserved_bits()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuturelegacy.settlpricetype.unusedsettlpricetype5"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().unused_settl_price_type_5()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuturelegacy.settlpricetype.unusedsettlpricetype6"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().unused_settl_price_type_6()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuturelegacy.settlpricetype.nullvalue"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().null_value()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuturelegacy.openinterestqty"] = (message.open_interest_qty().has_value() ? canonical::number((*message.open_interest_qty())) : canonical::absent());
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuturelegacy.clearedvolume"] = (message.cleared_volume().has_value() ? canonical::number((*message.cleared_volume())) : canonical::absent());
@@ -120,7 +115,6 @@ struct MktdataPayloadHandler {
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspreadlegacy.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_stats_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspreadlegacy.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_implied_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspreadlegacy.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().recovery_msg()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspreadlegacy.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().reserved()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspreadlegacy.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().end_of_event()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspreadlegacy.totnumreportsoptional"] = (message.tot_num_reports_optional().has_value() ? canonical::number((*message.tot_num_reports_optional())) : canonical::absent());
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspreadlegacy.securityupdateaction"] = canonical::text(canonical::character(message.security_update_action()));
@@ -157,9 +151,6 @@ struct MktdataPayloadHandler {
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspreadlegacy.settlpricetype.actual"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().actual()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspreadlegacy.settlpricetype.rounded"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().rounded()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspreadlegacy.settlpricetype.intraday"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().intraday()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspreadlegacy.settlpricetype.reservedbits"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().reserved_bits()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspreadlegacy.settlpricetype.unusedsettlpricetype5"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().unused_settl_price_type_5()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspreadlegacy.settlpricetype.unusedsettlpricetype6"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().unused_settl_price_type_6()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspreadlegacy.settlpricetype.nullvalue"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().null_value()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspreadlegacy.openinterestqty"] = (message.open_interest_qty().has_value() ? canonical::number((*message.open_interest_qty())) : canonical::absent());
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspreadlegacy.clearedvolume"] = (message.cleared_volume().has_value() ? canonical::number((*message.cleared_volume())) : canonical::absent());
@@ -184,7 +175,6 @@ struct MktdataPayloadHandler {
         values[entry + ".payload.mktdatamessage.mktdatapayload.securitystatus.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_stats_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.securitystatus.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_implied_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.securitystatus.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().recovery_msg()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.securitystatus.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().reserved()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.securitystatus.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().end_of_event()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.securitystatus.securitytradingstatus"] = (message.security_trading_status().has_value() ? canonical::number((*message.security_trading_status())) : canonical::absent());
         values[entry + ".payload.mktdatamessage.mktdatapayload.securitystatus.haltreason"] = canonical::number(message.halt_reason());
@@ -200,7 +190,6 @@ struct MktdataPayloadHandler {
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbooklegacy.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_stats_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbooklegacy.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_implied_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbooklegacy.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().recovery_msg()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbooklegacy.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().reserved()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbooklegacy.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().end_of_event()));
     }
 
@@ -213,7 +202,6 @@ struct MktdataPayloadHandler {
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshdailystatisticslegacy.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_stats_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshdailystatisticslegacy.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_implied_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshdailystatisticslegacy.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().recovery_msg()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshdailystatisticslegacy.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().reserved()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshdailystatisticslegacy.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().end_of_event()));
     }
 
@@ -226,7 +214,6 @@ struct MktdataPayloadHandler {
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshlimitsbandinglegacy.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_stats_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshlimitsbandinglegacy.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_implied_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshlimitsbandinglegacy.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().recovery_msg()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshlimitsbandinglegacy.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().reserved()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshlimitsbandinglegacy.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().end_of_event()));
     }
 
@@ -239,7 +226,6 @@ struct MktdataPayloadHandler {
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshsessionstatisticslegacy.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_stats_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshsessionstatisticslegacy.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_implied_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshsessionstatisticslegacy.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().recovery_msg()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshsessionstatisticslegacy.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().reserved()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshsessionstatisticslegacy.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().end_of_event()));
     }
 
@@ -252,7 +238,6 @@ struct MktdataPayloadHandler {
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshvolume.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_stats_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshvolume.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_implied_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshvolume.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().recovery_msg()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshvolume.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().reserved()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshvolume.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().end_of_event()));
     }
 
@@ -281,7 +266,6 @@ struct MktdataPayloadHandler {
         values[entry + ".payload.mktdatamessage.mktdatapayload.quoterequest.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_stats_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.quoterequest.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_implied_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.quoterequest.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().recovery_msg()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.quoterequest.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().reserved()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.quoterequest.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().end_of_event()));
     }
 
@@ -293,7 +277,6 @@ struct MktdataPayloadHandler {
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoptionlegacy.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_stats_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoptionlegacy.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_implied_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoptionlegacy.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().recovery_msg()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoptionlegacy.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().reserved()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoptionlegacy.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().end_of_event()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoptionlegacy.totnumreportsoptional"] = (message.tot_num_reports_optional().has_value() ? canonical::number((*message.tot_num_reports_optional())) : canonical::absent());
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoptionlegacy.securityupdateaction"] = canonical::text(canonical::character(message.security_update_action()));
@@ -336,9 +319,6 @@ struct MktdataPayloadHandler {
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoptionlegacy.settlpricetype.actual"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().actual()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoptionlegacy.settlpricetype.rounded"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().rounded()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoptionlegacy.settlpricetype.intraday"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().intraday()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoptionlegacy.settlpricetype.reservedbits"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().reserved_bits()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoptionlegacy.settlpricetype.unusedsettlpricetype5"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().unused_settl_price_type_5()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoptionlegacy.settlpricetype.unusedsettlpricetype6"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().unused_settl_price_type_6()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoptionlegacy.settlpricetype.nullvalue"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().null_value()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoptionlegacy.clearedvolume"] = (message.cleared_volume().has_value() ? canonical::number((*message.cleared_volume())) : canonical::absent());
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoptionlegacy.openinterestqty"] = (message.open_interest_qty().has_value() ? canonical::number((*message.open_interest_qty())) : canonical::absent());
@@ -357,7 +337,6 @@ struct MktdataPayloadHandler {
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummarylegacy.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_stats_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummarylegacy.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_implied_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummarylegacy.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().recovery_msg()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummarylegacy.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().reserved()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummarylegacy.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().end_of_event()));
     }
 
@@ -370,7 +349,6 @@ struct MktdataPayloadHandler {
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbooklegacy.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_stats_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbooklegacy.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_implied_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbooklegacy.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().recovery_msg()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbooklegacy.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().reserved()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbooklegacy.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().end_of_event()));
     }
 
@@ -393,7 +371,6 @@ struct MktdataPayloadHandler {
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_stats_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_implied_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().recovery_msg()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().reserved()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().end_of_event()));
     }
 
@@ -406,7 +383,6 @@ struct MktdataPayloadHandler {
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_stats_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_implied_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().recovery_msg()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().reserved()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().end_of_event()));
     }
 
@@ -419,7 +395,6 @@ struct MktdataPayloadHandler {
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_stats_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_implied_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().recovery_msg()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().reserved()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().end_of_event()));
     }
 
@@ -432,7 +407,6 @@ struct MktdataPayloadHandler {
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshdailystatistics.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_stats_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshdailystatistics.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_implied_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshdailystatistics.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().recovery_msg()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshdailystatistics.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().reserved()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshdailystatistics.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().end_of_event()));
     }
 
@@ -445,7 +419,6 @@ struct MktdataPayloadHandler {
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshlimitsbanding.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_stats_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshlimitsbanding.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_implied_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshlimitsbanding.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().recovery_msg()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshlimitsbanding.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().reserved()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshlimitsbanding.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().end_of_event()));
     }
 
@@ -458,7 +431,6 @@ struct MktdataPayloadHandler {
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshsessionstatistics.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_stats_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshsessionstatistics.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_implied_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshsessionstatistics.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().recovery_msg()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshsessionstatistics.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().reserved()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshsessionstatistics.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().end_of_event()));
     }
 
@@ -495,7 +467,6 @@ struct MktdataPayloadHandler {
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuture.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_stats_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuture.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_implied_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuture.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().recovery_msg()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuture.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().reserved()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuture.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().end_of_event()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuture.totnumreportsoptional"] = (message.tot_num_reports_optional().has_value() ? canonical::number((*message.tot_num_reports_optional())) : canonical::absent());
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuture.securityupdateaction"] = canonical::text(canonical::character(message.security_update_action()));
@@ -532,9 +503,6 @@ struct MktdataPayloadHandler {
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuture.settlpricetype.actual"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().actual()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuture.settlpricetype.rounded"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().rounded()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuture.settlpricetype.intraday"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().intraday()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuture.settlpricetype.reservedbits"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().reserved_bits()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuture.settlpricetype.unusedsettlpricetype5"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().unused_settl_price_type_5()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuture.settlpricetype.unusedsettlpricetype6"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().unused_settl_price_type_6()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuture.settlpricetype.nullvalue"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().null_value()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuture.openinterestqty"] = (message.open_interest_qty().has_value() ? canonical::number((*message.open_interest_qty())) : canonical::absent());
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuture.clearedvolume"] = (message.cleared_volume().has_value() ? canonical::number((*message.cleared_volume())) : canonical::absent());
@@ -560,7 +528,6 @@ struct MktdataPayloadHandler {
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoption.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_stats_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoption.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_implied_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoption.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().recovery_msg()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoption.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().reserved()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoption.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().end_of_event()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoption.totnumreportsoptional"] = (message.tot_num_reports_optional().has_value() ? canonical::number((*message.tot_num_reports_optional())) : canonical::absent());
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoption.securityupdateaction"] = canonical::text(canonical::character(message.security_update_action()));
@@ -603,9 +570,6 @@ struct MktdataPayloadHandler {
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoption.settlpricetype.actual"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().actual()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoption.settlpricetype.rounded"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().rounded()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoption.settlpricetype.intraday"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().intraday()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoption.settlpricetype.reservedbits"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().reserved_bits()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoption.settlpricetype.unusedsettlpricetype5"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().unused_settl_price_type_5()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoption.settlpricetype.unusedsettlpricetype6"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().unused_settl_price_type_6()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoption.settlpricetype.nullvalue"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().null_value()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoption.clearedvolume"] = (message.cleared_volume().has_value() ? canonical::number((*message.cleared_volume())) : canonical::absent());
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoption.openinterestqty"] = (message.open_interest_qty().has_value() ? canonical::number((*message.open_interest_qty())) : canonical::absent());
@@ -623,7 +587,6 @@ struct MktdataPayloadHandler {
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspread.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_stats_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspread.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_implied_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspread.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().recovery_msg()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspread.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().reserved()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspread.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().end_of_event()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspread.totnumreportsoptional"] = (message.tot_num_reports_optional().has_value() ? canonical::number((*message.tot_num_reports_optional())) : canonical::absent());
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspread.securityupdateaction"] = canonical::text(canonical::character(message.security_update_action()));
@@ -660,9 +623,6 @@ struct MktdataPayloadHandler {
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspread.settlpricetype.actual"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().actual()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspread.settlpricetype.rounded"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().rounded()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspread.settlpricetype.intraday"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().intraday()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspread.settlpricetype.reservedbits"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().reserved_bits()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspread.settlpricetype.unusedsettlpricetype5"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().unused_settl_price_type_5()));
-        values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspread.settlpricetype.unusedsettlpricetype6"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().unused_settl_price_type_6()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspread.settlpricetype.nullvalue"] = canonical::number(static_cast<std::uint64_t>(message.settl_price_type().null_value()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspread.openinterestqty"] = (message.open_interest_qty().has_value() ? canonical::number((*message.open_interest_qty())) : canonical::absent());
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspread.clearedvolume"] = (message.cleared_volume().has_value() ? canonical::number((*message.cleared_volume())) : canonical::absent());
@@ -730,7 +690,7 @@ struct MdpsessionmgmtPayloadHandler {
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestreject";
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestreject.mdreqidoptional"] = (message.md_req_id_optional().has_value() ? canonical::number((*message.md_req_id_optional())) : canonical::absent());
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestreject.mdreqrejreason"] = canonical::number(message.md_req_rej_reason());
-        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestreject.text"] = canonical::text(std::string(message.text()), '\0', false);
+        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestreject.sessiontext"] = canonical::text(std::string(message.session_text()), '\0', false);
     }
 
     void on(const protocol::SecurityListRequest& message) {

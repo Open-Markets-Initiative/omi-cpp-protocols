@@ -1,3 +1,4 @@
+// Lseg.Lse.Level2Mbo.Gtp.v26.2: enums/TradingStatus.hpp
 #pragma once
 
 #include <cstdint>

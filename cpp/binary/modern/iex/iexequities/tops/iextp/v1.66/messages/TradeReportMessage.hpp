@@ -1,3 +1,4 @@
+// Iex.IexEquities.Tops.IexTp.v1.66: messages/TradeReportMessage.hpp
 #pragma once
 
 #include "../bitfields/SaleConditionFlags.hpp"

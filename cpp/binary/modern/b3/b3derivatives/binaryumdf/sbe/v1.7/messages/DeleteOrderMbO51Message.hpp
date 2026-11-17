@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.7: messages/DeleteOrderMbO51Message.hpp
 #pragma once
 
 #include "../types/SecurityId.hpp"
@@ -6,7 +7,7 @@
 #include "../types/MdEntryType.hpp"
 #include "../types/Offset11Padding1.hpp"
 #include "../types/MdEntryPositionNo.hpp"
-#include "../types/MdEntrySizeQuantityOptional.hpp"
+#include "../types/MdEntrySizeOptional.hpp"
 #include "../types/SecondaryOrderId.hpp"
 #include "../types/MdEntryTimestamp.hpp"
 #include "../types/RptSeq.hpp"
@@ -24,7 +25,7 @@ struct DeleteOrderMbO51Message {
     MdEntryType md_entry_type;
     Offset11Padding1 offset_11_padding_1;
     MdEntryPositionNo md_entry_position_no;
-    MdEntrySizeQuantityOptional md_entry_size_quantity_optional;
+    MdEntrySizeOptional md_entry_size_optional;
     SecondaryOrderId secondary_order_id;
     MdEntryTimestamp md_entry_timestamp;
     RptSeq rpt_seq;

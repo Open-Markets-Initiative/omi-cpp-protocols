@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: enums/IpoQuotationReleaseQualifier.hpp
 #pragma once
 
 #include <cstdint>

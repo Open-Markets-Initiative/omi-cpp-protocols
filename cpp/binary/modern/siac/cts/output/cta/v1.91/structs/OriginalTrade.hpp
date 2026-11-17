@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v1.91: structs/OriginalTrade.hpp
 #pragma once
 
 #include "../structs/SaleConditions.hpp"

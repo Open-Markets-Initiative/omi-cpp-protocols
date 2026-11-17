@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v4.0: messages/StockTradingActionMessage.cpp
 #include "StockTradingActionMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,7 +7,7 @@
 
 namespace nasdaq::nsmequities::totalview::itch::v4_0 {
 
-StockTradingActionMessage::StockTradingActionMessage(std::chrono::nanoseconds nanoseconds, const std::string& stock, TradingState trading_state, char reserved, const std::string& reason)
+StockTradingActionMessage::StockTradingActionMessage(std::chrono::nanoseconds nanoseconds, const std::string& stock, TradingState trading_state, const std::array<std::byte, 1>& reserved, const std::string& reason)
   : nanoseconds_(nanoseconds), stock_(stock), trading_state_(trading_state), reserved_(reserved), reason_(reason) {}
 
 std::chrono::nanoseconds StockTradingActionMessage::nanoseconds() const { return nanoseconds_; }
@@ -19,8 +20,9 @@ void StockTradingActionMessage::set_stock(const std::string& value) { stock_ = v
 TradingState StockTradingActionMessage::trading_state() const { return trading_state_; }
 void StockTradingActionMessage::set_trading_state(TradingState value) { trading_state_ = value; }
 
-char StockTradingActionMessage::reserved() const { return reserved_; }
-void StockTradingActionMessage::set_reserved(char value) { reserved_ = value; }
+const std::array<std::byte, 1>& StockTradingActionMessage::reserved() const { return reserved_; }
+std::array<std::byte, 1>& StockTradingActionMessage::reserved() { return reserved_; }
+void StockTradingActionMessage::set_reserved(const std::array<std::byte, 1>& value) { reserved_ = value; }
 
 const std::string& StockTradingActionMessage::reason() const { return reason_; }
 std::string& StockTradingActionMessage::reason() { return reason_; }
@@ -43,7 +45,7 @@ std::size_t StockTradingActionMessage::decode(const std::byte* data, std::size_t
     trading_state_ = static_cast<TradingState>(wire::read_char(data + offset));
     offset += 1;
 
-    reserved_ = wire::read_char(data + offset);
+    wire::read_bytes(data + offset, reserved_.data(), 1);
     offset += 1;
 
     reason_ = wire::read_text(data + offset, 4, ' ');
@@ -65,7 +67,7 @@ std::size_t StockTradingActionMessage::encode(std::byte* data, std::size_t capac
     wire::write_char(data + offset, static_cast<char>(trading_state_));
     offset += 1;
 
-    wire::write_char(data + offset, reserved_);
+    wire::write_bytes(data + offset, reserved_.data(), 1);
     offset += 1;
 
     wire::write_text(data + offset, 4, ' ', reason_);
@@ -95,7 +97,7 @@ void StockTradingActionMessage::print(std::ostream& out) const {
     out << ", trading_state=";
     out << trading_state_;
     out << ", reserved=";
-    print::character(out, reserved_);
+    print::hex(out, reserved_.data(), reserved_.size());
     out << ", reason=";
     print::text(out, reason_);
     out << '}';

@@ -1,5 +1,7 @@
+// Siac.Cqs.Output.Cta.v2.10.a: messages/AuctionStatusMessage.hpp
 #pragma once
 
+#include <array>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
@@ -30,7 +32,7 @@ class AuctionStatusMessage : public QuoteMessagePayload {
     static constexpr std::size_t wire_size = 124;
 
     AuctionStatusMessage() = default;
-    AuctionStatusMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol, InstrumentType instrument_type, Decimal auction_collar_reference_price, Decimal auction_collar_upper_threshold_price, Decimal auction_collar_lower_threshold_price, std::uint8_t number_of_extensions, ShortSaleRestrictionIndicator short_sale_restriction_indicator, PrimaryListingMarketParticipantId primary_listing_market_participant_id, FinancialStatusIndicator financial_status_indicator, const std::string& reserved_62);
+    AuctionStatusMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol, InstrumentType instrument_type, Decimal auction_collar_reference_price, Decimal auction_collar_upper_threshold_price, Decimal auction_collar_lower_threshold_price, std::uint8_t number_of_extensions, ShortSaleRestrictionIndicator short_sale_restriction_indicator, PrimaryListingMarketParticipantId primary_listing_market_participant_id, FinancialStatusIndicator financial_status_indicator, const std::array<std::byte, 62>& reserved_62);
 
     // Participant Id: Identifies the Participant or Processor that generated the message
     ParticipantId participant_id() const;
@@ -100,9 +102,9 @@ class AuctionStatusMessage : public QuoteMessagePayload {
     void set_financial_status_indicator(FinancialStatusIndicator value);
 
     // Reserved 62: Space-filled. Field is reserved for future use
-    const std::string& reserved_62() const;
-    std::string& reserved_62();
-    void set_reserved_62(const std::string& value);
+    const std::array<std::byte, 62>& reserved_62() const;
+    std::array<std::byte, 62>& reserved_62();
+    void set_reserved_62(const std::array<std::byte, 62>& value);
 
     // QuoteMessagePayload
     QuoteMessagePayloadCode type() const override;
@@ -133,7 +135,7 @@ class AuctionStatusMessage : public QuoteMessagePayload {
     ShortSaleRestrictionIndicator short_sale_restriction_indicator_{};
     PrimaryListingMarketParticipantId primary_listing_market_participant_id_{};
     FinancialStatusIndicator financial_status_indicator_{};
-    std::string reserved_62_{};
+    std::array<std::byte, 62> reserved_62_{};
 };
 
 } // namespace siac::cqs::output::cta::v2_10_a

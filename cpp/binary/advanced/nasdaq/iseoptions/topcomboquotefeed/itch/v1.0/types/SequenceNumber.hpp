@@ -1,3 +1,4 @@
+// Nasdaq.IseOptions.TopComboQuoteFeed.Itch.v1.0: types/SequenceNumber.hpp
 #pragma once
 
 #include <cstddef>

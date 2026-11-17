@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.ImbalancesFeed.Xdp.v2.2.a: types/AuctionStatus.hpp
 #pragma once
 
 #include <cstddef>

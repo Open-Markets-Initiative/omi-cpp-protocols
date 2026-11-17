@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.1: messages/OpenInterest29Message.hpp
 #pragma once
 
 #include <chrono>
@@ -37,7 +38,7 @@ class OpenInterest29Message {
 
     std::uint16_t trade_date() const { return wire::read_u16_le(at(10)); }
 
-    std::int64_t md_entry_size_quantity() const { return wire::read_i64_le(at(12)); }
+    std::int64_t md_entry_size() const { return wire::read_i64_le(at(12)); }
 
     std::optional<std::chrono::nanoseconds> md_entry_timestamp() const { return wire::nullable_duration<std::chrono::nanoseconds>(wire::read_u64_le(at(20)), static_cast<std::uint64_t>(0ULL)); }
 
@@ -53,8 +54,8 @@ class OpenInterest29Message {
         print::hex(out, offset_9_padding_1().data(), offset_9_padding_1().size());
         out << ", trade_date=";
         out << trade_date();
-        out << ", md_entry_size_quantity=";
-        out << md_entry_size_quantity();
+        out << ", md_entry_size=";
+        out << md_entry_size();
         out << ", md_entry_timestamp=";
         print::optional_duration(out, md_entry_timestamp());
         out << ", rpt_seq=";

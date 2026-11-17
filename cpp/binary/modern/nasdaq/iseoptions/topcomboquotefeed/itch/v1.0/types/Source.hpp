@@ -1,6 +1,6 @@
+// Nasdaq.IseOptions.TopComboQuoteFeed.Itch.v1.0: types/Source.hpp
 #pragma once
 
-#include <bit>
 #include <cstddef>
 #include <cstdint>
 

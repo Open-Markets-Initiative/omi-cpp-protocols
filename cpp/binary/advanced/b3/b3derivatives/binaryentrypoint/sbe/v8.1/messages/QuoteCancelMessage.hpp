@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1: messages/QuoteCancelMessage.hpp
 #pragma once
 
 #include <cstddef>
@@ -76,14 +77,14 @@ struct quote_cancel_message {
 
 // layout verification
 static_assert(offsetof(quote_cancel_message::fields_type, bidirectional_business_header) == 0, "unexpected offset of quote_cancel_message::fields_type::bidirectional_business_header");
-static_assert(offsetof(quote_cancel_message::fields_type, security_id) == 19, "unexpected offset of quote_cancel_message::fields_type::security_id");
-static_assert(offsetof(quote_cancel_message::fields_type, quote_req_id_optional) == 27, "unexpected offset of quote_cancel_message::fields_type::quote_req_id_optional");
-static_assert(offsetof(quote_cancel_message::fields_type, quote_id_optional) == 35, "unexpected offset of quote_cancel_message::fields_type::quote_id_optional");
-static_assert(offsetof(quote_cancel_message::fields_type, account) == 43, "unexpected offset of quote_cancel_message::fields_type::account");
-static_assert(offsetof(quote_cancel_message::fields_type, sender_location) == 47, "unexpected offset of quote_cancel_message::fields_type::sender_location");
-static_assert(offsetof(quote_cancel_message::fields_type, entering_trader) == 57, "unexpected offset of quote_cancel_message::fields_type::entering_trader");
-static_assert(offsetof(quote_cancel_message::fields_type, executing_trader) == 62, "unexpected offset of quote_cancel_message::fields_type::executing_trader");
-static_assert(sizeof(quote_cancel_message::fields_type) == 67, "unexpected sizeof quote_cancel_message::fields_type");
+static_assert(offsetof(quote_cancel_message::fields_type, security_id) == 20, "unexpected offset of quote_cancel_message::fields_type::security_id");
+static_assert(offsetof(quote_cancel_message::fields_type, quote_req_id_optional) == 28, "unexpected offset of quote_cancel_message::fields_type::quote_req_id_optional");
+static_assert(offsetof(quote_cancel_message::fields_type, quote_id_optional) == 36, "unexpected offset of quote_cancel_message::fields_type::quote_id_optional");
+static_assert(offsetof(quote_cancel_message::fields_type, account) == 44, "unexpected offset of quote_cancel_message::fields_type::account");
+static_assert(offsetof(quote_cancel_message::fields_type, sender_location) == 48, "unexpected offset of quote_cancel_message::fields_type::sender_location");
+static_assert(offsetof(quote_cancel_message::fields_type, entering_trader) == 58, "unexpected offset of quote_cancel_message::fields_type::entering_trader");
+static_assert(offsetof(quote_cancel_message::fields_type, executing_trader) == 63, "unexpected offset of quote_cancel_message::fields_type::executing_trader");
+static_assert(sizeof(quote_cancel_message::fields_type) == 68, "unexpected sizeof quote_cancel_message::fields_type");
 
 #pragma pack(pop)
 }

@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v2.10.a: main.cpp
 // Siac.Cqs.Output.Cta.v2.10.a benchmark, through the Flyweight reader: every value it reads from every message of the simulated
 // sequence (tests/simulated/siac/cqs/output/cta/v2.10.a.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -36,7 +37,6 @@ struct AdministrativeMessagePayloadHandler {
         checksum += bench::digest(message.primary_listing_market_previous_closing_price().mantissa());
         checksum += bench::digest(message.consolidated_closing_price().mantissa());
         checksum += bench::digest(message.round_lot_size());
-        checksum += bench::digest(message.reserved());
         checksum += bench::digest(message.luld_tier());
         checksum += bench::digest(message.luld_leverage_ratio().mantissa());
         checksum += bench::digest(message.test());
@@ -45,9 +45,6 @@ struct AdministrativeMessagePayloadHandler {
         checksum += bench::digest(message.short_sale_restriction_indicator());
         checksum += bench::digest(message.halt_reason());
         checksum += bench::digest(message.instrument_type());
-        checksum += bench::digest(message.second_reserved());
-        checksum += bench::digest(message.third_reserved());
-        checksum += bench::digest(message.reserved_128());
     }
 };
 
@@ -133,7 +130,6 @@ struct MarketStatusMessagePayloadHandler {
         checksum += bench::digest(message.mwcb_level_1().mantissa());
         checksum += bench::digest(message.mwcb_level_2().mantissa());
         checksum += bench::digest(message.mwcb_level_3().mantissa());
-        checksum += bench::digest(message.reserved());
     }
 
     void on(const protocol::MarketWideCircuitBreakerStatusMessage& message) {
@@ -144,7 +140,6 @@ struct MarketStatusMessagePayloadHandler {
         checksum += bench::digest(message.transaction_id());
         checksum += bench::digest(message.participant_reference_number());
         checksum += bench::digest(message.market_wide_circuit_breaker_level_indicator());
-        checksum += bench::digest(message.reserved());
     }
 };
 
@@ -168,7 +163,6 @@ struct QuoteMessagePayloadHandler {
         checksum += bench::digest(message.short_sale_restriction_indicator());
         checksum += bench::digest(message.primary_listing_market_participant_id());
         checksum += bench::digest(message.financial_status_indicator());
-        checksum += bench::digest(message.reserved_62());
     }
 
     void on(const protocol::LongQuoteMessage& message) {

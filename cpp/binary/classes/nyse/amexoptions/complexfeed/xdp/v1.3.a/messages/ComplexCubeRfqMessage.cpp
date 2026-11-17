@@ -1,3 +1,4 @@
+// Nyse.AmexOptions.ComplexFeed.Xdp.v1.3.a: messages/ComplexCubeRfqMessage.cpp
 #include "ComplexCubeRfqMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,11 +7,11 @@
 
 namespace nyse::amexoptions::complexfeed::xdp::v1_3_a {
 
-ComplexCubeRfqMessage::ComplexCubeRfqMessage(std::uint32_t source_time, std::uint32_t source_ns, std::uint32_t complex_index, std::uint32_t symbol_seq_num, Side side, const std::array<std::byte, 1>& reserved_1, std::uint16_t volume_2, std::int32_t price)
+ComplexCubeRfqMessage::ComplexCubeRfqMessage(std::chrono::seconds source_time, std::uint32_t source_ns, std::uint32_t complex_index, std::uint32_t symbol_seq_num, Side side, const std::array<std::byte, 1>& reserved_1, std::uint16_t volume_2, std::int32_t price)
   : source_time_(source_time), source_ns_(source_ns), complex_index_(complex_index), symbol_seq_num_(symbol_seq_num), side_(side), reserved_1_(reserved_1), volume_2_(volume_2), price_(price) {}
 
-std::uint32_t ComplexCubeRfqMessage::source_time() const { return source_time_; }
-void ComplexCubeRfqMessage::set_source_time(std::uint32_t value) { source_time_ = value; }
+std::chrono::seconds ComplexCubeRfqMessage::source_time() const { return source_time_; }
+void ComplexCubeRfqMessage::set_source_time(std::chrono::seconds value) { source_time_ = value; }
 
 std::uint32_t ComplexCubeRfqMessage::source_ns() const { return source_ns_; }
 void ComplexCubeRfqMessage::set_source_ns(std::uint32_t value) { source_ns_ = value; }
@@ -42,7 +43,7 @@ std::size_t ComplexCubeRfqMessage::decode(const std::byte* data, std::size_t len
     std::size_t offset = 0;
     wire::require("ComplexCubeRfqMessage", wire_size, length);
 
-    source_time_ = wire::read_u32_le(data + offset);
+    source_time_ = std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     source_ns_ = wire::read_u32_le(data + offset);
@@ -73,7 +74,7 @@ std::size_t ComplexCubeRfqMessage::encode(std::byte* data, std::size_t capacity)
     std::size_t offset = 0;
     wire::require_capacity("ComplexCubeRfqMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_.count()));
     offset += 4;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_ns_));
@@ -115,7 +116,7 @@ std::unique_ptr<Message> ComplexCubeRfqMessage::clone() const {
 void ComplexCubeRfqMessage::print(std::ostream& out) const {
     out << "ComplexCubeRfqMessage{";
     out << "source_time=";
-    out << source_time_;
+    out << source_time_.count();
     out << ", source_ns=";
     out << source_ns_;
     out << ", complex_index=";

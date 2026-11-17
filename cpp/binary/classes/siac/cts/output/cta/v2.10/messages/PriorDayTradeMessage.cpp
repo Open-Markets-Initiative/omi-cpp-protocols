@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.10: messages/PriorDayTradeMessage.cpp
 #include "PriorDayTradeMessage.hpp"
 
 #include "../common/Print.hpp"

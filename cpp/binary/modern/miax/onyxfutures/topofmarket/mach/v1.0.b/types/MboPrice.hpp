@@ -1,3 +1,4 @@
+// Miax.OnyxFutures.TopOfMarket.Mach.v1.0.b: types/MboPrice.hpp
 #pragma once
 
 #include <cstddef>
@@ -13,10 +14,11 @@ struct MboPrice {
     static constexpr std::size_t precision = 9;
     static constexpr double denominator = 1000000000;
     using type = std::int64_t;
+static const type no_value = 999999999999999999;
 
-    // default constructor
+    // default constructor: the null the model states, where it states one
     constexpr MboPrice()
-     : value{ 0 } {}
+     : value{ no_value } {}
 
     // constructor for MboPrice field
     constexpr explicit MboPrice(const std::int64_t value)

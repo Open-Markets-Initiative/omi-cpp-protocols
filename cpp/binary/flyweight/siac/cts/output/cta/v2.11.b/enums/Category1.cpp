@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: enums/Category1.cpp
 #include "Category1.hpp"
 
 namespace siac::cts::output::cta::v2_11_b {

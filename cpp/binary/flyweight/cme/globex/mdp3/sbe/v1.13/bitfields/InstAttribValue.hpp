@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.13: bitfields/InstAttribValue.hpp
 #pragma once
 
 #include <cstddef>
@@ -83,8 +84,6 @@ class InstAttribValue {
 
     bool hedge_instrument() const { return (raw() & static_cast<std::uint32_t>(0x8000000)) != 0; }
 
-    std::uint8_t reserved_4() const { return static_cast<std::uint8_t>((raw() & static_cast<std::uint32_t>(0xF0000000)) >> 28); }
-
     void print(std::ostream& out) const {
         out << "InstAttribValue{";
         out << "electronic_match_eligible=";
@@ -143,8 +142,6 @@ class InstAttribValue {
         out << (efix_instrument() ? "true" : "false");
         out << ", hedge_instrument=";
         out << (hedge_instrument() ? "true" : "false");
-        out << ", reserved_4=";
-        out << static_cast<unsigned long long>(reserved_4());
         out << '}';
     }
 

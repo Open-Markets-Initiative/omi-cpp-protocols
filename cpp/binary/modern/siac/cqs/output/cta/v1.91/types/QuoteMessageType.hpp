@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v1.91: types/QuoteMessageType.hpp
 #pragma once
 
 #include <cstddef>

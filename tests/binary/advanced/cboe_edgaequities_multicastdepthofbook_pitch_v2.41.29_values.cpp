@@ -232,7 +232,7 @@ struct Reader {
         values[entry + ".messageheader.messagelength"] = canonical::number(message.header.message_length.get().value());
         values[entry + ".messageheader.messagetype"] = canonical::number(message.header.message_type.get().value());
         values[entry + ".payload"] = "packet.messages.message.payload.endofsession";
-        values[entry + ".payload.endofsession.lasttimestamp"] = canonical::number(message.fields.last_timestamp.get().value());
+        values[entry + ".payload.endofsession.timeoffset"] = canonical::number(message.fields.time_offset.get().value());
     }
 
     void on_message(const protocol::trading_status_message& message, std::uint64_t, const protocol::packet_header&) {

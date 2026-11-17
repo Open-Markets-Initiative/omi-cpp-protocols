@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.3: messages/EmptyBookMessage.hpp
 #pragma once
 
 #include "../types/SecurityId.hpp"

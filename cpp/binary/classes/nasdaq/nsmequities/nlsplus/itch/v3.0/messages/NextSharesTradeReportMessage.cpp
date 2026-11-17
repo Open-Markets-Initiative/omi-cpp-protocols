@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: messages/NextSharesTradeReportMessage.cpp
 #include "NextSharesTradeReportMessage.hpp"
 
 #include "../common/Print.hpp"

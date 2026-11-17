@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v13.0: messages/ExecutionSummary.hpp
 #pragma once
 
 #include <array>
@@ -30,7 +31,7 @@ class ExecutionSummary : public Message {
     ExecutionSummary() = default;
     ExecutionSummary(std::optional<std::int64_t> security_id, std::optional<std::chrono::nanoseconds> request_time, std::optional<std::chrono::nanoseconds> exec_id, std::optional<Decimal> last_qty, std::optional<AggressorSide> aggressor_side, const std::array<std::byte, 1>& pad1, std::optional<TradeCondition> trade_condition, std::optional<std::uint8_t> trading_hhi_indicator, const std::array<std::byte, 3>& pad3, std::optional<Decimal> last_px, const RemainingOrderDetailsComp& remaining_order_details_comp, std::optional<Decimal> resting_hidden_qty, std::optional<Decimal> resting_cxl_qty, std::optional<std::chrono::nanoseconds> aggressor_time);
 
-    // Security Id:
+    // Security Id: Unique instrument identifier
     std::optional<std::int64_t> security_id() const;
     void set_security_id(std::optional<std::int64_t> value);
 
@@ -42,7 +43,7 @@ class ExecutionSummary : public Message {
     std::optional<std::chrono::nanoseconds> exec_id() const;
     void set_exec_id(std::optional<std::chrono::nanoseconds> value);
 
-    // Last Qty:
+    // Last Qty: Total executed matched quantity of this match event
     std::optional<Decimal> last_qty() const;
     void set_last_qty(std::optional<Decimal> value);
 

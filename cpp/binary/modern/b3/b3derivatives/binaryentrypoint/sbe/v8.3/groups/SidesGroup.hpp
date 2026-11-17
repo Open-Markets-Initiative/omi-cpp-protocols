@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: groups/SidesGroup.hpp
 #pragma once
 
 #include "../types/Side.hpp"

@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: types/OfferSizeShort.hpp
 #pragma once
 
 #include <bit>

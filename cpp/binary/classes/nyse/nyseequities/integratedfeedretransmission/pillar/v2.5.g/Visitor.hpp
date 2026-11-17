@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeedRetransmission.Pillar.v2.5.g: Visitor.hpp
 #pragma once
 
 namespace nyse::nyseequities::integratedfeedretransmission::pillar::v2_5_g {

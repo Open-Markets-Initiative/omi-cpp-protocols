@@ -1,3 +1,4 @@
+// Asx.AsxDerivatives.Ntp.Itch.v1.05: messages/MarketSettlementMessage.hpp
 #pragma once
 
 #include "../types/Nanoseconds.hpp"

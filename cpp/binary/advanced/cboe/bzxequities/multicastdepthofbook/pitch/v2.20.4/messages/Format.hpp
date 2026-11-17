@@ -1,3 +1,4 @@
+// Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.20.4: messages/Format.hpp
 #pragma once
 
 #include <ostream>
@@ -202,7 +203,7 @@ inline std::ostream& operator<<(std::ostream& os, const trade_break_message& msg
 }
 
 inline std::ostream& operator<<(std::ostream& os, const end_of_session_message& msg) {
-    os << "timestamp=" << msg.fields.timestamp.get().value()
+    os << "time_offset=" << msg.fields.time_offset.get().value()
        ;
     return os;
 }
@@ -220,7 +221,6 @@ inline std::ostream& operator<<(std::ostream& os, const trading_status_message& 
        << ",symbol_long=\"" << msg.fields.symbol_long.get_trimmed().value() << '"'
        << ",trading_status=\"" << pitch_multicastdepthofbook::trading_status::to_string(msg.fields.trading_status.get().value()) << '"'
        << ",reg_sho_action=\"" << pitch_multicastdepthofbook::reg_sho_action::to_string(msg.fields.reg_sho_action.get().value()) << '"'
-       << ",second_reserved_1=\"" << msg.fields.second_reserved_1.get().value() << '"'
        ;
     return os;
 }

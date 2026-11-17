@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Ouch.v1.11: definitions.hpp
 #pragma once
 
 // Every flyweight view and reader of Jnx.JnxEquities.Pts.Ouch.v1.11.

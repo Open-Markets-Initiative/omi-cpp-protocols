@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.3: messages/News5Message.hpp
 #pragma once
 
 #include "../types/SecurityIdOptional.hpp"

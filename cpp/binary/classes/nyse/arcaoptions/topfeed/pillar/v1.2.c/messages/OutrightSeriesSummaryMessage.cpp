@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.TopFeed.Pillar.v1.2.c: messages/OutrightSeriesSummaryMessage.cpp
 #include "OutrightSeriesSummaryMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,14 +7,14 @@
 
 namespace nyse::arcaoptions::topfeed::pillar::v1_2_c {
 
-OutrightSeriesSummaryMessage::OutrightSeriesSummaryMessage(std::uint32_t source_time, std::uint32_t source_time_ns, std::uint32_t series_index, std::int32_t high_price, std::int32_t low_price, std::int32_t open, std::int32_t close, std::uint32_t total_volume)
+OutrightSeriesSummaryMessage::OutrightSeriesSummaryMessage(std::chrono::seconds source_time, std::chrono::nanoseconds source_time_ns, std::uint32_t series_index, std::int32_t high_price, std::int32_t low_price, std::int32_t open, std::int32_t close, std::uint32_t total_volume)
   : source_time_(source_time), source_time_ns_(source_time_ns), series_index_(series_index), high_price_(high_price), low_price_(low_price), open_(open), close_(close), total_volume_(total_volume) {}
 
-std::uint32_t OutrightSeriesSummaryMessage::source_time() const { return source_time_; }
-void OutrightSeriesSummaryMessage::set_source_time(std::uint32_t value) { source_time_ = value; }
+std::chrono::seconds OutrightSeriesSummaryMessage::source_time() const { return source_time_; }
+void OutrightSeriesSummaryMessage::set_source_time(std::chrono::seconds value) { source_time_ = value; }
 
-std::uint32_t OutrightSeriesSummaryMessage::source_time_ns() const { return source_time_ns_; }
-void OutrightSeriesSummaryMessage::set_source_time_ns(std::uint32_t value) { source_time_ns_ = value; }
+std::chrono::nanoseconds OutrightSeriesSummaryMessage::source_time_ns() const { return source_time_ns_; }
+void OutrightSeriesSummaryMessage::set_source_time_ns(std::chrono::nanoseconds value) { source_time_ns_ = value; }
 
 std::uint32_t OutrightSeriesSummaryMessage::series_index() const { return series_index_; }
 void OutrightSeriesSummaryMessage::set_series_index(std::uint32_t value) { series_index_ = value; }
@@ -41,10 +42,10 @@ std::size_t OutrightSeriesSummaryMessage::decode(const std::byte* data, std::siz
     std::size_t offset = 0;
     wire::require("OutrightSeriesSummaryMessage", wire_size, length);
 
-    source_time_ = wire::read_u32_le(data + offset);
+    source_time_ = std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
-    source_time_ns_ = wire::read_u32_le(data + offset);
+    source_time_ns_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     series_index_ = wire::read_u32_le(data + offset);
@@ -72,10 +73,10 @@ std::size_t OutrightSeriesSummaryMessage::encode(std::byte* data, std::size_t ca
     std::size_t offset = 0;
     wire::require_capacity("OutrightSeriesSummaryMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_.count()));
     offset += 4;
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_.count()));
     offset += 4;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(series_index_));
@@ -114,9 +115,9 @@ std::unique_ptr<Message> OutrightSeriesSummaryMessage::clone() const {
 void OutrightSeriesSummaryMessage::print(std::ostream& out) const {
     out << "OutrightSeriesSummaryMessage{";
     out << "source_time=";
-    out << source_time_;
+    out << source_time_.count();
     out << ", source_time_ns=";
-    out << source_time_ns_;
+    out << source_time_ns_.count();
     out << ", series_index=";
     out << series_index_;
     out << ", high_price=";

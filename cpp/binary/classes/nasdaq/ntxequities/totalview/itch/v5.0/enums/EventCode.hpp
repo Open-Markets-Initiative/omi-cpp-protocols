@@ -1,3 +1,4 @@
+// Nasdaq.NtxEquities.TotalView.Itch.v5.0: enums/EventCode.hpp
 #pragma once
 
 #include <cstdint>

@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.9: structs/PriorDayMessage.hpp
 #pragma once
 
 #include "../types/PriorDayMessageType.hpp"

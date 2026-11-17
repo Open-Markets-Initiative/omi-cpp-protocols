@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v2: enums/ErrorCode.hpp
 #pragma once
 
 #include <cstdint>

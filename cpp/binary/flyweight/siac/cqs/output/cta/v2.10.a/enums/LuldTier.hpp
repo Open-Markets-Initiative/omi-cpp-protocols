@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v2.10.a: enums/LuldTier.hpp
 #pragma once
 
 #include <cstdint>

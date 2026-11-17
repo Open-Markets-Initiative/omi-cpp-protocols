@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.10: structs/ControlMessage.hpp
 #pragma once
 
 #include "../types/ControlMessageType.hpp"

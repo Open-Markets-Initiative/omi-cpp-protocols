@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: structs/BestBidAndOfferAppendage.cpp
 #include "BestBidAndOfferAppendage.hpp"
 
 #include "../common/Print.hpp"

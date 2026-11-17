@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: enums/TradingStatus.hpp
 #pragma once
 
 #include <cstdint>

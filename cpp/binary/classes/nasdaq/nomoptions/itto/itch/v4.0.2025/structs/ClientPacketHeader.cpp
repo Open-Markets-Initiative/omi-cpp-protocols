@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: structs/ClientPacketHeader.cpp
 #include "ClientPacketHeader.hpp"
 
 #include "../common/Print.hpp"

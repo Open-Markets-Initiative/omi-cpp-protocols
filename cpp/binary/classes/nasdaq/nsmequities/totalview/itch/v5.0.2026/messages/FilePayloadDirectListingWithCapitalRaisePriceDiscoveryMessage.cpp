@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2026: messages/FilePayloadDirectListingWithCapitalRaisePriceDiscoveryMessage.cpp
 #include "FilePayloadDirectListingWithCapitalRaisePriceDiscoveryMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,7 +7,7 @@
 
 namespace nasdaq::nsmequities::totalview::itch::v5_0_2026 {
 
-FilePayloadDirectListingWithCapitalRaisePriceDiscoveryMessage::FilePayloadDirectListingWithCapitalRaisePriceDiscoveryMessage(std::uint16_t stock_locate, std::uint16_t tracking_number, std::chrono::nanoseconds timestamp, const std::string& stock, OpenEligibilityStatus open_eligibility_status, Decimal minimum_allowable_price, Decimal maximum_allowable_price, Decimal near_execution_price, std::uint64_t near_execution_time, Decimal lower_price_range_collar, Decimal upper_price_range_collar)
+FilePayloadDirectListingWithCapitalRaisePriceDiscoveryMessage::FilePayloadDirectListingWithCapitalRaisePriceDiscoveryMessage(std::uint16_t stock_locate, std::uint16_t tracking_number, std::chrono::nanoseconds timestamp, const std::string& stock, OpenEligibilityStatus open_eligibility_status, Decimal minimum_allowable_price, Decimal maximum_allowable_price, Decimal near_execution_price, std::chrono::nanoseconds near_execution_time, Decimal lower_price_range_collar, Decimal upper_price_range_collar)
   : stock_locate_(stock_locate), tracking_number_(tracking_number), timestamp_(timestamp), stock_(stock), open_eligibility_status_(open_eligibility_status), minimum_allowable_price_(minimum_allowable_price), maximum_allowable_price_(maximum_allowable_price), near_execution_price_(near_execution_price), near_execution_time_(near_execution_time), lower_price_range_collar_(lower_price_range_collar), upper_price_range_collar_(upper_price_range_collar) {}
 
 std::uint16_t FilePayloadDirectListingWithCapitalRaisePriceDiscoveryMessage::stock_locate() const { return stock_locate_; }
@@ -35,8 +36,9 @@ void FilePayloadDirectListingWithCapitalRaisePriceDiscoveryMessage::set_maximum_
 Decimal FilePayloadDirectListingWithCapitalRaisePriceDiscoveryMessage::near_execution_price() const { return near_execution_price_; }
 void FilePayloadDirectListingWithCapitalRaisePriceDiscoveryMessage::set_near_execution_price(Decimal value) { near_execution_price_ = value; }
 
-std::uint64_t FilePayloadDirectListingWithCapitalRaisePriceDiscoveryMessage::near_execution_time() const { return near_execution_time_; }
-void FilePayloadDirectListingWithCapitalRaisePriceDiscoveryMessage::set_near_execution_time(std::uint64_t value) { near_execution_time_ = value; }
+std::chrono::nanoseconds FilePayloadDirectListingWithCapitalRaisePriceDiscoveryMessage::near_execution_time() const { return near_execution_time_; }
+void FilePayloadDirectListingWithCapitalRaisePriceDiscoveryMessage::set_near_execution_time(std::chrono::nanoseconds value) { near_execution_time_ = value; }
+std::int64_t FilePayloadDirectListingWithCapitalRaisePriceDiscoveryMessage::near_execution_time_utc(const calendar::Day& day) const { return calendar::midnight(day, "America/New_York").utc(static_cast<std::int64_t>(near_execution_time_.count())); }
 
 Decimal FilePayloadDirectListingWithCapitalRaisePriceDiscoveryMessage::lower_price_range_collar() const { return lower_price_range_collar_; }
 void FilePayloadDirectListingWithCapitalRaisePriceDiscoveryMessage::set_lower_price_range_collar(Decimal value) { lower_price_range_collar_ = value; }
@@ -76,7 +78,7 @@ std::size_t FilePayloadDirectListingWithCapitalRaisePriceDiscoveryMessage::decod
     near_execution_price_ = Decimal(static_cast<std::int64_t>(wire::read_u32_be(data + offset)), -4);
     offset += 4;
 
-    near_execution_time_ = wire::read_u64_be(data + offset);
+    near_execution_time_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u64_be(data + offset)));
     offset += 8;
 
     lower_price_range_collar_ = Decimal(static_cast<std::int64_t>(wire::read_u32_be(data + offset)), -4);
@@ -116,7 +118,7 @@ std::size_t FilePayloadDirectListingWithCapitalRaisePriceDiscoveryMessage::encod
     wire::write_u32_be(data + offset, static_cast<std::uint32_t>(near_execution_price_.mantissa()));
     offset += 4;
 
-    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(near_execution_time_));
+    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(near_execution_time_.count()));
     offset += 8;
 
     wire::write_u32_be(data + offset, static_cast<std::uint32_t>(lower_price_range_collar_.mantissa()));
@@ -159,7 +161,7 @@ void FilePayloadDirectListingWithCapitalRaisePriceDiscoveryMessage::print(std::o
     out << ", near_execution_price=";
     out << near_execution_price_;
     out << ", near_execution_time=";
-    out << near_execution_time_;
+    calendar::print(out, near_execution_time_.count(), 1, "America/New_York");
     out << ", lower_price_range_collar=";
     out << lower_price_range_collar_;
     out << ", upper_price_range_collar=";

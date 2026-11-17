@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.9: iterators/SnapshotFullRefreshGroupIterator.hpp
 #pragma once
 
 #include "../definitions.hpp"

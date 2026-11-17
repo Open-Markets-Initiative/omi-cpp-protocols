@@ -1,3 +1,4 @@
+// Cboe.EdgxOptions.MulticastDepthOfBook.Pitch.v2.41.80: messages/SymbolMappingMessage.hpp
 #pragma once
 
 #include "../types/FeedSymbol.hpp"

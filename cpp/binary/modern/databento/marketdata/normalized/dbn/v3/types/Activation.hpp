@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v3: types/Activation.hpp
 #pragma once
 
 #include <cstddef>

@@ -1,3 +1,4 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/StatisticsMessage.cpp
 #include "StatisticsMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,11 +7,11 @@
 
 namespace lseg::millennium::level2::mitch::v11_9 {
 
-StatisticsMessage::StatisticsMessage(std::uint32_t nanosecond, std::uint32_t instrument_id, const std::array<std::byte, 1>& reserved_a, const std::array<std::byte, 1>& reserved_b, StatisticType statistic_type, std::int64_t price, OpenClosePriceIndicator open_close_price_indicator, const StatisticsReserved& statistics_reserved)
+StatisticsMessage::StatisticsMessage(std::chrono::nanoseconds nanosecond, std::uint32_t instrument_id, const std::array<std::byte, 1>& reserved_a, const std::array<std::byte, 1>& reserved_b, StatisticType statistic_type, Decimal price, OpenClosePriceIndicator open_close_price_indicator, const StatisticsReserved& statistics_reserved)
   : nanosecond_(nanosecond), instrument_id_(instrument_id), reserved_a_(reserved_a), reserved_b_(reserved_b), statistic_type_(statistic_type), price_(price), open_close_price_indicator_(open_close_price_indicator), statistics_reserved_(statistics_reserved) {}
 
-std::uint32_t StatisticsMessage::nanosecond() const { return nanosecond_; }
-void StatisticsMessage::set_nanosecond(std::uint32_t value) { nanosecond_ = value; }
+std::chrono::nanoseconds StatisticsMessage::nanosecond() const { return nanosecond_; }
+void StatisticsMessage::set_nanosecond(std::chrono::nanoseconds value) { nanosecond_ = value; }
 
 std::uint32_t StatisticsMessage::instrument_id() const { return instrument_id_; }
 void StatisticsMessage::set_instrument_id(std::uint32_t value) { instrument_id_ = value; }
@@ -26,8 +27,8 @@ void StatisticsMessage::set_reserved_b(const std::array<std::byte, 1>& value) { 
 StatisticType StatisticsMessage::statistic_type() const { return statistic_type_; }
 void StatisticsMessage::set_statistic_type(StatisticType value) { statistic_type_ = value; }
 
-std::int64_t StatisticsMessage::price() const { return price_; }
-void StatisticsMessage::set_price(std::int64_t value) { price_ = value; }
+Decimal StatisticsMessage::price() const { return price_; }
+void StatisticsMessage::set_price(Decimal value) { price_ = value; }
 
 OpenClosePriceIndicator StatisticsMessage::open_close_price_indicator() const { return open_close_price_indicator_; }
 void StatisticsMessage::set_open_close_price_indicator(OpenClosePriceIndicator value) { open_close_price_indicator_ = value; }
@@ -44,7 +45,7 @@ std::size_t StatisticsMessage::decode(const std::byte* data, std::size_t length)
     std::size_t offset = 0;
     wire::require("StatisticsMessage", wire_size, length);
 
-    nanosecond_ = wire::read_u32_le(data + offset);
+    nanosecond_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     instrument_id_ = wire::read_u32_le(data + offset);
@@ -59,7 +60,7 @@ std::size_t StatisticsMessage::decode(const std::byte* data, std::size_t length)
     statistic_type_ = static_cast<StatisticType>(wire::read_char(data + offset));
     offset += 1;
 
-    price_ = wire::read_i64_le(data + offset);
+    price_ = Decimal(static_cast<std::int64_t>(wire::read_i64_le(data + offset)), -8);
     offset += 8;
 
     open_close_price_indicator_ = static_cast<OpenClosePriceIndicator>(wire::read_char(data + offset));
@@ -74,7 +75,7 @@ std::size_t StatisticsMessage::encode(std::byte* data, std::size_t capacity) con
     std::size_t offset = 0;
     wire::require_capacity("StatisticsMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(nanosecond_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(nanosecond_.count()));
     offset += 4;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(instrument_id_));
@@ -89,7 +90,7 @@ std::size_t StatisticsMessage::encode(std::byte* data, std::size_t capacity) con
     wire::write_char(data + offset, static_cast<char>(statistic_type_));
     offset += 1;
 
-    wire::write_i64_le(data + offset, static_cast<std::int64_t>(price_));
+    wire::write_i64_le(data + offset, static_cast<std::int64_t>(price_.mantissa()));
     offset += 8;
 
     wire::write_char(data + offset, static_cast<char>(open_close_price_indicator_));
@@ -115,7 +116,7 @@ std::unique_ptr<Message> StatisticsMessage::clone() const {
 void StatisticsMessage::print(std::ostream& out) const {
     out << "StatisticsMessage{";
     out << "nanosecond=";
-    out << nanosecond_;
+    out << nanosecond_.count();
     out << ", instrument_id=";
     out << instrument_id_;
     out << ", reserved_a=";

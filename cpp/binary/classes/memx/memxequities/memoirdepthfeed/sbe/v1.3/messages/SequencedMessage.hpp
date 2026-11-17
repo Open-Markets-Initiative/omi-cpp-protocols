@@ -1,3 +1,4 @@
+// Memx.MemxEquities.MemoirDepthFeed.Sbe.v1.3: messages/SequencedMessage.hpp
 #pragma once
 
 #include <cstddef>

@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.10: structs/FractionalPriorDayOriginalTrade.hpp
 #pragma once
 
 #include "../structs/SaleConditions.hpp"

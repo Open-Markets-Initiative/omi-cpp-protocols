@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v15.0: iterators/MessageIterator.hpp
 #pragma once
 
 #include "../definitions.hpp"
@@ -10,6 +11,7 @@ struct MessageIterator {
     const std::byte* end = nullptr;
 
     const PacketHeader* packet_header = nullptr;
+    const MessageHeaderComp* message_header_comp = nullptr;
 
     std::uint16_t template_id = 0;
     std::uint16_t body_len = 0;
@@ -19,6 +21,7 @@ struct MessageIterator {
     void initialize(const std::byte* data, std::size_t length) {
 
         end = data + length;
+        message_header_comp = nullptr;
 
         if (length < sizeof(PacketHeader)) {
             current = end;
@@ -49,6 +52,7 @@ struct MessageIterator {
         }
 
         const auto* header = MessageHeaderComp::parse(current);
+        message_header_comp = header;
         message = current + sizeof(MessageHeaderComp);
 
         template_id = header->template_id.get();
@@ -65,6 +69,7 @@ struct MessageIterator {
         end = nullptr;
 
         packet_header = nullptr;
+        message_header_comp = nullptr;
         message = nullptr;
         template_id = 0;
         body_len = 0;

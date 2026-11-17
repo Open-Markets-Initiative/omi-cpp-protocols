@@ -1,3 +1,4 @@
+// Asx.AsxDerivatives.Ntp.Itch.v1.05: pcap/decompressor/Detect.hpp
 #pragma once
 
 #include "RawDecompressor.hpp"

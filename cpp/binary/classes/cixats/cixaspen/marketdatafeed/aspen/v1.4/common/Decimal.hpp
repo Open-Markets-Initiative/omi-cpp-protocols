@@ -1,3 +1,4 @@
+// CixAts.CixAspen.MarketDataFeed.Aspen.v1.4: common/Decimal.hpp
 #pragma once
 
 #include <cmath>

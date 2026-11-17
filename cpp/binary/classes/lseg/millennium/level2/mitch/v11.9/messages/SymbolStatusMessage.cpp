@@ -1,3 +1,4 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/SymbolStatusMessage.cpp
 #include "SymbolStatusMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,11 +7,11 @@
 
 namespace lseg::millennium::level2::mitch::v11_9 {
 
-SymbolStatusMessage::SymbolStatusMessage(std::uint32_t nanosecond, std::uint32_t instrument_id, const std::array<std::byte, 1>& reserved_a, const std::array<std::byte, 1>& reserved_b, TradingStatus trading_status, const SymbolStatusFlags& symbol_status_flags, const std::string& reason, SessionChangeReason session_change_reason, const std::string& new_end_time, BookType book_type)
+SymbolStatusMessage::SymbolStatusMessage(std::chrono::nanoseconds nanosecond, std::uint32_t instrument_id, const std::array<std::byte, 1>& reserved_a, const std::array<std::byte, 1>& reserved_b, TradingStatus trading_status, const SymbolStatusFlags& symbol_status_flags, const std::string& reason, SessionChangeReason session_change_reason, const std::string& new_end_time, BookType book_type)
   : nanosecond_(nanosecond), instrument_id_(instrument_id), reserved_a_(reserved_a), reserved_b_(reserved_b), trading_status_(trading_status), symbol_status_flags_(symbol_status_flags), reason_(reason), session_change_reason_(session_change_reason), new_end_time_(new_end_time), book_type_(book_type) {}
 
-std::uint32_t SymbolStatusMessage::nanosecond() const { return nanosecond_; }
-void SymbolStatusMessage::set_nanosecond(std::uint32_t value) { nanosecond_ = value; }
+std::chrono::nanoseconds SymbolStatusMessage::nanosecond() const { return nanosecond_; }
+void SymbolStatusMessage::set_nanosecond(std::chrono::nanoseconds value) { nanosecond_ = value; }
 
 std::uint32_t SymbolStatusMessage::instrument_id() const { return instrument_id_; }
 void SymbolStatusMessage::set_instrument_id(std::uint32_t value) { instrument_id_ = value; }
@@ -52,7 +53,7 @@ std::size_t SymbolStatusMessage::decode(const std::byte* data, std::size_t lengt
     std::size_t offset = 0;
     wire::require("SymbolStatusMessage", wire_size, length);
 
-    nanosecond_ = wire::read_u32_le(data + offset);
+    nanosecond_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     instrument_id_ = wire::read_u32_le(data + offset);
@@ -88,7 +89,7 @@ std::size_t SymbolStatusMessage::encode(std::byte* data, std::size_t capacity) c
     std::size_t offset = 0;
     wire::require_capacity("SymbolStatusMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(nanosecond_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(nanosecond_.count()));
     offset += 4;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(instrument_id_));
@@ -135,7 +136,7 @@ std::unique_ptr<Message> SymbolStatusMessage::clone() const {
 void SymbolStatusMessage::print(std::ostream& out) const {
     out << "SymbolStatusMessage{";
     out << "nanosecond=";
-    out << nanosecond_;
+    out << nanosecond_.count();
     out << ", instrument_id=";
     out << instrument_id_;
     out << ", reserved_a=";

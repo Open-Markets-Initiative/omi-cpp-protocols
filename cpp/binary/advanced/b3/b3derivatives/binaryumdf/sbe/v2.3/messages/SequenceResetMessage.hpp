@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.3: messages/SequenceResetMessage.hpp
 #pragma once
 
 #include <cstddef>

@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.Bbo.Pillar.v2.5.b: messages/SymbolIndexMappingRequestMessage.cpp
 #include "SymbolIndexMappingRequestMessage.hpp"
 
 #include "../common/Print.hpp"

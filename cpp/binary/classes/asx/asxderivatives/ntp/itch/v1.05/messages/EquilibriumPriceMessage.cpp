@@ -1,3 +1,4 @@
+// Asx.AsxDerivatives.Ntp.Itch.v1.05: messages/EquilibriumPriceMessage.cpp
 #include "EquilibriumPriceMessage.hpp"
 
 #include "../common/Print.hpp"

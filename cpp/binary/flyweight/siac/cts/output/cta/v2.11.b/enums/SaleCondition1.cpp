@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: enums/SaleCondition1.cpp
 #include "SaleCondition1.hpp"
 
 namespace siac::cts::output::cta::v2_11_b {

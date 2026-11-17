@@ -1,5 +1,7 @@
+// Nyse.ArcaOptions.DeepFeed.Pillar.v1.2.m: messages/OptionsAddOrderMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <ostream>
@@ -29,7 +31,7 @@ class OptionsAddOrderMessage {
     static constexpr std::size_t fixed_size = 36;
     std::size_t encoded_size() const { return 36; }
 
-    std::uint32_t source_time_ns() const { return wire::read_u32_le(at(0)); }
+    std::chrono::nanoseconds source_time_ns() const { return std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(at(0)))); }
 
     std::uint32_t series_index() const { return wire::read_u32_le(at(4)); }
 
@@ -52,7 +54,7 @@ class OptionsAddOrderMessage {
     void print(std::ostream& out) const {
         out << "OptionsAddOrderMessage{";
         out << "source_time_ns=";
-        out << source_time_ns();
+        out << source_time_ns().count();
         out << ", series_index=";
         out << series_index();
         out << ", series_seq_num=";

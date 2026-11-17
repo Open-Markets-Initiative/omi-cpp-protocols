@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v15.0: types/TradingSessionSubId.hpp
 #pragma once
 
 #include <cstddef>

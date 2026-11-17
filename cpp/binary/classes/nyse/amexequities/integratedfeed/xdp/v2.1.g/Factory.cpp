@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeed.Xdp.v2.1.g: Factory.cpp
 #include "Factory.hpp"
 
 #include "definitions.hpp"

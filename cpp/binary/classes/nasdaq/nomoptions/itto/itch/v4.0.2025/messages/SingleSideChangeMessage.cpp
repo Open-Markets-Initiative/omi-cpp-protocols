@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: messages/SingleSideChangeMessage.cpp
 #include "SingleSideChangeMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -48,7 +49,7 @@ std::size_t SingleSideChangeMessage::decode(const std::byte* data, std::size_t l
     change_reason_ = static_cast<ChangeReason>(wire::read_char(data + offset));
     offset += 1;
 
-    price_long_ = Decimal(static_cast<std::int64_t>(wire::read_u32_be(data + offset)), -4);
+    price_long_ = Decimal(static_cast<std::int64_t>(wire::read_i32_be(data + offset)), -4);
     offset += 4;
 
     volume_long_ = wire::read_u32_be(data + offset);
@@ -73,7 +74,7 @@ std::size_t SingleSideChangeMessage::encode(std::byte* data, std::size_t capacit
     wire::write_char(data + offset, static_cast<char>(change_reason_));
     offset += 1;
 
-    wire::write_u32_be(data + offset, static_cast<std::uint32_t>(price_long_.mantissa()));
+    wire::write_i32_be(data + offset, static_cast<std::int32_t>(price_long_.mantissa()));
     offset += 4;
 
     wire::write_u32_be(data + offset, static_cast<std::uint32_t>(volume_long_));

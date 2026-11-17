@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.3: messages/SecurityGroupPhase10Message.cpp
 #include "SecurityGroupPhase10Message.hpp"
 
 #include "../common/Print.hpp"
@@ -6,7 +7,7 @@
 
 namespace b3::b3derivatives::binaryumdf::sbe::v2_3 {
 
-SecurityGroupPhase10Message::SecurityGroupPhase10Message(const std::string& security_group, const std::array<std::byte, 5>& offset_3_padding_5, const MatchEventIndicator& match_event_indicator, TradingSessionId trading_session_id, TradingSessionSubId trading_session_sub_id, std::optional<SecurityTradingEvent> security_trading_event, std::uint16_t trade_date, const std::array<std::byte, 2>& offset_14_padding_2, std::optional<std::chrono::nanoseconds> trad_ses_open_time, std::optional<std::uint64_t> transact_time)
+SecurityGroupPhase10Message::SecurityGroupPhase10Message(const std::string& security_group, const std::array<std::byte, 5>& offset_3_padding_5, const MatchEventIndicator& match_event_indicator, TradingSessionId trading_session_id, TradingSessionSubId trading_session_sub_id, std::optional<SecurityTradingEvent> security_trading_event, std::uint16_t trade_date, const std::array<std::byte, 2>& offset_14_padding_2, std::optional<std::chrono::nanoseconds> trad_ses_open_time, std::optional<std::chrono::nanoseconds> transact_time)
   : security_group_(security_group), offset_3_padding_5_(offset_3_padding_5), match_event_indicator_(match_event_indicator), trading_session_id_(trading_session_id), trading_session_sub_id_(trading_session_sub_id), security_trading_event_(security_trading_event), trade_date_(trade_date), offset_14_padding_2_(offset_14_padding_2), trad_ses_open_time_(trad_ses_open_time), transact_time_(transact_time) {}
 
 const std::string& SecurityGroupPhase10Message::security_group() const { return security_group_; }
@@ -40,8 +41,8 @@ void SecurityGroupPhase10Message::set_offset_14_padding_2(const std::array<std::
 std::optional<std::chrono::nanoseconds> SecurityGroupPhase10Message::trad_ses_open_time() const { return trad_ses_open_time_; }
 void SecurityGroupPhase10Message::set_trad_ses_open_time(std::optional<std::chrono::nanoseconds> value) { trad_ses_open_time_ = value; }
 
-std::optional<std::uint64_t> SecurityGroupPhase10Message::transact_time() const { return transact_time_; }
-void SecurityGroupPhase10Message::set_transact_time(std::optional<std::uint64_t> value) { transact_time_ = value; }
+std::optional<std::chrono::nanoseconds> SecurityGroupPhase10Message::transact_time() const { return transact_time_; }
+void SecurityGroupPhase10Message::set_transact_time(std::optional<std::chrono::nanoseconds> value) { transact_time_ = value; }
 
 MessageCode SecurityGroupPhase10Message::type() const { return message_type; }
 
@@ -77,7 +78,7 @@ std::size_t SecurityGroupPhase10Message::decode(const std::byte* data, std::size
     trad_ses_open_time_ = wire::nullable_duration<std::chrono::nanoseconds>(wire::read_u64_le(data + offset), static_cast<std::uint64_t>(0ULL));
     offset += 8;
 
-    transact_time_ = wire::nullable(wire::read_u64_le(data + offset), static_cast<std::uint64_t>(0ULL));
+    transact_time_ = wire::nullable_duration<std::chrono::nanoseconds>(wire::read_u64_le(data + offset), static_cast<std::uint64_t>(0ULL));
     offset += 8;
 
     return offset;
@@ -113,7 +114,7 @@ std::size_t SecurityGroupPhase10Message::encode(std::byte* data, std::size_t cap
     wire::write_u64_le(data + offset, trad_ses_open_time_ ? static_cast<std::uint64_t>(trad_ses_open_time_->count()) : static_cast<std::uint64_t>(0ULL));
     offset += 8;
 
-    wire::write_u64_le(data + offset, transact_time_.value_or(static_cast<std::uint64_t>(0ULL)));
+    wire::write_u64_le(data + offset, transact_time_ ? static_cast<std::uint64_t>(transact_time_->count()) : static_cast<std::uint64_t>(0ULL));
     offset += 8;
 
     return offset;
@@ -152,7 +153,7 @@ void SecurityGroupPhase10Message::print(std::ostream& out) const {
     out << ", trad_ses_open_time=";
     print::optional_duration(out, trad_ses_open_time_);
     out << ", transact_time=";
-    print::optional(out, transact_time_);
+    print::optional_duration(out, transact_time_);
     out << '}';
 }
 

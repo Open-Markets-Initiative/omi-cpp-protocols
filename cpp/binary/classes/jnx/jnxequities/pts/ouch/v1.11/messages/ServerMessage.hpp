@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Ouch.v1.11: messages/ServerMessage.hpp
 #pragma once
 
 #include <cstddef>

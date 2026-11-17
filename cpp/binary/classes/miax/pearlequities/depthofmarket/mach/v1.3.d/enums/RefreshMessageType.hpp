@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: enums/RefreshMessageType.hpp
 #pragma once
 
 #include <cstdint>

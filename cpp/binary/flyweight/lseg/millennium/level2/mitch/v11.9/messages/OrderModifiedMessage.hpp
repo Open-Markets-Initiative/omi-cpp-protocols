@@ -1,5 +1,7 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/OrderModifiedMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <ostream>
@@ -8,6 +10,7 @@
 #include "../common/Wire.hpp"
 #include "../common/Print.hpp"
 #include "../common/View.hpp"
+#include "../common/Decimal.hpp"
 #include "../bitfields/OrderModifiedFlags.hpp"
 
 namespace lseg::millennium::level2::mitch::v11_9 {
@@ -27,20 +30,20 @@ class OrderModifiedMessage {
     static constexpr std::size_t fixed_size = 25;
     std::size_t encoded_size() const { return 25; }
 
-    std::uint32_t nanosecond() const { return wire::read_u32_le(at(0)); }
+    std::chrono::nanoseconds nanosecond() const { return std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(at(0)))); }
 
     std::uint64_t order_id() const { return wire::read_u64_le(at(4)); }
 
     std::uint32_t new_quantity() const { return wire::read_u32_le(at(12)); }
 
-    std::int64_t new_price() const { return wire::read_i64_le(at(16)); }
+    Decimal new_price() const { return Decimal(static_cast<std::int64_t>(wire::read_i64_le(at(16))), -8); }
 
     OrderModifiedFlags order_modified_flags() const { return OrderModifiedFlags{ bytes_.subspan(24) }; }
 
     void print(std::ostream& out) const {
         out << "OrderModifiedMessage{";
         out << "nanosecond=";
-        out << nanosecond();
+        out << nanosecond().count();
         out << ", order_id=";
         out << order_id();
         out << ", new_quantity=";

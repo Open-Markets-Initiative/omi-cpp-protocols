@@ -1,5 +1,7 @@
+// Nyse.NationalEquities.Trades.Pillar.v2.6: messages/TrfFractionalTradeMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
@@ -25,16 +27,16 @@ class TrfFractionalTradeMessage : public Message {
     static constexpr std::size_t wire_size = 44;
 
     TrfFractionalTradeMessage() = default;
-    TrfFractionalTradeMessage(std::uint32_t source_time, std::uint32_t source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, std::uint32_t trade_id, std::int32_t price, std::uint64_t fractional_volume, TradeCond1 trade_cond_1, TradeCond2 trade_cond_2, TradeCond3 trade_cond_3, TradeCond4 trade_cond_4, std::uint32_t exec_day_time, std::uint32_t exec_day_time_ns);
+    TrfFractionalTradeMessage(std::chrono::seconds source_time, std::chrono::nanoseconds source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, std::uint32_t trade_id, std::int32_t price, std::uint64_t fractional_volume, TradeCond1 trade_cond_1, TradeCond2 trade_cond_2, TradeCond3 trade_cond_3, TradeCond4 trade_cond_4, std::uint32_t exec_day_time, std::uint32_t exec_day_time_ns);
 
     // Source Time: The time when this msg was generated in the order book, in seconds since
     // Jan 1, 1970 00:00:00 UTC.
-    std::uint32_t source_time() const;
-    void set_source_time(std::uint32_t value);
+    std::chrono::seconds source_time() const;
+    void set_source_time(std::chrono::seconds value);
 
     // Source Time Ns: The nanosecond offset from the Source Time
-    std::uint32_t source_time_ns() const;
-    void set_source_time_ns(std::uint32_t value);
+    std::chrono::nanoseconds source_time_ns() const;
+    void set_source_time_ns(std::chrono::nanoseconds value);
 
     // Symbol Index: The ID of the symbol in the Symbol Index message
     std::uint32_t symbol_index() const;
@@ -98,8 +100,8 @@ class TrfFractionalTradeMessage : public Message {
     bool operator!=(const TrfFractionalTradeMessage& other) const;
 
   private:
-    std::uint32_t source_time_{};
-    std::uint32_t source_time_ns_{};
+    std::chrono::seconds source_time_{};
+    std::chrono::nanoseconds source_time_ns_{};
     std::uint32_t symbol_index_{};
     std::uint32_t symbol_seq_num_{};
     std::uint32_t trade_id_{};

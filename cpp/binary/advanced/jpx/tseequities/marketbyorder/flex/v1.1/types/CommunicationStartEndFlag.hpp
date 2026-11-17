@@ -1,3 +1,4 @@
+// Jpx.TseEquities.MarketByOrder.Flex.v1.1: types/CommunicationStartEndFlag.hpp
 #pragma once
 
 #include <cstddef>

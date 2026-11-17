@@ -1,3 +1,4 @@
+// Iex.IexEquities.Deep.IexTp.v1.08: enums/TradingStatus.hpp
 #pragma once
 
 #include <cstdint>

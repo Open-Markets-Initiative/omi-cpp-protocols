@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeed.Pillar.v2.5.g: enums/AuctionType.hpp
 #pragma once
 
 #include <cstdint>

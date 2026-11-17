@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.9: messages/AuctionStatusMessage.hpp
 #pragma once
 
 #include <cstddef>

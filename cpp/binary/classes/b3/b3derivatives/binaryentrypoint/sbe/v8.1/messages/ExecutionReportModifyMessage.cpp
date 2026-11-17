@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1: messages/ExecutionReportModifyMessage.cpp
 #include "ExecutionReportModifyMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,8 +7,8 @@
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_1 {
 
-ExecutionReportModifyMessage::ExecutionReportModifyMessage(const OutboundBusinessHeader& outbound_business_header, Side side, OrdStatus ord_status, std::uint64_t clordid, std::uint64_t secondary_order_id, std::uint64_t security_id, std::uint64_t leaves_qty, std::optional<std::uint32_t> account, std::uint64_t exec_id, std::chrono::nanoseconds transact_time, std::uint64_t cum_qty, std::optional<std::chrono::nanoseconds> market_segment_received_time, std::uint64_t order_id, std::optional<std::uint64_t> origclordid, std::optional<Decimal> protection_price, std::uint16_t trade_date, WorkingIndicator working_indicator, MultiLegReportingType multi_leg_reporting_type, Ordtype ordtype, TimeInForce time_in_force, std::optional<std::uint16_t> expire_date, std::uint64_t order_qty, std::optional<Decimal> price_optional, std::optional<Decimal> stop_px, std::optional<std::uint64_t> min_qty, std::optional<std::uint64_t> max_floor, std::optional<std::chrono::nanoseconds> received_time, const std::array<std::byte, 3>& offset_168_padding_3, std::optional<std::uint8_t> ordtagid, const InvestorId& investor_id, std::optional<MmProtectionResetOptional> mm_protection_reset_optional, const std::array<std::byte, 1>& offset_181_padding_1, std::optional<std::int32_t> strategy_id, const DeskId& desk_id, const Memo& memo)
-  : outbound_business_header_(outbound_business_header), side_(side), ord_status_(ord_status), clordid_(clordid), secondary_order_id_(secondary_order_id), security_id_(security_id), leaves_qty_(leaves_qty), account_(account), exec_id_(exec_id), transact_time_(transact_time), cum_qty_(cum_qty), market_segment_received_time_(market_segment_received_time), order_id_(order_id), origclordid_(origclordid), protection_price_(protection_price), trade_date_(trade_date), working_indicator_(working_indicator), multi_leg_reporting_type_(multi_leg_reporting_type), ordtype_(ordtype), time_in_force_(time_in_force), expire_date_(expire_date), order_qty_(order_qty), price_optional_(price_optional), stop_px_(stop_px), min_qty_(min_qty), max_floor_(max_floor), received_time_(received_time), offset_168_padding_3_(offset_168_padding_3), ordtagid_(ordtagid), investor_id_(investor_id), mm_protection_reset_optional_(mm_protection_reset_optional), offset_181_padding_1_(offset_181_padding_1), strategy_id_(strategy_id), desk_id_(desk_id), memo_(memo) {}
+ExecutionReportModifyMessage::ExecutionReportModifyMessage(const OutboundBusinessHeader& outbound_business_header, Side side, OrdStatus ord_status, std::uint64_t cl_ord_id, std::uint64_t secondary_order_id, std::uint64_t security_id, std::uint64_t leaves_qty, std::optional<std::uint32_t> account, std::uint64_t exec_id, std::chrono::nanoseconds transact_time, std::uint64_t cum_qty, std::optional<std::chrono::nanoseconds> market_segment_received_time, std::uint64_t order_id, std::optional<std::uint64_t> origclordid, std::optional<Decimal> protection_price, std::uint16_t trade_date, WorkingIndicator working_indicator, MultiLegReportingType multi_leg_reporting_type, Ordtype ordtype, TimeInForce time_in_force, std::optional<std::uint16_t> expire_date, std::uint64_t order_qty, std::optional<Decimal> price_optional, std::optional<Decimal> stop_px, std::optional<std::uint64_t> min_qty, std::optional<std::uint64_t> max_floor, std::optional<std::chrono::nanoseconds> received_time, const std::array<std::byte, 3>& offset_168_padding_3, std::optional<std::uint8_t> ordtagid, const InvestorId& investor_id, std::optional<MmProtectionResetOptional> mm_protection_reset_optional, const std::array<std::byte, 1>& offset_181_padding_1, std::optional<std::int32_t> strategy_id, const DeskId& desk_id, const Memo& memo)
+  : outbound_business_header_(outbound_business_header), side_(side), ord_status_(ord_status), cl_ord_id_(cl_ord_id), secondary_order_id_(secondary_order_id), security_id_(security_id), leaves_qty_(leaves_qty), account_(account), exec_id_(exec_id), transact_time_(transact_time), cum_qty_(cum_qty), market_segment_received_time_(market_segment_received_time), order_id_(order_id), origclordid_(origclordid), protection_price_(protection_price), trade_date_(trade_date), working_indicator_(working_indicator), multi_leg_reporting_type_(multi_leg_reporting_type), ordtype_(ordtype), time_in_force_(time_in_force), expire_date_(expire_date), order_qty_(order_qty), price_optional_(price_optional), stop_px_(stop_px), min_qty_(min_qty), max_floor_(max_floor), received_time_(received_time), offset_168_padding_3_(offset_168_padding_3), ordtagid_(ordtagid), investor_id_(investor_id), mm_protection_reset_optional_(mm_protection_reset_optional), offset_181_padding_1_(offset_181_padding_1), strategy_id_(strategy_id), desk_id_(desk_id), memo_(memo) {}
 
 const OutboundBusinessHeader& ExecutionReportModifyMessage::outbound_business_header() const { return outbound_business_header_; }
 OutboundBusinessHeader& ExecutionReportModifyMessage::outbound_business_header() { return outbound_business_header_; }
@@ -19,8 +20,8 @@ void ExecutionReportModifyMessage::set_side(Side value) { side_ = value; }
 OrdStatus ExecutionReportModifyMessage::ord_status() const { return ord_status_; }
 void ExecutionReportModifyMessage::set_ord_status(OrdStatus value) { ord_status_ = value; }
 
-std::uint64_t ExecutionReportModifyMessage::clordid() const { return clordid_; }
-void ExecutionReportModifyMessage::set_clordid(std::uint64_t value) { clordid_ = value; }
+std::uint64_t ExecutionReportModifyMessage::cl_ord_id() const { return cl_ord_id_; }
+void ExecutionReportModifyMessage::set_cl_ord_id(std::uint64_t value) { cl_ord_id_ = value; }
 
 std::uint64_t ExecutionReportModifyMessage::secondary_order_id() const { return secondary_order_id_; }
 void ExecutionReportModifyMessage::set_secondary_order_id(std::uint64_t value) { secondary_order_id_ = value; }
@@ -138,7 +139,7 @@ std::size_t ExecutionReportModifyMessage::decode(const std::byte* data, std::siz
     offset += 1;
 
     wire::require("ExecutionReportModifyMessage", offset + 8, length);
-    clordid_ = wire::read_u64_le(data + offset);
+    cl_ord_id_ = wire::read_u64_le(data + offset);
     offset += 8;
 
     wire::require("ExecutionReportModifyMessage", offset + 8, length);
@@ -274,7 +275,7 @@ std::size_t ExecutionReportModifyMessage::encode(std::byte* data, std::size_t ca
     wire::write_char(data + offset, static_cast<char>(ord_status_));
     offset += 1;
 
-    wire::write_u64_le(data + offset, static_cast<std::uint64_t>(clordid_));
+    wire::write_u64_le(data + offset, static_cast<std::uint64_t>(cl_ord_id_));
     offset += 8;
 
     wire::write_u64_le(data + offset, static_cast<std::uint64_t>(secondary_order_id_));
@@ -390,8 +391,8 @@ void ExecutionReportModifyMessage::print(std::ostream& out) const {
     out << side_;
     out << ", ord_status=";
     out << ord_status_;
-    out << ", clordid=";
-    out << clordid_;
+    out << ", cl_ord_id=";
+    out << cl_ord_id_;
     out << ", secondary_order_id=";
     out << secondary_order_id_;
     out << ", security_id=";
@@ -466,7 +467,7 @@ bool ExecutionReportModifyMessage::operator==(const ExecutionReportModifyMessage
     return outbound_business_header_ == other.outbound_business_header_
         && side_ == other.side_
         && ord_status_ == other.ord_status_
-        && clordid_ == other.clordid_
+        && cl_ord_id_ == other.cl_ord_id_
         && secondary_order_id_ == other.secondary_order_id_
         && security_id_ == other.security_id_
         && leaves_qty_ == other.leaves_qty_

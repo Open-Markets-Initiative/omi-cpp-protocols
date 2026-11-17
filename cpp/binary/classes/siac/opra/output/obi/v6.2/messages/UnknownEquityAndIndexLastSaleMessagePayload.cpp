@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: messages/UnknownEquityAndIndexLastSaleMessagePayload.cpp
 #include "UnknownEquityAndIndexLastSaleMessagePayload.hpp"
 
 #include "../common/Print.hpp"

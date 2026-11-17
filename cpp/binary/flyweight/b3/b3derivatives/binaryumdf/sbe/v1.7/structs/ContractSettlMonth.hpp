@@ -1,7 +1,9 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.7: structs/ContractSettlMonth.hpp
 #pragma once
 
 #include <cstddef>
 #include <cstdint>
+#include <optional>
 #include <ostream>
 #include <span>
 
@@ -26,24 +28,24 @@ class ContractSettlMonth {
     static constexpr std::size_t fixed_size = 5;
     std::size_t encoded_size() const { return 5; }
 
-    std::uint16_t year() const { return wire::read_u16_le(at(0)); }
+    std::optional<std::uint16_t> year() const { return wire::nullable(wire::read_u16_le(at(0)), static_cast<std::uint16_t>(0ULL)); }
 
-    std::uint8_t month() const { return wire::read_u8(at(2)); }
+    std::optional<std::uint8_t> month() const { return wire::nullable(wire::read_u8(at(2)), static_cast<std::uint8_t>(0ULL)); }
 
-    std::uint8_t day() const { return wire::read_u8(at(3)); }
+    std::optional<std::uint8_t> day() const { return wire::nullable(wire::read_u8(at(3)), static_cast<std::uint8_t>(0ULL)); }
 
-    std::uint8_t week() const { return wire::read_u8(at(4)); }
+    std::optional<std::uint8_t> week() const { return wire::nullable(wire::read_u8(at(4)), static_cast<std::uint8_t>(0ULL)); }
 
     void print(std::ostream& out) const {
         out << "ContractSettlMonth{";
         out << "year=";
-        out << year();
+        print::optional(out, year());
         out << ", month=";
-        out << static_cast<int>(month());
+        print::optional(out, month());
         out << ", day=";
-        out << static_cast<int>(day());
+        print::optional(out, day());
         out << ", week=";
-        out << static_cast<int>(week());
+        print::optional(out, week());
         out << '}';
     }
 

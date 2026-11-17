@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.ComplexTopOfMarket.Mach.v1.1: messages/CompactComplexDoubleSidedTopOfMarketMessage.hpp
 #pragma once
 
 #include <chrono>

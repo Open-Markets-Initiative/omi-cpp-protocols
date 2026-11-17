@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: structs/OutboundBusinessHeader.cpp
 #include "OutboundBusinessHeader.hpp"
 
 #include "../common/Print.hpp"
@@ -5,7 +6,7 @@
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_3 {
 
-OutboundBusinessHeader::OutboundBusinessHeader(std::uint32_t session_id, std::uint32_t msg_seq_num, std::optional<std::chrono::nanoseconds> sending_time, std::uint8_t event_indicator, std::uint8_t market_segment_id_optional)
+OutboundBusinessHeader::OutboundBusinessHeader(std::uint32_t session_id, std::uint32_t msg_seq_num, std::optional<std::chrono::nanoseconds> sending_time, std::uint8_t event_indicator, std::optional<std::uint8_t> market_segment_id_optional)
   : session_id_(session_id), msg_seq_num_(msg_seq_num), sending_time_(sending_time), event_indicator_(event_indicator), market_segment_id_optional_(market_segment_id_optional) {}
 
 std::uint32_t OutboundBusinessHeader::session_id() const { return session_id_; }
@@ -20,8 +21,8 @@ void OutboundBusinessHeader::set_sending_time(std::optional<std::chrono::nanosec
 std::uint8_t OutboundBusinessHeader::event_indicator() const { return event_indicator_; }
 void OutboundBusinessHeader::set_event_indicator(std::uint8_t value) { event_indicator_ = value; }
 
-std::uint8_t OutboundBusinessHeader::market_segment_id_optional() const { return market_segment_id_optional_; }
-void OutboundBusinessHeader::set_market_segment_id_optional(std::uint8_t value) { market_segment_id_optional_ = value; }
+std::optional<std::uint8_t> OutboundBusinessHeader::market_segment_id_optional() const { return market_segment_id_optional_; }
+void OutboundBusinessHeader::set_market_segment_id_optional(std::optional<std::uint8_t> value) { market_segment_id_optional_ = value; }
 
 std::size_t OutboundBusinessHeader::decode(const std::byte* data, std::size_t length) {
     std::size_t offset = 0;
@@ -39,7 +40,7 @@ std::size_t OutboundBusinessHeader::decode(const std::byte* data, std::size_t le
     event_indicator_ = wire::read_u8(data + offset);
     offset += 1;
 
-    market_segment_id_optional_ = wire::read_u8(data + offset);
+    market_segment_id_optional_ = wire::nullable(wire::read_u8(data + offset), static_cast<std::uint8_t>(0ULL));
     offset += 1;
 
     return offset;
@@ -61,7 +62,7 @@ std::size_t OutboundBusinessHeader::encode(std::byte* data, std::size_t capacity
     wire::write_u8(data + offset, static_cast<std::uint8_t>(event_indicator_));
     offset += 1;
 
-    wire::write_u8(data + offset, static_cast<std::uint8_t>(market_segment_id_optional_));
+    wire::write_u8(data + offset, market_segment_id_optional_.value_or(static_cast<std::uint8_t>(0ULL)));
     offset += 1;
 
     return offset;
@@ -82,7 +83,7 @@ void OutboundBusinessHeader::print(std::ostream& out) const {
     out << ", event_indicator=";
     out << static_cast<int>(event_indicator_);
     out << ", market_segment_id_optional=";
-    out << static_cast<int>(market_segment_id_optional_);
+    print::optional(out, market_segment_id_optional_);
     out << '}';
 }
 

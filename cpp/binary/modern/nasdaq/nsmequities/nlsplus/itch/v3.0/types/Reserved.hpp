@@ -1,5 +1,7 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: types/Reserved.hpp
 #pragma once
 
+#include <array>
 #include <cstddef>
 
 namespace nasdaq::nsmequities::nlsplus::itch::v3_0 {
@@ -11,20 +13,14 @@ struct Reserved {
     static constexpr auto name = "Reserved";
     static constexpr std::size_t size = 1;
 
+    // underlying type
+    using type = std::array<std::uint8_t, size>;
+
     // default constructor
     constexpr Reserved()
-     : value{ 0 } {}
-
-    // standard constructor
-    constexpr explicit Reserved(const char &value)
-     : value{ value } {}
-
-    // get value of Reserved field
-    [[nodiscard]] char get() const {
-        return value;
-    }
+     : value{} {}
 
   protected:
-    char value;
+    type value;
 };
 }

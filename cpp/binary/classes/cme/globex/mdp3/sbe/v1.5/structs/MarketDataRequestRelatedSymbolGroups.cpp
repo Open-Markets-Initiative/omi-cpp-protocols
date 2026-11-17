@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.5: structs/MarketDataRequestRelatedSymbolGroups.cpp
 #include "MarketDataRequestRelatedSymbolGroups.hpp"
 
 #include "../common/Print.hpp"

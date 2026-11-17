@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.13: bitfields/InstAttribValue.hpp
 #pragma once
 
 #include <cstddef>
@@ -126,10 +127,6 @@ class InstAttribValue {
     // Hedge Instrument: HedgeInstrument
     bool hedge_instrument() const;
     void set_hedge_instrument(bool value);
-
-    // Reserved 4: 4 reserved bits
-    std::uint8_t reserved_4() const;
-    void set_reserved_4(std::uint8_t value);
 
     // The whole bitfield as its wire integer
     std::uint32_t raw() const;

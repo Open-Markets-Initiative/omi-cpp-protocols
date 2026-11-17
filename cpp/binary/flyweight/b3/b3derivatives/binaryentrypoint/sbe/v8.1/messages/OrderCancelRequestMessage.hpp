@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1: messages/OrderCancelRequestMessage.hpp
 #pragma once
 
 #include <cstddef>
@@ -36,7 +37,7 @@ class OrderCancelRequestMessage {
 
     std::span<const std::byte, 2> offset_18_padding_2() const { return bytes_.subspan(18).template first<2>(); }
 
-    std::uint64_t clordid() const { return wire::read_u64_le(at(20)); }
+    std::uint64_t cl_ord_id() const { return wire::read_u64_le(at(20)); }
 
     std::uint64_t security_id() const { return wire::read_u64_le(at(28)); }
 
@@ -69,8 +70,8 @@ class OrderCancelRequestMessage {
         inbound_business_header().print(out);
         out << ", offset_18_padding_2=";
         print::hex(out, offset_18_padding_2().data(), offset_18_padding_2().size());
-        out << ", clordid=";
-        out << clordid();
+        out << ", cl_ord_id=";
+        out << cl_ord_id();
         out << ", security_id=";
         out << security_id();
         out << ", order_id_optional=";

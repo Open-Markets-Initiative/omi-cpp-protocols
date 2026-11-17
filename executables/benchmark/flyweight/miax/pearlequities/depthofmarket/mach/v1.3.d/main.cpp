@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: main.cpp
 // Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d benchmark, through the Flyweight reader: every value it reads from every message of the simulated
 // sequence (tests/simulated/miax/pearlequities/depthofmarket/mach/v1.3.d.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 

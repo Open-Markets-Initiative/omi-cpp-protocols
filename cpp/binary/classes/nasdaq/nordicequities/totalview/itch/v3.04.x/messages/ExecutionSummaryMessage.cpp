@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: messages/ExecutionSummaryMessage.cpp
 #include "ExecutionSummaryMessage.hpp"
 
 #include "../common/Print.hpp"

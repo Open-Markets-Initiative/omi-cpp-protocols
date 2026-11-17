@@ -1,3 +1,4 @@
+// Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.20.4: cboe_bzxequities_multicastdepthofbook_pitch_v2_20_4.hpp
 // Cboe BzxEquities MulticastDepthOfBook Pitch 2.20.4 Template Meta Programming
 
 #pragma once
@@ -801,14 +802,14 @@ struct remaining_quantity {
 
 // Reserved 1: Reserved
 struct reserved_1 {
-    using type = char;
+    using type = std::uint8_t;
     static constexpr std::size_t size = 1;
 
     constexpr type value() const noexcept { return value_; }
     constexpr operator type() const noexcept { return value(); }
 
   protected:
-    char value_;
+    type value_;
 };
 
 // Retail Price Improvement: "B" = Buy Side RPI "S" = Sell Side RPI "A" = Buy & Sell RPI
@@ -832,14 +833,14 @@ struct retail_price_improvement {
 
 // Second Reserved 1: Reserved
 struct second_reserved_1 {
-    using type = char;
+    using type = std::uint8_t;
     static constexpr std::size_t size = 1;
 
     constexpr type value() const noexcept { return value_; }
     constexpr operator type() const noexcept { return value(); }
 
   protected:
-    char value_;
+    type value_;
 };
 
 // Sell Shares: Number of shares on sell side at the Reference Price
@@ -972,19 +973,6 @@ struct time {
 
 // Time Offset: Nanosecond offset from last
 struct time_offset {
-    using type = std::uint32_t;
-    static constexpr std::size_t size = 4;
-    static constexpr std::endian order = std::endian::little;
-
-    constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
-    constexpr operator type() const noexcept { return value(); }
-
-  protected:
-    type value_;
-};
-
-// Timestamp: Nanosecond offset from last
-struct timestamp {
     using type = std::uint32_t;
     static constexpr std::size_t size = 4;
     static constexpr std::endian order = std::endian::little;
@@ -1195,14 +1183,14 @@ struct end_of_session_message {
 
     // the types of its members, in wire order
     using fields = tmp::list<
-        timestamp>;
+        time_offset>;
 
     // the member of the type asked for
     template <typename Field>
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    PITCHFIELD(timestamp);
+    PITCHFIELD(time_offset);
 };
 
 static_assert(sizeof(end_of_session_message) == end_of_session_message::size, "end_of_session_message lies over its bytes exactly");

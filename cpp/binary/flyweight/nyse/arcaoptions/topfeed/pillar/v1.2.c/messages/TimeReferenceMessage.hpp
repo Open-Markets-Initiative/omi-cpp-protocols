@@ -1,5 +1,7 @@
+// Nyse.ArcaOptions.TopFeed.Pillar.v1.2.c: messages/TimeReferenceMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <ostream>
@@ -30,7 +32,7 @@ class TimeReferenceMessage {
 
     std::span<const std::byte, 4> reserved_4() const { return bytes_.subspan(4).template first<4>(); }
 
-    std::uint32_t source_time() const { return wire::read_u32_le(at(8)); }
+    std::chrono::seconds source_time() const { return std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_le(at(8)))); }
 
     void print(std::ostream& out) const {
         out << "TimeReferenceMessage{";
@@ -39,7 +41,7 @@ class TimeReferenceMessage {
         out << ", reserved_4=";
         print::hex(out, reserved_4().data(), reserved_4().size());
         out << ", source_time=";
-        out << source_time();
+        out << source_time().count();
         out << '}';
     }
 

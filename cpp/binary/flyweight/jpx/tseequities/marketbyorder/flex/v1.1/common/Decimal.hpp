@@ -1,3 +1,4 @@
+// Jpx.TseEquities.MarketByOrder.Flex.v1.1: common/Decimal.hpp
 #pragma once
 
 #include <cmath>

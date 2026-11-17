@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: enums/MassActionResponse.cpp
 #include "MassActionResponse.hpp"
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_0 {

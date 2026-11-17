@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.9: types/SecurityType.hpp
 #pragma once
 
 #include <array>

@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.Qbbo.Itch.v2.1: messages/BboQuotationMessage.hpp
 #pragma once
 
 #include "../types/TrackingNumber.hpp"

@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.9: enums/LotType.cpp
 #include "LotType.hpp"
 
 namespace b3::b3derivatives::binaryumdf::sbe::v1_9 {

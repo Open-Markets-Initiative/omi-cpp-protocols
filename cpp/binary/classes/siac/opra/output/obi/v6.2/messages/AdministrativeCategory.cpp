@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: messages/AdministrativeCategory.cpp
 #include "AdministrativeCategory.hpp"
 
 #include "../common/Print.hpp"

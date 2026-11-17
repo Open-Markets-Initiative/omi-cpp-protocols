@@ -10,5 +10,4 @@ packet.messages.message[0].payload = packet.messages.message.payload.stocktradin
 packet.messages.message[0].payload.stocktradingactionmessage.nanoseconds = 471000000
 packet.messages.message[0].payload.stocktradingactionmessage.stock = A
 packet.messages.message[0].payload.stocktradingactionmessage.tradingstate = T
-packet.messages.message[0].payload.stocktradingactionmessage.reserved = 
 packet.messages.message[0].payload.stocktradingactionmessage.reason = 

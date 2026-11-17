@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: types/DataFeedIndicator.hpp
 #pragma once
 
 #include <cstddef>

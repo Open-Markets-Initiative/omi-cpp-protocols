@@ -1,3 +1,4 @@
+// Cboe.CfeFutures.MulticastDepthOfBook.Pitch.v1.2.22: messages/TimeMessage.cpp
 #include "TimeMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,15 +7,15 @@
 
 namespace cboe::cfefutures::multicastdepthofbook::pitch::v1_2_22 {
 
-TimeMessage::TimeMessage(std::chrono::seconds time_reference, std::uint32_t epoch_time)
+TimeMessage::TimeMessage(std::chrono::seconds time_reference, std::chrono::seconds epoch_time)
   : time_reference_(time_reference), epoch_time_(epoch_time) {}
 
 std::chrono::seconds TimeMessage::time_reference() const { return time_reference_; }
 void TimeMessage::set_time_reference(std::chrono::seconds value) { time_reference_ = value; }
 std::int64_t TimeMessage::time_reference_utc(const calendar::Day& day) const { return calendar::midnight(day, "America/Chicago").utc(static_cast<std::int64_t>(time_reference_.count()) * 1000000000); }
 
-std::uint32_t TimeMessage::epoch_time() const { return epoch_time_; }
-void TimeMessage::set_epoch_time(std::uint32_t value) { epoch_time_ = value; }
+std::chrono::seconds TimeMessage::epoch_time() const { return epoch_time_; }
+void TimeMessage::set_epoch_time(std::chrono::seconds value) { epoch_time_ = value; }
 
 MessageCode TimeMessage::type() const { return message_type; }
 
@@ -27,7 +28,7 @@ std::size_t TimeMessage::decode(const std::byte* data, std::size_t length) {
     time_reference_ = std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
-    epoch_time_ = wire::read_u32_le(data + offset);
+    epoch_time_ = std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     return offset;
@@ -40,7 +41,7 @@ std::size_t TimeMessage::encode(std::byte* data, std::size_t capacity) const {
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(time_reference_.count()));
     offset += 4;
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(epoch_time_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(epoch_time_.count()));
     offset += 4;
 
     return offset;
@@ -63,7 +64,7 @@ void TimeMessage::print(std::ostream& out) const {
     out << "time_reference=";
     calendar::print(out, time_reference_.count(), 1000000000, "America/Chicago");
     out << ", epoch_time=";
-    out << epoch_time_;
+    out << epoch_time_.count();
     out << '}';
 }
 

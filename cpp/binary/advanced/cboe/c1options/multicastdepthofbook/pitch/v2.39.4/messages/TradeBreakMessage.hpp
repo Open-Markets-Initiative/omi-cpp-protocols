@@ -1,3 +1,4 @@
+// Cboe.C1Options.MulticastDepthOfBook.Pitch.v2.39.4: messages/TradeBreakMessage.hpp
 #pragma once
 
 #include <cstddef>

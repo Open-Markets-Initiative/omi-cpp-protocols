@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: common/Wire.hpp
 #pragma once
 
 #include <bit>

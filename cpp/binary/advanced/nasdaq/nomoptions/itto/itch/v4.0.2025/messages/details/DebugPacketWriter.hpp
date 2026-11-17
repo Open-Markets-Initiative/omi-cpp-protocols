@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: messages/details/DebugPacketWriter.hpp
 #pragma once
 
 #include "../DebugPacket.hpp"

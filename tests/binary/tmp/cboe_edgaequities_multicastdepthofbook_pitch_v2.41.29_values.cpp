@@ -499,7 +499,7 @@ struct Reader {
 
     void operator()(const protocol::end_of_session& message) {
         values[entry + ".payload"] = "packet.messages.message.payload.endofsession";
-        if constexpr (requires { message.template get<protocol::last_timestamp>(); }) { values[entry + ".payload.endofsession.lasttimestamp"] = canonical::number(message.template get<protocol::last_timestamp>().value()); }
+        if constexpr (requires { message.template get<protocol::time_offset>(); }) { values[entry + ".payload.endofsession.timeoffset"] = canonical::number(message.template get<protocol::time_offset>().value()); }
     }
 
     void operator()(const protocol::trading_status_message& message) {

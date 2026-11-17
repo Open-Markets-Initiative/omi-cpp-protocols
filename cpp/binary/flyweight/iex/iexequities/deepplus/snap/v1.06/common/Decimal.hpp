@@ -1,3 +1,4 @@
+// Iex.IexEquities.DeepPlus.Snap.v1.06: common/Decimal.hpp
 #pragma once
 
 #include <cmath>

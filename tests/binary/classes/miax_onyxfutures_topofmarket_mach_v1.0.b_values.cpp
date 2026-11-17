@@ -109,9 +109,9 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".payload.applicationmessage.data"] = "packet.machmessage.payload.applicationmessage.data.bestbidandoffermessage";
                 values[entry + ".payload.applicationmessage.data.bestbidandoffermessage.timestamp"] = canonical::number((*message_2).timestamp());
                 values[entry + ".payload.applicationmessage.data.bestbidandoffermessage.instrumentid"] = canonical::number((*message_2).instrument_id());
-                values[entry + ".payload.applicationmessage.data.bestbidandoffermessage.mbbprice"] = canonical::scaled((*message_2).mbb_price().mantissa(), (*message_2).mbb_price().exponent());
+                values[entry + ".payload.applicationmessage.data.bestbidandoffermessage.mbbprice"] = ((*message_2).mbb_price().has_value() ? canonical::scaled((*(*message_2).mbb_price()).mantissa(), (*(*message_2).mbb_price()).exponent()) : canonical::absent());
                 values[entry + ".payload.applicationmessage.data.bestbidandoffermessage.mbbsize"] = canonical::number((*message_2).mbb_size());
-                values[entry + ".payload.applicationmessage.data.bestbidandoffermessage.mboprice"] = canonical::scaled((*message_2).mbo_price().mantissa(), (*message_2).mbo_price().exponent());
+                values[entry + ".payload.applicationmessage.data.bestbidandoffermessage.mboprice"] = ((*message_2).mbo_price().has_value() ? canonical::scaled((*(*message_2).mbo_price()).mantissa(), (*(*message_2).mbo_price()).exponent()) : canonical::absent());
                 values[entry + ".payload.applicationmessage.data.bestbidandoffermessage.mbosize"] = canonical::number((*message_2).mbo_size());
             } else if (const auto* message_2 = dynamic_cast<const protocol::LastSaleMessage*>(message->data())) {
                 values[entry + ".payload.applicationmessage.data"] = "packet.machmessage.payload.applicationmessage.data.lastsalemessage";

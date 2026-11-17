@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: types/ConsolidatedHighPriceLong.hpp
 #pragma once
 
 #include <bit>

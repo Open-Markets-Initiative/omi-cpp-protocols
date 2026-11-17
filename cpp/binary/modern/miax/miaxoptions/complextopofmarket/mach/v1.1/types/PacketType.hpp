@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.ComplexTopOfMarket.Mach.v1.1: types/PacketType.hpp
 #pragma once
 
 #include <cstddef>
@@ -6,7 +7,7 @@
 namespace miax::miaxoptions::complextopofmarket::mach::v1_1 {
 
 
-// protocol packet type
+// Mach protocol packet type
 struct PacketType {
 
     static constexpr auto name = "Packet Type";

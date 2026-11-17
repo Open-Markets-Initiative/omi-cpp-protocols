@@ -1,3 +1,4 @@
+// Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.20.4: messages/EndOfSessionMessage.cpp
 #include "EndOfSessionMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,11 +7,11 @@
 
 namespace cboe::bzxequities::multicastdepthofbook::pitch::v2_20_4 {
 
-EndOfSessionMessage::EndOfSessionMessage(std::uint32_t timestamp)
-  : timestamp_(timestamp) {}
+EndOfSessionMessage::EndOfSessionMessage(std::chrono::nanoseconds time_offset)
+  : time_offset_(time_offset) {}
 
-std::uint32_t EndOfSessionMessage::timestamp() const { return timestamp_; }
-void EndOfSessionMessage::set_timestamp(std::uint32_t value) { timestamp_ = value; }
+std::chrono::nanoseconds EndOfSessionMessage::time_offset() const { return time_offset_; }
+void EndOfSessionMessage::set_time_offset(std::chrono::nanoseconds value) { time_offset_ = value; }
 
 MessageCode EndOfSessionMessage::type() const { return message_type; }
 
@@ -20,7 +21,7 @@ std::size_t EndOfSessionMessage::decode(const std::byte* data, std::size_t lengt
     std::size_t offset = 0;
     wire::require("EndOfSessionMessage", wire_size, length);
 
-    timestamp_ = wire::read_u32_le(data + offset);
+    time_offset_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     return offset;
@@ -30,7 +31,7 @@ std::size_t EndOfSessionMessage::encode(std::byte* data, std::size_t capacity) c
     std::size_t offset = 0;
     wire::require_capacity("EndOfSessionMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(timestamp_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(time_offset_.count()));
     offset += 4;
 
     return offset;
@@ -50,8 +51,8 @@ std::unique_ptr<Message> EndOfSessionMessage::clone() const {
 
 void EndOfSessionMessage::print(std::ostream& out) const {
     out << "EndOfSessionMessage{";
-    out << "timestamp=";
-    out << timestamp_;
+    out << "time_offset=";
+    out << time_offset_.count();
     out << '}';
 }
 
@@ -61,7 +62,7 @@ bool EndOfSessionMessage::equals(const Message& other) const {
 }
 
 bool EndOfSessionMessage::operator==(const EndOfSessionMessage& other) const {
-    return timestamp_ == other.timestamp_;
+    return time_offset_ == other.time_offset_;
 }
 
 bool EndOfSessionMessage::operator!=(const EndOfSessionMessage& other) const {

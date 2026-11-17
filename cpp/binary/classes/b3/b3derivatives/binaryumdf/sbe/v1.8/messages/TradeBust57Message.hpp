@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.8: messages/TradeBust57Message.hpp
 #pragma once
 
 #include <array>
@@ -27,7 +28,7 @@ class TradeBust57Message : public Message {
     static constexpr std::size_t wire_size = 48;
 
     TradeBust57Message() = default;
-    TradeBust57Message(std::uint64_t security_id, const MatchEventIndicator& match_event_indicator, TradingSessionId trading_session_id, const std::array<std::byte, 2>& offset_10_padding_2, Decimal md_future_price, std::int64_t md_entry_size_quantity, std::uint32_t trade_id, std::uint16_t trade_date, const std::array<std::byte, 2>& offset_34_padding_2, std::optional<std::chrono::nanoseconds> md_entry_timestamp, std::optional<std::uint32_t> rpt_seq);
+    TradeBust57Message(std::uint64_t security_id, const MatchEventIndicator& match_event_indicator, TradingSessionId trading_session_id, const std::array<std::byte, 2>& offset_10_padding_2, Decimal md_future_price, std::int64_t md_entry_size, std::uint32_t trade_id, std::uint16_t trade_date, const std::array<std::byte, 2>& offset_34_padding_2, std::optional<std::chrono::nanoseconds> md_entry_timestamp, std::optional<std::uint32_t> rpt_seq);
 
     // Security Id: securityID
     std::uint64_t security_id() const;
@@ -51,9 +52,9 @@ class TradeBust57Message : public Message {
     Decimal md_future_price() const;
     void set_md_future_price(Decimal value);
 
-    // Md Entry Size Quantity: mDEntrySize
-    std::int64_t md_entry_size_quantity() const;
-    void set_md_entry_size_quantity(std::int64_t value);
+    // Md Entry Size: mDEntrySize
+    std::int64_t md_entry_size() const;
+    void set_md_entry_size(std::int64_t value);
 
     // Trade Id: tradeID
     std::uint32_t trade_id() const;
@@ -96,7 +97,7 @@ class TradeBust57Message : public Message {
     TradingSessionId trading_session_id_{};
     std::array<std::byte, 2> offset_10_padding_2_{};
     Decimal md_future_price_{ 0, -4 };
-    std::int64_t md_entry_size_quantity_{};
+    std::int64_t md_entry_size_{};
     std::uint32_t trade_id_{};
     std::uint16_t trade_date_{};
     std::array<std::byte, 2> offset_34_padding_2_{};

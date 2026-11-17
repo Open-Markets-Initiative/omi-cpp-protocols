@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.7: messages/SnapshotFullRefreshOrdersMbO71Message.hpp
 #pragma once
 
 #include <cstddef>
@@ -6,7 +7,7 @@
 #include "../structs/SbeGroupSupport.hpp"
 #include "../types/SecurityId.hpp"
 #include "../types/MdCorporateOffsetPriceOptional.hpp"
-#include "../types/MdEntrySizeQuantity.hpp"
+#include "../types/MdEntrySize.hpp"
 #include "../types/MdEntryPositionNo.hpp"
 #include "../types/EnteringFirm.hpp"
 #include "../types/MdInsertTimestamp.hpp"
@@ -21,7 +22,7 @@ namespace sbe_binaryumdf = ::b3::b3derivatives::binaryumdf::sbe::v1_7;
 #pragma pack(push, 1)
 struct snapshot_full_refresh_orders_mb_o_71_message_no_m_d_entries_groups_entry {
     sbe_binaryumdf::md_corporate_offset_price_optional md_corporate_offset_price_optional;
-    sbe_binaryumdf::md_entry_size_quantity md_entry_size_quantity;
+    sbe_binaryumdf::md_entry_size md_entry_size;
     sbe_binaryumdf::md_entry_position_no md_entry_position_no;
     sbe_binaryumdf::entering_firm entering_firm;
     sbe_binaryumdf::md_insert_timestamp md_insert_timestamp;

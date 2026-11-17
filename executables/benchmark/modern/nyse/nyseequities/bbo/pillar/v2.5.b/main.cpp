@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.Bbo.Pillar.v2.5.b: main.cpp
 // Nyse.NyseEquities.Bbo.Pillar.v2.5.b benchmark, through the Modern iterator: every value it reads from every message of the simulated
 // sequence (tests/simulated/nyse/nyseequities/bbo/pillar/v2.5.b.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 

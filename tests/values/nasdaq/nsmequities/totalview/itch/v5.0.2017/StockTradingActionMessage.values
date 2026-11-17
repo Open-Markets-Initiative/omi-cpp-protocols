@@ -12,5 +12,4 @@ packet.messages.message[0].payload.stocktradingactionmessage.trackingnumber = 0
 packet.messages.message[0].payload.stocktradingactionmessage.timestamp = 34763322465824
 packet.messages.message[0].payload.stocktradingactionmessage.stock = AMC
 packet.messages.message[0].payload.stocktradingactionmessage.tradingstate = T
-packet.messages.message[0].payload.stocktradingactionmessage.reserved = 
 packet.messages.message[0].payload.stocktradingactionmessage.reasoncode = 

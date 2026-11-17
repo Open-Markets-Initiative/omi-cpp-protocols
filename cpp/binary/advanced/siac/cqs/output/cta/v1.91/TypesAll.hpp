@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v1.91: TypesAll.hpp
 #pragma once
 
 // All type headers for this protocol schema
@@ -15,6 +16,7 @@
 #include "types/MessageCategory.hpp"
 #include "types/AdministrativeMessageType.hpp"
 #include "types/ParticipantId.hpp"
+#include "types/ParticipantTimestampOptional.hpp"
 #include "types/MessageId.hpp"
 #include "types/TransactionId.hpp"
 #include "types/ParticipantReferenceNumber.hpp"

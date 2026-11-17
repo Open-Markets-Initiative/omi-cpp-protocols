@@ -1,6 +1,7 @@
+// Cboe.ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29: messages/EndOfSession.hpp
 #pragma once
 
-#include "../types/LastTimestamp.hpp"
+#include "../types/TimeOffset.hpp"
 #include "../structs/MessageHeader.hpp"
 
 namespace cboe::byxequities::multicastdepthofbook::pitch::v2_41_29 {
@@ -10,7 +11,7 @@ namespace cboe::byxequities::multicastdepthofbook::pitch::v2_41_29 {
 // The End of Session message is sent for each unit when the unit shuts down
 struct EndOfSession {
 
-    LastTimestamp last_timestamp;
+    TimeOffset time_offset;
 
     // the type code that selects this message in the dispatch switch
     static constexpr std::uint8_t message_type = 0x2D;

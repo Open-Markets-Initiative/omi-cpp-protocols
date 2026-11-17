@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeed.Xdp.v2.1.g: messages/SymbolClearMessage.hpp
 #pragma once
 
 #include "../types/SourceTime.hpp"

@@ -1,3 +1,4 @@
+// Cboe.EdgxEquities.MulticastDepthOfBook.Pitch.v2.41.29: main.cpp
 // Cboe.EdgxEquities.MulticastDepthOfBook.Pitch.v2.41.29 benchmark, through the Flyweight reader: every value it reads from every message of the simulated
 // sequence (tests/simulated/cboe/edgxequities/multicastdepthofbook/pitch/v2.41.29.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -186,7 +187,7 @@ struct Reader {
 
     void on(const protocol::EndOfSession& message) {
         checksum += index++;
-        checksum += bench::digest(message.last_timestamp());
+        checksum += bench::digest(message.time_offset());
     }
 
     void on(const protocol::TradingStatusMessage& message) {

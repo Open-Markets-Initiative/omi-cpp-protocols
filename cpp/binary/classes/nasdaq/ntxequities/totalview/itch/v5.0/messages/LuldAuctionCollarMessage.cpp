@@ -1,3 +1,4 @@
+// Nasdaq.NtxEquities.TotalView.Itch.v5.0: messages/LuldAuctionCollarMessage.cpp
 #include "LuldAuctionCollarMessage.hpp"
 
 #include "../common/Print.hpp"

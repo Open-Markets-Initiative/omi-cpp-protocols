@@ -1,3 +1,4 @@
+// Lseg.Lse.Level2Mbo.Gtp.v26.2: types/TradeType.hpp
 #pragma once
 
 #include <cstddef>

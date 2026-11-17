@@ -101,6 +101,7 @@ int main() {
     expect<protocol::add_order_message>("AddOrderMessage", "Nyse/ArcaEquities.IntegratedFeed.Pillar.v2.5.g/AddOrderMessage.pcap");
     expect<protocol::cross_trade_message>("CrossTradeMessage", "Nyse/ArcaEquities.IntegratedFeed.Pillar.v2.5.g/CrossTradeMessage.pcap");
     expect<protocol::delete_order_message>("DeleteOrderMessage", "Nyse/ArcaEquities.IntegratedFeed.Pillar.v2.5.g/DeleteOrderMessage.pcap");
+    expect<protocol::imbalance_message>("ImbalanceMessage", "Nyse/ArcaEquities.IntegratedFeed.Pillar.v2.5.g/ImbalanceMessage.pcap");
     expect<protocol::modify_order_message>("ModifyOrderMessage", "Nyse/ArcaEquities.IntegratedFeed.Pillar.v2.5.g/ModifyOrderMessage.pcap");
     expect<protocol::non_displayed_trade_message>("NonDisplayedTradeMessage", "Nyse/ArcaEquities.IntegratedFeed.Pillar.v2.5.g/NonDisplayedTradeMessage.pcap");
     expect<protocol::order_execution_message>("OrderExecutionMessage", "Nyse/ArcaEquities.IntegratedFeed.Pillar.v2.5.g/OrderExecutionMessage.pcap");

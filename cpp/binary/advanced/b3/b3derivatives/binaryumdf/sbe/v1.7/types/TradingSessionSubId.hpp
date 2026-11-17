@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.7: types/TradingSessionSubId.hpp
 #pragma once
 
 #include <cstddef>

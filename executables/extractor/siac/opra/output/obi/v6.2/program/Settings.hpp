@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: program/Settings.hpp
 #pragma once
 
 #include <filesystem>

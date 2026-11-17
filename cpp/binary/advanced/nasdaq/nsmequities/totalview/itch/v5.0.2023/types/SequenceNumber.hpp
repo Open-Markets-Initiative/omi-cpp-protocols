@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2023: types/SequenceNumber.hpp
 #pragma once
 
 #include <cstddef>

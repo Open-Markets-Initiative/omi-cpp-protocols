@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: types/OfferPrice.hpp
 #pragma once
 
 #include <cstddef>

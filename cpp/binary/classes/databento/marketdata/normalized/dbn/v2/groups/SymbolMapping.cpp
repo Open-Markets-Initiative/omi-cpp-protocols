@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v2: groups/SymbolMapping.cpp
 #include "SymbolMapping.hpp"
 
 #include "../common/Print.hpp"

@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: enums/IssueSubType.hpp
 #pragma once
 
 #include <string_view>

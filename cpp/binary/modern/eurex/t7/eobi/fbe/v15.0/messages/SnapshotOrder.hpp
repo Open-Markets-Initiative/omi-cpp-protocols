@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v15.0: messages/SnapshotOrder.hpp
 #pragma once
 
 #include "../structs/OrderDetailsComp.hpp"

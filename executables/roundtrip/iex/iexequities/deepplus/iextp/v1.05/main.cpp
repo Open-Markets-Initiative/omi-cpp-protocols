@@ -1,3 +1,4 @@
+// Iex.IexEquities.DeepPlus.IexTp.v1.05: main.cpp
 // Iex.IexEquities.DeepPlus.IexTp.v1.05 write and read: every message built with each field it sets, written
 // into a capture through the Classes encoder, then read back - each field set must read as it was written.
 // 
@@ -167,7 +168,6 @@ std::unique_ptr<protocol::Message> build_OrderModifyMessage() {
 // OrderDeleteMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_OrderDeleteMessage() {
     auto message = std::make_unique<protocol::OrderDeleteMessage>();
-    message->set_reserved_1('B');
     message->set_timestamp(std::chrono::nanoseconds{2});
     message->set_symbol(std::string("DEF"));
     message->set_order_id_reference(static_cast<std::uint64_t>(4));
@@ -214,7 +214,6 @@ std::unique_ptr<protocol::Message> build_TradeBreakMessage() {
 // ClearBookMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_ClearBookMessage() {
     auto message = std::make_unique<protocol::ClearBookMessage>();
-    message->set_reserved_1('B');
     message->set_timestamp(std::chrono::nanoseconds{2});
     message->set_symbol(std::string("DEF"));
     return message;
@@ -503,10 +502,6 @@ int check_OrderDeleteMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->reserved_1() == 'B')) {
-        std::printf("FAIL OrderDeleteMessage: reserved_1 does not read as it was written\n");
-        ++failures;
-    }
     if (!(message->timestamp() == std::chrono::nanoseconds{2})) {
         std::printf("FAIL OrderDeleteMessage: timestamp does not read as it was written\n");
         ++failures;
@@ -695,10 +690,6 @@ int check_ClearBookMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->reserved_1() == 'B')) {
-        std::printf("FAIL ClearBookMessage: reserved_1 does not read as it was written\n");
-        ++failures;
-    }
     if (!(message->timestamp() == std::chrono::nanoseconds{2})) {
         std::printf("FAIL ClearBookMessage: timestamp does not read as it was written\n");
         ++failures;

@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: types/Asset.hpp
 #pragma once
 
 #include <cstddef>

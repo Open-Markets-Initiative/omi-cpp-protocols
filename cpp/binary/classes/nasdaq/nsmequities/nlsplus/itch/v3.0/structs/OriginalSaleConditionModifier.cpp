@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: structs/OriginalSaleConditionModifier.cpp
 #include "OriginalSaleConditionModifier.hpp"
 
 #include "../common/Print.hpp"

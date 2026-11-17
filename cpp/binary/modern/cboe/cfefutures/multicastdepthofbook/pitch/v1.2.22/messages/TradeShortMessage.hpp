@@ -1,3 +1,4 @@
+// Cboe.CfeFutures.MulticastDepthOfBook.Pitch.v1.2.22: messages/TradeShortMessage.hpp
 #pragma once
 
 #include "../types/TimeOffset.hpp"

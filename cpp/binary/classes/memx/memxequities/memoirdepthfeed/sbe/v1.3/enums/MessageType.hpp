@@ -1,3 +1,4 @@
+// Memx.MemxEquities.MemoirDepthFeed.Sbe.v1.3: enums/MessageType.hpp
 #pragma once
 
 #include <cstdint>

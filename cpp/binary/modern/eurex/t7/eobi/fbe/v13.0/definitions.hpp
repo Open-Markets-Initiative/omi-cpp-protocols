@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v13.0: definitions.hpp
 #pragma once
 
 #include "structs/PacketHeader.hpp"

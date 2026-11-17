@@ -120,9 +120,9 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.complexstrategytickermessage.lastprice"] = canonical::scaled(message->last_price.integer(), -8);
             values[entry + ".payload.complexstrategytickermessage.size"] = canonical::number(message->size.get());
             values[entry + ".payload.complexstrategytickermessage.volume"] = canonical::number(message->volume.get());
-            values[entry + ".payload.complexstrategytickermessage.high"] = canonical::number(message->high.get());
-            values[entry + ".payload.complexstrategytickermessage.low"] = canonical::number(message->low.get());
-            values[entry + ".payload.complexstrategytickermessage.first"] = canonical::number(message->first.get());
+            values[entry + ".payload.complexstrategytickermessage.high"] = canonical::scaled(message->high.integer(), -8);
+            values[entry + ".payload.complexstrategytickermessage.low"] = canonical::scaled(message->low.integer(), -8);
+            values[entry + ".payload.complexstrategytickermessage.first"] = canonical::scaled(message->first.integer(), -8);
             values[entry + ".payload.complexstrategytickermessage.tradecondition"] = canonical::text(canonical::character(message->trade_condition.get()), ' ', false);
         }
     }

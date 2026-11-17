@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1: messages/Format.hpp
 #pragma once
 
 #include <ostream>
@@ -236,7 +237,7 @@ inline std::ostream& operator<<(std::ostream& os, const simple_new_order_message
        << ",inbound_business_header.padding=\"" << msg.fields.inbound_business_header.padding.get().value() << '"'
        << ",ordtagid=" << (msg.fields.ordtagid.get().has_value() ? std::to_string(msg.fields.ordtagid.get().value()) : std::string_view("null"))
        << ",mm_protection_reset=\"" << sbe_binaryentrypoint::mm_protection_reset::to_string(msg.fields.mm_protection_reset.get().value()) << '"'
-       << ",clordid=" << msg.fields.clordid.get().value()
+       << ",cl_ord_id=" << msg.fields.cl_ord_id.get().value()
        << ",account=" << (msg.fields.account.get().has_value() ? std::to_string(msg.fields.account.get().value()) : std::string_view("null"))
        << ",sender_location=\"" << msg.fields.sender_location.get_trimmed().value() << '"'
        << ",entering_trader=\"" << msg.fields.entering_trader.get_trimmed().value() << '"'
@@ -248,8 +249,8 @@ inline std::ostream& operator<<(std::ostream& os, const simple_new_order_message
        << ",routing_instruction=\"" << sbe_binaryentrypoint::routing_instruction::to_string(msg.fields.routing_instruction.get().value()) << '"'
        << ",order_qty=" << msg.fields.order_qty.get().value()
        << ",price_optional=" << (msg.fields.price_optional.get().has_value() ? std::to_string(msg.fields.price_optional.get().value()) : std::string_view("null"))
-       << ",investor_id.prefix=" << msg.fields.investor_id.prefix.get().value()
-       << ",investor_id.document=" << msg.fields.investor_id.document.get().value()
+       << ",investor_id.prefix=" << (msg.fields.investor_id.prefix.get().has_value() ? std::to_string(msg.fields.investor_id.prefix.get().value()) : std::string_view("null"))
+       << ",investor_id.document=" << (msg.fields.investor_id.document.get().has_value() ? std::to_string(msg.fields.investor_id.document.get().value()) : std::string_view("null"))
        << ",tail=" << json::tail_to_json_string(msg)
        ;
     return os;
@@ -263,7 +264,7 @@ inline std::ostream& operator<<(std::ostream& os, const simple_modify_order_mess
        << ",inbound_business_header.padding=\"" << msg.fields.inbound_business_header.padding.get().value() << '"'
        << ",ordtagid=" << (msg.fields.ordtagid.get().has_value() ? std::to_string(msg.fields.ordtagid.get().value()) : std::string_view("null"))
        << ",mm_protection_reset=\"" << sbe_binaryentrypoint::mm_protection_reset::to_string(msg.fields.mm_protection_reset.get().value()) << '"'
-       << ",clordid=" << msg.fields.clordid.get().value()
+       << ",cl_ord_id=" << msg.fields.cl_ord_id.get().value()
        << ",account=" << (msg.fields.account.get().has_value() ? std::to_string(msg.fields.account.get().value()) : std::string_view("null"))
        << ",sender_location=\"" << msg.fields.sender_location.get_trimmed().value() << '"'
        << ",entering_trader=\"" << msg.fields.entering_trader.get_trimmed().value() << '"'
@@ -277,8 +278,8 @@ inline std::ostream& operator<<(std::ostream& os, const simple_modify_order_mess
        << ",price_optional=" << (msg.fields.price_optional.get().has_value() ? std::to_string(msg.fields.price_optional.get().value()) : std::string_view("null"))
        << ",order_id_optional=" << (msg.fields.order_id_optional.get().has_value() ? std::to_string(msg.fields.order_id_optional.get().value()) : std::string_view("null"))
        << ",origclordid=" << (msg.fields.origclordid.get().has_value() ? std::to_string(msg.fields.origclordid.get().value()) : std::string_view("null"))
-       << ",investor_id.prefix=" << msg.fields.investor_id.prefix.get().value()
-       << ",investor_id.document=" << msg.fields.investor_id.document.get().value()
+       << ",investor_id.prefix=" << (msg.fields.investor_id.prefix.get().has_value() ? std::to_string(msg.fields.investor_id.prefix.get().value()) : std::string_view("null"))
+       << ",investor_id.document=" << (msg.fields.investor_id.document.get().has_value() ? std::to_string(msg.fields.investor_id.document.get().value()) : std::string_view("null"))
        << ",tail=" << json::tail_to_json_string(msg)
        ;
     return os;
@@ -292,7 +293,7 @@ inline std::ostream& operator<<(std::ostream& os, const new_order_single_message
        << ",inbound_business_header.padding=\"" << msg.fields.inbound_business_header.padding.get().value() << '"'
        << ",ordtagid=" << (msg.fields.ordtagid.get().has_value() ? std::to_string(msg.fields.ordtagid.get().value()) : std::string_view("null"))
        << ",mm_protection_reset=\"" << sbe_binaryentrypoint::mm_protection_reset::to_string(msg.fields.mm_protection_reset.get().value()) << '"'
-       << ",clordid=" << msg.fields.clordid.get().value()
+       << ",cl_ord_id=" << msg.fields.cl_ord_id.get().value()
        << ",account=" << (msg.fields.account.get().has_value() ? std::to_string(msg.fields.account.get().value()) : std::string_view("null"))
        << ",sender_location=\"" << msg.fields.sender_location.get_trimmed().value() << '"'
        << ",entering_trader=\"" << msg.fields.entering_trader.get_trimmed().value() << '"'
@@ -309,11 +310,11 @@ inline std::ostream& operator<<(std::ostream& os, const new_order_single_message
        << ",max_floor=" << (msg.fields.max_floor.get().has_value() ? std::to_string(msg.fields.max_floor.get().value()) : std::string_view("null"))
        << ",executing_trader_optional=\"" << (msg.fields.executing_trader_optional.get_trimmed().has_value() ? msg.fields.executing_trader_optional.get_trimmed().value() : std::string_view("null")) << '"'
        << ",expire_date=" << (msg.fields.expire_date.get().has_value() ? std::to_string(msg.fields.expire_date.get().value()) : std::string_view("null"))
-       << ",custodian_info.custodian=" << msg.fields.custodian_info.custodian.get().value()
-       << ",custodian_info.custody_account=" << msg.fields.custodian_info.custody_account.get().value()
-       << ",custodian_info.custody_allocation_type=" << msg.fields.custodian_info.custody_allocation_type.get().value()
-       << ",investor_id.prefix=" << msg.fields.investor_id.prefix.get().value()
-       << ",investor_id.document=" << msg.fields.investor_id.document.get().value()
+       << ",custodian_info.custodian=" << (msg.fields.custodian_info.custodian.get().has_value() ? std::to_string(msg.fields.custodian_info.custodian.get().value()) : std::string_view("null"))
+       << ",custodian_info.custody_account=" << (msg.fields.custodian_info.custody_account.get().has_value() ? std::to_string(msg.fields.custodian_info.custody_account.get().value()) : std::string_view("null"))
+       << ",custodian_info.custody_allocation_type=" << (msg.fields.custodian_info.custody_allocation_type.get().has_value() ? std::to_string(msg.fields.custodian_info.custody_allocation_type.get().value()) : std::string_view("null"))
+       << ",investor_id.prefix=" << (msg.fields.investor_id.prefix.get().has_value() ? std::to_string(msg.fields.investor_id.prefix.get().value()) : std::string_view("null"))
+       << ",investor_id.document=" << (msg.fields.investor_id.document.get().has_value() ? std::to_string(msg.fields.investor_id.document.get().value()) : std::string_view("null"))
        << ",strategy_id=" << (msg.fields.strategy_id.get().has_value() ? std::to_string(msg.fields.strategy_id.get().value()) : std::string_view("null"))
        << ",tail=" << json::tail_to_json_string(msg)
        ;
@@ -328,7 +329,7 @@ inline std::ostream& operator<<(std::ostream& os, const order_cancel_replace_req
        << ",inbound_business_header.padding=\"" << msg.fields.inbound_business_header.padding.get().value() << '"'
        << ",ordtagid=" << (msg.fields.ordtagid.get().has_value() ? std::to_string(msg.fields.ordtagid.get().value()) : std::string_view("null"))
        << ",mm_protection_reset=\"" << sbe_binaryentrypoint::mm_protection_reset::to_string(msg.fields.mm_protection_reset.get().value()) << '"'
-       << ",clordid=" << msg.fields.clordid.get().value()
+       << ",cl_ord_id=" << msg.fields.cl_ord_id.get().value()
        << ",account=" << (msg.fields.account.get().has_value() ? std::to_string(msg.fields.account.get().value()) : std::string_view("null"))
        << ",sender_location=\"" << msg.fields.sender_location.get_trimmed().value() << '"'
        << ",entering_trader=\"" << msg.fields.entering_trader.get_trimmed().value() << '"'
@@ -348,11 +349,11 @@ inline std::ostream& operator<<(std::ostream& os, const order_cancel_replace_req
        << ",executing_trader_optional=\"" << (msg.fields.executing_trader_optional.get_trimmed().has_value() ? msg.fields.executing_trader_optional.get_trimmed().value() : std::string_view("null")) << '"'
        << ",account_type=\"" << sbe_binaryentrypoint::account_type::to_string(msg.fields.account_type.get().value()) << '"'
        << ",expire_date=" << (msg.fields.expire_date.get().has_value() ? std::to_string(msg.fields.expire_date.get().value()) : std::string_view("null"))
-       << ",custodian_info.custodian=" << msg.fields.custodian_info.custodian.get().value()
-       << ",custodian_info.custody_account=" << msg.fields.custodian_info.custody_account.get().value()
-       << ",custodian_info.custody_allocation_type=" << msg.fields.custodian_info.custody_allocation_type.get().value()
-       << ",investor_id.prefix=" << msg.fields.investor_id.prefix.get().value()
-       << ",investor_id.document=" << msg.fields.investor_id.document.get().value()
+       << ",custodian_info.custodian=" << (msg.fields.custodian_info.custodian.get().has_value() ? std::to_string(msg.fields.custodian_info.custodian.get().value()) : std::string_view("null"))
+       << ",custodian_info.custody_account=" << (msg.fields.custodian_info.custody_account.get().has_value() ? std::to_string(msg.fields.custodian_info.custody_account.get().value()) : std::string_view("null"))
+       << ",custodian_info.custody_allocation_type=" << (msg.fields.custodian_info.custody_allocation_type.get().has_value() ? std::to_string(msg.fields.custodian_info.custody_allocation_type.get().value()) : std::string_view("null"))
+       << ",investor_id.prefix=" << (msg.fields.investor_id.prefix.get().has_value() ? std::to_string(msg.fields.investor_id.prefix.get().value()) : std::string_view("null"))
+       << ",investor_id.document=" << (msg.fields.investor_id.document.get().has_value() ? std::to_string(msg.fields.investor_id.document.get().value()) : std::string_view("null"))
        << ",strategy_id=" << (msg.fields.strategy_id.get().has_value() ? std::to_string(msg.fields.strategy_id.get().value()) : std::string_view("null"))
        << ",tail=" << json::tail_to_json_string(msg)
        ;
@@ -365,7 +366,7 @@ inline std::ostream& operator<<(std::ostream& os, const order_cancel_request_mes
        << ",inbound_business_header.sending_time=" << (msg.fields.inbound_business_header.sending_time.get().has_value() ? std::to_string(msg.fields.inbound_business_header.sending_time.get().value()) : std::string_view("null"))
        << ",inbound_business_header.market_segment_id=" << static_cast<unsigned>(msg.fields.inbound_business_header.market_segment_id.get().value())
        << ",inbound_business_header.padding=\"" << msg.fields.inbound_business_header.padding.get().value() << '"'
-       << ",clordid=" << msg.fields.clordid.get().value()
+       << ",cl_ord_id=" << msg.fields.cl_ord_id.get().value()
        << ",security_id=" << msg.fields.security_id.get().value()
        << ",order_id_optional=" << (msg.fields.order_id_optional.get().has_value() ? std::to_string(msg.fields.order_id_optional.get().value()) : std::string_view("null"))
        << ",origclordid=" << (msg.fields.origclordid.get().has_value() ? std::to_string(msg.fields.origclordid.get().value()) : std::string_view("null"))
@@ -385,7 +386,7 @@ inline std::ostream& operator<<(std::ostream& os, const new_order_cross_message&
        << ",inbound_business_header.sending_time=" << (msg.fields.inbound_business_header.sending_time.get().has_value() ? std::to_string(msg.fields.inbound_business_header.sending_time.get().value()) : std::string_view("null"))
        << ",inbound_business_header.market_segment_id=" << static_cast<unsigned>(msg.fields.inbound_business_header.market_segment_id.get().value())
        << ",inbound_business_header.padding=\"" << msg.fields.inbound_business_header.padding.get().value() << '"'
-       << ",crossid=" << msg.fields.crossid.get().value()
+       << ",cross_id=" << msg.fields.cross_id.get().value()
        << ",sender_location=\"" << msg.fields.sender_location.get_trimmed().value() << '"'
        << ",entering_trader=\"" << msg.fields.entering_trader.get_trimmed().value() << '"'
        << ",executing_trader_optional=\"" << (msg.fields.executing_trader_optional.get_trimmed().has_value() ? msg.fields.executing_trader_optional.get_trimmed().value() : std::string_view("null")) << '"'
@@ -409,7 +410,7 @@ inline std::ostream& operator<<(std::ostream& os, const execution_report_new_mes
        << ",outbound_business_header.padding=\"" << msg.fields.outbound_business_header.padding.get().value() << '"'
        << ",side=\"" << sbe_binaryentrypoint::side::to_string(msg.fields.side.get().value()) << '"'
        << ",ord_status=\"" << sbe_binaryentrypoint::ord_status::to_string(msg.fields.ord_status.get().value()) << '"'
-       << ",clordid=" << msg.fields.clordid.get().value()
+       << ",cl_ord_id=" << msg.fields.cl_ord_id.get().value()
        << ",secondary_order_id=" << msg.fields.secondary_order_id.get().value()
        << ",security_id=" << msg.fields.security_id.get().value()
        << ",order_id=" << msg.fields.order_id.get().value()
@@ -429,11 +430,11 @@ inline std::ostream& operator<<(std::ostream& os, const execution_report_new_mes
        << ",stop_px=" << (msg.fields.stop_px.get().has_value() ? std::to_string(msg.fields.stop_px.get().value()) : std::string_view("null"))
        << ",min_qty=" << (msg.fields.min_qty.get().has_value() ? std::to_string(msg.fields.min_qty.get().value()) : std::string_view("null"))
        << ",max_floor=" << (msg.fields.max_floor.get().has_value() ? std::to_string(msg.fields.max_floor.get().value()) : std::string_view("null"))
-       << ",crossid_optional=" << (msg.fields.crossid_optional.get().has_value() ? std::to_string(msg.fields.crossid_optional.get().value()) : std::string_view("null"))
+       << ",cross_id_optional=" << (msg.fields.cross_id_optional.get().has_value() ? std::to_string(msg.fields.cross_id_optional.get().value()) : std::string_view("null"))
        << ",received_time=" << (msg.fields.received_time.get().has_value() ? std::to_string(msg.fields.received_time.get().value()) : std::string_view("null"))
        << ",ordtagid=" << (msg.fields.ordtagid.get().has_value() ? std::to_string(msg.fields.ordtagid.get().value()) : std::string_view("null"))
-       << ",investor_id.prefix=" << msg.fields.investor_id.prefix.get().value()
-       << ",investor_id.document=" << msg.fields.investor_id.document.get().value()
+       << ",investor_id.prefix=" << (msg.fields.investor_id.prefix.get().has_value() ? std::to_string(msg.fields.investor_id.prefix.get().value()) : std::string_view("null"))
+       << ",investor_id.document=" << (msg.fields.investor_id.document.get().has_value() ? std::to_string(msg.fields.investor_id.document.get().value()) : std::string_view("null"))
        << ",cross_type=\"" << sbe_binaryentrypoint::cross_type::to_string(msg.fields.cross_type.get().value()) << '"'
        << ",cross_prioritization=\"" << sbe_binaryentrypoint::cross_prioritization::to_string(msg.fields.cross_prioritization.get().value()) << '"'
        << ",mm_protection_reset_optional=\"" << sbe_binaryentrypoint::mm_protection_reset_optional::to_string(msg.fields.mm_protection_reset_optional.get().value()) << '"'
@@ -451,7 +452,7 @@ inline std::ostream& operator<<(std::ostream& os, const execution_report_modify_
        << ",outbound_business_header.padding=\"" << msg.fields.outbound_business_header.padding.get().value() << '"'
        << ",side=\"" << sbe_binaryentrypoint::side::to_string(msg.fields.side.get().value()) << '"'
        << ",ord_status=\"" << sbe_binaryentrypoint::ord_status::to_string(msg.fields.ord_status.get().value()) << '"'
-       << ",clordid=" << msg.fields.clordid.get().value()
+       << ",cl_ord_id=" << msg.fields.cl_ord_id.get().value()
        << ",secondary_order_id=" << msg.fields.secondary_order_id.get().value()
        << ",security_id=" << msg.fields.security_id.get().value()
        << ",leaves_qty=" << msg.fields.leaves_qty.get().value()
@@ -476,8 +477,8 @@ inline std::ostream& operator<<(std::ostream& os, const execution_report_modify_
        << ",max_floor=" << (msg.fields.max_floor.get().has_value() ? std::to_string(msg.fields.max_floor.get().value()) : std::string_view("null"))
        << ",received_time=" << (msg.fields.received_time.get().has_value() ? std::to_string(msg.fields.received_time.get().value()) : std::string_view("null"))
        << ",ordtagid=" << (msg.fields.ordtagid.get().has_value() ? std::to_string(msg.fields.ordtagid.get().value()) : std::string_view("null"))
-       << ",investor_id.prefix=" << msg.fields.investor_id.prefix.get().value()
-       << ",investor_id.document=" << msg.fields.investor_id.document.get().value()
+       << ",investor_id.prefix=" << (msg.fields.investor_id.prefix.get().has_value() ? std::to_string(msg.fields.investor_id.prefix.get().value()) : std::string_view("null"))
+       << ",investor_id.document=" << (msg.fields.investor_id.document.get().has_value() ? std::to_string(msg.fields.investor_id.document.get().value()) : std::string_view("null"))
        << ",mm_protection_reset_optional=\"" << sbe_binaryentrypoint::mm_protection_reset_optional::to_string(msg.fields.mm_protection_reset_optional.get().value()) << '"'
        << ",strategy_id=" << (msg.fields.strategy_id.get().has_value() ? std::to_string(msg.fields.strategy_id.get().value()) : std::string_view("null"))
        << ",tail=" << json::tail_to_json_string(msg)
@@ -493,7 +494,7 @@ inline std::ostream& operator<<(std::ostream& os, const execution_report_cancel_
        << ",outbound_business_header.padding=\"" << msg.fields.outbound_business_header.padding.get().value() << '"'
        << ",side=\"" << sbe_binaryentrypoint::side::to_string(msg.fields.side.get().value()) << '"'
        << ",ord_status=\"" << sbe_binaryentrypoint::ord_status::to_string(msg.fields.ord_status.get().value()) << '"'
-       << ",clordid=" << msg.fields.clordid.get().value()
+       << ",cl_ord_id=" << msg.fields.cl_ord_id.get().value()
        << ",secondary_order_id=" << msg.fields.secondary_order_id.get().value()
        << ",security_id=" << msg.fields.security_id.get().value()
        << ",cum_qty=" << msg.fields.cum_qty.get().value()
@@ -517,8 +518,8 @@ inline std::ostream& operator<<(std::ostream& os, const execution_report_cancel_
        << ",max_floor=" << (msg.fields.max_floor.get().has_value() ? std::to_string(msg.fields.max_floor.get().value()) : std::string_view("null"))
        << ",received_time=" << (msg.fields.received_time.get().has_value() ? std::to_string(msg.fields.received_time.get().value()) : std::string_view("null"))
        << ",ordtagid=" << (msg.fields.ordtagid.get().has_value() ? std::to_string(msg.fields.ordtagid.get().value()) : std::string_view("null"))
-       << ",investor_id.prefix=" << msg.fields.investor_id.prefix.get().value()
-       << ",investor_id.document=" << msg.fields.investor_id.document.get().value()
+       << ",investor_id.prefix=" << (msg.fields.investor_id.prefix.get().has_value() ? std::to_string(msg.fields.investor_id.prefix.get().value()) : std::string_view("null"))
+       << ",investor_id.document=" << (msg.fields.investor_id.document.get().has_value() ? std::to_string(msg.fields.investor_id.document.get().value()) : std::string_view("null"))
        << ",strategy_id=" << (msg.fields.strategy_id.get().has_value() ? std::to_string(msg.fields.strategy_id.get().value()) : std::string_view("null"))
        << ",action_requested_from_session_id=" << (msg.fields.action_requested_from_session_id.get().has_value() ? std::to_string(msg.fields.action_requested_from_session_id.get().value()) : std::string_view("null"))
        << ",tail=" << json::tail_to_json_string(msg)
@@ -534,7 +535,7 @@ inline std::ostream& operator<<(std::ostream& os, const execution_report_trade_m
        << ",outbound_business_header.padding=\"" << msg.fields.outbound_business_header.padding.get().value() << '"'
        << ",side=\"" << sbe_binaryentrypoint::side::to_string(msg.fields.side.get().value()) << '"'
        << ",ord_status=\"" << sbe_binaryentrypoint::ord_status::to_string(msg.fields.ord_status.get().value()) << '"'
-       << ",clordid_optional=" << (msg.fields.clordid_optional.get().has_value() ? std::to_string(msg.fields.clordid_optional.get().value()) : std::string_view("null"))
+       << ",cl_ord_id_optional=" << (msg.fields.cl_ord_id_optional.get().has_value() ? std::to_string(msg.fields.cl_ord_id_optional.get().value()) : std::string_view("null"))
        << ",secondary_order_id=" << msg.fields.secondary_order_id.get().value()
        << ",security_id=" << msg.fields.security_id.get().value()
        << ",account=" << (msg.fields.account.get().has_value() ? std::to_string(msg.fields.account.get().value()) : std::string_view("null"))
@@ -555,7 +556,7 @@ inline std::ostream& operator<<(std::ostream& os, const execution_report_trade_m
        << ",tot_no_related_sym=" << (msg.fields.tot_no_related_sym.get().has_value() ? std::to_string(msg.fields.tot_no_related_sym.get().value()) : std::string_view("null"))
        << ",secondary_exec_id=" << (msg.fields.secondary_exec_id.get().has_value() ? std::to_string(msg.fields.secondary_exec_id.get().value()) : std::string_view("null"))
        << ",exec_ref_id=" << (msg.fields.exec_ref_id.get().has_value() ? std::to_string(msg.fields.exec_ref_id.get().value()) : std::string_view("null"))
-       << ",crossid_optional=" << (msg.fields.crossid_optional.get().has_value() ? std::to_string(msg.fields.crossid_optional.get().value()) : std::string_view("null"))
+       << ",cross_id_optional=" << (msg.fields.cross_id_optional.get().has_value() ? std::to_string(msg.fields.cross_id_optional.get().value()) : std::string_view("null"))
        << ",crossed_indicator=\"" << sbe_binaryentrypoint::crossed_indicator::to_string(msg.fields.crossed_indicator.get().value()) << '"'
        << ",order_qty=" << msg.fields.order_qty.get().value()
        << ",trading_session_id=\"" << sbe_binaryentrypoint::trading_session_id::to_string(msg.fields.trading_session_id.get().value()) << '"'
@@ -577,7 +578,7 @@ inline std::ostream& operator<<(std::ostream& os, const execution_report_reject_
        << ",outbound_business_header.padding=\"" << msg.fields.outbound_business_header.padding.get().value() << '"'
        << ",side=\"" << sbe_binaryentrypoint::side::to_string(msg.fields.side.get().value()) << '"'
        << ",cxl_rej_response_to=\"" << sbe_binaryentrypoint::cxl_rej_response_to::to_string(msg.fields.cxl_rej_response_to.get().value()) << '"'
-       << ",clordid=" << msg.fields.clordid.get().value()
+       << ",cl_ord_id=" << msg.fields.cl_ord_id.get().value()
        << ",secondary_order_id_optional=" << (msg.fields.secondary_order_id_optional.get().has_value() ? std::to_string(msg.fields.secondary_order_id_optional.get().value()) : std::string_view("null"))
        << ",security_id=" << msg.fields.security_id.get().value()
        << ",ord_rej_reason=\"" << sbe_binaryentrypoint::ord_rej_reason::to_string(msg.fields.ord_rej_reason.get().value()) << '"'
@@ -594,12 +595,12 @@ inline std::ostream& operator<<(std::ostream& os, const execution_report_reject_
        << ",stop_px=" << (msg.fields.stop_px.get().has_value() ? std::to_string(msg.fields.stop_px.get().value()) : std::string_view("null"))
        << ",min_qty=" << (msg.fields.min_qty.get().has_value() ? std::to_string(msg.fields.min_qty.get().value()) : std::string_view("null"))
        << ",max_floor=" << (msg.fields.max_floor.get().has_value() ? std::to_string(msg.fields.max_floor.get().value()) : std::string_view("null"))
-       << ",crossid_optional=" << (msg.fields.crossid_optional.get().has_value() ? std::to_string(msg.fields.crossid_optional.get().value()) : std::string_view("null"))
+       << ",cross_id_optional=" << (msg.fields.cross_id_optional.get().has_value() ? std::to_string(msg.fields.cross_id_optional.get().value()) : std::string_view("null"))
        << ",crossed_indicator=\"" << sbe_binaryentrypoint::crossed_indicator::to_string(msg.fields.crossed_indicator.get().value()) << '"'
        << ",received_time=" << (msg.fields.received_time.get().has_value() ? std::to_string(msg.fields.received_time.get().value()) : std::string_view("null"))
        << ",ordtagid=" << (msg.fields.ordtagid.get().has_value() ? std::to_string(msg.fields.ordtagid.get().value()) : std::string_view("null"))
-       << ",investor_id.prefix=" << msg.fields.investor_id.prefix.get().value()
-       << ",investor_id.document=" << msg.fields.investor_id.document.get().value()
+       << ",investor_id.prefix=" << (msg.fields.investor_id.prefix.get().has_value() ? std::to_string(msg.fields.investor_id.prefix.get().value()) : std::string_view("null"))
+       << ",investor_id.document=" << (msg.fields.investor_id.document.get().has_value() ? std::to_string(msg.fields.investor_id.document.get().value()) : std::string_view("null"))
        << ",strategy_id=" << (msg.fields.strategy_id.get().has_value() ? std::to_string(msg.fields.strategy_id.get().value()) : std::string_view("null"))
        << ",tail=" << json::tail_to_json_string(msg)
        ;
@@ -614,7 +615,7 @@ inline std::ostream& operator<<(std::ostream& os, const execution_report_forward
        << ",outbound_business_header.padding=\"" << msg.fields.outbound_business_header.padding.get().value() << '"'
        << ",side=\"" << sbe_binaryentrypoint::side::to_string(msg.fields.side.get().value()) << '"'
        << ",ord_status=\"" << sbe_binaryentrypoint::ord_status::to_string(msg.fields.ord_status.get().value()) << '"'
-       << ",clordid_optional=" << (msg.fields.clordid_optional.get().has_value() ? std::to_string(msg.fields.clordid_optional.get().value()) : std::string_view("null"))
+       << ",cl_ord_id_optional=" << (msg.fields.cl_ord_id_optional.get().has_value() ? std::to_string(msg.fields.cl_ord_id_optional.get().value()) : std::string_view("null"))
        << ",secondary_order_id=" << msg.fields.secondary_order_id.get().value()
        << ",security_id=" << msg.fields.security_id.get().value()
        << ",account=" << (msg.fields.account.get().has_value() ? std::to_string(msg.fields.account.get().value()) : std::string_view("null"))
@@ -633,7 +634,7 @@ inline std::ostream& operator<<(std::ostream& os, const execution_report_forward
        << ",days_to_settlement_optional=" << (msg.fields.days_to_settlement_optional.get().has_value() ? std::to_string(msg.fields.days_to_settlement_optional.get().value()) : std::string_view("null"))
        << ",secondary_exec_id=" << (msg.fields.secondary_exec_id.get().has_value() ? std::to_string(msg.fields.secondary_exec_id.get().value()) : std::string_view("null"))
        << ",exec_ref_id=" << (msg.fields.exec_ref_id.get().has_value() ? std::to_string(msg.fields.exec_ref_id.get().value()) : std::string_view("null"))
-       << ",fixed_rate_percentage_8_optional=" << (msg.fields.fixed_rate_percentage_8_optional.get().has_value() ? std::to_string(msg.fields.fixed_rate_percentage_8_optional.get().value()) : std::string_view("null"))
+       << ",fixed_rate_optional=" << (msg.fields.fixed_rate_optional.get().has_value() ? std::to_string(msg.fields.fixed_rate_optional.get().value()) : std::string_view("null"))
        << ",order_qty=" << msg.fields.order_qty.get().value()
        << ",trading_session_id=\"" << sbe_binaryentrypoint::trading_session_id::to_string(msg.fields.trading_session_id.get().value()) << '"'
        << ",trading_session_sub_id=\"" << sbe_binaryentrypoint::trading_session_sub_id::to_string(msg.fields.trading_session_sub_id.get().value()) << '"'
@@ -695,8 +696,8 @@ inline std::ostream& operator<<(std::ostream& os, const quote_request_message& m
        << ",bidirectional_business_header.msg_seq_num=" << msg.fields.bidirectional_business_header.msg_seq_num.get().value()
        << ",bidirectional_business_header.sending_time=" << (msg.fields.bidirectional_business_header.sending_time.get().has_value() ? std::to_string(msg.fields.bidirectional_business_header.sending_time.get().value()) : std::string_view("null"))
        << ",bidirectional_business_header.poss_resend=" << static_cast<unsigned>(msg.fields.bidirectional_business_header.poss_resend.get().value())
-       << ",bidirectional_business_header.market_segment_id_optional=" << static_cast<unsigned>(msg.fields.bidirectional_business_header.market_segment_id_optional.get().value())
-       << ",bidirectional_business_header.padding=\"" << msg.fields.bidirectional_business_header.padding.get().value() << '"'
+       << ",bidirectional_business_header.market_segment_id_optional=" << (msg.fields.bidirectional_business_header.market_segment_id_optional.get().has_value() ? std::to_string(msg.fields.bidirectional_business_header.market_segment_id_optional.get().value()) : std::string_view("null"))
+       << ",bidirectional_business_header.padding_char_2=\"" << msg.fields.bidirectional_business_header.padding_char_2.get_trimmed().value() << '"'
        << ",security_id=" << msg.fields.security_id.get().value()
        << ",quote_req_id=" << msg.fields.quote_req_id.get().value()
        << ",quote_id_optional=" << (msg.fields.quote_id_optional.get().has_value() ? std::to_string(msg.fields.quote_id_optional.get().value()) : std::string_view("null"))
@@ -710,7 +711,7 @@ inline std::ostream& operator<<(std::ostream& os, const quote_request_message& m
        << ",sender_location=\"" << msg.fields.sender_location.get_trimmed().value() << '"'
        << ",entering_trader=\"" << msg.fields.entering_trader.get_trimmed().value() << '"'
        << ",executing_trader=\"" << msg.fields.executing_trader.get_trimmed().value() << '"'
-       << ",fixed_rate_percentage_8=" << msg.fields.fixed_rate_percentage_8.get().value()
+       << ",fixed_rate=" << msg.fields.fixed_rate.get().value()
        << ",days_to_settlement=" << msg.fields.days_to_settlement.get().value()
        << ",tail=" << json::tail_to_json_string(msg)
        ;
@@ -722,8 +723,8 @@ inline std::ostream& operator<<(std::ostream& os, const quote_status_report_mess
        << ",bidirectional_business_header.msg_seq_num=" << msg.fields.bidirectional_business_header.msg_seq_num.get().value()
        << ",bidirectional_business_header.sending_time=" << (msg.fields.bidirectional_business_header.sending_time.get().has_value() ? std::to_string(msg.fields.bidirectional_business_header.sending_time.get().value()) : std::string_view("null"))
        << ",bidirectional_business_header.poss_resend=" << static_cast<unsigned>(msg.fields.bidirectional_business_header.poss_resend.get().value())
-       << ",bidirectional_business_header.market_segment_id_optional=" << static_cast<unsigned>(msg.fields.bidirectional_business_header.market_segment_id_optional.get().value())
-       << ",bidirectional_business_header.padding=\"" << msg.fields.bidirectional_business_header.padding.get().value() << '"'
+       << ",bidirectional_business_header.market_segment_id_optional=" << (msg.fields.bidirectional_business_header.market_segment_id_optional.get().has_value() ? std::to_string(msg.fields.bidirectional_business_header.market_segment_id_optional.get().value()) : std::string_view("null"))
+       << ",bidirectional_business_header.padding_char_2=\"" << msg.fields.bidirectional_business_header.padding_char_2.get_trimmed().value() << '"'
        << ",quote_reject_reason=\"" << sbe_binaryentrypoint::quote_reject_reason::to_string(msg.fields.quote_reject_reason.get().value()) << '"'
        << ",security_id=" << msg.fields.security_id.get().value()
        << ",quote_req_id=" << msg.fields.quote_req_id.get().value()
@@ -741,7 +742,7 @@ inline std::ostream& operator<<(std::ostream& os, const quote_status_report_mess
        << ",sender_location=\"" << msg.fields.sender_location.get_trimmed().value() << '"'
        << ",entering_trader=\"" << msg.fields.entering_trader.get_trimmed().value() << '"'
        << ",executing_trader=\"" << msg.fields.executing_trader.get_trimmed().value() << '"'
-       << ",fixed_rate_percentage_8_optional=" << (msg.fields.fixed_rate_percentage_8_optional.get().has_value() ? std::to_string(msg.fields.fixed_rate_percentage_8_optional.get().value()) : std::string_view("null"))
+       << ",fixed_rate_optional=" << (msg.fields.fixed_rate_optional.get().has_value() ? std::to_string(msg.fields.fixed_rate_optional.get().value()) : std::string_view("null"))
        << ",execute_underlying_trade=\"" << sbe_binaryentrypoint::execute_underlying_trade::to_string(msg.fields.execute_underlying_trade.get().value()) << '"'
        << ",days_to_settlement_optional=" << (msg.fields.days_to_settlement_optional.get().has_value() ? std::to_string(msg.fields.days_to_settlement_optional.get().value()) : std::string_view("null"))
        << ",tail=" << json::tail_to_json_string(msg)
@@ -754,8 +755,8 @@ inline std::ostream& operator<<(std::ostream& os, const quote_message& msg) {
        << ",bidirectional_business_header.msg_seq_num=" << msg.fields.bidirectional_business_header.msg_seq_num.get().value()
        << ",bidirectional_business_header.sending_time=" << (msg.fields.bidirectional_business_header.sending_time.get().has_value() ? std::to_string(msg.fields.bidirectional_business_header.sending_time.get().value()) : std::string_view("null"))
        << ",bidirectional_business_header.poss_resend=" << static_cast<unsigned>(msg.fields.bidirectional_business_header.poss_resend.get().value())
-       << ",bidirectional_business_header.market_segment_id_optional=" << static_cast<unsigned>(msg.fields.bidirectional_business_header.market_segment_id_optional.get().value())
-       << ",bidirectional_business_header.padding=\"" << msg.fields.bidirectional_business_header.padding.get().value() << '"'
+       << ",bidirectional_business_header.market_segment_id_optional=" << (msg.fields.bidirectional_business_header.market_segment_id_optional.get().has_value() ? std::to_string(msg.fields.bidirectional_business_header.market_segment_id_optional.get().value()) : std::string_view("null"))
+       << ",bidirectional_business_header.padding_char_2=\"" << msg.fields.bidirectional_business_header.padding_char_2.get_trimmed().value() << '"'
        << ",security_id=" << msg.fields.security_id.get().value()
        << ",quote_req_id=" << msg.fields.quote_req_id.get().value()
        << ",quote_id=" << msg.fields.quote_id.get().value()
@@ -768,7 +769,7 @@ inline std::ostream& operator<<(std::ostream& os, const quote_message& msg) {
        << ",sender_location=\"" << msg.fields.sender_location.get_trimmed().value() << '"'
        << ",entering_trader=\"" << msg.fields.entering_trader.get_trimmed().value() << '"'
        << ",executing_trader=\"" << msg.fields.executing_trader.get_trimmed().value() << '"'
-       << ",fixed_rate_percentage_8=" << msg.fields.fixed_rate_percentage_8.get().value()
+       << ",fixed_rate=" << msg.fields.fixed_rate.get().value()
        << ",execute_underlying_trade=\"" << sbe_binaryentrypoint::execute_underlying_trade::to_string(msg.fields.execute_underlying_trade.get().value()) << '"'
        << ",days_to_settlement=" << msg.fields.days_to_settlement.get().value()
        << ",tail=" << json::tail_to_json_string(msg)
@@ -781,8 +782,8 @@ inline std::ostream& operator<<(std::ostream& os, const quote_cancel_message& ms
        << ",bidirectional_business_header.msg_seq_num=" << msg.fields.bidirectional_business_header.msg_seq_num.get().value()
        << ",bidirectional_business_header.sending_time=" << (msg.fields.bidirectional_business_header.sending_time.get().has_value() ? std::to_string(msg.fields.bidirectional_business_header.sending_time.get().value()) : std::string_view("null"))
        << ",bidirectional_business_header.poss_resend=" << static_cast<unsigned>(msg.fields.bidirectional_business_header.poss_resend.get().value())
-       << ",bidirectional_business_header.market_segment_id_optional=" << static_cast<unsigned>(msg.fields.bidirectional_business_header.market_segment_id_optional.get().value())
-       << ",bidirectional_business_header.padding=\"" << msg.fields.bidirectional_business_header.padding.get().value() << '"'
+       << ",bidirectional_business_header.market_segment_id_optional=" << (msg.fields.bidirectional_business_header.market_segment_id_optional.get().has_value() ? std::to_string(msg.fields.bidirectional_business_header.market_segment_id_optional.get().value()) : std::string_view("null"))
+       << ",bidirectional_business_header.padding_char_2=\"" << msg.fields.bidirectional_business_header.padding_char_2.get_trimmed().value() << '"'
        << ",security_id=" << msg.fields.security_id.get().value()
        << ",quote_req_id_optional=" << (msg.fields.quote_req_id_optional.get().has_value() ? std::to_string(msg.fields.quote_req_id_optional.get().value()) : std::string_view("null"))
        << ",quote_id_optional=" << (msg.fields.quote_id_optional.get().has_value() ? std::to_string(msg.fields.quote_id_optional.get().value()) : std::string_view("null"))
@@ -800,8 +801,8 @@ inline std::ostream& operator<<(std::ostream& os, const quote_request_reject_mes
        << ",bidirectional_business_header.msg_seq_num=" << msg.fields.bidirectional_business_header.msg_seq_num.get().value()
        << ",bidirectional_business_header.sending_time=" << (msg.fields.bidirectional_business_header.sending_time.get().has_value() ? std::to_string(msg.fields.bidirectional_business_header.sending_time.get().value()) : std::string_view("null"))
        << ",bidirectional_business_header.poss_resend=" << static_cast<unsigned>(msg.fields.bidirectional_business_header.poss_resend.get().value())
-       << ",bidirectional_business_header.market_segment_id_optional=" << static_cast<unsigned>(msg.fields.bidirectional_business_header.market_segment_id_optional.get().value())
-       << ",bidirectional_business_header.padding=\"" << msg.fields.bidirectional_business_header.padding.get().value() << '"'
+       << ",bidirectional_business_header.market_segment_id_optional=" << (msg.fields.bidirectional_business_header.market_segment_id_optional.get().has_value() ? std::to_string(msg.fields.bidirectional_business_header.market_segment_id_optional.get().value()) : std::string_view("null"))
+       << ",bidirectional_business_header.padding_char_2=\"" << msg.fields.bidirectional_business_header.padding_char_2.get_trimmed().value() << '"'
        << ",quote_request_reject_reason=" << (msg.fields.quote_request_reject_reason.get().has_value() ? std::to_string(msg.fields.quote_request_reject_reason.get().value()) : std::string_view("null"))
        << ",security_id=" << msg.fields.security_id.get().value()
        << ",quote_req_id=" << msg.fields.quote_req_id.get().value()
@@ -815,7 +816,7 @@ inline std::ostream& operator<<(std::ostream& os, const quote_request_reject_mes
        << ",order_qty_optional=" << (msg.fields.order_qty_optional.get().has_value() ? std::to_string(msg.fields.order_qty_optional.get().value()) : std::string_view("null"))
        << ",sender_location=\"" << msg.fields.sender_location.get_trimmed().value() << '"'
        << ",executing_trader=\"" << msg.fields.executing_trader.get_trimmed().value() << '"'
-       << ",fixed_rate_percentage_8_optional=" << (msg.fields.fixed_rate_percentage_8_optional.get().has_value() ? std::to_string(msg.fields.fixed_rate_percentage_8_optional.get().value()) : std::string_view("null"))
+       << ",fixed_rate_optional=" << (msg.fields.fixed_rate_optional.get().has_value() ? std::to_string(msg.fields.fixed_rate_optional.get().value()) : std::string_view("null"))
        << ",days_to_settlement_optional=" << (msg.fields.days_to_settlement_optional.get().has_value() ? std::to_string(msg.fields.days_to_settlement_optional.get().value()) : std::string_view("null"))
        << ",tail=" << json::tail_to_json_string(msg)
        ;
@@ -942,14 +943,14 @@ inline std::ostream& operator<<(std::ostream& os, const order_mass_action_reques
        << ",inbound_business_header.padding=\"" << msg.fields.inbound_business_header.padding.get().value() << '"'
        << ",mass_action_type=\"" << sbe_binaryentrypoint::mass_action_type::to_string(msg.fields.mass_action_type.get().value()) << '"'
        << ",mass_action_scope=\"" << sbe_binaryentrypoint::mass_action_scope::to_string(msg.fields.mass_action_scope.get().value()) << '"'
-       << ",clordid=" << msg.fields.clordid.get().value()
+       << ",cl_ord_id=" << msg.fields.cl_ord_id.get().value()
        << ",mass_cancel_restatement_reason=\"" << sbe_binaryentrypoint::mass_cancel_restatement_reason::to_string(msg.fields.mass_cancel_restatement_reason.get().value()) << '"'
        << ",ordtagid=" << (msg.fields.ordtagid.get().has_value() ? std::to_string(msg.fields.ordtagid.get().value()) : std::string_view("null"))
        << ",side_optional=\"" << sbe_binaryentrypoint::side_optional::to_string(msg.fields.side_optional.get().value()) << '"'
        << ",asset=\"" << (msg.fields.asset.get_trimmed().has_value() ? msg.fields.asset.get_trimmed().value() : std::string_view("null")) << '"'
        << ",security_id_optional=" << (msg.fields.security_id_optional.get().has_value() ? std::to_string(msg.fields.security_id_optional.get().value()) : std::string_view("null"))
-       << ",investor_id.prefix=" << msg.fields.investor_id.prefix.get().value()
-       << ",investor_id.document=" << msg.fields.investor_id.document.get().value()
+       << ",investor_id.prefix=" << (msg.fields.investor_id.prefix.get().has_value() ? std::to_string(msg.fields.investor_id.prefix.get().value()) : std::string_view("null"))
+       << ",investor_id.document=" << (msg.fields.investor_id.document.get().has_value() ? std::to_string(msg.fields.investor_id.document.get().value()) : std::string_view("null"))
        ;
     return os;
 }
@@ -962,7 +963,7 @@ inline std::ostream& operator<<(std::ostream& os, const order_mass_action_report
        << ",outbound_business_header.padding=\"" << msg.fields.outbound_business_header.padding.get().value() << '"'
        << ",mass_action_type=\"" << sbe_binaryentrypoint::mass_action_type::to_string(msg.fields.mass_action_type.get().value()) << '"'
        << ",mass_action_scope=\"" << sbe_binaryentrypoint::mass_action_scope::to_string(msg.fields.mass_action_scope.get().value()) << '"'
-       << ",clordid=" << msg.fields.clordid.get().value()
+       << ",cl_ord_id=" << msg.fields.cl_ord_id.get().value()
        << ",mass_action_report_id=" << msg.fields.mass_action_report_id.get().value()
        << ",transact_time=" << msg.fields.transact_time.get().value()
        << ",mass_action_response=\"" << sbe_binaryentrypoint::mass_action_response::to_string(msg.fields.mass_action_response.get().value()) << '"'
@@ -972,8 +973,8 @@ inline std::ostream& operator<<(std::ostream& os, const order_mass_action_report
        << ",side_optional=\"" << sbe_binaryentrypoint::side_optional::to_string(msg.fields.side_optional.get().value()) << '"'
        << ",asset=\"" << (msg.fields.asset.get_trimmed().has_value() ? msg.fields.asset.get_trimmed().value() : std::string_view("null")) << '"'
        << ",security_id_optional=" << (msg.fields.security_id_optional.get().has_value() ? std::to_string(msg.fields.security_id_optional.get().value()) : std::string_view("null"))
-       << ",investor_id.prefix=" << msg.fields.investor_id.prefix.get().value()
-       << ",investor_id.document=" << msg.fields.investor_id.document.get().value()
+       << ",investor_id.prefix=" << (msg.fields.investor_id.prefix.get().has_value() ? std::to_string(msg.fields.investor_id.prefix.get().value()) : std::string_view("null"))
+       << ",investor_id.document=" << (msg.fields.investor_id.document.get().has_value() ? std::to_string(msg.fields.investor_id.document.get().value()) : std::string_view("null"))
        << ",tail=" << json::tail_to_json_string(msg)
        ;
     return os;

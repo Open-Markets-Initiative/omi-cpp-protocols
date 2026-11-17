@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeed.Xdp.v2.1.g: TypesAll.hpp
 #pragma once
 
 // All type headers for this protocol schema

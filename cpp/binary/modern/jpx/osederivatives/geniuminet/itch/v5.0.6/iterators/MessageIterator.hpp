@@ -1,3 +1,4 @@
+// Jpx.OseDerivatives.GeniumInet.Itch.v5.0.6: iterators/MessageIterator.hpp
 #pragma once
 
 #include "../definitions.hpp"

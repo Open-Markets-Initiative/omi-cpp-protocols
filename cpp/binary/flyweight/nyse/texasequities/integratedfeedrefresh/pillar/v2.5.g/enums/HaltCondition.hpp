@@ -1,3 +1,4 @@
+// Nyse.TexasEquities.IntegratedFeedRefresh.Pillar.v2.5.g: enums/HaltCondition.hpp
 #pragma once
 
 #include <cstdint>

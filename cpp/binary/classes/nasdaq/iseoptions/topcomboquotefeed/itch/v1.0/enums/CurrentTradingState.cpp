@@ -1,3 +1,4 @@
+// Nasdaq.IseOptions.TopComboQuoteFeed.Itch.v1.0: enums/CurrentTradingState.cpp
 #include "CurrentTradingState.hpp"
 
 namespace nasdaq::iseoptions::topcomboquotefeed::itch::v1_0 {

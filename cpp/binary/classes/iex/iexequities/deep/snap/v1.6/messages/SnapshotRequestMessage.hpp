@@ -1,3 +1,4 @@
+// Iex.IexEquities.Deep.Snap.v1.6: messages/SnapshotRequestMessage.hpp
 #pragma once
 
 #include <cstddef>

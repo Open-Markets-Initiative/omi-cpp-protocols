@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.ComplexTopOfMarket.Mach.v1.1: messages/ComplexStrategyDefinitionMessage.cpp
 #include "ComplexStrategyDefinitionMessage.hpp"
 
 #include "../common/Print.hpp"

@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: types/BuildNumber.hpp
 #pragma once
 
 #include <cstddef>
@@ -12,6 +13,7 @@ struct BuildNumber {
     static constexpr auto name = "Build Number";
     static constexpr std::size_t size = 1;
     using type = std::uint8_t;
+static const type no_value = 255;
 
     // default constructor
     constexpr BuildNumber()

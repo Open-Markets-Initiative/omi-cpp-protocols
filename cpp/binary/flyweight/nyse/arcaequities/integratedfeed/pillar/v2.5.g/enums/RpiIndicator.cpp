@@ -1,3 +1,4 @@
+// Nyse.ArcaEquities.IntegratedFeed.Pillar.v2.5.g: enums/RpiIndicator.cpp
 #include "RpiIndicator.hpp"
 
 namespace nyse::arcaequities::integratedfeed::pillar::v2_5_g {

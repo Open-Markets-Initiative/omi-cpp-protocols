@@ -1,3 +1,4 @@
+// Nasdaq.PhlxOptions.TopOfMarket.Itch.v3.4: types/BidSize2.hpp
 #pragma once
 
 #include <bit>

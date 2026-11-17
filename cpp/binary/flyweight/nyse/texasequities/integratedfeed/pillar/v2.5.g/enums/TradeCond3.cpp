@@ -1,3 +1,4 @@
+// Nyse.TexasEquities.IntegratedFeed.Pillar.v2.5.g: enums/TradeCond3.cpp
 #include "TradeCond3.hpp"
 
 namespace nyse::texasequities::integratedfeed::pillar::v2_5_g {

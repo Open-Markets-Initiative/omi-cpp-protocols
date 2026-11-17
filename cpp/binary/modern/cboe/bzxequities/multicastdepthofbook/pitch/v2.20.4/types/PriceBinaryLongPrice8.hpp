@@ -1,3 +1,4 @@
+// Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.20.4: types/PriceBinaryLongPrice8.hpp
 #pragma once
 
 #include <cstddef>

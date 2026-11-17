@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: main.cpp
 // Nasdaq.NsmEquities.NlsPlus.Itch.v3.0 benchmark, through the Tmp header: every value it reads from every message of the simulated
 // sequence (tests/simulated/nasdaq/nsmequities/nlsplus/itch/v3.0.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -509,7 +510,6 @@ struct Reader {
     }
 
     void operator()(const protocol::stock_trading_action_message& message) {
-        if constexpr (requires { message.template get<protocol::reserved>(); }) { checksum += bench::digest(message.template get<protocol::reserved>().value()); }
         if constexpr (requires { message.template get<protocol::issue_symbol>(); }) { checksum += bench::digest(message.template get<protocol::issue_symbol>().value()); }
         if constexpr (requires { message.template get<protocol::security_class>(); }) { checksum += bench::digest(message.template get<protocol::security_class>().value()); }
         if constexpr (requires { message.template get<protocol::current_trading_state>(); }) { checksum += bench::digest(message.template get<protocol::current_trading_state>().value()); }

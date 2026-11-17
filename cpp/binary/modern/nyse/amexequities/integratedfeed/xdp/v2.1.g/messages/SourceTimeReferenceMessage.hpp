@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeed.Xdp.v2.1.g: messages/SourceTimeReferenceMessage.hpp
 #pragma once
 
 #include "../types/Id.hpp"

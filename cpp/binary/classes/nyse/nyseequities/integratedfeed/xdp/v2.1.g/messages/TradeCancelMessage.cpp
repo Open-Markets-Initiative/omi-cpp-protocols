@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeed.Xdp.v2.1.g: messages/TradeCancelMessage.cpp
 #include "TradeCancelMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,11 +7,11 @@
 
 namespace nyse::nyseequities::integratedfeed::xdp::v2_1_g {
 
-TradeCancelMessage::TradeCancelMessage(std::uint32_t source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, std::uint32_t trade_id)
+TradeCancelMessage::TradeCancelMessage(std::chrono::nanoseconds source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, std::uint32_t trade_id)
   : source_time_ns_(source_time_ns), symbol_index_(symbol_index), symbol_seq_num_(symbol_seq_num), trade_id_(trade_id) {}
 
-std::uint32_t TradeCancelMessage::source_time_ns() const { return source_time_ns_; }
-void TradeCancelMessage::set_source_time_ns(std::uint32_t value) { source_time_ns_ = value; }
+std::chrono::nanoseconds TradeCancelMessage::source_time_ns() const { return source_time_ns_; }
+void TradeCancelMessage::set_source_time_ns(std::chrono::nanoseconds value) { source_time_ns_ = value; }
 
 std::uint32_t TradeCancelMessage::symbol_index() const { return symbol_index_; }
 void TradeCancelMessage::set_symbol_index(std::uint32_t value) { symbol_index_ = value; }
@@ -29,7 +30,7 @@ std::size_t TradeCancelMessage::decode(const std::byte* data, std::size_t length
     std::size_t offset = 0;
     wire::require("TradeCancelMessage", wire_size, length);
 
-    source_time_ns_ = wire::read_u32_le(data + offset);
+    source_time_ns_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     symbol_index_ = wire::read_u32_le(data + offset);
@@ -48,7 +49,7 @@ std::size_t TradeCancelMessage::encode(std::byte* data, std::size_t capacity) co
     std::size_t offset = 0;
     wire::require_capacity("TradeCancelMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_.count()));
     offset += 4;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(symbol_index_));
@@ -78,7 +79,7 @@ std::unique_ptr<Message> TradeCancelMessage::clone() const {
 void TradeCancelMessage::print(std::ostream& out) const {
     out << "TradeCancelMessage{";
     out << "source_time_ns=";
-    out << source_time_ns_;
+    out << source_time_ns_.count();
     out << ", symbol_index=";
     out << symbol_index_;
     out << ", symbol_seq_num=";

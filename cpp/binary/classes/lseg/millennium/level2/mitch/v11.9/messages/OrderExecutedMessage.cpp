@@ -1,3 +1,4 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/OrderExecutedMessage.cpp
 #include "OrderExecutedMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,11 +7,11 @@
 
 namespace lseg::millennium::level2::mitch::v11_9 {
 
-OrderExecutedMessage::OrderExecutedMessage(std::uint32_t nanosecond, std::uint64_t order_id, std::uint32_t executed_quantity, std::uint64_t trade_match_id)
+OrderExecutedMessage::OrderExecutedMessage(std::chrono::nanoseconds nanosecond, std::uint64_t order_id, std::uint32_t executed_quantity, std::uint64_t trade_match_id)
   : nanosecond_(nanosecond), order_id_(order_id), executed_quantity_(executed_quantity), trade_match_id_(trade_match_id) {}
 
-std::uint32_t OrderExecutedMessage::nanosecond() const { return nanosecond_; }
-void OrderExecutedMessage::set_nanosecond(std::uint32_t value) { nanosecond_ = value; }
+std::chrono::nanoseconds OrderExecutedMessage::nanosecond() const { return nanosecond_; }
+void OrderExecutedMessage::set_nanosecond(std::chrono::nanoseconds value) { nanosecond_ = value; }
 
 std::uint64_t OrderExecutedMessage::order_id() const { return order_id_; }
 void OrderExecutedMessage::set_order_id(std::uint64_t value) { order_id_ = value; }
@@ -29,7 +30,7 @@ std::size_t OrderExecutedMessage::decode(const std::byte* data, std::size_t leng
     std::size_t offset = 0;
     wire::require("OrderExecutedMessage", wire_size, length);
 
-    nanosecond_ = wire::read_u32_le(data + offset);
+    nanosecond_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     order_id_ = wire::read_u64_le(data + offset);
@@ -48,7 +49,7 @@ std::size_t OrderExecutedMessage::encode(std::byte* data, std::size_t capacity) 
     std::size_t offset = 0;
     wire::require_capacity("OrderExecutedMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(nanosecond_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(nanosecond_.count()));
     offset += 4;
 
     wire::write_u64_le(data + offset, static_cast<std::uint64_t>(order_id_));
@@ -78,7 +79,7 @@ std::unique_ptr<Message> OrderExecutedMessage::clone() const {
 void OrderExecutedMessage::print(std::ostream& out) const {
     out << "OrderExecutedMessage{";
     out << "nanosecond=";
-    out << nanosecond_;
+    out << nanosecond_.count();
     out << ", order_id=";
     out << order_id_;
     out << ", executed_quantity=";

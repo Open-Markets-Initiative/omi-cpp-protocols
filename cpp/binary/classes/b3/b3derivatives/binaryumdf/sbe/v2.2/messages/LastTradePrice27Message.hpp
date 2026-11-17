@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.2: messages/LastTradePrice27Message.hpp
 #pragma once
 
 #include <array>
@@ -29,7 +30,7 @@ class LastTradePrice27Message : public Message {
     static constexpr std::size_t wire_size = 68;
 
     LastTradePrice27Message() = default;
-    LastTradePrice27Message(std::uint64_t security_id, const MatchEventIndicator& match_event_indicator, TradingSessionId trading_session_id, const TradeCondition& trade_condition, Decimal md_future_price, std::int64_t md_entry_size_quantity, std::uint32_t trade_id, std::optional<std::uint32_t> md_entry_buyer, std::optional<std::uint32_t> md_entry_seller, std::uint16_t trade_date, std::optional<std::chrono::nanoseconds> md_entry_timestamp, std::optional<std::uint32_t> rpt_seq, std::optional<std::uint16_t> seller_days, std::optional<Decimal> md_entry_interest_rate, std::optional<TrdSubType> trd_sub_type, const std::array<std::byte, 3>& padding_3);
+    LastTradePrice27Message(std::uint64_t security_id, const MatchEventIndicator& match_event_indicator, TradingSessionId trading_session_id, const TradeCondition& trade_condition, Decimal md_future_price, std::int64_t md_entry_size, std::uint32_t trade_id, std::optional<std::uint32_t> md_entry_buyer, std::optional<std::uint32_t> md_entry_seller, std::uint16_t trade_date, std::optional<std::chrono::nanoseconds> md_entry_timestamp, std::optional<std::uint32_t> rpt_seq, std::optional<std::uint16_t> seller_days, std::optional<Decimal> md_entry_interest_rate, std::optional<TrdSubType> trd_sub_type, const std::array<std::byte, 3>& padding_3);
 
     // Security Id: securityID
     std::uint64_t security_id() const;
@@ -53,9 +54,9 @@ class LastTradePrice27Message : public Message {
     Decimal md_future_price() const;
     void set_md_future_price(Decimal value);
 
-    // Md Entry Size Quantity: mDEntrySize
-    std::int64_t md_entry_size_quantity() const;
-    void set_md_entry_size_quantity(std::int64_t value);
+    // Md Entry Size: mDEntrySize
+    std::int64_t md_entry_size() const;
+    void set_md_entry_size(std::int64_t value);
 
     // Trade Id: tradeID
     std::uint32_t trade_id() const;
@@ -118,7 +119,7 @@ class LastTradePrice27Message : public Message {
     TradingSessionId trading_session_id_{};
     TradeCondition trade_condition_{};
     Decimal md_future_price_{ 0, -4 };
-    std::int64_t md_entry_size_quantity_{};
+    std::int64_t md_entry_size_{};
     std::uint32_t trade_id_{};
     std::optional<std::uint32_t> md_entry_buyer_{};
     std::optional<std::uint32_t> md_entry_seller_{};

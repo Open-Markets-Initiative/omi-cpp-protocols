@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.TopFeed.Pillar.v1.2.c: enums/SecurityType.hpp
 #pragma once
 
 #include <cstdint>

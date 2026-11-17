@@ -1,3 +1,4 @@
+// Lseg.Lse.Level2Mbo.Gtp.v26.2: enums/TradingStatus.cpp
 #include "TradingStatus.hpp"
 
 namespace lseg::lse::level2mbo::gtp::v26_2 {

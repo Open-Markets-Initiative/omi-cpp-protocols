@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.Qbbo.Itch.v2.1: main.cpp
 // Nasdaq.NsmEquities.Qbbo.Itch.v2.1 benchmark, through the Classes Packet: every value it reads from every message of the simulated
 // sequence (tests/simulated/nasdaq/nsmequities/qbbo/itch/v2.1.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 

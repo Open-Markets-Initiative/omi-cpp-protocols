@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2023: messages/RegShoShortSalePriceTestRestrictedIndicatorMessage.cpp
 #include "RegShoShortSalePriceTestRestrictedIndicatorMessage.hpp"
 
 #include "../common/Print.hpp"

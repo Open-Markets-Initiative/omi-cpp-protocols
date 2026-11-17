@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.9: types/BidIndexValue.hpp
 #pragma once
 
 #include <bit>

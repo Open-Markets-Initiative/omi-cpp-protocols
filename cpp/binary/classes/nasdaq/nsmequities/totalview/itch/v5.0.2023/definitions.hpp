@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2023: definitions.hpp
 #pragma once
 
 #include "common/Day.hpp"

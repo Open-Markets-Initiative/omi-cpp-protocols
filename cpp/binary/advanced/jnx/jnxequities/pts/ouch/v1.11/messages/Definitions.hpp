@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Ouch.v1.11: messages/Definitions.hpp
 #pragma once
 
 #include "../structs/ClientPacketHeader.hpp"

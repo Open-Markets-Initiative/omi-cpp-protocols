@@ -1,3 +1,4 @@
+// Miax.OnyxFutures.TopOfMarket.Mach.v1.0.b: miax_onyxfutures_topofmarket_mach_v1_0_b.hpp
 // Miax OnyxFutures TopOfMarket Mach 1.0.b Template Meta Programming
 
 #pragma once
@@ -290,6 +291,7 @@ struct mbb_price {
     using type = std::int64_t;
     static constexpr std::size_t size = 8;
     static constexpr std::endian order = std::endian::little;
+    static constexpr type no_value = static_cast<type>(-999999999999999999LL);
     static constexpr int exponent = -9;
 
     constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
@@ -317,6 +319,7 @@ struct mbo_price {
     using type = std::int64_t;
     static constexpr std::size_t size = 8;
     static constexpr std::endian order = std::endian::little;
+    static constexpr type no_value = static_cast<type>(999999999999999999LL);
     static constexpr int exponent = -9;
 
     constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
@@ -399,7 +402,7 @@ struct open_interest_quantity {
     type value_;
 };
 
-// Packet Length: Length of the packet. This includes the header and application data
+// Packet Length: Length of the packet, including the header and application data
 struct packet_length {
     using type = std::uint16_t;
     static constexpr std::size_t size = 2;
@@ -412,7 +415,7 @@ struct packet_length {
     type value_;
 };
 
-// Packet Type: protocol packet type
+// Packet Type: Mach protocol packet type
 struct packet_type {
     enum class type : std::uint8_t {
         heartbeat = 0,

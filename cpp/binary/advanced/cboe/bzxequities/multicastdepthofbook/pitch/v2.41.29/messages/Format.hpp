@@ -1,3 +1,4 @@
+// Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.41.29: messages/Format.hpp
 #pragma once
 
 #include <ostream>
@@ -201,7 +202,7 @@ inline std::ostream& operator<<(std::ostream& os, const trade_break_message& msg
 }
 
 inline std::ostream& operator<<(std::ostream& os, const end_of_session& msg) {
-    os << "last_timestamp=" << msg.fields.last_timestamp.get().value()
+    os << "time_offset=" << msg.fields.time_offset.get().value()
        ;
     return os;
 }

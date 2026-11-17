@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v13.0: eurex_t7_eobi_fbe_v13_0.hpp
 // Eurex T7 Eobi Fbe 13.0 Template Meta Programming
 
 #pragma once
@@ -544,7 +545,7 @@ struct last_fragment {
     std::underlying_type_t<type> value_;
 };
 
-// Last Msg Seq Num Processed
+// Last Msg Seq Num Processed: Last message sequence number that was processed, regardless of message type
 struct last_msg_seq_num_processed {
     using type = std::uint32_t;
     static constexpr std::size_t size = 4;
@@ -577,7 +578,7 @@ struct last_px {
     type value_;
 };
 
-// Last Qty
+// Last Qty: Total executed matched quantity of this match event
 struct last_qty {
     using type = std::int64_t;
     static constexpr std::size_t size = 8;
@@ -1581,7 +1582,7 @@ struct security_desc {
     std::array<char, 40> value_;
 };
 
-// Security Id
+// Security Id: Unique instrument identifier
 struct security_id {
     using type = std::int64_t;
     static constexpr std::size_t size = 8;

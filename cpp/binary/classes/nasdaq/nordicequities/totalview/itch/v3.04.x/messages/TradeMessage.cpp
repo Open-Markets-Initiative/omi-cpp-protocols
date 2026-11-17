@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: messages/TradeMessage.cpp
 #include "TradeMessage.hpp"
 
 #include "../common/Print.hpp"

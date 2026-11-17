@@ -1,3 +1,4 @@
+// Memx.MemxEquities.MemoirDepthFeed.Sbe.v1.3: statistics/Settings.hpp
 #pragma once
 
 #include <string>

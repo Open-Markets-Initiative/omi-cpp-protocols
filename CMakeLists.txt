@@ -105,6 +105,7 @@ add_library(protocols_check OBJECT
   checks/cboe_c1options_multicastdepthofbook_pitch_v2.39.4_flyweight.cpp
   checks/cboe_c1options_multicastdepthofbook_pitch_v2.39.4_tmp.cpp
   checks/cboe_c1options_marketdatafeed_csm_v1.4.2_advanced.cpp
+  checks/cboe_c1options_marketdatafeed_csm_v1.4.2_modern.cpp
   checks/cboe_c1options_marketdatafeed_csm_v1.4.2_classes.cpp
   checks/cboe_c1options_marketdatafeed_csm_v1.4.2_flyweight.cpp
   checks/cboe_c1options_marketdatafeed_csm_v1.4.2_tmp.cpp
@@ -268,20 +269,25 @@ add_library(protocols_check OBJECT
   checks/memx_memxequities_memoirdepthfeed_sbe_v1.3_classes.cpp
   checks/memx_memxequities_memoirdepthfeed_sbe_v1.3_flyweight.cpp
   checks/memx_memxequities_memoirdepthfeed_sbe_v1.3_tmp.cpp
+  checks/miax_pearlequities_depthofmarket_mach_v1.3.d_advanced.cpp
   checks/miax_pearlequities_depthofmarket_mach_v1.3.d_modern.cpp
   checks/miax_pearlequities_depthofmarket_mach_v1.3.d_classes.cpp
   checks/miax_pearlequities_depthofmarket_mach_v1.3.d_flyweight.cpp
   checks/miax_pearlequities_depthofmarket_mach_v1.3.d_tmp.cpp
+  checks/miax_miaxoptions_topofmarket_mach_v2.5_advanced.cpp
   checks/miax_miaxoptions_topofmarket_mach_v2.5_modern.cpp
   checks/miax_miaxoptions_topofmarket_mach_v2.5_classes.cpp
   checks/miax_miaxoptions_topofmarket_mach_v2.5_flyweight.cpp
   checks/miax_miaxoptions_topofmarket_mach_v2.5_tmp.cpp
+  checks/miax_miaxoptions_complextopofmarket_mach_v1.1_advanced.cpp
   checks/miax_miaxoptions_complextopofmarket_mach_v1.1_modern.cpp
   checks/miax_miaxoptions_complextopofmarket_mach_v1.1_classes.cpp
   checks/miax_miaxoptions_complextopofmarket_mach_v1.1_flyweight.cpp
   checks/miax_miaxoptions_complextopofmarket_mach_v1.1_tmp.cpp
+  checks/miax_onyxfutures_topofmarket_mach_v1.0.b_advanced.cpp
   checks/miax_onyxfutures_topofmarket_mach_v1.0.b_modern.cpp
   checks/miax_onyxfutures_topofmarket_mach_v1.0.b_classes.cpp
+  checks/miax_onyxfutures_topofmarket_mach_v1.0.b_flyweight.cpp
   checks/miax_onyxfutures_topofmarket_mach_v1.0.b_tmp.cpp
   checks/nasdaq_nsmequities_totalview_itch_v5.0.2017_advanced.cpp
   checks/nasdaq_nsmequities_totalview_itch_v5.0.2017_modern.cpp
@@ -463,6 +469,8 @@ add_library(protocols_check OBJECT
   checks/nyse_texasequities_integratedfeedrefresh_pillar_v2.5.g_classes.cpp
   checks/nyse_texasequities_integratedfeedrefresh_pillar_v2.5.g_flyweight.cpp
   checks/nyse_texasequities_integratedfeedrefresh_pillar_v2.5.g_tmp.cpp
+  checks/otcmarkets_linkats_multicast_link_v4.3_advanced.cpp
+  checks/otcmarkets_linkats_multicast_link_v4.3_modern.cpp
   checks/otcmarkets_linkats_multicast_link_v4.3_classes.cpp
   checks/otcmarkets_linkats_multicast_link_v4.3_flyweight.cpp
   checks/otcmarkets_linkats_multicast_link_v4.3_tmp.cpp
@@ -5209,6 +5217,7 @@ add_library(classes_miax_pearlequities_depthofmarket_mach_v1.3.d STATIC
   cpp/binary/classes/miax/pearlequities/depthofmarket/mach/v1.3.d/enums/RefreshMessageType.cpp
   cpp/binary/classes/miax/pearlequities/depthofmarket/mach/v1.3.d/enums/LoginStatus.cpp
   cpp/binary/classes/miax/pearlequities/depthofmarket/mach/v1.3.d/enums/LogoutReason.cpp
+  cpp/binary/classes/miax/pearlequities/depthofmarket/mach/v1.3.d/enums/GoodbyeReason.cpp
   cpp/binary/classes/miax/pearlequities/depthofmarket/mach/v1.3.d/structs/MachPacketHeader.cpp
   cpp/binary/classes/miax/pearlequities/depthofmarket/mach/v1.3.d/messages/SystemTimeMessage.cpp
   cpp/binary/classes/miax/pearlequities/depthofmarket/mach/v1.3.d/messages/SymbolUpdateMessage.cpp
@@ -5231,12 +5240,15 @@ add_library(classes_miax_pearlequities_depthofmarket_mach_v1.3.d STATIC
   cpp/binary/classes/miax/pearlequities/depthofmarket/mach/v1.3.d/messages/RefreshResponseMessage.cpp
   cpp/binary/classes/miax/pearlequities/depthofmarket/mach/v1.3.d/messages/EndOfRefreshNotificationMessage.cpp
   cpp/binary/classes/miax/pearlequities/depthofmarket/mach/v1.3.d/messages/UnsequencedDataPacket.cpp
+  cpp/binary/classes/miax/pearlequities/depthofmarket/mach/v1.3.d/groups/RequestedMatchingEngine.cpp
   cpp/binary/classes/miax/pearlequities/depthofmarket/mach/v1.3.d/messages/LoginRequest.cpp
+  cpp/binary/classes/miax/pearlequities/depthofmarket/mach/v1.3.d/groups/LoginMatchingEngine.cpp
   cpp/binary/classes/miax/pearlequities/depthofmarket/mach/v1.3.d/messages/LoginResponse.cpp
   cpp/binary/classes/miax/pearlequities/depthofmarket/mach/v1.3.d/messages/SynchronizationComplete.cpp
   cpp/binary/classes/miax/pearlequities/depthofmarket/mach/v1.3.d/messages/RetransmissionRequest.cpp
   cpp/binary/classes/miax/pearlequities/depthofmarket/mach/v1.3.d/messages/LogoutRequest.cpp
   cpp/binary/classes/miax/pearlequities/depthofmarket/mach/v1.3.d/messages/GoodbyePacket.cpp
+  cpp/binary/classes/miax/pearlequities/depthofmarket/mach/v1.3.d/messages/TradingSessionUpdate.cpp
   cpp/binary/classes/miax/pearlequities/depthofmarket/mach/v1.3.d/messages/TestPacket.cpp
   cpp/binary/classes/miax/pearlequities/depthofmarket/mach/v1.3.d/messages/UnknownMessage.cpp
   cpp/binary/classes/miax/pearlequities/depthofmarket/mach/v1.3.d/messages/UnknownData.cpp
@@ -5263,6 +5275,7 @@ add_library(flyweight_miax_pearlequities_depthofmarket_mach_v1.3.d STATIC
   cpp/binary/flyweight/miax/pearlequities/depthofmarket/mach/v1.3.d/enums/RefreshMessageType.cpp
   cpp/binary/flyweight/miax/pearlequities/depthofmarket/mach/v1.3.d/enums/LoginStatus.cpp
   cpp/binary/flyweight/miax/pearlequities/depthofmarket/mach/v1.3.d/enums/LogoutReason.cpp
+  cpp/binary/flyweight/miax/pearlequities/depthofmarket/mach/v1.3.d/enums/GoodbyeReason.cpp
 )
 target_include_directories(flyweight_miax_pearlequities_depthofmarket_mach_v1.3.d PUBLIC ${CMAKE_SOURCE_DIR})
 target_precompile_headers(flyweight_miax_pearlequities_depthofmarket_mach_v1.3.d PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
@@ -5449,6 +5462,23 @@ add_library(classes_miax_onyxfutures_topofmarket_mach_v1.0.b STATIC
 )
 target_include_directories(classes_miax_onyxfutures_topofmarket_mach_v1.0.b PUBLIC ${CMAKE_SOURCE_DIR})
 target_precompile_headers(classes_miax_onyxfutures_topofmarket_mach_v1.0.b PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(flyweight_miax_onyxfutures_topofmarket_mach_v1.0.b STATIC
+  cpp/binary/flyweight/miax/onyxfutures/topofmarket/mach/v1.0.b/enums/PacketType.cpp
+  cpp/binary/flyweight/miax/onyxfutures/topofmarket/mach/v1.0.b/enums/MessageType.cpp
+  cpp/binary/flyweight/miax/onyxfutures/topofmarket/mach/v1.0.b/enums/UnderlyingAssetType.cpp
+  cpp/binary/flyweight/miax/onyxfutures/topofmarket/mach/v1.0.b/enums/InstrumentIdSource.cpp
+  cpp/binary/flyweight/miax/onyxfutures/topofmarket/mach/v1.0.b/enums/InstrumentType.cpp
+  cpp/binary/flyweight/miax/onyxfutures/topofmarket/mach/v1.0.b/enums/Currency.cpp
+  cpp/binary/flyweight/miax/onyxfutures/topofmarket/mach/v1.0.b/enums/SettlementCurrency.cpp
+  cpp/binary/flyweight/miax/onyxfutures/topofmarket/mach/v1.0.b/enums/MatchAlgorithm.cpp
+  cpp/binary/flyweight/miax/onyxfutures/topofmarket/mach/v1.0.b/enums/SettlementPriceTypeCalcMethod.cpp
+  cpp/binary/flyweight/miax/onyxfutures/topofmarket/mach/v1.0.b/enums/TradingCollarVariationType.cpp
+  cpp/binary/flyweight/miax/onyxfutures/topofmarket/mach/v1.0.b/enums/SystemStatus.cpp
+  cpp/binary/flyweight/miax/onyxfutures/topofmarket/mach/v1.0.b/enums/TradingStatus.cpp
+  cpp/binary/flyweight/miax/onyxfutures/topofmarket/mach/v1.0.b/enums/MarketState.cpp
+)
+target_include_directories(flyweight_miax_onyxfutures_topofmarket_mach_v1.0.b PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(flyweight_miax_onyxfutures_topofmarket_mach_v1.0.b PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
 add_library(classes_nasdaq_nsmequities_totalview_itch_v5.0.2017 STATIC
   cpp/binary/classes/nasdaq/nsmequities/totalview/itch/v5.0.2017/enums/ClientPacketType.cpp
   cpp/binary/classes/nasdaq/nsmequities/totalview/itch/v5.0.2017/enums/ServerPacketType.cpp
@@ -8759,10 +8789,10 @@ add_library(classes_siac_cts_output_cta_v1.91 STATIC
   cpp/binary/classes/siac/cts/output/cta/v1.91/structs/SipBlockTimestamp.cpp
   cpp/binary/classes/siac/cts/output/cta/v1.91/structs/BlockHeader.cpp
   cpp/binary/classes/siac/cts/output/cta/v1.91/structs/Timestamp1.cpp
-  cpp/binary/classes/siac/cts/output/cta/v1.91/messages/StartOfEndOfDayMessage.cpp
-  cpp/binary/classes/siac/cts/output/cta/v1.91/messages/EndOfEndOfDayMessage.cpp
-  cpp/binary/classes/siac/cts/output/cta/v1.91/messages/StartOfStartOfDayMessage.cpp
-  cpp/binary/classes/siac/cts/output/cta/v1.91/messages/EndOfStartOfDayMessage.cpp
+  cpp/binary/classes/siac/cts/output/cta/v1.91/messages/StartOfEndOfDaySummaryMessage.cpp
+  cpp/binary/classes/siac/cts/output/cta/v1.91/messages/EndOfEndOfDaySummaryMessage.cpp
+  cpp/binary/classes/siac/cts/output/cta/v1.91/messages/StartOfStartOfDaySummaryMessage.cpp
+  cpp/binary/classes/siac/cts/output/cta/v1.91/messages/EndOfStartOfDaySummaryMessage.cpp
   cpp/binary/classes/siac/cts/output/cta/v1.91/messages/AdministrativeUnformattedMessage.cpp
   cpp/binary/classes/siac/cts/output/cta/v1.91/messages/AdministrativeMessage.cpp
   cpp/binary/classes/siac/cts/output/cta/v1.91/messages/StartOfDayMessage.cpp
@@ -8893,10 +8923,10 @@ add_library(classes_siac_cts_output_cta_v2.10 STATIC
   cpp/binary/classes/siac/cts/output/cta/v2.10/structs/SipBlockTimestamp.cpp
   cpp/binary/classes/siac/cts/output/cta/v2.10/structs/BlockHeader.cpp
   cpp/binary/classes/siac/cts/output/cta/v2.10/structs/Timestamp1.cpp
-  cpp/binary/classes/siac/cts/output/cta/v2.10/messages/StartOfEndOfDayMessage.cpp
-  cpp/binary/classes/siac/cts/output/cta/v2.10/messages/EndOfEndOfDayMessage.cpp
-  cpp/binary/classes/siac/cts/output/cta/v2.10/messages/StartOfStartOfDayMessage.cpp
-  cpp/binary/classes/siac/cts/output/cta/v2.10/messages/EndOfStartOfDayMessage.cpp
+  cpp/binary/classes/siac/cts/output/cta/v2.10/messages/StartOfEndOfDaySummaryMessage.cpp
+  cpp/binary/classes/siac/cts/output/cta/v2.10/messages/EndOfEndOfDaySummaryMessage.cpp
+  cpp/binary/classes/siac/cts/output/cta/v2.10/messages/StartOfStartOfDaySummaryMessage.cpp
+  cpp/binary/classes/siac/cts/output/cta/v2.10/messages/EndOfStartOfDaySummaryMessage.cpp
   cpp/binary/classes/siac/cts/output/cta/v2.10/messages/AdministrativeMessage.cpp
   cpp/binary/classes/siac/cts/output/cta/v2.10/messages/StartOfDayMessage.cpp
   cpp/binary/classes/siac/cts/output/cta/v2.10/messages/ResetBlockSequenceNumberMessage.cpp
@@ -9045,10 +9075,10 @@ add_library(classes_siac_cts_output_cta_v2.9 STATIC
   cpp/binary/classes/siac/cts/output/cta/v2.9/structs/SipBlockTimestamp.cpp
   cpp/binary/classes/siac/cts/output/cta/v2.9/structs/BlockHeader.cpp
   cpp/binary/classes/siac/cts/output/cta/v2.9/structs/Timestamp1.cpp
-  cpp/binary/classes/siac/cts/output/cta/v2.9/messages/StartOfEndOfDayMessage.cpp
-  cpp/binary/classes/siac/cts/output/cta/v2.9/messages/EndOfEndOfDayMessage.cpp
-  cpp/binary/classes/siac/cts/output/cta/v2.9/messages/StartOfStartOfDayMessage.cpp
-  cpp/binary/classes/siac/cts/output/cta/v2.9/messages/EndOfStartOfDayMessage.cpp
+  cpp/binary/classes/siac/cts/output/cta/v2.9/messages/StartOfEndOfDaySummaryMessage.cpp
+  cpp/binary/classes/siac/cts/output/cta/v2.9/messages/EndOfEndOfDaySummaryMessage.cpp
+  cpp/binary/classes/siac/cts/output/cta/v2.9/messages/StartOfStartOfDaySummaryMessage.cpp
+  cpp/binary/classes/siac/cts/output/cta/v2.9/messages/EndOfStartOfDaySummaryMessage.cpp
   cpp/binary/classes/siac/cts/output/cta/v2.9/messages/AdministrativeMessage.cpp
   cpp/binary/classes/siac/cts/output/cta/v2.9/messages/StartOfDayMessage.cpp
   cpp/binary/classes/siac/cts/output/cta/v2.9/messages/ResetBlockSequenceNumberMessage.cpp
@@ -9181,12 +9211,18 @@ target_link_libraries(verify_b3_b3derivatives_binaryumdf_sbe_v1.6 PRIVATE classe
 add_executable(roundtrip_b3_b3derivatives_binaryumdf_sbe_v1.6 executables/roundtrip/b3/b3derivatives/binaryumdf/sbe/v1.6/main.cpp)
 target_include_directories(roundtrip_b3_b3derivatives_binaryumdf_sbe_v1.6 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/roundtrip/b3/b3derivatives/binaryumdf/sbe/v1.6)
 target_link_libraries(roundtrip_b3_b3derivatives_binaryumdf_sbe_v1.6 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v1.6)
+add_executable(benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v1.6 executables/benchmark/modern/b3/b3derivatives/binaryumdf/sbe/v1.6/main.cpp)
+target_include_directories(benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v1.6 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/modern/b3/b3derivatives/binaryumdf/sbe/v1.6)
+add_executable(benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v1.6 executables/benchmark/advanced/b3/b3derivatives/binaryumdf/sbe/v1.6/main.cpp)
+target_include_directories(benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v1.6 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/advanced/b3/b3derivatives/binaryumdf/sbe/v1.6)
 add_executable(benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v1.6 executables/benchmark/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/main.cpp)
 target_include_directories(benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v1.6 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/classes/b3/b3derivatives/binaryumdf/sbe/v1.6)
 target_link_libraries(benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v1.6 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v1.6)
 add_executable(benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v1.6 executables/benchmark/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/main.cpp)
 target_include_directories(benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v1.6 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6)
 target_link_libraries(benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v1.6 PRIVATE flyweight_b3_b3derivatives_binaryumdf_sbe_v1.6)
+add_executable(benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v1.6 executables/benchmark/tmp/b3/b3derivatives/binaryumdf/sbe/v1.6/main.cpp)
+target_include_directories(benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v1.6 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/b3/b3derivatives/binaryumdf/sbe/v1.6)
 add_executable(statistics_b3_b3derivatives_binaryumdf_sbe_v1.7 executables/statistics/b3/b3derivatives/binaryumdf/sbe/v1.7/main.cpp)
 target_include_directories(statistics_b3_b3derivatives_binaryumdf_sbe_v1.7 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/b3/b3derivatives/binaryumdf/sbe/v1.7)
 add_executable(extractor_b3_b3derivatives_binaryumdf_sbe_v1.7 executables/extractor/b3/b3derivatives/binaryumdf/sbe/v1.7/main.cpp)
@@ -9200,12 +9236,18 @@ target_link_libraries(verify_b3_b3derivatives_binaryumdf_sbe_v1.7 PRIVATE classe
 add_executable(roundtrip_b3_b3derivatives_binaryumdf_sbe_v1.7 executables/roundtrip/b3/b3derivatives/binaryumdf/sbe/v1.7/main.cpp)
 target_include_directories(roundtrip_b3_b3derivatives_binaryumdf_sbe_v1.7 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/roundtrip/b3/b3derivatives/binaryumdf/sbe/v1.7)
 target_link_libraries(roundtrip_b3_b3derivatives_binaryumdf_sbe_v1.7 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v1.7)
+add_executable(benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v1.7 executables/benchmark/modern/b3/b3derivatives/binaryumdf/sbe/v1.7/main.cpp)
+target_include_directories(benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v1.7 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/modern/b3/b3derivatives/binaryumdf/sbe/v1.7)
+add_executable(benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v1.7 executables/benchmark/advanced/b3/b3derivatives/binaryumdf/sbe/v1.7/main.cpp)
+target_include_directories(benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v1.7 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/advanced/b3/b3derivatives/binaryumdf/sbe/v1.7)
 add_executable(benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v1.7 executables/benchmark/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/main.cpp)
 target_include_directories(benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v1.7 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/classes/b3/b3derivatives/binaryumdf/sbe/v1.7)
 target_link_libraries(benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v1.7 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v1.7)
 add_executable(benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v1.7 executables/benchmark/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/main.cpp)
 target_include_directories(benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v1.7 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7)
 target_link_libraries(benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v1.7 PRIVATE flyweight_b3_b3derivatives_binaryumdf_sbe_v1.7)
+add_executable(benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v1.7 executables/benchmark/tmp/b3/b3derivatives/binaryumdf/sbe/v1.7/main.cpp)
+target_include_directories(benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v1.7 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/b3/b3derivatives/binaryumdf/sbe/v1.7)
 add_executable(statistics_b3_b3derivatives_binaryumdf_sbe_v1.8 executables/statistics/b3/b3derivatives/binaryumdf/sbe/v1.8/main.cpp)
 target_include_directories(statistics_b3_b3derivatives_binaryumdf_sbe_v1.8 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/b3/b3derivatives/binaryumdf/sbe/v1.8)
 add_executable(extractor_b3_b3derivatives_binaryumdf_sbe_v1.8 executables/extractor/b3/b3derivatives/binaryumdf/sbe/v1.8/main.cpp)
@@ -9219,12 +9261,18 @@ target_link_libraries(verify_b3_b3derivatives_binaryumdf_sbe_v1.8 PRIVATE classe
 add_executable(roundtrip_b3_b3derivatives_binaryumdf_sbe_v1.8 executables/roundtrip/b3/b3derivatives/binaryumdf/sbe/v1.8/main.cpp)
 target_include_directories(roundtrip_b3_b3derivatives_binaryumdf_sbe_v1.8 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/roundtrip/b3/b3derivatives/binaryumdf/sbe/v1.8)
 target_link_libraries(roundtrip_b3_b3derivatives_binaryumdf_sbe_v1.8 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v1.8)
+add_executable(benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v1.8 executables/benchmark/modern/b3/b3derivatives/binaryumdf/sbe/v1.8/main.cpp)
+target_include_directories(benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v1.8 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/modern/b3/b3derivatives/binaryumdf/sbe/v1.8)
+add_executable(benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v1.8 executables/benchmark/advanced/b3/b3derivatives/binaryumdf/sbe/v1.8/main.cpp)
+target_include_directories(benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v1.8 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/advanced/b3/b3derivatives/binaryumdf/sbe/v1.8)
 add_executable(benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v1.8 executables/benchmark/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/main.cpp)
 target_include_directories(benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v1.8 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/classes/b3/b3derivatives/binaryumdf/sbe/v1.8)
 target_link_libraries(benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v1.8 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v1.8)
 add_executable(benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v1.8 executables/benchmark/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/main.cpp)
 target_include_directories(benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v1.8 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8)
 target_link_libraries(benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v1.8 PRIVATE flyweight_b3_b3derivatives_binaryumdf_sbe_v1.8)
+add_executable(benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v1.8 executables/benchmark/tmp/b3/b3derivatives/binaryumdf/sbe/v1.8/main.cpp)
+target_include_directories(benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v1.8 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/b3/b3derivatives/binaryumdf/sbe/v1.8)
 add_executable(statistics_b3_b3derivatives_binaryumdf_sbe_v1.9 executables/statistics/b3/b3derivatives/binaryumdf/sbe/v1.9/main.cpp)
 target_include_directories(statistics_b3_b3derivatives_binaryumdf_sbe_v1.9 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/b3/b3derivatives/binaryumdf/sbe/v1.9)
 add_executable(extractor_b3_b3derivatives_binaryumdf_sbe_v1.9 executables/extractor/b3/b3derivatives/binaryumdf/sbe/v1.9/main.cpp)
@@ -9238,12 +9286,18 @@ target_link_libraries(verify_b3_b3derivatives_binaryumdf_sbe_v1.9 PRIVATE classe
 add_executable(roundtrip_b3_b3derivatives_binaryumdf_sbe_v1.9 executables/roundtrip/b3/b3derivatives/binaryumdf/sbe/v1.9/main.cpp)
 target_include_directories(roundtrip_b3_b3derivatives_binaryumdf_sbe_v1.9 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/roundtrip/b3/b3derivatives/binaryumdf/sbe/v1.9)
 target_link_libraries(roundtrip_b3_b3derivatives_binaryumdf_sbe_v1.9 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v1.9)
+add_executable(benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v1.9 executables/benchmark/modern/b3/b3derivatives/binaryumdf/sbe/v1.9/main.cpp)
+target_include_directories(benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v1.9 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/modern/b3/b3derivatives/binaryumdf/sbe/v1.9)
+add_executable(benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v1.9 executables/benchmark/advanced/b3/b3derivatives/binaryumdf/sbe/v1.9/main.cpp)
+target_include_directories(benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v1.9 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/advanced/b3/b3derivatives/binaryumdf/sbe/v1.9)
 add_executable(benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v1.9 executables/benchmark/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/main.cpp)
 target_include_directories(benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v1.9 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/classes/b3/b3derivatives/binaryumdf/sbe/v1.9)
 target_link_libraries(benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v1.9 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v1.9)
 add_executable(benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v1.9 executables/benchmark/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/main.cpp)
 target_include_directories(benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v1.9 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9)
 target_link_libraries(benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v1.9 PRIVATE flyweight_b3_b3derivatives_binaryumdf_sbe_v1.9)
+add_executable(benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v1.9 executables/benchmark/tmp/b3/b3derivatives/binaryumdf/sbe/v1.9/main.cpp)
+target_include_directories(benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v1.9 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/b3/b3derivatives/binaryumdf/sbe/v1.9)
 add_executable(statistics_b3_b3derivatives_binaryumdf_sbe_v2.1 executables/statistics/b3/b3derivatives/binaryumdf/sbe/v2.1/main.cpp)
 target_include_directories(statistics_b3_b3derivatives_binaryumdf_sbe_v2.1 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/b3/b3derivatives/binaryumdf/sbe/v2.1)
 add_executable(extractor_b3_b3derivatives_binaryumdf_sbe_v2.1 executables/extractor/b3/b3derivatives/binaryumdf/sbe/v2.1/main.cpp)
@@ -9257,12 +9311,18 @@ target_link_libraries(verify_b3_b3derivatives_binaryumdf_sbe_v2.1 PRIVATE classe
 add_executable(roundtrip_b3_b3derivatives_binaryumdf_sbe_v2.1 executables/roundtrip/b3/b3derivatives/binaryumdf/sbe/v2.1/main.cpp)
 target_include_directories(roundtrip_b3_b3derivatives_binaryumdf_sbe_v2.1 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/roundtrip/b3/b3derivatives/binaryumdf/sbe/v2.1)
 target_link_libraries(roundtrip_b3_b3derivatives_binaryumdf_sbe_v2.1 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v2.1)
+add_executable(benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v2.1 executables/benchmark/modern/b3/b3derivatives/binaryumdf/sbe/v2.1/main.cpp)
+target_include_directories(benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v2.1 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/modern/b3/b3derivatives/binaryumdf/sbe/v2.1)
+add_executable(benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v2.1 executables/benchmark/advanced/b3/b3derivatives/binaryumdf/sbe/v2.1/main.cpp)
+target_include_directories(benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v2.1 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/advanced/b3/b3derivatives/binaryumdf/sbe/v2.1)
 add_executable(benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v2.1 executables/benchmark/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/main.cpp)
 target_include_directories(benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v2.1 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/classes/b3/b3derivatives/binaryumdf/sbe/v2.1)
 target_link_libraries(benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v2.1 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v2.1)
 add_executable(benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v2.1 executables/benchmark/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/main.cpp)
 target_include_directories(benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v2.1 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1)
 target_link_libraries(benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v2.1 PRIVATE flyweight_b3_b3derivatives_binaryumdf_sbe_v2.1)
+add_executable(benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v2.1 executables/benchmark/tmp/b3/b3derivatives/binaryumdf/sbe/v2.1/main.cpp)
+target_include_directories(benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v2.1 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/b3/b3derivatives/binaryumdf/sbe/v2.1)
 add_executable(statistics_b3_b3derivatives_binaryumdf_sbe_v2.2 executables/statistics/b3/b3derivatives/binaryumdf/sbe/v2.2/main.cpp)
 target_include_directories(statistics_b3_b3derivatives_binaryumdf_sbe_v2.2 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/b3/b3derivatives/binaryumdf/sbe/v2.2)
 add_executable(extractor_b3_b3derivatives_binaryumdf_sbe_v2.2 executables/extractor/b3/b3derivatives/binaryumdf/sbe/v2.2/main.cpp)
@@ -9276,12 +9336,18 @@ target_link_libraries(verify_b3_b3derivatives_binaryumdf_sbe_v2.2 PRIVATE classe
 add_executable(roundtrip_b3_b3derivatives_binaryumdf_sbe_v2.2 executables/roundtrip/b3/b3derivatives/binaryumdf/sbe/v2.2/main.cpp)
 target_include_directories(roundtrip_b3_b3derivatives_binaryumdf_sbe_v2.2 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/roundtrip/b3/b3derivatives/binaryumdf/sbe/v2.2)
 target_link_libraries(roundtrip_b3_b3derivatives_binaryumdf_sbe_v2.2 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v2.2)
+add_executable(benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v2.2 executables/benchmark/modern/b3/b3derivatives/binaryumdf/sbe/v2.2/main.cpp)
+target_include_directories(benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v2.2 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/modern/b3/b3derivatives/binaryumdf/sbe/v2.2)
+add_executable(benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v2.2 executables/benchmark/advanced/b3/b3derivatives/binaryumdf/sbe/v2.2/main.cpp)
+target_include_directories(benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v2.2 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/advanced/b3/b3derivatives/binaryumdf/sbe/v2.2)
 add_executable(benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v2.2 executables/benchmark/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/main.cpp)
 target_include_directories(benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v2.2 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/classes/b3/b3derivatives/binaryumdf/sbe/v2.2)
 target_link_libraries(benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v2.2 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v2.2)
 add_executable(benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v2.2 executables/benchmark/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/main.cpp)
 target_include_directories(benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v2.2 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2)
 target_link_libraries(benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v2.2 PRIVATE flyweight_b3_b3derivatives_binaryumdf_sbe_v2.2)
+add_executable(benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v2.2 executables/benchmark/tmp/b3/b3derivatives/binaryumdf/sbe/v2.2/main.cpp)
+target_include_directories(benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v2.2 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/b3/b3derivatives/binaryumdf/sbe/v2.2)
 add_executable(statistics_b3_b3derivatives_binaryumdf_sbe_v2.3 executables/statistics/b3/b3derivatives/binaryumdf/sbe/v2.3/main.cpp)
 target_include_directories(statistics_b3_b3derivatives_binaryumdf_sbe_v2.3 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/b3/b3derivatives/binaryumdf/sbe/v2.3)
 add_executable(extractor_b3_b3derivatives_binaryumdf_sbe_v2.3 executables/extractor/b3/b3derivatives/binaryumdf/sbe/v2.3/main.cpp)
@@ -9295,12 +9361,18 @@ target_link_libraries(verify_b3_b3derivatives_binaryumdf_sbe_v2.3 PRIVATE classe
 add_executable(roundtrip_b3_b3derivatives_binaryumdf_sbe_v2.3 executables/roundtrip/b3/b3derivatives/binaryumdf/sbe/v2.3/main.cpp)
 target_include_directories(roundtrip_b3_b3derivatives_binaryumdf_sbe_v2.3 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/roundtrip/b3/b3derivatives/binaryumdf/sbe/v2.3)
 target_link_libraries(roundtrip_b3_b3derivatives_binaryumdf_sbe_v2.3 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v2.3)
+add_executable(benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v2.3 executables/benchmark/modern/b3/b3derivatives/binaryumdf/sbe/v2.3/main.cpp)
+target_include_directories(benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v2.3 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/modern/b3/b3derivatives/binaryumdf/sbe/v2.3)
+add_executable(benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v2.3 executables/benchmark/advanced/b3/b3derivatives/binaryumdf/sbe/v2.3/main.cpp)
+target_include_directories(benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v2.3 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/advanced/b3/b3derivatives/binaryumdf/sbe/v2.3)
 add_executable(benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v2.3 executables/benchmark/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/main.cpp)
 target_include_directories(benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v2.3 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/classes/b3/b3derivatives/binaryumdf/sbe/v2.3)
 target_link_libraries(benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v2.3 PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v2.3)
 add_executable(benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v2.3 executables/benchmark/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/main.cpp)
 target_include_directories(benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v2.3 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3)
 target_link_libraries(benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v2.3 PRIVATE flyweight_b3_b3derivatives_binaryumdf_sbe_v2.3)
+add_executable(benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v2.3 executables/benchmark/tmp/b3/b3derivatives/binaryumdf/sbe/v2.3/main.cpp)
+target_include_directories(benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v2.3 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/b3/b3derivatives/binaryumdf/sbe/v2.3)
 add_executable(statistics_b3_b3derivatives_binaryentrypoint_sbe_v8.0 executables/statistics/b3/b3derivatives/binaryentrypoint/sbe/v8.0/main.cpp)
 target_include_directories(statistics_b3_b3derivatives_binaryentrypoint_sbe_v8.0 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/b3/b3derivatives/binaryentrypoint/sbe/v8.0)
 add_executable(extractor_b3_b3derivatives_binaryentrypoint_sbe_v8.0 executables/extractor/b3/b3derivatives/binaryentrypoint/sbe/v8.0/main.cpp)
@@ -9344,12 +9416,16 @@ target_link_libraries(verify_bse_bseindia_eobi_fbe_v1.4 PRIVATE classes_bse_bsei
 add_executable(roundtrip_bse_bseindia_eobi_fbe_v1.4 executables/roundtrip/bse/bseindia/eobi/fbe/v1.4/main.cpp)
 target_include_directories(roundtrip_bse_bseindia_eobi_fbe_v1.4 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/roundtrip/bse/bseindia/eobi/fbe/v1.4)
 target_link_libraries(roundtrip_bse_bseindia_eobi_fbe_v1.4 PRIVATE classes_bse_bseindia_eobi_fbe_v1.4)
+add_executable(benchmark_modern_bse_bseindia_eobi_fbe_v1.4 executables/benchmark/modern/bse/bseindia/eobi/fbe/v1.4/main.cpp)
+target_include_directories(benchmark_modern_bse_bseindia_eobi_fbe_v1.4 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/modern/bse/bseindia/eobi/fbe/v1.4)
 add_executable(benchmark_classes_bse_bseindia_eobi_fbe_v1.4 executables/benchmark/classes/bse/bseindia/eobi/fbe/v1.4/main.cpp)
 target_include_directories(benchmark_classes_bse_bseindia_eobi_fbe_v1.4 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/classes/bse/bseindia/eobi/fbe/v1.4)
 target_link_libraries(benchmark_classes_bse_bseindia_eobi_fbe_v1.4 PRIVATE classes_bse_bseindia_eobi_fbe_v1.4)
 add_executable(benchmark_flyweight_bse_bseindia_eobi_fbe_v1.4 executables/benchmark/flyweight/bse/bseindia/eobi/fbe/v1.4/main.cpp)
 target_include_directories(benchmark_flyweight_bse_bseindia_eobi_fbe_v1.4 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/flyweight/bse/bseindia/eobi/fbe/v1.4)
 target_link_libraries(benchmark_flyweight_bse_bseindia_eobi_fbe_v1.4 PRIVATE flyweight_bse_bseindia_eobi_fbe_v1.4)
+add_executable(benchmark_tmp_bse_bseindia_eobi_fbe_v1.4 executables/benchmark/tmp/bse/bseindia/eobi/fbe/v1.4/main.cpp)
+target_include_directories(benchmark_tmp_bse_bseindia_eobi_fbe_v1.4 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/bse/bseindia/eobi/fbe/v1.4)
 add_executable(statistics_cboe_bzxequities_multicastdepthofbook_pitch_v2.41.29 executables/statistics/cboe/bzxequities/multicastdepthofbook/pitch/v2.41.29/main.cpp)
 target_include_directories(statistics_cboe_bzxequities_multicastdepthofbook_pitch_v2.41.29 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/cboe/bzxequities/multicastdepthofbook/pitch/v2.41.29)
 add_executable(extractor_cboe_bzxequities_multicastdepthofbook_pitch_v2.41.29 executables/extractor/cboe/bzxequities/multicastdepthofbook/pitch/v2.41.29/main.cpp)
@@ -9415,12 +9491,16 @@ target_include_directories(roundtrip_cboe_cfefutures_multicastdepthofbook_pitch_
 target_link_libraries(roundtrip_cboe_cfefutures_multicastdepthofbook_pitch_v1.2.22 PRIVATE classes_cboe_cfefutures_multicastdepthofbook_pitch_v1.2.22)
 add_executable(benchmark_modern_cboe_cfefutures_multicastdepthofbook_pitch_v1.2.22 executables/benchmark/modern/cboe/cfefutures/multicastdepthofbook/pitch/v1.2.22/main.cpp)
 target_include_directories(benchmark_modern_cboe_cfefutures_multicastdepthofbook_pitch_v1.2.22 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/modern/cboe/cfefutures/multicastdepthofbook/pitch/v1.2.22)
+add_executable(benchmark_advanced_cboe_cfefutures_multicastdepthofbook_pitch_v1.2.22 executables/benchmark/advanced/cboe/cfefutures/multicastdepthofbook/pitch/v1.2.22/main.cpp)
+target_include_directories(benchmark_advanced_cboe_cfefutures_multicastdepthofbook_pitch_v1.2.22 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/advanced/cboe/cfefutures/multicastdepthofbook/pitch/v1.2.22)
 add_executable(benchmark_classes_cboe_cfefutures_multicastdepthofbook_pitch_v1.2.22 executables/benchmark/classes/cboe/cfefutures/multicastdepthofbook/pitch/v1.2.22/main.cpp)
 target_include_directories(benchmark_classes_cboe_cfefutures_multicastdepthofbook_pitch_v1.2.22 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/classes/cboe/cfefutures/multicastdepthofbook/pitch/v1.2.22)
 target_link_libraries(benchmark_classes_cboe_cfefutures_multicastdepthofbook_pitch_v1.2.22 PRIVATE classes_cboe_cfefutures_multicastdepthofbook_pitch_v1.2.22)
 add_executable(benchmark_flyweight_cboe_cfefutures_multicastdepthofbook_pitch_v1.2.22 executables/benchmark/flyweight/cboe/cfefutures/multicastdepthofbook/pitch/v1.2.22/main.cpp)
 target_include_directories(benchmark_flyweight_cboe_cfefutures_multicastdepthofbook_pitch_v1.2.22 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/flyweight/cboe/cfefutures/multicastdepthofbook/pitch/v1.2.22)
 target_link_libraries(benchmark_flyweight_cboe_cfefutures_multicastdepthofbook_pitch_v1.2.22 PRIVATE flyweight_cboe_cfefutures_multicastdepthofbook_pitch_v1.2.22)
+add_executable(benchmark_tmp_cboe_cfefutures_multicastdepthofbook_pitch_v1.2.22 executables/benchmark/tmp/cboe/cfefutures/multicastdepthofbook/pitch/v1.2.22/main.cpp)
+target_include_directories(benchmark_tmp_cboe_cfefutures_multicastdepthofbook_pitch_v1.2.22 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/cboe/cfefutures/multicastdepthofbook/pitch/v1.2.22)
 add_executable(statistics_cboe_byxequities_multicastdepthofbook_pitch_v2.41.29 executables/statistics/cboe/byxequities/multicastdepthofbook/pitch/v2.41.29/main.cpp)
 target_include_directories(statistics_cboe_byxequities_multicastdepthofbook_pitch_v2.41.29 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/cboe/byxequities/multicastdepthofbook/pitch/v2.41.29)
 add_executable(extractor_cboe_byxequities_multicastdepthofbook_pitch_v2.41.29 executables/extractor/cboe/byxequities/multicastdepthofbook/pitch/v2.41.29/main.cpp)
@@ -9486,12 +9566,16 @@ target_include_directories(roundtrip_cboe_c1options_complex_pitch_v2.1.18 PRIVAT
 target_link_libraries(roundtrip_cboe_c1options_complex_pitch_v2.1.18 PRIVATE classes_cboe_c1options_complex_pitch_v2.1.18)
 add_executable(benchmark_modern_cboe_c1options_complex_pitch_v2.1.18 executables/benchmark/modern/cboe/c1options/complex/pitch/v2.1.18/main.cpp)
 target_include_directories(benchmark_modern_cboe_c1options_complex_pitch_v2.1.18 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/modern/cboe/c1options/complex/pitch/v2.1.18)
+add_executable(benchmark_advanced_cboe_c1options_complex_pitch_v2.1.18 executables/benchmark/advanced/cboe/c1options/complex/pitch/v2.1.18/main.cpp)
+target_include_directories(benchmark_advanced_cboe_c1options_complex_pitch_v2.1.18 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/advanced/cboe/c1options/complex/pitch/v2.1.18)
 add_executable(benchmark_classes_cboe_c1options_complex_pitch_v2.1.18 executables/benchmark/classes/cboe/c1options/complex/pitch/v2.1.18/main.cpp)
 target_include_directories(benchmark_classes_cboe_c1options_complex_pitch_v2.1.18 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/classes/cboe/c1options/complex/pitch/v2.1.18)
 target_link_libraries(benchmark_classes_cboe_c1options_complex_pitch_v2.1.18 PRIVATE classes_cboe_c1options_complex_pitch_v2.1.18)
 add_executable(benchmark_flyweight_cboe_c1options_complex_pitch_v2.1.18 executables/benchmark/flyweight/cboe/c1options/complex/pitch/v2.1.18/main.cpp)
 target_include_directories(benchmark_flyweight_cboe_c1options_complex_pitch_v2.1.18 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/flyweight/cboe/c1options/complex/pitch/v2.1.18)
 target_link_libraries(benchmark_flyweight_cboe_c1options_complex_pitch_v2.1.18 PRIVATE flyweight_cboe_c1options_complex_pitch_v2.1.18)
+add_executable(benchmark_tmp_cboe_c1options_complex_pitch_v2.1.18 executables/benchmark/tmp/cboe/c1options/complex/pitch/v2.1.18/main.cpp)
+target_include_directories(benchmark_tmp_cboe_c1options_complex_pitch_v2.1.18 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/cboe/c1options/complex/pitch/v2.1.18)
 add_executable(statistics_cboe_c1options_multicastdepthofbook_pitch_v2.39.4 executables/statistics/cboe/c1options/multicastdepthofbook/pitch/v2.39.4/main.cpp)
 target_include_directories(statistics_cboe_c1options_multicastdepthofbook_pitch_v2.39.4 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/cboe/c1options/multicastdepthofbook/pitch/v2.39.4)
 add_executable(extractor_cboe_c1options_multicastdepthofbook_pitch_v2.39.4 executables/extractor/cboe/c1options/multicastdepthofbook/pitch/v2.39.4/main.cpp)
@@ -9517,6 +9601,10 @@ target_include_directories(benchmark_flyweight_cboe_c1options_multicastdepthofbo
 target_link_libraries(benchmark_flyweight_cboe_c1options_multicastdepthofbook_pitch_v2.39.4 PRIVATE flyweight_cboe_c1options_multicastdepthofbook_pitch_v2.39.4)
 add_executable(benchmark_tmp_cboe_c1options_multicastdepthofbook_pitch_v2.39.4 executables/benchmark/tmp/cboe/c1options/multicastdepthofbook/pitch/v2.39.4/main.cpp)
 target_include_directories(benchmark_tmp_cboe_c1options_multicastdepthofbook_pitch_v2.39.4 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/cboe/c1options/multicastdepthofbook/pitch/v2.39.4)
+add_executable(statistics_cboe_c1options_marketdatafeed_csm_v1.4.2 executables/statistics/cboe/c1options/marketdatafeed/csm/v1.4.2/main.cpp)
+target_include_directories(statistics_cboe_c1options_marketdatafeed_csm_v1.4.2 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/cboe/c1options/marketdatafeed/csm/v1.4.2)
+add_executable(extractor_cboe_c1options_marketdatafeed_csm_v1.4.2 executables/extractor/cboe/c1options/marketdatafeed/csm/v1.4.2/main.cpp)
+target_include_directories(extractor_cboe_c1options_marketdatafeed_csm_v1.4.2 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/extractor/cboe/c1options/marketdatafeed/csm/v1.4.2)
 add_executable(dump_cboe_c1options_marketdatafeed_csm_v1.4.2 executables/dump/cboe/c1options/marketdatafeed/csm/v1.4.2/main.cpp)
 target_include_directories(dump_cboe_c1options_marketdatafeed_csm_v1.4.2 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/dump/cboe/c1options/marketdatafeed/csm/v1.4.2)
 target_link_libraries(dump_cboe_c1options_marketdatafeed_csm_v1.4.2 PRIVATE classes_cboe_c1options_marketdatafeed_csm_v1.4.2)
@@ -9526,12 +9614,16 @@ target_link_libraries(verify_cboe_c1options_marketdatafeed_csm_v1.4.2 PRIVATE cl
 add_executable(roundtrip_cboe_c1options_marketdatafeed_csm_v1.4.2 executables/roundtrip/cboe/c1options/marketdatafeed/csm/v1.4.2/main.cpp)
 target_include_directories(roundtrip_cboe_c1options_marketdatafeed_csm_v1.4.2 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/roundtrip/cboe/c1options/marketdatafeed/csm/v1.4.2)
 target_link_libraries(roundtrip_cboe_c1options_marketdatafeed_csm_v1.4.2 PRIVATE classes_cboe_c1options_marketdatafeed_csm_v1.4.2)
+add_executable(benchmark_modern_cboe_c1options_marketdatafeed_csm_v1.4.2 executables/benchmark/modern/cboe/c1options/marketdatafeed/csm/v1.4.2/main.cpp)
+target_include_directories(benchmark_modern_cboe_c1options_marketdatafeed_csm_v1.4.2 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/modern/cboe/c1options/marketdatafeed/csm/v1.4.2)
 add_executable(benchmark_classes_cboe_c1options_marketdatafeed_csm_v1.4.2 executables/benchmark/classes/cboe/c1options/marketdatafeed/csm/v1.4.2/main.cpp)
 target_include_directories(benchmark_classes_cboe_c1options_marketdatafeed_csm_v1.4.2 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/classes/cboe/c1options/marketdatafeed/csm/v1.4.2)
 target_link_libraries(benchmark_classes_cboe_c1options_marketdatafeed_csm_v1.4.2 PRIVATE classes_cboe_c1options_marketdatafeed_csm_v1.4.2)
 add_executable(benchmark_flyweight_cboe_c1options_marketdatafeed_csm_v1.4.2 executables/benchmark/flyweight/cboe/c1options/marketdatafeed/csm/v1.4.2/main.cpp)
 target_include_directories(benchmark_flyweight_cboe_c1options_marketdatafeed_csm_v1.4.2 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/flyweight/cboe/c1options/marketdatafeed/csm/v1.4.2)
 target_link_libraries(benchmark_flyweight_cboe_c1options_marketdatafeed_csm_v1.4.2 PRIVATE flyweight_cboe_c1options_marketdatafeed_csm_v1.4.2)
+add_executable(benchmark_tmp_cboe_c1options_marketdatafeed_csm_v1.4.2 executables/benchmark/tmp/cboe/c1options/marketdatafeed/csm/v1.4.2/main.cpp)
+target_include_directories(benchmark_tmp_cboe_c1options_marketdatafeed_csm_v1.4.2 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/cboe/c1options/marketdatafeed/csm/v1.4.2)
 add_executable(statistics_cboe_edgaequities_multicastdepthofbook_pitch_v2.41.29 executables/statistics/cboe/edgaequities/multicastdepthofbook/pitch/v2.41.29/main.cpp)
 target_include_directories(statistics_cboe_edgaequities_multicastdepthofbook_pitch_v2.41.29 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/cboe/edgaequities/multicastdepthofbook/pitch/v2.41.29)
 add_executable(extractor_cboe_edgaequities_multicastdepthofbook_pitch_v2.41.29 executables/extractor/cboe/edgaequities/multicastdepthofbook/pitch/v2.41.29/main.cpp)
@@ -9615,12 +9707,18 @@ target_link_libraries(dump_cme_globex_mdp3_sbe_v1.8 PRIVATE classes_cme_globex_m
 add_executable(verify_cme_globex_mdp3_sbe_v1.8 executables/verify/cme/globex/mdp3/sbe/v1.8/main.cpp)
 target_include_directories(verify_cme_globex_mdp3_sbe_v1.8 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/cme/globex/mdp3/sbe/v1.8)
 target_link_libraries(verify_cme_globex_mdp3_sbe_v1.8 PRIVATE classes_cme_globex_mdp3_sbe_v1.8)
+add_executable(benchmark_modern_cme_globex_mdp3_sbe_v1.8 executables/benchmark/modern/cme/globex/mdp3/sbe/v1.8/main.cpp)
+target_include_directories(benchmark_modern_cme_globex_mdp3_sbe_v1.8 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/modern/cme/globex/mdp3/sbe/v1.8)
+add_executable(benchmark_advanced_cme_globex_mdp3_sbe_v1.8 executables/benchmark/advanced/cme/globex/mdp3/sbe/v1.8/main.cpp)
+target_include_directories(benchmark_advanced_cme_globex_mdp3_sbe_v1.8 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/advanced/cme/globex/mdp3/sbe/v1.8)
 add_executable(benchmark_classes_cme_globex_mdp3_sbe_v1.8 executables/benchmark/classes/cme/globex/mdp3/sbe/v1.8/main.cpp)
 target_include_directories(benchmark_classes_cme_globex_mdp3_sbe_v1.8 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/classes/cme/globex/mdp3/sbe/v1.8)
 target_link_libraries(benchmark_classes_cme_globex_mdp3_sbe_v1.8 PRIVATE classes_cme_globex_mdp3_sbe_v1.8)
 add_executable(benchmark_flyweight_cme_globex_mdp3_sbe_v1.8 executables/benchmark/flyweight/cme/globex/mdp3/sbe/v1.8/main.cpp)
 target_include_directories(benchmark_flyweight_cme_globex_mdp3_sbe_v1.8 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/flyweight/cme/globex/mdp3/sbe/v1.8)
 target_link_libraries(benchmark_flyweight_cme_globex_mdp3_sbe_v1.8 PRIVATE flyweight_cme_globex_mdp3_sbe_v1.8)
+add_executable(benchmark_tmp_cme_globex_mdp3_sbe_v1.8 executables/benchmark/tmp/cme/globex/mdp3/sbe/v1.8/main.cpp)
+target_include_directories(benchmark_tmp_cme_globex_mdp3_sbe_v1.8 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/cme/globex/mdp3/sbe/v1.8)
 add_executable(statistics_cme_globex_mdp3_sbe_v1.9 executables/statistics/cme/globex/mdp3/sbe/v1.9/main.cpp)
 target_include_directories(statistics_cme_globex_mdp3_sbe_v1.9 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/cme/globex/mdp3/sbe/v1.9)
 add_executable(extractor_cme_globex_mdp3_sbe_v1.9 executables/extractor/cme/globex/mdp3/sbe/v1.9/main.cpp)
@@ -9631,12 +9729,18 @@ target_link_libraries(dump_cme_globex_mdp3_sbe_v1.9 PRIVATE classes_cme_globex_m
 add_executable(verify_cme_globex_mdp3_sbe_v1.9 executables/verify/cme/globex/mdp3/sbe/v1.9/main.cpp)
 target_include_directories(verify_cme_globex_mdp3_sbe_v1.9 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/cme/globex/mdp3/sbe/v1.9)
 target_link_libraries(verify_cme_globex_mdp3_sbe_v1.9 PRIVATE classes_cme_globex_mdp3_sbe_v1.9)
+add_executable(benchmark_modern_cme_globex_mdp3_sbe_v1.9 executables/benchmark/modern/cme/globex/mdp3/sbe/v1.9/main.cpp)
+target_include_directories(benchmark_modern_cme_globex_mdp3_sbe_v1.9 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/modern/cme/globex/mdp3/sbe/v1.9)
+add_executable(benchmark_advanced_cme_globex_mdp3_sbe_v1.9 executables/benchmark/advanced/cme/globex/mdp3/sbe/v1.9/main.cpp)
+target_include_directories(benchmark_advanced_cme_globex_mdp3_sbe_v1.9 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/advanced/cme/globex/mdp3/sbe/v1.9)
 add_executable(benchmark_classes_cme_globex_mdp3_sbe_v1.9 executables/benchmark/classes/cme/globex/mdp3/sbe/v1.9/main.cpp)
 target_include_directories(benchmark_classes_cme_globex_mdp3_sbe_v1.9 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/classes/cme/globex/mdp3/sbe/v1.9)
 target_link_libraries(benchmark_classes_cme_globex_mdp3_sbe_v1.9 PRIVATE classes_cme_globex_mdp3_sbe_v1.9)
 add_executable(benchmark_flyweight_cme_globex_mdp3_sbe_v1.9 executables/benchmark/flyweight/cme/globex/mdp3/sbe/v1.9/main.cpp)
 target_include_directories(benchmark_flyweight_cme_globex_mdp3_sbe_v1.9 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/flyweight/cme/globex/mdp3/sbe/v1.9)
 target_link_libraries(benchmark_flyweight_cme_globex_mdp3_sbe_v1.9 PRIVATE flyweight_cme_globex_mdp3_sbe_v1.9)
+add_executable(benchmark_tmp_cme_globex_mdp3_sbe_v1.9 executables/benchmark/tmp/cme/globex/mdp3/sbe/v1.9/main.cpp)
+target_include_directories(benchmark_tmp_cme_globex_mdp3_sbe_v1.9 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/cme/globex/mdp3/sbe/v1.9)
 add_executable(statistics_cme_globex_mdp3_sbe_v1.13 executables/statistics/cme/globex/mdp3/sbe/v1.13/main.cpp)
 target_include_directories(statistics_cme_globex_mdp3_sbe_v1.13 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/cme/globex/mdp3/sbe/v1.13)
 add_executable(extractor_cme_globex_mdp3_sbe_v1.13 executables/extractor/cme/globex/mdp3/sbe/v1.13/main.cpp)
@@ -9647,12 +9751,18 @@ target_link_libraries(dump_cme_globex_mdp3_sbe_v1.13 PRIVATE classes_cme_globex_
 add_executable(verify_cme_globex_mdp3_sbe_v1.13 executables/verify/cme/globex/mdp3/sbe/v1.13/main.cpp)
 target_include_directories(verify_cme_globex_mdp3_sbe_v1.13 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/cme/globex/mdp3/sbe/v1.13)
 target_link_libraries(verify_cme_globex_mdp3_sbe_v1.13 PRIVATE classes_cme_globex_mdp3_sbe_v1.13)
+add_executable(benchmark_modern_cme_globex_mdp3_sbe_v1.13 executables/benchmark/modern/cme/globex/mdp3/sbe/v1.13/main.cpp)
+target_include_directories(benchmark_modern_cme_globex_mdp3_sbe_v1.13 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/modern/cme/globex/mdp3/sbe/v1.13)
+add_executable(benchmark_advanced_cme_globex_mdp3_sbe_v1.13 executables/benchmark/advanced/cme/globex/mdp3/sbe/v1.13/main.cpp)
+target_include_directories(benchmark_advanced_cme_globex_mdp3_sbe_v1.13 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/advanced/cme/globex/mdp3/sbe/v1.13)
 add_executable(benchmark_classes_cme_globex_mdp3_sbe_v1.13 executables/benchmark/classes/cme/globex/mdp3/sbe/v1.13/main.cpp)
 target_include_directories(benchmark_classes_cme_globex_mdp3_sbe_v1.13 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/classes/cme/globex/mdp3/sbe/v1.13)
 target_link_libraries(benchmark_classes_cme_globex_mdp3_sbe_v1.13 PRIVATE classes_cme_globex_mdp3_sbe_v1.13)
 add_executable(benchmark_flyweight_cme_globex_mdp3_sbe_v1.13 executables/benchmark/flyweight/cme/globex/mdp3/sbe/v1.13/main.cpp)
 target_include_directories(benchmark_flyweight_cme_globex_mdp3_sbe_v1.13 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/flyweight/cme/globex/mdp3/sbe/v1.13)
 target_link_libraries(benchmark_flyweight_cme_globex_mdp3_sbe_v1.13 PRIVATE flyweight_cme_globex_mdp3_sbe_v1.13)
+add_executable(benchmark_tmp_cme_globex_mdp3_sbe_v1.13 executables/benchmark/tmp/cme/globex/mdp3/sbe/v1.13/main.cpp)
+target_include_directories(benchmark_tmp_cme_globex_mdp3_sbe_v1.13 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/cme/globex/mdp3/sbe/v1.13)
 add_executable(statistics_cme_globex_mdp3_sbe_v1.5 executables/statistics/cme/globex/mdp3/sbe/v1.5/main.cpp)
 target_include_directories(statistics_cme_globex_mdp3_sbe_v1.5 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/cme/globex/mdp3/sbe/v1.5)
 add_executable(extractor_cme_globex_mdp3_sbe_v1.5 executables/extractor/cme/globex/mdp3/sbe/v1.5/main.cpp)
@@ -9663,12 +9773,18 @@ target_link_libraries(dump_cme_globex_mdp3_sbe_v1.5 PRIVATE classes_cme_globex_m
 add_executable(verify_cme_globex_mdp3_sbe_v1.5 executables/verify/cme/globex/mdp3/sbe/v1.5/main.cpp)
 target_include_directories(verify_cme_globex_mdp3_sbe_v1.5 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/cme/globex/mdp3/sbe/v1.5)
 target_link_libraries(verify_cme_globex_mdp3_sbe_v1.5 PRIVATE classes_cme_globex_mdp3_sbe_v1.5)
+add_executable(benchmark_modern_cme_globex_mdp3_sbe_v1.5 executables/benchmark/modern/cme/globex/mdp3/sbe/v1.5/main.cpp)
+target_include_directories(benchmark_modern_cme_globex_mdp3_sbe_v1.5 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/modern/cme/globex/mdp3/sbe/v1.5)
+add_executable(benchmark_advanced_cme_globex_mdp3_sbe_v1.5 executables/benchmark/advanced/cme/globex/mdp3/sbe/v1.5/main.cpp)
+target_include_directories(benchmark_advanced_cme_globex_mdp3_sbe_v1.5 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/advanced/cme/globex/mdp3/sbe/v1.5)
 add_executable(benchmark_classes_cme_globex_mdp3_sbe_v1.5 executables/benchmark/classes/cme/globex/mdp3/sbe/v1.5/main.cpp)
 target_include_directories(benchmark_classes_cme_globex_mdp3_sbe_v1.5 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/classes/cme/globex/mdp3/sbe/v1.5)
 target_link_libraries(benchmark_classes_cme_globex_mdp3_sbe_v1.5 PRIVATE classes_cme_globex_mdp3_sbe_v1.5)
 add_executable(benchmark_flyweight_cme_globex_mdp3_sbe_v1.5 executables/benchmark/flyweight/cme/globex/mdp3/sbe/v1.5/main.cpp)
 target_include_directories(benchmark_flyweight_cme_globex_mdp3_sbe_v1.5 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/flyweight/cme/globex/mdp3/sbe/v1.5)
 target_link_libraries(benchmark_flyweight_cme_globex_mdp3_sbe_v1.5 PRIVATE flyweight_cme_globex_mdp3_sbe_v1.5)
+add_executable(benchmark_tmp_cme_globex_mdp3_sbe_v1.5 executables/benchmark/tmp/cme/globex/mdp3/sbe/v1.5/main.cpp)
+target_include_directories(benchmark_tmp_cme_globex_mdp3_sbe_v1.5 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/cme/globex/mdp3/sbe/v1.5)
 add_executable(statistics_databento_marketdata_normalized_dbn_v1 executables/statistics/databento/marketdata/normalized/dbn/v1/main.cpp)
 target_include_directories(statistics_databento_marketdata_normalized_dbn_v1 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/databento/marketdata/normalized/dbn/v1)
 add_executable(extractor_databento_marketdata_normalized_dbn_v1 executables/extractor/databento/marketdata/normalized/dbn/v1/main.cpp)
@@ -9712,12 +9828,16 @@ target_link_libraries(verify_eurex_t7_eobi_fbe_v13.0 PRIVATE classes_eurex_t7_eo
 add_executable(roundtrip_eurex_t7_eobi_fbe_v13.0 executables/roundtrip/eurex/t7/eobi/fbe/v13.0/main.cpp)
 target_include_directories(roundtrip_eurex_t7_eobi_fbe_v13.0 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/roundtrip/eurex/t7/eobi/fbe/v13.0)
 target_link_libraries(roundtrip_eurex_t7_eobi_fbe_v13.0 PRIVATE classes_eurex_t7_eobi_fbe_v13.0)
+add_executable(benchmark_modern_eurex_t7_eobi_fbe_v13.0 executables/benchmark/modern/eurex/t7/eobi/fbe/v13.0/main.cpp)
+target_include_directories(benchmark_modern_eurex_t7_eobi_fbe_v13.0 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/modern/eurex/t7/eobi/fbe/v13.0)
 add_executable(benchmark_classes_eurex_t7_eobi_fbe_v13.0 executables/benchmark/classes/eurex/t7/eobi/fbe/v13.0/main.cpp)
 target_include_directories(benchmark_classes_eurex_t7_eobi_fbe_v13.0 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/classes/eurex/t7/eobi/fbe/v13.0)
 target_link_libraries(benchmark_classes_eurex_t7_eobi_fbe_v13.0 PRIVATE classes_eurex_t7_eobi_fbe_v13.0)
 add_executable(benchmark_flyweight_eurex_t7_eobi_fbe_v13.0 executables/benchmark/flyweight/eurex/t7/eobi/fbe/v13.0/main.cpp)
 target_include_directories(benchmark_flyweight_eurex_t7_eobi_fbe_v13.0 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/flyweight/eurex/t7/eobi/fbe/v13.0)
 target_link_libraries(benchmark_flyweight_eurex_t7_eobi_fbe_v13.0 PRIVATE flyweight_eurex_t7_eobi_fbe_v13.0)
+add_executable(benchmark_tmp_eurex_t7_eobi_fbe_v13.0 executables/benchmark/tmp/eurex/t7/eobi/fbe/v13.0/main.cpp)
+target_include_directories(benchmark_tmp_eurex_t7_eobi_fbe_v13.0 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/eurex/t7/eobi/fbe/v13.0)
 add_executable(statistics_eurex_t7_eobi_fbe_v15.0 executables/statistics/eurex/t7/eobi/fbe/v15.0/main.cpp)
 target_include_directories(statistics_eurex_t7_eobi_fbe_v15.0 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/eurex/t7/eobi/fbe/v15.0)
 add_executable(extractor_eurex_t7_eobi_fbe_v15.0 executables/extractor/eurex/t7/eobi/fbe/v15.0/main.cpp)
@@ -9731,12 +9851,16 @@ target_link_libraries(verify_eurex_t7_eobi_fbe_v15.0 PRIVATE classes_eurex_t7_eo
 add_executable(roundtrip_eurex_t7_eobi_fbe_v15.0 executables/roundtrip/eurex/t7/eobi/fbe/v15.0/main.cpp)
 target_include_directories(roundtrip_eurex_t7_eobi_fbe_v15.0 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/roundtrip/eurex/t7/eobi/fbe/v15.0)
 target_link_libraries(roundtrip_eurex_t7_eobi_fbe_v15.0 PRIVATE classes_eurex_t7_eobi_fbe_v15.0)
+add_executable(benchmark_modern_eurex_t7_eobi_fbe_v15.0 executables/benchmark/modern/eurex/t7/eobi/fbe/v15.0/main.cpp)
+target_include_directories(benchmark_modern_eurex_t7_eobi_fbe_v15.0 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/modern/eurex/t7/eobi/fbe/v15.0)
 add_executable(benchmark_classes_eurex_t7_eobi_fbe_v15.0 executables/benchmark/classes/eurex/t7/eobi/fbe/v15.0/main.cpp)
 target_include_directories(benchmark_classes_eurex_t7_eobi_fbe_v15.0 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/classes/eurex/t7/eobi/fbe/v15.0)
 target_link_libraries(benchmark_classes_eurex_t7_eobi_fbe_v15.0 PRIVATE classes_eurex_t7_eobi_fbe_v15.0)
 add_executable(benchmark_flyweight_eurex_t7_eobi_fbe_v15.0 executables/benchmark/flyweight/eurex/t7/eobi/fbe/v15.0/main.cpp)
 target_include_directories(benchmark_flyweight_eurex_t7_eobi_fbe_v15.0 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/flyweight/eurex/t7/eobi/fbe/v15.0)
 target_link_libraries(benchmark_flyweight_eurex_t7_eobi_fbe_v15.0 PRIVATE flyweight_eurex_t7_eobi_fbe_v15.0)
+add_executable(benchmark_tmp_eurex_t7_eobi_fbe_v15.0 executables/benchmark/tmp/eurex/t7/eobi/fbe/v15.0/main.cpp)
+target_include_directories(benchmark_tmp_eurex_t7_eobi_fbe_v15.0 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/eurex/t7/eobi/fbe/v15.0)
 add_executable(statistics_eurex_t7_eobi_fbe_v3.0 executables/statistics/eurex/t7/eobi/fbe/v3.0/main.cpp)
 target_include_directories(statistics_eurex_t7_eobi_fbe_v3.0 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/eurex/t7/eobi/fbe/v3.0)
 add_executable(extractor_eurex_t7_eobi_fbe_v3.0 executables/extractor/eurex/t7/eobi/fbe/v3.0/main.cpp)
@@ -9750,12 +9874,16 @@ target_link_libraries(verify_eurex_t7_eobi_fbe_v3.0 PRIVATE classes_eurex_t7_eob
 add_executable(roundtrip_eurex_t7_eobi_fbe_v3.0 executables/roundtrip/eurex/t7/eobi/fbe/v3.0/main.cpp)
 target_include_directories(roundtrip_eurex_t7_eobi_fbe_v3.0 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/roundtrip/eurex/t7/eobi/fbe/v3.0)
 target_link_libraries(roundtrip_eurex_t7_eobi_fbe_v3.0 PRIVATE classes_eurex_t7_eobi_fbe_v3.0)
+add_executable(benchmark_modern_eurex_t7_eobi_fbe_v3.0 executables/benchmark/modern/eurex/t7/eobi/fbe/v3.0/main.cpp)
+target_include_directories(benchmark_modern_eurex_t7_eobi_fbe_v3.0 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/modern/eurex/t7/eobi/fbe/v3.0)
 add_executable(benchmark_classes_eurex_t7_eobi_fbe_v3.0 executables/benchmark/classes/eurex/t7/eobi/fbe/v3.0/main.cpp)
 target_include_directories(benchmark_classes_eurex_t7_eobi_fbe_v3.0 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/classes/eurex/t7/eobi/fbe/v3.0)
 target_link_libraries(benchmark_classes_eurex_t7_eobi_fbe_v3.0 PRIVATE classes_eurex_t7_eobi_fbe_v3.0)
 add_executable(benchmark_flyweight_eurex_t7_eobi_fbe_v3.0 executables/benchmark/flyweight/eurex/t7/eobi/fbe/v3.0/main.cpp)
 target_include_directories(benchmark_flyweight_eurex_t7_eobi_fbe_v3.0 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/flyweight/eurex/t7/eobi/fbe/v3.0)
 target_link_libraries(benchmark_flyweight_eurex_t7_eobi_fbe_v3.0 PRIVATE flyweight_eurex_t7_eobi_fbe_v3.0)
+add_executable(benchmark_tmp_eurex_t7_eobi_fbe_v3.0 executables/benchmark/tmp/eurex/t7/eobi/fbe/v3.0/main.cpp)
+target_include_directories(benchmark_tmp_eurex_t7_eobi_fbe_v3.0 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/eurex/t7/eobi/fbe/v3.0)
 add_executable(statistics_eurex_t7_eobi_fbe_v6.0 executables/statistics/eurex/t7/eobi/fbe/v6.0/main.cpp)
 target_include_directories(statistics_eurex_t7_eobi_fbe_v6.0 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/eurex/t7/eobi/fbe/v6.0)
 add_executable(extractor_eurex_t7_eobi_fbe_v6.0 executables/extractor/eurex/t7/eobi/fbe/v6.0/main.cpp)
@@ -9769,12 +9897,16 @@ target_link_libraries(verify_eurex_t7_eobi_fbe_v6.0 PRIVATE classes_eurex_t7_eob
 add_executable(roundtrip_eurex_t7_eobi_fbe_v6.0 executables/roundtrip/eurex/t7/eobi/fbe/v6.0/main.cpp)
 target_include_directories(roundtrip_eurex_t7_eobi_fbe_v6.0 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/roundtrip/eurex/t7/eobi/fbe/v6.0)
 target_link_libraries(roundtrip_eurex_t7_eobi_fbe_v6.0 PRIVATE classes_eurex_t7_eobi_fbe_v6.0)
+add_executable(benchmark_modern_eurex_t7_eobi_fbe_v6.0 executables/benchmark/modern/eurex/t7/eobi/fbe/v6.0/main.cpp)
+target_include_directories(benchmark_modern_eurex_t7_eobi_fbe_v6.0 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/modern/eurex/t7/eobi/fbe/v6.0)
 add_executable(benchmark_classes_eurex_t7_eobi_fbe_v6.0 executables/benchmark/classes/eurex/t7/eobi/fbe/v6.0/main.cpp)
 target_include_directories(benchmark_classes_eurex_t7_eobi_fbe_v6.0 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/classes/eurex/t7/eobi/fbe/v6.0)
 target_link_libraries(benchmark_classes_eurex_t7_eobi_fbe_v6.0 PRIVATE classes_eurex_t7_eobi_fbe_v6.0)
 add_executable(benchmark_flyweight_eurex_t7_eobi_fbe_v6.0 executables/benchmark/flyweight/eurex/t7/eobi/fbe/v6.0/main.cpp)
 target_include_directories(benchmark_flyweight_eurex_t7_eobi_fbe_v6.0 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/flyweight/eurex/t7/eobi/fbe/v6.0)
 target_link_libraries(benchmark_flyweight_eurex_t7_eobi_fbe_v6.0 PRIVATE flyweight_eurex_t7_eobi_fbe_v6.0)
+add_executable(benchmark_tmp_eurex_t7_eobi_fbe_v6.0 executables/benchmark/tmp/eurex/t7/eobi/fbe/v6.0/main.cpp)
+target_include_directories(benchmark_tmp_eurex_t7_eobi_fbe_v6.0 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/eurex/t7/eobi/fbe/v6.0)
 add_executable(statistics_iex_iexequities_deep_iextp_v1.06 executables/statistics/iex/iexequities/deep/iextp/v1.06/main.cpp)
 target_include_directories(statistics_iex_iexequities_deep_iextp_v1.06 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/iex/iexequities/deep/iextp/v1.06)
 add_executable(extractor_iex_iexequities_deep_iextp_v1.06 executables/extractor/iex/iexequities/deep/iextp/v1.06/main.cpp)
@@ -10101,6 +10233,16 @@ target_link_libraries(verify_lseg_lse_level2mbo_gtp_v26.2 PRIVATE classes_lseg_l
 add_executable(roundtrip_lseg_lse_level2mbo_gtp_v26.2 executables/roundtrip/lseg/lse/level2mbo/gtp/v26.2/main.cpp)
 target_include_directories(roundtrip_lseg_lse_level2mbo_gtp_v26.2 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/roundtrip/lseg/lse/level2mbo/gtp/v26.2)
 target_link_libraries(roundtrip_lseg_lse_level2mbo_gtp_v26.2 PRIVATE classes_lseg_lse_level2mbo_gtp_v26.2)
+add_executable(benchmark_modern_lseg_lse_level2mbo_gtp_v26.2 executables/benchmark/modern/lseg/lse/level2mbo/gtp/v26.2/main.cpp)
+target_include_directories(benchmark_modern_lseg_lse_level2mbo_gtp_v26.2 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/modern/lseg/lse/level2mbo/gtp/v26.2)
+add_executable(benchmark_classes_lseg_lse_level2mbo_gtp_v26.2 executables/benchmark/classes/lseg/lse/level2mbo/gtp/v26.2/main.cpp)
+target_include_directories(benchmark_classes_lseg_lse_level2mbo_gtp_v26.2 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/classes/lseg/lse/level2mbo/gtp/v26.2)
+target_link_libraries(benchmark_classes_lseg_lse_level2mbo_gtp_v26.2 PRIVATE classes_lseg_lse_level2mbo_gtp_v26.2)
+add_executable(benchmark_flyweight_lseg_lse_level2mbo_gtp_v26.2 executables/benchmark/flyweight/lseg/lse/level2mbo/gtp/v26.2/main.cpp)
+target_include_directories(benchmark_flyweight_lseg_lse_level2mbo_gtp_v26.2 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/flyweight/lseg/lse/level2mbo/gtp/v26.2)
+target_link_libraries(benchmark_flyweight_lseg_lse_level2mbo_gtp_v26.2 PRIVATE flyweight_lseg_lse_level2mbo_gtp_v26.2)
+add_executable(benchmark_tmp_lseg_lse_level2mbo_gtp_v26.2 executables/benchmark/tmp/lseg/lse/level2mbo/gtp/v26.2/main.cpp)
+target_include_directories(benchmark_tmp_lseg_lse_level2mbo_gtp_v26.2 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/lseg/lse/level2mbo/gtp/v26.2)
 add_executable(statistics_lseg_millennium_level2_mitch_v11.9 executables/statistics/lseg/millennium/level2/mitch/v11.9/main.cpp)
 target_include_directories(statistics_lseg_millennium_level2_mitch_v11.9 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/lseg/millennium/level2/mitch/v11.9)
 add_executable(extractor_lseg_millennium_level2_mitch_v11.9 executables/extractor/lseg/millennium/level2/mitch/v11.9/main.cpp)
@@ -10134,6 +10276,12 @@ target_link_libraries(dump_memx_memxequities_memoirdepthfeed_sbe_v1.3 PRIVATE cl
 add_executable(verify_memx_memxequities_memoirdepthfeed_sbe_v1.3 executables/verify/memx/memxequities/memoirdepthfeed/sbe/v1.3/main.cpp)
 target_include_directories(verify_memx_memxequities_memoirdepthfeed_sbe_v1.3 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/memx/memxequities/memoirdepthfeed/sbe/v1.3)
 target_link_libraries(verify_memx_memxequities_memoirdepthfeed_sbe_v1.3 PRIVATE classes_memx_memxequities_memoirdepthfeed_sbe_v1.3)
+add_executable(benchmark_modern_memx_memxequities_memoirdepthfeed_sbe_v1.3 executables/benchmark/modern/memx/memxequities/memoirdepthfeed/sbe/v1.3/main.cpp)
+target_include_directories(benchmark_modern_memx_memxequities_memoirdepthfeed_sbe_v1.3 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/modern/memx/memxequities/memoirdepthfeed/sbe/v1.3)
+add_executable(benchmark_advanced_memx_memxequities_memoirdepthfeed_sbe_v1.3 executables/benchmark/advanced/memx/memxequities/memoirdepthfeed/sbe/v1.3/main.cpp)
+target_include_directories(benchmark_advanced_memx_memxequities_memoirdepthfeed_sbe_v1.3 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/advanced/memx/memxequities/memoirdepthfeed/sbe/v1.3)
+add_executable(benchmark_tmp_memx_memxequities_memoirdepthfeed_sbe_v1.3 executables/benchmark/tmp/memx/memxequities/memoirdepthfeed/sbe/v1.3/main.cpp)
+target_include_directories(benchmark_tmp_memx_memxequities_memoirdepthfeed_sbe_v1.3 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/memx/memxequities/memoirdepthfeed/sbe/v1.3)
 add_executable(statistics_miax_pearlequities_depthofmarket_mach_v1.3.d executables/statistics/miax/pearlequities/depthofmarket/mach/v1.3.d/main.cpp)
 target_include_directories(statistics_miax_pearlequities_depthofmarket_mach_v1.3.d PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/miax/pearlequities/depthofmarket/mach/v1.3.d)
 add_executable(extractor_miax_pearlequities_depthofmarket_mach_v1.3.d executables/extractor/miax/pearlequities/depthofmarket/mach/v1.3.d/main.cpp)
@@ -10144,12 +10292,16 @@ target_link_libraries(dump_miax_pearlequities_depthofmarket_mach_v1.3.d PRIVATE 
 add_executable(verify_miax_pearlequities_depthofmarket_mach_v1.3.d executables/verify/miax/pearlequities/depthofmarket/mach/v1.3.d/main.cpp)
 target_include_directories(verify_miax_pearlequities_depthofmarket_mach_v1.3.d PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/miax/pearlequities/depthofmarket/mach/v1.3.d)
 target_link_libraries(verify_miax_pearlequities_depthofmarket_mach_v1.3.d PRIVATE classes_miax_pearlequities_depthofmarket_mach_v1.3.d)
+add_executable(benchmark_modern_miax_pearlequities_depthofmarket_mach_v1.3.d executables/benchmark/modern/miax/pearlequities/depthofmarket/mach/v1.3.d/main.cpp)
+target_include_directories(benchmark_modern_miax_pearlequities_depthofmarket_mach_v1.3.d PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/modern/miax/pearlequities/depthofmarket/mach/v1.3.d)
 add_executable(benchmark_classes_miax_pearlequities_depthofmarket_mach_v1.3.d executables/benchmark/classes/miax/pearlequities/depthofmarket/mach/v1.3.d/main.cpp)
 target_include_directories(benchmark_classes_miax_pearlequities_depthofmarket_mach_v1.3.d PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/classes/miax/pearlequities/depthofmarket/mach/v1.3.d)
 target_link_libraries(benchmark_classes_miax_pearlequities_depthofmarket_mach_v1.3.d PRIVATE classes_miax_pearlequities_depthofmarket_mach_v1.3.d)
 add_executable(benchmark_flyweight_miax_pearlequities_depthofmarket_mach_v1.3.d executables/benchmark/flyweight/miax/pearlequities/depthofmarket/mach/v1.3.d/main.cpp)
 target_include_directories(benchmark_flyweight_miax_pearlequities_depthofmarket_mach_v1.3.d PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/flyweight/miax/pearlequities/depthofmarket/mach/v1.3.d)
 target_link_libraries(benchmark_flyweight_miax_pearlequities_depthofmarket_mach_v1.3.d PRIVATE flyweight_miax_pearlequities_depthofmarket_mach_v1.3.d)
+add_executable(benchmark_tmp_miax_pearlequities_depthofmarket_mach_v1.3.d executables/benchmark/tmp/miax/pearlequities/depthofmarket/mach/v1.3.d/main.cpp)
+target_include_directories(benchmark_tmp_miax_pearlequities_depthofmarket_mach_v1.3.d PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/miax/pearlequities/depthofmarket/mach/v1.3.d)
 add_executable(statistics_miax_miaxoptions_topofmarket_mach_v2.5 executables/statistics/miax/miaxoptions/topofmarket/mach/v2.5/main.cpp)
 target_include_directories(statistics_miax_miaxoptions_topofmarket_mach_v2.5 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/miax/miaxoptions/topofmarket/mach/v2.5)
 add_executable(extractor_miax_miaxoptions_topofmarket_mach_v2.5 executables/extractor/miax/miaxoptions/topofmarket/mach/v2.5/main.cpp)
@@ -10160,12 +10312,16 @@ target_link_libraries(dump_miax_miaxoptions_topofmarket_mach_v2.5 PRIVATE classe
 add_executable(verify_miax_miaxoptions_topofmarket_mach_v2.5 executables/verify/miax/miaxoptions/topofmarket/mach/v2.5/main.cpp)
 target_include_directories(verify_miax_miaxoptions_topofmarket_mach_v2.5 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/miax/miaxoptions/topofmarket/mach/v2.5)
 target_link_libraries(verify_miax_miaxoptions_topofmarket_mach_v2.5 PRIVATE classes_miax_miaxoptions_topofmarket_mach_v2.5)
+add_executable(benchmark_modern_miax_miaxoptions_topofmarket_mach_v2.5 executables/benchmark/modern/miax/miaxoptions/topofmarket/mach/v2.5/main.cpp)
+target_include_directories(benchmark_modern_miax_miaxoptions_topofmarket_mach_v2.5 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/modern/miax/miaxoptions/topofmarket/mach/v2.5)
 add_executable(benchmark_classes_miax_miaxoptions_topofmarket_mach_v2.5 executables/benchmark/classes/miax/miaxoptions/topofmarket/mach/v2.5/main.cpp)
 target_include_directories(benchmark_classes_miax_miaxoptions_topofmarket_mach_v2.5 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/classes/miax/miaxoptions/topofmarket/mach/v2.5)
 target_link_libraries(benchmark_classes_miax_miaxoptions_topofmarket_mach_v2.5 PRIVATE classes_miax_miaxoptions_topofmarket_mach_v2.5)
 add_executable(benchmark_flyweight_miax_miaxoptions_topofmarket_mach_v2.5 executables/benchmark/flyweight/miax/miaxoptions/topofmarket/mach/v2.5/main.cpp)
 target_include_directories(benchmark_flyweight_miax_miaxoptions_topofmarket_mach_v2.5 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/flyweight/miax/miaxoptions/topofmarket/mach/v2.5)
 target_link_libraries(benchmark_flyweight_miax_miaxoptions_topofmarket_mach_v2.5 PRIVATE flyweight_miax_miaxoptions_topofmarket_mach_v2.5)
+add_executable(benchmark_tmp_miax_miaxoptions_topofmarket_mach_v2.5 executables/benchmark/tmp/miax/miaxoptions/topofmarket/mach/v2.5/main.cpp)
+target_include_directories(benchmark_tmp_miax_miaxoptions_topofmarket_mach_v2.5 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/miax/miaxoptions/topofmarket/mach/v2.5)
 add_executable(statistics_miax_miaxoptions_complextopofmarket_mach_v1.1 executables/statistics/miax/miaxoptions/complextopofmarket/mach/v1.1/main.cpp)
 target_include_directories(statistics_miax_miaxoptions_complextopofmarket_mach_v1.1 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/miax/miaxoptions/complextopofmarket/mach/v1.1)
 add_executable(extractor_miax_miaxoptions_complextopofmarket_mach_v1.1 executables/extractor/miax/miaxoptions/complextopofmarket/mach/v1.1/main.cpp)
@@ -10176,12 +10332,16 @@ target_link_libraries(dump_miax_miaxoptions_complextopofmarket_mach_v1.1 PRIVATE
 add_executable(verify_miax_miaxoptions_complextopofmarket_mach_v1.1 executables/verify/miax/miaxoptions/complextopofmarket/mach/v1.1/main.cpp)
 target_include_directories(verify_miax_miaxoptions_complextopofmarket_mach_v1.1 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/miax/miaxoptions/complextopofmarket/mach/v1.1)
 target_link_libraries(verify_miax_miaxoptions_complextopofmarket_mach_v1.1 PRIVATE classes_miax_miaxoptions_complextopofmarket_mach_v1.1)
+add_executable(benchmark_modern_miax_miaxoptions_complextopofmarket_mach_v1.1 executables/benchmark/modern/miax/miaxoptions/complextopofmarket/mach/v1.1/main.cpp)
+target_include_directories(benchmark_modern_miax_miaxoptions_complextopofmarket_mach_v1.1 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/modern/miax/miaxoptions/complextopofmarket/mach/v1.1)
 add_executable(benchmark_classes_miax_miaxoptions_complextopofmarket_mach_v1.1 executables/benchmark/classes/miax/miaxoptions/complextopofmarket/mach/v1.1/main.cpp)
 target_include_directories(benchmark_classes_miax_miaxoptions_complextopofmarket_mach_v1.1 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/classes/miax/miaxoptions/complextopofmarket/mach/v1.1)
 target_link_libraries(benchmark_classes_miax_miaxoptions_complextopofmarket_mach_v1.1 PRIVATE classes_miax_miaxoptions_complextopofmarket_mach_v1.1)
 add_executable(benchmark_flyweight_miax_miaxoptions_complextopofmarket_mach_v1.1 executables/benchmark/flyweight/miax/miaxoptions/complextopofmarket/mach/v1.1/main.cpp)
 target_include_directories(benchmark_flyweight_miax_miaxoptions_complextopofmarket_mach_v1.1 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/flyweight/miax/miaxoptions/complextopofmarket/mach/v1.1)
 target_link_libraries(benchmark_flyweight_miax_miaxoptions_complextopofmarket_mach_v1.1 PRIVATE flyweight_miax_miaxoptions_complextopofmarket_mach_v1.1)
+add_executable(benchmark_tmp_miax_miaxoptions_complextopofmarket_mach_v1.1 executables/benchmark/tmp/miax/miaxoptions/complextopofmarket/mach/v1.1/main.cpp)
+target_include_directories(benchmark_tmp_miax_miaxoptions_complextopofmarket_mach_v1.1 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/miax/miaxoptions/complextopofmarket/mach/v1.1)
 add_executable(statistics_miax_onyxfutures_topofmarket_mach_v1.0.b executables/statistics/miax/onyxfutures/topofmarket/mach/v1.0.b/main.cpp)
 target_include_directories(statistics_miax_onyxfutures_topofmarket_mach_v1.0.b PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/miax/onyxfutures/topofmarket/mach/v1.0.b)
 add_executable(extractor_miax_onyxfutures_topofmarket_mach_v1.0.b executables/extractor/miax/onyxfutures/topofmarket/mach/v1.0.b/main.cpp)
@@ -10192,9 +10352,16 @@ target_link_libraries(dump_miax_onyxfutures_topofmarket_mach_v1.0.b PRIVATE clas
 add_executable(verify_miax_onyxfutures_topofmarket_mach_v1.0.b executables/verify/miax/onyxfutures/topofmarket/mach/v1.0.b/main.cpp)
 target_include_directories(verify_miax_onyxfutures_topofmarket_mach_v1.0.b PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/miax/onyxfutures/topofmarket/mach/v1.0.b)
 target_link_libraries(verify_miax_onyxfutures_topofmarket_mach_v1.0.b PRIVATE classes_miax_onyxfutures_topofmarket_mach_v1.0.b)
+add_executable(benchmark_modern_miax_onyxfutures_topofmarket_mach_v1.0.b executables/benchmark/modern/miax/onyxfutures/topofmarket/mach/v1.0.b/main.cpp)
+target_include_directories(benchmark_modern_miax_onyxfutures_topofmarket_mach_v1.0.b PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/modern/miax/onyxfutures/topofmarket/mach/v1.0.b)
 add_executable(benchmark_classes_miax_onyxfutures_topofmarket_mach_v1.0.b executables/benchmark/classes/miax/onyxfutures/topofmarket/mach/v1.0.b/main.cpp)
 target_include_directories(benchmark_classes_miax_onyxfutures_topofmarket_mach_v1.0.b PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/classes/miax/onyxfutures/topofmarket/mach/v1.0.b)
 target_link_libraries(benchmark_classes_miax_onyxfutures_topofmarket_mach_v1.0.b PRIVATE classes_miax_onyxfutures_topofmarket_mach_v1.0.b)
+add_executable(benchmark_flyweight_miax_onyxfutures_topofmarket_mach_v1.0.b executables/benchmark/flyweight/miax/onyxfutures/topofmarket/mach/v1.0.b/main.cpp)
+target_include_directories(benchmark_flyweight_miax_onyxfutures_topofmarket_mach_v1.0.b PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/flyweight/miax/onyxfutures/topofmarket/mach/v1.0.b)
+target_link_libraries(benchmark_flyweight_miax_onyxfutures_topofmarket_mach_v1.0.b PRIVATE flyweight_miax_onyxfutures_topofmarket_mach_v1.0.b)
+add_executable(benchmark_tmp_miax_onyxfutures_topofmarket_mach_v1.0.b executables/benchmark/tmp/miax/onyxfutures/topofmarket/mach/v1.0.b/main.cpp)
+target_include_directories(benchmark_tmp_miax_onyxfutures_topofmarket_mach_v1.0.b PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/miax/onyxfutures/topofmarket/mach/v1.0.b)
 add_executable(statistics_nasdaq_nsmequities_totalview_itch_v5.0.2017 executables/statistics/nasdaq/nsmequities/totalview/itch/v5.0.2017/main.cpp)
 target_include_directories(statistics_nasdaq_nsmequities_totalview_itch_v5.0.2017 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/nasdaq/nsmequities/totalview/itch/v5.0.2017)
 add_executable(extractor_nasdaq_nsmequities_totalview_itch_v5.0.2017 executables/extractor/nasdaq/nsmequities/totalview/itch/v5.0.2017/main.cpp)
@@ -10385,12 +10552,16 @@ target_include_directories(roundtrip_nasdaq_iseoptions_ordercombofeed_itch_v1.1 
 target_link_libraries(roundtrip_nasdaq_iseoptions_ordercombofeed_itch_v1.1 PRIVATE classes_nasdaq_iseoptions_ordercombofeed_itch_v1.1)
 add_executable(benchmark_modern_nasdaq_iseoptions_ordercombofeed_itch_v1.1 executables/benchmark/modern/nasdaq/iseoptions/ordercombofeed/itch/v1.1/main.cpp)
 target_include_directories(benchmark_modern_nasdaq_iseoptions_ordercombofeed_itch_v1.1 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/modern/nasdaq/iseoptions/ordercombofeed/itch/v1.1)
+add_executable(benchmark_advanced_nasdaq_iseoptions_ordercombofeed_itch_v1.1 executables/benchmark/advanced/nasdaq/iseoptions/ordercombofeed/itch/v1.1/main.cpp)
+target_include_directories(benchmark_advanced_nasdaq_iseoptions_ordercombofeed_itch_v1.1 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/advanced/nasdaq/iseoptions/ordercombofeed/itch/v1.1)
 add_executable(benchmark_classes_nasdaq_iseoptions_ordercombofeed_itch_v1.1 executables/benchmark/classes/nasdaq/iseoptions/ordercombofeed/itch/v1.1/main.cpp)
 target_include_directories(benchmark_classes_nasdaq_iseoptions_ordercombofeed_itch_v1.1 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/classes/nasdaq/iseoptions/ordercombofeed/itch/v1.1)
 target_link_libraries(benchmark_classes_nasdaq_iseoptions_ordercombofeed_itch_v1.1 PRIVATE classes_nasdaq_iseoptions_ordercombofeed_itch_v1.1)
 add_executable(benchmark_flyweight_nasdaq_iseoptions_ordercombofeed_itch_v1.1 executables/benchmark/flyweight/nasdaq/iseoptions/ordercombofeed/itch/v1.1/main.cpp)
 target_include_directories(benchmark_flyweight_nasdaq_iseoptions_ordercombofeed_itch_v1.1 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/flyweight/nasdaq/iseoptions/ordercombofeed/itch/v1.1)
 target_link_libraries(benchmark_flyweight_nasdaq_iseoptions_ordercombofeed_itch_v1.1 PRIVATE flyweight_nasdaq_iseoptions_ordercombofeed_itch_v1.1)
+add_executable(benchmark_tmp_nasdaq_iseoptions_ordercombofeed_itch_v1.1 executables/benchmark/tmp/nasdaq/iseoptions/ordercombofeed/itch/v1.1/main.cpp)
+target_include_directories(benchmark_tmp_nasdaq_iseoptions_ordercombofeed_itch_v1.1 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/nasdaq/iseoptions/ordercombofeed/itch/v1.1)
 add_executable(statistics_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 executables/statistics/nasdaq/iseoptions/topcomboquotefeed/itch/v1.0/main.cpp)
 target_include_directories(statistics_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/nasdaq/iseoptions/topcomboquotefeed/itch/v1.0)
 add_executable(extractor_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 executables/extractor/nasdaq/iseoptions/topcomboquotefeed/itch/v1.0/main.cpp)
@@ -10406,12 +10577,16 @@ target_include_directories(roundtrip_nasdaq_iseoptions_topcomboquotefeed_itch_v1
 target_link_libraries(roundtrip_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 PRIVATE classes_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0)
 add_executable(benchmark_modern_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 executables/benchmark/modern/nasdaq/iseoptions/topcomboquotefeed/itch/v1.0/main.cpp)
 target_include_directories(benchmark_modern_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/modern/nasdaq/iseoptions/topcomboquotefeed/itch/v1.0)
+add_executable(benchmark_advanced_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 executables/benchmark/advanced/nasdaq/iseoptions/topcomboquotefeed/itch/v1.0/main.cpp)
+target_include_directories(benchmark_advanced_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/advanced/nasdaq/iseoptions/topcomboquotefeed/itch/v1.0)
 add_executable(benchmark_classes_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 executables/benchmark/classes/nasdaq/iseoptions/topcomboquotefeed/itch/v1.0/main.cpp)
 target_include_directories(benchmark_classes_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/classes/nasdaq/iseoptions/topcomboquotefeed/itch/v1.0)
 target_link_libraries(benchmark_classes_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 PRIVATE classes_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0)
 add_executable(benchmark_flyweight_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 executables/benchmark/flyweight/nasdaq/iseoptions/topcomboquotefeed/itch/v1.0/main.cpp)
 target_include_directories(benchmark_flyweight_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/flyweight/nasdaq/iseoptions/topcomboquotefeed/itch/v1.0)
 target_link_libraries(benchmark_flyweight_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 PRIVATE flyweight_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0)
+add_executable(benchmark_tmp_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 executables/benchmark/tmp/nasdaq/iseoptions/topcomboquotefeed/itch/v1.0/main.cpp)
+target_include_directories(benchmark_tmp_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/nasdaq/iseoptions/topcomboquotefeed/itch/v1.0)
 add_executable(statistics_nasdaq_nsmequities_nlsplus_itch_v3.0 executables/statistics/nasdaq/nsmequities/nlsplus/itch/v3.0/main.cpp)
 target_include_directories(statistics_nasdaq_nsmequities_nlsplus_itch_v3.0 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/nasdaq/nsmequities/nlsplus/itch/v3.0)
 add_executable(extractor_nasdaq_nsmequities_nlsplus_itch_v3.0 executables/extractor/nasdaq/nsmequities/nlsplus/itch/v3.0/main.cpp)
@@ -10552,12 +10727,16 @@ target_include_directories(roundtrip_nyse_arcaoptions_deepfeed_pillar_v1.2.m PRI
 target_link_libraries(roundtrip_nyse_arcaoptions_deepfeed_pillar_v1.2.m PRIVATE classes_nyse_arcaoptions_deepfeed_pillar_v1.2.m)
 add_executable(benchmark_modern_nyse_arcaoptions_deepfeed_pillar_v1.2.m executables/benchmark/modern/nyse/arcaoptions/deepfeed/pillar/v1.2.m/main.cpp)
 target_include_directories(benchmark_modern_nyse_arcaoptions_deepfeed_pillar_v1.2.m PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/modern/nyse/arcaoptions/deepfeed/pillar/v1.2.m)
+add_executable(benchmark_advanced_nyse_arcaoptions_deepfeed_pillar_v1.2.m executables/benchmark/advanced/nyse/arcaoptions/deepfeed/pillar/v1.2.m/main.cpp)
+target_include_directories(benchmark_advanced_nyse_arcaoptions_deepfeed_pillar_v1.2.m PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/advanced/nyse/arcaoptions/deepfeed/pillar/v1.2.m)
 add_executable(benchmark_classes_nyse_arcaoptions_deepfeed_pillar_v1.2.m executables/benchmark/classes/nyse/arcaoptions/deepfeed/pillar/v1.2.m/main.cpp)
 target_include_directories(benchmark_classes_nyse_arcaoptions_deepfeed_pillar_v1.2.m PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/classes/nyse/arcaoptions/deepfeed/pillar/v1.2.m)
 target_link_libraries(benchmark_classes_nyse_arcaoptions_deepfeed_pillar_v1.2.m PRIVATE classes_nyse_arcaoptions_deepfeed_pillar_v1.2.m)
 add_executable(benchmark_flyweight_nyse_arcaoptions_deepfeed_pillar_v1.2.m executables/benchmark/flyweight/nyse/arcaoptions/deepfeed/pillar/v1.2.m/main.cpp)
 target_include_directories(benchmark_flyweight_nyse_arcaoptions_deepfeed_pillar_v1.2.m PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/flyweight/nyse/arcaoptions/deepfeed/pillar/v1.2.m)
 target_link_libraries(benchmark_flyweight_nyse_arcaoptions_deepfeed_pillar_v1.2.m PRIVATE flyweight_nyse_arcaoptions_deepfeed_pillar_v1.2.m)
+add_executable(benchmark_tmp_nyse_arcaoptions_deepfeed_pillar_v1.2.m executables/benchmark/tmp/nyse/arcaoptions/deepfeed/pillar/v1.2.m/main.cpp)
+target_include_directories(benchmark_tmp_nyse_arcaoptions_deepfeed_pillar_v1.2.m PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/nyse/arcaoptions/deepfeed/pillar/v1.2.m)
 add_executable(statistics_nyse_nyseequities_integratedfeed_xdp_v2.3.a executables/statistics/nyse/nyseequities/integratedfeed/xdp/v2.3.a/main.cpp)
 target_include_directories(statistics_nyse_nyseequities_integratedfeed_xdp_v2.3.a PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/nyse/nyseequities/integratedfeed/xdp/v2.3.a)
 add_executable(extractor_nyse_nyseequities_integratedfeed_xdp_v2.3.a executables/extractor/nyse/nyseequities/integratedfeed/xdp/v2.3.a/main.cpp)
@@ -10675,6 +10854,8 @@ target_link_libraries(benchmark_classes_nyse_amexoptions_complexfeed_xdp_v1.3.a 
 add_executable(benchmark_flyweight_nyse_amexoptions_complexfeed_xdp_v1.3.a executables/benchmark/flyweight/nyse/amexoptions/complexfeed/xdp/v1.3.a/main.cpp)
 target_include_directories(benchmark_flyweight_nyse_amexoptions_complexfeed_xdp_v1.3.a PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/flyweight/nyse/amexoptions/complexfeed/xdp/v1.3.a)
 target_link_libraries(benchmark_flyweight_nyse_amexoptions_complexfeed_xdp_v1.3.a PRIVATE flyweight_nyse_amexoptions_complexfeed_xdp_v1.3.a)
+add_executable(benchmark_tmp_nyse_amexoptions_complexfeed_xdp_v1.3.a executables/benchmark/tmp/nyse/amexoptions/complexfeed/xdp/v1.3.a/main.cpp)
+target_include_directories(benchmark_tmp_nyse_amexoptions_complexfeed_xdp_v1.3.a PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/nyse/amexoptions/complexfeed/xdp/v1.3.a)
 add_executable(statistics_nyse_amexoptions_deepfeed_xdp_v1.3.a executables/statistics/nyse/amexoptions/deepfeed/xdp/v1.3.a/main.cpp)
 target_include_directories(statistics_nyse_amexoptions_deepfeed_xdp_v1.3.a PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/nyse/amexoptions/deepfeed/xdp/v1.3.a)
 add_executable(extractor_nyse_amexoptions_deepfeed_xdp_v1.3.a executables/extractor/nyse/amexoptions/deepfeed/xdp/v1.3.a/main.cpp)
@@ -11063,6 +11244,10 @@ target_include_directories(benchmark_flyweight_nyse_texasequities_integratedfeed
 target_link_libraries(benchmark_flyweight_nyse_texasequities_integratedfeedrefresh_pillar_v2.5.g PRIVATE flyweight_nyse_texasequities_integratedfeedrefresh_pillar_v2.5.g)
 add_executable(benchmark_tmp_nyse_texasequities_integratedfeedrefresh_pillar_v2.5.g executables/benchmark/tmp/nyse/texasequities/integratedfeedrefresh/pillar/v2.5.g/main.cpp)
 target_include_directories(benchmark_tmp_nyse_texasequities_integratedfeedrefresh_pillar_v2.5.g PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/nyse/texasequities/integratedfeedrefresh/pillar/v2.5.g)
+add_executable(statistics_otcmarkets_linkats_multicast_link_v4.3 executables/statistics/otcmarkets/linkats/multicast/link/v4.3/main.cpp)
+target_include_directories(statistics_otcmarkets_linkats_multicast_link_v4.3 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/otcmarkets/linkats/multicast/link/v4.3)
+add_executable(extractor_otcmarkets_linkats_multicast_link_v4.3 executables/extractor/otcmarkets/linkats/multicast/link/v4.3/main.cpp)
+target_include_directories(extractor_otcmarkets_linkats_multicast_link_v4.3 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/extractor/otcmarkets/linkats/multicast/link/v4.3)
 add_executable(dump_otcmarkets_linkats_multicast_link_v4.3 executables/dump/otcmarkets/linkats/multicast/link/v4.3/main.cpp)
 target_include_directories(dump_otcmarkets_linkats_multicast_link_v4.3 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/dump/otcmarkets/linkats/multicast/link/v4.3)
 target_link_libraries(dump_otcmarkets_linkats_multicast_link_v4.3 PRIVATE classes_otcmarkets_linkats_multicast_link_v4.3)
@@ -11072,6 +11257,10 @@ target_link_libraries(verify_otcmarkets_linkats_multicast_link_v4.3 PRIVATE clas
 add_executable(roundtrip_otcmarkets_linkats_multicast_link_v4.3 executables/roundtrip/otcmarkets/linkats/multicast/link/v4.3/main.cpp)
 target_include_directories(roundtrip_otcmarkets_linkats_multicast_link_v4.3 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/roundtrip/otcmarkets/linkats/multicast/link/v4.3)
 target_link_libraries(roundtrip_otcmarkets_linkats_multicast_link_v4.3 PRIVATE classes_otcmarkets_linkats_multicast_link_v4.3)
+add_executable(benchmark_modern_otcmarkets_linkats_multicast_link_v4.3 executables/benchmark/modern/otcmarkets/linkats/multicast/link/v4.3/main.cpp)
+target_include_directories(benchmark_modern_otcmarkets_linkats_multicast_link_v4.3 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/modern/otcmarkets/linkats/multicast/link/v4.3)
+add_executable(benchmark_advanced_otcmarkets_linkats_multicast_link_v4.3 executables/benchmark/advanced/otcmarkets/linkats/multicast/link/v4.3/main.cpp)
+target_include_directories(benchmark_advanced_otcmarkets_linkats_multicast_link_v4.3 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/advanced/otcmarkets/linkats/multicast/link/v4.3)
 add_executable(benchmark_classes_otcmarkets_linkats_multicast_link_v4.3 executables/benchmark/classes/otcmarkets/linkats/multicast/link/v4.3/main.cpp)
 target_include_directories(benchmark_classes_otcmarkets_linkats_multicast_link_v4.3 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/classes/otcmarkets/linkats/multicast/link/v4.3)
 target_link_libraries(benchmark_classes_otcmarkets_linkats_multicast_link_v4.3 PRIVATE classes_otcmarkets_linkats_multicast_link_v4.3)
@@ -11090,6 +11279,8 @@ target_link_libraries(dump_siac_opra_output_obi_v6.2 PRIVATE classes_siac_opra_o
 add_executable(verify_siac_opra_output_obi_v6.2 executables/verify/siac/opra/output/obi/v6.2/main.cpp)
 target_include_directories(verify_siac_opra_output_obi_v6.2 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/siac/opra/output/obi/v6.2)
 target_link_libraries(verify_siac_opra_output_obi_v6.2 PRIVATE classes_siac_opra_output_obi_v6.2)
+add_executable(benchmark_modern_siac_opra_output_obi_v6.2 executables/benchmark/modern/siac/opra/output/obi/v6.2/main.cpp)
+target_include_directories(benchmark_modern_siac_opra_output_obi_v6.2 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/modern/siac/opra/output/obi/v6.2)
 add_executable(benchmark_advanced_siac_opra_output_obi_v6.2 executables/benchmark/advanced/siac/opra/output/obi/v6.2/main.cpp)
 target_include_directories(benchmark_advanced_siac_opra_output_obi_v6.2 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/advanced/siac/opra/output/obi/v6.2)
 add_executable(benchmark_classes_siac_opra_output_obi_v6.2 executables/benchmark/classes/siac/opra/output/obi/v6.2/main.cpp)
@@ -11112,12 +11303,16 @@ target_include_directories(verify_siac_cts_output_cta_v2.11.b PRIVATE ${CMAKE_SO
 target_link_libraries(verify_siac_cts_output_cta_v2.11.b PRIVATE classes_siac_cts_output_cta_v2.11.b)
 add_executable(benchmark_modern_siac_cts_output_cta_v2.11.b executables/benchmark/modern/siac/cts/output/cta/v2.11.b/main.cpp)
 target_include_directories(benchmark_modern_siac_cts_output_cta_v2.11.b PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/modern/siac/cts/output/cta/v2.11.b)
+add_executable(benchmark_advanced_siac_cts_output_cta_v2.11.b executables/benchmark/advanced/siac/cts/output/cta/v2.11.b/main.cpp)
+target_include_directories(benchmark_advanced_siac_cts_output_cta_v2.11.b PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/advanced/siac/cts/output/cta/v2.11.b)
 add_executable(benchmark_classes_siac_cts_output_cta_v2.11.b executables/benchmark/classes/siac/cts/output/cta/v2.11.b/main.cpp)
 target_include_directories(benchmark_classes_siac_cts_output_cta_v2.11.b PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/classes/siac/cts/output/cta/v2.11.b)
 target_link_libraries(benchmark_classes_siac_cts_output_cta_v2.11.b PRIVATE classes_siac_cts_output_cta_v2.11.b)
 add_executable(benchmark_flyweight_siac_cts_output_cta_v2.11.b executables/benchmark/flyweight/siac/cts/output/cta/v2.11.b/main.cpp)
 target_include_directories(benchmark_flyweight_siac_cts_output_cta_v2.11.b PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/flyweight/siac/cts/output/cta/v2.11.b)
 target_link_libraries(benchmark_flyweight_siac_cts_output_cta_v2.11.b PRIVATE flyweight_siac_cts_output_cta_v2.11.b)
+add_executable(benchmark_tmp_siac_cts_output_cta_v2.11.b executables/benchmark/tmp/siac/cts/output/cta/v2.11.b/main.cpp)
+target_include_directories(benchmark_tmp_siac_cts_output_cta_v2.11.b PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/siac/cts/output/cta/v2.11.b)
 add_executable(statistics_siac_cqs_output_cta_v2.10.a executables/statistics/siac/cqs/output/cta/v2.10.a/main.cpp)
 target_include_directories(statistics_siac_cqs_output_cta_v2.10.a PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/siac/cqs/output/cta/v2.10.a)
 add_executable(extractor_siac_cqs_output_cta_v2.10.a executables/extractor/siac/cqs/output/cta/v2.10.a/main.cpp)
@@ -11130,6 +11325,8 @@ target_include_directories(verify_siac_cqs_output_cta_v2.10.a PRIVATE ${CMAKE_SO
 target_link_libraries(verify_siac_cqs_output_cta_v2.10.a PRIVATE classes_siac_cqs_output_cta_v2.10.a)
 add_executable(benchmark_modern_siac_cqs_output_cta_v2.10.a executables/benchmark/modern/siac/cqs/output/cta/v2.10.a/main.cpp)
 target_include_directories(benchmark_modern_siac_cqs_output_cta_v2.10.a PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/modern/siac/cqs/output/cta/v2.10.a)
+add_executable(benchmark_advanced_siac_cqs_output_cta_v2.10.a executables/benchmark/advanced/siac/cqs/output/cta/v2.10.a/main.cpp)
+target_include_directories(benchmark_advanced_siac_cqs_output_cta_v2.10.a PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/advanced/siac/cqs/output/cta/v2.10.a)
 add_executable(benchmark_classes_siac_cqs_output_cta_v2.10.a executables/benchmark/classes/siac/cqs/output/cta/v2.10.a/main.cpp)
 target_include_directories(benchmark_classes_siac_cqs_output_cta_v2.10.a PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/classes/siac/cqs/output/cta/v2.10.a)
 target_link_libraries(benchmark_classes_siac_cqs_output_cta_v2.10.a PRIVATE classes_siac_cqs_output_cta_v2.10.a)
@@ -11196,6 +11393,8 @@ target_link_libraries(benchmark_classes_siac_cts_output_cta_v2.10 PRIVATE classe
 add_executable(benchmark_flyweight_siac_cts_output_cta_v2.10 executables/benchmark/flyweight/siac/cts/output/cta/v2.10/main.cpp)
 target_include_directories(benchmark_flyweight_siac_cts_output_cta_v2.10 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/flyweight/siac/cts/output/cta/v2.10)
 target_link_libraries(benchmark_flyweight_siac_cts_output_cta_v2.10 PRIVATE flyweight_siac_cts_output_cta_v2.10)
+add_executable(benchmark_tmp_siac_cts_output_cta_v2.10 executables/benchmark/tmp/siac/cts/output/cta/v2.10/main.cpp)
+target_include_directories(benchmark_tmp_siac_cts_output_cta_v2.10 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/siac/cts/output/cta/v2.10)
 add_executable(statistics_siac_cts_output_cta_v2.9 executables/statistics/siac/cts/output/cta/v2.9/main.cpp)
 target_include_directories(statistics_siac_cts_output_cta_v2.9 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/siac/cts/output/cta/v2.9)
 add_executable(extractor_siac_cts_output_cta_v2.9 executables/extractor/siac/cts/output/cta/v2.9/main.cpp)
@@ -11306,14 +11505,20 @@ target_include_directories(flyweight_asx_asxderivatives_ntp_itch_v1.05_values_te
 target_link_libraries(flyweight_asx_asxderivatives_ntp_itch_v1.05_values_test PRIVATE flyweight_asx_asxderivatives_ntp_itch_v1.05)
 add_executable(modern_b3_b3derivatives_binaryumdf_sbe_v1.8_test tests/binary/modern/b3_b3derivatives_binaryumdf_sbe_v1.8.cpp)
 target_include_directories(modern_b3_b3derivatives_binaryumdf_sbe_v1.8_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(modern_b3_b3derivatives_binaryumdf_sbe_v1.8_values_test tests/binary/modern/b3_b3derivatives_binaryumdf_sbe_v1.8_values.cpp)
+target_include_directories(modern_b3_b3derivatives_binaryumdf_sbe_v1.8_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(advanced_b3_b3derivatives_binaryumdf_sbe_v1.8_test tests/binary/advanced/b3_b3derivatives_binaryumdf_sbe_v1.8.cpp)
 target_include_directories(advanced_b3_b3derivatives_binaryumdf_sbe_v1.8_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(advanced_b3_b3derivatives_binaryumdf_sbe_v1.8_values_test tests/binary/advanced/b3_b3derivatives_binaryumdf_sbe_v1.8_values.cpp)
+target_include_directories(advanced_b3_b3derivatives_binaryumdf_sbe_v1.8_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(classes_b3_b3derivatives_binaryumdf_sbe_v1.8_test tests/binary/classes/b3_b3derivatives_binaryumdf_sbe_v1.8.cpp)
 target_include_directories(classes_b3_b3derivatives_binaryumdf_sbe_v1.8_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(classes_b3_b3derivatives_binaryumdf_sbe_v1.8_test PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v1.8)
 add_executable(classes_b3_b3derivatives_binaryumdf_sbe_v1.8_values_test tests/binary/classes/b3_b3derivatives_binaryumdf_sbe_v1.8_values.cpp)
 target_include_directories(classes_b3_b3derivatives_binaryumdf_sbe_v1.8_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(classes_b3_b3derivatives_binaryumdf_sbe_v1.8_values_test PRIVATE classes_b3_b3derivatives_binaryumdf_sbe_v1.8)
+add_executable(tmp_b3_b3derivatives_binaryumdf_sbe_v1.8_values_test tests/binary/tmp/b3_b3derivatives_binaryumdf_sbe_v1.8_values.cpp)
+target_include_directories(tmp_b3_b3derivatives_binaryumdf_sbe_v1.8_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(flyweight_b3_b3derivatives_binaryumdf_sbe_v1.8_values_test tests/binary/flyweight/b3_b3derivatives_binaryumdf_sbe_v1.8_values.cpp)
 target_include_directories(flyweight_b3_b3derivatives_binaryumdf_sbe_v1.8_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(flyweight_b3_b3derivatives_binaryumdf_sbe_v1.8_values_test PRIVATE flyweight_b3_b3derivatives_binaryumdf_sbe_v1.8)
@@ -11340,12 +11545,16 @@ target_include_directories(classes_b3_b3derivatives_binaryentrypoint_sbe_v8.3_te
 target_link_libraries(classes_b3_b3derivatives_binaryentrypoint_sbe_v8.3_test PRIVATE classes_b3_b3derivatives_binaryentrypoint_sbe_v8.3)
 add_executable(modern_bse_bseindia_eobi_fbe_v1.4_test tests/binary/modern/bse_bseindia_eobi_fbe_v1.4.cpp)
 target_include_directories(modern_bse_bseindia_eobi_fbe_v1.4_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(modern_bse_bseindia_eobi_fbe_v1.4_values_test tests/binary/modern/bse_bseindia_eobi_fbe_v1.4_values.cpp)
+target_include_directories(modern_bse_bseindia_eobi_fbe_v1.4_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(classes_bse_bseindia_eobi_fbe_v1.4_test tests/binary/classes/bse_bseindia_eobi_fbe_v1.4.cpp)
 target_include_directories(classes_bse_bseindia_eobi_fbe_v1.4_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(classes_bse_bseindia_eobi_fbe_v1.4_test PRIVATE classes_bse_bseindia_eobi_fbe_v1.4)
 add_executable(classes_bse_bseindia_eobi_fbe_v1.4_values_test tests/binary/classes/bse_bseindia_eobi_fbe_v1.4_values.cpp)
 target_include_directories(classes_bse_bseindia_eobi_fbe_v1.4_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(classes_bse_bseindia_eobi_fbe_v1.4_values_test PRIVATE classes_bse_bseindia_eobi_fbe_v1.4)
+add_executable(tmp_bse_bseindia_eobi_fbe_v1.4_values_test tests/binary/tmp/bse_bseindia_eobi_fbe_v1.4_values.cpp)
+target_include_directories(tmp_bse_bseindia_eobi_fbe_v1.4_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(flyweight_bse_bseindia_eobi_fbe_v1.4_values_test tests/binary/flyweight/bse_bseindia_eobi_fbe_v1.4_values.cpp)
 target_include_directories(flyweight_bse_bseindia_eobi_fbe_v1.4_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(flyweight_bse_bseindia_eobi_fbe_v1.4_values_test PRIVATE flyweight_bse_bseindia_eobi_fbe_v1.4)
@@ -11412,12 +11621,16 @@ add_executable(modern_cboe_c1options_complex_pitch_v2.1.18_values_test tests/bin
 target_include_directories(modern_cboe_c1options_complex_pitch_v2.1.18_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(advanced_cboe_c1options_complex_pitch_v2.1.18_test tests/binary/advanced/cboe_c1options_complex_pitch_v2.1.18.cpp)
 target_include_directories(advanced_cboe_c1options_complex_pitch_v2.1.18_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(advanced_cboe_c1options_complex_pitch_v2.1.18_values_test tests/binary/advanced/cboe_c1options_complex_pitch_v2.1.18_values.cpp)
+target_include_directories(advanced_cboe_c1options_complex_pitch_v2.1.18_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(classes_cboe_c1options_complex_pitch_v2.1.18_test tests/binary/classes/cboe_c1options_complex_pitch_v2.1.18.cpp)
 target_include_directories(classes_cboe_c1options_complex_pitch_v2.1.18_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(classes_cboe_c1options_complex_pitch_v2.1.18_test PRIVATE classes_cboe_c1options_complex_pitch_v2.1.18)
 add_executable(classes_cboe_c1options_complex_pitch_v2.1.18_values_test tests/binary/classes/cboe_c1options_complex_pitch_v2.1.18_values.cpp)
 target_include_directories(classes_cboe_c1options_complex_pitch_v2.1.18_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(classes_cboe_c1options_complex_pitch_v2.1.18_values_test PRIVATE classes_cboe_c1options_complex_pitch_v2.1.18)
+add_executable(tmp_cboe_c1options_complex_pitch_v2.1.18_values_test tests/binary/tmp/cboe_c1options_complex_pitch_v2.1.18_values.cpp)
+target_include_directories(tmp_cboe_c1options_complex_pitch_v2.1.18_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(flyweight_cboe_c1options_complex_pitch_v2.1.18_values_test tests/binary/flyweight/cboe_c1options_complex_pitch_v2.1.18_values.cpp)
 target_include_directories(flyweight_cboe_c1options_complex_pitch_v2.1.18_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(flyweight_cboe_c1options_complex_pitch_v2.1.18_values_test PRIVATE flyweight_cboe_c1options_complex_pitch_v2.1.18)
@@ -11440,12 +11653,18 @@ target_include_directories(tmp_cboe_c1options_multicastdepthofbook_pitch_v2.39.4
 add_executable(flyweight_cboe_c1options_multicastdepthofbook_pitch_v2.39.4_values_test tests/binary/flyweight/cboe_c1options_multicastdepthofbook_pitch_v2.39.4_values.cpp)
 target_include_directories(flyweight_cboe_c1options_multicastdepthofbook_pitch_v2.39.4_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(flyweight_cboe_c1options_multicastdepthofbook_pitch_v2.39.4_values_test PRIVATE flyweight_cboe_c1options_multicastdepthofbook_pitch_v2.39.4)
+add_executable(modern_cboe_c1options_marketdatafeed_csm_v1.4.2_test tests/binary/modern/cboe_c1options_marketdatafeed_csm_v1.4.2.cpp)
+target_include_directories(modern_cboe_c1options_marketdatafeed_csm_v1.4.2_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(modern_cboe_c1options_marketdatafeed_csm_v1.4.2_values_test tests/binary/modern/cboe_c1options_marketdatafeed_csm_v1.4.2_values.cpp)
+target_include_directories(modern_cboe_c1options_marketdatafeed_csm_v1.4.2_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(classes_cboe_c1options_marketdatafeed_csm_v1.4.2_test tests/binary/classes/cboe_c1options_marketdatafeed_csm_v1.4.2.cpp)
 target_include_directories(classes_cboe_c1options_marketdatafeed_csm_v1.4.2_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(classes_cboe_c1options_marketdatafeed_csm_v1.4.2_test PRIVATE classes_cboe_c1options_marketdatafeed_csm_v1.4.2)
 add_executable(classes_cboe_c1options_marketdatafeed_csm_v1.4.2_values_test tests/binary/classes/cboe_c1options_marketdatafeed_csm_v1.4.2_values.cpp)
 target_include_directories(classes_cboe_c1options_marketdatafeed_csm_v1.4.2_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(classes_cboe_c1options_marketdatafeed_csm_v1.4.2_values_test PRIVATE classes_cboe_c1options_marketdatafeed_csm_v1.4.2)
+add_executable(tmp_cboe_c1options_marketdatafeed_csm_v1.4.2_values_test tests/binary/tmp/cboe_c1options_marketdatafeed_csm_v1.4.2_values.cpp)
+target_include_directories(tmp_cboe_c1options_marketdatafeed_csm_v1.4.2_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(flyweight_cboe_c1options_marketdatafeed_csm_v1.4.2_values_test tests/binary/flyweight/cboe_c1options_marketdatafeed_csm_v1.4.2_values.cpp)
 target_include_directories(flyweight_cboe_c1options_marketdatafeed_csm_v1.4.2_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(flyweight_cboe_c1options_marketdatafeed_csm_v1.4.2_values_test PRIVATE flyweight_cboe_c1options_marketdatafeed_csm_v1.4.2)
@@ -11502,60 +11721,90 @@ target_include_directories(tmp_cixats_cixaspen_marketdatafeed_aspen_v1.4_values_
 add_executable(flyweight_cixats_cixaspen_marketdatafeed_aspen_v1.4_values_test tests/binary/flyweight/cixats_cixaspen_marketdatafeed_aspen_v1.4_values.cpp)
 target_include_directories(flyweight_cixats_cixaspen_marketdatafeed_aspen_v1.4_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(flyweight_cixats_cixaspen_marketdatafeed_aspen_v1.4_values_test PRIVATE flyweight_cixats_cixaspen_marketdatafeed_aspen_v1.4)
+add_executable(modern_cme_globex_mdp3_sbe_v1.8_values_test tests/binary/modern/cme_globex_mdp3_sbe_v1.8_values.cpp)
+target_include_directories(modern_cme_globex_mdp3_sbe_v1.8_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(advanced_cme_globex_mdp3_sbe_v1.8_test tests/binary/advanced/cme_globex_mdp3_sbe_v1.8.cpp)
 target_include_directories(advanced_cme_globex_mdp3_sbe_v1.8_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(advanced_cme_globex_mdp3_sbe_v1.8_values_test tests/binary/advanced/cme_globex_mdp3_sbe_v1.8_values.cpp)
+target_include_directories(advanced_cme_globex_mdp3_sbe_v1.8_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(classes_cme_globex_mdp3_sbe_v1.8_values_test tests/binary/classes/cme_globex_mdp3_sbe_v1.8_values.cpp)
 target_include_directories(classes_cme_globex_mdp3_sbe_v1.8_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(classes_cme_globex_mdp3_sbe_v1.8_values_test PRIVATE classes_cme_globex_mdp3_sbe_v1.8)
+add_executable(tmp_cme_globex_mdp3_sbe_v1.8_values_test tests/binary/tmp/cme_globex_mdp3_sbe_v1.8_values.cpp)
+target_include_directories(tmp_cme_globex_mdp3_sbe_v1.8_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(flyweight_cme_globex_mdp3_sbe_v1.8_values_test tests/binary/flyweight/cme_globex_mdp3_sbe_v1.8_values.cpp)
 target_include_directories(flyweight_cme_globex_mdp3_sbe_v1.8_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(flyweight_cme_globex_mdp3_sbe_v1.8_values_test PRIVATE flyweight_cme_globex_mdp3_sbe_v1.8)
+add_executable(modern_cme_globex_mdp3_sbe_v1.9_values_test tests/binary/modern/cme_globex_mdp3_sbe_v1.9_values.cpp)
+target_include_directories(modern_cme_globex_mdp3_sbe_v1.9_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(advanced_cme_globex_mdp3_sbe_v1.9_test tests/binary/advanced/cme_globex_mdp3_sbe_v1.9.cpp)
 target_include_directories(advanced_cme_globex_mdp3_sbe_v1.9_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(advanced_cme_globex_mdp3_sbe_v1.9_values_test tests/binary/advanced/cme_globex_mdp3_sbe_v1.9_values.cpp)
+target_include_directories(advanced_cme_globex_mdp3_sbe_v1.9_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(classes_cme_globex_mdp3_sbe_v1.9_values_test tests/binary/classes/cme_globex_mdp3_sbe_v1.9_values.cpp)
 target_include_directories(classes_cme_globex_mdp3_sbe_v1.9_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(classes_cme_globex_mdp3_sbe_v1.9_values_test PRIVATE classes_cme_globex_mdp3_sbe_v1.9)
+add_executable(tmp_cme_globex_mdp3_sbe_v1.9_values_test tests/binary/tmp/cme_globex_mdp3_sbe_v1.9_values.cpp)
+target_include_directories(tmp_cme_globex_mdp3_sbe_v1.9_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(flyweight_cme_globex_mdp3_sbe_v1.9_values_test tests/binary/flyweight/cme_globex_mdp3_sbe_v1.9_values.cpp)
 target_include_directories(flyweight_cme_globex_mdp3_sbe_v1.9_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(flyweight_cme_globex_mdp3_sbe_v1.9_values_test PRIVATE flyweight_cme_globex_mdp3_sbe_v1.9)
+add_executable(modern_cme_globex_mdp3_sbe_v1.5_values_test tests/binary/modern/cme_globex_mdp3_sbe_v1.5_values.cpp)
+target_include_directories(modern_cme_globex_mdp3_sbe_v1.5_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(advanced_cme_globex_mdp3_sbe_v1.5_test tests/binary/advanced/cme_globex_mdp3_sbe_v1.5.cpp)
 target_include_directories(advanced_cme_globex_mdp3_sbe_v1.5_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(advanced_cme_globex_mdp3_sbe_v1.5_values_test tests/binary/advanced/cme_globex_mdp3_sbe_v1.5_values.cpp)
+target_include_directories(advanced_cme_globex_mdp3_sbe_v1.5_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(classes_cme_globex_mdp3_sbe_v1.5_values_test tests/binary/classes/cme_globex_mdp3_sbe_v1.5_values.cpp)
 target_include_directories(classes_cme_globex_mdp3_sbe_v1.5_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(classes_cme_globex_mdp3_sbe_v1.5_values_test PRIVATE classes_cme_globex_mdp3_sbe_v1.5)
+add_executable(tmp_cme_globex_mdp3_sbe_v1.5_values_test tests/binary/tmp/cme_globex_mdp3_sbe_v1.5_values.cpp)
+target_include_directories(tmp_cme_globex_mdp3_sbe_v1.5_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(flyweight_cme_globex_mdp3_sbe_v1.5_values_test tests/binary/flyweight/cme_globex_mdp3_sbe_v1.5_values.cpp)
 target_include_directories(flyweight_cme_globex_mdp3_sbe_v1.5_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(flyweight_cme_globex_mdp3_sbe_v1.5_values_test PRIVATE flyweight_cme_globex_mdp3_sbe_v1.5)
 add_executable(modern_eurex_t7_eobi_fbe_v13.0_test tests/binary/modern/eurex_t7_eobi_fbe_v13.0.cpp)
 target_include_directories(modern_eurex_t7_eobi_fbe_v13.0_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(modern_eurex_t7_eobi_fbe_v13.0_values_test tests/binary/modern/eurex_t7_eobi_fbe_v13.0_values.cpp)
+target_include_directories(modern_eurex_t7_eobi_fbe_v13.0_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(classes_eurex_t7_eobi_fbe_v13.0_test tests/binary/classes/eurex_t7_eobi_fbe_v13.0.cpp)
 target_include_directories(classes_eurex_t7_eobi_fbe_v13.0_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(classes_eurex_t7_eobi_fbe_v13.0_test PRIVATE classes_eurex_t7_eobi_fbe_v13.0)
 add_executable(classes_eurex_t7_eobi_fbe_v13.0_values_test tests/binary/classes/eurex_t7_eobi_fbe_v13.0_values.cpp)
 target_include_directories(classes_eurex_t7_eobi_fbe_v13.0_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(classes_eurex_t7_eobi_fbe_v13.0_values_test PRIVATE classes_eurex_t7_eobi_fbe_v13.0)
+add_executable(tmp_eurex_t7_eobi_fbe_v13.0_values_test tests/binary/tmp/eurex_t7_eobi_fbe_v13.0_values.cpp)
+target_include_directories(tmp_eurex_t7_eobi_fbe_v13.0_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(flyweight_eurex_t7_eobi_fbe_v13.0_values_test tests/binary/flyweight/eurex_t7_eobi_fbe_v13.0_values.cpp)
 target_include_directories(flyweight_eurex_t7_eobi_fbe_v13.0_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(flyweight_eurex_t7_eobi_fbe_v13.0_values_test PRIVATE flyweight_eurex_t7_eobi_fbe_v13.0)
 add_executable(modern_eurex_t7_eobi_fbe_v3.0_test tests/binary/modern/eurex_t7_eobi_fbe_v3.0.cpp)
 target_include_directories(modern_eurex_t7_eobi_fbe_v3.0_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(modern_eurex_t7_eobi_fbe_v3.0_values_test tests/binary/modern/eurex_t7_eobi_fbe_v3.0_values.cpp)
+target_include_directories(modern_eurex_t7_eobi_fbe_v3.0_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(classes_eurex_t7_eobi_fbe_v3.0_test tests/binary/classes/eurex_t7_eobi_fbe_v3.0.cpp)
 target_include_directories(classes_eurex_t7_eobi_fbe_v3.0_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(classes_eurex_t7_eobi_fbe_v3.0_test PRIVATE classes_eurex_t7_eobi_fbe_v3.0)
 add_executable(classes_eurex_t7_eobi_fbe_v3.0_values_test tests/binary/classes/eurex_t7_eobi_fbe_v3.0_values.cpp)
 target_include_directories(classes_eurex_t7_eobi_fbe_v3.0_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(classes_eurex_t7_eobi_fbe_v3.0_values_test PRIVATE classes_eurex_t7_eobi_fbe_v3.0)
+add_executable(tmp_eurex_t7_eobi_fbe_v3.0_values_test tests/binary/tmp/eurex_t7_eobi_fbe_v3.0_values.cpp)
+target_include_directories(tmp_eurex_t7_eobi_fbe_v3.0_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(flyweight_eurex_t7_eobi_fbe_v3.0_values_test tests/binary/flyweight/eurex_t7_eobi_fbe_v3.0_values.cpp)
 target_include_directories(flyweight_eurex_t7_eobi_fbe_v3.0_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(flyweight_eurex_t7_eobi_fbe_v3.0_values_test PRIVATE flyweight_eurex_t7_eobi_fbe_v3.0)
 add_executable(modern_eurex_t7_eobi_fbe_v6.0_test tests/binary/modern/eurex_t7_eobi_fbe_v6.0.cpp)
 target_include_directories(modern_eurex_t7_eobi_fbe_v6.0_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(modern_eurex_t7_eobi_fbe_v6.0_values_test tests/binary/modern/eurex_t7_eobi_fbe_v6.0_values.cpp)
+target_include_directories(modern_eurex_t7_eobi_fbe_v6.0_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(classes_eurex_t7_eobi_fbe_v6.0_test tests/binary/classes/eurex_t7_eobi_fbe_v6.0.cpp)
 target_include_directories(classes_eurex_t7_eobi_fbe_v6.0_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(classes_eurex_t7_eobi_fbe_v6.0_test PRIVATE classes_eurex_t7_eobi_fbe_v6.0)
 add_executable(classes_eurex_t7_eobi_fbe_v6.0_values_test tests/binary/classes/eurex_t7_eobi_fbe_v6.0_values.cpp)
 target_include_directories(classes_eurex_t7_eobi_fbe_v6.0_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(classes_eurex_t7_eobi_fbe_v6.0_values_test PRIVATE classes_eurex_t7_eobi_fbe_v6.0)
+add_executable(tmp_eurex_t7_eobi_fbe_v6.0_values_test tests/binary/tmp/eurex_t7_eobi_fbe_v6.0_values.cpp)
+target_include_directories(tmp_eurex_t7_eobi_fbe_v6.0_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(flyweight_eurex_t7_eobi_fbe_v6.0_values_test tests/binary/flyweight/eurex_t7_eobi_fbe_v6.0_values.cpp)
 target_include_directories(flyweight_eurex_t7_eobi_fbe_v6.0_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(flyweight_eurex_t7_eobi_fbe_v6.0_values_test PRIVATE flyweight_eurex_t7_eobi_fbe_v6.0)
@@ -11771,29 +12020,50 @@ target_include_directories(flyweight_jpx_tseequities_marketbyorder_flex_v1.1_val
 target_link_libraries(flyweight_jpx_tseequities_marketbyorder_flex_v1.1_values_test PRIVATE flyweight_jpx_tseequities_marketbyorder_flex_v1.1)
 add_executable(modern_memx_memxequities_memoirdepthfeed_sbe_v1.3_test tests/binary/modern/memx_memxequities_memoirdepthfeed_sbe_v1.3.cpp)
 target_include_directories(modern_memx_memxequities_memoirdepthfeed_sbe_v1.3_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(modern_memx_memxequities_memoirdepthfeed_sbe_v1.3_values_test tests/binary/modern/memx_memxequities_memoirdepthfeed_sbe_v1.3_values.cpp)
+target_include_directories(modern_memx_memxequities_memoirdepthfeed_sbe_v1.3_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(advanced_memx_memxequities_memoirdepthfeed_sbe_v1.3_test tests/binary/advanced/memx_memxequities_memoirdepthfeed_sbe_v1.3.cpp)
 target_include_directories(advanced_memx_memxequities_memoirdepthfeed_sbe_v1.3_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(advanced_memx_memxequities_memoirdepthfeed_sbe_v1.3_values_test tests/binary/advanced/memx_memxequities_memoirdepthfeed_sbe_v1.3_values.cpp)
+target_include_directories(advanced_memx_memxequities_memoirdepthfeed_sbe_v1.3_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(tmp_memx_memxequities_memoirdepthfeed_sbe_v1.3_values_test tests/binary/tmp/memx_memxequities_memoirdepthfeed_sbe_v1.3_values.cpp)
+target_include_directories(tmp_memx_memxequities_memoirdepthfeed_sbe_v1.3_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(modern_miax_pearlequities_depthofmarket_mach_v1.3.d_test tests/binary/modern/miax_pearlequities_depthofmarket_mach_v1.3.d.cpp)
 target_include_directories(modern_miax_pearlequities_depthofmarket_mach_v1.3.d_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(modern_miax_pearlequities_depthofmarket_mach_v1.3.d_values_test tests/binary/modern/miax_pearlequities_depthofmarket_mach_v1.3.d_values.cpp)
+target_include_directories(modern_miax_pearlequities_depthofmarket_mach_v1.3.d_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(classes_miax_pearlequities_depthofmarket_mach_v1.3.d_values_test tests/binary/classes/miax_pearlequities_depthofmarket_mach_v1.3.d_values.cpp)
 target_include_directories(classes_miax_pearlequities_depthofmarket_mach_v1.3.d_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(classes_miax_pearlequities_depthofmarket_mach_v1.3.d_values_test PRIVATE classes_miax_pearlequities_depthofmarket_mach_v1.3.d)
+add_executable(tmp_miax_pearlequities_depthofmarket_mach_v1.3.d_values_test tests/binary/tmp/miax_pearlequities_depthofmarket_mach_v1.3.d_values.cpp)
+target_include_directories(tmp_miax_pearlequities_depthofmarket_mach_v1.3.d_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(flyweight_miax_pearlequities_depthofmarket_mach_v1.3.d_values_test tests/binary/flyweight/miax_pearlequities_depthofmarket_mach_v1.3.d_values.cpp)
 target_include_directories(flyweight_miax_pearlequities_depthofmarket_mach_v1.3.d_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(flyweight_miax_pearlequities_depthofmarket_mach_v1.3.d_values_test PRIVATE flyweight_miax_pearlequities_depthofmarket_mach_v1.3.d)
 add_executable(modern_miax_miaxoptions_complextopofmarket_mach_v1.1_test tests/binary/modern/miax_miaxoptions_complextopofmarket_mach_v1.1.cpp)
 target_include_directories(modern_miax_miaxoptions_complextopofmarket_mach_v1.1_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(modern_miax_miaxoptions_complextopofmarket_mach_v1.1_values_test tests/binary/modern/miax_miaxoptions_complextopofmarket_mach_v1.1_values.cpp)
+target_include_directories(modern_miax_miaxoptions_complextopofmarket_mach_v1.1_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(classes_miax_miaxoptions_complextopofmarket_mach_v1.1_values_test tests/binary/classes/miax_miaxoptions_complextopofmarket_mach_v1.1_values.cpp)
 target_include_directories(classes_miax_miaxoptions_complextopofmarket_mach_v1.1_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(classes_miax_miaxoptions_complextopofmarket_mach_v1.1_values_test PRIVATE classes_miax_miaxoptions_complextopofmarket_mach_v1.1)
+add_executable(tmp_miax_miaxoptions_complextopofmarket_mach_v1.1_values_test tests/binary/tmp/miax_miaxoptions_complextopofmarket_mach_v1.1_values.cpp)
+target_include_directories(tmp_miax_miaxoptions_complextopofmarket_mach_v1.1_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(flyweight_miax_miaxoptions_complextopofmarket_mach_v1.1_values_test tests/binary/flyweight/miax_miaxoptions_complextopofmarket_mach_v1.1_values.cpp)
 target_include_directories(flyweight_miax_miaxoptions_complextopofmarket_mach_v1.1_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(flyweight_miax_miaxoptions_complextopofmarket_mach_v1.1_values_test PRIVATE flyweight_miax_miaxoptions_complextopofmarket_mach_v1.1)
 add_executable(modern_miax_onyxfutures_topofmarket_mach_v1.0.b_test tests/binary/modern/miax_onyxfutures_topofmarket_mach_v1.0.b.cpp)
 target_include_directories(modern_miax_onyxfutures_topofmarket_mach_v1.0.b_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(modern_miax_onyxfutures_topofmarket_mach_v1.0.b_values_test tests/binary/modern/miax_onyxfutures_topofmarket_mach_v1.0.b_values.cpp)
+target_include_directories(modern_miax_onyxfutures_topofmarket_mach_v1.0.b_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(classes_miax_onyxfutures_topofmarket_mach_v1.0.b_values_test tests/binary/classes/miax_onyxfutures_topofmarket_mach_v1.0.b_values.cpp)
 target_include_directories(classes_miax_onyxfutures_topofmarket_mach_v1.0.b_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(classes_miax_onyxfutures_topofmarket_mach_v1.0.b_values_test PRIVATE classes_miax_onyxfutures_topofmarket_mach_v1.0.b)
+add_executable(tmp_miax_onyxfutures_topofmarket_mach_v1.0.b_values_test tests/binary/tmp/miax_onyxfutures_topofmarket_mach_v1.0.b_values.cpp)
+target_include_directories(tmp_miax_onyxfutures_topofmarket_mach_v1.0.b_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(flyweight_miax_onyxfutures_topofmarket_mach_v1.0.b_values_test tests/binary/flyweight/miax_onyxfutures_topofmarket_mach_v1.0.b_values.cpp)
+target_include_directories(flyweight_miax_onyxfutures_topofmarket_mach_v1.0.b_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+target_link_libraries(flyweight_miax_onyxfutures_topofmarket_mach_v1.0.b_values_test PRIVATE flyweight_miax_onyxfutures_topofmarket_mach_v1.0.b)
 add_executable(modern_nasdaq_nsmequities_totalview_itch_v5.0.2017_test tests/binary/modern/nasdaq_nsmequities_totalview_itch_v5.0.2017.cpp)
 target_include_directories(modern_nasdaq_nsmequities_totalview_itch_v5.0.2017_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(modern_nasdaq_nsmequities_totalview_itch_v5.0.2017_values_test tests/binary/modern/nasdaq_nsmequities_totalview_itch_v5.0.2017_values.cpp)
@@ -11876,12 +12146,16 @@ add_executable(modern_nasdaq_iseoptions_ordercombofeed_itch_v1.1_values_test tes
 target_include_directories(modern_nasdaq_iseoptions_ordercombofeed_itch_v1.1_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(advanced_nasdaq_iseoptions_ordercombofeed_itch_v1.1_test tests/binary/advanced/nasdaq_iseoptions_ordercombofeed_itch_v1.1.cpp)
 target_include_directories(advanced_nasdaq_iseoptions_ordercombofeed_itch_v1.1_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(advanced_nasdaq_iseoptions_ordercombofeed_itch_v1.1_values_test tests/binary/advanced/nasdaq_iseoptions_ordercombofeed_itch_v1.1_values.cpp)
+target_include_directories(advanced_nasdaq_iseoptions_ordercombofeed_itch_v1.1_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(classes_nasdaq_iseoptions_ordercombofeed_itch_v1.1_test tests/binary/classes/nasdaq_iseoptions_ordercombofeed_itch_v1.1.cpp)
 target_include_directories(classes_nasdaq_iseoptions_ordercombofeed_itch_v1.1_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(classes_nasdaq_iseoptions_ordercombofeed_itch_v1.1_test PRIVATE classes_nasdaq_iseoptions_ordercombofeed_itch_v1.1)
 add_executable(classes_nasdaq_iseoptions_ordercombofeed_itch_v1.1_values_test tests/binary/classes/nasdaq_iseoptions_ordercombofeed_itch_v1.1_values.cpp)
 target_include_directories(classes_nasdaq_iseoptions_ordercombofeed_itch_v1.1_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(classes_nasdaq_iseoptions_ordercombofeed_itch_v1.1_values_test PRIVATE classes_nasdaq_iseoptions_ordercombofeed_itch_v1.1)
+add_executable(tmp_nasdaq_iseoptions_ordercombofeed_itch_v1.1_values_test tests/binary/tmp/nasdaq_iseoptions_ordercombofeed_itch_v1.1_values.cpp)
+target_include_directories(tmp_nasdaq_iseoptions_ordercombofeed_itch_v1.1_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(flyweight_nasdaq_iseoptions_ordercombofeed_itch_v1.1_values_test tests/binary/flyweight/nasdaq_iseoptions_ordercombofeed_itch_v1.1_values.cpp)
 target_include_directories(flyweight_nasdaq_iseoptions_ordercombofeed_itch_v1.1_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(flyweight_nasdaq_iseoptions_ordercombofeed_itch_v1.1_values_test PRIVATE flyweight_nasdaq_iseoptions_ordercombofeed_itch_v1.1)
@@ -11891,12 +12165,16 @@ add_executable(modern_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_values_test 
 target_include_directories(modern_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(advanced_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_test tests/binary/advanced/nasdaq_iseoptions_topcomboquotefeed_itch_v1.0.cpp)
 target_include_directories(advanced_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(advanced_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_values_test tests/binary/advanced/nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_values.cpp)
+target_include_directories(advanced_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(classes_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_test tests/binary/classes/nasdaq_iseoptions_topcomboquotefeed_itch_v1.0.cpp)
 target_include_directories(classes_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(classes_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_test PRIVATE classes_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0)
 add_executable(classes_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_values_test tests/binary/classes/nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_values.cpp)
 target_include_directories(classes_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(classes_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_values_test PRIVATE classes_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0)
+add_executable(tmp_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_values_test tests/binary/tmp/nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_values.cpp)
+target_include_directories(tmp_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(flyweight_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_values_test tests/binary/flyweight/nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_values.cpp)
 target_include_directories(flyweight_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(flyweight_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_values_test PRIVATE flyweight_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0)
@@ -11995,6 +12273,25 @@ target_include_directories(tmp_nyse_arcaequities_integratedfeed_pillar_v2.5.g_va
 add_executable(flyweight_nyse_arcaequities_integratedfeed_pillar_v2.5.g_values_test tests/binary/flyweight/nyse_arcaequities_integratedfeed_pillar_v2.5.g_values.cpp)
 target_include_directories(flyweight_nyse_arcaequities_integratedfeed_pillar_v2.5.g_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(flyweight_nyse_arcaequities_integratedfeed_pillar_v2.5.g_values_test PRIVATE flyweight_nyse_arcaequities_integratedfeed_pillar_v2.5.g)
+add_executable(modern_nyse_arcaoptions_deepfeed_pillar_v1.2.m_test tests/binary/modern/nyse_arcaoptions_deepfeed_pillar_v1.2.m.cpp)
+target_include_directories(modern_nyse_arcaoptions_deepfeed_pillar_v1.2.m_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(modern_nyse_arcaoptions_deepfeed_pillar_v1.2.m_values_test tests/binary/modern/nyse_arcaoptions_deepfeed_pillar_v1.2.m_values.cpp)
+target_include_directories(modern_nyse_arcaoptions_deepfeed_pillar_v1.2.m_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(advanced_nyse_arcaoptions_deepfeed_pillar_v1.2.m_test tests/binary/advanced/nyse_arcaoptions_deepfeed_pillar_v1.2.m.cpp)
+target_include_directories(advanced_nyse_arcaoptions_deepfeed_pillar_v1.2.m_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(advanced_nyse_arcaoptions_deepfeed_pillar_v1.2.m_values_test tests/binary/advanced/nyse_arcaoptions_deepfeed_pillar_v1.2.m_values.cpp)
+target_include_directories(advanced_nyse_arcaoptions_deepfeed_pillar_v1.2.m_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(classes_nyse_arcaoptions_deepfeed_pillar_v1.2.m_test tests/binary/classes/nyse_arcaoptions_deepfeed_pillar_v1.2.m.cpp)
+target_include_directories(classes_nyse_arcaoptions_deepfeed_pillar_v1.2.m_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+target_link_libraries(classes_nyse_arcaoptions_deepfeed_pillar_v1.2.m_test PRIVATE classes_nyse_arcaoptions_deepfeed_pillar_v1.2.m)
+add_executable(classes_nyse_arcaoptions_deepfeed_pillar_v1.2.m_values_test tests/binary/classes/nyse_arcaoptions_deepfeed_pillar_v1.2.m_values.cpp)
+target_include_directories(classes_nyse_arcaoptions_deepfeed_pillar_v1.2.m_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+target_link_libraries(classes_nyse_arcaoptions_deepfeed_pillar_v1.2.m_values_test PRIVATE classes_nyse_arcaoptions_deepfeed_pillar_v1.2.m)
+add_executable(tmp_nyse_arcaoptions_deepfeed_pillar_v1.2.m_values_test tests/binary/tmp/nyse_arcaoptions_deepfeed_pillar_v1.2.m_values.cpp)
+target_include_directories(tmp_nyse_arcaoptions_deepfeed_pillar_v1.2.m_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(flyweight_nyse_arcaoptions_deepfeed_pillar_v1.2.m_values_test tests/binary/flyweight/nyse_arcaoptions_deepfeed_pillar_v1.2.m_values.cpp)
+target_include_directories(flyweight_nyse_arcaoptions_deepfeed_pillar_v1.2.m_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+target_link_libraries(flyweight_nyse_arcaoptions_deepfeed_pillar_v1.2.m_values_test PRIVATE flyweight_nyse_arcaoptions_deepfeed_pillar_v1.2.m)
 add_executable(modern_nyse_nyseequities_integratedfeed_xdp_v2.3.a_test tests/binary/modern/nyse_nyseequities_integratedfeed_xdp_v2.3.a.cpp)
 target_include_directories(modern_nyse_nyseequities_integratedfeed_xdp_v2.3.a_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(modern_nyse_nyseequities_integratedfeed_xdp_v2.3.a_values_test tests/binary/modern/nyse_nyseequities_integratedfeed_xdp_v2.3.a_values.cpp)
@@ -12073,6 +12370,8 @@ target_link_libraries(classes_nyse_amexoptions_complexfeed_xdp_v1.3.a_test PRIVA
 add_executable(classes_nyse_amexoptions_complexfeed_xdp_v1.3.a_values_test tests/binary/classes/nyse_amexoptions_complexfeed_xdp_v1.3.a_values.cpp)
 target_include_directories(classes_nyse_amexoptions_complexfeed_xdp_v1.3.a_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(classes_nyse_amexoptions_complexfeed_xdp_v1.3.a_values_test PRIVATE classes_nyse_amexoptions_complexfeed_xdp_v1.3.a)
+add_executable(tmp_nyse_amexoptions_complexfeed_xdp_v1.3.a_values_test tests/binary/tmp/nyse_amexoptions_complexfeed_xdp_v1.3.a_values.cpp)
+target_include_directories(tmp_nyse_amexoptions_complexfeed_xdp_v1.3.a_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(flyweight_nyse_amexoptions_complexfeed_xdp_v1.3.a_values_test tests/binary/flyweight/nyse_amexoptions_complexfeed_xdp_v1.3.a_values.cpp)
 target_include_directories(flyweight_nyse_amexoptions_complexfeed_xdp_v1.3.a_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(flyweight_nyse_amexoptions_complexfeed_xdp_v1.3.a_values_test PRIVATE flyweight_nyse_amexoptions_complexfeed_xdp_v1.3.a)
@@ -12356,6 +12655,14 @@ target_include_directories(tmp_nyse_texasequities_integratedfeedrefresh_pillar_v
 add_executable(flyweight_nyse_texasequities_integratedfeedrefresh_pillar_v2.5.g_values_test tests/binary/flyweight/nyse_texasequities_integratedfeedrefresh_pillar_v2.5.g_values.cpp)
 target_include_directories(flyweight_nyse_texasequities_integratedfeedrefresh_pillar_v2.5.g_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(flyweight_nyse_texasequities_integratedfeedrefresh_pillar_v2.5.g_values_test PRIVATE flyweight_nyse_texasequities_integratedfeedrefresh_pillar_v2.5.g)
+add_executable(modern_otcmarkets_linkats_multicast_link_v4.3_test tests/binary/modern/otcmarkets_linkats_multicast_link_v4.3.cpp)
+target_include_directories(modern_otcmarkets_linkats_multicast_link_v4.3_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(modern_otcmarkets_linkats_multicast_link_v4.3_values_test tests/binary/modern/otcmarkets_linkats_multicast_link_v4.3_values.cpp)
+target_include_directories(modern_otcmarkets_linkats_multicast_link_v4.3_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(advanced_otcmarkets_linkats_multicast_link_v4.3_test tests/binary/advanced/otcmarkets_linkats_multicast_link_v4.3.cpp)
+target_include_directories(advanced_otcmarkets_linkats_multicast_link_v4.3_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(advanced_otcmarkets_linkats_multicast_link_v4.3_values_test tests/binary/advanced/otcmarkets_linkats_multicast_link_v4.3_values.cpp)
+target_include_directories(advanced_otcmarkets_linkats_multicast_link_v4.3_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(classes_otcmarkets_linkats_multicast_link_v4.3_test tests/binary/classes/otcmarkets_linkats_multicast_link_v4.3.cpp)
 target_include_directories(classes_otcmarkets_linkats_multicast_link_v4.3_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(classes_otcmarkets_linkats_multicast_link_v4.3_test PRIVATE classes_otcmarkets_linkats_multicast_link_v4.3)
@@ -12369,6 +12676,8 @@ target_include_directories(flyweight_otcmarkets_linkats_multicast_link_v4.3_valu
 target_link_libraries(flyweight_otcmarkets_linkats_multicast_link_v4.3_values_test PRIVATE flyweight_otcmarkets_linkats_multicast_link_v4.3)
 add_executable(modern_siac_opra_output_obi_v6.2_test tests/binary/modern/siac_opra_output_obi_v6.2.cpp)
 target_include_directories(modern_siac_opra_output_obi_v6.2_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(modern_siac_opra_output_obi_v6.2_values_test tests/binary/modern/siac_opra_output_obi_v6.2_values.cpp)
+target_include_directories(modern_siac_opra_output_obi_v6.2_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(advanced_siac_opra_output_obi_v6.2_test tests/binary/advanced/siac_opra_output_obi_v6.2.cpp)
 target_include_directories(advanced_siac_opra_output_obi_v6.2_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(advanced_siac_opra_output_obi_v6.2_values_test tests/binary/advanced/siac_opra_output_obi_v6.2_values.cpp)
@@ -12385,9 +12694,15 @@ add_executable(modern_siac_cts_output_cta_v2.11.b_test tests/binary/modern/siac_
 target_include_directories(modern_siac_cts_output_cta_v2.11.b_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(modern_siac_cts_output_cta_v2.11.b_values_test tests/binary/modern/siac_cts_output_cta_v2.11.b_values.cpp)
 target_include_directories(modern_siac_cts_output_cta_v2.11.b_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(advanced_siac_cts_output_cta_v2.11.b_test tests/binary/advanced/siac_cts_output_cta_v2.11.b.cpp)
+target_include_directories(advanced_siac_cts_output_cta_v2.11.b_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(advanced_siac_cts_output_cta_v2.11.b_values_test tests/binary/advanced/siac_cts_output_cta_v2.11.b_values.cpp)
+target_include_directories(advanced_siac_cts_output_cta_v2.11.b_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(classes_siac_cts_output_cta_v2.11.b_values_test tests/binary/classes/siac_cts_output_cta_v2.11.b_values.cpp)
 target_include_directories(classes_siac_cts_output_cta_v2.11.b_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(classes_siac_cts_output_cta_v2.11.b_values_test PRIVATE classes_siac_cts_output_cta_v2.11.b)
+add_executable(tmp_siac_cts_output_cta_v2.11.b_values_test tests/binary/tmp/siac_cts_output_cta_v2.11.b_values.cpp)
+target_include_directories(tmp_siac_cts_output_cta_v2.11.b_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(flyweight_siac_cts_output_cta_v2.11.b_values_test tests/binary/flyweight/siac_cts_output_cta_v2.11.b_values.cpp)
 target_include_directories(flyweight_siac_cts_output_cta_v2.11.b_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(flyweight_siac_cts_output_cta_v2.11.b_values_test PRIVATE flyweight_siac_cts_output_cta_v2.11.b)
@@ -12395,6 +12710,10 @@ add_executable(modern_siac_cqs_output_cta_v2.10.a_test tests/binary/modern/siac_
 target_include_directories(modern_siac_cqs_output_cta_v2.10.a_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(modern_siac_cqs_output_cta_v2.10.a_values_test tests/binary/modern/siac_cqs_output_cta_v2.10.a_values.cpp)
 target_include_directories(modern_siac_cqs_output_cta_v2.10.a_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(advanced_siac_cqs_output_cta_v2.10.a_test tests/binary/advanced/siac_cqs_output_cta_v2.10.a.cpp)
+target_include_directories(advanced_siac_cqs_output_cta_v2.10.a_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(advanced_siac_cqs_output_cta_v2.10.a_values_test tests/binary/advanced/siac_cqs_output_cta_v2.10.a_values.cpp)
+target_include_directories(advanced_siac_cqs_output_cta_v2.10.a_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(classes_siac_cqs_output_cta_v2.10.a_values_test tests/binary/classes/siac_cqs_output_cta_v2.10.a_values.cpp)
 target_include_directories(classes_siac_cqs_output_cta_v2.10.a_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(classes_siac_cqs_output_cta_v2.10.a_values_test PRIVATE classes_siac_cqs_output_cta_v2.10.a)
@@ -12434,6 +12753,8 @@ target_include_directories(modern_siac_cts_output_cta_v2.10_values_test PRIVATE 
 add_executable(classes_siac_cts_output_cta_v2.10_values_test tests/binary/classes/siac_cts_output_cta_v2.10_values.cpp)
 target_include_directories(classes_siac_cts_output_cta_v2.10_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(classes_siac_cts_output_cta_v2.10_values_test PRIVATE classes_siac_cts_output_cta_v2.10)
+add_executable(tmp_siac_cts_output_cta_v2.10_values_test tests/binary/tmp/siac_cts_output_cta_v2.10_values.cpp)
+target_include_directories(tmp_siac_cts_output_cta_v2.10_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(flyweight_siac_cts_output_cta_v2.10_values_test tests/binary/flyweight/siac_cts_output_cta_v2.10_values.cpp)
 target_include_directories(flyweight_siac_cts_output_cta_v2.10_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(flyweight_siac_cts_output_cta_v2.10_values_test PRIVATE flyweight_siac_cts_output_cta_v2.10)
@@ -12508,14 +12829,23 @@ if(OMI_PACKETS_DIR)
   add_test(NAME modern_b3_b3derivatives_binaryumdf_sbe_v1.8 COMMAND modern_b3_b3derivatives_binaryumdf_sbe_v1.8_test)
   set_tests_properties(modern_b3_b3derivatives_binaryumdf_sbe_v1.8 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
+  add_test(NAME modern_b3_b3derivatives_binaryumdf_sbe_v1.8_values COMMAND modern_b3_b3derivatives_binaryumdf_sbe_v1.8_values_test)
+  set_tests_properties(modern_b3_b3derivatives_binaryumdf_sbe_v1.8_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
   add_test(NAME advanced_b3_b3derivatives_binaryumdf_sbe_v1.8 COMMAND advanced_b3_b3derivatives_binaryumdf_sbe_v1.8_test)
   set_tests_properties(advanced_b3_b3derivatives_binaryumdf_sbe_v1.8 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME advanced_b3_b3derivatives_binaryumdf_sbe_v1.8_values COMMAND advanced_b3_b3derivatives_binaryumdf_sbe_v1.8_values_test)
+  set_tests_properties(advanced_b3_b3derivatives_binaryumdf_sbe_v1.8_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
   add_test(NAME classes_b3_b3derivatives_binaryumdf_sbe_v1.8 COMMAND classes_b3_b3derivatives_binaryumdf_sbe_v1.8_test)
   set_tests_properties(classes_b3_b3derivatives_binaryumdf_sbe_v1.8 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
   add_test(NAME classes_b3_b3derivatives_binaryumdf_sbe_v1.8_values COMMAND classes_b3_b3derivatives_binaryumdf_sbe_v1.8_values_test)
   set_tests_properties(classes_b3_b3derivatives_binaryumdf_sbe_v1.8_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME tmp_b3_b3derivatives_binaryumdf_sbe_v1.8_values COMMAND tmp_b3_b3derivatives_binaryumdf_sbe_v1.8_values_test)
+  set_tests_properties(tmp_b3_b3derivatives_binaryumdf_sbe_v1.8_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
   add_test(NAME flyweight_b3_b3derivatives_binaryumdf_sbe_v1.8_values COMMAND flyweight_b3_b3derivatives_binaryumdf_sbe_v1.8_values_test)
   set_tests_properties(flyweight_b3_b3derivatives_binaryumdf_sbe_v1.8_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
@@ -12550,11 +12880,17 @@ if(OMI_PACKETS_DIR)
   add_test(NAME modern_bse_bseindia_eobi_fbe_v1.4 COMMAND modern_bse_bseindia_eobi_fbe_v1.4_test)
   set_tests_properties(modern_bse_bseindia_eobi_fbe_v1.4 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
+  add_test(NAME modern_bse_bseindia_eobi_fbe_v1.4_values COMMAND modern_bse_bseindia_eobi_fbe_v1.4_values_test)
+  set_tests_properties(modern_bse_bseindia_eobi_fbe_v1.4_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
   add_test(NAME classes_bse_bseindia_eobi_fbe_v1.4 COMMAND classes_bse_bseindia_eobi_fbe_v1.4_test)
   set_tests_properties(classes_bse_bseindia_eobi_fbe_v1.4 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
   add_test(NAME classes_bse_bseindia_eobi_fbe_v1.4_values COMMAND classes_bse_bseindia_eobi_fbe_v1.4_values_test)
   set_tests_properties(classes_bse_bseindia_eobi_fbe_v1.4_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME tmp_bse_bseindia_eobi_fbe_v1.4_values COMMAND tmp_bse_bseindia_eobi_fbe_v1.4_values_test)
+  set_tests_properties(tmp_bse_bseindia_eobi_fbe_v1.4_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
   add_test(NAME flyweight_bse_bseindia_eobi_fbe_v1.4_values COMMAND flyweight_bse_bseindia_eobi_fbe_v1.4_values_test)
   set_tests_properties(flyweight_bse_bseindia_eobi_fbe_v1.4_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
@@ -12640,11 +12976,17 @@ if(OMI_PACKETS_DIR)
   add_test(NAME advanced_cboe_c1options_complex_pitch_v2.1.18 COMMAND advanced_cboe_c1options_complex_pitch_v2.1.18_test)
   set_tests_properties(advanced_cboe_c1options_complex_pitch_v2.1.18 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
+  add_test(NAME advanced_cboe_c1options_complex_pitch_v2.1.18_values COMMAND advanced_cboe_c1options_complex_pitch_v2.1.18_values_test)
+  set_tests_properties(advanced_cboe_c1options_complex_pitch_v2.1.18_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
   add_test(NAME classes_cboe_c1options_complex_pitch_v2.1.18 COMMAND classes_cboe_c1options_complex_pitch_v2.1.18_test)
   set_tests_properties(classes_cboe_c1options_complex_pitch_v2.1.18 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
   add_test(NAME classes_cboe_c1options_complex_pitch_v2.1.18_values COMMAND classes_cboe_c1options_complex_pitch_v2.1.18_values_test)
   set_tests_properties(classes_cboe_c1options_complex_pitch_v2.1.18_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME tmp_cboe_c1options_complex_pitch_v2.1.18_values COMMAND tmp_cboe_c1options_complex_pitch_v2.1.18_values_test)
+  set_tests_properties(tmp_cboe_c1options_complex_pitch_v2.1.18_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
   add_test(NAME flyweight_cboe_c1options_complex_pitch_v2.1.18_values COMMAND flyweight_cboe_c1options_complex_pitch_v2.1.18_values_test)
   set_tests_properties(flyweight_cboe_c1options_complex_pitch_v2.1.18_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
@@ -12673,11 +13015,20 @@ if(OMI_PACKETS_DIR)
   add_test(NAME flyweight_cboe_c1options_multicastdepthofbook_pitch_v2.39.4_values COMMAND flyweight_cboe_c1options_multicastdepthofbook_pitch_v2.39.4_values_test)
   set_tests_properties(flyweight_cboe_c1options_multicastdepthofbook_pitch_v2.39.4_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
+  add_test(NAME modern_cboe_c1options_marketdatafeed_csm_v1.4.2 COMMAND modern_cboe_c1options_marketdatafeed_csm_v1.4.2_test)
+  set_tests_properties(modern_cboe_c1options_marketdatafeed_csm_v1.4.2 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME modern_cboe_c1options_marketdatafeed_csm_v1.4.2_values COMMAND modern_cboe_c1options_marketdatafeed_csm_v1.4.2_values_test)
+  set_tests_properties(modern_cboe_c1options_marketdatafeed_csm_v1.4.2_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
   add_test(NAME classes_cboe_c1options_marketdatafeed_csm_v1.4.2 COMMAND classes_cboe_c1options_marketdatafeed_csm_v1.4.2_test)
   set_tests_properties(classes_cboe_c1options_marketdatafeed_csm_v1.4.2 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
   add_test(NAME classes_cboe_c1options_marketdatafeed_csm_v1.4.2_values COMMAND classes_cboe_c1options_marketdatafeed_csm_v1.4.2_values_test)
   set_tests_properties(classes_cboe_c1options_marketdatafeed_csm_v1.4.2_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME tmp_cboe_c1options_marketdatafeed_csm_v1.4.2_values COMMAND tmp_cboe_c1options_marketdatafeed_csm_v1.4.2_values_test)
+  set_tests_properties(tmp_cboe_c1options_marketdatafeed_csm_v1.4.2_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
   add_test(NAME flyweight_cboe_c1options_marketdatafeed_csm_v1.4.2_values COMMAND flyweight_cboe_c1options_marketdatafeed_csm_v1.4.2_values_test)
   set_tests_properties(flyweight_cboe_c1options_marketdatafeed_csm_v1.4.2_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
@@ -12748,29 +13099,56 @@ if(OMI_PACKETS_DIR)
   add_test(NAME flyweight_cixats_cixaspen_marketdatafeed_aspen_v1.4_values COMMAND flyweight_cixats_cixaspen_marketdatafeed_aspen_v1.4_values_test)
   set_tests_properties(flyweight_cixats_cixaspen_marketdatafeed_aspen_v1.4_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
+  add_test(NAME modern_cme_globex_mdp3_sbe_v1.8_values COMMAND modern_cme_globex_mdp3_sbe_v1.8_values_test)
+  set_tests_properties(modern_cme_globex_mdp3_sbe_v1.8_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
   add_test(NAME advanced_cme_globex_mdp3_sbe_v1.8 COMMAND advanced_cme_globex_mdp3_sbe_v1.8_test)
   set_tests_properties(advanced_cme_globex_mdp3_sbe_v1.8 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME advanced_cme_globex_mdp3_sbe_v1.8_values COMMAND advanced_cme_globex_mdp3_sbe_v1.8_values_test)
+  set_tests_properties(advanced_cme_globex_mdp3_sbe_v1.8_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
   add_test(NAME classes_cme_globex_mdp3_sbe_v1.8_values COMMAND classes_cme_globex_mdp3_sbe_v1.8_values_test)
   set_tests_properties(classes_cme_globex_mdp3_sbe_v1.8_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
+  add_test(NAME tmp_cme_globex_mdp3_sbe_v1.8_values COMMAND tmp_cme_globex_mdp3_sbe_v1.8_values_test)
+  set_tests_properties(tmp_cme_globex_mdp3_sbe_v1.8_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
   add_test(NAME flyweight_cme_globex_mdp3_sbe_v1.8_values COMMAND flyweight_cme_globex_mdp3_sbe_v1.8_values_test)
   set_tests_properties(flyweight_cme_globex_mdp3_sbe_v1.8_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME modern_cme_globex_mdp3_sbe_v1.9_values COMMAND modern_cme_globex_mdp3_sbe_v1.9_values_test)
+  set_tests_properties(modern_cme_globex_mdp3_sbe_v1.9_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
   add_test(NAME advanced_cme_globex_mdp3_sbe_v1.9 COMMAND advanced_cme_globex_mdp3_sbe_v1.9_test)
   set_tests_properties(advanced_cme_globex_mdp3_sbe_v1.9 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
+  add_test(NAME advanced_cme_globex_mdp3_sbe_v1.9_values COMMAND advanced_cme_globex_mdp3_sbe_v1.9_values_test)
+  set_tests_properties(advanced_cme_globex_mdp3_sbe_v1.9_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
   add_test(NAME classes_cme_globex_mdp3_sbe_v1.9_values COMMAND classes_cme_globex_mdp3_sbe_v1.9_values_test)
   set_tests_properties(classes_cme_globex_mdp3_sbe_v1.9_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME tmp_cme_globex_mdp3_sbe_v1.9_values COMMAND tmp_cme_globex_mdp3_sbe_v1.9_values_test)
+  set_tests_properties(tmp_cme_globex_mdp3_sbe_v1.9_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
   add_test(NAME flyweight_cme_globex_mdp3_sbe_v1.9_values COMMAND flyweight_cme_globex_mdp3_sbe_v1.9_values_test)
   set_tests_properties(flyweight_cme_globex_mdp3_sbe_v1.9_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
+  add_test(NAME modern_cme_globex_mdp3_sbe_v1.5_values COMMAND modern_cme_globex_mdp3_sbe_v1.5_values_test)
+  set_tests_properties(modern_cme_globex_mdp3_sbe_v1.5_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
   add_test(NAME advanced_cme_globex_mdp3_sbe_v1.5 COMMAND advanced_cme_globex_mdp3_sbe_v1.5_test)
   set_tests_properties(advanced_cme_globex_mdp3_sbe_v1.5 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
+  add_test(NAME advanced_cme_globex_mdp3_sbe_v1.5_values COMMAND advanced_cme_globex_mdp3_sbe_v1.5_values_test)
+  set_tests_properties(advanced_cme_globex_mdp3_sbe_v1.5_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
   add_test(NAME classes_cme_globex_mdp3_sbe_v1.5_values COMMAND classes_cme_globex_mdp3_sbe_v1.5_values_test)
   set_tests_properties(classes_cme_globex_mdp3_sbe_v1.5_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME tmp_cme_globex_mdp3_sbe_v1.5_values COMMAND tmp_cme_globex_mdp3_sbe_v1.5_values_test)
+  set_tests_properties(tmp_cme_globex_mdp3_sbe_v1.5_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
   add_test(NAME flyweight_cme_globex_mdp3_sbe_v1.5_values COMMAND flyweight_cme_globex_mdp3_sbe_v1.5_values_test)
   set_tests_properties(flyweight_cme_globex_mdp3_sbe_v1.5_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
@@ -12793,11 +13171,17 @@ if(OMI_PACKETS_DIR)
   add_test(NAME modern_eurex_t7_eobi_fbe_v13.0 COMMAND modern_eurex_t7_eobi_fbe_v13.0_test)
   set_tests_properties(modern_eurex_t7_eobi_fbe_v13.0 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
+  add_test(NAME modern_eurex_t7_eobi_fbe_v13.0_values COMMAND modern_eurex_t7_eobi_fbe_v13.0_values_test)
+  set_tests_properties(modern_eurex_t7_eobi_fbe_v13.0_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
   add_test(NAME classes_eurex_t7_eobi_fbe_v13.0 COMMAND classes_eurex_t7_eobi_fbe_v13.0_test)
   set_tests_properties(classes_eurex_t7_eobi_fbe_v13.0 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
   add_test(NAME classes_eurex_t7_eobi_fbe_v13.0_values COMMAND classes_eurex_t7_eobi_fbe_v13.0_values_test)
   set_tests_properties(classes_eurex_t7_eobi_fbe_v13.0_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME tmp_eurex_t7_eobi_fbe_v13.0_values COMMAND tmp_eurex_t7_eobi_fbe_v13.0_values_test)
+  set_tests_properties(tmp_eurex_t7_eobi_fbe_v13.0_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
   add_test(NAME flyweight_eurex_t7_eobi_fbe_v13.0_values COMMAND flyweight_eurex_t7_eobi_fbe_v13.0_values_test)
   set_tests_properties(flyweight_eurex_t7_eobi_fbe_v13.0_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
@@ -12805,11 +13189,17 @@ if(OMI_PACKETS_DIR)
   add_test(NAME modern_eurex_t7_eobi_fbe_v3.0 COMMAND modern_eurex_t7_eobi_fbe_v3.0_test)
   set_tests_properties(modern_eurex_t7_eobi_fbe_v3.0 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
+  add_test(NAME modern_eurex_t7_eobi_fbe_v3.0_values COMMAND modern_eurex_t7_eobi_fbe_v3.0_values_test)
+  set_tests_properties(modern_eurex_t7_eobi_fbe_v3.0_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
   add_test(NAME classes_eurex_t7_eobi_fbe_v3.0 COMMAND classes_eurex_t7_eobi_fbe_v3.0_test)
   set_tests_properties(classes_eurex_t7_eobi_fbe_v3.0 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
   add_test(NAME classes_eurex_t7_eobi_fbe_v3.0_values COMMAND classes_eurex_t7_eobi_fbe_v3.0_values_test)
   set_tests_properties(classes_eurex_t7_eobi_fbe_v3.0_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME tmp_eurex_t7_eobi_fbe_v3.0_values COMMAND tmp_eurex_t7_eobi_fbe_v3.0_values_test)
+  set_tests_properties(tmp_eurex_t7_eobi_fbe_v3.0_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
   add_test(NAME flyweight_eurex_t7_eobi_fbe_v3.0_values COMMAND flyweight_eurex_t7_eobi_fbe_v3.0_values_test)
   set_tests_properties(flyweight_eurex_t7_eobi_fbe_v3.0_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
@@ -12817,11 +13207,17 @@ if(OMI_PACKETS_DIR)
   add_test(NAME modern_eurex_t7_eobi_fbe_v6.0 COMMAND modern_eurex_t7_eobi_fbe_v6.0_test)
   set_tests_properties(modern_eurex_t7_eobi_fbe_v6.0 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
+  add_test(NAME modern_eurex_t7_eobi_fbe_v6.0_values COMMAND modern_eurex_t7_eobi_fbe_v6.0_values_test)
+  set_tests_properties(modern_eurex_t7_eobi_fbe_v6.0_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
   add_test(NAME classes_eurex_t7_eobi_fbe_v6.0 COMMAND classes_eurex_t7_eobi_fbe_v6.0_test)
   set_tests_properties(classes_eurex_t7_eobi_fbe_v6.0 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
   add_test(NAME classes_eurex_t7_eobi_fbe_v6.0_values COMMAND classes_eurex_t7_eobi_fbe_v6.0_values_test)
   set_tests_properties(classes_eurex_t7_eobi_fbe_v6.0_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME tmp_eurex_t7_eobi_fbe_v6.0_values COMMAND tmp_eurex_t7_eobi_fbe_v6.0_values_test)
+  set_tests_properties(tmp_eurex_t7_eobi_fbe_v6.0_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
   add_test(NAME flyweight_eurex_t7_eobi_fbe_v6.0_values COMMAND flyweight_eurex_t7_eobi_fbe_v6.0_values_test)
   set_tests_properties(flyweight_eurex_t7_eobi_fbe_v6.0_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
@@ -13093,14 +13489,29 @@ if(OMI_PACKETS_DIR)
   add_test(NAME modern_memx_memxequities_memoirdepthfeed_sbe_v1.3 COMMAND modern_memx_memxequities_memoirdepthfeed_sbe_v1.3_test)
   set_tests_properties(modern_memx_memxequities_memoirdepthfeed_sbe_v1.3 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
+  add_test(NAME modern_memx_memxequities_memoirdepthfeed_sbe_v1.3_values COMMAND modern_memx_memxequities_memoirdepthfeed_sbe_v1.3_values_test)
+  set_tests_properties(modern_memx_memxequities_memoirdepthfeed_sbe_v1.3_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
   add_test(NAME advanced_memx_memxequities_memoirdepthfeed_sbe_v1.3 COMMAND advanced_memx_memxequities_memoirdepthfeed_sbe_v1.3_test)
   set_tests_properties(advanced_memx_memxequities_memoirdepthfeed_sbe_v1.3 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME advanced_memx_memxequities_memoirdepthfeed_sbe_v1.3_values COMMAND advanced_memx_memxequities_memoirdepthfeed_sbe_v1.3_values_test)
+  set_tests_properties(advanced_memx_memxequities_memoirdepthfeed_sbe_v1.3_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME tmp_memx_memxequities_memoirdepthfeed_sbe_v1.3_values COMMAND tmp_memx_memxequities_memoirdepthfeed_sbe_v1.3_values_test)
+  set_tests_properties(tmp_memx_memxequities_memoirdepthfeed_sbe_v1.3_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
   add_test(NAME modern_miax_pearlequities_depthofmarket_mach_v1.3.d COMMAND modern_miax_pearlequities_depthofmarket_mach_v1.3.d_test)
   set_tests_properties(modern_miax_pearlequities_depthofmarket_mach_v1.3.d PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
+  add_test(NAME modern_miax_pearlequities_depthofmarket_mach_v1.3.d_values COMMAND modern_miax_pearlequities_depthofmarket_mach_v1.3.d_values_test)
+  set_tests_properties(modern_miax_pearlequities_depthofmarket_mach_v1.3.d_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
   add_test(NAME classes_miax_pearlequities_depthofmarket_mach_v1.3.d_values COMMAND classes_miax_pearlequities_depthofmarket_mach_v1.3.d_values_test)
   set_tests_properties(classes_miax_pearlequities_depthofmarket_mach_v1.3.d_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME tmp_miax_pearlequities_depthofmarket_mach_v1.3.d_values COMMAND tmp_miax_pearlequities_depthofmarket_mach_v1.3.d_values_test)
+  set_tests_properties(tmp_miax_pearlequities_depthofmarket_mach_v1.3.d_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
   add_test(NAME flyweight_miax_pearlequities_depthofmarket_mach_v1.3.d_values COMMAND flyweight_miax_pearlequities_depthofmarket_mach_v1.3.d_values_test)
   set_tests_properties(flyweight_miax_pearlequities_depthofmarket_mach_v1.3.d_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
@@ -13108,8 +13519,14 @@ if(OMI_PACKETS_DIR)
   add_test(NAME modern_miax_miaxoptions_complextopofmarket_mach_v1.1 COMMAND modern_miax_miaxoptions_complextopofmarket_mach_v1.1_test)
   set_tests_properties(modern_miax_miaxoptions_complextopofmarket_mach_v1.1 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
+  add_test(NAME modern_miax_miaxoptions_complextopofmarket_mach_v1.1_values COMMAND modern_miax_miaxoptions_complextopofmarket_mach_v1.1_values_test)
+  set_tests_properties(modern_miax_miaxoptions_complextopofmarket_mach_v1.1_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
   add_test(NAME classes_miax_miaxoptions_complextopofmarket_mach_v1.1_values COMMAND classes_miax_miaxoptions_complextopofmarket_mach_v1.1_values_test)
   set_tests_properties(classes_miax_miaxoptions_complextopofmarket_mach_v1.1_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME tmp_miax_miaxoptions_complextopofmarket_mach_v1.1_values COMMAND tmp_miax_miaxoptions_complextopofmarket_mach_v1.1_values_test)
+  set_tests_properties(tmp_miax_miaxoptions_complextopofmarket_mach_v1.1_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
   add_test(NAME flyweight_miax_miaxoptions_complextopofmarket_mach_v1.1_values COMMAND flyweight_miax_miaxoptions_complextopofmarket_mach_v1.1_values_test)
   set_tests_properties(flyweight_miax_miaxoptions_complextopofmarket_mach_v1.1_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
@@ -13117,8 +13534,17 @@ if(OMI_PACKETS_DIR)
   add_test(NAME modern_miax_onyxfutures_topofmarket_mach_v1.0.b COMMAND modern_miax_onyxfutures_topofmarket_mach_v1.0.b_test)
   set_tests_properties(modern_miax_onyxfutures_topofmarket_mach_v1.0.b PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
+  add_test(NAME modern_miax_onyxfutures_topofmarket_mach_v1.0.b_values COMMAND modern_miax_onyxfutures_topofmarket_mach_v1.0.b_values_test)
+  set_tests_properties(modern_miax_onyxfutures_topofmarket_mach_v1.0.b_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
   add_test(NAME classes_miax_onyxfutures_topofmarket_mach_v1.0.b_values COMMAND classes_miax_onyxfutures_topofmarket_mach_v1.0.b_values_test)
   set_tests_properties(classes_miax_onyxfutures_topofmarket_mach_v1.0.b_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME tmp_miax_onyxfutures_topofmarket_mach_v1.0.b_values COMMAND tmp_miax_onyxfutures_topofmarket_mach_v1.0.b_values_test)
+  set_tests_properties(tmp_miax_onyxfutures_topofmarket_mach_v1.0.b_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME flyweight_miax_onyxfutures_topofmarket_mach_v1.0.b_values COMMAND flyweight_miax_onyxfutures_topofmarket_mach_v1.0.b_values_test)
+  set_tests_properties(flyweight_miax_onyxfutures_topofmarket_mach_v1.0.b_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
   add_test(NAME modern_nasdaq_nsmequities_totalview_itch_v5.0.2017 COMMAND modern_nasdaq_nsmequities_totalview_itch_v5.0.2017_test)
   set_tests_properties(modern_nasdaq_nsmequities_totalview_itch_v5.0.2017 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
@@ -13225,11 +13651,17 @@ if(OMI_PACKETS_DIR)
   add_test(NAME advanced_nasdaq_iseoptions_ordercombofeed_itch_v1.1 COMMAND advanced_nasdaq_iseoptions_ordercombofeed_itch_v1.1_test)
   set_tests_properties(advanced_nasdaq_iseoptions_ordercombofeed_itch_v1.1 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
+  add_test(NAME advanced_nasdaq_iseoptions_ordercombofeed_itch_v1.1_values COMMAND advanced_nasdaq_iseoptions_ordercombofeed_itch_v1.1_values_test)
+  set_tests_properties(advanced_nasdaq_iseoptions_ordercombofeed_itch_v1.1_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
   add_test(NAME classes_nasdaq_iseoptions_ordercombofeed_itch_v1.1 COMMAND classes_nasdaq_iseoptions_ordercombofeed_itch_v1.1_test)
   set_tests_properties(classes_nasdaq_iseoptions_ordercombofeed_itch_v1.1 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
   add_test(NAME classes_nasdaq_iseoptions_ordercombofeed_itch_v1.1_values COMMAND classes_nasdaq_iseoptions_ordercombofeed_itch_v1.1_values_test)
   set_tests_properties(classes_nasdaq_iseoptions_ordercombofeed_itch_v1.1_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME tmp_nasdaq_iseoptions_ordercombofeed_itch_v1.1_values COMMAND tmp_nasdaq_iseoptions_ordercombofeed_itch_v1.1_values_test)
+  set_tests_properties(tmp_nasdaq_iseoptions_ordercombofeed_itch_v1.1_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
   add_test(NAME flyweight_nasdaq_iseoptions_ordercombofeed_itch_v1.1_values COMMAND flyweight_nasdaq_iseoptions_ordercombofeed_itch_v1.1_values_test)
   set_tests_properties(flyweight_nasdaq_iseoptions_ordercombofeed_itch_v1.1_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
@@ -13243,11 +13675,17 @@ if(OMI_PACKETS_DIR)
   add_test(NAME advanced_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 COMMAND advanced_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_test)
   set_tests_properties(advanced_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
+  add_test(NAME advanced_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_values COMMAND advanced_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_values_test)
+  set_tests_properties(advanced_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
   add_test(NAME classes_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 COMMAND classes_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_test)
   set_tests_properties(classes_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
   add_test(NAME classes_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_values COMMAND classes_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_values_test)
   set_tests_properties(classes_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME tmp_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_values COMMAND tmp_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_values_test)
+  set_tests_properties(tmp_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
   add_test(NAME flyweight_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_values COMMAND flyweight_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_values_test)
   set_tests_properties(flyweight_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
@@ -13372,6 +13810,30 @@ if(OMI_PACKETS_DIR)
   add_test(NAME flyweight_nyse_arcaequities_integratedfeed_pillar_v2.5.g_values COMMAND flyweight_nyse_arcaequities_integratedfeed_pillar_v2.5.g_values_test)
   set_tests_properties(flyweight_nyse_arcaequities_integratedfeed_pillar_v2.5.g_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
+  add_test(NAME modern_nyse_arcaoptions_deepfeed_pillar_v1.2.m COMMAND modern_nyse_arcaoptions_deepfeed_pillar_v1.2.m_test)
+  set_tests_properties(modern_nyse_arcaoptions_deepfeed_pillar_v1.2.m PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME modern_nyse_arcaoptions_deepfeed_pillar_v1.2.m_values COMMAND modern_nyse_arcaoptions_deepfeed_pillar_v1.2.m_values_test)
+  set_tests_properties(modern_nyse_arcaoptions_deepfeed_pillar_v1.2.m_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME advanced_nyse_arcaoptions_deepfeed_pillar_v1.2.m COMMAND advanced_nyse_arcaoptions_deepfeed_pillar_v1.2.m_test)
+  set_tests_properties(advanced_nyse_arcaoptions_deepfeed_pillar_v1.2.m PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME advanced_nyse_arcaoptions_deepfeed_pillar_v1.2.m_values COMMAND advanced_nyse_arcaoptions_deepfeed_pillar_v1.2.m_values_test)
+  set_tests_properties(advanced_nyse_arcaoptions_deepfeed_pillar_v1.2.m_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME classes_nyse_arcaoptions_deepfeed_pillar_v1.2.m COMMAND classes_nyse_arcaoptions_deepfeed_pillar_v1.2.m_test)
+  set_tests_properties(classes_nyse_arcaoptions_deepfeed_pillar_v1.2.m PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME classes_nyse_arcaoptions_deepfeed_pillar_v1.2.m_values COMMAND classes_nyse_arcaoptions_deepfeed_pillar_v1.2.m_values_test)
+  set_tests_properties(classes_nyse_arcaoptions_deepfeed_pillar_v1.2.m_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME tmp_nyse_arcaoptions_deepfeed_pillar_v1.2.m_values COMMAND tmp_nyse_arcaoptions_deepfeed_pillar_v1.2.m_values_test)
+  set_tests_properties(tmp_nyse_arcaoptions_deepfeed_pillar_v1.2.m_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME flyweight_nyse_arcaoptions_deepfeed_pillar_v1.2.m_values COMMAND flyweight_nyse_arcaoptions_deepfeed_pillar_v1.2.m_values_test)
+  set_tests_properties(flyweight_nyse_arcaoptions_deepfeed_pillar_v1.2.m_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
   add_test(NAME modern_nyse_nyseequities_integratedfeed_xdp_v2.3.a COMMAND modern_nyse_nyseequities_integratedfeed_xdp_v2.3.a_test)
   set_tests_properties(modern_nyse_nyseequities_integratedfeed_xdp_v2.3.a PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
@@ -13467,6 +13929,9 @@ if(OMI_PACKETS_DIR)
 
   add_test(NAME classes_nyse_amexoptions_complexfeed_xdp_v1.3.a_values COMMAND classes_nyse_amexoptions_complexfeed_xdp_v1.3.a_values_test)
   set_tests_properties(classes_nyse_amexoptions_complexfeed_xdp_v1.3.a_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME tmp_nyse_amexoptions_complexfeed_xdp_v1.3.a_values COMMAND tmp_nyse_amexoptions_complexfeed_xdp_v1.3.a_values_test)
+  set_tests_properties(tmp_nyse_amexoptions_complexfeed_xdp_v1.3.a_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
   add_test(NAME flyweight_nyse_amexoptions_complexfeed_xdp_v1.3.a_values COMMAND flyweight_nyse_amexoptions_complexfeed_xdp_v1.3.a_values_test)
   set_tests_properties(flyweight_nyse_amexoptions_complexfeed_xdp_v1.3.a_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
@@ -13819,6 +14284,18 @@ if(OMI_PACKETS_DIR)
   add_test(NAME flyweight_nyse_texasequities_integratedfeedrefresh_pillar_v2.5.g_values COMMAND flyweight_nyse_texasequities_integratedfeedrefresh_pillar_v2.5.g_values_test)
   set_tests_properties(flyweight_nyse_texasequities_integratedfeedrefresh_pillar_v2.5.g_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
+  add_test(NAME modern_otcmarkets_linkats_multicast_link_v4.3 COMMAND modern_otcmarkets_linkats_multicast_link_v4.3_test)
+  set_tests_properties(modern_otcmarkets_linkats_multicast_link_v4.3 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME modern_otcmarkets_linkats_multicast_link_v4.3_values COMMAND modern_otcmarkets_linkats_multicast_link_v4.3_values_test)
+  set_tests_properties(modern_otcmarkets_linkats_multicast_link_v4.3_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME advanced_otcmarkets_linkats_multicast_link_v4.3 COMMAND advanced_otcmarkets_linkats_multicast_link_v4.3_test)
+  set_tests_properties(advanced_otcmarkets_linkats_multicast_link_v4.3 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME advanced_otcmarkets_linkats_multicast_link_v4.3_values COMMAND advanced_otcmarkets_linkats_multicast_link_v4.3_values_test)
+  set_tests_properties(advanced_otcmarkets_linkats_multicast_link_v4.3_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
   add_test(NAME classes_otcmarkets_linkats_multicast_link_v4.3 COMMAND classes_otcmarkets_linkats_multicast_link_v4.3_test)
   set_tests_properties(classes_otcmarkets_linkats_multicast_link_v4.3 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
@@ -13833,6 +14310,9 @@ if(OMI_PACKETS_DIR)
 
   add_test(NAME modern_siac_opra_output_obi_v6.2 COMMAND modern_siac_opra_output_obi_v6.2_test)
   set_tests_properties(modern_siac_opra_output_obi_v6.2 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME modern_siac_opra_output_obi_v6.2_values COMMAND modern_siac_opra_output_obi_v6.2_values_test)
+  set_tests_properties(modern_siac_opra_output_obi_v6.2_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
   add_test(NAME advanced_siac_opra_output_obi_v6.2 COMMAND advanced_siac_opra_output_obi_v6.2_test)
   set_tests_properties(advanced_siac_opra_output_obi_v6.2 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
@@ -13855,8 +14335,17 @@ if(OMI_PACKETS_DIR)
   add_test(NAME modern_siac_cts_output_cta_v2.11.b_values COMMAND modern_siac_cts_output_cta_v2.11.b_values_test)
   set_tests_properties(modern_siac_cts_output_cta_v2.11.b_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
+  add_test(NAME advanced_siac_cts_output_cta_v2.11.b COMMAND advanced_siac_cts_output_cta_v2.11.b_test)
+  set_tests_properties(advanced_siac_cts_output_cta_v2.11.b PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME advanced_siac_cts_output_cta_v2.11.b_values COMMAND advanced_siac_cts_output_cta_v2.11.b_values_test)
+  set_tests_properties(advanced_siac_cts_output_cta_v2.11.b_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
   add_test(NAME classes_siac_cts_output_cta_v2.11.b_values COMMAND classes_siac_cts_output_cta_v2.11.b_values_test)
   set_tests_properties(classes_siac_cts_output_cta_v2.11.b_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME tmp_siac_cts_output_cta_v2.11.b_values COMMAND tmp_siac_cts_output_cta_v2.11.b_values_test)
+  set_tests_properties(tmp_siac_cts_output_cta_v2.11.b_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
   add_test(NAME flyweight_siac_cts_output_cta_v2.11.b_values COMMAND flyweight_siac_cts_output_cta_v2.11.b_values_test)
   set_tests_properties(flyweight_siac_cts_output_cta_v2.11.b_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
@@ -13866,6 +14355,12 @@ if(OMI_PACKETS_DIR)
 
   add_test(NAME modern_siac_cqs_output_cta_v2.10.a_values COMMAND modern_siac_cqs_output_cta_v2.10.a_values_test)
   set_tests_properties(modern_siac_cqs_output_cta_v2.10.a_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME advanced_siac_cqs_output_cta_v2.10.a COMMAND advanced_siac_cqs_output_cta_v2.10.a_test)
+  set_tests_properties(advanced_siac_cqs_output_cta_v2.10.a PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME advanced_siac_cqs_output_cta_v2.10.a_values COMMAND advanced_siac_cqs_output_cta_v2.10.a_values_test)
+  set_tests_properties(advanced_siac_cqs_output_cta_v2.10.a_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
   add_test(NAME classes_siac_cqs_output_cta_v2.10.a_values COMMAND classes_siac_cqs_output_cta_v2.10.a_values_test)
   set_tests_properties(classes_siac_cqs_output_cta_v2.10.a_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
@@ -13914,6 +14409,9 @@ if(OMI_PACKETS_DIR)
 
   add_test(NAME classes_siac_cts_output_cta_v2.10_values COMMAND classes_siac_cts_output_cta_v2.10_values_test)
   set_tests_properties(classes_siac_cts_output_cta_v2.10_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME tmp_siac_cts_output_cta_v2.10_values COMMAND tmp_siac_cts_output_cta_v2.10_values_test)
+  set_tests_properties(tmp_siac_cts_output_cta_v2.10_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
   add_test(NAME flyweight_siac_cts_output_cta_v2.10_values COMMAND flyweight_siac_cts_output_cta_v2.10_values_test)
   set_tests_properties(flyweight_siac_cts_output_cta_v2.10_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
@@ -14034,18 +14532,18 @@ if(OMI_PACKETS_DIR)
   add_test(NAME verify_cboe_bzxequities_multicastdepthofbook_pitch_v2.41.29 COMMAND verify_cboe_bzxequities_multicastdepthofbook_pitch_v2.41.29 ${OMI_PACKETS_DIR}/Cboe/BzxEquities.MulticastDepthOfBook.Pitch.v2.41.29/AddOrderExpandedMessage.pcap)
   set_tests_properties(verify_cboe_bzxequities_multicastdepthofbook_pitch_v2.41.29 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
-  add_test(NAME statistics_cboe_byxequities_multicastdepthofbook_pitch_v2.41.29 COMMAND statistics_cboe_byxequities_multicastdepthofbook_pitch_v2.41.29 -i ${OMI_PACKETS_DIR}/Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/AddOrderShortMessage.pcap)
-  set_tests_properties(statistics_cboe_byxequities_multicastdepthofbook_pitch_v2.41.29 PROPERTIES PASS_REGULAR_EXPRESSION "AddOrderShortMessage \\([^)]*\\) +[1-9]")
+  add_test(NAME statistics_cboe_byxequities_multicastdepthofbook_pitch_v2.41.29 COMMAND statistics_cboe_byxequities_multicastdepthofbook_pitch_v2.41.29 -i ${OMI_PACKETS_DIR}/Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/AddOrderLongMessage.pcap)
+  set_tests_properties(statistics_cboe_byxequities_multicastdepthofbook_pitch_v2.41.29 PROPERTIES PASS_REGULAR_EXPRESSION "AddOrderLongMessage \\([^)]*\\) +[1-9]")
 
   add_test(NAME extractor_cboe_byxequities_multicastdepthofbook_pitch_v2.41.29_directory COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/samples/extractor_cboe_byxequities_multicastdepthofbook_pitch_v2.41.29)
   set_tests_properties(extractor_cboe_byxequities_multicastdepthofbook_pitch_v2.41.29_directory PROPERTIES FIXTURES_SETUP extractor_cboe_byxequities_multicastdepthofbook_pitch_v2.41.29_samples)
-  add_test(NAME extractor_cboe_byxequities_multicastdepthofbook_pitch_v2.41.29 COMMAND extractor_cboe_byxequities_multicastdepthofbook_pitch_v2.41.29 ${OMI_PACKETS_DIR}/Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/AddOrderShortMessage.pcap ${CMAKE_BINARY_DIR}/samples/cboe_byxequities_multicastdepthofbook_pitch_v2.41.29)
+  add_test(NAME extractor_cboe_byxequities_multicastdepthofbook_pitch_v2.41.29 COMMAND extractor_cboe_byxequities_multicastdepthofbook_pitch_v2.41.29 ${OMI_PACKETS_DIR}/Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/AddOrderLongMessage.pcap ${CMAKE_BINARY_DIR}/samples/cboe_byxequities_multicastdepthofbook_pitch_v2.41.29)
   set_tests_properties(extractor_cboe_byxequities_multicastdepthofbook_pitch_v2.41.29 PROPERTIES PASS_REGULAR_EXPRESSION "sampled [1-9]" FIXTURES_REQUIRED extractor_cboe_byxequities_multicastdepthofbook_pitch_v2.41.29_samples)
 
-  add_test(NAME dump_cboe_byxequities_multicastdepthofbook_pitch_v2.41.29 COMMAND dump_cboe_byxequities_multicastdepthofbook_pitch_v2.41.29 ${OMI_PACKETS_DIR}/Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/AddOrderShortMessage.pcap)
-  set_tests_properties(dump_cboe_byxequities_multicastdepthofbook_pitch_v2.41.29 PROPERTIES PASS_REGULAR_EXPRESSION "AddOrderShortMessage")
+  add_test(NAME dump_cboe_byxequities_multicastdepthofbook_pitch_v2.41.29 COMMAND dump_cboe_byxequities_multicastdepthofbook_pitch_v2.41.29 ${OMI_PACKETS_DIR}/Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/AddOrderLongMessage.pcap)
+  set_tests_properties(dump_cboe_byxequities_multicastdepthofbook_pitch_v2.41.29 PROPERTIES PASS_REGULAR_EXPRESSION "AddOrderLongMessage")
 
-  add_test(NAME verify_cboe_byxequities_multicastdepthofbook_pitch_v2.41.29 COMMAND verify_cboe_byxequities_multicastdepthofbook_pitch_v2.41.29 ${OMI_PACKETS_DIR}/Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/AddOrderShortMessage.pcap)
+  add_test(NAME verify_cboe_byxequities_multicastdepthofbook_pitch_v2.41.29 COMMAND verify_cboe_byxequities_multicastdepthofbook_pitch_v2.41.29 ${OMI_PACKETS_DIR}/Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/AddOrderLongMessage.pcap)
   set_tests_properties(verify_cboe_byxequities_multicastdepthofbook_pitch_v2.41.29 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
   add_test(NAME statistics_cboe_bzxequities_multicastdepthofbook_pitch_v2.20.4 COMMAND statistics_cboe_bzxequities_multicastdepthofbook_pitch_v2.20.4 -i ${OMI_PACKETS_DIR}/Cboe/BzxEquities.MulticastDepthOfBook.Pitch.v2.20.4/AddOrderLongMessage.pcap)
@@ -14089,6 +14587,14 @@ if(OMI_PACKETS_DIR)
 
   add_test(NAME verify_cboe_c1options_multicastdepthofbook_pitch_v2.39.4 COMMAND verify_cboe_c1options_multicastdepthofbook_pitch_v2.39.4 ${OMI_PACKETS_DIR}/Cboe/C1Options.MulticastDepthOfBook.Pitch.v2.39.4/AddOrderLongMessage.pcap)
   set_tests_properties(verify_cboe_c1options_multicastdepthofbook_pitch_v2.39.4 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+  add_test(NAME statistics_cboe_c1options_marketdatafeed_csm_v1.4.2 COMMAND statistics_cboe_c1options_marketdatafeed_csm_v1.4.2 -i ${OMI_PACKETS_DIR}/Cboe/C1Options.MarketDataFeed.Csm.v1.4.2/CurrentMarketRefreshMessage.pcap)
+  set_tests_properties(statistics_cboe_c1options_marketdatafeed_csm_v1.4.2 PROPERTIES PASS_REGULAR_EXPRESSION "CurrentMarketRefreshMessage \\([^)]*\\) +[1-9]")
+
+  add_test(NAME extractor_cboe_c1options_marketdatafeed_csm_v1.4.2_directory COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/samples/extractor_cboe_c1options_marketdatafeed_csm_v1.4.2)
+  set_tests_properties(extractor_cboe_c1options_marketdatafeed_csm_v1.4.2_directory PROPERTIES FIXTURES_SETUP extractor_cboe_c1options_marketdatafeed_csm_v1.4.2_samples)
+  add_test(NAME extractor_cboe_c1options_marketdatafeed_csm_v1.4.2 COMMAND extractor_cboe_c1options_marketdatafeed_csm_v1.4.2 ${OMI_PACKETS_DIR}/Cboe/C1Options.MarketDataFeed.Csm.v1.4.2/CurrentMarketRefreshMessage.pcap ${CMAKE_BINARY_DIR}/samples/cboe_c1options_marketdatafeed_csm_v1.4.2)
+  set_tests_properties(extractor_cboe_c1options_marketdatafeed_csm_v1.4.2 PROPERTIES PASS_REGULAR_EXPRESSION "sampled [1-9]" FIXTURES_REQUIRED extractor_cboe_c1options_marketdatafeed_csm_v1.4.2_samples)
 
   add_test(NAME dump_cboe_c1options_marketdatafeed_csm_v1.4.2 COMMAND dump_cboe_c1options_marketdatafeed_csm_v1.4.2 ${OMI_PACKETS_DIR}/Cboe/C1Options.MarketDataFeed.Csm.v1.4.2/CurrentMarketRefreshMessage.pcap)
   set_tests_properties(dump_cboe_c1options_marketdatafeed_csm_v1.4.2 PROPERTIES PASS_REGULAR_EXPRESSION "CurrentMarketRefreshMessage")
@@ -14600,6 +15106,20 @@ if(OMI_PACKETS_DIR)
   add_test(NAME verify_nyse_arcaequities_integratedfeed_pillar_v2.5.g COMMAND verify_nyse_arcaequities_integratedfeed_pillar_v2.5.g ${OMI_PACKETS_DIR}/Nyse/ArcaEquities.IntegratedFeed.Pillar.v2.5.g/AddOrderMessage.pcap)
   set_tests_properties(verify_nyse_arcaequities_integratedfeed_pillar_v2.5.g PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
+  add_test(NAME statistics_nyse_arcaoptions_deepfeed_pillar_v1.2.m COMMAND statistics_nyse_arcaoptions_deepfeed_pillar_v1.2.m -i ${OMI_PACKETS_DIR}/Nyse/ArcaOptions.DeepFeed.Pillar.v1.2.m/OptionsAddOrderMessage.pcap)
+  set_tests_properties(statistics_nyse_arcaoptions_deepfeed_pillar_v1.2.m PROPERTIES PASS_REGULAR_EXPRESSION "OptionsAddOrderMessage \\([^)]*\\) +[1-9]")
+
+  add_test(NAME extractor_nyse_arcaoptions_deepfeed_pillar_v1.2.m_directory COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/samples/extractor_nyse_arcaoptions_deepfeed_pillar_v1.2.m)
+  set_tests_properties(extractor_nyse_arcaoptions_deepfeed_pillar_v1.2.m_directory PROPERTIES FIXTURES_SETUP extractor_nyse_arcaoptions_deepfeed_pillar_v1.2.m_samples)
+  add_test(NAME extractor_nyse_arcaoptions_deepfeed_pillar_v1.2.m COMMAND extractor_nyse_arcaoptions_deepfeed_pillar_v1.2.m ${OMI_PACKETS_DIR}/Nyse/ArcaOptions.DeepFeed.Pillar.v1.2.m/OptionsAddOrderMessage.pcap ${CMAKE_BINARY_DIR}/samples/nyse_arcaoptions_deepfeed_pillar_v1.2.m)
+  set_tests_properties(extractor_nyse_arcaoptions_deepfeed_pillar_v1.2.m PROPERTIES PASS_REGULAR_EXPRESSION "sampled [1-9]" FIXTURES_REQUIRED extractor_nyse_arcaoptions_deepfeed_pillar_v1.2.m_samples)
+
+  add_test(NAME dump_nyse_arcaoptions_deepfeed_pillar_v1.2.m COMMAND dump_nyse_arcaoptions_deepfeed_pillar_v1.2.m ${OMI_PACKETS_DIR}/Nyse/ArcaOptions.DeepFeed.Pillar.v1.2.m/OptionsAddOrderMessage.pcap)
+  set_tests_properties(dump_nyse_arcaoptions_deepfeed_pillar_v1.2.m PROPERTIES PASS_REGULAR_EXPRESSION "OptionsAddOrderMessage")
+
+  add_test(NAME verify_nyse_arcaoptions_deepfeed_pillar_v1.2.m COMMAND verify_nyse_arcaoptions_deepfeed_pillar_v1.2.m ${OMI_PACKETS_DIR}/Nyse/ArcaOptions.DeepFeed.Pillar.v1.2.m/OptionsAddOrderMessage.pcap)
+  set_tests_properties(verify_nyse_arcaoptions_deepfeed_pillar_v1.2.m PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
   add_test(NAME statistics_nyse_nyseequities_integratedfeed_xdp_v2.3.a COMMAND statistics_nyse_nyseequities_integratedfeed_xdp_v2.3.a -i ${OMI_PACKETS_DIR}/Nyse/NyseEquities.IntegratedFeed.Xdp.v2.3.a/AddOrderRefreshMessage.pcap)
   set_tests_properties(statistics_nyse_nyseequities_integratedfeed_xdp_v2.3.a PROPERTIES PASS_REGULAR_EXPRESSION "AddOrderRefreshMessage \\([^)]*\\) +[1-9]")
 
@@ -14894,6 +15414,14 @@ if(OMI_PACKETS_DIR)
   add_test(NAME verify_nyse_texasequities_integratedfeedrefresh_pillar_v2.5.g COMMAND verify_nyse_texasequities_integratedfeedrefresh_pillar_v2.5.g ${OMI_PACKETS_DIR}/Nyse/TexasEquities.IntegratedFeedRefresh.Pillar.v2.5.g/AddOrderRefreshMessage.pcap)
   set_tests_properties(verify_nyse_texasequities_integratedfeedrefresh_pillar_v2.5.g PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
+  add_test(NAME statistics_otcmarkets_linkats_multicast_link_v4.3 COMMAND statistics_otcmarkets_linkats_multicast_link_v4.3 -i ${OMI_PACKETS_DIR}/OtcMarkets/LinkAts.Multicast.Link.v4.3/EndOfSpinMessage.pcap)
+  set_tests_properties(statistics_otcmarkets_linkats_multicast_link_v4.3 PROPERTIES PASS_REGULAR_EXPRESSION "EndOfSpinMessage \\([^)]*\\) +[1-9]")
+
+  add_test(NAME extractor_otcmarkets_linkats_multicast_link_v4.3_directory COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/samples/extractor_otcmarkets_linkats_multicast_link_v4.3)
+  set_tests_properties(extractor_otcmarkets_linkats_multicast_link_v4.3_directory PROPERTIES FIXTURES_SETUP extractor_otcmarkets_linkats_multicast_link_v4.3_samples)
+  add_test(NAME extractor_otcmarkets_linkats_multicast_link_v4.3 COMMAND extractor_otcmarkets_linkats_multicast_link_v4.3 ${OMI_PACKETS_DIR}/OtcMarkets/LinkAts.Multicast.Link.v4.3/EndOfSpinMessage.pcap ${CMAKE_BINARY_DIR}/samples/otcmarkets_linkats_multicast_link_v4.3)
+  set_tests_properties(extractor_otcmarkets_linkats_multicast_link_v4.3 PROPERTIES PASS_REGULAR_EXPRESSION "sampled [1-9]" FIXTURES_REQUIRED extractor_otcmarkets_linkats_multicast_link_v4.3_samples)
+
   add_test(NAME dump_otcmarkets_linkats_multicast_link_v4.3 COMMAND dump_otcmarkets_linkats_multicast_link_v4.3 ${OMI_PACKETS_DIR}/OtcMarkets/LinkAts.Multicast.Link.v4.3/EndOfSpinMessage.pcap)
   set_tests_properties(dump_otcmarkets_linkats_multicast_link_v4.3 PROPERTIES PASS_REGULAR_EXPRESSION "EndOfSpinMessage")
 
@@ -14915,7 +15443,7 @@ if(OMI_PACKETS_DIR)
   set_tests_properties(verify_siac_opra_output_obi_v6.2 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
   add_test(NAME statistics_siac_cts_output_cta_v2.11.b COMMAND statistics_siac_cts_output_cta_v2.11.b -i ${OMI_PACKETS_DIR}/Siac/Cts.Output.Cta.v2.11.b/ConsolidatedStartOfDaySummaryMessage.pcap)
-  set_tests_properties(statistics_siac_cts_output_cta_v2.11.b PROPERTIES PASS_REGULAR_EXPRESSION "ConsolidatedStartOfDaySummaryMessage \\([^)]*\\) +[1-9]")
+  set_tests_properties(statistics_siac_cts_output_cta_v2.11.b PROPERTIES PASS_REGULAR_EXPRESSION "ConsolidatedStartOfDaySummaryMessage +[1-9]")
 
   add_test(NAME extractor_siac_cts_output_cta_v2.11.b_directory COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/samples/extractor_siac_cts_output_cta_v2.11.b)
   set_tests_properties(extractor_siac_cts_output_cta_v2.11.b_directory PROPERTIES FIXTURES_SETUP extractor_siac_cts_output_cta_v2.11.b_samples)
@@ -14929,7 +15457,7 @@ if(OMI_PACKETS_DIR)
   set_tests_properties(verify_siac_cts_output_cta_v2.11.b PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
   add_test(NAME statistics_siac_cqs_output_cta_v2.10.a COMMAND statistics_siac_cqs_output_cta_v2.10.a -i ${OMI_PACKETS_DIR}/Siac/Cqs.Output.Cta.v2.10.a/EndOfDayMessage.pcap)
-  set_tests_properties(statistics_siac_cqs_output_cta_v2.10.a PROPERTIES PASS_REGULAR_EXPRESSION "EndOfDayMessage \\([^)]*\\) +[1-9]")
+  set_tests_properties(statistics_siac_cqs_output_cta_v2.10.a PROPERTIES PASS_REGULAR_EXPRESSION "EndOfDayMessage +[1-9]")
 
   add_test(NAME extractor_siac_cqs_output_cta_v2.10.a_directory COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/samples/extractor_siac_cqs_output_cta_v2.10.a)
   set_tests_properties(extractor_siac_cqs_output_cta_v2.10.a_directory PROPERTIES FIXTURES_SETUP extractor_siac_cqs_output_cta_v2.10.a_samples)
@@ -15031,14 +15559,29 @@ set_tests_properties(benchmark_tmp_asx_asxderivatives_ntp_itch_v1.05 PROPERTIES 
 add_test(NAME roundtrip_b3_b3derivatives_binaryumdf_sbe_v1.6 COMMAND roundtrip_b3_b3derivatives_binaryumdf_sbe_v1.6 ${CMAKE_BINARY_DIR}/roundtrip_b3_b3derivatives_binaryumdf_sbe_v1.6.pcap)
 set_tests_properties(roundtrip_b3_b3derivatives_binaryumdf_sbe_v1.6 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
+add_test(NAME benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v1.6 COMMAND benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v1.6 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v1.6.pcap 0.05)
+set_tests_properties(benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v1.6 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v1.6 COMMAND benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v1.6 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v1.6.pcap 0.05)
+set_tests_properties(benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v1.6 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
 add_test(NAME benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v1.6 COMMAND benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v1.6 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v1.6.pcap 0.05)
 set_tests_properties(benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v1.6 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v1.6 COMMAND benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v1.6 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v1.6.pcap 0.05)
 set_tests_properties(benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v1.6 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
+add_test(NAME benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v1.6 COMMAND benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v1.6 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v1.6.pcap 0.05)
+set_tests_properties(benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v1.6 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
 add_test(NAME roundtrip_b3_b3derivatives_binaryumdf_sbe_v1.7 COMMAND roundtrip_b3_b3derivatives_binaryumdf_sbe_v1.7 ${CMAKE_BINARY_DIR}/roundtrip_b3_b3derivatives_binaryumdf_sbe_v1.7.pcap)
 set_tests_properties(roundtrip_b3_b3derivatives_binaryumdf_sbe_v1.7 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v1.7 COMMAND benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v1.7 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v1.7.pcap 0.05)
+set_tests_properties(benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v1.7 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v1.7 COMMAND benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v1.7 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v1.7.pcap 0.05)
+set_tests_properties(benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v1.7 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v1.7 COMMAND benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v1.7 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v1.7.pcap 0.05)
 set_tests_properties(benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v1.7 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
@@ -15046,8 +15589,17 @@ set_tests_properties(benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v1.7 PROP
 add_test(NAME benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v1.7 COMMAND benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v1.7 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v1.7.pcap 0.05)
 set_tests_properties(benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v1.7 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
+add_test(NAME benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v1.7 COMMAND benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v1.7 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v1.7.pcap 0.05)
+set_tests_properties(benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v1.7 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
 add_test(NAME roundtrip_b3_b3derivatives_binaryumdf_sbe_v1.8 COMMAND roundtrip_b3_b3derivatives_binaryumdf_sbe_v1.8 ${CMAKE_BINARY_DIR}/roundtrip_b3_b3derivatives_binaryumdf_sbe_v1.8.pcap)
 set_tests_properties(roundtrip_b3_b3derivatives_binaryumdf_sbe_v1.8 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v1.8 COMMAND benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v1.8 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v1.8.pcap 0.05)
+set_tests_properties(benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v1.8 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v1.8 COMMAND benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v1.8 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v1.8.pcap 0.05)
+set_tests_properties(benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v1.8 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v1.8 COMMAND benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v1.8 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v1.8.pcap 0.05)
 set_tests_properties(benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v1.8 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
@@ -15055,8 +15607,17 @@ set_tests_properties(benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v1.8 PROP
 add_test(NAME benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v1.8 COMMAND benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v1.8 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v1.8.pcap 0.05)
 set_tests_properties(benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v1.8 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
+add_test(NAME benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v1.8 COMMAND benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v1.8 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v1.8.pcap 0.05)
+set_tests_properties(benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v1.8 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
 add_test(NAME roundtrip_b3_b3derivatives_binaryumdf_sbe_v1.9 COMMAND roundtrip_b3_b3derivatives_binaryumdf_sbe_v1.9 ${CMAKE_BINARY_DIR}/roundtrip_b3_b3derivatives_binaryumdf_sbe_v1.9.pcap)
 set_tests_properties(roundtrip_b3_b3derivatives_binaryumdf_sbe_v1.9 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v1.9 COMMAND benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v1.9 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v1.9.pcap 0.05)
+set_tests_properties(benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v1.9 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v1.9 COMMAND benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v1.9 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v1.9.pcap 0.05)
+set_tests_properties(benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v1.9 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v1.9 COMMAND benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v1.9 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v1.9.pcap 0.05)
 set_tests_properties(benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v1.9 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
@@ -15064,8 +15625,17 @@ set_tests_properties(benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v1.9 PROP
 add_test(NAME benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v1.9 COMMAND benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v1.9 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v1.9.pcap 0.05)
 set_tests_properties(benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v1.9 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
+add_test(NAME benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v1.9 COMMAND benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v1.9 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v1.9.pcap 0.05)
+set_tests_properties(benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v1.9 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
 add_test(NAME roundtrip_b3_b3derivatives_binaryumdf_sbe_v2.1 COMMAND roundtrip_b3_b3derivatives_binaryumdf_sbe_v2.1 ${CMAKE_BINARY_DIR}/roundtrip_b3_b3derivatives_binaryumdf_sbe_v2.1.pcap)
 set_tests_properties(roundtrip_b3_b3derivatives_binaryumdf_sbe_v2.1 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v2.1 COMMAND benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v2.1 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v2.1.pcap 0.05)
+set_tests_properties(benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v2.1 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v2.1 COMMAND benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v2.1 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v2.1.pcap 0.05)
+set_tests_properties(benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v2.1 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v2.1 COMMAND benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v2.1 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v2.1.pcap 0.05)
 set_tests_properties(benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v2.1 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
@@ -15073,8 +15643,17 @@ set_tests_properties(benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v2.1 PROP
 add_test(NAME benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v2.1 COMMAND benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v2.1 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v2.1.pcap 0.05)
 set_tests_properties(benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v2.1 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
+add_test(NAME benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v2.1 COMMAND benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v2.1 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v2.1.pcap 0.05)
+set_tests_properties(benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v2.1 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
 add_test(NAME roundtrip_b3_b3derivatives_binaryumdf_sbe_v2.2 COMMAND roundtrip_b3_b3derivatives_binaryumdf_sbe_v2.2 ${CMAKE_BINARY_DIR}/roundtrip_b3_b3derivatives_binaryumdf_sbe_v2.2.pcap)
 set_tests_properties(roundtrip_b3_b3derivatives_binaryumdf_sbe_v2.2 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v2.2 COMMAND benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v2.2 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v2.2.pcap 0.05)
+set_tests_properties(benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v2.2 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v2.2 COMMAND benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v2.2 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v2.2.pcap 0.05)
+set_tests_properties(benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v2.2 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v2.2 COMMAND benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v2.2 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v2.2.pcap 0.05)
 set_tests_properties(benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v2.2 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
@@ -15082,8 +15661,17 @@ set_tests_properties(benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v2.2 PROP
 add_test(NAME benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v2.2 COMMAND benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v2.2 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v2.2.pcap 0.05)
 set_tests_properties(benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v2.2 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
+add_test(NAME benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v2.2 COMMAND benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v2.2 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v2.2.pcap 0.05)
+set_tests_properties(benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v2.2 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
 add_test(NAME roundtrip_b3_b3derivatives_binaryumdf_sbe_v2.3 COMMAND roundtrip_b3_b3derivatives_binaryumdf_sbe_v2.3 ${CMAKE_BINARY_DIR}/roundtrip_b3_b3derivatives_binaryumdf_sbe_v2.3.pcap)
 set_tests_properties(roundtrip_b3_b3derivatives_binaryumdf_sbe_v2.3 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v2.3 COMMAND benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v2.3 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v2.3.pcap 0.05)
+set_tests_properties(benchmark_modern_b3_b3derivatives_binaryumdf_sbe_v2.3 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v2.3 COMMAND benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v2.3 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v2.3.pcap 0.05)
+set_tests_properties(benchmark_advanced_b3_b3derivatives_binaryumdf_sbe_v2.3 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v2.3 COMMAND benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v2.3 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v2.3.pcap 0.05)
 set_tests_properties(benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v2.3 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
@@ -15091,14 +15679,23 @@ set_tests_properties(benchmark_classes_b3_b3derivatives_binaryumdf_sbe_v2.3 PROP
 add_test(NAME benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v2.3 COMMAND benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v2.3 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v2.3.pcap 0.05)
 set_tests_properties(benchmark_flyweight_b3_b3derivatives_binaryumdf_sbe_v2.3 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
+add_test(NAME benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v2.3 COMMAND benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v2.3 ${CMAKE_SOURCE_DIR}/tests/simulated/b3/b3derivatives/binaryumdf/sbe/v2.3.pcap 0.05)
+set_tests_properties(benchmark_tmp_b3_b3derivatives_binaryumdf_sbe_v2.3 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
 add_test(NAME roundtrip_bse_bseindia_eobi_fbe_v1.4 COMMAND roundtrip_bse_bseindia_eobi_fbe_v1.4 ${CMAKE_BINARY_DIR}/roundtrip_bse_bseindia_eobi_fbe_v1.4.pcap)
 set_tests_properties(roundtrip_bse_bseindia_eobi_fbe_v1.4 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_modern_bse_bseindia_eobi_fbe_v1.4 COMMAND benchmark_modern_bse_bseindia_eobi_fbe_v1.4 ${CMAKE_SOURCE_DIR}/tests/simulated/bse/bseindia/eobi/fbe/v1.4.pcap 0.05)
+set_tests_properties(benchmark_modern_bse_bseindia_eobi_fbe_v1.4 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME benchmark_classes_bse_bseindia_eobi_fbe_v1.4 COMMAND benchmark_classes_bse_bseindia_eobi_fbe_v1.4 ${CMAKE_SOURCE_DIR}/tests/simulated/bse/bseindia/eobi/fbe/v1.4.pcap 0.05)
 set_tests_properties(benchmark_classes_bse_bseindia_eobi_fbe_v1.4 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME benchmark_flyweight_bse_bseindia_eobi_fbe_v1.4 COMMAND benchmark_flyweight_bse_bseindia_eobi_fbe_v1.4 ${CMAKE_SOURCE_DIR}/tests/simulated/bse/bseindia/eobi/fbe/v1.4.pcap 0.05)
 set_tests_properties(benchmark_flyweight_bse_bseindia_eobi_fbe_v1.4 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_tmp_bse_bseindia_eobi_fbe_v1.4 COMMAND benchmark_tmp_bse_bseindia_eobi_fbe_v1.4 ${CMAKE_SOURCE_DIR}/tests/simulated/bse/bseindia/eobi/fbe/v1.4.pcap 0.05)
+set_tests_properties(benchmark_tmp_bse_bseindia_eobi_fbe_v1.4 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME roundtrip_cboe_bzxequities_multicastdepthofbook_pitch_v2.41.29 COMMAND roundtrip_cboe_bzxequities_multicastdepthofbook_pitch_v2.41.29 ${CMAKE_BINARY_DIR}/roundtrip_cboe_bzxequities_multicastdepthofbook_pitch_v2.41.29.pcap)
 set_tests_properties(roundtrip_cboe_bzxequities_multicastdepthofbook_pitch_v2.41.29 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
@@ -15142,11 +15739,17 @@ set_tests_properties(roundtrip_cboe_cfefutures_multicastdepthofbook_pitch_v1.2.2
 add_test(NAME benchmark_modern_cboe_cfefutures_multicastdepthofbook_pitch_v1.2.22 COMMAND benchmark_modern_cboe_cfefutures_multicastdepthofbook_pitch_v1.2.22 ${CMAKE_SOURCE_DIR}/tests/simulated/cboe/cfefutures/multicastdepthofbook/pitch/v1.2.22.pcap 0.05)
 set_tests_properties(benchmark_modern_cboe_cfefutures_multicastdepthofbook_pitch_v1.2.22 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
+add_test(NAME benchmark_advanced_cboe_cfefutures_multicastdepthofbook_pitch_v1.2.22 COMMAND benchmark_advanced_cboe_cfefutures_multicastdepthofbook_pitch_v1.2.22 ${CMAKE_SOURCE_DIR}/tests/simulated/cboe/cfefutures/multicastdepthofbook/pitch/v1.2.22.pcap 0.05)
+set_tests_properties(benchmark_advanced_cboe_cfefutures_multicastdepthofbook_pitch_v1.2.22 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
 add_test(NAME benchmark_classes_cboe_cfefutures_multicastdepthofbook_pitch_v1.2.22 COMMAND benchmark_classes_cboe_cfefutures_multicastdepthofbook_pitch_v1.2.22 ${CMAKE_SOURCE_DIR}/tests/simulated/cboe/cfefutures/multicastdepthofbook/pitch/v1.2.22.pcap 0.05)
 set_tests_properties(benchmark_classes_cboe_cfefutures_multicastdepthofbook_pitch_v1.2.22 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME benchmark_flyweight_cboe_cfefutures_multicastdepthofbook_pitch_v1.2.22 COMMAND benchmark_flyweight_cboe_cfefutures_multicastdepthofbook_pitch_v1.2.22 ${CMAKE_SOURCE_DIR}/tests/simulated/cboe/cfefutures/multicastdepthofbook/pitch/v1.2.22.pcap 0.05)
 set_tests_properties(benchmark_flyweight_cboe_cfefutures_multicastdepthofbook_pitch_v1.2.22 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_tmp_cboe_cfefutures_multicastdepthofbook_pitch_v1.2.22 COMMAND benchmark_tmp_cboe_cfefutures_multicastdepthofbook_pitch_v1.2.22 ${CMAKE_SOURCE_DIR}/tests/simulated/cboe/cfefutures/multicastdepthofbook/pitch/v1.2.22.pcap 0.05)
+set_tests_properties(benchmark_tmp_cboe_cfefutures_multicastdepthofbook_pitch_v1.2.22 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME roundtrip_cboe_byxequities_multicastdepthofbook_pitch_v2.41.29 COMMAND roundtrip_cboe_byxequities_multicastdepthofbook_pitch_v2.41.29 ${CMAKE_BINARY_DIR}/roundtrip_cboe_byxequities_multicastdepthofbook_pitch_v2.41.29.pcap)
 set_tests_properties(roundtrip_cboe_byxequities_multicastdepthofbook_pitch_v2.41.29 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
@@ -15190,11 +15793,17 @@ set_tests_properties(roundtrip_cboe_c1options_complex_pitch_v2.1.18 PROPERTIES P
 add_test(NAME benchmark_modern_cboe_c1options_complex_pitch_v2.1.18 COMMAND benchmark_modern_cboe_c1options_complex_pitch_v2.1.18 ${CMAKE_SOURCE_DIR}/tests/simulated/cboe/c1options/complex/pitch/v2.1.18.pcap 0.05)
 set_tests_properties(benchmark_modern_cboe_c1options_complex_pitch_v2.1.18 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
+add_test(NAME benchmark_advanced_cboe_c1options_complex_pitch_v2.1.18 COMMAND benchmark_advanced_cboe_c1options_complex_pitch_v2.1.18 ${CMAKE_SOURCE_DIR}/tests/simulated/cboe/c1options/complex/pitch/v2.1.18.pcap 0.05)
+set_tests_properties(benchmark_advanced_cboe_c1options_complex_pitch_v2.1.18 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
 add_test(NAME benchmark_classes_cboe_c1options_complex_pitch_v2.1.18 COMMAND benchmark_classes_cboe_c1options_complex_pitch_v2.1.18 ${CMAKE_SOURCE_DIR}/tests/simulated/cboe/c1options/complex/pitch/v2.1.18.pcap 0.05)
 set_tests_properties(benchmark_classes_cboe_c1options_complex_pitch_v2.1.18 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME benchmark_flyweight_cboe_c1options_complex_pitch_v2.1.18 COMMAND benchmark_flyweight_cboe_c1options_complex_pitch_v2.1.18 ${CMAKE_SOURCE_DIR}/tests/simulated/cboe/c1options/complex/pitch/v2.1.18.pcap 0.05)
 set_tests_properties(benchmark_flyweight_cboe_c1options_complex_pitch_v2.1.18 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_tmp_cboe_c1options_complex_pitch_v2.1.18 COMMAND benchmark_tmp_cboe_c1options_complex_pitch_v2.1.18 ${CMAKE_SOURCE_DIR}/tests/simulated/cboe/c1options/complex/pitch/v2.1.18.pcap 0.05)
+set_tests_properties(benchmark_tmp_cboe_c1options_complex_pitch_v2.1.18 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME roundtrip_cboe_c1options_multicastdepthofbook_pitch_v2.39.4 COMMAND roundtrip_cboe_c1options_multicastdepthofbook_pitch_v2.39.4 ${CMAKE_BINARY_DIR}/roundtrip_cboe_c1options_multicastdepthofbook_pitch_v2.39.4.pcap)
 set_tests_properties(roundtrip_cboe_c1options_multicastdepthofbook_pitch_v2.39.4 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
@@ -15217,11 +15826,17 @@ set_tests_properties(benchmark_tmp_cboe_c1options_multicastdepthofbook_pitch_v2.
 add_test(NAME roundtrip_cboe_c1options_marketdatafeed_csm_v1.4.2 COMMAND roundtrip_cboe_c1options_marketdatafeed_csm_v1.4.2 ${CMAKE_BINARY_DIR}/roundtrip_cboe_c1options_marketdatafeed_csm_v1.4.2.pcap)
 set_tests_properties(roundtrip_cboe_c1options_marketdatafeed_csm_v1.4.2 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
+add_test(NAME benchmark_modern_cboe_c1options_marketdatafeed_csm_v1.4.2 COMMAND benchmark_modern_cboe_c1options_marketdatafeed_csm_v1.4.2 ${CMAKE_SOURCE_DIR}/tests/simulated/cboe/c1options/marketdatafeed/csm/v1.4.2.pcap 0.05)
+set_tests_properties(benchmark_modern_cboe_c1options_marketdatafeed_csm_v1.4.2 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
 add_test(NAME benchmark_classes_cboe_c1options_marketdatafeed_csm_v1.4.2 COMMAND benchmark_classes_cboe_c1options_marketdatafeed_csm_v1.4.2 ${CMAKE_SOURCE_DIR}/tests/simulated/cboe/c1options/marketdatafeed/csm/v1.4.2.pcap 0.05)
 set_tests_properties(benchmark_classes_cboe_c1options_marketdatafeed_csm_v1.4.2 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME benchmark_flyweight_cboe_c1options_marketdatafeed_csm_v1.4.2 COMMAND benchmark_flyweight_cboe_c1options_marketdatafeed_csm_v1.4.2 ${CMAKE_SOURCE_DIR}/tests/simulated/cboe/c1options/marketdatafeed/csm/v1.4.2.pcap 0.05)
 set_tests_properties(benchmark_flyweight_cboe_c1options_marketdatafeed_csm_v1.4.2 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_tmp_cboe_c1options_marketdatafeed_csm_v1.4.2 COMMAND benchmark_tmp_cboe_c1options_marketdatafeed_csm_v1.4.2 ${CMAKE_SOURCE_DIR}/tests/simulated/cboe/c1options/marketdatafeed/csm/v1.4.2.pcap 0.05)
+set_tests_properties(benchmark_tmp_cboe_c1options_marketdatafeed_csm_v1.4.2 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME roundtrip_cboe_edgaequities_multicastdepthofbook_pitch_v2.41.29 COMMAND roundtrip_cboe_edgaequities_multicastdepthofbook_pitch_v2.41.29 ${CMAKE_BINARY_DIR}/roundtrip_cboe_edgaequities_multicastdepthofbook_pitch_v2.41.29.pcap)
 set_tests_properties(roundtrip_cboe_edgaequities_multicastdepthofbook_pitch_v2.41.29 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
@@ -15274,11 +15889,26 @@ set_tests_properties(benchmark_flyweight_cixats_cixaspen_marketdatafeed_aspen_v1
 add_test(NAME benchmark_tmp_cixats_cixaspen_marketdatafeed_aspen_v1.4 COMMAND benchmark_tmp_cixats_cixaspen_marketdatafeed_aspen_v1.4 ${CMAKE_SOURCE_DIR}/tests/simulated/cixats/cixaspen/marketdatafeed/aspen/v1.4.pcap 0.05)
 set_tests_properties(benchmark_tmp_cixats_cixaspen_marketdatafeed_aspen_v1.4 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
+add_test(NAME benchmark_modern_cme_globex_mdp3_sbe_v1.8 COMMAND benchmark_modern_cme_globex_mdp3_sbe_v1.8 ${CMAKE_SOURCE_DIR}/tests/simulated/cme/globex/mdp3/sbe/v1.8.pcap 0.05)
+set_tests_properties(benchmark_modern_cme_globex_mdp3_sbe_v1.8 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_advanced_cme_globex_mdp3_sbe_v1.8 COMMAND benchmark_advanced_cme_globex_mdp3_sbe_v1.8 ${CMAKE_SOURCE_DIR}/tests/simulated/cme/globex/mdp3/sbe/v1.8.pcap 0.05)
+set_tests_properties(benchmark_advanced_cme_globex_mdp3_sbe_v1.8 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
 add_test(NAME benchmark_classes_cme_globex_mdp3_sbe_v1.8 COMMAND benchmark_classes_cme_globex_mdp3_sbe_v1.8 ${CMAKE_SOURCE_DIR}/tests/simulated/cme/globex/mdp3/sbe/v1.8.pcap 0.05)
 set_tests_properties(benchmark_classes_cme_globex_mdp3_sbe_v1.8 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME benchmark_flyweight_cme_globex_mdp3_sbe_v1.8 COMMAND benchmark_flyweight_cme_globex_mdp3_sbe_v1.8 ${CMAKE_SOURCE_DIR}/tests/simulated/cme/globex/mdp3/sbe/v1.8.pcap 0.05)
 set_tests_properties(benchmark_flyweight_cme_globex_mdp3_sbe_v1.8 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_tmp_cme_globex_mdp3_sbe_v1.8 COMMAND benchmark_tmp_cme_globex_mdp3_sbe_v1.8 ${CMAKE_SOURCE_DIR}/tests/simulated/cme/globex/mdp3/sbe/v1.8.pcap 0.05)
+set_tests_properties(benchmark_tmp_cme_globex_mdp3_sbe_v1.8 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_modern_cme_globex_mdp3_sbe_v1.9 COMMAND benchmark_modern_cme_globex_mdp3_sbe_v1.9 ${CMAKE_SOURCE_DIR}/tests/simulated/cme/globex/mdp3/sbe/v1.9.pcap 0.05)
+set_tests_properties(benchmark_modern_cme_globex_mdp3_sbe_v1.9 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_advanced_cme_globex_mdp3_sbe_v1.9 COMMAND benchmark_advanced_cme_globex_mdp3_sbe_v1.9 ${CMAKE_SOURCE_DIR}/tests/simulated/cme/globex/mdp3/sbe/v1.9.pcap 0.05)
+set_tests_properties(benchmark_advanced_cme_globex_mdp3_sbe_v1.9 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME benchmark_classes_cme_globex_mdp3_sbe_v1.9 COMMAND benchmark_classes_cme_globex_mdp3_sbe_v1.9 ${CMAKE_SOURCE_DIR}/tests/simulated/cme/globex/mdp3/sbe/v1.9.pcap 0.05)
 set_tests_properties(benchmark_classes_cme_globex_mdp3_sbe_v1.9 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
@@ -15286,11 +15916,29 @@ set_tests_properties(benchmark_classes_cme_globex_mdp3_sbe_v1.9 PROPERTIES PASS_
 add_test(NAME benchmark_flyweight_cme_globex_mdp3_sbe_v1.9 COMMAND benchmark_flyweight_cme_globex_mdp3_sbe_v1.9 ${CMAKE_SOURCE_DIR}/tests/simulated/cme/globex/mdp3/sbe/v1.9.pcap 0.05)
 set_tests_properties(benchmark_flyweight_cme_globex_mdp3_sbe_v1.9 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
+add_test(NAME benchmark_tmp_cme_globex_mdp3_sbe_v1.9 COMMAND benchmark_tmp_cme_globex_mdp3_sbe_v1.9 ${CMAKE_SOURCE_DIR}/tests/simulated/cme/globex/mdp3/sbe/v1.9.pcap 0.05)
+set_tests_properties(benchmark_tmp_cme_globex_mdp3_sbe_v1.9 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_modern_cme_globex_mdp3_sbe_v1.13 COMMAND benchmark_modern_cme_globex_mdp3_sbe_v1.13 ${CMAKE_SOURCE_DIR}/tests/simulated/cme/globex/mdp3/sbe/v1.13.pcap 0.05)
+set_tests_properties(benchmark_modern_cme_globex_mdp3_sbe_v1.13 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_advanced_cme_globex_mdp3_sbe_v1.13 COMMAND benchmark_advanced_cme_globex_mdp3_sbe_v1.13 ${CMAKE_SOURCE_DIR}/tests/simulated/cme/globex/mdp3/sbe/v1.13.pcap 0.05)
+set_tests_properties(benchmark_advanced_cme_globex_mdp3_sbe_v1.13 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
 add_test(NAME benchmark_classes_cme_globex_mdp3_sbe_v1.13 COMMAND benchmark_classes_cme_globex_mdp3_sbe_v1.13 ${CMAKE_SOURCE_DIR}/tests/simulated/cme/globex/mdp3/sbe/v1.13.pcap 0.05)
 set_tests_properties(benchmark_classes_cme_globex_mdp3_sbe_v1.13 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME benchmark_flyweight_cme_globex_mdp3_sbe_v1.13 COMMAND benchmark_flyweight_cme_globex_mdp3_sbe_v1.13 ${CMAKE_SOURCE_DIR}/tests/simulated/cme/globex/mdp3/sbe/v1.13.pcap 0.05)
 set_tests_properties(benchmark_flyweight_cme_globex_mdp3_sbe_v1.13 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_tmp_cme_globex_mdp3_sbe_v1.13 COMMAND benchmark_tmp_cme_globex_mdp3_sbe_v1.13 ${CMAKE_SOURCE_DIR}/tests/simulated/cme/globex/mdp3/sbe/v1.13.pcap 0.05)
+set_tests_properties(benchmark_tmp_cme_globex_mdp3_sbe_v1.13 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_modern_cme_globex_mdp3_sbe_v1.5 COMMAND benchmark_modern_cme_globex_mdp3_sbe_v1.5 ${CMAKE_SOURCE_DIR}/tests/simulated/cme/globex/mdp3/sbe/v1.5.pcap 0.05)
+set_tests_properties(benchmark_modern_cme_globex_mdp3_sbe_v1.5 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_advanced_cme_globex_mdp3_sbe_v1.5 COMMAND benchmark_advanced_cme_globex_mdp3_sbe_v1.5 ${CMAKE_SOURCE_DIR}/tests/simulated/cme/globex/mdp3/sbe/v1.5.pcap 0.05)
+set_tests_properties(benchmark_advanced_cme_globex_mdp3_sbe_v1.5 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME benchmark_classes_cme_globex_mdp3_sbe_v1.5 COMMAND benchmark_classes_cme_globex_mdp3_sbe_v1.5 ${CMAKE_SOURCE_DIR}/tests/simulated/cme/globex/mdp3/sbe/v1.5.pcap 0.05)
 set_tests_properties(benchmark_classes_cme_globex_mdp3_sbe_v1.5 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
@@ -15298,8 +15946,14 @@ set_tests_properties(benchmark_classes_cme_globex_mdp3_sbe_v1.5 PROPERTIES PASS_
 add_test(NAME benchmark_flyweight_cme_globex_mdp3_sbe_v1.5 COMMAND benchmark_flyweight_cme_globex_mdp3_sbe_v1.5 ${CMAKE_SOURCE_DIR}/tests/simulated/cme/globex/mdp3/sbe/v1.5.pcap 0.05)
 set_tests_properties(benchmark_flyweight_cme_globex_mdp3_sbe_v1.5 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
+add_test(NAME benchmark_tmp_cme_globex_mdp3_sbe_v1.5 COMMAND benchmark_tmp_cme_globex_mdp3_sbe_v1.5 ${CMAKE_SOURCE_DIR}/tests/simulated/cme/globex/mdp3/sbe/v1.5.pcap 0.05)
+set_tests_properties(benchmark_tmp_cme_globex_mdp3_sbe_v1.5 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
 add_test(NAME roundtrip_eurex_t7_eobi_fbe_v13.0 COMMAND roundtrip_eurex_t7_eobi_fbe_v13.0 ${CMAKE_BINARY_DIR}/roundtrip_eurex_t7_eobi_fbe_v13.0.pcap)
 set_tests_properties(roundtrip_eurex_t7_eobi_fbe_v13.0 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_modern_eurex_t7_eobi_fbe_v13.0 COMMAND benchmark_modern_eurex_t7_eobi_fbe_v13.0 ${CMAKE_SOURCE_DIR}/tests/simulated/eurex/t7/eobi/fbe/v13.0.pcap 0.05)
+set_tests_properties(benchmark_modern_eurex_t7_eobi_fbe_v13.0 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME benchmark_classes_eurex_t7_eobi_fbe_v13.0 COMMAND benchmark_classes_eurex_t7_eobi_fbe_v13.0 ${CMAKE_SOURCE_DIR}/tests/simulated/eurex/t7/eobi/fbe/v13.0.pcap 0.05)
 set_tests_properties(benchmark_classes_eurex_t7_eobi_fbe_v13.0 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
@@ -15307,8 +15961,14 @@ set_tests_properties(benchmark_classes_eurex_t7_eobi_fbe_v13.0 PROPERTIES PASS_R
 add_test(NAME benchmark_flyweight_eurex_t7_eobi_fbe_v13.0 COMMAND benchmark_flyweight_eurex_t7_eobi_fbe_v13.0 ${CMAKE_SOURCE_DIR}/tests/simulated/eurex/t7/eobi/fbe/v13.0.pcap 0.05)
 set_tests_properties(benchmark_flyweight_eurex_t7_eobi_fbe_v13.0 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
+add_test(NAME benchmark_tmp_eurex_t7_eobi_fbe_v13.0 COMMAND benchmark_tmp_eurex_t7_eobi_fbe_v13.0 ${CMAKE_SOURCE_DIR}/tests/simulated/eurex/t7/eobi/fbe/v13.0.pcap 0.05)
+set_tests_properties(benchmark_tmp_eurex_t7_eobi_fbe_v13.0 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
 add_test(NAME roundtrip_eurex_t7_eobi_fbe_v15.0 COMMAND roundtrip_eurex_t7_eobi_fbe_v15.0 ${CMAKE_BINARY_DIR}/roundtrip_eurex_t7_eobi_fbe_v15.0.pcap)
 set_tests_properties(roundtrip_eurex_t7_eobi_fbe_v15.0 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_modern_eurex_t7_eobi_fbe_v15.0 COMMAND benchmark_modern_eurex_t7_eobi_fbe_v15.0 ${CMAKE_SOURCE_DIR}/tests/simulated/eurex/t7/eobi/fbe/v15.0.pcap 0.05)
+set_tests_properties(benchmark_modern_eurex_t7_eobi_fbe_v15.0 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME benchmark_classes_eurex_t7_eobi_fbe_v15.0 COMMAND benchmark_classes_eurex_t7_eobi_fbe_v15.0 ${CMAKE_SOURCE_DIR}/tests/simulated/eurex/t7/eobi/fbe/v15.0.pcap 0.05)
 set_tests_properties(benchmark_classes_eurex_t7_eobi_fbe_v15.0 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
@@ -15316,8 +15976,14 @@ set_tests_properties(benchmark_classes_eurex_t7_eobi_fbe_v15.0 PROPERTIES PASS_R
 add_test(NAME benchmark_flyweight_eurex_t7_eobi_fbe_v15.0 COMMAND benchmark_flyweight_eurex_t7_eobi_fbe_v15.0 ${CMAKE_SOURCE_DIR}/tests/simulated/eurex/t7/eobi/fbe/v15.0.pcap 0.05)
 set_tests_properties(benchmark_flyweight_eurex_t7_eobi_fbe_v15.0 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
+add_test(NAME benchmark_tmp_eurex_t7_eobi_fbe_v15.0 COMMAND benchmark_tmp_eurex_t7_eobi_fbe_v15.0 ${CMAKE_SOURCE_DIR}/tests/simulated/eurex/t7/eobi/fbe/v15.0.pcap 0.05)
+set_tests_properties(benchmark_tmp_eurex_t7_eobi_fbe_v15.0 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
 add_test(NAME roundtrip_eurex_t7_eobi_fbe_v3.0 COMMAND roundtrip_eurex_t7_eobi_fbe_v3.0 ${CMAKE_BINARY_DIR}/roundtrip_eurex_t7_eobi_fbe_v3.0.pcap)
 set_tests_properties(roundtrip_eurex_t7_eobi_fbe_v3.0 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_modern_eurex_t7_eobi_fbe_v3.0 COMMAND benchmark_modern_eurex_t7_eobi_fbe_v3.0 ${CMAKE_SOURCE_DIR}/tests/simulated/eurex/t7/eobi/fbe/v3.0.pcap 0.05)
+set_tests_properties(benchmark_modern_eurex_t7_eobi_fbe_v3.0 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME benchmark_classes_eurex_t7_eobi_fbe_v3.0 COMMAND benchmark_classes_eurex_t7_eobi_fbe_v3.0 ${CMAKE_SOURCE_DIR}/tests/simulated/eurex/t7/eobi/fbe/v3.0.pcap 0.05)
 set_tests_properties(benchmark_classes_eurex_t7_eobi_fbe_v3.0 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
@@ -15325,14 +15991,23 @@ set_tests_properties(benchmark_classes_eurex_t7_eobi_fbe_v3.0 PROPERTIES PASS_RE
 add_test(NAME benchmark_flyweight_eurex_t7_eobi_fbe_v3.0 COMMAND benchmark_flyweight_eurex_t7_eobi_fbe_v3.0 ${CMAKE_SOURCE_DIR}/tests/simulated/eurex/t7/eobi/fbe/v3.0.pcap 0.05)
 set_tests_properties(benchmark_flyweight_eurex_t7_eobi_fbe_v3.0 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
+add_test(NAME benchmark_tmp_eurex_t7_eobi_fbe_v3.0 COMMAND benchmark_tmp_eurex_t7_eobi_fbe_v3.0 ${CMAKE_SOURCE_DIR}/tests/simulated/eurex/t7/eobi/fbe/v3.0.pcap 0.05)
+set_tests_properties(benchmark_tmp_eurex_t7_eobi_fbe_v3.0 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
 add_test(NAME roundtrip_eurex_t7_eobi_fbe_v6.0 COMMAND roundtrip_eurex_t7_eobi_fbe_v6.0 ${CMAKE_BINARY_DIR}/roundtrip_eurex_t7_eobi_fbe_v6.0.pcap)
 set_tests_properties(roundtrip_eurex_t7_eobi_fbe_v6.0 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_modern_eurex_t7_eobi_fbe_v6.0 COMMAND benchmark_modern_eurex_t7_eobi_fbe_v6.0 ${CMAKE_SOURCE_DIR}/tests/simulated/eurex/t7/eobi/fbe/v6.0.pcap 0.05)
+set_tests_properties(benchmark_modern_eurex_t7_eobi_fbe_v6.0 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME benchmark_classes_eurex_t7_eobi_fbe_v6.0 COMMAND benchmark_classes_eurex_t7_eobi_fbe_v6.0 ${CMAKE_SOURCE_DIR}/tests/simulated/eurex/t7/eobi/fbe/v6.0.pcap 0.05)
 set_tests_properties(benchmark_classes_eurex_t7_eobi_fbe_v6.0 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME benchmark_flyweight_eurex_t7_eobi_fbe_v6.0 COMMAND benchmark_flyweight_eurex_t7_eobi_fbe_v6.0 ${CMAKE_SOURCE_DIR}/tests/simulated/eurex/t7/eobi/fbe/v6.0.pcap 0.05)
 set_tests_properties(benchmark_flyweight_eurex_t7_eobi_fbe_v6.0 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_tmp_eurex_t7_eobi_fbe_v6.0 COMMAND benchmark_tmp_eurex_t7_eobi_fbe_v6.0 ${CMAKE_SOURCE_DIR}/tests/simulated/eurex/t7/eobi/fbe/v6.0.pcap 0.05)
+set_tests_properties(benchmark_tmp_eurex_t7_eobi_fbe_v6.0 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME roundtrip_iex_iexequities_deep_iextp_v1.06 COMMAND roundtrip_iex_iexequities_deep_iextp_v1.06 ${CMAKE_BINARY_DIR}/roundtrip_iex_iexequities_deep_iextp_v1.06.pcap)
 set_tests_properties(roundtrip_iex_iexequities_deep_iextp_v1.06 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
@@ -15532,6 +16207,18 @@ set_tests_properties(benchmark_tmp_jpx_tseequities_marketbyorder_flex_v1.1 PROPE
 add_test(NAME roundtrip_lseg_lse_level2mbo_gtp_v26.2 COMMAND roundtrip_lseg_lse_level2mbo_gtp_v26.2 ${CMAKE_BINARY_DIR}/roundtrip_lseg_lse_level2mbo_gtp_v26.2.pcap)
 set_tests_properties(roundtrip_lseg_lse_level2mbo_gtp_v26.2 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
+add_test(NAME benchmark_modern_lseg_lse_level2mbo_gtp_v26.2 COMMAND benchmark_modern_lseg_lse_level2mbo_gtp_v26.2 ${CMAKE_SOURCE_DIR}/tests/simulated/lseg/lse/level2mbo/gtp/v26.2.pcap 0.05)
+set_tests_properties(benchmark_modern_lseg_lse_level2mbo_gtp_v26.2 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_classes_lseg_lse_level2mbo_gtp_v26.2 COMMAND benchmark_classes_lseg_lse_level2mbo_gtp_v26.2 ${CMAKE_SOURCE_DIR}/tests/simulated/lseg/lse/level2mbo/gtp/v26.2.pcap 0.05)
+set_tests_properties(benchmark_classes_lseg_lse_level2mbo_gtp_v26.2 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_flyweight_lseg_lse_level2mbo_gtp_v26.2 COMMAND benchmark_flyweight_lseg_lse_level2mbo_gtp_v26.2 ${CMAKE_SOURCE_DIR}/tests/simulated/lseg/lse/level2mbo/gtp/v26.2.pcap 0.05)
+set_tests_properties(benchmark_flyweight_lseg_lse_level2mbo_gtp_v26.2 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_tmp_lseg_lse_level2mbo_gtp_v26.2 COMMAND benchmark_tmp_lseg_lse_level2mbo_gtp_v26.2 ${CMAKE_SOURCE_DIR}/tests/simulated/lseg/lse/level2mbo/gtp/v26.2.pcap 0.05)
+set_tests_properties(benchmark_tmp_lseg_lse_level2mbo_gtp_v26.2 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
 add_test(NAME roundtrip_lseg_millennium_level2_mitch_v11.9 COMMAND roundtrip_lseg_millennium_level2_mitch_v11.9 ${CMAKE_BINARY_DIR}/roundtrip_lseg_millennium_level2_mitch_v11.9.pcap)
 set_tests_properties(roundtrip_lseg_millennium_level2_mitch_v11.9 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
@@ -15547,11 +16234,29 @@ set_tests_properties(benchmark_flyweight_lseg_millennium_level2_mitch_v11.9 PROP
 add_test(NAME benchmark_tmp_lseg_millennium_level2_mitch_v11.9 COMMAND benchmark_tmp_lseg_millennium_level2_mitch_v11.9 ${CMAKE_SOURCE_DIR}/tests/simulated/lseg/millennium/level2/mitch/v11.9.pcap 0.05)
 set_tests_properties(benchmark_tmp_lseg_millennium_level2_mitch_v11.9 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
+add_test(NAME benchmark_modern_memx_memxequities_memoirdepthfeed_sbe_v1.3 COMMAND benchmark_modern_memx_memxequities_memoirdepthfeed_sbe_v1.3 ${CMAKE_SOURCE_DIR}/tests/simulated/memx/memxequities/memoirdepthfeed/sbe/v1.3.pcap 0.05)
+set_tests_properties(benchmark_modern_memx_memxequities_memoirdepthfeed_sbe_v1.3 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_advanced_memx_memxequities_memoirdepthfeed_sbe_v1.3 COMMAND benchmark_advanced_memx_memxequities_memoirdepthfeed_sbe_v1.3 ${CMAKE_SOURCE_DIR}/tests/simulated/memx/memxequities/memoirdepthfeed/sbe/v1.3.pcap 0.05)
+set_tests_properties(benchmark_advanced_memx_memxequities_memoirdepthfeed_sbe_v1.3 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_tmp_memx_memxequities_memoirdepthfeed_sbe_v1.3 COMMAND benchmark_tmp_memx_memxequities_memoirdepthfeed_sbe_v1.3 ${CMAKE_SOURCE_DIR}/tests/simulated/memx/memxequities/memoirdepthfeed/sbe/v1.3.pcap 0.05)
+set_tests_properties(benchmark_tmp_memx_memxequities_memoirdepthfeed_sbe_v1.3 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_modern_miax_pearlequities_depthofmarket_mach_v1.3.d COMMAND benchmark_modern_miax_pearlequities_depthofmarket_mach_v1.3.d ${CMAKE_SOURCE_DIR}/tests/simulated/miax/pearlequities/depthofmarket/mach/v1.3.d.pcap 0.05)
+set_tests_properties(benchmark_modern_miax_pearlequities_depthofmarket_mach_v1.3.d PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
 add_test(NAME benchmark_classes_miax_pearlequities_depthofmarket_mach_v1.3.d COMMAND benchmark_classes_miax_pearlequities_depthofmarket_mach_v1.3.d ${CMAKE_SOURCE_DIR}/tests/simulated/miax/pearlequities/depthofmarket/mach/v1.3.d.pcap 0.05)
 set_tests_properties(benchmark_classes_miax_pearlequities_depthofmarket_mach_v1.3.d PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME benchmark_flyweight_miax_pearlequities_depthofmarket_mach_v1.3.d COMMAND benchmark_flyweight_miax_pearlequities_depthofmarket_mach_v1.3.d ${CMAKE_SOURCE_DIR}/tests/simulated/miax/pearlequities/depthofmarket/mach/v1.3.d.pcap 0.05)
 set_tests_properties(benchmark_flyweight_miax_pearlequities_depthofmarket_mach_v1.3.d PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_tmp_miax_pearlequities_depthofmarket_mach_v1.3.d COMMAND benchmark_tmp_miax_pearlequities_depthofmarket_mach_v1.3.d ${CMAKE_SOURCE_DIR}/tests/simulated/miax/pearlequities/depthofmarket/mach/v1.3.d.pcap 0.05)
+set_tests_properties(benchmark_tmp_miax_pearlequities_depthofmarket_mach_v1.3.d PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_modern_miax_miaxoptions_topofmarket_mach_v2.5 COMMAND benchmark_modern_miax_miaxoptions_topofmarket_mach_v2.5 ${CMAKE_SOURCE_DIR}/tests/simulated/miax/miaxoptions/topofmarket/mach/v2.5.pcap 0.05)
+set_tests_properties(benchmark_modern_miax_miaxoptions_topofmarket_mach_v2.5 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME benchmark_classes_miax_miaxoptions_topofmarket_mach_v2.5 COMMAND benchmark_classes_miax_miaxoptions_topofmarket_mach_v2.5 ${CMAKE_SOURCE_DIR}/tests/simulated/miax/miaxoptions/topofmarket/mach/v2.5.pcap 0.05)
 set_tests_properties(benchmark_classes_miax_miaxoptions_topofmarket_mach_v2.5 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
@@ -15559,14 +16264,32 @@ set_tests_properties(benchmark_classes_miax_miaxoptions_topofmarket_mach_v2.5 PR
 add_test(NAME benchmark_flyweight_miax_miaxoptions_topofmarket_mach_v2.5 COMMAND benchmark_flyweight_miax_miaxoptions_topofmarket_mach_v2.5 ${CMAKE_SOURCE_DIR}/tests/simulated/miax/miaxoptions/topofmarket/mach/v2.5.pcap 0.05)
 set_tests_properties(benchmark_flyweight_miax_miaxoptions_topofmarket_mach_v2.5 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
+add_test(NAME benchmark_tmp_miax_miaxoptions_topofmarket_mach_v2.5 COMMAND benchmark_tmp_miax_miaxoptions_topofmarket_mach_v2.5 ${CMAKE_SOURCE_DIR}/tests/simulated/miax/miaxoptions/topofmarket/mach/v2.5.pcap 0.05)
+set_tests_properties(benchmark_tmp_miax_miaxoptions_topofmarket_mach_v2.5 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_modern_miax_miaxoptions_complextopofmarket_mach_v1.1 COMMAND benchmark_modern_miax_miaxoptions_complextopofmarket_mach_v1.1 ${CMAKE_SOURCE_DIR}/tests/simulated/miax/miaxoptions/complextopofmarket/mach/v1.1.pcap 0.05)
+set_tests_properties(benchmark_modern_miax_miaxoptions_complextopofmarket_mach_v1.1 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
 add_test(NAME benchmark_classes_miax_miaxoptions_complextopofmarket_mach_v1.1 COMMAND benchmark_classes_miax_miaxoptions_complextopofmarket_mach_v1.1 ${CMAKE_SOURCE_DIR}/tests/simulated/miax/miaxoptions/complextopofmarket/mach/v1.1.pcap 0.05)
 set_tests_properties(benchmark_classes_miax_miaxoptions_complextopofmarket_mach_v1.1 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME benchmark_flyweight_miax_miaxoptions_complextopofmarket_mach_v1.1 COMMAND benchmark_flyweight_miax_miaxoptions_complextopofmarket_mach_v1.1 ${CMAKE_SOURCE_DIR}/tests/simulated/miax/miaxoptions/complextopofmarket/mach/v1.1.pcap 0.05)
 set_tests_properties(benchmark_flyweight_miax_miaxoptions_complextopofmarket_mach_v1.1 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
+add_test(NAME benchmark_tmp_miax_miaxoptions_complextopofmarket_mach_v1.1 COMMAND benchmark_tmp_miax_miaxoptions_complextopofmarket_mach_v1.1 ${CMAKE_SOURCE_DIR}/tests/simulated/miax/miaxoptions/complextopofmarket/mach/v1.1.pcap 0.05)
+set_tests_properties(benchmark_tmp_miax_miaxoptions_complextopofmarket_mach_v1.1 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_modern_miax_onyxfutures_topofmarket_mach_v1.0.b COMMAND benchmark_modern_miax_onyxfutures_topofmarket_mach_v1.0.b ${CMAKE_SOURCE_DIR}/tests/simulated/miax/onyxfutures/topofmarket/mach/v1.0.b.pcap 0.05)
+set_tests_properties(benchmark_modern_miax_onyxfutures_topofmarket_mach_v1.0.b PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
 add_test(NAME benchmark_classes_miax_onyxfutures_topofmarket_mach_v1.0.b COMMAND benchmark_classes_miax_onyxfutures_topofmarket_mach_v1.0.b ${CMAKE_SOURCE_DIR}/tests/simulated/miax/onyxfutures/topofmarket/mach/v1.0.b.pcap 0.05)
 set_tests_properties(benchmark_classes_miax_onyxfutures_topofmarket_mach_v1.0.b PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_flyweight_miax_onyxfutures_topofmarket_mach_v1.0.b COMMAND benchmark_flyweight_miax_onyxfutures_topofmarket_mach_v1.0.b ${CMAKE_SOURCE_DIR}/tests/simulated/miax/onyxfutures/topofmarket/mach/v1.0.b.pcap 0.05)
+set_tests_properties(benchmark_flyweight_miax_onyxfutures_topofmarket_mach_v1.0.b PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_tmp_miax_onyxfutures_topofmarket_mach_v1.0.b COMMAND benchmark_tmp_miax_onyxfutures_topofmarket_mach_v1.0.b ${CMAKE_SOURCE_DIR}/tests/simulated/miax/onyxfutures/topofmarket/mach/v1.0.b.pcap 0.05)
+set_tests_properties(benchmark_tmp_miax_onyxfutures_topofmarket_mach_v1.0.b PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME roundtrip_nasdaq_nsmequities_totalview_itch_v5.0.2017 COMMAND roundtrip_nasdaq_nsmequities_totalview_itch_v5.0.2017 ${CMAKE_BINARY_DIR}/roundtrip_nasdaq_nsmequities_totalview_itch_v5.0.2017.pcap)
 set_tests_properties(roundtrip_nasdaq_nsmequities_totalview_itch_v5.0.2017 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
@@ -15700,11 +16423,17 @@ set_tests_properties(roundtrip_nasdaq_iseoptions_ordercombofeed_itch_v1.1 PROPER
 add_test(NAME benchmark_modern_nasdaq_iseoptions_ordercombofeed_itch_v1.1 COMMAND benchmark_modern_nasdaq_iseoptions_ordercombofeed_itch_v1.1 ${CMAKE_SOURCE_DIR}/tests/simulated/nasdaq/iseoptions/ordercombofeed/itch/v1.1.pcap 0.05)
 set_tests_properties(benchmark_modern_nasdaq_iseoptions_ordercombofeed_itch_v1.1 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
+add_test(NAME benchmark_advanced_nasdaq_iseoptions_ordercombofeed_itch_v1.1 COMMAND benchmark_advanced_nasdaq_iseoptions_ordercombofeed_itch_v1.1 ${CMAKE_SOURCE_DIR}/tests/simulated/nasdaq/iseoptions/ordercombofeed/itch/v1.1.pcap 0.05)
+set_tests_properties(benchmark_advanced_nasdaq_iseoptions_ordercombofeed_itch_v1.1 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
 add_test(NAME benchmark_classes_nasdaq_iseoptions_ordercombofeed_itch_v1.1 COMMAND benchmark_classes_nasdaq_iseoptions_ordercombofeed_itch_v1.1 ${CMAKE_SOURCE_DIR}/tests/simulated/nasdaq/iseoptions/ordercombofeed/itch/v1.1.pcap 0.05)
 set_tests_properties(benchmark_classes_nasdaq_iseoptions_ordercombofeed_itch_v1.1 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME benchmark_flyweight_nasdaq_iseoptions_ordercombofeed_itch_v1.1 COMMAND benchmark_flyweight_nasdaq_iseoptions_ordercombofeed_itch_v1.1 ${CMAKE_SOURCE_DIR}/tests/simulated/nasdaq/iseoptions/ordercombofeed/itch/v1.1.pcap 0.05)
 set_tests_properties(benchmark_flyweight_nasdaq_iseoptions_ordercombofeed_itch_v1.1 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_tmp_nasdaq_iseoptions_ordercombofeed_itch_v1.1 COMMAND benchmark_tmp_nasdaq_iseoptions_ordercombofeed_itch_v1.1 ${CMAKE_SOURCE_DIR}/tests/simulated/nasdaq/iseoptions/ordercombofeed/itch/v1.1.pcap 0.05)
+set_tests_properties(benchmark_tmp_nasdaq_iseoptions_ordercombofeed_itch_v1.1 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME roundtrip_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 COMMAND roundtrip_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 ${CMAKE_BINARY_DIR}/roundtrip_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0.pcap)
 set_tests_properties(roundtrip_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
@@ -15712,11 +16441,17 @@ set_tests_properties(roundtrip_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 PRO
 add_test(NAME benchmark_modern_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 COMMAND benchmark_modern_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 ${CMAKE_SOURCE_DIR}/tests/simulated/nasdaq/iseoptions/topcomboquotefeed/itch/v1.0.pcap 0.05)
 set_tests_properties(benchmark_modern_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
+add_test(NAME benchmark_advanced_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 COMMAND benchmark_advanced_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 ${CMAKE_SOURCE_DIR}/tests/simulated/nasdaq/iseoptions/topcomboquotefeed/itch/v1.0.pcap 0.05)
+set_tests_properties(benchmark_advanced_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
 add_test(NAME benchmark_classes_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 COMMAND benchmark_classes_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 ${CMAKE_SOURCE_DIR}/tests/simulated/nasdaq/iseoptions/topcomboquotefeed/itch/v1.0.pcap 0.05)
 set_tests_properties(benchmark_classes_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME benchmark_flyweight_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 COMMAND benchmark_flyweight_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 ${CMAKE_SOURCE_DIR}/tests/simulated/nasdaq/iseoptions/topcomboquotefeed/itch/v1.0.pcap 0.05)
 set_tests_properties(benchmark_flyweight_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_tmp_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 COMMAND benchmark_tmp_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 ${CMAKE_SOURCE_DIR}/tests/simulated/nasdaq/iseoptions/topcomboquotefeed/itch/v1.0.pcap 0.05)
+set_tests_properties(benchmark_tmp_nasdaq_iseoptions_topcomboquotefeed_itch_v1.0 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME roundtrip_nasdaq_nsmequities_nlsplus_itch_v3.0 COMMAND roundtrip_nasdaq_nsmequities_nlsplus_itch_v3.0 ${CMAKE_BINARY_DIR}/roundtrip_nasdaq_nsmequities_nlsplus_itch_v3.0.pcap)
 set_tests_properties(roundtrip_nasdaq_nsmequities_nlsplus_itch_v3.0 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
@@ -15814,11 +16549,17 @@ set_tests_properties(roundtrip_nyse_arcaoptions_deepfeed_pillar_v1.2.m PROPERTIE
 add_test(NAME benchmark_modern_nyse_arcaoptions_deepfeed_pillar_v1.2.m COMMAND benchmark_modern_nyse_arcaoptions_deepfeed_pillar_v1.2.m ${CMAKE_SOURCE_DIR}/tests/simulated/nyse/arcaoptions/deepfeed/pillar/v1.2.m.pcap 0.05)
 set_tests_properties(benchmark_modern_nyse_arcaoptions_deepfeed_pillar_v1.2.m PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
+add_test(NAME benchmark_advanced_nyse_arcaoptions_deepfeed_pillar_v1.2.m COMMAND benchmark_advanced_nyse_arcaoptions_deepfeed_pillar_v1.2.m ${CMAKE_SOURCE_DIR}/tests/simulated/nyse/arcaoptions/deepfeed/pillar/v1.2.m.pcap 0.05)
+set_tests_properties(benchmark_advanced_nyse_arcaoptions_deepfeed_pillar_v1.2.m PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
 add_test(NAME benchmark_classes_nyse_arcaoptions_deepfeed_pillar_v1.2.m COMMAND benchmark_classes_nyse_arcaoptions_deepfeed_pillar_v1.2.m ${CMAKE_SOURCE_DIR}/tests/simulated/nyse/arcaoptions/deepfeed/pillar/v1.2.m.pcap 0.05)
 set_tests_properties(benchmark_classes_nyse_arcaoptions_deepfeed_pillar_v1.2.m PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME benchmark_flyweight_nyse_arcaoptions_deepfeed_pillar_v1.2.m COMMAND benchmark_flyweight_nyse_arcaoptions_deepfeed_pillar_v1.2.m ${CMAKE_SOURCE_DIR}/tests/simulated/nyse/arcaoptions/deepfeed/pillar/v1.2.m.pcap 0.05)
 set_tests_properties(benchmark_flyweight_nyse_arcaoptions_deepfeed_pillar_v1.2.m PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_tmp_nyse_arcaoptions_deepfeed_pillar_v1.2.m COMMAND benchmark_tmp_nyse_arcaoptions_deepfeed_pillar_v1.2.m ${CMAKE_SOURCE_DIR}/tests/simulated/nyse/arcaoptions/deepfeed/pillar/v1.2.m.pcap 0.05)
+set_tests_properties(benchmark_tmp_nyse_arcaoptions_deepfeed_pillar_v1.2.m PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME roundtrip_nyse_nyseequities_integratedfeed_xdp_v2.3.a COMMAND roundtrip_nyse_nyseequities_integratedfeed_xdp_v2.3.a ${CMAKE_BINARY_DIR}/roundtrip_nyse_nyseequities_integratedfeed_xdp_v2.3.a.pcap)
 set_tests_properties(roundtrip_nyse_nyseequities_integratedfeed_xdp_v2.3.a PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
@@ -15897,6 +16638,9 @@ set_tests_properties(benchmark_classes_nyse_amexoptions_complexfeed_xdp_v1.3.a P
 
 add_test(NAME benchmark_flyweight_nyse_amexoptions_complexfeed_xdp_v1.3.a COMMAND benchmark_flyweight_nyse_amexoptions_complexfeed_xdp_v1.3.a ${CMAKE_SOURCE_DIR}/tests/simulated/nyse/amexoptions/complexfeed/xdp/v1.3.a.pcap 0.05)
 set_tests_properties(benchmark_flyweight_nyse_amexoptions_complexfeed_xdp_v1.3.a PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_tmp_nyse_amexoptions_complexfeed_xdp_v1.3.a COMMAND benchmark_tmp_nyse_amexoptions_complexfeed_xdp_v1.3.a ${CMAKE_SOURCE_DIR}/tests/simulated/nyse/amexoptions/complexfeed/xdp/v1.3.a.pcap 0.05)
+set_tests_properties(benchmark_tmp_nyse_amexoptions_complexfeed_xdp_v1.3.a PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME roundtrip_nyse_amexoptions_deepfeed_xdp_v1.3.a COMMAND roundtrip_nyse_amexoptions_deepfeed_xdp_v1.3.a ${CMAKE_BINARY_DIR}/roundtrip_nyse_amexoptions_deepfeed_xdp_v1.3.a.pcap)
 set_tests_properties(roundtrip_nyse_amexoptions_deepfeed_xdp_v1.3.a PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
@@ -16171,6 +16915,12 @@ set_tests_properties(benchmark_tmp_nyse_texasequities_integratedfeedrefresh_pill
 add_test(NAME roundtrip_otcmarkets_linkats_multicast_link_v4.3 COMMAND roundtrip_otcmarkets_linkats_multicast_link_v4.3 ${CMAKE_BINARY_DIR}/roundtrip_otcmarkets_linkats_multicast_link_v4.3.pcap)
 set_tests_properties(roundtrip_otcmarkets_linkats_multicast_link_v4.3 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
+add_test(NAME benchmark_modern_otcmarkets_linkats_multicast_link_v4.3 COMMAND benchmark_modern_otcmarkets_linkats_multicast_link_v4.3 ${CMAKE_SOURCE_DIR}/tests/simulated/otcmarkets/linkats/multicast/link/v4.3.pcap 0.05)
+set_tests_properties(benchmark_modern_otcmarkets_linkats_multicast_link_v4.3 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_advanced_otcmarkets_linkats_multicast_link_v4.3 COMMAND benchmark_advanced_otcmarkets_linkats_multicast_link_v4.3 ${CMAKE_SOURCE_DIR}/tests/simulated/otcmarkets/linkats/multicast/link/v4.3.pcap 0.05)
+set_tests_properties(benchmark_advanced_otcmarkets_linkats_multicast_link_v4.3 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
 add_test(NAME benchmark_classes_otcmarkets_linkats_multicast_link_v4.3 COMMAND benchmark_classes_otcmarkets_linkats_multicast_link_v4.3 ${CMAKE_SOURCE_DIR}/tests/simulated/otcmarkets/linkats/multicast/link/v4.3.pcap 0.05)
 set_tests_properties(benchmark_classes_otcmarkets_linkats_multicast_link_v4.3 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
@@ -16179,6 +16929,9 @@ set_tests_properties(benchmark_flyweight_otcmarkets_linkats_multicast_link_v4.3 
 
 add_test(NAME benchmark_tmp_otcmarkets_linkats_multicast_link_v4.3 COMMAND benchmark_tmp_otcmarkets_linkats_multicast_link_v4.3 ${CMAKE_SOURCE_DIR}/tests/simulated/otcmarkets/linkats/multicast/link/v4.3.pcap 0.05)
 set_tests_properties(benchmark_tmp_otcmarkets_linkats_multicast_link_v4.3 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_modern_siac_opra_output_obi_v6.2 COMMAND benchmark_modern_siac_opra_output_obi_v6.2 ${CMAKE_SOURCE_DIR}/tests/simulated/siac/opra/output/obi/v6.2.pcap 0.05)
+set_tests_properties(benchmark_modern_siac_opra_output_obi_v6.2 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME benchmark_advanced_siac_opra_output_obi_v6.2 COMMAND benchmark_advanced_siac_opra_output_obi_v6.2 ${CMAKE_SOURCE_DIR}/tests/simulated/siac/opra/output/obi/v6.2.pcap 0.05)
 set_tests_properties(benchmark_advanced_siac_opra_output_obi_v6.2 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
@@ -16195,14 +16948,23 @@ set_tests_properties(benchmark_tmp_siac_opra_output_obi_v6.2 PROPERTIES PASS_REG
 add_test(NAME benchmark_modern_siac_cts_output_cta_v2.11.b COMMAND benchmark_modern_siac_cts_output_cta_v2.11.b ${CMAKE_SOURCE_DIR}/tests/simulated/siac/cts/output/cta/v2.11.b.pcap 0.05)
 set_tests_properties(benchmark_modern_siac_cts_output_cta_v2.11.b PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
+add_test(NAME benchmark_advanced_siac_cts_output_cta_v2.11.b COMMAND benchmark_advanced_siac_cts_output_cta_v2.11.b ${CMAKE_SOURCE_DIR}/tests/simulated/siac/cts/output/cta/v2.11.b.pcap 0.05)
+set_tests_properties(benchmark_advanced_siac_cts_output_cta_v2.11.b PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
 add_test(NAME benchmark_classes_siac_cts_output_cta_v2.11.b COMMAND benchmark_classes_siac_cts_output_cta_v2.11.b ${CMAKE_SOURCE_DIR}/tests/simulated/siac/cts/output/cta/v2.11.b.pcap 0.05)
 set_tests_properties(benchmark_classes_siac_cts_output_cta_v2.11.b PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME benchmark_flyweight_siac_cts_output_cta_v2.11.b COMMAND benchmark_flyweight_siac_cts_output_cta_v2.11.b ${CMAKE_SOURCE_DIR}/tests/simulated/siac/cts/output/cta/v2.11.b.pcap 0.05)
 set_tests_properties(benchmark_flyweight_siac_cts_output_cta_v2.11.b PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
+add_test(NAME benchmark_tmp_siac_cts_output_cta_v2.11.b COMMAND benchmark_tmp_siac_cts_output_cta_v2.11.b ${CMAKE_SOURCE_DIR}/tests/simulated/siac/cts/output/cta/v2.11.b.pcap 0.05)
+set_tests_properties(benchmark_tmp_siac_cts_output_cta_v2.11.b PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
 add_test(NAME benchmark_modern_siac_cqs_output_cta_v2.10.a COMMAND benchmark_modern_siac_cqs_output_cta_v2.10.a ${CMAKE_SOURCE_DIR}/tests/simulated/siac/cqs/output/cta/v2.10.a.pcap 0.05)
 set_tests_properties(benchmark_modern_siac_cqs_output_cta_v2.10.a PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_advanced_siac_cqs_output_cta_v2.10.a COMMAND benchmark_advanced_siac_cqs_output_cta_v2.10.a ${CMAKE_SOURCE_DIR}/tests/simulated/siac/cqs/output/cta/v2.10.a.pcap 0.05)
+set_tests_properties(benchmark_advanced_siac_cqs_output_cta_v2.10.a PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME benchmark_classes_siac_cqs_output_cta_v2.10.a COMMAND benchmark_classes_siac_cqs_output_cta_v2.10.a ${CMAKE_SOURCE_DIR}/tests/simulated/siac/cqs/output/cta/v2.10.a.pcap 0.05)
 set_tests_properties(benchmark_classes_siac_cqs_output_cta_v2.10.a PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
@@ -16245,6 +17007,9 @@ set_tests_properties(benchmark_classes_siac_cts_output_cta_v2.10 PROPERTIES PASS
 
 add_test(NAME benchmark_flyweight_siac_cts_output_cta_v2.10 COMMAND benchmark_flyweight_siac_cts_output_cta_v2.10 ${CMAKE_SOURCE_DIR}/tests/simulated/siac/cts/output/cta/v2.10.pcap 0.05)
 set_tests_properties(benchmark_flyweight_siac_cts_output_cta_v2.10 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_tmp_siac_cts_output_cta_v2.10 COMMAND benchmark_tmp_siac_cts_output_cta_v2.10 ${CMAKE_SOURCE_DIR}/tests/simulated/siac/cts/output/cta/v2.10.pcap 0.05)
+set_tests_properties(benchmark_tmp_siac_cts_output_cta_v2.10 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 
 add_test(NAME benchmark_modern_siac_cts_output_cta_v2.9 COMMAND benchmark_modern_siac_cts_output_cta_v2.9 ${CMAKE_SOURCE_DIR}/tests/simulated/siac/cts/output/cta/v2.9.pcap 0.05)
 set_tests_properties(benchmark_modern_siac_cts_output_cta_v2.9 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")

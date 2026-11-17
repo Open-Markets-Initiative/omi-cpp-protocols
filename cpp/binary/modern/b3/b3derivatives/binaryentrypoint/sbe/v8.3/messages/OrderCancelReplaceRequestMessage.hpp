@@ -1,9 +1,10 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: messages/OrderCancelReplaceRequestMessage.hpp
 #pragma once
 
 #include "../structs/InboundBusinessHeader.hpp"
 #include "../types/Ordtagid.hpp"
 #include "../types/MmProtectionReset.hpp"
-#include "../types/Clordid.hpp"
+#include "../types/ClOrdId.hpp"
 #include "../types/Account.hpp"
 #include "../types/SenderLocation.hpp"
 #include "../types/EnteringTrader.hpp"
@@ -38,7 +39,7 @@ struct OrderCancelReplaceRequestMessage {
     InboundBusinessHeader inbound_business_header;
     Ordtagid ordtagid;
     MmProtectionReset mm_protection_reset;
-    Clordid clordid;
+    ClOrdId cl_ord_id;
     Account account;
     SenderLocation sender_location;
     EnteringTrader entering_trader;

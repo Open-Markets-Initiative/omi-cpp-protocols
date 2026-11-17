@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.1: bitfields/TradeCondition.hpp
 #pragma once
 
 #include <cstddef>
@@ -31,41 +32,9 @@ class TradeCondition {
     bool out_of_sequence() const;
     void set_out_of_sequence(bool value);
 
-    // Unused Trade Condition 4: Unused TradeCondition 4
-    bool unused_trade_condition_4() const;
-    void set_unused_trade_condition_4(bool value);
-
-    // Unused Trade Condition 5: Unused TradeCondition 5
-    bool unused_trade_condition_5() const;
-    void set_unused_trade_condition_5(bool value);
-
     // Trade On Behalf: TradeOnBehalf
     bool trade_on_behalf() const;
     void set_trade_on_behalf(bool value);
-
-    // Unused Trade Condition 7: Unused TradeCondition 7
-    bool unused_trade_condition_7() const;
-    void set_unused_trade_condition_7(bool value);
-
-    // Unused Trade Condition 8: Unused TradeCondition 8
-    bool unused_trade_condition_8() const;
-    void set_unused_trade_condition_8(bool value);
-
-    // Unused Trade Condition 9: Unused TradeCondition 9
-    bool unused_trade_condition_9() const;
-    void set_unused_trade_condition_9(bool value);
-
-    // Unused Trade Condition 10: Unused TradeCondition 10
-    bool unused_trade_condition_10() const;
-    void set_unused_trade_condition_10(bool value);
-
-    // Unused Trade Condition 11: Unused TradeCondition 11
-    bool unused_trade_condition_11() const;
-    void set_unused_trade_condition_11(bool value);
-
-    // Unused Trade Condition 12: Unused TradeCondition 12
-    bool unused_trade_condition_12() const;
-    void set_unused_trade_condition_12(bool value);
 
     // Regular Trade: RegularTrade
     bool regular_trade() const;
@@ -74,10 +43,6 @@ class TradeCondition {
     // Block Trade: BlockTrade
     bool block_trade() const;
     void set_block_trade(bool value);
-
-    // Unused Trade Condition 15: Unused TradeCondition 15
-    bool unused_trade_condition_15() const;
-    void set_unused_trade_condition_15(bool value);
 
     // The whole bitfield as its wire integer
     std::uint16_t raw() const;

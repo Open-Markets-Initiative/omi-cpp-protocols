@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: types/ConsolidatedLastParticipantId.hpp
 #pragma once
 
 #include <cstddef>

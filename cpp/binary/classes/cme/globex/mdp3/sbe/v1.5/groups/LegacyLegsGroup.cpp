@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.5: groups/LegacyLegsGroup.cpp
 #include "LegacyLegsGroup.hpp"
 
 #include "../common/Print.hpp"

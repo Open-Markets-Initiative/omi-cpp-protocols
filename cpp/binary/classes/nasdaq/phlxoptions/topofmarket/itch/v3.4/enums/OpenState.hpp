@@ -1,3 +1,4 @@
+// Nasdaq.PhlxOptions.TopOfMarket.Itch.v3.4: enums/OpenState.hpp
 #pragma once
 
 #include <cstdint>

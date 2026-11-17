@@ -1,3 +1,4 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: bitfields/SymbolStatusFlags.hpp
 #pragma once
 
 #include <cstddef>

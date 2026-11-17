@@ -1,3 +1,4 @@
+// Cboe.ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29: messages/AuctionUpdateMessage.cpp
 #include "AuctionUpdateMessage.hpp"
 
 #include "../common/Print.hpp"

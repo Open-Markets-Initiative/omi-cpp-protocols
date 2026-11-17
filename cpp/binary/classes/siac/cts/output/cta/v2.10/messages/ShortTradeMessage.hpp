@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.10: messages/ShortTradeMessage.hpp
 #pragma once
 
 #include <cstddef>

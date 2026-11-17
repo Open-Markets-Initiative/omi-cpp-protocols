@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: messages/IndicesMessage.hpp
 #pragma once
 
 #include <cstddef>
@@ -41,13 +42,13 @@ class IndicesMessage {
     void indices_message_payload(Handler& handler) const {
         const auto bytes = indices_message_payload_bytes();
         switch (indices_message_type()) {
-            case IndicesMessageType::Indices: {
+            case IndicesMessageType::IndexMessage: {
                 wire::require(IndexMessage::name, IndexMessage::minimum_size, bytes.size());
                 const IndexMessage message{ bytes };
                 if constexpr (requires { handler.on(message); }) { handler.on(message); }
                 return;
             }
-            case IndicesMessageType::BidAndOfferIndex: {
+            case IndicesMessageType::BidAndOfferIndexMessage: {
                 wire::require(BidAndOfferIndexMessage::name, BidAndOfferIndexMessage::minimum_size, bytes.size());
                 const BidAndOfferIndexMessage message{ bytes };
                 if constexpr (requires { handler.on(message); }) { handler.on(message); }
@@ -63,8 +64,8 @@ class IndicesMessage {
     std::size_t indices_message_payload_size() const {
         const auto bytes = indices_message_payload_bytes();
         switch (indices_message_type()) {
-            case IndicesMessageType::Indices: return IndexMessage{ bytes }.encoded_size();
-            case IndicesMessageType::BidAndOfferIndex: return BidAndOfferIndexMessage{ bytes }.encoded_size();
+            case IndicesMessageType::IndexMessage: return IndexMessage{ bytes }.encoded_size();
+            case IndicesMessageType::BidAndOfferIndexMessage: return BidAndOfferIndexMessage{ bytes }.encoded_size();
             default: return bytes.size();
         }
     }
@@ -73,8 +74,8 @@ class IndicesMessage {
     void indices_message_payload_print(std::ostream& out) const {
         const auto bytes = indices_message_payload_bytes();
         switch (indices_message_type()) {
-            case IndicesMessageType::Indices: IndexMessage{ bytes }.print(out); return;
-            case IndicesMessageType::BidAndOfferIndex: BidAndOfferIndexMessage{ bytes }.print(out); return;
+            case IndicesMessageType::IndexMessage: IndexMessage{ bytes }.print(out); return;
+            case IndicesMessageType::BidAndOfferIndexMessage: BidAndOfferIndexMessage{ bytes }.print(out); return;
             default:
                 out << "UnknownIndicesMessagePayload{type=" << indices_message_type() << ", body=";
                 print::hex(out, bytes.data(), bytes.size());

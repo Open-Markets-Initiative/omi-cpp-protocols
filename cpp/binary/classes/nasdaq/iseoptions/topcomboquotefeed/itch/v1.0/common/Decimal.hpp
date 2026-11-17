@@ -1,3 +1,4 @@
+// Nasdaq.IseOptions.TopComboQuoteFeed.Itch.v1.0: common/Decimal.hpp
 #pragma once
 
 #include <cmath>

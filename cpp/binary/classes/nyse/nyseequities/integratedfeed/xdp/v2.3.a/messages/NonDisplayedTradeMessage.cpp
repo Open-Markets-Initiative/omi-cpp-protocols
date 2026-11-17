@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeed.Xdp.v2.3.a: messages/NonDisplayedTradeMessage.cpp
 #include "NonDisplayedTradeMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,11 +7,11 @@
 
 namespace nyse::nyseequities::integratedfeed::xdp::v2_3_a {
 
-NonDisplayedTradeMessage::NonDisplayedTradeMessage(std::uint32_t source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, std::uint32_t trade_id, std::uint32_t price, std::uint32_t volume, PrintableFlag printable_flag, std::uint32_t db_exec_id)
+NonDisplayedTradeMessage::NonDisplayedTradeMessage(std::chrono::nanoseconds source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, std::uint32_t trade_id, std::uint32_t price, std::uint32_t volume, PrintableFlag printable_flag, std::uint32_t db_exec_id)
   : source_time_ns_(source_time_ns), symbol_index_(symbol_index), symbol_seq_num_(symbol_seq_num), trade_id_(trade_id), price_(price), volume_(volume), printable_flag_(printable_flag), db_exec_id_(db_exec_id) {}
 
-std::uint32_t NonDisplayedTradeMessage::source_time_ns() const { return source_time_ns_; }
-void NonDisplayedTradeMessage::set_source_time_ns(std::uint32_t value) { source_time_ns_ = value; }
+std::chrono::nanoseconds NonDisplayedTradeMessage::source_time_ns() const { return source_time_ns_; }
+void NonDisplayedTradeMessage::set_source_time_ns(std::chrono::nanoseconds value) { source_time_ns_ = value; }
 
 std::uint32_t NonDisplayedTradeMessage::symbol_index() const { return symbol_index_; }
 void NonDisplayedTradeMessage::set_symbol_index(std::uint32_t value) { symbol_index_ = value; }
@@ -41,7 +42,7 @@ std::size_t NonDisplayedTradeMessage::decode(const std::byte* data, std::size_t 
     std::size_t offset = 0;
     wire::require("NonDisplayedTradeMessage", wire_size, length);
 
-    source_time_ns_ = wire::read_u32_le(data + offset);
+    source_time_ns_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     symbol_index_ = wire::read_u32_le(data + offset);
@@ -72,7 +73,7 @@ std::size_t NonDisplayedTradeMessage::encode(std::byte* data, std::size_t capaci
     std::size_t offset = 0;
     wire::require_capacity("NonDisplayedTradeMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_.count()));
     offset += 4;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(symbol_index_));
@@ -114,7 +115,7 @@ std::unique_ptr<Message> NonDisplayedTradeMessage::clone() const {
 void NonDisplayedTradeMessage::print(std::ostream& out) const {
     out << "NonDisplayedTradeMessage{";
     out << "source_time_ns=";
-    out << source_time_ns_;
+    out << source_time_ns_.count();
     out << ", symbol_index=";
     out << symbol_index_;
     out << ", symbol_seq_num=";

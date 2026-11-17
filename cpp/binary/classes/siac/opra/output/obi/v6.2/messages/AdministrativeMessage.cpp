@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: messages/AdministrativeMessage.cpp
 #include "AdministrativeMessage.hpp"
 
 #include "../common/Print.hpp"

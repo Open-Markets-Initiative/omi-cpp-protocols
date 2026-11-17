@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: main.cpp
 #include "Settings.hpp"
 
 int main(const int argc, char** argv) {

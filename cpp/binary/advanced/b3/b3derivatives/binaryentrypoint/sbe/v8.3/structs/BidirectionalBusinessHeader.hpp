@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: structs/BidirectionalBusinessHeader.hpp
 #pragma once
 
 #include <cstddef>
@@ -6,7 +7,7 @@
 #include "../types/SendingTime.hpp"
 #include "../types/EventIndicator.hpp"
 #include "../types/MarketSegmentIdOptional.hpp"
-#include "../types/Padding.hpp"
+#include "../types/PaddingChar2.hpp"
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_3 {
 
@@ -21,7 +22,7 @@ struct bidirectional_business_header {
     sbe_binaryentrypoint::sending_time sending_time;
     sbe_binaryentrypoint::event_indicator event_indicator;
     sbe_binaryentrypoint::market_segment_id_optional market_segment_id_optional;
-    sbe_binaryentrypoint::padding padding;
+    sbe_binaryentrypoint::padding_char_2 padding_char_2;
 
     // parse method
     static bidirectional_business_header* parse(std::byte* buffer) {
@@ -40,8 +41,8 @@ static_assert(offsetof(bidirectional_business_header, msg_seq_num) == 4, "unexpe
 static_assert(offsetof(bidirectional_business_header, sending_time) == 8, "unexpected offset of bidirectional_business_header::sending_time");
 static_assert(offsetof(bidirectional_business_header, event_indicator) == 16, "unexpected offset of bidirectional_business_header::event_indicator");
 static_assert(offsetof(bidirectional_business_header, market_segment_id_optional) == 17, "unexpected offset of bidirectional_business_header::market_segment_id_optional");
-static_assert(offsetof(bidirectional_business_header, padding) == 18, "unexpected offset of bidirectional_business_header::padding");
-static_assert(sizeof(bidirectional_business_header) == 19, "unexpected sizeof bidirectional_business_header");
+static_assert(offsetof(bidirectional_business_header, padding_char_2) == 18, "unexpected offset of bidirectional_business_header::padding_char_2");
+static_assert(sizeof(bidirectional_business_header) == 20, "unexpected sizeof bidirectional_business_header");
 
 #pragma pack(pop)
 }

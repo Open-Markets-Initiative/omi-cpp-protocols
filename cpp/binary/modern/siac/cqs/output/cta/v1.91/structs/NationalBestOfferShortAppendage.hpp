@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v1.91: structs/NationalBestOfferShortAppendage.hpp
 #pragma once
 
 #include "../types/BestOfferParticipantId.hpp"

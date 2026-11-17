@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.9: structs/ParticipantData.cpp
 #include "ParticipantData.hpp"
 
 #include "../common/Print.hpp"

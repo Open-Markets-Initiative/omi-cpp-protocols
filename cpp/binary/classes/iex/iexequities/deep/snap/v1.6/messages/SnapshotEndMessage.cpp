@@ -1,3 +1,4 @@
+// Iex.IexEquities.Deep.Snap.v1.6: messages/SnapshotEndMessage.cpp
 #include "SnapshotEndMessage.hpp"
 
 #include "../common/Print.hpp"

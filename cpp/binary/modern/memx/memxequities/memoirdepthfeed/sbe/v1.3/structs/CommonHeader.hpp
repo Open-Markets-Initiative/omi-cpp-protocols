@@ -1,3 +1,4 @@
+// Memx.MemxEquities.MemoirDepthFeed.Sbe.v1.3: structs/CommonHeader.hpp
 #pragma once
 
 #include "../types/MessageType.hpp"

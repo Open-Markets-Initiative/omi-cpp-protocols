@@ -1,5 +1,7 @@
+// Nyse.ArcaOptions.DeepFeed.Pillar.v1.2.m: messages/OptionsOutrightSeriesSummaryMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
@@ -22,16 +24,16 @@ class OptionsOutrightSeriesSummaryMessage : public Message {
     static constexpr std::size_t wire_size = 32;
 
     OptionsOutrightSeriesSummaryMessage() = default;
-    OptionsOutrightSeriesSummaryMessage(std::uint32_t source_time, std::uint32_t source_time_ns, std::uint32_t series_index, std::int32_t high_price, std::int32_t low_price, std::int32_t open, std::int32_t close, std::uint32_t total_volume);
+    OptionsOutrightSeriesSummaryMessage(std::chrono::seconds source_time, std::chrono::nanoseconds source_time_ns, std::uint32_t series_index, std::int32_t high_price, std::int32_t low_price, std::int32_t open, std::int32_t close, std::uint32_t total_volume);
 
     // Source Time: The time when this msg was generated in the order book, in seconds since
     // Jan 1, 1970 00:00:00 UTC.
-    std::uint32_t source_time() const;
-    void set_source_time(std::uint32_t value);
+    std::chrono::seconds source_time() const;
+    void set_source_time(std::chrono::seconds value);
 
     // Source Time Ns: The nanosecond offset (UTC Time) from the Time Reference message.
-    std::uint32_t source_time_ns() const;
-    void set_source_time_ns(std::uint32_t value);
+    std::chrono::nanoseconds source_time_ns() const;
+    void set_source_time_ns(std::chrono::nanoseconds value);
 
     // Series Index: The unique ID of this series within this market.
     std::uint32_t series_index() const;
@@ -76,8 +78,8 @@ class OptionsOutrightSeriesSummaryMessage : public Message {
     bool operator!=(const OptionsOutrightSeriesSummaryMessage& other) const;
 
   private:
-    std::uint32_t source_time_{};
-    std::uint32_t source_time_ns_{};
+    std::chrono::seconds source_time_{};
+    std::chrono::nanoseconds source_time_ns_{};
     std::uint32_t series_index_{};
     std::int32_t high_price_{};
     std::int32_t low_price_{};

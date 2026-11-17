@@ -1,6 +1,6 @@
+// Jpx.TseEquities.MarketByOrder.Flex.v1.1: types/OrderCondition.hpp
 #pragma once
 
-#include <bit>
 #include <cstddef>
 #include <cstdint>
 

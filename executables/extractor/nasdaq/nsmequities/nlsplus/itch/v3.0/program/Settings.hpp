@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: program/Settings.hpp
 #pragma once
 
 #include <filesystem>

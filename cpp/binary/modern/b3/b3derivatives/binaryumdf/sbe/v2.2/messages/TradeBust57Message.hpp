@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.2: messages/TradeBust57Message.hpp
 #pragma once
 
 #include "../types/SecurityId.hpp"
@@ -5,7 +6,7 @@
 #include "../types/TradingSessionId.hpp"
 #include "../types/Offset10Padding2.hpp"
 #include "../types/MdFuturePrice.hpp"
-#include "../types/MdEntrySizeQuantity.hpp"
+#include "../types/MdEntrySize.hpp"
 #include "../types/TradeId.hpp"
 #include "../types/TradeDate.hpp"
 #include "../types/Offset34Padding2.hpp"
@@ -24,7 +25,7 @@ struct TradeBust57Message {
     TradingSessionId trading_session_id;
     Offset10Padding2 offset_10_padding_2;
     MdFuturePrice md_future_price;
-    MdEntrySizeQuantity md_entry_size_quantity;
+    MdEntrySize md_entry_size;
     TradeId trade_id;
     TradeDate trade_date;
     Offset34Padding2 offset_34_padding_2;

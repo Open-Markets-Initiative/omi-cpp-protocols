@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.ImbalancesFeed.Xdp.v2.2.a: enums/AuctionType.cpp
 #include "AuctionType.hpp"
 
 namespace nyse::nyseequities::imbalancesfeed::xdp::v2_2_a {

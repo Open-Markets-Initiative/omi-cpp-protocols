@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.6: Factory.hpp
 #pragma once
 
 #include <memory>

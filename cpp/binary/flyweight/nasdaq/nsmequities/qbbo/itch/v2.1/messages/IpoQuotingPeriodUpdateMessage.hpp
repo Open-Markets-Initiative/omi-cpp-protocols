@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.Qbbo.Itch.v2.1: messages/IpoQuotingPeriodUpdateMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -38,7 +39,7 @@ class IpoQuotingPeriodUpdateMessage {
 
     std::string_view stock() const { return view::text(at(8), 8, ' '); }
 
-    std::uint32_t ipo_quotation_release_time() const { return wire::read_u32_be(at(16)); }
+    std::chrono::seconds ipo_quotation_release_time() const { return std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_be(at(16)))); }
 
     IpoQuotationReleaseQualifier ipo_quotation_release_qualifier() const { return static_cast<IpoQuotationReleaseQualifier>(wire::read_char(at(20))); }
 
@@ -53,7 +54,7 @@ class IpoQuotingPeriodUpdateMessage {
         out << ", stock=";
         print::text(out, stock());
         out << ", ipo_quotation_release_time=";
-        out << ipo_quotation_release_time();
+        out << ipo_quotation_release_time().count();
         out << ", ipo_quotation_release_qualifier=";
         out << ipo_quotation_release_qualifier();
         out << ", ipo_price=";

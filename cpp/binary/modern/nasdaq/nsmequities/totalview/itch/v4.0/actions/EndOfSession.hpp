@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v4.0: actions/EndOfSession.hpp
 #pragma once
 
 namespace nasdaq::nsmequities::totalview::itch::v4_0 {

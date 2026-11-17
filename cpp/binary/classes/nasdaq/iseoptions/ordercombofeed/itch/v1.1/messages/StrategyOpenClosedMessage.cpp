@@ -1,3 +1,4 @@
+// Nasdaq.IseOptions.OrderComboFeed.Itch.v1.1: messages/StrategyOpenClosedMessage.cpp
 #include "StrategyOpenClosedMessage.hpp"
 
 #include "../common/Print.hpp"

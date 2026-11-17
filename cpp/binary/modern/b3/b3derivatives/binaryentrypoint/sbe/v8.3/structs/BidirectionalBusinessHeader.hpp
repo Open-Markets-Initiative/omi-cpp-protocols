@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: structs/BidirectionalBusinessHeader.hpp
 #pragma once
 
 #include "../types/SessionId.hpp"
@@ -5,7 +6,7 @@
 #include "../types/SendingTime.hpp"
 #include "../types/EventIndicator.hpp"
 #include "../types/MarketSegmentIdOptional.hpp"
-#include "../types/Padding.hpp"
+#include "../types/PaddingChar2.hpp"
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_3 {
 
@@ -18,7 +19,7 @@ struct BidirectionalBusinessHeader {
     SendingTime sending_time;
     EventIndicator event_indicator;
     MarketSegmentIdOptional market_segment_id_optional;
-    Padding padding;
+    PaddingChar2 padding_char_2;
 
     // parse method
     static BidirectionalBusinessHeader* parse(std::byte* buffer) {

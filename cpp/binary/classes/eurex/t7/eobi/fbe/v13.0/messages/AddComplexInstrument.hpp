@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v13.0: messages/AddComplexInstrument.hpp
 #pragma once
 
 #include <array>
@@ -31,7 +32,7 @@ class AddComplexInstrument : public Message {
     AddComplexInstrument() = default;
     AddComplexInstrument(std::optional<std::int64_t> security_id, std::optional<std::chrono::nanoseconds> transact_time, const std::string& security_desc, std::optional<std::int32_t> security_sub_type, std::optional<ProductComplex> product_complex, std::optional<ImpliedMarketIndicator> implied_market_indicator, std::optional<std::uint16_t> quantity_scaling_factor, std::optional<std::uint32_t> leg_ratio_multiplier, std::optional<std::uint8_t> no_legs, const std::array<std::byte, 2>& pad2, std::optional<LastFragment> last_fragment, const std::array<InstrmtLegGrpComp, 20>& instrmt_leg_grp_comp);
 
-    // Security Id:
+    // Security Id: Unique instrument identifier
     std::optional<std::int64_t> security_id() const;
     void set_security_id(std::optional<std::int64_t> value);
 

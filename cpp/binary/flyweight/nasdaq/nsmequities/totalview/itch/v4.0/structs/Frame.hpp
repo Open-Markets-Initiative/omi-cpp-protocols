@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v4.0: structs/Frame.hpp
 #pragma once
 
 #include <cstddef>

@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.TopFeed.Pillar.v1.2.c: types/AuctionInterestClearingPrice.hpp
 #pragma once
 
 #include <cstddef>

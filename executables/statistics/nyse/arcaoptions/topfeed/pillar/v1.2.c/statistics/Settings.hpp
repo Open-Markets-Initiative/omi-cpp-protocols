@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.TopFeed.Pillar.v1.2.c: statistics/Settings.hpp
 #pragma once
 
 #include <string>

@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.8: messages/details/SnapshotFullRefreshReader.hpp
 #pragma once
 
 #include "SnapshotFullRefreshWriter.hpp"

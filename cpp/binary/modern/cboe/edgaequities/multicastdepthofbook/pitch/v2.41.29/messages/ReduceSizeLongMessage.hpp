@@ -1,3 +1,4 @@
+// Cboe.EdgaEquities.MulticastDepthOfBook.Pitch.v2.41.29: messages/ReduceSizeLongMessage.hpp
 #pragma once
 
 #include "../types/TimeOffset.hpp"

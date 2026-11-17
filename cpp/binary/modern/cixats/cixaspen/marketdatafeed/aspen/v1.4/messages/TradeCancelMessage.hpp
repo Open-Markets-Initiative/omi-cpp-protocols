@@ -1,3 +1,4 @@
+// CixAts.CixAspen.MarketDataFeed.Aspen.v1.4: messages/TradeCancelMessage.hpp
 #pragma once
 
 #include "../types/SymbolId.hpp"

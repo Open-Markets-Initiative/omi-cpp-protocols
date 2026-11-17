@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.9: types/TradeVolume.hpp
 #pragma once
 
 #include <bit>

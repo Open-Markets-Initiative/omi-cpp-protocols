@@ -1,3 +1,4 @@
+// Nyse.ArcaEquities.IntegratedFeedRefresh.Pillar.v2.5.g: enums/PriceResolution.cpp
 #include "PriceResolution.hpp"
 
 namespace nyse::arcaequities::integratedfeedrefresh::pillar::v2_5_g {

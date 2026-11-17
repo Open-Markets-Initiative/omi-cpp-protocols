@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeedRefresh.Pillar.v2.5.g: messages/SymbolIndexMappingMessage.cpp
 #include "SymbolIndexMappingMessage.hpp"
 
 #include "../common/Print.hpp"

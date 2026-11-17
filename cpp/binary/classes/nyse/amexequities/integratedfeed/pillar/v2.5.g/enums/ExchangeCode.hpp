@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeed.Pillar.v2.5.g: enums/ExchangeCode.hpp
 #pragma once
 
 #include <cstdint>

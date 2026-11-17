@@ -1,3 +1,4 @@
+// Jpx.TseEquities.MarketByOrder.Flex.v1.1: enums/ShortSellingStatus.hpp
 #pragma once
 
 #include <cstdint>

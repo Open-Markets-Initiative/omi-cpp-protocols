@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: messages/IndexMessage.hpp
 #pragma once
 
 #include <cstddef>
@@ -20,7 +21,7 @@ class IndicesMessagePayloadVisitor;
 class IndexMessage : public IndicesMessagePayload {
   public:
     // The code that selects this message
-    static constexpr IndicesMessagePayloadCode message_type = IndicesMessageType::Indices;
+    static constexpr IndicesMessagePayloadCode message_type = IndicesMessageType::IndexMessage;
     // Bytes of this message on the wire
     static constexpr std::size_t wire_size = 41;
 

@@ -1,8 +1,10 @@
+// Miax.MiaxOptions.TopOfMarket.Mach.v2.5: messages/UnderlyingTradingStatusNotificationMessage.hpp
 #pragma once
 
 #include <chrono>
 #include <cstddef>
 #include <cstdint>
+#include <optional>
 #include <ostream>
 #include <span>
 #include <string_view>
@@ -39,9 +41,9 @@ class UnderlyingTradingStatusNotificationMessage {
 
     EventReason event_reason() const { return static_cast<EventReason>(wire::read_char(at(16))); }
 
-    std::uint32_t expected_event_time_seconds_part() const { return wire::read_u32_le(at(17)); }
+    std::optional<std::chrono::seconds> expected_event_time_seconds_part() const { return wire::nullable_duration<std::chrono::seconds>(wire::read_u32_le(at(17)), static_cast<std::uint32_t>(0ULL)); }
 
-    std::uint32_t expected_event_time_nano_seconds_part() const { return wire::read_u32_le(at(21)); }
+    std::chrono::nanoseconds expected_event_time_nano_seconds_part() const { return std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(at(21)))); }
 
     void print(std::ostream& out) const {
         out << "UnderlyingTradingStatusNotificationMessage{";
@@ -54,9 +56,9 @@ class UnderlyingTradingStatusNotificationMessage {
         out << ", event_reason=";
         out << event_reason();
         out << ", expected_event_time_seconds_part=";
-        out << expected_event_time_seconds_part();
+        print::optional_duration(out, expected_event_time_seconds_part());
         out << ", expected_event_time_nano_seconds_part=";
-        out << expected_event_time_nano_seconds_part();
+        out << expected_event_time_nano_seconds_part().count();
         out << '}';
     }
 

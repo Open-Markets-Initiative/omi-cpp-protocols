@@ -1,6 +1,8 @@
+// Nyse.ArcaOptions.DeepFeed.Pillar.v1.2.m: messages/OptionsAddOrderRefreshMessage.hpp
 #pragma once
 
 #include <array>
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
@@ -25,16 +27,16 @@ class OptionsAddOrderRefreshMessage : public Message {
     static constexpr std::size_t wire_size = 40;
 
     OptionsAddOrderRefreshMessage() = default;
-    OptionsAddOrderRefreshMessage(std::uint32_t source_time, std::uint32_t source_time_ns, std::uint32_t series_index, std::uint32_t series_seq_num, std::uint64_t order_id, std::int32_t price, std::uint32_t volume, Side side, const std::string& firm_id, const std::array<std::byte, 1>& reserved_1, CustIndicator cust_indicator);
+    OptionsAddOrderRefreshMessage(std::chrono::seconds source_time, std::chrono::nanoseconds source_time_ns, std::uint32_t series_index, std::uint32_t series_seq_num, std::uint64_t order_id, std::int32_t price, std::uint32_t volume, Side side, const std::string& firm_id, const std::array<std::byte, 1>& reserved_1, CustIndicator cust_indicator);
 
     // Source Time: The time when this msg was generated in the order book, in seconds since
     // Jan 1, 1970 00:00:00 UTC.
-    std::uint32_t source_time() const;
-    void set_source_time(std::uint32_t value);
+    std::chrono::seconds source_time() const;
+    void set_source_time(std::chrono::seconds value);
 
     // Source Time Ns: The nanosecond offset (UTC Time) from the Time Reference message.
-    std::uint32_t source_time_ns() const;
-    void set_source_time_ns(std::uint32_t value);
+    std::chrono::nanoseconds source_time_ns() const;
+    void set_source_time_ns(std::chrono::nanoseconds value);
 
     // Series Index: The unique ID of this series within this market.
     std::uint32_t series_index() const;
@@ -90,8 +92,8 @@ class OptionsAddOrderRefreshMessage : public Message {
     bool operator!=(const OptionsAddOrderRefreshMessage& other) const;
 
   private:
-    std::uint32_t source_time_{};
-    std::uint32_t source_time_ns_{};
+    std::chrono::seconds source_time_{};
+    std::chrono::nanoseconds source_time_ns_{};
     std::uint32_t series_index_{};
     std::uint32_t series_seq_num_{};
     std::uint64_t order_id_{};

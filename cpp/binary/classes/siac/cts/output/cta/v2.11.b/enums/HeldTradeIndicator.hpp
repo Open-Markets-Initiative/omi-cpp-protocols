@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: enums/HeldTradeIndicator.hpp
 #pragma once
 
 #include <cstdint>

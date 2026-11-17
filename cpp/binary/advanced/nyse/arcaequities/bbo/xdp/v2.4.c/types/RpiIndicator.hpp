@@ -1,3 +1,4 @@
+// Nyse.ArcaEquities.Bbo.Xdp.v2.4.c: types/RpiIndicator.hpp
 #pragma once
 
 #include <cstddef>

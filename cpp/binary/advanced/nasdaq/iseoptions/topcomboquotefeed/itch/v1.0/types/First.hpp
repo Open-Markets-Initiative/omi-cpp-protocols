@@ -1,3 +1,4 @@
+// Nasdaq.IseOptions.TopComboQuoteFeed.Itch.v1.0: types/First.hpp
 #pragma once
 
 #include <cstddef>
@@ -12,21 +13,22 @@ struct first {
     static constexpr const char* name = "first";
     static constexpr std::size_t size = 8;
     static constexpr bool is_optional = false;
+    static constexpr int exponent = -8;
 
-    using result_type = required<std::uint64_t>;
+    using result_type = required<std::int64_t>;
     using storage_type = result_type;
 
     constexpr first()
      : value{ 0 } {}
 
-    first(std::uint64_t v)
-     : value{ static_cast<std::uint64_t>(__builtin_bswap64(v)) } {}
+    first(std::int64_t v)
+     : value{ static_cast<std::int64_t>(__builtin_bswap64(v)) } {}
 
     [[nodiscard]] result_type get() const {
-        return result_type{static_cast<std::uint64_t>(__builtin_bswap64(value))};
+        return result_type{static_cast<std::int64_t>(__builtin_bswap64(value))};
     }
 
-    void set(std::uint64_t v) {
+    void set(std::int64_t v) {
         value = __builtin_bswap64(v);
     }
 
@@ -38,6 +40,6 @@ struct first {
     }
 
   protected:
-    std::uint64_t value;
+    std::int64_t value;
 };
 }

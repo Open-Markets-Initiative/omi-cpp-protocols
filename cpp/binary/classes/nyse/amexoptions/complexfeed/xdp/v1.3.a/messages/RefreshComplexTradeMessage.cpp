@@ -1,3 +1,4 @@
+// Nyse.AmexOptions.ComplexFeed.Xdp.v1.3.a: messages/RefreshComplexTradeMessage.cpp
 #include "RefreshComplexTradeMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,14 +7,14 @@
 
 namespace nyse::amexoptions::complexfeed::xdp::v1_3_a {
 
-RefreshComplexTradeMessage::RefreshComplexTradeMessage(std::uint32_t source_time, std::uint32_t source_time_ns, std::uint32_t complex_index, std::uint32_t symbol_seq_num, std::uint32_t trade_id, std::int32_t price, std::uint32_t volume_4, TradeCond1 trade_cond_1, char trade_cond_2, const std::array<std::byte, 2>& reserved_2)
+RefreshComplexTradeMessage::RefreshComplexTradeMessage(std::chrono::seconds source_time, std::chrono::nanoseconds source_time_ns, std::uint32_t complex_index, std::uint32_t symbol_seq_num, std::uint32_t trade_id, std::int32_t price, std::uint32_t volume_4, TradeCond1 trade_cond_1, char trade_cond_2, const std::array<std::byte, 2>& reserved_2)
   : source_time_(source_time), source_time_ns_(source_time_ns), complex_index_(complex_index), symbol_seq_num_(symbol_seq_num), trade_id_(trade_id), price_(price), volume_4_(volume_4), trade_cond_1_(trade_cond_1), trade_cond_2_(trade_cond_2), reserved_2_(reserved_2) {}
 
-std::uint32_t RefreshComplexTradeMessage::source_time() const { return source_time_; }
-void RefreshComplexTradeMessage::set_source_time(std::uint32_t value) { source_time_ = value; }
+std::chrono::seconds RefreshComplexTradeMessage::source_time() const { return source_time_; }
+void RefreshComplexTradeMessage::set_source_time(std::chrono::seconds value) { source_time_ = value; }
 
-std::uint32_t RefreshComplexTradeMessage::source_time_ns() const { return source_time_ns_; }
-void RefreshComplexTradeMessage::set_source_time_ns(std::uint32_t value) { source_time_ns_ = value; }
+std::chrono::nanoseconds RefreshComplexTradeMessage::source_time_ns() const { return source_time_ns_; }
+void RefreshComplexTradeMessage::set_source_time_ns(std::chrono::nanoseconds value) { source_time_ns_ = value; }
 
 std::uint32_t RefreshComplexTradeMessage::complex_index() const { return complex_index_; }
 void RefreshComplexTradeMessage::set_complex_index(std::uint32_t value) { complex_index_ = value; }
@@ -48,10 +49,10 @@ std::size_t RefreshComplexTradeMessage::decode(const std::byte* data, std::size_
     std::size_t offset = 0;
     wire::require("RefreshComplexTradeMessage", wire_size, length);
 
-    source_time_ = wire::read_u32_le(data + offset);
+    source_time_ = std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
-    source_time_ns_ = wire::read_u32_le(data + offset);
+    source_time_ns_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     complex_index_ = wire::read_u32_le(data + offset);
@@ -85,10 +86,10 @@ std::size_t RefreshComplexTradeMessage::encode(std::byte* data, std::size_t capa
     std::size_t offset = 0;
     wire::require_capacity("RefreshComplexTradeMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_.count()));
     offset += 4;
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_.count()));
     offset += 4;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(complex_index_));
@@ -133,9 +134,9 @@ std::unique_ptr<Message> RefreshComplexTradeMessage::clone() const {
 void RefreshComplexTradeMessage::print(std::ostream& out) const {
     out << "RefreshComplexTradeMessage{";
     out << "source_time=";
-    out << source_time_;
+    out << source_time_.count();
     out << ", source_time_ns=";
-    out << source_time_ns_;
+    out << source_time_ns_.count();
     out << ", complex_index=";
     out << complex_index_;
     out << ", symbol_seq_num=";

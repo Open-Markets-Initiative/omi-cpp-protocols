@@ -1,3 +1,4 @@
+// Nyse.AmexOptions.ComplexFeed.Xdp.v1.3.a: enums/TradeCond1.cpp
 #include "TradeCond1.hpp"
 
 namespace nyse::amexoptions::complexfeed::xdp::v1_3_a {

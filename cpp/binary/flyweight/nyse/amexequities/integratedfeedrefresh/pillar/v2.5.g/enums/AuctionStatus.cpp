@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeedRefresh.Pillar.v2.5.g: enums/AuctionStatus.cpp
 #include "AuctionStatus.hpp"
 
 namespace nyse::amexequities::integratedfeedrefresh::pillar::v2_5_g {

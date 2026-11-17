@@ -1,3 +1,4 @@
+// Cboe.EdgxEquities.MulticastDepthOfBook.Pitch.v2.41.29: messages/TradeLongMessage.hpp
 #pragma once
 
 #include "../types/TimeOffset.hpp"

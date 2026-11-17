@@ -1,5 +1,7 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/OrderBookClearMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <ostream>
@@ -28,7 +30,7 @@ class OrderBookClearMessage {
     static constexpr std::size_t fixed_size = 11;
     std::size_t encoded_size() const { return 11; }
 
-    std::uint32_t nanosecond() const { return wire::read_u32_le(at(0)); }
+    std::chrono::nanoseconds nanosecond() const { return std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(at(0)))); }
 
     std::uint32_t instrument_id() const { return wire::read_u32_le(at(4)); }
 
@@ -41,7 +43,7 @@ class OrderBookClearMessage {
     void print(std::ostream& out) const {
         out << "OrderBookClearMessage{";
         out << "nanosecond=";
-        out << nanosecond();
+        out << nanosecond().count();
         out << ", instrument_id=";
         out << instrument_id();
         out << ", reserved_a=";

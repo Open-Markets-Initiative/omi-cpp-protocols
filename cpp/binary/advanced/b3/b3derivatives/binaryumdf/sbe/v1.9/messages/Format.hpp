@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.9: messages/Format.hpp
 #pragma once
 
 #include <ostream>
@@ -172,14 +173,14 @@ inline std::ostream& operator<<(std::ostream& os, const security_definition_mess
        << ",isin_number=\"" << (msg.fields.isin_number.get_trimmed().has_value() ? msg.fields.isin_number.get_trimmed().value() : std::string_view("null")) << '"'
        << ",asset=\"" << msg.fields.asset.get_trimmed().value() << '"'
        << ",cfi_code=\"" << msg.fields.cfi_code.get_trimmed().value() << '"'
-       << ",maturity_month_year.year=" << msg.fields.maturity_month_year.year.get().value()
-       << ",maturity_month_year.month=" << static_cast<unsigned>(msg.fields.maturity_month_year.month.get().value())
-       << ",maturity_month_year.day=" << static_cast<unsigned>(msg.fields.maturity_month_year.day.get().value())
-       << ",maturity_month_year.week=" << static_cast<unsigned>(msg.fields.maturity_month_year.week.get().value())
-       << ",contract_settl_month.year=" << msg.fields.contract_settl_month.year.get().value()
-       << ",contract_settl_month.month=" << static_cast<unsigned>(msg.fields.contract_settl_month.month.get().value())
-       << ",contract_settl_month.day=" << static_cast<unsigned>(msg.fields.contract_settl_month.day.get().value())
-       << ",contract_settl_month.week=" << static_cast<unsigned>(msg.fields.contract_settl_month.week.get().value())
+       << ",maturity_month_year.year=" << (msg.fields.maturity_month_year.year.get().has_value() ? std::to_string(msg.fields.maturity_month_year.year.get().value()) : std::string_view("null"))
+       << ",maturity_month_year.month=" << (msg.fields.maturity_month_year.month.get().has_value() ? std::to_string(msg.fields.maturity_month_year.month.get().value()) : std::string_view("null"))
+       << ",maturity_month_year.day=" << (msg.fields.maturity_month_year.day.get().has_value() ? std::to_string(msg.fields.maturity_month_year.day.get().value()) : std::string_view("null"))
+       << ",maturity_month_year.week=" << (msg.fields.maturity_month_year.week.get().has_value() ? std::to_string(msg.fields.maturity_month_year.week.get().value()) : std::string_view("null"))
+       << ",contract_settl_month.year=" << (msg.fields.contract_settl_month.year.get().has_value() ? std::to_string(msg.fields.contract_settl_month.year.get().value()) : std::string_view("null"))
+       << ",contract_settl_month.month=" << (msg.fields.contract_settl_month.month.get().has_value() ? std::to_string(msg.fields.contract_settl_month.month.get().value()) : std::string_view("null"))
+       << ",contract_settl_month.day=" << (msg.fields.contract_settl_month.day.get().has_value() ? std::to_string(msg.fields.contract_settl_month.day.get().value()) : std::string_view("null"))
+       << ",contract_settl_month.week=" << (msg.fields.contract_settl_month.week.get().has_value() ? std::to_string(msg.fields.contract_settl_month.week.get().value()) : std::string_view("null"))
        << ",currency=\"" << msg.fields.currency.get_trimmed().value() << '"'
        << ",strike_currency=\"" << (msg.fields.strike_currency.get_trimmed().has_value() ? msg.fields.strike_currency.get_trimmed().value() : std::string_view("null")) << '"'
        << ",settl_currency=\"" << (msg.fields.settl_currency.get_trimmed().has_value() ? msg.fields.settl_currency.get_trimmed().value() : std::string_view("null")) << '"'
@@ -238,7 +239,7 @@ inline std::ostream& operator<<(std::ostream& os, const theoretical_opening_pric
        << ",md_update_action=\"" << sbe_binaryumdf::md_update_action::to_string(msg.fields.md_update_action.get().value()) << '"'
        << ",trade_date=" << msg.fields.trade_date.get().value()
        << ",md_corporate_offset_price_optional=" << (msg.fields.md_corporate_offset_price_optional.get().has_value() ? std::to_string(msg.fields.md_corporate_offset_price_optional.get().value()) : std::string_view("null"))
-       << ",md_entry_size_quantity_optional=" << (msg.fields.md_entry_size_quantity_optional.get().has_value() ? std::to_string(msg.fields.md_entry_size_quantity_optional.get().value()) : std::string_view("null"))
+       << ",md_entry_size_optional=" << (msg.fields.md_entry_size_optional.get().has_value() ? std::to_string(msg.fields.md_entry_size_optional.get().value()) : std::string_view("null"))
        << ",md_entry_timestamp=" << (msg.fields.md_entry_timestamp.get().has_value() ? std::to_string(msg.fields.md_entry_timestamp.get().value()) : std::string_view("null"))
        << ",rpt_seq=" << (msg.fields.rpt_seq.get().has_value() ? std::to_string(msg.fields.rpt_seq.get().value()) : std::string_view("null"))
        ;
@@ -263,7 +264,7 @@ inline std::ostream& operator<<(std::ostream& os, const auction_imbalance_19_mes
        << ",match_event_indicator=" << static_cast<unsigned>(msg.fields.match_event_indicator.get().value())
        << ",md_update_action=\"" << sbe_binaryumdf::md_update_action::to_string(msg.fields.md_update_action.get().value()) << '"'
        << ",imbalance_condition=" << static_cast<unsigned>(msg.fields.imbalance_condition.get().value())
-       << ",md_entry_size_quantity_optional=" << (msg.fields.md_entry_size_quantity_optional.get().has_value() ? std::to_string(msg.fields.md_entry_size_quantity_optional.get().value()) : std::string_view("null"))
+       << ",md_entry_size_optional=" << (msg.fields.md_entry_size_optional.get().has_value() ? std::to_string(msg.fields.md_entry_size_optional.get().value()) : std::string_view("null"))
        << ",md_entry_timestamp=" << (msg.fields.md_entry_timestamp.get().has_value() ? std::to_string(msg.fields.md_entry_timestamp.get().value()) : std::string_view("null"))
        << ",rpt_seq=" << (msg.fields.rpt_seq.get().has_value() ? std::to_string(msg.fields.rpt_seq.get().value()) : std::string_view("null"))
        ;
@@ -326,7 +327,7 @@ inline std::ostream& operator<<(std::ostream& os, const last_trade_price_27_mess
        << ",trading_session_id=\"" << sbe_binaryumdf::trading_session_id::to_string(msg.fields.trading_session_id.get().value()) << '"'
        << ",trade_condition=" << static_cast<unsigned>(msg.fields.trade_condition.get().value())
        << ",md_future_price=" << msg.fields.md_future_price.get().value()
-       << ",md_entry_size_quantity=" << msg.fields.md_entry_size_quantity.get().value()
+       << ",md_entry_size=" << msg.fields.md_entry_size.get().value()
        << ",trade_id=" << msg.fields.trade_id.get().value()
        << ",md_entry_buyer=" << (msg.fields.md_entry_buyer.get().has_value() ? std::to_string(msg.fields.md_entry_buyer.get().value()) : std::string_view("null"))
        << ",md_entry_seller=" << (msg.fields.md_entry_seller.get().has_value() ? std::to_string(msg.fields.md_entry_seller.get().value()) : std::string_view("null"))
@@ -358,7 +359,7 @@ inline std::ostream& operator<<(std::ostream& os, const open_interest_29_message
     os << "security_id=" << msg.fields.security_id.get().value()
        << ",match_event_indicator=" << static_cast<unsigned>(msg.fields.match_event_indicator.get().value())
        << ",trade_date=" << msg.fields.trade_date.get().value()
-       << ",md_entry_size_quantity=" << msg.fields.md_entry_size_quantity.get().value()
+       << ",md_entry_size=" << msg.fields.md_entry_size.get().value()
        << ",md_entry_timestamp=" << (msg.fields.md_entry_timestamp.get().has_value() ? std::to_string(msg.fields.md_entry_timestamp.get().value()) : std::string_view("null"))
        << ",rpt_seq=" << (msg.fields.rpt_seq.get().has_value() ? std::to_string(msg.fields.rpt_seq.get().value()) : std::string_view("null"))
        ;
@@ -383,7 +384,7 @@ inline std::ostream& operator<<(std::ostream& os, const order_mb_o_50_message& m
        << ",md_update_action=\"" << sbe_binaryumdf::md_update_action::to_string(msg.fields.md_update_action.get().value()) << '"'
        << ",md_entry_type=\"" << sbe_binaryumdf::md_entry_type::to_string(msg.fields.md_entry_type.get().value()) << '"'
        << ",md_corporate_offset_price_optional=" << (msg.fields.md_corporate_offset_price_optional.get().has_value() ? std::to_string(msg.fields.md_corporate_offset_price_optional.get().value()) : std::string_view("null"))
-       << ",md_entry_size_quantity=" << msg.fields.md_entry_size_quantity.get().value()
+       << ",md_entry_size=" << msg.fields.md_entry_size.get().value()
        << ",md_entry_position_no=" << msg.fields.md_entry_position_no.get().value()
        << ",entering_firm=" << (msg.fields.entering_firm.get().has_value() ? std::to_string(msg.fields.entering_firm.get().value()) : std::string_view("null"))
        << ",md_insert_timestamp=" << (msg.fields.md_insert_timestamp.get().has_value() ? std::to_string(msg.fields.md_insert_timestamp.get().value()) : std::string_view("null"))
@@ -399,7 +400,7 @@ inline std::ostream& operator<<(std::ostream& os, const delete_order_mb_o_51_mes
        << ",match_event_indicator=" << static_cast<unsigned>(msg.fields.match_event_indicator.get().value())
        << ",md_entry_type=\"" << sbe_binaryumdf::md_entry_type::to_string(msg.fields.md_entry_type.get().value()) << '"'
        << ",md_entry_position_no=" << msg.fields.md_entry_position_no.get().value()
-       << ",md_entry_size_quantity_optional=" << (msg.fields.md_entry_size_quantity_optional.get().has_value() ? std::to_string(msg.fields.md_entry_size_quantity_optional.get().value()) : std::string_view("null"))
+       << ",md_entry_size_optional=" << (msg.fields.md_entry_size_optional.get().has_value() ? std::to_string(msg.fields.md_entry_size_optional.get().value()) : std::string_view("null"))
        << ",secondary_order_id=" << msg.fields.secondary_order_id.get().value()
        << ",md_entry_timestamp=" << (msg.fields.md_entry_timestamp.get().has_value() ? std::to_string(msg.fields.md_entry_timestamp.get().value()) : std::string_view("null"))
        << ",rpt_seq=" << (msg.fields.rpt_seq.get().has_value() ? std::to_string(msg.fields.rpt_seq.get().value()) : std::string_view("null"))
@@ -425,7 +426,7 @@ inline std::ostream& operator<<(std::ostream& os, const trade_53_message& msg) {
        << ",trading_session_id=\"" << sbe_binaryumdf::trading_session_id::to_string(msg.fields.trading_session_id.get().value()) << '"'
        << ",trade_condition=" << static_cast<unsigned>(msg.fields.trade_condition.get().value())
        << ",md_future_price=" << msg.fields.md_future_price.get().value()
-       << ",md_entry_size_quantity=" << msg.fields.md_entry_size_quantity.get().value()
+       << ",md_entry_size=" << msg.fields.md_entry_size.get().value()
        << ",trade_id=" << msg.fields.trade_id.get().value()
        << ",md_entry_buyer=" << (msg.fields.md_entry_buyer.get().has_value() ? std::to_string(msg.fields.md_entry_buyer.get().value()) : std::string_view("null"))
        << ",md_entry_seller=" << (msg.fields.md_entry_seller.get().has_value() ? std::to_string(msg.fields.md_entry_seller.get().value()) : std::string_view("null"))
@@ -443,7 +444,7 @@ inline std::ostream& operator<<(std::ostream& os, const forward_trade_54_message
        << ",trading_session_id=\"" << sbe_binaryumdf::trading_session_id::to_string(msg.fields.trading_session_id.get().value()) << '"'
        << ",trade_condition=" << static_cast<unsigned>(msg.fields.trade_condition.get().value())
        << ",md_future_price=" << msg.fields.md_future_price.get().value()
-       << ",md_entry_size_quantity=" << msg.fields.md_entry_size_quantity.get().value()
+       << ",md_entry_size=" << msg.fields.md_entry_size.get().value()
        << ",trade_id=" << msg.fields.trade_id.get().value()
        << ",md_entry_buyer=" << (msg.fields.md_entry_buyer.get().has_value() ? std::to_string(msg.fields.md_entry_buyer.get().value()) : std::string_view("null"))
        << ",md_entry_seller=" << (msg.fields.md_entry_seller.get().has_value() ? std::to_string(msg.fields.md_entry_seller.get().value()) : std::string_view("null"))
@@ -491,7 +492,7 @@ inline std::ostream& operator<<(std::ostream& os, const trade_bust_57_message& m
        << ",match_event_indicator=" << static_cast<unsigned>(msg.fields.match_event_indicator.get().value())
        << ",trading_session_id=\"" << sbe_binaryumdf::trading_session_id::to_string(msg.fields.trading_session_id.get().value()) << '"'
        << ",md_future_price=" << msg.fields.md_future_price.get().value()
-       << ",md_entry_size_quantity=" << msg.fields.md_entry_size_quantity.get().value()
+       << ",md_entry_size=" << msg.fields.md_entry_size.get().value()
        << ",trade_id=" << msg.fields.trade_id.get().value()
        << ",trade_date=" << msg.fields.trade_date.get().value()
        << ",md_entry_timestamp=" << (msg.fields.md_entry_timestamp.get().has_value() ? std::to_string(msg.fields.md_entry_timestamp.get().value()) : std::string_view("null"))

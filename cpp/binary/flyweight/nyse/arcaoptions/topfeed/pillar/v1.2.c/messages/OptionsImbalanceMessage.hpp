@@ -1,5 +1,7 @@
+// Nyse.ArcaOptions.TopFeed.Pillar.v1.2.c: messages/OptionsImbalanceMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <ostream>
@@ -30,9 +32,9 @@ class OptionsImbalanceMessage {
     static constexpr std::size_t fixed_size = 61;
     std::size_t encoded_size() const { return 61; }
 
-    std::uint32_t source_time() const { return wire::read_u32_le(at(0)); }
+    std::chrono::seconds source_time() const { return std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_le(at(0)))); }
 
-    std::uint32_t source_time_ns() const { return wire::read_u32_le(at(4)); }
+    std::chrono::nanoseconds source_time_ns() const { return std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(at(4)))); }
 
     std::uint32_t series_index() const { return wire::read_u32_le(at(8)); }
 
@@ -69,9 +71,9 @@ class OptionsImbalanceMessage {
     void print(std::ostream& out) const {
         out << "OptionsImbalanceMessage{";
         out << "source_time=";
-        out << source_time();
+        out << source_time().count();
         out << ", source_time_ns=";
-        out << source_time_ns();
+        out << source_time_ns().count();
         out << ", series_index=";
         out << series_index();
         out << ", series_seq_num=";

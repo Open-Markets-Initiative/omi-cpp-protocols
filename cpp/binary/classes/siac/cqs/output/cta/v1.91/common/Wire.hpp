@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v1.91: common/Wire.hpp
 #pragma once
 
 #include <bit>

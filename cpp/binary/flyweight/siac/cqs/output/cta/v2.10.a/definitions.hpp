@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v2.10.a: definitions.hpp
 #pragma once
 
 // Every flyweight view and reader of Siac.Cqs.Output.Cta.v2.10.a.

@@ -1,11 +1,14 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/TopOfBookMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
 #include <ostream>
 #include <string_view>
 
+#include "../common/Decimal.hpp"
 #include "../messages/Message.hpp"
 
 namespace lseg::millennium::level2::mitch::v11_9 {
@@ -22,11 +25,11 @@ class TopOfBookMessage : public Message {
     static constexpr std::size_t wire_size = 32;
 
     TopOfBookMessage() = default;
-    TopOfBookMessage(std::uint32_t nanosecond, std::uint32_t instrument_id, std::int64_t buy_limit_price, std::uint32_t buy_limit_size, std::int64_t sell_limit_price, std::uint32_t sell_limit_size);
+    TopOfBookMessage(std::chrono::nanoseconds nanosecond, std::uint32_t instrument_id, Decimal buy_limit_price, std::uint32_t buy_limit_size, Decimal sell_limit_price, std::uint32_t sell_limit_size);
 
     // Nanosecond: Nanoseconds since last message, accurate to the nearest microsecond.
-    std::uint32_t nanosecond() const;
-    void set_nanosecond(std::uint32_t value);
+    std::chrono::nanoseconds nanosecond() const;
+    void set_nanosecond(std::chrono::nanoseconds value);
 
     // Instrument Id: Instrument's symbol.
     std::uint32_t instrument_id() const;
@@ -34,8 +37,8 @@ class TopOfBookMessage : public Message {
 
     // Buy Limit Price: Best bid price. Will contain zero if there are no visible limit orders
     // on the buy side
-    std::int64_t buy_limit_price() const;
-    void set_buy_limit_price(std::int64_t value);
+    Decimal buy_limit_price() const;
+    void set_buy_limit_price(Decimal value);
 
     // Buy Limit Size: Cumulative visible size at best bid price. Will contain zero if there
     // are no visible limit orders on the buy side
@@ -44,8 +47,8 @@ class TopOfBookMessage : public Message {
 
     // Sell Limit Price: Best offer price. Will contain zero if there are no visible limit
     // orders on the sell side
-    std::int64_t sell_limit_price() const;
-    void set_sell_limit_price(std::int64_t value);
+    Decimal sell_limit_price() const;
+    void set_sell_limit_price(Decimal value);
 
     // Sell Limit Size: Cumulative visible size at best offer price. Will contain zero if there
     // are no visible limit orders on the sell side
@@ -67,11 +70,11 @@ class TopOfBookMessage : public Message {
     bool operator!=(const TopOfBookMessage& other) const;
 
   private:
-    std::uint32_t nanosecond_{};
+    std::chrono::nanoseconds nanosecond_{};
     std::uint32_t instrument_id_{};
-    std::int64_t buy_limit_price_{};
+    Decimal buy_limit_price_{ 0, -8 };
     std::uint32_t buy_limit_size_{};
-    std::int64_t sell_limit_price_{};
+    Decimal sell_limit_price_{ 0, -8 };
     std::uint32_t sell_limit_size_{};
 };
 

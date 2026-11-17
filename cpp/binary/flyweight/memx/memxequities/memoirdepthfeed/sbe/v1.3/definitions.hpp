@@ -1,3 +1,4 @@
+// Memx.MemxEquities.MemoirDepthFeed.Sbe.v1.3: definitions.hpp
 #pragma once
 
 // Every flyweight view and reader of Memx.MemxEquities.MemoirDepthFeed.Sbe.v1.3.

@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: messages/QuoteReplaceMessageLongForm.cpp
 #include "QuoteReplaceMessageLongForm.hpp"
 
 #include "../common/Print.hpp"
@@ -66,13 +67,13 @@ std::size_t QuoteReplaceMessageLongForm::decode(const std::byte* data, std::size
     ask_reference_number_ = wire::read_u64_be(data + offset);
     offset += 8;
 
-    bid_price_long_ = Decimal(static_cast<std::int64_t>(wire::read_u32_be(data + offset)), -4);
+    bid_price_long_ = Decimal(static_cast<std::int64_t>(wire::read_i32_be(data + offset)), -4);
     offset += 4;
 
     bid_size_long_ = wire::read_u32_be(data + offset);
     offset += 4;
 
-    ask_price_long_ = Decimal(static_cast<std::int64_t>(wire::read_u32_be(data + offset)), -4);
+    ask_price_long_ = Decimal(static_cast<std::int64_t>(wire::read_i32_be(data + offset)), -4);
     offset += 4;
 
     ask_size_long_ = wire::read_u32_be(data + offset);
@@ -103,13 +104,13 @@ std::size_t QuoteReplaceMessageLongForm::encode(std::byte* data, std::size_t cap
     wire::write_u64_be(data + offset, static_cast<std::uint64_t>(ask_reference_number_));
     offset += 8;
 
-    wire::write_u32_be(data + offset, static_cast<std::uint32_t>(bid_price_long_.mantissa()));
+    wire::write_i32_be(data + offset, static_cast<std::int32_t>(bid_price_long_.mantissa()));
     offset += 4;
 
     wire::write_u32_be(data + offset, static_cast<std::uint32_t>(bid_size_long_));
     offset += 4;
 
-    wire::write_u32_be(data + offset, static_cast<std::uint32_t>(ask_price_long_.mantissa()));
+    wire::write_i32_be(data + offset, static_cast<std::int32_t>(ask_price_long_.mantissa()));
     offset += 4;
 
     wire::write_u32_be(data + offset, static_cast<std::uint32_t>(ask_size_long_));

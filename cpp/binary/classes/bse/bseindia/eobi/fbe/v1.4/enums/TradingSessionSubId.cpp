@@ -1,3 +1,4 @@
+// Bse.BseIndia.Eobi.Fbe.v1.4: enums/TradingSessionSubId.cpp
 #include "TradingSessionSubId.hpp"
 
 namespace bse::bseindia::eobi::fbe::v1_4 {

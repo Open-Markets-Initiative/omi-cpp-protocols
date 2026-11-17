@@ -1,3 +1,4 @@
+// Iex.IexEquities.Tops.Snap.v1.6: TypesAll.hpp
 #pragma once
 
 // All type headers for this protocol schema

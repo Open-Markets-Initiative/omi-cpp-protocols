@@ -1,3 +1,4 @@
+// Asx.AsxDerivatives.Ntp.Itch.v1.05: TypesAll.hpp
 #pragma once
 
 // All type headers for this protocol schema

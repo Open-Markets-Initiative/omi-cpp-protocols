@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.3: groups/SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup.cpp
 #include "SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup.hpp"
 
 #include "../common/Print.hpp"
@@ -5,14 +6,14 @@
 
 namespace b3::b3derivatives::binaryumdf::sbe::v2_3 {
 
-SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup::SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup(std::optional<Decimal> md_corporate_offset_price_optional, std::int64_t md_entry_size_quantity, const std::array<std::byte, 4>& offset_16_padding_4, std::optional<std::uint32_t> entering_firm, std::optional<std::chrono::nanoseconds> md_insert_timestamp, std::uint64_t secondary_order_id, MdEntryType md_entry_type, const MatchEventIndicator& match_event_indicator)
-  : md_corporate_offset_price_optional_(md_corporate_offset_price_optional), md_entry_size_quantity_(md_entry_size_quantity), offset_16_padding_4_(offset_16_padding_4), entering_firm_(entering_firm), md_insert_timestamp_(md_insert_timestamp), secondary_order_id_(secondary_order_id), md_entry_type_(md_entry_type), match_event_indicator_(match_event_indicator) {}
+SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup::SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup(std::optional<Decimal> md_corporate_offset_price_optional, std::int64_t md_entry_size, const std::array<std::byte, 4>& offset_16_padding_4, std::optional<std::uint32_t> entering_firm, std::optional<std::chrono::nanoseconds> md_insert_timestamp, std::uint64_t secondary_order_id, MdEntryType md_entry_type, const MatchEventIndicator& match_event_indicator)
+  : md_corporate_offset_price_optional_(md_corporate_offset_price_optional), md_entry_size_(md_entry_size), offset_16_padding_4_(offset_16_padding_4), entering_firm_(entering_firm), md_insert_timestamp_(md_insert_timestamp), secondary_order_id_(secondary_order_id), md_entry_type_(md_entry_type), match_event_indicator_(match_event_indicator) {}
 
 std::optional<Decimal> SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup::md_corporate_offset_price_optional() const { return md_corporate_offset_price_optional_; }
 void SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup::set_md_corporate_offset_price_optional(std::optional<Decimal> value) { md_corporate_offset_price_optional_ = value; }
 
-std::int64_t SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup::md_entry_size_quantity() const { return md_entry_size_quantity_; }
-void SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup::set_md_entry_size_quantity(std::int64_t value) { md_entry_size_quantity_ = value; }
+std::int64_t SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup::md_entry_size() const { return md_entry_size_; }
+void SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup::set_md_entry_size(std::int64_t value) { md_entry_size_ = value; }
 
 const std::array<std::byte, 4>& SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup::offset_16_padding_4() const { return offset_16_padding_4_; }
 std::array<std::byte, 4>& SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup::offset_16_padding_4() { return offset_16_padding_4_; }
@@ -41,7 +42,7 @@ std::size_t SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup::decode(const 
     md_corporate_offset_price_optional_ = wire::nullable_decimal(wire::read_i64_le(data + offset), static_cast<std::int64_t>(-9223372036854775807LL - 1), -4);
     offset += 8;
 
-    md_entry_size_quantity_ = wire::read_i64_le(data + offset);
+    md_entry_size_ = wire::read_i64_le(data + offset);
     offset += 8;
 
     wire::read_bytes(data + offset, offset_16_padding_4_.data(), 4);
@@ -71,7 +72,7 @@ std::size_t SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup::encode(std::b
     wire::write_i64_le(data + offset, md_corporate_offset_price_optional_ ? static_cast<std::int64_t>(md_corporate_offset_price_optional_->mantissa()) : static_cast<std::int64_t>(-9223372036854775807LL - 1));
     offset += 8;
 
-    wire::write_i64_le(data + offset, static_cast<std::int64_t>(md_entry_size_quantity_));
+    wire::write_i64_le(data + offset, static_cast<std::int64_t>(md_entry_size_));
     offset += 8;
 
     wire::write_bytes(data + offset, offset_16_padding_4_.data(), 4);
@@ -102,8 +103,8 @@ void SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup::print(std::ostream& 
     out << "SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup{";
     out << "md_corporate_offset_price_optional=";
     print::optional(out, md_corporate_offset_price_optional_);
-    out << ", md_entry_size_quantity=";
-    out << md_entry_size_quantity_;
+    out << ", md_entry_size=";
+    out << md_entry_size_;
     out << ", offset_16_padding_4=";
     print::hex(out, offset_16_padding_4_.data(), offset_16_padding_4_.size());
     out << ", entering_firm=";
@@ -121,7 +122,7 @@ void SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup::print(std::ostream& 
 
 bool SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup::operator==(const SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup& other) const {
     return md_corporate_offset_price_optional_ == other.md_corporate_offset_price_optional_
-        && md_entry_size_quantity_ == other.md_entry_size_quantity_
+        && md_entry_size_ == other.md_entry_size_
         && offset_16_padding_4_ == other.offset_16_padding_4_
         && entering_firm_ == other.entering_firm_
         && md_insert_timestamp_ == other.md_insert_timestamp_

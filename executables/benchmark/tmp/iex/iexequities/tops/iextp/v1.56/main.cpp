@@ -1,3 +1,4 @@
+// Iex.IexEquities.Tops.IexTp.v1.56: main.cpp
 // Iex.IexEquities.Tops.IexTp.v1.56 benchmark, through the Tmp header: every value it reads from every message of the simulated
 // sequence (tests/simulated/iex/iexequities/tops/iextp/v1.56.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -294,7 +295,6 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::size_type>(); }) { checksum += bench::digest(message.template get<protocol::size_type>().value()); }
         if constexpr (requires { message.template get<protocol::price>(); }) { checksum += bench::digest(message.template get<protocol::price>().value()); }
         if constexpr (requires { message.template get<protocol::trade_id>(); }) { checksum += bench::digest(message.template get<protocol::trade_id>().value()); }
-        if constexpr (requires { message.template get<protocol::reserved_4>(); }) { checksum += bench::digest(message.template get<protocol::reserved_4>().value()); }
     }
 
     void operator()(const protocol::trade_break_message& message) {
@@ -303,7 +303,6 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::size_type>(); }) { checksum += bench::digest(message.template get<protocol::size_type>().value()); }
         if constexpr (requires { message.template get<protocol::price>(); }) { checksum += bench::digest(message.template get<protocol::price>().value()); }
         if constexpr (requires { message.template get<protocol::trade_id>(); }) { checksum += bench::digest(message.template get<protocol::trade_id>().value()); }
-        if constexpr (requires { message.template get<protocol::reserved_4>(); }) { checksum += bench::digest(message.template get<protocol::reserved_4>().value()); }
     }
 };
 

@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: structs/MessageHeader.cpp
 #include "MessageHeader.hpp"
 
 #include "../common/Print.hpp"

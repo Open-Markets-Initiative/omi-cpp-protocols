@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.DeepFeed.Pillar.v1.2.m: Settings.hpp
 #pragma once
 
 #include <iostream>

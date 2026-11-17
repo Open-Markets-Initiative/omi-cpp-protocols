@@ -1,3 +1,4 @@
+// Nasdaq.PsxEquities.TotalView.Itch.v5.0: messages/EndOfSession.hpp
 #pragma once
 
 #include <cstdint>

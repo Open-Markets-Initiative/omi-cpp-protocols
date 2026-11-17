@@ -1,3 +1,4 @@
+// Memx.MemxEquities.MemoirDepthFeed.Sbe.v1.3: cache/Required.hpp
 #pragma once
 
 #include <string_view>

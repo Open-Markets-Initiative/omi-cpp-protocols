@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v15.0: groups/SecMassStatGrpComp.hpp
 #pragma once
 
 #include <array>

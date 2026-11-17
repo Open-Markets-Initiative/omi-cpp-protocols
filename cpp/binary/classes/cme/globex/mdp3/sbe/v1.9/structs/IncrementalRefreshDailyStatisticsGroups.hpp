@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.9: structs/IncrementalRefreshDailyStatisticsGroups.hpp
 #pragma once
 
 #include <cstddef>

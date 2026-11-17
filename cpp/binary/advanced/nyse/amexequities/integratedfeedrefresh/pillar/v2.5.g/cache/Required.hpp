@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeedRefresh.Pillar.v2.5.g: cache/Required.hpp
 #pragma once
 
 #include <string_view>

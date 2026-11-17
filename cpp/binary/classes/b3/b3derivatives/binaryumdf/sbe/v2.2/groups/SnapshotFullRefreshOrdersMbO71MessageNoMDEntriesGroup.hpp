@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.2: groups/SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup.hpp
 #pragma once
 
 #include <array>
@@ -20,15 +21,15 @@ class SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup {
     static constexpr std::size_t wire_size = 42;
 
     SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup() = default;
-    SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup(std::optional<Decimal> md_corporate_offset_price_optional, std::int64_t md_entry_size_quantity, const std::array<std::byte, 4>& offset_16_padding_4, std::optional<std::uint32_t> entering_firm, std::optional<std::chrono::nanoseconds> md_insert_timestamp, std::uint64_t secondary_order_id, MdEntryType md_entry_type, const MatchEventIndicator& match_event_indicator);
+    SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup(std::optional<Decimal> md_corporate_offset_price_optional, std::int64_t md_entry_size, const std::array<std::byte, 4>& offset_16_padding_4, std::optional<std::uint32_t> entering_firm, std::optional<std::chrono::nanoseconds> md_insert_timestamp, std::uint64_t secondary_order_id, MdEntryType md_entry_type, const MatchEventIndicator& match_event_indicator);
 
     // Md Corporate Offset Price Optional: mDEntryPx
     std::optional<Decimal> md_corporate_offset_price_optional() const;
     void set_md_corporate_offset_price_optional(std::optional<Decimal> value);
 
-    // Md Entry Size Quantity: mDEntrySize
-    std::int64_t md_entry_size_quantity() const;
-    void set_md_entry_size_quantity(std::int64_t value);
+    // Md Entry Size: mDEntrySize
+    std::int64_t md_entry_size() const;
+    void set_md_entry_size(std::int64_t value);
 
     // Offset 16 Padding 4: 4 bytes padding
     const std::array<std::byte, 4>& offset_16_padding_4() const;
@@ -69,7 +70,7 @@ class SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup {
 
   private:
     std::optional<Decimal> md_corporate_offset_price_optional_{};
-    std::int64_t md_entry_size_quantity_{};
+    std::int64_t md_entry_size_{};
     std::array<std::byte, 4> offset_16_padding_4_{};
     std::optional<std::uint32_t> entering_firm_{};
     std::optional<std::chrono::nanoseconds> md_insert_timestamp_{};

@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: messages/IpoQuotingPeriodUpdateMessage.cpp
 #include "IpoQuotingPeriodUpdateMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,15 +7,15 @@
 
 namespace nasdaq::nsmequities::nlsplus::itch::v3_0 {
 
-IpoQuotingPeriodUpdateMessage::IpoQuotingPeriodUpdateMessage(const std::string& stock, std::uint32_t ipo_quotation_release_time, IpoQuotationReleaseQualifier ipo_quotation_release_qualifier, Decimal ipo_price)
+IpoQuotingPeriodUpdateMessage::IpoQuotingPeriodUpdateMessage(const std::string& stock, std::chrono::seconds ipo_quotation_release_time, IpoQuotationReleaseQualifier ipo_quotation_release_qualifier, Decimal ipo_price)
   : stock_(stock), ipo_quotation_release_time_(ipo_quotation_release_time), ipo_quotation_release_qualifier_(ipo_quotation_release_qualifier), ipo_price_(ipo_price) {}
 
 const std::string& IpoQuotingPeriodUpdateMessage::stock() const { return stock_; }
 std::string& IpoQuotingPeriodUpdateMessage::stock() { return stock_; }
 void IpoQuotingPeriodUpdateMessage::set_stock(const std::string& value) { stock_ = value; }
 
-std::uint32_t IpoQuotingPeriodUpdateMessage::ipo_quotation_release_time() const { return ipo_quotation_release_time_; }
-void IpoQuotingPeriodUpdateMessage::set_ipo_quotation_release_time(std::uint32_t value) { ipo_quotation_release_time_ = value; }
+std::chrono::seconds IpoQuotingPeriodUpdateMessage::ipo_quotation_release_time() const { return ipo_quotation_release_time_; }
+void IpoQuotingPeriodUpdateMessage::set_ipo_quotation_release_time(std::chrono::seconds value) { ipo_quotation_release_time_ = value; }
 
 IpoQuotationReleaseQualifier IpoQuotingPeriodUpdateMessage::ipo_quotation_release_qualifier() const { return ipo_quotation_release_qualifier_; }
 void IpoQuotingPeriodUpdateMessage::set_ipo_quotation_release_qualifier(IpoQuotationReleaseQualifier value) { ipo_quotation_release_qualifier_ = value; }
@@ -33,7 +34,7 @@ std::size_t IpoQuotingPeriodUpdateMessage::decode(const std::byte* data, std::si
     stock_ = wire::read_text(data + offset, 8, ' ');
     offset += 8;
 
-    ipo_quotation_release_time_ = wire::read_u32_be(data + offset);
+    ipo_quotation_release_time_ = std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_be(data + offset)));
     offset += 4;
 
     ipo_quotation_release_qualifier_ = static_cast<IpoQuotationReleaseQualifier>(wire::read_char(data + offset));
@@ -52,7 +53,7 @@ std::size_t IpoQuotingPeriodUpdateMessage::encode(std::byte* data, std::size_t c
     wire::write_text(data + offset, 8, ' ', stock_);
     offset += 8;
 
-    wire::write_u32_be(data + offset, static_cast<std::uint32_t>(ipo_quotation_release_time_));
+    wire::write_u32_be(data + offset, static_cast<std::uint32_t>(ipo_quotation_release_time_.count()));
     offset += 4;
 
     wire::write_char(data + offset, static_cast<char>(ipo_quotation_release_qualifier_));
@@ -81,7 +82,7 @@ void IpoQuotingPeriodUpdateMessage::print(std::ostream& out) const {
     out << "stock=";
     print::text(out, stock_);
     out << ", ipo_quotation_release_time=";
-    out << ipo_quotation_release_time_;
+    out << ipo_quotation_release_time_.count();
     out << ", ipo_quotation_release_qualifier=";
     out << ipo_quotation_release_qualifier_;
     out << ", ipo_price=";

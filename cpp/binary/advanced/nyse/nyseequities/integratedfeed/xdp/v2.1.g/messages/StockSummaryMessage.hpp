@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeed.Xdp.v2.1.g: messages/StockSummaryMessage.hpp
 #pragma once
 
 #include <cstddef>

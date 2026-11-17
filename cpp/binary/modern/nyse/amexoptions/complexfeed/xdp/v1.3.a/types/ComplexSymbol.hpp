@@ -1,3 +1,4 @@
+// Nyse.AmexOptions.ComplexFeed.Xdp.v1.3.a: types/ComplexSymbol.hpp
 #pragma once
 
 #include <array>

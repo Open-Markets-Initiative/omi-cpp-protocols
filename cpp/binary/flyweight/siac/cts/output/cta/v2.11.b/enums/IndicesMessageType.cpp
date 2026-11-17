@@ -1,11 +1,12 @@
+// Siac.Cts.Output.Cta.v2.11.b: enums/IndicesMessageType.cpp
 #include "IndicesMessageType.hpp"
 
 namespace siac::cts::output::cta::v2_11_b {
 
 std::string_view to_string(IndicesMessageType value) {
     switch (value) {
-        case IndicesMessageType::Indices: return "Indices";
-        case IndicesMessageType::BidAndOfferIndex: return "Bid And Offer Index";
+        case IndicesMessageType::IndexMessage: return "Index Message";
+        case IndicesMessageType::BidAndOfferIndexMessage: return "Bid And Offer Index Message";
         default: return {};
     }
 }

@@ -1,3 +1,4 @@
+// Iex.IexEquities.DeepPlus.IexTp.v1.05: definitions.hpp
 #pragma once
 
 // Every flyweight view and reader of Iex.IexEquities.DeepPlus.IexTp.v1.05.

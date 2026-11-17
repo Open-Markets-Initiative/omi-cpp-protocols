@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.2: enums/SecurityTradingStatus.hpp
 #pragma once
 
 #include <cstdint>

@@ -1,5 +1,7 @@
+// OtcMarkets.LinkAts.Multicast.Link.v4.3: messages/MarketCloseMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
@@ -22,15 +24,15 @@ class MarketCloseMessage : public Message {
     static constexpr std::size_t wire_size = 16;
 
     MarketCloseMessage() = default;
-    MarketCloseMessage(std::uint32_t channel_seq_num, std::uint64_t market_close_time_milli, std::uint32_t market_msg_ct);
+    MarketCloseMessage(std::uint32_t channel_seq_num, std::chrono::milliseconds market_close_time_milli, std::uint32_t market_msg_ct);
 
     // Channel Seq Num: Monotonically increasing message sequence number at the channel level.
     std::uint32_t channel_seq_num() const;
     void set_channel_seq_num(std::uint32_t value);
 
     // Market Close Time Milli: Market close time in milliseconds since UTC epoch midnight.
-    std::uint64_t market_close_time_milli() const;
-    void set_market_close_time_milli(std::uint64_t value);
+    std::chrono::milliseconds market_close_time_milli() const;
+    void set_market_close_time_milli(std::chrono::milliseconds value);
 
     // Market Msg Ct: Total message count for the trading day.
     std::uint32_t market_msg_ct() const;
@@ -52,7 +54,7 @@ class MarketCloseMessage : public Message {
 
   private:
     std::uint32_t channel_seq_num_{};
-    std::uint64_t market_close_time_milli_{};
+    std::chrono::milliseconds market_close_time_milli_{};
     std::uint32_t market_msg_ct_{};
 };
 

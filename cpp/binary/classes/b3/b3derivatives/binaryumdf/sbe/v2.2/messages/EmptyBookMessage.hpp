@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.2: messages/EmptyBookMessage.hpp
 #pragma once
 
 #include <array>

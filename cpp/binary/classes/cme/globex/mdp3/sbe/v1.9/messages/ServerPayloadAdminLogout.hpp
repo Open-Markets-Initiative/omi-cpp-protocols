@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.9: messages/ServerPayloadAdminLogout.hpp
 #pragma once
 
 #include <cstddef>
@@ -18,12 +19,12 @@ class ServerPayloadAdminLogout : public ServerTcpMessage {
     // The code that selects this message
     static constexpr ServerTcpMessageCode message_type = TemplateId::AdminLogout;
     // Bytes of this message on the wire
-    static constexpr std::size_t wire_size = 100;
+    static constexpr std::size_t wire_size = 180;
 
     ServerPayloadAdminLogout() = default;
     ServerPayloadAdminLogout(const std::string& text);
 
-    // Text: Reject reason details
+    // Text: Free format text string. May include logout confirmation or reason for logout
     const std::string& text() const;
     std::string& text();
     void set_text(const std::string& value);

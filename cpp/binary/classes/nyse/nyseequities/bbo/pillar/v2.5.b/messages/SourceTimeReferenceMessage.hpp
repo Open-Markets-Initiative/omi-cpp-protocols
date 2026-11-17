@@ -1,5 +1,7 @@
+// Nyse.NyseEquities.Bbo.Pillar.v2.5.b: messages/SourceTimeReferenceMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
@@ -21,7 +23,7 @@ class SourceTimeReferenceMessage : public Message {
     static constexpr std::size_t wire_size = 12;
 
     SourceTimeReferenceMessage() = default;
-    SourceTimeReferenceMessage(std::uint32_t id, std::uint32_t symbol_seq_num, std::uint32_t source_time);
+    SourceTimeReferenceMessage(std::uint32_t id, std::uint32_t symbol_seq_num, std::chrono::seconds source_time);
 
     // Id: ID of the originating Matching Engine partition to which this message applies.
     std::uint32_t id() const;
@@ -34,8 +36,8 @@ class SourceTimeReferenceMessage : public Message {
 
     // Source Time: The time when this msg was generated in the order book, in seconds since
     // Jan 1, 1970 00:00:00 UTC.
-    std::uint32_t source_time() const;
-    void set_source_time(std::uint32_t value);
+    std::chrono::seconds source_time() const;
+    void set_source_time(std::chrono::seconds value);
 
     // Message
     MessageCode type() const override;
@@ -54,7 +56,7 @@ class SourceTimeReferenceMessage : public Message {
   private:
     std::uint32_t id_{};
     std::uint32_t symbol_seq_num_{};
-    std::uint32_t source_time_{};
+    std::chrono::seconds source_time_{};
 };
 
 } // namespace nyse::nyseequities::bbo::pillar::v2_5_b

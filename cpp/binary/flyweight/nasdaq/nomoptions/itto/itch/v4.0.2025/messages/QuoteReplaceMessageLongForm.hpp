@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: messages/QuoteReplaceMessageLongForm.hpp
 #pragma once
 
 #include <chrono>
@@ -44,11 +45,11 @@ class QuoteReplaceMessageLongForm {
 
     std::uint64_t ask_reference_number() const { return wire::read_u64_be(at(32)); }
 
-    Decimal bid_price_long() const { return Decimal(static_cast<std::int64_t>(wire::read_u32_be(at(40))), -4); }
+    Decimal bid_price_long() const { return Decimal(static_cast<std::int64_t>(wire::read_i32_be(at(40))), -4); }
 
     std::uint32_t bid_size_long() const { return wire::read_u32_be(at(44)); }
 
-    Decimal ask_price_long() const { return Decimal(static_cast<std::int64_t>(wire::read_u32_be(at(48))), -4); }
+    Decimal ask_price_long() const { return Decimal(static_cast<std::int64_t>(wire::read_i32_be(at(48))), -4); }
 
     std::uint32_t ask_size_long() const { return wire::read_u32_be(at(52)); }
 

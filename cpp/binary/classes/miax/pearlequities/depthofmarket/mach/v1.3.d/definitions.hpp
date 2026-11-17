@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: definitions.hpp
 #pragma once
 
 #include "common/Decimal.hpp"
@@ -6,6 +7,7 @@
 #include "common/Wire.hpp"
 
 #include "enums/EsesmPacketType.hpp"
+#include "enums/GoodbyeReason.hpp"
 #include "enums/LoginStatus.hpp"
 #include "enums/LogoutReason.hpp"
 #include "enums/MachPacketType.hpp"
@@ -24,6 +26,8 @@
 #include "bitfields/OrderExecutionFlags.hpp"
 #include "bitfields/TradeFlags.hpp"
 
+#include "groups/LoginMatchingEngine.hpp"
+#include "groups/RequestedMatchingEngine.hpp"
 #include "structs/EsesmPacketHeader.hpp"
 #include "structs/MachPacketHeader.hpp"
 
@@ -53,6 +57,7 @@
 #include "messages/TestPacket.hpp"
 #include "messages/TradeCancelMessage.hpp"
 #include "messages/TradeMessage.hpp"
+#include "messages/TradingSessionUpdate.hpp"
 #include "messages/UnknownData.hpp"
 #include "messages/UnknownMessage.hpp"
 #include "messages/UnknownTcpMessage.hpp"

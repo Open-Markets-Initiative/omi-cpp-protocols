@@ -1,3 +1,4 @@
+// Cboe.C1Options.MarketDataFeed.Csm.v1.4.2: messages/ExpectedOpeningPriceAndSizeMessage.hpp
 #pragma once
 
 #include <cstddef>
@@ -27,7 +28,7 @@ struct expected_opening_price_and_size_message {
         csm_marketdatafeed::legal_market legal_market;
     };
 
-    csm_marketdatafeed::message_header header = {{}, template_id::enum_type::expected_opening_price_and_size_message, {}, {}};
+    csm_marketdatafeed::message_header header = {std::uint16_t(sizeof(csm_marketdatafeed::message_header) + sizeof(fields_type)), template_id::enum_type::expected_opening_price_and_size_message, {}, {}};
 
     fields_type fields;
 

@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1: messages/ExecutionReportModifyMessage.hpp
 #pragma once
 
 #include <array>
@@ -34,7 +35,7 @@ class ExecutionReportModifyMessage : public Message {
     static constexpr MessageCode message_type = TemplateId::ExecutionReportModifyMessage;
 
     ExecutionReportModifyMessage() = default;
-    ExecutionReportModifyMessage(const OutboundBusinessHeader& outbound_business_header, Side side, OrdStatus ord_status, std::uint64_t clordid, std::uint64_t secondary_order_id, std::uint64_t security_id, std::uint64_t leaves_qty, std::optional<std::uint32_t> account, std::uint64_t exec_id, std::chrono::nanoseconds transact_time, std::uint64_t cum_qty, std::optional<std::chrono::nanoseconds> market_segment_received_time, std::uint64_t order_id, std::optional<std::uint64_t> origclordid, std::optional<Decimal> protection_price, std::uint16_t trade_date, WorkingIndicator working_indicator, MultiLegReportingType multi_leg_reporting_type, Ordtype ordtype, TimeInForce time_in_force, std::optional<std::uint16_t> expire_date, std::uint64_t order_qty, std::optional<Decimal> price_optional, std::optional<Decimal> stop_px, std::optional<std::uint64_t> min_qty, std::optional<std::uint64_t> max_floor, std::optional<std::chrono::nanoseconds> received_time, const std::array<std::byte, 3>& offset_168_padding_3, std::optional<std::uint8_t> ordtagid, const InvestorId& investor_id, std::optional<MmProtectionResetOptional> mm_protection_reset_optional, const std::array<std::byte, 1>& offset_181_padding_1, std::optional<std::int32_t> strategy_id, const DeskId& desk_id, const Memo& memo);
+    ExecutionReportModifyMessage(const OutboundBusinessHeader& outbound_business_header, Side side, OrdStatus ord_status, std::uint64_t cl_ord_id, std::uint64_t secondary_order_id, std::uint64_t security_id, std::uint64_t leaves_qty, std::optional<std::uint32_t> account, std::uint64_t exec_id, std::chrono::nanoseconds transact_time, std::uint64_t cum_qty, std::optional<std::chrono::nanoseconds> market_segment_received_time, std::uint64_t order_id, std::optional<std::uint64_t> origclordid, std::optional<Decimal> protection_price, std::uint16_t trade_date, WorkingIndicator working_indicator, MultiLegReportingType multi_leg_reporting_type, Ordtype ordtype, TimeInForce time_in_force, std::optional<std::uint16_t> expire_date, std::uint64_t order_qty, std::optional<Decimal> price_optional, std::optional<Decimal> stop_px, std::optional<std::uint64_t> min_qty, std::optional<std::uint64_t> max_floor, std::optional<std::chrono::nanoseconds> received_time, const std::array<std::byte, 3>& offset_168_padding_3, std::optional<std::uint8_t> ordtagid, const InvestorId& investor_id, std::optional<MmProtectionResetOptional> mm_protection_reset_optional, const std::array<std::byte, 1>& offset_181_padding_1, std::optional<std::int32_t> strategy_id, const DeskId& desk_id, const Memo& memo);
 
     // Outbound Business Header: OutboundBusinessHeader
     const OutboundBusinessHeader& outbound_business_header() const;
@@ -49,9 +50,9 @@ class ExecutionReportModifyMessage : public Message {
     OrdStatus ord_status() const;
     void set_ord_status(OrdStatus value);
 
-    // ClOrdId: clOrdID
-    std::uint64_t clordid() const;
-    void set_clordid(std::uint64_t value);
+    // Cl Ord Id: clOrdID
+    std::uint64_t cl_ord_id() const;
+    void set_cl_ord_id(std::uint64_t value);
 
     // Secondary Order Id: secondaryOrderID
     std::uint64_t secondary_order_id() const;
@@ -200,7 +201,7 @@ class ExecutionReportModifyMessage : public Message {
     OutboundBusinessHeader outbound_business_header_{};
     Side side_{};
     OrdStatus ord_status_{};
-    std::uint64_t clordid_{};
+    std::uint64_t cl_ord_id_{};
     std::uint64_t secondary_order_id_{};
     std::uint64_t security_id_{};
     std::uint64_t leaves_qty_{};

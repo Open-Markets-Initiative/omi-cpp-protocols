@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v2.10.a: structs/NationalBestBidAndOfferLongAppendage.cpp
 #include "NationalBestBidAndOfferLongAppendage.hpp"
 
 #include "../common/Print.hpp"

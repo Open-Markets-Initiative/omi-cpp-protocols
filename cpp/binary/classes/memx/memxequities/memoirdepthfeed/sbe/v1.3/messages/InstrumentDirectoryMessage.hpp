@@ -1,5 +1,7 @@
+// Memx.MemxEquities.MemoirDepthFeed.Sbe.v1.3: messages/InstrumentDirectoryMessage.hpp
 #pragma once
 
+#include <array>
 #include <chrono>
 #include <cstddef>
 #include <cstdint>
@@ -25,7 +27,7 @@ class InstrumentDirectoryMessage : public Payload {
     static constexpr std::size_t wire_size = 36;
 
     InstrumentDirectoryMessage() = default;
-    InstrumentDirectoryMessage(std::chrono::nanoseconds timestamp, std::uint16_t security_id, const std::string& symbol, const std::string& symbol_sfx, std::uint32_t round_lot, std::uint8_t reserved, IsTestSymbol is_test_symbol, Decimal mpv);
+    InstrumentDirectoryMessage(std::chrono::nanoseconds timestamp, std::uint16_t security_id, const std::string& symbol, const std::string& symbol_sfx, std::uint32_t round_lot, const std::array<std::byte, 1>& reserved, IsTestSymbol is_test_symbol, Decimal mpv);
 
     // Timestamp: Timestamp
     std::chrono::nanoseconds timestamp() const;
@@ -50,8 +52,9 @@ class InstrumentDirectoryMessage : public Payload {
     void set_round_lot(std::uint32_t value);
 
     // Reserved: Reserved
-    std::uint8_t reserved() const;
-    void set_reserved(std::uint8_t value);
+    const std::array<std::byte, 1>& reserved() const;
+    std::array<std::byte, 1>& reserved();
+    void set_reserved(const std::array<std::byte, 1>& value);
 
     // Is Test Symbol: IsTestSymbol
     IsTestSymbol is_test_symbol() const;
@@ -81,7 +84,7 @@ class InstrumentDirectoryMessage : public Payload {
     std::string symbol_{};
     std::string symbol_sfx_{};
     std::uint32_t round_lot_{};
-    std::uint8_t reserved_{};
+    std::array<std::byte, 1> reserved_{};
     IsTestSymbol is_test_symbol_{};
     Decimal mpv_{ 0, -6 };
 };

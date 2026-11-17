@@ -1,3 +1,4 @@
+// Nyse.NationalEquities.Bbo.Pillar.v2.5.d: enums/SecurityStatus.hpp
 #pragma once
 
 #include <cstdint>

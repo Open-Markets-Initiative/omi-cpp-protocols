@@ -1,5 +1,7 @@
+// Siac.Cqs.Output.Cta.v2.10.a: messages/MarketWideCircuitBreakerStatusMessage.hpp
 #pragma once
 
+#include <array>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
@@ -24,7 +26,7 @@ class MarketWideCircuitBreakerStatusMessage : public MarketStatusMessagePayload 
     static constexpr std::size_t wire_size = 24;
 
     MarketWideCircuitBreakerStatusMessage() = default;
-    MarketWideCircuitBreakerStatusMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, MarketWideCircuitBreakerLevelIndicator market_wide_circuit_breaker_level_indicator, char reserved);
+    MarketWideCircuitBreakerStatusMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, MarketWideCircuitBreakerLevelIndicator market_wide_circuit_breaker_level_indicator, const std::array<std::byte, 1>& reserved);
 
     // Participant Id: Identifies the Participant or Processor that generated the message
     ParticipantId participant_id() const;
@@ -56,8 +58,9 @@ class MarketWideCircuitBreakerStatusMessage : public MarketStatusMessagePayload 
     void set_market_wide_circuit_breaker_level_indicator(MarketWideCircuitBreakerLevelIndicator value);
 
     // Reserved: Space-filled. Field is reserved for future use
-    char reserved() const;
-    void set_reserved(char value);
+    const std::array<std::byte, 1>& reserved() const;
+    std::array<std::byte, 1>& reserved();
+    void set_reserved(const std::array<std::byte, 1>& value);
 
     // MarketStatusMessagePayload
     MarketStatusMessagePayloadCode type() const override;
@@ -80,7 +83,7 @@ class MarketWideCircuitBreakerStatusMessage : public MarketStatusMessagePayload 
     std::uint32_t transaction_id_{};
     std::int64_t participant_reference_number_{};
     MarketWideCircuitBreakerLevelIndicator market_wide_circuit_breaker_level_indicator_{};
-    char reserved_{};
+    std::array<std::byte, 1> reserved_{};
 };
 
 } // namespace siac::cqs::output::cta::v2_10_a

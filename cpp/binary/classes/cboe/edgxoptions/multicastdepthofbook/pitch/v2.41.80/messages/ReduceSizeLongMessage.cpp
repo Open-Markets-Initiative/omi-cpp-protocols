@@ -1,3 +1,4 @@
+// Cboe.EdgxOptions.MulticastDepthOfBook.Pitch.v2.41.80: messages/ReduceSizeLongMessage.cpp
 #include "ReduceSizeLongMessage.hpp"
 
 #include "../common/Print.hpp"

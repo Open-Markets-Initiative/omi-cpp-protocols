@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v3: types/IsTrading.hpp
 #pragma once
 
 #include <cstddef>

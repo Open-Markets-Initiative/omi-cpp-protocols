@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: messages/QuoteRequestMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -33,40 +34,40 @@ class QuoteRequestMessage {
     std::span<const std::byte> bytes() const noexcept { return bytes_; }
 
     // the bytes every QuoteRequestMessage has, which a reader checks before it views them
-    static constexpr std::size_t minimum_size = 99;
+    static constexpr std::size_t minimum_size = 100;
     std::size_t encoded_size() const { return memo_end(); }
 
     BidirectionalBusinessHeader bidirectional_business_header() const { return BidirectionalBusinessHeader{ bytes_.subspan(0) }; }
 
-    std::uint64_t security_id() const { return wire::read_u64_le(at(19)); }
+    std::uint64_t security_id() const { return wire::read_u64_le(at(20)); }
 
-    std::optional<std::uint64_t> quote_id_optional() const { return wire::nullable(wire::read_u64_le(at(27)), static_cast<std::uint64_t>(0ULL)); }
+    std::optional<std::uint64_t> quote_id_optional() const { return wire::nullable(wire::read_u64_le(at(28)), static_cast<std::uint64_t>(0ULL)); }
 
-    std::optional<std::uint32_t> trade_id_optional() const { return wire::nullable(wire::read_u32_le(at(35)), static_cast<std::uint32_t>(0ULL)); }
+    std::optional<std::uint32_t> trade_id_optional() const { return wire::nullable(wire::read_u32_le(at(36)), static_cast<std::uint32_t>(0ULL)); }
 
-    std::uint32_t contra_broker() const { return wire::read_u32_le(at(39)); }
+    std::uint32_t contra_broker() const { return wire::read_u32_le(at(40)); }
 
-    std::chrono::nanoseconds transact_time() const { return std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u64_le(at(43)))); }
+    std::chrono::nanoseconds transact_time() const { return std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u64_le(at(44)))); }
 
-    Decimal price() const { return Decimal(static_cast<std::int64_t>(wire::read_i64_le(at(51))), -4); }
+    Decimal price() const { return Decimal(static_cast<std::int64_t>(wire::read_i64_le(at(52))), -4); }
 
-    SettlType settl_type() const { return static_cast<SettlType>(wire::read_char(at(59))); }
+    SettlType settl_type() const { return static_cast<SettlType>(wire::read_char(at(60))); }
 
-    ExecuteUnderlyingTrade execute_underlying_trade() const { return static_cast<ExecuteUnderlyingTrade>(wire::read_char(at(60))); }
+    ExecuteUnderlyingTrade execute_underlying_trade() const { return static_cast<ExecuteUnderlyingTrade>(wire::read_char(at(61))); }
 
-    std::uint64_t order_qty() const { return wire::read_u64_le(at(61)); }
+    std::uint64_t order_qty() const { return wire::read_u64_le(at(62)); }
 
-    std::string_view sender_location() const { return view::text(at(69), 10, '\0'); }
+    std::string_view sender_location() const { return view::text(at(70), 10, '\0'); }
 
-    std::string_view entering_trader() const { return view::text(at(79), 5, '\0'); }
+    std::string_view entering_trader() const { return view::text(at(80), 5, '\0'); }
 
-    std::string_view executing_trader() const { return view::text(at(84), 5, '\0'); }
+    std::string_view executing_trader() const { return view::text(at(85), 5, '\0'); }
 
-    Decimal fixed_rate() const { return Decimal(static_cast<std::int64_t>(wire::read_i64_le(at(89))), -4); }
+    Decimal fixed_rate() const { return Decimal(static_cast<std::int64_t>(wire::read_i64_le(at(90))), -4); }
 
-    std::uint16_t days_to_settlement() const { return wire::read_u16_le(at(97)); }
+    std::uint16_t days_to_settlement() const { return wire::read_u16_le(at(98)); }
 
-    SidesGroups sides_groups() const { return SidesGroups{ bytes_.subspan(99) }; }
+    SidesGroups sides_groups() const { return SidesGroups{ bytes_.subspan(100) }; }
 
     QuoteReqId quote_req_id() const {
         wire::require("QuoteRequestMessage", sides_groups_end() + QuoteReqId::minimum_size, bytes_.size());
@@ -128,7 +129,7 @@ class QuoteRequestMessage {
 
   private:
     const std::byte* at(std::size_t offset) const noexcept { return bytes_.data() + offset; }
-    std::size_t sides_groups_end() const { return 99 + sides_groups().encoded_size(); }
+    std::size_t sides_groups_end() const { return 100 + sides_groups().encoded_size(); }
     std::size_t quote_req_id_end() const { return sides_groups_end() + quote_req_id().encoded_size(); }
     std::size_t desk_id_end() const { return quote_req_id_end() + desk_id().encoded_size(); }
     std::size_t memo_end() const { return desk_id_end() + memo().encoded_size(); }

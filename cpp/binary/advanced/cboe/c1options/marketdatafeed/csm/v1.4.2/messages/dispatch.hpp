@@ -1,3 +1,4 @@
+// Cboe.C1Options.MarketDataFeed.Csm.v1.4.2: messages/dispatch.hpp
 #pragma once
 
 #include <cstdint>
@@ -7,92 +8,58 @@
 #include "../structs/MessageHeader.hpp"
 #include "../structs/PacketHeader.hpp"
 
-#include "SecurityDefinitionMessage.hpp"
-#include "CurrentMarketRefreshMessage.hpp"
-#include "MarketDataRefreshMessage.hpp"
-#include "CurrentMarketUpdateMessage.hpp"
-#include "RecapUpdateMessage.hpp"
-#include "TickerMessage.hpp"
-#include "ExpectedOpeningPriceAndSizeMessage.hpp"
-#include "IndexValueMessage.hpp"
-#include "SettlementValueMessage.hpp"
-#include "SummaryMessage.hpp"
-#include "MarketDataControlMessage.hpp"
-#include "HeartbeatMessage.hpp"
-
 namespace cboe::c1options::marketdatafeed::csm::v1_4_2 {
 
 // Template-based message dispatch
 // Handler must implement on_message() for each message type
 
 template<typename Handler>
-std::size_t dispatch(Handler& handler, const std::byte* buffer, std::size_t length, std::uint64_t packet_receive_time, const packet_header& transport) {
+void dispatch(Handler& handler, const std::byte* buffer, std::size_t length, std::uint64_t packet_receive_time, const packet_header& transport) {
     (void)length;
     const auto* header = message_header::parse(buffer);
 
     switch (header->template_id.get().value()) {
-        case template_id::enum_type::security_definition_message: {
-            const auto* msg = security_definition_message::parse(buffer);
-            handler.on_message(*msg, packet_receive_time, transport);
-            return sizeof(security_definition_message);
-        }
-        case template_id::enum_type::current_market_refresh_message: {
-            const auto* msg = current_market_refresh_message::parse(buffer);
-            handler.on_message(*msg, packet_receive_time, transport);
-            return sizeof(current_market_refresh_message);
-        }
-        case template_id::enum_type::market_data_refresh_message: {
-            const auto* msg = market_data_refresh_message::parse(buffer);
-            handler.on_message(*msg, packet_receive_time, transport);
-            return sizeof(market_data_refresh_message);
-        }
-        case template_id::enum_type::current_market_update_message: {
-            const auto* msg = current_market_update_message::parse(buffer);
-            handler.on_message(*msg, packet_receive_time, transport);
-            return sizeof(current_market_update_message);
-        }
-        case template_id::enum_type::recap_update_message: {
-            const auto* msg = recap_update_message::parse(buffer);
-            handler.on_message(*msg, packet_receive_time, transport);
-            return sizeof(recap_update_message);
-        }
-        case template_id::enum_type::ticker_message: {
-            const auto* msg = ticker_message::parse(buffer);
-            handler.on_message(*msg, packet_receive_time, transport);
-            return sizeof(ticker_message);
-        }
-        case template_id::enum_type::expected_opening_price_and_size_message: {
-            const auto* msg = expected_opening_price_and_size_message::parse(buffer);
-            handler.on_message(*msg, packet_receive_time, transport);
-            return sizeof(expected_opening_price_and_size_message);
-        }
-        case template_id::enum_type::index_value_message: {
-            const auto* msg = index_value_message::parse(buffer);
-            handler.on_message(*msg, packet_receive_time, transport);
-            return sizeof(index_value_message);
-        }
-        case template_id::enum_type::settlement_value_message: {
-            const auto* msg = settlement_value_message::parse(buffer);
-            handler.on_message(*msg, packet_receive_time, transport);
-            return sizeof(settlement_value_message);
-        }
-        case template_id::enum_type::summary_message: {
-            const auto* msg = summary_message::parse(buffer);
-            handler.on_message(*msg, packet_receive_time, transport);
-            return sizeof(summary_message);
-        }
-        case template_id::enum_type::market_data_control_message: {
-            const auto* msg = market_data_control_message::parse(buffer);
-            handler.on_message(*msg, packet_receive_time, transport);
-            return sizeof(market_data_control_message);
-        }
-        case template_id::enum_type::heartbeat_message: {
-            const auto* msg = heartbeat_message::parse(buffer);
-            handler.on_message(*msg, packet_receive_time, transport);
-            return sizeof(heartbeat_message);
-        }
+        case template_id::enum_type::security_definition_message:
+            handler.on_message(*security_definition_message::parse(buffer), packet_receive_time, transport);
+            break;
+        case template_id::enum_type::current_market_refresh_message:
+            handler.on_message(*current_market_refresh_message::parse(buffer), packet_receive_time, transport);
+            break;
+        case template_id::enum_type::market_data_refresh_message:
+            handler.on_message(*market_data_refresh_message::parse(buffer), packet_receive_time, transport);
+            break;
+        case template_id::enum_type::current_market_update_message:
+            handler.on_message(*current_market_update_message::parse(buffer), packet_receive_time, transport);
+            break;
+        case template_id::enum_type::recap_update_message:
+            handler.on_message(*recap_update_message::parse(buffer), packet_receive_time, transport);
+            break;
+        case template_id::enum_type::ticker_message:
+            handler.on_message(*ticker_message::parse(buffer), packet_receive_time, transport);
+            break;
+        case template_id::enum_type::expected_opening_price_and_size_message:
+            handler.on_message(*expected_opening_price_and_size_message::parse(buffer), packet_receive_time, transport);
+            break;
+        case template_id::enum_type::index_value_message:
+            handler.on_message(*index_value_message::parse(buffer), packet_receive_time, transport);
+            break;
+        case template_id::enum_type::settlement_value_message:
+            handler.on_message(*settlement_value_message::parse(buffer), packet_receive_time, transport);
+            break;
+        case template_id::enum_type::summary_message:
+            handler.on_message(*summary_message::parse(buffer), packet_receive_time, transport);
+            break;
+        case template_id::enum_type::market_data_control_message:
+            handler.on_message(*market_data_control_message::parse(buffer), packet_receive_time, transport);
+            break;
+        case template_id::enum_type::heartbeat_message:
+            handler.on_message(*heartbeat_message::parse(buffer), packet_receive_time, transport);
+            break;
         default:
-            return 0;
+            // a code none of the messages answer to: the handler is told when it wants to be
+            if constexpr (requires { handler.on_unknown(buffer, length, packet_receive_time, transport); }) {
+                handler.on_unknown(buffer, length, packet_receive_time, transport);
+            }
             break;
     }
 }

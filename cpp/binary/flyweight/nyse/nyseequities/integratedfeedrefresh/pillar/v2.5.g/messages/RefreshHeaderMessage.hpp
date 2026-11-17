@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeedRefresh.Pillar.v2.5.g: messages/RefreshHeaderMessage.hpp
 #pragma once
 
 #include <cstddef>

@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeed.Xdp.v2.1.g: definitions.hpp
 #pragma once
 
 // Every flyweight view and reader of Nyse.AmexEquities.IntegratedFeed.Xdp.v2.1.g.

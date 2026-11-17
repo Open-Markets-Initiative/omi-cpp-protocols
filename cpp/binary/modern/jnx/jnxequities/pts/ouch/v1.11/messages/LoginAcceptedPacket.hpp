@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Ouch.v1.11: messages/LoginAcceptedPacket.hpp
 #pragma once
 
 #include "../types/AcceptedSession.hpp"

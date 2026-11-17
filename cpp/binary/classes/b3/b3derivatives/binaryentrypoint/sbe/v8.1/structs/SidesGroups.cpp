@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1: structs/SidesGroups.cpp
 #include "SidesGroups.hpp"
 
 #include "../common/Print.hpp"

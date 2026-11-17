@@ -1,3 +1,4 @@
+// Miax.OnyxFutures.TopOfMarket.Mach.v1.0.b: types/SettlementCurrency.hpp
 #pragma once
 
 #include <cstddef>

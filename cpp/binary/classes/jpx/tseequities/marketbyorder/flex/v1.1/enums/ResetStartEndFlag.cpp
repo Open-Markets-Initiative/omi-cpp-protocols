@@ -1,3 +1,4 @@
+// Jpx.TseEquities.MarketByOrder.Flex.v1.1: enums/ResetStartEndFlag.cpp
 #include "ResetStartEndFlag.hpp"
 
 namespace jpx::tseequities::marketbyorder::flex::v1_1 {

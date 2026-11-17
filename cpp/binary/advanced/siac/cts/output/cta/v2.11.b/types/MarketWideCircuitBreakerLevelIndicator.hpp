@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: types/MarketWideCircuitBreakerLevelIndicator.hpp
 #pragma once
 
 #include <cstddef>

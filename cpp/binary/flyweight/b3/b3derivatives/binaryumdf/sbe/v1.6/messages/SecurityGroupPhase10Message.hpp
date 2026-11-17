@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.6: messages/SecurityGroupPhase10Message.hpp
 #pragma once
 
 #include <chrono>
@@ -51,7 +52,7 @@ class SecurityGroupPhase10Message {
 
     std::optional<std::chrono::nanoseconds> trad_ses_open_time() const { return wire::nullable_duration<std::chrono::nanoseconds>(wire::read_u64_le(at(16)), static_cast<std::uint64_t>(0ULL)); }
 
-    std::optional<std::uint64_t> transact_time() const { return wire::nullable(wire::read_u64_le(at(24)), static_cast<std::uint64_t>(0ULL)); }
+    std::optional<std::chrono::nanoseconds> transact_time() const { return wire::nullable_duration<std::chrono::nanoseconds>(wire::read_u64_le(at(24)), static_cast<std::uint64_t>(0ULL)); }
 
     void print(std::ostream& out) const {
         out << "SecurityGroupPhase10Message{";
@@ -74,7 +75,7 @@ class SecurityGroupPhase10Message {
         out << ", trad_ses_open_time=";
         print::optional_duration(out, trad_ses_open_time());
         out << ", transact_time=";
-        print::optional(out, transact_time());
+        print::optional_duration(out, transact_time());
         out << '}';
     }
 

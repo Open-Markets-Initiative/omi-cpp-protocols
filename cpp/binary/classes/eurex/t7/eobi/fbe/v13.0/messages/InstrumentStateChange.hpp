@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v13.0: messages/InstrumentStateChange.hpp
 #pragma once
 
 #include <array>
@@ -34,7 +35,7 @@ class InstrumentStateChange : public Message {
     InstrumentStateChange() = default;
     InstrumentStateChange(std::optional<std::int64_t> security_id, std::optional<SecurityStatus> security_status, std::optional<SecurityTradingStatus> security_trading_status, std::optional<MarketCondition> market_condition, std::optional<FastMarketIndicator> fast_market_indicator, std::optional<SecurityTradingEvent> security_trading_event, std::optional<SoldOutIndicator> sold_out_indicator, const std::array<std::byte, 2>& pad2, std::optional<Decimal> high_px, std::optional<Decimal> low_px, std::optional<std::chrono::nanoseconds> transact_time, std::optional<TesSecurityStatus> tes_security_status, const std::array<std::byte, 7>& pad7);
 
-    // Security Id:
+    // Security Id: Unique instrument identifier
     std::optional<std::int64_t> security_id() const;
     void set_security_id(std::optional<std::int64_t> value);
 

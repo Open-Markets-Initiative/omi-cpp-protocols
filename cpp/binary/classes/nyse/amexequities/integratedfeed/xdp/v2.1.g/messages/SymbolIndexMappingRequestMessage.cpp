@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeed.Xdp.v2.1.g: messages/SymbolIndexMappingRequestMessage.cpp
 #include "SymbolIndexMappingRequestMessage.hpp"
 
 #include "../common/Print.hpp"

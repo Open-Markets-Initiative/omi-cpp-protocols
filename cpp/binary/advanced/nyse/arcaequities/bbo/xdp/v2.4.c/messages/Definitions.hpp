@@ -1,3 +1,4 @@
+// Nyse.ArcaEquities.Bbo.Xdp.v2.4.c: messages/Definitions.hpp
 #pragma once
 
 #include "../structs/PacketHeader.hpp"

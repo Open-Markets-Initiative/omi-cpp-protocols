@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2023: structs/SbeGroupSupport.hpp
 #pragma once
 
 #include <cstddef>

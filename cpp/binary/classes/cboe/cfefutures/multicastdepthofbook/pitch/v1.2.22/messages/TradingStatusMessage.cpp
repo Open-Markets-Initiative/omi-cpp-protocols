@@ -1,3 +1,4 @@
+// Cboe.CfeFutures.MulticastDepthOfBook.Pitch.v1.2.22: messages/TradingStatusMessage.cpp
 #include "TradingStatusMessage.hpp"
 
 #include "../common/Print.hpp"

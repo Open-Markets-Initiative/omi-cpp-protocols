@@ -141,7 +141,7 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".payload.applicationmessage.data.underlyingtradingstatusmessage.underlyingsymbol"] = canonical::text(std::string((*message_2).underlying_symbol()), ' ', false);
                 values[entry + ".payload.applicationmessage.data.underlyingtradingstatusmessage.tradingstatus"] = canonical::text(canonical::character((*message_2).trading_status()), ' ', false);
                 values[entry + ".payload.applicationmessage.data.underlyingtradingstatusmessage.eventreason"] = canonical::text(canonical::character((*message_2).event_reason()), ' ', false);
-                values[entry + ".payload.applicationmessage.data.underlyingtradingstatusmessage.secondspart"] = canonical::number((*message_2).seconds_part());
+                values[entry + ".payload.applicationmessage.data.underlyingtradingstatusmessage.expectedeventtimesecondspart"] = ((*message_2).expected_event_time_seconds_part().has_value() ? canonical::number((*(*message_2).expected_event_time_seconds_part())) : canonical::absent());
                 values[entry + ".payload.applicationmessage.data.underlyingtradingstatusmessage.expectedeventtimenanosecondspart"] = canonical::number((*message_2).expected_event_time_nano_seconds_part());
             }
         }

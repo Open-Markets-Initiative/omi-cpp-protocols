@@ -1,3 +1,4 @@
+// Nyse.TexasEquities.IntegratedFeedRefresh.Pillar.v2.5.g: messages/SymbolIndexMappingMessage.hpp
 #pragma once
 
 #include "../types/SymbolIndex.hpp"

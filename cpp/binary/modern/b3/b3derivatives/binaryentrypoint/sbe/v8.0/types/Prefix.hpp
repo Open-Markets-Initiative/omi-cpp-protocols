@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: types/Prefix.hpp
 #pragma once
 
 #include <cstddef>
@@ -11,10 +12,11 @@ struct Prefix {
     static constexpr const char* name = "Prefix";
     static constexpr std::size_t size =  2;
     using type = std::uint16_t;
+static const type no_value = 0;
 
-    // default constructor
+    // default constructor: the null the model states, where it states one
     constexpr Prefix()
-     : value{ 0 } {}
+     : value{ no_value } {}
 
     // standard constructor
     constexpr explicit Prefix(const std::uint16_t value)

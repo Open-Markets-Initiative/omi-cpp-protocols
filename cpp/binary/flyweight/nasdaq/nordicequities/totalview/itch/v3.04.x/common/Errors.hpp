@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: common/Errors.hpp
 #pragma once
 
 #include <cstddef>

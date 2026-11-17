@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.9: bitfields/SettlPriceType.hpp
 #pragma once
 
 #include <cstddef>
@@ -19,9 +20,6 @@ struct SettlPriceType {
         static const type Actual = 0x02;
         static const type Rounded = 0x04;
         static const type Intraday = 0x08;
-        static const type ReservedBits = 0x10;
-        static const type UnusedSettlPriceType5 = 0x20;
-        static const type UnusedSettlPriceType6 = 0x40;
         static const type NullValue = 0x80;
     };
 
@@ -47,21 +45,6 @@ struct SettlPriceType {
     // Intraday
     [[nodiscard]] constexpr bool Intraday() const {
         return value & mask::Intraday;
-    }
-
-    // ReservedBits
-    [[nodiscard]] constexpr bool ReservedBits() const {
-        return value & mask::ReservedBits;
-    }
-
-    // Unused SettlPriceType 5
-    [[nodiscard]] constexpr bool UnusedSettlPriceType5() const {
-        return value & mask::UnusedSettlPriceType5;
-    }
-
-    // Unused SettlPriceType 6
-    [[nodiscard]] constexpr bool UnusedSettlPriceType6() const {
-        return value & mask::UnusedSettlPriceType6;
     }
 
     // NullValue

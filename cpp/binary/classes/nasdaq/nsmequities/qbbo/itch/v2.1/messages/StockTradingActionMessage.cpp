@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.Qbbo.Itch.v2.1: messages/StockTradingActionMessage.cpp
 #include "StockTradingActionMessage.hpp"
 
 #include "../common/Print.hpp"

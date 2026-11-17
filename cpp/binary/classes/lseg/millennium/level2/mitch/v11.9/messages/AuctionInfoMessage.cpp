@@ -1,3 +1,4 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/AuctionInfoMessage.cpp
 #include "AuctionInfoMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,11 +7,11 @@
 
 namespace lseg::millennium::level2::mitch::v11_9 {
 
-AuctionInfoMessage::AuctionInfoMessage(std::uint32_t nanosecond, std::uint32_t paired_quantity, const std::array<std::byte, 4>& reserved_4, const std::array<std::byte, 1>& reserved_1, std::uint32_t instrument_id, const std::array<std::byte, 1>& reserved_a, const std::array<std::byte, 1>& reserved_b, std::int64_t price, AuctionType auction_type)
+AuctionInfoMessage::AuctionInfoMessage(std::chrono::nanoseconds nanosecond, std::uint32_t paired_quantity, const std::array<std::byte, 4>& reserved_4, const std::array<std::byte, 1>& reserved_1, std::uint32_t instrument_id, const std::array<std::byte, 1>& reserved_a, const std::array<std::byte, 1>& reserved_b, Decimal price, AuctionType auction_type)
   : nanosecond_(nanosecond), paired_quantity_(paired_quantity), reserved_4_(reserved_4), reserved_1_(reserved_1), instrument_id_(instrument_id), reserved_a_(reserved_a), reserved_b_(reserved_b), price_(price), auction_type_(auction_type) {}
 
-std::uint32_t AuctionInfoMessage::nanosecond() const { return nanosecond_; }
-void AuctionInfoMessage::set_nanosecond(std::uint32_t value) { nanosecond_ = value; }
+std::chrono::nanoseconds AuctionInfoMessage::nanosecond() const { return nanosecond_; }
+void AuctionInfoMessage::set_nanosecond(std::chrono::nanoseconds value) { nanosecond_ = value; }
 
 std::uint32_t AuctionInfoMessage::paired_quantity() const { return paired_quantity_; }
 void AuctionInfoMessage::set_paired_quantity(std::uint32_t value) { paired_quantity_ = value; }
@@ -34,8 +35,8 @@ const std::array<std::byte, 1>& AuctionInfoMessage::reserved_b() const { return 
 std::array<std::byte, 1>& AuctionInfoMessage::reserved_b() { return reserved_b_; }
 void AuctionInfoMessage::set_reserved_b(const std::array<std::byte, 1>& value) { reserved_b_ = value; }
 
-std::int64_t AuctionInfoMessage::price() const { return price_; }
-void AuctionInfoMessage::set_price(std::int64_t value) { price_ = value; }
+Decimal AuctionInfoMessage::price() const { return price_; }
+void AuctionInfoMessage::set_price(Decimal value) { price_ = value; }
 
 AuctionType AuctionInfoMessage::auction_type() const { return auction_type_; }
 void AuctionInfoMessage::set_auction_type(AuctionType value) { auction_type_ = value; }
@@ -48,7 +49,7 @@ std::size_t AuctionInfoMessage::decode(const std::byte* data, std::size_t length
     std::size_t offset = 0;
     wire::require("AuctionInfoMessage", wire_size, length);
 
-    nanosecond_ = wire::read_u32_le(data + offset);
+    nanosecond_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     paired_quantity_ = wire::read_u32_le(data + offset);
@@ -69,7 +70,7 @@ std::size_t AuctionInfoMessage::decode(const std::byte* data, std::size_t length
     wire::read_bytes(data + offset, reserved_b_.data(), 1);
     offset += 1;
 
-    price_ = wire::read_i64_le(data + offset);
+    price_ = Decimal(static_cast<std::int64_t>(wire::read_i64_le(data + offset)), -8);
     offset += 8;
 
     auction_type_ = static_cast<AuctionType>(wire::read_char(data + offset));
@@ -82,7 +83,7 @@ std::size_t AuctionInfoMessage::encode(std::byte* data, std::size_t capacity) co
     std::size_t offset = 0;
     wire::require_capacity("AuctionInfoMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(nanosecond_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(nanosecond_.count()));
     offset += 4;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(paired_quantity_));
@@ -103,7 +104,7 @@ std::size_t AuctionInfoMessage::encode(std::byte* data, std::size_t capacity) co
     wire::write_bytes(data + offset, reserved_b_.data(), 1);
     offset += 1;
 
-    wire::write_i64_le(data + offset, static_cast<std::int64_t>(price_));
+    wire::write_i64_le(data + offset, static_cast<std::int64_t>(price_.mantissa()));
     offset += 8;
 
     wire::write_char(data + offset, static_cast<char>(auction_type_));
@@ -127,7 +128,7 @@ std::unique_ptr<Message> AuctionInfoMessage::clone() const {
 void AuctionInfoMessage::print(std::ostream& out) const {
     out << "AuctionInfoMessage{";
     out << "nanosecond=";
-    out << nanosecond_;
+    out << nanosecond_.count();
     out << ", paired_quantity=";
     out << paired_quantity_;
     out << ", reserved_4=";

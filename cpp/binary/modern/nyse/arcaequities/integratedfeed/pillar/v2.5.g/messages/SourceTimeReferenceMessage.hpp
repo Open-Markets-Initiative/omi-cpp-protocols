@@ -1,3 +1,4 @@
+// Nyse.ArcaEquities.IntegratedFeed.Pillar.v2.5.g: messages/SourceTimeReferenceMessage.hpp
 #pragma once
 
 #include "../types/Id.hpp"

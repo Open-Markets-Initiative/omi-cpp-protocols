@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1: types/MassActionType.hpp
 #pragma once
 
 #include <cstddef>

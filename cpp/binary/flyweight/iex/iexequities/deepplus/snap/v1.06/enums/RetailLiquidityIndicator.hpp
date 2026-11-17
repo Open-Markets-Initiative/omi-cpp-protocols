@@ -1,3 +1,4 @@
+// Iex.IexEquities.DeepPlus.Snap.v1.06: enums/RetailLiquidityIndicator.hpp
 #pragma once
 
 #include <cstdint>

@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: messages/UnknownLongEquityAndIndexQuoteMessagePayload.cpp
 #include "UnknownLongEquityAndIndexQuoteMessagePayload.hpp"
 
 #include "../common/Print.hpp"

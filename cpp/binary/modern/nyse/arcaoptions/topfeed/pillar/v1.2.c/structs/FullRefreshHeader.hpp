@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.TopFeed.Pillar.v1.2.c: structs/FullRefreshHeader.hpp
 #pragma once
 
 #include "../types/LastSeqNum.hpp"

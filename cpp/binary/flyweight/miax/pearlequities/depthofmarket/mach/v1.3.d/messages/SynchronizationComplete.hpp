@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: messages/SynchronizationComplete.hpp
 #pragma once
 
 #include <cstddef>
@@ -11,8 +12,8 @@
 
 namespace miax::pearlequities::depthofmarket::mach::v1_3_d {
 
-// The ESesM server sends a Login response packet in response a Login request packet from the
-// client
+// The ESesM server sends a Synchronization complete packet when it is done replaying all the
+// old packets and is ready to start sending new packets from the Matching Engine
 class SynchronizationComplete {
   public:
     static constexpr const char* name = "SynchronizationComplete";
@@ -27,12 +28,12 @@ class SynchronizationComplete {
     static constexpr std::size_t fixed_size = 1;
     std::size_t encoded_size() const { return 1; }
 
-    std::uint8_t number_of_matching_engines() const { return wire::read_u8(at(0)); }
+    std::uint8_t matching_engine_id() const { return wire::read_u8(at(0)); }
 
     void print(std::ostream& out) const {
         out << "SynchronizationComplete{";
-        out << "number_of_matching_engines=";
-        out << static_cast<int>(number_of_matching_engines());
+        out << "matching_engine_id=";
+        out << static_cast<int>(matching_engine_id());
         out << '}';
     }
 

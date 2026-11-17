@@ -1,3 +1,4 @@
+// CixAts.CixAspen.MarketDataFeed.Aspen.v1.4: messages/TradeMessage.hpp
 #pragma once
 
 #include <chrono>

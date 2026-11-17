@@ -1,3 +1,4 @@
+// Iex.IexEquities.DeepPlus.IexTp.v1.05: main.cpp
 // Iex.IexEquities.DeepPlus.IexTp.v1.05 benchmark, through the Classes Packet: every value it reads from every message of the simulated
 // sequence (tests/simulated/iex/iexequities/deepplus/iextp/v1.05.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -97,7 +98,6 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest((*message).size());
             checksum += bench::digest((*message).price().mantissa());
         } else if (const auto* message = dynamic_cast<const protocol::OrderDeleteMessage*>(each.message())) {
-            checksum += bench::digest((*message).reserved_1());
             checksum += bench::digest((*message).timestamp());
             checksum += bench::digest((*message).symbol());
             checksum += bench::digest((*message).order_id_reference());
@@ -136,7 +136,6 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest((*message).price().mantissa());
             checksum += bench::digest((*message).trade_id());
         } else if (const auto* message = dynamic_cast<const protocol::ClearBookMessage*>(each.message())) {
-            checksum += bench::digest((*message).reserved_1());
             checksum += bench::digest((*message).timestamp());
             checksum += bench::digest((*message).symbol());
         }

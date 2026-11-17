@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: structs/OutboundBusinessHeader.hpp
 #pragma once
 
 #include <chrono>
@@ -36,7 +37,7 @@ class OutboundBusinessHeader {
 
     std::uint8_t event_indicator() const { return wire::read_u8(at(16)); }
 
-    std::uint8_t market_segment_id_optional() const { return wire::read_u8(at(17)); }
+    std::optional<std::uint8_t> market_segment_id_optional() const { return wire::nullable(wire::read_u8(at(17)), static_cast<std::uint8_t>(0ULL)); }
 
     void print(std::ostream& out) const {
         out << "OutboundBusinessHeader{";
@@ -49,7 +50,7 @@ class OutboundBusinessHeader {
         out << ", event_indicator=";
         out << static_cast<int>(event_indicator());
         out << ", market_segment_id_optional=";
-        out << static_cast<int>(market_segment_id_optional());
+        print::optional(out, market_segment_id_optional());
         out << '}';
     }
 

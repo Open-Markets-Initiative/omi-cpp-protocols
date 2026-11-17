@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v1.91: messages/ShortQuoteMessage.cpp
 #include "ShortQuoteMessage.hpp"
 
 #include "../common/Print.hpp"

@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v1.91: types/BestOfferSizeShort.hpp
 #pragma once
 
 #include <bit>

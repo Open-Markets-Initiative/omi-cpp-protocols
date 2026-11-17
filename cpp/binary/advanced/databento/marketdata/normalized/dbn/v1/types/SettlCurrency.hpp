@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v1: types/SettlCurrency.hpp
 #pragma once
 
 #include <cstddef>

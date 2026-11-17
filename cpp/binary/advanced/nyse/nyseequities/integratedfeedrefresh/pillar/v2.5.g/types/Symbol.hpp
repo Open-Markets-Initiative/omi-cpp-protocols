@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeedRefresh.Pillar.v2.5.g: types/Symbol.hpp
 #pragma once
 
 #include <cstddef>

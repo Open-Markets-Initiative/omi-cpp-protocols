@@ -1,7 +1,8 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.3: groups/SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup.hpp
 #pragma once
 
 #include "../types/MdCorporateOffsetPriceOptional.hpp"
-#include "../types/MdEntrySizeQuantity.hpp"
+#include "../types/MdEntrySize.hpp"
 #include "../types/Offset16Padding4.hpp"
 #include "../types/EnteringFirm.hpp"
 #include "../types/MdInsertTimestamp.hpp"
@@ -16,7 +17,7 @@ namespace b3::b3derivatives::binaryumdf::sbe::v2_3 {
 struct SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup {
 
     MdCorporateOffsetPriceOptional md_corporate_offset_price_optional;
-    MdEntrySizeQuantity md_entry_size_quantity;
+    MdEntrySize md_entry_size;
     Offset16Padding4 offset_16_padding_4;
     EnteringFirm entering_firm;
     MdInsertTimestamp md_insert_timestamp;

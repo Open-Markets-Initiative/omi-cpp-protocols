@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: messages/UdpPayloadAddQuoteMessageLongFormMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -10,6 +11,7 @@
 #include "../common/Print.hpp"
 #include "../common/View.hpp"
 #include "../common/Day.hpp"
+#include "../common/Decimal.hpp"
 
 namespace nasdaq::nomoptions::itto::itch::v4_0_2025 {
 
@@ -40,11 +42,11 @@ class UdpPayloadAddQuoteMessageLongFormMessage {
 
     std::uint32_t option_id() const { return wire::read_u32_be(at(24)); }
 
-    std::uint32_t bid() const { return wire::read_u32_be(at(28)); }
+    Decimal bid() const { return Decimal(static_cast<std::int64_t>(wire::read_u32_be(at(28))), -4); }
 
     std::uint32_t bid_size_long() const { return wire::read_u32_be(at(32)); }
 
-    std::uint32_t ask() const { return wire::read_u32_be(at(36)); }
+    Decimal ask() const { return Decimal(static_cast<std::int64_t>(wire::read_u32_be(at(36))), -4); }
 
     std::uint32_t ask_size_long() const { return wire::read_u32_be(at(40)); }
 

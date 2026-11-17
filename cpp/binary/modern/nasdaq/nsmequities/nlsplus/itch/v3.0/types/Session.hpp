@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: types/Session.hpp
 #pragma once
 
 #include <array>

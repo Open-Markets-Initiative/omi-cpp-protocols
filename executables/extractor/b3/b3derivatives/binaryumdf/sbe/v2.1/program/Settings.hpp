@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.1: program/Settings.hpp
 #pragma once
 
 #include <filesystem>

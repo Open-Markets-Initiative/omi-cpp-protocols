@@ -1,3 +1,4 @@
+// Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.41.29: messages/AuctionSummaryMessage.hpp
 #pragma once
 
 #include <cstddef>

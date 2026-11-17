@@ -1,3 +1,4 @@
+// Cboe.C1Options.Complex.Pitch.v2.1.18: main.cpp
 // Cboe.C1Options.Complex.Pitch.v2.1.18 write and read: every message built with each field it sets, written
 // into a capture through the Classes encoder, then read back - each field set must read as it was written.
 // 
@@ -270,7 +271,7 @@ std::unique_ptr<protocol::Message> build_AuctionNotificationMessage() {
     message->set_quantity(static_cast<std::uint32_t>(7));
     message->set_customer_indicator(protocol::CustomerIndicator::NonCustomer);
     message->set_participant_id(std::string("JKL"));
-    message->set_auction_end_offset(static_cast<std::uint32_t>(10));
+    message->set_auction_end_offset(std::chrono::nanoseconds{10});
     message->set_client_id(std::string("LMN"));
     return message;
 }
@@ -927,7 +928,7 @@ int check_AuctionNotificationMessage(const protocol::Message* read) {
         std::printf("FAIL AuctionNotificationMessage: participant_id does not read as it was written\n");
         ++failures;
     }
-    if (!(message->auction_end_offset() == static_cast<std::uint32_t>(10))) {
+    if (!(message->auction_end_offset() == std::chrono::nanoseconds{10})) {
         std::printf("FAIL AuctionNotificationMessage: auction_end_offset does not read as it was written\n");
         ++failures;
     }

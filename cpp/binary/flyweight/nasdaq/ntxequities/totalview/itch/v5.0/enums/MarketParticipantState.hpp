@@ -1,3 +1,4 @@
+// Nasdaq.NtxEquities.TotalView.Itch.v5.0: enums/MarketParticipantState.hpp
 #pragma once
 
 #include <cstdint>

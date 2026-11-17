@@ -1,9 +1,10 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: messages/ExecutionReportNewMessage.hpp
 #pragma once
 
 #include "../structs/OutboundBusinessHeader.hpp"
 #include "../types/Side.hpp"
 #include "../types/OrdStatus.hpp"
-#include "../types/Clordid.hpp"
+#include "../types/ClOrdId.hpp"
 #include "../types/SecondaryOrderId.hpp"
 #include "../types/SecurityId.hpp"
 #include "../types/OrderId.hpp"
@@ -23,7 +24,7 @@
 #include "../types/StopPx.hpp"
 #include "../types/MinQty.hpp"
 #include "../types/MaxFloor.hpp"
-#include "../types/CrossidOptional.hpp"
+#include "../types/CrossIdOptional.hpp"
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_0 {
 
@@ -35,7 +36,7 @@ struct ExecutionReportNewMessage {
     OutboundBusinessHeader outbound_business_header;
     Side side;
     OrdStatus ord_status;
-    Clordid clordid;
+    ClOrdId cl_ord_id;
     SecondaryOrderId secondary_order_id;
     SecurityId security_id;
     OrderId order_id;
@@ -55,7 +56,7 @@ struct ExecutionReportNewMessage {
     StopPx stop_px;
     MinQty min_qty;
     MaxFloor max_floor;
-    CrossidOptional crossid_optional;
+    CrossIdOptional cross_id_optional;
 
     // parse method
     static ExecutionReportNewMessage* parse(std::byte* buffer) {

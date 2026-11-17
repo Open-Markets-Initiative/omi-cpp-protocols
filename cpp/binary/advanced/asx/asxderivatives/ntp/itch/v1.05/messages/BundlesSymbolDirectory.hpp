@@ -1,3 +1,4 @@
+// Asx.AsxDerivatives.Ntp.Itch.v1.05: messages/BundlesSymbolDirectory.hpp
 #pragma once
 
 #include <cstddef>
@@ -36,7 +37,7 @@ struct bundles_symbol_directory {
         itch_ntp::price_fractional_denominator price_fractional_denominator;
         itch_ntp::price_minimum_tick price_minimum_tick;
         itch_ntp::legs legs;
-        itch_ntp::bundle_leg bundle_leg[20];
+        itch_ntp::bundle_leg bundle_leg;
     };
 
     itch_ntp::message_header header = {std::uint16_t(sizeof(itch_ntp::message_header) + sizeof(fields_type) - 2), message_type::enum_type::bundles_symbol_directory};
@@ -68,8 +69,8 @@ static_assert(offsetof(bundles_symbol_directory::fields_type, price_fractional_d
 static_assert(offsetof(bundles_symbol_directory::fields_type, price_minimum_tick) == 114, "unexpected offset of bundles_symbol_directory::fields_type::price_minimum_tick");
 static_assert(offsetof(bundles_symbol_directory::fields_type, legs) == 118, "unexpected offset of bundles_symbol_directory::fields_type::legs");
 static_assert(offsetof(bundles_symbol_directory::fields_type, bundle_leg) == 119, "unexpected offset of bundles_symbol_directory::fields_type::bundle_leg");
-static_assert(sizeof(bundles_symbol_directory::fields_type) == 459, "unexpected sizeof bundles_symbol_directory::fields_type");
-static_assert(sizeof(bundles_symbol_directory) == sizeof(itch_ntp::message_header) + 459, "unexpected sizeof bundles_symbol_directory");
+static_assert(sizeof(bundles_symbol_directory::fields_type) == 136, "unexpected sizeof bundles_symbol_directory::fields_type");
+static_assert(sizeof(bundles_symbol_directory) == sizeof(itch_ntp::message_header) + 136, "unexpected sizeof bundles_symbol_directory");
 
 #pragma pack(pop)
 }

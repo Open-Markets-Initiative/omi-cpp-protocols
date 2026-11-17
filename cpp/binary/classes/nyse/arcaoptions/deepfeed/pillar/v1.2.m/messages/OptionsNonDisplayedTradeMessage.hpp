@@ -1,6 +1,8 @@
+// Nyse.ArcaOptions.DeepFeed.Pillar.v1.2.m: messages/OptionsNonDisplayedTradeMessage.hpp
 #pragma once
 
 #include <array>
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
@@ -25,11 +27,11 @@ class OptionsNonDisplayedTradeMessage : public Message {
     static constexpr std::size_t wire_size = 30;
 
     OptionsNonDisplayedTradeMessage() = default;
-    OptionsNonDisplayedTradeMessage(std::uint32_t source_time_ns, std::uint32_t series_index, std::uint32_t series_seq_num, std::uint32_t trade_id, std::int32_t price, std::uint32_t volume, PrintableFlag printable_flag, NonDisplayedTradeTradeCond1 non_displayed_trade_trade_cond_1, const std::array<std::byte, 3>& reserved_3, PriceType price_type);
+    OptionsNonDisplayedTradeMessage(std::chrono::nanoseconds source_time_ns, std::uint32_t series_index, std::uint32_t series_seq_num, std::uint32_t trade_id, std::int32_t price, std::uint32_t volume, PrintableFlag printable_flag, NonDisplayedTradeTradeCond1 non_displayed_trade_trade_cond_1, const std::array<std::byte, 3>& reserved_3, PriceType price_type);
 
     // Source Time Ns: The nanosecond offset (UTC Time) from the Time Reference message.
-    std::uint32_t source_time_ns() const;
-    void set_source_time_ns(std::uint32_t value);
+    std::chrono::nanoseconds source_time_ns() const;
+    void set_source_time_ns(std::chrono::nanoseconds value);
 
     // Series Index: The unique ID of this series within this market.
     std::uint32_t series_index() const;
@@ -84,7 +86,7 @@ class OptionsNonDisplayedTradeMessage : public Message {
     bool operator!=(const OptionsNonDisplayedTradeMessage& other) const;
 
   private:
-    std::uint32_t source_time_ns_{};
+    std::chrono::nanoseconds source_time_ns_{};
     std::uint32_t series_index_{};
     std::uint32_t series_seq_num_{};
     std::uint32_t trade_id_{};

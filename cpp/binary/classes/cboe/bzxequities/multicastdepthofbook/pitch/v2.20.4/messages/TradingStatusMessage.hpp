@@ -1,5 +1,7 @@
+// Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.20.4: messages/TradingStatusMessage.hpp
 #pragma once
 
+#include <array>
 #include <chrono>
 #include <cstddef>
 #include <memory>
@@ -24,7 +26,7 @@ class TradingStatusMessage : public Message {
     static constexpr std::size_t wire_size = 16;
 
     TradingStatusMessage() = default;
-    TradingStatusMessage(std::chrono::nanoseconds time_offset, const std::string& symbol_long, TradingStatus trading_status, RegShoAction reg_sho_action, char reserved_1, char second_reserved_1);
+    TradingStatusMessage(std::chrono::nanoseconds time_offset, const std::string& symbol_long, TradingStatus trading_status, RegShoAction reg_sho_action, const std::array<std::byte, 1>& reserved_1, const std::array<std::byte, 1>& second_reserved_1);
 
     // Time Offset: Nanosecond offset from last
     std::chrono::nanoseconds time_offset() const;
@@ -45,12 +47,14 @@ class TradingStatusMessage : public Message {
     void set_reg_sho_action(RegShoAction value);
 
     // Reserved 1: Reserved
-    char reserved_1() const;
-    void set_reserved_1(char value);
+    const std::array<std::byte, 1>& reserved_1() const;
+    std::array<std::byte, 1>& reserved_1();
+    void set_reserved_1(const std::array<std::byte, 1>& value);
 
     // Second Reserved 1: Reserved
-    char second_reserved_1() const;
-    void set_second_reserved_1(char value);
+    const std::array<std::byte, 1>& second_reserved_1() const;
+    std::array<std::byte, 1>& second_reserved_1();
+    void set_second_reserved_1(const std::array<std::byte, 1>& value);
 
     // Message
     MessageCode type() const override;
@@ -71,8 +75,8 @@ class TradingStatusMessage : public Message {
     std::string symbol_long_{};
     TradingStatus trading_status_{};
     RegShoAction reg_sho_action_{};
-    char reserved_1_{};
-    char second_reserved_1_{};
+    std::array<std::byte, 1> reserved_1_{};
+    std::array<std::byte, 1> second_reserved_1_{};
 };
 
 } // namespace cboe::bzxequities::multicastdepthofbook::pitch::v2_20_4

@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v3: enums/StatType.hpp
 #pragma once
 
 #include <cstdint>

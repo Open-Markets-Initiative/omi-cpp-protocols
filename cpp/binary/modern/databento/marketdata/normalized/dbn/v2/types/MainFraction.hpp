@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v2: types/MainFraction.hpp
 #pragma once
 
 #include <cstddef>

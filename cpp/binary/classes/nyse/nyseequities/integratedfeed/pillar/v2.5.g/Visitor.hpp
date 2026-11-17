@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeed.Pillar.v2.5.g: Visitor.hpp
 #pragma once
 
 namespace nyse::nyseequities::integratedfeed::pillar::v2_5_g {

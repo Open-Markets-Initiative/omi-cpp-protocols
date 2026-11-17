@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeedRefresh.Pillar.v2.5.g: types/CurrentRefreshPkt.hpp
 #pragma once
 
 #include <cstddef>

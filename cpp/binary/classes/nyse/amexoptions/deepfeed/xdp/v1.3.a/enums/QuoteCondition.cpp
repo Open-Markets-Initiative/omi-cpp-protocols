@@ -1,3 +1,4 @@
+// Nyse.AmexOptions.DeepFeed.Xdp.v1.3.a: enums/QuoteCondition.cpp
 #include "QuoteCondition.hpp"
 
 namespace nyse::amexoptions::deepfeed::xdp::v1_3_a {

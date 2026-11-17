@@ -1,7 +1,9 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: structs/CustodianInfo.hpp
 #pragma once
 
 #include <cstddef>
 #include <cstdint>
+#include <optional>
 #include <ostream>
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_3 {
@@ -13,19 +15,19 @@ class CustodianInfo {
     static constexpr std::size_t wire_size = 12;
 
     CustodianInfo() = default;
-    CustodianInfo(std::uint32_t custodian, std::uint32_t custody_account, std::uint32_t custody_allocation_type);
+    CustodianInfo(std::optional<std::uint32_t> custodian, std::optional<std::uint32_t> custody_account, std::optional<std::uint32_t> custody_allocation_type);
 
     // Custodian: custodian
-    std::uint32_t custodian() const;
-    void set_custodian(std::uint32_t value);
+    std::optional<std::uint32_t> custodian() const;
+    void set_custodian(std::optional<std::uint32_t> value);
 
     // Custody Account: custodyAccount
-    std::uint32_t custody_account() const;
-    void set_custody_account(std::uint32_t value);
+    std::optional<std::uint32_t> custody_account() const;
+    void set_custody_account(std::optional<std::uint32_t> value);
 
     // Custody Allocation Type: custodyAllocationType
-    std::uint32_t custody_allocation_type() const;
-    void set_custody_allocation_type(std::uint32_t value);
+    std::optional<std::uint32_t> custody_allocation_type() const;
+    void set_custody_allocation_type(std::optional<std::uint32_t> value);
 
     // Read this from the bytes at data, and return how many were consumed; throws DecodeError when too few
     std::size_t decode(const std::byte* data, std::size_t length);
@@ -39,9 +41,9 @@ class CustodianInfo {
     bool operator!=(const CustodianInfo& other) const;
 
   private:
-    std::uint32_t custodian_{};
-    std::uint32_t custody_account_{};
-    std::uint32_t custody_allocation_type_{};
+    std::optional<std::uint32_t> custodian_{};
+    std::optional<std::uint32_t> custody_account_{};
+    std::optional<std::uint32_t> custody_allocation_type_{};
 };
 
 std::ostream& operator<<(std::ostream& out, const CustodianInfo& value);

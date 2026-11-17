@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.6: messages/ShortSellingPriceRestrictionStateMessage.cpp
 #include "ShortSellingPriceRestrictionStateMessage.hpp"
 
 #include "../common/Print.hpp"

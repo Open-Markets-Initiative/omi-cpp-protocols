@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeed.Pillar.v2.5.g: types/IndicativeMatchPrice.hpp
 #pragma once
 
 #include <cstddef>

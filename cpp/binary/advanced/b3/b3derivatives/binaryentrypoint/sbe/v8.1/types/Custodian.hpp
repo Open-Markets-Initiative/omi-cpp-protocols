@@ -1,7 +1,9 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1: types/Custodian.hpp
 #pragma once
 
 #include <cstddef>
 #include <cstdint>
+#include <optional>
 #include "../cache/Required.hpp"
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_1 {
@@ -11,19 +13,20 @@ struct custodian {
 
     static constexpr const char* name = "custodian";
     static constexpr std::size_t size = 4;
-    static constexpr bool is_optional = false;
+    static constexpr bool is_optional = true;
+    static constexpr std::uint32_t null_value = 0;
 
-    using result_type = required<std::uint32_t>;
+    using result_type = std::optional<std::uint32_t>;
     using storage_type = result_type;
 
     constexpr custodian()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr custodian(std::uint32_t v)
      : value{ v } {}
 
     [[nodiscard]] constexpr result_type get() const {
-        return result_type{value};
+        return value == null_value ? std::nullopt : result_type{value};
     }
 
     constexpr void set(std::uint32_t v) {
@@ -34,7 +37,11 @@ struct custodian {
         if (value.has_value())
             set(value.value());
         else
-            set(0);
+            set(null_value);
+    }
+
+    constexpr void set_null() {
+        value = null_value;
     }
 
   protected:

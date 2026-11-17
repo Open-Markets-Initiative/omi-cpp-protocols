@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.Qbbo.Itch.v2.1: messages/IpoQuotingPeriodUpdateMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -26,7 +27,7 @@ class IpoQuotingPeriodUpdateMessage : public Message {
     static constexpr std::size_t wire_size = 25;
 
     IpoQuotingPeriodUpdateMessage() = default;
-    IpoQuotingPeriodUpdateMessage(std::uint16_t tracking, std::chrono::nanoseconds time_stamp, const std::string& stock, std::uint32_t ipo_quotation_release_time, IpoQuotationReleaseQualifier ipo_quotation_release_qualifier, Decimal ipo_price);
+    IpoQuotingPeriodUpdateMessage(std::uint16_t tracking, std::chrono::nanoseconds time_stamp, const std::string& stock, std::chrono::seconds ipo_quotation_release_time, IpoQuotationReleaseQualifier ipo_quotation_release_qualifier, Decimal ipo_price);
 
     // Tracking: Nasdaq internal tracking number
     std::uint16_t tracking() const;
@@ -44,8 +45,8 @@ class IpoQuotingPeriodUpdateMessage : public Message {
 
     // Ipo Quotation Release Time: Denotes the IPO release time, in seconds since midnight, for
     // quotation to the nearest second.
-    std::uint32_t ipo_quotation_release_time() const;
-    void set_ipo_quotation_release_time(std::uint32_t value);
+    std::chrono::seconds ipo_quotation_release_time() const;
+    void set_ipo_quotation_release_time(std::chrono::seconds value);
 
     // Ipo Quotation Release Qualifier: Denotes the IPO release qualifier
     IpoQuotationReleaseQualifier ipo_quotation_release_qualifier() const;
@@ -73,7 +74,7 @@ class IpoQuotingPeriodUpdateMessage : public Message {
     std::uint16_t tracking_{};
     std::chrono::nanoseconds time_stamp_{};
     std::string stock_{};
-    std::uint32_t ipo_quotation_release_time_{};
+    std::chrono::seconds ipo_quotation_release_time_{};
     IpoQuotationReleaseQualifier ipo_quotation_release_qualifier_{};
     Decimal ipo_price_{ 0, -4 };
 };

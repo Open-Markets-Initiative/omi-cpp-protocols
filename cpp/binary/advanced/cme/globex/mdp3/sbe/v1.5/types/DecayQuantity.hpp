@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.5: types/DecayQuantity.hpp
 #pragma once
 
 #include <cstddef>

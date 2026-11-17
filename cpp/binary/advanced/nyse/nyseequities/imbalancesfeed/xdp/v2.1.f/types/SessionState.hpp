@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.ImbalancesFeed.Xdp.v2.1.f: types/SessionState.hpp
 #pragma once
 
 #include <cstddef>

@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v2: types/BidSz.hpp
 #pragma once
 
 #include <cstddef>

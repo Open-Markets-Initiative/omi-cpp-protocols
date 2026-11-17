@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.Bbo.Xdp.v2.4.g: TypesAll.hpp
 #pragma once
 
 // All type headers for this protocol schema

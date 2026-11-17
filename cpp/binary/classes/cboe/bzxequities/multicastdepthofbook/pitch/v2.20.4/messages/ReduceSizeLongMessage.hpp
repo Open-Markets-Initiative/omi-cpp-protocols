@@ -1,3 +1,4 @@
+// Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.20.4: messages/ReduceSizeLongMessage.hpp
 #pragma once
 
 #include <chrono>

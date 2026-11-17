@@ -1,5 +1,7 @@
+// Cboe.EdgxEquities.MulticastDepthOfBook.Pitch.v2.41.29: messages/EndOfSession.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <ostream>
@@ -26,12 +28,12 @@ class EndOfSession {
     static constexpr std::size_t fixed_size = 4;
     std::size_t encoded_size() const { return 4; }
 
-    std::uint32_t last_timestamp() const { return wire::read_u32_le(at(0)); }
+    std::chrono::nanoseconds time_offset() const { return std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(at(0)))); }
 
     void print(std::ostream& out) const {
         out << "EndOfSession{";
-        out << "last_timestamp=";
-        out << last_timestamp();
+        out << "time_offset=";
+        out << time_offset().count();
         out << '}';
     }
 

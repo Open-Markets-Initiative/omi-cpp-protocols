@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: definitions.hpp
 #pragma once
 
 // Every flyweight view and reader of Nasdaq.NomOptions.Itto.Itch.v4.0.2025.

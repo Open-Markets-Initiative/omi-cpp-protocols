@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.2: messages/OrderMbO50Message.hpp
 #pragma once
 
 #include <cstddef>
@@ -9,7 +10,7 @@
 #include "../types/MdEntryType.hpp"
 #include "../types/Offset11Padding1.hpp"
 #include "../types/MdCorporateOffsetPriceOptional.hpp"
-#include "../types/MdEntrySizeQuantity.hpp"
+#include "../types/MdEntrySize.hpp"
 #include "../types/Offset28Padding4.hpp"
 #include "../types/EnteringFirm.hpp"
 #include "../types/MdInsertTimestamp.hpp"
@@ -34,7 +35,7 @@ struct order_mb_o_50_message {
         sbe_binaryumdf::md_entry_type md_entry_type;
         sbe_binaryumdf::offset_11_padding_1 offset_11_padding_1;
         sbe_binaryumdf::md_corporate_offset_price_optional md_corporate_offset_price_optional;
-        sbe_binaryumdf::md_entry_size_quantity md_entry_size_quantity;
+        sbe_binaryumdf::md_entry_size md_entry_size;
         sbe_binaryumdf::offset_28_padding_4 offset_28_padding_4;
         sbe_binaryumdf::entering_firm entering_firm;
         sbe_binaryumdf::md_insert_timestamp md_insert_timestamp;
@@ -68,7 +69,7 @@ static_assert(offsetof(order_mb_o_50_message::fields_type, md_update_action) == 
 static_assert(offsetof(order_mb_o_50_message::fields_type, md_entry_type) == 10, "unexpected offset of order_mb_o_50_message::fields_type::md_entry_type");
 static_assert(offsetof(order_mb_o_50_message::fields_type, offset_11_padding_1) == 11, "unexpected offset of order_mb_o_50_message::fields_type::offset_11_padding_1");
 static_assert(offsetof(order_mb_o_50_message::fields_type, md_corporate_offset_price_optional) == 12, "unexpected offset of order_mb_o_50_message::fields_type::md_corporate_offset_price_optional");
-static_assert(offsetof(order_mb_o_50_message::fields_type, md_entry_size_quantity) == 20, "unexpected offset of order_mb_o_50_message::fields_type::md_entry_size_quantity");
+static_assert(offsetof(order_mb_o_50_message::fields_type, md_entry_size) == 20, "unexpected offset of order_mb_o_50_message::fields_type::md_entry_size");
 static_assert(offsetof(order_mb_o_50_message::fields_type, offset_28_padding_4) == 28, "unexpected offset of order_mb_o_50_message::fields_type::offset_28_padding_4");
 static_assert(offsetof(order_mb_o_50_message::fields_type, entering_firm) == 32, "unexpected offset of order_mb_o_50_message::fields_type::entering_firm");
 static_assert(offsetof(order_mb_o_50_message::fields_type, md_insert_timestamp) == 36, "unexpected offset of order_mb_o_50_message::fields_type::md_insert_timestamp");

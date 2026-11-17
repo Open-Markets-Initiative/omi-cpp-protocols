@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: messages/AddQuoteMessageShortFormMessage.hpp
 #pragma once
 
 #include "../types/TrackingNumber.hpp"

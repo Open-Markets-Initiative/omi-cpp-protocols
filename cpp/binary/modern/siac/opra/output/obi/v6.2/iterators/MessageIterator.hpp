@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: iterators/MessageIterator.hpp
 #pragma once
 
 #include "../definitions.hpp"

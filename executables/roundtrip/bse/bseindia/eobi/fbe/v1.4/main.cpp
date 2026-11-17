@@ -1,3 +1,4 @@
+// Bse.BseIndia.Eobi.Fbe.v1.4: main.cpp
 // Bse.BseIndia.Eobi.Fbe.v1.4 write and read: every message built with each field it sets, written
 // into a capture through the Classes encoder, then read back - each field set must read as it was written.
 // 

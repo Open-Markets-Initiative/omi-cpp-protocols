@@ -1,3 +1,4 @@
+// Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.20.4: TypesAll.hpp
 #pragma once
 
 // All type headers for this protocol schema
@@ -26,7 +27,6 @@
 #include "types/CanceledQuantityBinary4.hpp"
 #include "types/CanceledQuantityBinary2.hpp"
 #include "types/ModifyFlags.hpp"
-#include "types/Timestamp.hpp"
 #include "types/FeedSymbol.hpp"
 #include "types/OsiSymbol.hpp"
 #include "types/SymbolCondition.hpp"

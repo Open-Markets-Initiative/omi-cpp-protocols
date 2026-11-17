@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: types/CorrectedTradeVolume.hpp
 #pragma once
 
 #include <bit>

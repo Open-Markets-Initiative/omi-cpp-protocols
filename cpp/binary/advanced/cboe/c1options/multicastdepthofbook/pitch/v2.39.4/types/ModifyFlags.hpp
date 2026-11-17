@@ -1,3 +1,4 @@
+// Cboe.C1Options.MulticastDepthOfBook.Pitch.v2.39.4: types/ModifyFlags.hpp
 #pragma once
 
 #include <cstddef>

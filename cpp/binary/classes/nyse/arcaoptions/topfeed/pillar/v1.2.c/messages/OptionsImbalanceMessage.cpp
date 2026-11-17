@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.TopFeed.Pillar.v1.2.c: messages/OptionsImbalanceMessage.cpp
 #include "OptionsImbalanceMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,14 +7,14 @@
 
 namespace nyse::arcaoptions::topfeed::pillar::v1_2_c {
 
-OptionsImbalanceMessage::OptionsImbalanceMessage(std::uint32_t source_time, std::uint32_t source_time_ns, std::uint32_t series_index, std::uint32_t series_seq_num, const std::array<std::byte, 4>& reserved_4, std::uint32_t paired_qty, std::uint32_t total_imbalance_qty, std::uint32_t market_imbalance_qty, const std::array<std::byte, 2>& reserved_2, AuctionType auction_type, ImbalanceSide imbalance_side, std::int32_t continuous_book_clearing_price, std::int32_t auction_interest_clearing_price, const std::array<std::byte, 4>& second_reserved_4, std::int32_t indicative_match_price, std::int32_t upper_collar, std::int32_t lower_collar, AuctionStatus auction_status)
+OptionsImbalanceMessage::OptionsImbalanceMessage(std::chrono::seconds source_time, std::chrono::nanoseconds source_time_ns, std::uint32_t series_index, std::uint32_t series_seq_num, const std::array<std::byte, 4>& reserved_4, std::uint32_t paired_qty, std::uint32_t total_imbalance_qty, std::uint32_t market_imbalance_qty, const std::array<std::byte, 2>& reserved_2, AuctionType auction_type, ImbalanceSide imbalance_side, std::int32_t continuous_book_clearing_price, std::int32_t auction_interest_clearing_price, const std::array<std::byte, 4>& second_reserved_4, std::int32_t indicative_match_price, std::int32_t upper_collar, std::int32_t lower_collar, AuctionStatus auction_status)
   : source_time_(source_time), source_time_ns_(source_time_ns), series_index_(series_index), series_seq_num_(series_seq_num), reserved_4_(reserved_4), paired_qty_(paired_qty), total_imbalance_qty_(total_imbalance_qty), market_imbalance_qty_(market_imbalance_qty), reserved_2_(reserved_2), auction_type_(auction_type), imbalance_side_(imbalance_side), continuous_book_clearing_price_(continuous_book_clearing_price), auction_interest_clearing_price_(auction_interest_clearing_price), second_reserved_4_(second_reserved_4), indicative_match_price_(indicative_match_price), upper_collar_(upper_collar), lower_collar_(lower_collar), auction_status_(auction_status) {}
 
-std::uint32_t OptionsImbalanceMessage::source_time() const { return source_time_; }
-void OptionsImbalanceMessage::set_source_time(std::uint32_t value) { source_time_ = value; }
+std::chrono::seconds OptionsImbalanceMessage::source_time() const { return source_time_; }
+void OptionsImbalanceMessage::set_source_time(std::chrono::seconds value) { source_time_ = value; }
 
-std::uint32_t OptionsImbalanceMessage::source_time_ns() const { return source_time_ns_; }
-void OptionsImbalanceMessage::set_source_time_ns(std::uint32_t value) { source_time_ns_ = value; }
+std::chrono::nanoseconds OptionsImbalanceMessage::source_time_ns() const { return source_time_ns_; }
+void OptionsImbalanceMessage::set_source_time_ns(std::chrono::nanoseconds value) { source_time_ns_ = value; }
 
 std::uint32_t OptionsImbalanceMessage::series_index() const { return series_index_; }
 void OptionsImbalanceMessage::set_series_index(std::uint32_t value) { series_index_ = value; }
@@ -74,10 +75,10 @@ std::size_t OptionsImbalanceMessage::decode(const std::byte* data, std::size_t l
     std::size_t offset = 0;
     wire::require("OptionsImbalanceMessage", wire_size, length);
 
-    source_time_ = wire::read_u32_le(data + offset);
+    source_time_ = std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
-    source_time_ns_ = wire::read_u32_le(data + offset);
+    source_time_ns_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     series_index_ = wire::read_u32_le(data + offset);
@@ -135,10 +136,10 @@ std::size_t OptionsImbalanceMessage::encode(std::byte* data, std::size_t capacit
     std::size_t offset = 0;
     wire::require_capacity("OptionsImbalanceMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_.count()));
     offset += 4;
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_.count()));
     offset += 4;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(series_index_));
@@ -207,9 +208,9 @@ std::unique_ptr<Message> OptionsImbalanceMessage::clone() const {
 void OptionsImbalanceMessage::print(std::ostream& out) const {
     out << "OptionsImbalanceMessage{";
     out << "source_time=";
-    out << source_time_;
+    out << source_time_.count();
     out << ", source_time_ns=";
-    out << source_time_ns_;
+    out << source_time_ns_.count();
     out << ", series_index=";
     out << series_index_;
     out << ", series_seq_num=";

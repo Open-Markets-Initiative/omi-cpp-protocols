@@ -1,3 +1,4 @@
+// Nyse.NationalEquities.Trades.Pillar.v2.6: definitions.hpp
 #pragma once
 
 #include "common/Decimal.hpp"

@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: definitions.hpp
 #pragma once
 
 #include "structs/MachPacketHeader.hpp"
@@ -5,13 +6,8 @@
 #include "structs/EsesmPacketHeader.hpp"
 #include "structs/SequencedDataPacket.hpp"
 #include "structs/UnsequencedDataPacket.hpp"
-#include "structs/LoginRequest.hpp"
-#include "structs/LoginResponse.hpp"
-#include "structs/SynchronizationComplete.hpp"
-#include "structs/RetransmissionRequest.hpp"
-#include "structs/LogoutRequest.hpp"
-#include "structs/GoodbyePacket.hpp"
-#include "structs/TestPacket.hpp"
+#include "structs/RequestedMatchingEngine.hpp"
+#include "structs/LoginMatchingEngine.hpp"
 
 #include "messages/SystemTimeMessage.hpp"
 #include "messages/SymbolUpdateMessage.hpp"
@@ -27,6 +23,22 @@
 #include "messages/RefreshRequestMessage.hpp"
 #include "messages/RefreshResponseMessage.hpp"
 #include "messages/EndOfRefreshNotificationMessage.hpp"
+#include "messages/LoginRequest.hpp"
+#include "messages/LoginResponse.hpp"
+#include "messages/SynchronizationComplete.hpp"
+#include "messages/RetransmissionRequest.hpp"
+#include "messages/LogoutRequest.hpp"
+#include "messages/GoodbyePacket.hpp"
+#include "messages/TradingSessionUpdate.hpp"
+#include "messages/TestPacket.hpp"
 
+#include "actions/Heartbeat.hpp"
+#include "actions/StartOfSession.hpp"
+#include "actions/EndOfSession.hpp"
+#include "actions/ServerHeartbeat.hpp"
+#include "actions/ClientHeartbeat.hpp"
+
+#include "iterators/LoginMatchingEngineIterator.hpp"
+#include "iterators/RequestedMatchingEngineIterator.hpp"
 #include "iterators/EsesmTcpPacketIterator.hpp"
 #include "iterators/MachMessageIterator.hpp"

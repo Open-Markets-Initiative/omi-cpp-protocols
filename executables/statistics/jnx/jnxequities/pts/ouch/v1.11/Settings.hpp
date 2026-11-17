@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Ouch.v1.11: Settings.hpp
 #pragma once
 
 #include <iostream>

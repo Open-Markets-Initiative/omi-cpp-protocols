@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: Settings.hpp
 #pragma once
 
 #include <iostream>

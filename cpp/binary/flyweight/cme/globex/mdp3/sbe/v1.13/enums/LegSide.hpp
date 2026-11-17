@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.13: enums/LegSide.hpp
 #pragma once
 
 #include <cstdint>

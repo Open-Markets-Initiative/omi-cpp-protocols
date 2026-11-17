@@ -1,6 +1,6 @@
+// Nasdaq.IseOptions.OrderComboFeed.Itch.v1.1: types/ExpirationYear.hpp
 #pragma once
 
-#include <bit>
 #include <cstddef>
 #include <cstdint>
 

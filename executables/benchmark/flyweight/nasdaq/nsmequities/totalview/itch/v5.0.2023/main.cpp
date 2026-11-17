@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2023: main.cpp
 // Nasdaq.NsmEquities.TotalView.Itch.v5.0.2023 benchmark, through the Flyweight reader: every value it reads from every message of the simulated
 // sequence (tests/simulated/nasdaq/nsmequities/totalview/itch/v5.0.2023.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -77,7 +78,6 @@ struct Reader {
         checksum += bench::digest(message.timestamp());
         checksum += bench::digest(message.stock());
         checksum += bench::digest(message.trading_state());
-        checksum += bench::digest(message.reserved());
         checksum += bench::digest(message.reason_code());
     }
 

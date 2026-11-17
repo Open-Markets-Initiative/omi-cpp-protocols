@@ -1,6 +1,6 @@
+// Asx.AsxDerivatives.Ntp.Itch.v1.05: types/StrikePriceDecimalPosition.hpp
 #pragma once
 
-#include <bit>
 #include <cstddef>
 #include <cstdint>
 

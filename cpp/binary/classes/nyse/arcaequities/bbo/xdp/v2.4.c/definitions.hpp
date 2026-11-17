@@ -1,3 +1,4 @@
+// Nyse.ArcaEquities.Bbo.Xdp.v2.4.c: definitions.hpp
 #pragma once
 
 #include "common/Decimal.hpp"

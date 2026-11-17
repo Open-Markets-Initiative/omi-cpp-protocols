@@ -1,6 +1,8 @@
+// Nyse.AmexOptions.ComplexFeed.Xdp.v1.3.a: messages/ComplexCubeRfqMessage.hpp
 #pragma once
 
 #include <array>
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
@@ -23,12 +25,12 @@ class ComplexCubeRfqMessage : public Message {
     static constexpr std::size_t wire_size = 24;
 
     ComplexCubeRfqMessage() = default;
-    ComplexCubeRfqMessage(std::uint32_t source_time, std::uint32_t source_ns, std::uint32_t complex_index, std::uint32_t symbol_seq_num, Side side, const std::array<std::byte, 1>& reserved_1, std::uint16_t volume_2, std::int32_t price);
+    ComplexCubeRfqMessage(std::chrono::seconds source_time, std::uint32_t source_ns, std::uint32_t complex_index, std::uint32_t symbol_seq_num, Side side, const std::array<std::byte, 1>& reserved_1, std::uint16_t volume_2, std::int32_t price);
 
     // Source Time: The time when this msg was generated in the order book, in seconds since
     // Jan 1, 1970 00:00:00 UTC.
-    std::uint32_t source_time() const;
-    void set_source_time(std::uint32_t value);
+    std::chrono::seconds source_time() const;
+    void set_source_time(std::chrono::seconds value);
 
     // Source Ns: The nanosecond offset from the SourceTime.
     std::uint32_t source_ns() const;
@@ -75,7 +77,7 @@ class ComplexCubeRfqMessage : public Message {
     bool operator!=(const ComplexCubeRfqMessage& other) const;
 
   private:
-    std::uint32_t source_time_{};
+    std::chrono::seconds source_time_{};
     std::uint32_t source_ns_{};
     std::uint32_t complex_index_{};
     std::uint32_t symbol_seq_num_{};

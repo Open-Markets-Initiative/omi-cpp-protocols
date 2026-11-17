@@ -1,3 +1,4 @@
+// Nasdaq.PsxEquities.TotalView.Itch.v5.0: messages/StockTradingActionMessage.hpp
 #pragma once
 
 #include "../types/StockLocate.hpp"

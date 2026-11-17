@@ -1,3 +1,4 @@
+// Iex.IexEquities.Tops.Snap.v1.6: enums/AuctionType.hpp
 #pragma once
 
 #include <cstdint>

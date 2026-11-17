@@ -1,3 +1,4 @@
+// Nasdaq.IseOptions.OrderComboFeed.Itch.v1.1: messages/StrategyOpenClosedMessage.hpp
 #pragma once
 
 #include <chrono>

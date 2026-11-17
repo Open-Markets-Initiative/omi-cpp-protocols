@@ -1,33 +1,18 @@
+// Cme.Globex.Mdp3.Sbe.v1.13: messages/AdminHeartbeat.hpp
 #pragma once
 
-#include <cstddef>
-#include "../structs/MessageHeader.hpp"
+#include <cstdint>
 
 namespace cme::mdp3::v13 {
-
-namespace sbe_mdp3 = ::cme::mdp3::v13;
-
-#pragma pack(push, 1)
 
 // Admin Heartbeat
 struct admin_heartbeat {
 
-    sbe_mdp3::message_header header = {std::uint16_t(sizeof(sbe_mdp3::message_header)), {{}, template_id::enum_type::admin_heartbeat, schema_id::enum_type::mktdata, version(13)}};
+    static constexpr auto name = "Admin Heartbeat";
 
-    // parse method
-    static admin_heartbeat* parse(std::byte* buffer) {
-        return reinterpret_cast<admin_heartbeat*>(buffer);
-    }
-
-    // parse method const
-    static const admin_heartbeat* parse(const std::byte* buffer) {
-        return reinterpret_cast<const admin_heartbeat*>(buffer);
-    }
-
+    // selected when template_id == 12
+    static constexpr auto field = "template_id";
+    static constexpr std::uint16_t value = 12;
 };
 
-// layout verification
-static_assert(sizeof(admin_heartbeat) == sizeof(sbe_mdp3::message_header) + 0, "unexpected sizeof admin_heartbeat");
-
-#pragma pack(pop)
 }

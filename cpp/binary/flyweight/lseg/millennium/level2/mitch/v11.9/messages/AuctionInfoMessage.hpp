@@ -1,5 +1,7 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/AuctionInfoMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <ostream>
@@ -8,6 +10,7 @@
 #include "../common/Wire.hpp"
 #include "../common/Print.hpp"
 #include "../common/View.hpp"
+#include "../common/Decimal.hpp"
 #include "../enums/AuctionType.hpp"
 
 namespace lseg::millennium::level2::mitch::v11_9 {
@@ -28,7 +31,7 @@ class AuctionInfoMessage {
     static constexpr std::size_t fixed_size = 28;
     std::size_t encoded_size() const { return 28; }
 
-    std::uint32_t nanosecond() const { return wire::read_u32_le(at(0)); }
+    std::chrono::nanoseconds nanosecond() const { return std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(at(0)))); }
 
     std::uint32_t paired_quantity() const { return wire::read_u32_le(at(4)); }
 
@@ -42,14 +45,14 @@ class AuctionInfoMessage {
 
     std::span<const std::byte, 1> reserved_b() const { return bytes_.subspan(18).template first<1>(); }
 
-    std::int64_t price() const { return wire::read_i64_le(at(19)); }
+    Decimal price() const { return Decimal(static_cast<std::int64_t>(wire::read_i64_le(at(19))), -8); }
 
     AuctionType auction_type() const { return static_cast<AuctionType>(wire::read_char(at(27))); }
 
     void print(std::ostream& out) const {
         out << "AuctionInfoMessage{";
         out << "nanosecond=";
-        out << nanosecond();
+        out << nanosecond().count();
         out << ", paired_quantity=";
         out << paired_quantity();
         out << ", reserved_4=";

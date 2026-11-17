@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v1: types/DecayQuantity.hpp
 #pragma once
 
 #include <cstddef>

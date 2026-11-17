@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: enums/CurrentTradingState.cpp
 #include "CurrentTradingState.hpp"
 
 namespace nasdaq::nsmequities::nlsplus::itch::v3_0 {

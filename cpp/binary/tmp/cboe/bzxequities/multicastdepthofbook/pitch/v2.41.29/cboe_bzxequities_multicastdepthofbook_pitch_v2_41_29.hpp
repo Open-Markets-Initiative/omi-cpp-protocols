@@ -1,3 +1,4 @@
+// Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.41.29: cboe_bzxequities_multicastdepthofbook_pitch_v2_41_29.hpp
 // Cboe BzxEquities MulticastDepthOfBook Pitch 2.41.29 Template Meta Programming
 
 #pragma once
@@ -583,19 +584,6 @@ struct indicative_price {
     type value_;
 };
 
-// Last Timestamp: Nanosecond offset from last unit timestamp
-struct last_timestamp {
-    using type = std::uint32_t;
-    static constexpr std::size_t size = 4;
-    static constexpr std::endian order = std::endian::little;
-
-    constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
-    constexpr operator type() const noexcept { return value(); }
-
-  protected:
-    type value_;
-};
-
 // Length: Length of entire block of messages. Includes this header and Message Count messages to follow
 struct length_type {
     using type = std::uint16_t;
@@ -1073,14 +1061,14 @@ struct end_of_session {
 
     // the types of its members, in wire order
     using fields = tmp::list<
-        last_timestamp>;
+        time_offset>;
 
     // the member of the type asked for
     template <typename Field>
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    PITCHFIELD(last_timestamp);
+    PITCHFIELD(time_offset);
 };
 
 static_assert(sizeof(end_of_session) == end_of_session::size, "end_of_session lies over its bytes exactly");

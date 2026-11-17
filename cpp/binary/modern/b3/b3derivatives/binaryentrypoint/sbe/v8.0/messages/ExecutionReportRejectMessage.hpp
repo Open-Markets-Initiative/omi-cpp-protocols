@@ -1,9 +1,10 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: messages/ExecutionReportRejectMessage.hpp
 #pragma once
 
 #include "../structs/OutboundBusinessHeader.hpp"
 #include "../types/Side.hpp"
 #include "../types/CxlRejResponseTo.hpp"
-#include "../types/Clordid.hpp"
+#include "../types/ClOrdId.hpp"
 #include "../types/SecondaryOrderIdOptional.hpp"
 #include "../types/SecurityId.hpp"
 #include "../types/OrdRejReason.hpp"
@@ -20,7 +21,7 @@
 #include "../types/StopPx.hpp"
 #include "../types/MinQty.hpp"
 #include "../types/MaxFloor.hpp"
-#include "../types/CrossidOptional.hpp"
+#include "../types/CrossIdOptional.hpp"
 #include "../types/CrossedIndicator.hpp"
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_0 {
@@ -33,7 +34,7 @@ struct ExecutionReportRejectMessage {
     OutboundBusinessHeader outbound_business_header;
     Side side;
     CxlRejResponseTo cxl_rej_response_to;
-    Clordid clordid;
+    ClOrdId cl_ord_id;
     SecondaryOrderIdOptional secondary_order_id_optional;
     SecurityId security_id;
     OrdRejReason ord_rej_reason;
@@ -50,7 +51,7 @@ struct ExecutionReportRejectMessage {
     StopPx stop_px;
     MinQty min_qty;
     MaxFloor max_floor;
-    CrossidOptional crossid_optional;
+    CrossIdOptional cross_id_optional;
     CrossedIndicator crossed_indicator;
 
     // parse method

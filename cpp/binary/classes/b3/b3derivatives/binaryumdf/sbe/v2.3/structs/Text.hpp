@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.3: structs/Text.hpp
 #pragma once
 
 #include <cstddef>

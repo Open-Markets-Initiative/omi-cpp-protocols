@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.8: types/TradingReferencePriceOptional.hpp
 #pragma once
 
 #include <cstddef>

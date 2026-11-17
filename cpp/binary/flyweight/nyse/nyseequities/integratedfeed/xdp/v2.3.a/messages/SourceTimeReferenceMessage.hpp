@@ -1,5 +1,7 @@
+// Nyse.NyseEquities.IntegratedFeed.Xdp.v2.3.a: messages/SourceTimeReferenceMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <ostream>
@@ -30,7 +32,7 @@ class SourceTimeReferenceMessage {
 
     std::uint32_t symbol_seq_num() const { return wire::read_u32_le(at(4)); }
 
-    std::uint32_t source_time() const { return wire::read_u32_le(at(8)); }
+    std::chrono::seconds source_time() const { return std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_le(at(8)))); }
 
     void print(std::ostream& out) const {
         out << "SourceTimeReferenceMessage{";
@@ -39,7 +41,7 @@ class SourceTimeReferenceMessage {
         out << ", symbol_seq_num=";
         out << symbol_seq_num();
         out << ", source_time=";
-        out << source_time();
+        out << source_time().count();
         out << '}';
     }
 

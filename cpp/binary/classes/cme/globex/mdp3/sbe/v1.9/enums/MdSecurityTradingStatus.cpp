@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.9: enums/MdSecurityTradingStatus.cpp
 #include "MdSecurityTradingStatus.hpp"
 
 namespace cme::globex::mdp3::sbe::v1_9 {

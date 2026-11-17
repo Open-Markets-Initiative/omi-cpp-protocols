@@ -1,3 +1,4 @@
+// Cboe.C1Options.MulticastDepthOfBook.Pitch.v2.39.4: messages/AuctionNotificationMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -27,7 +28,7 @@ class AuctionNotificationMessage : public Message {
     static constexpr std::size_t wire_size = 41;
 
     AuctionNotificationMessage() = default;
-    AuctionNotificationMessage(std::chrono::nanoseconds time_offset, const std::string& symbol, std::uint64_t auction_id, AuctionType auction_type, SideIndicator side_indicator, Decimal long_price, std::uint32_t contracts, CustomerIndicator customer_indicator, const std::string& participant_id, std::uint32_t auction_end_offset);
+    AuctionNotificationMessage(std::chrono::nanoseconds time_offset, const std::string& symbol, std::uint64_t auction_id, AuctionType auction_type, SideIndicator side_indicator, Decimal long_price, std::uint32_t contracts, CustomerIndicator customer_indicator, const std::string& participant_id, std::chrono::nanoseconds auction_end_offset);
 
     // Time Offset: Nanosecond offset from last unit timestamp
     std::chrono::nanoseconds time_offset() const;
@@ -71,8 +72,8 @@ class AuctionNotificationMessage : public Message {
     void set_participant_id(const std::string& value);
 
     // Auction End Offset: Nanosecond offset from last timestamp
-    std::uint32_t auction_end_offset() const;
-    void set_auction_end_offset(std::uint32_t value);
+    std::chrono::nanoseconds auction_end_offset() const;
+    void set_auction_end_offset(std::chrono::nanoseconds value);
 
     // Message
     MessageCode type() const override;
@@ -98,7 +99,7 @@ class AuctionNotificationMessage : public Message {
     std::uint32_t contracts_{};
     CustomerIndicator customer_indicator_{};
     std::string participant_id_{};
-    std::uint32_t auction_end_offset_{};
+    std::chrono::nanoseconds auction_end_offset_{};
 };
 
 } // namespace cboe::c1options::multicastdepthofbook::pitch::v2_39_4

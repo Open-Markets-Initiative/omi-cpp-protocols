@@ -24,44 +24,44 @@ struct AdministrativeMessagePayloadHandler {
     canonical::Listing& values;
     const std::string& entry;
 
-    void on(const protocol::StartOfEndOfDayMessage& message) {
-        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload"] = "packet.message.categorypayload.administrativemessage.administrativemessagepayload.startofendofdaymessage";
-        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofendofdaymessage.participantid"] = canonical::text(canonical::character(message.participant_id()));
-        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofendofdaymessage.timestamp1.seconds"] = canonical::number(message.timestamp_1().seconds());
-        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofendofdaymessage.timestamp1.nanoseconds"] = canonical::number(message.timestamp_1().nanoseconds());
-        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofendofdaymessage.messageid"] = canonical::number(message.message_id());
-        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofendofdaymessage.transactionid"] = canonical::number(message.transaction_id());
-        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofendofdaymessage.participantreferencenumber"] = canonical::number(message.participant_reference_number());
+    void on(const protocol::StartOfEndOfDaySummaryMessage& message) {
+        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload"] = "packet.message.categorypayload.administrativemessage.administrativemessagepayload.startofendofdaysummarymessage";
+        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofendofdaysummarymessage.participantid"] = canonical::text(canonical::character(message.participant_id()));
+        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofendofdaysummarymessage.timestamp1.seconds"] = canonical::number(message.timestamp_1().seconds());
+        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofendofdaysummarymessage.timestamp1.nanoseconds"] = canonical::number(message.timestamp_1().nanoseconds());
+        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofendofdaysummarymessage.messageid"] = canonical::number(message.message_id());
+        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofendofdaysummarymessage.transactionid"] = canonical::number(message.transaction_id());
+        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofendofdaysummarymessage.participantreferencenumber"] = canonical::number(message.participant_reference_number());
     }
 
-    void on(const protocol::EndOfEndOfDayMessage& message) {
-        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload"] = "packet.message.categorypayload.administrativemessage.administrativemessagepayload.endofendofdaymessage";
-        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofendofdaymessage.participantid"] = canonical::text(canonical::character(message.participant_id()));
-        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofendofdaymessage.timestamp1.seconds"] = canonical::number(message.timestamp_1().seconds());
-        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofendofdaymessage.timestamp1.nanoseconds"] = canonical::number(message.timestamp_1().nanoseconds());
-        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofendofdaymessage.messageid"] = canonical::number(message.message_id());
-        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofendofdaymessage.transactionid"] = canonical::number(message.transaction_id());
-        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofendofdaymessage.participantreferencenumber"] = canonical::number(message.participant_reference_number());
+    void on(const protocol::EndOfEndOfDaySummaryMessage& message) {
+        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload"] = "packet.message.categorypayload.administrativemessage.administrativemessagepayload.endofendofdaysummarymessage";
+        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofendofdaysummarymessage.participantid"] = canonical::text(canonical::character(message.participant_id()));
+        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofendofdaysummarymessage.timestamp1.seconds"] = canonical::number(message.timestamp_1().seconds());
+        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofendofdaysummarymessage.timestamp1.nanoseconds"] = canonical::number(message.timestamp_1().nanoseconds());
+        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofendofdaysummarymessage.messageid"] = canonical::number(message.message_id());
+        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofendofdaysummarymessage.transactionid"] = canonical::number(message.transaction_id());
+        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofendofdaysummarymessage.participantreferencenumber"] = canonical::number(message.participant_reference_number());
     }
 
-    void on(const protocol::StartOfStartOfDayMessage& message) {
-        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload"] = "packet.message.categorypayload.administrativemessage.administrativemessagepayload.startofstartofdaymessage";
-        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofstartofdaymessage.participantid"] = canonical::text(canonical::character(message.participant_id()));
-        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofstartofdaymessage.timestamp1.seconds"] = canonical::number(message.timestamp_1().seconds());
-        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofstartofdaymessage.timestamp1.nanoseconds"] = canonical::number(message.timestamp_1().nanoseconds());
-        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofstartofdaymessage.messageid"] = canonical::number(message.message_id());
-        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofstartofdaymessage.transactionid"] = canonical::number(message.transaction_id());
-        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofstartofdaymessage.participantreferencenumber"] = canonical::number(message.participant_reference_number());
+    void on(const protocol::StartOfStartOfDaySummaryMessage& message) {
+        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload"] = "packet.message.categorypayload.administrativemessage.administrativemessagepayload.startofstartofdaysummarymessage";
+        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofstartofdaysummarymessage.participantid"] = canonical::text(canonical::character(message.participant_id()));
+        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofstartofdaysummarymessage.timestamp1.seconds"] = canonical::number(message.timestamp_1().seconds());
+        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofstartofdaysummarymessage.timestamp1.nanoseconds"] = canonical::number(message.timestamp_1().nanoseconds());
+        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofstartofdaysummarymessage.messageid"] = canonical::number(message.message_id());
+        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofstartofdaysummarymessage.transactionid"] = canonical::number(message.transaction_id());
+        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.startofstartofdaysummarymessage.participantreferencenumber"] = canonical::number(message.participant_reference_number());
     }
 
-    void on(const protocol::EndOfStartOfDayMessage& message) {
-        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload"] = "packet.message.categorypayload.administrativemessage.administrativemessagepayload.endofstartofdaymessage";
-        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofstartofdaymessage.participantid"] = canonical::text(canonical::character(message.participant_id()));
-        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofstartofdaymessage.timestamp1.seconds"] = canonical::number(message.timestamp_1().seconds());
-        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofstartofdaymessage.timestamp1.nanoseconds"] = canonical::number(message.timestamp_1().nanoseconds());
-        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofstartofdaymessage.messageid"] = canonical::number(message.message_id());
-        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofstartofdaymessage.transactionid"] = canonical::number(message.transaction_id());
-        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofstartofdaymessage.participantreferencenumber"] = canonical::number(message.participant_reference_number());
+    void on(const protocol::EndOfStartOfDaySummaryMessage& message) {
+        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload"] = "packet.message.categorypayload.administrativemessage.administrativemessagepayload.endofstartofdaysummarymessage";
+        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofstartofdaysummarymessage.participantid"] = canonical::text(canonical::character(message.participant_id()));
+        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofstartofdaysummarymessage.timestamp1.seconds"] = canonical::number(message.timestamp_1().seconds());
+        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofstartofdaysummarymessage.timestamp1.nanoseconds"] = canonical::number(message.timestamp_1().nanoseconds());
+        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofstartofdaysummarymessage.messageid"] = canonical::number(message.message_id());
+        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofstartofdaysummarymessage.transactionid"] = canonical::number(message.transaction_id());
+        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.endofstartofdaysummarymessage.participantreferencenumber"] = canonical::number(message.participant_reference_number());
     }
 };
 
@@ -168,7 +168,6 @@ struct MarketStatusMessagePayloadHandler {
         values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerdeclinelevelstatusmessage.mwcblevel1"] = canonical::scaled(message.mwcb_level_1().mantissa(), message.mwcb_level_1().exponent());
         values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerdeclinelevelstatusmessage.mwcblevel2"] = canonical::scaled(message.mwcb_level_2().mantissa(), message.mwcb_level_2().exponent());
         values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerdeclinelevelstatusmessage.mwcblevel3"] = canonical::scaled(message.mwcb_level_3().mantissa(), message.mwcb_level_3().exponent());
-        values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerdeclinelevelstatusmessage.reserved"] = canonical::number(message.reserved());
     }
 
     void on(const protocol::MarketWideCircuitBreakerStatusMessage& message) {
@@ -180,7 +179,6 @@ struct MarketStatusMessagePayloadHandler {
         values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerstatusmessage.transactionid"] = canonical::number(message.transaction_id());
         values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerstatusmessage.participantreferencenumber"] = canonical::number(message.participant_reference_number());
         values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerstatusmessage.marketwidecircuitbreakerlevelindicator"] = canonical::text(canonical::character(message.market_wide_circuit_breaker_level_indicator()));
-        values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerstatusmessage.reserved"] = canonical::number(message.reserved());
     }
 
     void on(const protocol::ApproximateAdjustedVolumeMarketCenterMessage& message) {

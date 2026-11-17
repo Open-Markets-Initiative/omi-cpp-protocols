@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeed.Xdp.v2.3.a: messages/SymbolIndexMappingMessage.cpp
 #include "SymbolIndexMappingMessage.hpp"
 
 #include "../common/Print.hpp"

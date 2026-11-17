@@ -1,3 +1,4 @@
+// Nasdaq.IseOptions.TopComboQuoteFeed.Itch.v1.0: messages/ComplexStrategyTickerMessage.cpp
 #include "ComplexStrategyTickerMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,7 +7,7 @@
 
 namespace nasdaq::iseoptions::topcomboquotefeed::itch::v1_0 {
 
-ComplexStrategyTickerMessage::ComplexStrategyTickerMessage(std::chrono::nanoseconds timestamp, std::uint32_t strategy_id, Decimal last_price, std::uint32_t size, std::uint32_t volume, std::uint64_t high, std::uint64_t low, std::uint64_t first, char trade_condition)
+ComplexStrategyTickerMessage::ComplexStrategyTickerMessage(std::chrono::nanoseconds timestamp, std::uint32_t strategy_id, Decimal last_price, std::uint32_t size, std::uint32_t volume, Decimal high, Decimal low, Decimal first, char trade_condition)
   : timestamp_(timestamp), strategy_id_(strategy_id), last_price_(last_price), size_(size), volume_(volume), high_(high), low_(low), first_(first), trade_condition_(trade_condition) {}
 
 std::chrono::nanoseconds ComplexStrategyTickerMessage::timestamp() const { return timestamp_; }
@@ -25,14 +26,14 @@ void ComplexStrategyTickerMessage::set_size(std::uint32_t value) { size_ = value
 std::uint32_t ComplexStrategyTickerMessage::volume() const { return volume_; }
 void ComplexStrategyTickerMessage::set_volume(std::uint32_t value) { volume_ = value; }
 
-std::uint64_t ComplexStrategyTickerMessage::high() const { return high_; }
-void ComplexStrategyTickerMessage::set_high(std::uint64_t value) { high_ = value; }
+Decimal ComplexStrategyTickerMessage::high() const { return high_; }
+void ComplexStrategyTickerMessage::set_high(Decimal value) { high_ = value; }
 
-std::uint64_t ComplexStrategyTickerMessage::low() const { return low_; }
-void ComplexStrategyTickerMessage::set_low(std::uint64_t value) { low_ = value; }
+Decimal ComplexStrategyTickerMessage::low() const { return low_; }
+void ComplexStrategyTickerMessage::set_low(Decimal value) { low_ = value; }
 
-std::uint64_t ComplexStrategyTickerMessage::first() const { return first_; }
-void ComplexStrategyTickerMessage::set_first(std::uint64_t value) { first_ = value; }
+Decimal ComplexStrategyTickerMessage::first() const { return first_; }
+void ComplexStrategyTickerMessage::set_first(Decimal value) { first_ = value; }
 
 char ComplexStrategyTickerMessage::trade_condition() const { return trade_condition_; }
 void ComplexStrategyTickerMessage::set_trade_condition(char value) { trade_condition_ = value; }
@@ -60,13 +61,13 @@ std::size_t ComplexStrategyTickerMessage::decode(const std::byte* data, std::siz
     volume_ = wire::read_u32_be(data + offset);
     offset += 4;
 
-    high_ = wire::read_u64_be(data + offset);
+    high_ = Decimal(static_cast<std::int64_t>(wire::read_i64_be(data + offset)), -8);
     offset += 8;
 
-    low_ = wire::read_u64_be(data + offset);
+    low_ = Decimal(static_cast<std::int64_t>(wire::read_i64_be(data + offset)), -8);
     offset += 8;
 
-    first_ = wire::read_u64_be(data + offset);
+    first_ = Decimal(static_cast<std::int64_t>(wire::read_i64_be(data + offset)), -8);
     offset += 8;
 
     trade_condition_ = wire::read_char(data + offset);
@@ -94,13 +95,13 @@ std::size_t ComplexStrategyTickerMessage::encode(std::byte* data, std::size_t ca
     wire::write_u32_be(data + offset, static_cast<std::uint32_t>(volume_));
     offset += 4;
 
-    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(high_));
+    wire::write_i64_be(data + offset, static_cast<std::int64_t>(high_.mantissa()));
     offset += 8;
 
-    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(low_));
+    wire::write_i64_be(data + offset, static_cast<std::int64_t>(low_.mantissa()));
     offset += 8;
 
-    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(first_));
+    wire::write_i64_be(data + offset, static_cast<std::int64_t>(first_.mantissa()));
     offset += 8;
 
     wire::write_char(data + offset, trade_condition_);

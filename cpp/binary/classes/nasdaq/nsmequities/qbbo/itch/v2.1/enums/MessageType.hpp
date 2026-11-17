@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.Qbbo.Itch.v2.1: enums/MessageType.hpp
 #pragma once
 
 #include <cstdint>

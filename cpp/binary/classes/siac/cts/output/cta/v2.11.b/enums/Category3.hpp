@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: enums/Category3.hpp
 #pragma once
 
 #include <cstdint>
@@ -10,7 +11,6 @@ namespace siac::cts::output::cta::v2_11_b {
 enum class Category3 : char {
     NotExtendedHoursOrSoldOutOfSequence = ' ', // Not Extended Hours Or Sold Out Of Sequence
     SoldLastLateReporting = 'L',               // Sold Last Late Reporting
-    MarketCenterOpeningTrade = 'O',            // Market Center Opening Trade
     ExtendedHoursTrade = 'T',                  // Extended Hours Trade
     ExtendedHoursSoldOutOfSequence = 'U',      // Extended Hours Sold Out Of Sequence
     SoldOutOfSequence = 'Z',                   // Sold Out Of Sequence

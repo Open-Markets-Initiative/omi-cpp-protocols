@@ -1,3 +1,4 @@
+// Jpx.TseEquities.MarketByOrder.Flex.v1.1: enums/TriggeredSide.cpp
 #include "TriggeredSide.hpp"
 
 namespace jpx::tseequities::marketbyorder::flex::v1_1 {

@@ -1,3 +1,4 @@
+// Asx.AsxDerivatives.Ntp.Itch.v1.05: structs/MessageHeader.hpp
 #pragma once
 
 #include "../types/MessageLength.hpp"

@@ -1,9 +1,11 @@
+// Miax.OnyxFutures.TopOfMarket.Mach.v1.0.b: messages/BestBidAndOfferMessage.hpp
 #pragma once
 
 #include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
+#include <optional>
 #include <ostream>
 #include <string_view>
 
@@ -24,7 +26,7 @@ class BestBidAndOfferMessage : public Data {
     static constexpr std::size_t wire_size = 36;
 
     BestBidAndOfferMessage() = default;
-    BestBidAndOfferMessage(std::chrono::nanoseconds timestamp, std::uint32_t instrument_id, Decimal mbb_price, std::uint32_t mbb_size, Decimal mbo_price, std::uint32_t mbo_size);
+    BestBidAndOfferMessage(std::chrono::nanoseconds timestamp, std::uint32_t instrument_id, std::optional<Decimal> mbb_price, std::uint32_t mbb_size, std::optional<Decimal> mbo_price, std::uint32_t mbo_size);
 
     // Timestamp: Matching Engine time
     std::chrono::nanoseconds timestamp() const;
@@ -36,8 +38,8 @@ class BestBidAndOfferMessage : public Data {
 
     // Mbb Price: Will be provided for updates as a result of any changes to the prices or
     // sizes of the MBBO for an Simple Instrument or a Complex Instrument
-    Decimal mbb_price() const;
-    void set_mbb_price(Decimal value);
+    std::optional<Decimal> mbb_price() const;
+    void set_mbb_price(std::optional<Decimal> value);
 
     // Mbb Size: Aggregate size in contracts at the displayed offer price
     std::uint32_t mbb_size() const;
@@ -45,8 +47,8 @@ class BestBidAndOfferMessage : public Data {
 
     // Mbo Price: Will be provided for updates as a result of any changes to the prices or
     // sizes of the MBBO for an Simple Instrument or a Complex Instrumen
-    Decimal mbo_price() const;
-    void set_mbo_price(Decimal value);
+    std::optional<Decimal> mbo_price() const;
+    void set_mbo_price(std::optional<Decimal> value);
 
     // Mbo Size: Aggregate size in contracts at the displayed offer price
     std::uint32_t mbo_size() const;
@@ -69,9 +71,9 @@ class BestBidAndOfferMessage : public Data {
   private:
     std::chrono::nanoseconds timestamp_{};
     std::uint32_t instrument_id_{};
-    Decimal mbb_price_{ 0, -9 };
+    std::optional<Decimal> mbb_price_{};
     std::uint32_t mbb_size_{};
-    Decimal mbo_price_{ 0, -9 };
+    std::optional<Decimal> mbo_price_{};
     std::uint32_t mbo_size_{};
 };
 

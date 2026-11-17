@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: messages/NoiiMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -49,7 +50,7 @@ class NoiiMessage {
 
     std::uint32_t option_id() const { return wire::read_u32_be(at(18)); }
 
-    Decimal imbalance_price() const { return Decimal(static_cast<std::int64_t>(wire::read_u32_be(at(22))), -4); }
+    Decimal imbalance_price() const { return Decimal(static_cast<std::int64_t>(wire::read_i32_be(at(22))), -4); }
 
     std::uint32_t imbalance_volume() const { return wire::read_u32_be(at(26)); }
 

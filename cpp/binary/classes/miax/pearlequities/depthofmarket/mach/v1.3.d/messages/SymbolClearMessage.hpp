@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: messages/SymbolClearMessage.hpp
 #pragma once
 
 #include <chrono>

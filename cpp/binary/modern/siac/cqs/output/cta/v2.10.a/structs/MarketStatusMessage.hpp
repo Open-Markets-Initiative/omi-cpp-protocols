@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v2.10.a: structs/MarketStatusMessage.hpp
 #pragma once
 
 #include "../types/MarketStatusMessageType.hpp"

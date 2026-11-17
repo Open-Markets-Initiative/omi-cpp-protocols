@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.Bbo.Xdp.v2.4.g: enums/HaltCondition.cpp
 #include "HaltCondition.hpp"
 
 namespace nyse::nyseequities::bbo::xdp::v2_4_g {

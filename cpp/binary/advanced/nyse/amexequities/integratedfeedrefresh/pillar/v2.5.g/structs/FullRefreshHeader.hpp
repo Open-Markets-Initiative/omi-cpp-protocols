@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeedRefresh.Pillar.v2.5.g: structs/FullRefreshHeader.hpp
 #pragma once
 
 #include <cstddef>

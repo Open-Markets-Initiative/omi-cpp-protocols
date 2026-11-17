@@ -1,9 +1,9 @@
+// Siac.Cqs.Output.Cta.v1.91: messages/AuctionStatusMessage.hpp
 #pragma once
 
 #include <cstddef>
-#include "../structs/BlockHeader.hpp"
 #include "../types/ParticipantId.hpp"
-#include "../structs/ParticipantTimestamp.hpp"
+#include "../types/ParticipantTimestampOptional.hpp"
 #include "../types/MessageId.hpp"
 #include "../types/TransactionId.hpp"
 #include "../types/ParticipantReferenceNumber.hpp"
@@ -32,7 +32,7 @@ struct auction_status_message {
 
     struct fields_type {
         cta_output::participant_id participant_id;
-        cta_output::participant_timestamp participant_timestamp;
+        cta_output::participant_timestamp_optional participant_timestamp;
         cta_output::message_id message_id;
         cta_output::transaction_id transaction_id;
         cta_output::participant_reference_number participant_reference_number;
@@ -48,7 +48,6 @@ struct auction_status_message {
         cta_output::future future;
     };
 
-    cta_output::block_header header = {{}, {}, {}, {}, {}, {}, {}, {}};
     // Transport framing: message size precedes the SBE header on the wire
     cta_output::message_length message_length;
     cta_output::message_category message_category = cta_output::message_category::enum_type::quote;
@@ -85,7 +84,7 @@ static_assert(offsetof(auction_status_message::fields_type, primary_listing_mark
 static_assert(offsetof(auction_status_message::fields_type, financial_status_indicator) == 61, "unexpected offset of auction_status_message::fields_type::financial_status_indicator");
 static_assert(offsetof(auction_status_message::fields_type, future) == 62, "unexpected offset of auction_status_message::fields_type::future");
 static_assert(sizeof(auction_status_message::fields_type) == 63, "unexpected sizeof auction_status_message::fields_type");
-static_assert(sizeof(auction_status_message) == sizeof(cta_output::block_header) + sizeof(cta_output::message_length) + sizeof(cta_output::message_category) + sizeof(cta_output::quote_message_type) + 63, "unexpected sizeof auction_status_message");
+static_assert(sizeof(auction_status_message) == sizeof(cta_output::message_length) + sizeof(cta_output::message_category) + sizeof(cta_output::quote_message_type) + 63, "unexpected sizeof auction_status_message");
 
 #pragma pack(pop)
 }

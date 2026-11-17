@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.8: messages/AdminLogout.hpp
 #pragma once
 
 #include <cstddef>
@@ -18,12 +19,12 @@ class AdminLogout : public MktdataPayload {
     // The code that selects this message
     static constexpr MktdataPayloadCode message_type = TemplateId::AdminLogout;
     // Bytes of this message on the wire
-    static constexpr std::size_t wire_size = 100;
+    static constexpr std::size_t wire_size = 180;
 
     AdminLogout() = default;
     AdminLogout(const std::string& text);
 
-    // Text: Reject reason details
+    // Text: Free format text string. May include logout confirmation or reason for logout
     const std::string& text() const;
     std::string& text();
     void set_text(const std::string& value);

@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v4.0: enums/Side.hpp
 #pragma once
 
 #include <cstdint>

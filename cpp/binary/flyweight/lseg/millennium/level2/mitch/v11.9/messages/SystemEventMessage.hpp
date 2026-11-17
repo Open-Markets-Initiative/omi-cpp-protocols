@@ -1,5 +1,7 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/SystemEventMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <ostream>
@@ -27,14 +29,14 @@ class SystemEventMessage {
     static constexpr std::size_t fixed_size = 5;
     std::size_t encoded_size() const { return 5; }
 
-    std::uint32_t nanosecond() const { return wire::read_u32_le(at(0)); }
+    std::chrono::nanoseconds nanosecond() const { return std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(at(0)))); }
 
     EventCode event_code() const { return static_cast<EventCode>(wire::read_char(at(4))); }
 
     void print(std::ostream& out) const {
         out << "SystemEventMessage{";
         out << "nanosecond=";
-        out << nanosecond();
+        out << nanosecond().count();
         out << ", event_code=";
         out << event_code();
         out << '}';

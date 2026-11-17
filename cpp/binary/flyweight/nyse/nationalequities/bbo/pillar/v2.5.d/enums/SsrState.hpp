@@ -1,3 +1,4 @@
+// Nyse.NationalEquities.Bbo.Pillar.v2.5.d: enums/SsrState.hpp
 #pragma once
 
 #include <cstdint>

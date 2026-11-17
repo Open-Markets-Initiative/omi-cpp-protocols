@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.TopFeed.Pillar.v1.2.c: structs/TradeCondition.cpp
 #include "TradeCondition.hpp"
 
 #include "../common/Print.hpp"

@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.10: structs/FractionalCorrectedTrade.cpp
 #include "FractionalCorrectedTrade.hpp"
 
 #include "../common/Print.hpp"

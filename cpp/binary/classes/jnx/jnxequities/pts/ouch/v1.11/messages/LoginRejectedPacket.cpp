@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Ouch.v1.11: messages/LoginRejectedPacket.cpp
 #include "LoginRejectedPacket.hpp"
 
 #include "../common/Print.hpp"

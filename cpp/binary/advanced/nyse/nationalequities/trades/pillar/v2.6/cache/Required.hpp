@@ -1,3 +1,4 @@
+// Nyse.NationalEquities.Trades.Pillar.v2.6: cache/Required.hpp
 #pragma once
 
 #include <string_view>

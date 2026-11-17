@@ -1,3 +1,4 @@
+// Cboe.ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29: main.cpp
 // Cboe.ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29 benchmark, through the Modern iterator: every value it reads from every message of the simulated
 // sequence (tests/simulated/cboe/byxequities/multicastdepthofbook/pitch/v2.41.29.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -148,7 +149,7 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest(message->execution_id.get());
         } else if (iterator.message_type == protocol::EndOfSession::message_type) {
             [[maybe_unused]] const auto* message = protocol::EndOfSession::parse(iterator.message);
-            checksum += bench::digest(message->last_timestamp.get());
+            checksum += bench::digest(message->time_offset.get());
         } else if (iterator.message_type == protocol::TradingStatusMessage::message_type) {
             [[maybe_unused]] const auto* message = protocol::TradingStatusMessage::parse(iterator.message);
             checksum += bench::digest(message->time_offset.get());

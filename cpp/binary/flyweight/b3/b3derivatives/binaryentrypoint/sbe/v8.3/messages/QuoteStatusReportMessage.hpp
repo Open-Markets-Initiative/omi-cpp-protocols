@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: messages/QuoteStatusReportMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -36,54 +37,54 @@ class QuoteStatusReportMessage {
     std::span<const std::byte> bytes() const noexcept { return bytes_; }
 
     // the bytes every QuoteStatusReportMessage has, which a reader checks before it views them
-    static constexpr std::size_t minimum_size = 122;
+    static constexpr std::size_t minimum_size = 123;
     std::size_t encoded_size() const { return text_end(); }
 
     BidirectionalBusinessHeader bidirectional_business_header() const { return BidirectionalBusinessHeader{ bytes_.subspan(0) }; }
 
-    std::optional<QuoteRejectReason> quote_reject_reason() const { return wire::nullable_enum<QuoteRejectReason>(wire::read_u32_le(at(19)), static_cast<std::uint32_t>(0ULL)); }
+    std::optional<QuoteRejectReason> quote_reject_reason() const { return wire::nullable_enum<QuoteRejectReason>(wire::read_u32_le(at(20)), static_cast<std::uint32_t>(0ULL)); }
 
-    std::uint64_t security_id() const { return wire::read_u64_le(at(23)); }
+    std::uint64_t security_id() const { return wire::read_u64_le(at(24)); }
 
-    std::uint64_t quote_req_id() const { return wire::read_u64_le(at(31)); }
+    std::uint64_t quote_req_id() const { return wire::read_u64_le(at(32)); }
 
-    std::uint64_t quote_id() const { return wire::read_u64_le(at(39)); }
+    std::uint64_t quote_id() const { return wire::read_u64_le(at(40)); }
 
-    std::optional<std::uint32_t> trade_id_optional() const { return wire::nullable(wire::read_u32_le(at(47)), static_cast<std::uint32_t>(0ULL)); }
+    std::optional<std::uint32_t> trade_id_optional() const { return wire::nullable(wire::read_u32_le(at(48)), static_cast<std::uint32_t>(0ULL)); }
 
-    std::uint32_t contra_broker() const { return wire::read_u32_le(at(51)); }
+    std::uint32_t contra_broker() const { return wire::read_u32_le(at(52)); }
 
-    std::chrono::nanoseconds transact_time() const { return std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u64_le(at(55)))); }
+    std::chrono::nanoseconds transact_time() const { return std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u64_le(at(56)))); }
 
-    QuoteStatus quote_status() const { return static_cast<QuoteStatus>(wire::read_u8(at(63))); }
+    QuoteStatus quote_status() const { return static_cast<QuoteStatus>(wire::read_u8(at(64))); }
 
-    QuoteStatusResponseTo quote_status_response_to() const { return static_cast<QuoteStatusResponseTo>(wire::read_char(at(64))); }
+    QuoteStatusResponseTo quote_status_response_to() const { return static_cast<QuoteStatusResponseTo>(wire::read_char(at(65))); }
 
-    std::optional<std::uint32_t> account() const { return wire::nullable(wire::read_u32_le(at(65)), static_cast<std::uint32_t>(0ULL)); }
+    std::optional<std::uint32_t> account() const { return wire::nullable(wire::read_u32_le(at(66)), static_cast<std::uint32_t>(0ULL)); }
 
-    SideOptional side_optional() const { return static_cast<SideOptional>(wire::read_char(at(69))); }
+    SideOptional side_optional() const { return static_cast<SideOptional>(wire::read_char(at(70))); }
 
-    SettlTypeOptional settl_type_optional() const { return static_cast<SettlTypeOptional>(wire::read_char(at(70))); }
+    SettlTypeOptional settl_type_optional() const { return static_cast<SettlTypeOptional>(wire::read_char(at(71))); }
 
-    std::optional<Decimal> price_8_optional() const { return wire::nullable_decimal(wire::read_i64_le(at(71)), static_cast<std::int64_t>(-9223372036854775807LL - 1), -8); }
+    std::optional<Decimal> price_8_optional() const { return wire::nullable_decimal(wire::read_i64_le(at(72)), static_cast<std::int64_t>(-9223372036854775807LL - 1), -8); }
 
-    std::uint64_t order_qty() const { return wire::read_u64_le(at(79)); }
+    std::uint64_t order_qty() const { return wire::read_u64_le(at(80)); }
 
-    std::string_view sender_location() const { return view::text(at(87), 10, '\0'); }
+    std::string_view sender_location() const { return view::text(at(88), 10, '\0'); }
 
-    std::string_view entering_trader() const { return view::text(at(97), 5, '\0'); }
+    std::string_view entering_trader() const { return view::text(at(98), 5, '\0'); }
 
-    std::string_view executing_trader() const { return view::text(at(102), 5, '\0'); }
+    std::string_view executing_trader() const { return view::text(at(103), 5, '\0'); }
 
-    std::optional<Decimal> fixed_rate_percentage_8_optional() const { return wire::nullable_decimal(wire::read_i64_le(at(107)), static_cast<std::int64_t>(-9223372036854775807LL - 1), -8); }
+    std::optional<Decimal> fixed_rate_optional() const { return wire::nullable_decimal(wire::read_i64_le(at(108)), static_cast<std::int64_t>(-9223372036854775807LL - 1), -8); }
 
-    ExecuteUnderlyingTrade execute_underlying_trade() const { return static_cast<ExecuteUnderlyingTrade>(wire::read_char(at(115))); }
+    ExecuteUnderlyingTrade execute_underlying_trade() const { return static_cast<ExecuteUnderlyingTrade>(wire::read_char(at(116))); }
 
-    std::optional<std::uint16_t> days_to_settlement_optional() const { return wire::nullable(wire::read_u16_le(at(116)), static_cast<std::uint16_t>(65535ULL)); }
+    std::optional<std::uint16_t> days_to_settlement_optional() const { return wire::nullable(wire::read_u16_le(at(117)), static_cast<std::uint16_t>(65535ULL)); }
 
-    std::optional<std::uint32_t> trading_sub_account() const { return wire::nullable(wire::read_u32_le(at(118)), static_cast<std::uint32_t>(0ULL)); }
+    std::optional<std::uint32_t> trading_sub_account() const { return wire::nullable(wire::read_u32_le(at(119)), static_cast<std::uint32_t>(0ULL)); }
 
-    DeskId desk_id() const { return DeskId{ bytes_.subspan(122) }; }
+    DeskId desk_id() const { return DeskId{ bytes_.subspan(123) }; }
 
     Memo memo() const {
         wire::require("QuoteStatusReportMessage", desk_id_end() + Memo::minimum_size, bytes_.size());
@@ -133,8 +134,8 @@ class QuoteStatusReportMessage {
         print::text(out, entering_trader());
         out << ", executing_trader=";
         print::text(out, executing_trader());
-        out << ", fixed_rate_percentage_8_optional=";
-        print::optional(out, fixed_rate_percentage_8_optional());
+        out << ", fixed_rate_optional=";
+        print::optional(out, fixed_rate_optional());
         out << ", execute_underlying_trade=";
         out << execute_underlying_trade();
         out << ", days_to_settlement_optional=";
@@ -152,7 +153,7 @@ class QuoteStatusReportMessage {
 
   private:
     const std::byte* at(std::size_t offset) const noexcept { return bytes_.data() + offset; }
-    std::size_t desk_id_end() const { return 122 + desk_id().encoded_size(); }
+    std::size_t desk_id_end() const { return 123 + desk_id().encoded_size(); }
     std::size_t memo_end() const { return desk_id_end() + memo().encoded_size(); }
     std::size_t text_end() const { return memo_end() + text().encoded_size(); }
 

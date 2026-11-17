@@ -1,3 +1,4 @@
+// Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.20.4: bitfields/AddFlags.cpp
 #include "AddFlags.hpp"
 
 #include "../common/Print.hpp"

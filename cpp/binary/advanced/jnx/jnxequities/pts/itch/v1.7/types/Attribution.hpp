@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.7: types/Attribution.hpp
 #pragma once
 
 #include <cstddef>

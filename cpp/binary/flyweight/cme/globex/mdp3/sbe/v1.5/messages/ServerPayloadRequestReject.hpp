@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.5: messages/ServerPayloadRequestReject.hpp
 #pragma once
 
 #include <cstddef>
@@ -33,7 +34,7 @@ class ServerPayloadRequestReject {
 
     MdReqRejReason md_req_rej_reason() const { return static_cast<MdReqRejReason>(wire::read_u8(at(4))); }
 
-    std::string_view text() const { return view::text(at(5), 100, '\0'); }
+    std::string_view session_text() const { return view::text(at(5), 100, '\0'); }
 
     void print(std::ostream& out) const {
         out << "ServerPayloadRequestReject{";
@@ -41,8 +42,8 @@ class ServerPayloadRequestReject {
         print::optional(out, md_req_id_optional());
         out << ", md_req_rej_reason=";
         out << md_req_rej_reason();
-        out << ", text=";
-        print::text(out, text());
+        out << ", session_text=";
+        print::text(out, session_text());
         out << '}';
     }
 

@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.8: groups/SnapshotFullRefreshOrderBookGroup.hpp
 #pragma once
 
 #include <cstddef>

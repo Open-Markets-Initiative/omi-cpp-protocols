@@ -1,3 +1,4 @@
+// Cboe.CfeFutures.MulticastDepthOfBook.Pitch.v1.2.22: messages/FuturesVarianceSymbolMappingMessage.cpp
 #include "FuturesVarianceSymbolMappingMessage.hpp"
 
 #include "../common/Print.hpp"

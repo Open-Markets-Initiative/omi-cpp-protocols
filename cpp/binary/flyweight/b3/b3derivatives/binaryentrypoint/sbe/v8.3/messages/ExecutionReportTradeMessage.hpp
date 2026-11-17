@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: messages/ExecutionReportTradeMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -50,7 +51,7 @@ class ExecutionReportTradeMessage {
 
     OrdStatus ord_status() const { return static_cast<OrdStatus>(wire::read_char(at(19))); }
 
-    std::optional<std::uint64_t> clordid_optional() const { return wire::nullable(wire::read_u64_le(at(20)), static_cast<std::uint64_t>(0ULL)); }
+    std::optional<std::uint64_t> cl_ord_id_optional() const { return wire::nullable(wire::read_u64_le(at(20)), static_cast<std::uint64_t>(0ULL)); }
 
     std::uint64_t secondary_order_id() const { return wire::read_u64_le(at(28)); }
 
@@ -94,7 +95,7 @@ class ExecutionReportTradeMessage {
 
     std::optional<std::uint64_t> exec_ref_id() const { return wire::nullable(wire::read_u64_le(at(128)), static_cast<std::uint64_t>(0ULL)); }
 
-    std::optional<std::uint64_t> crossid_optional() const { return wire::nullable(wire::read_u64_le(at(136)), static_cast<std::uint64_t>(0ULL)); }
+    std::optional<std::uint64_t> cross_id_optional() const { return wire::nullable(wire::read_u64_le(at(136)), static_cast<std::uint64_t>(0ULL)); }
 
     std::optional<CrossedIndicator> crossed_indicator() const { return wire::nullable_enum<CrossedIndicator>(wire::read_u16_le(at(144)), static_cast<std::uint16_t>(0ULL)); }
 
@@ -133,8 +134,8 @@ class ExecutionReportTradeMessage {
         out << side();
         out << ", ord_status=";
         out << ord_status();
-        out << ", clordid_optional=";
-        print::optional(out, clordid_optional());
+        out << ", cl_ord_id_optional=";
+        print::optional(out, cl_ord_id_optional());
         out << ", secondary_order_id=";
         out << secondary_order_id();
         out << ", security_id=";
@@ -177,8 +178,8 @@ class ExecutionReportTradeMessage {
         print::optional(out, secondary_exec_id());
         out << ", exec_ref_id=";
         print::optional(out, exec_ref_id());
-        out << ", crossid_optional=";
-        print::optional(out, crossid_optional());
+        out << ", cross_id_optional=";
+        print::optional(out, cross_id_optional());
         out << ", crossed_indicator=";
         print::optional(out, crossed_indicator());
         out << ", order_qty=";

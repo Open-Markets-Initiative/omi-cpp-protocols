@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.5: bitfields/MatchEventIndicator.cpp
 #include "MatchEventIndicator.hpp"
 
 #include "../common/Print.hpp"
@@ -24,9 +25,6 @@ void MatchEventIndicator::set_last_implied_msg(bool value) { raw_ = static_cast<
 
 bool MatchEventIndicator::recovery_msg() const { return (raw_ & static_cast<std::uint8_t>(0x20)) != 0; }
 void MatchEventIndicator::set_recovery_msg(bool value) { raw_ = static_cast<std::uint8_t>(value ? (raw_ | static_cast<std::uint8_t>(0x20)) : (raw_ & ~static_cast<std::uint8_t>(0x20))); }
-
-bool MatchEventIndicator::reserved() const { return (raw_ & static_cast<std::uint8_t>(0x40)) != 0; }
-void MatchEventIndicator::set_reserved(bool value) { raw_ = static_cast<std::uint8_t>(value ? (raw_ | static_cast<std::uint8_t>(0x40)) : (raw_ & ~static_cast<std::uint8_t>(0x40))); }
 
 bool MatchEventIndicator::end_of_event() const { return (raw_ & static_cast<std::uint8_t>(0x80)) != 0; }
 void MatchEventIndicator::set_end_of_event(bool value) { raw_ = static_cast<std::uint8_t>(value ? (raw_ | static_cast<std::uint8_t>(0x80)) : (raw_ & ~static_cast<std::uint8_t>(0x80))); }
@@ -64,8 +62,6 @@ void MatchEventIndicator::print(std::ostream& out) const {
     out << (last_implied_msg() ? "true" : "false");
     out << ", recovery_msg=";
     out << (recovery_msg() ? "true" : "false");
-    out << ", reserved=";
-    out << (reserved() ? "true" : "false");
     out << ", end_of_event=";
     out << (end_of_event() ? "true" : "false");
     out << '}';

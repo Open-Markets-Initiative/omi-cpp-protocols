@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.3: messages/TheoreticalOpeningPrice16Message.hpp
 #pragma once
 
 #include <chrono>
@@ -26,7 +27,7 @@ class TheoreticalOpeningPrice16Message : public Message {
     static constexpr std::size_t wire_size = 40;
 
     TheoreticalOpeningPrice16Message() = default;
-    TheoreticalOpeningPrice16Message(std::uint64_t security_id, const MatchEventIndicator& match_event_indicator, MdUpdateAction md_update_action, std::uint16_t trade_date, std::optional<Decimal> md_corporate_offset_price_optional, std::optional<std::int64_t> md_entry_size_quantity_optional, std::optional<std::chrono::nanoseconds> md_entry_timestamp, std::optional<std::uint32_t> rpt_seq);
+    TheoreticalOpeningPrice16Message(std::uint64_t security_id, const MatchEventIndicator& match_event_indicator, MdUpdateAction md_update_action, std::uint16_t trade_date, std::optional<Decimal> md_corporate_offset_price_optional, std::optional<std::int64_t> md_entry_size_optional, std::optional<std::chrono::nanoseconds> md_entry_timestamp, std::optional<std::uint32_t> rpt_seq);
 
     // Security Id: securityID
     std::uint64_t security_id() const;
@@ -49,9 +50,9 @@ class TheoreticalOpeningPrice16Message : public Message {
     std::optional<Decimal> md_corporate_offset_price_optional() const;
     void set_md_corporate_offset_price_optional(std::optional<Decimal> value);
 
-    // Md Entry Size Quantity Optional: mDEntrySize
-    std::optional<std::int64_t> md_entry_size_quantity_optional() const;
-    void set_md_entry_size_quantity_optional(std::optional<std::int64_t> value);
+    // Md Entry Size Optional: mDEntrySize
+    std::optional<std::int64_t> md_entry_size_optional() const;
+    void set_md_entry_size_optional(std::optional<std::int64_t> value);
 
     // Md Entry Timestamp: mDEntryTimestamp
     std::optional<std::chrono::nanoseconds> md_entry_timestamp() const;
@@ -81,7 +82,7 @@ class TheoreticalOpeningPrice16Message : public Message {
     MdUpdateAction md_update_action_{};
     std::uint16_t trade_date_{};
     std::optional<Decimal> md_corporate_offset_price_optional_{};
-    std::optional<std::int64_t> md_entry_size_quantity_optional_{};
+    std::optional<std::int64_t> md_entry_size_optional_{};
     std::optional<std::chrono::nanoseconds> md_entry_timestamp_{};
     std::optional<std::uint32_t> rpt_seq_{};
 };

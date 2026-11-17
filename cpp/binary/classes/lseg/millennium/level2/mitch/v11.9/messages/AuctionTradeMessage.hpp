@@ -1,6 +1,8 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/AuctionTradeMessage.hpp
 #pragma once
 
 #include <array>
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
@@ -8,6 +10,7 @@
 #include <string_view>
 
 #include "../bitfields/PtModFlags.hpp"
+#include "../common/Decimal.hpp"
 #include "../enums/AuctionType.hpp"
 #include "../messages/Message.hpp"
 
@@ -24,11 +27,11 @@ class AuctionTradeMessage : public Message {
     static constexpr std::size_t wire_size = 32;
 
     AuctionTradeMessage() = default;
-    AuctionTradeMessage(std::uint32_t nanosecond, std::uint32_t quantity, std::uint32_t instrument_id, const std::array<std::byte, 1>& reserved_a, const std::array<std::byte, 1>& reserved_b, std::int64_t price, std::uint64_t trade_match_id, AuctionType auction_type, const PtModFlags& pt_mod_flags);
+    AuctionTradeMessage(std::chrono::nanoseconds nanosecond, std::uint32_t quantity, std::uint32_t instrument_id, const std::array<std::byte, 1>& reserved_a, const std::array<std::byte, 1>& reserved_b, Decimal price, std::uint64_t trade_match_id, AuctionType auction_type, const PtModFlags& pt_mod_flags);
 
     // Nanosecond: Nanoseconds since last message, accurate to the nearest microsecond.
-    std::uint32_t nanosecond() const;
-    void set_nanosecond(std::uint32_t value);
+    std::chrono::nanoseconds nanosecond() const;
+    void set_nanosecond(std::chrono::nanoseconds value);
 
     // Quantity: Displayed quantity of the order.
     std::uint32_t quantity() const;
@@ -49,8 +52,8 @@ class AuctionTradeMessage : public Message {
     void set_reserved_b(const std::array<std::byte, 1>& value);
 
     // Price: Limit price of the order.
-    std::int64_t price() const;
-    void set_price(std::int64_t value);
+    Decimal price() const;
+    void set_price(Decimal value);
 
     // Trade Match Id: Unique identifier of the trade.
     std::uint64_t trade_match_id() const;
@@ -80,12 +83,12 @@ class AuctionTradeMessage : public Message {
     bool operator!=(const AuctionTradeMessage& other) const;
 
   private:
-    std::uint32_t nanosecond_{};
+    std::chrono::nanoseconds nanosecond_{};
     std::uint32_t quantity_{};
     std::uint32_t instrument_id_{};
     std::array<std::byte, 1> reserved_a_{};
     std::array<std::byte, 1> reserved_b_{};
-    std::int64_t price_{};
+    Decimal price_{ 0, -8 };
     std::uint64_t trade_match_id_{};
     AuctionType auction_type_{};
     PtModFlags pt_mod_flags_{};

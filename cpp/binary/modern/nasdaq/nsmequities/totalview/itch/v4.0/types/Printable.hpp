@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v4.0: types/Printable.hpp
 #pragma once
 
 #include <cstddef>

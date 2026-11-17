@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v15.0: messages/AuctionClearingPrice.cpp
 #include "AuctionClearingPrice.hpp"
 
 #include "../common/Print.hpp"

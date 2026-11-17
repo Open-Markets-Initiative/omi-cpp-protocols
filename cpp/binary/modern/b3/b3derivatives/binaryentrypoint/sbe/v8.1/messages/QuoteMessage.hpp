@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1: messages/QuoteMessage.hpp
 #pragma once
 
 #include "../structs/BidirectionalBusinessHeader.hpp"
@@ -13,7 +14,7 @@
 #include "../types/SenderLocation.hpp"
 #include "../types/EnteringTrader.hpp"
 #include "../types/ExecutingTrader.hpp"
-#include "../types/FixedRatePercentage8.hpp"
+#include "../types/FixedRate.hpp"
 #include "../types/ExecuteUnderlyingTrade.hpp"
 #include "../types/DaysToSettlement.hpp"
 
@@ -37,7 +38,7 @@ struct QuoteMessage {
     SenderLocation sender_location;
     EnteringTrader entering_trader;
     ExecutingTrader executing_trader;
-    FixedRatePercentage8 fixed_rate_percentage_8;
+    FixedRate fixed_rate;
     ExecuteUnderlyingTrade execute_underlying_trade;
     DaysToSettlement days_to_settlement;
 

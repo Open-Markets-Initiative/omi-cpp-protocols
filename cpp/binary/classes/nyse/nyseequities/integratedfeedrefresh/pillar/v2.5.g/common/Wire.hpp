@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeedRefresh.Pillar.v2.5.g: common/Wire.hpp
 #pragma once
 
 #include <bit>

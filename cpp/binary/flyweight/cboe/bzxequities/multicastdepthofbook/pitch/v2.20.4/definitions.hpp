@@ -1,3 +1,4 @@
+// Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.20.4: definitions.hpp
 #pragma once
 
 // Every flyweight view and reader of Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.20.4.

@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v2.10.a: messages/AuctionStatusMessage.hpp
 #pragma once
 
 #include <cstddef>
@@ -63,7 +64,7 @@ class AuctionStatusMessage {
 
     FinancialStatusIndicator financial_status_indicator() const { return static_cast<FinancialStatusIndicator>(wire::read_char(at(61))); }
 
-    std::string_view reserved_62() const { return view::text(at(62), 62, ' '); }
+    std::span<const std::byte, 62> reserved_62() const { return bytes_.subspan(62).template first<62>(); }
 
     void print(std::ostream& out) const {
         out << "AuctionStatusMessage{";
@@ -96,7 +97,7 @@ class AuctionStatusMessage {
         out << ", financial_status_indicator=";
         out << financial_status_indicator();
         out << ", reserved_62=";
-        print::text(out, reserved_62());
+        print::hex(out, reserved_62().data(), reserved_62().size());
         out << '}';
     }
 

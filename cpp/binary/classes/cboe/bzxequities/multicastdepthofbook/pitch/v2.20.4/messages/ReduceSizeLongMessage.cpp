@@ -1,3 +1,4 @@
+// Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.20.4: messages/ReduceSizeLongMessage.cpp
 #include "ReduceSizeLongMessage.hpp"
 
 #include "../common/Print.hpp"

@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.5: iterators/RelatedSymGroupIterator.hpp
 #pragma once
 
 #include "../definitions.hpp"

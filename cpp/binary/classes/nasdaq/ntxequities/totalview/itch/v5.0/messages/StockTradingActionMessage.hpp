@@ -1,5 +1,7 @@
+// Nasdaq.NtxEquities.TotalView.Itch.v5.0: messages/StockTradingActionMessage.hpp
 #pragma once
 
+#include <array>
 #include <chrono>
 #include <cstddef>
 #include <cstdint>
@@ -27,7 +29,7 @@ class StockTradingActionMessage : public Message {
     static constexpr std::size_t wire_size = 24;
 
     StockTradingActionMessage() = default;
-    StockTradingActionMessage(std::uint16_t stock_locate, std::uint16_t tracking_number, std::chrono::nanoseconds timestamp, const std::string& stock, TradingState trading_state, char reserved, const std::string& trading_action_reason);
+    StockTradingActionMessage(std::uint16_t stock_locate, std::uint16_t tracking_number, std::chrono::nanoseconds timestamp, const std::string& stock, TradingState trading_state, const std::array<std::byte, 1>& reserved, const std::string& trading_action_reason);
 
     // Stock Locate: Always 0
     std::uint16_t stock_locate() const;
@@ -52,8 +54,9 @@ class StockTradingActionMessage : public Message {
     void set_trading_state(TradingState value);
 
     // Reserved: Reserved
-    char reserved() const;
-    void set_reserved(char value);
+    const std::array<std::byte, 1>& reserved() const;
+    std::array<std::byte, 1>& reserved();
+    void set_reserved(const std::array<std::byte, 1>& value);
 
     // Trading Action Reason: Trading Action reason
     const std::string& trading_action_reason() const;
@@ -80,7 +83,7 @@ class StockTradingActionMessage : public Message {
     std::chrono::nanoseconds timestamp_{};
     std::string stock_{};
     TradingState trading_state_{};
-    char reserved_{};
+    std::array<std::byte, 1> reserved_{};
     std::string trading_action_reason_{};
 };
 

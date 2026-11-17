@@ -1,3 +1,4 @@
+// Iex.IexEquities.DeepPlus.IexTp.v1.01: main.cpp
 // Iex.IexEquities.DeepPlus.IexTp.v1.01 benchmark, through the Modern iterator: every value it reads from every message of the simulated
 // sequence (tests/simulated/iex/iexequities/deepplus/iextp/v1.01.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -100,7 +101,6 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest(message->price.integer());
         } else if (iterator.message_type == protocol::OrderDeleteMessage::message_type) {
             [[maybe_unused]] const auto* message = protocol::OrderDeleteMessage::parse(iterator.message);
-            checksum += bench::digest(message->reserved_1.get());
             checksum += bench::digest(message->timestamp.get());
             checksum += bench::digest(message->symbol.get());
             checksum += bench::digest(message->order_id_reference.get());
@@ -143,7 +143,6 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest(message->trade_id.get());
         } else if (iterator.message_type == protocol::ClearBookMessage::message_type) {
             [[maybe_unused]] const auto* message = protocol::ClearBookMessage::parse(iterator.message);
-            checksum += bench::digest(message->reserved_1.get());
             checksum += bench::digest(message->timestamp.get());
             checksum += bench::digest(message->symbol.get());
         }

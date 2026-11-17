@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: messages/ExecutionSummaryMessage.hpp
 #pragma once
 
 #include <cstddef>

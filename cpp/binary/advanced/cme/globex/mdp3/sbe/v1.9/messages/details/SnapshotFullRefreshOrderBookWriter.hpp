@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.9: messages/details/SnapshotFullRefreshOrderBookWriter.hpp
 #pragma once
 
 #include "../SnapshotFullRefreshOrderBook.hpp"

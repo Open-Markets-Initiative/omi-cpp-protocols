@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.7: messages/PriceTickSizeMessage.hpp
 #pragma once
 
 #include "../types/Nanoseconds.hpp"

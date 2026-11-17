@@ -1,3 +1,4 @@
+// Cboe.CfeFutures.MulticastDepthOfBook.Pitch.v1.2.22: definitions.hpp
 #pragma once
 
 #include "common/Day.hpp"

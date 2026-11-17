@@ -1,3 +1,4 @@
+// Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.20.4: messages/SymbolMappingMessage.hpp
 #pragma once
 
 #include <cstddef>

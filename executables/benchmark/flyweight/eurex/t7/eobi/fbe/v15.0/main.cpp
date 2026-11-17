@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v15.0: main.cpp
 // Eurex.T7.Eobi.Fbe.v15.0 benchmark, through the Flyweight reader: every value it reads from every message of the simulated
 // sequence (tests/simulated/eurex/t7/eobi/fbe/v15.0.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -25,15 +26,15 @@ struct Reader {
     std::size_t index = 0;
 
     void on(const protocol::Packet& packet) {
-        checksum += bench::digest(packet.packet_header().eobi_header().body_len());
-        checksum += bench::digest(packet.packet_header().eobi_header().template_id());
-        checksum += bench::digest(packet.packet_header().eobi_header().msg_seq_num());
-        checksum += bench::digest(packet.packet_header().appl_seq_num());
+        checksum += (packet.packet_header().eobi_header().body_len().has_value() ? bench::digest((*packet.packet_header().eobi_header().body_len())) : std::uint64_t{0});
+        checksum += (packet.packet_header().eobi_header().template_id().has_value() ? bench::digest((*packet.packet_header().eobi_header().template_id())) : std::uint64_t{0});
+        checksum += (packet.packet_header().eobi_header().msg_seq_num().has_value() ? bench::digest((*packet.packet_header().eobi_header().msg_seq_num())) : std::uint64_t{0});
+        checksum += (packet.packet_header().appl_seq_num().has_value() ? bench::digest((*packet.packet_header().appl_seq_num())) : std::uint64_t{0});
         checksum += (packet.packet_header().market_segment_id().has_value() ? bench::digest((*packet.packet_header().market_segment_id())) : std::uint64_t{0});
         checksum += (packet.packet_header().partition_id().has_value() ? bench::digest((*packet.packet_header().partition_id())) : std::uint64_t{0});
         checksum += (packet.packet_header().completion_indicator().has_value() ? bench::digest((*packet.packet_header().completion_indicator())) : std::uint64_t{0});
         checksum += (packet.packet_header().appl_seq_reset_indicator().has_value() ? bench::digest((*packet.packet_header().appl_seq_reset_indicator())) : std::uint64_t{0});
-        checksum += bench::digest(packet.packet_header().dscp());
+        checksum += (packet.packet_header().dscp().has_value() ? bench::digest((*packet.packet_header().dscp())) : std::uint64_t{0});
         checksum += (packet.packet_header().transact_time().has_value() ? bench::digest((*packet.packet_header().transact_time())) : std::uint64_t{0});
     }
 

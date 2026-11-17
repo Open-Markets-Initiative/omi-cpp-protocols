@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v13.0: messages/AddFlexibleInstrument.hpp
 #pragma once
 
 #include <array>
@@ -32,7 +33,7 @@ class AddFlexibleInstrument : public Message {
     AddFlexibleInstrument() = default;
     AddFlexibleInstrument(std::optional<std::int64_t> security_id, std::optional<std::chrono::nanoseconds> transact_time, const std::string& security_desc, std::optional<SecurityType> security_type, std::optional<PutOrCall> put_or_call, std::optional<ExerciseStyle> exercise_style, std::optional<SettlMethod> settl_method, std::optional<std::uint32_t> maturity_date, std::optional<Decimal> strike_price, std::optional<std::uint32_t> opt_attribute, std::optional<std::uint32_t> contract_date, std::optional<std::uint32_t> security_reference_data_supplement, const std::array<std::byte, 4>& pad4);
 
-    // Security Id:
+    // Security Id: Unique instrument identifier
     std::optional<std::int64_t> security_id() const;
     void set_security_id(std::optional<std::int64_t> value);
 

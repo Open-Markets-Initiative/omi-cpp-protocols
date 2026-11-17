@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v13.0: types/OfferSize.hpp
 #pragma once
 
 #include <cstddef>

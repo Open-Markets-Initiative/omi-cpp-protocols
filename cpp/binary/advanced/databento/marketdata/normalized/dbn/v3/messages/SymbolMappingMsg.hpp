@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v3: messages/SymbolMappingMsg.hpp
 #pragma once
 
 #include <cstddef>

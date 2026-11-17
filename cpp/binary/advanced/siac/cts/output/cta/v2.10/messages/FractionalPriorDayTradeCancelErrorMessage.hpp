@@ -1,7 +1,7 @@
+// Siac.Cts.Output.Cta.v2.10: messages/FractionalPriorDayTradeCancelErrorMessage.hpp
 #pragma once
 
 #include <cstddef>
-#include "../structs/BlockHeader.hpp"
 #include "../types/ParticipantId.hpp"
 #include "../structs/Timestamp1.hpp"
 #include "../types/MessageId.hpp"
@@ -52,7 +52,6 @@ struct fractional_prior_day_trade_cancel_error_message {
         cta_output::cancel_error_action cancel_error_action;
     };
 
-    cta_output::block_header header = {{}, {}, {}, {}, {}, {}, {}, {}};
     // Transport framing: message size precedes the SBE header on the wire
     cta_output::message_length message_length;
     cta_output::message_category message_category = cta_output::message_category::enum_type::prior_day;
@@ -91,7 +90,7 @@ static_assert(offsetof(fractional_prior_day_trade_cancel_error_message::fields_t
 static_assert(offsetof(fractional_prior_day_trade_cancel_error_message::fields_type, prior_day_trade_date_and_time) == 59, "unexpected offset of fractional_prior_day_trade_cancel_error_message::fields_type::prior_day_trade_date_and_time");
 static_assert(offsetof(fractional_prior_day_trade_cancel_error_message::fields_type, cancel_error_action) == 67, "unexpected offset of fractional_prior_day_trade_cancel_error_message::fields_type::cancel_error_action");
 static_assert(sizeof(fractional_prior_day_trade_cancel_error_message::fields_type) == 68, "unexpected sizeof fractional_prior_day_trade_cancel_error_message::fields_type");
-static_assert(sizeof(fractional_prior_day_trade_cancel_error_message) == sizeof(cta_output::block_header) + sizeof(cta_output::message_length) + sizeof(cta_output::message_category) + sizeof(cta_output::prior_day_message_type) + 68, "unexpected sizeof fractional_prior_day_trade_cancel_error_message");
+static_assert(sizeof(fractional_prior_day_trade_cancel_error_message) == sizeof(cta_output::message_length) + sizeof(cta_output::message_category) + sizeof(cta_output::prior_day_message_type) + 68, "unexpected sizeof fractional_prior_day_trade_cancel_error_message");
 
 #pragma pack(pop)
 }

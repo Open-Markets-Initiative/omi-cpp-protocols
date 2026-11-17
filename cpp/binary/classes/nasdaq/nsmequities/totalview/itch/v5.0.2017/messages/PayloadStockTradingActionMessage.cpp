@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2017: messages/PayloadStockTradingActionMessage.cpp
 #include "PayloadStockTradingActionMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,7 +7,7 @@
 
 namespace nasdaq::nsmequities::totalview::itch::v5_0_2017 {
 
-PayloadStockTradingActionMessage::PayloadStockTradingActionMessage(std::uint16_t stock_locate, std::uint16_t tracking_number, std::chrono::nanoseconds timestamp, const std::string& stock, TradingState trading_state, char reserved, const std::string& reason_code)
+PayloadStockTradingActionMessage::PayloadStockTradingActionMessage(std::uint16_t stock_locate, std::uint16_t tracking_number, std::chrono::nanoseconds timestamp, const std::string& stock, TradingState trading_state, const std::array<std::byte, 1>& reserved, const std::string& reason_code)
   : stock_locate_(stock_locate), tracking_number_(tracking_number), timestamp_(timestamp), stock_(stock), trading_state_(trading_state), reserved_(reserved), reason_code_(reason_code) {}
 
 std::uint16_t PayloadStockTradingActionMessage::stock_locate() const { return stock_locate_; }
@@ -26,8 +27,9 @@ void PayloadStockTradingActionMessage::set_stock(const std::string& value) { sto
 TradingState PayloadStockTradingActionMessage::trading_state() const { return trading_state_; }
 void PayloadStockTradingActionMessage::set_trading_state(TradingState value) { trading_state_ = value; }
 
-char PayloadStockTradingActionMessage::reserved() const { return reserved_; }
-void PayloadStockTradingActionMessage::set_reserved(char value) { reserved_ = value; }
+const std::array<std::byte, 1>& PayloadStockTradingActionMessage::reserved() const { return reserved_; }
+std::array<std::byte, 1>& PayloadStockTradingActionMessage::reserved() { return reserved_; }
+void PayloadStockTradingActionMessage::set_reserved(const std::array<std::byte, 1>& value) { reserved_ = value; }
 
 const std::string& PayloadStockTradingActionMessage::reason_code() const { return reason_code_; }
 std::string& PayloadStockTradingActionMessage::reason_code() { return reason_code_; }
@@ -56,7 +58,7 @@ std::size_t PayloadStockTradingActionMessage::decode(const std::byte* data, std:
     trading_state_ = static_cast<TradingState>(wire::read_char(data + offset));
     offset += 1;
 
-    reserved_ = wire::read_char(data + offset);
+    wire::read_bytes(data + offset, reserved_.data(), 1);
     offset += 1;
 
     reason_code_ = wire::read_text(data + offset, 4, ' ');
@@ -84,7 +86,7 @@ std::size_t PayloadStockTradingActionMessage::encode(std::byte* data, std::size_
     wire::write_char(data + offset, static_cast<char>(trading_state_));
     offset += 1;
 
-    wire::write_char(data + offset, reserved_);
+    wire::write_bytes(data + offset, reserved_.data(), 1);
     offset += 1;
 
     wire::write_text(data + offset, 4, ' ', reason_code_);
@@ -118,7 +120,7 @@ void PayloadStockTradingActionMessage::print(std::ostream& out) const {
     out << ", trading_state=";
     out << trading_state_;
     out << ", reserved=";
-    print::character(out, reserved_);
+    print::hex(out, reserved_.data(), reserved_.size());
     out << ", reason_code=";
     print::text(out, reason_code_);
     out << '}';

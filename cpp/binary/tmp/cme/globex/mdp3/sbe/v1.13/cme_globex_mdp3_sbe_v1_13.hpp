@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.13: cme_globex_mdp3_sbe_v1_13.hpp
 // Cme Globex Mdp3 Sbe 1.13 Template Meta Programming
 
 #pragma once
@@ -2775,6 +2776,19 @@ struct session {
     std::array<char, 5> value_;
 };
 
+// Session Text: Reject reason details
+struct session_text {
+    using type = std::string_view;
+    static constexpr std::size_t size = 100;
+    static constexpr char fill = '\0';
+
+    constexpr type value() const noexcept { return tmp::trimmed(value_, fill); }
+    constexpr operator type() const noexcept { return value(); }
+
+  protected:
+    std::array<char, 100> value_;
+};
+
 // Settl Currency: Identifies currency used for settlement, if different from trading currency
 struct settl_currency {
     using type = std::string_view;
@@ -3038,19 +3052,6 @@ struct termination_type {
 
   protected:
     std::array<char, 8> value_;
-};
-
-// Text: Reject reason details
-struct text {
-    using type = std::string_view;
-    static constexpr std::size_t size = 100;
-    static constexpr char fill = '\0';
-
-    constexpr type value() const noexcept { return tmp::trimmed(value_, fill); }
-    constexpr operator type() const noexcept { return value(); }
-
-  protected:
-    std::array<char, 100> value_;
 };
 
 // Tick Rule: VTT code referencing variable tick table
@@ -3427,18 +3428,11 @@ struct unit_of_measure_qty {
     type value_;
 };
 
-// Unused Settl Price Type 5: Unused SettlPriceType 5
-struct unused_settl_price_type_5 {
-    using type = bool;
-    static constexpr std::uint64_t mask = 0x20ULL;
+// Unused 2: 2 unused bits
+struct unused_2 {
+    using type = std::uint8_t;
+    static constexpr std::uint64_t mask = 0x60ULL;
     static constexpr int shift = 5;
-};
-
-// Unused Settl Price Type 6: Unused SettlPriceType 6
-struct unused_settl_price_type_6 {
-    using type = bool;
-    static constexpr std::uint64_t mask = 0x40ULL;
-    static constexpr int shift = 6;
 };
 
 // User Defined Instrument: User-defined instruments flag
@@ -3570,7 +3564,7 @@ struct request_reject {
     using fields = tmp::list<
         md_req_id_optional,
         md_req_rej_reason,
-        text>;
+        session_text>;
 
     // the member of the type asked for
     template <typename Field>
@@ -3579,7 +3573,7 @@ struct request_reject {
   protected:
     MDP3FIELD(md_req_id_optional);
     MDP3FIELD(md_req_rej_reason);
-    MDP3FIELD(text);
+    MDP3FIELD(session_text);
 };
 
 static_assert(sizeof(request_reject) == request_reject::size, "request_reject lies over its bytes exactly");

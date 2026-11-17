@@ -1,3 +1,4 @@
+// Cboe.C1Options.MulticastDepthOfBook.Pitch.v2.39.4: enums/CustomerIndicator.hpp
 #pragma once
 
 #include <cstdint>

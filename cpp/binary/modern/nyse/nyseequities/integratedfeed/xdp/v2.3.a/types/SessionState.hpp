@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeed.Xdp.v2.3.a: types/SessionState.hpp
 #pragma once
 
 #include <cstddef>

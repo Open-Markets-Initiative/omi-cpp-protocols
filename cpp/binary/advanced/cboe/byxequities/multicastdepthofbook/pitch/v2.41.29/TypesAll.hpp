@@ -1,3 +1,4 @@
+// Cboe.ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29: TypesAll.hpp
 #pragma once
 
 // All type headers for this protocol schema
@@ -27,7 +28,6 @@
 #include "types/CanceledQuantity.hpp"
 #include "types/CanceledQuantityShort.hpp"
 #include "types/ModifyOrderFlags.hpp"
-#include "types/LastTimestamp.hpp"
 #include "types/TradingStatus.hpp"
 #include "types/RegShoAction.hpp"
 #include "types/Padding.hpp"

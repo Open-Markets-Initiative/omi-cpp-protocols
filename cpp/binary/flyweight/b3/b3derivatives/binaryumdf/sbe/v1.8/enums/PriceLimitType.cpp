@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.8: enums/PriceLimitType.cpp
 #include "PriceLimitType.hpp"
 
 namespace b3::b3derivatives::binaryumdf::sbe::v1_8 {

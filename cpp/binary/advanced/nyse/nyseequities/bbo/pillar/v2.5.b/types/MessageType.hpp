@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.Bbo.Pillar.v2.5.b: types/MessageType.hpp
 #pragma once
 
 #include <cstddef>

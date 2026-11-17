@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v2.10.a: definitions.hpp
 #pragma once
 
 #include "common/Decimal.hpp"

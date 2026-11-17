@@ -1,3 +1,4 @@
+// Nyse.NationalEquities.Bbo.Pillar.v2.5.d: definitions.hpp
 #pragma once
 
 #include "structs/PacketHeader.hpp"

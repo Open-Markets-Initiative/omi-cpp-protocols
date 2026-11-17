@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: main.cpp
 // Siac.Cts.Output.Cta.v2.11.b benchmark, through the Flyweight reader: every value it reads from every message of the simulated
 // sequence (tests/simulated/siac/cts/output/cta/v2.11.b.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -81,9 +82,6 @@ struct AdministrativeMessagePayloadHandler {
         checksum += bench::digest(message.short_sale_restriction_indicator());
         checksum += bench::digest(message.halt_reason());
         checksum += bench::digest(message.instrument_type());
-        checksum += bench::digest(message.reserved());
-        checksum += bench::digest(message.second_reserved());
-        checksum += bench::digest(message.reserved_128());
     }
 };
 
@@ -179,7 +177,6 @@ struct MarketStatusMessagePayloadHandler {
         checksum += bench::digest(message.mwcb_level_1().mantissa());
         checksum += bench::digest(message.mwcb_level_2().mantissa());
         checksum += bench::digest(message.mwcb_level_3().mantissa());
-        checksum += bench::digest(message.reserved());
     }
 
     void on(const protocol::MarketWideCircuitBreakerStatusMessage& message) {
@@ -190,7 +187,6 @@ struct MarketStatusMessagePayloadHandler {
         checksum += bench::digest(message.transaction_id());
         checksum += bench::digest(message.participant_reference_number());
         checksum += bench::digest(message.market_wide_circuit_breaker_level_indicator());
-        checksum += bench::digest(message.reserved());
     }
 
     void on(const protocol::ApproximateAdjustedVolumeMarketCenterMessage& message) {
@@ -531,7 +527,6 @@ struct TradeMessagePayloadHandler {
         checksum += bench::digest(message.short_sale_restriction_indicator());
         checksum += bench::digest(message.primary_listing_market_participant_id());
         checksum += bench::digest(message.financial_status_indicator());
-        checksum += bench::digest(message.reserved_62());
     }
 
     void on(const protocol::TradeCorrectionMessage& message) {

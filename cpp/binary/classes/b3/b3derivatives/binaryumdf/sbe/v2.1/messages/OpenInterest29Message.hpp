@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.1: messages/OpenInterest29Message.hpp
 #pragma once
 
 #include <array>
@@ -25,7 +26,7 @@ class OpenInterest29Message : public Message {
     static constexpr std::size_t wire_size = 32;
 
     OpenInterest29Message() = default;
-    OpenInterest29Message(std::uint64_t security_id, const MatchEventIndicator& match_event_indicator, const std::array<std::byte, 1>& offset_9_padding_1, std::uint16_t trade_date, std::int64_t md_entry_size_quantity, std::optional<std::chrono::nanoseconds> md_entry_timestamp, std::optional<std::uint32_t> rpt_seq);
+    OpenInterest29Message(std::uint64_t security_id, const MatchEventIndicator& match_event_indicator, const std::array<std::byte, 1>& offset_9_padding_1, std::uint16_t trade_date, std::int64_t md_entry_size, std::optional<std::chrono::nanoseconds> md_entry_timestamp, std::optional<std::uint32_t> rpt_seq);
 
     // Security Id: securityID
     std::uint64_t security_id() const;
@@ -45,9 +46,9 @@ class OpenInterest29Message : public Message {
     std::uint16_t trade_date() const;
     void set_trade_date(std::uint16_t value);
 
-    // Md Entry Size Quantity: mDEntrySize
-    std::int64_t md_entry_size_quantity() const;
-    void set_md_entry_size_quantity(std::int64_t value);
+    // Md Entry Size: mDEntrySize
+    std::int64_t md_entry_size() const;
+    void set_md_entry_size(std::int64_t value);
 
     // Md Entry Timestamp: mDEntryTimestamp
     std::optional<std::chrono::nanoseconds> md_entry_timestamp() const;
@@ -76,7 +77,7 @@ class OpenInterest29Message : public Message {
     MatchEventIndicator match_event_indicator_{};
     std::array<std::byte, 1> offset_9_padding_1_{};
     std::uint16_t trade_date_{};
-    std::int64_t md_entry_size_quantity_{};
+    std::int64_t md_entry_size_{};
     std::optional<std::chrono::nanoseconds> md_entry_timestamp_{};
     std::optional<std::uint32_t> rpt_seq_{};
 };

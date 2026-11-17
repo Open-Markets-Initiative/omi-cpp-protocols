@@ -1,3 +1,4 @@
+// Memx.MemxEquities.MemoirDepthFeed.Sbe.v1.3: types/CorrectedPrice.hpp
 #pragma once
 
 #include <cstddef>

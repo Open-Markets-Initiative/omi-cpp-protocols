@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.ComplexTopOfMarket.Mach.v1.1: groups/LegDefinition.cpp
 #include "LegDefinition.hpp"
 
 #include "../common/Print.hpp"

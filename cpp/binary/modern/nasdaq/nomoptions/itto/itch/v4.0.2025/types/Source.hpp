@@ -1,6 +1,6 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: types/Source.hpp
 #pragma once
 
-#include <bit>
 #include <cstddef>
 #include <cstdint>
 

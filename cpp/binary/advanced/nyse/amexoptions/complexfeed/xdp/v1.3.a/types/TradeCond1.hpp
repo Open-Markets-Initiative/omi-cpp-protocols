@@ -1,3 +1,4 @@
+// Nyse.AmexOptions.ComplexFeed.Xdp.v1.3.a: types/TradeCond1.hpp
 #pragma once
 
 #include <cstddef>

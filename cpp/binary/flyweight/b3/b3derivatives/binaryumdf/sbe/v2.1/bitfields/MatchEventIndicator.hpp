@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.1: bitfields/MatchEventIndicator.hpp
 #pragma once
 
 #include <cstddef>
@@ -27,38 +28,18 @@ class MatchEventIndicator {
 
     std::uint8_t raw() const { return wire::read_u8(bytes_.data()); }
 
-    bool unused_match_event_indicator_0() const { return (raw() & static_cast<std::uint8_t>(0x1)) != 0; }
-
-    bool unused_match_event_indicator_1() const { return (raw() & static_cast<std::uint8_t>(0x2)) != 0; }
-
-    bool unused_match_event_indicator_2() const { return (raw() & static_cast<std::uint8_t>(0x4)) != 0; }
-
-    bool unused_match_event_indicator_3() const { return (raw() & static_cast<std::uint8_t>(0x8)) != 0; }
-
     bool implied() const { return (raw() & static_cast<std::uint8_t>(0x10)) != 0; }
 
     bool recovery_msg() const { return (raw() & static_cast<std::uint8_t>(0x20)) != 0; }
-
-    bool unused_match_event_indicator_6() const { return (raw() & static_cast<std::uint8_t>(0x40)) != 0; }
 
     bool end_of_event() const { return (raw() & static_cast<std::uint8_t>(0x80)) != 0; }
 
     void print(std::ostream& out) const {
         out << "MatchEventIndicator{";
-        out << "unused_match_event_indicator_0=";
-        out << (unused_match_event_indicator_0() ? "true" : "false");
-        out << ", unused_match_event_indicator_1=";
-        out << (unused_match_event_indicator_1() ? "true" : "false");
-        out << ", unused_match_event_indicator_2=";
-        out << (unused_match_event_indicator_2() ? "true" : "false");
-        out << ", unused_match_event_indicator_3=";
-        out << (unused_match_event_indicator_3() ? "true" : "false");
-        out << ", implied=";
+        out << "implied=";
         out << (implied() ? "true" : "false");
         out << ", recovery_msg=";
         out << (recovery_msg() ? "true" : "false");
-        out << ", unused_match_event_indicator_6=";
-        out << (unused_match_event_indicator_6() ? "true" : "false");
         out << ", end_of_event=";
         out << (end_of_event() ? "true" : "false");
         out << '}';

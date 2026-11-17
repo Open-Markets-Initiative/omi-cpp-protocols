@@ -1,3 +1,4 @@
+// Iex.IexEquities.Tops.Snap.v1.6: messages/Definitions.hpp
 #pragma once
 
 #include "../structs/MessageHeader.hpp"

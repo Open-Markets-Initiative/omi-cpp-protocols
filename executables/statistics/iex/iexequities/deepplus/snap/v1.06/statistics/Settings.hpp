@@ -1,3 +1,4 @@
+// Iex.IexEquities.DeepPlus.Snap.v1.06: statistics/Settings.hpp
 #pragma once
 
 #include <string>

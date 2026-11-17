@@ -1,3 +1,4 @@
+// Nasdaq.PsxEquities.TotalView.Itch.v5.0: enums/TradingState.cpp
 #include "TradingState.hpp"
 
 namespace nasdaq::psxequities::totalview::itch::v5_0 {

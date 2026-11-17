@@ -1,3 +1,4 @@
+// Asx.AsxDerivatives.Ntp.Itch.v1.05: messages/CombinationSymbolDirectoryMessage.hpp
 #pragma once
 
 #include <cstddef>
@@ -36,7 +37,7 @@ struct combination_symbol_directory_message {
         itch_ntp::price_fractional_denominator price_fractional_denominator;
         itch_ntp::price_minimum_tick price_minimum_tick;
         itch_ntp::legs legs;
-        itch_ntp::combination_leg combination_leg[6];
+        itch_ntp::combination_leg combination_leg;
     };
 
     itch_ntp::message_header header = {std::uint16_t(sizeof(itch_ntp::message_header) + sizeof(fields_type) - 2), message_type::enum_type::combination_symbol_directory_message};
@@ -68,8 +69,8 @@ static_assert(offsetof(combination_symbol_directory_message::fields_type, price_
 static_assert(offsetof(combination_symbol_directory_message::fields_type, price_minimum_tick) == 114, "unexpected offset of combination_symbol_directory_message::fields_type::price_minimum_tick");
 static_assert(offsetof(combination_symbol_directory_message::fields_type, legs) == 118, "unexpected offset of combination_symbol_directory_message::fields_type::legs");
 static_assert(offsetof(combination_symbol_directory_message::fields_type, combination_leg) == 119, "unexpected offset of combination_symbol_directory_message::fields_type::combination_leg");
-static_assert(sizeof(combination_symbol_directory_message::fields_type) == 221, "unexpected sizeof combination_symbol_directory_message::fields_type");
-static_assert(sizeof(combination_symbol_directory_message) == sizeof(itch_ntp::message_header) + 221, "unexpected sizeof combination_symbol_directory_message");
+static_assert(sizeof(combination_symbol_directory_message::fields_type) == 136, "unexpected sizeof combination_symbol_directory_message::fields_type");
+static_assert(sizeof(combination_symbol_directory_message) == sizeof(itch_ntp::message_header) + 136, "unexpected sizeof combination_symbol_directory_message");
 
 #pragma pack(pop)
 }

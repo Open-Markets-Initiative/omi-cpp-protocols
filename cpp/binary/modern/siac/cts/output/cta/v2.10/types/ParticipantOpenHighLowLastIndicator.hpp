@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.10: types/ParticipantOpenHighLowLastIndicator.hpp
 #pragma once
 
 #include <cstddef>

@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.Qbbo.Itch.v2.1: main.cpp
 // Nasdaq.NsmEquities.Qbbo.Itch.v2.1 write and read: every message built with each field it sets, written
 // into a capture through the Classes encoder, then read back - each field set must read as it was written.
 // 
@@ -187,7 +188,7 @@ std::unique_ptr<protocol::Message> build_IpoQuotingPeriodUpdateMessage() {
     message->set_tracking(static_cast<std::uint16_t>(1));
     message->set_time_stamp(std::chrono::nanoseconds{2});
     message->set_stock(std::string("DEF"));
-    message->set_ipo_quotation_release_time(static_cast<std::uint32_t>(4));
+    message->set_ipo_quotation_release_time(std::chrono::seconds{4});
     message->set_ipo_quotation_release_qualifier(protocol::IpoQuotationReleaseQualifier::IpoReleaseCanceledPostponed);
     message->set_ipo_price(protocol::Decimal(6, -4));
     return message;
@@ -548,7 +549,7 @@ int check_IpoQuotingPeriodUpdateMessage(const protocol::Message* read) {
         std::printf("FAIL IpoQuotingPeriodUpdateMessage: stock does not read as it was written\n");
         ++failures;
     }
-    if (!(message->ipo_quotation_release_time() == static_cast<std::uint32_t>(4))) {
+    if (!(message->ipo_quotation_release_time() == std::chrono::seconds{4})) {
         std::printf("FAIL IpoQuotingPeriodUpdateMessage: ipo_quotation_release_time does not read as it was written\n");
         ++failures;
     }

@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.Bbo.Xdp.v2.4.g: types/Seconds.hpp
 #pragma once
 
 #include <cstddef>

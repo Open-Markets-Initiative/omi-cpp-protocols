@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.8: bitfields/MatchEventIndicator.hpp
 #pragma once
 
 #include <cstddef>
@@ -38,10 +39,6 @@ class MatchEventIndicator {
     // Recovery Msg: RecoveryMsg
     bool recovery_msg() const;
     void set_recovery_msg(bool value);
-
-    // Reserved: Reserved
-    bool reserved() const;
-    void set_reserved(bool value);
 
     // End Of Event: EndOfEvent
     bool end_of_event() const;

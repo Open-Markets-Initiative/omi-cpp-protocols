@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v3.0: structs/Packet.hpp
 #pragma once
 
 #include <cstddef>

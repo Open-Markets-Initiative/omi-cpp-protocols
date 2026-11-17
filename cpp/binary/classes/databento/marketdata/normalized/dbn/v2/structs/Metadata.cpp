@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v2: structs/Metadata.cpp
 #include "Metadata.hpp"
 
 #include "../common/Print.hpp"

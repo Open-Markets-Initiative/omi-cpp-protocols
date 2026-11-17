@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: messages/UdpPayloadAddOrderMessageShortMessageForm.hpp
 #pragma once
 
 #include <chrono>
@@ -80,7 +81,7 @@ class UdpPayloadAddOrderMessageShortMessageForm : public PacketMessage {
     std::uint64_t order_reference_number_{};
     MarketSide market_side_{};
     std::uint32_t option_id_{};
-    Decimal price_short_{ 0, -4 };
+    Decimal price_short_{ 0, -2 };
     std::uint16_t volume_short_{};
 };
 

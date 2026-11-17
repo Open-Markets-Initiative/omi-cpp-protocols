@@ -1,3 +1,4 @@
+// Cboe.EdgxEquities.MulticastDepthOfBook.Pitch.v2.41.29: enums/SideIndicator.cpp
 #include "SideIndicator.hpp"
 
 namespace cboe::edgxequities::multicastdepthofbook::pitch::v2_41_29 {

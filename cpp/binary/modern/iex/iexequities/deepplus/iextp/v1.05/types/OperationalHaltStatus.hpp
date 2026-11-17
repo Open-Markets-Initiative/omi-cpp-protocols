@@ -1,3 +1,4 @@
+// Iex.IexEquities.DeepPlus.IexTp.v1.05: types/OperationalHaltStatus.hpp
 #pragma once
 
 #include <cstddef>

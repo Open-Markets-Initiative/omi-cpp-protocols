@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v3: types/Magic.hpp
 #pragma once
 
 #include <array>

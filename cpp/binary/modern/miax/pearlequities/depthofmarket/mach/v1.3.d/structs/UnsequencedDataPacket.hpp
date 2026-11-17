@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: structs/UnsequencedDataPacket.hpp
 #pragma once
 
 #include "../types/UnsequencedMessageType.hpp"

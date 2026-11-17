@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: enums/CorrectedSpecialSaleCondition.cpp
 #include "CorrectedSpecialSaleCondition.hpp"
 
 namespace nasdaq::nsmequities::nlsplus::itch::v3_0 {

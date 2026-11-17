@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: messages/details/QuoteCancelMessageWriter.hpp
 #pragma once
 
 #include "../QuoteCancelMessage.hpp"

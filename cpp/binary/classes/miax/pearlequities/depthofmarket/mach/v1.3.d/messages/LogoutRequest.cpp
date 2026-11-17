@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: messages/LogoutRequest.cpp
 #include "LogoutRequest.hpp"
 
 #include "../common/Print.hpp"

@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.ComplexTopOfMarket.Mach.v1.1: messages/CompactComplexTopOfMarketOfferMessage.hpp
 #pragma once
 
 #include "../types/Nanoseconds.hpp"

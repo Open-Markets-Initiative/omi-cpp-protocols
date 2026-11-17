@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.13: structs/LotTypeRulesGroups.cpp
 #include "LotTypeRulesGroups.hpp"
 
 #include "../common/Print.hpp"

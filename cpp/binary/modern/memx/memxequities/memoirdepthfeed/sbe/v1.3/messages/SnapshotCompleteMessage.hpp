@@ -1,3 +1,4 @@
+// Memx.MemxEquities.MemoirDepthFeed.Sbe.v1.3: messages/SnapshotCompleteMessage.hpp
 #pragma once
 
 #include "../types/Timestamp.hpp"

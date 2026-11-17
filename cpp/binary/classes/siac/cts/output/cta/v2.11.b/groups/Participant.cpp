@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: groups/Participant.cpp
 #include "Participant.hpp"
 
 #include "../common/Print.hpp"

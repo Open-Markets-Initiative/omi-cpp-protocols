@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.1: messages/OrderMbO50Message.hpp
 #pragma once
 
 #include <chrono>
@@ -44,7 +45,7 @@ class OrderMbO50Message {
 
     std::optional<Decimal> md_corporate_offset_price_optional() const { return wire::nullable_decimal(wire::read_i64_le(at(12)), static_cast<std::int64_t>(-9223372036854775807LL - 1), -4); }
 
-    std::int64_t md_entry_size_quantity() const { return wire::read_i64_le(at(20)); }
+    std::int64_t md_entry_size() const { return wire::read_i64_le(at(20)); }
 
     std::optional<std::uint32_t> md_entry_position_no() const { return wire::nullable(wire::read_u32_le(at(28)), static_cast<std::uint32_t>(0ULL)); }
 
@@ -56,7 +57,7 @@ class OrderMbO50Message {
 
     std::optional<std::uint32_t> rpt_seq() const { return wire::nullable(wire::read_u32_le(at(52)), static_cast<std::uint32_t>(0ULL)); }
 
-    std::optional<std::uint64_t> transact_time() const { return wire::nullable(wire::read_u64_le(at(56)), static_cast<std::uint64_t>(0ULL)); }
+    std::optional<std::chrono::nanoseconds> transact_time() const { return wire::nullable_duration<std::chrono::nanoseconds>(wire::read_u64_le(at(56)), static_cast<std::uint64_t>(0ULL)); }
 
     void print(std::ostream& out) const {
         out << "OrderMbO50Message{";
@@ -72,8 +73,8 @@ class OrderMbO50Message {
         print::hex(out, offset_11_padding_1().data(), offset_11_padding_1().size());
         out << ", md_corporate_offset_price_optional=";
         print::optional(out, md_corporate_offset_price_optional());
-        out << ", md_entry_size_quantity=";
-        out << md_entry_size_quantity();
+        out << ", md_entry_size=";
+        out << md_entry_size();
         out << ", md_entry_position_no=";
         print::optional(out, md_entry_position_no());
         out << ", entering_firm=";
@@ -85,7 +86,7 @@ class OrderMbO50Message {
         out << ", rpt_seq=";
         print::optional(out, rpt_seq());
         out << ", transact_time=";
-        print::optional(out, transact_time());
+        print::optional_duration(out, transact_time());
         out << '}';
     }
 

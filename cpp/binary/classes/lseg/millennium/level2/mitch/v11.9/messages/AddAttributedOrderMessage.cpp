@@ -1,3 +1,4 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/AddAttributedOrderMessage.cpp
 #include "AddAttributedOrderMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,11 +7,11 @@
 
 namespace lseg::millennium::level2::mitch::v11_9 {
 
-AddAttributedOrderMessage::AddAttributedOrderMessage(std::uint32_t nanosecond, std::uint64_t order_id, Side side, std::uint32_t quantity, std::uint32_t instrument_id, const std::array<std::byte, 1>& reserved_a, const std::array<std::byte, 1>& reserved_b, std::int64_t price, const std::string& attribution, const AddAttributedOrderFlags& add_attributed_order_flags)
+AddAttributedOrderMessage::AddAttributedOrderMessage(std::chrono::nanoseconds nanosecond, std::uint64_t order_id, Side side, std::uint32_t quantity, std::uint32_t instrument_id, const std::array<std::byte, 1>& reserved_a, const std::array<std::byte, 1>& reserved_b, Decimal price, const std::string& attribution, const AddAttributedOrderFlags& add_attributed_order_flags)
   : nanosecond_(nanosecond), order_id_(order_id), side_(side), quantity_(quantity), instrument_id_(instrument_id), reserved_a_(reserved_a), reserved_b_(reserved_b), price_(price), attribution_(attribution), add_attributed_order_flags_(add_attributed_order_flags) {}
 
-std::uint32_t AddAttributedOrderMessage::nanosecond() const { return nanosecond_; }
-void AddAttributedOrderMessage::set_nanosecond(std::uint32_t value) { nanosecond_ = value; }
+std::chrono::nanoseconds AddAttributedOrderMessage::nanosecond() const { return nanosecond_; }
+void AddAttributedOrderMessage::set_nanosecond(std::chrono::nanoseconds value) { nanosecond_ = value; }
 
 std::uint64_t AddAttributedOrderMessage::order_id() const { return order_id_; }
 void AddAttributedOrderMessage::set_order_id(std::uint64_t value) { order_id_ = value; }
@@ -32,8 +33,8 @@ const std::array<std::byte, 1>& AddAttributedOrderMessage::reserved_b() const { 
 std::array<std::byte, 1>& AddAttributedOrderMessage::reserved_b() { return reserved_b_; }
 void AddAttributedOrderMessage::set_reserved_b(const std::array<std::byte, 1>& value) { reserved_b_ = value; }
 
-std::int64_t AddAttributedOrderMessage::price() const { return price_; }
-void AddAttributedOrderMessage::set_price(std::int64_t value) { price_ = value; }
+Decimal AddAttributedOrderMessage::price() const { return price_; }
+void AddAttributedOrderMessage::set_price(Decimal value) { price_ = value; }
 
 const std::string& AddAttributedOrderMessage::attribution() const { return attribution_; }
 std::string& AddAttributedOrderMessage::attribution() { return attribution_; }
@@ -51,7 +52,7 @@ std::size_t AddAttributedOrderMessage::decode(const std::byte* data, std::size_t
     std::size_t offset = 0;
     wire::require("AddAttributedOrderMessage", wire_size, length);
 
-    nanosecond_ = wire::read_u32_le(data + offset);
+    nanosecond_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     order_id_ = wire::read_u64_le(data + offset);
@@ -72,7 +73,7 @@ std::size_t AddAttributedOrderMessage::decode(const std::byte* data, std::size_t
     wire::read_bytes(data + offset, reserved_b_.data(), 1);
     offset += 1;
 
-    price_ = wire::read_i64_le(data + offset);
+    price_ = Decimal(static_cast<std::int64_t>(wire::read_i64_le(data + offset)), -8);
     offset += 8;
 
     attribution_ = wire::read_text(data + offset, 11, ' ');
@@ -87,7 +88,7 @@ std::size_t AddAttributedOrderMessage::encode(std::byte* data, std::size_t capac
     std::size_t offset = 0;
     wire::require_capacity("AddAttributedOrderMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(nanosecond_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(nanosecond_.count()));
     offset += 4;
 
     wire::write_u64_le(data + offset, static_cast<std::uint64_t>(order_id_));
@@ -108,7 +109,7 @@ std::size_t AddAttributedOrderMessage::encode(std::byte* data, std::size_t capac
     wire::write_bytes(data + offset, reserved_b_.data(), 1);
     offset += 1;
 
-    wire::write_i64_le(data + offset, static_cast<std::int64_t>(price_));
+    wire::write_i64_le(data + offset, static_cast<std::int64_t>(price_.mantissa()));
     offset += 8;
 
     wire::write_text(data + offset, 11, ' ', attribution_);
@@ -134,7 +135,7 @@ std::unique_ptr<Message> AddAttributedOrderMessage::clone() const {
 void AddAttributedOrderMessage::print(std::ostream& out) const {
     out << "AddAttributedOrderMessage{";
     out << "nanosecond=";
-    out << nanosecond_;
+    out << nanosecond_.count();
     out << ", order_id=";
     out << order_id_;
     out << ", side=";

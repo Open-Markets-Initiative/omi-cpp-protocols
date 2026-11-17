@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: messages/NoiiMessage.cpp
 #include "NoiiMessage.hpp"
 
 #include "../common/Print.hpp"

@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v4.0: types/AcceptedSequenceNumber.hpp
 #pragma once
 
 #include <cstddef>

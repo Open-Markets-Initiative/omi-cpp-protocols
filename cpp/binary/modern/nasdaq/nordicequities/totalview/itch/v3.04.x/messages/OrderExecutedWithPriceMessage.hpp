@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: messages/OrderExecutedWithPriceMessage.hpp
 #pragma once
 
 #include "../types/Timestamp.hpp"

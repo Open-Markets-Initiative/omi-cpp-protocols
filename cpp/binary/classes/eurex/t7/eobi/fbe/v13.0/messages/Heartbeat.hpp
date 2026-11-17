@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v13.0: messages/Heartbeat.hpp
 #pragma once
 
 #include <array>
@@ -25,7 +26,8 @@ class Heartbeat : public Message {
     Heartbeat() = default;
     Heartbeat(std::optional<std::uint32_t> last_msg_seq_num_processed, const std::array<std::byte, 4>& pad4);
 
-    // Last Msg Seq Num Processed:
+    // Last Msg Seq Num Processed: Last message sequence number that was processed, regardless
+    // of message type
     std::optional<std::uint32_t> last_msg_seq_num_processed() const;
     void set_last_msg_seq_num_processed(std::optional<std::uint32_t> value);
 

@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.6: bitfields/TradeCondition.cpp
 #include "TradeCondition.hpp"
 
 #include "../common/Print.hpp"
@@ -19,41 +20,14 @@ void TradeCondition::set_last_trade_at_the_same_price(bool value) { raw_ = stati
 bool TradeCondition::out_of_sequence() const { return (raw_ & static_cast<std::uint16_t>(0x8)) != 0; }
 void TradeCondition::set_out_of_sequence(bool value) { raw_ = static_cast<std::uint16_t>(value ? (raw_ | static_cast<std::uint16_t>(0x8)) : (raw_ & ~static_cast<std::uint16_t>(0x8))); }
 
-bool TradeCondition::unused_trade_condition_4() const { return (raw_ & static_cast<std::uint16_t>(0x10)) != 0; }
-void TradeCondition::set_unused_trade_condition_4(bool value) { raw_ = static_cast<std::uint16_t>(value ? (raw_ | static_cast<std::uint16_t>(0x10)) : (raw_ & ~static_cast<std::uint16_t>(0x10))); }
-
-bool TradeCondition::unused_trade_condition_5() const { return (raw_ & static_cast<std::uint16_t>(0x20)) != 0; }
-void TradeCondition::set_unused_trade_condition_5(bool value) { raw_ = static_cast<std::uint16_t>(value ? (raw_ | static_cast<std::uint16_t>(0x20)) : (raw_ & ~static_cast<std::uint16_t>(0x20))); }
-
 bool TradeCondition::trade_on_behalf() const { return (raw_ & static_cast<std::uint16_t>(0x40)) != 0; }
 void TradeCondition::set_trade_on_behalf(bool value) { raw_ = static_cast<std::uint16_t>(value ? (raw_ | static_cast<std::uint16_t>(0x40)) : (raw_ & ~static_cast<std::uint16_t>(0x40))); }
-
-bool TradeCondition::unused_trade_condition_7() const { return (raw_ & static_cast<std::uint16_t>(0x80)) != 0; }
-void TradeCondition::set_unused_trade_condition_7(bool value) { raw_ = static_cast<std::uint16_t>(value ? (raw_ | static_cast<std::uint16_t>(0x80)) : (raw_ & ~static_cast<std::uint16_t>(0x80))); }
-
-bool TradeCondition::unused_trade_condition_8() const { return (raw_ & static_cast<std::uint16_t>(0x100)) != 0; }
-void TradeCondition::set_unused_trade_condition_8(bool value) { raw_ = static_cast<std::uint16_t>(value ? (raw_ | static_cast<std::uint16_t>(0x100)) : (raw_ & ~static_cast<std::uint16_t>(0x100))); }
-
-bool TradeCondition::unused_trade_condition_9() const { return (raw_ & static_cast<std::uint16_t>(0x200)) != 0; }
-void TradeCondition::set_unused_trade_condition_9(bool value) { raw_ = static_cast<std::uint16_t>(value ? (raw_ | static_cast<std::uint16_t>(0x200)) : (raw_ & ~static_cast<std::uint16_t>(0x200))); }
-
-bool TradeCondition::unused_trade_condition_10() const { return (raw_ & static_cast<std::uint16_t>(0x400)) != 0; }
-void TradeCondition::set_unused_trade_condition_10(bool value) { raw_ = static_cast<std::uint16_t>(value ? (raw_ | static_cast<std::uint16_t>(0x400)) : (raw_ & ~static_cast<std::uint16_t>(0x400))); }
-
-bool TradeCondition::unused_trade_condition_11() const { return (raw_ & static_cast<std::uint16_t>(0x800)) != 0; }
-void TradeCondition::set_unused_trade_condition_11(bool value) { raw_ = static_cast<std::uint16_t>(value ? (raw_ | static_cast<std::uint16_t>(0x800)) : (raw_ & ~static_cast<std::uint16_t>(0x800))); }
-
-bool TradeCondition::unused_trade_condition_12() const { return (raw_ & static_cast<std::uint16_t>(0x1000)) != 0; }
-void TradeCondition::set_unused_trade_condition_12(bool value) { raw_ = static_cast<std::uint16_t>(value ? (raw_ | static_cast<std::uint16_t>(0x1000)) : (raw_ & ~static_cast<std::uint16_t>(0x1000))); }
 
 bool TradeCondition::regular_trade() const { return (raw_ & static_cast<std::uint16_t>(0x2000)) != 0; }
 void TradeCondition::set_regular_trade(bool value) { raw_ = static_cast<std::uint16_t>(value ? (raw_ | static_cast<std::uint16_t>(0x2000)) : (raw_ & ~static_cast<std::uint16_t>(0x2000))); }
 
 bool TradeCondition::block_trade() const { return (raw_ & static_cast<std::uint16_t>(0x4000)) != 0; }
 void TradeCondition::set_block_trade(bool value) { raw_ = static_cast<std::uint16_t>(value ? (raw_ | static_cast<std::uint16_t>(0x4000)) : (raw_ & ~static_cast<std::uint16_t>(0x4000))); }
-
-bool TradeCondition::unused_trade_condition_15() const { return (raw_ & static_cast<std::uint16_t>(0x8000)) != 0; }
-void TradeCondition::set_unused_trade_condition_15(bool value) { raw_ = static_cast<std::uint16_t>(value ? (raw_ | static_cast<std::uint16_t>(0x8000)) : (raw_ & ~static_cast<std::uint16_t>(0x8000))); }
 
 std::uint16_t TradeCondition::raw() const { return raw_; }
 void TradeCondition::set_raw(std::uint16_t value) { raw_ = value; }
@@ -84,30 +58,12 @@ void TradeCondition::print(std::ostream& out) const {
     out << (last_trade_at_the_same_price() ? "true" : "false");
     out << ", out_of_sequence=";
     out << (out_of_sequence() ? "true" : "false");
-    out << ", unused_trade_condition_4=";
-    out << (unused_trade_condition_4() ? "true" : "false");
-    out << ", unused_trade_condition_5=";
-    out << (unused_trade_condition_5() ? "true" : "false");
     out << ", trade_on_behalf=";
     out << (trade_on_behalf() ? "true" : "false");
-    out << ", unused_trade_condition_7=";
-    out << (unused_trade_condition_7() ? "true" : "false");
-    out << ", unused_trade_condition_8=";
-    out << (unused_trade_condition_8() ? "true" : "false");
-    out << ", unused_trade_condition_9=";
-    out << (unused_trade_condition_9() ? "true" : "false");
-    out << ", unused_trade_condition_10=";
-    out << (unused_trade_condition_10() ? "true" : "false");
-    out << ", unused_trade_condition_11=";
-    out << (unused_trade_condition_11() ? "true" : "false");
-    out << ", unused_trade_condition_12=";
-    out << (unused_trade_condition_12() ? "true" : "false");
     out << ", regular_trade=";
     out << (regular_trade() ? "true" : "false");
     out << ", block_trade=";
     out << (block_trade() ? "true" : "false");
-    out << ", unused_trade_condition_15=";
-    out << (unused_trade_condition_15() ? "true" : "false");
     out << '}';
 }
 

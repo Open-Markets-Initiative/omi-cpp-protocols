@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.TopOfMarket.Mach.v2.5: messages/UnderlyingTradingStatusNotificationMessage.cpp
 #include "UnderlyingTradingStatusNotificationMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,7 +7,7 @@
 
 namespace miax::miaxoptions::topofmarket::mach::v2_5 {
 
-UnderlyingTradingStatusNotificationMessage::UnderlyingTradingStatusNotificationMessage(std::chrono::nanoseconds nanoseconds, const std::string& underlying_symbol, TradingStatus trading_status, EventReason event_reason, std::uint32_t expected_event_time_seconds_part, std::uint32_t expected_event_time_nano_seconds_part)
+UnderlyingTradingStatusNotificationMessage::UnderlyingTradingStatusNotificationMessage(std::chrono::nanoseconds nanoseconds, const std::string& underlying_symbol, TradingStatus trading_status, EventReason event_reason, std::optional<std::chrono::seconds> expected_event_time_seconds_part, std::chrono::nanoseconds expected_event_time_nano_seconds_part)
   : nanoseconds_(nanoseconds), underlying_symbol_(underlying_symbol), trading_status_(trading_status), event_reason_(event_reason), expected_event_time_seconds_part_(expected_event_time_seconds_part), expected_event_time_nano_seconds_part_(expected_event_time_nano_seconds_part) {}
 
 std::chrono::nanoseconds UnderlyingTradingStatusNotificationMessage::nanoseconds() const { return nanoseconds_; }
@@ -22,11 +23,11 @@ void UnderlyingTradingStatusNotificationMessage::set_trading_status(TradingStatu
 EventReason UnderlyingTradingStatusNotificationMessage::event_reason() const { return event_reason_; }
 void UnderlyingTradingStatusNotificationMessage::set_event_reason(EventReason value) { event_reason_ = value; }
 
-std::uint32_t UnderlyingTradingStatusNotificationMessage::expected_event_time_seconds_part() const { return expected_event_time_seconds_part_; }
-void UnderlyingTradingStatusNotificationMessage::set_expected_event_time_seconds_part(std::uint32_t value) { expected_event_time_seconds_part_ = value; }
+std::optional<std::chrono::seconds> UnderlyingTradingStatusNotificationMessage::expected_event_time_seconds_part() const { return expected_event_time_seconds_part_; }
+void UnderlyingTradingStatusNotificationMessage::set_expected_event_time_seconds_part(std::optional<std::chrono::seconds> value) { expected_event_time_seconds_part_ = value; }
 
-std::uint32_t UnderlyingTradingStatusNotificationMessage::expected_event_time_nano_seconds_part() const { return expected_event_time_nano_seconds_part_; }
-void UnderlyingTradingStatusNotificationMessage::set_expected_event_time_nano_seconds_part(std::uint32_t value) { expected_event_time_nano_seconds_part_ = value; }
+std::chrono::nanoseconds UnderlyingTradingStatusNotificationMessage::expected_event_time_nano_seconds_part() const { return expected_event_time_nano_seconds_part_; }
+void UnderlyingTradingStatusNotificationMessage::set_expected_event_time_nano_seconds_part(std::chrono::nanoseconds value) { expected_event_time_nano_seconds_part_ = value; }
 
 DataCode UnderlyingTradingStatusNotificationMessage::type() const { return message_type; }
 
@@ -48,10 +49,10 @@ std::size_t UnderlyingTradingStatusNotificationMessage::decode(const std::byte* 
     event_reason_ = static_cast<EventReason>(wire::read_char(data + offset));
     offset += 1;
 
-    expected_event_time_seconds_part_ = wire::read_u32_le(data + offset);
+    expected_event_time_seconds_part_ = wire::nullable_duration<std::chrono::seconds>(wire::read_u32_le(data + offset), static_cast<std::uint32_t>(0ULL));
     offset += 4;
 
-    expected_event_time_nano_seconds_part_ = wire::read_u32_le(data + offset);
+    expected_event_time_nano_seconds_part_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     return offset;
@@ -73,10 +74,10 @@ std::size_t UnderlyingTradingStatusNotificationMessage::encode(std::byte* data, 
     wire::write_char(data + offset, static_cast<char>(event_reason_));
     offset += 1;
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(expected_event_time_seconds_part_));
+    wire::write_u32_le(data + offset, expected_event_time_seconds_part_ ? static_cast<std::uint32_t>(expected_event_time_seconds_part_->count()) : static_cast<std::uint32_t>(0ULL));
     offset += 4;
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(expected_event_time_nano_seconds_part_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(expected_event_time_nano_seconds_part_.count()));
     offset += 4;
 
     return offset;
@@ -105,9 +106,9 @@ void UnderlyingTradingStatusNotificationMessage::print(std::ostream& out) const 
     out << ", event_reason=";
     out << event_reason_;
     out << ", expected_event_time_seconds_part=";
-    out << expected_event_time_seconds_part_;
+    print::optional_duration(out, expected_event_time_seconds_part_);
     out << ", expected_event_time_nano_seconds_part=";
-    out << expected_event_time_nano_seconds_part_;
+    out << expected_event_time_nano_seconds_part_.count();
     out << '}';
 }
 

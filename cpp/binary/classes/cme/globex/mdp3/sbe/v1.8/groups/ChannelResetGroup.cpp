@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.8: groups/ChannelResetGroup.cpp
 #include "ChannelResetGroup.hpp"
 
 #include "../common/Print.hpp"

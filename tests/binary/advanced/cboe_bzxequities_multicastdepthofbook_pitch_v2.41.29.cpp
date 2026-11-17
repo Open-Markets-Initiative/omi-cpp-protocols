@@ -108,6 +108,7 @@ int main() {
     expect<protocol::modify_order_short_message>("ModifyOrderShortMessage", "Cboe/BzxEquities.MulticastDepthOfBook.Pitch.v2.41.29/ModifyOrderShortMessage.pcap");
     expect<protocol::order_executed_at_price_size_message>("OrderExecutedAtPriceSizeMessage", "Cboe/BzxEquities.MulticastDepthOfBook.Pitch.v2.41.29/OrderExecutedAtPriceSizeMessage.pcap");
     expect<protocol::order_executed_message>("OrderExecutedMessage", "Cboe/BzxEquities.MulticastDepthOfBook.Pitch.v2.41.29/OrderExecutedMessage.pcap");
+    expect<protocol::reduce_size_long_message>("ReduceSizeLongMessage", "Cboe/BzxEquities.MulticastDepthOfBook.Pitch.v2.41.29/ReduceSizeLongMessage.pcap");
     expect<protocol::reduce_size_short_message>("ReduceSizeShortMessage", "Cboe/BzxEquities.MulticastDepthOfBook.Pitch.v2.41.29/ReduceSizeShortMessage.pcap");
     expect<protocol::time_message>("TimeMessage", "Cboe/BzxEquities.MulticastDepthOfBook.Pitch.v2.41.29/TimeMessage.pcap");
     expect<protocol::trade_long_message>("TradeLongMessage", "Cboe/BzxEquities.MulticastDepthOfBook.Pitch.v2.41.29/TradeLongMessage.pcap");

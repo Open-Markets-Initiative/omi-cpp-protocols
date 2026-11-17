@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Ouch.v1.11: TypesAll.hpp
 #pragma once
 
 // All type headers for this protocol schema

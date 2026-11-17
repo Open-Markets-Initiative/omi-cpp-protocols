@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.10: structs/FractionalPriorDayOriginalTrade.cpp
 #include "FractionalPriorDayOriginalTrade.hpp"
 
 #include "../common/Print.hpp"

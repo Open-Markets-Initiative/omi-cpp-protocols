@@ -1,3 +1,4 @@
+// Jpx.TseEquities.MarketByOrder.Flex.v1.1: enums/MarketStatus.hpp
 #pragma once
 
 #include <cstdint>

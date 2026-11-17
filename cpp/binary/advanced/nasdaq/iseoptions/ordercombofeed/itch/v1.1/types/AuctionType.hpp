@@ -1,3 +1,4 @@
+// Nasdaq.IseOptions.OrderComboFeed.Itch.v1.1: types/AuctionType.hpp
 #pragma once
 
 #include <cstddef>

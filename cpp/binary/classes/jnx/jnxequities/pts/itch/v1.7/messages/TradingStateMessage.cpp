@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.7: messages/TradingStateMessage.cpp
 #include "TradingStateMessage.hpp"
 
 #include "../common/Print.hpp"

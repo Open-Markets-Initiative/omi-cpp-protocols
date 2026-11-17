@@ -1,7 +1,7 @@
+// Siac.Cts.Output.Cta.v2.10: messages/FractionalTradeCorrectionMessage.hpp
 #pragma once
 
 #include <cstddef>
-#include "../structs/BlockHeader.hpp"
 #include "../types/ParticipantId.hpp"
 #include "../structs/Timestamp1.hpp"
 #include "../types/MessageId.hpp"
@@ -50,7 +50,6 @@ struct fractional_trade_correction_message {
         cta_output::fractional_participant_data fractional_participant_data;
     };
 
-    cta_output::block_header header = {{}, {}, {}, {}, {}, {}, {}, {}};
     // Transport framing: message size precedes the SBE header on the wire
     cta_output::message_length message_length;
     cta_output::message_category message_category = cta_output::message_category::enum_type::trade;
@@ -88,7 +87,7 @@ static_assert(offsetof(fractional_trade_correction_message::fields_type, financi
 static_assert(offsetof(fractional_trade_correction_message::fields_type, fractional_consolidated_data) == 101, "unexpected offset of fractional_trade_correction_message::fields_type::fractional_consolidated_data");
 static_assert(offsetof(fractional_trade_correction_message::fields_type, fractional_participant_data) == 139, "unexpected offset of fractional_trade_correction_message::fields_type::fractional_participant_data");
 static_assert(sizeof(fractional_trade_correction_message::fields_type) == 184, "unexpected sizeof fractional_trade_correction_message::fields_type");
-static_assert(sizeof(fractional_trade_correction_message) == sizeof(cta_output::block_header) + sizeof(cta_output::message_length) + sizeof(cta_output::message_category) + sizeof(cta_output::trade_message_type) + 184, "unexpected sizeof fractional_trade_correction_message");
+static_assert(sizeof(fractional_trade_correction_message) == sizeof(cta_output::message_length) + sizeof(cta_output::message_category) + sizeof(cta_output::trade_message_type) + 184, "unexpected sizeof fractional_trade_correction_message");
 
 #pragma pack(pop)
 }

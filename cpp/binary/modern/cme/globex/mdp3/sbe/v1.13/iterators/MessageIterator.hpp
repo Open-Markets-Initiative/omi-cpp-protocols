@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.13: iterators/MessageIterator.hpp
 #pragma once
 
 #include "../definitions.hpp"
@@ -10,6 +11,7 @@ struct MessageIterator {
     const std::byte* end = nullptr;
 
     const BinaryPacketHeader* binary_packet_header = nullptr;
+    const MessageHeader* message_header = nullptr;
 
     std::uint16_t schema_id = 0;
     std::uint16_t template_id = 0;
@@ -20,6 +22,7 @@ struct MessageIterator {
     void initialize(const std::byte* data, std::size_t length) {
 
         end = data + length;
+        message_header = nullptr;
 
         if (length < sizeof(BinaryPacketHeader)) {
             current = end;
@@ -52,6 +55,7 @@ struct MessageIterator {
         }
 
         const auto* header = MessageHeader::parse(current);
+        message_header = header;
         message = current + sizeof(MessageHeader);
 
         schema_id = header->simple_binary_header.schema_id.get();
@@ -69,6 +73,7 @@ struct MessageIterator {
         end = nullptr;
 
         binary_packet_header = nullptr;
+        message_header = nullptr;
         message = nullptr;
         schema_id = 0;
         template_id = 0;

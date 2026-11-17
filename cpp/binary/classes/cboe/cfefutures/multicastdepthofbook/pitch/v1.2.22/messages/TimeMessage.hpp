@@ -1,8 +1,8 @@
+// Cboe.CfeFutures.MulticastDepthOfBook.Pitch.v1.2.22: messages/TimeMessage.hpp
 #pragma once
 
 #include <chrono>
 #include <cstddef>
-#include <cstdint>
 #include <memory>
 #include <ostream>
 #include <string_view>
@@ -24,7 +24,7 @@ class TimeMessage : public Message {
     static constexpr std::size_t wire_size = 8;
 
     TimeMessage() = default;
-    TimeMessage(std::chrono::seconds time_reference, std::uint32_t epoch_time);
+    TimeMessage(std::chrono::seconds time_reference, std::chrono::seconds epoch_time);
 
     // Time Reference: Number of whole seconds from midnight Central Time.
     std::chrono::seconds time_reference() const;
@@ -32,8 +32,8 @@ class TimeMessage : public Message {
     std::int64_t time_reference_utc(const calendar::Day& day) const;
 
     // Epoch Time: Number of whole seconds since the Epoch (Midnight January 1, 1970 UTC).
-    std::uint32_t epoch_time() const;
-    void set_epoch_time(std::uint32_t value);
+    std::chrono::seconds epoch_time() const;
+    void set_epoch_time(std::chrono::seconds value);
 
     // Message
     MessageCode type() const override;
@@ -51,7 +51,7 @@ class TimeMessage : public Message {
 
   private:
     std::chrono::seconds time_reference_{};
-    std::uint32_t epoch_time_{};
+    std::chrono::seconds epoch_time_{};
 };
 
 } // namespace cboe::cfefutures::multicastdepthofbook::pitch::v1_2_22

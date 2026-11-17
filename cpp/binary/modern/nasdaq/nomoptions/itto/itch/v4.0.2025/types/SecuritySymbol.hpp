@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: types/SecuritySymbol.hpp
 #pragma once
 
 #include <array>

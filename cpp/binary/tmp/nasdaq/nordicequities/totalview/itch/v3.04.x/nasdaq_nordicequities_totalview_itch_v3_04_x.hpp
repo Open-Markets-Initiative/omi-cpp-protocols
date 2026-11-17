@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: nasdaq_nordicequities_totalview_itch_v3_04_x.hpp
 // Nasdaq NordicEquities TotalView Itch 3.04.X Template Meta Programming
 
 #pragma once

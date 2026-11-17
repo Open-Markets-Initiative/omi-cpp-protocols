@@ -1,3 +1,4 @@
+// Cboe.EdgxOptions.MulticastDepthOfBook.Pitch.v2.41.80: enums/SymbolCondition.cpp
 #include "SymbolCondition.hpp"
 
 namespace cboe::edgxoptions::multicastdepthofbook::pitch::v2_41_80 {

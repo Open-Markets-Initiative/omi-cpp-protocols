@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.TopFeed.Pillar.v1.2.c: enums/SsrState.hpp
 #pragma once
 
 #include <cstdint>

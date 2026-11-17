@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: types/CorrectedTradeSize.hpp
 #pragma once
 
 #include <bit>

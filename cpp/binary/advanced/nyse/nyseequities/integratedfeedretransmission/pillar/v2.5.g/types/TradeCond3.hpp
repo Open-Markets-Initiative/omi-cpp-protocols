@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeedRetransmission.Pillar.v2.5.g: types/TradeCond3.hpp
 #pragma once
 
 #include <cstddef>

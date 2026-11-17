@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.5: groups/IncrementalRefreshTradeSummaryGroup.hpp
 #pragma once
 
 #include <array>

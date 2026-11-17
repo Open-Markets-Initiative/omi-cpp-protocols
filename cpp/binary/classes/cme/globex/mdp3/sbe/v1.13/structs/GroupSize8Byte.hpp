@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.13: structs/GroupSize8Byte.hpp
 #pragma once
 
 #include <array>

@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.DeepFeed.Pillar.v1.2.m: types/SecurityStatus.hpp
 #pragma once
 
 #include <cstddef>

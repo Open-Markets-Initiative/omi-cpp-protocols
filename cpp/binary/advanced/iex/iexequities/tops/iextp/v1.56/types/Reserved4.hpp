@@ -1,7 +1,10 @@
+// Iex.IexEquities.Tops.IexTp.v1.56: types/Reserved4.hpp
 #pragma once
 
 #include <cstddef>
-#include <cstdint>
+#include <array>
+#include <span>
+#include <algorithm>
 #include "../cache/Required.hpp"
 
 namespace iex::iexequities::tops::iextp::v1_56 {
@@ -13,31 +16,27 @@ struct reserved_4 {
     static constexpr std::size_t size = 4;
     static constexpr bool is_optional = false;
 
-    using result_type = required<std::uint32_t>;
+    using result_type = required<const std::array<std::uint8_t, 4>&>;
     using storage_type = result_type;
 
     constexpr reserved_4()
-     : value{ 0 } {}
-
-    constexpr reserved_4(std::uint32_t v)
-     : value{ v } {}
+     : value{} {}
 
     [[nodiscard]] constexpr result_type get() const {
         return result_type{value};
     }
 
-    constexpr void set(std::uint32_t v) {
-        value = v;
+    constexpr void set(std::span<const std::uint8_t> src) {
+        auto len = std::min(src.size(), value.size());
+        std::copy_n(src.begin(), len, value.begin());
     }
 
-    constexpr void set(result_type value) {
-        if (value.has_value())
-            set(value.value());
-        else
-            set(0);
+    constexpr void set(result_type v) {
+        if (v.has_value())
+            set(std::span<const std::uint8_t>(v.value().data(), v.value().size()));
     }
 
   protected:
-    std::uint32_t value;
+    std::array<std::uint8_t, 4> value;
 };
 }

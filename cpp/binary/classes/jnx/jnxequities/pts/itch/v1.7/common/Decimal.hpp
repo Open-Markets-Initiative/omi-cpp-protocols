@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.7: common/Decimal.hpp
 #pragma once
 
 #include <cmath>

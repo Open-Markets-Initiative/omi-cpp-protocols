@@ -1,3 +1,4 @@
+// Jpx.OseDerivatives.GeniumInet.Itch.v5.0.6: types/Reserved24.hpp
 #pragma once
 
 #include <array>

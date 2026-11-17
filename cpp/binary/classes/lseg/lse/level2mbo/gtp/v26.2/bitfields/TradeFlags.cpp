@@ -1,3 +1,4 @@
+// Lseg.Lse.Level2Mbo.Gtp.v26.2: bitfields/TradeFlags.cpp
 #include "TradeFlags.hpp"
 
 #include "../common/Print.hpp"

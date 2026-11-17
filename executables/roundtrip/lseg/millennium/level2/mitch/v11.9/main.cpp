@@ -1,3 +1,4 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: main.cpp
 // Lseg.Millennium.Level2.Mitch.v11.9 write and read: every message built with each field it sets, written
 // into a capture through the Classes encoder, then read back - each field set must read as it was written.
 // 
@@ -83,7 +84,7 @@ std::unique_ptr<protocol::Message> build_TimeMessage() {
 // SystemEventMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_SystemEventMessage() {
     auto message = std::make_unique<protocol::SystemEventMessage>();
-    message->set_nanosecond(static_cast<std::uint32_t>(1));
+    message->set_nanosecond(std::chrono::nanoseconds{1});
     message->set_event_code(protocol::EventCode::EndOfDay);
     return message;
 }
@@ -91,7 +92,7 @@ std::unique_ptr<protocol::Message> build_SystemEventMessage() {
 // SymbolDirectoryMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_SymbolDirectoryMessage() {
     auto message = std::make_unique<protocol::SymbolDirectoryMessage>();
-    message->set_nanosecond(static_cast<std::uint32_t>(1));
+    message->set_nanosecond(std::chrono::nanoseconds{1});
     message->set_instrument_id(static_cast<std::uint32_t>(2));
     message->set_symbol_status(protocol::SymbolStatus::Suspended);
     message->set_isin(std::string("GHI"));
@@ -99,14 +100,14 @@ std::unique_ptr<protocol::Message> build_SymbolDirectoryMessage() {
     message->set_segment(std::string("IJK"));
     message->set_underlying(std::string("JKL"));
     message->set_currency(std::string("KLM"));
-    message->set_previous_close_price(static_cast<std::int64_t>(13));
+    message->set_previous_close_price(protocol::Decimal(13, -8));
     return message;
 }
 
 // SymbolStatusMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_SymbolStatusMessage() {
     auto message = std::make_unique<protocol::SymbolStatusMessage>();
-    message->set_nanosecond(static_cast<std::uint32_t>(1));
+    message->set_nanosecond(std::chrono::nanoseconds{1});
     message->set_instrument_id(static_cast<std::uint32_t>(2));
     message->set_trading_status(protocol::TradingStatus::MarketCloseSystemShutdown);
     message->set_symbol_status_flags([] { protocol::SymbolStatusFlags value; value.set_unused_5(static_cast<std::uint8_t>(1)); value.set_firm_quote(true); value.set_unused_2(static_cast<std::uint8_t>(1)); return value; }());
@@ -120,12 +121,12 @@ std::unique_ptr<protocol::Message> build_SymbolStatusMessage() {
 // AddOrderMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_AddOrderMessage() {
     auto message = std::make_unique<protocol::AddOrderMessage>();
-    message->set_nanosecond(static_cast<std::uint32_t>(1));
+    message->set_nanosecond(std::chrono::nanoseconds{1});
     message->set_order_id(static_cast<std::uint64_t>(2));
     message->set_side(protocol::Side::SellOrder);
     message->set_quantity(static_cast<std::uint32_t>(4));
     message->set_instrument_id(static_cast<std::uint32_t>(5));
-    message->set_price(static_cast<std::int64_t>(8));
+    message->set_price(protocol::Decimal(8, -8));
     message->set_add_order_flags([] { protocol::AddOrderFlags value; value.set_unused_4(static_cast<std::uint8_t>(1)); value.set_market_order(true); value.set_unused_1(true); value.set_private_rfq(true); value.set_second_unused_1(true); return value; }());
     return message;
 }
@@ -133,12 +134,12 @@ std::unique_ptr<protocol::Message> build_AddOrderMessage() {
 // AddAttributedOrderMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_AddAttributedOrderMessage() {
     auto message = std::make_unique<protocol::AddAttributedOrderMessage>();
-    message->set_nanosecond(static_cast<std::uint32_t>(1));
+    message->set_nanosecond(std::chrono::nanoseconds{1});
     message->set_order_id(static_cast<std::uint64_t>(2));
     message->set_side(protocol::Side::SellOrder);
     message->set_quantity(static_cast<std::uint32_t>(4));
     message->set_instrument_id(static_cast<std::uint32_t>(5));
-    message->set_price(static_cast<std::int64_t>(8));
+    message->set_price(protocol::Decimal(8, -8));
     message->set_attribution(std::string("JKL"));
     message->set_add_attributed_order_flags([] { protocol::AddAttributedOrderFlags value; value.set_unused_4(static_cast<std::uint8_t>(1)); value.set_named_market_order(true); value.set_firm_quote(true); value.set_unused_2(static_cast<std::uint8_t>(1)); return value; }());
     return message;
@@ -147,7 +148,7 @@ std::unique_ptr<protocol::Message> build_AddAttributedOrderMessage() {
 // OrderDeletedMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_OrderDeletedMessage() {
     auto message = std::make_unique<protocol::OrderDeletedMessage>();
-    message->set_nanosecond(static_cast<std::uint32_t>(1));
+    message->set_nanosecond(std::chrono::nanoseconds{1});
     message->set_order_id(static_cast<std::uint64_t>(2));
     message->set_order_deleted_flags([] { protocol::OrderDeletedFlags value; value.set_unused_5(static_cast<std::uint8_t>(1)); value.set_firm_quote(true); value.set_unused_2(static_cast<std::uint8_t>(1)); return value; }());
     message->set_instrument_id(static_cast<std::uint32_t>(4));
@@ -157,10 +158,10 @@ std::unique_ptr<protocol::Message> build_OrderDeletedMessage() {
 // OrderModifiedMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_OrderModifiedMessage() {
     auto message = std::make_unique<protocol::OrderModifiedMessage>();
-    message->set_nanosecond(static_cast<std::uint32_t>(1));
+    message->set_nanosecond(std::chrono::nanoseconds{1});
     message->set_order_id(static_cast<std::uint64_t>(2));
     message->set_new_quantity(static_cast<std::uint32_t>(3));
-    message->set_new_price(static_cast<std::int64_t>(4));
+    message->set_new_price(protocol::Decimal(4, -8));
     message->set_order_modified_flags([] { protocol::OrderModifiedFlags value; value.set_priority_flag(true); value.set_unused_4(static_cast<std::uint8_t>(1)); value.set_firm_quote(true); value.set_unused_2(static_cast<std::uint8_t>(1)); return value; }());
     return message;
 }
@@ -168,7 +169,7 @@ std::unique_ptr<protocol::Message> build_OrderModifiedMessage() {
 // OrderBookClearMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_OrderBookClearMessage() {
     auto message = std::make_unique<protocol::OrderBookClearMessage>();
-    message->set_nanosecond(static_cast<std::uint32_t>(1));
+    message->set_nanosecond(std::chrono::nanoseconds{1});
     message->set_instrument_id(static_cast<std::uint32_t>(2));
     message->set_order_book_clear_flags([] { protocol::OrderBookClearFlags value; value.set_unused_5(static_cast<std::uint8_t>(1)); value.set_firm_quote(true); value.set_private_rfq(true); value.set_unused_1(true); return value; }());
     return message;
@@ -177,7 +178,7 @@ std::unique_ptr<protocol::Message> build_OrderBookClearMessage() {
 // OrderExecutedMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_OrderExecutedMessage() {
     auto message = std::make_unique<protocol::OrderExecutedMessage>();
-    message->set_nanosecond(static_cast<std::uint32_t>(1));
+    message->set_nanosecond(std::chrono::nanoseconds{1});
     message->set_order_id(static_cast<std::uint64_t>(2));
     message->set_executed_quantity(static_cast<std::uint32_t>(3));
     message->set_trade_match_id(static_cast<std::uint64_t>(4));
@@ -187,23 +188,23 @@ std::unique_ptr<protocol::Message> build_OrderExecutedMessage() {
 // OrderExecutedWithPriceSizeMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_OrderExecutedWithPriceSizeMessage() {
     auto message = std::make_unique<protocol::OrderExecutedWithPriceSizeMessage>();
-    message->set_nanosecond(static_cast<std::uint32_t>(1));
+    message->set_nanosecond(std::chrono::nanoseconds{1});
     message->set_order_id(static_cast<std::uint64_t>(2));
     message->set_executed_quantity(static_cast<std::uint32_t>(3));
     message->set_display_quantity(static_cast<std::uint32_t>(4));
     message->set_trade_match_id(static_cast<std::uint64_t>(5));
     message->set_printable(protocol::Printable::NonPrintable);
-    message->set_price(static_cast<std::int64_t>(7));
+    message->set_price(protocol::Decimal(7, -8));
     return message;
 }
 
 // TradeMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_TradeMessage() {
     auto message = std::make_unique<protocol::TradeMessage>();
-    message->set_nanosecond(static_cast<std::uint32_t>(1));
+    message->set_nanosecond(std::chrono::nanoseconds{1});
     message->set_executed_quantity(static_cast<std::uint32_t>(2));
     message->set_instrument_id(static_cast<std::uint32_t>(3));
-    message->set_price(static_cast<std::int64_t>(6));
+    message->set_price(protocol::Decimal(6, -8));
     message->set_trade_match_id(static_cast<std::uint64_t>(7));
     message->set_cross_type(protocol::CrossType::InternalCross);
     message->set_sub_book(protocol::SubBook::RfqTrades);
@@ -214,10 +215,10 @@ std::unique_ptr<protocol::Message> build_TradeMessage() {
 // AuctionTradeMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_AuctionTradeMessage() {
     auto message = std::make_unique<protocol::AuctionTradeMessage>();
-    message->set_nanosecond(static_cast<std::uint32_t>(1));
+    message->set_nanosecond(std::chrono::nanoseconds{1});
     message->set_quantity(static_cast<std::uint32_t>(2));
     message->set_instrument_id(static_cast<std::uint32_t>(3));
-    message->set_price(static_cast<std::int64_t>(6));
+    message->set_price(protocol::Decimal(6, -8));
     message->set_trade_match_id(static_cast<std::uint64_t>(7));
     message->set_auction_type(protocol::AuctionType::OpeningAuction);
     message->set_pt_mod_flags([] { protocol::PtModFlags value; value.set_canc(true); value.set_amnd(true); value.set_unused_6(static_cast<std::uint8_t>(1)); return value; }());
@@ -227,10 +228,10 @@ std::unique_ptr<protocol::Message> build_AuctionTradeMessage() {
 // AuctionInfoMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_AuctionInfoMessage() {
     auto message = std::make_unique<protocol::AuctionInfoMessage>();
-    message->set_nanosecond(static_cast<std::uint32_t>(1));
+    message->set_nanosecond(std::chrono::nanoseconds{1});
     message->set_paired_quantity(static_cast<std::uint32_t>(2));
     message->set_instrument_id(static_cast<std::uint32_t>(5));
-    message->set_price(static_cast<std::int64_t>(8));
+    message->set_price(protocol::Decimal(8, -8));
     message->set_auction_type(protocol::AuctionType::Aesp);
     return message;
 }
@@ -238,10 +239,10 @@ std::unique_ptr<protocol::Message> build_AuctionInfoMessage() {
 // StatisticsMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_StatisticsMessage() {
     auto message = std::make_unique<protocol::StatisticsMessage>();
-    message->set_nanosecond(static_cast<std::uint32_t>(1));
+    message->set_nanosecond(std::chrono::nanoseconds{1});
     message->set_instrument_id(static_cast<std::uint32_t>(2));
     message->set_statistic_type(protocol::StatisticType::ClosingPrice);
-    message->set_price(static_cast<std::int64_t>(6));
+    message->set_price(protocol::Decimal(6, -8));
     message->set_open_close_price_indicator(protocol::OpenClosePriceIndicator::Ut);
     message->set_statistics_reserved([] { protocol::StatisticsReserved value; value.set_unused_8(static_cast<std::uint8_t>(1)); return value; }());
     return message;
@@ -250,11 +251,11 @@ std::unique_ptr<protocol::Message> build_StatisticsMessage() {
 // TopOfBookMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_TopOfBookMessage() {
     auto message = std::make_unique<protocol::TopOfBookMessage>();
-    message->set_nanosecond(static_cast<std::uint32_t>(1));
+    message->set_nanosecond(std::chrono::nanoseconds{1});
     message->set_instrument_id(static_cast<std::uint32_t>(2));
-    message->set_buy_limit_price(static_cast<std::int64_t>(3));
+    message->set_buy_limit_price(protocol::Decimal(3, -8));
     message->set_buy_limit_size(static_cast<std::uint32_t>(4));
-    message->set_sell_limit_price(static_cast<std::int64_t>(5));
+    message->set_sell_limit_price(protocol::Decimal(5, -8));
     message->set_sell_limit_size(static_cast<std::uint32_t>(6));
     return message;
 }
@@ -286,7 +287,7 @@ int check_SystemEventMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->nanosecond() == static_cast<std::uint32_t>(1))) {
+    if (!(message->nanosecond() == std::chrono::nanoseconds{1})) {
         std::printf("FAIL SystemEventMessage: nanosecond does not read as it was written\n");
         ++failures;
     }
@@ -307,7 +308,7 @@ int check_SymbolDirectoryMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->nanosecond() == static_cast<std::uint32_t>(1))) {
+    if (!(message->nanosecond() == std::chrono::nanoseconds{1})) {
         std::printf("FAIL SymbolDirectoryMessage: nanosecond does not read as it was written\n");
         ++failures;
     }
@@ -339,7 +340,7 @@ int check_SymbolDirectoryMessage(const protocol::Message* read) {
         std::printf("FAIL SymbolDirectoryMessage: currency does not read as it was written\n");
         ++failures;
     }
-    if (!(message->previous_close_price() == static_cast<std::int64_t>(13))) {
+    if (!(message->previous_close_price() == protocol::Decimal(13, -8))) {
         std::printf("FAIL SymbolDirectoryMessage: previous_close_price does not read as it was written\n");
         ++failures;
     }
@@ -356,7 +357,7 @@ int check_SymbolStatusMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->nanosecond() == static_cast<std::uint32_t>(1))) {
+    if (!(message->nanosecond() == std::chrono::nanoseconds{1})) {
         std::printf("FAIL SymbolStatusMessage: nanosecond does not read as it was written\n");
         ++failures;
     }
@@ -409,7 +410,7 @@ int check_AddOrderMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->nanosecond() == static_cast<std::uint32_t>(1))) {
+    if (!(message->nanosecond() == std::chrono::nanoseconds{1})) {
         std::printf("FAIL AddOrderMessage: nanosecond does not read as it was written\n");
         ++failures;
     }
@@ -429,7 +430,7 @@ int check_AddOrderMessage(const protocol::Message* read) {
         std::printf("FAIL AddOrderMessage: instrument_id does not read as it was written\n");
         ++failures;
     }
-    if (!(message->price() == static_cast<std::int64_t>(8))) {
+    if (!(message->price() == protocol::Decimal(8, -8))) {
         std::printf("FAIL AddOrderMessage: price does not read as it was written\n");
         ++failures;
     }
@@ -466,7 +467,7 @@ int check_AddAttributedOrderMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->nanosecond() == static_cast<std::uint32_t>(1))) {
+    if (!(message->nanosecond() == std::chrono::nanoseconds{1})) {
         std::printf("FAIL AddAttributedOrderMessage: nanosecond does not read as it was written\n");
         ++failures;
     }
@@ -486,7 +487,7 @@ int check_AddAttributedOrderMessage(const protocol::Message* read) {
         std::printf("FAIL AddAttributedOrderMessage: instrument_id does not read as it was written\n");
         ++failures;
     }
-    if (!(message->price() == static_cast<std::int64_t>(8))) {
+    if (!(message->price() == protocol::Decimal(8, -8))) {
         std::printf("FAIL AddAttributedOrderMessage: price does not read as it was written\n");
         ++failures;
     }
@@ -523,7 +524,7 @@ int check_OrderDeletedMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->nanosecond() == static_cast<std::uint32_t>(1))) {
+    if (!(message->nanosecond() == std::chrono::nanoseconds{1})) {
         std::printf("FAIL OrderDeletedMessage: nanosecond does not read as it was written\n");
         ++failures;
     }
@@ -560,7 +561,7 @@ int check_OrderModifiedMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->nanosecond() == static_cast<std::uint32_t>(1))) {
+    if (!(message->nanosecond() == std::chrono::nanoseconds{1})) {
         std::printf("FAIL OrderModifiedMessage: nanosecond does not read as it was written\n");
         ++failures;
     }
@@ -572,7 +573,7 @@ int check_OrderModifiedMessage(const protocol::Message* read) {
         std::printf("FAIL OrderModifiedMessage: new_quantity does not read as it was written\n");
         ++failures;
     }
-    if (!(message->new_price() == static_cast<std::int64_t>(4))) {
+    if (!(message->new_price() == protocol::Decimal(4, -8))) {
         std::printf("FAIL OrderModifiedMessage: new_price does not read as it was written\n");
         ++failures;
     }
@@ -605,7 +606,7 @@ int check_OrderBookClearMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->nanosecond() == static_cast<std::uint32_t>(1))) {
+    if (!(message->nanosecond() == std::chrono::nanoseconds{1})) {
         std::printf("FAIL OrderBookClearMessage: nanosecond does not read as it was written\n");
         ++failures;
     }
@@ -642,7 +643,7 @@ int check_OrderExecutedMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->nanosecond() == static_cast<std::uint32_t>(1))) {
+    if (!(message->nanosecond() == std::chrono::nanoseconds{1})) {
         std::printf("FAIL OrderExecutedMessage: nanosecond does not read as it was written\n");
         ++failures;
     }
@@ -671,7 +672,7 @@ int check_OrderExecutedWithPriceSizeMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->nanosecond() == static_cast<std::uint32_t>(1))) {
+    if (!(message->nanosecond() == std::chrono::nanoseconds{1})) {
         std::printf("FAIL OrderExecutedWithPriceSizeMessage: nanosecond does not read as it was written\n");
         ++failures;
     }
@@ -695,7 +696,7 @@ int check_OrderExecutedWithPriceSizeMessage(const protocol::Message* read) {
         std::printf("FAIL OrderExecutedWithPriceSizeMessage: printable does not read as it was written\n");
         ++failures;
     }
-    if (!(message->price() == static_cast<std::int64_t>(7))) {
+    if (!(message->price() == protocol::Decimal(7, -8))) {
         std::printf("FAIL OrderExecutedWithPriceSizeMessage: price does not read as it was written\n");
         ++failures;
     }
@@ -712,7 +713,7 @@ int check_TradeMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->nanosecond() == static_cast<std::uint32_t>(1))) {
+    if (!(message->nanosecond() == std::chrono::nanoseconds{1})) {
         std::printf("FAIL TradeMessage: nanosecond does not read as it was written\n");
         ++failures;
     }
@@ -724,7 +725,7 @@ int check_TradeMessage(const protocol::Message* read) {
         std::printf("FAIL TradeMessage: instrument_id does not read as it was written\n");
         ++failures;
     }
-    if (!(message->price() == static_cast<std::int64_t>(6))) {
+    if (!(message->price() == protocol::Decimal(6, -8))) {
         std::printf("FAIL TradeMessage: price does not read as it was written\n");
         ++failures;
     }
@@ -765,7 +766,7 @@ int check_AuctionTradeMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->nanosecond() == static_cast<std::uint32_t>(1))) {
+    if (!(message->nanosecond() == std::chrono::nanoseconds{1})) {
         std::printf("FAIL AuctionTradeMessage: nanosecond does not read as it was written\n");
         ++failures;
     }
@@ -777,7 +778,7 @@ int check_AuctionTradeMessage(const protocol::Message* read) {
         std::printf("FAIL AuctionTradeMessage: instrument_id does not read as it was written\n");
         ++failures;
     }
-    if (!(message->price() == static_cast<std::int64_t>(6))) {
+    if (!(message->price() == protocol::Decimal(6, -8))) {
         std::printf("FAIL AuctionTradeMessage: price does not read as it was written\n");
         ++failures;
     }
@@ -814,7 +815,7 @@ int check_AuctionInfoMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->nanosecond() == static_cast<std::uint32_t>(1))) {
+    if (!(message->nanosecond() == std::chrono::nanoseconds{1})) {
         std::printf("FAIL AuctionInfoMessage: nanosecond does not read as it was written\n");
         ++failures;
     }
@@ -826,7 +827,7 @@ int check_AuctionInfoMessage(const protocol::Message* read) {
         std::printf("FAIL AuctionInfoMessage: instrument_id does not read as it was written\n");
         ++failures;
     }
-    if (!(message->price() == static_cast<std::int64_t>(8))) {
+    if (!(message->price() == protocol::Decimal(8, -8))) {
         std::printf("FAIL AuctionInfoMessage: price does not read as it was written\n");
         ++failures;
     }
@@ -847,7 +848,7 @@ int check_StatisticsMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->nanosecond() == static_cast<std::uint32_t>(1))) {
+    if (!(message->nanosecond() == std::chrono::nanoseconds{1})) {
         std::printf("FAIL StatisticsMessage: nanosecond does not read as it was written\n");
         ++failures;
     }
@@ -859,7 +860,7 @@ int check_StatisticsMessage(const protocol::Message* read) {
         std::printf("FAIL StatisticsMessage: statistic_type does not read as it was written\n");
         ++failures;
     }
-    if (!(message->price() == static_cast<std::int64_t>(6))) {
+    if (!(message->price() == protocol::Decimal(6, -8))) {
         std::printf("FAIL StatisticsMessage: price does not read as it was written\n");
         ++failures;
     }
@@ -884,7 +885,7 @@ int check_TopOfBookMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->nanosecond() == static_cast<std::uint32_t>(1))) {
+    if (!(message->nanosecond() == std::chrono::nanoseconds{1})) {
         std::printf("FAIL TopOfBookMessage: nanosecond does not read as it was written\n");
         ++failures;
     }
@@ -892,7 +893,7 @@ int check_TopOfBookMessage(const protocol::Message* read) {
         std::printf("FAIL TopOfBookMessage: instrument_id does not read as it was written\n");
         ++failures;
     }
-    if (!(message->buy_limit_price() == static_cast<std::int64_t>(3))) {
+    if (!(message->buy_limit_price() == protocol::Decimal(3, -8))) {
         std::printf("FAIL TopOfBookMessage: buy_limit_price does not read as it was written\n");
         ++failures;
     }
@@ -900,7 +901,7 @@ int check_TopOfBookMessage(const protocol::Message* read) {
         std::printf("FAIL TopOfBookMessage: buy_limit_size does not read as it was written\n");
         ++failures;
     }
-    if (!(message->sell_limit_price() == static_cast<std::int64_t>(5))) {
+    if (!(message->sell_limit_price() == protocol::Decimal(5, -8))) {
         std::printf("FAIL TopOfBookMessage: sell_limit_price does not read as it was written\n");
         ++failures;
     }

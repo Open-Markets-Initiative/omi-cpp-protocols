@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.Bbo.Xdp.v2.4.g: definitions.hpp
 #pragma once
 
 #include "structs/PacketHeader.hpp"

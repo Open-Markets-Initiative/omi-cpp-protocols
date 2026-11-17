@@ -1,3 +1,4 @@
+// Nasdaq.NtxEquities.TotalView.Itch.v5.0: messages/MwcbDeclineLevelMessage.hpp
 #pragma once
 
 #include "../types/StockLocate.hpp"

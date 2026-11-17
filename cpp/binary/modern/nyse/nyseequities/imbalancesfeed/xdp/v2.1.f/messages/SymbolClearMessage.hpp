@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.ImbalancesFeed.Xdp.v2.1.f: messages/SymbolClearMessage.hpp
 #pragma once
 
 #include "../types/SourceTime.hpp"

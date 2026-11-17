@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v4.0: enums/MarketCategory.hpp
 #pragma once
 
 #include <cstdint>

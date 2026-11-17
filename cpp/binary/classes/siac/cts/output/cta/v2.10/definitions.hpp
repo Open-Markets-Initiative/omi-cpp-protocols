@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.10: definitions.hpp
 #pragma once
 
 #include "common/Decimal.hpp"
@@ -74,8 +75,8 @@
 #include "messages/CrossingSessionSummaryMessage.hpp"
 #include "messages/DisasterRecoveryDataCenterActivationMessage.hpp"
 #include "messages/EndOfDayMessage.hpp"
-#include "messages/EndOfEndOfDayMessage.hpp"
-#include "messages/EndOfStartOfDayMessage.hpp"
+#include "messages/EndOfEndOfDaySummaryMessage.hpp"
+#include "messages/EndOfStartOfDaySummaryMessage.hpp"
 #include "messages/FractionalApproximateAdjustedVolumeMarketCenterMessage.hpp"
 #include "messages/FractionalConsolidatedEndOfDaySummaryMessage.hpp"
 #include "messages/FractionalLongTradeMessage.hpp"
@@ -106,8 +107,8 @@
 #include "messages/ResetBlockSequenceNumberMessage.hpp"
 #include "messages/ShortTradeMessage.hpp"
 #include "messages/StartOfDayMessage.hpp"
-#include "messages/StartOfEndOfDayMessage.hpp"
-#include "messages/StartOfStartOfDayMessage.hpp"
+#include "messages/StartOfEndOfDaySummaryMessage.hpp"
+#include "messages/StartOfStartOfDaySummaryMessage.hpp"
 #include "messages/SummaryMessage.hpp"
 #include "messages/SummaryMessagePayload.hpp"
 #include "messages/TradeCancelErrorMessage.hpp"

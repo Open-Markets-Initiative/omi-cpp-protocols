@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: enums/IndicesMessageType.hpp
 #pragma once
 
 #include <cstdint>
@@ -8,8 +9,8 @@ namespace siac::cts::output::cta::v2_11_b {
 
 // Identifies the type of Index message
 enum class IndicesMessageType : char {
-    Indices = 'I',          // Indices
-    BidAndOfferIndex = 'Q', // Bid And Offer Index
+    IndexMessage = 'I',            // Index Message
+    BidAndOfferIndexMessage = 'Q', // Bid And Offer Index Message
 };
 
 // The documented name of a code, or empty for one the specification does not list

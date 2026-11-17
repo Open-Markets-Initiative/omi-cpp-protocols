@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.8: structs/SecurityListRequestSecurityGroups.hpp
 #pragma once
 
 #include <cstddef>

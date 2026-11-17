@@ -1,6 +1,8 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/AddAttributedOrderMessage.hpp
 #pragma once
 
 #include <array>
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
@@ -9,6 +11,7 @@
 #include <string_view>
 
 #include "../bitfields/AddAttributedOrderFlags.hpp"
+#include "../common/Decimal.hpp"
 #include "../enums/Side.hpp"
 #include "../messages/Message.hpp"
 
@@ -25,11 +28,11 @@ class AddAttributedOrderMessage : public Message {
     static constexpr std::size_t wire_size = 43;
 
     AddAttributedOrderMessage() = default;
-    AddAttributedOrderMessage(std::uint32_t nanosecond, std::uint64_t order_id, Side side, std::uint32_t quantity, std::uint32_t instrument_id, const std::array<std::byte, 1>& reserved_a, const std::array<std::byte, 1>& reserved_b, std::int64_t price, const std::string& attribution, const AddAttributedOrderFlags& add_attributed_order_flags);
+    AddAttributedOrderMessage(std::chrono::nanoseconds nanosecond, std::uint64_t order_id, Side side, std::uint32_t quantity, std::uint32_t instrument_id, const std::array<std::byte, 1>& reserved_a, const std::array<std::byte, 1>& reserved_b, Decimal price, const std::string& attribution, const AddAttributedOrderFlags& add_attributed_order_flags);
 
     // Nanosecond: Nanoseconds since last message, accurate to the nearest microsecond.
-    std::uint32_t nanosecond() const;
-    void set_nanosecond(std::uint32_t value);
+    std::chrono::nanoseconds nanosecond() const;
+    void set_nanosecond(std::chrono::nanoseconds value);
 
     // Order Id: Unique identifier of the order.
     std::uint64_t order_id() const;
@@ -58,8 +61,8 @@ class AddAttributedOrderMessage : public Message {
     void set_reserved_b(const std::array<std::byte, 1>& value);
 
     // Price: Limit price of the order.
-    std::int64_t price() const;
-    void set_price(std::int64_t value);
+    Decimal price() const;
+    void set_price(Decimal value);
 
     // Attribution: Identity of firm that submitted the order.
     const std::string& attribution() const;
@@ -86,14 +89,14 @@ class AddAttributedOrderMessage : public Message {
     bool operator!=(const AddAttributedOrderMessage& other) const;
 
   private:
-    std::uint32_t nanosecond_{};
+    std::chrono::nanoseconds nanosecond_{};
     std::uint64_t order_id_{};
     Side side_{};
     std::uint32_t quantity_{};
     std::uint32_t instrument_id_{};
     std::array<std::byte, 1> reserved_a_{};
     std::array<std::byte, 1> reserved_b_{};
-    std::int64_t price_{};
+    Decimal price_{ 0, -8 };
     std::string attribution_{};
     AddAttributedOrderFlags add_attributed_order_flags_{};
 };

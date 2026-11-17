@@ -1,5 +1,7 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/OrderExecutedMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <ostream>
@@ -27,7 +29,7 @@ class OrderExecutedMessage {
     static constexpr std::size_t fixed_size = 24;
     std::size_t encoded_size() const { return 24; }
 
-    std::uint32_t nanosecond() const { return wire::read_u32_le(at(0)); }
+    std::chrono::nanoseconds nanosecond() const { return std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(at(0)))); }
 
     std::uint64_t order_id() const { return wire::read_u64_le(at(4)); }
 
@@ -38,7 +40,7 @@ class OrderExecutedMessage {
     void print(std::ostream& out) const {
         out << "OrderExecutedMessage{";
         out << "nanosecond=";
-        out << nanosecond();
+        out << nanosecond().count();
         out << ", order_id=";
         out << order_id();
         out << ", executed_quantity=";

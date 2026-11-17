@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: messages/QuoteDeleteMessage.cpp
 #include "QuoteDeleteMessage.hpp"
 
 #include "../common/Print.hpp"

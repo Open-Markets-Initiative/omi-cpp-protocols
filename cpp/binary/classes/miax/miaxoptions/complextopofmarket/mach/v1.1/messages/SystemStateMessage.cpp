@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.ComplexTopOfMarket.Mach.v1.1: messages/SystemStateMessage.cpp
 #include "SystemStateMessage.hpp"
 
 #include "../common/Print.hpp"

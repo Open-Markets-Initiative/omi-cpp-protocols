@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2026: enums/EtpFlag.hpp
 #pragma once
 
 #include <cstdint>

@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.5: bitfields/SettlPriceType.hpp
 #pragma once
 
 #include <cstddef>
@@ -35,12 +36,6 @@ class SettlPriceType {
 
     bool intraday() const { return (raw() & static_cast<std::uint8_t>(0x8)) != 0; }
 
-    bool reserved_bits() const { return (raw() & static_cast<std::uint8_t>(0x10)) != 0; }
-
-    bool unused_settl_price_type_5() const { return (raw() & static_cast<std::uint8_t>(0x20)) != 0; }
-
-    bool unused_settl_price_type_6() const { return (raw() & static_cast<std::uint8_t>(0x40)) != 0; }
-
     bool null_value() const { return (raw() & static_cast<std::uint8_t>(0x80)) != 0; }
 
     void print(std::ostream& out) const {
@@ -53,12 +48,6 @@ class SettlPriceType {
         out << (rounded() ? "true" : "false");
         out << ", intraday=";
         out << (intraday() ? "true" : "false");
-        out << ", reserved_bits=";
-        out << (reserved_bits() ? "true" : "false");
-        out << ", unused_settl_price_type_5=";
-        out << (unused_settl_price_type_5() ? "true" : "false");
-        out << ", unused_settl_price_type_6=";
-        out << (unused_settl_price_type_6() ? "true" : "false");
         out << ", null_value=";
         out << (null_value() ? "true" : "false");
         out << '}';

@@ -1,12 +1,13 @@
+// Siac.Cts.Output.Cta.v1.91: messages/Format.hpp
 #pragma once
 
 #include <ostream>
 #include <string_view>
 
-#include "StartOfEndOfDayMessage.hpp"
-#include "EndOfEndOfDayMessage.hpp"
-#include "StartOfStartOfDayMessage.hpp"
-#include "EndOfStartOfDayMessage.hpp"
+#include "StartOfEndOfDaySummaryMessage.hpp"
+#include "EndOfEndOfDaySummaryMessage.hpp"
+#include "StartOfStartOfDaySummaryMessage.hpp"
+#include "EndOfStartOfDaySummaryMessage.hpp"
 #include "AdministrativeUnformattedMessage.hpp"
 #include "StartOfDayMessage.hpp"
 #include "ResetBlockSequenceNumberMessage.hpp"
@@ -96,10 +97,9 @@ inline std::ostream& operator<<(std::ostream& os, const timestamp_2& value) {
     return os;
 }
 
-inline std::ostream& operator<<(std::ostream& os, const start_of_end_of_day_message& msg) {
+inline std::ostream& operator<<(std::ostream& os, const start_of_end_of_day_summary_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
-       << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
-       << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
+       << ",timestamp_1=" << (msg.fields.timestamp_1.get().has_value() ? std::to_string(msg.fields.timestamp_1.get().value()) : std::string_view("null"))
        << ",message_id=" << static_cast<unsigned>(msg.fields.message_id.get().value())
        << ",transaction_id=" << msg.fields.transaction_id.get().value()
        << ",participant_reference_number=" << msg.fields.participant_reference_number.get().value()
@@ -107,10 +107,9 @@ inline std::ostream& operator<<(std::ostream& os, const start_of_end_of_day_mess
     return os;
 }
 
-inline std::ostream& operator<<(std::ostream& os, const end_of_end_of_day_message& msg) {
+inline std::ostream& operator<<(std::ostream& os, const end_of_end_of_day_summary_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
-       << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
-       << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
+       << ",timestamp_1=" << (msg.fields.timestamp_1.get().has_value() ? std::to_string(msg.fields.timestamp_1.get().value()) : std::string_view("null"))
        << ",message_id=" << static_cast<unsigned>(msg.fields.message_id.get().value())
        << ",transaction_id=" << msg.fields.transaction_id.get().value()
        << ",participant_reference_number=" << msg.fields.participant_reference_number.get().value()
@@ -118,10 +117,9 @@ inline std::ostream& operator<<(std::ostream& os, const end_of_end_of_day_messag
     return os;
 }
 
-inline std::ostream& operator<<(std::ostream& os, const start_of_start_of_day_message& msg) {
+inline std::ostream& operator<<(std::ostream& os, const start_of_start_of_day_summary_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
-       << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
-       << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
+       << ",timestamp_1=" << (msg.fields.timestamp_1.get().has_value() ? std::to_string(msg.fields.timestamp_1.get().value()) : std::string_view("null"))
        << ",message_id=" << static_cast<unsigned>(msg.fields.message_id.get().value())
        << ",transaction_id=" << msg.fields.transaction_id.get().value()
        << ",participant_reference_number=" << msg.fields.participant_reference_number.get().value()
@@ -129,10 +127,9 @@ inline std::ostream& operator<<(std::ostream& os, const start_of_start_of_day_me
     return os;
 }
 
-inline std::ostream& operator<<(std::ostream& os, const end_of_start_of_day_message& msg) {
+inline std::ostream& operator<<(std::ostream& os, const end_of_start_of_day_summary_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
-       << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
-       << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
+       << ",timestamp_1=" << (msg.fields.timestamp_1.get().has_value() ? std::to_string(msg.fields.timestamp_1.get().value()) : std::string_view("null"))
        << ",message_id=" << static_cast<unsigned>(msg.fields.message_id.get().value())
        << ",transaction_id=" << msg.fields.transaction_id.get().value()
        << ",participant_reference_number=" << msg.fields.participant_reference_number.get().value()
@@ -142,8 +139,7 @@ inline std::ostream& operator<<(std::ostream& os, const end_of_start_of_day_mess
 
 inline std::ostream& operator<<(std::ostream& os, const administrative_unformatted_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
-       << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
-       << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
+       << ",timestamp_1=" << (msg.fields.timestamp_1.get().has_value() ? std::to_string(msg.fields.timestamp_1.get().value()) : std::string_view("null"))
        << ",message_id=" << static_cast<unsigned>(msg.fields.message_id.get().value())
        << ",transaction_id=" << msg.fields.transaction_id.get().value()
        << ",participant_reference_number=" << msg.fields.participant_reference_number.get().value()
@@ -154,8 +150,7 @@ inline std::ostream& operator<<(std::ostream& os, const administrative_unformatt
 
 inline std::ostream& operator<<(std::ostream& os, const start_of_day_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
-       << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
-       << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
+       << ",timestamp_1=" << (msg.fields.timestamp_1.get().has_value() ? std::to_string(msg.fields.timestamp_1.get().value()) : std::string_view("null"))
        << ",message_id=" << static_cast<unsigned>(msg.fields.message_id.get().value())
        << ",transaction_id=" << msg.fields.transaction_id.get().value()
        << ",participant_reference_number=" << msg.fields.participant_reference_number.get().value()
@@ -165,8 +160,7 @@ inline std::ostream& operator<<(std::ostream& os, const start_of_day_message& ms
 
 inline std::ostream& operator<<(std::ostream& os, const reset_block_sequence_number_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
-       << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
-       << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
+       << ",timestamp_1=" << (msg.fields.timestamp_1.get().has_value() ? std::to_string(msg.fields.timestamp_1.get().value()) : std::string_view("null"))
        << ",message_id=" << static_cast<unsigned>(msg.fields.message_id.get().value())
        << ",transaction_id=" << msg.fields.transaction_id.get().value()
        << ",participant_reference_number=" << msg.fields.participant_reference_number.get().value()
@@ -176,8 +170,7 @@ inline std::ostream& operator<<(std::ostream& os, const reset_block_sequence_num
 
 inline std::ostream& operator<<(std::ostream& os, const start_of_test_cycle_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
-       << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
-       << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
+       << ",timestamp_1=" << (msg.fields.timestamp_1.get().has_value() ? std::to_string(msg.fields.timestamp_1.get().value()) : std::string_view("null"))
        << ",message_id=" << static_cast<unsigned>(msg.fields.message_id.get().value())
        << ",transaction_id=" << msg.fields.transaction_id.get().value()
        << ",participant_reference_number=" << msg.fields.participant_reference_number.get().value()
@@ -187,8 +180,7 @@ inline std::ostream& operator<<(std::ostream& os, const start_of_test_cycle_mess
 
 inline std::ostream& operator<<(std::ostream& os, const end_of_test_cycle_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
-       << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
-       << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
+       << ",timestamp_1=" << (msg.fields.timestamp_1.get().has_value() ? std::to_string(msg.fields.timestamp_1.get().value()) : std::string_view("null"))
        << ",message_id=" << static_cast<unsigned>(msg.fields.message_id.get().value())
        << ",transaction_id=" << msg.fields.transaction_id.get().value()
        << ",participant_reference_number=" << msg.fields.participant_reference_number.get().value()
@@ -198,8 +190,7 @@ inline std::ostream& operator<<(std::ostream& os, const end_of_test_cycle_messag
 
 inline std::ostream& operator<<(std::ostream& os, const disaster_recovery_data_center_activation_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
-       << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
-       << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
+       << ",timestamp_1=" << (msg.fields.timestamp_1.get().has_value() ? std::to_string(msg.fields.timestamp_1.get().value()) : std::string_view("null"))
        << ",message_id=" << static_cast<unsigned>(msg.fields.message_id.get().value())
        << ",transaction_id=" << msg.fields.transaction_id.get().value()
        << ",participant_reference_number=" << msg.fields.participant_reference_number.get().value()
@@ -209,8 +200,7 @@ inline std::ostream& operator<<(std::ostream& os, const disaster_recovery_data_c
 
 inline std::ostream& operator<<(std::ostream& os, const line_integrity_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
-       << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
-       << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
+       << ",timestamp_1=" << (msg.fields.timestamp_1.get().has_value() ? std::to_string(msg.fields.timestamp_1.get().value()) : std::string_view("null"))
        << ",message_id=" << static_cast<unsigned>(msg.fields.message_id.get().value())
        << ",transaction_id=" << msg.fields.transaction_id.get().value()
        << ",participant_reference_number=" << msg.fields.participant_reference_number.get().value()
@@ -220,8 +210,7 @@ inline std::ostream& operator<<(std::ostream& os, const line_integrity_message& 
 
 inline std::ostream& operator<<(std::ostream& os, const end_of_day_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
-       << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
-       << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
+       << ",timestamp_1=" << (msg.fields.timestamp_1.get().has_value() ? std::to_string(msg.fields.timestamp_1.get().value()) : std::string_view("null"))
        << ",message_id=" << static_cast<unsigned>(msg.fields.message_id.get().value())
        << ",transaction_id=" << msg.fields.transaction_id.get().value()
        << ",participant_reference_number=" << msg.fields.participant_reference_number.get().value()
@@ -231,8 +220,7 @@ inline std::ostream& operator<<(std::ostream& os, const end_of_day_message& msg)
 
 inline std::ostream& operator<<(std::ostream& os, const index_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
-       << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
-       << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
+       << ",timestamp_1=" << (msg.fields.timestamp_1.get().has_value() ? std::to_string(msg.fields.timestamp_1.get().value()) : std::string_view("null"))
        << ",message_id=" << static_cast<unsigned>(msg.fields.message_id.get().value())
        << ",transaction_id=" << msg.fields.transaction_id.get().value()
        << ",participant_reference_number=" << msg.fields.participant_reference_number.get().value()
@@ -244,8 +232,7 @@ inline std::ostream& operator<<(std::ostream& os, const index_message& msg) {
 
 inline std::ostream& operator<<(std::ostream& os, const bid_and_offer_index_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
-       << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
-       << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
+       << ",timestamp_1=" << (msg.fields.timestamp_1.get().has_value() ? std::to_string(msg.fields.timestamp_1.get().value()) : std::string_view("null"))
        << ",message_id=" << static_cast<unsigned>(msg.fields.message_id.get().value())
        << ",transaction_id=" << msg.fields.transaction_id.get().value()
        << ",participant_reference_number=" << msg.fields.participant_reference_number.get().value()
@@ -258,8 +245,7 @@ inline std::ostream& operator<<(std::ostream& os, const bid_and_offer_index_mess
 
 inline std::ostream& operator<<(std::ostream& os, const market_wide_circuit_breaker_decline_level_status_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
-       << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
-       << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
+       << ",timestamp_1=" << (msg.fields.timestamp_1.get().has_value() ? std::to_string(msg.fields.timestamp_1.get().value()) : std::string_view("null"))
        << ",message_id=" << static_cast<unsigned>(msg.fields.message_id.get().value())
        << ",transaction_id=" << msg.fields.transaction_id.get().value()
        << ",participant_reference_number=" << msg.fields.participant_reference_number.get().value()
@@ -272,8 +258,7 @@ inline std::ostream& operator<<(std::ostream& os, const market_wide_circuit_brea
 
 inline std::ostream& operator<<(std::ostream& os, const market_wide_circuit_breaker_status_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
-       << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
-       << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
+       << ",timestamp_1=" << (msg.fields.timestamp_1.get().has_value() ? std::to_string(msg.fields.timestamp_1.get().value()) : std::string_view("null"))
        << ",message_id=" << static_cast<unsigned>(msg.fields.message_id.get().value())
        << ",transaction_id=" << msg.fields.transaction_id.get().value()
        << ",participant_reference_number=" << msg.fields.participant_reference_number.get().value()
@@ -284,8 +269,7 @@ inline std::ostream& operator<<(std::ostream& os, const market_wide_circuit_brea
 
 inline std::ostream& operator<<(std::ostream& os, const approximate_adjusted_volume_market_center_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
-       << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
-       << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
+       << ",timestamp_1=" << (msg.fields.timestamp_1.get().has_value() ? std::to_string(msg.fields.timestamp_1.get().value()) : std::string_view("null"))
        << ",message_id=" << static_cast<unsigned>(msg.fields.message_id.get().value())
        << ",transaction_id=" << msg.fields.transaction_id.get().value()
        << ",participant_reference_number=" << msg.fields.participant_reference_number.get().value()
@@ -297,8 +281,7 @@ inline std::ostream& operator<<(std::ostream& os, const approximate_adjusted_vol
 
 inline std::ostream& operator<<(std::ostream& os, const approximate_trades_and_total_dollar_value_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
-       << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
-       << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
+       << ",timestamp_1=" << (msg.fields.timestamp_1.get().has_value() ? std::to_string(msg.fields.timestamp_1.get().value()) : std::string_view("null"))
        << ",message_id=" << static_cast<unsigned>(msg.fields.message_id.get().value())
        << ",transaction_id=" << msg.fields.transaction_id.get().value()
        << ",participant_reference_number=" << msg.fields.participant_reference_number.get().value()
@@ -310,8 +293,7 @@ inline std::ostream& operator<<(std::ostream& os, const approximate_trades_and_t
 
 inline std::ostream& operator<<(std::ostream& os, const crossing_session_summary_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
-       << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
-       << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
+       << ",timestamp_1=" << (msg.fields.timestamp_1.get().has_value() ? std::to_string(msg.fields.timestamp_1.get().value()) : std::string_view("null"))
        << ",message_id=" << static_cast<unsigned>(msg.fields.message_id.get().value())
        << ",transaction_id=" << msg.fields.transaction_id.get().value()
        << ",participant_reference_number=" << msg.fields.participant_reference_number.get().value()
@@ -324,8 +306,7 @@ inline std::ostream& operator<<(std::ostream& os, const crossing_session_summary
 
 inline std::ostream& operator<<(std::ostream& os, const prior_day_trade_correction_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
-       << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
-       << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
+       << ",timestamp_1=" << (msg.fields.timestamp_1.get().has_value() ? std::to_string(msg.fields.timestamp_1.get().value()) : std::string_view("null"))
        << ",message_id=" << static_cast<unsigned>(msg.fields.message_id.get().value())
        << ",transaction_id=" << msg.fields.transaction_id.get().value()
        << ",participant_reference_number=" << msg.fields.participant_reference_number.get().value()
@@ -362,8 +343,7 @@ inline std::ostream& operator<<(std::ostream& os, const prior_day_trade_correcti
 
 inline std::ostream& operator<<(std::ostream& os, const prior_day_trade_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
-       << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
-       << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
+       << ",timestamp_1=" << (msg.fields.timestamp_1.get().has_value() ? std::to_string(msg.fields.timestamp_1.get().value()) : std::string_view("null"))
        << ",message_id=" << static_cast<unsigned>(msg.fields.message_id.get().value())
        << ",transaction_id=" << msg.fields.transaction_id.get().value()
        << ",participant_reference_number=" << msg.fields.participant_reference_number.get().value()
@@ -388,8 +368,7 @@ inline std::ostream& operator<<(std::ostream& os, const prior_day_trade_message&
 
 inline std::ostream& operator<<(std::ostream& os, const prior_day_trade_cancel_error_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
-       << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
-       << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
+       << ",timestamp_1=" << (msg.fields.timestamp_1.get().has_value() ? std::to_string(msg.fields.timestamp_1.get().value()) : std::string_view("null"))
        << ",message_id=" << static_cast<unsigned>(msg.fields.message_id.get().value())
        << ",transaction_id=" << msg.fields.transaction_id.get().value()
        << ",participant_reference_number=" << msg.fields.participant_reference_number.get().value()
@@ -415,8 +394,7 @@ inline std::ostream& operator<<(std::ostream& os, const prior_day_trade_cancel_e
 
 inline std::ostream& operator<<(std::ostream& os, const consolidated_start_of_day_summary_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
-       << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
-       << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
+       << ",timestamp_1=" << (msg.fields.timestamp_1.get().has_value() ? std::to_string(msg.fields.timestamp_1.get().value()) : std::string_view("null"))
        << ",message_id=" << static_cast<unsigned>(msg.fields.message_id.get().value())
        << ",transaction_id=" << msg.fields.transaction_id.get().value()
        << ",participant_reference_number=" << msg.fields.participant_reference_number.get().value()
@@ -435,8 +413,7 @@ inline std::ostream& operator<<(std::ostream& os, const consolidated_start_of_da
 
 inline std::ostream& operator<<(std::ostream& os, const participant_start_of_day_summary_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
-       << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
-       << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
+       << ",timestamp_1=" << (msg.fields.timestamp_1.get().has_value() ? std::to_string(msg.fields.timestamp_1.get().value()) : std::string_view("null"))
        << ",message_id=" << static_cast<unsigned>(msg.fields.message_id.get().value())
        << ",transaction_id=" << msg.fields.transaction_id.get().value()
        << ",participant_reference_number=" << msg.fields.participant_reference_number.get().value()
@@ -451,8 +428,7 @@ inline std::ostream& operator<<(std::ostream& os, const participant_start_of_day
 
 inline std::ostream& operator<<(std::ostream& os, const consolidated_end_of_day_summary_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
-       << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
-       << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
+       << ",timestamp_1=" << (msg.fields.timestamp_1.get().has_value() ? std::to_string(msg.fields.timestamp_1.get().value()) : std::string_view("null"))
        << ",message_id=" << static_cast<unsigned>(msg.fields.message_id.get().value())
        << ",transaction_id=" << msg.fields.transaction_id.get().value()
        << ",participant_reference_number=" << msg.fields.participant_reference_number.get().value()
@@ -474,8 +450,7 @@ inline std::ostream& operator<<(std::ostream& os, const consolidated_end_of_day_
 
 inline std::ostream& operator<<(std::ostream& os, const participant_end_of_day_summary_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
-       << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
-       << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
+       << ",timestamp_1=" << (msg.fields.timestamp_1.get().has_value() ? std::to_string(msg.fields.timestamp_1.get().value()) : std::string_view("null"))
        << ",message_id=" << static_cast<unsigned>(msg.fields.message_id.get().value())
        << ",transaction_id=" << msg.fields.transaction_id.get().value()
        << ",participant_reference_number=" << msg.fields.participant_reference_number.get().value()
@@ -495,8 +470,7 @@ inline std::ostream& operator<<(std::ostream& os, const participant_end_of_day_s
 
 inline std::ostream& operator<<(std::ostream& os, const auction_status_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
-       << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
-       << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
+       << ",timestamp_1=" << (msg.fields.timestamp_1.get().has_value() ? std::to_string(msg.fields.timestamp_1.get().value()) : std::string_view("null"))
        << ",message_id=" << static_cast<unsigned>(msg.fields.message_id.get().value())
        << ",transaction_id=" << msg.fields.transaction_id.get().value()
        << ",participant_reference_number=" << msg.fields.participant_reference_number.get().value()
@@ -516,8 +490,7 @@ inline std::ostream& operator<<(std::ostream& os, const auction_status_message& 
 
 inline std::ostream& operator<<(std::ostream& os, const trade_correction_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
-       << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
-       << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
+       << ",timestamp_1=" << (msg.fields.timestamp_1.get().has_value() ? std::to_string(msg.fields.timestamp_1.get().value()) : std::string_view("null"))
        << ",message_id=" << static_cast<unsigned>(msg.fields.message_id.get().value())
        << ",transaction_id=" << msg.fields.transaction_id.get().value()
        << ",participant_reference_number=" << msg.fields.participant_reference_number.get().value()
@@ -572,8 +545,7 @@ inline std::ostream& operator<<(std::ostream& os, const trade_correction_message
 
 inline std::ostream& operator<<(std::ostream& os, const long_trade_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
-       << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
-       << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
+       << ",timestamp_1=" << (msg.fields.timestamp_1.get().has_value() ? std::to_string(msg.fields.timestamp_1.get().value()) : std::string_view("null"))
        << ",message_id=" << static_cast<unsigned>(msg.fields.message_id.get().value())
        << ",transaction_id=" << msg.fields.transaction_id.get().value()
        << ",participant_reference_number=" << msg.fields.participant_reference_number.get().value()
@@ -602,8 +574,7 @@ inline std::ostream& operator<<(std::ostream& os, const long_trade_message& msg)
 
 inline std::ostream& operator<<(std::ostream& os, const trading_status_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
-       << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
-       << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
+       << ",timestamp_1=" << (msg.fields.timestamp_1.get().has_value() ? std::to_string(msg.fields.timestamp_1.get().value()) : std::string_view("null"))
        << ",message_id=" << static_cast<unsigned>(msg.fields.message_id.get().value())
        << ",transaction_id=" << msg.fields.transaction_id.get().value()
        << ",participant_reference_number=" << msg.fields.participant_reference_number.get().value()
@@ -626,8 +597,7 @@ inline std::ostream& operator<<(std::ostream& os, const trading_status_message& 
 
 inline std::ostream& operator<<(std::ostream& os, const short_trade_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
-       << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
-       << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
+       << ",timestamp_1=" << (msg.fields.timestamp_1.get().has_value() ? std::to_string(msg.fields.timestamp_1.get().value()) : std::string_view("null"))
        << ",message_id=" << static_cast<unsigned>(msg.fields.message_id.get().value())
        << ",transaction_id=" << msg.fields.transaction_id.get().value()
        << ",participant_reference_number=" << msg.fields.participant_reference_number.get().value()
@@ -645,8 +615,7 @@ inline std::ostream& operator<<(std::ostream& os, const short_trade_message& msg
 
 inline std::ostream& operator<<(std::ostream& os, const trade_cancel_error_message& msg) {
     os << "participant_id=\"" << cta_output::participant_id::to_string(msg.fields.participant_id.get().value()) << '"'
-       << ",timestamp_1.seconds=" << msg.fields.timestamp_1.seconds.get().value()
-       << ",timestamp_1.nanoseconds=" << msg.fields.timestamp_1.nanoseconds.get().value()
+       << ",timestamp_1=" << (msg.fields.timestamp_1.get().has_value() ? std::to_string(msg.fields.timestamp_1.get().value()) : std::string_view("null"))
        << ",message_id=" << static_cast<unsigned>(msg.fields.message_id.get().value())
        << ",transaction_id=" << msg.fields.transaction_id.get().value()
        << ",participant_reference_number=" << msg.fields.participant_reference_number.get().value()

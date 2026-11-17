@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.10: types/HaltReason.hpp
 #pragma once
 
 #include <cstddef>

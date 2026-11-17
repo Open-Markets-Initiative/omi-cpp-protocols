@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.13: messages/ChannelReset.hpp
 #pragma once
 
 #include "../types/TransactTime.hpp"

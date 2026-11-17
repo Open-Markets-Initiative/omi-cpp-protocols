@@ -1,3 +1,4 @@
+// Nyse.ArcaEquities.IntegratedFeedRefresh.Pillar.v2.5.g: enums/SecurityType.cpp
 #include "SecurityType.hpp"
 
 namespace nyse::arcaequities::integratedfeedrefresh::pillar::v2_5_g {

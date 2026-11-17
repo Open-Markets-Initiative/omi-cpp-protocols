@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.7: common/Day.hpp
 #pragma once
 
 #include <array>

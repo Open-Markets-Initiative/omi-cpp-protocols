@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeed.Xdp.v2.1.g: enums/SecurityType.hpp
 #pragma once
 
 #include <cstdint>

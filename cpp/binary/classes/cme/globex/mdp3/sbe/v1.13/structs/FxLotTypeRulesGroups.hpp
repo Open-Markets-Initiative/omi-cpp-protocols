@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.13: structs/FxLotTypeRulesGroups.hpp
 #pragma once
 
 #include <cstddef>

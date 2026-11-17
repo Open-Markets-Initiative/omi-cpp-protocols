@@ -1,3 +1,4 @@
+// Asx.AsxDerivatives.Ntp.Itch.v1.05: common/Wire.hpp
 #pragma once
 
 #include <bit>

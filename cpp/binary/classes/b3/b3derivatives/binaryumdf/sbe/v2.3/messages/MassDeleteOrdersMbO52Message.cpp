@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.3: messages/MassDeleteOrdersMbO52Message.cpp
 #include "MassDeleteOrdersMbO52Message.hpp"
 
 #include "../common/Print.hpp"
@@ -6,7 +7,7 @@
 
 namespace b3::b3derivatives::binaryumdf::sbe::v2_3 {
 
-MassDeleteOrdersMbO52Message::MassDeleteOrdersMbO52Message(std::uint64_t security_id, const MatchEventIndicator& match_event_indicator, MdUpdateAction md_update_action, MdEntryType md_entry_type, const std::array<std::byte, 5>& offset_11_padding_5, std::optional<std::uint64_t> transact_time, std::optional<std::uint32_t> rpt_seq)
+MassDeleteOrdersMbO52Message::MassDeleteOrdersMbO52Message(std::uint64_t security_id, const MatchEventIndicator& match_event_indicator, MdUpdateAction md_update_action, MdEntryType md_entry_type, const std::array<std::byte, 5>& offset_11_padding_5, std::optional<std::chrono::nanoseconds> transact_time, std::optional<std::uint32_t> rpt_seq)
   : security_id_(security_id), match_event_indicator_(match_event_indicator), md_update_action_(md_update_action), md_entry_type_(md_entry_type), offset_11_padding_5_(offset_11_padding_5), transact_time_(transact_time), rpt_seq_(rpt_seq) {}
 
 std::uint64_t MassDeleteOrdersMbO52Message::security_id() const { return security_id_; }
@@ -26,8 +27,8 @@ const std::array<std::byte, 5>& MassDeleteOrdersMbO52Message::offset_11_padding_
 std::array<std::byte, 5>& MassDeleteOrdersMbO52Message::offset_11_padding_5() { return offset_11_padding_5_; }
 void MassDeleteOrdersMbO52Message::set_offset_11_padding_5(const std::array<std::byte, 5>& value) { offset_11_padding_5_ = value; }
 
-std::optional<std::uint64_t> MassDeleteOrdersMbO52Message::transact_time() const { return transact_time_; }
-void MassDeleteOrdersMbO52Message::set_transact_time(std::optional<std::uint64_t> value) { transact_time_ = value; }
+std::optional<std::chrono::nanoseconds> MassDeleteOrdersMbO52Message::transact_time() const { return transact_time_; }
+void MassDeleteOrdersMbO52Message::set_transact_time(std::optional<std::chrono::nanoseconds> value) { transact_time_ = value; }
 
 std::optional<std::uint32_t> MassDeleteOrdersMbO52Message::rpt_seq() const { return rpt_seq_; }
 void MassDeleteOrdersMbO52Message::set_rpt_seq(std::optional<std::uint32_t> value) { rpt_seq_ = value; }
@@ -54,7 +55,7 @@ std::size_t MassDeleteOrdersMbO52Message::decode(const std::byte* data, std::siz
     wire::read_bytes(data + offset, offset_11_padding_5_.data(), 5);
     offset += 5;
 
-    transact_time_ = wire::nullable(wire::read_u64_le(data + offset), static_cast<std::uint64_t>(0ULL));
+    transact_time_ = wire::nullable_duration<std::chrono::nanoseconds>(wire::read_u64_le(data + offset), static_cast<std::uint64_t>(0ULL));
     offset += 8;
 
     rpt_seq_ = wire::nullable(wire::read_u32_le(data + offset), static_cast<std::uint32_t>(0ULL));
@@ -81,7 +82,7 @@ std::size_t MassDeleteOrdersMbO52Message::encode(std::byte* data, std::size_t ca
     wire::write_bytes(data + offset, offset_11_padding_5_.data(), 5);
     offset += 5;
 
-    wire::write_u64_le(data + offset, transact_time_.value_or(static_cast<std::uint64_t>(0ULL)));
+    wire::write_u64_le(data + offset, transact_time_ ? static_cast<std::uint64_t>(transact_time_->count()) : static_cast<std::uint64_t>(0ULL));
     offset += 8;
 
     wire::write_u32_le(data + offset, rpt_seq_.value_or(static_cast<std::uint32_t>(0ULL)));
@@ -115,7 +116,7 @@ void MassDeleteOrdersMbO52Message::print(std::ostream& out) const {
     out << ", offset_11_padding_5=";
     print::hex(out, offset_11_padding_5_.data(), offset_11_padding_5_.size());
     out << ", transact_time=";
-    print::optional(out, transact_time_);
+    print::optional_duration(out, transact_time_);
     out << ", rpt_seq=";
     print::optional(out, rpt_seq_);
     out << '}';

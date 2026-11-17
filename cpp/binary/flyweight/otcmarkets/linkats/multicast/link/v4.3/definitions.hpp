@@ -1,3 +1,4 @@
+// OtcMarkets.LinkAts.Multicast.Link.v4.3: definitions.hpp
 #pragma once
 
 // Every flyweight view and reader of OtcMarkets.LinkAts.Multicast.Link.v4.3.

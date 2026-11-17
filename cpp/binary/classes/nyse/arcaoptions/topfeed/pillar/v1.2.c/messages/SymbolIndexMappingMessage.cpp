@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.TopFeed.Pillar.v1.2.c: messages/SymbolIndexMappingMessage.cpp
 #include "SymbolIndexMappingMessage.hpp"
 
 #include "../common/Print.hpp"

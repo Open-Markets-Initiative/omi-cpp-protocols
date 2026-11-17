@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: messages/TradeReportMessage.hpp
 #pragma once
 
 #include "../types/OriginatingMarketCenterIdentifier.hpp"

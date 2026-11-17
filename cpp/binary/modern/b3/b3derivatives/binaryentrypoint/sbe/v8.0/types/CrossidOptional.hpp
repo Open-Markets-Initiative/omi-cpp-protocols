@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: types/CrossIdOptional.hpp
 #pragma once
 
 #include <cstddef>
@@ -6,22 +7,22 @@
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_0 {
 
 // crossID
-struct CrossidOptional {
+struct CrossIdOptional {
 
-    static constexpr const char* name = "CrossId Optional";
+    static constexpr const char* name = "Cross Id Optional";
     static constexpr std::size_t size =  8;
     using type = std::uint64_t;
 static const type no_value = 0;
 
     // default constructor: the null the model states, where it states one
-    constexpr CrossidOptional()
+    constexpr CrossIdOptional()
      : value{ no_value } {}
 
     // standard constructor
-    constexpr explicit CrossidOptional(const std::uint64_t value)
+    constexpr explicit CrossIdOptional(const std::uint64_t value)
      : value{ value } {}
 
-    // get value of CrossidOptional field
+    // get value of CrossIdOptional field
     [[nodiscard]] std::uint64_t get() const {
         return value;
     }

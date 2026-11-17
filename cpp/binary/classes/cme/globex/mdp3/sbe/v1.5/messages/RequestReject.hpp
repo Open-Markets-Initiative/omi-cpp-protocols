@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.5: messages/RequestReject.hpp
 #pragma once
 
 #include <cstddef>
@@ -24,7 +25,7 @@ class RequestReject : public MdpsessionmgmtPayload {
     static constexpr std::size_t wire_size = 105;
 
     RequestReject() = default;
-    RequestReject(std::optional<std::uint32_t> md_req_id_optional, MdReqRejReason md_req_rej_reason, const std::string& text);
+    RequestReject(std::optional<std::uint32_t> md_req_id_optional, MdReqRejReason md_req_rej_reason, const std::string& session_text);
 
     // Md Req Id Optional: Unique identifier for Market Data Request
     std::optional<std::uint32_t> md_req_id_optional() const;
@@ -34,10 +35,10 @@ class RequestReject : public MdpsessionmgmtPayload {
     MdReqRejReason md_req_rej_reason() const;
     void set_md_req_rej_reason(MdReqRejReason value);
 
-    // Text: Reject reason details
-    const std::string& text() const;
-    std::string& text();
-    void set_text(const std::string& value);
+    // Session Text: Reject reason details
+    const std::string& session_text() const;
+    std::string& session_text();
+    void set_session_text(const std::string& value);
 
     // MdpsessionmgmtPayload
     MdpsessionmgmtPayloadCode type() const override;
@@ -56,7 +57,7 @@ class RequestReject : public MdpsessionmgmtPayload {
   private:
     std::optional<std::uint32_t> md_req_id_optional_{};
     MdReqRejReason md_req_rej_reason_{};
-    std::string text_{};
+    std::string session_text_{};
 };
 
 } // namespace cme::globex::mdp3::sbe::v1_5

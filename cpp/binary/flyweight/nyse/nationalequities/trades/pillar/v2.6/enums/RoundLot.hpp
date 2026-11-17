@@ -1,3 +1,4 @@
+// Nyse.NationalEquities.Trades.Pillar.v2.6: enums/RoundLot.hpp
 #pragma once
 
 #include <cstdint>

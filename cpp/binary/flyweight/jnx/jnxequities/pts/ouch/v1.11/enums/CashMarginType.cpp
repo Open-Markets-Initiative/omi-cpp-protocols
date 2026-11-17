@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Ouch.v1.11: enums/CashMarginType.cpp
 #include "CashMarginType.hpp"
 
 namespace jnx::jnxequities::pts::ouch::v1_11 {

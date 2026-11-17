@@ -1,6 +1,10 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2017: types/Reserved.hpp
 #pragma once
 
 #include <cstddef>
+#include <array>
+#include <span>
+#include <algorithm>
 #include "../cache/Required.hpp"
 
 namespace nasdaq::nsmequities::totalview::itch::v5_0_2017 {
@@ -12,31 +16,27 @@ struct reserved {
     static constexpr std::size_t size = 1;
     static constexpr bool is_optional = false;
 
-    using result_type = required<char>;
+    using result_type = required<const std::array<std::uint8_t, 1>&>;
     using storage_type = result_type;
 
     constexpr reserved()
-     : value{ 0 } {}
-
-    constexpr reserved(char v)
-     : value{ v } {}
+     : value{} {}
 
     [[nodiscard]] constexpr result_type get() const {
         return result_type{value};
     }
 
-    constexpr void set(char v) {
-        value = v;
+    constexpr void set(std::span<const std::uint8_t> src) {
+        auto len = std::min(src.size(), value.size());
+        std::copy_n(src.begin(), len, value.begin());
     }
 
-    constexpr void set(result_type value) {
-        if (value.has_value())
-            set(value.value());
-        else
-            set(0);
+    constexpr void set(result_type v) {
+        if (v.has_value())
+            set(std::span<const std::uint8_t>(v.value().data(), v.value().size()));
     }
 
   protected:
-    char value;
+    std::array<std::uint8_t, 1> value;
 };
 }

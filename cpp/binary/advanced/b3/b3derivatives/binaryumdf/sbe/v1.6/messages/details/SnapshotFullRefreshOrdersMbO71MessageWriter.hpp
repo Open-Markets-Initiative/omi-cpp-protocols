@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.6: messages/details/SnapshotFullRefreshOrdersMbO71MessageWriter.hpp
 #pragma once
 
 #include "../SnapshotFullRefreshOrdersMbO71Message.hpp"
@@ -42,10 +43,10 @@ public:
         return *this;
     }
 
-    snapshot_full_refresh_orders_mb_o_71_message_no_m_d_entries_groups_builder& md_entry_size_quantity(std::int64_t v) {
+    snapshot_full_refresh_orders_mb_o_71_message_no_m_d_entries_groups_builder& md_entry_size(std::int64_t v) {
         if (pos_ + sizeof(snapshot_full_refresh_orders_mb_o_71_message_no_m_d_entries_groups_entry) > end_) throw std::runtime_error("buffer overrun writing group entry");
         auto* entry = reinterpret_cast<snapshot_full_refresh_orders_mb_o_71_message_no_m_d_entries_groups_entry*>(pos_);
-        entry->md_entry_size_quantity.set(v);
+        entry->md_entry_size.set(v);
         return *this;
     }
 

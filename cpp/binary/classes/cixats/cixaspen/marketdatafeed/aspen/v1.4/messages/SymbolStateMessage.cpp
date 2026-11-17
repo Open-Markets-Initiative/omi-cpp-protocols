@@ -1,3 +1,4 @@
+// CixAts.CixAspen.MarketDataFeed.Aspen.v1.4: messages/SymbolStateMessage.cpp
 #include "SymbolStateMessage.hpp"
 
 #include "../common/Print.hpp"

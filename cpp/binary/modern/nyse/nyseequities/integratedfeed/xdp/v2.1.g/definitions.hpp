@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeed.Xdp.v2.1.g: definitions.hpp
 #pragma once
 
 #include "structs/PacketHeader.hpp"

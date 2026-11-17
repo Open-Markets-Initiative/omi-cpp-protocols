@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.10: enums/AdministrativeMessageType.hpp
 #pragma once
 
 #include <cstdint>
@@ -8,10 +9,10 @@ namespace siac::cts::output::cta::v2_10 {
 
 // Administrative message type
 enum class AdministrativeMessageType : char {
-    StartOfEndOfDayMessage = 'A',   // Start Of End Of Day Message
-    EndOfEndOfDayMessage = 'B',     // End Of End Of Day Message
-    StartOfStartOfDayMessage = 'C', // Start Of Start Of Day Message
-    EndOfStartOfDayMessage = 'D',   // End Of Start Of Day Message
+    StartOfEndOfDaySummaryMessage = 'A',   // Start Of End Of Day Summary Message
+    EndOfEndOfDaySummaryMessage = 'B',     // End Of End Of Day Summary Message
+    StartOfStartOfDaySummaryMessage = 'C', // Start Of Start Of Day Summary Message
+    EndOfStartOfDaySummaryMessage = 'D',   // End Of Start Of Day Summary Message
 };
 
 // The documented name of a code, or empty for one the specification does not list

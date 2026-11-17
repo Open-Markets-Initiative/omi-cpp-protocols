@@ -1,3 +1,4 @@
+// Cboe.EdgxOptions.MulticastDepthOfBook.Pitch.v2.41.80: types/WidthType.hpp
 #pragma once
 
 #include <cstddef>

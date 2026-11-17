@@ -1,3 +1,4 @@
+// Cboe.C1Options.Complex.Pitch.v2.1.18: enums/TradeCondition.hpp
 #pragma once
 
 #include <cstdint>

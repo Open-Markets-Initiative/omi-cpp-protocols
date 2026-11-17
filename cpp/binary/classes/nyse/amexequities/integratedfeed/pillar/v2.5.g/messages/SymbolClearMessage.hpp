@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeed.Pillar.v2.5.g: messages/SymbolClearMessage.hpp
 #pragma once
 
 #include <chrono>

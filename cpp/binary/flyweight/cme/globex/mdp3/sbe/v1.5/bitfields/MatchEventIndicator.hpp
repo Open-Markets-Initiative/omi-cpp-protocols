@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.5: bitfields/MatchEventIndicator.hpp
 #pragma once
 
 #include <cstddef>
@@ -39,8 +40,6 @@ class MatchEventIndicator {
 
     bool recovery_msg() const { return (raw() & static_cast<std::uint8_t>(0x20)) != 0; }
 
-    bool reserved() const { return (raw() & static_cast<std::uint8_t>(0x40)) != 0; }
-
     bool end_of_event() const { return (raw() & static_cast<std::uint8_t>(0x80)) != 0; }
 
     void print(std::ostream& out) const {
@@ -57,8 +56,6 @@ class MatchEventIndicator {
         out << (last_implied_msg() ? "true" : "false");
         out << ", recovery_msg=";
         out << (recovery_msg() ? "true" : "false");
-        out << ", reserved=";
-        out << (reserved() ? "true" : "false");
         out << ", end_of_event=";
         out << (end_of_event() ? "true" : "false");
         out << '}';

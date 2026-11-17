@@ -1,3 +1,4 @@
+// Iex.IexEquities.Deep.Snap.v1.6: program/Settings.hpp
 #pragma once
 
 #include <filesystem>

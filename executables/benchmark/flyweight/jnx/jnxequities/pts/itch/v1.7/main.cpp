@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.7: main.cpp
 // Jnx.JnxEquities.Pts.Itch.v1.7 benchmark, through the Flyweight reader: every value it reads from every message of the simulated
 // sequence (tests/simulated/jnx/jnxequities/pts/itch/v1.7.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 

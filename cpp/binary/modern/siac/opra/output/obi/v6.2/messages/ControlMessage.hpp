@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: messages/ControlMessage.hpp
 #pragma once
 
 #include "../types/MessageIndicator.hpp"

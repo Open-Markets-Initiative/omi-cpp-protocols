@@ -1,3 +1,4 @@
+// Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.41.29: enums/TradingStatus.hpp
 #pragma once
 
 #include <cstdint>

@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.13: groups/SnapshotFullRefreshOrderBookGroup.hpp
 #pragma once
 
 #include "../types/OrderId.hpp"

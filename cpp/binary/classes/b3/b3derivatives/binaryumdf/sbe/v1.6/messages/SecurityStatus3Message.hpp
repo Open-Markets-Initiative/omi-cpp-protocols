@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.6: messages/SecurityStatus3Message.hpp
 #pragma once
 
 #include <array>
@@ -28,7 +29,7 @@ class SecurityStatus3Message : public Message {
     static constexpr std::size_t wire_size = 36;
 
     SecurityStatus3Message() = default;
-    SecurityStatus3Message(std::uint64_t security_id, const MatchEventIndicator& match_event_indicator, TradingSessionId trading_session_id, SecurityTradingStatus security_trading_status, std::optional<SecurityTradingEvent> security_trading_event, std::uint16_t trade_date, const std::array<std::byte, 2>& offset_14_padding_2, std::optional<std::chrono::nanoseconds> trad_ses_open_time, std::optional<std::uint64_t> transact_time, std::optional<std::uint32_t> rpt_seq);
+    SecurityStatus3Message(std::uint64_t security_id, const MatchEventIndicator& match_event_indicator, TradingSessionId trading_session_id, SecurityTradingStatus security_trading_status, std::optional<SecurityTradingEvent> security_trading_event, std::uint16_t trade_date, const std::array<std::byte, 2>& offset_14_padding_2, std::optional<std::chrono::nanoseconds> trad_ses_open_time, std::optional<std::chrono::nanoseconds> transact_time, std::optional<std::uint32_t> rpt_seq);
 
     // Security Id: securityID
     std::uint64_t security_id() const;
@@ -65,8 +66,8 @@ class SecurityStatus3Message : public Message {
     void set_trad_ses_open_time(std::optional<std::chrono::nanoseconds> value);
 
     // Transact Time: transactTime
-    std::optional<std::uint64_t> transact_time() const;
-    void set_transact_time(std::optional<std::uint64_t> value);
+    std::optional<std::chrono::nanoseconds> transact_time() const;
+    void set_transact_time(std::optional<std::chrono::nanoseconds> value);
 
     // Rpt Seq: rptSeq
     std::optional<std::uint32_t> rpt_seq() const;
@@ -95,7 +96,7 @@ class SecurityStatus3Message : public Message {
     std::uint16_t trade_date_{};
     std::array<std::byte, 2> offset_14_padding_2_{};
     std::optional<std::chrono::nanoseconds> trad_ses_open_time_{};
-    std::optional<std::uint64_t> transact_time_{};
+    std::optional<std::chrono::nanoseconds> transact_time_{};
     std::optional<std::uint32_t> rpt_seq_{};
 };
 

@@ -1,7 +1,8 @@
+// Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.20.4: messages/EndOfSessionMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
-#include <cstdint>
 #include <memory>
 #include <ostream>
 #include <string_view>
@@ -21,11 +22,11 @@ class EndOfSessionMessage : public Message {
     static constexpr std::size_t wire_size = 4;
 
     EndOfSessionMessage() = default;
-    EndOfSessionMessage(std::uint32_t timestamp);
+    EndOfSessionMessage(std::chrono::nanoseconds time_offset);
 
-    // Timestamp: Nanosecond offset from last
-    std::uint32_t timestamp() const;
-    void set_timestamp(std::uint32_t value);
+    // Time Offset: Nanosecond offset from last
+    std::chrono::nanoseconds time_offset() const;
+    void set_time_offset(std::chrono::nanoseconds value);
 
     // Message
     MessageCode type() const override;
@@ -42,7 +43,7 @@ class EndOfSessionMessage : public Message {
     bool operator!=(const EndOfSessionMessage& other) const;
 
   private:
-    std::uint32_t timestamp_{};
+    std::chrono::nanoseconds time_offset_{};
 };
 
 } // namespace cboe::bzxequities::multicastdepthofbook::pitch::v2_20_4

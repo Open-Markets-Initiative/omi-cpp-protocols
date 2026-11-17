@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: types/Category3.hpp
 #pragma once
 
 #include <cstddef>
@@ -15,16 +16,14 @@ struct category_3 {
     enum class enum_type : char {
         not_extended_hours_or_sold_out_of_sequence = ' ',
         sold_last_late_reporting = 'L',
-        market_center_opening_trade = 'O',
         extended_hours_trade = 'T',
         extended_hours_sold_out_of_sequence = 'U',
         sold_out_of_sequence = 'Z'
     };
 
-    static constexpr std::array<std::pair<std::string_view, enum_type>, 6> from_string_map = {{
+    static constexpr std::array<std::pair<std::string_view, enum_type>, 5> from_string_map = {{
         {"Extended Hours Sold Out Of Sequence", enum_type::extended_hours_sold_out_of_sequence},
         {"Extended Hours Trade", enum_type::extended_hours_trade},
-        {"Market Center Opening Trade", enum_type::market_center_opening_trade},
         {"Not Extended Hours Or Sold Out Of Sequence", enum_type::not_extended_hours_or_sold_out_of_sequence},
         {"Sold Last Late Reporting", enum_type::sold_last_late_reporting},
         {"Sold Out Of Sequence", enum_type::sold_out_of_sequence}
@@ -34,7 +33,6 @@ struct category_3 {
         switch (value) {
             case enum_type::not_extended_hours_or_sold_out_of_sequence: return "Not Extended Hours Or Sold Out Of Sequence";
             case enum_type::sold_last_late_reporting: return "Sold Last Late Reporting";
-            case enum_type::market_center_opening_trade: return "Market Center Opening Trade";
             case enum_type::extended_hours_trade: return "Extended Hours Trade";
             case enum_type::extended_hours_sold_out_of_sequence: return "Extended Hours Sold Out Of Sequence";
             case enum_type::sold_out_of_sequence: return "Sold Out Of Sequence";

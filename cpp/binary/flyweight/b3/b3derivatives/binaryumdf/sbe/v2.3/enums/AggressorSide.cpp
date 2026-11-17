@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.3: enums/AggressorSide.cpp
 #include "AggressorSide.hpp"
 
 namespace b3::b3derivatives::binaryumdf::sbe::v2_3 {

@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v1.91: structs/NationalBestOfferShortAppendage.cpp
 #include "NationalBestOfferShortAppendage.hpp"
 
 #include "../common/Print.hpp"

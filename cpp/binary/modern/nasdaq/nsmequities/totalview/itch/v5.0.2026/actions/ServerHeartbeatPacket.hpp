@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2026: actions/ServerHeartbeatPacket.hpp
 #pragma once
 
 namespace nasdaq::nsmequities::totalview::itch::v5_0_2026 {

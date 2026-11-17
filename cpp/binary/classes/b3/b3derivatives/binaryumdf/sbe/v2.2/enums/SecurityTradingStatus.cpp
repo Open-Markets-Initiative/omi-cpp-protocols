@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.2: enums/SecurityTradingStatus.cpp
 #include "SecurityTradingStatus.hpp"
 
 namespace b3::b3derivatives::binaryumdf::sbe::v2_2 {

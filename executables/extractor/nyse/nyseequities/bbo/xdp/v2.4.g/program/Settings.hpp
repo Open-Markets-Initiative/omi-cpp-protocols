@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.Bbo.Xdp.v2.4.g: program/Settings.hpp
 #pragma once
 
 #include <filesystem>

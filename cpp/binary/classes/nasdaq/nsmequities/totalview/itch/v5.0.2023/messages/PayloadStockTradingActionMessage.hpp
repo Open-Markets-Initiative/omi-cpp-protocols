@@ -1,5 +1,7 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2023: messages/PayloadStockTradingActionMessage.hpp
 #pragma once
 
+#include <array>
 #include <chrono>
 #include <cstddef>
 #include <cstdint>
@@ -27,7 +29,7 @@ class PayloadStockTradingActionMessage : public PacketMessage {
     static constexpr std::size_t wire_size = 24;
 
     PayloadStockTradingActionMessage() = default;
-    PayloadStockTradingActionMessage(std::uint16_t stock_locate, std::uint16_t tracking_number, std::chrono::nanoseconds timestamp, const std::string& stock, TradingState trading_state, char reserved, const std::string& reason_code);
+    PayloadStockTradingActionMessage(std::uint16_t stock_locate, std::uint16_t tracking_number, std::chrono::nanoseconds timestamp, const std::string& stock, TradingState trading_state, const std::array<std::byte, 1>& reserved, const std::string& reason_code);
 
     // Stock Locate: Locate Code uniquely assigned to the security symbol for the day
     std::uint16_t stock_locate() const;
@@ -52,8 +54,9 @@ class PayloadStockTradingActionMessage : public PacketMessage {
     void set_trading_state(TradingState value);
 
     // Reserved: Reserved
-    char reserved() const;
-    void set_reserved(char value);
+    const std::array<std::byte, 1>& reserved() const;
+    std::array<std::byte, 1>& reserved();
+    void set_reserved(const std::array<std::byte, 1>& value);
 
     // Reason Code: Trading Action reason
     const std::string& reason_code() const;
@@ -80,7 +83,7 @@ class PayloadStockTradingActionMessage : public PacketMessage {
     std::chrono::nanoseconds timestamp_{};
     std::string stock_{};
     TradingState trading_state_{};
-    char reserved_{};
+    std::array<std::byte, 1> reserved_{};
     std::string reason_code_{};
 };
 

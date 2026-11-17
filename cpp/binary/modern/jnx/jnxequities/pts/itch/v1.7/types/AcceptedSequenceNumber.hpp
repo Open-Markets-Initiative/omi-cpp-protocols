@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.7: types/AcceptedSequenceNumber.hpp
 #pragma once
 
 #include <array>

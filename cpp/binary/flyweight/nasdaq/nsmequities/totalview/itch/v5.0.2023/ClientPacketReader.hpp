@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2023: ClientPacketReader.hpp
 #pragma once
 
 #include <cstddef>

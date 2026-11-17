@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.3: messages/SettlementPrice28Message.hpp
 #pragma once
 
 #include <array>
@@ -73,7 +74,7 @@ class SettlementPrice28Message : public Message {
     std::optional<std::uint32_t> rpt_seq() const;
     void set_rpt_seq(std::optional<std::uint32_t> value);
 
-    // Settl Date Local Mkt Date optional: settlDate
+    // Settl Date Local Mkt Date Optional: settlDate
     std::optional<std::uint16_t> settl_date_local_mkt_date_optional() const;
     void set_settl_date_local_mkt_date_optional(std::optional<std::uint16_t> value);
 

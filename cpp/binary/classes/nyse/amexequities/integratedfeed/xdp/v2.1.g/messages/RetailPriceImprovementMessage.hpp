@@ -1,5 +1,7 @@
+// Nyse.AmexEquities.IntegratedFeed.Xdp.v2.1.g: messages/RetailPriceImprovementMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
@@ -25,11 +27,11 @@ class RetailPriceImprovementMessage : public Message {
     static constexpr std::size_t wire_size = 13;
 
     RetailPriceImprovementMessage() = default;
-    RetailPriceImprovementMessage(std::uint32_t source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, RpiIndicator rpi_indicator);
+    RetailPriceImprovementMessage(std::chrono::nanoseconds source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, RpiIndicator rpi_indicator);
 
     // Source Time Ns: The nanosecond offset from the SourceTime
-    std::uint32_t source_time_ns() const;
-    void set_source_time_ns(std::uint32_t value);
+    std::chrono::nanoseconds source_time_ns() const;
+    void set_source_time_ns(std::chrono::nanoseconds value);
 
     // Symbol Index: The unique ID of this symbol for all products within this market. This ID
     // cannot be used to cross reference a security between markets.
@@ -60,7 +62,7 @@ class RetailPriceImprovementMessage : public Message {
     bool operator!=(const RetailPriceImprovementMessage& other) const;
 
   private:
-    std::uint32_t source_time_ns_{};
+    std::chrono::nanoseconds source_time_ns_{};
     std::uint32_t symbol_index_{};
     std::uint32_t symbol_seq_num_{};
     RpiIndicator rpi_indicator_{};

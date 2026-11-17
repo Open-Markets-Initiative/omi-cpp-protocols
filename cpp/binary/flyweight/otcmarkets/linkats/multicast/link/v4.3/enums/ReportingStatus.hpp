@@ -1,3 +1,4 @@
+// OtcMarkets.LinkAts.Multicast.Link.v4.3: enums/ReportingStatus.hpp
 #pragma once
 
 #include <cstdint>

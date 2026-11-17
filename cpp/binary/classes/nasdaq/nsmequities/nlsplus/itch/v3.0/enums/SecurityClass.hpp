@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: enums/SecurityClass.hpp
 #pragma once
 
 #include <cstdint>

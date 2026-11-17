@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.5: bitfields/SettlPriceType.cpp
 #include "SettlPriceType.hpp"
 
 #include "../common/Print.hpp"
@@ -18,15 +19,6 @@ void SettlPriceType::set_rounded(bool value) { raw_ = static_cast<std::uint8_t>(
 
 bool SettlPriceType::intraday() const { return (raw_ & static_cast<std::uint8_t>(0x8)) != 0; }
 void SettlPriceType::set_intraday(bool value) { raw_ = static_cast<std::uint8_t>(value ? (raw_ | static_cast<std::uint8_t>(0x8)) : (raw_ & ~static_cast<std::uint8_t>(0x8))); }
-
-bool SettlPriceType::reserved_bits() const { return (raw_ & static_cast<std::uint8_t>(0x10)) != 0; }
-void SettlPriceType::set_reserved_bits(bool value) { raw_ = static_cast<std::uint8_t>(value ? (raw_ | static_cast<std::uint8_t>(0x10)) : (raw_ & ~static_cast<std::uint8_t>(0x10))); }
-
-bool SettlPriceType::unused_settl_price_type_5() const { return (raw_ & static_cast<std::uint8_t>(0x20)) != 0; }
-void SettlPriceType::set_unused_settl_price_type_5(bool value) { raw_ = static_cast<std::uint8_t>(value ? (raw_ | static_cast<std::uint8_t>(0x20)) : (raw_ & ~static_cast<std::uint8_t>(0x20))); }
-
-bool SettlPriceType::unused_settl_price_type_6() const { return (raw_ & static_cast<std::uint8_t>(0x40)) != 0; }
-void SettlPriceType::set_unused_settl_price_type_6(bool value) { raw_ = static_cast<std::uint8_t>(value ? (raw_ | static_cast<std::uint8_t>(0x40)) : (raw_ & ~static_cast<std::uint8_t>(0x40))); }
 
 bool SettlPriceType::null_value() const { return (raw_ & static_cast<std::uint8_t>(0x80)) != 0; }
 void SettlPriceType::set_null_value(bool value) { raw_ = static_cast<std::uint8_t>(value ? (raw_ | static_cast<std::uint8_t>(0x80)) : (raw_ & ~static_cast<std::uint8_t>(0x80))); }
@@ -60,12 +52,6 @@ void SettlPriceType::print(std::ostream& out) const {
     out << (rounded() ? "true" : "false");
     out << ", intraday=";
     out << (intraday() ? "true" : "false");
-    out << ", reserved_bits=";
-    out << (reserved_bits() ? "true" : "false");
-    out << ", unused_settl_price_type_5=";
-    out << (unused_settl_price_type_5() ? "true" : "false");
-    out << ", unused_settl_price_type_6=";
-    out << (unused_settl_price_type_6() ? "true" : "false");
     out << ", null_value=";
     out << (null_value() ? "true" : "false");
     out << '}';

@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: messages/ExecutionReportModifyMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -45,7 +46,7 @@ class ExecutionReportModifyMessage {
 
     OrdStatus ord_status() const { return static_cast<OrdStatus>(wire::read_char(at(19))); }
 
-    std::uint64_t clordid() const { return wire::read_u64_le(at(20)); }
+    std::uint64_t cl_ord_id() const { return wire::read_u64_le(at(20)); }
 
     std::uint64_t secondary_order_id() const { return wire::read_u64_le(at(28)); }
 
@@ -122,8 +123,8 @@ class ExecutionReportModifyMessage {
         out << side();
         out << ", ord_status=";
         out << ord_status();
-        out << ", clordid=";
-        out << clordid();
+        out << ", cl_ord_id=";
+        out << cl_ord_id();
         out << ", secondary_order_id=";
         out << secondary_order_id();
         out << ", security_id=";

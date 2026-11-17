@@ -1,3 +1,4 @@
+// Memx.MemxEquities.MemoirDepthFeed.Sbe.v1.3: types/HeaderLength.hpp
 #pragma once
 
 #include <cstddef>

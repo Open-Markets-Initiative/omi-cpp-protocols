@@ -1,3 +1,4 @@
+// OtcMarkets.LinkAts.Multicast.Link.v4.3: messages/MarketOpenMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -23,7 +24,7 @@ class MarketOpenMessage : public Message {
     static constexpr std::size_t wire_size = 20;
 
     MarketOpenMessage() = default;
-    MarketOpenMessage(std::uint32_t channel_seq_num, std::chrono::milliseconds market_open, std::uint64_t market_close);
+    MarketOpenMessage(std::uint32_t channel_seq_num, std::chrono::milliseconds market_open, std::chrono::milliseconds market_close);
 
     // Channel Seq Num: Monotonically increasing message sequence number at the channel level.
     std::uint32_t channel_seq_num() const;
@@ -34,8 +35,8 @@ class MarketOpenMessage : public Message {
     void set_market_open(std::chrono::milliseconds value);
 
     // Market Close: Anticipated market close time in milliseconds since UTC epoch.
-    std::uint64_t market_close() const;
-    void set_market_close(std::uint64_t value);
+    std::chrono::milliseconds market_close() const;
+    void set_market_close(std::chrono::milliseconds value);
 
     // Message
     MessageCode type() const override;
@@ -54,7 +55,7 @@ class MarketOpenMessage : public Message {
   private:
     std::uint32_t channel_seq_num_{};
     std::chrono::milliseconds market_open_{};
-    std::uint64_t market_close_{};
+    std::chrono::milliseconds market_close_{};
 };
 
 } // namespace otcmarkets::linkats::multicast::link::v4_3

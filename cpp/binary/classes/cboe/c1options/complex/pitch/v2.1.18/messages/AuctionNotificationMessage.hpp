@@ -1,3 +1,4 @@
+// Cboe.C1Options.Complex.Pitch.v2.1.18: messages/AuctionNotificationMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -27,7 +28,7 @@ class AuctionNotificationMessage : public Message {
     static constexpr std::size_t wire_size = 45;
 
     AuctionNotificationMessage() = default;
-    AuctionNotificationMessage(std::chrono::nanoseconds time_offset, const std::string& complex_instrument_id, std::uint64_t auction_id, AuctionType auction_type, SideIndicator side_indicator, Decimal price, std::uint32_t quantity, CustomerIndicator customer_indicator, const std::string& participant_id, std::uint32_t auction_end_offset, const std::string& client_id);
+    AuctionNotificationMessage(std::chrono::nanoseconds time_offset, const std::string& complex_instrument_id, std::uint64_t auction_id, AuctionType auction_type, SideIndicator side_indicator, Decimal price, std::uint32_t quantity, CustomerIndicator customer_indicator, const std::string& participant_id, std::chrono::nanoseconds auction_end_offset, const std::string& client_id);
 
     // Time Offset: Nanosecond offset from last unit timestamp
     std::chrono::nanoseconds time_offset() const;
@@ -70,8 +71,8 @@ class AuctionNotificationMessage : public Message {
     void set_participant_id(const std::string& value);
 
     // Auction End Offset: Nanosecond offset from last timestamp.
-    std::uint32_t auction_end_offset() const;
-    void set_auction_end_offset(std::uint32_t value);
+    std::chrono::nanoseconds auction_end_offset() const;
+    void set_auction_end_offset(std::chrono::nanoseconds value);
 
     // Client Id: Optional user specified value attributed to this quote. Space filled
     // otherwise.
@@ -103,7 +104,7 @@ class AuctionNotificationMessage : public Message {
     std::uint32_t quantity_{};
     CustomerIndicator customer_indicator_{};
     std::string participant_id_{};
-    std::uint32_t auction_end_offset_{};
+    std::chrono::nanoseconds auction_end_offset_{};
     std::string client_id_{};
 };
 

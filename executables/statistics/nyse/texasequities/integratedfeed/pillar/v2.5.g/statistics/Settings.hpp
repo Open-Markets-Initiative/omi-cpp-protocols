@@ -1,3 +1,4 @@
+// Nyse.TexasEquities.IntegratedFeed.Pillar.v2.5.g: statistics/Settings.hpp
 #pragma once
 
 #include <string>

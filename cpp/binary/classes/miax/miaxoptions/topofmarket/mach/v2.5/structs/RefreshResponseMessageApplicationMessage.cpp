@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.TopOfMarket.Mach.v2.5: structs/RefreshResponseMessageApplicationMessage.cpp
 #include "RefreshResponseMessageApplicationMessage.hpp"
 
 #include "../common/Print.hpp"

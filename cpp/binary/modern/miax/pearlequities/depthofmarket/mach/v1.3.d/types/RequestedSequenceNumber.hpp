@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: types/RequestedSequenceNumber.hpp
 #pragma once
 
 #include <cstddef>
@@ -5,7 +6,7 @@
 
 namespace miax::pearlequities::depthofmarket::mach::v1_3_d {
 
-// Specifies client requested sequence number
+// Specifies client requested sequence number for the Matching Engine
 struct RequestedSequenceNumber {
 
     static constexpr const char* name = "Requested Sequence Number";

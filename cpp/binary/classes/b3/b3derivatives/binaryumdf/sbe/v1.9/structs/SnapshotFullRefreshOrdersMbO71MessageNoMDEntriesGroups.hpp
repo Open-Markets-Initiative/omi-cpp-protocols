@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.9: structs/SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroups.hpp
 #pragma once
 
 #include <cstddef>
@@ -21,7 +22,7 @@ class SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroups {
     GroupSizeEncoding& group_size_encoding();
     void set_group_size_encoding(const GroupSizeEncoding& value);
 
-    // Snapshot Full Refresh Orders Mb O 71 Message no M D Entries Group: noMDEntries
+    // Snapshot Full Refresh Orders Mb O 71 Message No M D Entries Group: noMDEntries
     const std::vector<SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup>& snapshot_full_refresh_orders_mb_o_71_message_no_m_d_entries_group() const;
     std::vector<SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup>& snapshot_full_refresh_orders_mb_o_71_message_no_m_d_entries_group();
     void set_snapshot_full_refresh_orders_mb_o_71_message_no_m_d_entries_group(const std::vector<SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup>& value);

@@ -1,3 +1,4 @@
+// Nyse.NationalEquities.Trades.Pillar.v2.6: messages/TradeMessage.cpp
 #include "TradeMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,14 +7,14 @@
 
 namespace nyse::nationalequities::trades::pillar::v2_6 {
 
-TradeMessage::TradeMessage(std::uint32_t source_time, std::uint32_t source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, std::uint32_t trade_id, std::int32_t price, std::uint32_t volume, TradeCond1 trade_cond_1, TradeCond2 trade_cond_2, TradeCond3 trade_cond_3, TradeCond4 trade_cond_4)
+TradeMessage::TradeMessage(std::chrono::seconds source_time, std::chrono::nanoseconds source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, std::uint32_t trade_id, std::int32_t price, std::uint32_t volume, TradeCond1 trade_cond_1, TradeCond2 trade_cond_2, TradeCond3 trade_cond_3, TradeCond4 trade_cond_4)
   : source_time_(source_time), source_time_ns_(source_time_ns), symbol_index_(symbol_index), symbol_seq_num_(symbol_seq_num), trade_id_(trade_id), price_(price), volume_(volume), trade_cond_1_(trade_cond_1), trade_cond_2_(trade_cond_2), trade_cond_3_(trade_cond_3), trade_cond_4_(trade_cond_4) {}
 
-std::uint32_t TradeMessage::source_time() const { return source_time_; }
-void TradeMessage::set_source_time(std::uint32_t value) { source_time_ = value; }
+std::chrono::seconds TradeMessage::source_time() const { return source_time_; }
+void TradeMessage::set_source_time(std::chrono::seconds value) { source_time_ = value; }
 
-std::uint32_t TradeMessage::source_time_ns() const { return source_time_ns_; }
-void TradeMessage::set_source_time_ns(std::uint32_t value) { source_time_ns_ = value; }
+std::chrono::nanoseconds TradeMessage::source_time_ns() const { return source_time_ns_; }
+void TradeMessage::set_source_time_ns(std::chrono::nanoseconds value) { source_time_ns_ = value; }
 
 std::uint32_t TradeMessage::symbol_index() const { return symbol_index_; }
 void TradeMessage::set_symbol_index(std::uint32_t value) { symbol_index_ = value; }
@@ -50,10 +51,10 @@ std::size_t TradeMessage::decode(const std::byte* data, std::size_t length) {
     std::size_t offset = 0;
     wire::require("TradeMessage", wire_size, length);
 
-    source_time_ = wire::read_u32_le(data + offset);
+    source_time_ = std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
-    source_time_ns_ = wire::read_u32_le(data + offset);
+    source_time_ns_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     symbol_index_ = wire::read_u32_le(data + offset);
@@ -90,10 +91,10 @@ std::size_t TradeMessage::encode(std::byte* data, std::size_t capacity) const {
     std::size_t offset = 0;
     wire::require_capacity("TradeMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_.count()));
     offset += 4;
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_.count()));
     offset += 4;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(symbol_index_));
@@ -141,9 +142,9 @@ std::unique_ptr<Message> TradeMessage::clone() const {
 void TradeMessage::print(std::ostream& out) const {
     out << "TradeMessage{";
     out << "source_time=";
-    out << source_time_;
+    out << source_time_.count();
     out << ", source_time_ns=";
-    out << source_time_ns_;
+    out << source_time_ns_.count();
     out << ", symbol_index=";
     out << symbol_index_;
     out << ", symbol_seq_num=";

@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: types/AskPriceLong.hpp
 #pragma once
 
 #include <bit>
@@ -13,18 +14,18 @@ struct AskPriceLong {
     static constexpr std::size_t size =  4;
     static constexpr std::size_t precision = 4;
     static constexpr double denominator = 10000;
-    using type = std::uint32_t;
+    using type = std::int32_t;
 
     // default constructor
     constexpr AskPriceLong()
      : value{ 0 } {}
 
     // constructor for AskPriceLong field
-    constexpr explicit AskPriceLong(const std::uint32_t value)
+    constexpr explicit AskPriceLong(const std::int32_t value)
      : value{ std::byteswap(value) } {}
 
     // get underlying integer of AskPriceLong field
-    [[nodiscard]] std::uint32_t integer() const {
+    [[nodiscard]] std::int32_t integer() const {
         return std::byteswap(value);
     }
 
@@ -34,6 +35,6 @@ struct AskPriceLong {
     }
 
   protected:
-    std::uint32_t value;
+    std::int32_t value;
 };
 }

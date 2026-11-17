@@ -1,3 +1,4 @@
+// Nyse.AmexOptions.DeepFeed.Xdp.v1.3.a: program/Settings.hpp
 #pragma once
 
 #include <filesystem>

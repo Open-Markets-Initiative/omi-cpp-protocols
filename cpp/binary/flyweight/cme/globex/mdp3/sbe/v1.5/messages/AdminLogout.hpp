@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.5: messages/AdminLogout.hpp
 #pragma once
 
 #include <cstddef>
@@ -23,11 +24,11 @@ class AdminLogout {
     std::span<const std::byte> bytes() const noexcept { return bytes_; }
 
     // the bytes every AdminLogout has, which a reader checks before it views them
-    static constexpr std::size_t minimum_size = 100;
-    static constexpr std::size_t fixed_size = 100;
-    std::size_t encoded_size() const { return 100; }
+    static constexpr std::size_t minimum_size = 180;
+    static constexpr std::size_t fixed_size = 180;
+    std::size_t encoded_size() const { return 180; }
 
-    std::string_view text() const { return view::text(at(0), 100, '\0'); }
+    std::string_view text() const { return view::text(at(0), 180, '\0'); }
 
     void print(std::ostream& out) const {
         out << "AdminLogout{";

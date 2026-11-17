@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.Qbbo.Itch.v2.1: enums/EventCode.hpp
 #pragma once
 
 #include <cstdint>

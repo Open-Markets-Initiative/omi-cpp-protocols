@@ -1,3 +1,4 @@
+// Iex.IexEquities.Tops.IexTp.v1.56: main.cpp
 // Iex.IexEquities.Tops.IexTp.v1.56 benchmark, through the Modern iterator: every value it reads from every message of the simulated
 // sequence (tests/simulated/iex/iexequities/tops/iextp/v1.56.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -62,7 +63,6 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest(message->size.get());
             checksum += bench::digest(message->price.integer());
             checksum += bench::digest(message->trade_id.get());
-            checksum += bench::digest(message->reserved_4.get());
         } else if (iterator.message_type == protocol::TradeBreakMessage::message_type) {
             [[maybe_unused]] const auto* message = protocol::TradeBreakMessage::parse(iterator.message);
             checksum += bench::digest(message->sale_condition_flags.TradeThroughExempt());
@@ -74,7 +74,6 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest(message->size.get());
             checksum += bench::digest(message->price.integer());
             checksum += bench::digest(message->trade_id.get());
-            checksum += bench::digest(message->reserved_4.get());
         }
     }
 

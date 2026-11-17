@@ -107,7 +107,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".messagedata.ordermodifymessage.price"] = canonical::scaled((*message).price().mantissa(), (*message).price().exponent());
         } else if (const auto* message = dynamic_cast<const protocol::OrderDeleteMessage*>(each.message())) {
             values[entry + ".messagedata"] = "packet.messages.message.messagedata.orderdeletemessage";
-            values[entry + ".messagedata.orderdeletemessage.reserved1"] = canonical::text(canonical::character((*message).reserved_1()));
             values[entry + ".messagedata.orderdeletemessage.timestamp"] = canonical::number((*message).timestamp());
             values[entry + ".messagedata.orderdeletemessage.symbol"] = canonical::text(std::string((*message).symbol()), ' ', false);
             values[entry + ".messagedata.orderdeletemessage.orderidreference"] = canonical::number((*message).order_id_reference());
@@ -150,7 +149,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".messagedata.tradebreakmessage.tradeid"] = canonical::number((*message).trade_id());
         } else if (const auto* message = dynamic_cast<const protocol::ClearBookMessage*>(each.message())) {
             values[entry + ".messagedata"] = "packet.messages.message.messagedata.clearbookmessage";
-            values[entry + ".messagedata.clearbookmessage.reserved1"] = canonical::text(canonical::character((*message).reserved_1()));
             values[entry + ".messagedata.clearbookmessage.timestamp"] = canonical::number((*message).timestamp());
             values[entry + ".messagedata.clearbookmessage.symbol"] = canonical::text(std::string((*message).symbol()), ' ', false);
         }

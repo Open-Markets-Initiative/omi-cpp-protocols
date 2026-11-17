@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.DeepFeed.Pillar.v1.2.m: enums/TradeCond1.hpp
 #pragma once
 
 #include <cstdint>

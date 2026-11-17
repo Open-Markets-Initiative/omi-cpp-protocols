@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.DeepFeed.Pillar.v1.2.m: messages/details/ComplexSeriesIndexMappingMessageReader.hpp
 #pragma once
 
 #include "ComplexSeriesIndexMappingMessageWriter.hpp"

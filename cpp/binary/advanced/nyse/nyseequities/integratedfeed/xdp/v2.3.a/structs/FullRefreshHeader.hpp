@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeed.Xdp.v2.3.a: structs/FullRefreshHeader.hpp
 #pragma once
 
 #include <cstddef>

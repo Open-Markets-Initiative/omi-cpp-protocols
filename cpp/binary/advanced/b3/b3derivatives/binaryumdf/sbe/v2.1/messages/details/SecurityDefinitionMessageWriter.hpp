@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.1: messages/details/SecurityDefinitionMessageWriter.hpp
 #pragma once
 
 #include "../SecurityDefinitionMessage.hpp"

@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.3: messages/TheoreticalOpeningPrice16Message.hpp
 #pragma once
 
 #include <cstddef>
@@ -8,7 +9,7 @@
 #include "../types/MdUpdateAction.hpp"
 #include "../types/TradeDate.hpp"
 #include "../types/MdCorporateOffsetPriceOptional.hpp"
-#include "../types/MdEntrySizeQuantityOptional.hpp"
+#include "../types/MdEntrySizeOptional.hpp"
 #include "../types/MdEntryTimestamp.hpp"
 #include "../types/RptSeq.hpp"
 
@@ -27,7 +28,7 @@ struct theoretical_opening_price_16_message {
         sbe_binaryumdf::md_update_action md_update_action;
         sbe_binaryumdf::trade_date trade_date;
         sbe_binaryumdf::md_corporate_offset_price_optional md_corporate_offset_price_optional;
-        sbe_binaryumdf::md_entry_size_quantity_optional md_entry_size_quantity_optional;
+        sbe_binaryumdf::md_entry_size_optional md_entry_size_optional;
         sbe_binaryumdf::md_entry_timestamp md_entry_timestamp;
         sbe_binaryumdf::rpt_seq rpt_seq;
     };
@@ -55,7 +56,7 @@ static_assert(offsetof(theoretical_opening_price_16_message::fields_type, match_
 static_assert(offsetof(theoretical_opening_price_16_message::fields_type, md_update_action) == 9, "unexpected offset of theoretical_opening_price_16_message::fields_type::md_update_action");
 static_assert(offsetof(theoretical_opening_price_16_message::fields_type, trade_date) == 10, "unexpected offset of theoretical_opening_price_16_message::fields_type::trade_date");
 static_assert(offsetof(theoretical_opening_price_16_message::fields_type, md_corporate_offset_price_optional) == 12, "unexpected offset of theoretical_opening_price_16_message::fields_type::md_corporate_offset_price_optional");
-static_assert(offsetof(theoretical_opening_price_16_message::fields_type, md_entry_size_quantity_optional) == 20, "unexpected offset of theoretical_opening_price_16_message::fields_type::md_entry_size_quantity_optional");
+static_assert(offsetof(theoretical_opening_price_16_message::fields_type, md_entry_size_optional) == 20, "unexpected offset of theoretical_opening_price_16_message::fields_type::md_entry_size_optional");
 static_assert(offsetof(theoretical_opening_price_16_message::fields_type, md_entry_timestamp) == 28, "unexpected offset of theoretical_opening_price_16_message::fields_type::md_entry_timestamp");
 static_assert(offsetof(theoretical_opening_price_16_message::fields_type, rpt_seq) == 36, "unexpected offset of theoretical_opening_price_16_message::fields_type::rpt_seq");
 static_assert(sizeof(theoretical_opening_price_16_message::fields_type) == 40, "unexpected sizeof theoretical_opening_price_16_message::fields_type");

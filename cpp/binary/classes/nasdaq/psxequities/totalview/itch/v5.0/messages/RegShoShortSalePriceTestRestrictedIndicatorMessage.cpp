@@ -1,3 +1,4 @@
+// Nasdaq.PsxEquities.TotalView.Itch.v5.0: messages/RegShoShortSalePriceTestRestrictedIndicatorMessage.cpp
 #include "RegShoShortSalePriceTestRestrictedIndicatorMessage.hpp"
 
 #include "../common/Print.hpp"

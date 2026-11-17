@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1: messages/OrderMassActionRequestMessage.hpp
 #pragma once
 
 #include <cstddef>
@@ -40,7 +41,7 @@ class OrderMassActionRequestMessage {
 
     std::optional<MassActionScope> mass_action_scope() const { return wire::nullable_enum<MassActionScope>(wire::read_u8(at(19)), static_cast<std::uint8_t>(0ULL)); }
 
-    std::uint64_t clordid() const { return wire::read_u64_le(at(20)); }
+    std::uint64_t cl_ord_id() const { return wire::read_u64_le(at(20)); }
 
     std::optional<MassCancelRestatementReason> mass_cancel_restatement_reason() const { return wire::nullable_enum<MassCancelRestatementReason>(wire::read_u8(at(28)), static_cast<std::uint8_t>(0ULL)); }
 
@@ -64,8 +65,8 @@ class OrderMassActionRequestMessage {
         out << mass_action_type();
         out << ", mass_action_scope=";
         print::optional(out, mass_action_scope());
-        out << ", clordid=";
-        out << clordid();
+        out << ", cl_ord_id=";
+        out << cl_ord_id();
         out << ", mass_cancel_restatement_reason=";
         print::optional(out, mass_cancel_restatement_reason());
         out << ", ordtagid=";

@@ -1,3 +1,4 @@
+// Nyse.TexasEquities.IntegratedFeed.Pillar.v2.5.g: messages/Definitions.hpp
 #pragma once
 
 #include "../structs/PacketHeader.hpp"

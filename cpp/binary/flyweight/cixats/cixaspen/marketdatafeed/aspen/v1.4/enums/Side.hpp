@@ -1,3 +1,4 @@
+// CixAts.CixAspen.MarketDataFeed.Aspen.v1.4: enums/Side.hpp
 #pragma once
 
 #include <cstdint>

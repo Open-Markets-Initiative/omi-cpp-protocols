@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeed.Xdp.v2.1.g: types/FreezeStatus.hpp
 #pragma once
 
 #include <cstddef>

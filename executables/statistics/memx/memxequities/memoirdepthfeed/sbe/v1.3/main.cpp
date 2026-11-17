@@ -1,3 +1,4 @@
+// Memx.MemxEquities.MemoirDepthFeed.Sbe.v1.3: main.cpp
 #include "Settings.hpp"
 
 int main(const int argc, char** argv) {

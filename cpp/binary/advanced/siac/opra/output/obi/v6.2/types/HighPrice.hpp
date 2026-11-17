@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: types/HighPrice.hpp
 #pragma once
 
 #include <cstddef>

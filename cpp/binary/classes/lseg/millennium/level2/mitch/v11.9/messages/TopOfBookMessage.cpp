@@ -1,3 +1,4 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/TopOfBookMessage.cpp
 #include "TopOfBookMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,23 +7,23 @@
 
 namespace lseg::millennium::level2::mitch::v11_9 {
 
-TopOfBookMessage::TopOfBookMessage(std::uint32_t nanosecond, std::uint32_t instrument_id, std::int64_t buy_limit_price, std::uint32_t buy_limit_size, std::int64_t sell_limit_price, std::uint32_t sell_limit_size)
+TopOfBookMessage::TopOfBookMessage(std::chrono::nanoseconds nanosecond, std::uint32_t instrument_id, Decimal buy_limit_price, std::uint32_t buy_limit_size, Decimal sell_limit_price, std::uint32_t sell_limit_size)
   : nanosecond_(nanosecond), instrument_id_(instrument_id), buy_limit_price_(buy_limit_price), buy_limit_size_(buy_limit_size), sell_limit_price_(sell_limit_price), sell_limit_size_(sell_limit_size) {}
 
-std::uint32_t TopOfBookMessage::nanosecond() const { return nanosecond_; }
-void TopOfBookMessage::set_nanosecond(std::uint32_t value) { nanosecond_ = value; }
+std::chrono::nanoseconds TopOfBookMessage::nanosecond() const { return nanosecond_; }
+void TopOfBookMessage::set_nanosecond(std::chrono::nanoseconds value) { nanosecond_ = value; }
 
 std::uint32_t TopOfBookMessage::instrument_id() const { return instrument_id_; }
 void TopOfBookMessage::set_instrument_id(std::uint32_t value) { instrument_id_ = value; }
 
-std::int64_t TopOfBookMessage::buy_limit_price() const { return buy_limit_price_; }
-void TopOfBookMessage::set_buy_limit_price(std::int64_t value) { buy_limit_price_ = value; }
+Decimal TopOfBookMessage::buy_limit_price() const { return buy_limit_price_; }
+void TopOfBookMessage::set_buy_limit_price(Decimal value) { buy_limit_price_ = value; }
 
 std::uint32_t TopOfBookMessage::buy_limit_size() const { return buy_limit_size_; }
 void TopOfBookMessage::set_buy_limit_size(std::uint32_t value) { buy_limit_size_ = value; }
 
-std::int64_t TopOfBookMessage::sell_limit_price() const { return sell_limit_price_; }
-void TopOfBookMessage::set_sell_limit_price(std::int64_t value) { sell_limit_price_ = value; }
+Decimal TopOfBookMessage::sell_limit_price() const { return sell_limit_price_; }
+void TopOfBookMessage::set_sell_limit_price(Decimal value) { sell_limit_price_ = value; }
 
 std::uint32_t TopOfBookMessage::sell_limit_size() const { return sell_limit_size_; }
 void TopOfBookMessage::set_sell_limit_size(std::uint32_t value) { sell_limit_size_ = value; }
@@ -35,19 +36,19 @@ std::size_t TopOfBookMessage::decode(const std::byte* data, std::size_t length) 
     std::size_t offset = 0;
     wire::require("TopOfBookMessage", wire_size, length);
 
-    nanosecond_ = wire::read_u32_le(data + offset);
+    nanosecond_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     instrument_id_ = wire::read_u32_le(data + offset);
     offset += 4;
 
-    buy_limit_price_ = wire::read_i64_le(data + offset);
+    buy_limit_price_ = Decimal(static_cast<std::int64_t>(wire::read_i64_le(data + offset)), -8);
     offset += 8;
 
     buy_limit_size_ = wire::read_u32_le(data + offset);
     offset += 4;
 
-    sell_limit_price_ = wire::read_i64_le(data + offset);
+    sell_limit_price_ = Decimal(static_cast<std::int64_t>(wire::read_i64_le(data + offset)), -8);
     offset += 8;
 
     sell_limit_size_ = wire::read_u32_le(data + offset);
@@ -60,19 +61,19 @@ std::size_t TopOfBookMessage::encode(std::byte* data, std::size_t capacity) cons
     std::size_t offset = 0;
     wire::require_capacity("TopOfBookMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(nanosecond_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(nanosecond_.count()));
     offset += 4;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(instrument_id_));
     offset += 4;
 
-    wire::write_i64_le(data + offset, static_cast<std::int64_t>(buy_limit_price_));
+    wire::write_i64_le(data + offset, static_cast<std::int64_t>(buy_limit_price_.mantissa()));
     offset += 8;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(buy_limit_size_));
     offset += 4;
 
-    wire::write_i64_le(data + offset, static_cast<std::int64_t>(sell_limit_price_));
+    wire::write_i64_le(data + offset, static_cast<std::int64_t>(sell_limit_price_.mantissa()));
     offset += 8;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(sell_limit_size_));
@@ -96,7 +97,7 @@ std::unique_ptr<Message> TopOfBookMessage::clone() const {
 void TopOfBookMessage::print(std::ostream& out) const {
     out << "TopOfBookMessage{";
     out << "nanosecond=";
-    out << nanosecond_;
+    out << nanosecond_.count();
     out << ", instrument_id=";
     out << instrument_id_;
     out << ", buy_limit_price=";

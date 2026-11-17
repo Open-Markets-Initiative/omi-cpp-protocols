@@ -1,3 +1,4 @@
+// Bse.BseIndia.Eobi.Fbe.v1.4: enums/TradingSessionId.hpp
 #pragma once
 
 #include <cstdint>

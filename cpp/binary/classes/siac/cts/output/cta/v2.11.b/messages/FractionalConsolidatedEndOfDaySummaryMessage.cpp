@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: messages/FractionalConsolidatedEndOfDaySummaryMessage.cpp
 #include "FractionalConsolidatedEndOfDaySummaryMessage.hpp"
 
 #include "../common/Print.hpp"

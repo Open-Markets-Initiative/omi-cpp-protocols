@@ -1,3 +1,4 @@
+// Nyse.TexasEquities.IntegratedFeed.Pillar.v2.5.g: messages/SequenceNumberResetMessage.cpp
 #include "SequenceNumberResetMessage.hpp"
 
 #include "../common/Print.hpp"

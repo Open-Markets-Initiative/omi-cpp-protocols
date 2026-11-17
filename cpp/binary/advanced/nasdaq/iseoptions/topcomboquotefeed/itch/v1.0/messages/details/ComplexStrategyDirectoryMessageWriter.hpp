@@ -1,3 +1,4 @@
+// Nasdaq.IseOptions.TopComboQuoteFeed.Itch.v1.0: messages/details/ComplexStrategyDirectoryMessageWriter.hpp
 #pragma once
 
 #include "../ComplexStrategyDirectoryMessage.hpp"

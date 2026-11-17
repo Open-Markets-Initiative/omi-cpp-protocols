@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.3: messages/ExecutionSummary55Message.cpp
 #include "ExecutionSummary55Message.hpp"
 
 #include "../common/Print.hpp"
@@ -6,7 +7,7 @@
 
 namespace b3::b3derivatives::binaryumdf::sbe::v2_3 {
 
-ExecutionSummary55Message::ExecutionSummary55Message(std::uint64_t security_id, const std::array<std::byte, 2>& offset_8_padding_2, AggressorSide aggressor_side, const std::array<std::byte, 1>& offset_11_padding_1, Decimal last_px, std::int64_t fill_qty, std::optional<std::int64_t> traded_hidden_qty, std::optional<std::int64_t> cxl_qty, std::optional<std::chrono::nanoseconds> aggressor_time, std::optional<std::uint32_t> rpt_seq, std::optional<std::uint64_t> transact_time)
+ExecutionSummary55Message::ExecutionSummary55Message(std::uint64_t security_id, const std::array<std::byte, 2>& offset_8_padding_2, AggressorSide aggressor_side, const std::array<std::byte, 1>& offset_11_padding_1, Decimal last_px, std::int64_t fill_qty, std::optional<std::int64_t> traded_hidden_qty, std::optional<std::int64_t> cxl_qty, std::optional<std::chrono::nanoseconds> aggressor_time, std::optional<std::uint32_t> rpt_seq, std::optional<std::chrono::nanoseconds> transact_time)
   : security_id_(security_id), offset_8_padding_2_(offset_8_padding_2), aggressor_side_(aggressor_side), offset_11_padding_1_(offset_11_padding_1), last_px_(last_px), fill_qty_(fill_qty), traded_hidden_qty_(traded_hidden_qty), cxl_qty_(cxl_qty), aggressor_time_(aggressor_time), rpt_seq_(rpt_seq), transact_time_(transact_time) {}
 
 std::uint64_t ExecutionSummary55Message::security_id() const { return security_id_; }
@@ -41,8 +42,8 @@ void ExecutionSummary55Message::set_aggressor_time(std::optional<std::chrono::na
 std::optional<std::uint32_t> ExecutionSummary55Message::rpt_seq() const { return rpt_seq_; }
 void ExecutionSummary55Message::set_rpt_seq(std::optional<std::uint32_t> value) { rpt_seq_ = value; }
 
-std::optional<std::uint64_t> ExecutionSummary55Message::transact_time() const { return transact_time_; }
-void ExecutionSummary55Message::set_transact_time(std::optional<std::uint64_t> value) { transact_time_ = value; }
+std::optional<std::chrono::nanoseconds> ExecutionSummary55Message::transact_time() const { return transact_time_; }
+void ExecutionSummary55Message::set_transact_time(std::optional<std::chrono::nanoseconds> value) { transact_time_ = value; }
 
 MessageCode ExecutionSummary55Message::type() const { return message_type; }
 
@@ -82,7 +83,7 @@ std::size_t ExecutionSummary55Message::decode(const std::byte* data, std::size_t
     rpt_seq_ = wire::nullable(wire::read_u32_le(data + offset), static_cast<std::uint32_t>(0ULL));
     offset += 4;
 
-    transact_time_ = wire::nullable(wire::read_u64_le(data + offset), static_cast<std::uint64_t>(0ULL));
+    transact_time_ = wire::nullable_duration<std::chrono::nanoseconds>(wire::read_u64_le(data + offset), static_cast<std::uint64_t>(0ULL));
     offset += 8;
 
     return offset;
@@ -122,7 +123,7 @@ std::size_t ExecutionSummary55Message::encode(std::byte* data, std::size_t capac
     wire::write_u32_le(data + offset, rpt_seq_.value_or(static_cast<std::uint32_t>(0ULL)));
     offset += 4;
 
-    wire::write_u64_le(data + offset, transact_time_.value_or(static_cast<std::uint64_t>(0ULL)));
+    wire::write_u64_le(data + offset, transact_time_ ? static_cast<std::uint64_t>(transact_time_->count()) : static_cast<std::uint64_t>(0ULL));
     offset += 8;
 
     return offset;
@@ -163,7 +164,7 @@ void ExecutionSummary55Message::print(std::ostream& out) const {
     out << ", rpt_seq=";
     print::optional(out, rpt_seq_);
     out << ", transact_time=";
-    print::optional(out, transact_time_);
+    print::optional_duration(out, transact_time_);
     out << '}';
 }
 

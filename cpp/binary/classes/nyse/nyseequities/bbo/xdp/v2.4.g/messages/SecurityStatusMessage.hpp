@@ -1,6 +1,8 @@
+// Nyse.NyseEquities.Bbo.Xdp.v2.4.g: messages/SecurityStatusMessage.hpp
 #pragma once
 
 #include <array>
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
@@ -27,16 +29,16 @@ class SecurityStatusMessage : public Message {
     static constexpr std::size_t wire_size = 42;
 
     SecurityStatusMessage() = default;
-    SecurityStatusMessage(std::uint32_t source_time, std::uint32_t source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, SecurityStatus security_status, HaltCondition halt_condition, const std::array<std::byte, 4>& reserved_4, std::uint32_t price_1, std::uint32_t price_2, SsrTriggeringExchangeId ssr_triggering_exchange_id, std::uint32_t ssr_triggering_volume, std::optional<std::uint32_t> time, char ssr_state, char market_state, char session_state);
+    SecurityStatusMessage(std::chrono::seconds source_time, std::chrono::nanoseconds source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, SecurityStatus security_status, HaltCondition halt_condition, const std::array<std::byte, 4>& reserved_4, std::uint32_t price_1, std::uint32_t price_2, SsrTriggeringExchangeId ssr_triggering_exchange_id, std::uint32_t ssr_triggering_volume, std::optional<std::uint32_t> time, char ssr_state, char market_state, char session_state);
 
     // Source Time: The time when this msg was generated in the order book, in seconds since
     // Jan 1, 1970 00:00:00 UTC.
-    std::uint32_t source_time() const;
-    void set_source_time(std::uint32_t value);
+    std::chrono::seconds source_time() const;
+    void set_source_time(std::chrono::seconds value);
 
     // Source Time Ns: The nanosecond offset from the SourceTime
-    std::uint32_t source_time_ns() const;
-    void set_source_time_ns(std::uint32_t value);
+    std::chrono::nanoseconds source_time_ns() const;
+    void set_source_time_ns(std::chrono::nanoseconds value);
 
     // Symbol Index: The unique ID of this symbol for all products within this market. This ID
     // cannot be used to cross reference a security between markets.
@@ -112,8 +114,8 @@ class SecurityStatusMessage : public Message {
     bool operator!=(const SecurityStatusMessage& other) const;
 
   private:
-    std::uint32_t source_time_{};
-    std::uint32_t source_time_ns_{};
+    std::chrono::seconds source_time_{};
+    std::chrono::nanoseconds source_time_ns_{};
     std::uint32_t symbol_index_{};
     std::uint32_t symbol_seq_num_{};
     SecurityStatus security_status_{};

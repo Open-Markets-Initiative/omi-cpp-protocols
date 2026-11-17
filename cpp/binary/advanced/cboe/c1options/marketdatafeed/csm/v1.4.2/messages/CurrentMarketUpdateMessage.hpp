@@ -1,3 +1,4 @@
+// Cboe.C1Options.MarketDataFeed.Csm.v1.4.2: messages/CurrentMarketUpdateMessage.hpp
 #pragma once
 
 #include <cstddef>
@@ -40,7 +41,7 @@ struct current_market_update_message {
         csm_marketdatafeed::no_entries no_entries;
     };
 
-    csm_marketdatafeed::message_header header = {{}, template_id::enum_type::current_market_update_message, {}, {}};
+    csm_marketdatafeed::message_header header = {std::uint16_t(sizeof(csm_marketdatafeed::message_header) + sizeof(fields_type)), template_id::enum_type::current_market_update_message, {}, {}};
 
     static constexpr std::size_t max_message_size = 1280;
     static constexpr std::size_t tail_capacity = max_message_size - sizeof(csm_marketdatafeed::message_header) - sizeof(fields_type);
@@ -50,7 +51,12 @@ struct current_market_update_message {
 
     // tail buffer accessors
     const std::byte* tail_begin() const { return tail; }
-    const std::byte* tail_end() const { return tail + tail_capacity; }
+    const std::byte* tail_end() const {
+        auto sz = header.message_length.get().value();
+        return sz == sizeof(csm_marketdatafeed::message_header) + sizeof(fields_type)
+            ? tail + tail_capacity
+            : tail + (sz - sizeof(csm_marketdatafeed::message_header) - sizeof(fields_type));
+    }
 
     // sequential access to variable-length regions
     external_count_iterator<current_market_update_message_md_entry_entry> md_entry() const {
@@ -80,3 +86,6 @@ static_assert(sizeof(current_market_update_message::fields_type) == 11, "unexpec
 
 #pragma pack(pop)
 }
+
+#include "details/CurrentMarketUpdateMessageWriter.hpp"
+#include "details/CurrentMarketUpdateMessageReader.hpp"

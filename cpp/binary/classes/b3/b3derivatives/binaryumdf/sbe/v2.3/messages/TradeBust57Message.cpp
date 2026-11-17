@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.3: messages/TradeBust57Message.cpp
 #include "TradeBust57Message.hpp"
 
 #include "../common/Print.hpp"
@@ -6,8 +7,8 @@
 
 namespace b3::b3derivatives::binaryumdf::sbe::v2_3 {
 
-TradeBust57Message::TradeBust57Message(std::uint64_t security_id, const MatchEventIndicator& match_event_indicator, TradingSessionId trading_session_id, const std::array<std::byte, 2>& offset_10_padding_2, Decimal md_future_price, std::int64_t md_entry_size_quantity, std::uint32_t trade_id, std::uint16_t trade_date, const std::array<std::byte, 2>& offset_34_padding_2, std::optional<std::uint64_t> transact_time, std::optional<std::uint32_t> rpt_seq)
-  : security_id_(security_id), match_event_indicator_(match_event_indicator), trading_session_id_(trading_session_id), offset_10_padding_2_(offset_10_padding_2), md_future_price_(md_future_price), md_entry_size_quantity_(md_entry_size_quantity), trade_id_(trade_id), trade_date_(trade_date), offset_34_padding_2_(offset_34_padding_2), transact_time_(transact_time), rpt_seq_(rpt_seq) {}
+TradeBust57Message::TradeBust57Message(std::uint64_t security_id, const MatchEventIndicator& match_event_indicator, TradingSessionId trading_session_id, const std::array<std::byte, 2>& offset_10_padding_2, Decimal md_future_price, std::int64_t md_entry_size, std::uint32_t trade_id, std::uint16_t trade_date, const std::array<std::byte, 2>& offset_34_padding_2, std::optional<std::chrono::nanoseconds> transact_time, std::optional<std::uint32_t> rpt_seq)
+  : security_id_(security_id), match_event_indicator_(match_event_indicator), trading_session_id_(trading_session_id), offset_10_padding_2_(offset_10_padding_2), md_future_price_(md_future_price), md_entry_size_(md_entry_size), trade_id_(trade_id), trade_date_(trade_date), offset_34_padding_2_(offset_34_padding_2), transact_time_(transact_time), rpt_seq_(rpt_seq) {}
 
 std::uint64_t TradeBust57Message::security_id() const { return security_id_; }
 void TradeBust57Message::set_security_id(std::uint64_t value) { security_id_ = value; }
@@ -26,8 +27,8 @@ void TradeBust57Message::set_offset_10_padding_2(const std::array<std::byte, 2>&
 Decimal TradeBust57Message::md_future_price() const { return md_future_price_; }
 void TradeBust57Message::set_md_future_price(Decimal value) { md_future_price_ = value; }
 
-std::int64_t TradeBust57Message::md_entry_size_quantity() const { return md_entry_size_quantity_; }
-void TradeBust57Message::set_md_entry_size_quantity(std::int64_t value) { md_entry_size_quantity_ = value; }
+std::int64_t TradeBust57Message::md_entry_size() const { return md_entry_size_; }
+void TradeBust57Message::set_md_entry_size(std::int64_t value) { md_entry_size_ = value; }
 
 std::uint32_t TradeBust57Message::trade_id() const { return trade_id_; }
 void TradeBust57Message::set_trade_id(std::uint32_t value) { trade_id_ = value; }
@@ -39,8 +40,8 @@ const std::array<std::byte, 2>& TradeBust57Message::offset_34_padding_2() const 
 std::array<std::byte, 2>& TradeBust57Message::offset_34_padding_2() { return offset_34_padding_2_; }
 void TradeBust57Message::set_offset_34_padding_2(const std::array<std::byte, 2>& value) { offset_34_padding_2_ = value; }
 
-std::optional<std::uint64_t> TradeBust57Message::transact_time() const { return transact_time_; }
-void TradeBust57Message::set_transact_time(std::optional<std::uint64_t> value) { transact_time_ = value; }
+std::optional<std::chrono::nanoseconds> TradeBust57Message::transact_time() const { return transact_time_; }
+void TradeBust57Message::set_transact_time(std::optional<std::chrono::nanoseconds> value) { transact_time_ = value; }
 
 std::optional<std::uint32_t> TradeBust57Message::rpt_seq() const { return rpt_seq_; }
 void TradeBust57Message::set_rpt_seq(std::optional<std::uint32_t> value) { rpt_seq_ = value; }
@@ -67,7 +68,7 @@ std::size_t TradeBust57Message::decode(const std::byte* data, std::size_t length
     md_future_price_ = Decimal(static_cast<std::int64_t>(wire::read_i64_le(data + offset)), -4);
     offset += 8;
 
-    md_entry_size_quantity_ = wire::read_i64_le(data + offset);
+    md_entry_size_ = wire::read_i64_le(data + offset);
     offset += 8;
 
     trade_id_ = wire::read_u32_le(data + offset);
@@ -79,7 +80,7 @@ std::size_t TradeBust57Message::decode(const std::byte* data, std::size_t length
     wire::read_bytes(data + offset, offset_34_padding_2_.data(), 2);
     offset += 2;
 
-    transact_time_ = wire::nullable(wire::read_u64_le(data + offset), static_cast<std::uint64_t>(0ULL));
+    transact_time_ = wire::nullable_duration<std::chrono::nanoseconds>(wire::read_u64_le(data + offset), static_cast<std::uint64_t>(0ULL));
     offset += 8;
 
     rpt_seq_ = wire::nullable(wire::read_u32_le(data + offset), static_cast<std::uint32_t>(0ULL));
@@ -106,7 +107,7 @@ std::size_t TradeBust57Message::encode(std::byte* data, std::size_t capacity) co
     wire::write_i64_le(data + offset, static_cast<std::int64_t>(md_future_price_.mantissa()));
     offset += 8;
 
-    wire::write_i64_le(data + offset, static_cast<std::int64_t>(md_entry_size_quantity_));
+    wire::write_i64_le(data + offset, static_cast<std::int64_t>(md_entry_size_));
     offset += 8;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(trade_id_));
@@ -118,7 +119,7 @@ std::size_t TradeBust57Message::encode(std::byte* data, std::size_t capacity) co
     wire::write_bytes(data + offset, offset_34_padding_2_.data(), 2);
     offset += 2;
 
-    wire::write_u64_le(data + offset, transact_time_.value_or(static_cast<std::uint64_t>(0ULL)));
+    wire::write_u64_le(data + offset, transact_time_ ? static_cast<std::uint64_t>(transact_time_->count()) : static_cast<std::uint64_t>(0ULL));
     offset += 8;
 
     wire::write_u32_le(data + offset, rpt_seq_.value_or(static_cast<std::uint32_t>(0ULL)));
@@ -151,8 +152,8 @@ void TradeBust57Message::print(std::ostream& out) const {
     print::hex(out, offset_10_padding_2_.data(), offset_10_padding_2_.size());
     out << ", md_future_price=";
     out << md_future_price_;
-    out << ", md_entry_size_quantity=";
-    out << md_entry_size_quantity_;
+    out << ", md_entry_size=";
+    out << md_entry_size_;
     out << ", trade_id=";
     out << trade_id_;
     out << ", trade_date=";
@@ -160,7 +161,7 @@ void TradeBust57Message::print(std::ostream& out) const {
     out << ", offset_34_padding_2=";
     print::hex(out, offset_34_padding_2_.data(), offset_34_padding_2_.size());
     out << ", transact_time=";
-    print::optional(out, transact_time_);
+    print::optional_duration(out, transact_time_);
     out << ", rpt_seq=";
     print::optional(out, rpt_seq_);
     out << '}';
@@ -177,7 +178,7 @@ bool TradeBust57Message::operator==(const TradeBust57Message& other) const {
         && trading_session_id_ == other.trading_session_id_
         && offset_10_padding_2_ == other.offset_10_padding_2_
         && md_future_price_ == other.md_future_price_
-        && md_entry_size_quantity_ == other.md_entry_size_quantity_
+        && md_entry_size_ == other.md_entry_size_
         && trade_id_ == other.trade_id_
         && trade_date_ == other.trade_date_
         && offset_34_padding_2_ == other.offset_34_padding_2_

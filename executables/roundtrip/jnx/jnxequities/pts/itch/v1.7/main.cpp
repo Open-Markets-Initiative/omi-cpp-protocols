@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.7: main.cpp
 // Jnx.JnxEquities.Pts.Itch.v1.7 write and read: every message built with each field it sets, written
 // into a capture through the Classes encoder, then read back - each field set must read as it was written.
 // 

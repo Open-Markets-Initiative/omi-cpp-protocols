@@ -1,3 +1,4 @@
+// Jpx.OseDerivatives.GeniumInet.Itch.v5.0.6: enums/FinancialProduct.cpp
 #include "FinancialProduct.hpp"
 
 namespace jpx::osederivatives::geniuminet::itch::v5_0_6 {

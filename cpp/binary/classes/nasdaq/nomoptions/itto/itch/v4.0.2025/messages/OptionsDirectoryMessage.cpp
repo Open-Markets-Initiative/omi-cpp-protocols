@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: messages/OptionsDirectoryMessage.cpp
 #include "OptionsDirectoryMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -83,7 +84,7 @@ std::size_t OptionsDirectoryMessage::decode(const std::byte* data, std::size_t l
     expiration_date_ = wire::read_u8(data + offset);
     offset += 1;
 
-    explicit_strike_price_ = Decimal(static_cast<std::int64_t>(wire::read_u32_be(data + offset)), -4);
+    explicit_strike_price_ = Decimal(static_cast<std::int64_t>(wire::read_i32_be(data + offset)), -4);
     offset += 4;
 
     option_type_ = static_cast<OptionType>(wire::read_char(data + offset));
@@ -132,7 +133,7 @@ std::size_t OptionsDirectoryMessage::encode(std::byte* data, std::size_t capacit
     wire::write_u8(data + offset, static_cast<std::uint8_t>(expiration_date_));
     offset += 1;
 
-    wire::write_u32_be(data + offset, static_cast<std::uint32_t>(explicit_strike_price_.mantissa()));
+    wire::write_i32_be(data + offset, static_cast<std::int32_t>(explicit_strike_price_.mantissa()));
     offset += 4;
 
     wire::write_char(data + offset, static_cast<char>(option_type_));

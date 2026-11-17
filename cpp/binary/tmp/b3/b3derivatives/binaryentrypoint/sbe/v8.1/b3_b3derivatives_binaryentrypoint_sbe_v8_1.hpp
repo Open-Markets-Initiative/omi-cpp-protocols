@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1: b3_b3derivatives_binaryentrypoint_sbe_v8_1.hpp
 // B3 B3Derivatives BinaryEntryPoint Sbe 8.1 Template Meta Programming
 
 #pragma once
@@ -380,6 +381,33 @@ struct cancel_on_disconnect_type {
     std::underlying_type_t<type> value_;
 };
 
+// Cl Ord Id: clOrdID
+struct cl_ord_id {
+    using type = std::uint64_t;
+    static constexpr std::size_t size = 8;
+    static constexpr std::endian order = std::endian::little;
+
+    constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
+    constexpr operator type() const noexcept { return value(); }
+
+  protected:
+    type value_;
+};
+
+// Cl Ord Id Optional: clOrdID
+struct cl_ord_id_optional {
+    using type = std::uint64_t;
+    static constexpr std::size_t size = 8;
+    static constexpr std::endian order = std::endian::little;
+    static constexpr type no_value = static_cast<type>(0ULL);
+
+    constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
+    constexpr operator type() const noexcept { return value(); }
+
+  protected:
+    type value_;
+};
+
 // Clearing Business Date: clearingBusinessDate
 struct clearing_business_date {
     using type = std::uint16_t;
@@ -480,33 +508,6 @@ struct client_ip_length {
     type value_;
 };
 
-// ClOrdId
-struct clordid {
-    using type = std::uint64_t;
-    static constexpr std::size_t size = 8;
-    static constexpr std::endian order = std::endian::little;
-
-    constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
-    constexpr operator type() const noexcept { return value(); }
-
-  protected:
-    type value_;
-};
-
-// ClOrdId Optional: clOrdID
-struct clordid_optional {
-    using type = std::uint64_t;
-    static constexpr std::size_t size = 8;
-    static constexpr std::endian order = std::endian::little;
-    static constexpr type no_value = static_cast<type>(0ULL);
-
-    constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
-    constexpr operator type() const noexcept { return value(); }
-
-  protected:
-    type value_;
-};
-
 // Cod Timeout Window: codTimeoutWindow
 struct cod_timeout_window {
     using type = std::uint64_t;
@@ -592,6 +593,33 @@ struct credentials_length {
     type value_;
 };
 
+// Cross Id: crossID
+struct cross_id {
+    using type = std::uint64_t;
+    static constexpr std::size_t size = 8;
+    static constexpr std::endian order = std::endian::little;
+
+    constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
+    constexpr operator type() const noexcept { return value(); }
+
+  protected:
+    type value_;
+};
+
+// Cross Id Optional: crossID
+struct cross_id_optional {
+    using type = std::uint64_t;
+    static constexpr std::size_t size = 8;
+    static constexpr std::endian order = std::endian::little;
+    static constexpr type no_value = static_cast<type>(0ULL);
+
+    constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
+    constexpr operator type() const noexcept { return value(); }
+
+  protected:
+    type value_;
+};
+
 // Cross Prioritization: crossPrioritization
 struct cross_prioritization {
     enum class type : std::uint8_t {
@@ -649,33 +677,6 @@ struct crossed_indicator {
     std::underlying_type_t<type> value_;
 };
 
-// CrossId
-struct crossid {
-    using type = std::uint64_t;
-    static constexpr std::size_t size = 8;
-    static constexpr std::endian order = std::endian::little;
-
-    constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
-    constexpr operator type() const noexcept { return value(); }
-
-  protected:
-    type value_;
-};
-
-// CrossId Optional: crossID
-struct crossid_optional {
-    using type = std::uint64_t;
-    static constexpr std::size_t size = 8;
-    static constexpr std::endian order = std::endian::little;
-    static constexpr type no_value = static_cast<type>(0ULL);
-
-    constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
-    constexpr operator type() const noexcept { return value(); }
-
-  protected:
-    type value_;
-};
-
 // Cum Qty: cumQty
 struct cum_qty {
     using type = std::uint64_t;
@@ -708,6 +709,7 @@ struct custodian {
     using type = std::uint32_t;
     static constexpr std::size_t size = 4;
     static constexpr std::endian order = std::endian::little;
+    static constexpr type no_value = static_cast<type>(0ULL);
 
     constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
     constexpr operator type() const noexcept { return value(); }
@@ -721,6 +723,7 @@ struct custody_account {
     using type = std::uint32_t;
     static constexpr std::size_t size = 4;
     static constexpr std::endian order = std::endian::little;
+    static constexpr type no_value = static_cast<type>(0ULL);
 
     constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
     constexpr operator type() const noexcept { return value(); }
@@ -734,6 +737,7 @@ struct custody_allocation_type {
     using type = std::uint32_t;
     static constexpr std::size_t size = 4;
     static constexpr std::endian order = std::endian::little;
+    static constexpr type no_value = static_cast<type>(0ULL);
 
     constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
     constexpr operator type() const noexcept { return value(); }
@@ -821,6 +825,7 @@ struct document {
     using type = std::uint32_t;
     static constexpr std::size_t size = 4;
     static constexpr std::endian order = std::endian::little;
+    static constexpr type no_value = static_cast<type>(0ULL);
 
     constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
     constexpr operator type() const noexcept { return value(); }
@@ -1050,8 +1055,8 @@ struct expire_date {
     type value_;
 };
 
-// Fixed Rate Percentage 8: fixedRate
-struct fixed_rate_percentage_8 {
+// Fixed Rate: fixedRate
+struct fixed_rate {
     using type = std::int64_t;
     static constexpr std::size_t size = 8;
     static constexpr std::endian order = std::endian::little;
@@ -1064,8 +1069,8 @@ struct fixed_rate_percentage_8 {
     type value_;
 };
 
-// Fixed Rate Percentage 8 Optional: fixedRate
-struct fixed_rate_percentage_8_optional {
+// Fixed Rate Optional: fixedRate
+struct fixed_rate_optional {
     using type = std::int64_t;
     static constexpr std::size_t size = 8;
     static constexpr std::endian order = std::endian::little;
@@ -1273,6 +1278,7 @@ struct market_segment_id {
 struct market_segment_id_optional {
     using type = std::uint8_t;
     static constexpr std::size_t size = 1;
+    static constexpr type no_value = static_cast<type>(0ULL);
 
     constexpr type value() const noexcept { return value_; }
     constexpr operator type() const noexcept { return value(); }
@@ -2569,6 +2575,19 @@ struct padding_1 {
     type value_;
 };
 
+// Padding char 2: padding
+struct padding_char_2 {
+    using type = std::string_view;
+    static constexpr std::size_t size = 2;
+    static constexpr char fill = '\0';
+
+    constexpr type value() const noexcept { return tmp::trimmed(value_, fill); }
+    constexpr operator type() const noexcept { return value(); }
+
+  protected:
+    std::array<char, 2> value_;
+};
+
 // Pos Maint Action: posMaintAction
 struct pos_maint_action {
     enum class type : char {
@@ -2729,6 +2748,7 @@ struct prefix {
     using type = std::uint16_t;
     static constexpr std::size_t size = 2;
     static constexpr std::endian order = std::endian::little;
+    static constexpr type no_value = static_cast<type>(0ULL);
 
     constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
     constexpr operator type() const noexcept { return value(); }
@@ -3972,7 +3992,7 @@ struct order_mass_action_report_message_section_1 {
         outbound_business_header,
         mass_action_type,
         mass_action_scope,
-        clordid,
+        cl_ord_id,
         mass_action_report_id,
         transact_time,
         mass_action_response,
@@ -3993,7 +4013,7 @@ struct order_mass_action_report_message_section_1 {
     BINARYENTRYPOINTFIELD(outbound_business_header);
     BINARYENTRYPOINTFIELD(mass_action_type);
     BINARYENTRYPOINTFIELD(mass_action_scope);
-    BINARYENTRYPOINTFIELD(clordid);
+    BINARYENTRYPOINTFIELD(cl_ord_id);
     BINARYENTRYPOINTFIELD(mass_action_report_id);
     BINARYENTRYPOINTFIELD(transact_time);
     BINARYENTRYPOINTFIELD(mass_action_response);
@@ -4054,7 +4074,7 @@ struct order_mass_action_request_message {
         inbound_business_header,
         mass_action_type,
         mass_action_scope,
-        clordid,
+        cl_ord_id,
         mass_cancel_restatement_reason,
         ordtagid,
         side_optional,
@@ -4071,7 +4091,7 @@ struct order_mass_action_request_message {
     BINARYENTRYPOINTFIELD(inbound_business_header);
     BINARYENTRYPOINTFIELD(mass_action_type);
     BINARYENTRYPOINTFIELD(mass_action_scope);
-    BINARYENTRYPOINTFIELD(clordid);
+    BINARYENTRYPOINTFIELD(cl_ord_id);
     BINARYENTRYPOINTFIELD(mass_cancel_restatement_reason);
     BINARYENTRYPOINTFIELD(ordtagid);
     BINARYENTRYPOINTFIELD(side_optional);
@@ -4470,7 +4490,7 @@ struct sides_groups {
 // Bidirectional Business Header: BidirectionalBusinessHeader
 struct bidirectional_business_header {
     static constexpr std::string_view name = "Bidirectional Business Header";
-    static constexpr std::size_t size = 19;
+    static constexpr std::size_t size = 20;
     static constexpr bool is_message = false;
 
     // the types of its members, in wire order
@@ -4480,7 +4500,7 @@ struct bidirectional_business_header {
         sending_time,
         poss_resend,
         market_segment_id_optional,
-        padding>;
+        padding_char_2>;
 
     // the member of the type asked for
     template <typename Field>
@@ -4492,7 +4512,7 @@ struct bidirectional_business_header {
     BINARYENTRYPOINTFIELD(sending_time);
     BINARYENTRYPOINTFIELD(poss_resend);
     BINARYENTRYPOINTFIELD(market_segment_id_optional);
-    BINARYENTRYPOINTFIELD(padding);
+    BINARYENTRYPOINTFIELD(padding_char_2);
 };
 
 static_assert(sizeof(bidirectional_business_header) == bidirectional_business_header::size, "bidirectional_business_header lies over its bytes exactly");
@@ -4500,7 +4520,7 @@ static_assert(sizeof(bidirectional_business_header) == bidirectional_business_he
 // Quote Request Reject Message Section 1
 struct quote_request_reject_message_section_1 {
     static constexpr std::string_view name = "Quote Request Reject Message Section 1";
-    static constexpr std::size_t size = 110;
+    static constexpr std::size_t size = 111;
     static constexpr bool is_message = false;
     // a section of a message no struct lies over: the fields it lays over in turn
     static constexpr bool is_section = true;
@@ -4521,7 +4541,7 @@ struct quote_request_reject_message_section_1 {
         order_qty_optional,
         sender_location,
         executing_trader,
-        fixed_rate_percentage_8_optional,
+        fixed_rate_optional,
         days_to_settlement_optional>;
 
     // the member of the type asked for
@@ -4543,7 +4563,7 @@ struct quote_request_reject_message_section_1 {
     BINARYENTRYPOINTFIELD(order_qty_optional);
     BINARYENTRYPOINTFIELD(sender_location);
     BINARYENTRYPOINTFIELD(executing_trader);
-    BINARYENTRYPOINTFIELD(fixed_rate_percentage_8_optional);
+    BINARYENTRYPOINTFIELD(fixed_rate_optional);
     BINARYENTRYPOINTFIELD(days_to_settlement_optional);
 };
 
@@ -4558,7 +4578,7 @@ struct quote_request_reject_message {
 // Quote Cancel Message Section 1
 struct quote_cancel_message_section_1 {
     static constexpr std::string_view name = "Quote Cancel Message Section 1";
-    static constexpr std::size_t size = 67;
+    static constexpr std::size_t size = 68;
     static constexpr bool is_message = false;
     // a section of a message no struct lies over: the fields it lays over in turn
     static constexpr bool is_section = true;
@@ -4600,7 +4620,7 @@ struct quote_cancel_message {
 // Quote Message Section 1
 struct quote_message_section_1 {
     static constexpr std::string_view name = "Quote Message Section 1";
-    static constexpr std::size_t size = 104;
+    static constexpr std::size_t size = 105;
     static constexpr bool is_message = false;
     // a section of a message no struct lies over: the fields it lays over in turn
     static constexpr bool is_section = true;
@@ -4620,7 +4640,7 @@ struct quote_message_section_1 {
         sender_location,
         entering_trader,
         executing_trader,
-        fixed_rate_percentage_8,
+        fixed_rate,
         execute_underlying_trade,
         days_to_settlement>;
 
@@ -4642,7 +4662,7 @@ struct quote_message_section_1 {
     BINARYENTRYPOINTFIELD(sender_location);
     BINARYENTRYPOINTFIELD(entering_trader);
     BINARYENTRYPOINTFIELD(executing_trader);
-    BINARYENTRYPOINTFIELD(fixed_rate_percentage_8);
+    BINARYENTRYPOINTFIELD(fixed_rate);
     BINARYENTRYPOINTFIELD(execute_underlying_trade);
     BINARYENTRYPOINTFIELD(days_to_settlement);
 };
@@ -4658,7 +4678,7 @@ struct quote_message {
 // Quote Status Report Message Section 1
 struct quote_status_report_message_section_1 {
     static constexpr std::string_view name = "Quote Status Report Message Section 1";
-    static constexpr std::size_t size = 118;
+    static constexpr std::size_t size = 119;
     static constexpr bool is_message = false;
     // a section of a message no struct lies over: the fields it lays over in turn
     static constexpr bool is_section = true;
@@ -4683,7 +4703,7 @@ struct quote_status_report_message_section_1 {
         sender_location,
         entering_trader,
         executing_trader,
-        fixed_rate_percentage_8_optional,
+        fixed_rate_optional,
         execute_underlying_trade,
         days_to_settlement_optional>;
 
@@ -4710,7 +4730,7 @@ struct quote_status_report_message_section_1 {
     BINARYENTRYPOINTFIELD(sender_location);
     BINARYENTRYPOINTFIELD(entering_trader);
     BINARYENTRYPOINTFIELD(executing_trader);
-    BINARYENTRYPOINTFIELD(fixed_rate_percentage_8_optional);
+    BINARYENTRYPOINTFIELD(fixed_rate_optional);
     BINARYENTRYPOINTFIELD(execute_underlying_trade);
     BINARYENTRYPOINTFIELD(days_to_settlement_optional);
 };
@@ -4726,7 +4746,7 @@ struct quote_status_report_message {
 // Quote Request Message Section 1
 struct quote_request_message_section_1 {
     static constexpr std::string_view name = "Quote Request Message Section 1";
-    static constexpr std::size_t size = 107;
+    static constexpr std::size_t size = 108;
     static constexpr bool is_message = false;
     // a section of a message no struct lies over: the fields it lays over in turn
     static constexpr bool is_section = true;
@@ -4747,7 +4767,7 @@ struct quote_request_message_section_1 {
         sender_location,
         entering_trader,
         executing_trader,
-        fixed_rate_percentage_8,
+        fixed_rate,
         days_to_settlement>;
 
     // the member of the type asked for
@@ -4769,7 +4789,7 @@ struct quote_request_message_section_1 {
     BINARYENTRYPOINTFIELD(sender_location);
     BINARYENTRYPOINTFIELD(entering_trader);
     BINARYENTRYPOINTFIELD(executing_trader);
-    BINARYENTRYPOINTFIELD(fixed_rate_percentage_8);
+    BINARYENTRYPOINTFIELD(fixed_rate);
     BINARYENTRYPOINTFIELD(days_to_settlement);
 };
 
@@ -4939,7 +4959,7 @@ struct execution_report_forward_message_section_1 {
         outbound_business_header,
         side,
         ord_status,
-        clordid_optional,
+        cl_ord_id_optional,
         secondary_order_id,
         security_id,
         account,
@@ -4959,7 +4979,7 @@ struct execution_report_forward_message_section_1 {
         offset_118_padding_2,
         secondary_exec_id,
         exec_ref_id,
-        fixed_rate_percentage_8_optional,
+        fixed_rate_optional,
         order_qty,
         trading_session_id,
         trading_session_sub_id,
@@ -4973,7 +4993,7 @@ struct execution_report_forward_message_section_1 {
     BINARYENTRYPOINTFIELD(outbound_business_header);
     BINARYENTRYPOINTFIELD(side);
     BINARYENTRYPOINTFIELD(ord_status);
-    BINARYENTRYPOINTFIELD(clordid_optional);
+    BINARYENTRYPOINTFIELD(cl_ord_id_optional);
     BINARYENTRYPOINTFIELD(secondary_order_id);
     BINARYENTRYPOINTFIELD(security_id);
     BINARYENTRYPOINTFIELD(account);
@@ -4993,7 +5013,7 @@ struct execution_report_forward_message_section_1 {
     BINARYENTRYPOINTFIELD(offset_118_padding_2);
     BINARYENTRYPOINTFIELD(secondary_exec_id);
     BINARYENTRYPOINTFIELD(exec_ref_id);
-    BINARYENTRYPOINTFIELD(fixed_rate_percentage_8_optional);
+    BINARYENTRYPOINTFIELD(fixed_rate_optional);
     BINARYENTRYPOINTFIELD(order_qty);
     BINARYENTRYPOINTFIELD(trading_session_id);
     BINARYENTRYPOINTFIELD(trading_session_sub_id);
@@ -5021,7 +5041,7 @@ struct execution_report_reject_message_section_1 {
         outbound_business_header,
         side,
         cxl_rej_response_to,
-        clordid,
+        cl_ord_id,
         secondary_order_id_optional,
         security_id,
         ord_rej_reason,
@@ -5038,7 +5058,7 @@ struct execution_report_reject_message_section_1 {
         stop_px,
         min_qty,
         max_floor,
-        crossid_optional,
+        cross_id_optional,
         crossed_indicator,
         received_time,
         offset_146_padding_3,
@@ -5054,7 +5074,7 @@ struct execution_report_reject_message_section_1 {
     BINARYENTRYPOINTFIELD(outbound_business_header);
     BINARYENTRYPOINTFIELD(side);
     BINARYENTRYPOINTFIELD(cxl_rej_response_to);
-    BINARYENTRYPOINTFIELD(clordid);
+    BINARYENTRYPOINTFIELD(cl_ord_id);
     BINARYENTRYPOINTFIELD(secondary_order_id_optional);
     BINARYENTRYPOINTFIELD(security_id);
     BINARYENTRYPOINTFIELD(ord_rej_reason);
@@ -5071,7 +5091,7 @@ struct execution_report_reject_message_section_1 {
     BINARYENTRYPOINTFIELD(stop_px);
     BINARYENTRYPOINTFIELD(min_qty);
     BINARYENTRYPOINTFIELD(max_floor);
-    BINARYENTRYPOINTFIELD(crossid_optional);
+    BINARYENTRYPOINTFIELD(cross_id_optional);
     BINARYENTRYPOINTFIELD(crossed_indicator);
     BINARYENTRYPOINTFIELD(received_time);
     BINARYENTRYPOINTFIELD(offset_146_padding_3);
@@ -5101,7 +5121,7 @@ struct execution_report_trade_message_section_1 {
         outbound_business_header,
         side,
         ord_status,
-        clordid_optional,
+        cl_ord_id_optional,
         secondary_order_id,
         security_id,
         account,
@@ -5123,7 +5143,7 @@ struct execution_report_trade_message_section_1 {
         offset_119_padding_1,
         secondary_exec_id,
         exec_ref_id,
-        crossid_optional,
+        cross_id_optional,
         crossed_indicator,
         order_qty,
         trading_session_id,
@@ -5142,7 +5162,7 @@ struct execution_report_trade_message_section_1 {
     BINARYENTRYPOINTFIELD(outbound_business_header);
     BINARYENTRYPOINTFIELD(side);
     BINARYENTRYPOINTFIELD(ord_status);
-    BINARYENTRYPOINTFIELD(clordid_optional);
+    BINARYENTRYPOINTFIELD(cl_ord_id_optional);
     BINARYENTRYPOINTFIELD(secondary_order_id);
     BINARYENTRYPOINTFIELD(security_id);
     BINARYENTRYPOINTFIELD(account);
@@ -5164,7 +5184,7 @@ struct execution_report_trade_message_section_1 {
     BINARYENTRYPOINTFIELD(offset_119_padding_1);
     BINARYENTRYPOINTFIELD(secondary_exec_id);
     BINARYENTRYPOINTFIELD(exec_ref_id);
-    BINARYENTRYPOINTFIELD(crossid_optional);
+    BINARYENTRYPOINTFIELD(cross_id_optional);
     BINARYENTRYPOINTFIELD(crossed_indicator);
     BINARYENTRYPOINTFIELD(order_qty);
     BINARYENTRYPOINTFIELD(trading_session_id);
@@ -5197,7 +5217,7 @@ struct execution_report_cancel_message_section_1 {
         outbound_business_header,
         side,
         ord_status,
-        clordid,
+        cl_ord_id,
         secondary_order_id,
         security_id,
         cum_qty,
@@ -5235,7 +5255,7 @@ struct execution_report_cancel_message_section_1 {
     BINARYENTRYPOINTFIELD(outbound_business_header);
     BINARYENTRYPOINTFIELD(side);
     BINARYENTRYPOINTFIELD(ord_status);
-    BINARYENTRYPOINTFIELD(clordid);
+    BINARYENTRYPOINTFIELD(cl_ord_id);
     BINARYENTRYPOINTFIELD(secondary_order_id);
     BINARYENTRYPOINTFIELD(security_id);
     BINARYENTRYPOINTFIELD(cum_qty);
@@ -5287,7 +5307,7 @@ struct execution_report_modify_message_section_1 {
         outbound_business_header,
         side,
         ord_status,
-        clordid,
+        cl_ord_id,
         secondary_order_id,
         security_id,
         leaves_qty,
@@ -5326,7 +5346,7 @@ struct execution_report_modify_message_section_1 {
     BINARYENTRYPOINTFIELD(outbound_business_header);
     BINARYENTRYPOINTFIELD(side);
     BINARYENTRYPOINTFIELD(ord_status);
-    BINARYENTRYPOINTFIELD(clordid);
+    BINARYENTRYPOINTFIELD(cl_ord_id);
     BINARYENTRYPOINTFIELD(secondary_order_id);
     BINARYENTRYPOINTFIELD(security_id);
     BINARYENTRYPOINTFIELD(leaves_qty);
@@ -5379,7 +5399,7 @@ struct execution_report_new_message_section_1 {
         outbound_business_header,
         side,
         ord_status,
-        clordid,
+        cl_ord_id,
         secondary_order_id,
         security_id,
         order_id,
@@ -5399,7 +5419,7 @@ struct execution_report_new_message_section_1 {
         stop_px,
         min_qty,
         max_floor,
-        crossid_optional,
+        cross_id_optional,
         received_time,
         offset_152_padding_3,
         ordtagid,
@@ -5418,7 +5438,7 @@ struct execution_report_new_message_section_1 {
     BINARYENTRYPOINTFIELD(outbound_business_header);
     BINARYENTRYPOINTFIELD(side);
     BINARYENTRYPOINTFIELD(ord_status);
-    BINARYENTRYPOINTFIELD(clordid);
+    BINARYENTRYPOINTFIELD(cl_ord_id);
     BINARYENTRYPOINTFIELD(secondary_order_id);
     BINARYENTRYPOINTFIELD(security_id);
     BINARYENTRYPOINTFIELD(order_id);
@@ -5438,7 +5458,7 @@ struct execution_report_new_message_section_1 {
     BINARYENTRYPOINTFIELD(stop_px);
     BINARYENTRYPOINTFIELD(min_qty);
     BINARYENTRYPOINTFIELD(max_floor);
-    BINARYENTRYPOINTFIELD(crossid_optional);
+    BINARYENTRYPOINTFIELD(cross_id_optional);
     BINARYENTRYPOINTFIELD(received_time);
     BINARYENTRYPOINTFIELD(offset_152_padding_3);
     BINARYENTRYPOINTFIELD(ordtagid);
@@ -5470,7 +5490,7 @@ struct cross_sides_group {
         offset_1_padding_1,
         account,
         entering_firm_optional,
-        clordid>;
+        cl_ord_id>;
 
     // the member of the type asked for
     template <typename Field>
@@ -5481,7 +5501,7 @@ struct cross_sides_group {
     BINARYENTRYPOINTFIELD(offset_1_padding_1);
     BINARYENTRYPOINTFIELD(account);
     BINARYENTRYPOINTFIELD(entering_firm_optional);
-    BINARYENTRYPOINTFIELD(clordid);
+    BINARYENTRYPOINTFIELD(cl_ord_id);
 };
 
 static_assert(sizeof(cross_sides_group) == cross_sides_group::size, "cross_sides_group lies over its bytes exactly");
@@ -5507,7 +5527,7 @@ struct new_order_cross_message_section_1 {
     using fields = tmp::list<
         inbound_business_header,
         offset_18_padding_2,
-        crossid,
+        cross_id,
         sender_location,
         entering_trader,
         executing_trader_optional,
@@ -5526,7 +5546,7 @@ struct new_order_cross_message_section_1 {
   protected:
     BINARYENTRYPOINTFIELD(inbound_business_header);
     BINARYENTRYPOINTFIELD(offset_18_padding_2);
-    BINARYENTRYPOINTFIELD(crossid);
+    BINARYENTRYPOINTFIELD(cross_id);
     BINARYENTRYPOINTFIELD(sender_location);
     BINARYENTRYPOINTFIELD(entering_trader);
     BINARYENTRYPOINTFIELD(executing_trader_optional);
@@ -5559,7 +5579,7 @@ struct order_cancel_request_message_section_1 {
     using fields = tmp::list<
         inbound_business_header,
         offset_18_padding_2,
-        clordid,
+        cl_ord_id,
         security_id,
         order_id_optional,
         origclordid,
@@ -5577,7 +5597,7 @@ struct order_cancel_request_message_section_1 {
   protected:
     BINARYENTRYPOINTFIELD(inbound_business_header);
     BINARYENTRYPOINTFIELD(offset_18_padding_2);
-    BINARYENTRYPOINTFIELD(clordid);
+    BINARYENTRYPOINTFIELD(cl_ord_id);
     BINARYENTRYPOINTFIELD(security_id);
     BINARYENTRYPOINTFIELD(order_id_optional);
     BINARYENTRYPOINTFIELD(origclordid);
@@ -5634,7 +5654,7 @@ struct order_cancel_replace_request_message_section_1 {
         inbound_business_header,
         ordtagid,
         mm_protection_reset,
-        clordid,
+        cl_ord_id,
         account,
         sender_location,
         entering_trader,
@@ -5666,7 +5686,7 @@ struct order_cancel_replace_request_message_section_1 {
     BINARYENTRYPOINTFIELD(inbound_business_header);
     BINARYENTRYPOINTFIELD(ordtagid);
     BINARYENTRYPOINTFIELD(mm_protection_reset);
-    BINARYENTRYPOINTFIELD(clordid);
+    BINARYENTRYPOINTFIELD(cl_ord_id);
     BINARYENTRYPOINTFIELD(account);
     BINARYENTRYPOINTFIELD(sender_location);
     BINARYENTRYPOINTFIELD(entering_trader);
@@ -5712,7 +5732,7 @@ struct new_order_single_message_section_1 {
         inbound_business_header,
         ordtagid,
         mm_protection_reset,
-        clordid,
+        cl_ord_id,
         account,
         sender_location,
         entering_trader,
@@ -5741,7 +5761,7 @@ struct new_order_single_message_section_1 {
     BINARYENTRYPOINTFIELD(inbound_business_header);
     BINARYENTRYPOINTFIELD(ordtagid);
     BINARYENTRYPOINTFIELD(mm_protection_reset);
-    BINARYENTRYPOINTFIELD(clordid);
+    BINARYENTRYPOINTFIELD(cl_ord_id);
     BINARYENTRYPOINTFIELD(account);
     BINARYENTRYPOINTFIELD(sender_location);
     BINARYENTRYPOINTFIELD(entering_trader);
@@ -5784,7 +5804,7 @@ struct simple_modify_order_message_section_1 {
         inbound_business_header,
         ordtagid,
         mm_protection_reset,
-        clordid,
+        cl_ord_id,
         account,
         sender_location,
         entering_trader,
@@ -5808,7 +5828,7 @@ struct simple_modify_order_message_section_1 {
     BINARYENTRYPOINTFIELD(inbound_business_header);
     BINARYENTRYPOINTFIELD(ordtagid);
     BINARYENTRYPOINTFIELD(mm_protection_reset);
-    BINARYENTRYPOINTFIELD(clordid);
+    BINARYENTRYPOINTFIELD(cl_ord_id);
     BINARYENTRYPOINTFIELD(account);
     BINARYENTRYPOINTFIELD(sender_location);
     BINARYENTRYPOINTFIELD(entering_trader);
@@ -5846,7 +5866,7 @@ struct simple_new_order_message_section_1 {
         inbound_business_header,
         ordtagid,
         mm_protection_reset,
-        clordid,
+        cl_ord_id,
         account,
         sender_location,
         entering_trader,
@@ -5868,7 +5888,7 @@ struct simple_new_order_message_section_1 {
     BINARYENTRYPOINTFIELD(inbound_business_header);
     BINARYENTRYPOINTFIELD(ordtagid);
     BINARYENTRYPOINTFIELD(mm_protection_reset);
-    BINARYENTRYPOINTFIELD(clordid);
+    BINARYENTRYPOINTFIELD(cl_ord_id);
     BINARYENTRYPOINTFIELD(account);
     BINARYENTRYPOINTFIELD(sender_location);
     BINARYENTRYPOINTFIELD(entering_trader);

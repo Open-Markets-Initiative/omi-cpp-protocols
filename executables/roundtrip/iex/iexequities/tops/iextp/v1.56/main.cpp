@@ -1,3 +1,4 @@
+// Iex.IexEquities.Tops.IexTp.v1.56: main.cpp
 // Iex.IexEquities.Tops.IexTp.v1.56 write and read: every message built with each field it sets, written
 // into a capture through the Classes encoder, then read back - each field set must read as it was written.
 // 
@@ -95,7 +96,6 @@ std::unique_ptr<protocol::Message> build_TradeReportMessage() {
     message->set_size(static_cast<std::uint32_t>(4));
     message->set_price(protocol::Decimal(5, -4));
     message->set_trade_id(static_cast<std::uint64_t>(6));
-    message->set_reserved_4(static_cast<std::uint32_t>(7));
     return message;
 }
 
@@ -108,7 +108,6 @@ std::unique_ptr<protocol::Message> build_TradeBreakMessage() {
     message->set_size(static_cast<std::uint32_t>(4));
     message->set_price(protocol::Decimal(5, -4));
     message->set_trade_id(static_cast<std::uint64_t>(6));
-    message->set_reserved_4(static_cast<std::uint32_t>(7));
     return message;
 }
 
@@ -203,10 +202,6 @@ int check_TradeReportMessage(const protocol::Message* read) {
         std::printf("FAIL TradeReportMessage: trade_id does not read as it was written\n");
         ++failures;
     }
-    if (!(message->reserved_4() == static_cast<std::uint32_t>(7))) {
-        std::printf("FAIL TradeReportMessage: reserved_4 does not read as it was written\n");
-        ++failures;
-    }
     return failures;
 }
 
@@ -254,10 +249,6 @@ int check_TradeBreakMessage(const protocol::Message* read) {
     }
     if (!(message->trade_id() == static_cast<std::uint64_t>(6))) {
         std::printf("FAIL TradeBreakMessage: trade_id does not read as it was written\n");
-        ++failures;
-    }
-    if (!(message->reserved_4() == static_cast<std::uint32_t>(7))) {
-        std::printf("FAIL TradeBreakMessage: reserved_4 does not read as it was written\n");
         ++failures;
     }
     return failures;

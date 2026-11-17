@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.6: structs/SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroups.cpp
 #include "SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroups.hpp"
 
 #include "../common/Print.hpp"

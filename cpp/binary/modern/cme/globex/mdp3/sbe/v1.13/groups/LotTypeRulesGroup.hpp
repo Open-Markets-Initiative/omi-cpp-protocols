@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.13: groups/LotTypeRulesGroup.hpp
 #pragma once
 
 #include "../types/LotType.hpp"

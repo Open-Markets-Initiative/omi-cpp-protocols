@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.9: enums/ParticipantOpenHighLowLastIndicator.cpp
 #include "ParticipantOpenHighLowLastIndicator.hpp"
 
 namespace siac::cts::output::cta::v2_9 {

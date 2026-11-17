@@ -1,7 +1,7 @@
+// Siac.Cts.Output.Cta.v2.11.b: messages/ParticipantStartOfDaySummaryMessage.hpp
 #pragma once
 
 #include <cstddef>
-#include "../structs/BlockHeader.hpp"
 #include "../types/ParticipantId.hpp"
 #include "../structs/Timestamp1.hpp"
 #include "../types/MessageId.hpp"
@@ -38,7 +38,6 @@ struct participant_start_of_day_summary_message {
         cta_output::previous_close_price previous_close_price;
     };
 
-    cta_output::block_header header = {{}, {}, {}, {}, {}, {}, {}, {}};
     // Transport framing: message size precedes the SBE header on the wire
     cta_output::message_length message_length;
     cta_output::message_category message_category = cta_output::message_category::enum_type::summary;
@@ -70,7 +69,7 @@ static_assert(offsetof(participant_start_of_day_summary_message::fields_type, su
 static_assert(offsetof(participant_start_of_day_summary_message::fields_type, previous_close_price_date) == 35, "unexpected offset of participant_start_of_day_summary_message::fields_type::previous_close_price_date");
 static_assert(offsetof(participant_start_of_day_summary_message::fields_type, previous_close_price) == 39, "unexpected offset of participant_start_of_day_summary_message::fields_type::previous_close_price");
 static_assert(sizeof(participant_start_of_day_summary_message::fields_type) == 47, "unexpected sizeof participant_start_of_day_summary_message::fields_type");
-static_assert(sizeof(participant_start_of_day_summary_message) == sizeof(cta_output::block_header) + sizeof(cta_output::message_length) + sizeof(cta_output::message_category) + sizeof(cta_output::summary_message_type) + 47, "unexpected sizeof participant_start_of_day_summary_message");
+static_assert(sizeof(participant_start_of_day_summary_message) == sizeof(cta_output::message_length) + sizeof(cta_output::message_category) + sizeof(cta_output::summary_message_type) + 47, "unexpected sizeof participant_start_of_day_summary_message");
 
 #pragma pack(pop)
 }

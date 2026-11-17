@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.5: bitfields/InstAttribValue.hpp
 #pragma once
 
 #include <cstddef>
@@ -94,10 +95,6 @@ class InstAttribValue {
     // Implied Matching Eligibility: ImpliedMatchingEligibility
     bool implied_matching_eligibility() const;
     void set_implied_matching_eligibility(bool value);
-
-    // Reserved 12: 12 reserved bits
-    std::uint16_t reserved_12() const;
-    void set_reserved_12(std::uint16_t value);
 
     // The whole bitfield as its wire integer
     std::uint32_t raw() const;

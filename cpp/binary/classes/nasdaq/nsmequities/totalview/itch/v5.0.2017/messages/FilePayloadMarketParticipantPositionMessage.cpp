@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2017: messages/FilePayloadMarketParticipantPositionMessage.cpp
 #include "FilePayloadMarketParticipantPositionMessage.hpp"
 
 #include "../common/Print.hpp"

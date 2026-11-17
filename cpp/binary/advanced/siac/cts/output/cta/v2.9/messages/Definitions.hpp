@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.9: messages/Definitions.hpp
 #pragma once
 
 #include "../structs/BlockHeader.hpp"
@@ -7,10 +8,10 @@
 #include "../structs/PriorDayTradeDateAndTime.hpp"
 #include "../structs/Timestamp2.hpp"
 
-#include "StartOfEndOfDayMessage.hpp"
-#include "EndOfEndOfDayMessage.hpp"
-#include "StartOfStartOfDayMessage.hpp"
-#include "EndOfStartOfDayMessage.hpp"
+#include "StartOfEndOfDaySummaryMessage.hpp"
+#include "EndOfEndOfDaySummaryMessage.hpp"
+#include "StartOfStartOfDaySummaryMessage.hpp"
+#include "EndOfStartOfDaySummaryMessage.hpp"
 #include "StartOfDayMessage.hpp"
 #include "ResetBlockSequenceNumberMessage.hpp"
 #include "DisasterRecoveryDataCenterActivationMessage.hpp"

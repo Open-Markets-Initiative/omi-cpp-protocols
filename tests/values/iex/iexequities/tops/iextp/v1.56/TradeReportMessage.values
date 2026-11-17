@@ -22,4 +22,3 @@ packet.messages.message[0].messagedata.tradereportmessage.symbol = ZIEXT
 packet.messages.message[0].messagedata.tradereportmessage.size = 100
 packet.messages.message[0].messagedata.tradereportmessage.price = 1
 packet.messages.message[0].messagedata.tradereportmessage.tradeid = 304358
-packet.messages.message[0].messagedata.tradereportmessage.reserved4 = 0

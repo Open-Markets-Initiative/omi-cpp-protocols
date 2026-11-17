@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.TopOfMarket.Mach.v2.5: definitions.hpp
 #pragma once
 
 #include "structs/MachPacketHeader.hpp"
@@ -28,6 +29,10 @@
 #include "messages/RefreshRequestMessage.hpp"
 #include "messages/RefreshResponseMessage.hpp"
 #include "messages/EndOfRefreshNotificationMessage.hpp"
+
+#include "actions/Heartbeat.hpp"
+#include "actions/StartOfSession.hpp"
+#include "actions/EndOfSession.hpp"
 
 #include "iterators/SesmTcpPacketIterator.hpp"
 #include "iterators/MachMessageIterator.hpp"

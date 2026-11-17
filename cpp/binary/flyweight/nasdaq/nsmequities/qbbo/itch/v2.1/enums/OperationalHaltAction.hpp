@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.Qbbo.Itch.v2.1: enums/OperationalHaltAction.hpp
 #pragma once
 
 #include <cstdint>

@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: messages/Format.hpp
 #pragma once
 
 #include <ostream>

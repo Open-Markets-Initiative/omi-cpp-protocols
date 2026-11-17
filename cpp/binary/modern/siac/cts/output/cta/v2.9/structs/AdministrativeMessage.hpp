@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.9: structs/AdministrativeMessage.hpp
 #pragma once
 
 #include "../types/AdministrativeMessageType.hpp"

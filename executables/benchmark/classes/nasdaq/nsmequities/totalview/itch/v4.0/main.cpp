@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v4.0: main.cpp
 // Nasdaq.NsmEquities.TotalView.Itch.v4.0 benchmark, through the Classes Packet: every value it reads from every message of the simulated
 // sequence (tests/simulated/nasdaq/nsmequities/totalview/itch/v4.0.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -58,7 +59,6 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest((*message).nanoseconds());
             checksum += bench::digest((*message).stock());
             checksum += bench::digest((*message).trading_state());
-            checksum += bench::digest((*message).reserved());
             checksum += bench::digest((*message).reason());
         } else if (const auto* message = dynamic_cast<const protocol::PayloadMarketParticipantPositionMessage*>(each.message())) {
             checksum += bench::digest((*message).nanoseconds());

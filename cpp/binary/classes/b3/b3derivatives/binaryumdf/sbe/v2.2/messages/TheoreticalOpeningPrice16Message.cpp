@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.2: messages/TheoreticalOpeningPrice16Message.cpp
 #include "TheoreticalOpeningPrice16Message.hpp"
 
 #include "../common/Print.hpp"
@@ -6,8 +7,8 @@
 
 namespace b3::b3derivatives::binaryumdf::sbe::v2_2 {
 
-TheoreticalOpeningPrice16Message::TheoreticalOpeningPrice16Message(std::uint64_t security_id, const MatchEventIndicator& match_event_indicator, MdUpdateAction md_update_action, std::uint16_t trade_date, std::optional<Decimal> md_corporate_offset_price_optional, std::optional<std::int64_t> md_entry_size_quantity_optional, std::optional<std::chrono::nanoseconds> md_entry_timestamp, std::optional<std::uint32_t> rpt_seq)
-  : security_id_(security_id), match_event_indicator_(match_event_indicator), md_update_action_(md_update_action), trade_date_(trade_date), md_corporate_offset_price_optional_(md_corporate_offset_price_optional), md_entry_size_quantity_optional_(md_entry_size_quantity_optional), md_entry_timestamp_(md_entry_timestamp), rpt_seq_(rpt_seq) {}
+TheoreticalOpeningPrice16Message::TheoreticalOpeningPrice16Message(std::uint64_t security_id, const MatchEventIndicator& match_event_indicator, MdUpdateAction md_update_action, std::uint16_t trade_date, std::optional<Decimal> md_corporate_offset_price_optional, std::optional<std::int64_t> md_entry_size_optional, std::optional<std::chrono::nanoseconds> md_entry_timestamp, std::optional<std::uint32_t> rpt_seq)
+  : security_id_(security_id), match_event_indicator_(match_event_indicator), md_update_action_(md_update_action), trade_date_(trade_date), md_corporate_offset_price_optional_(md_corporate_offset_price_optional), md_entry_size_optional_(md_entry_size_optional), md_entry_timestamp_(md_entry_timestamp), rpt_seq_(rpt_seq) {}
 
 std::uint64_t TheoreticalOpeningPrice16Message::security_id() const { return security_id_; }
 void TheoreticalOpeningPrice16Message::set_security_id(std::uint64_t value) { security_id_ = value; }
@@ -25,8 +26,8 @@ void TheoreticalOpeningPrice16Message::set_trade_date(std::uint16_t value) { tra
 std::optional<Decimal> TheoreticalOpeningPrice16Message::md_corporate_offset_price_optional() const { return md_corporate_offset_price_optional_; }
 void TheoreticalOpeningPrice16Message::set_md_corporate_offset_price_optional(std::optional<Decimal> value) { md_corporate_offset_price_optional_ = value; }
 
-std::optional<std::int64_t> TheoreticalOpeningPrice16Message::md_entry_size_quantity_optional() const { return md_entry_size_quantity_optional_; }
-void TheoreticalOpeningPrice16Message::set_md_entry_size_quantity_optional(std::optional<std::int64_t> value) { md_entry_size_quantity_optional_ = value; }
+std::optional<std::int64_t> TheoreticalOpeningPrice16Message::md_entry_size_optional() const { return md_entry_size_optional_; }
+void TheoreticalOpeningPrice16Message::set_md_entry_size_optional(std::optional<std::int64_t> value) { md_entry_size_optional_ = value; }
 
 std::optional<std::chrono::nanoseconds> TheoreticalOpeningPrice16Message::md_entry_timestamp() const { return md_entry_timestamp_; }
 void TheoreticalOpeningPrice16Message::set_md_entry_timestamp(std::optional<std::chrono::nanoseconds> value) { md_entry_timestamp_ = value; }
@@ -56,7 +57,7 @@ std::size_t TheoreticalOpeningPrice16Message::decode(const std::byte* data, std:
     md_corporate_offset_price_optional_ = wire::nullable_decimal(wire::read_i64_le(data + offset), static_cast<std::int64_t>(-9223372036854775807LL - 1), -4);
     offset += 8;
 
-    md_entry_size_quantity_optional_ = wire::nullable(wire::read_i64_le(data + offset), static_cast<std::int64_t>(-9223372036854775807LL - 1));
+    md_entry_size_optional_ = wire::nullable(wire::read_i64_le(data + offset), static_cast<std::int64_t>(-9223372036854775807LL - 1));
     offset += 8;
 
     md_entry_timestamp_ = wire::nullable_duration<std::chrono::nanoseconds>(wire::read_u64_le(data + offset), static_cast<std::uint64_t>(0ULL));
@@ -86,7 +87,7 @@ std::size_t TheoreticalOpeningPrice16Message::encode(std::byte* data, std::size_
     wire::write_i64_le(data + offset, md_corporate_offset_price_optional_ ? static_cast<std::int64_t>(md_corporate_offset_price_optional_->mantissa()) : static_cast<std::int64_t>(-9223372036854775807LL - 1));
     offset += 8;
 
-    wire::write_i64_le(data + offset, md_entry_size_quantity_optional_.value_or(static_cast<std::int64_t>(-9223372036854775807LL - 1)));
+    wire::write_i64_le(data + offset, md_entry_size_optional_.value_or(static_cast<std::int64_t>(-9223372036854775807LL - 1)));
     offset += 8;
 
     wire::write_u64_le(data + offset, md_entry_timestamp_ ? static_cast<std::uint64_t>(md_entry_timestamp_->count()) : static_cast<std::uint64_t>(0ULL));
@@ -122,8 +123,8 @@ void TheoreticalOpeningPrice16Message::print(std::ostream& out) const {
     out << trade_date_;
     out << ", md_corporate_offset_price_optional=";
     print::optional(out, md_corporate_offset_price_optional_);
-    out << ", md_entry_size_quantity_optional=";
-    print::optional(out, md_entry_size_quantity_optional_);
+    out << ", md_entry_size_optional=";
+    print::optional(out, md_entry_size_optional_);
     out << ", md_entry_timestamp=";
     print::optional_duration(out, md_entry_timestamp_);
     out << ", rpt_seq=";
@@ -142,7 +143,7 @@ bool TheoreticalOpeningPrice16Message::operator==(const TheoreticalOpeningPrice1
         && md_update_action_ == other.md_update_action_
         && trade_date_ == other.trade_date_
         && md_corporate_offset_price_optional_ == other.md_corporate_offset_price_optional_
-        && md_entry_size_quantity_optional_ == other.md_entry_size_quantity_optional_
+        && md_entry_size_optional_ == other.md_entry_size_optional_
         && md_entry_timestamp_ == other.md_entry_timestamp_
         && rpt_seq_ == other.rpt_seq_;
 }

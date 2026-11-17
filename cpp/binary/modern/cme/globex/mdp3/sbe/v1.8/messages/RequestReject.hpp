@@ -1,8 +1,9 @@
+// Cme.Globex.Mdp3.Sbe.v1.8: messages/RequestReject.hpp
 #pragma once
 
 #include "../types/MdReqIdOptional.hpp"
 #include "../types/MdReqRejReason.hpp"
-#include "../types/Text.hpp"
+#include "../types/SessionText.hpp"
 #include "../structs/SimpleBinaryHeader.hpp"
 
 namespace cme::mdp3::v8 {
@@ -14,7 +15,7 @@ struct RequestReject {
 
     MdReqIdOptional md_req_id_optional;
     MdReqRejReason md_req_rej_reason;
-    Text text;
+    SessionText session_text;
 
     // the type code that selects this message in the dispatch switch
     static constexpr std::uint16_t message_type = 207;

@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: messages/QuoteReplaceMessageShortForm.cpp
 #include "QuoteReplaceMessageShortForm.hpp"
 
 #include "../common/Print.hpp"
@@ -66,13 +67,13 @@ std::size_t QuoteReplaceMessageShortForm::decode(const std::byte* data, std::siz
     ask_reference_number_ = wire::read_u64_be(data + offset);
     offset += 8;
 
-    bid_price_short_ = Decimal(static_cast<std::int64_t>(wire::read_u16_be(data + offset)), -4);
+    bid_price_short_ = Decimal(static_cast<std::int64_t>(wire::read_u16_be(data + offset)), -2);
     offset += 2;
 
     bid_size_short_ = wire::read_u16_be(data + offset);
     offset += 2;
 
-    ask_price_short_ = Decimal(static_cast<std::int64_t>(wire::read_u16_be(data + offset)), -4);
+    ask_price_short_ = Decimal(static_cast<std::int64_t>(wire::read_u16_be(data + offset)), -2);
     offset += 2;
 
     ask_size_short_ = wire::read_u16_be(data + offset);

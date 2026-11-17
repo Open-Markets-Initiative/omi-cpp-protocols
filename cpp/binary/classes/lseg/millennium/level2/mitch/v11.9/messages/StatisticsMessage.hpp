@@ -1,6 +1,8 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/StatisticsMessage.hpp
 #pragma once
 
 #include <array>
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
@@ -8,6 +10,7 @@
 #include <string_view>
 
 #include "../bitfields/StatisticsReserved.hpp"
+#include "../common/Decimal.hpp"
 #include "../enums/OpenClosePriceIndicator.hpp"
 #include "../enums/StatisticType.hpp"
 #include "../messages/Message.hpp"
@@ -25,11 +28,11 @@ class StatisticsMessage : public Message {
     static constexpr std::size_t wire_size = 21;
 
     StatisticsMessage() = default;
-    StatisticsMessage(std::uint32_t nanosecond, std::uint32_t instrument_id, const std::array<std::byte, 1>& reserved_a, const std::array<std::byte, 1>& reserved_b, StatisticType statistic_type, std::int64_t price, OpenClosePriceIndicator open_close_price_indicator, const StatisticsReserved& statistics_reserved);
+    StatisticsMessage(std::chrono::nanoseconds nanosecond, std::uint32_t instrument_id, const std::array<std::byte, 1>& reserved_a, const std::array<std::byte, 1>& reserved_b, StatisticType statistic_type, Decimal price, OpenClosePriceIndicator open_close_price_indicator, const StatisticsReserved& statistics_reserved);
 
     // Nanosecond: Nanoseconds since last message, accurate to the nearest microsecond.
-    std::uint32_t nanosecond() const;
-    void set_nanosecond(std::uint32_t value);
+    std::chrono::nanoseconds nanosecond() const;
+    void set_nanosecond(std::chrono::nanoseconds value);
 
     // Instrument Id: Instrument's symbol.
     std::uint32_t instrument_id() const;
@@ -50,8 +53,8 @@ class StatisticsMessage : public Message {
     void set_statistic_type(StatisticType value);
 
     // Price: Limit price of the order.
-    std::int64_t price() const;
-    void set_price(std::int64_t value);
+    Decimal price() const;
+    void set_price(Decimal value);
 
     // Open Close Price Indicator:
     OpenClosePriceIndicator open_close_price_indicator() const;
@@ -77,12 +80,12 @@ class StatisticsMessage : public Message {
     bool operator!=(const StatisticsMessage& other) const;
 
   private:
-    std::uint32_t nanosecond_{};
+    std::chrono::nanoseconds nanosecond_{};
     std::uint32_t instrument_id_{};
     std::array<std::byte, 1> reserved_a_{};
     std::array<std::byte, 1> reserved_b_{};
     StatisticType statistic_type_{};
-    std::int64_t price_{};
+    Decimal price_{ 0, -8 };
     OpenClosePriceIndicator open_close_price_indicator_{};
     StatisticsReserved statistics_reserved_{};
 };

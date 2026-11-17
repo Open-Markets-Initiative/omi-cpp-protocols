@@ -1,3 +1,4 @@
+// Nasdaq.IseOptions.TopComboQuoteFeed.Itch.v1.0: Settings.hpp
 #pragma once
 
 #include <iostream>

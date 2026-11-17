@@ -1,3 +1,4 @@
+// Nasdaq.NtxEquities.TotalView.Itch.v5.0: messages/OperationalHaltMessage.cpp
 #include "OperationalHaltMessage.hpp"
 
 #include "../common/Print.hpp"

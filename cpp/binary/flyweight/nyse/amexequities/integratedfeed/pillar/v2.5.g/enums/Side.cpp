@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeed.Pillar.v2.5.g: enums/Side.cpp
 #include "Side.hpp"
 
 namespace nyse::amexequities::integratedfeed::pillar::v2_5_g {

@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeed.Xdp.v2.3.a: messages/OrderExecutionMessage.cpp
 #include "OrderExecutionMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,11 +7,11 @@
 
 namespace nyse::nyseequities::integratedfeed::xdp::v2_3_a {
 
-OrderExecutionMessage::OrderExecutionMessage(std::uint32_t source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, std::uint64_t order_id, std::uint32_t trade_id, std::uint32_t price, std::uint32_t volume, PrintableFlag printable_flag, std::uint8_t num_parity_splits, std::uint32_t db_exec_id)
+OrderExecutionMessage::OrderExecutionMessage(std::chrono::nanoseconds source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, std::uint64_t order_id, std::uint32_t trade_id, std::uint32_t price, std::uint32_t volume, PrintableFlag printable_flag, std::uint8_t num_parity_splits, std::uint32_t db_exec_id)
   : source_time_ns_(source_time_ns), symbol_index_(symbol_index), symbol_seq_num_(symbol_seq_num), order_id_(order_id), trade_id_(trade_id), price_(price), volume_(volume), printable_flag_(printable_flag), num_parity_splits_(num_parity_splits), db_exec_id_(db_exec_id) {}
 
-std::uint32_t OrderExecutionMessage::source_time_ns() const { return source_time_ns_; }
-void OrderExecutionMessage::set_source_time_ns(std::uint32_t value) { source_time_ns_ = value; }
+std::chrono::nanoseconds OrderExecutionMessage::source_time_ns() const { return source_time_ns_; }
+void OrderExecutionMessage::set_source_time_ns(std::chrono::nanoseconds value) { source_time_ns_ = value; }
 
 std::uint32_t OrderExecutionMessage::symbol_index() const { return symbol_index_; }
 void OrderExecutionMessage::set_symbol_index(std::uint32_t value) { symbol_index_ = value; }
@@ -47,7 +48,7 @@ std::size_t OrderExecutionMessage::decode(const std::byte* data, std::size_t len
     std::size_t offset = 0;
     wire::require("OrderExecutionMessage", wire_size, length);
 
-    source_time_ns_ = wire::read_u32_le(data + offset);
+    source_time_ns_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     symbol_index_ = wire::read_u32_le(data + offset);
@@ -84,7 +85,7 @@ std::size_t OrderExecutionMessage::encode(std::byte* data, std::size_t capacity)
     std::size_t offset = 0;
     wire::require_capacity("OrderExecutionMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_.count()));
     offset += 4;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(symbol_index_));
@@ -132,7 +133,7 @@ std::unique_ptr<Message> OrderExecutionMessage::clone() const {
 void OrderExecutionMessage::print(std::ostream& out) const {
     out << "OrderExecutionMessage{";
     out << "source_time_ns=";
-    out << source_time_ns_;
+    out << source_time_ns_.count();
     out << ", symbol_index=";
     out << symbol_index_;
     out << ", symbol_seq_num=";

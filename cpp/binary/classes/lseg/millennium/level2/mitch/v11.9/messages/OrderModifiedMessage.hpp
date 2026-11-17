@@ -1,5 +1,7 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/OrderModifiedMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
@@ -7,6 +9,7 @@
 #include <string_view>
 
 #include "../bitfields/OrderModifiedFlags.hpp"
+#include "../common/Decimal.hpp"
 #include "../messages/Message.hpp"
 
 namespace lseg::millennium::level2::mitch::v11_9 {
@@ -22,11 +25,11 @@ class OrderModifiedMessage : public Message {
     static constexpr std::size_t wire_size = 25;
 
     OrderModifiedMessage() = default;
-    OrderModifiedMessage(std::uint32_t nanosecond, std::uint64_t order_id, std::uint32_t new_quantity, std::int64_t new_price, const OrderModifiedFlags& order_modified_flags);
+    OrderModifiedMessage(std::chrono::nanoseconds nanosecond, std::uint64_t order_id, std::uint32_t new_quantity, Decimal new_price, const OrderModifiedFlags& order_modified_flags);
 
     // Nanosecond: Nanoseconds since last message, accurate to the nearest microsecond.
-    std::uint32_t nanosecond() const;
-    void set_nanosecond(std::uint32_t value);
+    std::chrono::nanoseconds nanosecond() const;
+    void set_nanosecond(std::chrono::nanoseconds value);
 
     // Order Id: Unique identifier of the order.
     std::uint64_t order_id() const;
@@ -37,8 +40,8 @@ class OrderModifiedMessage : public Message {
     void set_new_quantity(std::uint32_t value);
 
     // New Price: New limit price of the order.
-    std::int64_t new_price() const;
-    void set_new_price(std::int64_t value);
+    Decimal new_price() const;
+    void set_new_price(Decimal value);
 
     // Order Modified Flags: Order Modified Flags
     const OrderModifiedFlags& order_modified_flags() const;
@@ -60,10 +63,10 @@ class OrderModifiedMessage : public Message {
     bool operator!=(const OrderModifiedMessage& other) const;
 
   private:
-    std::uint32_t nanosecond_{};
+    std::chrono::nanoseconds nanosecond_{};
     std::uint64_t order_id_{};
     std::uint32_t new_quantity_{};
-    std::int64_t new_price_{};
+    Decimal new_price_{ 0, -8 };
     OrderModifiedFlags order_modified_flags_{};
 };
 

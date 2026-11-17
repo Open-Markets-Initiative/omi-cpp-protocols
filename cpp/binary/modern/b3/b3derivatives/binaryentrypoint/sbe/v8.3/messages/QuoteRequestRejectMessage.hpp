@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: messages/QuoteRequestRejectMessage.hpp
 #pragma once
 
 #include "../structs/BidirectionalBusinessHeader.hpp"
@@ -14,7 +15,7 @@
 #include "../types/OrderQtyOptional.hpp"
 #include "../types/SenderLocation.hpp"
 #include "../types/ExecutingTrader.hpp"
-#include "../types/FixedRatePercentage8Optional.hpp"
+#include "../types/FixedRateOptional.hpp"
 #include "../types/DaysToSettlementOptional.hpp"
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_3 {
@@ -38,7 +39,7 @@ struct QuoteRequestRejectMessage {
     OrderQtyOptional order_qty_optional;
     SenderLocation sender_location;
     ExecutingTrader executing_trader;
-    FixedRatePercentage8Optional fixed_rate_percentage_8_optional;
+    FixedRateOptional fixed_rate_optional;
     DaysToSettlementOptional days_to_settlement_optional;
 
     // parse method

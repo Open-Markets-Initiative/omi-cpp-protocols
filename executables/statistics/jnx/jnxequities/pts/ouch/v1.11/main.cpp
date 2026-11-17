@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Ouch.v1.11: main.cpp
 #include "Settings.hpp"
 
 int main(const int argc, char** argv) {

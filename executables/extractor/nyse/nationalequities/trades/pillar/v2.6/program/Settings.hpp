@@ -1,3 +1,4 @@
+// Nyse.NationalEquities.Trades.Pillar.v2.6: program/Settings.hpp
 #pragma once
 
 #include <filesystem>

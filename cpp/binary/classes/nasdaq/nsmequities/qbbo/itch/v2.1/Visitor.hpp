@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.Qbbo.Itch.v2.1: Visitor.hpp
 #pragma once
 
 namespace nasdaq::nsmequities::qbbo::itch::v2_1 {

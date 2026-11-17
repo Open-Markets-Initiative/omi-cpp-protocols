@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.5: messages/NegotiationResponse.cpp
 #include "NegotiationResponse.hpp"
 
 #include "../common/Print.hpp"

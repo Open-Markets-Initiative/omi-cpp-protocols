@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.DeepFeed.Pillar.v1.2.m: messages/OptionsAddOrderMessage.cpp
 #include "OptionsAddOrderMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,11 +7,11 @@
 
 namespace nyse::arcaoptions::deepfeed::pillar::v1_2_m {
 
-OptionsAddOrderMessage::OptionsAddOrderMessage(std::uint32_t source_time_ns, std::uint32_t series_index, std::uint32_t series_seq_num, std::uint64_t order_id, std::int32_t price, std::uint32_t volume, Side side, const std::string& firm_id, const std::array<std::byte, 1>& reserved_1, CustIndicator cust_indicator)
+OptionsAddOrderMessage::OptionsAddOrderMessage(std::chrono::nanoseconds source_time_ns, std::uint32_t series_index, std::uint32_t series_seq_num, std::uint64_t order_id, std::int32_t price, std::uint32_t volume, Side side, const std::string& firm_id, const std::array<std::byte, 1>& reserved_1, CustIndicator cust_indicator)
   : source_time_ns_(source_time_ns), series_index_(series_index), series_seq_num_(series_seq_num), order_id_(order_id), price_(price), volume_(volume), side_(side), firm_id_(firm_id), reserved_1_(reserved_1), cust_indicator_(cust_indicator) {}
 
-std::uint32_t OptionsAddOrderMessage::source_time_ns() const { return source_time_ns_; }
-void OptionsAddOrderMessage::set_source_time_ns(std::uint32_t value) { source_time_ns_ = value; }
+std::chrono::nanoseconds OptionsAddOrderMessage::source_time_ns() const { return source_time_ns_; }
+void OptionsAddOrderMessage::set_source_time_ns(std::chrono::nanoseconds value) { source_time_ns_ = value; }
 
 std::uint32_t OptionsAddOrderMessage::series_index() const { return series_index_; }
 void OptionsAddOrderMessage::set_series_index(std::uint32_t value) { series_index_ = value; }
@@ -49,7 +50,7 @@ std::size_t OptionsAddOrderMessage::decode(const std::byte* data, std::size_t le
     std::size_t offset = 0;
     wire::require("OptionsAddOrderMessage", wire_size, length);
 
-    source_time_ns_ = wire::read_u32_le(data + offset);
+    source_time_ns_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     series_index_ = wire::read_u32_le(data + offset);
@@ -86,7 +87,7 @@ std::size_t OptionsAddOrderMessage::encode(std::byte* data, std::size_t capacity
     std::size_t offset = 0;
     wire::require_capacity("OptionsAddOrderMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_.count()));
     offset += 4;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(series_index_));
@@ -134,7 +135,7 @@ std::unique_ptr<Message> OptionsAddOrderMessage::clone() const {
 void OptionsAddOrderMessage::print(std::ostream& out) const {
     out << "OptionsAddOrderMessage{";
     out << "source_time_ns=";
-    out << source_time_ns_;
+    out << source_time_ns_.count();
     out << ", series_index=";
     out << series_index_;
     out << ", series_seq_num=";

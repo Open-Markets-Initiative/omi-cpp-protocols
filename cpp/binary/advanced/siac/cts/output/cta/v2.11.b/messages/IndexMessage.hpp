@@ -1,7 +1,7 @@
+// Siac.Cts.Output.Cta.v2.11.b: messages/IndexMessage.hpp
 #pragma once
 
 #include <cstddef>
-#include "../structs/BlockHeader.hpp"
 #include "../types/ParticipantId.hpp"
 #include "../structs/Timestamp1.hpp"
 #include "../types/MessageId.hpp"
@@ -32,11 +32,10 @@ struct index_message {
         cta_output::index_value index_value;
     };
 
-    cta_output::block_header header = {{}, {}, {}, {}, {}, {}, {}, {}};
     // Transport framing: message size precedes the SBE header on the wire
     cta_output::message_length message_length;
     cta_output::message_category message_category = cta_output::message_category::enum_type::indices;
-    cta_output::indices_message_type indices_message_type = cta_output::indices_message_type::enum_type::indices;
+    cta_output::indices_message_type indices_message_type = cta_output::indices_message_type::enum_type::index_message;
 
     fields_type fields;
 
@@ -61,7 +60,7 @@ static_assert(offsetof(index_message::fields_type, participant_reference_number)
 static_assert(offsetof(index_message::fields_type, index_symbol) == 22, "unexpected offset of index_message::fields_type::index_symbol");
 static_assert(offsetof(index_message::fields_type, index_value) == 33, "unexpected offset of index_message::fields_type::index_value");
 static_assert(sizeof(index_message::fields_type) == 41, "unexpected sizeof index_message::fields_type");
-static_assert(sizeof(index_message) == sizeof(cta_output::block_header) + sizeof(cta_output::message_length) + sizeof(cta_output::message_category) + sizeof(cta_output::indices_message_type) + 41, "unexpected sizeof index_message");
+static_assert(sizeof(index_message) == sizeof(cta_output::message_length) + sizeof(cta_output::message_category) + sizeof(cta_output::indices_message_type) + 41, "unexpected sizeof index_message");
 
 #pragma pack(pop)
 }

@@ -1,3 +1,4 @@
+// CixAts.CixAspen.MarketDataFeed.Aspen.v1.4: types/QuantityCanceled.hpp
 #pragma once
 
 #include <cstddef>

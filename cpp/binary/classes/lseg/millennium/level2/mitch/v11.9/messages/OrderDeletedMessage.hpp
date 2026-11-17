@@ -1,5 +1,7 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/OrderDeletedMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
@@ -22,11 +24,11 @@ class OrderDeletedMessage : public Message {
     static constexpr std::size_t wire_size = 17;
 
     OrderDeletedMessage() = default;
-    OrderDeletedMessage(std::uint32_t nanosecond, std::uint64_t order_id, const OrderDeletedFlags& order_deleted_flags, std::uint32_t instrument_id);
+    OrderDeletedMessage(std::chrono::nanoseconds nanosecond, std::uint64_t order_id, const OrderDeletedFlags& order_deleted_flags, std::uint32_t instrument_id);
 
     // Nanosecond: Nanoseconds since last message, accurate to the nearest microsecond.
-    std::uint32_t nanosecond() const;
-    void set_nanosecond(std::uint32_t value);
+    std::chrono::nanoseconds nanosecond() const;
+    void set_nanosecond(std::chrono::nanoseconds value);
 
     // Order Id: Unique identifier of the order.
     std::uint64_t order_id() const;
@@ -56,7 +58,7 @@ class OrderDeletedMessage : public Message {
     bool operator!=(const OrderDeletedMessage& other) const;
 
   private:
-    std::uint32_t nanosecond_{};
+    std::chrono::nanoseconds nanosecond_{};
     std::uint64_t order_id_{};
     OrderDeletedFlags order_deleted_flags_{};
     std::uint32_t instrument_id_{};

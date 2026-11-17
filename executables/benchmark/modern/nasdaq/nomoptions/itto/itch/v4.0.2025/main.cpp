@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: main.cpp
 // Nasdaq.NomOptions.Itto.Itch.v4.0.2025 benchmark, through the Modern iterator: every value it reads from every message of the simulated
 // sequence (tests/simulated/nasdaq/nomoptions/itto/itch/v4.0.2025.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -104,9 +105,9 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest(message->bid_reference_number.get());
             checksum += bench::digest(message->ask_reference_number.get());
             checksum += bench::digest(message->option_id.get());
-            checksum += bench::digest(message->bid.get());
+            checksum += bench::digest(message->bid.integer());
             checksum += bench::digest(message->bid_size_long.get());
-            checksum += bench::digest(message->ask.get());
+            checksum += bench::digest(message->ask.integer());
             checksum += bench::digest(message->ask_size_long.get());
         } else if (iterator.message_type == protocol::SingleSideExecutedMessage::message_type) {
             [[maybe_unused]] const auto* message = protocol::SingleSideExecutedMessage::parse(iterator.message);

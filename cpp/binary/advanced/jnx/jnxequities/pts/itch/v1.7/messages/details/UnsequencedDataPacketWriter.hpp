@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.7: messages/details/UnsequencedDataPacketWriter.hpp
 #pragma once
 
 #include "../UnsequencedDataPacket.hpp"

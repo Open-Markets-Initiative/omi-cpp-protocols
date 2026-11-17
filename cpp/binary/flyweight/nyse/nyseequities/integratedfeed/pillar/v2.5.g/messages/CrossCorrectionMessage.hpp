@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeed.Pillar.v2.5.g: messages/CrossCorrectionMessage.hpp
 #pragma once
 
 #include <chrono>

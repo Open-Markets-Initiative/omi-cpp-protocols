@@ -1,3 +1,4 @@
+// Cboe.EdgxOptions.MulticastDepthOfBook.Pitch.v2.41.80: enums/AuctionType.hpp
 #pragma once
 
 #include <cstdint>

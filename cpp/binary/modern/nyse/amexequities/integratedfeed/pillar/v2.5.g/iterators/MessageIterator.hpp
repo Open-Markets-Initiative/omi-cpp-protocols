@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeed.Pillar.v2.5.g: iterators/MessageIterator.hpp
 #pragma once
 
 #include "../definitions.hpp"

@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1: messages/ExecutionReportForwardMessage.hpp
 #pragma once
 
 #include <array>
@@ -33,7 +34,7 @@ class ExecutionReportForwardMessage : public Message {
     static constexpr MessageCode message_type = TemplateId::ExecutionReportForwardMessage;
 
     ExecutionReportForwardMessage() = default;
-    ExecutionReportForwardMessage(const OutboundBusinessHeader& outbound_business_header, Side side, OrdStatus ord_status, std::optional<std::uint64_t> clordid_optional, std::uint64_t secondary_order_id, std::uint64_t security_id, std::optional<std::uint32_t> account, std::uint64_t last_qty, Decimal last_px, std::uint64_t exec_id, std::chrono::nanoseconds transact_time, std::uint64_t leaves_qty, std::uint64_t cum_qty, std::uint32_t trade_id, std::uint32_t contra_broker, std::uint64_t order_id, AggressorIndicator aggressor_indicator, SettlTypeOptional settl_type_optional, std::uint16_t trade_date, std::optional<std::uint16_t> days_to_settlement_optional, const std::array<std::byte, 2>& offset_118_padding_2, std::optional<std::uint64_t> secondary_exec_id, std::optional<std::uint64_t> exec_ref_id, std::optional<Decimal> fixed_rate_percentage_8_optional, std::uint64_t order_qty, std::optional<TradingSessionId> trading_session_id, std::optional<TradingSessionSubId> trading_session_sub_id, std::optional<SecurityTradingStatus> security_trading_status, const DeskId& desk_id, const Memo& memo);
+    ExecutionReportForwardMessage(const OutboundBusinessHeader& outbound_business_header, Side side, OrdStatus ord_status, std::optional<std::uint64_t> cl_ord_id_optional, std::uint64_t secondary_order_id, std::uint64_t security_id, std::optional<std::uint32_t> account, std::uint64_t last_qty, Decimal last_px, std::uint64_t exec_id, std::chrono::nanoseconds transact_time, std::uint64_t leaves_qty, std::uint64_t cum_qty, std::uint32_t trade_id, std::uint32_t contra_broker, std::uint64_t order_id, AggressorIndicator aggressor_indicator, SettlTypeOptional settl_type_optional, std::uint16_t trade_date, std::optional<std::uint16_t> days_to_settlement_optional, const std::array<std::byte, 2>& offset_118_padding_2, std::optional<std::uint64_t> secondary_exec_id, std::optional<std::uint64_t> exec_ref_id, std::optional<Decimal> fixed_rate_optional, std::uint64_t order_qty, std::optional<TradingSessionId> trading_session_id, std::optional<TradingSessionSubId> trading_session_sub_id, std::optional<SecurityTradingStatus> security_trading_status, const DeskId& desk_id, const Memo& memo);
 
     // Outbound Business Header: OutboundBusinessHeader
     const OutboundBusinessHeader& outbound_business_header() const;
@@ -48,9 +49,9 @@ class ExecutionReportForwardMessage : public Message {
     OrdStatus ord_status() const;
     void set_ord_status(OrdStatus value);
 
-    // ClOrdId Optional: clOrdID
-    std::optional<std::uint64_t> clordid_optional() const;
-    void set_clordid_optional(std::optional<std::uint64_t> value);
+    // Cl Ord Id Optional: clOrdID
+    std::optional<std::uint64_t> cl_ord_id_optional() const;
+    void set_cl_ord_id_optional(std::optional<std::uint64_t> value);
 
     // Secondary Order Id: secondaryOrderID
     std::uint64_t secondary_order_id() const;
@@ -129,9 +130,9 @@ class ExecutionReportForwardMessage : public Message {
     std::optional<std::uint64_t> exec_ref_id() const;
     void set_exec_ref_id(std::optional<std::uint64_t> value);
 
-    // Fixed Rate Percentage 8 Optional: fixedRate
-    std::optional<Decimal> fixed_rate_percentage_8_optional() const;
-    void set_fixed_rate_percentage_8_optional(std::optional<Decimal> value);
+    // Fixed Rate Optional: fixedRate
+    std::optional<Decimal> fixed_rate_optional() const;
+    void set_fixed_rate_optional(std::optional<Decimal> value);
 
     // Order Qty: orderQty
     std::uint64_t order_qty() const;
@@ -177,7 +178,7 @@ class ExecutionReportForwardMessage : public Message {
     OutboundBusinessHeader outbound_business_header_{};
     Side side_{};
     OrdStatus ord_status_{};
-    std::optional<std::uint64_t> clordid_optional_{};
+    std::optional<std::uint64_t> cl_ord_id_optional_{};
     std::uint64_t secondary_order_id_{};
     std::uint64_t security_id_{};
     std::optional<std::uint32_t> account_{};
@@ -197,7 +198,7 @@ class ExecutionReportForwardMessage : public Message {
     std::array<std::byte, 2> offset_118_padding_2_{};
     std::optional<std::uint64_t> secondary_exec_id_{};
     std::optional<std::uint64_t> exec_ref_id_{};
-    std::optional<Decimal> fixed_rate_percentage_8_optional_{};
+    std::optional<Decimal> fixed_rate_optional_{};
     std::uint64_t order_qty_{};
     std::optional<TradingSessionId> trading_session_id_{};
     std::optional<TradingSessionSubId> trading_session_sub_id_{};

@@ -1,5 +1,7 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/AddOrderMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <ostream>
@@ -9,6 +11,7 @@
 #include "../common/Print.hpp"
 #include "../common/View.hpp"
 #include "../enums/Side.hpp"
+#include "../common/Decimal.hpp"
 #include "../bitfields/AddOrderFlags.hpp"
 
 namespace lseg::millennium::level2::mitch::v11_9 {
@@ -28,7 +31,7 @@ class AddOrderMessage {
     static constexpr std::size_t fixed_size = 42;
     std::size_t encoded_size() const { return 42; }
 
-    std::uint32_t nanosecond() const { return wire::read_u32_le(at(0)); }
+    std::chrono::nanoseconds nanosecond() const { return std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(at(0)))); }
 
     std::uint64_t order_id() const { return wire::read_u64_le(at(4)); }
 
@@ -42,7 +45,7 @@ class AddOrderMessage {
 
     std::span<const std::byte, 1> reserved_b() const { return bytes_.subspan(22).template first<1>(); }
 
-    std::int64_t price() const { return wire::read_i64_le(at(23)); }
+    Decimal price() const { return Decimal(static_cast<std::int64_t>(wire::read_i64_le(at(23))), -8); }
 
     AddOrderFlags add_order_flags() const { return AddOrderFlags{ bytes_.subspan(31) }; }
 
@@ -51,7 +54,7 @@ class AddOrderMessage {
     void print(std::ostream& out) const {
         out << "AddOrderMessage{";
         out << "nanosecond=";
-        out << nanosecond();
+        out << nanosecond().count();
         out << ", order_id=";
         out << order_id();
         out << ", side=";

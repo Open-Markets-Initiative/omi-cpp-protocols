@@ -1,3 +1,4 @@
+// Nyse.NationalEquities.Trades.Pillar.v2.6: main.cpp
 // Nyse.NationalEquities.Trades.Pillar.v2.6 benchmark, through the Modern iterator: every value it reads from every message of the simulated
 // sequence (tests/simulated/nyse/nationalequities/trades/pillar/v2.6.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 

@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: main.cpp
 // Nasdaq.NomOptions.Itto.Itch.v4.0.2025 write and read: every message built with each field it sets, written
 // into a capture through the Classes encoder, then read back - each field set must read as it was written.
 // 
@@ -130,7 +131,7 @@ std::unique_ptr<protocol::PacketMessage> build_UdpPayloadAddOrderMessageShortMes
     message->set_order_reference_number(static_cast<std::uint64_t>(3));
     message->set_market_side(protocol::MarketSide::Buy);
     message->set_option_id(static_cast<std::uint32_t>(5));
-    message->set_price_short(protocol::Decimal(6, -4));
+    message->set_price_short(protocol::Decimal(6, -2));
     message->set_volume_short(static_cast<std::uint16_t>(7));
     return message;
 }
@@ -156,9 +157,9 @@ std::unique_ptr<protocol::PacketMessage> build_UdpPayloadAddQuoteMessageShortFor
     message->set_bid_reference_number(static_cast<std::uint64_t>(3));
     message->set_ask_reference_number(static_cast<std::uint64_t>(4));
     message->set_option_id(static_cast<std::uint32_t>(5));
-    message->set_bid_price_short(protocol::Decimal(6, -4));
+    message->set_bid_price_short(protocol::Decimal(6, -2));
     message->set_bid_size_short(static_cast<std::uint16_t>(7));
-    message->set_ask_price_short(protocol::Decimal(8, -4));
+    message->set_ask_price_short(protocol::Decimal(8, -2));
     message->set_ask_size_short(static_cast<std::uint16_t>(9));
     return message;
 }
@@ -171,9 +172,9 @@ std::unique_ptr<protocol::PacketMessage> build_UdpPayloadAddQuoteMessageLongForm
     message->set_bid_reference_number(static_cast<std::uint64_t>(3));
     message->set_ask_reference_number(static_cast<std::uint64_t>(4));
     message->set_option_id(static_cast<std::uint32_t>(5));
-    message->set_bid(static_cast<std::uint32_t>(6));
+    message->set_bid(protocol::Decimal(6, -4));
     message->set_bid_size_long(static_cast<std::uint32_t>(7));
-    message->set_ask(static_cast<std::uint32_t>(8));
+    message->set_ask(protocol::Decimal(8, -4));
     message->set_ask_size_long(static_cast<std::uint32_t>(9));
     return message;
 }
@@ -221,7 +222,7 @@ std::unique_ptr<protocol::PacketMessage> build_UdpPayloadSingleSideReplaceMessag
     message->set_timestamp(std::chrono::nanoseconds{2});
     message->set_original_reference_number(static_cast<std::uint64_t>(3));
     message->set_new_reference_number(static_cast<std::uint64_t>(4));
-    message->set_price_short(protocol::Decimal(5, -4));
+    message->set_price_short(protocol::Decimal(5, -2));
     message->set_volume_short(static_cast<std::uint16_t>(6));
     return message;
 }
@@ -268,9 +269,9 @@ std::unique_ptr<protocol::PacketMessage> build_UdpPayloadQuoteReplaceMessageShor
     message->set_bid_reference_number(static_cast<std::uint64_t>(4));
     message->set_original_ask_reference_number(static_cast<std::uint64_t>(5));
     message->set_ask_reference_number(static_cast<std::uint64_t>(6));
-    message->set_bid_price_short(protocol::Decimal(7, -4));
+    message->set_bid_price_short(protocol::Decimal(7, -2));
     message->set_bid_size_short(static_cast<std::uint16_t>(8));
-    message->set_ask_price_short(protocol::Decimal(9, -4));
+    message->set_ask_price_short(protocol::Decimal(9, -2));
     message->set_ask_size_short(static_cast<std::uint16_t>(10));
     return message;
 }
@@ -537,7 +538,7 @@ int check_UdpPayloadAddOrderMessageShortMessageForm(const protocol::PacketMessag
         std::printf("FAIL UdpPayloadAddOrderMessageShortMessageForm: option_id does not read as it was written\n");
         ++failures;
     }
-    if (!(message->price_short() == protocol::Decimal(6, -4))) {
+    if (!(message->price_short() == protocol::Decimal(6, -2))) {
         std::printf("FAIL UdpPayloadAddOrderMessageShortMessageForm: price_short does not read as it was written\n");
         ++failures;
     }
@@ -619,7 +620,7 @@ int check_UdpPayloadAddQuoteMessageShortFormMessage(const protocol::PacketMessag
         std::printf("FAIL UdpPayloadAddQuoteMessageShortFormMessage: option_id does not read as it was written\n");
         ++failures;
     }
-    if (!(message->bid_price_short() == protocol::Decimal(6, -4))) {
+    if (!(message->bid_price_short() == protocol::Decimal(6, -2))) {
         std::printf("FAIL UdpPayloadAddQuoteMessageShortFormMessage: bid_price_short does not read as it was written\n");
         ++failures;
     }
@@ -627,7 +628,7 @@ int check_UdpPayloadAddQuoteMessageShortFormMessage(const protocol::PacketMessag
         std::printf("FAIL UdpPayloadAddQuoteMessageShortFormMessage: bid_size_short does not read as it was written\n");
         ++failures;
     }
-    if (!(message->ask_price_short() == protocol::Decimal(8, -4))) {
+    if (!(message->ask_price_short() == protocol::Decimal(8, -2))) {
         std::printf("FAIL UdpPayloadAddQuoteMessageShortFormMessage: ask_price_short does not read as it was written\n");
         ++failures;
     }
@@ -668,7 +669,7 @@ int check_UdpPayloadAddQuoteMessageLongFormMessage(const protocol::PacketMessage
         std::printf("FAIL UdpPayloadAddQuoteMessageLongFormMessage: option_id does not read as it was written\n");
         ++failures;
     }
-    if (!(message->bid() == static_cast<std::uint32_t>(6))) {
+    if (!(message->bid() == protocol::Decimal(6, -4))) {
         std::printf("FAIL UdpPayloadAddQuoteMessageLongFormMessage: bid does not read as it was written\n");
         ++failures;
     }
@@ -676,7 +677,7 @@ int check_UdpPayloadAddQuoteMessageLongFormMessage(const protocol::PacketMessage
         std::printf("FAIL UdpPayloadAddQuoteMessageLongFormMessage: bid_size_long does not read as it was written\n");
         ++failures;
     }
-    if (!(message->ask() == static_cast<std::uint32_t>(8))) {
+    if (!(message->ask() == protocol::Decimal(8, -4))) {
         std::printf("FAIL UdpPayloadAddQuoteMessageLongFormMessage: ask does not read as it was written\n");
         ++failures;
     }
@@ -824,7 +825,7 @@ int check_UdpPayloadSingleSideReplaceMessageShortForm(const protocol::PacketMess
         std::printf("FAIL UdpPayloadSingleSideReplaceMessageShortForm: new_reference_number does not read as it was written\n");
         ++failures;
     }
-    if (!(message->price_short() == protocol::Decimal(5, -4))) {
+    if (!(message->price_short() == protocol::Decimal(5, -2))) {
         std::printf("FAIL UdpPayloadSingleSideReplaceMessageShortForm: price_short does not read as it was written\n");
         ++failures;
     }
@@ -968,7 +969,7 @@ int check_UdpPayloadQuoteReplaceMessageShortForm(const protocol::PacketMessage* 
         std::printf("FAIL UdpPayloadQuoteReplaceMessageShortForm: ask_reference_number does not read as it was written\n");
         ++failures;
     }
-    if (!(message->bid_price_short() == protocol::Decimal(7, -4))) {
+    if (!(message->bid_price_short() == protocol::Decimal(7, -2))) {
         std::printf("FAIL UdpPayloadQuoteReplaceMessageShortForm: bid_price_short does not read as it was written\n");
         ++failures;
     }
@@ -976,7 +977,7 @@ int check_UdpPayloadQuoteReplaceMessageShortForm(const protocol::PacketMessage* 
         std::printf("FAIL UdpPayloadQuoteReplaceMessageShortForm: bid_size_short does not read as it was written\n");
         ++failures;
     }
-    if (!(message->ask_price_short() == protocol::Decimal(9, -4))) {
+    if (!(message->ask_price_short() == protocol::Decimal(9, -2))) {
         std::printf("FAIL UdpPayloadQuoteReplaceMessageShortForm: ask_price_short does not read as it was written\n");
         ++failures;
     }

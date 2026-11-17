@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.ImbalancesFeed.Xdp.v2.1.f: enums/AuctionStatus.cpp
 #include "AuctionStatus.hpp"
 
 namespace nyse::nyseequities::imbalancesfeed::xdp::v2_1_f {

@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: messages/LoginRequest.hpp
 #pragma once
 
 #include <cstddef>
@@ -9,10 +10,11 @@
 #include "../common/Wire.hpp"
 #include "../common/Print.hpp"
 #include "../common/View.hpp"
+#include "../groups/RequestedMatchingEngine.hpp"
 
 namespace miax::pearlequities::depthofmarket::mach::v1_3_d {
 
-// The SesM client must send a Login request packet immediately upon establishing a new TCP/IP
+// The ESesM client must send a Login request packet immediately upon establishing a new TCP/IP
 // socket connection to the server
 class LoginRequest {
   public:
@@ -24,9 +26,8 @@ class LoginRequest {
     std::span<const std::byte> bytes() const noexcept { return bytes_; }
 
     // the bytes every LoginRequest has, which a reader checks before it views them
-    static constexpr std::size_t minimum_size = 35;
-    static constexpr std::size_t fixed_size = 35;
-    std::size_t encoded_size() const { return 35; }
+    static constexpr std::size_t minimum_size = 27;
+    std::size_t encoded_size() const { return requested_matching_engine_end(); }
 
     std::string_view esesm_version() const { return view::text(at(0), 5, ' '); }
 
@@ -36,9 +37,9 @@ class LoginRequest {
 
     std::string_view application_protocol() const { return view::text(at(18), 8, ' '); }
 
-    std::uint8_t requested_trading_session_id() const { return wire::read_u8(at(26)); }
+    std::uint8_t number_of_matching_engines() const { return wire::read_u8(at(26)); }
 
-    std::uint64_t requested_sequence_number() const { return wire::read_u64_le(at(27)); }
+    view::entries<RequestedMatchingEngine> requested_matching_engine() const { return view::entries<RequestedMatchingEngine>{ bytes_.subspan(27), wire::count(number_of_matching_engines()) }; }
 
     void print(std::ostream& out) const {
         out << "LoginRequest{";
@@ -50,15 +51,16 @@ class LoginRequest {
         print::text(out, computer_id());
         out << ", application_protocol=";
         print::text(out, application_protocol());
-        out << ", requested_trading_session_id=";
-        out << static_cast<int>(requested_trading_session_id());
-        out << ", requested_sequence_number=";
-        out << requested_sequence_number();
+        out << ", number_of_matching_engines=";
+        out << static_cast<int>(number_of_matching_engines());
+        out << ", requested_matching_engine=";
+        print::sequence(out, requested_matching_engine());
         out << '}';
     }
 
   private:
     const std::byte* at(std::size_t offset) const noexcept { return bytes_.data() + offset; }
+    std::size_t requested_matching_engine_end() const { return 27 + requested_matching_engine().encoded_size(); }
 
     std::span<const std::byte> bytes_;
 };

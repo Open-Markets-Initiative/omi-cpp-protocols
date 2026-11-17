@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.8: bitfields/TradeCondition.hpp
 #pragma once
 
 #include <cstddef>
@@ -35,29 +36,11 @@ class TradeCondition {
 
     bool out_of_sequence() const { return (raw() & static_cast<std::uint16_t>(0x8)) != 0; }
 
-    bool unused_trade_condition_4() const { return (raw() & static_cast<std::uint16_t>(0x10)) != 0; }
-
-    bool unused_trade_condition_5() const { return (raw() & static_cast<std::uint16_t>(0x20)) != 0; }
-
     bool trade_on_behalf() const { return (raw() & static_cast<std::uint16_t>(0x40)) != 0; }
-
-    bool unused_trade_condition_7() const { return (raw() & static_cast<std::uint16_t>(0x80)) != 0; }
-
-    bool unused_trade_condition_8() const { return (raw() & static_cast<std::uint16_t>(0x100)) != 0; }
-
-    bool unused_trade_condition_9() const { return (raw() & static_cast<std::uint16_t>(0x200)) != 0; }
-
-    bool unused_trade_condition_10() const { return (raw() & static_cast<std::uint16_t>(0x400)) != 0; }
-
-    bool unused_trade_condition_11() const { return (raw() & static_cast<std::uint16_t>(0x800)) != 0; }
-
-    bool unused_trade_condition_12() const { return (raw() & static_cast<std::uint16_t>(0x1000)) != 0; }
 
     bool regular_trade() const { return (raw() & static_cast<std::uint16_t>(0x2000)) != 0; }
 
     bool block_trade() const { return (raw() & static_cast<std::uint16_t>(0x4000)) != 0; }
-
-    bool unused_trade_condition_15() const { return (raw() & static_cast<std::uint16_t>(0x8000)) != 0; }
 
     void print(std::ostream& out) const {
         out << "TradeCondition{";
@@ -69,30 +52,12 @@ class TradeCondition {
         out << (last_trade_at_the_same_price() ? "true" : "false");
         out << ", out_of_sequence=";
         out << (out_of_sequence() ? "true" : "false");
-        out << ", unused_trade_condition_4=";
-        out << (unused_trade_condition_4() ? "true" : "false");
-        out << ", unused_trade_condition_5=";
-        out << (unused_trade_condition_5() ? "true" : "false");
         out << ", trade_on_behalf=";
         out << (trade_on_behalf() ? "true" : "false");
-        out << ", unused_trade_condition_7=";
-        out << (unused_trade_condition_7() ? "true" : "false");
-        out << ", unused_trade_condition_8=";
-        out << (unused_trade_condition_8() ? "true" : "false");
-        out << ", unused_trade_condition_9=";
-        out << (unused_trade_condition_9() ? "true" : "false");
-        out << ", unused_trade_condition_10=";
-        out << (unused_trade_condition_10() ? "true" : "false");
-        out << ", unused_trade_condition_11=";
-        out << (unused_trade_condition_11() ? "true" : "false");
-        out << ", unused_trade_condition_12=";
-        out << (unused_trade_condition_12() ? "true" : "false");
         out << ", regular_trade=";
         out << (regular_trade() ? "true" : "false");
         out << ", block_trade=";
         out << (block_trade() ? "true" : "false");
-        out << ", unused_trade_condition_15=";
-        out << (unused_trade_condition_15() ? "true" : "false");
         out << '}';
     }
 

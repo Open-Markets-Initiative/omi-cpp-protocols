@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: messages/EquityAndIndexEndOfDaySummaryCategory.cpp
 #include "EquityAndIndexEndOfDaySummaryCategory.hpp"
 
 #include "../common/Print.hpp"

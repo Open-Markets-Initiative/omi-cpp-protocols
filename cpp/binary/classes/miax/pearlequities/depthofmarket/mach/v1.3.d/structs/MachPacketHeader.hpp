@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: structs/MachPacketHeader.hpp
 #pragma once
 
 #include <cstddef>
@@ -31,7 +32,7 @@ class MachPacketHeader {
     MachPacketType mach_packet_type() const;
     void set_mach_packet_type(MachPacketType value);
 
-    // Session Number: protocol packet type
+    // Session Number: The Session this packet was generated from
     std::uint8_t session_number() const;
     void set_session_number(std::uint8_t value);
 

@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: messages/OrderCancelRequestMessage.cpp
 #include "OrderCancelRequestMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,8 +7,8 @@
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_0 {
 
-OrderCancelRequestMessage::OrderCancelRequestMessage(const InboundBusinessHeader& inbound_business_header, const std::array<std::byte, 2>& offset_18_padding_2, std::uint64_t clordid, std::uint64_t security_id, std::optional<std::uint64_t> order_id_optional, std::optional<std::uint64_t> origclordid, Side side, std::optional<SingleCancelRestatementReason> single_cancel_restatement_reason, const std::array<std::byte, 2>& offset_54_padding_2, const std::string& sender_location, const std::string& entering_trader, const std::string& executing_trader_optional, const DeskId& desk_id, const Memo& memo)
-  : inbound_business_header_(inbound_business_header), offset_18_padding_2_(offset_18_padding_2), clordid_(clordid), security_id_(security_id), order_id_optional_(order_id_optional), origclordid_(origclordid), side_(side), single_cancel_restatement_reason_(single_cancel_restatement_reason), offset_54_padding_2_(offset_54_padding_2), sender_location_(sender_location), entering_trader_(entering_trader), executing_trader_optional_(executing_trader_optional), desk_id_(desk_id), memo_(memo) {}
+OrderCancelRequestMessage::OrderCancelRequestMessage(const InboundBusinessHeader& inbound_business_header, const std::array<std::byte, 2>& offset_18_padding_2, std::uint64_t cl_ord_id, std::uint64_t security_id, std::optional<std::uint64_t> order_id_optional, std::optional<std::uint64_t> origclordid, Side side, std::optional<SingleCancelRestatementReason> single_cancel_restatement_reason, const std::array<std::byte, 2>& offset_54_padding_2, const std::string& sender_location, const std::string& entering_trader, const std::string& executing_trader_optional, const DeskId& desk_id, const Memo& memo)
+  : inbound_business_header_(inbound_business_header), offset_18_padding_2_(offset_18_padding_2), cl_ord_id_(cl_ord_id), security_id_(security_id), order_id_optional_(order_id_optional), origclordid_(origclordid), side_(side), single_cancel_restatement_reason_(single_cancel_restatement_reason), offset_54_padding_2_(offset_54_padding_2), sender_location_(sender_location), entering_trader_(entering_trader), executing_trader_optional_(executing_trader_optional), desk_id_(desk_id), memo_(memo) {}
 
 const InboundBusinessHeader& OrderCancelRequestMessage::inbound_business_header() const { return inbound_business_header_; }
 InboundBusinessHeader& OrderCancelRequestMessage::inbound_business_header() { return inbound_business_header_; }
@@ -17,8 +18,8 @@ const std::array<std::byte, 2>& OrderCancelRequestMessage::offset_18_padding_2()
 std::array<std::byte, 2>& OrderCancelRequestMessage::offset_18_padding_2() { return offset_18_padding_2_; }
 void OrderCancelRequestMessage::set_offset_18_padding_2(const std::array<std::byte, 2>& value) { offset_18_padding_2_ = value; }
 
-std::uint64_t OrderCancelRequestMessage::clordid() const { return clordid_; }
-void OrderCancelRequestMessage::set_clordid(std::uint64_t value) { clordid_ = value; }
+std::uint64_t OrderCancelRequestMessage::cl_ord_id() const { return cl_ord_id_; }
+void OrderCancelRequestMessage::set_cl_ord_id(std::uint64_t value) { cl_ord_id_ = value; }
 
 std::uint64_t OrderCancelRequestMessage::security_id() const { return security_id_; }
 void OrderCancelRequestMessage::set_security_id(std::uint64_t value) { security_id_ = value; }
@@ -73,7 +74,7 @@ std::size_t OrderCancelRequestMessage::decode(const std::byte* data, std::size_t
     offset += 2;
 
     wire::require("OrderCancelRequestMessage", offset + 8, length);
-    clordid_ = wire::read_u64_le(data + offset);
+    cl_ord_id_ = wire::read_u64_le(data + offset);
     offset += 8;
 
     wire::require("OrderCancelRequestMessage", offset + 8, length);
@@ -128,7 +129,7 @@ std::size_t OrderCancelRequestMessage::encode(std::byte* data, std::size_t capac
     wire::write_bytes(data + offset, offset_18_padding_2_.data(), 2);
     offset += 2;
 
-    wire::write_u64_le(data + offset, static_cast<std::uint64_t>(clordid_));
+    wire::write_u64_le(data + offset, static_cast<std::uint64_t>(cl_ord_id_));
     offset += 8;
 
     wire::write_u64_le(data + offset, static_cast<std::uint64_t>(security_id_));
@@ -183,8 +184,8 @@ void OrderCancelRequestMessage::print(std::ostream& out) const {
     inbound_business_header_.print(out);
     out << ", offset_18_padding_2=";
     print::hex(out, offset_18_padding_2_.data(), offset_18_padding_2_.size());
-    out << ", clordid=";
-    out << clordid_;
+    out << ", cl_ord_id=";
+    out << cl_ord_id_;
     out << ", security_id=";
     out << security_id_;
     out << ", order_id_optional=";
@@ -218,7 +219,7 @@ bool OrderCancelRequestMessage::equals(const Message& other) const {
 bool OrderCancelRequestMessage::operator==(const OrderCancelRequestMessage& other) const {
     return inbound_business_header_ == other.inbound_business_header_
         && offset_18_padding_2_ == other.offset_18_padding_2_
-        && clordid_ == other.clordid_
+        && cl_ord_id_ == other.cl_ord_id_
         && security_id_ == other.security_id_
         && order_id_optional_ == other.order_id_optional_
         && origclordid_ == other.origclordid_

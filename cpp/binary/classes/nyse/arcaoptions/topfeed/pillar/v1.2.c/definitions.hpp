@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.TopFeed.Pillar.v1.2.c: definitions.hpp
 #pragma once
 
 #include "common/Decimal.hpp"

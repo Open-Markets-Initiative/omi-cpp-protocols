@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: messages/SystemStateMessage.hpp
 #pragma once
 
 #include "../types/Nanoseconds.hpp"

@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: enums/LogoutReason.hpp
 #pragma once
 
 #include <cstdint>

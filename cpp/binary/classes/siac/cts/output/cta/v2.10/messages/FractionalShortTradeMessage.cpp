@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.10: messages/FractionalShortTradeMessage.cpp
 #include "FractionalShortTradeMessage.hpp"
 
 #include "../common/Print.hpp"

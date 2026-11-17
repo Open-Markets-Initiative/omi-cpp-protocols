@@ -1,3 +1,4 @@
+// Memx.MemxEquities.MemoirDepthFeed.Sbe.v1.3: messages/InstrumentDirectoryMessage.cpp
 #include "InstrumentDirectoryMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,7 +7,7 @@
 
 namespace memx::memxequities::memoirdepthfeed::sbe::v1_3 {
 
-InstrumentDirectoryMessage::InstrumentDirectoryMessage(std::chrono::nanoseconds timestamp, std::uint16_t security_id, const std::string& symbol, const std::string& symbol_sfx, std::uint32_t round_lot, std::uint8_t reserved, IsTestSymbol is_test_symbol, Decimal mpv)
+InstrumentDirectoryMessage::InstrumentDirectoryMessage(std::chrono::nanoseconds timestamp, std::uint16_t security_id, const std::string& symbol, const std::string& symbol_sfx, std::uint32_t round_lot, const std::array<std::byte, 1>& reserved, IsTestSymbol is_test_symbol, Decimal mpv)
   : timestamp_(timestamp), security_id_(security_id), symbol_(symbol), symbol_sfx_(symbol_sfx), round_lot_(round_lot), reserved_(reserved), is_test_symbol_(is_test_symbol), mpv_(mpv) {}
 
 std::chrono::nanoseconds InstrumentDirectoryMessage::timestamp() const { return timestamp_; }
@@ -26,8 +27,9 @@ void InstrumentDirectoryMessage::set_symbol_sfx(const std::string& value) { symb
 std::uint32_t InstrumentDirectoryMessage::round_lot() const { return round_lot_; }
 void InstrumentDirectoryMessage::set_round_lot(std::uint32_t value) { round_lot_ = value; }
 
-std::uint8_t InstrumentDirectoryMessage::reserved() const { return reserved_; }
-void InstrumentDirectoryMessage::set_reserved(std::uint8_t value) { reserved_ = value; }
+const std::array<std::byte, 1>& InstrumentDirectoryMessage::reserved() const { return reserved_; }
+std::array<std::byte, 1>& InstrumentDirectoryMessage::reserved() { return reserved_; }
+void InstrumentDirectoryMessage::set_reserved(const std::array<std::byte, 1>& value) { reserved_ = value; }
 
 IsTestSymbol InstrumentDirectoryMessage::is_test_symbol() const { return is_test_symbol_; }
 void InstrumentDirectoryMessage::set_is_test_symbol(IsTestSymbol value) { is_test_symbol_ = value; }
@@ -58,7 +60,7 @@ std::size_t InstrumentDirectoryMessage::decode(const std::byte* data, std::size_
     round_lot_ = wire::read_u32_be(data + offset);
     offset += 4;
 
-    reserved_ = wire::read_u8(data + offset);
+    wire::read_bytes(data + offset, reserved_.data(), 1);
     offset += 1;
 
     is_test_symbol_ = static_cast<IsTestSymbol>(wire::read_u8(data + offset));
@@ -89,7 +91,7 @@ std::size_t InstrumentDirectoryMessage::encode(std::byte* data, std::size_t capa
     wire::write_u32_be(data + offset, static_cast<std::uint32_t>(round_lot_));
     offset += 4;
 
-    wire::write_u8(data + offset, static_cast<std::uint8_t>(reserved_));
+    wire::write_bytes(data + offset, reserved_.data(), 1);
     offset += 1;
 
     wire::write_u8(data + offset, static_cast<std::uint8_t>(is_test_symbol_));
@@ -126,7 +128,7 @@ void InstrumentDirectoryMessage::print(std::ostream& out) const {
     out << ", round_lot=";
     out << round_lot_;
     out << ", reserved=";
-    out << static_cast<int>(reserved_);
+    print::hex(out, reserved_.data(), reserved_.size());
     out << ", is_test_symbol=";
     out << is_test_symbol_;
     out << ", mpv=";

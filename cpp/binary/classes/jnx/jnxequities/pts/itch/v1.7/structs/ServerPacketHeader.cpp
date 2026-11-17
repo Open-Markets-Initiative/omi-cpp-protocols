@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.7: structs/ServerPacketHeader.cpp
 #include "ServerPacketHeader.hpp"
 
 #include "../common/Print.hpp"

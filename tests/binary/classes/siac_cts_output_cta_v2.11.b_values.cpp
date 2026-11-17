@@ -106,9 +106,6 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.shortsalerestrictionindicator"] = canonical::text(canonical::character((*message_2).short_sale_restriction_indicator()));
                 values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.haltreason"] = canonical::text(canonical::character((*message_2).halt_reason()));
                 values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.instrumenttype"] = canonical::text(canonical::character((*message_2).instrument_type()));
-                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.reserved"] = canonical::text(canonical::character((*message_2).reserved()));
-                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.secondreserved"] = canonical::text(canonical::character((*message_2).second_reserved()));
-                values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.reserved128"] = canonical::text(std::string((*message_2).reserved_128()), ' ', false);
             }
         } else if (const auto* message = dynamic_cast<const protocol::ControlMessage*>(each.message())) {
             values[entry + ".categorypayload"] = "packet.message.categorypayload.controlmessage";
@@ -193,7 +190,6 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerdeclinelevelstatusmessage.mwcblevel1"] = canonical::scaled((*message_2).mwcb_level_1().mantissa(), (*message_2).mwcb_level_1().exponent());
                 values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerdeclinelevelstatusmessage.mwcblevel2"] = canonical::scaled((*message_2).mwcb_level_2().mantissa(), (*message_2).mwcb_level_2().exponent());
                 values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerdeclinelevelstatusmessage.mwcblevel3"] = canonical::scaled((*message_2).mwcb_level_3().mantissa(), (*message_2).mwcb_level_3().exponent());
-                values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerdeclinelevelstatusmessage.reserved"] = canonical::text(canonical::character((*message_2).reserved()));
             } else if (const auto* message_2 = dynamic_cast<const protocol::MarketWideCircuitBreakerStatusMessage*>(message->market_status_message_payload())) {
                 values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload"] = "packet.message.categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerstatusmessage";
                 values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerstatusmessage.participantid"] = canonical::text(canonical::character((*message_2).participant_id()));
@@ -203,7 +199,6 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerstatusmessage.transactionid"] = canonical::number((*message_2).transaction_id());
                 values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerstatusmessage.participantreferencenumber"] = canonical::number((*message_2).participant_reference_number());
                 values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerstatusmessage.marketwidecircuitbreakerlevelindicator"] = canonical::text(canonical::character((*message_2).market_wide_circuit_breaker_level_indicator()));
-                values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerstatusmessage.reserved"] = canonical::text(canonical::character((*message_2).reserved()));
             } else if (const auto* message_2 = dynamic_cast<const protocol::ApproximateAdjustedVolumeMarketCenterMessage*>(message->market_status_message_payload())) {
                 values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload"] = "packet.message.categorypayload.marketstatusmessage.marketstatusmessagepayload.approximateadjustedvolumemarketcentermessage";
                 values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.approximateadjustedvolumemarketcentermessage.participantid"] = canonical::text(canonical::character((*message_2).participant_id()));
@@ -524,7 +519,6 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".categorypayload.trademessage.trademessagepayload.auctionstatusmessage.shortsalerestrictionindicator"] = canonical::text(canonical::character((*message_2).short_sale_restriction_indicator()));
                 values[entry + ".categorypayload.trademessage.trademessagepayload.auctionstatusmessage.primarylistingmarketparticipantid"] = canonical::text(canonical::character((*message_2).primary_listing_market_participant_id()));
                 values[entry + ".categorypayload.trademessage.trademessagepayload.auctionstatusmessage.financialstatusindicator"] = canonical::text(canonical::character((*message_2).financial_status_indicator()));
-                values[entry + ".categorypayload.trademessage.trademessagepayload.auctionstatusmessage.reserved62"] = canonical::text(std::string((*message_2).reserved_62()), ' ', false);
             } else if (const auto* message_2 = dynamic_cast<const protocol::TradeCorrectionMessage*>(message->trade_message_payload())) {
                 values[entry + ".categorypayload.trademessage.trademessagepayload"] = "packet.message.categorypayload.trademessage.trademessagepayload.tradecorrectionmessage";
                 values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.participantid"] = canonical::text(canonical::character((*message_2).participant_id()));

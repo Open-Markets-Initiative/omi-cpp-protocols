@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: messages/ExecutionReportForwardMessage.cpp
 #include "ExecutionReportForwardMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,8 +7,8 @@
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_3 {
 
-ExecutionReportForwardMessage::ExecutionReportForwardMessage(const OutboundBusinessHeader& outbound_business_header, Side side, OrdStatus ord_status, std::optional<std::uint64_t> clordid_optional, std::uint64_t secondary_order_id, std::uint64_t security_id, std::optional<std::uint32_t> account, std::uint64_t last_qty, Decimal last_px, std::uint64_t exec_id, std::chrono::nanoseconds transact_time, std::uint64_t leaves_qty, std::uint64_t cum_qty, std::uint32_t trade_id, std::uint32_t contra_broker, std::uint64_t order_id, AggressorIndicator aggressor_indicator, SettlTypeOptional settl_type_optional, std::uint16_t trade_date, std::optional<std::uint16_t> days_to_settlement_optional, const std::array<std::byte, 2>& offset_118_padding_2, std::optional<std::uint64_t> secondary_exec_id, std::optional<std::uint64_t> exec_ref_id, std::optional<Decimal> fixed_rate_percentage_8_optional, std::uint64_t order_qty, std::optional<TradingSessionId> trading_session_id, std::optional<TradingSessionSubId> trading_session_sub_id, std::optional<SecurityTradingStatus> security_trading_status, std::optional<std::uint32_t> trading_sub_account, const DeskId& desk_id, const Memo& memo)
-  : outbound_business_header_(outbound_business_header), side_(side), ord_status_(ord_status), clordid_optional_(clordid_optional), secondary_order_id_(secondary_order_id), security_id_(security_id), account_(account), last_qty_(last_qty), last_px_(last_px), exec_id_(exec_id), transact_time_(transact_time), leaves_qty_(leaves_qty), cum_qty_(cum_qty), trade_id_(trade_id), contra_broker_(contra_broker), order_id_(order_id), aggressor_indicator_(aggressor_indicator), settl_type_optional_(settl_type_optional), trade_date_(trade_date), days_to_settlement_optional_(days_to_settlement_optional), offset_118_padding_2_(offset_118_padding_2), secondary_exec_id_(secondary_exec_id), exec_ref_id_(exec_ref_id), fixed_rate_percentage_8_optional_(fixed_rate_percentage_8_optional), order_qty_(order_qty), trading_session_id_(trading_session_id), trading_session_sub_id_(trading_session_sub_id), security_trading_status_(security_trading_status), trading_sub_account_(trading_sub_account), desk_id_(desk_id), memo_(memo) {}
+ExecutionReportForwardMessage::ExecutionReportForwardMessage(const OutboundBusinessHeader& outbound_business_header, Side side, OrdStatus ord_status, std::optional<std::uint64_t> cl_ord_id_optional, std::uint64_t secondary_order_id, std::uint64_t security_id, std::optional<std::uint32_t> account, std::uint64_t last_qty, Decimal last_px, std::uint64_t exec_id, std::chrono::nanoseconds transact_time, std::uint64_t leaves_qty, std::uint64_t cum_qty, std::uint32_t trade_id, std::uint32_t contra_broker, std::uint64_t order_id, AggressorIndicator aggressor_indicator, SettlTypeOptional settl_type_optional, std::uint16_t trade_date, std::optional<std::uint16_t> days_to_settlement_optional, const std::array<std::byte, 2>& offset_118_padding_2, std::optional<std::uint64_t> secondary_exec_id, std::optional<std::uint64_t> exec_ref_id, std::optional<Decimal> fixed_rate_optional, std::uint64_t order_qty, std::optional<TradingSessionId> trading_session_id, std::optional<TradingSessionSubId> trading_session_sub_id, std::optional<SecurityTradingStatus> security_trading_status, std::optional<std::uint32_t> trading_sub_account, const DeskId& desk_id, const Memo& memo)
+  : outbound_business_header_(outbound_business_header), side_(side), ord_status_(ord_status), cl_ord_id_optional_(cl_ord_id_optional), secondary_order_id_(secondary_order_id), security_id_(security_id), account_(account), last_qty_(last_qty), last_px_(last_px), exec_id_(exec_id), transact_time_(transact_time), leaves_qty_(leaves_qty), cum_qty_(cum_qty), trade_id_(trade_id), contra_broker_(contra_broker), order_id_(order_id), aggressor_indicator_(aggressor_indicator), settl_type_optional_(settl_type_optional), trade_date_(trade_date), days_to_settlement_optional_(days_to_settlement_optional), offset_118_padding_2_(offset_118_padding_2), secondary_exec_id_(secondary_exec_id), exec_ref_id_(exec_ref_id), fixed_rate_optional_(fixed_rate_optional), order_qty_(order_qty), trading_session_id_(trading_session_id), trading_session_sub_id_(trading_session_sub_id), security_trading_status_(security_trading_status), trading_sub_account_(trading_sub_account), desk_id_(desk_id), memo_(memo) {}
 
 const OutboundBusinessHeader& ExecutionReportForwardMessage::outbound_business_header() const { return outbound_business_header_; }
 OutboundBusinessHeader& ExecutionReportForwardMessage::outbound_business_header() { return outbound_business_header_; }
@@ -19,8 +20,8 @@ void ExecutionReportForwardMessage::set_side(Side value) { side_ = value; }
 OrdStatus ExecutionReportForwardMessage::ord_status() const { return ord_status_; }
 void ExecutionReportForwardMessage::set_ord_status(OrdStatus value) { ord_status_ = value; }
 
-std::optional<std::uint64_t> ExecutionReportForwardMessage::clordid_optional() const { return clordid_optional_; }
-void ExecutionReportForwardMessage::set_clordid_optional(std::optional<std::uint64_t> value) { clordid_optional_ = value; }
+std::optional<std::uint64_t> ExecutionReportForwardMessage::cl_ord_id_optional() const { return cl_ord_id_optional_; }
+void ExecutionReportForwardMessage::set_cl_ord_id_optional(std::optional<std::uint64_t> value) { cl_ord_id_optional_ = value; }
 
 std::uint64_t ExecutionReportForwardMessage::secondary_order_id() const { return secondary_order_id_; }
 void ExecutionReportForwardMessage::set_secondary_order_id(std::uint64_t value) { secondary_order_id_ = value; }
@@ -80,8 +81,8 @@ void ExecutionReportForwardMessage::set_secondary_exec_id(std::optional<std::uin
 std::optional<std::uint64_t> ExecutionReportForwardMessage::exec_ref_id() const { return exec_ref_id_; }
 void ExecutionReportForwardMessage::set_exec_ref_id(std::optional<std::uint64_t> value) { exec_ref_id_ = value; }
 
-std::optional<Decimal> ExecutionReportForwardMessage::fixed_rate_percentage_8_optional() const { return fixed_rate_percentage_8_optional_; }
-void ExecutionReportForwardMessage::set_fixed_rate_percentage_8_optional(std::optional<Decimal> value) { fixed_rate_percentage_8_optional_ = value; }
+std::optional<Decimal> ExecutionReportForwardMessage::fixed_rate_optional() const { return fixed_rate_optional_; }
+void ExecutionReportForwardMessage::set_fixed_rate_optional(std::optional<Decimal> value) { fixed_rate_optional_ = value; }
 
 std::uint64_t ExecutionReportForwardMessage::order_qty() const { return order_qty_; }
 void ExecutionReportForwardMessage::set_order_qty(std::uint64_t value) { order_qty_ = value; }
@@ -124,7 +125,7 @@ std::size_t ExecutionReportForwardMessage::decode(const std::byte* data, std::si
     offset += 1;
 
     wire::require("ExecutionReportForwardMessage", offset + 8, length);
-    clordid_optional_ = wire::nullable(wire::read_u64_le(data + offset), static_cast<std::uint64_t>(0ULL));
+    cl_ord_id_optional_ = wire::nullable(wire::read_u64_le(data + offset), static_cast<std::uint64_t>(0ULL));
     offset += 8;
 
     wire::require("ExecutionReportForwardMessage", offset + 8, length);
@@ -204,7 +205,7 @@ std::size_t ExecutionReportForwardMessage::decode(const std::byte* data, std::si
     offset += 8;
 
     wire::require("ExecutionReportForwardMessage", offset + 8, length);
-    fixed_rate_percentage_8_optional_ = wire::nullable_decimal(wire::read_i64_le(data + offset), static_cast<std::int64_t>(-9223372036854775807LL - 1), -8);
+    fixed_rate_optional_ = wire::nullable_decimal(wire::read_i64_le(data + offset), static_cast<std::int64_t>(-9223372036854775807LL - 1), -8);
     offset += 8;
 
     wire::require("ExecutionReportForwardMessage", offset + 8, length);
@@ -246,7 +247,7 @@ std::size_t ExecutionReportForwardMessage::encode(std::byte* data, std::size_t c
     wire::write_char(data + offset, static_cast<char>(ord_status_));
     offset += 1;
 
-    wire::write_u64_le(data + offset, clordid_optional_.value_or(static_cast<std::uint64_t>(0ULL)));
+    wire::write_u64_le(data + offset, cl_ord_id_optional_.value_or(static_cast<std::uint64_t>(0ULL)));
     offset += 8;
 
     wire::write_u64_le(data + offset, static_cast<std::uint64_t>(secondary_order_id_));
@@ -306,7 +307,7 @@ std::size_t ExecutionReportForwardMessage::encode(std::byte* data, std::size_t c
     wire::write_u64_le(data + offset, exec_ref_id_.value_or(static_cast<std::uint64_t>(0ULL)));
     offset += 8;
 
-    wire::write_i64_le(data + offset, fixed_rate_percentage_8_optional_ ? static_cast<std::int64_t>(fixed_rate_percentage_8_optional_->mantissa()) : static_cast<std::int64_t>(-9223372036854775807LL - 1));
+    wire::write_i64_le(data + offset, fixed_rate_optional_ ? static_cast<std::int64_t>(fixed_rate_optional_->mantissa()) : static_cast<std::int64_t>(-9223372036854775807LL - 1));
     offset += 8;
 
     wire::write_u64_le(data + offset, static_cast<std::uint64_t>(order_qty_));
@@ -351,8 +352,8 @@ void ExecutionReportForwardMessage::print(std::ostream& out) const {
     out << side_;
     out << ", ord_status=";
     out << ord_status_;
-    out << ", clordid_optional=";
-    print::optional(out, clordid_optional_);
+    out << ", cl_ord_id_optional=";
+    print::optional(out, cl_ord_id_optional_);
     out << ", secondary_order_id=";
     out << secondary_order_id_;
     out << ", security_id=";
@@ -391,8 +392,8 @@ void ExecutionReportForwardMessage::print(std::ostream& out) const {
     print::optional(out, secondary_exec_id_);
     out << ", exec_ref_id=";
     print::optional(out, exec_ref_id_);
-    out << ", fixed_rate_percentage_8_optional=";
-    print::optional(out, fixed_rate_percentage_8_optional_);
+    out << ", fixed_rate_optional=";
+    print::optional(out, fixed_rate_optional_);
     out << ", order_qty=";
     out << order_qty_;
     out << ", trading_session_id=";
@@ -419,7 +420,7 @@ bool ExecutionReportForwardMessage::operator==(const ExecutionReportForwardMessa
     return outbound_business_header_ == other.outbound_business_header_
         && side_ == other.side_
         && ord_status_ == other.ord_status_
-        && clordid_optional_ == other.clordid_optional_
+        && cl_ord_id_optional_ == other.cl_ord_id_optional_
         && secondary_order_id_ == other.secondary_order_id_
         && security_id_ == other.security_id_
         && account_ == other.account_
@@ -439,7 +440,7 @@ bool ExecutionReportForwardMessage::operator==(const ExecutionReportForwardMessa
         && offset_118_padding_2_ == other.offset_118_padding_2_
         && secondary_exec_id_ == other.secondary_exec_id_
         && exec_ref_id_ == other.exec_ref_id_
-        && fixed_rate_percentage_8_optional_ == other.fixed_rate_percentage_8_optional_
+        && fixed_rate_optional_ == other.fixed_rate_optional_
         && order_qty_ == other.order_qty_
         && trading_session_id_ == other.trading_session_id_
         && trading_session_sub_id_ == other.trading_session_sub_id_

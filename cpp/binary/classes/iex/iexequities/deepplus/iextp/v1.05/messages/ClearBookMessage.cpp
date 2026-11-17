@@ -1,3 +1,4 @@
+// Iex.IexEquities.DeepPlus.IexTp.v1.05: messages/ClearBookMessage.cpp
 #include "ClearBookMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,11 +7,12 @@
 
 namespace iex::iexequities::deepplus::iextp::v1_05 {
 
-ClearBookMessage::ClearBookMessage(char reserved_1, std::chrono::nanoseconds timestamp, const std::string& symbol)
+ClearBookMessage::ClearBookMessage(const std::array<std::byte, 1>& reserved_1, std::chrono::nanoseconds timestamp, const std::string& symbol)
   : reserved_1_(reserved_1), timestamp_(timestamp), symbol_(symbol) {}
 
-char ClearBookMessage::reserved_1() const { return reserved_1_; }
-void ClearBookMessage::set_reserved_1(char value) { reserved_1_ = value; }
+const std::array<std::byte, 1>& ClearBookMessage::reserved_1() const { return reserved_1_; }
+std::array<std::byte, 1>& ClearBookMessage::reserved_1() { return reserved_1_; }
+void ClearBookMessage::set_reserved_1(const std::array<std::byte, 1>& value) { reserved_1_ = value; }
 
 std::chrono::nanoseconds ClearBookMessage::timestamp() const { return timestamp_; }
 void ClearBookMessage::set_timestamp(std::chrono::nanoseconds value) { timestamp_ = value; }
@@ -27,7 +29,7 @@ std::size_t ClearBookMessage::decode(const std::byte* data, std::size_t length) 
     std::size_t offset = 0;
     wire::require("ClearBookMessage", wire_size, length);
 
-    reserved_1_ = wire::read_char(data + offset);
+    wire::read_bytes(data + offset, reserved_1_.data(), 1);
     offset += 1;
 
     timestamp_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_i64_le(data + offset)));
@@ -43,7 +45,7 @@ std::size_t ClearBookMessage::encode(std::byte* data, std::size_t capacity) cons
     std::size_t offset = 0;
     wire::require_capacity("ClearBookMessage", wire_size, capacity);
 
-    wire::write_char(data + offset, reserved_1_);
+    wire::write_bytes(data + offset, reserved_1_.data(), 1);
     offset += 1;
 
     wire::write_i64_le(data + offset, static_cast<std::int64_t>(timestamp_.count()));
@@ -70,7 +72,7 @@ std::unique_ptr<Message> ClearBookMessage::clone() const {
 void ClearBookMessage::print(std::ostream& out) const {
     out << "ClearBookMessage{";
     out << "reserved_1=";
-    print::character(out, reserved_1_);
+    print::hex(out, reserved_1_.data(), reserved_1_.size());
     out << ", timestamp=";
     out << timestamp_.count();
     out << ", symbol=";

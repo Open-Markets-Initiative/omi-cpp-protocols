@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: nasdaq_nomoptions_itto_itch_v4_0_2025.hpp
 // Nasdaq NomOptions Itto Itch 4.0.2025 Template Meta Programming
 
 #pragma once
@@ -471,6 +472,7 @@ struct ask {
     using type = std::uint32_t;
     static constexpr std::size_t size = 4;
     static constexpr std::endian order = std::endian::big;
+    static constexpr int exponent = -4;
 
     constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
     constexpr operator type() const noexcept { return value(); }
@@ -481,7 +483,7 @@ struct ask {
 
 // Ask Price Long: The display ask price of the replaced quote.
 struct ask_price_long {
-    using type = std::uint32_t;
+    using type = std::int32_t;
     static constexpr std::size_t size = 4;
     static constexpr std::endian order = std::endian::big;
     static constexpr int exponent = -4;
@@ -498,7 +500,7 @@ struct ask_price_short {
     using type = std::uint16_t;
     static constexpr std::size_t size = 2;
     static constexpr std::endian order = std::endian::big;
-    static constexpr int exponent = -4;
+    static constexpr int exponent = -2;
 
     constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
     constexpr operator type() const noexcept { return value(); }
@@ -583,6 +585,7 @@ struct bid {
     using type = std::uint32_t;
     static constexpr std::size_t size = 4;
     static constexpr std::endian order = std::endian::big;
+    static constexpr int exponent = -4;
 
     constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
     constexpr operator type() const noexcept { return value(); }
@@ -593,7 +596,7 @@ struct bid {
 
 // Bid Price Long: The display bid price of the replaced quote.
 struct bid_price_long {
-    using type = std::uint32_t;
+    using type = std::int32_t;
     static constexpr std::size_t size = 4;
     static constexpr std::endian order = std::endian::big;
     static constexpr int exponent = -4;
@@ -610,7 +613,7 @@ struct bid_price_short {
     using type = std::uint16_t;
     static constexpr std::size_t size = 2;
     static constexpr std::endian order = std::endian::big;
-    static constexpr int exponent = -4;
+    static constexpr int exponent = -2;
 
     constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
     constexpr operator type() const noexcept { return value(); }
@@ -898,7 +901,7 @@ struct expiration_year {
 
 // Explicit Strike Price: Explicit strike price. Refer to Data Types for field processing notes.
 struct explicit_strike_price {
-    using type = std::uint32_t;
+    using type = std::int32_t;
     static constexpr std::size_t size = 4;
     static constexpr std::endian order = std::endian::big;
     static constexpr int exponent = -4;
@@ -929,7 +932,7 @@ struct imbalance_direction {
 
 // Imbalance Price: The imbalance price. 0 for Price Improvement (PRISM) Auction
 struct imbalance_price {
-    using type = std::uint32_t;
+    using type = std::int32_t;
     static constexpr std::size_t size = 4;
     static constexpr std::endian order = std::endian::big;
     static constexpr int exponent = -4;
@@ -1235,7 +1238,7 @@ struct password {
 
 // Price Long: The display price of the new order being added to the book.
 struct price_long {
-    using type = std::uint32_t;
+    using type = std::int32_t;
     static constexpr std::size_t size = 4;
     static constexpr std::endian order = std::endian::big;
     static constexpr int exponent = -4;
@@ -1252,7 +1255,7 @@ struct price_short {
     using type = std::uint16_t;
     static constexpr std::size_t size = 2;
     static constexpr std::endian order = std::endian::big;
-    static constexpr int exponent = -4;
+    static constexpr int exponent = -2;
 
     constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
     constexpr operator type() const noexcept { return value(); }

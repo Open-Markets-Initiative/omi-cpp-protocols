@@ -1,3 +1,4 @@
+// Nyse.AmexOptions.ComplexFeed.Xdp.v1.3.a: iterators/LegDefinitionIterator.hpp
 #pragma once
 
 #include "../definitions.hpp"

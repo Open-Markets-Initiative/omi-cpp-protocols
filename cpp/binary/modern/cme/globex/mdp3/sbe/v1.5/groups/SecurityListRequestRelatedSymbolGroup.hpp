@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.5: groups/SecurityListRequestRelatedSymbolGroup.hpp
 #pragma once
 
 #include "../types/SecurityId.hpp"

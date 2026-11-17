@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: messages/ExecutionReportForwardMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -44,7 +45,7 @@ class ExecutionReportForwardMessage {
 
     OrdStatus ord_status() const { return static_cast<OrdStatus>(wire::read_char(at(19))); }
 
-    std::optional<std::uint64_t> clordid_optional() const { return wire::nullable(wire::read_u64_le(at(20)), static_cast<std::uint64_t>(0ULL)); }
+    std::optional<std::uint64_t> cl_ord_id_optional() const { return wire::nullable(wire::read_u64_le(at(20)), static_cast<std::uint64_t>(0ULL)); }
 
     std::uint64_t secondary_order_id() const { return wire::read_u64_le(at(28)); }
 
@@ -84,7 +85,7 @@ class ExecutionReportForwardMessage {
 
     std::optional<std::uint64_t> exec_ref_id() const { return wire::nullable(wire::read_u64_le(at(128)), static_cast<std::uint64_t>(0ULL)); }
 
-    std::optional<Decimal> fixed_rate_percentage_8_optional() const { return wire::nullable_decimal(wire::read_i64_le(at(136)), static_cast<std::int64_t>(-9223372036854775807LL - 1), -8); }
+    std::optional<Decimal> fixed_rate_optional() const { return wire::nullable_decimal(wire::read_i64_le(at(136)), static_cast<std::int64_t>(-9223372036854775807LL - 1), -8); }
 
     std::uint64_t order_qty() const { return wire::read_u64_le(at(144)); }
 
@@ -111,8 +112,8 @@ class ExecutionReportForwardMessage {
         out << side();
         out << ", ord_status=";
         out << ord_status();
-        out << ", clordid_optional=";
-        print::optional(out, clordid_optional());
+        out << ", cl_ord_id_optional=";
+        print::optional(out, cl_ord_id_optional());
         out << ", secondary_order_id=";
         out << secondary_order_id();
         out << ", security_id=";
@@ -151,8 +152,8 @@ class ExecutionReportForwardMessage {
         print::optional(out, secondary_exec_id());
         out << ", exec_ref_id=";
         print::optional(out, exec_ref_id());
-        out << ", fixed_rate_percentage_8_optional=";
-        print::optional(out, fixed_rate_percentage_8_optional());
+        out << ", fixed_rate_optional=";
+        print::optional(out, fixed_rate_optional());
         out << ", order_qty=";
         out << order_qty();
         out << ", trading_session_id=";

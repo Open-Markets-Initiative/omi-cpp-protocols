@@ -1,3 +1,4 @@
+// Memx.MemxEquities.MemoirDepthFeed.Sbe.v1.3: messages/SessionShutdown.hpp
 #pragma once
 
 #include <cstdint>

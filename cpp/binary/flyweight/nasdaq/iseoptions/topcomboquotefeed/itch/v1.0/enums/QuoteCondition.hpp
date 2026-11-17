@@ -1,3 +1,4 @@
+// Nasdaq.IseOptions.TopComboQuoteFeed.Itch.v1.0: enums/QuoteCondition.hpp
 #pragma once
 
 #include <cstdint>

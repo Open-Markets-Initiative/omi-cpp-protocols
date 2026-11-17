@@ -1,6 +1,6 @@
+// Nasdaq.IseOptions.OrderComboFeed.Itch.v1.1: types/SubVersion.hpp
 #pragma once
 
-#include <bit>
 #include <cstddef>
 #include <cstdint>
 

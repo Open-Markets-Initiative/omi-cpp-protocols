@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.8: enums/TradingSessionSubId.hpp
 #pragma once
 
 #include <cstdint>

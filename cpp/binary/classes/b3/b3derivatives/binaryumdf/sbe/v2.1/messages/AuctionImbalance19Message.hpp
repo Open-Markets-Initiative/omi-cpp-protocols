@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.1: messages/AuctionImbalance19Message.hpp
 #pragma once
 
 #include <chrono>
@@ -26,7 +27,7 @@ class AuctionImbalance19Message : public Message {
     static constexpr std::size_t wire_size = 32;
 
     AuctionImbalance19Message() = default;
-    AuctionImbalance19Message(std::uint64_t security_id, const MatchEventIndicator& match_event_indicator, MdUpdateAction md_update_action, const ImbalanceCondition& imbalance_condition, std::optional<std::int64_t> md_entry_size_quantity_optional, std::optional<std::chrono::nanoseconds> md_entry_timestamp, std::optional<std::uint32_t> rpt_seq);
+    AuctionImbalance19Message(std::uint64_t security_id, const MatchEventIndicator& match_event_indicator, MdUpdateAction md_update_action, const ImbalanceCondition& imbalance_condition, std::optional<std::int64_t> md_entry_size_optional, std::optional<std::chrono::nanoseconds> md_entry_timestamp, std::optional<std::uint32_t> rpt_seq);
 
     // Security Id: securityID
     std::uint64_t security_id() const;
@@ -46,9 +47,9 @@ class AuctionImbalance19Message : public Message {
     ImbalanceCondition& imbalance_condition();
     void set_imbalance_condition(const ImbalanceCondition& value);
 
-    // Md Entry Size Quantity Optional: mDEntrySize
-    std::optional<std::int64_t> md_entry_size_quantity_optional() const;
-    void set_md_entry_size_quantity_optional(std::optional<std::int64_t> value);
+    // Md Entry Size Optional: mDEntrySize
+    std::optional<std::int64_t> md_entry_size_optional() const;
+    void set_md_entry_size_optional(std::optional<std::int64_t> value);
 
     // Md Entry Timestamp: mDEntryTimestamp
     std::optional<std::chrono::nanoseconds> md_entry_timestamp() const;
@@ -77,7 +78,7 @@ class AuctionImbalance19Message : public Message {
     MatchEventIndicator match_event_indicator_{};
     MdUpdateAction md_update_action_{};
     ImbalanceCondition imbalance_condition_{};
-    std::optional<std::int64_t> md_entry_size_quantity_optional_{};
+    std::optional<std::int64_t> md_entry_size_optional_{};
     std::optional<std::chrono::nanoseconds> md_entry_timestamp_{};
     std::optional<std::uint32_t> rpt_seq_{};
 };

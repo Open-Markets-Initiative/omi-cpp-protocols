@@ -1,3 +1,4 @@
+// Asx.AsxDerivatives.Ntp.Itch.v1.05: messages/Format.hpp
 #pragma once
 
 #include <ostream>

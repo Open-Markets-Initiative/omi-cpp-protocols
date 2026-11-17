@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v3: types/Close.hpp
 #pragma once
 
 #include <cstddef>

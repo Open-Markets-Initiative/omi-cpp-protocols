@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: iterators/MessageIterator.hpp
 #pragma once
 
 #include "../definitions.hpp"

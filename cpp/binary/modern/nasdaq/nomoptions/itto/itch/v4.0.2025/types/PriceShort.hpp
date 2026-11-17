@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: types/PriceShort.hpp
 #pragma once
 
 #include <bit>
@@ -11,8 +12,8 @@ struct PriceShort {
 
     static constexpr const char* name = "Price Short";
     static constexpr std::size_t size =  2;
-    static constexpr std::size_t precision = 4;
-    static constexpr double denominator = 10000;
+    static constexpr std::size_t precision = 2;
+    static constexpr double denominator = 100;
     using type = std::uint16_t;
 
     // default constructor

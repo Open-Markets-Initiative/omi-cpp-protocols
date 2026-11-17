@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2017: enums/MarketParticipantState.cpp
 #include "MarketParticipantState.hpp"
 
 namespace nasdaq::nsmequities::totalview::itch::v5_0_2017 {

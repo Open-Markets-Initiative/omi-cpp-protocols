@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v3: types/SchemaDefinitionLength.hpp
 #pragma once
 
 #include <cstddef>

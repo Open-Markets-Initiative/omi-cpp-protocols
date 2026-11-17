@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v2: types/SchemaDefinition.hpp
 #pragma once
 
 #include <array>

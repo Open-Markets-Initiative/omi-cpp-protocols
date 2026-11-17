@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v3.0: structs/PacketHeader.hpp
 #pragma once
 
 #include <chrono>
@@ -33,7 +34,7 @@ class PacketHeader {
 
     EobiHeader eobi_header() const { return EobiHeader{ bytes_.subspan(0) }; }
 
-    std::uint32_t appl_seq_num() const { return wire::read_u32_le(at(8)); }
+    std::optional<std::uint32_t> appl_seq_num() const { return wire::nullable(wire::read_u32_le(at(8)), static_cast<std::uint32_t>(0xFFFFFFFFULL)); }
 
     std::optional<std::int32_t> market_segment_id() const { return wire::nullable(wire::read_i32_le(at(12)), static_cast<std::int32_t>(0x80000000LL)); }
 
@@ -52,7 +53,7 @@ class PacketHeader {
         out << "eobi_header=";
         eobi_header().print(out);
         out << ", appl_seq_num=";
-        out << appl_seq_num();
+        print::optional(out, appl_seq_num());
         out << ", market_segment_id=";
         print::optional(out, market_segment_id());
         out << ", partition_id=";

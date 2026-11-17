@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: types/ComputerId.hpp
 #pragma once
 
 #include <array>
@@ -7,7 +8,7 @@
 namespace miax::pearlequities::depthofmarket::mach::v1_3_d {
 
 
-// issued by MIAX Futures Exchange during initial setup
+// ID issued by MIAX during initial setup
 struct ComputerId {
 
     static constexpr auto name = "Computer Id";

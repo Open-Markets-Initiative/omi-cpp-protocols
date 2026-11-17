@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v13.0: groups/SecMassStatGrpComp.hpp
 #pragma once
 
 #include <array>
@@ -25,7 +26,7 @@ class SecMassStatGrpComp {
     SecMassStatGrpComp() = default;
     SecMassStatGrpComp(std::optional<std::int64_t> security_id, std::optional<Decimal> high_px, std::optional<Decimal> low_px, std::optional<SecurityStatus> security_status, std::optional<SecurityTradingStatus> security_trading_status, std::optional<MarketCondition> market_condition, std::optional<SecurityTradingEvent> security_trading_event, std::optional<SoldOutIndicator> sold_out_indicator, std::optional<TesSecurityStatus> tes_security_status, const std::array<std::byte, 2>& pad2);
 
-    // Security Id:
+    // Security Id: Unique instrument identifier
     std::optional<std::int64_t> security_id() const;
     void set_security_id(std::optional<std::int64_t> value);
 

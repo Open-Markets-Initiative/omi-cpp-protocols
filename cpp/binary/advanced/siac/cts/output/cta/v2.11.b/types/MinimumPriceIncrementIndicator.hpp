@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: types/MinimumPriceIncrementIndicator.hpp
 #pragma once
 
 #include <cstddef>

@@ -1,3 +1,4 @@
+// Nyse.NationalEquities.Trades.Pillar.v2.6: messages/SymbolIndexMappingMessage.cpp
 #include "SymbolIndexMappingMessage.hpp"
 
 #include "../common/Print.hpp"

@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: types/StrikePriceShort.hpp
 #pragma once
 
 #include <bit>

@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v2.10.a: siac_cqs_output_cta_v2_10_a.hpp
 // Siac Cqs Output Cta 2.10.a Template Meta Programming
 
 #pragma once
@@ -1228,40 +1229,38 @@ struct quote_message_type {
 
 // Reserved: Space-filled. Field is reserved for future use
 struct reserved {
-    using type = char;
+    using type = std::uint8_t;
     static constexpr std::size_t size = 1;
 
     constexpr type value() const noexcept { return value_; }
     constexpr operator type() const noexcept { return value(); }
 
   protected:
-    char value_;
+    type value_;
 };
 
 // Reserved 128: Space-filled. Field is reserved for future use
 struct reserved_128 {
-    using type = std::string_view;
+    using type = std::span<const std::byte, 128>;
     static constexpr std::size_t size = 128;
-    static constexpr char fill = ' ';
 
-    constexpr type value() const noexcept { return tmp::trimmed(value_, fill); }
+    constexpr type value() const noexcept { return type{ value_ }; }
     constexpr operator type() const noexcept { return value(); }
 
   protected:
-    std::array<char, 128> value_;
+    std::array<std::byte, 128> value_;
 };
 
 // Reserved 62: Space-filled. Field is reserved for future use
 struct reserved_62 {
-    using type = std::string_view;
+    using type = std::span<const std::byte, 62>;
     static constexpr std::size_t size = 62;
-    static constexpr char fill = ' ';
 
-    constexpr type value() const noexcept { return tmp::trimmed(value_, fill); }
+    constexpr type value() const noexcept { return type{ value_ }; }
     constexpr operator type() const noexcept { return value(); }
 
   protected:
-    std::array<char, 62> value_;
+    std::array<std::byte, 62> value_;
 };
 
 // Retail Interest Indicator: Identifies Retail Price Improvement interest priced better than the Protected Best Bid or Offer by a minimum of $0.001
@@ -1310,14 +1309,14 @@ struct round_lot_size {
 
 // Second Reserved: Space-filled. Field is reserved for future use
 struct second_reserved {
-    using type = char;
+    using type = std::uint8_t;
     static constexpr std::size_t size = 1;
 
     constexpr type value() const noexcept { return value_; }
     constexpr operator type() const noexcept { return value(); }
 
   protected:
-    char value_;
+    type value_;
 };
 
 // Seconds: Contains The Number Seconds From Epoch 111970000000 Utc
@@ -1457,14 +1456,14 @@ struct test {
 
 // Third Reserved: Space-filled. Field is reserved for future use
 struct third_reserved {
-    using type = char;
+    using type = std::uint8_t;
     static constexpr std::size_t size = 1;
 
     constexpr type value() const noexcept { return value_; }
     constexpr operator type() const noexcept { return value(); }
 
   protected:
-    char value_;
+    type value_;
 };
 
 // Transaction Id: The Transaction ID will be populated by CQS and is Reserved for Internal Use only

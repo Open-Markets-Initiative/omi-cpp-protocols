@@ -1,3 +1,4 @@
+// Iex.IexEquities.DeepPlus.IexTp.v1.01: main.cpp
 // Iex.IexEquities.DeepPlus.IexTp.v1.01 benchmark, through the Flyweight reader: every value it reads from every message of the simulated
 // sequence (tests/simulated/iex/iexequities/deepplus/iextp/v1.01.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -124,7 +125,6 @@ struct Reader {
 
     void on(const protocol::OrderDeleteMessage& message) {
         checksum += index++;
-        checksum += bench::digest(message.reserved_1());
         checksum += bench::digest(message.timestamp());
         checksum += bench::digest(message.symbol());
         checksum += bench::digest(message.order_id_reference());
@@ -175,7 +175,6 @@ struct Reader {
 
     void on(const protocol::ClearBookMessage& message) {
         checksum += index++;
-        checksum += bench::digest(message.reserved_1());
         checksum += bench::digest(message.timestamp());
         checksum += bench::digest(message.symbol());
     }

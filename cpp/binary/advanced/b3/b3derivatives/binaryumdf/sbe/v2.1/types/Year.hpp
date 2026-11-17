@@ -1,7 +1,9 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.1: types/Year.hpp
 #pragma once
 
 #include <cstddef>
 #include <cstdint>
+#include <optional>
 #include "../cache/Required.hpp"
 
 namespace b3::b3derivatives::binaryumdf::sbe::v2_1 {
@@ -11,19 +13,20 @@ struct year {
 
     static constexpr const char* name = "year";
     static constexpr std::size_t size = 2;
-    static constexpr bool is_optional = false;
+    static constexpr bool is_optional = true;
+    static constexpr std::uint16_t null_value = 0;
 
-    using result_type = required<std::uint16_t>;
+    using result_type = std::optional<std::uint16_t>;
     using storage_type = result_type;
 
     constexpr year()
-     : value{ 0 } {}
+     : value{ null_value } {}
 
     constexpr year(std::uint16_t v)
      : value{ v } {}
 
     [[nodiscard]] constexpr result_type get() const {
-        return result_type{value};
+        return value == null_value ? std::nullopt : result_type{value};
     }
 
     constexpr void set(std::uint16_t v) {
@@ -34,7 +37,11 @@ struct year {
         if (value.has_value())
             set(value.value());
         else
-            set(0);
+            set(null_value);
+    }
+
+    constexpr void set_null() {
+        value = null_value;
     }
 
   protected:

@@ -74,7 +74,6 @@ struct Reader {
         values[entry + ".payload.stocktradingactionmessage.nanoseconds"] = canonical::number(message.fields.nanoseconds.get().value());
         values[entry + ".payload.stocktradingactionmessage.stock"] = canonical::text(std::string(message.fields.stock.get().value()), ' ', false);
         values[entry + ".payload.stocktradingactionmessage.tradingstate"] = canonical::text(canonical::character(message.fields.trading_state.get().value()), ' ', false);
-        values[entry + ".payload.stocktradingactionmessage.reserved"] = canonical::text(canonical::character(message.fields.reserved.get().value()), ' ', false);
         values[entry + ".payload.stocktradingactionmessage.reason"] = canonical::text(std::string(message.fields.reason.get().value()), ' ', false);
     }
 

@@ -155,7 +155,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.tradebreakmessage.executionid"] = canonical::number((*message).execution_id());
         } else if (const auto* message = dynamic_cast<const protocol::EndOfSession*>(each.message())) {
             values[entry + ".payload"] = "packet.messages.message.payload.endofsession";
-            values[entry + ".payload.endofsession.lasttimestamp"] = canonical::number((*message).last_timestamp());
+            values[entry + ".payload.endofsession.timeoffset"] = canonical::number((*message).time_offset());
         } else if (const auto* message = dynamic_cast<const protocol::TradingStatusMessage*>(each.message())) {
             values[entry + ".payload"] = "packet.messages.message.payload.tradingstatusmessage";
             values[entry + ".payload.tradingstatusmessage.timeoffset"] = canonical::number((*message).time_offset());
@@ -224,6 +224,7 @@ int main() {
     failures += check("ModifyOrderShortMessage", "Cboe/EdgxEquities.MulticastDepthOfBook.Pitch.v2.41.29/ModifyOrderShortMessage.pcap", "cboe/edgxequities/multicastdepthofbook/pitch/v2.41.29/ModifyOrderShortMessage.values");
     failures += check("OrderExecutedAtPriceSizeMessage", "Cboe/EdgxEquities.MulticastDepthOfBook.Pitch.v2.41.29/OrderExecutedAtPriceSizeMessage.pcap", "cboe/edgxequities/multicastdepthofbook/pitch/v2.41.29/OrderExecutedAtPriceSizeMessage.values");
     failures += check("OrderExecutedMessage", "Cboe/EdgxEquities.MulticastDepthOfBook.Pitch.v2.41.29/OrderExecutedMessage.pcap", "cboe/edgxequities/multicastdepthofbook/pitch/v2.41.29/OrderExecutedMessage.values");
+    failures += check("ReduceSizeLongMessage", "Cboe/EdgxEquities.MulticastDepthOfBook.Pitch.v2.41.29/ReduceSizeLongMessage.pcap", "cboe/edgxequities/multicastdepthofbook/pitch/v2.41.29/ReduceSizeLongMessage.values");
     failures += check("ReduceSizeShortMessage", "Cboe/EdgxEquities.MulticastDepthOfBook.Pitch.v2.41.29/ReduceSizeShortMessage.pcap", "cboe/edgxequities/multicastdepthofbook/pitch/v2.41.29/ReduceSizeShortMessage.values");
     failures += check("TimeMessage", "Cboe/EdgxEquities.MulticastDepthOfBook.Pitch.v2.41.29/TimeMessage.pcap", "cboe/edgxequities/multicastdepthofbook/pitch/v2.41.29/TimeMessage.values");
     failures += check("TradeLongMessage", "Cboe/EdgxEquities.MulticastDepthOfBook.Pitch.v2.41.29/TradeLongMessage.pcap", "cboe/edgxequities/multicastdepthofbook/pitch/v2.41.29/TradeLongMessage.values");

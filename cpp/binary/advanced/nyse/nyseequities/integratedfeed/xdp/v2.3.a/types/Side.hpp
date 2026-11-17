@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeed.Xdp.v2.3.a: types/Side.hpp
 #pragma once
 
 #include <cstddef>

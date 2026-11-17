@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.TopOfMarket.Mach.v2.5: program/Settings.hpp
 #pragma once
 
 #include <filesystem>

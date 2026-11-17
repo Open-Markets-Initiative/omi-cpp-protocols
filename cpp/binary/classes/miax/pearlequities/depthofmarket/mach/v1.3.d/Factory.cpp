@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: Factory.cpp
 #include "Factory.hpp"
 
 #include "definitions.hpp"
@@ -38,6 +39,7 @@ std::unique_ptr<TcpMessage> TcpMessageFactory::create(TcpMessageCode code) {
         case RetransmissionRequest::message_type: return std::make_unique<RetransmissionRequest>();
         case LogoutRequest::message_type: return std::make_unique<LogoutRequest>();
         case GoodbyePacket::message_type: return std::make_unique<GoodbyePacket>();
+        case TradingSessionUpdate::message_type: return std::make_unique<TradingSessionUpdate>();
         case TestPacket::message_type: return std::make_unique<TestPacket>();
         default: return std::make_unique<UnknownTcpMessage>(code);
     }

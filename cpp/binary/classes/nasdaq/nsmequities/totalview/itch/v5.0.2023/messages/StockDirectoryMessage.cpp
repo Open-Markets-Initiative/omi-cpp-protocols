@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2023: messages/StockDirectoryMessage.cpp
 #include "StockDirectoryMessage.hpp"
 
 #include "../common/Print.hpp"

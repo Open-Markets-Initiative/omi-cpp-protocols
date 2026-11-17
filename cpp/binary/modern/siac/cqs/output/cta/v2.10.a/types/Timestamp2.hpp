@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v2.10.a: types/Timestamp2.hpp
 #pragma once
 
 #include <cstddef>

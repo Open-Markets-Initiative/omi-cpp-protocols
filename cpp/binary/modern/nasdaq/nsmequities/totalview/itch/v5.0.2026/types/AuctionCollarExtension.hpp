@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2026: types/AuctionCollarExtension.hpp
 #pragma once
 
 #include <bit>

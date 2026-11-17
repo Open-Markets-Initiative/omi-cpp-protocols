@@ -1,3 +1,4 @@
+// Nyse.AmexOptions.DeepFeed.Xdp.v1.3.a: types/HaltCondition.hpp
 #pragma once
 
 #include <cstddef>

@@ -1,3 +1,4 @@
+// Nasdaq.PhlxOptions.TopOfMarket.Itch.v3.4: enums/OptionClosingType.hpp
 #pragma once
 
 #include <cstdint>

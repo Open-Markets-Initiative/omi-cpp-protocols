@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v6.0: enums/TradSesStatus.hpp
 #pragma once
 
 #include <cstdint>

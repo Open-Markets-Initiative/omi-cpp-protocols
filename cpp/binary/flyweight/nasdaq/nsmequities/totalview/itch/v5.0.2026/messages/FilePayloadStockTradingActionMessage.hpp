@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2026: messages/FilePayloadStockTradingActionMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -43,7 +44,7 @@ class FilePayloadStockTradingActionMessage {
 
     TradingState trading_state() const { return static_cast<TradingState>(wire::read_char(at(18))); }
 
-    char reserved() const { return wire::read_char(at(19)); }
+    std::span<const std::byte, 1> reserved() const { return bytes_.subspan(19).template first<1>(); }
 
     std::string_view reason_code() const { return view::text(at(20), 4, ' '); }
 
@@ -60,7 +61,7 @@ class FilePayloadStockTradingActionMessage {
         out << ", trading_state=";
         out << trading_state();
         out << ", reserved=";
-        print::character(out, reserved());
+        print::hex(out, reserved().data(), reserved().size());
         out << ", reason_code=";
         print::text(out, reason_code());
         out << '}';

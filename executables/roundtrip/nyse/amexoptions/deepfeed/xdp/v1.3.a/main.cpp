@@ -1,3 +1,4 @@
+// Nyse.AmexOptions.DeepFeed.Xdp.v1.3.a: main.cpp
 // Nyse.AmexOptions.DeepFeed.Xdp.v1.3.a write and read: every message built with each field it sets, written
 // into a capture through the Classes encoder, then read back - each field set must read as it was written.
 // 
@@ -76,7 +77,7 @@ class Capture {
 // OutrightMarketDepthBuyMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_OutrightMarketDepthBuyMessage() {
     auto message = std::make_unique<protocol::OutrightMarketDepthBuyMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
+    message->set_source_time(std::chrono::seconds{1});
     message->set_source_ns(static_cast<std::uint32_t>(2));
     message->set_series_index(static_cast<std::uint32_t>(3));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(4));
@@ -96,7 +97,7 @@ std::unique_ptr<protocol::Message> build_OutrightMarketDepthBuyMessage() {
 // OutrightMarketDepthSellMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_OutrightMarketDepthSellMessage() {
     auto message = std::make_unique<protocol::OutrightMarketDepthSellMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
+    message->set_source_time(std::chrono::seconds{1});
     message->set_source_ns(static_cast<std::uint32_t>(2));
     message->set_series_index(static_cast<std::uint32_t>(3));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(4));
@@ -116,8 +117,8 @@ std::unique_ptr<protocol::Message> build_OutrightMarketDepthSellMessage() {
 // UnderlyingStatusMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_UnderlyingStatusMessage() {
     auto message = std::make_unique<protocol::UnderlyingStatusMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
-    message->set_source_time_ns(static_cast<std::uint32_t>(2));
+    message->set_source_time(std::chrono::seconds{1});
+    message->set_source_time_ns(std::chrono::nanoseconds{2});
     message->set_underlying_index(static_cast<std::uint32_t>(3));
     message->set_underlying_seq_num(static_cast<std::uint32_t>(4));
     message->set_security_status(protocol::SecurityStatus::Unhalt);
@@ -128,8 +129,8 @@ std::unique_ptr<protocol::Message> build_UnderlyingStatusMessage() {
 // OutrightSeriesStatusMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_OutrightSeriesStatusMessage() {
     auto message = std::make_unique<protocol::OutrightSeriesStatusMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
-    message->set_source_time_ns(static_cast<std::uint32_t>(2));
+    message->set_source_time(std::chrono::seconds{1});
+    message->set_source_time_ns(std::chrono::nanoseconds{2});
     message->set_series_index(static_cast<std::uint32_t>(3));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(4));
     message->set_security_status(protocol::SecurityStatus::Unhalt);
@@ -140,7 +141,7 @@ std::unique_ptr<protocol::Message> build_OutrightSeriesStatusMessage() {
 // RefreshOutrightMarketDepthBuyMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_RefreshOutrightMarketDepthBuyMessage() {
     auto message = std::make_unique<protocol::RefreshOutrightMarketDepthBuyMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
+    message->set_source_time(std::chrono::seconds{1});
     message->set_source_ns(static_cast<std::uint32_t>(2));
     message->set_series_index(static_cast<std::uint32_t>(3));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(4));
@@ -160,8 +161,8 @@ std::unique_ptr<protocol::Message> build_RefreshOutrightMarketDepthBuyMessage() 
 // RefreshOutrightMarketDepthSellMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_RefreshOutrightMarketDepthSellMessage() {
     auto message = std::make_unique<protocol::RefreshOutrightMarketDepthSellMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
-    message->set_source_time_ns(static_cast<std::uint32_t>(2));
+    message->set_source_time(std::chrono::seconds{1});
+    message->set_source_time_ns(std::chrono::nanoseconds{2});
     message->set_series_index(static_cast<std::uint32_t>(3));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(4));
     message->set_first_level_price(static_cast<std::int32_t>(5));
@@ -222,8 +223,8 @@ std::unique_ptr<protocol::Message> build_StreamIdMessage() {
 // SequenceNumberResetMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_SequenceNumberResetMessage() {
     auto message = std::make_unique<protocol::SequenceNumberResetMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
-    message->set_source_time_ns(static_cast<std::uint32_t>(2));
+    message->set_source_time(std::chrono::seconds{1});
+    message->set_source_time_ns(std::chrono::nanoseconds{2});
     message->set_product_id(static_cast<std::uint8_t>(3));
     message->set_channel_id(static_cast<std::uint8_t>(4));
     return message;
@@ -239,7 +240,7 @@ int check_OutrightMarketDepthBuyMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL OutrightMarketDepthBuyMessage: source_time does not read as it was written\n");
         ++failures;
     }
@@ -308,7 +309,7 @@ int check_OutrightMarketDepthSellMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL OutrightMarketDepthSellMessage: source_time does not read as it was written\n");
         ++failures;
     }
@@ -377,11 +378,11 @@ int check_UnderlyingStatusMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL UnderlyingStatusMessage: source_time does not read as it was written\n");
         ++failures;
     }
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(2))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{2})) {
         std::printf("FAIL UnderlyingStatusMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -414,11 +415,11 @@ int check_OutrightSeriesStatusMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL OutrightSeriesStatusMessage: source_time does not read as it was written\n");
         ++failures;
     }
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(2))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{2})) {
         std::printf("FAIL OutrightSeriesStatusMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -451,7 +452,7 @@ int check_RefreshOutrightMarketDepthBuyMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL RefreshOutrightMarketDepthBuyMessage: source_time does not read as it was written\n");
         ++failures;
     }
@@ -520,11 +521,11 @@ int check_RefreshOutrightMarketDepthSellMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL RefreshOutrightMarketDepthSellMessage: source_time does not read as it was written\n");
         ++failures;
     }
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(2))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{2})) {
         std::printf("FAIL RefreshOutrightMarketDepthSellMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -724,11 +725,11 @@ int check_SequenceNumberResetMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL SequenceNumberResetMessage: source_time does not read as it was written\n");
         ++failures;
     }
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(2))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{2})) {
         std::printf("FAIL SequenceNumberResetMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }

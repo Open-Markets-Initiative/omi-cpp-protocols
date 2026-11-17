@@ -154,7 +154,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.tradebreakmessage.executionid"] = canonical::number((*message).execution_id());
         } else if (const auto* message = dynamic_cast<const protocol::EndOfSessionMessage*>(each.message())) {
             values[entry + ".payload"] = "packet.messages.message.payload.endofsessionmessage";
-            values[entry + ".payload.endofsessionmessage.timestamp"] = canonical::number((*message).timestamp());
+            values[entry + ".payload.endofsessionmessage.timeoffset"] = canonical::number((*message).time_offset());
         } else if (const auto* message = dynamic_cast<const protocol::SymbolMappingMessage*>(each.message())) {
             values[entry + ".payload"] = "packet.messages.message.payload.symbolmappingmessage";
             values[entry + ".payload.symbolmappingmessage.feedsymbol"] = canonical::text(std::string((*message).feed_symbol()), ' ', false);
@@ -166,8 +166,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.tradingstatusmessage.symbollong"] = canonical::text(std::string((*message).symbol_long()), ' ', false);
             values[entry + ".payload.tradingstatusmessage.tradingstatus"] = canonical::text(canonical::character((*message).trading_status()), ' ', false);
             values[entry + ".payload.tradingstatusmessage.regshoaction"] = canonical::text(canonical::character((*message).reg_sho_action()), ' ', false);
-            values[entry + ".payload.tradingstatusmessage.reserved1"] = canonical::text(canonical::character((*message).reserved_1()), ' ', false);
-            values[entry + ".payload.tradingstatusmessage.secondreserved1"] = canonical::text(canonical::character((*message).second_reserved_1()), ' ', false);
         } else if (const auto* message = dynamic_cast<const protocol::AuctionUpdateMessage*>(each.message())) {
             values[entry + ".payload"] = "packet.messages.message.payload.auctionupdatemessage";
             values[entry + ".payload.auctionupdatemessage.timeoffset"] = canonical::number((*message).time_offset());

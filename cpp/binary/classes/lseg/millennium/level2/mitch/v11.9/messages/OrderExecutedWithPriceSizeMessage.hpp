@@ -1,11 +1,14 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/OrderExecutedWithPriceSizeMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
 #include <ostream>
 #include <string_view>
 
+#include "../common/Decimal.hpp"
 #include "../enums/Printable.hpp"
 #include "../messages/Message.hpp"
 
@@ -23,11 +26,11 @@ class OrderExecutedWithPriceSizeMessage : public Message {
     static constexpr std::size_t wire_size = 37;
 
     OrderExecutedWithPriceSizeMessage() = default;
-    OrderExecutedWithPriceSizeMessage(std::uint32_t nanosecond, std::uint64_t order_id, std::uint32_t executed_quantity, std::uint32_t display_quantity, std::uint64_t trade_match_id, Printable printable, std::int64_t price);
+    OrderExecutedWithPriceSizeMessage(std::chrono::nanoseconds nanosecond, std::uint64_t order_id, std::uint32_t executed_quantity, std::uint32_t display_quantity, std::uint64_t trade_match_id, Printable printable, Decimal price);
 
     // Nanosecond: Nanoseconds since last message, accurate to the nearest microsecond.
-    std::uint32_t nanosecond() const;
-    void set_nanosecond(std::uint32_t value);
+    std::chrono::nanoseconds nanosecond() const;
+    void set_nanosecond(std::chrono::nanoseconds value);
 
     // Order Id: Unique identifier of the order.
     std::uint64_t order_id() const;
@@ -50,8 +53,8 @@ class OrderExecutedWithPriceSizeMessage : public Message {
     void set_printable(Printable value);
 
     // Price: Limit price of the order.
-    std::int64_t price() const;
-    void set_price(std::int64_t value);
+    Decimal price() const;
+    void set_price(Decimal value);
 
     // Message
     MessageCode type() const override;
@@ -68,13 +71,13 @@ class OrderExecutedWithPriceSizeMessage : public Message {
     bool operator!=(const OrderExecutedWithPriceSizeMessage& other) const;
 
   private:
-    std::uint32_t nanosecond_{};
+    std::chrono::nanoseconds nanosecond_{};
     std::uint64_t order_id_{};
     std::uint32_t executed_quantity_{};
     std::uint32_t display_quantity_{};
     std::uint64_t trade_match_id_{};
     Printable printable_{};
-    std::int64_t price_{};
+    Decimal price_{ 0, -8 };
 };
 
 } // namespace lseg::millennium::level2::mitch::v11_9

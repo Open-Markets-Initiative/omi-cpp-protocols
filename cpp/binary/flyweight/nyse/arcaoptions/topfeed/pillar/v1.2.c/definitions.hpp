@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.TopFeed.Pillar.v1.2.c: definitions.hpp
 #pragma once
 
 // Every flyweight view and reader of Nyse.ArcaOptions.TopFeed.Pillar.v1.2.c.

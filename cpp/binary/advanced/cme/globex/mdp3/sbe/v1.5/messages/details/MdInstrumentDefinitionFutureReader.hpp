@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.5: messages/details/MdInstrumentDefinitionFutureReader.hpp
 #pragma once
 
 #include "MdInstrumentDefinitionFutureWriter.hpp"

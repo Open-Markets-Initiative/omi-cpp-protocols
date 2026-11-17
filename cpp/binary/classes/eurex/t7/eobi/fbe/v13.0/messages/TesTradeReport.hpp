@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v13.0: messages/TesTradeReport.hpp
 #pragma once
 
 #include <array>
@@ -31,7 +32,7 @@ class TesTradeReport : public Message {
     TesTradeReport() = default;
     TesTradeReport(std::optional<std::int64_t> security_id, std::optional<std::chrono::nanoseconds> transact_time, std::optional<Decimal> last_qty, std::optional<Decimal> last_px, std::optional<std::uint32_t> trd_match_id, std::optional<TrdType> trd_type, std::optional<TradeCondition> trade_condition, std::optional<MultiLegReportingType> multi_leg_reporting_type, std::optional<MultiLegPriceModel> multi_leg_price_model, const std::array<std::byte, 6>& pad6, std::optional<Decimal> non_disclosed_trade_volume, std::optional<std::chrono::nanoseconds> trans_bkd_time, std::optional<std::uint16_t> number_of_buy_sides, std::optional<std::uint16_t> number_of_sell_sides, const std::array<std::byte, 4>& pad4);
 
-    // Security Id:
+    // Security Id: Unique instrument identifier
     std::optional<std::int64_t> security_id() const;
     void set_security_id(std::optional<std::int64_t> value);
 
@@ -39,7 +40,7 @@ class TesTradeReport : public Message {
     std::optional<std::chrono::nanoseconds> transact_time() const;
     void set_transact_time(std::optional<std::chrono::nanoseconds> value);
 
-    // Last Qty:
+    // Last Qty: Total executed matched quantity of this match event
     std::optional<Decimal> last_qty() const;
     void set_last_qty(std::optional<Decimal> value);
 

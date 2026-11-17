@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Ouch.v1.11: enums/LiquidityIndicator.cpp
 #include "LiquidityIndicator.hpp"
 
 namespace jnx::jnxequities::pts::ouch::v1_11 {

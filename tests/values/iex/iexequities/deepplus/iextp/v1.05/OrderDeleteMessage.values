@@ -13,7 +13,6 @@ packet.messages = packet.messages.message
 packet.messages.message[0].messageheader.messagelength = 26
 packet.messages.message[0].messageheader.messagetype = R
 packet.messages.message[0].messagedata = packet.messages.message.messagedata.orderdeletemessage
-packet.messages.message[0].messagedata.orderdeletemessage.reserved1 =  
 packet.messages.message[0].messagedata.orderdeletemessage.timestamp = 1766581200043846373
 packet.messages.message[0].messagedata.orderdeletemessage.symbol = TMF
 packet.messages.message[0].messagedata.orderdeletemessage.orderidreference = 180706935048241153

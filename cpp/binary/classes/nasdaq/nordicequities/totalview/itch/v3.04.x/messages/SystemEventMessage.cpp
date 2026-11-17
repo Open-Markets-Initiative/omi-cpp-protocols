@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: messages/SystemEventMessage.cpp
 #include "SystemEventMessage.hpp"
 
 #include "../common/Print.hpp"

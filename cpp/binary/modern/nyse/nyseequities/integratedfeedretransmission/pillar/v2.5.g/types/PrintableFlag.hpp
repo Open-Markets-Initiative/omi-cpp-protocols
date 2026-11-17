@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeedRetransmission.Pillar.v2.5.g: types/PrintableFlag.hpp
 #pragma once
 
 #include <cstddef>

@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: messages/SecurityTradingStatusNotificationMessage.cpp
 #include "SecurityTradingStatusNotificationMessage.hpp"
 
 #include "../common/Print.hpp"

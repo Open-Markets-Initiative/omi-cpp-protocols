@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: main.cpp
 // Nasdaq.NsmEquities.NlsPlus.Itch.v3.0 benchmark, through the Flyweight reader: every value it reads from every message of the simulated
 // sequence (tests/simulated/nasdaq/nsmequities/nlsplus/itch/v3.0.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -208,7 +209,6 @@ struct Reader {
 
     void on(const protocol::StockTradingActionMessage& message) {
         checksum += index++;
-        checksum += bench::digest(message.reserved());
         checksum += bench::digest(message.issue_symbol());
         checksum += bench::digest(message.security_class());
         checksum += bench::digest(message.current_trading_state());

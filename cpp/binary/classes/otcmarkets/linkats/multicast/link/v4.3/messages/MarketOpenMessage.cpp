@@ -1,3 +1,4 @@
+// OtcMarkets.LinkAts.Multicast.Link.v4.3: messages/MarketOpenMessage.cpp
 #include "MarketOpenMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,7 +7,7 @@
 
 namespace otcmarkets::linkats::multicast::link::v4_3 {
 
-MarketOpenMessage::MarketOpenMessage(std::uint32_t channel_seq_num, std::chrono::milliseconds market_open, std::uint64_t market_close)
+MarketOpenMessage::MarketOpenMessage(std::uint32_t channel_seq_num, std::chrono::milliseconds market_open, std::chrono::milliseconds market_close)
   : channel_seq_num_(channel_seq_num), market_open_(market_open), market_close_(market_close) {}
 
 std::uint32_t MarketOpenMessage::channel_seq_num() const { return channel_seq_num_; }
@@ -15,8 +16,8 @@ void MarketOpenMessage::set_channel_seq_num(std::uint32_t value) { channel_seq_n
 std::chrono::milliseconds MarketOpenMessage::market_open() const { return market_open_; }
 void MarketOpenMessage::set_market_open(std::chrono::milliseconds value) { market_open_ = value; }
 
-std::uint64_t MarketOpenMessage::market_close() const { return market_close_; }
-void MarketOpenMessage::set_market_close(std::uint64_t value) { market_close_ = value; }
+std::chrono::milliseconds MarketOpenMessage::market_close() const { return market_close_; }
+void MarketOpenMessage::set_market_close(std::chrono::milliseconds value) { market_close_ = value; }
 
 MessageCode MarketOpenMessage::type() const { return message_type; }
 
@@ -32,7 +33,7 @@ std::size_t MarketOpenMessage::decode(const std::byte* data, std::size_t length)
     market_open_ = std::chrono::milliseconds(static_cast<std::int64_t>(wire::read_u64_be(data + offset)));
     offset += 8;
 
-    market_close_ = wire::read_u64_be(data + offset);
+    market_close_ = std::chrono::milliseconds(static_cast<std::int64_t>(wire::read_u64_be(data + offset)));
     offset += 8;
 
     return offset;
@@ -48,7 +49,7 @@ std::size_t MarketOpenMessage::encode(std::byte* data, std::size_t capacity) con
     wire::write_u64_be(data + offset, static_cast<std::uint64_t>(market_open_.count()));
     offset += 8;
 
-    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(market_close_));
+    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(market_close_.count()));
     offset += 8;
 
     return offset;
@@ -73,7 +74,7 @@ void MarketOpenMessage::print(std::ostream& out) const {
     out << ", market_open=";
     out << market_open_.count();
     out << ", market_close=";
-    out << market_close_;
+    out << market_close_.count();
     out << '}';
 }
 

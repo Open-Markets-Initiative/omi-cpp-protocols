@@ -1,3 +1,4 @@
+// Nyse.ArcaEquities.Bbo.Xdp.v2.4.c: structs/FullRefreshHeader.hpp
 #pragma once
 
 #include <cstddef>

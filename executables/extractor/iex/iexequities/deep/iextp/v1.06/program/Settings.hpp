@@ -1,3 +1,4 @@
+// Iex.IexEquities.Deep.IexTp.v1.06: program/Settings.hpp
 #pragma once
 
 #include <filesystem>

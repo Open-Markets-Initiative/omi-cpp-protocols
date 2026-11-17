@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: common/Decimal.hpp
 #pragma once
 
 #include <cmath>

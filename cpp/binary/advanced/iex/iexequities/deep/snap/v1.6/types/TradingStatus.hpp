@@ -1,3 +1,4 @@
+// Iex.IexEquities.Deep.Snap.v1.6: types/TradingStatus.hpp
 #pragma once
 
 #include <cstddef>

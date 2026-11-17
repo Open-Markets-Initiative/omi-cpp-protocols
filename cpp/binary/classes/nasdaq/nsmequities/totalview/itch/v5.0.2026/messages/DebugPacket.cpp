@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2026: messages/DebugPacket.cpp
 #include "DebugPacket.hpp"
 
 #include "../common/Print.hpp"

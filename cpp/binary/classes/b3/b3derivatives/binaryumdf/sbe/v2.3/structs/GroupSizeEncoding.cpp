@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.3: structs/GroupSizeEncoding.cpp
 #include "GroupSizeEncoding.hpp"
 
 #include "../common/Print.hpp"

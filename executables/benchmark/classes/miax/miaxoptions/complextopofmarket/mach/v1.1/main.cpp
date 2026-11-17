@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.ComplexTopOfMarket.Mach.v1.1: main.cpp
 // Miax.MiaxOptions.ComplexTopOfMarket.Mach.v1.1 benchmark, through the Classes Packet: every value it reads from every message of the simulated
 // sequence (tests/simulated/miax/miaxoptions/complextopofmarket/mach/v1.1.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -128,7 +129,7 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest((*message_2).underlying_symbol());
                 checksum += bench::digest((*message_2).trading_status());
                 checksum += bench::digest((*message_2).event_reason());
-                checksum += bench::digest((*message_2).seconds_part());
+                checksum += ((*message_2).expected_event_time_seconds_part().has_value() ? bench::digest((*(*message_2).expected_event_time_seconds_part())) : std::uint64_t{0});
                 checksum += bench::digest((*message_2).expected_event_time_nano_seconds_part());
             }
         }

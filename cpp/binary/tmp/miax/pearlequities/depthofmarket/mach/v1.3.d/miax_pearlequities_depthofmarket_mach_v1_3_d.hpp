@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: miax_pearlequities_depthofmarket_mach_v1_3_d.hpp
 // Miax PearlEquities DepthOfMarket Mach 1.3.d Template Meta Programming
 
 #pragma once
@@ -136,7 +137,7 @@ struct closing_time {
     std::array<char, 8> value_;
 };
 
-// Computer Id: issued by MIAX Futures Exchange during initial setup
+// Computer Id: ID issued by MIAX during initial setup
 struct computer_id {
     using type = std::string_view;
     static constexpr std::size_t size = 8;
@@ -240,7 +241,25 @@ struct esesm_version {
     std::array<char, 5> value_;
 };
 
-// Highest Sequence Number: the highest sequence number that the server currently has for the client
+// Goodbye Reason: GoodBye Packet Reason
+struct goodbye_reason {
+    enum class type : char {
+        bad_packet = 'B',
+        timed_out = 'L',
+        application_terminating_connection = 'A',
+    };
+
+    static constexpr std::size_t size = 1;
+
+    constexpr type value() const noexcept { return static_cast<type>(raw()); }
+    constexpr operator type() const noexcept { return value(); }
+    constexpr std::underlying_type_t<type> raw() const noexcept { return value_; }
+
+  protected:
+    std::underlying_type_t<type> value_;
+};
+
+// Highest Sequence Number: The highest sequence number the server currently has for the client from the Matching Engine
 struct highest_sequence_number {
     using type = std::uint64_t;
     static constexpr std::size_t size = 8;
@@ -258,11 +277,12 @@ struct login_status {
     enum class type : char {
         successful = ' ',
         invalid_trading_session_requested = 'S',
+        invalid_start_sequence_number_requested = 'N',
         no_active_trading_session_exists = 'U',
         rejected = 'X',
-        invalid_start_sequence_number_requested = 'N',
         incompatible_session_protocol_version = 'I',
         incompatible_application_protocol_version = 'A',
+        invalid_number_of_matching_engines_specified_in_login_request = 'C',
         request_rejected_because_client_already_logged_in = 'L',
     };
 
@@ -557,7 +577,7 @@ struct refresh_message_type {
     std::underlying_type_t<type> value_;
 };
 
-// Requested Sequence Number: Specifies client requested sequence number
+// Requested Sequence Number: Specifies client requested sequence number for the Matching Engine
 struct requested_sequence_number {
     using type = std::uint64_t;
     static constexpr std::size_t size = 8;
@@ -570,7 +590,7 @@ struct requested_sequence_number {
     type value_;
 };
 
-// Requested Trading Session Id: Specifies the session the client would like to log into, or zero to log into the currently active session
+// Requested Trading Session Id: Specifies the Matching Engine trading session the client would like to log into, or zero to log into the currently active trading session
 struct requested_trading_session_id {
     using type = std::uint8_t;
     static constexpr std::size_t size = 1;
@@ -677,7 +697,7 @@ struct session_id {
     type value_;
 };
 
-// Session Number: protocol packet type
+// Session Number: The Session this packet was generated from
 struct session_number {
     using type = std::uint8_t;
     static constexpr std::size_t size = 1;
@@ -928,12 +948,27 @@ struct server_heartbeat {
     static constexpr bool is_message = true;
 };
 
-// Trading Session Update
+// Trading Session Update: The ESesM server sends a Trading Session Update packet to inform the client that a new trading session is starting on the specified Matching Engine
 struct trading_session_update {
     static constexpr std::string_view name = "Trading Session Update";
-    static constexpr std::size_t size = 0;
+    static constexpr std::size_t size = 2;
     static constexpr bool is_message = true;
+
+    // the types of its members, in wire order
+    using fields = tmp::list<
+        matching_engine_id,
+        trading_session_id>;
+
+    // the member of the type asked for
+    template <typename Field>
+    constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
+
+  protected:
+    MACHFIELD(matching_engine_id);
+    MACHFIELD(trading_session_id);
 };
+
+static_assert(sizeof(trading_session_update) == trading_session_update::size, "trading_session_update lies over its bytes exactly");
 
 // Goodbye Packet Section 1
 struct goodbye_packet_section_1 {
@@ -945,14 +980,14 @@ struct goodbye_packet_section_1 {
 
     // the types of its members, in wire order
     using fields = tmp::list<
-        logout_reason>;
+        goodbye_reason>;
 
     // the member of the type asked for
     template <typename Field>
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    MACHFIELD(logout_reason);
+    MACHFIELD(goodbye_reason);
 };
 
 static_assert(sizeof(goodbye_packet_section_1) == goodbye_packet_section_1::size, "goodbye_packet_section_1 lies over its bytes exactly");
@@ -1013,11 +1048,57 @@ struct retransmission_request {
 
 static_assert(sizeof(retransmission_request) == retransmission_request::size, "retransmission_request lies over its bytes exactly");
 
-// Synchronization Complete: The ESesM server sends a Login response packet in response a Login request packet from the client
+// Synchronization Complete: The ESesM server sends a Synchronization complete packet when it is done replaying all the old packets and is ready to start sending new packets from the Matching Engine
 struct synchronization_complete {
     static constexpr std::string_view name = "Synchronization Complete";
     static constexpr std::size_t size = 1;
     static constexpr bool is_message = true;
+
+    // the types of its members, in wire order
+    using fields = tmp::list<
+        matching_engine_id>;
+
+    // the member of the type asked for
+    template <typename Field>
+    constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
+
+  protected:
+    MACHFIELD(matching_engine_id);
+};
+
+static_assert(sizeof(synchronization_complete) == synchronization_complete::size, "synchronization_complete lies over its bytes exactly");
+
+// Login Matching Engine: The login status, trading session and highest sequence number of one matching engine, repeated once for each the login response counts
+struct login_matching_engine {
+    static constexpr std::string_view name = "Login Matching Engine";
+    static constexpr std::size_t size = 10;
+    static constexpr bool is_message = false;
+
+    // the types of its members, in wire order
+    using fields = tmp::list<
+        login_status,
+        trading_session_id,
+        highest_sequence_number>;
+
+    // the member of the type asked for
+    template <typename Field>
+    constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
+
+  protected:
+    MACHFIELD(login_status);
+    MACHFIELD(trading_session_id);
+    MACHFIELD(highest_sequence_number);
+};
+
+static_assert(sizeof(login_matching_engine) == login_matching_engine::size, "login_matching_engine lies over its bytes exactly");
+
+// Login Response Section 1
+struct login_response_section_1 {
+    static constexpr std::string_view name = "Login Response Section 1";
+    static constexpr std::size_t size = 1;
+    static constexpr bool is_message = false;
+    // a section of a message no struct lies over: the fields it lays over in turn
+    static constexpr bool is_section = true;
 
     // the types of its members, in wire order
     using fields = tmp::list<
@@ -1031,39 +1112,46 @@ struct synchronization_complete {
     MACHFIELD(number_of_matching_engines);
 };
 
-static_assert(sizeof(synchronization_complete) == synchronization_complete::size, "synchronization_complete lies over its bytes exactly");
+static_assert(sizeof(login_response_section_1) == login_response_section_1::size, "login_response_section_1 lies over its bytes exactly");
 
-// Login Response: The SesM server sends a Login response packet in response a Login request packet from the client
+// Login Response: The ESesM server sends a Login response packet in response to a Login request packet from the client
 struct login_response {
     static constexpr std::string_view name = "Login Response";
-    static constexpr std::size_t size = 11;
     static constexpr bool is_message = true;
+
+    // its repeating groups, whose entries the parse hands over one at a time
+    MACHSEQUENCE(login_matching_engine);
+};
+
+// Requested Matching Engine: The trading session and sequence number the client asks of one matching engine, repeated once for each the login request counts
+struct requested_matching_engine {
+    static constexpr std::string_view name = "Requested Matching Engine";
+    static constexpr std::size_t size = 9;
+    static constexpr bool is_message = false;
 
     // the types of its members, in wire order
     using fields = tmp::list<
-        number_of_matching_engines,
-        login_status,
-        trading_session_id,
-        highest_sequence_number>;
+        requested_trading_session_id,
+        requested_sequence_number>;
 
     // the member of the type asked for
     template <typename Field>
     constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
 
   protected:
-    MACHFIELD(number_of_matching_engines);
-    MACHFIELD(login_status);
-    MACHFIELD(trading_session_id);
-    MACHFIELD(highest_sequence_number);
+    MACHFIELD(requested_trading_session_id);
+    MACHFIELD(requested_sequence_number);
 };
 
-static_assert(sizeof(login_response) == login_response::size, "login_response lies over its bytes exactly");
+static_assert(sizeof(requested_matching_engine) == requested_matching_engine::size, "requested_matching_engine lies over its bytes exactly");
 
-// Login Request: The SesM client must send a Login request packet immediately upon establishing a new TCP/IP socket connection to the server
-struct login_request {
-    static constexpr std::string_view name = "Login Request";
-    static constexpr std::size_t size = 35;
-    static constexpr bool is_message = true;
+// Login Request Section 1
+struct login_request_section_1 {
+    static constexpr std::string_view name = "Login Request Section 1";
+    static constexpr std::size_t size = 27;
+    static constexpr bool is_message = false;
+    // a section of a message no struct lies over: the fields it lays over in turn
+    static constexpr bool is_section = true;
 
     // the types of its members, in wire order
     using fields = tmp::list<
@@ -1071,8 +1159,7 @@ struct login_request {
         username,
         computer_id,
         application_protocol,
-        requested_trading_session_id,
-        requested_sequence_number>;
+        number_of_matching_engines>;
 
     // the member of the type asked for
     template <typename Field>
@@ -1083,11 +1170,19 @@ struct login_request {
     MACHFIELD(username);
     MACHFIELD(computer_id);
     MACHFIELD(application_protocol);
-    MACHFIELD(requested_trading_session_id);
-    MACHFIELD(requested_sequence_number);
+    MACHFIELD(number_of_matching_engines);
 };
 
-static_assert(sizeof(login_request) == login_request::size, "login_request lies over its bytes exactly");
+static_assert(sizeof(login_request_section_1) == login_request_section_1::size, "login_request_section_1 lies over its bytes exactly");
+
+// Login Request: The ESesM client must send a Login request packet immediately upon establishing a new TCP/IP socket connection to the server
+struct login_request {
+    static constexpr std::string_view name = "Login Request";
+    static constexpr bool is_message = true;
+
+    // its repeating groups, whose entries the parse hands over one at a time
+    MACHSEQUENCE(requested_matching_engine);
+};
 
 // End Of Refresh Notification Message: Sent by MIAX Pearl Equities over the DoM Retransmission Interface (ESeSM Unsequenced Data Packet) when the refresh response is complete.
 struct end_of_refresh_notification_message {

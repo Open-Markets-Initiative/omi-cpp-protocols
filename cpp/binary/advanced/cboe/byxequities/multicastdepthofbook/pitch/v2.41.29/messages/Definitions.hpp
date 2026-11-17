@@ -1,3 +1,4 @@
+// Cboe.ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29: messages/Definitions.hpp
 #pragma once
 
 #include "../structs/PacketHeader.hpp"

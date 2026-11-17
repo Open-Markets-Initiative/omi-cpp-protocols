@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v1.91: Factory.cpp
 #include "Factory.hpp"
 
 #include "definitions.hpp"
@@ -19,10 +20,10 @@ std::unique_ptr<Message> Factory::create(MessageCode code) {
 
 std::unique_ptr<AdministrativeMessagePayload> AdministrativeMessagePayloadFactory::create(AdministrativeMessagePayloadCode code) {
     switch (code) {
-        case StartOfEndOfDayMessage::message_type: return std::make_unique<StartOfEndOfDayMessage>();
-        case EndOfEndOfDayMessage::message_type: return std::make_unique<EndOfEndOfDayMessage>();
-        case StartOfStartOfDayMessage::message_type: return std::make_unique<StartOfStartOfDayMessage>();
-        case EndOfStartOfDayMessage::message_type: return std::make_unique<EndOfStartOfDayMessage>();
+        case StartOfEndOfDaySummaryMessage::message_type: return std::make_unique<StartOfEndOfDaySummaryMessage>();
+        case EndOfEndOfDaySummaryMessage::message_type: return std::make_unique<EndOfEndOfDaySummaryMessage>();
+        case StartOfStartOfDaySummaryMessage::message_type: return std::make_unique<StartOfStartOfDaySummaryMessage>();
+        case EndOfStartOfDaySummaryMessage::message_type: return std::make_unique<EndOfStartOfDaySummaryMessage>();
         case AdministrativeUnformattedMessage::message_type: return std::make_unique<AdministrativeUnformattedMessage>();
         default: return std::make_unique<UnknownAdministrativeMessagePayload>(code);
     }

@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: types/ShortSaleRestriction.hpp
 #pragma once
 
 #include <cstddef>

@@ -1,3 +1,4 @@
+// Iex.IexEquities.DeepPlus.Snap.v1.06: iterators/MessageIterator.hpp
 #pragma once
 
 #include "../definitions.hpp"

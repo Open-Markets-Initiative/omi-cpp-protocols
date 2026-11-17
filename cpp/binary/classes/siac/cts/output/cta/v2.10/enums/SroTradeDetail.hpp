@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.10: enums/SroTradeDetail.hpp
 #pragma once
 
 #include <cstdint>

@@ -1,3 +1,4 @@
+// Miax.OnyxFutures.TopOfMarket.Mach.v1.0.b: main.cpp
 // Miax.OnyxFutures.TopOfMarket.Mach.v1.0.b benchmark, through the Classes Packet: every value it reads from every message of the simulated
 // sequence (tests/simulated/miax/onyxfutures/topofmarket/mach/v1.0.b.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -103,9 +104,9 @@ std::uint64_t read(const packet::Frame& frame) {
             } else if (const auto* message_2 = dynamic_cast<const protocol::BestBidAndOfferMessage*>(message->data())) {
                 checksum += bench::digest((*message_2).timestamp());
                 checksum += bench::digest((*message_2).instrument_id());
-                checksum += bench::digest((*message_2).mbb_price().mantissa());
+                checksum += ((*message_2).mbb_price().has_value() ? bench::digest((*(*message_2).mbb_price()).mantissa()) : std::uint64_t{0});
                 checksum += bench::digest((*message_2).mbb_size());
-                checksum += bench::digest((*message_2).mbo_price().mantissa());
+                checksum += ((*message_2).mbo_price().has_value() ? bench::digest((*(*message_2).mbo_price()).mantissa()) : std::uint64_t{0});
                 checksum += bench::digest((*message_2).mbo_size());
             } else if (const auto* message_2 = dynamic_cast<const protocol::LastSaleMessage*>(message->data())) {
                 checksum += bench::digest((*message_2).timestamp());

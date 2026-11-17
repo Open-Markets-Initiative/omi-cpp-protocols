@@ -1,3 +1,4 @@
+// Nyse.NationalEquities.Bbo.Pillar.v2.5.d: messages/SourceTimeReferenceMessage.cpp
 #include "SourceTimeReferenceMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,7 +7,7 @@
 
 namespace nyse::nationalequities::bbo::pillar::v2_5_d {
 
-SourceTimeReferenceMessage::SourceTimeReferenceMessage(std::uint32_t id, std::uint32_t symbol_seq_num, std::uint32_t source_time)
+SourceTimeReferenceMessage::SourceTimeReferenceMessage(std::uint32_t id, std::uint32_t symbol_seq_num, std::chrono::seconds source_time)
   : id_(id), symbol_seq_num_(symbol_seq_num), source_time_(source_time) {}
 
 std::uint32_t SourceTimeReferenceMessage::id() const { return id_; }
@@ -15,8 +16,8 @@ void SourceTimeReferenceMessage::set_id(std::uint32_t value) { id_ = value; }
 std::uint32_t SourceTimeReferenceMessage::symbol_seq_num() const { return symbol_seq_num_; }
 void SourceTimeReferenceMessage::set_symbol_seq_num(std::uint32_t value) { symbol_seq_num_ = value; }
 
-std::uint32_t SourceTimeReferenceMessage::source_time() const { return source_time_; }
-void SourceTimeReferenceMessage::set_source_time(std::uint32_t value) { source_time_ = value; }
+std::chrono::seconds SourceTimeReferenceMessage::source_time() const { return source_time_; }
+void SourceTimeReferenceMessage::set_source_time(std::chrono::seconds value) { source_time_ = value; }
 
 MessageCode SourceTimeReferenceMessage::type() const { return message_type; }
 
@@ -32,7 +33,7 @@ std::size_t SourceTimeReferenceMessage::decode(const std::byte* data, std::size_
     symbol_seq_num_ = wire::read_u32_le(data + offset);
     offset += 4;
 
-    source_time_ = wire::read_u32_le(data + offset);
+    source_time_ = std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     return offset;
@@ -48,7 +49,7 @@ std::size_t SourceTimeReferenceMessage::encode(std::byte* data, std::size_t capa
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(symbol_seq_num_));
     offset += 4;
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_.count()));
     offset += 4;
 
     return offset;
@@ -73,7 +74,7 @@ void SourceTimeReferenceMessage::print(std::ostream& out) const {
     out << ", symbol_seq_num=";
     out << symbol_seq_num_;
     out << ", source_time=";
-    out << source_time_;
+    out << source_time_.count();
     out << '}';
 }
 

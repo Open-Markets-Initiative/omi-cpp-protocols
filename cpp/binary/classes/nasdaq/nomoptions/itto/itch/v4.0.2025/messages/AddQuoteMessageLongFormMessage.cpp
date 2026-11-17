@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: messages/AddQuoteMessageLongFormMessage.cpp
 #include "AddQuoteMessageLongFormMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,7 +7,7 @@
 
 namespace nasdaq::nomoptions::itto::itch::v4_0_2025 {
 
-AddQuoteMessageLongFormMessage::AddQuoteMessageLongFormMessage(std::uint16_t tracking_number, std::chrono::nanoseconds timestamp, std::uint64_t bid_reference_number, std::uint64_t ask_reference_number, std::uint32_t option_id, std::uint32_t bid, std::uint32_t bid_size_long, std::uint32_t ask, std::uint32_t ask_size_long)
+AddQuoteMessageLongFormMessage::AddQuoteMessageLongFormMessage(std::uint16_t tracking_number, std::chrono::nanoseconds timestamp, std::uint64_t bid_reference_number, std::uint64_t ask_reference_number, std::uint32_t option_id, Decimal bid, std::uint32_t bid_size_long, Decimal ask, std::uint32_t ask_size_long)
   : tracking_number_(tracking_number), timestamp_(timestamp), bid_reference_number_(bid_reference_number), ask_reference_number_(ask_reference_number), option_id_(option_id), bid_(bid), bid_size_long_(bid_size_long), ask_(ask), ask_size_long_(ask_size_long) {}
 
 std::uint16_t AddQuoteMessageLongFormMessage::tracking_number() const { return tracking_number_; }
@@ -25,14 +26,14 @@ void AddQuoteMessageLongFormMessage::set_ask_reference_number(std::uint64_t valu
 std::uint32_t AddQuoteMessageLongFormMessage::option_id() const { return option_id_; }
 void AddQuoteMessageLongFormMessage::set_option_id(std::uint32_t value) { option_id_ = value; }
 
-std::uint32_t AddQuoteMessageLongFormMessage::bid() const { return bid_; }
-void AddQuoteMessageLongFormMessage::set_bid(std::uint32_t value) { bid_ = value; }
+Decimal AddQuoteMessageLongFormMessage::bid() const { return bid_; }
+void AddQuoteMessageLongFormMessage::set_bid(Decimal value) { bid_ = value; }
 
 std::uint32_t AddQuoteMessageLongFormMessage::bid_size_long() const { return bid_size_long_; }
 void AddQuoteMessageLongFormMessage::set_bid_size_long(std::uint32_t value) { bid_size_long_ = value; }
 
-std::uint32_t AddQuoteMessageLongFormMessage::ask() const { return ask_; }
-void AddQuoteMessageLongFormMessage::set_ask(std::uint32_t value) { ask_ = value; }
+Decimal AddQuoteMessageLongFormMessage::ask() const { return ask_; }
+void AddQuoteMessageLongFormMessage::set_ask(Decimal value) { ask_ = value; }
 
 std::uint32_t AddQuoteMessageLongFormMessage::ask_size_long() const { return ask_size_long_; }
 void AddQuoteMessageLongFormMessage::set_ask_size_long(std::uint32_t value) { ask_size_long_ = value; }
@@ -60,13 +61,13 @@ std::size_t AddQuoteMessageLongFormMessage::decode(const std::byte* data, std::s
     option_id_ = wire::read_u32_be(data + offset);
     offset += 4;
 
-    bid_ = wire::read_u32_be(data + offset);
+    bid_ = Decimal(static_cast<std::int64_t>(wire::read_u32_be(data + offset)), -4);
     offset += 4;
 
     bid_size_long_ = wire::read_u32_be(data + offset);
     offset += 4;
 
-    ask_ = wire::read_u32_be(data + offset);
+    ask_ = Decimal(static_cast<std::int64_t>(wire::read_u32_be(data + offset)), -4);
     offset += 4;
 
     ask_size_long_ = wire::read_u32_be(data + offset);
@@ -94,13 +95,13 @@ std::size_t AddQuoteMessageLongFormMessage::encode(std::byte* data, std::size_t 
     wire::write_u32_be(data + offset, static_cast<std::uint32_t>(option_id_));
     offset += 4;
 
-    wire::write_u32_be(data + offset, static_cast<std::uint32_t>(bid_));
+    wire::write_u32_be(data + offset, static_cast<std::uint32_t>(bid_.mantissa()));
     offset += 4;
 
     wire::write_u32_be(data + offset, static_cast<std::uint32_t>(bid_size_long_));
     offset += 4;
 
-    wire::write_u32_be(data + offset, static_cast<std::uint32_t>(ask_));
+    wire::write_u32_be(data + offset, static_cast<std::uint32_t>(ask_.mantissa()));
     offset += 4;
 
     wire::write_u32_be(data + offset, static_cast<std::uint32_t>(ask_size_long_));

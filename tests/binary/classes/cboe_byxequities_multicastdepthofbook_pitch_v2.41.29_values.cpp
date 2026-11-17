@@ -155,7 +155,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.tradebreakmessage.executionid"] = canonical::number((*message).execution_id());
         } else if (const auto* message = dynamic_cast<const protocol::EndOfSession*>(each.message())) {
             values[entry + ".payload"] = "packet.messages.message.payload.endofsession";
-            values[entry + ".payload.endofsession.lasttimestamp"] = canonical::number((*message).last_timestamp());
+            values[entry + ".payload.endofsession.timeoffset"] = canonical::number((*message).time_offset());
         } else if (const auto* message = dynamic_cast<const protocol::TradingStatusMessage*>(each.message())) {
             values[entry + ".payload"] = "packet.messages.message.payload.tradingstatusmessage";
             values[entry + ".payload.tradingstatusmessage.timeoffset"] = canonical::number((*message).time_offset());
@@ -238,7 +238,19 @@ int check(const char* name, const char* capture, const char* expected) {
 int main() {
     std::printf("== Cboe.ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29 (classes values)\n");
     int failures = 0;
+    failures += check("AddOrderLongMessage", "Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/AddOrderLongMessage.pcap", "cboe/byxequities/multicastdepthofbook/pitch/v2.41.29/AddOrderLongMessage.values");
     failures += check("AddOrderShortMessage", "Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/AddOrderShortMessage.pcap", "cboe/byxequities/multicastdepthofbook/pitch/v2.41.29/AddOrderShortMessage.values");
+    failures += check("AuctionSummaryMessage", "Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/AuctionSummaryMessage.pcap", "cboe/byxequities/multicastdepthofbook/pitch/v2.41.29/AuctionSummaryMessage.values");
+    failures += check("AuctionUpdateMessage", "Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/AuctionUpdateMessage.pcap", "cboe/byxequities/multicastdepthofbook/pitch/v2.41.29/AuctionUpdateMessage.values");
+    failures += check("DeleteOrderMessage", "Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/DeleteOrderMessage.pcap", "cboe/byxequities/multicastdepthofbook/pitch/v2.41.29/DeleteOrderMessage.values");
+    failures += check("ModifyOrderLongMessage", "Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/ModifyOrderLongMessage.pcap", "cboe/byxequities/multicastdepthofbook/pitch/v2.41.29/ModifyOrderLongMessage.values");
     failures += check("ModifyOrderShortMessage", "Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/ModifyOrderShortMessage.pcap", "cboe/byxequities/multicastdepthofbook/pitch/v2.41.29/ModifyOrderShortMessage.values");
+    failures += check("OrderExecutedAtPriceSizeMessage", "Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/OrderExecutedAtPriceSizeMessage.pcap", "cboe/byxequities/multicastdepthofbook/pitch/v2.41.29/OrderExecutedAtPriceSizeMessage.values");
+    failures += check("OrderExecutedMessage", "Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/OrderExecutedMessage.pcap", "cboe/byxequities/multicastdepthofbook/pitch/v2.41.29/OrderExecutedMessage.values");
+    failures += check("ReduceSizeShortMessage", "Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/ReduceSizeShortMessage.pcap", "cboe/byxequities/multicastdepthofbook/pitch/v2.41.29/ReduceSizeShortMessage.values");
+    failures += check("RetailPriceImprovementMessage", "Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/RetailPriceImprovementMessage.pcap", "cboe/byxequities/multicastdepthofbook/pitch/v2.41.29/RetailPriceImprovementMessage.values");
+    failures += check("TradeLongMessage", "Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/TradeLongMessage.pcap", "cboe/byxequities/multicastdepthofbook/pitch/v2.41.29/TradeLongMessage.values");
+    failures += check("TradeShortMessage", "Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/TradeShortMessage.pcap", "cboe/byxequities/multicastdepthofbook/pitch/v2.41.29/TradeShortMessage.values");
+    failures += check("TradingStatusMessage", "Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/TradingStatusMessage.pcap", "cboe/byxequities/multicastdepthofbook/pitch/v2.41.29/TradingStatusMessage.values");
     return failures == 0 ? 0 : 1;
 }

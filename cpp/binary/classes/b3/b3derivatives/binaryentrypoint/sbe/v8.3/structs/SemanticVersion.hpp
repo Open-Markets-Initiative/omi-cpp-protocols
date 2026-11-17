@@ -1,7 +1,9 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: structs/SemanticVersion.hpp
 #pragma once
 
 #include <cstddef>
 #include <cstdint>
+#include <optional>
 #include <ostream>
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_3 {
@@ -13,23 +15,23 @@ class SemanticVersion {
     static constexpr std::size_t wire_size = 4;
 
     SemanticVersion() = default;
-    SemanticVersion(std::uint8_t major_number, std::uint8_t minor_number, std::uint8_t patch_number, std::uint8_t build_number);
+    SemanticVersion(std::optional<std::uint8_t> major_number, std::optional<std::uint8_t> minor_number, std::optional<std::uint8_t> patch_number, std::optional<std::uint8_t> build_number);
 
     // Major Number: majorNumber
-    std::uint8_t major_number() const;
-    void set_major_number(std::uint8_t value);
+    std::optional<std::uint8_t> major_number() const;
+    void set_major_number(std::optional<std::uint8_t> value);
 
     // Minor Number: minorNumber
-    std::uint8_t minor_number() const;
-    void set_minor_number(std::uint8_t value);
+    std::optional<std::uint8_t> minor_number() const;
+    void set_minor_number(std::optional<std::uint8_t> value);
 
     // Patch Number: patchNumber
-    std::uint8_t patch_number() const;
-    void set_patch_number(std::uint8_t value);
+    std::optional<std::uint8_t> patch_number() const;
+    void set_patch_number(std::optional<std::uint8_t> value);
 
     // Build Number: buildNumber
-    std::uint8_t build_number() const;
-    void set_build_number(std::uint8_t value);
+    std::optional<std::uint8_t> build_number() const;
+    void set_build_number(std::optional<std::uint8_t> value);
 
     // Read this from the bytes at data, and return how many were consumed; throws DecodeError when too few
     std::size_t decode(const std::byte* data, std::size_t length);
@@ -43,10 +45,10 @@ class SemanticVersion {
     bool operator!=(const SemanticVersion& other) const;
 
   private:
-    std::uint8_t major_number_{};
-    std::uint8_t minor_number_{};
-    std::uint8_t patch_number_{};
-    std::uint8_t build_number_{};
+    std::optional<std::uint8_t> major_number_{};
+    std::optional<std::uint8_t> minor_number_{};
+    std::optional<std::uint8_t> patch_number_{};
+    std::optional<std::uint8_t> build_number_{};
 };
 
 std::ostream& operator<<(std::ostream& out, const SemanticVersion& value);

@@ -1,3 +1,4 @@
+// CixAts.CixAspen.MarketDataFeed.Aspen.v1.4: types/OriginalTradePrice.hpp
 #pragma once
 
 #include <cstddef>

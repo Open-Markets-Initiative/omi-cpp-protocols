@@ -1,3 +1,4 @@
+// Nyse.NationalEquities.Trades.Pillar.v2.6: structs/SendTime.hpp
 #pragma once
 
 #include <chrono>

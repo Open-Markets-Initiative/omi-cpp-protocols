@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.9: messages/StartOfDayMessage.hpp
 #pragma once
 
 #include "../types/ParticipantId.hpp"

@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: definitions.hpp
 #pragma once
 
 // Every flyweight view and reader of Siac.Opra.Output.Obi.v6.2.

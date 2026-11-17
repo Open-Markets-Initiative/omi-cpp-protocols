@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: messages/LongEquityAndIndexQuoteCategory.cpp
 #include "LongEquityAndIndexQuoteCategory.hpp"
 
 #include "../common/Print.hpp"

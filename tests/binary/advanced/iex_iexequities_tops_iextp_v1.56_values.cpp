@@ -71,7 +71,6 @@ struct Reader {
         values[entry + ".messagedata.tradereportmessage.size"] = canonical::number(message.fields.size.get().value());
         values[entry + ".messagedata.tradereportmessage.price"] = canonical::scaled(message.fields.price.get().value(), -4);
         values[entry + ".messagedata.tradereportmessage.tradeid"] = canonical::number(message.fields.trade_id.get().value());
-        values[entry + ".messagedata.tradereportmessage.reserved4"] = canonical::number(message.fields.reserved_4.get().value());
     }
 
     void on_message(const protocol::trade_break_message& message, std::uint64_t, const protocol::iextp_header&) {
@@ -88,7 +87,6 @@ struct Reader {
         values[entry + ".messagedata.tradebreakmessage.size"] = canonical::number(message.fields.size.get().value());
         values[entry + ".messagedata.tradebreakmessage.price"] = canonical::scaled(message.fields.price.get().value(), -4);
         values[entry + ".messagedata.tradebreakmessage.tradeid"] = canonical::number(message.fields.trade_id.get().value());
-        values[entry + ".messagedata.tradebreakmessage.reserved4"] = canonical::number(message.fields.reserved_4.get().value());
     }
 };
 

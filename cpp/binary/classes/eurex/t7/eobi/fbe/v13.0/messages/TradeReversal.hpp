@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v13.0: messages/TradeReversal.hpp
 #pragma once
 
 #include <array>
@@ -30,7 +31,7 @@ class TradeReversal : public Message {
     TradeReversal() = default;
     TradeReversal(std::optional<std::int64_t> security_id, std::optional<std::chrono::nanoseconds> transact_time, std::optional<Decimal> last_qty, std::optional<Decimal> last_px, std::optional<std::chrono::nanoseconds> trd_reg_ts_execution_time, std::optional<std::uint32_t> trd_match_id, std::optional<TradeCondition> trade_condition, std::optional<MdOriginType> md_origin_type, std::optional<std::uint8_t> no_md_entries, const std::array<MdTradeEntryGrpComp, 15>& md_trade_entry_grp_comp);
 
-    // Security Id:
+    // Security Id: Unique instrument identifier
     std::optional<std::int64_t> security_id() const;
     void set_security_id(std::optional<std::int64_t> value);
 
@@ -38,7 +39,7 @@ class TradeReversal : public Message {
     std::optional<std::chrono::nanoseconds> transact_time() const;
     void set_transact_time(std::optional<std::chrono::nanoseconds> value);
 
-    // Last Qty:
+    // Last Qty: Total executed matched quantity of this match event
     std::optional<Decimal> last_qty() const;
     void set_last_qty(std::optional<Decimal> value);
 

@@ -1,3 +1,4 @@
+// Iex.IexEquities.DeepPlus.Snap.v1.06: types/Size.hpp
 #pragma once
 
 #include <cstddef>

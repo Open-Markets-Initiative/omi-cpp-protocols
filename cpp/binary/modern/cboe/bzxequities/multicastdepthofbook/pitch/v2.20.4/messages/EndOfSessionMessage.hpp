@@ -1,6 +1,7 @@
+// Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.20.4: messages/EndOfSessionMessage.hpp
 #pragma once
 
-#include "../types/Timestamp.hpp"
+#include "../types/TimeOffset.hpp"
 #include "../structs/MessageHeader.hpp"
 
 namespace cboe::bzxequities::multicastdepthofbook::pitch::v2_20_4 {
@@ -10,7 +11,7 @@ namespace cboe::bzxequities::multicastdepthofbook::pitch::v2_20_4 {
 // End of Session message
 struct EndOfSessionMessage {
 
-    Timestamp timestamp;
+    TimeOffset time_offset;
 
     // the type code that selects this message in the dispatch switch
     static constexpr std::uint8_t message_type = 0x2D;

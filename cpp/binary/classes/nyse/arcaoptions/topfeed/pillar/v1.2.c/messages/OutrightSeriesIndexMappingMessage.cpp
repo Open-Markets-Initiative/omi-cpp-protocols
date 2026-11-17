@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.TopFeed.Pillar.v1.2.c: messages/OutrightSeriesIndexMappingMessage.cpp
 #include "OutrightSeriesIndexMappingMessage.hpp"
 
 #include "../common/Print.hpp"

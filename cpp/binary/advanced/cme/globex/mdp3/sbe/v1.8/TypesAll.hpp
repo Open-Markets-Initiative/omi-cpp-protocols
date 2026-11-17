@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.8: TypesAll.hpp
 #pragma once
 
 // All type headers for this protocol schema
@@ -144,6 +145,7 @@
 #include "types/MdReqIdStatus.hpp"
 #include "types/MdReqIdOptional.hpp"
 #include "types/MdReqRejReason.hpp"
+#include "types/SessionText.hpp"
 #include "types/EncodingType.hpp"
 #include "types/MessageSequenceNumber.hpp"
 #include "types/TcpSendingTime.hpp"

@@ -1,3 +1,4 @@
+// Jpx.TseEquities.MarketByOrder.Flex.v1.1: messages/TradingStatusMessage.cpp
 #include "TradingStatusMessage.hpp"
 
 #include "../common/Print.hpp"

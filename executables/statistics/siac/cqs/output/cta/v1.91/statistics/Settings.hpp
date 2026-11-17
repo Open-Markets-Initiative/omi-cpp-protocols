@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v1.91: statistics/Settings.hpp
 #pragma once
 
 #include <string>

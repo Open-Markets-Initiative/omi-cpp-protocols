@@ -1,3 +1,4 @@
+// Nasdaq.NtxEquities.TotalView.Itch.v5.0: enums/PriceVariationIndicator.cpp
 #include "PriceVariationIndicator.hpp"
 
 namespace nasdaq::ntxequities::totalview::itch::v5_0 {

@@ -123,7 +123,19 @@ void expect(const char* name, const char* relative) {
 
 int main() {
     std::printf("== Cboe.ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29 (classes)\n");
+    expect<protocol::Packet, protocol::Visitor, protocol::AddOrderLongMessage>("AddOrderLongMessage", "Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/AddOrderLongMessage.pcap");
     expect<protocol::Packet, protocol::Visitor, protocol::AddOrderShortMessage>("AddOrderShortMessage", "Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/AddOrderShortMessage.pcap");
+    expect<protocol::Packet, protocol::Visitor, protocol::AuctionSummaryMessage>("AuctionSummaryMessage", "Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/AuctionSummaryMessage.pcap");
+    expect<protocol::Packet, protocol::Visitor, protocol::AuctionUpdateMessage>("AuctionUpdateMessage", "Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/AuctionUpdateMessage.pcap");
+    expect<protocol::Packet, protocol::Visitor, protocol::DeleteOrderMessage>("DeleteOrderMessage", "Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/DeleteOrderMessage.pcap");
+    expect<protocol::Packet, protocol::Visitor, protocol::ModifyOrderLongMessage>("ModifyOrderLongMessage", "Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/ModifyOrderLongMessage.pcap");
     expect<protocol::Packet, protocol::Visitor, protocol::ModifyOrderShortMessage>("ModifyOrderShortMessage", "Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/ModifyOrderShortMessage.pcap");
+    expect<protocol::Packet, protocol::Visitor, protocol::OrderExecutedAtPriceSizeMessage>("OrderExecutedAtPriceSizeMessage", "Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/OrderExecutedAtPriceSizeMessage.pcap");
+    expect<protocol::Packet, protocol::Visitor, protocol::OrderExecutedMessage>("OrderExecutedMessage", "Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/OrderExecutedMessage.pcap");
+    expect<protocol::Packet, protocol::Visitor, protocol::ReduceSizeShortMessage>("ReduceSizeShortMessage", "Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/ReduceSizeShortMessage.pcap");
+    expect<protocol::Packet, protocol::Visitor, protocol::RetailPriceImprovementMessage>("RetailPriceImprovementMessage", "Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/RetailPriceImprovementMessage.pcap");
+    expect<protocol::Packet, protocol::Visitor, protocol::TradeLongMessage>("TradeLongMessage", "Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/TradeLongMessage.pcap");
+    expect<protocol::Packet, protocol::Visitor, protocol::TradeShortMessage>("TradeShortMessage", "Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/TradeShortMessage.pcap");
+    expect<protocol::Packet, protocol::Visitor, protocol::TradingStatusMessage>("TradingStatusMessage", "Cboe/ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29/TradingStatusMessage.pcap");
     return failures == 0 ? 0 : 1;
 }

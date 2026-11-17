@@ -87,6 +87,7 @@ void expect(const char* name, const char* relative, Matches matches) {
 int main() {
     std::printf("== Miax.OnyxFutures.TopOfMarket.Mach.v1.0.b (modern)\n");
     expect<protocol::MachMessageIterator>("BestBidAndOfferMessage", "Miax/OnyxFutures.TopOfMarket.Mach.v1.0.b/BestBidAndOfferMessage.pcap", [](const protocol::MachMessageIterator& iterator) { return iterator.packet_type == 3 && protocol::ApplicationMessage::parse(iterator.message)->message_type.get() == protocol::BestBidAndOfferMessage::message_type; });
+    expect<protocol::MachMessageIterator>("Heartbeat", "Miax/OnyxFutures.TopOfMarket.Mach.v1.0.b/Heartbeat.pcap", [](const protocol::MachMessageIterator& iterator) { return iterator.packet_type == 0; });
     expect<protocol::MachMessageIterator>("InstrumentTradingStatusNotificationMessage", "Miax/OnyxFutures.TopOfMarket.Mach.v1.0.b/InstrumentTradingStatusNotificationMessage.pcap", [](const protocol::MachMessageIterator& iterator) { return iterator.packet_type == 3 && protocol::ApplicationMessage::parse(iterator.message)->message_type.get() == protocol::InstrumentTradingStatusNotificationMessage::message_type; });
     expect<protocol::MachMessageIterator>("SystemStateMessage", "Miax/OnyxFutures.TopOfMarket.Mach.v1.0.b/SystemStateMessage.pcap", [](const protocol::MachMessageIterator& iterator) { return iterator.packet_type == 3 && protocol::ApplicationMessage::parse(iterator.message)->message_type.get() == protocol::SystemStateMessage::message_type; });
     return failures == 0 ? 0 : 1;

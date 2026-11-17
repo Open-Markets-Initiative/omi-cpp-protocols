@@ -1,3 +1,4 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: lseg_millennium_level2_mitch_v11_9.hpp
 // Lseg Millennium Level2 Mitch 11.9 Template Meta Programming
 
 #pragma once
@@ -504,6 +505,7 @@ struct buy_limit_price {
     using type = std::int64_t;
     static constexpr std::size_t size = 8;
     static constexpr std::endian order = std::endian::little;
+    static constexpr int exponent = -8;
 
     constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
     constexpr operator type() const noexcept { return value(); }
@@ -766,6 +768,7 @@ struct new_price {
     using type = std::int64_t;
     static constexpr std::size_t size = 8;
     static constexpr std::endian order = std::endian::little;
+    static constexpr int exponent = -8;
 
     constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
     constexpr operator type() const noexcept { return value(); }
@@ -840,6 +843,7 @@ struct previous_close_price {
     using type = std::int64_t;
     static constexpr std::size_t size = 8;
     static constexpr std::endian order = std::endian::little;
+    static constexpr int exponent = -8;
 
     constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
     constexpr operator type() const noexcept { return value(); }
@@ -853,6 +857,7 @@ struct price {
     using type = std::int64_t;
     static constexpr std::size_t size = 8;
     static constexpr std::endian order = std::endian::little;
+    static constexpr int exponent = -8;
 
     constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
     constexpr operator type() const noexcept { return value(); }
@@ -1045,6 +1050,7 @@ struct sell_limit_price {
     using type = std::int64_t;
     static constexpr std::size_t size = 8;
     static constexpr std::endian order = std::endian::little;
+    static constexpr int exponent = -8;
 
     constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
     constexpr operator type() const noexcept { return value(); }

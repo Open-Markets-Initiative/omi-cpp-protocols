@@ -1,3 +1,4 @@
+// Bse.BseIndia.Eobi.Fbe.v1.4: messages/AuctionClearingPriceMessage.cpp
 #include "AuctionClearingPriceMessage.hpp"
 
 #include "../common/Print.hpp"

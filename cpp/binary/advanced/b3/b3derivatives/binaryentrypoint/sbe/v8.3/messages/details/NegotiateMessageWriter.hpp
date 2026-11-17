@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: messages/details/NegotiateMessageWriter.hpp
 #pragma once
 
 #include "../NegotiateMessage.hpp"

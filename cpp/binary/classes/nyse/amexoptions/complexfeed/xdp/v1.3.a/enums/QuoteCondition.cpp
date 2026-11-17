@@ -1,3 +1,4 @@
+// Nyse.AmexOptions.ComplexFeed.Xdp.v1.3.a: enums/QuoteCondition.cpp
 #include "QuoteCondition.hpp"
 
 namespace nyse::amexoptions::complexfeed::xdp::v1_3_a {

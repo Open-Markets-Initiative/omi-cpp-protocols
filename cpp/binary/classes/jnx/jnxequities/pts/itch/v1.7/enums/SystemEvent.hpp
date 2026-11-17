@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.7: enums/SystemEvent.hpp
 #pragma once
 
 #include <cstdint>

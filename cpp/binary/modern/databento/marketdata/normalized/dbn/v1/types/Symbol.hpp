@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v1: types/Symbol.hpp
 #pragma once
 
 #include <array>

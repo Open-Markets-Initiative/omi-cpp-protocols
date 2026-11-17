@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2017: structs/MessageHeader.hpp
 #pragma once
 
 #include "../types/MessageLength.hpp"

@@ -1,3 +1,4 @@
+// Nyse.NationalEquities.Trades.Pillar.v2.6: main.cpp
 #include "Settings.hpp"
 
 int main(const int argc, char** argv) {

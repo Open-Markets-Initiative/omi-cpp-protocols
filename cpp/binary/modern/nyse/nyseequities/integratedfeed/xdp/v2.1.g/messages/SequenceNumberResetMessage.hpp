@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeed.Xdp.v2.1.g: messages/SequenceNumberResetMessage.hpp
 #pragma once
 
 #include "../types/SourceTime.hpp"

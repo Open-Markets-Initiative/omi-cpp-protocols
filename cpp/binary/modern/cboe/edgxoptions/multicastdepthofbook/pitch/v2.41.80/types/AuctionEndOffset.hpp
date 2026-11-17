@@ -1,3 +1,4 @@
+// Cboe.EdgxOptions.MulticastDepthOfBook.Pitch.v2.41.80: types/AuctionEndOffset.hpp
 #pragma once
 
 #include <cstddef>
@@ -23,6 +24,11 @@ struct AuctionEndOffset {
     // get value of AuctionEndOffset field
     [[nodiscard]] std::uint32_t get() const {
         return value;
+    }
+
+    // get epoch nanoseconds: the stored base plus this field
+    [[nodiscard]] std::int64_t get(const std::int64_t midnight_ns) const {
+        return midnight_ns + static_cast<std::int64_t>(get());
     }
 
   protected:

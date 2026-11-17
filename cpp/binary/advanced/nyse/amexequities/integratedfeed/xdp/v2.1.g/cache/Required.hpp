@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeed.Xdp.v2.1.g: cache/Required.hpp
 #pragma once
 
 #include <string_view>

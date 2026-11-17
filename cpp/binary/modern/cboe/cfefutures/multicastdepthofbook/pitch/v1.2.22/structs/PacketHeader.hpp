@@ -1,3 +1,4 @@
+// Cboe.CfeFutures.MulticastDepthOfBook.Pitch.v1.2.22: structs/PacketHeader.hpp
 #pragma once
 
 #include "../types/Length.hpp"

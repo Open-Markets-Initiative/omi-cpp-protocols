@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.10: structs/CorrectedTrade.cpp
 #include "CorrectedTrade.hpp"
 
 #include "../common/Print.hpp"

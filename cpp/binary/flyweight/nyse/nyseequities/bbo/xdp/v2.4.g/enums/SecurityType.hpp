@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.Bbo.Xdp.v2.4.g: enums/SecurityType.hpp
 #pragma once
 
 #include <cstdint>

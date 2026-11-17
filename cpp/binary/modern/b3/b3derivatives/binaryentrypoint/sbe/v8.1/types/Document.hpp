@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1: types/Document.hpp
 #pragma once
 
 #include <cstddef>
@@ -11,10 +12,11 @@ struct Document {
     static constexpr const char* name = "Document";
     static constexpr std::size_t size =  4;
     using type = std::uint32_t;
+static const type no_value = 0;
 
-    // default constructor
+    // default constructor: the null the model states, where it states one
     constexpr Document()
-     : value{ 0 } {}
+     : value{ no_value } {}
 
     // standard constructor
     constexpr explicit Document(const std::uint32_t value)

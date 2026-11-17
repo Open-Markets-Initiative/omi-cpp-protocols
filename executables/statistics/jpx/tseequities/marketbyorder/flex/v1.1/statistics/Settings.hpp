@@ -1,3 +1,4 @@
+// Jpx.TseEquities.MarketByOrder.Flex.v1.1: statistics/Settings.hpp
 #pragma once
 
 #include <string>

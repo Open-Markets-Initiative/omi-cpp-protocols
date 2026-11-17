@@ -511,7 +511,7 @@ struct Reader {
 
     void operator()(const protocol::end_of_session& message) {
         values[entry + ".payload"] = "packet.messages.message.payload.endofsession";
-        if constexpr (requires { message.template get<protocol::last_timestamp>(); }) { values[entry + ".payload.endofsession.lasttimestamp"] = canonical::number(message.template get<protocol::last_timestamp>().value()); }
+        if constexpr (requires { message.template get<protocol::time_offset>(); }) { values[entry + ".payload.endofsession.timeoffset"] = canonical::number(message.template get<protocol::time_offset>().value()); }
     }
 
     void operator()(const protocol::trading_status_message& message) {
@@ -616,6 +616,7 @@ int main() {
     failures += check("ModifyOrderShortMessage", "Cboe/BzxEquities.MulticastDepthOfBook.Pitch.v2.41.29/ModifyOrderShortMessage.pcap", "cboe/bzxequities/multicastdepthofbook/pitch/v2.41.29/ModifyOrderShortMessage.values");
     failures += check("OrderExecutedAtPriceSizeMessage", "Cboe/BzxEquities.MulticastDepthOfBook.Pitch.v2.41.29/OrderExecutedAtPriceSizeMessage.pcap", "cboe/bzxequities/multicastdepthofbook/pitch/v2.41.29/OrderExecutedAtPriceSizeMessage.values");
     failures += check("OrderExecutedMessage", "Cboe/BzxEquities.MulticastDepthOfBook.Pitch.v2.41.29/OrderExecutedMessage.pcap", "cboe/bzxequities/multicastdepthofbook/pitch/v2.41.29/OrderExecutedMessage.values");
+    failures += check("ReduceSizeLongMessage", "Cboe/BzxEquities.MulticastDepthOfBook.Pitch.v2.41.29/ReduceSizeLongMessage.pcap", "cboe/bzxequities/multicastdepthofbook/pitch/v2.41.29/ReduceSizeLongMessage.values");
     failures += check("ReduceSizeShortMessage", "Cboe/BzxEquities.MulticastDepthOfBook.Pitch.v2.41.29/ReduceSizeShortMessage.pcap", "cboe/bzxequities/multicastdepthofbook/pitch/v2.41.29/ReduceSizeShortMessage.values");
     failures += check("TimeMessage", "Cboe/BzxEquities.MulticastDepthOfBook.Pitch.v2.41.29/TimeMessage.pcap", "cboe/bzxequities/multicastdepthofbook/pitch/v2.41.29/TimeMessage.values");
     failures += check("TradeLongMessage", "Cboe/BzxEquities.MulticastDepthOfBook.Pitch.v2.41.29/TradeLongMessage.pcap", "cboe/bzxequities/multicastdepthofbook/pitch/v2.41.29/TradeLongMessage.values");

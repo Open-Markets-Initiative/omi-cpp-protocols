@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.Qbbo.Itch.v2.1: Settings.hpp
 #pragma once
 
 #include <iostream>

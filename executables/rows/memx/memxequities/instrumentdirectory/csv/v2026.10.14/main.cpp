@@ -1,3 +1,4 @@
+// main.cpp
 // Memx.MemxEquities.InstrumentDirectory.Csv.v2026.10.14: the rows of a file of its lines, each line read straight into typed C++
 // values (Row.hpp, through Rows.hpp), the first of them printed.
 //

@@ -1,3 +1,4 @@
+// Nasdaq.NtxEquities.TotalView.Itch.v5.0: types/SequenceNumber.hpp
 #pragma once
 
 #include <bit>

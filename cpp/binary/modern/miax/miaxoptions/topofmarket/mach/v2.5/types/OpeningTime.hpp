@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.TopOfMarket.Mach.v2.5: types/OpeningTime.hpp
 #pragma once
 
 #include <array>

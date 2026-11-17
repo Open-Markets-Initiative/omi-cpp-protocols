@@ -1,9 +1,10 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1: messages/ExecutionReportTradeMessage.hpp
 #pragma once
 
 #include "../structs/OutboundBusinessHeader.hpp"
 #include "../types/Side.hpp"
 #include "../types/OrdStatus.hpp"
-#include "../types/ClordidOptional.hpp"
+#include "../types/ClOrdIdOptional.hpp"
 #include "../types/SecondaryOrderId.hpp"
 #include "../types/SecurityId.hpp"
 #include "../types/Account.hpp"
@@ -25,7 +26,7 @@
 #include "../types/Offset119Padding1.hpp"
 #include "../types/SecondaryExecId.hpp"
 #include "../types/ExecRefId.hpp"
-#include "../types/CrossidOptional.hpp"
+#include "../types/CrossIdOptional.hpp"
 #include "../types/CrossedIndicator.hpp"
 #include "../types/OrderQty.hpp"
 #include "../types/TradingSessionId.hpp"
@@ -46,7 +47,7 @@ struct ExecutionReportTradeMessage {
     OutboundBusinessHeader outbound_business_header;
     Side side;
     OrdStatus ord_status;
-    ClordidOptional clordid_optional;
+    ClOrdIdOptional cl_ord_id_optional;
     SecondaryOrderId secondary_order_id;
     SecurityId security_id;
     Account account;
@@ -68,7 +69,7 @@ struct ExecutionReportTradeMessage {
     Offset119Padding1 offset_119_padding_1;
     SecondaryExecId secondary_exec_id;
     ExecRefId exec_ref_id;
-    CrossidOptional crossid_optional;
+    CrossIdOptional cross_id_optional;
     CrossedIndicator crossed_indicator;
     OrderQty order_qty;
     TradingSessionId trading_session_id;

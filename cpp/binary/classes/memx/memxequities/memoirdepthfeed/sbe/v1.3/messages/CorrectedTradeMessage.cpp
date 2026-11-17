@@ -1,3 +1,4 @@
+// Memx.MemxEquities.MemoirDepthFeed.Sbe.v1.3: messages/CorrectedTradeMessage.cpp
 #include "CorrectedTradeMessage.hpp"
 
 #include "../common/Print.hpp"

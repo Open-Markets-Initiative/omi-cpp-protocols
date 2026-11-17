@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: messages/GoodbyePacket.hpp
 #pragma once
 
 #include <cstddef>
@@ -9,7 +10,7 @@
 #include "../common/Wire.hpp"
 #include "../common/Print.hpp"
 #include "../common/View.hpp"
-#include "../enums/LogoutReason.hpp"
+#include "../enums/GoodbyeReason.hpp"
 
 namespace miax::pearlequities::depthofmarket::mach::v1_3_d {
 
@@ -28,7 +29,7 @@ class GoodbyePacket {
     static constexpr std::size_t minimum_size = 1;
     std::size_t encoded_size() const { return logout_text_end(); }
 
-    LogoutReason logout_reason() const { return static_cast<LogoutReason>(wire::read_char(at(0))); }
+    GoodbyeReason goodbye_reason() const { return static_cast<GoodbyeReason>(wire::read_char(at(0))); }
 
     std::size_t logout_text_size() const { return bytes_.size() - (1); }
     std::string_view logout_text() const {
@@ -38,8 +39,8 @@ class GoodbyePacket {
 
     void print(std::ostream& out) const {
         out << "GoodbyePacket{";
-        out << "logout_reason=";
-        out << logout_reason();
+        out << "goodbye_reason=";
+        out << goodbye_reason();
         out << ", logout_text=";
         print::text(out, logout_text());
         out << '}';

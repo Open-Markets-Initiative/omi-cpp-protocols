@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.3: messages/SecurityGroupPhase10Message.hpp
 #pragma once
 
 #include <array>
@@ -29,7 +30,7 @@ class SecurityGroupPhase10Message : public Message {
     static constexpr std::size_t wire_size = 32;
 
     SecurityGroupPhase10Message() = default;
-    SecurityGroupPhase10Message(const std::string& security_group, const std::array<std::byte, 5>& offset_3_padding_5, const MatchEventIndicator& match_event_indicator, TradingSessionId trading_session_id, TradingSessionSubId trading_session_sub_id, std::optional<SecurityTradingEvent> security_trading_event, std::uint16_t trade_date, const std::array<std::byte, 2>& offset_14_padding_2, std::optional<std::chrono::nanoseconds> trad_ses_open_time, std::optional<std::uint64_t> transact_time);
+    SecurityGroupPhase10Message(const std::string& security_group, const std::array<std::byte, 5>& offset_3_padding_5, const MatchEventIndicator& match_event_indicator, TradingSessionId trading_session_id, TradingSessionSubId trading_session_sub_id, std::optional<SecurityTradingEvent> security_trading_event, std::uint16_t trade_date, const std::array<std::byte, 2>& offset_14_padding_2, std::optional<std::chrono::nanoseconds> trad_ses_open_time, std::optional<std::chrono::nanoseconds> transact_time);
 
     // Security Group: securityGroup
     const std::string& security_group() const;
@@ -72,8 +73,8 @@ class SecurityGroupPhase10Message : public Message {
     void set_trad_ses_open_time(std::optional<std::chrono::nanoseconds> value);
 
     // Transact Time: transactTime
-    std::optional<std::uint64_t> transact_time() const;
-    void set_transact_time(std::optional<std::uint64_t> value);
+    std::optional<std::chrono::nanoseconds> transact_time() const;
+    void set_transact_time(std::optional<std::chrono::nanoseconds> value);
 
     // Message
     MessageCode type() const override;
@@ -99,7 +100,7 @@ class SecurityGroupPhase10Message : public Message {
     std::uint16_t trade_date_{};
     std::array<std::byte, 2> offset_14_padding_2_{};
     std::optional<std::chrono::nanoseconds> trad_ses_open_time_{};
-    std::optional<std::uint64_t> transact_time_{};
+    std::optional<std::chrono::nanoseconds> transact_time_{};
 };
 
 } // namespace b3::b3derivatives::binaryumdf::sbe::v2_3

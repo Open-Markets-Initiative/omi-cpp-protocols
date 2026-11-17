@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v13.0: program/Settings.hpp
 #pragma once
 
 #include <filesystem>

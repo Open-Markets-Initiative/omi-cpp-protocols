@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.6: messages/AuctionImbalance19Message.cpp
 #include "AuctionImbalance19Message.hpp"
 
 #include "../common/Print.hpp"
@@ -6,8 +7,8 @@
 
 namespace b3::b3derivatives::binaryumdf::sbe::v1_6 {
 
-AuctionImbalance19Message::AuctionImbalance19Message(std::uint64_t security_id, const MatchEventIndicator& match_event_indicator, MdUpdateAction md_update_action, const ImbalanceCondition& imbalance_condition, std::optional<std::int64_t> md_entry_size_quantity_optional, std::optional<std::chrono::nanoseconds> md_entry_timestamp, std::optional<std::uint32_t> rpt_seq)
-  : security_id_(security_id), match_event_indicator_(match_event_indicator), md_update_action_(md_update_action), imbalance_condition_(imbalance_condition), md_entry_size_quantity_optional_(md_entry_size_quantity_optional), md_entry_timestamp_(md_entry_timestamp), rpt_seq_(rpt_seq) {}
+AuctionImbalance19Message::AuctionImbalance19Message(std::uint64_t security_id, const MatchEventIndicator& match_event_indicator, MdUpdateAction md_update_action, const ImbalanceCondition& imbalance_condition, std::optional<std::int64_t> md_entry_size_optional, std::optional<std::chrono::nanoseconds> md_entry_timestamp, std::optional<std::uint32_t> rpt_seq)
+  : security_id_(security_id), match_event_indicator_(match_event_indicator), md_update_action_(md_update_action), imbalance_condition_(imbalance_condition), md_entry_size_optional_(md_entry_size_optional), md_entry_timestamp_(md_entry_timestamp), rpt_seq_(rpt_seq) {}
 
 std::uint64_t AuctionImbalance19Message::security_id() const { return security_id_; }
 void AuctionImbalance19Message::set_security_id(std::uint64_t value) { security_id_ = value; }
@@ -23,8 +24,8 @@ const ImbalanceCondition& AuctionImbalance19Message::imbalance_condition() const
 ImbalanceCondition& AuctionImbalance19Message::imbalance_condition() { return imbalance_condition_; }
 void AuctionImbalance19Message::set_imbalance_condition(const ImbalanceCondition& value) { imbalance_condition_ = value; }
 
-std::optional<std::int64_t> AuctionImbalance19Message::md_entry_size_quantity_optional() const { return md_entry_size_quantity_optional_; }
-void AuctionImbalance19Message::set_md_entry_size_quantity_optional(std::optional<std::int64_t> value) { md_entry_size_quantity_optional_ = value; }
+std::optional<std::int64_t> AuctionImbalance19Message::md_entry_size_optional() const { return md_entry_size_optional_; }
+void AuctionImbalance19Message::set_md_entry_size_optional(std::optional<std::int64_t> value) { md_entry_size_optional_ = value; }
 
 std::optional<std::chrono::nanoseconds> AuctionImbalance19Message::md_entry_timestamp() const { return md_entry_timestamp_; }
 void AuctionImbalance19Message::set_md_entry_timestamp(std::optional<std::chrono::nanoseconds> value) { md_entry_timestamp_ = value; }
@@ -50,7 +51,7 @@ std::size_t AuctionImbalance19Message::decode(const std::byte* data, std::size_t
 
     offset += imbalance_condition_.decode(data + offset, length - offset);
 
-    md_entry_size_quantity_optional_ = wire::nullable(wire::read_i64_le(data + offset), static_cast<std::int64_t>(-9223372036854775807LL - 1));
+    md_entry_size_optional_ = wire::nullable(wire::read_i64_le(data + offset), static_cast<std::int64_t>(-9223372036854775807LL - 1));
     offset += 8;
 
     md_entry_timestamp_ = wire::nullable_duration<std::chrono::nanoseconds>(wire::read_u64_le(data + offset), static_cast<std::uint64_t>(0ULL));
@@ -76,7 +77,7 @@ std::size_t AuctionImbalance19Message::encode(std::byte* data, std::size_t capac
 
     offset += imbalance_condition_.encode(data + offset, capacity - offset);
 
-    wire::write_i64_le(data + offset, md_entry_size_quantity_optional_.value_or(static_cast<std::int64_t>(-9223372036854775807LL - 1)));
+    wire::write_i64_le(data + offset, md_entry_size_optional_.value_or(static_cast<std::int64_t>(-9223372036854775807LL - 1)));
     offset += 8;
 
     wire::write_u64_le(data + offset, md_entry_timestamp_ ? static_cast<std::uint64_t>(md_entry_timestamp_->count()) : static_cast<std::uint64_t>(0ULL));
@@ -110,8 +111,8 @@ void AuctionImbalance19Message::print(std::ostream& out) const {
     out << md_update_action_;
     out << ", imbalance_condition=";
     imbalance_condition_.print(out);
-    out << ", md_entry_size_quantity_optional=";
-    print::optional(out, md_entry_size_quantity_optional_);
+    out << ", md_entry_size_optional=";
+    print::optional(out, md_entry_size_optional_);
     out << ", md_entry_timestamp=";
     print::optional_duration(out, md_entry_timestamp_);
     out << ", rpt_seq=";
@@ -129,7 +130,7 @@ bool AuctionImbalance19Message::operator==(const AuctionImbalance19Message& othe
         && match_event_indicator_ == other.match_event_indicator_
         && md_update_action_ == other.md_update_action_
         && imbalance_condition_ == other.imbalance_condition_
-        && md_entry_size_quantity_optional_ == other.md_entry_size_quantity_optional_
+        && md_entry_size_optional_ == other.md_entry_size_optional_
         && md_entry_timestamp_ == other.md_entry_timestamp_
         && rpt_seq_ == other.rpt_seq_;
 }

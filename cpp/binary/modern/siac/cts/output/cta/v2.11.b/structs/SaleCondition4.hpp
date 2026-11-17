@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: structs/SaleCondition4.hpp
 #pragma once
 
 #include "../types/Category1.hpp"

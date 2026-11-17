@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v2.10.a: messages/Format.hpp
 #pragma once
 
 #include <ostream>
@@ -153,8 +154,6 @@ inline std::ostream& operator<<(std::ostream& os, const symbol_reference_data_me
        << ",short_sale_restriction_indicator=\"" << cta_output::short_sale_restriction_indicator::to_string(msg.fields.short_sale_restriction_indicator.get().value()) << '"'
        << ",halt_reason=\"" << msg.fields.halt_reason.get().value() << '"'
        << ",instrument_type=\"" << cta_output::instrument_type::to_string(msg.fields.instrument_type.get().value()) << '"'
-       << ",second_reserved=\"" << msg.fields.second_reserved.get().value() << '"'
-       << ",third_reserved=\"" << msg.fields.third_reserved.get().value() << '"'
        ;
     return os;
 }

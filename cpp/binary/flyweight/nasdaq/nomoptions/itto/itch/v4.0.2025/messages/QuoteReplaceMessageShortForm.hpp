@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: messages/QuoteReplaceMessageShortForm.hpp
 #pragma once
 
 #include <chrono>
@@ -44,11 +45,11 @@ class QuoteReplaceMessageShortForm {
 
     std::uint64_t ask_reference_number() const { return wire::read_u64_be(at(32)); }
 
-    Decimal bid_price_short() const { return Decimal(static_cast<std::int64_t>(wire::read_u16_be(at(40))), -4); }
+    Decimal bid_price_short() const { return Decimal(static_cast<std::int64_t>(wire::read_u16_be(at(40))), -2); }
 
     std::uint16_t bid_size_short() const { return wire::read_u16_be(at(42)); }
 
-    Decimal ask_price_short() const { return Decimal(static_cast<std::int64_t>(wire::read_u16_be(at(44))), -4); }
+    Decimal ask_price_short() const { return Decimal(static_cast<std::int64_t>(wire::read_u16_be(at(44))), -2); }
 
     std::uint16_t ask_size_short() const { return wire::read_u16_be(at(46)); }
 

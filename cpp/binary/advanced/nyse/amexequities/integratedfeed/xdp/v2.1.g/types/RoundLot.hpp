@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeed.Xdp.v2.1.g: types/RoundLot.hpp
 #pragma once
 
 #include <cstddef>

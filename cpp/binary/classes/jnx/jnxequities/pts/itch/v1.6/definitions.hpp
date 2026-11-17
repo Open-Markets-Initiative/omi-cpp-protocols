@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.6: definitions.hpp
 #pragma once
 
 #include "common/Day.hpp"

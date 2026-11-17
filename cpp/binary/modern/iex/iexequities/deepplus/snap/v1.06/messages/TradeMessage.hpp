@@ -1,3 +1,4 @@
+// Iex.IexEquities.DeepPlus.Snap.v1.06: messages/TradeMessage.hpp
 #pragma once
 
 #include "../bitfields/SaleConditionFlags.hpp"

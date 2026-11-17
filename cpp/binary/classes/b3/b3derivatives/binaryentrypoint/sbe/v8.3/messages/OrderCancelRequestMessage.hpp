@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: messages/OrderCancelRequestMessage.hpp
 #pragma once
 
 #include <array>
@@ -27,7 +28,7 @@ class OrderCancelRequestMessage : public Message {
     static constexpr MessageCode message_type = TemplateId::OrderCancelRequestMessage;
 
     OrderCancelRequestMessage() = default;
-    OrderCancelRequestMessage(const InboundBusinessHeader& inbound_business_header, const std::array<std::byte, 2>& offset_18_padding_2, std::uint64_t clordid, std::uint64_t security_id, std::optional<std::uint64_t> order_id_optional, std::optional<std::uint64_t> origclordid, Side side, std::optional<SingleCancelRestatementReason> single_cancel_restatement_reason, const std::array<std::byte, 2>& offset_54_padding_2, const std::string& sender_location, const std::string& entering_trader, const std::string& executing_trader_optional, const DeskId& desk_id, const Memo& memo);
+    OrderCancelRequestMessage(const InboundBusinessHeader& inbound_business_header, const std::array<std::byte, 2>& offset_18_padding_2, std::uint64_t cl_ord_id, std::uint64_t security_id, std::optional<std::uint64_t> order_id_optional, std::optional<std::uint64_t> origclordid, Side side, std::optional<SingleCancelRestatementReason> single_cancel_restatement_reason, const std::array<std::byte, 2>& offset_54_padding_2, const std::string& sender_location, const std::string& entering_trader, const std::string& executing_trader_optional, const DeskId& desk_id, const Memo& memo);
 
     // Inbound Business Header: InboundBusinessHeader
     const InboundBusinessHeader& inbound_business_header() const;
@@ -39,9 +40,9 @@ class OrderCancelRequestMessage : public Message {
     std::array<std::byte, 2>& offset_18_padding_2();
     void set_offset_18_padding_2(const std::array<std::byte, 2>& value);
 
-    // ClOrdId: clOrdID
-    std::uint64_t clordid() const;
-    void set_clordid(std::uint64_t value);
+    // Cl Ord Id: clOrdID
+    std::uint64_t cl_ord_id() const;
+    void set_cl_ord_id(std::uint64_t value);
 
     // Security Id: securityID
     std::uint64_t security_id() const;
@@ -110,7 +111,7 @@ class OrderCancelRequestMessage : public Message {
   private:
     InboundBusinessHeader inbound_business_header_{};
     std::array<std::byte, 2> offset_18_padding_2_{};
-    std::uint64_t clordid_{};
+    std::uint64_t cl_ord_id_{};
     std::uint64_t security_id_{};
     std::optional<std::uint64_t> order_id_optional_{};
     std::optional<std::uint64_t> origclordid_{};

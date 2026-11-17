@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.7: cache/Required.hpp
 #pragma once
 
 #include <string_view>

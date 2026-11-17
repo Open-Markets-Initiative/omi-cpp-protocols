@@ -1,6 +1,8 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.1: messages/MassDeleteOrdersMbO52Message.hpp
 #pragma once
 
 #include <array>
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
@@ -26,7 +28,7 @@ class MassDeleteOrdersMbO52Message : public Message {
     static constexpr std::size_t wire_size = 28;
 
     MassDeleteOrdersMbO52Message() = default;
-    MassDeleteOrdersMbO52Message(std::uint64_t security_id, const MatchEventIndicator& match_event_indicator, MdUpdateAction md_update_action, MdEntryType md_entry_type, const std::array<std::byte, 1>& offset_11_padding_1, std::optional<std::uint32_t> md_entry_position_no, std::optional<std::uint64_t> transact_time, std::optional<std::uint32_t> rpt_seq);
+    MassDeleteOrdersMbO52Message(std::uint64_t security_id, const MatchEventIndicator& match_event_indicator, MdUpdateAction md_update_action, MdEntryType md_entry_type, const std::array<std::byte, 1>& offset_11_padding_1, std::optional<std::uint32_t> md_entry_position_no, std::optional<std::chrono::nanoseconds> transact_time, std::optional<std::uint32_t> rpt_seq);
 
     // Security Id: securityID
     std::uint64_t security_id() const;
@@ -55,8 +57,8 @@ class MassDeleteOrdersMbO52Message : public Message {
     void set_md_entry_position_no(std::optional<std::uint32_t> value);
 
     // Transact Time: transactTime
-    std::optional<std::uint64_t> transact_time() const;
-    void set_transact_time(std::optional<std::uint64_t> value);
+    std::optional<std::chrono::nanoseconds> transact_time() const;
+    void set_transact_time(std::optional<std::chrono::nanoseconds> value);
 
     // Rpt Seq: rptSeq
     std::optional<std::uint32_t> rpt_seq() const;
@@ -83,7 +85,7 @@ class MassDeleteOrdersMbO52Message : public Message {
     MdEntryType md_entry_type_{};
     std::array<std::byte, 1> offset_11_padding_1_{};
     std::optional<std::uint32_t> md_entry_position_no_{};
-    std::optional<std::uint64_t> transact_time_{};
+    std::optional<std::chrono::nanoseconds> transact_time_{};
     std::optional<std::uint32_t> rpt_seq_{};
 };
 

@@ -1,3 +1,4 @@
+// Nasdaq.IseOptions.TopComboQuoteFeed.Itch.v1.0: types/High.hpp
 #pragma once
 
 #include <bit>
@@ -11,22 +12,29 @@ struct High {
 
     static constexpr const char* name = "High";
     static constexpr std::size_t size =  8;
-    using type = std::uint64_t;
+    static constexpr std::size_t precision = 8;
+    static constexpr double denominator = 100000000;
+    using type = std::int64_t;
 
     // default constructor
     constexpr High()
      : value{ 0 } {}
 
-    // standard constructor
-    constexpr explicit High(const std::uint64_t value)
+    // constructor for High field
+    constexpr explicit High(const std::int64_t value)
      : value{ std::byteswap(value) } {}
 
-    // get value of High field
-    [[nodiscard]] std::uint64_t get() const {
+    // get underlying integer of High field
+    [[nodiscard]] std::int64_t integer() const {
         return std::byteswap(value);
     }
 
+    // decimal value of High field
+    [[nodiscard]] double get() const {
+        return integer() / denominator;
+    }
+
   protected:
-    std::uint64_t value;
+    std::int64_t value;
 };
 }

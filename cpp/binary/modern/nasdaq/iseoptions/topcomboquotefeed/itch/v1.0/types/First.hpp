@@ -1,3 +1,4 @@
+// Nasdaq.IseOptions.TopComboQuoteFeed.Itch.v1.0: types/First.hpp
 #pragma once
 
 #include <bit>
@@ -11,22 +12,29 @@ struct First {
 
     static constexpr const char* name = "First";
     static constexpr std::size_t size =  8;
-    using type = std::uint64_t;
+    static constexpr std::size_t precision = 8;
+    static constexpr double denominator = 100000000;
+    using type = std::int64_t;
 
     // default constructor
     constexpr First()
      : value{ 0 } {}
 
-    // standard constructor
-    constexpr explicit First(const std::uint64_t value)
+    // constructor for First field
+    constexpr explicit First(const std::int64_t value)
      : value{ std::byteswap(value) } {}
 
-    // get value of First field
-    [[nodiscard]] std::uint64_t get() const {
+    // get underlying integer of First field
+    [[nodiscard]] std::int64_t integer() const {
         return std::byteswap(value);
     }
 
+    // decimal value of First field
+    [[nodiscard]] double get() const {
+        return integer() / denominator;
+    }
+
   protected:
-    std::uint64_t value;
+    std::int64_t value;
 };
 }

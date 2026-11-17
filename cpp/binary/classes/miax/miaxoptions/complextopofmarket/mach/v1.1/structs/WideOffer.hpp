@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.ComplexTopOfMarket.Mach.v1.1: structs/WideOffer.hpp
 #pragma once
 
 #include <array>

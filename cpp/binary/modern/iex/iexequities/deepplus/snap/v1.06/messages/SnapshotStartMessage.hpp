@@ -1,3 +1,4 @@
+// Iex.IexEquities.DeepPlus.Snap.v1.06: messages/SnapshotStartMessage.hpp
 #pragma once
 
 #include "../types/SnapshotLength.hpp"

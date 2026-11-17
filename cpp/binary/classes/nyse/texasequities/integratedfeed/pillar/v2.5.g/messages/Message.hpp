@@ -1,3 +1,4 @@
+// Nyse.TexasEquities.IntegratedFeed.Pillar.v2.5.g: messages/Message.hpp
 #pragma once
 
 #include <cstddef>

@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: messages/UdpPayloadOptionsTradeMessagesNonAuction.hpp
 #pragma once
 
 #include <chrono>
@@ -45,7 +46,7 @@ class UdpPayloadOptionsTradeMessagesNonAuction {
 
     std::uint32_t match_number() const { return wire::read_u32_be(at(17)); }
 
-    Decimal price_long() const { return Decimal(static_cast<std::int64_t>(wire::read_u32_be(at(21))), -4); }
+    Decimal price_long() const { return Decimal(static_cast<std::int64_t>(wire::read_i32_be(at(21))), -4); }
 
     std::uint32_t volume_long() const { return wire::read_u32_be(at(25)); }
 

@@ -1,3 +1,4 @@
+// Cboe.EdgxEquities.MulticastDepthOfBook.Pitch.v2.41.29: statistics/Settings.hpp
 #pragma once
 
 #include <string>

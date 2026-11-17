@@ -1,3 +1,4 @@
+// Memx.MemxEquities.MemoirDepthFeed.Sbe.v1.3: TypesAll.hpp
 #pragma once
 
 // All type headers for this protocol schema

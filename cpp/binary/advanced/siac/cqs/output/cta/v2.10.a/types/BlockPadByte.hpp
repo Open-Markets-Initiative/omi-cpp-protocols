@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v2.10.a: types/BlockPadByte.hpp
 #pragma once
 
 #include <cstddef>

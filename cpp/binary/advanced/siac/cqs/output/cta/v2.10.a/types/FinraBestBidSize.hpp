@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v2.10.a: types/FinraBestBidSize.hpp
 #pragma once
 
 #include <cstddef>

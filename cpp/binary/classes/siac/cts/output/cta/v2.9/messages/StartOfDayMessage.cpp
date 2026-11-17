@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.9: messages/StartOfDayMessage.cpp
 #include "StartOfDayMessage.hpp"
 
 #include "../common/Print.hpp"

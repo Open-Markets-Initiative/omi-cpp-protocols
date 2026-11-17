@@ -1,3 +1,4 @@
+// OtcMarkets.LinkAts.Multicast.Link.v4.3: messages/MarketCloseMessage.cpp
 #include "MarketCloseMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,14 +7,14 @@
 
 namespace otcmarkets::linkats::multicast::link::v4_3 {
 
-MarketCloseMessage::MarketCloseMessage(std::uint32_t channel_seq_num, std::uint64_t market_close_time_milli, std::uint32_t market_msg_ct)
+MarketCloseMessage::MarketCloseMessage(std::uint32_t channel_seq_num, std::chrono::milliseconds market_close_time_milli, std::uint32_t market_msg_ct)
   : channel_seq_num_(channel_seq_num), market_close_time_milli_(market_close_time_milli), market_msg_ct_(market_msg_ct) {}
 
 std::uint32_t MarketCloseMessage::channel_seq_num() const { return channel_seq_num_; }
 void MarketCloseMessage::set_channel_seq_num(std::uint32_t value) { channel_seq_num_ = value; }
 
-std::uint64_t MarketCloseMessage::market_close_time_milli() const { return market_close_time_milli_; }
-void MarketCloseMessage::set_market_close_time_milli(std::uint64_t value) { market_close_time_milli_ = value; }
+std::chrono::milliseconds MarketCloseMessage::market_close_time_milli() const { return market_close_time_milli_; }
+void MarketCloseMessage::set_market_close_time_milli(std::chrono::milliseconds value) { market_close_time_milli_ = value; }
 
 std::uint32_t MarketCloseMessage::market_msg_ct() const { return market_msg_ct_; }
 void MarketCloseMessage::set_market_msg_ct(std::uint32_t value) { market_msg_ct_ = value; }
@@ -29,7 +30,7 @@ std::size_t MarketCloseMessage::decode(const std::byte* data, std::size_t length
     channel_seq_num_ = wire::read_u32_be(data + offset);
     offset += 4;
 
-    market_close_time_milli_ = wire::read_u64_be(data + offset);
+    market_close_time_milli_ = std::chrono::milliseconds(static_cast<std::int64_t>(wire::read_u64_be(data + offset)));
     offset += 8;
 
     market_msg_ct_ = wire::read_u32_be(data + offset);
@@ -45,7 +46,7 @@ std::size_t MarketCloseMessage::encode(std::byte* data, std::size_t capacity) co
     wire::write_u32_be(data + offset, static_cast<std::uint32_t>(channel_seq_num_));
     offset += 4;
 
-    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(market_close_time_milli_));
+    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(market_close_time_milli_.count()));
     offset += 8;
 
     wire::write_u32_be(data + offset, static_cast<std::uint32_t>(market_msg_ct_));
@@ -71,7 +72,7 @@ void MarketCloseMessage::print(std::ostream& out) const {
     out << "channel_seq_num=";
     out << channel_seq_num_;
     out << ", market_close_time_milli=";
-    out << market_close_time_milli_;
+    out << market_close_time_milli_.count();
     out << ", market_msg_ct=";
     out << market_msg_ct_;
     out << '}';

@@ -1,3 +1,4 @@
+// Cboe.ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29: messages/EndOfSession.cpp
 #include "EndOfSession.hpp"
 
 #include "../common/Print.hpp"
@@ -6,11 +7,11 @@
 
 namespace cboe::byxequities::multicastdepthofbook::pitch::v2_41_29 {
 
-EndOfSession::EndOfSession(std::uint32_t last_timestamp)
-  : last_timestamp_(last_timestamp) {}
+EndOfSession::EndOfSession(std::chrono::nanoseconds time_offset)
+  : time_offset_(time_offset) {}
 
-std::uint32_t EndOfSession::last_timestamp() const { return last_timestamp_; }
-void EndOfSession::set_last_timestamp(std::uint32_t value) { last_timestamp_ = value; }
+std::chrono::nanoseconds EndOfSession::time_offset() const { return time_offset_; }
+void EndOfSession::set_time_offset(std::chrono::nanoseconds value) { time_offset_ = value; }
 
 MessageCode EndOfSession::type() const { return message_type; }
 
@@ -20,7 +21,7 @@ std::size_t EndOfSession::decode(const std::byte* data, std::size_t length) {
     std::size_t offset = 0;
     wire::require("EndOfSession", wire_size, length);
 
-    last_timestamp_ = wire::read_u32_le(data + offset);
+    time_offset_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     return offset;
@@ -30,7 +31,7 @@ std::size_t EndOfSession::encode(std::byte* data, std::size_t capacity) const {
     std::size_t offset = 0;
     wire::require_capacity("EndOfSession", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(last_timestamp_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(time_offset_.count()));
     offset += 4;
 
     return offset;
@@ -50,8 +51,8 @@ std::unique_ptr<Message> EndOfSession::clone() const {
 
 void EndOfSession::print(std::ostream& out) const {
     out << "EndOfSession{";
-    out << "last_timestamp=";
-    out << last_timestamp_;
+    out << "time_offset=";
+    out << time_offset_.count();
     out << '}';
 }
 
@@ -61,7 +62,7 @@ bool EndOfSession::equals(const Message& other) const {
 }
 
 bool EndOfSession::operator==(const EndOfSession& other) const {
-    return last_timestamp_ == other.last_timestamp_;
+    return time_offset_ == other.time_offset_;
 }
 
 bool EndOfSession::operator!=(const EndOfSession& other) const {

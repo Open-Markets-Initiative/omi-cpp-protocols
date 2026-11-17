@@ -1,3 +1,4 @@
+// Bse.BseIndia.Eobi.Fbe.v1.4: messages/AuctionClearingPriceMessage.hpp
 #pragma once
 
 #include "../types/TransactTime.hpp"

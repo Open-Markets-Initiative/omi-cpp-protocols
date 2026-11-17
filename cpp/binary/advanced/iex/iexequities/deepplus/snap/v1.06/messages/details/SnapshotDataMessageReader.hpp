@@ -1,3 +1,4 @@
+// Iex.IexEquities.DeepPlus.Snap.v1.06: messages/details/SnapshotDataMessageReader.hpp
 #pragma once
 
 #include "SnapshotDataMessageWriter.hpp"

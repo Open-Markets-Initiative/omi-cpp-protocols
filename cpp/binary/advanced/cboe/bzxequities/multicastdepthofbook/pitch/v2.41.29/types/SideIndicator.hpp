@@ -1,3 +1,4 @@
+// Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.41.29: types/SideIndicator.hpp
 #pragma once
 
 #include <cstddef>

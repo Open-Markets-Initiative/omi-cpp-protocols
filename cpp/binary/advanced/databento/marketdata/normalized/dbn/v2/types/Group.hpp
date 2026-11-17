@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v2: types/Group.hpp
 #pragma once
 
 #include <cstddef>

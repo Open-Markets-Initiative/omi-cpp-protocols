@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: messages/LoginRequestPacket.hpp
 #pragma once
 
 #include "../types/Username.hpp"

@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.13: bitfields/InstAttribValue.hpp
 #pragma once
 
 #include <cstddef>
@@ -43,7 +44,6 @@ struct InstAttribValue {
         static const type MtfRegulated = 0x02000000;
         static const type EfixInstrument = 0x04000000;
         static const type HedgeInstrument = 0x08000000;
-        static const type Reserved4 = 0xF0000000;
     };
 
     // default constructor
@@ -188,11 +188,6 @@ struct InstAttribValue {
     // HedgeInstrument
     [[nodiscard]] constexpr bool HedgeInstrument() const {
         return value & mask::HedgeInstrument;
-    }
-
-    // 4 reserved bits
-    [[nodiscard]] constexpr bool Reserved4() const {
-        return value & mask::Reserved4;
     }
 
     // all bits

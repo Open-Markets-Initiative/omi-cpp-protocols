@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Ouch.v1.11: types/TimeInForce.hpp
 #pragma once
 
 #include <cstddef>
@@ -6,6 +7,7 @@
 #include <array>
 #include <optional>
 #include <string_view>
+#include <type_traits>
 #include "../cache/Required.hpp"
 
 namespace jnx::jnxequities::pts::ouch::v1_11 {
@@ -51,21 +53,21 @@ struct time_in_force {
     using result_type = required<time_in_force::enum_type>;
     using storage_type = result_type;
 
-    constexpr time_in_force()
+    time_in_force()
      : value{ enum_type{} } {}
 
-    constexpr time_in_force(enum_type v)
-     : value{ v } {}
+    time_in_force(enum_type v)
+     : value{ static_cast<enum_type>(__builtin_bswap32(static_cast<std::underlying_type_t<enum_type>>(v))) } {}
 
-    [[nodiscard]] constexpr result_type get() const {
-        return result_type{value};
+    [[nodiscard]] result_type get() const {
+        return result_type{static_cast<enum_type>(__builtin_bswap32(static_cast<std::underlying_type_t<enum_type>>(value)))};
     }
 
-    constexpr void set(enum_type v) {
-        value = v;
+    void set(enum_type v) {
+        value = static_cast<enum_type>(__builtin_bswap32(static_cast<std::underlying_type_t<enum_type>>(v)));
     }
 
-    constexpr void set(result_type value) {
+    void set(result_type value) {
         if (value.has_value())
             set(value.value());
         else

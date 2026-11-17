@@ -1,3 +1,4 @@
+// Nyse.AmexOptions.ComplexFeed.Xdp.v1.3.a: main.cpp
 // Nyse.AmexOptions.ComplexFeed.Xdp.v1.3.a write and read: every message built with each field it sets, written
 // into a capture through the Classes encoder, then read back - each field set must read as it was written.
 // 
@@ -76,8 +77,8 @@ class Capture {
 // ComplexQuoteMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_ComplexQuoteMessage() {
     auto message = std::make_unique<protocol::ComplexQuoteMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
-    message->set_source_time_ns(static_cast<std::uint32_t>(2));
+    message->set_source_time(std::chrono::seconds{1});
+    message->set_source_time_ns(std::chrono::nanoseconds{2});
     message->set_complex_index(static_cast<std::uint32_t>(3));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(4));
     message->set_ask_price(static_cast<std::int32_t>(5));
@@ -93,8 +94,8 @@ std::unique_ptr<protocol::Message> build_ComplexQuoteMessage() {
 // ComplexTradeMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_ComplexTradeMessage() {
     auto message = std::make_unique<protocol::ComplexTradeMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
-    message->set_source_time_ns(static_cast<std::uint32_t>(2));
+    message->set_source_time(std::chrono::seconds{1});
+    message->set_source_time_ns(std::chrono::nanoseconds{2});
     message->set_complex_index(static_cast<std::uint32_t>(3));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(4));
     message->set_trade_id(static_cast<std::uint32_t>(5));
@@ -108,7 +109,7 @@ std::unique_ptr<protocol::Message> build_ComplexTradeMessage() {
 // ComplexCrossingRfqMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_ComplexCrossingRfqMessage() {
     auto message = std::make_unique<protocol::ComplexCrossingRfqMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
+    message->set_source_time(std::chrono::seconds{1});
     message->set_source_ns(static_cast<std::uint32_t>(2));
     message->set_complex_index(static_cast<std::uint32_t>(3));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(4));
@@ -121,7 +122,7 @@ std::unique_ptr<protocol::Message> build_ComplexCrossingRfqMessage() {
 // ComplexCubeRfqMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_ComplexCubeRfqMessage() {
     auto message = std::make_unique<protocol::ComplexCubeRfqMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
+    message->set_source_time(std::chrono::seconds{1});
     message->set_source_ns(static_cast<std::uint32_t>(2));
     message->set_complex_index(static_cast<std::uint32_t>(3));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(4));
@@ -134,8 +135,8 @@ std::unique_ptr<protocol::Message> build_ComplexCubeRfqMessage() {
 // ComplexStatusMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_ComplexStatusMessage() {
     auto message = std::make_unique<protocol::ComplexStatusMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
-    message->set_source_time_ns(static_cast<std::uint32_t>(2));
+    message->set_source_time(std::chrono::seconds{1});
+    message->set_source_time_ns(std::chrono::nanoseconds{2});
     message->set_complex_index(static_cast<std::uint32_t>(3));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(4));
     message->set_security_status(protocol::SecurityStatus::Unhalt);
@@ -146,8 +147,8 @@ std::unique_ptr<protocol::Message> build_ComplexStatusMessage() {
 // RefreshComplexQuoteMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_RefreshComplexQuoteMessage() {
     auto message = std::make_unique<protocol::RefreshComplexQuoteMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
-    message->set_source_time_ns(static_cast<std::uint32_t>(2));
+    message->set_source_time(std::chrono::seconds{1});
+    message->set_source_time_ns(std::chrono::nanoseconds{2});
     message->set_complex_index(static_cast<std::uint32_t>(3));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(4));
     message->set_ask_price(static_cast<std::int32_t>(5));
@@ -163,8 +164,8 @@ std::unique_ptr<protocol::Message> build_RefreshComplexQuoteMessage() {
 // RefreshComplexTradeMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_RefreshComplexTradeMessage() {
     auto message = std::make_unique<protocol::RefreshComplexTradeMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
-    message->set_source_time_ns(static_cast<std::uint32_t>(2));
+    message->set_source_time(std::chrono::seconds{1});
+    message->set_source_time_ns(std::chrono::nanoseconds{2});
     message->set_complex_index(static_cast<std::uint32_t>(3));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(4));
     message->set_trade_id(static_cast<std::uint32_t>(5));
@@ -197,8 +198,8 @@ std::unique_ptr<protocol::Message> build_StreamIdMessage() {
 // SequenceNumberResetMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_SequenceNumberResetMessage() {
     auto message = std::make_unique<protocol::SequenceNumberResetMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
-    message->set_source_time_ns(static_cast<std::uint32_t>(2));
+    message->set_source_time(std::chrono::seconds{1});
+    message->set_source_time_ns(std::chrono::nanoseconds{2});
     message->set_product_id(static_cast<std::uint8_t>(3));
     message->set_channel_id(static_cast<std::uint8_t>(4));
     return message;
@@ -214,11 +215,11 @@ int check_ComplexQuoteMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL ComplexQuoteMessage: source_time does not read as it was written\n");
         ++failures;
     }
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(2))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{2})) {
         std::printf("FAIL ComplexQuoteMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -271,11 +272,11 @@ int check_ComplexTradeMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL ComplexTradeMessage: source_time does not read as it was written\n");
         ++failures;
     }
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(2))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{2})) {
         std::printf("FAIL ComplexTradeMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -320,7 +321,7 @@ int check_ComplexCrossingRfqMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL ComplexCrossingRfqMessage: source_time does not read as it was written\n");
         ++failures;
     }
@@ -361,7 +362,7 @@ int check_ComplexCubeRfqMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL ComplexCubeRfqMessage: source_time does not read as it was written\n");
         ++failures;
     }
@@ -402,11 +403,11 @@ int check_ComplexStatusMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL ComplexStatusMessage: source_time does not read as it was written\n");
         ++failures;
     }
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(2))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{2})) {
         std::printf("FAIL ComplexStatusMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -439,11 +440,11 @@ int check_RefreshComplexQuoteMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL RefreshComplexQuoteMessage: source_time does not read as it was written\n");
         ++failures;
     }
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(2))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{2})) {
         std::printf("FAIL RefreshComplexQuoteMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -496,11 +497,11 @@ int check_RefreshComplexTradeMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL RefreshComplexTradeMessage: source_time does not read as it was written\n");
         ++failures;
     }
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(2))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{2})) {
         std::printf("FAIL RefreshComplexTradeMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -599,11 +600,11 @@ int check_SequenceNumberResetMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL SequenceNumberResetMessage: source_time does not read as it was written\n");
         ++failures;
     }
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(2))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{2})) {
         std::printf("FAIL SequenceNumberResetMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }

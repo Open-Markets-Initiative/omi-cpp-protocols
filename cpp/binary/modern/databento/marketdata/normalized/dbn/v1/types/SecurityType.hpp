@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v1: types/SecurityType.hpp
 #pragma once
 
 #include <array>

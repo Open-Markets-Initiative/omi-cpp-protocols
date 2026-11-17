@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v13.0: messages/CrossRequest.hpp
 #pragma once
 
 #include <array>
@@ -30,7 +31,7 @@ class CrossRequest : public Message {
     CrossRequest() = default;
     CrossRequest(std::optional<std::int64_t> security_id, std::optional<Decimal> last_px, std::optional<Decimal> last_qty, std::optional<Side> side, std::optional<CrossRequestType> cross_request_type, std::optional<InputSource> input_source, const std::array<std::byte, 5>& pad5, std::optional<std::chrono::nanoseconds> transact_time);
 
-    // Security Id:
+    // Security Id: Unique instrument identifier
     std::optional<std::int64_t> security_id() const;
     void set_security_id(std::optional<std::int64_t> value);
 
@@ -38,7 +39,7 @@ class CrossRequest : public Message {
     std::optional<Decimal> last_px() const;
     void set_last_px(std::optional<Decimal> value);
 
-    // Last Qty:
+    // Last Qty: Total executed matched quantity of this match event
     std::optional<Decimal> last_qty() const;
     void set_last_qty(std::optional<Decimal> value);
 

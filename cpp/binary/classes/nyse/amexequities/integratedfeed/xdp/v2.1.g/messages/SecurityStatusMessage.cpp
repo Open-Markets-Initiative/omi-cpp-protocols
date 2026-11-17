@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeed.Xdp.v2.1.g: messages/SecurityStatusMessage.cpp
 #include "SecurityStatusMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,14 +7,14 @@
 
 namespace nyse::amexequities::integratedfeed::xdp::v2_1_g {
 
-SecurityStatusMessage::SecurityStatusMessage(std::uint32_t source_time, std::uint32_t source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, SecurityStatus security_status, HaltCondition halt_condition, const std::array<std::byte, 4>& reserved_4, std::uint32_t price_1, std::uint32_t price_2, SsrTriggeringExchangeId ssr_triggering_exchange_id, std::uint32_t ssr_triggering_volume, std::optional<std::uint32_t> time, SsrState ssr_state, MarketState market_state, char session_state)
+SecurityStatusMessage::SecurityStatusMessage(std::chrono::seconds source_time, std::chrono::nanoseconds source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, SecurityStatus security_status, HaltCondition halt_condition, const std::array<std::byte, 4>& reserved_4, std::uint32_t price_1, std::uint32_t price_2, SsrTriggeringExchangeId ssr_triggering_exchange_id, std::uint32_t ssr_triggering_volume, std::optional<std::uint32_t> time, SsrState ssr_state, MarketState market_state, char session_state)
   : source_time_(source_time), source_time_ns_(source_time_ns), symbol_index_(symbol_index), symbol_seq_num_(symbol_seq_num), security_status_(security_status), halt_condition_(halt_condition), reserved_4_(reserved_4), price_1_(price_1), price_2_(price_2), ssr_triggering_exchange_id_(ssr_triggering_exchange_id), ssr_triggering_volume_(ssr_triggering_volume), time_(time), ssr_state_(ssr_state), market_state_(market_state), session_state_(session_state) {}
 
-std::uint32_t SecurityStatusMessage::source_time() const { return source_time_; }
-void SecurityStatusMessage::set_source_time(std::uint32_t value) { source_time_ = value; }
+std::chrono::seconds SecurityStatusMessage::source_time() const { return source_time_; }
+void SecurityStatusMessage::set_source_time(std::chrono::seconds value) { source_time_ = value; }
 
-std::uint32_t SecurityStatusMessage::source_time_ns() const { return source_time_ns_; }
-void SecurityStatusMessage::set_source_time_ns(std::uint32_t value) { source_time_ns_ = value; }
+std::chrono::nanoseconds SecurityStatusMessage::source_time_ns() const { return source_time_ns_; }
+void SecurityStatusMessage::set_source_time_ns(std::chrono::nanoseconds value) { source_time_ns_ = value; }
 
 std::uint32_t SecurityStatusMessage::symbol_index() const { return symbol_index_; }
 void SecurityStatusMessage::set_symbol_index(std::uint32_t value) { symbol_index_ = value; }
@@ -63,10 +64,10 @@ std::size_t SecurityStatusMessage::decode(const std::byte* data, std::size_t len
     std::size_t offset = 0;
     wire::require("SecurityStatusMessage", wire_size, length);
 
-    source_time_ = wire::read_u32_le(data + offset);
+    source_time_ = std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
-    source_time_ns_ = wire::read_u32_le(data + offset);
+    source_time_ns_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     symbol_index_ = wire::read_u32_le(data + offset);
@@ -115,10 +116,10 @@ std::size_t SecurityStatusMessage::encode(std::byte* data, std::size_t capacity)
     std::size_t offset = 0;
     wire::require_capacity("SecurityStatusMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_.count()));
     offset += 4;
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_.count()));
     offset += 4;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(symbol_index_));
@@ -178,9 +179,9 @@ std::unique_ptr<Message> SecurityStatusMessage::clone() const {
 void SecurityStatusMessage::print(std::ostream& out) const {
     out << "SecurityStatusMessage{";
     out << "source_time=";
-    out << source_time_;
+    out << source_time_.count();
     out << ", source_time_ns=";
-    out << source_time_ns_;
+    out << source_time_ns_.count();
     out << ", symbol_index=";
     out << symbol_index_;
     out << ", symbol_seq_num=";

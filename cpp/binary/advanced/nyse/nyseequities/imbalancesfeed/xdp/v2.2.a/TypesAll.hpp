@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.ImbalancesFeed.Xdp.v2.2.a: TypesAll.hpp
 #pragma once
 
 // All type headers for this protocol schema

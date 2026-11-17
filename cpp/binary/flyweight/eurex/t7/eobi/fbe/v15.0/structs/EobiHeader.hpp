@@ -1,7 +1,9 @@
+// Eurex.T7.Eobi.Fbe.v15.0: structs/EobiHeader.hpp
 #pragma once
 
 #include <cstddef>
 #include <cstdint>
+#include <optional>
 #include <ostream>
 #include <span>
 
@@ -28,20 +30,20 @@ class EobiHeader {
     static constexpr std::size_t fixed_size = 8;
     std::size_t encoded_size() const { return 8; }
 
-    std::uint16_t body_len() const { return wire::read_u16_le(at(0)); }
+    std::optional<std::uint16_t> body_len() const { return wire::nullable(wire::read_u16_le(at(0)), static_cast<std::uint16_t>(0xFFFFULL)); }
 
-    TemplateId template_id() const { return static_cast<TemplateId>(wire::read_u16_le(at(2))); }
+    std::optional<TemplateId> template_id() const { return wire::nullable_enum<TemplateId>(wire::read_u16_le(at(2)), static_cast<std::uint16_t>(0xFFFFULL)); }
 
-    std::uint32_t msg_seq_num() const { return wire::read_u32_le(at(4)); }
+    std::optional<std::uint32_t> msg_seq_num() const { return wire::nullable(wire::read_u32_le(at(4)), static_cast<std::uint32_t>(0xFFFFFFFFULL)); }
 
     void print(std::ostream& out) const {
         out << "EobiHeader{";
         out << "body_len=";
-        out << body_len();
+        print::optional(out, body_len());
         out << ", template_id=";
-        out << template_id();
+        print::optional(out, template_id());
         out << ", msg_seq_num=";
-        out << msg_seq_num();
+        print::optional(out, msg_seq_num());
         out << '}';
     }
 

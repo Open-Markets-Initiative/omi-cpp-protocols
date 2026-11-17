@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.6: structs/DeprecatedLegsGroups.hpp
 #pragma once
 
 #include <cstddef>

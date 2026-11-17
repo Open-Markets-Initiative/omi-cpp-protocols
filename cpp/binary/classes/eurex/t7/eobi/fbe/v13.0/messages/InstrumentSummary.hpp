@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v13.0: messages/InstrumentSummary.hpp
 #pragma once
 
 #include <array>
@@ -36,7 +37,7 @@ class InstrumentSummary : public Message {
     InstrumentSummary() = default;
     InstrumentSummary(std::optional<std::int64_t> security_id, std::optional<std::chrono::nanoseconds> last_update_time, std::optional<std::chrono::nanoseconds> trd_reg_ts_execution_time, std::optional<std::uint16_t> tot_no_orders, std::optional<SecurityStatus> security_status, std::optional<SecurityTradingStatus> security_trading_status, std::optional<MarketCondition> market_condition, std::optional<FastMarketIndicator> fast_market_indicator, std::optional<SecurityTradingEvent> security_trading_event, std::optional<SoldOutIndicator> sold_out_indicator, std::optional<Decimal> high_px, std::optional<Decimal> low_px, std::optional<ProductComplex> product_complex, std::optional<std::uint8_t> no_md_entries, std::optional<TesSecurityStatus> tes_security_status, const std::array<std::byte, 5>& pad5, const std::array<MdInstrumentEntryGrpComp, 15>& md_instrument_entry_grp_comp);
 
-    // Security Id:
+    // Security Id: Unique instrument identifier
     std::optional<std::int64_t> security_id() const;
     void set_security_id(std::optional<std::int64_t> value);
 

@@ -1,3 +1,4 @@
+// Iex.IexEquities.Deep.IexTp.v1.06: messages/TradingStatusMessage.hpp
 #pragma once
 
 #include "../types/TradingStatus.hpp"

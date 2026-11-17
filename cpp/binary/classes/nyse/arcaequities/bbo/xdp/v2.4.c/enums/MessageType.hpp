@@ -1,3 +1,4 @@
+// Nyse.ArcaEquities.Bbo.Xdp.v2.4.c: enums/MessageType.hpp
 #pragma once
 
 #include <cstdint>

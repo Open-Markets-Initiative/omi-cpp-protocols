@@ -16,7 +16,6 @@ udppacket.message[0].payload.mktdatamessage.mktdatapayload.mdincrementalrefresht
 udppacket.message[0].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary.matcheventindicator.laststatsmsg = 0
 udppacket.message[0].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary.matcheventindicator.lastimpliedmsg = 0
 udppacket.message[0].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary.matcheventindicator.recoverymsg = 0
-udppacket.message[0].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary.matcheventindicator.reserved = 0
 udppacket.message[0].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary.matcheventindicator.endofevent = 0
 udppacket.message[0].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary.incrementalrefreshtradesummarygroups.groupsize.blocklength = 32
 udppacket.message[0].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary.incrementalrefreshtradesummarygroups.groupsize.numingroup = 1
@@ -50,7 +49,6 @@ udppacket.message[1].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshv
 udppacket.message[1].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshvolume.matcheventindicator.laststatsmsg = 0
 udppacket.message[1].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshvolume.matcheventindicator.lastimpliedmsg = 0
 udppacket.message[1].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshvolume.matcheventindicator.recoverymsg = 0
-udppacket.message[1].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshvolume.matcheventindicator.reserved = 0
 udppacket.message[1].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshvolume.matcheventindicator.endofevent = 0
 udppacket.message[1].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshvolume.incrementalrefreshvolumegroups.groupsize.blocklength = 16
 udppacket.message[1].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshvolume.incrementalrefreshvolumegroups.groupsize.numingroup = 1
@@ -72,7 +70,6 @@ udppacket.message[2].payload.mktdatamessage.mktdatapayload.mdincrementalrefresho
 udppacket.message[2].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.matcheventindicator.laststatsmsg = 0
 udppacket.message[2].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.matcheventindicator.lastimpliedmsg = 0
 udppacket.message[2].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.matcheventindicator.recoverymsg = 0
-udppacket.message[2].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.matcheventindicator.reserved = 0
 udppacket.message[2].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.matcheventindicator.endofevent = 0
 udppacket.message[2].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.incrementalrefreshorderbookgroups.groupsize.blocklength = 40
 udppacket.message[2].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.incrementalrefreshorderbookgroups.groupsize.numingroup = 2
@@ -104,7 +101,6 @@ udppacket.message[3].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshb
 udppacket.message[3].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.matcheventindicator.laststatsmsg = 0
 udppacket.message[3].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.matcheventindicator.lastimpliedmsg = 0
 udppacket.message[3].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.matcheventindicator.recoverymsg = 0
-udppacket.message[3].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.matcheventindicator.reserved = 0
 udppacket.message[3].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.matcheventindicator.endofevent = 0
 udppacket.message[3].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.incrementalrefreshbookgroups.groupsize.blocklength = 32
 udppacket.message[3].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.incrementalrefreshbookgroups.groupsize.numingroup = 1
@@ -132,7 +128,6 @@ udppacket.message[4].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshb
 udppacket.message[4].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.matcheventindicator.laststatsmsg = 0
 udppacket.message[4].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.matcheventindicator.lastimpliedmsg = 1
 udppacket.message[4].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.matcheventindicator.recoverymsg = 0
-udppacket.message[4].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.matcheventindicator.reserved = 0
 udppacket.message[4].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.matcheventindicator.endofevent = 1
 udppacket.message[4].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.incrementalrefreshbookgroups.groupsize.blocklength = 32
 udppacket.message[4].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.incrementalrefreshbookgroups.groupsize.numingroup = 1

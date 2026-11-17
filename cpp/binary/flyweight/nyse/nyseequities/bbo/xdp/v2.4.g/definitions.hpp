@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.Bbo.Xdp.v2.4.g: definitions.hpp
 #pragma once
 
 // Every flyweight view and reader of Nyse.NyseEquities.Bbo.Xdp.v2.4.g.

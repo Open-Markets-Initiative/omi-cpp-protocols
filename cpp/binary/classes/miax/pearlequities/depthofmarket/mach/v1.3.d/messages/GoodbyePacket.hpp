@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: messages/GoodbyePacket.hpp
 #pragma once
 
 #include <cstddef>
@@ -6,7 +7,7 @@
 #include <string>
 #include <string_view>
 
-#include "../enums/LogoutReason.hpp"
+#include "../enums/GoodbyeReason.hpp"
 #include "../messages/TcpMessage.hpp"
 
 namespace miax::pearlequities::depthofmarket::mach::v1_3_d {
@@ -21,11 +22,11 @@ class GoodbyePacket : public TcpMessage {
     static constexpr TcpMessageCode message_type = EsesmPacketType::GoodbyePacket;
 
     GoodbyePacket() = default;
-    GoodbyePacket(LogoutReason logout_reason, const std::string& logout_text);
+    GoodbyePacket(GoodbyeReason goodbye_reason, const std::string& logout_text);
 
-    // Logout Reason: Logout Request Reason
-    LogoutReason logout_reason() const;
-    void set_logout_reason(LogoutReason value);
+    // Goodbye Reason: GoodBye Packet Reason
+    GoodbyeReason goodbye_reason() const;
+    void set_goodbye_reason(GoodbyeReason value);
 
     // Logout Text: Free form human readable text
     const std::string& logout_text() const;
@@ -47,7 +48,7 @@ class GoodbyePacket : public TcpMessage {
     bool operator!=(const GoodbyePacket& other) const;
 
   private:
-    LogoutReason logout_reason_{};
+    GoodbyeReason goodbye_reason_{};
     std::string logout_text_{};
 };
 

@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: structs/BlockHeader.hpp
 #pragma once
 
 #include <cstddef>

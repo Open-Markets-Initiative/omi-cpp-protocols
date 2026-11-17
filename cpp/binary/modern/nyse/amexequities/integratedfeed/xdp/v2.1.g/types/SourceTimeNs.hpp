@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeed.Xdp.v2.1.g: types/SourceTimeNs.hpp
 #pragma once
 
 #include <cstddef>
@@ -23,6 +24,11 @@ struct SourceTimeNs {
     // get value of SourceTimeNs field
     [[nodiscard]] std::uint32_t get() const {
         return value;
+    }
+
+    // get epoch nanoseconds: the stored base plus this field
+    [[nodiscard]] std::int64_t get(const std::int64_t midnight_ns) const {
+        return midnight_ns + static_cast<std::int64_t>(get());
     }
 
   protected:

@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.6: definitions.hpp
 #pragma once
 
 // Every flyweight view and reader of Jnx.JnxEquities.Pts.Itch.v1.6.

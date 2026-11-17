@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.DeepFeed.Pillar.v1.2.m: messages/OptionsCrossTradeMessage.cpp
 #include "OptionsCrossTradeMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,11 +7,11 @@
 
 namespace nyse::arcaoptions::deepfeed::pillar::v1_2_m {
 
-OptionsCrossTradeMessage::OptionsCrossTradeMessage(std::uint32_t source_time_ns, std::uint32_t series_index, std::uint32_t series_seq_num, std::uint32_t cross_id, std::int32_t price, std::uint32_t volume, CrossType cross_type)
+OptionsCrossTradeMessage::OptionsCrossTradeMessage(std::chrono::nanoseconds source_time_ns, std::uint32_t series_index, std::uint32_t series_seq_num, std::uint32_t cross_id, std::int32_t price, std::uint32_t volume, CrossType cross_type)
   : source_time_ns_(source_time_ns), series_index_(series_index), series_seq_num_(series_seq_num), cross_id_(cross_id), price_(price), volume_(volume), cross_type_(cross_type) {}
 
-std::uint32_t OptionsCrossTradeMessage::source_time_ns() const { return source_time_ns_; }
-void OptionsCrossTradeMessage::set_source_time_ns(std::uint32_t value) { source_time_ns_ = value; }
+std::chrono::nanoseconds OptionsCrossTradeMessage::source_time_ns() const { return source_time_ns_; }
+void OptionsCrossTradeMessage::set_source_time_ns(std::chrono::nanoseconds value) { source_time_ns_ = value; }
 
 std::uint32_t OptionsCrossTradeMessage::series_index() const { return series_index_; }
 void OptionsCrossTradeMessage::set_series_index(std::uint32_t value) { series_index_ = value; }
@@ -38,7 +39,7 @@ std::size_t OptionsCrossTradeMessage::decode(const std::byte* data, std::size_t 
     std::size_t offset = 0;
     wire::require("OptionsCrossTradeMessage", wire_size, length);
 
-    source_time_ns_ = wire::read_u32_le(data + offset);
+    source_time_ns_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     series_index_ = wire::read_u32_le(data + offset);
@@ -66,7 +67,7 @@ std::size_t OptionsCrossTradeMessage::encode(std::byte* data, std::size_t capaci
     std::size_t offset = 0;
     wire::require_capacity("OptionsCrossTradeMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_.count()));
     offset += 4;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(series_index_));
@@ -105,7 +106,7 @@ std::unique_ptr<Message> OptionsCrossTradeMessage::clone() const {
 void OptionsCrossTradeMessage::print(std::ostream& out) const {
     out << "OptionsCrossTradeMessage{";
     out << "source_time_ns=";
-    out << source_time_ns_;
+    out << source_time_ns_.count();
     out << ", series_index=";
     out << series_index_;
     out << ", series_seq_num=";

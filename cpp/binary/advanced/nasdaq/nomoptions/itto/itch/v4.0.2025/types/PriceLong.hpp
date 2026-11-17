@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: types/PriceLong.hpp
 #pragma once
 
 #include <cstddef>
@@ -14,20 +15,20 @@ struct price_long {
     static constexpr bool is_optional = false;
     static constexpr int exponent = -4;
 
-    using result_type = required<std::uint32_t>;
+    using result_type = required<std::int32_t>;
     using storage_type = result_type;
 
     constexpr price_long()
      : value{ 0 } {}
 
-    price_long(std::uint32_t v)
-     : value{ static_cast<std::uint32_t>(__builtin_bswap32(v)) } {}
+    price_long(std::int32_t v)
+     : value{ static_cast<std::int32_t>(__builtin_bswap32(v)) } {}
 
     [[nodiscard]] result_type get() const {
-        return result_type{static_cast<std::uint32_t>(__builtin_bswap32(value))};
+        return result_type{static_cast<std::int32_t>(__builtin_bswap32(value))};
     }
 
-    void set(std::uint32_t v) {
+    void set(std::int32_t v) {
         value = __builtin_bswap32(v);
     }
 
@@ -39,6 +40,6 @@ struct price_long {
     }
 
   protected:
-    std::uint32_t value;
+    std::int32_t value;
 };
 }

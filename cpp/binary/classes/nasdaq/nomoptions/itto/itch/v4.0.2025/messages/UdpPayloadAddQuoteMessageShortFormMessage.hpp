@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: messages/UdpPayloadAddQuoteMessageShortFormMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -88,9 +89,9 @@ class UdpPayloadAddQuoteMessageShortFormMessage : public PacketMessage {
     std::uint64_t bid_reference_number_{};
     std::uint64_t ask_reference_number_{};
     std::uint32_t option_id_{};
-    Decimal bid_price_short_{ 0, -4 };
+    Decimal bid_price_short_{ 0, -2 };
     std::uint16_t bid_size_short_{};
-    Decimal ask_price_short_{ 0, -4 };
+    Decimal ask_price_short_{ 0, -2 };
     std::uint16_t ask_size_short_{};
 };
 

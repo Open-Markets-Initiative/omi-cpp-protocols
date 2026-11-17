@@ -1,0 +1,44 @@
+// Miax.OnyxFutures.TopOfMarket.Mach.v1.0.b: types/PacketLength.hpp
+#pragma once
+
+#include <cstddef>
+#include <cstdint>
+#include "../cache/Required.hpp"
+
+namespace miax::onyxfutures::topofmarket::mach::v1_0_b {
+
+// packet_length
+struct packet_length {
+
+    static constexpr const char* name = "packet_length";
+    static constexpr std::size_t size = 2;
+    static constexpr bool is_optional = false;
+
+    using result_type = required<std::uint16_t>;
+    using storage_type = result_type;
+
+    constexpr packet_length()
+     : value{ 0 } {}
+
+    constexpr packet_length(std::uint16_t v)
+     : value{ v } {}
+
+    [[nodiscard]] constexpr result_type get() const {
+        return result_type{value};
+    }
+
+    constexpr void set(std::uint16_t v) {
+        value = v;
+    }
+
+    constexpr void set(result_type value) {
+        if (value.has_value())
+            set(value.value());
+        else
+            set(0);
+    }
+
+  protected:
+    std::uint16_t value;
+};
+}

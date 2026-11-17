@@ -1,3 +1,4 @@
+// Nasdaq.IseOptions.OrderComboFeed.Itch.v1.1: program/Settings.hpp
 #pragma once
 
 #include <filesystem>

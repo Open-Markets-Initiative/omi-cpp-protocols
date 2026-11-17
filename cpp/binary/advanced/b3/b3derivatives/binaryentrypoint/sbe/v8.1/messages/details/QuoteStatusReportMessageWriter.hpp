@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1: messages/details/QuoteStatusReportMessageWriter.hpp
 #pragma once
 
 #include "../QuoteStatusReportMessage.hpp"

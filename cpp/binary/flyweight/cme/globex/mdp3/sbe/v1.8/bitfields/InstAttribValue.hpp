@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.8: bitfields/InstAttribValue.hpp
 #pragma once
 
 #include <cstddef>
@@ -67,8 +68,6 @@ class InstAttribValue {
 
     bool implied_matching_eligibility() const { return (raw() & static_cast<std::uint32_t>(0x80000)) != 0; }
 
-    std::uint16_t reserved_12() const { return static_cast<std::uint16_t>((raw() & static_cast<std::uint32_t>(0xFFF00000)) >> 20); }
-
     void print(std::ostream& out) const {
         out << "InstAttribValue{";
         out << "electronic_match_eligible=";
@@ -111,8 +110,6 @@ class InstAttribValue {
         out << (gt_orders_eligibility() ? "true" : "false");
         out << ", implied_matching_eligibility=";
         out << (implied_matching_eligibility() ? "true" : "false");
-        out << ", reserved_12=";
-        out << static_cast<unsigned long long>(reserved_12());
         out << '}';
     }
 

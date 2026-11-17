@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.3: messages/ExecutionSummary55Message.hpp
 #pragma once
 
 #include <array>
@@ -26,7 +27,7 @@ class ExecutionSummary55Message : public Message {
     static constexpr std::size_t wire_size = 64;
 
     ExecutionSummary55Message() = default;
-    ExecutionSummary55Message(std::uint64_t security_id, const std::array<std::byte, 2>& offset_8_padding_2, AggressorSide aggressor_side, const std::array<std::byte, 1>& offset_11_padding_1, Decimal last_px, std::int64_t fill_qty, std::optional<std::int64_t> traded_hidden_qty, std::optional<std::int64_t> cxl_qty, std::optional<std::chrono::nanoseconds> aggressor_time, std::optional<std::uint32_t> rpt_seq, std::optional<std::uint64_t> transact_time);
+    ExecutionSummary55Message(std::uint64_t security_id, const std::array<std::byte, 2>& offset_8_padding_2, AggressorSide aggressor_side, const std::array<std::byte, 1>& offset_11_padding_1, Decimal last_px, std::int64_t fill_qty, std::optional<std::int64_t> traded_hidden_qty, std::optional<std::int64_t> cxl_qty, std::optional<std::chrono::nanoseconds> aggressor_time, std::optional<std::uint32_t> rpt_seq, std::optional<std::chrono::nanoseconds> transact_time);
 
     // Security Id: securityID
     std::uint64_t security_id() const;
@@ -71,8 +72,8 @@ class ExecutionSummary55Message : public Message {
     void set_rpt_seq(std::optional<std::uint32_t> value);
 
     // Transact Time: transactTime
-    std::optional<std::uint64_t> transact_time() const;
-    void set_transact_time(std::optional<std::uint64_t> value);
+    std::optional<std::chrono::nanoseconds> transact_time() const;
+    void set_transact_time(std::optional<std::chrono::nanoseconds> value);
 
     // Message
     MessageCode type() const override;
@@ -99,7 +100,7 @@ class ExecutionSummary55Message : public Message {
     std::optional<std::int64_t> cxl_qty_{};
     std::optional<std::chrono::nanoseconds> aggressor_time_{};
     std::optional<std::uint32_t> rpt_seq_{};
-    std::optional<std::uint64_t> transact_time_{};
+    std::optional<std::chrono::nanoseconds> transact_time_{};
 };
 
 } // namespace b3::b3derivatives::binaryumdf::sbe::v2_3

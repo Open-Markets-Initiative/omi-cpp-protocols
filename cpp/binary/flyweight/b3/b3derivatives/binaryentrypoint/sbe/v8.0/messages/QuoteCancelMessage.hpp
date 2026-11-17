@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: messages/QuoteCancelMessage.hpp
 #pragma once
 
 #include <cstddef>
@@ -28,24 +29,24 @@ class QuoteCancelMessage {
     std::span<const std::byte> bytes() const noexcept { return bytes_; }
 
     // the bytes every QuoteCancelMessage has, which a reader checks before it views them
-    static constexpr std::size_t minimum_size = 59;
+    static constexpr std::size_t minimum_size = 60;
     std::size_t encoded_size() const { return memo_end(); }
 
     BidirectionalBusinessHeader bidirectional_business_header() const { return BidirectionalBusinessHeader{ bytes_.subspan(0) }; }
 
-    std::uint64_t security_id() const { return wire::read_u64_le(at(19)); }
+    std::uint64_t security_id() const { return wire::read_u64_le(at(20)); }
 
-    std::optional<std::uint64_t> quote_id_optional() const { return wire::nullable(wire::read_u64_le(at(27)), static_cast<std::uint64_t>(0ULL)); }
+    std::optional<std::uint64_t> quote_id_optional() const { return wire::nullable(wire::read_u64_le(at(28)), static_cast<std::uint64_t>(0ULL)); }
 
-    std::optional<std::uint32_t> account() const { return wire::nullable(wire::read_u32_le(at(35)), static_cast<std::uint32_t>(0ULL)); }
+    std::optional<std::uint32_t> account() const { return wire::nullable(wire::read_u32_le(at(36)), static_cast<std::uint32_t>(0ULL)); }
 
-    std::string_view sender_location() const { return view::text(at(39), 10, '\0'); }
+    std::string_view sender_location() const { return view::text(at(40), 10, '\0'); }
 
-    std::string_view entering_trader() const { return view::text(at(49), 5, '\0'); }
+    std::string_view entering_trader() const { return view::text(at(50), 5, '\0'); }
 
-    std::string_view executing_trader() const { return view::text(at(54), 5, '\0'); }
+    std::string_view executing_trader() const { return view::text(at(55), 5, '\0'); }
 
-    QuoteReqId quote_req_id() const { return QuoteReqId{ bytes_.subspan(59) }; }
+    QuoteReqId quote_req_id() const { return QuoteReqId{ bytes_.subspan(60) }; }
 
     DeskId desk_id() const {
         wire::require("QuoteCancelMessage", quote_req_id_end() + DeskId::minimum_size, bytes_.size());
@@ -84,7 +85,7 @@ class QuoteCancelMessage {
 
   private:
     const std::byte* at(std::size_t offset) const noexcept { return bytes_.data() + offset; }
-    std::size_t quote_req_id_end() const { return 59 + quote_req_id().encoded_size(); }
+    std::size_t quote_req_id_end() const { return 60 + quote_req_id().encoded_size(); }
     std::size_t desk_id_end() const { return quote_req_id_end() + desk_id().encoded_size(); }
     std::size_t memo_end() const { return desk_id_end() + memo().encoded_size(); }
 

@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.13: messages/details/SnapshotFullRefreshTcpLongQtyReader.hpp
 #pragma once
 
 #include "SnapshotFullRefreshTcpLongQtyWriter.hpp"

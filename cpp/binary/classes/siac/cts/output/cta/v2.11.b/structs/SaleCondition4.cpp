@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: structs/SaleCondition4.cpp
 #include "SaleCondition4.hpp"
 
 #include "../common/Print.hpp"

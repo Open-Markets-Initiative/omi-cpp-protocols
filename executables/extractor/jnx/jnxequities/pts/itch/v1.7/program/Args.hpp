@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.7: program/Args.hpp
 #pragma once
 
 #include "Settings.hpp"

@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.7: enums/ClientPacketType.cpp
 #include "ClientPacketType.hpp"
 
 namespace jnx::jnxequities::pts::itch::v1_7 {

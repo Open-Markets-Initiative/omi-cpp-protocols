@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v1.91: types/BestBidPriceLong.hpp
 #pragma once
 
 #include <bit>

@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: messages/UdpPayloadAddOrderMessageShortMessageForm.cpp
 #include "UdpPayloadAddOrderMessageShortMessageForm.hpp"
 
 #include "../common/Print.hpp"
@@ -54,7 +55,7 @@ std::size_t UdpPayloadAddOrderMessageShortMessageForm::decode(const std::byte* d
     option_id_ = wire::read_u32_be(data + offset);
     offset += 4;
 
-    price_short_ = Decimal(static_cast<std::int64_t>(wire::read_u16_be(data + offset)), -4);
+    price_short_ = Decimal(static_cast<std::int64_t>(wire::read_u16_be(data + offset)), -2);
     offset += 2;
 
     volume_short_ = wire::read_u16_be(data + offset);

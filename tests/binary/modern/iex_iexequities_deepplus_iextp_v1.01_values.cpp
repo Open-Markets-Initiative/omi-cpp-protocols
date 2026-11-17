@@ -110,7 +110,6 @@ canonical::Listing read(const packet::Frame& frame) {
         } else if (iterator.message_type == protocol::OrderDeleteMessage::message_type) {
             values[entry + ".messagedata"] = "packet.messages.message.messagedata.orderdeletemessage";
             [[maybe_unused]] const auto* message = protocol::OrderDeleteMessage::parse(iterator.message);
-            values[entry + ".messagedata.orderdeletemessage.reserved1"] = canonical::text(canonical::character(message->reserved_1.get()));
             values[entry + ".messagedata.orderdeletemessage.timestamp"] = canonical::number(message->timestamp.get());
             values[entry + ".messagedata.orderdeletemessage.symbol"] = canonical::text(std::string(message->symbol.get()), ' ', false);
             values[entry + ".messagedata.orderdeletemessage.orderidreference"] = canonical::number(message->order_id_reference.get());
@@ -157,7 +156,6 @@ canonical::Listing read(const packet::Frame& frame) {
         } else if (iterator.message_type == protocol::ClearBookMessage::message_type) {
             values[entry + ".messagedata"] = "packet.messages.message.messagedata.clearbookmessage";
             [[maybe_unused]] const auto* message = protocol::ClearBookMessage::parse(iterator.message);
-            values[entry + ".messagedata.clearbookmessage.reserved1"] = canonical::text(canonical::character(message->reserved_1.get()));
             values[entry + ".messagedata.clearbookmessage.timestamp"] = canonical::number(message->timestamp.get());
             values[entry + ".messagedata.clearbookmessage.symbol"] = canonical::text(std::string(message->symbol.get()), ' ', false);
         }

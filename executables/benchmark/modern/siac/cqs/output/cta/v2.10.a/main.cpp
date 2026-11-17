@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v2.10.a: main.cpp
 // Siac.Cqs.Output.Cta.v2.10.a benchmark, through the Modern iterator: every value it reads from every message of the simulated
 // sequence (tests/simulated/siac/cqs/output/cta/v2.10.a.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -58,7 +59,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest(message_2->primary_listing_market_previous_closing_price.integer());
                 checksum += bench::digest(message_2->consolidated_closing_price.integer());
                 checksum += bench::digest(message_2->round_lot_size.get());
-                checksum += bench::digest(message_2->reserved.get());
                 checksum += bench::digest(message_2->luld_tier.get());
                 checksum += bench::digest(message_2->luld_leverage_ratio.integer());
                 checksum += bench::digest(message_2->test.get());
@@ -67,9 +67,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest(message_2->short_sale_restriction_indicator.get());
                 checksum += bench::digest(message_2->halt_reason.get());
                 checksum += bench::digest(message_2->instrument_type.get());
-                checksum += bench::digest(message_2->second_reserved.get());
-                checksum += bench::digest(message_2->third_reserved.get());
-                checksum += bench::digest(message_2->reserved_128.get());
             }
         } else if (iterator.message_category == 'C') {
             [[maybe_unused]] const auto* message = protocol::ControlMessage::parse(iterator.message);
@@ -145,7 +142,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest(message_2->mwcb_level_1.integer());
                 checksum += bench::digest(message_2->mwcb_level_2.integer());
                 checksum += bench::digest(message_2->mwcb_level_3.integer());
-                checksum += bench::digest(message_2->reserved.get());
             } else if (message->market_status_message_type.get() == 'L') {
                 [[maybe_unused]] const auto* message_2 = protocol::MarketWideCircuitBreakerStatusMessage::parse(iterator.message + sizeof(protocol::MarketStatusMessage));
                 checksum += bench::digest(message_2->participant_id.get());
@@ -155,7 +151,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest(message_2->transaction_id.get());
                 checksum += bench::digest(message_2->participant_reference_number.get());
                 checksum += bench::digest(message_2->market_wide_circuit_breaker_level_indicator.get());
-                checksum += bench::digest(message_2->reserved.get());
             }
         } else if (iterator.message_category == 'Q') {
             [[maybe_unused]] const auto* message = protocol::QuoteMessage::parse(iterator.message);
@@ -177,7 +172,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest(message_2->short_sale_restriction_indicator.get());
                 checksum += bench::digest(message_2->primary_listing_market_participant_id.get());
                 checksum += bench::digest(message_2->financial_status_indicator.get());
-                checksum += bench::digest(message_2->reserved_62.get());
             } else if (message->quote_message_type.get() == 'L') {
                 [[maybe_unused]] const auto* message_2 = protocol::LongQuoteMessage::parse(iterator.message + sizeof(protocol::QuoteMessage));
                 checksum += bench::digest(message_2->participant_id.get());

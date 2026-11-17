@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.13: definitions.hpp
 #pragma once
 
 #include "structs/BinaryPacketHeader.hpp"
@@ -11,7 +12,6 @@
 
 #include "messages/MktdataMessage.hpp"
 #include "messages/ChannelReset.hpp"
-#include "messages/AdminHeartbeat.hpp"
 #include "messages/AdminLogin.hpp"
 #include "messages/AdminLogout.hpp"
 #include "messages/SecurityStatus.hpp"
@@ -51,7 +51,9 @@
 #include "messages/RequestReject.hpp"
 #include "messages/SecurityListRequest.hpp"
 #include "messages/SecurityStatusRequest.hpp"
-#include "messages/SubscriberHeartbeat.hpp"
+
+#include "actions/AdminHeartbeat.hpp"
+#include "actions/SubscriberHeartbeat.hpp"
 
 #include "iterators/BrokenDatesGroupIterator.hpp"
 #include "iterators/ChannelResetGroupIterator.hpp"

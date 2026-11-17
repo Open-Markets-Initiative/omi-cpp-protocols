@@ -1,3 +1,4 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: main.cpp
 // Lseg.Millennium.Level2.Mitch.v11.9 benchmark, through the Flyweight reader: every value it reads from every message of the simulated
 // sequence (tests/simulated/lseg/millennium/level2/mitch/v11.9.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -63,7 +64,7 @@ struct Reader {
         checksum += bench::digest(message.segment());
         checksum += bench::digest(message.underlying());
         checksum += bench::digest(message.currency());
-        checksum += bench::digest(message.previous_close_price());
+        checksum += bench::digest(message.previous_close_price().mantissa());
     }
 
     void on(const protocol::SymbolStatusMessage& message) {
@@ -87,7 +88,7 @@ struct Reader {
         checksum += bench::digest(message.side());
         checksum += bench::digest(message.quantity());
         checksum += bench::digest(message.instrument_id());
-        checksum += bench::digest(message.price());
+        checksum += bench::digest(message.price().mantissa());
         checksum += bench::digest(message.add_order_flags().unused_4());
         checksum += bench::digest(message.add_order_flags().market_order());
         checksum += bench::digest(message.add_order_flags().unused_1());
@@ -102,7 +103,7 @@ struct Reader {
         checksum += bench::digest(message.side());
         checksum += bench::digest(message.quantity());
         checksum += bench::digest(message.instrument_id());
-        checksum += bench::digest(message.price());
+        checksum += bench::digest(message.price().mantissa());
         checksum += bench::digest(message.attribution());
         checksum += bench::digest(message.add_attributed_order_flags().unused_4());
         checksum += bench::digest(message.add_attributed_order_flags().named_market_order());
@@ -125,7 +126,7 @@ struct Reader {
         checksum += bench::digest(message.nanosecond());
         checksum += bench::digest(message.order_id());
         checksum += bench::digest(message.new_quantity());
-        checksum += bench::digest(message.new_price());
+        checksum += bench::digest(message.new_price().mantissa());
         checksum += bench::digest(message.order_modified_flags().priority_flag());
         checksum += bench::digest(message.order_modified_flags().unused_4());
         checksum += bench::digest(message.order_modified_flags().firm_quote());
@@ -158,7 +159,7 @@ struct Reader {
         checksum += bench::digest(message.display_quantity());
         checksum += bench::digest(message.trade_match_id());
         checksum += bench::digest(message.printable());
-        checksum += bench::digest(message.price());
+        checksum += bench::digest(message.price().mantissa());
     }
 
     void on(const protocol::TradeMessage& message) {
@@ -166,7 +167,7 @@ struct Reader {
         checksum += bench::digest(message.nanosecond());
         checksum += bench::digest(message.executed_quantity());
         checksum += bench::digest(message.instrument_id());
-        checksum += bench::digest(message.price());
+        checksum += bench::digest(message.price().mantissa());
         checksum += bench::digest(message.trade_match_id());
         checksum += (message.cross_type().has_value() ? bench::digest((*message.cross_type())) : std::uint64_t{0});
         checksum += bench::digest(message.sub_book());
@@ -180,7 +181,7 @@ struct Reader {
         checksum += bench::digest(message.nanosecond());
         checksum += bench::digest(message.quantity());
         checksum += bench::digest(message.instrument_id());
-        checksum += bench::digest(message.price());
+        checksum += bench::digest(message.price().mantissa());
         checksum += bench::digest(message.trade_match_id());
         checksum += bench::digest(message.auction_type());
         checksum += bench::digest(message.pt_mod_flags().canc());
@@ -193,7 +194,7 @@ struct Reader {
         checksum += bench::digest(message.nanosecond());
         checksum += bench::digest(message.paired_quantity());
         checksum += bench::digest(message.instrument_id());
-        checksum += bench::digest(message.price());
+        checksum += bench::digest(message.price().mantissa());
         checksum += bench::digest(message.auction_type());
     }
 
@@ -202,7 +203,7 @@ struct Reader {
         checksum += bench::digest(message.nanosecond());
         checksum += bench::digest(message.instrument_id());
         checksum += bench::digest(message.statistic_type());
-        checksum += bench::digest(message.price());
+        checksum += bench::digest(message.price().mantissa());
         checksum += bench::digest(message.open_close_price_indicator());
         checksum += bench::digest(message.statistics_reserved().unused_8());
     }
@@ -211,9 +212,9 @@ struct Reader {
         checksum += index++;
         checksum += bench::digest(message.nanosecond());
         checksum += bench::digest(message.instrument_id());
-        checksum += bench::digest(message.buy_limit_price());
+        checksum += bench::digest(message.buy_limit_price().mantissa());
         checksum += bench::digest(message.buy_limit_size());
-        checksum += bench::digest(message.sell_limit_price());
+        checksum += bench::digest(message.sell_limit_price().mantissa());
         checksum += bench::digest(message.sell_limit_size());
     }
 };

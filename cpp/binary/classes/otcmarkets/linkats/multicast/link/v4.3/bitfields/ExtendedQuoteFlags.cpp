@@ -1,3 +1,4 @@
+// OtcMarkets.LinkAts.Multicast.Link.v4.3: bitfields/ExtendedQuoteFlags.cpp
 #include "ExtendedQuoteFlags.hpp"
 
 #include "../common/Print.hpp"

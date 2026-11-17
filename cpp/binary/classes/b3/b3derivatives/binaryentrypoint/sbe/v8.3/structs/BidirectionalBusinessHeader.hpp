@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: structs/BidirectionalBusinessHeader.hpp
 #pragma once
 
 #include <chrono>
@@ -5,6 +6,7 @@
 #include <cstdint>
 #include <optional>
 #include <ostream>
+#include <string>
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_3 {
 
@@ -12,10 +14,10 @@ namespace b3::b3derivatives::binaryentrypoint::sbe::v8_3 {
 class BidirectionalBusinessHeader {
   public:
     // Bytes of this struct on the wire
-    static constexpr std::size_t wire_size = 19;
+    static constexpr std::size_t wire_size = 20;
 
     BidirectionalBusinessHeader() = default;
-    BidirectionalBusinessHeader(std::uint32_t session_id, std::uint32_t msg_seq_num, std::optional<std::chrono::nanoseconds> sending_time, std::uint8_t event_indicator, std::uint8_t market_segment_id_optional, char padding);
+    BidirectionalBusinessHeader(std::uint32_t session_id, std::uint32_t msg_seq_num, std::optional<std::chrono::nanoseconds> sending_time, std::uint8_t event_indicator, std::optional<std::uint8_t> market_segment_id_optional, const std::string& padding_char_2);
 
     // Session Id: sessionID
     std::uint32_t session_id() const;
@@ -34,12 +36,13 @@ class BidirectionalBusinessHeader {
     void set_event_indicator(std::uint8_t value);
 
     // Market Segment Id Optional: marketSegmentID
-    std::uint8_t market_segment_id_optional() const;
-    void set_market_segment_id_optional(std::uint8_t value);
+    std::optional<std::uint8_t> market_segment_id_optional() const;
+    void set_market_segment_id_optional(std::optional<std::uint8_t> value);
 
-    // Padding: padding
-    char padding() const;
-    void set_padding(char value);
+    // Padding char 2: padding
+    const std::string& padding_char_2() const;
+    std::string& padding_char_2();
+    void set_padding_char_2(const std::string& value);
 
     // Read this from the bytes at data, and return how many were consumed; throws DecodeError when too few
     std::size_t decode(const std::byte* data, std::size_t length);
@@ -57,8 +60,8 @@ class BidirectionalBusinessHeader {
     std::uint32_t msg_seq_num_{};
     std::optional<std::chrono::nanoseconds> sending_time_{};
     std::uint8_t event_indicator_{};
-    std::uint8_t market_segment_id_optional_{};
-    char padding_{};
+    std::optional<std::uint8_t> market_segment_id_optional_{};
+    std::string padding_char_2_{};
 };
 
 std::ostream& operator<<(std::ostream& out, const BidirectionalBusinessHeader& value);

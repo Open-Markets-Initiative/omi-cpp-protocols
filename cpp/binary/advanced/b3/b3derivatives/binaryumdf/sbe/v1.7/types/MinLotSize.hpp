@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.7: types/MinLotSize.hpp
 #pragma once
 
 #include <cstddef>

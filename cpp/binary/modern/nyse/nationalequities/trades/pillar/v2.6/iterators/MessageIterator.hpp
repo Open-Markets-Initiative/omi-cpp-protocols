@@ -1,3 +1,4 @@
+// Nyse.NationalEquities.Trades.Pillar.v2.6: iterators/MessageIterator.hpp
 #pragma once
 
 #include "../definitions.hpp"

@@ -1,9 +1,10 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: messages/OrderMassActionRequestMessage.hpp
 #pragma once
 
 #include "../structs/InboundBusinessHeader.hpp"
 #include "../types/MassActionType.hpp"
 #include "../types/MassActionScope.hpp"
-#include "../types/Clordid.hpp"
+#include "../types/ClOrdId.hpp"
 #include "../types/MassCancelRestatementReason.hpp"
 #include "../types/Ordtagid.hpp"
 #include "../types/SideOptional.hpp"
@@ -22,7 +23,7 @@ struct OrderMassActionRequestMessage {
     InboundBusinessHeader inbound_business_header;
     MassActionType mass_action_type;
     MassActionScope mass_action_scope;
-    Clordid clordid;
+    ClOrdId cl_ord_id;
     MassCancelRestatementReason mass_cancel_restatement_reason;
     Ordtagid ordtagid;
     SideOptional side_optional;

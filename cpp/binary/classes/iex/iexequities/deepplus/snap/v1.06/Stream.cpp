@@ -1,3 +1,4 @@
+// Iex.IexEquities.DeepPlus.Snap.v1.06: Stream.cpp
 #include "Stream.hpp"
 
 #include "Factory.hpp"

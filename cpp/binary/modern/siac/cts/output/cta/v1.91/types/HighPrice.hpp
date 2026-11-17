@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v1.91: types/HighPrice.hpp
 #pragma once
 
 #include <bit>

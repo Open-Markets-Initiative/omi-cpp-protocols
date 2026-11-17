@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.6: messages/PriceTickSizeMessage.hpp
 #pragma once
 
 #include <chrono>

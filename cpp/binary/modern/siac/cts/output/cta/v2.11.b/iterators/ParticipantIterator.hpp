@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: iterators/ParticipantIterator.hpp
 #pragma once
 
 #include "../definitions.hpp"

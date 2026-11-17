@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: enums/Category2.hpp
 #pragma once
 
 #include <cstdint>
@@ -10,6 +11,7 @@ namespace siac::cts::output::cta::v2_11_b {
 enum class Category2 : char {
     NoTradeThroughExemptReason = ' ',                        // No Trade Through Exempt Reason
     InterMarketSweepOrder = 'F',                             // Inter Market Sweep Order
+    MarketCenterOpeningTrade = 'O',                          // Market Center Opening Trade
     DerivativelyPriced = '4',                                // Derivatively Priced
     MarketCenterReopeningTrade = '5',                        // Market Center Reopening Trade
     MarketCenterClosingTrade = '6',                          // Market Center Closing Trade

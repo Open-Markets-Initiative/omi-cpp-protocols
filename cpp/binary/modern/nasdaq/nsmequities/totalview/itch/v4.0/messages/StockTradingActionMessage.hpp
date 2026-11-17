@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v4.0: messages/StockTradingActionMessage.hpp
 #pragma once
 
 #include "../types/Nanoseconds.hpp"

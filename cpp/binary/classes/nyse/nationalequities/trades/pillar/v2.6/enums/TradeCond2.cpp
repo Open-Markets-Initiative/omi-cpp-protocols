@@ -1,3 +1,4 @@
+// Nyse.NationalEquities.Trades.Pillar.v2.6: enums/TradeCond2.cpp
 #include "TradeCond2.hpp"
 
 namespace nyse::nationalequities::trades::pillar::v2_6 {

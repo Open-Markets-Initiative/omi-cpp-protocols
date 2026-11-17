@@ -1,3 +1,4 @@
+// Nasdaq.NtxEquities.TotalView.Itch.v5.0: nasdaq_ntxequities_totalview_itch_v5_0.hpp
 // Nasdaq NtxEquities TotalView Itch 5.0 Template Meta Programming
 
 #pragma once
@@ -1278,14 +1279,14 @@ struct reg_sho_action {
 
 // Reserved
 struct reserved {
-    using type = char;
+    using type = std::uint8_t;
     static constexpr std::size_t size = 1;
 
     constexpr type value() const noexcept { return value_; }
     constexpr operator type() const noexcept { return value(); }
 
   protected:
-    char value_;
+    type value_;
 };
 
 // Round Lot Size: Denotes the number of shares that represent a round lot for the issue

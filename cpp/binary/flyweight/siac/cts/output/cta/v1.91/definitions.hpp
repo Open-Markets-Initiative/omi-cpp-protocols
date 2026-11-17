@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v1.91: definitions.hpp
 #pragma once
 
 // Every flyweight view and reader of Siac.Cts.Output.Cta.v1.91.
@@ -5,10 +6,10 @@
 #include "structs/SipBlockTimestamp.hpp"
 #include "structs/BlockHeader.hpp"
 #include "structs/Timestamp1.hpp"
-#include "messages/StartOfEndOfDayMessage.hpp"
-#include "messages/EndOfEndOfDayMessage.hpp"
-#include "messages/StartOfStartOfDayMessage.hpp"
-#include "messages/EndOfStartOfDayMessage.hpp"
+#include "messages/StartOfEndOfDaySummaryMessage.hpp"
+#include "messages/EndOfEndOfDaySummaryMessage.hpp"
+#include "messages/StartOfStartOfDaySummaryMessage.hpp"
+#include "messages/EndOfStartOfDaySummaryMessage.hpp"
 #include "messages/AdministrativeUnformattedMessage.hpp"
 #include "messages/AdministrativeMessage.hpp"
 #include "messages/StartOfDayMessage.hpp"

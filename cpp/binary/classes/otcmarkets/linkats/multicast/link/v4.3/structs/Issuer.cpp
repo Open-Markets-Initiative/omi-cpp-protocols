@@ -1,3 +1,4 @@
+// OtcMarkets.LinkAts.Multicast.Link.v4.3: structs/Issuer.cpp
 #include "Issuer.hpp"
 
 #include "../common/Print.hpp"

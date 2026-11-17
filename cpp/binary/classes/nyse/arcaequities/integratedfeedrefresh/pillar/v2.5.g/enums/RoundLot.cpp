@@ -1,3 +1,4 @@
+// Nyse.ArcaEquities.IntegratedFeedRefresh.Pillar.v2.5.g: enums/RoundLot.cpp
 #include "RoundLot.hpp"
 
 namespace nyse::arcaequities::integratedfeedrefresh::pillar::v2_5_g {

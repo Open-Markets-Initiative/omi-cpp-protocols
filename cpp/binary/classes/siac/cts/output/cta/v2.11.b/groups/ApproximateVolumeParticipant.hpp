@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: groups/ApproximateVolumeParticipant.hpp
 #pragma once
 
 #include <cstddef>

@@ -1,3 +1,4 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: enums/SessionChangeReason.hpp
 #pragma once
 
 #include <cstdint>

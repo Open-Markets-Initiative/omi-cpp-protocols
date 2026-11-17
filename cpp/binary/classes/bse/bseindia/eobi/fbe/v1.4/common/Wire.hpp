@@ -1,3 +1,4 @@
+// Bse.BseIndia.Eobi.Fbe.v1.4: common/Wire.hpp
 #pragma once
 
 #include <bit>

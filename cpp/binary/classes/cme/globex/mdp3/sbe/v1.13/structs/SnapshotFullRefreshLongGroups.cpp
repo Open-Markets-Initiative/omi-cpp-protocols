@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.13: structs/SnapshotFullRefreshLongGroups.cpp
 #include "SnapshotFullRefreshLongGroups.hpp"
 
 #include "../common/Print.hpp"

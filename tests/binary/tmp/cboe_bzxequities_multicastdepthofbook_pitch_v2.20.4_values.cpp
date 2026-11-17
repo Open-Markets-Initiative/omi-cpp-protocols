@@ -522,7 +522,7 @@ struct Reader {
 
     void operator()(const protocol::end_of_session_message& message) {
         values[entry + ".payload"] = "packet.messages.message.payload.endofsessionmessage";
-        if constexpr (requires { message.template get<protocol::timestamp>(); }) { values[entry + ".payload.endofsessionmessage.timestamp"] = canonical::number(message.template get<protocol::timestamp>().value()); }
+        if constexpr (requires { message.template get<protocol::time_offset>(); }) { values[entry + ".payload.endofsessionmessage.timeoffset"] = canonical::number(message.template get<protocol::time_offset>().value()); }
     }
 
     void operator()(const protocol::symbol_mapping_message& message) {
@@ -538,8 +538,6 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::symbol_long>(); }) { values[entry + ".payload.tradingstatusmessage.symbollong"] = canonical::text(std::string(message.template get<protocol::symbol_long>().value()), ' ', false); }
         if constexpr (requires { message.template get<protocol::trading_status>(); }) { values[entry + ".payload.tradingstatusmessage.tradingstatus"] = canonical::text(canonical::character(message.template get<protocol::trading_status>().value()), ' ', false); }
         if constexpr (requires { message.template get<protocol::reg_sho_action>(); }) { values[entry + ".payload.tradingstatusmessage.regshoaction"] = canonical::text(canonical::character(message.template get<protocol::reg_sho_action>().value()), ' ', false); }
-        if constexpr (requires { message.template get<protocol::reserved_1>(); }) { values[entry + ".payload.tradingstatusmessage.reserved1"] = canonical::text(canonical::character(message.template get<protocol::reserved_1>().value()), ' ', false); }
-        if constexpr (requires { message.template get<protocol::second_reserved_1>(); }) { values[entry + ".payload.tradingstatusmessage.secondreserved1"] = canonical::text(canonical::character(message.template get<protocol::second_reserved_1>().value()), ' ', false); }
     }
 
     void operator()(const protocol::auction_update_message& message) {

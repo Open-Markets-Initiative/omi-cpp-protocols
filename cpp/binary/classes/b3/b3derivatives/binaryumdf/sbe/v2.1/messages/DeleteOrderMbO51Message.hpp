@@ -1,6 +1,8 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.1: messages/DeleteOrderMbO51Message.hpp
 #pragma once
 
 #include <array>
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
@@ -26,7 +28,7 @@ class DeleteOrderMbO51Message : public Message {
     static constexpr std::size_t wire_size = 52;
 
     DeleteOrderMbO51Message() = default;
-    DeleteOrderMbO51Message(std::uint64_t security_id, const MatchEventIndicator& match_event_indicator, const std::array<std::byte, 1>& offset_9_padding_1, MdEntryType md_entry_type, const std::array<std::byte, 1>& offset_11_padding_1, std::optional<std::uint32_t> md_entry_position_no, std::int64_t md_entry_size_quantity, std::uint64_t secondary_order_id, std::optional<std::uint64_t> transact_time, std::optional<std::uint32_t> rpt_seq, std::optional<Decimal> md_corporate_offset_price_optional);
+    DeleteOrderMbO51Message(std::uint64_t security_id, const MatchEventIndicator& match_event_indicator, const std::array<std::byte, 1>& offset_9_padding_1, MdEntryType md_entry_type, const std::array<std::byte, 1>& offset_11_padding_1, std::optional<std::uint32_t> md_entry_position_no, std::int64_t md_entry_size, std::uint64_t secondary_order_id, std::optional<std::chrono::nanoseconds> transact_time, std::optional<std::uint32_t> rpt_seq, std::optional<Decimal> md_corporate_offset_price_optional);
 
     // Security Id: securityID
     std::uint64_t security_id() const;
@@ -55,17 +57,17 @@ class DeleteOrderMbO51Message : public Message {
     std::optional<std::uint32_t> md_entry_position_no() const;
     void set_md_entry_position_no(std::optional<std::uint32_t> value);
 
-    // Md Entry Size Quantity: mDEntrySize
-    std::int64_t md_entry_size_quantity() const;
-    void set_md_entry_size_quantity(std::int64_t value);
+    // Md Entry Size: mDEntrySize
+    std::int64_t md_entry_size() const;
+    void set_md_entry_size(std::int64_t value);
 
     // Secondary Order Id: secondaryOrderID
     std::uint64_t secondary_order_id() const;
     void set_secondary_order_id(std::uint64_t value);
 
     // Transact Time: transactTime
-    std::optional<std::uint64_t> transact_time() const;
-    void set_transact_time(std::optional<std::uint64_t> value);
+    std::optional<std::chrono::nanoseconds> transact_time() const;
+    void set_transact_time(std::optional<std::chrono::nanoseconds> value);
 
     // Rpt Seq: rptSeq
     std::optional<std::uint32_t> rpt_seq() const;
@@ -96,9 +98,9 @@ class DeleteOrderMbO51Message : public Message {
     MdEntryType md_entry_type_{};
     std::array<std::byte, 1> offset_11_padding_1_{};
     std::optional<std::uint32_t> md_entry_position_no_{};
-    std::int64_t md_entry_size_quantity_{};
+    std::int64_t md_entry_size_{};
     std::uint64_t secondary_order_id_{};
-    std::optional<std::uint64_t> transact_time_{};
+    std::optional<std::chrono::nanoseconds> transact_time_{};
     std::optional<std::uint32_t> rpt_seq_{};
     std::optional<Decimal> md_corporate_offset_price_optional_{};
 };

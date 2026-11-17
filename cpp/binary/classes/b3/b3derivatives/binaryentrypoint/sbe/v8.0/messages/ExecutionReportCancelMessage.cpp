@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: messages/ExecutionReportCancelMessage.cpp
 #include "ExecutionReportCancelMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,8 +7,8 @@
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_0 {
 
-ExecutionReportCancelMessage::ExecutionReportCancelMessage(const OutboundBusinessHeader& outbound_business_header, Side side, OrdStatus ord_status, std::uint64_t clordid, std::uint64_t secondary_order_id, std::uint64_t security_id, std::uint64_t cum_qty, std::optional<std::uint32_t> account, std::uint64_t exec_id, std::chrono::nanoseconds transact_time, std::optional<std::chrono::nanoseconds> market_segment_received_time, std::uint64_t order_id, std::optional<std::uint64_t> origclordid, std::uint16_t trade_date, WorkingIndicator working_indicator, std::optional<ExecRestatementReason> exec_restatement_reason, const std::array<std::byte, 4>& offset_100_padding_4, std::optional<std::uint64_t> mass_action_report_id_optional, Ordtype ordtype, TimeInForce time_in_force, std::optional<std::uint16_t> expire_date, std::uint64_t order_qty, std::optional<Decimal> price_optional, std::optional<Decimal> stop_px, std::optional<std::uint64_t> min_qty, std::optional<std::uint64_t> max_floor, const DeskId& desk_id, const Memo& memo)
-  : outbound_business_header_(outbound_business_header), side_(side), ord_status_(ord_status), clordid_(clordid), secondary_order_id_(secondary_order_id), security_id_(security_id), cum_qty_(cum_qty), account_(account), exec_id_(exec_id), transact_time_(transact_time), market_segment_received_time_(market_segment_received_time), order_id_(order_id), origclordid_(origclordid), trade_date_(trade_date), working_indicator_(working_indicator), exec_restatement_reason_(exec_restatement_reason), offset_100_padding_4_(offset_100_padding_4), mass_action_report_id_optional_(mass_action_report_id_optional), ordtype_(ordtype), time_in_force_(time_in_force), expire_date_(expire_date), order_qty_(order_qty), price_optional_(price_optional), stop_px_(stop_px), min_qty_(min_qty), max_floor_(max_floor), desk_id_(desk_id), memo_(memo) {}
+ExecutionReportCancelMessage::ExecutionReportCancelMessage(const OutboundBusinessHeader& outbound_business_header, Side side, OrdStatus ord_status, std::uint64_t cl_ord_id, std::uint64_t secondary_order_id, std::uint64_t security_id, std::uint64_t cum_qty, std::optional<std::uint32_t> account, std::uint64_t exec_id, std::chrono::nanoseconds transact_time, std::optional<std::chrono::nanoseconds> market_segment_received_time, std::uint64_t order_id, std::optional<std::uint64_t> origclordid, std::uint16_t trade_date, WorkingIndicator working_indicator, std::optional<ExecRestatementReason> exec_restatement_reason, const std::array<std::byte, 4>& offset_100_padding_4, std::optional<std::uint64_t> mass_action_report_id_optional, Ordtype ordtype, TimeInForce time_in_force, std::optional<std::uint16_t> expire_date, std::uint64_t order_qty, std::optional<Decimal> price_optional, std::optional<Decimal> stop_px, std::optional<std::uint64_t> min_qty, std::optional<std::uint64_t> max_floor, const DeskId& desk_id, const Memo& memo)
+  : outbound_business_header_(outbound_business_header), side_(side), ord_status_(ord_status), cl_ord_id_(cl_ord_id), secondary_order_id_(secondary_order_id), security_id_(security_id), cum_qty_(cum_qty), account_(account), exec_id_(exec_id), transact_time_(transact_time), market_segment_received_time_(market_segment_received_time), order_id_(order_id), origclordid_(origclordid), trade_date_(trade_date), working_indicator_(working_indicator), exec_restatement_reason_(exec_restatement_reason), offset_100_padding_4_(offset_100_padding_4), mass_action_report_id_optional_(mass_action_report_id_optional), ordtype_(ordtype), time_in_force_(time_in_force), expire_date_(expire_date), order_qty_(order_qty), price_optional_(price_optional), stop_px_(stop_px), min_qty_(min_qty), max_floor_(max_floor), desk_id_(desk_id), memo_(memo) {}
 
 const OutboundBusinessHeader& ExecutionReportCancelMessage::outbound_business_header() const { return outbound_business_header_; }
 OutboundBusinessHeader& ExecutionReportCancelMessage::outbound_business_header() { return outbound_business_header_; }
@@ -19,8 +20,8 @@ void ExecutionReportCancelMessage::set_side(Side value) { side_ = value; }
 OrdStatus ExecutionReportCancelMessage::ord_status() const { return ord_status_; }
 void ExecutionReportCancelMessage::set_ord_status(OrdStatus value) { ord_status_ = value; }
 
-std::uint64_t ExecutionReportCancelMessage::clordid() const { return clordid_; }
-void ExecutionReportCancelMessage::set_clordid(std::uint64_t value) { clordid_ = value; }
+std::uint64_t ExecutionReportCancelMessage::cl_ord_id() const { return cl_ord_id_; }
+void ExecutionReportCancelMessage::set_cl_ord_id(std::uint64_t value) { cl_ord_id_ = value; }
 
 std::uint64_t ExecutionReportCancelMessage::secondary_order_id() const { return secondary_order_id_; }
 void ExecutionReportCancelMessage::set_secondary_order_id(std::uint64_t value) { secondary_order_id_ = value; }
@@ -115,7 +116,7 @@ std::size_t ExecutionReportCancelMessage::decode(const std::byte* data, std::siz
     offset += 1;
 
     wire::require("ExecutionReportCancelMessage", offset + 8, length);
-    clordid_ = wire::read_u64_le(data + offset);
+    cl_ord_id_ = wire::read_u64_le(data + offset);
     offset += 8;
 
     wire::require("ExecutionReportCancelMessage", offset + 8, length);
@@ -225,7 +226,7 @@ std::size_t ExecutionReportCancelMessage::encode(std::byte* data, std::size_t ca
     wire::write_char(data + offset, static_cast<char>(ord_status_));
     offset += 1;
 
-    wire::write_u64_le(data + offset, static_cast<std::uint64_t>(clordid_));
+    wire::write_u64_le(data + offset, static_cast<std::uint64_t>(cl_ord_id_));
     offset += 8;
 
     wire::write_u64_le(data + offset, static_cast<std::uint64_t>(secondary_order_id_));
@@ -321,8 +322,8 @@ void ExecutionReportCancelMessage::print(std::ostream& out) const {
     out << side_;
     out << ", ord_status=";
     out << ord_status_;
-    out << ", clordid=";
-    out << clordid_;
+    out << ", cl_ord_id=";
+    out << cl_ord_id_;
     out << ", secondary_order_id=";
     out << secondary_order_id_;
     out << ", security_id=";
@@ -383,7 +384,7 @@ bool ExecutionReportCancelMessage::operator==(const ExecutionReportCancelMessage
     return outbound_business_header_ == other.outbound_business_header_
         && side_ == other.side_
         && ord_status_ == other.ord_status_
-        && clordid_ == other.clordid_
+        && cl_ord_id_ == other.cl_ord_id_
         && secondary_order_id_ == other.secondary_order_id_
         && security_id_ == other.security_id_
         && cum_qty_ == other.cum_qty_

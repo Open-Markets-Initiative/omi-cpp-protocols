@@ -202,7 +202,7 @@ struct Reader {
     void on(const protocol::EndOfSessionMessage& message) {
         const std::string entry = "packet.messages.message[" + std::to_string(index++) + "]";
         values[entry + ".payload"] = "packet.messages.message.payload.endofsessionmessage";
-        values[entry + ".payload.endofsessionmessage.timestamp"] = canonical::number(message.timestamp());
+        values[entry + ".payload.endofsessionmessage.timeoffset"] = canonical::number(message.time_offset());
     }
 
     void on(const protocol::SymbolMappingMessage& message) {
@@ -220,8 +220,6 @@ struct Reader {
         values[entry + ".payload.tradingstatusmessage.symbollong"] = canonical::text(std::string(message.symbol_long()), ' ', false);
         values[entry + ".payload.tradingstatusmessage.tradingstatus"] = canonical::text(canonical::character(message.trading_status()), ' ', false);
         values[entry + ".payload.tradingstatusmessage.regshoaction"] = canonical::text(canonical::character(message.reg_sho_action()), ' ', false);
-        values[entry + ".payload.tradingstatusmessage.reserved1"] = canonical::text(canonical::character(message.reserved_1()), ' ', false);
-        values[entry + ".payload.tradingstatusmessage.secondreserved1"] = canonical::text(canonical::character(message.second_reserved_1()), ' ', false);
     }
 
     void on(const protocol::AuctionUpdateMessage& message) {

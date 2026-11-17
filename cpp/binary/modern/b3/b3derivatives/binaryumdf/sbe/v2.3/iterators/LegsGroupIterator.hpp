@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.3: iterators/LegsGroupIterator.hpp
 #pragma once
 
 #include "../definitions.hpp"

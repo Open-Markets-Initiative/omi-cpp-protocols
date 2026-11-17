@@ -1,3 +1,4 @@
+// Cboe.EdgxOptions.MulticastDepthOfBook.Pitch.v2.41.80: messages/AuctionNotificationMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -52,7 +53,7 @@ class AuctionNotificationMessage {
 
     std::string_view participant_id() const { return view::text(at(33), 4, ' '); }
 
-    std::uint32_t auction_end_offset() const { return wire::read_u32_le(at(37)); }
+    std::chrono::nanoseconds auction_end_offset() const { return std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(at(37)))); }
 
     std::string_view client_id() const { return view::text(at(41), 4, ' '); }
 
@@ -77,7 +78,7 @@ class AuctionNotificationMessage {
         out << ", participant_id=";
         print::text(out, participant_id());
         out << ", auction_end_offset=";
-        out << auction_end_offset();
+        out << auction_end_offset().count();
         out << ", client_id=";
         print::text(out, client_id());
         out << '}';

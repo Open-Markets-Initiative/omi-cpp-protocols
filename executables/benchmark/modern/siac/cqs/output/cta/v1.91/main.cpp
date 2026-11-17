@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v1.91: main.cpp
 // Siac.Cqs.Output.Cta.v1.91 benchmark, through the Modern iterator: every value it reads from every message of the simulated
 // sequence (tests/simulated/siac/cqs/output/cta/v1.91.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -144,7 +145,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest(message_2->mwcb_level_1.integer());
                 checksum += bench::digest(message_2->mwcb_level_2.integer());
                 checksum += bench::digest(message_2->mwcb_level_3.integer());
-                checksum += bench::digest(message_2->reserved.get());
             } else if (message->market_status_message_type.get() == 'L') {
                 [[maybe_unused]] const auto* message_2 = protocol::MarketWideCircuitBreakerStatusMessage::parse(iterator.message + sizeof(protocol::MarketStatusMessage));
                 checksum += bench::digest(message_2->participant_id.get());
@@ -154,7 +154,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest(message_2->transaction_id.get());
                 checksum += bench::digest(message_2->participant_reference_number.get());
                 checksum += bench::digest(message_2->market_wide_circuit_breaker_level_indicator.get());
-                checksum += bench::digest(message_2->reserved.get());
             }
         } else if (iterator.message_category == 'Q') {
             [[maybe_unused]] const auto* message = protocol::QuoteMessage::parse(iterator.message);

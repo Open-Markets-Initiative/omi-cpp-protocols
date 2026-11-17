@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.Qbbo.Itch.v2.1: messages/Definitions.hpp
 #pragma once
 
 #include "../structs/PacketHeader.hpp"

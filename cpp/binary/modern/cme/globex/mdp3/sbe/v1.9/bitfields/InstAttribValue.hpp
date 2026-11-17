@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.9: bitfields/InstAttribValue.hpp
 #pragma once
 
 #include <cstddef>
@@ -37,7 +38,6 @@ struct InstAttribValue {
         static const type ImpliedMatchingEligibility = 0x00080000;
         static const type TriangulationEligible = 0x00100000;
         static const type VariableCabEligible = 0x00200000;
-        static const type Reserved10 = 0xFFC00000;
     };
 
     // default constructor
@@ -152,11 +152,6 @@ struct InstAttribValue {
     // VariableCabEligible
     [[nodiscard]] constexpr bool VariableCabEligible() const {
         return value & mask::VariableCabEligible;
-    }
-
-    // 10 reserved bits
-    [[nodiscard]] constexpr bool Reserved10() const {
-        return value & mask::Reserved10;
     }
 
     // all bits

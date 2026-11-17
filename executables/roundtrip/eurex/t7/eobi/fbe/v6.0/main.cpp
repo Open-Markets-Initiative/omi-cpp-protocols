@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v6.0: main.cpp
 // Eurex.T7.Eobi.Fbe.v6.0 write and read: every message built with each field it sets, written
 // into a capture through the Classes encoder, then read back - each field set must read as it was written.
 // 

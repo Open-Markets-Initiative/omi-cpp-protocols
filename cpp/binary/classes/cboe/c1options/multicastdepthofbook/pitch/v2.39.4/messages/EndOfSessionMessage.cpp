@@ -1,3 +1,4 @@
+// Cboe.C1Options.MulticastDepthOfBook.Pitch.v2.39.4: messages/EndOfSessionMessage.cpp
 #include "EndOfSessionMessage.hpp"
 
 #include "../common/Print.hpp"

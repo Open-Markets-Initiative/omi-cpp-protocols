@@ -1,3 +1,4 @@
+// Iex.IexEquities.Tops.IexTp.v1.56: messages/TradeBreakMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -42,7 +43,7 @@ class TradeBreakMessage {
 
     std::uint64_t trade_id() const { return wire::read_u64_le(at(29)); }
 
-    std::uint32_t reserved_4() const { return wire::read_u32_le(at(37)); }
+    std::span<const std::byte, 4> reserved_4() const { return bytes_.subspan(37).template first<4>(); }
 
     void print(std::ostream& out) const {
         out << "TradeBreakMessage{";
@@ -59,7 +60,7 @@ class TradeBreakMessage {
         out << ", trade_id=";
         out << trade_id();
         out << ", reserved_4=";
-        out << reserved_4();
+        print::hex(out, reserved_4().data(), reserved_4().size());
         out << '}';
     }
 

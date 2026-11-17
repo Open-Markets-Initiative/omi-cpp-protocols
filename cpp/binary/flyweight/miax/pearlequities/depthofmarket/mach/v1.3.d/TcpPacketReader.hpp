@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: TcpPacketReader.hpp
 #pragma once
 
 #include <cstddef>
@@ -15,6 +16,7 @@
 #include "messages/RetransmissionRequest.hpp"
 #include "messages/LogoutRequest.hpp"
 #include "messages/GoodbyePacket.hpp"
+#include "messages/TradingSessionUpdate.hpp"
 #include "messages/TestPacket.hpp"
 
 namespace miax::pearlequities::depthofmarket::mach::v1_3_d {
@@ -64,6 +66,7 @@ struct TcpPacketReader {
             case EsesmPacketType::RetransmissionRequest: return handle<RetransmissionRequest>(body, handler);
             case EsesmPacketType::LogoutRequest: return handle<LogoutRequest>(body, handler);
             case EsesmPacketType::GoodbyePacket: return handle<GoodbyePacket>(body, handler);
+            case EsesmPacketType::TradingSessionUpdate: return handle<TradingSessionUpdate>(body, handler);
             case EsesmPacketType::TestPacket: return handle<TestPacket>(body, handler);
             default:
                 if constexpr (requires { handler.on_unknown(frame.esesm_packet_header().esesm_packet_type(), body); }) { handler.on_unknown(frame.esesm_packet_header().esesm_packet_type(), body); }

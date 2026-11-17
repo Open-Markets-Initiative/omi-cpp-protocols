@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.ComplexTopOfMarket.Mach.v1.1: enums/RestrictedOption.hpp
 #pragma once
 
 #include <cstdint>

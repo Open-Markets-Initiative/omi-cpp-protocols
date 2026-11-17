@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeed.Xdp.v2.3.a: types/LastSymbolSeqNum.hpp
 #pragma once
 
 #include <cstddef>

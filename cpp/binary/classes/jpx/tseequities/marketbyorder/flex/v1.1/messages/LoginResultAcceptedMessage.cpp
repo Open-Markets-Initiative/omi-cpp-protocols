@@ -1,3 +1,4 @@
+// Jpx.TseEquities.MarketByOrder.Flex.v1.1: messages/LoginResultAcceptedMessage.cpp
 #include "LoginResultAcceptedMessage.hpp"
 
 #include "../common/Print.hpp"

@@ -1,3 +1,4 @@
+// Nyse.NationalEquities.Trades.Pillar.v2.6: messages/StockSummaryMessage.hpp
 #pragma once
 
 #include "../types/SourceTime.hpp"

@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: messages/ShortEquityAndIndexQuoteCategory.cpp
 #include "ShortEquityAndIndexQuoteCategory.hpp"
 
 #include "../common/Print.hpp"

@@ -1,0 +1,13 @@
+# Cboe.EdgxEquities.MulticastDepthOfBook.Pitch.v2.41.29 ReduceSizeLongMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.length = 26
+packet.packetheader.messagecount = 1
+packet.packetheader.unit = 23
+packet.packetheader.sequence = 529643
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 18
+packet.messages.message[0].messageheader.messagetype = 37
+packet.messages.message[0].payload = packet.messages.message.payload.reducesizelongmessage
+packet.messages.message[0].payload.reducesizelongmessage.timeoffset = 787536000
+packet.messages.message[0].payload.reducesizelongmessage.orderid = 3055631472717560282
+packet.messages.message[0].payload.reducesizelongmessage.canceledquantity = 67800

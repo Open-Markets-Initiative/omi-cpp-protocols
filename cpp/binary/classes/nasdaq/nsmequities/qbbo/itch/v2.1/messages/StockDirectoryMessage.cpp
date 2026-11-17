@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.Qbbo.Itch.v2.1: messages/StockDirectoryMessage.cpp
 #include "StockDirectoryMessage.hpp"
 
 #include "../common/Print.hpp"

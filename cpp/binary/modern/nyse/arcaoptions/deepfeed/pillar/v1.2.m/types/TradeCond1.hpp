@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.DeepFeed.Pillar.v1.2.m: types/TradeCond1.hpp
 #pragma once
 
 #include <cstddef>

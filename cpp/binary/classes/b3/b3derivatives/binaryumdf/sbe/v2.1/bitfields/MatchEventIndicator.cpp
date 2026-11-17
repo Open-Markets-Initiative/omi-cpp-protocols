@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.1: bitfields/MatchEventIndicator.cpp
 #include "MatchEventIndicator.hpp"
 
 #include "../common/Print.hpp"
@@ -7,26 +8,11 @@ namespace b3::b3derivatives::binaryumdf::sbe::v2_1 {
 
 MatchEventIndicator::MatchEventIndicator(std::uint8_t raw) : raw_(raw) {}
 
-bool MatchEventIndicator::unused_match_event_indicator_0() const { return (raw_ & static_cast<std::uint8_t>(0x1)) != 0; }
-void MatchEventIndicator::set_unused_match_event_indicator_0(bool value) { raw_ = static_cast<std::uint8_t>(value ? (raw_ | static_cast<std::uint8_t>(0x1)) : (raw_ & ~static_cast<std::uint8_t>(0x1))); }
-
-bool MatchEventIndicator::unused_match_event_indicator_1() const { return (raw_ & static_cast<std::uint8_t>(0x2)) != 0; }
-void MatchEventIndicator::set_unused_match_event_indicator_1(bool value) { raw_ = static_cast<std::uint8_t>(value ? (raw_ | static_cast<std::uint8_t>(0x2)) : (raw_ & ~static_cast<std::uint8_t>(0x2))); }
-
-bool MatchEventIndicator::unused_match_event_indicator_2() const { return (raw_ & static_cast<std::uint8_t>(0x4)) != 0; }
-void MatchEventIndicator::set_unused_match_event_indicator_2(bool value) { raw_ = static_cast<std::uint8_t>(value ? (raw_ | static_cast<std::uint8_t>(0x4)) : (raw_ & ~static_cast<std::uint8_t>(0x4))); }
-
-bool MatchEventIndicator::unused_match_event_indicator_3() const { return (raw_ & static_cast<std::uint8_t>(0x8)) != 0; }
-void MatchEventIndicator::set_unused_match_event_indicator_3(bool value) { raw_ = static_cast<std::uint8_t>(value ? (raw_ | static_cast<std::uint8_t>(0x8)) : (raw_ & ~static_cast<std::uint8_t>(0x8))); }
-
 bool MatchEventIndicator::implied() const { return (raw_ & static_cast<std::uint8_t>(0x10)) != 0; }
 void MatchEventIndicator::set_implied(bool value) { raw_ = static_cast<std::uint8_t>(value ? (raw_ | static_cast<std::uint8_t>(0x10)) : (raw_ & ~static_cast<std::uint8_t>(0x10))); }
 
 bool MatchEventIndicator::recovery_msg() const { return (raw_ & static_cast<std::uint8_t>(0x20)) != 0; }
 void MatchEventIndicator::set_recovery_msg(bool value) { raw_ = static_cast<std::uint8_t>(value ? (raw_ | static_cast<std::uint8_t>(0x20)) : (raw_ & ~static_cast<std::uint8_t>(0x20))); }
-
-bool MatchEventIndicator::unused_match_event_indicator_6() const { return (raw_ & static_cast<std::uint8_t>(0x40)) != 0; }
-void MatchEventIndicator::set_unused_match_event_indicator_6(bool value) { raw_ = static_cast<std::uint8_t>(value ? (raw_ | static_cast<std::uint8_t>(0x40)) : (raw_ & ~static_cast<std::uint8_t>(0x40))); }
 
 bool MatchEventIndicator::end_of_event() const { return (raw_ & static_cast<std::uint8_t>(0x80)) != 0; }
 void MatchEventIndicator::set_end_of_event(bool value) { raw_ = static_cast<std::uint8_t>(value ? (raw_ | static_cast<std::uint8_t>(0x80)) : (raw_ & ~static_cast<std::uint8_t>(0x80))); }
@@ -52,20 +38,10 @@ std::size_t MatchEventIndicator::encoded_size() const {
 
 void MatchEventIndicator::print(std::ostream& out) const {
     out << "MatchEventIndicator{";
-    out << "unused_match_event_indicator_0=";
-    out << (unused_match_event_indicator_0() ? "true" : "false");
-    out << ", unused_match_event_indicator_1=";
-    out << (unused_match_event_indicator_1() ? "true" : "false");
-    out << ", unused_match_event_indicator_2=";
-    out << (unused_match_event_indicator_2() ? "true" : "false");
-    out << ", unused_match_event_indicator_3=";
-    out << (unused_match_event_indicator_3() ? "true" : "false");
-    out << ", implied=";
+    out << "implied=";
     out << (implied() ? "true" : "false");
     out << ", recovery_msg=";
     out << (recovery_msg() ? "true" : "false");
-    out << ", unused_match_event_indicator_6=";
-    out << (unused_match_event_indicator_6() ? "true" : "false");
     out << ", end_of_event=";
     out << (end_of_event() ? "true" : "false");
     out << '}';

@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: messages/UnknownLongEquityAndIndexQuoteMessagePayload.hpp
 #pragma once
 
 #include <cstddef>

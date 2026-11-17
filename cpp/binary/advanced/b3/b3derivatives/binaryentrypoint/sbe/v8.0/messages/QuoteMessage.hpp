@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: messages/QuoteMessage.hpp
 #pragma once
 
 #include <cstddef>
@@ -94,21 +95,21 @@ struct quote_message {
 
 // layout verification
 static_assert(offsetof(quote_message::fields_type, bidirectional_business_header) == 0, "unexpected offset of quote_message::fields_type::bidirectional_business_header");
-static_assert(offsetof(quote_message::fields_type, security_id) == 19, "unexpected offset of quote_message::fields_type::security_id");
-static_assert(offsetof(quote_message::fields_type, quote_id) == 27, "unexpected offset of quote_message::fields_type::quote_id");
-static_assert(offsetof(quote_message::fields_type, transact_time) == 35, "unexpected offset of quote_message::fields_type::transact_time");
-static_assert(offsetof(quote_message::fields_type, price_optional) == 43, "unexpected offset of quote_message::fields_type::price_optional");
-static_assert(offsetof(quote_message::fields_type, order_qty) == 51, "unexpected offset of quote_message::fields_type::order_qty");
-static_assert(offsetof(quote_message::fields_type, side) == 59, "unexpected offset of quote_message::fields_type::side");
-static_assert(offsetof(quote_message::fields_type, settl_type) == 60, "unexpected offset of quote_message::fields_type::settl_type");
-static_assert(offsetof(quote_message::fields_type, account) == 61, "unexpected offset of quote_message::fields_type::account");
-static_assert(offsetof(quote_message::fields_type, sender_location) == 65, "unexpected offset of quote_message::fields_type::sender_location");
-static_assert(offsetof(quote_message::fields_type, entering_trader) == 75, "unexpected offset of quote_message::fields_type::entering_trader");
-static_assert(offsetof(quote_message::fields_type, executing_trader) == 80, "unexpected offset of quote_message::fields_type::executing_trader");
-static_assert(offsetof(quote_message::fields_type, fixed_rate) == 85, "unexpected offset of quote_message::fields_type::fixed_rate");
-static_assert(offsetof(quote_message::fields_type, execute_underlying_trade) == 93, "unexpected offset of quote_message::fields_type::execute_underlying_trade");
-static_assert(offsetof(quote_message::fields_type, days_to_settlement) == 94, "unexpected offset of quote_message::fields_type::days_to_settlement");
-static_assert(sizeof(quote_message::fields_type) == 96, "unexpected sizeof quote_message::fields_type");
+static_assert(offsetof(quote_message::fields_type, security_id) == 20, "unexpected offset of quote_message::fields_type::security_id");
+static_assert(offsetof(quote_message::fields_type, quote_id) == 28, "unexpected offset of quote_message::fields_type::quote_id");
+static_assert(offsetof(quote_message::fields_type, transact_time) == 36, "unexpected offset of quote_message::fields_type::transact_time");
+static_assert(offsetof(quote_message::fields_type, price_optional) == 44, "unexpected offset of quote_message::fields_type::price_optional");
+static_assert(offsetof(quote_message::fields_type, order_qty) == 52, "unexpected offset of quote_message::fields_type::order_qty");
+static_assert(offsetof(quote_message::fields_type, side) == 60, "unexpected offset of quote_message::fields_type::side");
+static_assert(offsetof(quote_message::fields_type, settl_type) == 61, "unexpected offset of quote_message::fields_type::settl_type");
+static_assert(offsetof(quote_message::fields_type, account) == 62, "unexpected offset of quote_message::fields_type::account");
+static_assert(offsetof(quote_message::fields_type, sender_location) == 66, "unexpected offset of quote_message::fields_type::sender_location");
+static_assert(offsetof(quote_message::fields_type, entering_trader) == 76, "unexpected offset of quote_message::fields_type::entering_trader");
+static_assert(offsetof(quote_message::fields_type, executing_trader) == 81, "unexpected offset of quote_message::fields_type::executing_trader");
+static_assert(offsetof(quote_message::fields_type, fixed_rate) == 86, "unexpected offset of quote_message::fields_type::fixed_rate");
+static_assert(offsetof(quote_message::fields_type, execute_underlying_trade) == 94, "unexpected offset of quote_message::fields_type::execute_underlying_trade");
+static_assert(offsetof(quote_message::fields_type, days_to_settlement) == 95, "unexpected offset of quote_message::fields_type::days_to_settlement");
+static_assert(sizeof(quote_message::fields_type) == 97, "unexpected sizeof quote_message::fields_type");
 
 #pragma pack(pop)
 }

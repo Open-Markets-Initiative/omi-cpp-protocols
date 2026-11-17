@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1: messages/ExecutionReportRejectMessage.cpp
 #include "ExecutionReportRejectMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,8 +7,8 @@
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_1 {
 
-ExecutionReportRejectMessage::ExecutionReportRejectMessage(const OutboundBusinessHeader& outbound_business_header, Side side, CxlRejResponseTo cxl_rej_response_to, std::uint64_t clordid, std::optional<std::uint64_t> secondary_order_id_optional, std::uint64_t security_id, OrdRejReason ord_rej_reason, std::chrono::nanoseconds transact_time, std::uint64_t exec_id, std::optional<std::uint64_t> order_id_optional, std::optional<std::uint64_t> origclordid, std::optional<std::uint32_t> account, Ordtype ordtype, TimeInForce time_in_force, std::optional<std::uint16_t> expire_date, std::uint64_t order_qty, std::optional<Decimal> price_optional, std::optional<Decimal> stop_px, std::optional<std::uint64_t> min_qty, std::optional<std::uint64_t> max_floor, std::optional<std::uint64_t> crossid_optional, std::optional<CrossedIndicator> crossed_indicator, std::optional<std::chrono::nanoseconds> received_time, const std::array<std::byte, 3>& offset_146_padding_3, std::optional<std::uint8_t> ordtagid, const InvestorId& investor_id, std::optional<std::int32_t> strategy_id, const DeskId& desk_id, const Memo& memo, const Text& text)
-  : outbound_business_header_(outbound_business_header), side_(side), cxl_rej_response_to_(cxl_rej_response_to), clordid_(clordid), secondary_order_id_optional_(secondary_order_id_optional), security_id_(security_id), ord_rej_reason_(ord_rej_reason), transact_time_(transact_time), exec_id_(exec_id), order_id_optional_(order_id_optional), origclordid_(origclordid), account_(account), ordtype_(ordtype), time_in_force_(time_in_force), expire_date_(expire_date), order_qty_(order_qty), price_optional_(price_optional), stop_px_(stop_px), min_qty_(min_qty), max_floor_(max_floor), crossid_optional_(crossid_optional), crossed_indicator_(crossed_indicator), received_time_(received_time), offset_146_padding_3_(offset_146_padding_3), ordtagid_(ordtagid), investor_id_(investor_id), strategy_id_(strategy_id), desk_id_(desk_id), memo_(memo), text_(text) {}
+ExecutionReportRejectMessage::ExecutionReportRejectMessage(const OutboundBusinessHeader& outbound_business_header, Side side, CxlRejResponseTo cxl_rej_response_to, std::uint64_t cl_ord_id, std::optional<std::uint64_t> secondary_order_id_optional, std::uint64_t security_id, OrdRejReason ord_rej_reason, std::chrono::nanoseconds transact_time, std::uint64_t exec_id, std::optional<std::uint64_t> order_id_optional, std::optional<std::uint64_t> origclordid, std::optional<std::uint32_t> account, Ordtype ordtype, TimeInForce time_in_force, std::optional<std::uint16_t> expire_date, std::uint64_t order_qty, std::optional<Decimal> price_optional, std::optional<Decimal> stop_px, std::optional<std::uint64_t> min_qty, std::optional<std::uint64_t> max_floor, std::optional<std::uint64_t> cross_id_optional, std::optional<CrossedIndicator> crossed_indicator, std::optional<std::chrono::nanoseconds> received_time, const std::array<std::byte, 3>& offset_146_padding_3, std::optional<std::uint8_t> ordtagid, const InvestorId& investor_id, std::optional<std::int32_t> strategy_id, const DeskId& desk_id, const Memo& memo, const Text& text)
+  : outbound_business_header_(outbound_business_header), side_(side), cxl_rej_response_to_(cxl_rej_response_to), cl_ord_id_(cl_ord_id), secondary_order_id_optional_(secondary_order_id_optional), security_id_(security_id), ord_rej_reason_(ord_rej_reason), transact_time_(transact_time), exec_id_(exec_id), order_id_optional_(order_id_optional), origclordid_(origclordid), account_(account), ordtype_(ordtype), time_in_force_(time_in_force), expire_date_(expire_date), order_qty_(order_qty), price_optional_(price_optional), stop_px_(stop_px), min_qty_(min_qty), max_floor_(max_floor), cross_id_optional_(cross_id_optional), crossed_indicator_(crossed_indicator), received_time_(received_time), offset_146_padding_3_(offset_146_padding_3), ordtagid_(ordtagid), investor_id_(investor_id), strategy_id_(strategy_id), desk_id_(desk_id), memo_(memo), text_(text) {}
 
 const OutboundBusinessHeader& ExecutionReportRejectMessage::outbound_business_header() const { return outbound_business_header_; }
 OutboundBusinessHeader& ExecutionReportRejectMessage::outbound_business_header() { return outbound_business_header_; }
@@ -19,8 +20,8 @@ void ExecutionReportRejectMessage::set_side(Side value) { side_ = value; }
 CxlRejResponseTo ExecutionReportRejectMessage::cxl_rej_response_to() const { return cxl_rej_response_to_; }
 void ExecutionReportRejectMessage::set_cxl_rej_response_to(CxlRejResponseTo value) { cxl_rej_response_to_ = value; }
 
-std::uint64_t ExecutionReportRejectMessage::clordid() const { return clordid_; }
-void ExecutionReportRejectMessage::set_clordid(std::uint64_t value) { clordid_ = value; }
+std::uint64_t ExecutionReportRejectMessage::cl_ord_id() const { return cl_ord_id_; }
+void ExecutionReportRejectMessage::set_cl_ord_id(std::uint64_t value) { cl_ord_id_ = value; }
 
 std::optional<std::uint64_t> ExecutionReportRejectMessage::secondary_order_id_optional() const { return secondary_order_id_optional_; }
 void ExecutionReportRejectMessage::set_secondary_order_id_optional(std::optional<std::uint64_t> value) { secondary_order_id_optional_ = value; }
@@ -70,8 +71,8 @@ void ExecutionReportRejectMessage::set_min_qty(std::optional<std::uint64_t> valu
 std::optional<std::uint64_t> ExecutionReportRejectMessage::max_floor() const { return max_floor_; }
 void ExecutionReportRejectMessage::set_max_floor(std::optional<std::uint64_t> value) { max_floor_ = value; }
 
-std::optional<std::uint64_t> ExecutionReportRejectMessage::crossid_optional() const { return crossid_optional_; }
-void ExecutionReportRejectMessage::set_crossid_optional(std::optional<std::uint64_t> value) { crossid_optional_ = value; }
+std::optional<std::uint64_t> ExecutionReportRejectMessage::cross_id_optional() const { return cross_id_optional_; }
+void ExecutionReportRejectMessage::set_cross_id_optional(std::optional<std::uint64_t> value) { cross_id_optional_ = value; }
 
 std::optional<CrossedIndicator> ExecutionReportRejectMessage::crossed_indicator() const { return crossed_indicator_; }
 void ExecutionReportRejectMessage::set_crossed_indicator(std::optional<CrossedIndicator> value) { crossed_indicator_ = value; }
@@ -123,7 +124,7 @@ std::size_t ExecutionReportRejectMessage::decode(const std::byte* data, std::siz
     offset += 1;
 
     wire::require("ExecutionReportRejectMessage", offset + 8, length);
-    clordid_ = wire::read_u64_le(data + offset);
+    cl_ord_id_ = wire::read_u64_le(data + offset);
     offset += 8;
 
     wire::require("ExecutionReportRejectMessage", offset + 8, length);
@@ -191,7 +192,7 @@ std::size_t ExecutionReportRejectMessage::decode(const std::byte* data, std::siz
     offset += 8;
 
     wire::require("ExecutionReportRejectMessage", offset + 8, length);
-    crossid_optional_ = wire::nullable(wire::read_u64_le(data + offset), static_cast<std::uint64_t>(0ULL));
+    cross_id_optional_ = wire::nullable(wire::read_u64_le(data + offset), static_cast<std::uint64_t>(0ULL));
     offset += 8;
 
     wire::require("ExecutionReportRejectMessage", offset + 2, length);
@@ -237,7 +238,7 @@ std::size_t ExecutionReportRejectMessage::encode(std::byte* data, std::size_t ca
     wire::write_u8(data + offset, static_cast<std::uint8_t>(cxl_rej_response_to_));
     offset += 1;
 
-    wire::write_u64_le(data + offset, static_cast<std::uint64_t>(clordid_));
+    wire::write_u64_le(data + offset, static_cast<std::uint64_t>(cl_ord_id_));
     offset += 8;
 
     wire::write_u64_le(data + offset, secondary_order_id_optional_.value_or(static_cast<std::uint64_t>(0ULL)));
@@ -288,7 +289,7 @@ std::size_t ExecutionReportRejectMessage::encode(std::byte* data, std::size_t ca
     wire::write_u64_le(data + offset, max_floor_.value_or(static_cast<std::uint64_t>(0ULL)));
     offset += 8;
 
-    wire::write_u64_le(data + offset, crossid_optional_.value_or(static_cast<std::uint64_t>(0ULL)));
+    wire::write_u64_le(data + offset, cross_id_optional_.value_or(static_cast<std::uint64_t>(0ULL)));
     offset += 8;
 
     wire::write_u16_le(data + offset, crossed_indicator_ ? static_cast<std::uint16_t>(*crossed_indicator_) : static_cast<std::uint16_t>(0ULL));
@@ -337,8 +338,8 @@ void ExecutionReportRejectMessage::print(std::ostream& out) const {
     out << side_;
     out << ", cxl_rej_response_to=";
     out << cxl_rej_response_to_;
-    out << ", clordid=";
-    out << clordid_;
+    out << ", cl_ord_id=";
+    out << cl_ord_id_;
     out << ", secondary_order_id_optional=";
     print::optional(out, secondary_order_id_optional_);
     out << ", security_id=";
@@ -371,8 +372,8 @@ void ExecutionReportRejectMessage::print(std::ostream& out) const {
     print::optional(out, min_qty_);
     out << ", max_floor=";
     print::optional(out, max_floor_);
-    out << ", crossid_optional=";
-    print::optional(out, crossid_optional_);
+    out << ", cross_id_optional=";
+    print::optional(out, cross_id_optional_);
     out << ", crossed_indicator=";
     print::optional(out, crossed_indicator_);
     out << ", received_time=";
@@ -403,7 +404,7 @@ bool ExecutionReportRejectMessage::operator==(const ExecutionReportRejectMessage
     return outbound_business_header_ == other.outbound_business_header_
         && side_ == other.side_
         && cxl_rej_response_to_ == other.cxl_rej_response_to_
-        && clordid_ == other.clordid_
+        && cl_ord_id_ == other.cl_ord_id_
         && secondary_order_id_optional_ == other.secondary_order_id_optional_
         && security_id_ == other.security_id_
         && ord_rej_reason_ == other.ord_rej_reason_
@@ -420,7 +421,7 @@ bool ExecutionReportRejectMessage::operator==(const ExecutionReportRejectMessage
         && stop_px_ == other.stop_px_
         && min_qty_ == other.min_qty_
         && max_floor_ == other.max_floor_
-        && crossid_optional_ == other.crossid_optional_
+        && cross_id_optional_ == other.cross_id_optional_
         && crossed_indicator_ == other.crossed_indicator_
         && received_time_ == other.received_time_
         && offset_146_padding_3_ == other.offset_146_padding_3_

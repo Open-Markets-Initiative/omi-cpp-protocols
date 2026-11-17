@@ -1,5 +1,7 @@
+// OtcMarkets.LinkAts.Multicast.Link.v4.3: messages/MarketCloseMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <ostream>
@@ -29,7 +31,7 @@ class MarketCloseMessage {
 
     std::uint32_t channel_seq_num() const { return wire::read_u32_be(at(0)); }
 
-    std::uint64_t market_close_time_milli() const { return wire::read_u64_be(at(4)); }
+    std::chrono::milliseconds market_close_time_milli() const { return std::chrono::milliseconds(static_cast<std::int64_t>(wire::read_u64_be(at(4)))); }
 
     std::uint32_t market_msg_ct() const { return wire::read_u32_be(at(12)); }
 
@@ -38,7 +40,7 @@ class MarketCloseMessage {
         out << "channel_seq_num=";
         out << channel_seq_num();
         out << ", market_close_time_milli=";
-        out << market_close_time_milli();
+        out << market_close_time_milli().count();
         out << ", market_msg_ct=";
         out << market_msg_ct();
         out << '}';

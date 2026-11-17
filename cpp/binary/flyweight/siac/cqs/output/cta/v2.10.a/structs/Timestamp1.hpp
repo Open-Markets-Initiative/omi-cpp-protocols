@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v2.10.a: structs/Timestamp1.hpp
 #pragma once
 
 #include <chrono>

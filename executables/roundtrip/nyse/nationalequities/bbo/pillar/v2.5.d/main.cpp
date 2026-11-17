@@ -1,3 +1,4 @@
+// Nyse.NationalEquities.Bbo.Pillar.v2.5.d: main.cpp
 // Nyse.NationalEquities.Bbo.Pillar.v2.5.d write and read: every message built with each field it sets, written
 // into a capture through the Classes encoder, then read back - each field set must read as it was written.
 // 
@@ -76,8 +77,8 @@ class Capture {
 // SequenceNumberResetMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_SequenceNumberResetMessage() {
     auto message = std::make_unique<protocol::SequenceNumberResetMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
-    message->set_source_time_ns(static_cast<std::uint32_t>(2));
+    message->set_source_time(std::chrono::seconds{1});
+    message->set_source_time_ns(std::chrono::nanoseconds{2});
     message->set_product_id(static_cast<std::uint8_t>(3));
     message->set_channel_id(static_cast<std::uint8_t>(4));
     return message;
@@ -88,7 +89,7 @@ std::unique_ptr<protocol::Message> build_SourceTimeReferenceMessage() {
     auto message = std::make_unique<protocol::SourceTimeReferenceMessage>();
     message->set_id(static_cast<std::uint32_t>(1));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(2));
-    message->set_source_time(static_cast<std::uint32_t>(3));
+    message->set_source_time(std::chrono::seconds{3});
     return message;
 }
 
@@ -115,8 +116,8 @@ std::unique_ptr<protocol::Message> build_SymbolIndexMappingMessage() {
 // SymbolClearMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_SymbolClearMessage() {
     auto message = std::make_unique<protocol::SymbolClearMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
-    message->set_source_time_ns(static_cast<std::uint32_t>(2));
+    message->set_source_time(std::chrono::seconds{1});
+    message->set_source_time_ns(std::chrono::nanoseconds{2});
     message->set_symbol_index(static_cast<std::uint32_t>(3));
     message->set_next_source_seq_num(static_cast<std::uint32_t>(4));
     return message;
@@ -125,8 +126,8 @@ std::unique_ptr<protocol::Message> build_SymbolClearMessage() {
 // SecurityStatusMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_SecurityStatusMessage() {
     auto message = std::make_unique<protocol::SecurityStatusMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
-    message->set_source_time_ns(static_cast<std::uint32_t>(2));
+    message->set_source_time(std::chrono::seconds{1});
+    message->set_source_time_ns(std::chrono::nanoseconds{2});
     message->set_symbol_index(static_cast<std::uint32_t>(3));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(4));
     message->set_security_status(protocol::SecurityStatus::ShortSaleRestrictionDeactivated);
@@ -207,7 +208,7 @@ std::unique_ptr<protocol::Message> build_HeartbeatResponseMessage() {
 // QuoteMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_QuoteMessage() {
     auto message = std::make_unique<protocol::QuoteMessage>();
-    message->set_source_time_ns(static_cast<std::uint32_t>(1));
+    message->set_source_time_ns(std::chrono::nanoseconds{1});
     message->set_symbol_index(static_cast<std::uint32_t>(2));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(3));
     message->set_ask_price(static_cast<std::int32_t>(4));
@@ -229,11 +230,11 @@ int check_SequenceNumberResetMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL SequenceNumberResetMessage: source_time does not read as it was written\n");
         ++failures;
     }
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(2))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{2})) {
         std::printf("FAIL SequenceNumberResetMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -266,7 +267,7 @@ int check_SourceTimeReferenceMessage(const protocol::Message* read) {
         std::printf("FAIL SourceTimeReferenceMessage: symbol_seq_num does not read as it was written\n");
         ++failures;
     }
-    if (!(message->source_time() == static_cast<std::uint32_t>(3))) {
+    if (!(message->source_time() == std::chrono::seconds{3})) {
         std::printf("FAIL SourceTimeReferenceMessage: source_time does not read as it was written\n");
         ++failures;
     }
@@ -352,11 +353,11 @@ int check_SymbolClearMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL SymbolClearMessage: source_time does not read as it was written\n");
         ++failures;
     }
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(2))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{2})) {
         std::printf("FAIL SymbolClearMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -381,11 +382,11 @@ int check_SecurityStatusMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL SecurityStatusMessage: source_time does not read as it was written\n");
         ++failures;
     }
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(2))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{2})) {
         std::printf("FAIL SecurityStatusMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -632,7 +633,7 @@ int check_QuoteMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{1})) {
         std::printf("FAIL QuoteMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }

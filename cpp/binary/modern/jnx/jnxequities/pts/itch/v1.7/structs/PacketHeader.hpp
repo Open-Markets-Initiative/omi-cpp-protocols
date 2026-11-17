@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.7: structs/PacketHeader.hpp
 #pragma once
 
 #include "../types/Session.hpp"

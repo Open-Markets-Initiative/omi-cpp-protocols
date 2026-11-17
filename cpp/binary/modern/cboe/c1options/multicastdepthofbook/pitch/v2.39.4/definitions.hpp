@@ -1,3 +1,4 @@
+// Cboe.C1Options.MulticastDepthOfBook.Pitch.v2.39.4: definitions.hpp
 #pragma once
 
 #include "structs/PacketHeader.hpp"

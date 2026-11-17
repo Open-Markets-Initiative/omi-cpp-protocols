@@ -1,5 +1,7 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.3: messages/Trade53Message.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <optional>
@@ -42,7 +44,7 @@ class Trade53Message {
 
     Decimal md_future_price() const { return Decimal(static_cast<std::int64_t>(wire::read_i64_le(at(12))), -4); }
 
-    std::int64_t md_entry_size_quantity() const { return wire::read_i64_le(at(20)); }
+    std::int64_t md_entry_size() const { return wire::read_i64_le(at(20)); }
 
     std::uint32_t trade_id() const { return wire::read_u32_le(at(28)); }
 
@@ -56,7 +58,7 @@ class Trade53Message {
 
     std::span<const std::byte, 1> offset_43_padding_1() const { return bytes_.subspan(43).template first<1>(); }
 
-    std::optional<std::uint64_t> transact_time() const { return wire::nullable(wire::read_u64_le(at(44)), static_cast<std::uint64_t>(0ULL)); }
+    std::optional<std::chrono::nanoseconds> transact_time() const { return wire::nullable_duration<std::chrono::nanoseconds>(wire::read_u64_le(at(44)), static_cast<std::uint64_t>(0ULL)); }
 
     std::optional<std::uint32_t> rpt_seq() const { return wire::nullable(wire::read_u32_le(at(52)), static_cast<std::uint32_t>(0ULL)); }
 
@@ -72,8 +74,8 @@ class Trade53Message {
         trade_condition().print(out);
         out << ", md_future_price=";
         out << md_future_price();
-        out << ", md_entry_size_quantity=";
-        out << md_entry_size_quantity();
+        out << ", md_entry_size=";
+        out << md_entry_size();
         out << ", trade_id=";
         out << trade_id();
         out << ", md_entry_buyer=";
@@ -87,7 +89,7 @@ class Trade53Message {
         out << ", offset_43_padding_1=";
         print::hex(out, offset_43_padding_1().data(), offset_43_padding_1().size());
         out << ", transact_time=";
-        print::optional(out, transact_time());
+        print::optional_duration(out, transact_time());
         out << ", rpt_seq=";
         print::optional(out, rpt_seq());
         out << '}';

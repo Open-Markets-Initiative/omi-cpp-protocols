@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.7: enums/RejectReasonCode.cpp
 #include "RejectReasonCode.hpp"
 
 namespace jnx::jnxequities::pts::itch::v1_7 {

@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: types/RoundLotSize.hpp
 #pragma once
 
 #include <bit>

@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.TopOfMarket.Mach.v2.5: messages/SimpleTopOfMarketBestBidOrOfferCompactOfferMessage.cpp
 #include "SimpleTopOfMarketBestBidOrOfferCompactOfferMessage.hpp"
 
 #include "../common/Print.hpp"

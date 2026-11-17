@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v4.0: statistics/Settings.hpp
 #pragma once
 
 #include <string>

@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.5: messages/ChannelReset.cpp
 #include "ChannelReset.hpp"
 
 #include "../common/Print.hpp"

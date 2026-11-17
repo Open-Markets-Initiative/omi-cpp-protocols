@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.DeepFeed.Pillar.v1.2.m: enums/TradeCond1.cpp
 #include "TradeCond1.hpp"
 
 namespace nyse::arcaoptions::deepfeed::pillar::v1_2_m {

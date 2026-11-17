@@ -1,9 +1,10 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1: messages/ExecutionReportForwardMessage.hpp
 #pragma once
 
 #include "../structs/OutboundBusinessHeader.hpp"
 #include "../types/Side.hpp"
 #include "../types/OrdStatus.hpp"
-#include "../types/ClordidOptional.hpp"
+#include "../types/ClOrdIdOptional.hpp"
 #include "../types/SecondaryOrderId.hpp"
 #include "../types/SecurityId.hpp"
 #include "../types/Account.hpp"
@@ -23,7 +24,7 @@
 #include "../types/Offset118Padding2.hpp"
 #include "../types/SecondaryExecId.hpp"
 #include "../types/ExecRefId.hpp"
-#include "../types/FixedRatePercentage8Optional.hpp"
+#include "../types/FixedRateOptional.hpp"
 #include "../types/OrderQty.hpp"
 #include "../types/TradingSessionId.hpp"
 #include "../types/TradingSessionSubId.hpp"
@@ -39,7 +40,7 @@ struct ExecutionReportForwardMessage {
     OutboundBusinessHeader outbound_business_header;
     Side side;
     OrdStatus ord_status;
-    ClordidOptional clordid_optional;
+    ClOrdIdOptional cl_ord_id_optional;
     SecondaryOrderId secondary_order_id;
     SecurityId security_id;
     Account account;
@@ -59,7 +60,7 @@ struct ExecutionReportForwardMessage {
     Offset118Padding2 offset_118_padding_2;
     SecondaryExecId secondary_exec_id;
     ExecRefId exec_ref_id;
-    FixedRatePercentage8Optional fixed_rate_percentage_8_optional;
+    FixedRateOptional fixed_rate_optional;
     OrderQty order_qty;
     TradingSessionId trading_session_id;
     TradingSessionSubId trading_session_sub_id;

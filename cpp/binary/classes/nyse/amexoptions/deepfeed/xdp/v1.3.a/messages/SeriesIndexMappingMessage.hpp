@@ -1,3 +1,4 @@
+// Nyse.AmexOptions.DeepFeed.Xdp.v1.3.a: messages/SeriesIndexMappingMessage.hpp
 #pragma once
 
 #include <array>

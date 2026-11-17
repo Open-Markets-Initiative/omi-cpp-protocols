@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.7: types/TransactTime.hpp
 #pragma once
 
 #include <cstddef>
@@ -5,20 +6,23 @@
 
 namespace b3::b3derivatives::binaryumdf::sbe::v1_7 {
 
+
 // transactTime
 struct TransactTime {
 
-    static constexpr const char* name = "Transact Time";
-    static constexpr std::size_t size =  8;
+    static constexpr auto name = "Transact Time";
+    static constexpr std::size_t size = 8;
+
+    // underlying type
     using type = std::uint64_t;
 static const type no_value = 0;
 
-    // default constructor: the null the model states, where it states one
+    // default constructor
     constexpr TransactTime()
-     : value{ no_value } {}
+     : value{ 0 } {}
 
     // standard constructor
-    constexpr explicit TransactTime(const std::uint64_t value)
+    constexpr explicit TransactTime(const std::uint64_t &value)
      : value{ value } {}
 
     // get value of TransactTime field

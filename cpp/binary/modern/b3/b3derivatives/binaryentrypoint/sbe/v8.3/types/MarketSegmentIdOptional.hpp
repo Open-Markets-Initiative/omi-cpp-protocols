@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: types/MarketSegmentIdOptional.hpp
 #pragma once
 
 #include <cstddef>
@@ -12,6 +13,7 @@ struct MarketSegmentIdOptional {
     static constexpr auto name = "Market Segment Id Optional";
     static constexpr std::size_t size = 1;
     using type = std::uint8_t;
+static const type no_value = 0;
 
     // default constructor
     constexpr MarketSegmentIdOptional()

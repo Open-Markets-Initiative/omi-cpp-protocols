@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.6: messages/Definitions.hpp
 #pragma once
 
 #include "../structs/PacketHeader.hpp"

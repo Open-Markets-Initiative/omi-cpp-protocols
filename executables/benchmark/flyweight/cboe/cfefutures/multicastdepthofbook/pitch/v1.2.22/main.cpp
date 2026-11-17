@@ -1,3 +1,4 @@
+// Cboe.CfeFutures.MulticastDepthOfBook.Pitch.v1.2.22: main.cpp
 // Cboe.CfeFutures.MulticastDepthOfBook.Pitch.v1.2.22 benchmark, through the Flyweight reader: every value it reads from every message of the simulated
 // sequence (tests/simulated/cboe/cfefutures/multicastdepthofbook/pitch/v1.2.22.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 

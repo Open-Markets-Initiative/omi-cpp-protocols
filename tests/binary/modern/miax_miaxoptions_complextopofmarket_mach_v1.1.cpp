@@ -86,6 +86,7 @@ void expect(const char* name, const char* relative, Matches matches) {
 
 int main() {
     std::printf("== Miax.MiaxOptions.ComplexTopOfMarket.Mach.v1.1 (modern)\n");
+    expect<protocol::MachMessageIterator>("Heartbeat", "Miax/MiaxOptions.ComplexTopOfMarket.Mach.v1.1/Heartbeat.pcap", [](const protocol::MachMessageIterator& iterator) { return iterator.packet_type == 0; });
     expect<protocol::MachMessageIterator>("SystemStateMessage", "Miax/MiaxOptions.ComplexTopOfMarket.Mach.v1.1/SystemStateMessage.pcap", [](const protocol::MachMessageIterator& iterator) { return iterator.packet_type == 3 && protocol::ApplicationMessage::parse(iterator.message)->message_type.get() == protocol::SystemStateMessage::message_type; });
     return failures == 0 ? 0 : 1;
 }

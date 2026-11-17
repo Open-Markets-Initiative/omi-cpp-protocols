@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1: messages/QuoteStatusReportMessage.cpp
 #include "QuoteStatusReportMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,8 +7,8 @@
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_1 {
 
-QuoteStatusReportMessage::QuoteStatusReportMessage(const BidirectionalBusinessHeader& bidirectional_business_header, std::optional<QuoteRejectReason> quote_reject_reason, std::uint64_t security_id, std::uint64_t quote_req_id, std::uint64_t quote_id, std::optional<std::uint32_t> trade_id_optional, std::uint32_t contra_broker, std::chrono::nanoseconds transact_time, QuoteStatus quote_status, QuoteStatusResponseTo quote_status_response_to, std::optional<std::uint32_t> account, SideOptional side_optional, SettlTypeOptional settl_type_optional, std::optional<Decimal> price_8_optional, std::uint64_t order_qty, const std::string& sender_location, const std::string& entering_trader, const std::string& executing_trader, std::optional<Decimal> fixed_rate_percentage_8_optional, ExecuteUnderlyingTrade execute_underlying_trade, std::optional<std::uint16_t> days_to_settlement_optional, const DeskId& desk_id, const Memo& memo, const Text& text)
-  : bidirectional_business_header_(bidirectional_business_header), quote_reject_reason_(quote_reject_reason), security_id_(security_id), quote_req_id_(quote_req_id), quote_id_(quote_id), trade_id_optional_(trade_id_optional), contra_broker_(contra_broker), transact_time_(transact_time), quote_status_(quote_status), quote_status_response_to_(quote_status_response_to), account_(account), side_optional_(side_optional), settl_type_optional_(settl_type_optional), price_8_optional_(price_8_optional), order_qty_(order_qty), sender_location_(sender_location), entering_trader_(entering_trader), executing_trader_(executing_trader), fixed_rate_percentage_8_optional_(fixed_rate_percentage_8_optional), execute_underlying_trade_(execute_underlying_trade), days_to_settlement_optional_(days_to_settlement_optional), desk_id_(desk_id), memo_(memo), text_(text) {}
+QuoteStatusReportMessage::QuoteStatusReportMessage(const BidirectionalBusinessHeader& bidirectional_business_header, std::optional<QuoteRejectReason> quote_reject_reason, std::uint64_t security_id, std::uint64_t quote_req_id, std::uint64_t quote_id, std::optional<std::uint32_t> trade_id_optional, std::uint32_t contra_broker, std::chrono::nanoseconds transact_time, QuoteStatus quote_status, QuoteStatusResponseTo quote_status_response_to, std::optional<std::uint32_t> account, SideOptional side_optional, SettlTypeOptional settl_type_optional, std::optional<Decimal> price_8_optional, std::uint64_t order_qty, const std::string& sender_location, const std::string& entering_trader, const std::string& executing_trader, std::optional<Decimal> fixed_rate_optional, ExecuteUnderlyingTrade execute_underlying_trade, std::optional<std::uint16_t> days_to_settlement_optional, const DeskId& desk_id, const Memo& memo, const Text& text)
+  : bidirectional_business_header_(bidirectional_business_header), quote_reject_reason_(quote_reject_reason), security_id_(security_id), quote_req_id_(quote_req_id), quote_id_(quote_id), trade_id_optional_(trade_id_optional), contra_broker_(contra_broker), transact_time_(transact_time), quote_status_(quote_status), quote_status_response_to_(quote_status_response_to), account_(account), side_optional_(side_optional), settl_type_optional_(settl_type_optional), price_8_optional_(price_8_optional), order_qty_(order_qty), sender_location_(sender_location), entering_trader_(entering_trader), executing_trader_(executing_trader), fixed_rate_optional_(fixed_rate_optional), execute_underlying_trade_(execute_underlying_trade), days_to_settlement_optional_(days_to_settlement_optional), desk_id_(desk_id), memo_(memo), text_(text) {}
 
 const BidirectionalBusinessHeader& QuoteStatusReportMessage::bidirectional_business_header() const { return bidirectional_business_header_; }
 BidirectionalBusinessHeader& QuoteStatusReportMessage::bidirectional_business_header() { return bidirectional_business_header_; }
@@ -67,8 +68,8 @@ const std::string& QuoteStatusReportMessage::executing_trader() const { return e
 std::string& QuoteStatusReportMessage::executing_trader() { return executing_trader_; }
 void QuoteStatusReportMessage::set_executing_trader(const std::string& value) { executing_trader_ = value; }
 
-std::optional<Decimal> QuoteStatusReportMessage::fixed_rate_percentage_8_optional() const { return fixed_rate_percentage_8_optional_; }
-void QuoteStatusReportMessage::set_fixed_rate_percentage_8_optional(std::optional<Decimal> value) { fixed_rate_percentage_8_optional_ = value; }
+std::optional<Decimal> QuoteStatusReportMessage::fixed_rate_optional() const { return fixed_rate_optional_; }
+void QuoteStatusReportMessage::set_fixed_rate_optional(std::optional<Decimal> value) { fixed_rate_optional_ = value; }
 
 ExecuteUnderlyingTrade QuoteStatusReportMessage::execute_underlying_trade() const { return execute_underlying_trade_; }
 void QuoteStatusReportMessage::set_execute_underlying_trade(ExecuteUnderlyingTrade value) { execute_underlying_trade_ = value; }
@@ -166,7 +167,7 @@ std::size_t QuoteStatusReportMessage::decode(const std::byte* data, std::size_t 
     offset += 5;
 
     wire::require("QuoteStatusReportMessage", offset + 8, length);
-    fixed_rate_percentage_8_optional_ = wire::nullable_decimal(wire::read_i64_le(data + offset), static_cast<std::int64_t>(-9223372036854775807LL - 1), -8);
+    fixed_rate_optional_ = wire::nullable_decimal(wire::read_i64_le(data + offset), static_cast<std::int64_t>(-9223372036854775807LL - 1), -8);
     offset += 8;
 
     wire::require("QuoteStatusReportMessage", offset + 1, length);
@@ -243,7 +244,7 @@ std::size_t QuoteStatusReportMessage::encode(std::byte* data, std::size_t capaci
     wire::write_text(data + offset, 5, '\0', executing_trader_);
     offset += 5;
 
-    wire::write_i64_le(data + offset, fixed_rate_percentage_8_optional_ ? static_cast<std::int64_t>(fixed_rate_percentage_8_optional_->mantissa()) : static_cast<std::int64_t>(-9223372036854775807LL - 1));
+    wire::write_i64_le(data + offset, fixed_rate_optional_ ? static_cast<std::int64_t>(fixed_rate_optional_->mantissa()) : static_cast<std::int64_t>(-9223372036854775807LL - 1));
     offset += 8;
 
     wire::write_char(data + offset, static_cast<char>(execute_underlying_trade_));
@@ -311,8 +312,8 @@ void QuoteStatusReportMessage::print(std::ostream& out) const {
     print::text(out, entering_trader_);
     out << ", executing_trader=";
     print::text(out, executing_trader_);
-    out << ", fixed_rate_percentage_8_optional=";
-    print::optional(out, fixed_rate_percentage_8_optional_);
+    out << ", fixed_rate_optional=";
+    print::optional(out, fixed_rate_optional_);
     out << ", execute_underlying_trade=";
     out << execute_underlying_trade_;
     out << ", days_to_settlement_optional=";
@@ -350,7 +351,7 @@ bool QuoteStatusReportMessage::operator==(const QuoteStatusReportMessage& other)
         && sender_location_ == other.sender_location_
         && entering_trader_ == other.entering_trader_
         && executing_trader_ == other.executing_trader_
-        && fixed_rate_percentage_8_optional_ == other.fixed_rate_percentage_8_optional_
+        && fixed_rate_optional_ == other.fixed_rate_optional_
         && execute_underlying_trade_ == other.execute_underlying_trade_
         && days_to_settlement_optional_ == other.days_to_settlement_optional_
         && desk_id_ == other.desk_id_

@@ -1,3 +1,4 @@
+// CixAts.CixAspen.MarketDataFeed.Aspen.v1.4: messages/TradeCorrectMessage.hpp
 #pragma once
 
 #include "../types/SymbolId.hpp"

@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: messages/IpoQuotingPeriodUpdateMessage.hpp
 #pragma once
 
 #include "../types/Stock.hpp"

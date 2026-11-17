@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.Bbo.Xdp.v2.4.g: enums/QuoteCondition.cpp
 #include "QuoteCondition.hpp"
 
 namespace nyse::nyseequities::bbo::xdp::v2_4_g {

@@ -1,3 +1,4 @@
+// Nyse.NationalEquities.Bbo.Pillar.v2.5.d: structs/SendTime.hpp
 #pragma once
 
 #include <cstddef>

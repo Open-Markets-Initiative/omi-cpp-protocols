@@ -1,9 +1,10 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: messages/OrderMassActionReportMessage.hpp
 #pragma once
 
 #include "../structs/OutboundBusinessHeader.hpp"
 #include "../types/MassActionType.hpp"
 #include "../types/MassActionScope.hpp"
-#include "../types/Clordid.hpp"
+#include "../types/ClOrdId.hpp"
 #include "../types/MassActionReportId.hpp"
 #include "../types/TransactTime.hpp"
 #include "../types/MassActionResponse.hpp"
@@ -26,7 +27,7 @@ struct OrderMassActionReportMessage {
     OutboundBusinessHeader outbound_business_header;
     MassActionType mass_action_type;
     MassActionScope mass_action_scope;
-    Clordid clordid;
+    ClOrdId cl_ord_id;
     MassActionReportId mass_action_report_id;
     TransactTime transact_time;
     MassActionResponse mass_action_response;

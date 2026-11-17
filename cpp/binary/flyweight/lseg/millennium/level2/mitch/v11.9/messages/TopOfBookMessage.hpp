@@ -1,5 +1,7 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/TopOfBookMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <ostream>
@@ -8,6 +10,7 @@
 #include "../common/Wire.hpp"
 #include "../common/Print.hpp"
 #include "../common/View.hpp"
+#include "../common/Decimal.hpp"
 
 namespace lseg::millennium::level2::mitch::v11_9 {
 
@@ -27,22 +30,22 @@ class TopOfBookMessage {
     static constexpr std::size_t fixed_size = 32;
     std::size_t encoded_size() const { return 32; }
 
-    std::uint32_t nanosecond() const { return wire::read_u32_le(at(0)); }
+    std::chrono::nanoseconds nanosecond() const { return std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(at(0)))); }
 
     std::uint32_t instrument_id() const { return wire::read_u32_le(at(4)); }
 
-    std::int64_t buy_limit_price() const { return wire::read_i64_le(at(8)); }
+    Decimal buy_limit_price() const { return Decimal(static_cast<std::int64_t>(wire::read_i64_le(at(8))), -8); }
 
     std::uint32_t buy_limit_size() const { return wire::read_u32_le(at(16)); }
 
-    std::int64_t sell_limit_price() const { return wire::read_i64_le(at(20)); }
+    Decimal sell_limit_price() const { return Decimal(static_cast<std::int64_t>(wire::read_i64_le(at(20))), -8); }
 
     std::uint32_t sell_limit_size() const { return wire::read_u32_le(at(28)); }
 
     void print(std::ostream& out) const {
         out << "TopOfBookMessage{";
         out << "nanosecond=";
-        out << nanosecond();
+        out << nanosecond().count();
         out << ", instrument_id=";
         out << instrument_id();
         out << ", buy_limit_price=";

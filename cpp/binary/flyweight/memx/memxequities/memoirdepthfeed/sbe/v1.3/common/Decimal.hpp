@@ -1,3 +1,4 @@
+// Memx.MemxEquities.MemoirDepthFeed.Sbe.v1.3: common/Decimal.hpp
 #pragma once
 
 #include <cmath>

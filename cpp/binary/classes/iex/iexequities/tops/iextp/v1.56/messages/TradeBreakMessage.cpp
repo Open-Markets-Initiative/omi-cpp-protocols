@@ -1,3 +1,4 @@
+// Iex.IexEquities.Tops.IexTp.v1.56: messages/TradeBreakMessage.cpp
 #include "TradeBreakMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,7 +7,7 @@
 
 namespace iex::iexequities::tops::iextp::v1_56 {
 
-TradeBreakMessage::TradeBreakMessage(const SaleConditionFlags& sale_condition_flags, std::chrono::nanoseconds timestamp, const std::string& symbol, std::uint32_t size, Decimal price, std::uint64_t trade_id, std::uint32_t reserved_4)
+TradeBreakMessage::TradeBreakMessage(const SaleConditionFlags& sale_condition_flags, std::chrono::nanoseconds timestamp, const std::string& symbol, std::uint32_t size, Decimal price, std::uint64_t trade_id, const std::array<std::byte, 4>& reserved_4)
   : sale_condition_flags_(sale_condition_flags), timestamp_(timestamp), symbol_(symbol), size_(size), price_(price), trade_id_(trade_id), reserved_4_(reserved_4) {}
 
 const SaleConditionFlags& TradeBreakMessage::sale_condition_flags() const { return sale_condition_flags_; }
@@ -29,8 +30,9 @@ void TradeBreakMessage::set_price(Decimal value) { price_ = value; }
 std::uint64_t TradeBreakMessage::trade_id() const { return trade_id_; }
 void TradeBreakMessage::set_trade_id(std::uint64_t value) { trade_id_ = value; }
 
-std::uint32_t TradeBreakMessage::reserved_4() const { return reserved_4_; }
-void TradeBreakMessage::set_reserved_4(std::uint32_t value) { reserved_4_ = value; }
+const std::array<std::byte, 4>& TradeBreakMessage::reserved_4() const { return reserved_4_; }
+std::array<std::byte, 4>& TradeBreakMessage::reserved_4() { return reserved_4_; }
+void TradeBreakMessage::set_reserved_4(const std::array<std::byte, 4>& value) { reserved_4_ = value; }
 
 MessageCode TradeBreakMessage::type() const { return message_type; }
 
@@ -57,7 +59,7 @@ std::size_t TradeBreakMessage::decode(const std::byte* data, std::size_t length)
     trade_id_ = wire::read_u64_le(data + offset);
     offset += 8;
 
-    reserved_4_ = wire::read_u32_le(data + offset);
+    wire::read_bytes(data + offset, reserved_4_.data(), 4);
     offset += 4;
 
     return offset;
@@ -84,7 +86,7 @@ std::size_t TradeBreakMessage::encode(std::byte* data, std::size_t capacity) con
     wire::write_u64_le(data + offset, static_cast<std::uint64_t>(trade_id_));
     offset += 8;
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(reserved_4_));
+    wire::write_bytes(data + offset, reserved_4_.data(), 4);
     offset += 4;
 
     return offset;
@@ -117,7 +119,7 @@ void TradeBreakMessage::print(std::ostream& out) const {
     out << ", trade_id=";
     out << trade_id_;
     out << ", reserved_4=";
-    out << reserved_4_;
+    print::hex(out, reserved_4_.data(), reserved_4_.size());
     out << '}';
 }
 

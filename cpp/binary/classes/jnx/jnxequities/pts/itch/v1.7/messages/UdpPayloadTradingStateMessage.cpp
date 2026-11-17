@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.7: messages/UdpPayloadTradingStateMessage.cpp
 #include "UdpPayloadTradingStateMessage.hpp"
 
 #include "../common/Print.hpp"

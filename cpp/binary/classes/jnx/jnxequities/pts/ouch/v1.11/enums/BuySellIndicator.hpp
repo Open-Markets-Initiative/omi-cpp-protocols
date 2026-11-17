@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Ouch.v1.11: enums/BuySellIndicator.hpp
 #pragma once
 
 #include <cstdint>

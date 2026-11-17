@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v1.91: siac_cts_output_cta_v1_91.hpp
 // Siac Cts Output Cta 1.91 Template Meta Programming
 
 #pragma once
@@ -100,10 +101,10 @@ namespace tmp {
 // Administrative Message Type
 struct administrative_message_type {
     enum class type : char {
-        start_of_end_of_day_message = 'A',
-        end_of_end_of_day_message = 'B',
-        start_of_start_of_day_message = 'C',
-        end_of_start_of_day_message = 'D',
+        start_of_end_of_day_summary_message = 'A',
+        end_of_end_of_day_summary_message = 'B',
+        start_of_start_of_day_summary_message = 'C',
+        end_of_start_of_day_summary_message = 'D',
         administrative_unformatted_message = 'H',
     };
 
@@ -3161,9 +3162,9 @@ struct administrative_unformatted_message {
 
 static_assert(sizeof(administrative_unformatted_message) == administrative_unformatted_message::size, "administrative_unformatted_message lies over its bytes exactly");
 
-// End Of Start Of Day Message: The End of Start of Day message signals the start of Start of Day Summary message iterations
-struct end_of_start_of_day_message {
-    static constexpr std::string_view name = "End Of Start Of Day Message";
+// End Of Start Of Day Summary Message: The End of Start of Day message signals the start of Start of Day Summary message iterations
+struct end_of_start_of_day_summary_message {
+    static constexpr std::string_view name = "End Of Start Of Day Summary Message";
     static constexpr std::size_t size = 22;
     static constexpr bool is_message = true;
 
@@ -3187,11 +3188,11 @@ struct end_of_start_of_day_message {
     CTSFIELD(participant_reference_number);
 };
 
-static_assert(sizeof(end_of_start_of_day_message) == end_of_start_of_day_message::size, "end_of_start_of_day_message lies over its bytes exactly");
+static_assert(sizeof(end_of_start_of_day_summary_message) == end_of_start_of_day_summary_message::size, "end_of_start_of_day_summary_message lies over its bytes exactly");
 
-// Start Of Start Of Day Message: The Start of Start of Day message signals the end of Consolidated End of Day Summary and Participant End of Day Summary message iterations
-struct start_of_start_of_day_message {
-    static constexpr std::string_view name = "Start Of Start Of Day Message";
+// Start Of Start Of Day Summary Message: The Start of Start of Day message signals the end of Consolidated End of Day Summary and Participant End of Day Summary message iterations
+struct start_of_start_of_day_summary_message {
+    static constexpr std::string_view name = "Start Of Start Of Day Summary Message";
     static constexpr std::size_t size = 22;
     static constexpr bool is_message = true;
 
@@ -3215,11 +3216,11 @@ struct start_of_start_of_day_message {
     CTSFIELD(participant_reference_number);
 };
 
-static_assert(sizeof(start_of_start_of_day_message) == start_of_start_of_day_message::size, "start_of_start_of_day_message lies over its bytes exactly");
+static_assert(sizeof(start_of_start_of_day_summary_message) == start_of_start_of_day_summary_message::size, "start_of_start_of_day_summary_message lies over its bytes exactly");
 
-// End Of End Of Day Message: The End of End of Day message signals the end of Consolidated End of Day Summary and Participant End of Day Summary message iterations
-struct end_of_end_of_day_message {
-    static constexpr std::string_view name = "End Of End Of Day Message";
+// End Of End Of Day Summary Message: The End of End of Day message signals the end of Consolidated End of Day Summary and Participant End of Day Summary message iterations
+struct end_of_end_of_day_summary_message {
+    static constexpr std::string_view name = "End Of End Of Day Summary Message";
     static constexpr std::size_t size = 22;
     static constexpr bool is_message = true;
 
@@ -3243,11 +3244,11 @@ struct end_of_end_of_day_message {
     CTSFIELD(participant_reference_number);
 };
 
-static_assert(sizeof(end_of_end_of_day_message) == end_of_end_of_day_message::size, "end_of_end_of_day_message lies over its bytes exactly");
+static_assert(sizeof(end_of_end_of_day_summary_message) == end_of_end_of_day_summary_message::size, "end_of_end_of_day_summary_message lies over its bytes exactly");
 
-// Start Of End Of Day Message: The Start of End of Day message signals the start of Consolidated End of Day Summary and Participant End of Day Summary message iterations
-struct start_of_end_of_day_message {
-    static constexpr std::string_view name = "Start Of End Of Day Message";
+// Start Of End Of Day Summary Message: The Start of End of Day message signals the start of Consolidated End of Day Summary and Participant End of Day Summary message iterations
+struct start_of_end_of_day_summary_message {
+    static constexpr std::string_view name = "Start Of End Of Day Summary Message";
     static constexpr std::size_t size = 22;
     static constexpr bool is_message = true;
 
@@ -3271,7 +3272,7 @@ struct start_of_end_of_day_message {
     CTSFIELD(participant_reference_number);
 };
 
-static_assert(sizeof(start_of_end_of_day_message) == start_of_end_of_day_message::size, "start_of_end_of_day_message lies over its bytes exactly");
+static_assert(sizeof(start_of_end_of_day_summary_message) == start_of_end_of_day_summary_message::size, "start_of_end_of_day_summary_message lies over its bytes exactly");
 
 // Administrative Message Payload: Branch
 struct administrative_message_payload {

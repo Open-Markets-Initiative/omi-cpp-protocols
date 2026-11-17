@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v2.10.a: types/SecuritySymbol.hpp
 #pragma once
 
 #include <array>

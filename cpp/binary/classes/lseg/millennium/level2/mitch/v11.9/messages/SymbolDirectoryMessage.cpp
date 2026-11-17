@@ -1,3 +1,4 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/SymbolDirectoryMessage.cpp
 #include "SymbolDirectoryMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,11 +7,11 @@
 
 namespace lseg::millennium::level2::mitch::v11_9 {
 
-SymbolDirectoryMessage::SymbolDirectoryMessage(std::uint32_t nanosecond, std::uint32_t instrument_id, const std::array<std::byte, 1>& reserved_a, const std::array<std::byte, 1>& reserved_b, SymbolStatus symbol_status, const std::string& isin, const std::string& sedol, const std::string& segment, const std::string& underlying, const std::string& currency, const std::array<std::byte, 1>& reserved_byte, const std::array<std::byte, 4>& reserved_4, std::int64_t previous_close_price)
+SymbolDirectoryMessage::SymbolDirectoryMessage(std::chrono::nanoseconds nanosecond, std::uint32_t instrument_id, const std::array<std::byte, 1>& reserved_a, const std::array<std::byte, 1>& reserved_b, SymbolStatus symbol_status, const std::string& isin, const std::string& sedol, const std::string& segment, const std::string& underlying, const std::string& currency, const std::array<std::byte, 1>& reserved_byte, const std::array<std::byte, 4>& reserved_4, Decimal previous_close_price)
   : nanosecond_(nanosecond), instrument_id_(instrument_id), reserved_a_(reserved_a), reserved_b_(reserved_b), symbol_status_(symbol_status), isin_(isin), sedol_(sedol), segment_(segment), underlying_(underlying), currency_(currency), reserved_byte_(reserved_byte), reserved_4_(reserved_4), previous_close_price_(previous_close_price) {}
 
-std::uint32_t SymbolDirectoryMessage::nanosecond() const { return nanosecond_; }
-void SymbolDirectoryMessage::set_nanosecond(std::uint32_t value) { nanosecond_ = value; }
+std::chrono::nanoseconds SymbolDirectoryMessage::nanosecond() const { return nanosecond_; }
+void SymbolDirectoryMessage::set_nanosecond(std::chrono::nanoseconds value) { nanosecond_ = value; }
 
 std::uint32_t SymbolDirectoryMessage::instrument_id() const { return instrument_id_; }
 void SymbolDirectoryMessage::set_instrument_id(std::uint32_t value) { instrument_id_ = value; }
@@ -54,8 +55,8 @@ const std::array<std::byte, 4>& SymbolDirectoryMessage::reserved_4() const { ret
 std::array<std::byte, 4>& SymbolDirectoryMessage::reserved_4() { return reserved_4_; }
 void SymbolDirectoryMessage::set_reserved_4(const std::array<std::byte, 4>& value) { reserved_4_ = value; }
 
-std::int64_t SymbolDirectoryMessage::previous_close_price() const { return previous_close_price_; }
-void SymbolDirectoryMessage::set_previous_close_price(std::int64_t value) { previous_close_price_ = value; }
+Decimal SymbolDirectoryMessage::previous_close_price() const { return previous_close_price_; }
+void SymbolDirectoryMessage::set_previous_close_price(Decimal value) { previous_close_price_ = value; }
 
 MessageCode SymbolDirectoryMessage::type() const { return message_type; }
 
@@ -65,7 +66,7 @@ std::size_t SymbolDirectoryMessage::decode(const std::byte* data, std::size_t le
     std::size_t offset = 0;
     wire::require("SymbolDirectoryMessage", wire_size, length);
 
-    nanosecond_ = wire::read_u32_le(data + offset);
+    nanosecond_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     instrument_id_ = wire::read_u32_le(data + offset);
@@ -101,7 +102,7 @@ std::size_t SymbolDirectoryMessage::decode(const std::byte* data, std::size_t le
     wire::read_bytes(data + offset, reserved_4_.data(), 4);
     offset += 4;
 
-    previous_close_price_ = wire::read_i64_le(data + offset);
+    previous_close_price_ = Decimal(static_cast<std::int64_t>(wire::read_i64_le(data + offset)), -8);
     offset += 8;
 
     return offset;
@@ -111,7 +112,7 @@ std::size_t SymbolDirectoryMessage::encode(std::byte* data, std::size_t capacity
     std::size_t offset = 0;
     wire::require_capacity("SymbolDirectoryMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(nanosecond_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(nanosecond_.count()));
     offset += 4;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(instrument_id_));
@@ -147,7 +148,7 @@ std::size_t SymbolDirectoryMessage::encode(std::byte* data, std::size_t capacity
     wire::write_bytes(data + offset, reserved_4_.data(), 4);
     offset += 4;
 
-    wire::write_i64_le(data + offset, static_cast<std::int64_t>(previous_close_price_));
+    wire::write_i64_le(data + offset, static_cast<std::int64_t>(previous_close_price_.mantissa()));
     offset += 8;
 
     return offset;
@@ -168,7 +169,7 @@ std::unique_ptr<Message> SymbolDirectoryMessage::clone() const {
 void SymbolDirectoryMessage::print(std::ostream& out) const {
     out << "SymbolDirectoryMessage{";
     out << "nanosecond=";
-    out << nanosecond_;
+    out << nanosecond_.count();
     out << ", instrument_id=";
     out << instrument_id_;
     out << ", reserved_a=";

@@ -1,3 +1,4 @@
+// Iex.IexEquities.Tops.IexTp.v1.56: iex_iexequities_tops_iextp_v1_56.hpp
 // Iex IexEquities Tops IexTp 1.56 Template Meta Programming
 
 #pragma once
@@ -305,7 +306,7 @@ struct reserved {
 struct reserved_4 {
     using type = std::uint32_t;
     static constexpr std::size_t size = 4;
-    static constexpr std::endian order = std::endian::little;
+    static constexpr std::endian order = std::endian::big;
 
     constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
     constexpr operator type() const noexcept { return value(); }

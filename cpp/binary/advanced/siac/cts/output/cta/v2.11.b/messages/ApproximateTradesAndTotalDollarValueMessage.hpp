@@ -1,7 +1,7 @@
+// Siac.Cts.Output.Cta.v2.11.b: messages/ApproximateTradesAndTotalDollarValueMessage.hpp
 #pragma once
 
 #include <cstddef>
-#include "../structs/BlockHeader.hpp"
 #include "../types/ParticipantId.hpp"
 #include "../structs/Timestamp1.hpp"
 #include "../types/MessageId.hpp"
@@ -32,7 +32,6 @@ struct approximate_trades_and_total_dollar_value_message {
         cta_output::dollar_value dollar_value;
     };
 
-    cta_output::block_header header = {{}, {}, {}, {}, {}, {}, {}, {}};
     // Transport framing: message size precedes the SBE header on the wire
     cta_output::message_length message_length;
     cta_output::message_category message_category = cta_output::message_category::enum_type::market_status;
@@ -61,7 +60,7 @@ static_assert(offsetof(approximate_trades_and_total_dollar_value_message::fields
 static_assert(offsetof(approximate_trades_and_total_dollar_value_message::fields_type, total_trades) == 22, "unexpected offset of approximate_trades_and_total_dollar_value_message::fields_type::total_trades");
 static_assert(offsetof(approximate_trades_and_total_dollar_value_message::fields_type, dollar_value) == 26, "unexpected offset of approximate_trades_and_total_dollar_value_message::fields_type::dollar_value");
 static_assert(sizeof(approximate_trades_and_total_dollar_value_message::fields_type) == 34, "unexpected sizeof approximate_trades_and_total_dollar_value_message::fields_type");
-static_assert(sizeof(approximate_trades_and_total_dollar_value_message) == sizeof(cta_output::block_header) + sizeof(cta_output::message_length) + sizeof(cta_output::message_category) + sizeof(cta_output::market_status_message_type) + 34, "unexpected sizeof approximate_trades_and_total_dollar_value_message");
+static_assert(sizeof(approximate_trades_and_total_dollar_value_message) == sizeof(cta_output::message_length) + sizeof(cta_output::message_category) + sizeof(cta_output::market_status_message_type) + 34, "unexpected sizeof approximate_trades_and_total_dollar_value_message");
 
 #pragma pack(pop)
 }

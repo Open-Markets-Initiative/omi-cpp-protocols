@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.ComplexTopOfMarket.Mach.v1.1: enums/TradingStatus.cpp
 #include "TradingStatus.hpp"
 
 namespace miax::miaxoptions::complextopofmarket::mach::v1_1 {

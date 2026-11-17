@@ -1,3 +1,4 @@
+// Asx.AsxDerivatives.Ntp.Itch.v1.05: types/Isin.hpp
 #pragma once
 
 #include <array>

@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeed.Xdp.v2.1.g: enums/HaltCondition.hpp
 #pragma once
 
 #include <cstdint>

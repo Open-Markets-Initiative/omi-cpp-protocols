@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.Bbo.Pillar.v2.5.b: program/Settings.hpp
 #pragma once
 
 #include <filesystem>

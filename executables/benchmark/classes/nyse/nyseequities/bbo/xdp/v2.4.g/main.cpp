@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.Bbo.Xdp.v2.4.g: main.cpp
 // Nyse.NyseEquities.Bbo.Xdp.v2.4.g benchmark, through the Classes Packet: every value it reads from every message of the simulated
 // sequence (tests/simulated/nyse/nyseequities/bbo/xdp/v2.4.g.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 

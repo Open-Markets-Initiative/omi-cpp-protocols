@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: messages/QuoteRequestMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -29,7 +30,7 @@ class QuoteRequestMessage : public Message {
     static constexpr MessageCode message_type = TemplateId::QuoteRequestMessage;
 
     QuoteRequestMessage() = default;
-    QuoteRequestMessage(const BidirectionalBusinessHeader& bidirectional_business_header, std::uint64_t security_id, std::uint64_t quote_req_id, std::optional<std::uint64_t> quote_id_optional, std::optional<std::uint32_t> trade_id_optional, std::uint32_t contra_broker, std::chrono::nanoseconds transact_time, Decimal price_8, SettlType settl_type, ExecuteUnderlyingTrade execute_underlying_trade, std::uint64_t order_qty, const std::string& sender_location, const std::string& entering_trader, const std::string& executing_trader, Decimal fixed_rate_percentage_8, std::uint16_t days_to_settlement, const SidesGroups& sides_groups, const DeskId& desk_id, const Memo& memo);
+    QuoteRequestMessage(const BidirectionalBusinessHeader& bidirectional_business_header, std::uint64_t security_id, std::uint64_t quote_req_id, std::optional<std::uint64_t> quote_id_optional, std::optional<std::uint32_t> trade_id_optional, std::uint32_t contra_broker, std::chrono::nanoseconds transact_time, Decimal price_8, SettlType settl_type, ExecuteUnderlyingTrade execute_underlying_trade, std::uint64_t order_qty, const std::string& sender_location, const std::string& entering_trader, const std::string& executing_trader, Decimal fixed_rate, std::uint16_t days_to_settlement, const SidesGroups& sides_groups, const DeskId& desk_id, const Memo& memo);
 
     // Bidirectional Business Header: BidirectionalBusinessHeader
     const BidirectionalBusinessHeader& bidirectional_business_header() const;
@@ -91,9 +92,9 @@ class QuoteRequestMessage : public Message {
     std::string& executing_trader();
     void set_executing_trader(const std::string& value);
 
-    // Fixed Rate Percentage 8: fixedRate
-    Decimal fixed_rate_percentage_8() const;
-    void set_fixed_rate_percentage_8(Decimal value);
+    // Fixed Rate: fixedRate
+    Decimal fixed_rate() const;
+    void set_fixed_rate(Decimal value);
 
     // Days To Settlement: daysToSettlement
     std::uint16_t days_to_settlement() const;
@@ -143,7 +144,7 @@ class QuoteRequestMessage : public Message {
     std::string sender_location_{};
     std::string entering_trader_{};
     std::string executing_trader_{};
-    Decimal fixed_rate_percentage_8_{ 0, -8 };
+    Decimal fixed_rate_{ 0, -8 };
     std::uint16_t days_to_settlement_{};
     SidesGroups sides_groups_{};
     DeskId desk_id_{};

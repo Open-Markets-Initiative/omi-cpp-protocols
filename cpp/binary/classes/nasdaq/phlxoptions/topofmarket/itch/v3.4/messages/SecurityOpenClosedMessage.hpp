@@ -1,3 +1,4 @@
+// Nasdaq.PhlxOptions.TopOfMarket.Itch.v3.4: messages/SecurityOpenClosedMessage.hpp
 #pragma once
 
 #include <chrono>

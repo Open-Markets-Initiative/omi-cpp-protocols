@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v2.10.a: structs/NationalBestBidAndOfferLongAppendage.hpp
 #pragma once
 
 #include "../types/BestBidParticipantId.hpp"

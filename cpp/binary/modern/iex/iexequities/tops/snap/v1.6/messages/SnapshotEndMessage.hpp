@@ -1,3 +1,4 @@
+// Iex.IexEquities.Tops.Snap.v1.6: messages/SnapshotEndMessage.hpp
 #pragma once
 
 #include "../types/SnapshotSequenceNumber.hpp"

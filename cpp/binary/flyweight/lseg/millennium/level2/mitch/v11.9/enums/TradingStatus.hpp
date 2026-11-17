@@ -1,3 +1,4 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: enums/TradingStatus.hpp
 #pragma once
 
 #include <cstdint>

@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: messages/LoginResponse.hpp
 #pragma once
 
 #include <cstddef>
@@ -5,42 +6,34 @@
 #include <memory>
 #include <ostream>
 #include <string_view>
+#include <vector>
 
-#include "../enums/LoginStatus.hpp"
+#include "../groups/LoginMatchingEngine.hpp"
 #include "../messages/TcpMessage.hpp"
 
 namespace miax::pearlequities::depthofmarket::mach::v1_3_d {
 
 class TcpMessageVisitor;
 
-// The SesM server sends a Login response packet in response a Login request packet from the
-// client
+// The ESesM server sends a Login response packet in response to a Login request packet from
+// the client
 class LoginResponse : public TcpMessage {
   public:
     // The code that selects this message
     static constexpr TcpMessageCode message_type = EsesmPacketType::LoginResponse;
-    // Bytes of this message on the wire
-    static constexpr std::size_t wire_size = 11;
 
     LoginResponse() = default;
-    LoginResponse(std::uint8_t number_of_matching_engines, LoginStatus login_status, std::uint8_t trading_session_id, std::uint64_t highest_sequence_number);
+    LoginResponse(std::uint8_t number_of_matching_engines, const std::vector<LoginMatchingEngine>& login_matching_engine);
 
     // Number Of Matching Engines: Count of all Matching Engines for the exchange
     std::uint8_t number_of_matching_engines() const;
     void set_number_of_matching_engines(std::uint8_t value);
 
-    // Login Status: Login Status
-    LoginStatus login_status() const;
-    void set_login_status(LoginStatus value);
-
-    // Trading Session Id: The current trading session ID of the corresponding Matching Engine
-    std::uint8_t trading_session_id() const;
-    void set_trading_session_id(std::uint8_t value);
-
-    // Highest Sequence Number: the highest sequence number that the server currently has for
-    // the client
-    std::uint64_t highest_sequence_number() const;
-    void set_highest_sequence_number(std::uint64_t value);
+    // Login Matching Engine: The login status, trading session and highest sequence number of
+    // one matching engine, repeated once for each the login response counts
+    const std::vector<LoginMatchingEngine>& login_matching_engine() const;
+    std::vector<LoginMatchingEngine>& login_matching_engine();
+    void set_login_matching_engine(const std::vector<LoginMatchingEngine>& value);
 
     // TcpMessage
     TcpMessageCode type() const override;
@@ -58,9 +51,7 @@ class LoginResponse : public TcpMessage {
 
   private:
     std::uint8_t number_of_matching_engines_{};
-    LoginStatus login_status_{};
-    std::uint8_t trading_session_id_{};
-    std::uint64_t highest_sequence_number_{};
+    std::vector<LoginMatchingEngine> login_matching_engine_{};
 };
 
 } // namespace miax::pearlequities::depthofmarket::mach::v1_3_d

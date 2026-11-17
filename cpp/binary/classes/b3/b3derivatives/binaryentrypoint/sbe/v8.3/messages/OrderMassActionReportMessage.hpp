@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: messages/OrderMassActionReportMessage.hpp
 #pragma once
 
 #include <array>
@@ -32,7 +33,7 @@ class OrderMassActionReportMessage : public Message {
     static constexpr MessageCode message_type = TemplateId::OrderMassActionReportMessage;
 
     OrderMassActionReportMessage() = default;
-    OrderMassActionReportMessage(const OutboundBusinessHeader& outbound_business_header, MassActionType mass_action_type, std::optional<MassActionScope> mass_action_scope, std::uint64_t clordid, std::uint64_t mass_action_report_id, std::chrono::nanoseconds transact_time, MassActionResponse mass_action_response, std::optional<MassActionRejectReason> mass_action_reject_reason, std::optional<MassCancelRestatementReason> mass_cancel_restatement_reason, std::optional<std::uint8_t> ordtagid, SideOptional side_optional, const std::array<std::byte, 1>& offset_49_padding_1, const std::string& asset, std::optional<std::uint64_t> security_id_optional, const InvestorId& investor_id, const Text& text);
+    OrderMassActionReportMessage(const OutboundBusinessHeader& outbound_business_header, MassActionType mass_action_type, std::optional<MassActionScope> mass_action_scope, std::uint64_t cl_ord_id, std::uint64_t mass_action_report_id, std::chrono::nanoseconds transact_time, MassActionResponse mass_action_response, std::optional<MassActionRejectReason> mass_action_reject_reason, std::optional<MassCancelRestatementReason> mass_cancel_restatement_reason, std::optional<std::uint8_t> ordtagid, SideOptional side_optional, const std::array<std::byte, 1>& offset_49_padding_1, const std::string& asset, std::optional<std::uint64_t> security_id_optional, const InvestorId& investor_id, const Text& text);
 
     // Outbound Business Header: OutboundBusinessHeader
     const OutboundBusinessHeader& outbound_business_header() const;
@@ -47,9 +48,9 @@ class OrderMassActionReportMessage : public Message {
     std::optional<MassActionScope> mass_action_scope() const;
     void set_mass_action_scope(std::optional<MassActionScope> value);
 
-    // ClOrdId: clOrdID
-    std::uint64_t clordid() const;
-    void set_clordid(std::uint64_t value);
+    // Cl Ord Id: clOrdID
+    std::uint64_t cl_ord_id() const;
+    void set_cl_ord_id(std::uint64_t value);
 
     // Mass Action Report Id: massActionReportID
     std::uint64_t mass_action_report_id() const;
@@ -121,7 +122,7 @@ class OrderMassActionReportMessage : public Message {
     OutboundBusinessHeader outbound_business_header_{};
     MassActionType mass_action_type_{};
     std::optional<MassActionScope> mass_action_scope_{};
-    std::uint64_t clordid_{};
+    std::uint64_t cl_ord_id_{};
     std::uint64_t mass_action_report_id_{};
     std::chrono::nanoseconds transact_time_{};
     MassActionResponse mass_action_response_{};

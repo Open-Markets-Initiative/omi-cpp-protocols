@@ -1,6 +1,6 @@
 # Protocol Tests
 
-One test per protocol and format (483 of them), each written against the surface that
+One test per protocol and format (542 of them), each written against the surface that
 format's program reads through, so a format is exercised the way its consumer uses it rather
 than through whichever surface was easiest to write against. Every test reads the captures
 its protocol declares in the repository's configuration and requires the declared message to

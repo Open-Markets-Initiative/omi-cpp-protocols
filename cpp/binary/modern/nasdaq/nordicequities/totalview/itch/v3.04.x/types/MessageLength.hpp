@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: types/MessageLength.hpp
 #pragma once
 
 #include <bit>

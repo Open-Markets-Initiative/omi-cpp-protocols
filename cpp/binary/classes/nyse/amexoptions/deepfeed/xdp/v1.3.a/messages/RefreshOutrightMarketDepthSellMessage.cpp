@@ -1,3 +1,4 @@
+// Nyse.AmexOptions.DeepFeed.Xdp.v1.3.a: messages/RefreshOutrightMarketDepthSellMessage.cpp
 #include "RefreshOutrightMarketDepthSellMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,14 +7,14 @@
 
 namespace nyse::amexoptions::deepfeed::xdp::v1_3_a {
 
-RefreshOutrightMarketDepthSellMessage::RefreshOutrightMarketDepthSellMessage(std::uint32_t source_time, std::uint32_t source_time_ns, std::uint32_t series_index, std::uint32_t symbol_seq_num, std::int32_t first_level_price, std::int32_t second_level_price, std::int32_t third_level_price, std::uint16_t first_volume, std::uint16_t second_volume, std::uint16_t third_volume, QuoteCondition quote_condition, const std::array<std::byte, 1>& reserved_1, std::uint16_t first_level_customer_volume, std::uint16_t second_level_customer_volume, std::uint16_t third_level_customer_volume, const std::array<std::byte, 2>& reserved_2)
+RefreshOutrightMarketDepthSellMessage::RefreshOutrightMarketDepthSellMessage(std::chrono::seconds source_time, std::chrono::nanoseconds source_time_ns, std::uint32_t series_index, std::uint32_t symbol_seq_num, std::int32_t first_level_price, std::int32_t second_level_price, std::int32_t third_level_price, std::uint16_t first_volume, std::uint16_t second_volume, std::uint16_t third_volume, QuoteCondition quote_condition, const std::array<std::byte, 1>& reserved_1, std::uint16_t first_level_customer_volume, std::uint16_t second_level_customer_volume, std::uint16_t third_level_customer_volume, const std::array<std::byte, 2>& reserved_2)
   : source_time_(source_time), source_time_ns_(source_time_ns), series_index_(series_index), symbol_seq_num_(symbol_seq_num), first_level_price_(first_level_price), second_level_price_(second_level_price), third_level_price_(third_level_price), first_volume_(first_volume), second_volume_(second_volume), third_volume_(third_volume), quote_condition_(quote_condition), reserved_1_(reserved_1), first_level_customer_volume_(first_level_customer_volume), second_level_customer_volume_(second_level_customer_volume), third_level_customer_volume_(third_level_customer_volume), reserved_2_(reserved_2) {}
 
-std::uint32_t RefreshOutrightMarketDepthSellMessage::source_time() const { return source_time_; }
-void RefreshOutrightMarketDepthSellMessage::set_source_time(std::uint32_t value) { source_time_ = value; }
+std::chrono::seconds RefreshOutrightMarketDepthSellMessage::source_time() const { return source_time_; }
+void RefreshOutrightMarketDepthSellMessage::set_source_time(std::chrono::seconds value) { source_time_ = value; }
 
-std::uint32_t RefreshOutrightMarketDepthSellMessage::source_time_ns() const { return source_time_ns_; }
-void RefreshOutrightMarketDepthSellMessage::set_source_time_ns(std::uint32_t value) { source_time_ns_ = value; }
+std::chrono::nanoseconds RefreshOutrightMarketDepthSellMessage::source_time_ns() const { return source_time_ns_; }
+void RefreshOutrightMarketDepthSellMessage::set_source_time_ns(std::chrono::nanoseconds value) { source_time_ns_ = value; }
 
 std::uint32_t RefreshOutrightMarketDepthSellMessage::series_index() const { return series_index_; }
 void RefreshOutrightMarketDepthSellMessage::set_series_index(std::uint32_t value) { series_index_ = value; }
@@ -67,10 +68,10 @@ std::size_t RefreshOutrightMarketDepthSellMessage::decode(const std::byte* data,
     std::size_t offset = 0;
     wire::require("RefreshOutrightMarketDepthSellMessage", wire_size, length);
 
-    source_time_ = wire::read_u32_le(data + offset);
+    source_time_ = std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
-    source_time_ns_ = wire::read_u32_le(data + offset);
+    source_time_ns_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     series_index_ = wire::read_u32_le(data + offset);
@@ -122,10 +123,10 @@ std::size_t RefreshOutrightMarketDepthSellMessage::encode(std::byte* data, std::
     std::size_t offset = 0;
     wire::require_capacity("RefreshOutrightMarketDepthSellMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_.count()));
     offset += 4;
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_.count()));
     offset += 4;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(series_index_));
@@ -188,9 +189,9 @@ std::unique_ptr<Message> RefreshOutrightMarketDepthSellMessage::clone() const {
 void RefreshOutrightMarketDepthSellMessage::print(std::ostream& out) const {
     out << "RefreshOutrightMarketDepthSellMessage{";
     out << "source_time=";
-    out << source_time_;
+    out << source_time_.count();
     out << ", source_time_ns=";
-    out << source_time_ns_;
+    out << source_time_ns_.count();
     out << ", series_index=";
     out << series_index_;
     out << ", symbol_seq_num=";

@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2023: main.cpp
 // Nasdaq.NsmEquities.TotalView.Itch.v5.0.2023 write and read: every message built with each field it sets, written
 // into a capture through the Classes encoder, then read back - each field set must read as it was written.
 // 
@@ -114,7 +115,6 @@ std::unique_ptr<protocol::PacketMessage> build_PayloadStockTradingActionMessage(
     message->set_timestamp(std::chrono::nanoseconds{3});
     message->set_stock(std::string("EFG"));
     message->set_trading_state(protocol::TradingState::Paused);
-    message->set_reserved('G');
     message->set_reason_code(std::string("HIJ"));
     return message;
 }
@@ -373,7 +373,7 @@ std::unique_ptr<protocol::PacketMessage> build_PayloadDirectListingWithCapitalRa
     message->set_minimum_allowable_price(protocol::Decimal(6, -4));
     message->set_maximum_allowable_price(protocol::Decimal(7, -4));
     message->set_near_execution_price(protocol::Decimal(8, -4));
-    message->set_near_execution_time(static_cast<std::uint64_t>(9));
+    message->set_near_execution_time(std::chrono::nanoseconds{9});
     message->set_lower_price_range_collar(protocol::Decimal(10, -4));
     message->set_upper_price_range_collar(protocol::Decimal(11, -4));
     return message;
@@ -517,10 +517,6 @@ int check_PayloadStockTradingActionMessage(const protocol::PacketMessage* read) 
     }
     if (!(message->trading_state() == protocol::TradingState::Paused)) {
         std::printf("FAIL PayloadStockTradingActionMessage: trading_state does not read as it was written\n");
-        ++failures;
-    }
-    if (!(message->reserved() == 'G')) {
-        std::printf("FAIL PayloadStockTradingActionMessage: reserved does not read as it was written\n");
         ++failures;
     }
     if (!(message->reason_code() == std::string("HIJ"))) {
@@ -1335,7 +1331,7 @@ int check_PayloadDirectListingWithCapitalRaisePriceDiscoveryMessage(const protoc
         std::printf("FAIL PayloadDirectListingWithCapitalRaisePriceDiscoveryMessage: near_execution_price does not read as it was written\n");
         ++failures;
     }
-    if (!(message->near_execution_time() == static_cast<std::uint64_t>(9))) {
+    if (!(message->near_execution_time() == std::chrono::nanoseconds{9})) {
         std::printf("FAIL PayloadDirectListingWithCapitalRaisePriceDiscoveryMessage: near_execution_time does not read as it was written\n");
         ++failures;
     }

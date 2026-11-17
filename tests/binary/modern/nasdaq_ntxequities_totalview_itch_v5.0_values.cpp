@@ -70,7 +70,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.stocktradingactionmessage.timestamp"] = canonical::number(message->timestamp.get());
             values[entry + ".payload.stocktradingactionmessage.stock"] = canonical::text(std::string(message->stock.get()), ' ', false);
             values[entry + ".payload.stocktradingactionmessage.tradingstate"] = canonical::text(canonical::character(message->trading_state.get()), ' ', false);
-            values[entry + ".payload.stocktradingactionmessage.reserved"] = canonical::text(canonical::character(message->reserved.get()), ' ', false);
             values[entry + ".payload.stocktradingactionmessage.tradingactionreason"] = canonical::text(std::string(message->trading_action_reason.get()), ' ', false);
         } else if (iterator.message_type == protocol::RegShoShortSalePriceTestRestrictedIndicatorMessage::message_type) {
             values[entry + ".payload"] = "packet.messages.message.payload.regshoshortsalepricetestrestrictedindicatormessage";

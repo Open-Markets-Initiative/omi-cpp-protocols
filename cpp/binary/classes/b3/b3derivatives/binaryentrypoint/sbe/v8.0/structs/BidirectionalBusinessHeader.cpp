@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: structs/BidirectionalBusinessHeader.cpp
 #include "BidirectionalBusinessHeader.hpp"
 
 #include "../common/Print.hpp"
@@ -5,8 +6,8 @@
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_0 {
 
-BidirectionalBusinessHeader::BidirectionalBusinessHeader(std::uint32_t session_id, std::uint32_t msg_seq_num, std::optional<std::chrono::nanoseconds> sending_time, std::uint8_t poss_resend, std::uint8_t market_segment_id_optional, char padding)
-  : session_id_(session_id), msg_seq_num_(msg_seq_num), sending_time_(sending_time), poss_resend_(poss_resend), market_segment_id_optional_(market_segment_id_optional), padding_(padding) {}
+BidirectionalBusinessHeader::BidirectionalBusinessHeader(std::uint32_t session_id, std::uint32_t msg_seq_num, std::optional<std::chrono::nanoseconds> sending_time, std::uint8_t poss_resend, std::optional<std::uint8_t> market_segment_id_optional, const std::string& padding_char_2)
+  : session_id_(session_id), msg_seq_num_(msg_seq_num), sending_time_(sending_time), poss_resend_(poss_resend), market_segment_id_optional_(market_segment_id_optional), padding_char_2_(padding_char_2) {}
 
 std::uint32_t BidirectionalBusinessHeader::session_id() const { return session_id_; }
 void BidirectionalBusinessHeader::set_session_id(std::uint32_t value) { session_id_ = value; }
@@ -20,11 +21,12 @@ void BidirectionalBusinessHeader::set_sending_time(std::optional<std::chrono::na
 std::uint8_t BidirectionalBusinessHeader::poss_resend() const { return poss_resend_; }
 void BidirectionalBusinessHeader::set_poss_resend(std::uint8_t value) { poss_resend_ = value; }
 
-std::uint8_t BidirectionalBusinessHeader::market_segment_id_optional() const { return market_segment_id_optional_; }
-void BidirectionalBusinessHeader::set_market_segment_id_optional(std::uint8_t value) { market_segment_id_optional_ = value; }
+std::optional<std::uint8_t> BidirectionalBusinessHeader::market_segment_id_optional() const { return market_segment_id_optional_; }
+void BidirectionalBusinessHeader::set_market_segment_id_optional(std::optional<std::uint8_t> value) { market_segment_id_optional_ = value; }
 
-char BidirectionalBusinessHeader::padding() const { return padding_; }
-void BidirectionalBusinessHeader::set_padding(char value) { padding_ = value; }
+const std::string& BidirectionalBusinessHeader::padding_char_2() const { return padding_char_2_; }
+std::string& BidirectionalBusinessHeader::padding_char_2() { return padding_char_2_; }
+void BidirectionalBusinessHeader::set_padding_char_2(const std::string& value) { padding_char_2_ = value; }
 
 std::size_t BidirectionalBusinessHeader::decode(const std::byte* data, std::size_t length) {
     std::size_t offset = 0;
@@ -42,11 +44,11 @@ std::size_t BidirectionalBusinessHeader::decode(const std::byte* data, std::size
     poss_resend_ = wire::read_u8(data + offset);
     offset += 1;
 
-    market_segment_id_optional_ = wire::read_u8(data + offset);
+    market_segment_id_optional_ = wire::nullable(wire::read_u8(data + offset), static_cast<std::uint8_t>(0ULL));
     offset += 1;
 
-    padding_ = wire::read_char(data + offset);
-    offset += 1;
+    padding_char_2_ = wire::read_text(data + offset, 2, '\0');
+    offset += 2;
 
     return offset;
 }
@@ -67,11 +69,11 @@ std::size_t BidirectionalBusinessHeader::encode(std::byte* data, std::size_t cap
     wire::write_u8(data + offset, static_cast<std::uint8_t>(poss_resend_));
     offset += 1;
 
-    wire::write_u8(data + offset, static_cast<std::uint8_t>(market_segment_id_optional_));
+    wire::write_u8(data + offset, market_segment_id_optional_.value_or(static_cast<std::uint8_t>(0ULL)));
     offset += 1;
 
-    wire::write_char(data + offset, padding_);
-    offset += 1;
+    wire::write_text(data + offset, 2, '\0', padding_char_2_);
+    offset += 2;
 
     return offset;
 }
@@ -91,9 +93,9 @@ void BidirectionalBusinessHeader::print(std::ostream& out) const {
     out << ", poss_resend=";
     out << static_cast<int>(poss_resend_);
     out << ", market_segment_id_optional=";
-    out << static_cast<int>(market_segment_id_optional_);
-    out << ", padding=";
-    print::character(out, padding_);
+    print::optional(out, market_segment_id_optional_);
+    out << ", padding_char_2=";
+    print::text(out, padding_char_2_);
     out << '}';
 }
 
@@ -103,7 +105,7 @@ bool BidirectionalBusinessHeader::operator==(const BidirectionalBusinessHeader& 
         && sending_time_ == other.sending_time_
         && poss_resend_ == other.poss_resend_
         && market_segment_id_optional_ == other.market_segment_id_optional_
-        && padding_ == other.padding_;
+        && padding_char_2_ == other.padding_char_2_;
 }
 
 bool BidirectionalBusinessHeader::operator!=(const BidirectionalBusinessHeader& other) const {

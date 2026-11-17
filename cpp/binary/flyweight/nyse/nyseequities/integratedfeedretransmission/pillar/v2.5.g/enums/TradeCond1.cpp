@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeedRetransmission.Pillar.v2.5.g: enums/TradeCond1.cpp
 #include "TradeCond1.hpp"
 
 namespace nyse::nyseequities::integratedfeedretransmission::pillar::v2_5_g {

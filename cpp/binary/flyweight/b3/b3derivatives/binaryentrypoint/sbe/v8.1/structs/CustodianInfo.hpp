@@ -1,7 +1,9 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1: structs/CustodianInfo.hpp
 #pragma once
 
 #include <cstddef>
 #include <cstdint>
+#include <optional>
 #include <ostream>
 #include <span>
 
@@ -26,20 +28,20 @@ class CustodianInfo {
     static constexpr std::size_t fixed_size = 12;
     std::size_t encoded_size() const { return 12; }
 
-    std::uint32_t custodian() const { return wire::read_u32_le(at(0)); }
+    std::optional<std::uint32_t> custodian() const { return wire::nullable(wire::read_u32_le(at(0)), static_cast<std::uint32_t>(0ULL)); }
 
-    std::uint32_t custody_account() const { return wire::read_u32_le(at(4)); }
+    std::optional<std::uint32_t> custody_account() const { return wire::nullable(wire::read_u32_le(at(4)), static_cast<std::uint32_t>(0ULL)); }
 
-    std::uint32_t custody_allocation_type() const { return wire::read_u32_le(at(8)); }
+    std::optional<std::uint32_t> custody_allocation_type() const { return wire::nullable(wire::read_u32_le(at(8)), static_cast<std::uint32_t>(0ULL)); }
 
     void print(std::ostream& out) const {
         out << "CustodianInfo{";
         out << "custodian=";
-        out << custodian();
+        print::optional(out, custodian());
         out << ", custody_account=";
-        out << custody_account();
+        print::optional(out, custody_account());
         out << ", custody_allocation_type=";
-        out << custody_allocation_type();
+        print::optional(out, custody_allocation_type());
         out << '}';
     }
 

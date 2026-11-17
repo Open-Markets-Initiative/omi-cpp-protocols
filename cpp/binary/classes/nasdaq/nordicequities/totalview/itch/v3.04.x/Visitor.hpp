@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: Visitor.hpp
 #pragma once
 
 namespace nasdaq::nordicequities::totalview::itch::v3_04_x {

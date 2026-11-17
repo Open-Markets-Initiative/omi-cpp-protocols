@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.1: types/SecurityStrategyType.hpp
 #pragma once
 
 #include <cstddef>

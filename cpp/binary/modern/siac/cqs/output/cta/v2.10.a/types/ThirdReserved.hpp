@@ -1,5 +1,7 @@
+// Siac.Cqs.Output.Cta.v2.10.a: types/ThirdReserved.hpp
 #pragma once
 
+#include <array>
 #include <cstddef>
 
 namespace siac::cqs::output::cta::v2_10_a {
@@ -11,20 +13,14 @@ struct ThirdReserved {
     static constexpr auto name = "Third Reserved";
     static constexpr std::size_t size = 1;
 
+    // underlying type
+    using type = std::array<std::uint8_t, size>;
+
     // default constructor
     constexpr ThirdReserved()
-     : value{ 0 } {}
-
-    // standard constructor
-    constexpr explicit ThirdReserved(const char &value)
-     : value{ value } {}
-
-    // get value of ThirdReserved field
-    [[nodiscard]] char get() const {
-        return value;
-    }
+     : value{} {}
 
   protected:
-    char value;
+    type value;
 };
 }

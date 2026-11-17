@@ -1,3 +1,4 @@
+// OtcMarkets.LinkAts.Multicast.Link.v4.3: messages/MarketOpenMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -32,7 +33,7 @@ class MarketOpenMessage {
 
     std::chrono::milliseconds market_open() const { return std::chrono::milliseconds(static_cast<std::int64_t>(wire::read_u64_be(at(4)))); }
 
-    std::uint64_t market_close() const { return wire::read_u64_be(at(12)); }
+    std::chrono::milliseconds market_close() const { return std::chrono::milliseconds(static_cast<std::int64_t>(wire::read_u64_be(at(12)))); }
 
     void print(std::ostream& out) const {
         out << "MarketOpenMessage{";
@@ -41,7 +42,7 @@ class MarketOpenMessage {
         out << ", market_open=";
         out << market_open().count();
         out << ", market_close=";
-        out << market_close();
+        out << market_close().count();
         out << '}';
     }
 

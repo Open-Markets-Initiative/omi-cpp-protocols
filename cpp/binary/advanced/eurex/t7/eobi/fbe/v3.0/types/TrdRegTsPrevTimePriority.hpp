@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v3.0: types/TrdRegTsPrevTimePriority.hpp
 #pragma once
 
 #include <cstddef>

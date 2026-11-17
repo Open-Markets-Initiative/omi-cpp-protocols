@@ -1,3 +1,4 @@
+// Miax.OnyxFutures.TopOfMarket.Mach.v1.0.b: messages/InstrumentTradingStatusNotificationMessage.cpp
 #include "InstrumentTradingStatusNotificationMessage.hpp"
 
 #include "../common/Print.hpp"

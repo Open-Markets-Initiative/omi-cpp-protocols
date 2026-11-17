@@ -1,3 +1,4 @@
+// Nyse.NationalEquities.Trades.Pillar.v2.6: messages/SequenceNumberResetMessage.cpp
 #include "SequenceNumberResetMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,14 +7,14 @@
 
 namespace nyse::nationalequities::trades::pillar::v2_6 {
 
-SequenceNumberResetMessage::SequenceNumberResetMessage(std::uint32_t source_time, std::uint32_t source_time_ns, std::uint8_t product_id, std::uint8_t channel_id)
+SequenceNumberResetMessage::SequenceNumberResetMessage(std::chrono::seconds source_time, std::chrono::nanoseconds source_time_ns, std::uint8_t product_id, std::uint8_t channel_id)
   : source_time_(source_time), source_time_ns_(source_time_ns), product_id_(product_id), channel_id_(channel_id) {}
 
-std::uint32_t SequenceNumberResetMessage::source_time() const { return source_time_; }
-void SequenceNumberResetMessage::set_source_time(std::uint32_t value) { source_time_ = value; }
+std::chrono::seconds SequenceNumberResetMessage::source_time() const { return source_time_; }
+void SequenceNumberResetMessage::set_source_time(std::chrono::seconds value) { source_time_ = value; }
 
-std::uint32_t SequenceNumberResetMessage::source_time_ns() const { return source_time_ns_; }
-void SequenceNumberResetMessage::set_source_time_ns(std::uint32_t value) { source_time_ns_ = value; }
+std::chrono::nanoseconds SequenceNumberResetMessage::source_time_ns() const { return source_time_ns_; }
+void SequenceNumberResetMessage::set_source_time_ns(std::chrono::nanoseconds value) { source_time_ns_ = value; }
 
 std::uint8_t SequenceNumberResetMessage::product_id() const { return product_id_; }
 void SequenceNumberResetMessage::set_product_id(std::uint8_t value) { product_id_ = value; }
@@ -29,10 +30,10 @@ std::size_t SequenceNumberResetMessage::decode(const std::byte* data, std::size_
     std::size_t offset = 0;
     wire::require("SequenceNumberResetMessage", wire_size, length);
 
-    source_time_ = wire::read_u32_le(data + offset);
+    source_time_ = std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
-    source_time_ns_ = wire::read_u32_le(data + offset);
+    source_time_ns_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     product_id_ = wire::read_u8(data + offset);
@@ -48,10 +49,10 @@ std::size_t SequenceNumberResetMessage::encode(std::byte* data, std::size_t capa
     std::size_t offset = 0;
     wire::require_capacity("SequenceNumberResetMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_.count()));
     offset += 4;
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_.count()));
     offset += 4;
 
     wire::write_u8(data + offset, static_cast<std::uint8_t>(product_id_));
@@ -78,9 +79,9 @@ std::unique_ptr<Message> SequenceNumberResetMessage::clone() const {
 void SequenceNumberResetMessage::print(std::ostream& out) const {
     out << "SequenceNumberResetMessage{";
     out << "source_time=";
-    out << source_time_;
+    out << source_time_.count();
     out << ", source_time_ns=";
-    out << source_time_ns_;
+    out << source_time_ns_.count();
     out << ", product_id=";
     out << static_cast<int>(product_id_);
     out << ", channel_id=";

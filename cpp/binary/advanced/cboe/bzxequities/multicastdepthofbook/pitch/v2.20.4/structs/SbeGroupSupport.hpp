@@ -1,3 +1,4 @@
+// Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.20.4: structs/SbeGroupSupport.hpp
 #pragma once
 
 #include <cstddef>

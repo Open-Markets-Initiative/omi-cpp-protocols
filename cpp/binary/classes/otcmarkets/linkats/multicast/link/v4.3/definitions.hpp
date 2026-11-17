@@ -1,3 +1,4 @@
+// OtcMarkets.LinkAts.Multicast.Link.v4.3: definitions.hpp
 #pragma once
 
 #include "common/Day.hpp"

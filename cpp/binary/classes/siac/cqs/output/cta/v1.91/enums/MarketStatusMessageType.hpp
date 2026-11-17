@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v1.91: enums/MarketStatusMessageType.hpp
 #pragma once
 
 #include <cstdint>

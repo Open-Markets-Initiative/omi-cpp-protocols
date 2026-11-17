@@ -134,7 +134,6 @@ struct Reader {
     void on(const protocol::OrderDeleteMessage& message) {
         const std::string entry = "packet.messages.message[" + std::to_string(index++) + "]";
         values[entry + ".messagedata"] = "packet.messages.message.messagedata.orderdeletemessage";
-        values[entry + ".messagedata.orderdeletemessage.reserved1"] = canonical::text(canonical::character(message.reserved_1()));
         values[entry + ".messagedata.orderdeletemessage.timestamp"] = canonical::number(message.timestamp());
         values[entry + ".messagedata.orderdeletemessage.symbol"] = canonical::text(std::string(message.symbol()), ' ', false);
         values[entry + ".messagedata.orderdeletemessage.orderidreference"] = canonical::number(message.order_id_reference());
@@ -189,7 +188,6 @@ struct Reader {
     void on(const protocol::ClearBookMessage& message) {
         const std::string entry = "packet.messages.message[" + std::to_string(index++) + "]";
         values[entry + ".messagedata"] = "packet.messages.message.messagedata.clearbookmessage";
-        values[entry + ".messagedata.clearbookmessage.reserved1"] = canonical::text(canonical::character(message.reserved_1()));
         values[entry + ".messagedata.clearbookmessage.timestamp"] = canonical::number(message.timestamp());
         values[entry + ".messagedata.clearbookmessage.symbol"] = canonical::text(std::string(message.symbol()), ' ', false);
     }

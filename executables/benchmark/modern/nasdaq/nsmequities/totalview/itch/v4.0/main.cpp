@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v4.0: main.cpp
 // Nasdaq.NsmEquities.TotalView.Itch.v4.0 benchmark, through the Modern iterator: every value it reads from every message of the simulated
 // sequence (tests/simulated/nasdaq/nsmequities/totalview/itch/v4.0.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -55,7 +56,6 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest(message->nanoseconds.get());
             checksum += bench::digest(message->stock.get());
             checksum += bench::digest(message->trading_state.get());
-            checksum += bench::digest(message->reserved.get());
             checksum += bench::digest(message->reason.get());
         } else if (iterator.message_type == protocol::MarketParticipantPositionMessage::message_type) {
             [[maybe_unused]] const auto* message = protocol::MarketParticipantPositionMessage::parse(iterator.message);

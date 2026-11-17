@@ -1,0 +1,30 @@
+# B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3 OrderMassActionReportMessage: canonical values of 'packet', read by the model
+stream 0
+packet.simpleopenframe[0].simpleopenframingheader.messagelength = 85
+packet.simpleopenframe[0].simpleopenframingheader.encodingtype = 60240
+packet.simpleopenframe[0].messageheader.blocklength = 72
+packet.simpleopenframe[0].messageheader.templateid = 702
+packet.simpleopenframe[0].messageheader.schemaid = 1
+packet.simpleopenframe[0].messageheader.version = 5
+packet.simpleopenframe[0].payload = packet.simpleopenframe.payload.ordermassactionreportmessage
+packet.simpleopenframe[0].payload.ordermassactionreportmessage.outboundbusinessheader.sessionid = 200000006
+packet.simpleopenframe[0].payload.ordermassactionreportmessage.outboundbusinessheader.msgseqnum = 1984
+packet.simpleopenframe[0].payload.ordermassactionreportmessage.outboundbusinessheader.sendingtime = 1739219362931483510
+packet.simpleopenframe[0].payload.ordermassactionreportmessage.outboundbusinessheader.eventindicator = 0
+packet.simpleopenframe[0].payload.ordermassactionreportmessage.outboundbusinessheader.marketsegmentidoptional = 84
+packet.simpleopenframe[0].payload.ordermassactionreportmessage.massactiontype = 3
+packet.simpleopenframe[0].payload.ordermassactionreportmessage.massactionscope = 6
+packet.simpleopenframe[0].payload.ordermassactionreportmessage.clordid = 1739219362906
+packet.simpleopenframe[0].payload.ordermassactionreportmessage.massactionreportid = 660
+packet.simpleopenframe[0].payload.ordermassactionreportmessage.transacttime = 1739219362928000000
+packet.simpleopenframe[0].payload.ordermassactionreportmessage.massactionresponse = 1
+packet.simpleopenframe[0].payload.ordermassactionreportmessage.massactionrejectreason = (null)
+packet.simpleopenframe[0].payload.ordermassactionreportmessage.masscancelrestatementreason = 202
+packet.simpleopenframe[0].payload.ordermassactionreportmessage.ordtagid = (null)
+packet.simpleopenframe[0].payload.ordermassactionreportmessage.sideoptional = 1
+packet.simpleopenframe[0].payload.ordermassactionreportmessage.asset = (null)
+packet.simpleopenframe[0].payload.ordermassactionreportmessage.securityidoptional = (null)
+packet.simpleopenframe[0].payload.ordermassactionreportmessage.investorid.prefix = (null)
+packet.simpleopenframe[0].payload.ordermassactionreportmessage.investorid.document = (null)
+packet.simpleopenframe[0].payload.ordermassactionreportmessage.text.textlength = 0
+packet.simpleopenframe[0].payload.ordermassactionreportmessage.text = 

@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeed.Xdp.v2.3.a: enums/AuctionType.cpp
 #include "AuctionType.hpp"
 
 namespace nyse::nyseequities::integratedfeed::xdp::v2_3_a {

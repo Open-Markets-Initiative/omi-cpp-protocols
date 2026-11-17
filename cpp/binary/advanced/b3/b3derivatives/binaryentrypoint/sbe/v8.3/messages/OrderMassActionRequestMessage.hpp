@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: messages/OrderMassActionRequestMessage.hpp
 #pragma once
 
 #include <cstddef>
@@ -6,7 +7,7 @@
 #include "../structs/InboundBusinessHeader.hpp"
 #include "../types/MassActionType.hpp"
 #include "../types/MassActionScope.hpp"
-#include "../types/Clordid.hpp"
+#include "../types/ClOrdId.hpp"
 #include "../types/MassCancelRestatementReason.hpp"
 #include "../types/Ordtagid.hpp"
 #include "../types/SideOptional.hpp"
@@ -28,7 +29,7 @@ struct order_mass_action_request_message {
         sbe_binaryentrypoint::inbound_business_header inbound_business_header;
         sbe_binaryentrypoint::mass_action_type mass_action_type;
         sbe_binaryentrypoint::mass_action_scope mass_action_scope;
-        sbe_binaryentrypoint::clordid clordid;
+        sbe_binaryentrypoint::cl_ord_id cl_ord_id;
         sbe_binaryentrypoint::mass_cancel_restatement_reason mass_cancel_restatement_reason;
         sbe_binaryentrypoint::ordtagid ordtagid;
         sbe_binaryentrypoint::side_optional side_optional;
@@ -59,7 +60,7 @@ struct order_mass_action_request_message {
 static_assert(offsetof(order_mass_action_request_message::fields_type, inbound_business_header) == 0, "unexpected offset of order_mass_action_request_message::fields_type::inbound_business_header");
 static_assert(offsetof(order_mass_action_request_message::fields_type, mass_action_type) == 18, "unexpected offset of order_mass_action_request_message::fields_type::mass_action_type");
 static_assert(offsetof(order_mass_action_request_message::fields_type, mass_action_scope) == 19, "unexpected offset of order_mass_action_request_message::fields_type::mass_action_scope");
-static_assert(offsetof(order_mass_action_request_message::fields_type, clordid) == 20, "unexpected offset of order_mass_action_request_message::fields_type::clordid");
+static_assert(offsetof(order_mass_action_request_message::fields_type, cl_ord_id) == 20, "unexpected offset of order_mass_action_request_message::fields_type::cl_ord_id");
 static_assert(offsetof(order_mass_action_request_message::fields_type, mass_cancel_restatement_reason) == 28, "unexpected offset of order_mass_action_request_message::fields_type::mass_cancel_restatement_reason");
 static_assert(offsetof(order_mass_action_request_message::fields_type, ordtagid) == 29, "unexpected offset of order_mass_action_request_message::fields_type::ordtagid");
 static_assert(offsetof(order_mass_action_request_message::fields_type, side_optional) == 30, "unexpected offset of order_mass_action_request_message::fields_type::side_optional");

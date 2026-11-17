@@ -1,3 +1,4 @@
+// Miax.OnyxFutures.TopOfMarket.Mach.v1.0.b: messages/LastSaleMessage.hpp
 #pragma once
 
 #include "../types/Timestamp.hpp"

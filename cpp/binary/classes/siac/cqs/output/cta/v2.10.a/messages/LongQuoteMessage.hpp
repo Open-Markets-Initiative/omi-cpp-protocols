@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v2.10.a: messages/LongQuoteMessage.hpp
 #pragma once
 
 #include <cstddef>

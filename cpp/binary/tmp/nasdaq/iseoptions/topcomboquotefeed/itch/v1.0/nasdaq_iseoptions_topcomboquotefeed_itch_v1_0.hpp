@@ -1,3 +1,4 @@
+// Nasdaq.IseOptions.TopComboQuoteFeed.Itch.v1.0: nasdaq_iseoptions_topcomboquotefeed_itch_v1_0.hpp
 // Nasdaq IseOptions TopComboQuoteFeed Itch 1.0 Template Meta Programming
 
 #pragma once
@@ -765,9 +766,10 @@ struct explicit_strike_price {
 
 // First: Opening price for the day
 struct first {
-    using type = std::uint64_t;
+    using type = std::int64_t;
     static constexpr std::size_t size = 8;
     static constexpr std::endian order = std::endian::big;
+    static constexpr int exponent = -8;
 
     constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
     constexpr operator type() const noexcept { return value(); }
@@ -778,9 +780,10 @@ struct first {
 
 // High: High price for the day.
 struct high {
-    using type = std::uint64_t;
+    using type = std::int64_t;
     static constexpr std::size_t size = 8;
     static constexpr std::endian order = std::endian::big;
+    static constexpr int exponent = -8;
 
     constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
     constexpr operator type() const noexcept { return value(); }
@@ -830,9 +833,10 @@ struct leg_ratio {
 
 // Low: Low price for the day.
 struct low {
-    using type = std::uint64_t;
+    using type = std::int64_t;
     static constexpr std::size_t size = 8;
     static constexpr std::endian order = std::endian::big;
+    static constexpr int exponent = -8;
 
     constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
     constexpr operator type() const noexcept { return value(); }

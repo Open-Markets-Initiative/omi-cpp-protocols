@@ -1,7 +1,7 @@
+// Siac.Cts.Output.Cta.v2.11.b: messages/MarketWideCircuitBreakerDeclineLevelStatusMessage.hpp
 #pragma once
 
 #include <cstddef>
-#include "../structs/BlockHeader.hpp"
 #include "../types/ParticipantId.hpp"
 #include "../structs/Timestamp1.hpp"
 #include "../types/MessageId.hpp"
@@ -36,7 +36,6 @@ struct market_wide_circuit_breaker_decline_level_status_message {
         cta_output::reserved reserved;
     };
 
-    cta_output::block_header header = {{}, {}, {}, {}, {}, {}, {}, {}};
     // Transport framing: message size precedes the SBE header on the wire
     cta_output::message_length message_length;
     cta_output::message_category message_category = cta_output::message_category::enum_type::market_status;
@@ -67,7 +66,7 @@ static_assert(offsetof(market_wide_circuit_breaker_decline_level_status_message:
 static_assert(offsetof(market_wide_circuit_breaker_decline_level_status_message::fields_type, mwcb_level_3) == 38, "unexpected offset of market_wide_circuit_breaker_decline_level_status_message::fields_type::mwcb_level_3");
 static_assert(offsetof(market_wide_circuit_breaker_decline_level_status_message::fields_type, reserved) == 46, "unexpected offset of market_wide_circuit_breaker_decline_level_status_message::fields_type::reserved");
 static_assert(sizeof(market_wide_circuit_breaker_decline_level_status_message::fields_type) == 47, "unexpected sizeof market_wide_circuit_breaker_decline_level_status_message::fields_type");
-static_assert(sizeof(market_wide_circuit_breaker_decline_level_status_message) == sizeof(cta_output::block_header) + sizeof(cta_output::message_length) + sizeof(cta_output::message_category) + sizeof(cta_output::market_status_message_type) + 47, "unexpected sizeof market_wide_circuit_breaker_decline_level_status_message");
+static_assert(sizeof(market_wide_circuit_breaker_decline_level_status_message) == sizeof(cta_output::message_length) + sizeof(cta_output::message_category) + sizeof(cta_output::market_status_message_type) + 47, "unexpected sizeof market_wide_circuit_breaker_decline_level_status_message");
 
 #pragma pack(pop)
 }

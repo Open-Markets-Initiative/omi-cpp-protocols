@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.TopFeed.Pillar.v1.2.c: messages/OptionsQuoteMessage.cpp
 #include "OptionsQuoteMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,11 +7,11 @@
 
 namespace nyse::arcaoptions::topfeed::pillar::v1_2_c {
 
-OptionsQuoteMessage::OptionsQuoteMessage(std::uint32_t source_time_ns, std::uint32_t series_index, std::uint32_t series_seq_num, std::int32_t ask_price, std::uint32_t ask_volume, std::int32_t bid_price, std::uint32_t bid_volume, QuoteCondition quote_condition, const std::array<std::byte, 1>& reserved_1, std::uint32_t ask_customer_volume, std::uint32_t bid_customer_volume)
+OptionsQuoteMessage::OptionsQuoteMessage(std::chrono::nanoseconds source_time_ns, std::uint32_t series_index, std::uint32_t series_seq_num, std::int32_t ask_price, std::uint32_t ask_volume, std::int32_t bid_price, std::uint32_t bid_volume, QuoteCondition quote_condition, const std::array<std::byte, 1>& reserved_1, std::uint32_t ask_customer_volume, std::uint32_t bid_customer_volume)
   : source_time_ns_(source_time_ns), series_index_(series_index), series_seq_num_(series_seq_num), ask_price_(ask_price), ask_volume_(ask_volume), bid_price_(bid_price), bid_volume_(bid_volume), quote_condition_(quote_condition), reserved_1_(reserved_1), ask_customer_volume_(ask_customer_volume), bid_customer_volume_(bid_customer_volume) {}
 
-std::uint32_t OptionsQuoteMessage::source_time_ns() const { return source_time_ns_; }
-void OptionsQuoteMessage::set_source_time_ns(std::uint32_t value) { source_time_ns_ = value; }
+std::chrono::nanoseconds OptionsQuoteMessage::source_time_ns() const { return source_time_ns_; }
+void OptionsQuoteMessage::set_source_time_ns(std::chrono::nanoseconds value) { source_time_ns_ = value; }
 
 std::uint32_t OptionsQuoteMessage::series_index() const { return series_index_; }
 void OptionsQuoteMessage::set_series_index(std::uint32_t value) { series_index_ = value; }
@@ -51,7 +52,7 @@ std::size_t OptionsQuoteMessage::decode(const std::byte* data, std::size_t lengt
     std::size_t offset = 0;
     wire::require("OptionsQuoteMessage", wire_size, length);
 
-    source_time_ns_ = wire::read_u32_le(data + offset);
+    source_time_ns_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     series_index_ = wire::read_u32_le(data + offset);
@@ -91,7 +92,7 @@ std::size_t OptionsQuoteMessage::encode(std::byte* data, std::size_t capacity) c
     std::size_t offset = 0;
     wire::require_capacity("OptionsQuoteMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_.count()));
     offset += 4;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(series_index_));
@@ -142,7 +143,7 @@ std::unique_ptr<Message> OptionsQuoteMessage::clone() const {
 void OptionsQuoteMessage::print(std::ostream& out) const {
     out << "OptionsQuoteMessage{";
     out << "source_time_ns=";
-    out << source_time_ns_;
+    out << source_time_ns_.count();
     out << ", series_index=";
     out << series_index_;
     out << ", series_seq_num=";

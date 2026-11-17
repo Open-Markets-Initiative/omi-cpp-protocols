@@ -1,5 +1,7 @@
+// Nyse.ArcaOptions.DeepFeed.Pillar.v1.2.m: messages/OptionsCrossTradeMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
@@ -23,11 +25,11 @@ class OptionsCrossTradeMessage : public Message {
     static constexpr std::size_t wire_size = 25;
 
     OptionsCrossTradeMessage() = default;
-    OptionsCrossTradeMessage(std::uint32_t source_time_ns, std::uint32_t series_index, std::uint32_t series_seq_num, std::uint32_t cross_id, std::int32_t price, std::uint32_t volume, CrossType cross_type);
+    OptionsCrossTradeMessage(std::chrono::nanoseconds source_time_ns, std::uint32_t series_index, std::uint32_t series_seq_num, std::uint32_t cross_id, std::int32_t price, std::uint32_t volume, CrossType cross_type);
 
     // Source Time Ns: The nanosecond offset (UTC Time) from the Time Reference message.
-    std::uint32_t source_time_ns() const;
-    void set_source_time_ns(std::uint32_t value);
+    std::chrono::nanoseconds source_time_ns() const;
+    void set_source_time_ns(std::chrono::nanoseconds value);
 
     // Series Index: The unique ID of this series within this market.
     std::uint32_t series_index() const;
@@ -69,7 +71,7 @@ class OptionsCrossTradeMessage : public Message {
     bool operator!=(const OptionsCrossTradeMessage& other) const;
 
   private:
-    std::uint32_t source_time_ns_{};
+    std::chrono::nanoseconds source_time_ns_{};
     std::uint32_t series_index_{};
     std::uint32_t series_seq_num_{};
     std::uint32_t cross_id_{};

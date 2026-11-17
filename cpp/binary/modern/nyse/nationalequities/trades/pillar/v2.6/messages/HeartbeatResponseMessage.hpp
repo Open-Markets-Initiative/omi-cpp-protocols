@@ -1,3 +1,4 @@
+// Nyse.NationalEquities.Trades.Pillar.v2.6: messages/HeartbeatResponseMessage.hpp
 #pragma once
 
 #include "../types/SourceId.hpp"

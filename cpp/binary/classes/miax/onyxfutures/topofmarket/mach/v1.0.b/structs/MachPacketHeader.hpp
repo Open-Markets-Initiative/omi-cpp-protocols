@@ -1,3 +1,4 @@
+// Miax.OnyxFutures.TopOfMarket.Mach.v1.0.b: structs/MachPacketHeader.hpp
 #pragma once
 
 #include <cstddef>
@@ -21,11 +22,11 @@ class MachPacketHeader {
     std::uint64_t sequence_number() const;
     void set_sequence_number(std::uint64_t value);
 
-    // Packet Length: Length of the packet. This includes the header and application data
+    // Packet Length: Length of the packet, including the header and application data
     std::uint16_t packet_length() const;
     void set_packet_length(std::uint16_t value);
 
-    // Packet Type: protocol packet type
+    // Packet Type: Mach protocol packet type
     PacketType packet_type() const;
     void set_packet_type(PacketType value);
 

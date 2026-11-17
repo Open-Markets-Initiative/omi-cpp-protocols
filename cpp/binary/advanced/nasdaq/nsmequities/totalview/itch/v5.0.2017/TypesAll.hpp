@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2017: TypesAll.hpp
 #pragma once
 
 // All type headers for this protocol schema

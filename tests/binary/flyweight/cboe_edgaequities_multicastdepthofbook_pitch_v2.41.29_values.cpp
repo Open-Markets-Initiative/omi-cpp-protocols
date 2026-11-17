@@ -203,7 +203,7 @@ struct Reader {
     void on(const protocol::EndOfSession& message) {
         const std::string entry = "packet.messages.message[" + std::to_string(index++) + "]";
         values[entry + ".payload"] = "packet.messages.message.payload.endofsession";
-        values[entry + ".payload.endofsession.lasttimestamp"] = canonical::number(message.last_timestamp());
+        values[entry + ".payload.endofsession.timeoffset"] = canonical::number(message.time_offset());
     }
 
     void on(const protocol::TradingStatusMessage& message) {

@@ -1,3 +1,4 @@
+// Nasdaq.PhlxOptions.TopOfMarket.Itch.v3.4: enums/QuoteCondition.cpp
 #include "QuoteCondition.hpp"
 
 namespace nasdaq::phlxoptions::topofmarket::itch::v3_4 {

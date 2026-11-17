@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: common/Wire.hpp
 #pragma once
 
 #include <bit>

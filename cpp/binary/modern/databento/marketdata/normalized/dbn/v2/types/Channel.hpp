@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v2: types/Channel.hpp
 #pragma once
 
 #include <cstddef>

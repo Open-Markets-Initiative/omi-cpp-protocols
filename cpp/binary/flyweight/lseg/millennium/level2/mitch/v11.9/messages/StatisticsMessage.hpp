@@ -1,5 +1,7 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/StatisticsMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <ostream>
@@ -9,6 +11,7 @@
 #include "../common/Print.hpp"
 #include "../common/View.hpp"
 #include "../enums/StatisticType.hpp"
+#include "../common/Decimal.hpp"
 #include "../enums/OpenClosePriceIndicator.hpp"
 #include "../bitfields/StatisticsReserved.hpp"
 
@@ -29,7 +32,7 @@ class StatisticsMessage {
     static constexpr std::size_t fixed_size = 21;
     std::size_t encoded_size() const { return 21; }
 
-    std::uint32_t nanosecond() const { return wire::read_u32_le(at(0)); }
+    std::chrono::nanoseconds nanosecond() const { return std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(at(0)))); }
 
     std::uint32_t instrument_id() const { return wire::read_u32_le(at(4)); }
 
@@ -39,7 +42,7 @@ class StatisticsMessage {
 
     StatisticType statistic_type() const { return static_cast<StatisticType>(wire::read_char(at(10))); }
 
-    std::int64_t price() const { return wire::read_i64_le(at(11)); }
+    Decimal price() const { return Decimal(static_cast<std::int64_t>(wire::read_i64_le(at(11))), -8); }
 
     OpenClosePriceIndicator open_close_price_indicator() const { return static_cast<OpenClosePriceIndicator>(wire::read_char(at(19))); }
 
@@ -48,7 +51,7 @@ class StatisticsMessage {
     void print(std::ostream& out) const {
         out << "StatisticsMessage{";
         out << "nanosecond=";
-        out << nanosecond();
+        out << nanosecond().count();
         out << ", instrument_id=";
         out << instrument_id();
         out << ", reserved_a=";

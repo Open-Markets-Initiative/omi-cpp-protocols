@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: structs/CorrectedPriorDayTradeDateAndTime.cpp
 #include "CorrectedPriorDayTradeDateAndTime.hpp"
 
 #include "../common/Print.hpp"

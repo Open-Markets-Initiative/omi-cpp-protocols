@@ -1,3 +1,4 @@
+// Cboe.C1Options.MulticastDepthOfBook.Pitch.v2.39.4: messages/ReduceSizeShortMessage.cpp
 #include "ReduceSizeShortMessage.hpp"
 
 #include "../common/Print.hpp"

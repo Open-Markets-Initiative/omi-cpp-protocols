@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2023: messages/PayloadDirectListingWithCapitalRaisePriceDiscoveryMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -48,7 +49,8 @@ class PayloadDirectListingWithCapitalRaisePriceDiscoveryMessage {
 
     Decimal near_execution_price() const { return Decimal(static_cast<std::int64_t>(wire::read_u32_be(at(27))), -4); }
 
-    std::uint64_t near_execution_time() const { return wire::read_u64_be(at(31)); }
+    std::chrono::nanoseconds near_execution_time() const { return std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u64_be(at(31)))); }
+    std::int64_t near_execution_time_utc(const calendar::Day& day) const { return calendar::midnight(day, "America/New_York").utc(static_cast<std::int64_t>(near_execution_time().count())); }
 
     Decimal lower_price_range_collar() const { return Decimal(static_cast<std::int64_t>(wire::read_u32_be(at(39))), -4); }
 
@@ -73,7 +75,7 @@ class PayloadDirectListingWithCapitalRaisePriceDiscoveryMessage {
         out << ", near_execution_price=";
         out << near_execution_price();
         out << ", near_execution_time=";
-        out << near_execution_time();
+        calendar::print(out, near_execution_time().count(), 1, "America/New_York");
         out << ", lower_price_range_collar=";
         out << lower_price_range_collar();
         out << ", upper_price_range_collar=";

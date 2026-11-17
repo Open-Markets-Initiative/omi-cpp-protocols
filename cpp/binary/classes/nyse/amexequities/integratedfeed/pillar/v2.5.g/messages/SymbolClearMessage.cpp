@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeed.Pillar.v2.5.g: messages/SymbolClearMessage.cpp
 #include "SymbolClearMessage.hpp"
 
 #include "../common/Print.hpp"

@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.6: program/Runner.hpp
 #pragma once
 
 #include "Settings.hpp"

@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v1.91: messages/LongQuoteMessage.cpp
 #include "LongQuoteMessage.hpp"
 
 #include "../common/Print.hpp"

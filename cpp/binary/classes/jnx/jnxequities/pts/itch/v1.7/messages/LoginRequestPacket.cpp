@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.7: messages/LoginRequestPacket.cpp
 #include "LoginRequestPacket.hpp"
 
 #include "../common/Print.hpp"

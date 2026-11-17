@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: types/RequestedTradingSessionId.hpp
 #pragma once
 
 #include <cstddef>
@@ -6,7 +7,7 @@
 namespace miax::pearlequities::depthofmarket::mach::v1_3_d {
 
 
-// Specifies the session the client would like to log into, or zero to log into the currently active session
+// Specifies the Matching Engine trading session the client would like to log into, or zero to log into the currently active trading session
 struct RequestedTradingSessionId {
 
     static constexpr auto name = "Requested Trading Session Id";

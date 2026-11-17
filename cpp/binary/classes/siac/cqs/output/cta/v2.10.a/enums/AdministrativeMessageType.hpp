@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v2.10.a: enums/AdministrativeMessageType.hpp
 #pragma once
 
 #include <cstdint>

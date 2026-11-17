@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: TypesAll.hpp
 #pragma once
 
 // All type headers for this protocol schema
@@ -41,7 +42,7 @@
 #include "types/Padding.hpp"
 #include "types/Ordtagid.hpp"
 #include "types/MmProtectionReset.hpp"
-#include "types/Clordid.hpp"
+#include "types/ClOrdId.hpp"
 #include "types/Account.hpp"
 #include "types/SenderLocation.hpp"
 #include "types/EnteringTrader.hpp"
@@ -75,7 +76,7 @@
 #include "types/Offset18Padding2.hpp"
 #include "types/SingleCancelRestatementReason.hpp"
 #include "types/Offset54Padding2.hpp"
-#include "types/Crossid.hpp"
+#include "types/CrossId.hpp"
 #include "types/Price.hpp"
 #include "types/CrossedIndicator.hpp"
 #include "types/NumInGroup.hpp"
@@ -91,13 +92,13 @@
 #include "types/TradeDate.hpp"
 #include "types/WorkingIndicator.hpp"
 #include "types/MultiLegReportingType.hpp"
-#include "types/CrossidOptional.hpp"
+#include "types/CrossIdOptional.hpp"
 #include "types/LeavesQty.hpp"
 #include "types/CumQty.hpp"
 #include "types/ExecRestatementReason.hpp"
 #include "types/Offset100Padding4.hpp"
 #include "types/MassActionReportIdOptional.hpp"
-#include "types/ClordidOptional.hpp"
+#include "types/ClOrdIdOptional.hpp"
 #include "types/LastQty.hpp"
 #include "types/LastPx.hpp"
 #include "types/AggressorIndicator.hpp"
@@ -132,6 +133,7 @@
 #include "types/Symbol.hpp"
 #include "types/SecurityResponseId.hpp"
 #include "types/MarketSegmentIdOptional.hpp"
+#include "types/PaddingChar2.hpp"
 #include "types/QuoteIdOptional.hpp"
 #include "types/TradeIdOptional.hpp"
 #include "types/SettlType.hpp"

@@ -297,7 +297,6 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::size_type>(); }) { values[entry + ".messagedata.tradereportmessage.size"] = canonical::number(message.template get<protocol::size_type>().value()); }
         if constexpr (requires { message.template get<protocol::price>(); }) { values[entry + ".messagedata.tradereportmessage.price"] = canonical::scaled(message.template get<protocol::price>().value(), -4); }
         if constexpr (requires { message.template get<protocol::trade_id>(); }) { values[entry + ".messagedata.tradereportmessage.tradeid"] = canonical::number(message.template get<protocol::trade_id>().value()); }
-        if constexpr (requires { message.template get<protocol::reserved_4>(); }) { values[entry + ".messagedata.tradereportmessage.reserved4"] = canonical::number(message.template get<protocol::reserved_4>().value()); }
     }
 
     void operator()(const protocol::trade_break_message& message) {
@@ -307,7 +306,6 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::size_type>(); }) { values[entry + ".messagedata.tradebreakmessage.size"] = canonical::number(message.template get<protocol::size_type>().value()); }
         if constexpr (requires { message.template get<protocol::price>(); }) { values[entry + ".messagedata.tradebreakmessage.price"] = canonical::scaled(message.template get<protocol::price>().value(), -4); }
         if constexpr (requires { message.template get<protocol::trade_id>(); }) { values[entry + ".messagedata.tradebreakmessage.tradeid"] = canonical::number(message.template get<protocol::trade_id>().value()); }
-        if constexpr (requires { message.template get<protocol::reserved_4>(); }) { values[entry + ".messagedata.tradebreakmessage.reserved4"] = canonical::number(message.template get<protocol::reserved_4>().value()); }
     }
 };
 

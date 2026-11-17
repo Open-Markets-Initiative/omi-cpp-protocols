@@ -1,3 +1,4 @@
+// Miax.OnyxFutures.TopOfMarket.Mach.v1.0.b: definitions.hpp
 #pragma once
 
 #include "structs/MachPacketHeader.hpp"
@@ -10,6 +11,10 @@
 #include "messages/BestBidAndOfferMessage.hpp"
 #include "messages/LastSaleMessage.hpp"
 #include "messages/TradeCancelMessage.hpp"
+
+#include "actions/Heartbeat.hpp"
+#include "actions/StartOfSession.hpp"
+#include "actions/EndOfSession.hpp"
 
 #include "iterators/InstrumentLegIterator.hpp"
 #include "iterators/MachMessageIterator.hpp"

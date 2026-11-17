@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v13.0: messages/OrderModifySamePrio.hpp
 #pragma once
 
 #include <chrono>
@@ -39,7 +40,7 @@ class OrderModifySamePrio : public Message {
     std::optional<Decimal> prev_display_qty() const;
     void set_prev_display_qty(std::optional<Decimal> value);
 
-    // Security Id:
+    // Security Id: Unique instrument identifier
     std::optional<std::int64_t> security_id() const;
     void set_security_id(std::optional<std::int64_t> value);
 

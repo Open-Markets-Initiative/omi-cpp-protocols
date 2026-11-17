@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.Bbo.Xdp.v2.4.g: messages/TradingSessionChangeMessage.hpp
 #pragma once
 
 #include "../types/SourceTime.hpp"

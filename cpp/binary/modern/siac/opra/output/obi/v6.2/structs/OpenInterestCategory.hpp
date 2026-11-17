@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: structs/OpenInterestCategory.hpp
 #pragma once
 
 #include "../types/OpenInterestMessageType.hpp"

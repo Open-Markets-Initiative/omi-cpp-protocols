@@ -1,3 +1,4 @@
+// Iex.IexEquities.Tops.Snap.v1.6: definitions.hpp
 #pragma once
 
 // Every flyweight view and reader of Iex.IexEquities.Tops.Snap.v1.6.

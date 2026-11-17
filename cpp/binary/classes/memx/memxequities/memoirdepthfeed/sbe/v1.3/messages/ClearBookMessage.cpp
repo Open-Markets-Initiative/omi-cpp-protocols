@@ -1,3 +1,4 @@
+// Memx.MemxEquities.MemoirDepthFeed.Sbe.v1.3: messages/ClearBookMessage.cpp
 #include "ClearBookMessage.hpp"
 
 #include "../common/Print.hpp"

@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: messages/QuoteStatusReportMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -37,50 +38,50 @@ class QuoteStatusReportMessage {
     std::span<const std::byte> bytes() const noexcept { return bytes_; }
 
     // the bytes every QuoteStatusReportMessage has, which a reader checks before it views them
-    static constexpr std::size_t minimum_size = 110;
+    static constexpr std::size_t minimum_size = 111;
     std::size_t encoded_size() const { return text_end(); }
 
     BidirectionalBusinessHeader bidirectional_business_header() const { return BidirectionalBusinessHeader{ bytes_.subspan(0) }; }
 
-    std::optional<QuoteRejectReason> quote_reject_reason() const { return wire::nullable_enum<QuoteRejectReason>(wire::read_u32_le(at(19)), static_cast<std::uint32_t>(0ULL)); }
+    std::optional<QuoteRejectReason> quote_reject_reason() const { return wire::nullable_enum<QuoteRejectReason>(wire::read_u32_le(at(20)), static_cast<std::uint32_t>(0ULL)); }
 
-    std::uint64_t security_id() const { return wire::read_u64_le(at(23)); }
+    std::uint64_t security_id() const { return wire::read_u64_le(at(24)); }
 
-    std::uint64_t quote_id() const { return wire::read_u64_le(at(31)); }
+    std::uint64_t quote_id() const { return wire::read_u64_le(at(32)); }
 
-    std::optional<std::uint32_t> trade_id_optional() const { return wire::nullable(wire::read_u32_le(at(39)), static_cast<std::uint32_t>(0ULL)); }
+    std::optional<std::uint32_t> trade_id_optional() const { return wire::nullable(wire::read_u32_le(at(40)), static_cast<std::uint32_t>(0ULL)); }
 
-    std::uint32_t contra_broker() const { return wire::read_u32_le(at(43)); }
+    std::uint32_t contra_broker() const { return wire::read_u32_le(at(44)); }
 
-    std::chrono::nanoseconds transact_time() const { return std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u64_le(at(47)))); }
+    std::chrono::nanoseconds transact_time() const { return std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u64_le(at(48)))); }
 
-    QuoteStatus quote_status() const { return static_cast<QuoteStatus>(wire::read_u8(at(55))); }
+    QuoteStatus quote_status() const { return static_cast<QuoteStatus>(wire::read_u8(at(56))); }
 
-    QuoteStatusResponseTo quote_status_response_to() const { return static_cast<QuoteStatusResponseTo>(wire::read_char(at(56))); }
+    QuoteStatusResponseTo quote_status_response_to() const { return static_cast<QuoteStatusResponseTo>(wire::read_char(at(57))); }
 
-    std::optional<std::uint32_t> account() const { return wire::nullable(wire::read_u32_le(at(57)), static_cast<std::uint32_t>(0ULL)); }
+    std::optional<std::uint32_t> account() const { return wire::nullable(wire::read_u32_le(at(58)), static_cast<std::uint32_t>(0ULL)); }
 
-    SideOptional side_optional() const { return static_cast<SideOptional>(wire::read_char(at(61))); }
+    SideOptional side_optional() const { return static_cast<SideOptional>(wire::read_char(at(62))); }
 
-    SettlTypeOptional settl_type_optional() const { return static_cast<SettlTypeOptional>(wire::read_char(at(62))); }
+    SettlTypeOptional settl_type_optional() const { return static_cast<SettlTypeOptional>(wire::read_char(at(63))); }
 
-    std::optional<Decimal> price_optional() const { return wire::nullable_decimal(wire::read_i64_le(at(63)), static_cast<std::int64_t>(-9223372036854775807LL - 1), -4); }
+    std::optional<Decimal> price_optional() const { return wire::nullable_decimal(wire::read_i64_le(at(64)), static_cast<std::int64_t>(-9223372036854775807LL - 1), -4); }
 
-    std::uint64_t order_qty() const { return wire::read_u64_le(at(71)); }
+    std::uint64_t order_qty() const { return wire::read_u64_le(at(72)); }
 
-    std::string_view sender_location() const { return view::text(at(79), 10, '\0'); }
+    std::string_view sender_location() const { return view::text(at(80), 10, '\0'); }
 
-    std::string_view entering_trader() const { return view::text(at(89), 5, '\0'); }
+    std::string_view entering_trader() const { return view::text(at(90), 5, '\0'); }
 
-    std::string_view executing_trader() const { return view::text(at(94), 5, '\0'); }
+    std::string_view executing_trader() const { return view::text(at(95), 5, '\0'); }
 
-    std::optional<Decimal> fixed_rate_optional() const { return wire::nullable_decimal(wire::read_i64_le(at(99)), static_cast<std::int64_t>(-9223372036854775807LL - 1), -4); }
+    std::optional<Decimal> fixed_rate_optional() const { return wire::nullable_decimal(wire::read_i64_le(at(100)), static_cast<std::int64_t>(-9223372036854775807LL - 1), -4); }
 
-    ExecuteUnderlyingTrade execute_underlying_trade() const { return static_cast<ExecuteUnderlyingTrade>(wire::read_char(at(107))); }
+    ExecuteUnderlyingTrade execute_underlying_trade() const { return static_cast<ExecuteUnderlyingTrade>(wire::read_char(at(108))); }
 
-    std::optional<std::uint16_t> days_to_settlement_optional() const { return wire::nullable(wire::read_u16_le(at(108)), static_cast<std::uint16_t>(65535ULL)); }
+    std::optional<std::uint16_t> days_to_settlement_optional() const { return wire::nullable(wire::read_u16_le(at(109)), static_cast<std::uint16_t>(65535ULL)); }
 
-    QuoteReqId quote_req_id() const { return QuoteReqId{ bytes_.subspan(110) }; }
+    QuoteReqId quote_req_id() const { return QuoteReqId{ bytes_.subspan(111) }; }
 
     DeskId desk_id() const {
         wire::require("QuoteStatusReportMessage", quote_req_id_end() + DeskId::minimum_size, bytes_.size());
@@ -152,7 +153,7 @@ class QuoteStatusReportMessage {
 
   private:
     const std::byte* at(std::size_t offset) const noexcept { return bytes_.data() + offset; }
-    std::size_t quote_req_id_end() const { return 110 + quote_req_id().encoded_size(); }
+    std::size_t quote_req_id_end() const { return 111 + quote_req_id().encoded_size(); }
     std::size_t desk_id_end() const { return quote_req_id_end() + desk_id().encoded_size(); }
     std::size_t memo_end() const { return desk_id_end() + memo().encoded_size(); }
     std::size_t text_end() const { return memo_end() + text().encoded_size(); }

@@ -1,0 +1,22 @@
+# Nyse.ArcaOptions.DeepFeed.Pillar.v1.2.m OptionsReplaceOrderMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 59
+packet.packetheader.deliveryflag = 11
+packet.packetheader.numbermsgs = 1
+packet.packetheader.seqnum = 546748
+packet.packetheader.sendtime.seconds = 1639232061
+packet.packetheader.sendtime.nanoseconds = 218196480
+packet.packetheader.sendtime = 1639232061218196480
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 43
+packet.messages.message[0].messageheader.messagetype = 304
+packet.messages.message[0].payload = packet.messages.message.payload.optionsreplaceordermessage
+packet.messages.message[0].payload.optionsreplaceordermessage.sourcetimens = 218184960
+packet.messages.message[0].payload.optionsreplaceordermessage.seriesindex = 32749191
+packet.messages.message[0].payload.optionsreplaceordermessage.seriesseqnum = 5
+packet.messages.message[0].payload.optionsreplaceordermessage.orderid = 14355240992118065
+packet.messages.message[0].payload.optionsreplaceordermessage.neworderid = 14355240992121899
+packet.messages.message[0].payload.optionsreplaceordermessage.price = 100000
+packet.messages.message[0].payload.optionsreplaceordermessage.volume = 10
+packet.messages.message[0].payload.optionsreplaceordermessage.side = 
+packet.messages.message[0].payload.optionsreplaceordermessage.custindicator = N

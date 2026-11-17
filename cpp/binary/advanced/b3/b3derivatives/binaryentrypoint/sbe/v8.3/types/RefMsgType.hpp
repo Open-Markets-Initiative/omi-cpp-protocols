@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: types/RefMsgType.hpp
 #pragma once
 
 #include <cstddef>

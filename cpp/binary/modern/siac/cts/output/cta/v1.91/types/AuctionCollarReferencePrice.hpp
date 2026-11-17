@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v1.91: types/AuctionCollarReferencePrice.hpp
 #pragma once
 
 #include <bit>

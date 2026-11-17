@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: messages/ExecutionReportTradeMessage.cpp
 #include "ExecutionReportTradeMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,8 +7,8 @@
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_0 {
 
-ExecutionReportTradeMessage::ExecutionReportTradeMessage(const OutboundBusinessHeader& outbound_business_header, Side side, OrdStatus ord_status, std::optional<std::uint64_t> clordid_optional, std::uint64_t secondary_order_id, std::uint64_t security_id, std::optional<std::uint32_t> account, std::uint64_t last_qty, Decimal last_px, std::uint64_t exec_id, std::chrono::nanoseconds transact_time, std::uint64_t leaves_qty, std::uint64_t cum_qty, AggressorIndicator aggressor_indicator, ExecType exec_type, OrderCategory order_category, MultiLegReportingType multi_leg_reporting_type, std::uint32_t trade_id, std::uint32_t contra_broker, std::uint64_t order_id, std::uint16_t trade_date, std::optional<std::uint8_t> tot_no_related_sym, const std::array<std::byte, 1>& offset_119_padding_1, std::optional<std::uint64_t> secondary_exec_id, std::optional<std::uint64_t> exec_ref_id, std::optional<std::uint64_t> crossid_optional, std::optional<CrossedIndicator> crossed_indicator, std::uint64_t order_qty, const DeskId& desk_id, const Memo& memo)
-  : outbound_business_header_(outbound_business_header), side_(side), ord_status_(ord_status), clordid_optional_(clordid_optional), secondary_order_id_(secondary_order_id), security_id_(security_id), account_(account), last_qty_(last_qty), last_px_(last_px), exec_id_(exec_id), transact_time_(transact_time), leaves_qty_(leaves_qty), cum_qty_(cum_qty), aggressor_indicator_(aggressor_indicator), exec_type_(exec_type), order_category_(order_category), multi_leg_reporting_type_(multi_leg_reporting_type), trade_id_(trade_id), contra_broker_(contra_broker), order_id_(order_id), trade_date_(trade_date), tot_no_related_sym_(tot_no_related_sym), offset_119_padding_1_(offset_119_padding_1), secondary_exec_id_(secondary_exec_id), exec_ref_id_(exec_ref_id), crossid_optional_(crossid_optional), crossed_indicator_(crossed_indicator), order_qty_(order_qty), desk_id_(desk_id), memo_(memo) {}
+ExecutionReportTradeMessage::ExecutionReportTradeMessage(const OutboundBusinessHeader& outbound_business_header, Side side, OrdStatus ord_status, std::optional<std::uint64_t> cl_ord_id_optional, std::uint64_t secondary_order_id, std::uint64_t security_id, std::optional<std::uint32_t> account, std::uint64_t last_qty, Decimal last_px, std::uint64_t exec_id, std::chrono::nanoseconds transact_time, std::uint64_t leaves_qty, std::uint64_t cum_qty, AggressorIndicator aggressor_indicator, ExecType exec_type, OrderCategory order_category, MultiLegReportingType multi_leg_reporting_type, std::uint32_t trade_id, std::uint32_t contra_broker, std::uint64_t order_id, std::uint16_t trade_date, std::optional<std::uint8_t> tot_no_related_sym, const std::array<std::byte, 1>& offset_119_padding_1, std::optional<std::uint64_t> secondary_exec_id, std::optional<std::uint64_t> exec_ref_id, std::optional<std::uint64_t> cross_id_optional, std::optional<CrossedIndicator> crossed_indicator, std::uint64_t order_qty, const DeskId& desk_id, const Memo& memo)
+  : outbound_business_header_(outbound_business_header), side_(side), ord_status_(ord_status), cl_ord_id_optional_(cl_ord_id_optional), secondary_order_id_(secondary_order_id), security_id_(security_id), account_(account), last_qty_(last_qty), last_px_(last_px), exec_id_(exec_id), transact_time_(transact_time), leaves_qty_(leaves_qty), cum_qty_(cum_qty), aggressor_indicator_(aggressor_indicator), exec_type_(exec_type), order_category_(order_category), multi_leg_reporting_type_(multi_leg_reporting_type), trade_id_(trade_id), contra_broker_(contra_broker), order_id_(order_id), trade_date_(trade_date), tot_no_related_sym_(tot_no_related_sym), offset_119_padding_1_(offset_119_padding_1), secondary_exec_id_(secondary_exec_id), exec_ref_id_(exec_ref_id), cross_id_optional_(cross_id_optional), crossed_indicator_(crossed_indicator), order_qty_(order_qty), desk_id_(desk_id), memo_(memo) {}
 
 const OutboundBusinessHeader& ExecutionReportTradeMessage::outbound_business_header() const { return outbound_business_header_; }
 OutboundBusinessHeader& ExecutionReportTradeMessage::outbound_business_header() { return outbound_business_header_; }
@@ -19,8 +20,8 @@ void ExecutionReportTradeMessage::set_side(Side value) { side_ = value; }
 OrdStatus ExecutionReportTradeMessage::ord_status() const { return ord_status_; }
 void ExecutionReportTradeMessage::set_ord_status(OrdStatus value) { ord_status_ = value; }
 
-std::optional<std::uint64_t> ExecutionReportTradeMessage::clordid_optional() const { return clordid_optional_; }
-void ExecutionReportTradeMessage::set_clordid_optional(std::optional<std::uint64_t> value) { clordid_optional_ = value; }
+std::optional<std::uint64_t> ExecutionReportTradeMessage::cl_ord_id_optional() const { return cl_ord_id_optional_; }
+void ExecutionReportTradeMessage::set_cl_ord_id_optional(std::optional<std::uint64_t> value) { cl_ord_id_optional_ = value; }
 
 std::uint64_t ExecutionReportTradeMessage::secondary_order_id() const { return secondary_order_id_; }
 void ExecutionReportTradeMessage::set_secondary_order_id(std::uint64_t value) { secondary_order_id_ = value; }
@@ -86,8 +87,8 @@ void ExecutionReportTradeMessage::set_secondary_exec_id(std::optional<std::uint6
 std::optional<std::uint64_t> ExecutionReportTradeMessage::exec_ref_id() const { return exec_ref_id_; }
 void ExecutionReportTradeMessage::set_exec_ref_id(std::optional<std::uint64_t> value) { exec_ref_id_ = value; }
 
-std::optional<std::uint64_t> ExecutionReportTradeMessage::crossid_optional() const { return crossid_optional_; }
-void ExecutionReportTradeMessage::set_crossid_optional(std::optional<std::uint64_t> value) { crossid_optional_ = value; }
+std::optional<std::uint64_t> ExecutionReportTradeMessage::cross_id_optional() const { return cross_id_optional_; }
+void ExecutionReportTradeMessage::set_cross_id_optional(std::optional<std::uint64_t> value) { cross_id_optional_ = value; }
 
 std::optional<CrossedIndicator> ExecutionReportTradeMessage::crossed_indicator() const { return crossed_indicator_; }
 void ExecutionReportTradeMessage::set_crossed_indicator(std::optional<CrossedIndicator> value) { crossed_indicator_ = value; }
@@ -121,7 +122,7 @@ std::size_t ExecutionReportTradeMessage::decode(const std::byte* data, std::size
     offset += 1;
 
     wire::require("ExecutionReportTradeMessage", offset + 8, length);
-    clordid_optional_ = wire::nullable(wire::read_u64_le(data + offset), static_cast<std::uint64_t>(0ULL));
+    cl_ord_id_optional_ = wire::nullable(wire::read_u64_le(data + offset), static_cast<std::uint64_t>(0ULL));
     offset += 8;
 
     wire::require("ExecutionReportTradeMessage", offset + 8, length);
@@ -209,7 +210,7 @@ std::size_t ExecutionReportTradeMessage::decode(const std::byte* data, std::size
     offset += 8;
 
     wire::require("ExecutionReportTradeMessage", offset + 8, length);
-    crossid_optional_ = wire::nullable(wire::read_u64_le(data + offset), static_cast<std::uint64_t>(0ULL));
+    cross_id_optional_ = wire::nullable(wire::read_u64_le(data + offset), static_cast<std::uint64_t>(0ULL));
     offset += 8;
 
     wire::require("ExecutionReportTradeMessage", offset + 2, length);
@@ -239,7 +240,7 @@ std::size_t ExecutionReportTradeMessage::encode(std::byte* data, std::size_t cap
     wire::write_char(data + offset, static_cast<char>(ord_status_));
     offset += 1;
 
-    wire::write_u64_le(data + offset, clordid_optional_.value_or(static_cast<std::uint64_t>(0ULL)));
+    wire::write_u64_le(data + offset, cl_ord_id_optional_.value_or(static_cast<std::uint64_t>(0ULL)));
     offset += 8;
 
     wire::write_u64_le(data + offset, static_cast<std::uint64_t>(secondary_order_id_));
@@ -305,7 +306,7 @@ std::size_t ExecutionReportTradeMessage::encode(std::byte* data, std::size_t cap
     wire::write_u64_le(data + offset, exec_ref_id_.value_or(static_cast<std::uint64_t>(0ULL)));
     offset += 8;
 
-    wire::write_u64_le(data + offset, crossid_optional_.value_or(static_cast<std::uint64_t>(0ULL)));
+    wire::write_u64_le(data + offset, cross_id_optional_.value_or(static_cast<std::uint64_t>(0ULL)));
     offset += 8;
 
     wire::write_u16_le(data + offset, crossed_indicator_ ? static_cast<std::uint16_t>(*crossed_indicator_) : static_cast<std::uint16_t>(0ULL));
@@ -341,8 +342,8 @@ void ExecutionReportTradeMessage::print(std::ostream& out) const {
     out << side_;
     out << ", ord_status=";
     out << ord_status_;
-    out << ", clordid_optional=";
-    print::optional(out, clordid_optional_);
+    out << ", cl_ord_id_optional=";
+    print::optional(out, cl_ord_id_optional_);
     out << ", secondary_order_id=";
     out << secondary_order_id_;
     out << ", security_id=";
@@ -385,8 +386,8 @@ void ExecutionReportTradeMessage::print(std::ostream& out) const {
     print::optional(out, secondary_exec_id_);
     out << ", exec_ref_id=";
     print::optional(out, exec_ref_id_);
-    out << ", crossid_optional=";
-    print::optional(out, crossid_optional_);
+    out << ", cross_id_optional=";
+    print::optional(out, cross_id_optional_);
     out << ", crossed_indicator=";
     print::optional(out, crossed_indicator_);
     out << ", order_qty=";
@@ -407,7 +408,7 @@ bool ExecutionReportTradeMessage::operator==(const ExecutionReportTradeMessage& 
     return outbound_business_header_ == other.outbound_business_header_
         && side_ == other.side_
         && ord_status_ == other.ord_status_
-        && clordid_optional_ == other.clordid_optional_
+        && cl_ord_id_optional_ == other.cl_ord_id_optional_
         && secondary_order_id_ == other.secondary_order_id_
         && security_id_ == other.security_id_
         && account_ == other.account_
@@ -429,7 +430,7 @@ bool ExecutionReportTradeMessage::operator==(const ExecutionReportTradeMessage& 
         && offset_119_padding_1_ == other.offset_119_padding_1_
         && secondary_exec_id_ == other.secondary_exec_id_
         && exec_ref_id_ == other.exec_ref_id_
-        && crossid_optional_ == other.crossid_optional_
+        && cross_id_optional_ == other.cross_id_optional_
         && crossed_indicator_ == other.crossed_indicator_
         && order_qty_ == other.order_qty_
         && desk_id_ == other.desk_id_

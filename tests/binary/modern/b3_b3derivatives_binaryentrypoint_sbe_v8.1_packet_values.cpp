@@ -141,7 +141,7 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".payload.simplenewordermessage.inboundbusinessheader.padding"] = canonical::text(canonical::character(message->inbound_business_header.padding.get()));
             values[entry + ".payload.simplenewordermessage.ordtagid"] = (static_cast<std::uint8_t>(message->ordtagid.get()) != 0x0U ? canonical::number(message->ordtagid.get()) : canonical::absent());
             values[entry + ".payload.simplenewordermessage.mmprotectionreset"] = canonical::number(message->mm_protection_reset.get());
-            values[entry + ".payload.simplenewordermessage.clordid"] = canonical::number(message->clordid.get());
+            values[entry + ".payload.simplenewordermessage.clordid"] = canonical::number(message->cl_ord_id.get());
             values[entry + ".payload.simplenewordermessage.account"] = (static_cast<std::uint32_t>(message->account.get()) != 0x0U ? canonical::number(message->account.get()) : canonical::absent());
             values[entry + ".payload.simplenewordermessage.senderlocation"] = canonical::text(std::string(message->sender_location.get()), '\0', false);
             values[entry + ".payload.simplenewordermessage.enteringtrader"] = canonical::text(std::string(message->entering_trader.get()), '\0', false);
@@ -153,8 +153,8 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".payload.simplenewordermessage.routinginstruction"] = (static_cast<std::uint8_t>(message->routing_instruction.get()) != 0x0U ? canonical::number(message->routing_instruction.get()) : canonical::absent());
             values[entry + ".payload.simplenewordermessage.orderqty"] = canonical::number(message->order_qty.get());
             values[entry + ".payload.simplenewordermessage.priceoptional"] = (static_cast<std::uint64_t>(message->price_optional.integer()) != 0x08000000000000000ULL ? canonical::scaled(message->price_optional.integer(), -4) : canonical::absent());
-            values[entry + ".payload.simplenewordermessage.investorid.prefix"] = canonical::number(message->investor_id.prefix.get());
-            values[entry + ".payload.simplenewordermessage.investorid.document"] = canonical::number(message->investor_id.document.get());
+            values[entry + ".payload.simplenewordermessage.investorid.prefix"] = (static_cast<std::uint16_t>(message->investor_id.prefix.get()) != 0x0U ? canonical::number(message->investor_id.prefix.get()) : canonical::absent());
+            values[entry + ".payload.simplenewordermessage.investorid.document"] = (static_cast<std::uint32_t>(message->investor_id.document.get()) != 0x0U ? canonical::number(message->investor_id.document.get()) : canonical::absent());
         } else if (iterator.template_id == 101) {
             values[entry + ".payload"] = "packet.simpleopenframe.payload.simplemodifyordermessage";
             [[maybe_unused]] const auto* message = protocol::SimpleModifyOrderMessage::parse(iterator.message);
@@ -165,7 +165,7 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".payload.simplemodifyordermessage.inboundbusinessheader.padding"] = canonical::text(canonical::character(message->inbound_business_header.padding.get()));
             values[entry + ".payload.simplemodifyordermessage.ordtagid"] = (static_cast<std::uint8_t>(message->ordtagid.get()) != 0x0U ? canonical::number(message->ordtagid.get()) : canonical::absent());
             values[entry + ".payload.simplemodifyordermessage.mmprotectionreset"] = canonical::number(message->mm_protection_reset.get());
-            values[entry + ".payload.simplemodifyordermessage.clordid"] = canonical::number(message->clordid.get());
+            values[entry + ".payload.simplemodifyordermessage.clordid"] = canonical::number(message->cl_ord_id.get());
             values[entry + ".payload.simplemodifyordermessage.account"] = (static_cast<std::uint32_t>(message->account.get()) != 0x0U ? canonical::number(message->account.get()) : canonical::absent());
             values[entry + ".payload.simplemodifyordermessage.senderlocation"] = canonical::text(std::string(message->sender_location.get()), '\0', false);
             values[entry + ".payload.simplemodifyordermessage.enteringtrader"] = canonical::text(std::string(message->entering_trader.get()), '\0', false);
@@ -179,8 +179,8 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".payload.simplemodifyordermessage.priceoptional"] = (static_cast<std::uint64_t>(message->price_optional.integer()) != 0x08000000000000000ULL ? canonical::scaled(message->price_optional.integer(), -4) : canonical::absent());
             values[entry + ".payload.simplemodifyordermessage.orderidoptional"] = (static_cast<std::uint64_t>(message->order_id_optional.get()) != 0x0ULL ? canonical::number(message->order_id_optional.get()) : canonical::absent());
             values[entry + ".payload.simplemodifyordermessage.origclordid"] = (static_cast<std::uint64_t>(message->origclordid.get()) != 0x0ULL ? canonical::number(message->origclordid.get()) : canonical::absent());
-            values[entry + ".payload.simplemodifyordermessage.investorid.prefix"] = canonical::number(message->investor_id.prefix.get());
-            values[entry + ".payload.simplemodifyordermessage.investorid.document"] = canonical::number(message->investor_id.document.get());
+            values[entry + ".payload.simplemodifyordermessage.investorid.prefix"] = (static_cast<std::uint16_t>(message->investor_id.prefix.get()) != 0x0U ? canonical::number(message->investor_id.prefix.get()) : canonical::absent());
+            values[entry + ".payload.simplemodifyordermessage.investorid.document"] = (static_cast<std::uint32_t>(message->investor_id.document.get()) != 0x0U ? canonical::number(message->investor_id.document.get()) : canonical::absent());
         } else if (iterator.template_id == 102) {
             values[entry + ".payload"] = "packet.simpleopenframe.payload.newordersinglemessage";
             [[maybe_unused]] const auto* message = protocol::NewOrderSingleMessage::parse(iterator.message);
@@ -191,7 +191,7 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".payload.newordersinglemessage.inboundbusinessheader.padding"] = canonical::text(canonical::character(message->inbound_business_header.padding.get()));
             values[entry + ".payload.newordersinglemessage.ordtagid"] = (static_cast<std::uint8_t>(message->ordtagid.get()) != 0x0U ? canonical::number(message->ordtagid.get()) : canonical::absent());
             values[entry + ".payload.newordersinglemessage.mmprotectionreset"] = canonical::number(message->mm_protection_reset.get());
-            values[entry + ".payload.newordersinglemessage.clordid"] = canonical::number(message->clordid.get());
+            values[entry + ".payload.newordersinglemessage.clordid"] = canonical::number(message->cl_ord_id.get());
             values[entry + ".payload.newordersinglemessage.account"] = (static_cast<std::uint32_t>(message->account.get()) != 0x0U ? canonical::number(message->account.get()) : canonical::absent());
             values[entry + ".payload.newordersinglemessage.senderlocation"] = canonical::text(std::string(message->sender_location.get()), '\0', false);
             values[entry + ".payload.newordersinglemessage.enteringtrader"] = canonical::text(std::string(message->entering_trader.get()), '\0', false);
@@ -207,11 +207,11 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".payload.newordersinglemessage.minqty"] = (static_cast<std::uint64_t>(message->min_qty.get()) != 0x0ULL ? canonical::number(message->min_qty.get()) : canonical::absent());
             values[entry + ".payload.newordersinglemessage.maxfloor"] = (static_cast<std::uint64_t>(message->max_floor.get()) != 0x0ULL ? canonical::number(message->max_floor.get()) : canonical::absent());
             values[entry + ".payload.newordersinglemessage.expiredate"] = (static_cast<std::uint16_t>(message->expire_date.get()) != 0x0U ? canonical::number(message->expire_date.get()) : canonical::absent());
-            values[entry + ".payload.newordersinglemessage.custodianinfo.custodian"] = canonical::number(message->custodian_info.custodian.get());
-            values[entry + ".payload.newordersinglemessage.custodianinfo.custodyaccount"] = canonical::number(message->custodian_info.custody_account.get());
-            values[entry + ".payload.newordersinglemessage.custodianinfo.custodyallocationtype"] = canonical::number(message->custodian_info.custody_allocation_type.get());
-            values[entry + ".payload.newordersinglemessage.investorid.prefix"] = canonical::number(message->investor_id.prefix.get());
-            values[entry + ".payload.newordersinglemessage.investorid.document"] = canonical::number(message->investor_id.document.get());
+            values[entry + ".payload.newordersinglemessage.custodianinfo.custodian"] = (static_cast<std::uint32_t>(message->custodian_info.custodian.get()) != 0x0U ? canonical::number(message->custodian_info.custodian.get()) : canonical::absent());
+            values[entry + ".payload.newordersinglemessage.custodianinfo.custodyaccount"] = (static_cast<std::uint32_t>(message->custodian_info.custody_account.get()) != 0x0U ? canonical::number(message->custodian_info.custody_account.get()) : canonical::absent());
+            values[entry + ".payload.newordersinglemessage.custodianinfo.custodyallocationtype"] = (static_cast<std::uint32_t>(message->custodian_info.custody_allocation_type.get()) != 0x0U ? canonical::number(message->custodian_info.custody_allocation_type.get()) : canonical::absent());
+            values[entry + ".payload.newordersinglemessage.investorid.prefix"] = (static_cast<std::uint16_t>(message->investor_id.prefix.get()) != 0x0U ? canonical::number(message->investor_id.prefix.get()) : canonical::absent());
+            values[entry + ".payload.newordersinglemessage.investorid.document"] = (static_cast<std::uint32_t>(message->investor_id.document.get()) != 0x0U ? canonical::number(message->investor_id.document.get()) : canonical::absent());
             values[entry + ".payload.newordersinglemessage.strategyid"] = (static_cast<std::uint32_t>(message->strategy_id.get()) != 0x0U ? canonical::number(message->strategy_id.get()) : canonical::absent());
         } else if (iterator.template_id == 104) {
             values[entry + ".payload"] = "packet.simpleopenframe.payload.ordercancelreplacerequestmessage";
@@ -223,7 +223,7 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".payload.ordercancelreplacerequestmessage.inboundbusinessheader.padding"] = canonical::text(canonical::character(message->inbound_business_header.padding.get()));
             values[entry + ".payload.ordercancelreplacerequestmessage.ordtagid"] = (static_cast<std::uint8_t>(message->ordtagid.get()) != 0x0U ? canonical::number(message->ordtagid.get()) : canonical::absent());
             values[entry + ".payload.ordercancelreplacerequestmessage.mmprotectionreset"] = canonical::number(message->mm_protection_reset.get());
-            values[entry + ".payload.ordercancelreplacerequestmessage.clordid"] = canonical::number(message->clordid.get());
+            values[entry + ".payload.ordercancelreplacerequestmessage.clordid"] = canonical::number(message->cl_ord_id.get());
             values[entry + ".payload.ordercancelreplacerequestmessage.account"] = (static_cast<std::uint32_t>(message->account.get()) != 0x0U ? canonical::number(message->account.get()) : canonical::absent());
             values[entry + ".payload.ordercancelreplacerequestmessage.senderlocation"] = canonical::text(std::string(message->sender_location.get()), '\0', false);
             values[entry + ".payload.ordercancelreplacerequestmessage.enteringtrader"] = canonical::text(std::string(message->entering_trader.get()), '\0', false);
@@ -241,11 +241,11 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".payload.ordercancelreplacerequestmessage.maxfloor"] = (static_cast<std::uint64_t>(message->max_floor.get()) != 0x0ULL ? canonical::number(message->max_floor.get()) : canonical::absent());
             values[entry + ".payload.ordercancelreplacerequestmessage.accounttype"] = (static_cast<std::uint8_t>(message->account_type.get()) != 0x0U ? canonical::number(message->account_type.get()) : canonical::absent());
             values[entry + ".payload.ordercancelreplacerequestmessage.expiredate"] = (static_cast<std::uint16_t>(message->expire_date.get()) != 0x0U ? canonical::number(message->expire_date.get()) : canonical::absent());
-            values[entry + ".payload.ordercancelreplacerequestmessage.custodianinfo.custodian"] = canonical::number(message->custodian_info.custodian.get());
-            values[entry + ".payload.ordercancelreplacerequestmessage.custodianinfo.custodyaccount"] = canonical::number(message->custodian_info.custody_account.get());
-            values[entry + ".payload.ordercancelreplacerequestmessage.custodianinfo.custodyallocationtype"] = canonical::number(message->custodian_info.custody_allocation_type.get());
-            values[entry + ".payload.ordercancelreplacerequestmessage.investorid.prefix"] = canonical::number(message->investor_id.prefix.get());
-            values[entry + ".payload.ordercancelreplacerequestmessage.investorid.document"] = canonical::number(message->investor_id.document.get());
+            values[entry + ".payload.ordercancelreplacerequestmessage.custodianinfo.custodian"] = (static_cast<std::uint32_t>(message->custodian_info.custodian.get()) != 0x0U ? canonical::number(message->custodian_info.custodian.get()) : canonical::absent());
+            values[entry + ".payload.ordercancelreplacerequestmessage.custodianinfo.custodyaccount"] = (static_cast<std::uint32_t>(message->custodian_info.custody_account.get()) != 0x0U ? canonical::number(message->custodian_info.custody_account.get()) : canonical::absent());
+            values[entry + ".payload.ordercancelreplacerequestmessage.custodianinfo.custodyallocationtype"] = (static_cast<std::uint32_t>(message->custodian_info.custody_allocation_type.get()) != 0x0U ? canonical::number(message->custodian_info.custody_allocation_type.get()) : canonical::absent());
+            values[entry + ".payload.ordercancelreplacerequestmessage.investorid.prefix"] = (static_cast<std::uint16_t>(message->investor_id.prefix.get()) != 0x0U ? canonical::number(message->investor_id.prefix.get()) : canonical::absent());
+            values[entry + ".payload.ordercancelreplacerequestmessage.investorid.document"] = (static_cast<std::uint32_t>(message->investor_id.document.get()) != 0x0U ? canonical::number(message->investor_id.document.get()) : canonical::absent());
             values[entry + ".payload.ordercancelreplacerequestmessage.strategyid"] = (static_cast<std::uint32_t>(message->strategy_id.get()) != 0x0U ? canonical::number(message->strategy_id.get()) : canonical::absent());
         } else if (iterator.template_id == 105) {
             values[entry + ".payload"] = "packet.simpleopenframe.payload.ordercancelrequestmessage";
@@ -255,7 +255,7 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".payload.ordercancelrequestmessage.inboundbusinessheader.sendingtime"] = (static_cast<std::uint64_t>(message->inbound_business_header.sending_time.get()) != 0x0ULL ? canonical::number(message->inbound_business_header.sending_time.get()) : canonical::absent());
             values[entry + ".payload.ordercancelrequestmessage.inboundbusinessheader.marketsegmentid"] = canonical::number(message->inbound_business_header.market_segment_id.get());
             values[entry + ".payload.ordercancelrequestmessage.inboundbusinessheader.padding"] = canonical::text(canonical::character(message->inbound_business_header.padding.get()));
-            values[entry + ".payload.ordercancelrequestmessage.clordid"] = canonical::number(message->clordid.get());
+            values[entry + ".payload.ordercancelrequestmessage.clordid"] = canonical::number(message->cl_ord_id.get());
             values[entry + ".payload.ordercancelrequestmessage.securityid"] = canonical::number(message->security_id.get());
             values[entry + ".payload.ordercancelrequestmessage.orderidoptional"] = (static_cast<std::uint64_t>(message->order_id_optional.get()) != 0x0ULL ? canonical::number(message->order_id_optional.get()) : canonical::absent());
             values[entry + ".payload.ordercancelrequestmessage.origclordid"] = (static_cast<std::uint64_t>(message->origclordid.get()) != 0x0ULL ? canonical::number(message->origclordid.get()) : canonical::absent());
@@ -271,7 +271,7 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".payload.newordercrossmessage.inboundbusinessheader.sendingtime"] = (static_cast<std::uint64_t>(message->inbound_business_header.sending_time.get()) != 0x0ULL ? canonical::number(message->inbound_business_header.sending_time.get()) : canonical::absent());
             values[entry + ".payload.newordercrossmessage.inboundbusinessheader.marketsegmentid"] = canonical::number(message->inbound_business_header.market_segment_id.get());
             values[entry + ".payload.newordercrossmessage.inboundbusinessheader.padding"] = canonical::text(canonical::character(message->inbound_business_header.padding.get()));
-            values[entry + ".payload.newordercrossmessage.crossid"] = canonical::number(message->crossid.get());
+            values[entry + ".payload.newordercrossmessage.crossid"] = canonical::number(message->cross_id.get());
             values[entry + ".payload.newordercrossmessage.senderlocation"] = canonical::text(std::string(message->sender_location.get()), '\0', false);
             values[entry + ".payload.newordercrossmessage.enteringtrader"] = canonical::text(std::string(message->entering_trader.get()), '\0', false);
             values[entry + ".payload.newordercrossmessage.securityid"] = canonical::number(message->security_id.get());
@@ -291,7 +291,7 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".payload.executionreportnewmessage.outboundbusinessheader.padding"] = canonical::text(canonical::character(message->outbound_business_header.padding.get()));
             values[entry + ".payload.executionreportnewmessage.side"] = canonical::text(canonical::character(message->side.get()));
             values[entry + ".payload.executionreportnewmessage.ordstatus"] = canonical::text(canonical::character(message->ord_status.get()));
-            values[entry + ".payload.executionreportnewmessage.clordid"] = canonical::number(message->clordid.get());
+            values[entry + ".payload.executionreportnewmessage.clordid"] = canonical::number(message->cl_ord_id.get());
             values[entry + ".payload.executionreportnewmessage.secondaryorderid"] = canonical::number(message->secondary_order_id.get());
             values[entry + ".payload.executionreportnewmessage.securityid"] = canonical::number(message->security_id.get());
             values[entry + ".payload.executionreportnewmessage.orderid"] = canonical::number(message->order_id.get());
@@ -310,11 +310,11 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".payload.executionreportnewmessage.stoppx"] = (static_cast<std::uint64_t>(message->stop_px.integer()) != 0x08000000000000000ULL ? canonical::scaled(message->stop_px.integer(), -4) : canonical::absent());
             values[entry + ".payload.executionreportnewmessage.minqty"] = (static_cast<std::uint64_t>(message->min_qty.get()) != 0x0ULL ? canonical::number(message->min_qty.get()) : canonical::absent());
             values[entry + ".payload.executionreportnewmessage.maxfloor"] = (static_cast<std::uint64_t>(message->max_floor.get()) != 0x0ULL ? canonical::number(message->max_floor.get()) : canonical::absent());
-            values[entry + ".payload.executionreportnewmessage.crossidoptional"] = (static_cast<std::uint64_t>(message->crossid_optional.get()) != 0x0ULL ? canonical::number(message->crossid_optional.get()) : canonical::absent());
+            values[entry + ".payload.executionreportnewmessage.crossidoptional"] = (static_cast<std::uint64_t>(message->cross_id_optional.get()) != 0x0ULL ? canonical::number(message->cross_id_optional.get()) : canonical::absent());
             values[entry + ".payload.executionreportnewmessage.receivedtime"] = (static_cast<std::uint64_t>(message->received_time.get()) != 0x0ULL ? canonical::number(message->received_time.get()) : canonical::absent());
             values[entry + ".payload.executionreportnewmessage.ordtagid"] = (static_cast<std::uint8_t>(message->ordtagid.get()) != 0x0U ? canonical::number(message->ordtagid.get()) : canonical::absent());
-            values[entry + ".payload.executionreportnewmessage.investorid.prefix"] = canonical::number(message->investor_id.prefix.get());
-            values[entry + ".payload.executionreportnewmessage.investorid.document"] = canonical::number(message->investor_id.document.get());
+            values[entry + ".payload.executionreportnewmessage.investorid.prefix"] = (static_cast<std::uint16_t>(message->investor_id.prefix.get()) != 0x0U ? canonical::number(message->investor_id.prefix.get()) : canonical::absent());
+            values[entry + ".payload.executionreportnewmessage.investorid.document"] = (static_cast<std::uint32_t>(message->investor_id.document.get()) != 0x0U ? canonical::number(message->investor_id.document.get()) : canonical::absent());
             values[entry + ".payload.executionreportnewmessage.crosstype"] = (static_cast<std::uint8_t>(message->cross_type.get()) != 0x0U ? canonical::number(message->cross_type.get()) : canonical::absent());
             values[entry + ".payload.executionreportnewmessage.crossprioritization"] = (static_cast<std::uint8_t>(message->cross_prioritization.get()) != 0x0FFU ? canonical::number(message->cross_prioritization.get()) : canonical::absent());
             values[entry + ".payload.executionreportnewmessage.mmprotectionresetoptional"] = (static_cast<std::uint8_t>(message->mm_protection_reset_optional.get()) != 0x0FFU ? canonical::number(message->mm_protection_reset_optional.get()) : canonical::absent());
@@ -329,7 +329,7 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".payload.executionreportmodifymessage.outboundbusinessheader.padding"] = canonical::text(canonical::character(message->outbound_business_header.padding.get()));
             values[entry + ".payload.executionreportmodifymessage.side"] = canonical::text(canonical::character(message->side.get()));
             values[entry + ".payload.executionreportmodifymessage.ordstatus"] = canonical::text(canonical::character(message->ord_status.get()));
-            values[entry + ".payload.executionreportmodifymessage.clordid"] = canonical::number(message->clordid.get());
+            values[entry + ".payload.executionreportmodifymessage.clordid"] = canonical::number(message->cl_ord_id.get());
             values[entry + ".payload.executionreportmodifymessage.secondaryorderid"] = canonical::number(message->secondary_order_id.get());
             values[entry + ".payload.executionreportmodifymessage.securityid"] = canonical::number(message->security_id.get());
             values[entry + ".payload.executionreportmodifymessage.leavesqty"] = canonical::number(message->leaves_qty.get());
@@ -353,8 +353,8 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".payload.executionreportmodifymessage.maxfloor"] = (static_cast<std::uint64_t>(message->max_floor.get()) != 0x0ULL ? canonical::number(message->max_floor.get()) : canonical::absent());
             values[entry + ".payload.executionreportmodifymessage.receivedtime"] = (static_cast<std::uint64_t>(message->received_time.get()) != 0x0ULL ? canonical::number(message->received_time.get()) : canonical::absent());
             values[entry + ".payload.executionreportmodifymessage.ordtagid"] = (static_cast<std::uint8_t>(message->ordtagid.get()) != 0x0U ? canonical::number(message->ordtagid.get()) : canonical::absent());
-            values[entry + ".payload.executionreportmodifymessage.investorid.prefix"] = canonical::number(message->investor_id.prefix.get());
-            values[entry + ".payload.executionreportmodifymessage.investorid.document"] = canonical::number(message->investor_id.document.get());
+            values[entry + ".payload.executionreportmodifymessage.investorid.prefix"] = (static_cast<std::uint16_t>(message->investor_id.prefix.get()) != 0x0U ? canonical::number(message->investor_id.prefix.get()) : canonical::absent());
+            values[entry + ".payload.executionreportmodifymessage.investorid.document"] = (static_cast<std::uint32_t>(message->investor_id.document.get()) != 0x0U ? canonical::number(message->investor_id.document.get()) : canonical::absent());
             values[entry + ".payload.executionreportmodifymessage.mmprotectionresetoptional"] = (static_cast<std::uint8_t>(message->mm_protection_reset_optional.get()) != 0x0FFU ? canonical::number(message->mm_protection_reset_optional.get()) : canonical::absent());
             values[entry + ".payload.executionreportmodifymessage.strategyid"] = (static_cast<std::uint32_t>(message->strategy_id.get()) != 0x0U ? canonical::number(message->strategy_id.get()) : canonical::absent());
         } else if (iterator.template_id == 202) {
@@ -367,7 +367,7 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".payload.executionreportcancelmessage.outboundbusinessheader.padding"] = canonical::text(canonical::character(message->outbound_business_header.padding.get()));
             values[entry + ".payload.executionreportcancelmessage.side"] = canonical::text(canonical::character(message->side.get()));
             values[entry + ".payload.executionreportcancelmessage.ordstatus"] = canonical::text(canonical::character(message->ord_status.get()));
-            values[entry + ".payload.executionreportcancelmessage.clordid"] = canonical::number(message->clordid.get());
+            values[entry + ".payload.executionreportcancelmessage.clordid"] = canonical::number(message->cl_ord_id.get());
             values[entry + ".payload.executionreportcancelmessage.secondaryorderid"] = canonical::number(message->secondary_order_id.get());
             values[entry + ".payload.executionreportcancelmessage.securityid"] = canonical::number(message->security_id.get());
             values[entry + ".payload.executionreportcancelmessage.cumqty"] = canonical::number(message->cum_qty.get());
@@ -391,8 +391,8 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".payload.executionreportcancelmessage.maxfloor"] = (static_cast<std::uint64_t>(message->max_floor.get()) != 0x0ULL ? canonical::number(message->max_floor.get()) : canonical::absent());
             values[entry + ".payload.executionreportcancelmessage.receivedtime"] = (static_cast<std::uint64_t>(message->received_time.get()) != 0x0ULL ? canonical::number(message->received_time.get()) : canonical::absent());
             values[entry + ".payload.executionreportcancelmessage.ordtagid"] = (static_cast<std::uint8_t>(message->ordtagid.get()) != 0x0U ? canonical::number(message->ordtagid.get()) : canonical::absent());
-            values[entry + ".payload.executionreportcancelmessage.investorid.prefix"] = canonical::number(message->investor_id.prefix.get());
-            values[entry + ".payload.executionreportcancelmessage.investorid.document"] = canonical::number(message->investor_id.document.get());
+            values[entry + ".payload.executionreportcancelmessage.investorid.prefix"] = (static_cast<std::uint16_t>(message->investor_id.prefix.get()) != 0x0U ? canonical::number(message->investor_id.prefix.get()) : canonical::absent());
+            values[entry + ".payload.executionreportcancelmessage.investorid.document"] = (static_cast<std::uint32_t>(message->investor_id.document.get()) != 0x0U ? canonical::number(message->investor_id.document.get()) : canonical::absent());
             values[entry + ".payload.executionreportcancelmessage.strategyid"] = (static_cast<std::uint32_t>(message->strategy_id.get()) != 0x0U ? canonical::number(message->strategy_id.get()) : canonical::absent());
             values[entry + ".payload.executionreportcancelmessage.actionrequestedfromsessionid"] = (static_cast<std::uint32_t>(message->action_requested_from_session_id.get()) != 0x0U ? canonical::number(message->action_requested_from_session_id.get()) : canonical::absent());
         } else if (iterator.template_id == 203) {
@@ -405,7 +405,7 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".payload.executionreporttrademessage.outboundbusinessheader.padding"] = canonical::text(canonical::character(message->outbound_business_header.padding.get()));
             values[entry + ".payload.executionreporttrademessage.side"] = canonical::text(canonical::character(message->side.get()));
             values[entry + ".payload.executionreporttrademessage.ordstatus"] = canonical::text(canonical::character(message->ord_status.get()));
-            values[entry + ".payload.executionreporttrademessage.clordidoptional"] = (static_cast<std::uint64_t>(message->clordid_optional.get()) != 0x0ULL ? canonical::number(message->clordid_optional.get()) : canonical::absent());
+            values[entry + ".payload.executionreporttrademessage.clordidoptional"] = (static_cast<std::uint64_t>(message->cl_ord_id_optional.get()) != 0x0ULL ? canonical::number(message->cl_ord_id_optional.get()) : canonical::absent());
             values[entry + ".payload.executionreporttrademessage.secondaryorderid"] = canonical::number(message->secondary_order_id.get());
             values[entry + ".payload.executionreporttrademessage.securityid"] = canonical::number(message->security_id.get());
             values[entry + ".payload.executionreporttrademessage.account"] = (static_cast<std::uint32_t>(message->account.get()) != 0x0U ? canonical::number(message->account.get()) : canonical::absent());
@@ -424,7 +424,7 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".payload.executionreporttrademessage.totnorelatedsym"] = (static_cast<std::uint8_t>(message->tot_no_related_sym.get()) != 0x0U ? canonical::number(message->tot_no_related_sym.get()) : canonical::absent());
             values[entry + ".payload.executionreporttrademessage.secondaryexecid"] = (static_cast<std::uint64_t>(message->secondary_exec_id.get()) != 0x0ULL ? canonical::number(message->secondary_exec_id.get()) : canonical::absent());
             values[entry + ".payload.executionreporttrademessage.execrefid"] = (static_cast<std::uint64_t>(message->exec_ref_id.get()) != 0x0ULL ? canonical::number(message->exec_ref_id.get()) : canonical::absent());
-            values[entry + ".payload.executionreporttrademessage.crossidoptional"] = (static_cast<std::uint64_t>(message->crossid_optional.get()) != 0x0ULL ? canonical::number(message->crossid_optional.get()) : canonical::absent());
+            values[entry + ".payload.executionreporttrademessage.crossidoptional"] = (static_cast<std::uint64_t>(message->cross_id_optional.get()) != 0x0ULL ? canonical::number(message->cross_id_optional.get()) : canonical::absent());
             values[entry + ".payload.executionreporttrademessage.crossedindicator"] = (static_cast<std::uint16_t>(message->crossed_indicator.get()) != 0x0U ? canonical::number(message->crossed_indicator.get()) : canonical::absent());
             values[entry + ".payload.executionreporttrademessage.orderqty"] = canonical::number(message->order_qty.get());
             values[entry + ".payload.executionreporttrademessage.tradingsessionid"] = (static_cast<std::uint8_t>(message->trading_session_id.get()) != 0x0U ? canonical::number(message->trading_session_id.get()) : canonical::absent());
@@ -443,7 +443,7 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".payload.executionreportrejectmessage.outboundbusinessheader.padding"] = canonical::text(canonical::character(message->outbound_business_header.padding.get()));
             values[entry + ".payload.executionreportrejectmessage.side"] = canonical::text(canonical::character(message->side.get()));
             values[entry + ".payload.executionreportrejectmessage.cxlrejresponseto"] = canonical::number(message->cxl_rej_response_to.get());
-            values[entry + ".payload.executionreportrejectmessage.clordid"] = canonical::number(message->clordid.get());
+            values[entry + ".payload.executionreportrejectmessage.clordid"] = canonical::number(message->cl_ord_id.get());
             values[entry + ".payload.executionreportrejectmessage.secondaryorderidoptional"] = (static_cast<std::uint64_t>(message->secondary_order_id_optional.get()) != 0x0ULL ? canonical::number(message->secondary_order_id_optional.get()) : canonical::absent());
             values[entry + ".payload.executionreportrejectmessage.securityid"] = canonical::number(message->security_id.get());
             values[entry + ".payload.executionreportrejectmessage.ordrejreason"] = canonical::number(message->ord_rej_reason.get());
@@ -460,12 +460,12 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".payload.executionreportrejectmessage.stoppx"] = (static_cast<std::uint64_t>(message->stop_px.integer()) != 0x08000000000000000ULL ? canonical::scaled(message->stop_px.integer(), -4) : canonical::absent());
             values[entry + ".payload.executionreportrejectmessage.minqty"] = (static_cast<std::uint64_t>(message->min_qty.get()) != 0x0ULL ? canonical::number(message->min_qty.get()) : canonical::absent());
             values[entry + ".payload.executionreportrejectmessage.maxfloor"] = (static_cast<std::uint64_t>(message->max_floor.get()) != 0x0ULL ? canonical::number(message->max_floor.get()) : canonical::absent());
-            values[entry + ".payload.executionreportrejectmessage.crossidoptional"] = (static_cast<std::uint64_t>(message->crossid_optional.get()) != 0x0ULL ? canonical::number(message->crossid_optional.get()) : canonical::absent());
+            values[entry + ".payload.executionreportrejectmessage.crossidoptional"] = (static_cast<std::uint64_t>(message->cross_id_optional.get()) != 0x0ULL ? canonical::number(message->cross_id_optional.get()) : canonical::absent());
             values[entry + ".payload.executionreportrejectmessage.crossedindicator"] = (static_cast<std::uint16_t>(message->crossed_indicator.get()) != 0x0U ? canonical::number(message->crossed_indicator.get()) : canonical::absent());
             values[entry + ".payload.executionreportrejectmessage.receivedtime"] = (static_cast<std::uint64_t>(message->received_time.get()) != 0x0ULL ? canonical::number(message->received_time.get()) : canonical::absent());
             values[entry + ".payload.executionreportrejectmessage.ordtagid"] = (static_cast<std::uint8_t>(message->ordtagid.get()) != 0x0U ? canonical::number(message->ordtagid.get()) : canonical::absent());
-            values[entry + ".payload.executionreportrejectmessage.investorid.prefix"] = canonical::number(message->investor_id.prefix.get());
-            values[entry + ".payload.executionreportrejectmessage.investorid.document"] = canonical::number(message->investor_id.document.get());
+            values[entry + ".payload.executionreportrejectmessage.investorid.prefix"] = (static_cast<std::uint16_t>(message->investor_id.prefix.get()) != 0x0U ? canonical::number(message->investor_id.prefix.get()) : canonical::absent());
+            values[entry + ".payload.executionreportrejectmessage.investorid.document"] = (static_cast<std::uint32_t>(message->investor_id.document.get()) != 0x0U ? canonical::number(message->investor_id.document.get()) : canonical::absent());
             values[entry + ".payload.executionreportrejectmessage.strategyid"] = (static_cast<std::uint32_t>(message->strategy_id.get()) != 0x0U ? canonical::number(message->strategy_id.get()) : canonical::absent());
         } else if (iterator.template_id == 205) {
             values[entry + ".payload"] = "packet.simpleopenframe.payload.executionreportforwardmessage";
@@ -477,7 +477,7 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".payload.executionreportforwardmessage.outboundbusinessheader.padding"] = canonical::text(canonical::character(message->outbound_business_header.padding.get()));
             values[entry + ".payload.executionreportforwardmessage.side"] = canonical::text(canonical::character(message->side.get()));
             values[entry + ".payload.executionreportforwardmessage.ordstatus"] = canonical::text(canonical::character(message->ord_status.get()));
-            values[entry + ".payload.executionreportforwardmessage.clordidoptional"] = (static_cast<std::uint64_t>(message->clordid_optional.get()) != 0x0ULL ? canonical::number(message->clordid_optional.get()) : canonical::absent());
+            values[entry + ".payload.executionreportforwardmessage.clordidoptional"] = (static_cast<std::uint64_t>(message->cl_ord_id_optional.get()) != 0x0ULL ? canonical::number(message->cl_ord_id_optional.get()) : canonical::absent());
             values[entry + ".payload.executionreportforwardmessage.secondaryorderid"] = canonical::number(message->secondary_order_id.get());
             values[entry + ".payload.executionreportforwardmessage.securityid"] = canonical::number(message->security_id.get());
             values[entry + ".payload.executionreportforwardmessage.account"] = (static_cast<std::uint32_t>(message->account.get()) != 0x0U ? canonical::number(message->account.get()) : canonical::absent());
@@ -495,7 +495,7 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".payload.executionreportforwardmessage.daystosettlementoptional"] = (static_cast<std::uint16_t>(message->days_to_settlement_optional.get()) != 0x0FFFFU ? canonical::number(message->days_to_settlement_optional.get()) : canonical::absent());
             values[entry + ".payload.executionreportforwardmessage.secondaryexecid"] = (static_cast<std::uint64_t>(message->secondary_exec_id.get()) != 0x0ULL ? canonical::number(message->secondary_exec_id.get()) : canonical::absent());
             values[entry + ".payload.executionreportforwardmessage.execrefid"] = (static_cast<std::uint64_t>(message->exec_ref_id.get()) != 0x0ULL ? canonical::number(message->exec_ref_id.get()) : canonical::absent());
-            values[entry + ".payload.executionreportforwardmessage.fixedratepercentage8optional"] = (static_cast<std::uint64_t>(message->fixed_rate_percentage_8_optional.integer()) != 0x08000000000000000ULL ? canonical::scaled(message->fixed_rate_percentage_8_optional.integer(), -8) : canonical::absent());
+            values[entry + ".payload.executionreportforwardmessage.fixedrateoptional"] = (static_cast<std::uint64_t>(message->fixed_rate_optional.integer()) != 0x08000000000000000ULL ? canonical::scaled(message->fixed_rate_optional.integer(), -8) : canonical::absent());
             values[entry + ".payload.executionreportforwardmessage.orderqty"] = canonical::number(message->order_qty.get());
             values[entry + ".payload.executionreportforwardmessage.tradingsessionid"] = (static_cast<std::uint8_t>(message->trading_session_id.get()) != 0x0U ? canonical::number(message->trading_session_id.get()) : canonical::absent());
             values[entry + ".payload.executionreportforwardmessage.tradingsessionsubid"] = (static_cast<std::uint8_t>(message->trading_session_sub_id.get()) != 0x0U ? canonical::number(message->trading_session_sub_id.get()) : canonical::absent());
@@ -545,8 +545,8 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".payload.quoterequestmessage.bidirectionalbusinessheader.msgseqnum"] = canonical::number(message->bidirectional_business_header.msg_seq_num.get());
             values[entry + ".payload.quoterequestmessage.bidirectionalbusinessheader.sendingtime"] = (static_cast<std::uint64_t>(message->bidirectional_business_header.sending_time.get()) != 0x0ULL ? canonical::number(message->bidirectional_business_header.sending_time.get()) : canonical::absent());
             values[entry + ".payload.quoterequestmessage.bidirectionalbusinessheader.possresend"] = canonical::number(message->bidirectional_business_header.poss_resend.get());
-            values[entry + ".payload.quoterequestmessage.bidirectionalbusinessheader.marketsegmentidoptional"] = canonical::number(message->bidirectional_business_header.market_segment_id_optional.get());
-            values[entry + ".payload.quoterequestmessage.bidirectionalbusinessheader.padding"] = canonical::text(canonical::character(message->bidirectional_business_header.padding.get()));
+            values[entry + ".payload.quoterequestmessage.bidirectionalbusinessheader.marketsegmentidoptional"] = (static_cast<std::uint8_t>(message->bidirectional_business_header.market_segment_id_optional.get()) != 0x0U ? canonical::number(message->bidirectional_business_header.market_segment_id_optional.get()) : canonical::absent());
+            values[entry + ".payload.quoterequestmessage.bidirectionalbusinessheader.paddingchar2"] = canonical::text(std::string(message->bidirectional_business_header.padding_char_2.get()), '\0', false);
             values[entry + ".payload.quoterequestmessage.securityid"] = canonical::number(message->security_id.get());
             values[entry + ".payload.quoterequestmessage.quotereqid"] = canonical::number(message->quote_req_id.get());
             values[entry + ".payload.quoterequestmessage.quoteidoptional"] = (static_cast<std::uint64_t>(message->quote_id_optional.get()) != 0x0ULL ? canonical::number(message->quote_id_optional.get()) : canonical::absent());
@@ -559,7 +559,7 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".payload.quoterequestmessage.senderlocation"] = canonical::text(std::string(message->sender_location.get()), '\0', false);
             values[entry + ".payload.quoterequestmessage.enteringtrader"] = canonical::text(std::string(message->entering_trader.get()), '\0', false);
             values[entry + ".payload.quoterequestmessage.executingtrader"] = canonical::text(std::string(message->executing_trader.get()), '\0', false);
-            values[entry + ".payload.quoterequestmessage.fixedratepercentage8"] = canonical::scaled(message->fixed_rate_percentage_8.integer(), -8);
+            values[entry + ".payload.quoterequestmessage.fixedrate"] = canonical::scaled(message->fixed_rate.integer(), -8);
             values[entry + ".payload.quoterequestmessage.daystosettlement"] = canonical::number(message->days_to_settlement.get());
         } else if (iterator.template_id == 402) {
             values[entry + ".payload"] = "packet.simpleopenframe.payload.quotestatusreportmessage";
@@ -568,8 +568,8 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".payload.quotestatusreportmessage.bidirectionalbusinessheader.msgseqnum"] = canonical::number(message->bidirectional_business_header.msg_seq_num.get());
             values[entry + ".payload.quotestatusreportmessage.bidirectionalbusinessheader.sendingtime"] = (static_cast<std::uint64_t>(message->bidirectional_business_header.sending_time.get()) != 0x0ULL ? canonical::number(message->bidirectional_business_header.sending_time.get()) : canonical::absent());
             values[entry + ".payload.quotestatusreportmessage.bidirectionalbusinessheader.possresend"] = canonical::number(message->bidirectional_business_header.poss_resend.get());
-            values[entry + ".payload.quotestatusreportmessage.bidirectionalbusinessheader.marketsegmentidoptional"] = canonical::number(message->bidirectional_business_header.market_segment_id_optional.get());
-            values[entry + ".payload.quotestatusreportmessage.bidirectionalbusinessheader.padding"] = canonical::text(canonical::character(message->bidirectional_business_header.padding.get()));
+            values[entry + ".payload.quotestatusreportmessage.bidirectionalbusinessheader.marketsegmentidoptional"] = (static_cast<std::uint8_t>(message->bidirectional_business_header.market_segment_id_optional.get()) != 0x0U ? canonical::number(message->bidirectional_business_header.market_segment_id_optional.get()) : canonical::absent());
+            values[entry + ".payload.quotestatusreportmessage.bidirectionalbusinessheader.paddingchar2"] = canonical::text(std::string(message->bidirectional_business_header.padding_char_2.get()), '\0', false);
             values[entry + ".payload.quotestatusreportmessage.quoterejectreason"] = (static_cast<std::uint32_t>(message->quote_reject_reason.get()) != 0x0U ? canonical::number(message->quote_reject_reason.get()) : canonical::absent());
             values[entry + ".payload.quotestatusreportmessage.securityid"] = canonical::number(message->security_id.get());
             values[entry + ".payload.quotestatusreportmessage.quotereqid"] = canonical::number(message->quote_req_id.get());
@@ -584,7 +584,7 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".payload.quotestatusreportmessage.senderlocation"] = canonical::text(std::string(message->sender_location.get()), '\0', false);
             values[entry + ".payload.quotestatusreportmessage.enteringtrader"] = canonical::text(std::string(message->entering_trader.get()), '\0', false);
             values[entry + ".payload.quotestatusreportmessage.executingtrader"] = canonical::text(std::string(message->executing_trader.get()), '\0', false);
-            values[entry + ".payload.quotestatusreportmessage.fixedratepercentage8optional"] = (static_cast<std::uint64_t>(message->fixed_rate_percentage_8_optional.integer()) != 0x08000000000000000ULL ? canonical::scaled(message->fixed_rate_percentage_8_optional.integer(), -8) : canonical::absent());
+            values[entry + ".payload.quotestatusreportmessage.fixedrateoptional"] = (static_cast<std::uint64_t>(message->fixed_rate_optional.integer()) != 0x08000000000000000ULL ? canonical::scaled(message->fixed_rate_optional.integer(), -8) : canonical::absent());
             values[entry + ".payload.quotestatusreportmessage.daystosettlementoptional"] = (static_cast<std::uint16_t>(message->days_to_settlement_optional.get()) != 0x0FFFFU ? canonical::number(message->days_to_settlement_optional.get()) : canonical::absent());
         } else if (iterator.template_id == 403) {
             values[entry + ".payload"] = "packet.simpleopenframe.payload.quotemessage";
@@ -593,8 +593,8 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".payload.quotemessage.bidirectionalbusinessheader.msgseqnum"] = canonical::number(message->bidirectional_business_header.msg_seq_num.get());
             values[entry + ".payload.quotemessage.bidirectionalbusinessheader.sendingtime"] = (static_cast<std::uint64_t>(message->bidirectional_business_header.sending_time.get()) != 0x0ULL ? canonical::number(message->bidirectional_business_header.sending_time.get()) : canonical::absent());
             values[entry + ".payload.quotemessage.bidirectionalbusinessheader.possresend"] = canonical::number(message->bidirectional_business_header.poss_resend.get());
-            values[entry + ".payload.quotemessage.bidirectionalbusinessheader.marketsegmentidoptional"] = canonical::number(message->bidirectional_business_header.market_segment_id_optional.get());
-            values[entry + ".payload.quotemessage.bidirectionalbusinessheader.padding"] = canonical::text(canonical::character(message->bidirectional_business_header.padding.get()));
+            values[entry + ".payload.quotemessage.bidirectionalbusinessheader.marketsegmentidoptional"] = (static_cast<std::uint8_t>(message->bidirectional_business_header.market_segment_id_optional.get()) != 0x0U ? canonical::number(message->bidirectional_business_header.market_segment_id_optional.get()) : canonical::absent());
+            values[entry + ".payload.quotemessage.bidirectionalbusinessheader.paddingchar2"] = canonical::text(std::string(message->bidirectional_business_header.padding_char_2.get()), '\0', false);
             values[entry + ".payload.quotemessage.securityid"] = canonical::number(message->security_id.get());
             values[entry + ".payload.quotemessage.quotereqid"] = canonical::number(message->quote_req_id.get());
             values[entry + ".payload.quotemessage.quoteid"] = canonical::number(message->quote_id.get());
@@ -607,7 +607,7 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".payload.quotemessage.senderlocation"] = canonical::text(std::string(message->sender_location.get()), '\0', false);
             values[entry + ".payload.quotemessage.enteringtrader"] = canonical::text(std::string(message->entering_trader.get()), '\0', false);
             values[entry + ".payload.quotemessage.executingtrader"] = canonical::text(std::string(message->executing_trader.get()), '\0', false);
-            values[entry + ".payload.quotemessage.fixedratepercentage8"] = canonical::scaled(message->fixed_rate_percentage_8.integer(), -8);
+            values[entry + ".payload.quotemessage.fixedrate"] = canonical::scaled(message->fixed_rate.integer(), -8);
             values[entry + ".payload.quotemessage.daystosettlement"] = canonical::number(message->days_to_settlement.get());
         } else if (iterator.template_id == 404) {
             values[entry + ".payload"] = "packet.simpleopenframe.payload.quotecancelmessage";
@@ -616,8 +616,8 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".payload.quotecancelmessage.bidirectionalbusinessheader.msgseqnum"] = canonical::number(message->bidirectional_business_header.msg_seq_num.get());
             values[entry + ".payload.quotecancelmessage.bidirectionalbusinessheader.sendingtime"] = (static_cast<std::uint64_t>(message->bidirectional_business_header.sending_time.get()) != 0x0ULL ? canonical::number(message->bidirectional_business_header.sending_time.get()) : canonical::absent());
             values[entry + ".payload.quotecancelmessage.bidirectionalbusinessheader.possresend"] = canonical::number(message->bidirectional_business_header.poss_resend.get());
-            values[entry + ".payload.quotecancelmessage.bidirectionalbusinessheader.marketsegmentidoptional"] = canonical::number(message->bidirectional_business_header.market_segment_id_optional.get());
-            values[entry + ".payload.quotecancelmessage.bidirectionalbusinessheader.padding"] = canonical::text(canonical::character(message->bidirectional_business_header.padding.get()));
+            values[entry + ".payload.quotecancelmessage.bidirectionalbusinessheader.marketsegmentidoptional"] = (static_cast<std::uint8_t>(message->bidirectional_business_header.market_segment_id_optional.get()) != 0x0U ? canonical::number(message->bidirectional_business_header.market_segment_id_optional.get()) : canonical::absent());
+            values[entry + ".payload.quotecancelmessage.bidirectionalbusinessheader.paddingchar2"] = canonical::text(std::string(message->bidirectional_business_header.padding_char_2.get()), '\0', false);
             values[entry + ".payload.quotecancelmessage.securityid"] = canonical::number(message->security_id.get());
             values[entry + ".payload.quotecancelmessage.quotereqidoptional"] = (static_cast<std::uint64_t>(message->quote_req_id_optional.get()) != 0x0ULL ? canonical::number(message->quote_req_id_optional.get()) : canonical::absent());
             values[entry + ".payload.quotecancelmessage.quoteidoptional"] = (static_cast<std::uint64_t>(message->quote_id_optional.get()) != 0x0ULL ? canonical::number(message->quote_id_optional.get()) : canonical::absent());
@@ -632,8 +632,8 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".payload.quoterequestrejectmessage.bidirectionalbusinessheader.msgseqnum"] = canonical::number(message->bidirectional_business_header.msg_seq_num.get());
             values[entry + ".payload.quoterequestrejectmessage.bidirectionalbusinessheader.sendingtime"] = (static_cast<std::uint64_t>(message->bidirectional_business_header.sending_time.get()) != 0x0ULL ? canonical::number(message->bidirectional_business_header.sending_time.get()) : canonical::absent());
             values[entry + ".payload.quoterequestrejectmessage.bidirectionalbusinessheader.possresend"] = canonical::number(message->bidirectional_business_header.poss_resend.get());
-            values[entry + ".payload.quoterequestrejectmessage.bidirectionalbusinessheader.marketsegmentidoptional"] = canonical::number(message->bidirectional_business_header.market_segment_id_optional.get());
-            values[entry + ".payload.quoterequestrejectmessage.bidirectionalbusinessheader.padding"] = canonical::text(canonical::character(message->bidirectional_business_header.padding.get()));
+            values[entry + ".payload.quoterequestrejectmessage.bidirectionalbusinessheader.marketsegmentidoptional"] = (static_cast<std::uint8_t>(message->bidirectional_business_header.market_segment_id_optional.get()) != 0x0U ? canonical::number(message->bidirectional_business_header.market_segment_id_optional.get()) : canonical::absent());
+            values[entry + ".payload.quoterequestrejectmessage.bidirectionalbusinessheader.paddingchar2"] = canonical::text(std::string(message->bidirectional_business_header.padding_char_2.get()), '\0', false);
             values[entry + ".payload.quoterequestrejectmessage.quoterequestrejectreason"] = (static_cast<std::uint32_t>(message->quote_request_reject_reason.get()) != 0x0U ? canonical::number(message->quote_request_reject_reason.get()) : canonical::absent());
             values[entry + ".payload.quoterequestrejectmessage.securityid"] = canonical::number(message->security_id.get());
             values[entry + ".payload.quoterequestrejectmessage.quotereqid"] = canonical::number(message->quote_req_id.get());
@@ -646,7 +646,7 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".payload.quoterequestrejectmessage.orderqtyoptional"] = (static_cast<std::uint64_t>(message->order_qty_optional.get()) != 0x0ULL ? canonical::number(message->order_qty_optional.get()) : canonical::absent());
             values[entry + ".payload.quoterequestrejectmessage.senderlocation"] = canonical::text(std::string(message->sender_location.get()), '\0', false);
             values[entry + ".payload.quoterequestrejectmessage.executingtrader"] = canonical::text(std::string(message->executing_trader.get()), '\0', false);
-            values[entry + ".payload.quoterequestrejectmessage.fixedratepercentage8optional"] = (static_cast<std::uint64_t>(message->fixed_rate_percentage_8_optional.integer()) != 0x08000000000000000ULL ? canonical::scaled(message->fixed_rate_percentage_8_optional.integer(), -8) : canonical::absent());
+            values[entry + ".payload.quoterequestrejectmessage.fixedrateoptional"] = (static_cast<std::uint64_t>(message->fixed_rate_optional.integer()) != 0x08000000000000000ULL ? canonical::scaled(message->fixed_rate_optional.integer(), -8) : canonical::absent());
             values[entry + ".payload.quoterequestrejectmessage.daystosettlementoptional"] = (static_cast<std::uint16_t>(message->days_to_settlement_optional.get()) != 0x0FFFFU ? canonical::number(message->days_to_settlement_optional.get()) : canonical::absent());
         } else if (iterator.template_id == 501) {
             values[entry + ".payload"] = "packet.simpleopenframe.payload.positionmaintenancecancelrequestmessage";
@@ -757,12 +757,12 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".payload.ordermassactionrequestmessage.inboundbusinessheader.padding"] = canonical::text(canonical::character(message->inbound_business_header.padding.get()));
             values[entry + ".payload.ordermassactionrequestmessage.massactiontype"] = canonical::number(message->mass_action_type.get());
             values[entry + ".payload.ordermassactionrequestmessage.massactionscope"] = (static_cast<std::uint8_t>(message->mass_action_scope.get()) != 0x0U ? canonical::number(message->mass_action_scope.get()) : canonical::absent());
-            values[entry + ".payload.ordermassactionrequestmessage.clordid"] = canonical::number(message->clordid.get());
+            values[entry + ".payload.ordermassactionrequestmessage.clordid"] = canonical::number(message->cl_ord_id.get());
             values[entry + ".payload.ordermassactionrequestmessage.masscancelrestatementreason"] = (static_cast<std::uint8_t>(message->mass_cancel_restatement_reason.get()) != 0x0U ? canonical::number(message->mass_cancel_restatement_reason.get()) : canonical::absent());
             values[entry + ".payload.ordermassactionrequestmessage.ordtagid"] = (static_cast<std::uint8_t>(message->ordtagid.get()) != 0x0U ? canonical::number(message->ordtagid.get()) : canonical::absent());
             values[entry + ".payload.ordermassactionrequestmessage.securityidoptional"] = (static_cast<std::uint64_t>(message->security_id_optional.get()) != 0x0ULL ? canonical::number(message->security_id_optional.get()) : canonical::absent());
-            values[entry + ".payload.ordermassactionrequestmessage.investorid.prefix"] = canonical::number(message->investor_id.prefix.get());
-            values[entry + ".payload.ordermassactionrequestmessage.investorid.document"] = canonical::number(message->investor_id.document.get());
+            values[entry + ".payload.ordermassactionrequestmessage.investorid.prefix"] = (static_cast<std::uint16_t>(message->investor_id.prefix.get()) != 0x0U ? canonical::number(message->investor_id.prefix.get()) : canonical::absent());
+            values[entry + ".payload.ordermassactionrequestmessage.investorid.document"] = (static_cast<std::uint32_t>(message->investor_id.document.get()) != 0x0U ? canonical::number(message->investor_id.document.get()) : canonical::absent());
         } else if (iterator.template_id == 702) {
             values[entry + ".payload"] = "packet.simpleopenframe.payload.ordermassactionreportmessage";
             [[maybe_unused]] const auto* message = protocol::OrderMassActionReportMessage::parse(iterator.message);
@@ -773,7 +773,7 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".payload.ordermassactionreportmessage.outboundbusinessheader.padding"] = canonical::text(canonical::character(message->outbound_business_header.padding.get()));
             values[entry + ".payload.ordermassactionreportmessage.massactiontype"] = canonical::number(message->mass_action_type.get());
             values[entry + ".payload.ordermassactionreportmessage.massactionscope"] = (static_cast<std::uint8_t>(message->mass_action_scope.get()) != 0x0U ? canonical::number(message->mass_action_scope.get()) : canonical::absent());
-            values[entry + ".payload.ordermassactionreportmessage.clordid"] = canonical::number(message->clordid.get());
+            values[entry + ".payload.ordermassactionreportmessage.clordid"] = canonical::number(message->cl_ord_id.get());
             values[entry + ".payload.ordermassactionreportmessage.massactionreportid"] = canonical::number(message->mass_action_report_id.get());
             values[entry + ".payload.ordermassactionreportmessage.transacttime"] = canonical::number(message->transact_time.get());
             values[entry + ".payload.ordermassactionreportmessage.massactionresponse"] = canonical::text(canonical::character(message->mass_action_response.get()));
@@ -781,8 +781,8 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".payload.ordermassactionreportmessage.masscancelrestatementreason"] = (static_cast<std::uint8_t>(message->mass_cancel_restatement_reason.get()) != 0x0U ? canonical::number(message->mass_cancel_restatement_reason.get()) : canonical::absent());
             values[entry + ".payload.ordermassactionreportmessage.ordtagid"] = (static_cast<std::uint8_t>(message->ordtagid.get()) != 0x0U ? canonical::number(message->ordtagid.get()) : canonical::absent());
             values[entry + ".payload.ordermassactionreportmessage.securityidoptional"] = (static_cast<std::uint64_t>(message->security_id_optional.get()) != 0x0ULL ? canonical::number(message->security_id_optional.get()) : canonical::absent());
-            values[entry + ".payload.ordermassactionreportmessage.investorid.prefix"] = canonical::number(message->investor_id.prefix.get());
-            values[entry + ".payload.ordermassactionreportmessage.investorid.document"] = canonical::number(message->investor_id.document.get());
+            values[entry + ".payload.ordermassactionreportmessage.investorid.prefix"] = (static_cast<std::uint16_t>(message->investor_id.prefix.get()) != 0x0U ? canonical::number(message->investor_id.prefix.get()) : canonical::absent());
+            values[entry + ".payload.ordermassactionreportmessage.investorid.document"] = (static_cast<std::uint32_t>(message->investor_id.document.get()) != 0x0U ? canonical::number(message->investor_id.document.get()) : canonical::absent());
         }
     }
 
@@ -884,11 +884,17 @@ int main() {
     int failures = 0;
     failures += check("EstablishMessage", "B3/B3Derivatives.BinaryEntryPoint.Sbe.v8.1/EstablishMessage.pcap", "b3/b3derivatives/binaryentrypoint/sbe/v8.1/packet/EstablishMessage.values");
     failures += check("ExecutionReportCancelMessage", "B3/B3Derivatives.BinaryEntryPoint.Sbe.v8.1/ExecutionReportCancelMessage.pcap", "b3/b3derivatives/binaryentrypoint/sbe/v8.1/packet/ExecutionReportCancelMessage.values");
+    failures += check("ExecutionReportModifyMessage", "B3/B3Derivatives.BinaryEntryPoint.Sbe.v8.1/ExecutionReportModifyMessage.pcap", "b3/b3derivatives/binaryentrypoint/sbe/v8.1/packet/ExecutionReportModifyMessage.values");
+    failures += check("ExecutionReportNewMessage", "B3/B3Derivatives.BinaryEntryPoint.Sbe.v8.1/ExecutionReportNewMessage.pcap", "b3/b3derivatives/binaryentrypoint/sbe/v8.1/packet/ExecutionReportNewMessage.values");
     failures += check("ExecutionReportRejectMessage", "B3/B3Derivatives.BinaryEntryPoint.Sbe.v8.1/ExecutionReportRejectMessage.pcap", "b3/b3derivatives/binaryentrypoint/sbe/v8.1/packet/ExecutionReportRejectMessage.values");
+    failures += check("ExecutionReportTradeMessage", "B3/B3Derivatives.BinaryEntryPoint.Sbe.v8.1/ExecutionReportTradeMessage.pcap", "b3/b3derivatives/binaryentrypoint/sbe/v8.1/packet/ExecutionReportTradeMessage.values");
     failures += check("NegotiateMessage", "B3/B3Derivatives.BinaryEntryPoint.Sbe.v8.1/NegotiateMessage.pcap", "b3/b3derivatives/binaryentrypoint/sbe/v8.1/packet/NegotiateMessage.values");
     failures += check("NewOrderCrossMessage", "B3/B3Derivatives.BinaryEntryPoint.Sbe.v8.1/NewOrderCrossMessage.pcap", "b3/b3derivatives/binaryentrypoint/sbe/v8.1/packet/NewOrderCrossMessage.values");
     failures += check("NewOrderSingleMessage", "B3/B3Derivatives.BinaryEntryPoint.Sbe.v8.1/NewOrderSingleMessage.pcap", "b3/b3derivatives/binaryentrypoint/sbe/v8.1/packet/NewOrderSingleMessage.values");
+    failures += check("OrderCancelReplaceRequestMessage", "B3/B3Derivatives.BinaryEntryPoint.Sbe.v8.1/OrderCancelReplaceRequestMessage.pcap", "b3/b3derivatives/binaryentrypoint/sbe/v8.1/packet/OrderCancelReplaceRequestMessage.values");
     failures += check("OrderCancelRequestMessage", "B3/B3Derivatives.BinaryEntryPoint.Sbe.v8.1/OrderCancelRequestMessage.pcap", "b3/b3derivatives/binaryentrypoint/sbe/v8.1/packet/OrderCancelRequestMessage.values");
+    failures += check("OrderMassActionReportMessage", "B3/B3Derivatives.BinaryEntryPoint.Sbe.v8.1/OrderMassActionReportMessage.pcap", "b3/b3derivatives/binaryentrypoint/sbe/v8.1/packet/OrderMassActionReportMessage.values");
+    failures += check("OrderMassActionRequestMessage", "B3/B3Derivatives.BinaryEntryPoint.Sbe.v8.1/OrderMassActionRequestMessage.pcap", "b3/b3derivatives/binaryentrypoint/sbe/v8.1/packet/OrderMassActionRequestMessage.values");
     failures += check("RetransmitRequestMessage", "B3/B3Derivatives.BinaryEntryPoint.Sbe.v8.1/RetransmitRequestMessage.pcap", "b3/b3derivatives/binaryentrypoint/sbe/v8.1/packet/RetransmitRequestMessage.values");
     failures += check("SimpleModifyOrderMessage", "B3/B3Derivatives.BinaryEntryPoint.Sbe.v8.1/SimpleModifyOrderMessage.pcap", "b3/b3derivatives/binaryentrypoint/sbe/v8.1/packet/SimpleModifyOrderMessage.values");
     failures += check("SimpleNewOrderMessage", "B3/B3Derivatives.BinaryEntryPoint.Sbe.v8.1/SimpleNewOrderMessage.pcap", "b3/b3derivatives/binaryentrypoint/sbe/v8.1/packet/SimpleNewOrderMessage.values");

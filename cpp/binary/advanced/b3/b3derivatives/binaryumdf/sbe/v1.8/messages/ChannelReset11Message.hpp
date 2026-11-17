@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.8: messages/ChannelReset11Message.hpp
 #pragma once
 
 #include <cstddef>

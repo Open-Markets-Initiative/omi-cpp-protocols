@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: types/Isin.hpp
 #pragma once
 
 #include <cstddef>

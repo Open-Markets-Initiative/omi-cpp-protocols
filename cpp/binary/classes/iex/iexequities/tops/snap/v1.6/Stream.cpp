@@ -1,3 +1,4 @@
+// Iex.IexEquities.Tops.Snap.v1.6: Stream.cpp
 #include "Stream.hpp"
 
 #include "Factory.hpp"

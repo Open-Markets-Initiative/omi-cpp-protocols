@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: messages/Definitions.hpp
 #pragma once
 
 #include "../structs/BlockHeader.hpp"

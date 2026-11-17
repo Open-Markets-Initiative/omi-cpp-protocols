@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v4.0: main.cpp
 // Nasdaq.NsmEquities.TotalView.Itch.v4.0 benchmark, through the Advanced session layer: every value it reads from every message of the simulated
 // sequence (tests/simulated/nasdaq/nsmequities/totalview/itch/v4.0.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -70,7 +71,6 @@ struct Reader {
         checksum += bench::digest(message.fields.nanoseconds.get().value());
         checksum += bench::digest(message.fields.stock.get().value());
         checksum += bench::digest(message.fields.trading_state.get().value());
-        checksum += bench::digest(message.fields.reserved.get().value());
         checksum += bench::digest(message.fields.reason.get().value());
     }
 

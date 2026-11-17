@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.TopOfMarket.Mach.v2.5: structs/LoginRequest.hpp
 #pragma once
 
 #include "../types/SesmVersion.hpp"

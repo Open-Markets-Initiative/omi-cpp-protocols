@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.2: messages/ExecutionSummary55Message.hpp
 #pragma once
 
 #include <chrono>
@@ -50,7 +51,7 @@ class ExecutionSummary55Message {
 
     std::optional<std::uint32_t> rpt_seq() const { return wire::nullable(wire::read_u32_le(at(52)), static_cast<std::uint32_t>(0ULL)); }
 
-    std::optional<std::uint64_t> transact_time() const { return wire::nullable(wire::read_u64_le(at(56)), static_cast<std::uint64_t>(0ULL)); }
+    std::optional<std::chrono::nanoseconds> transact_time() const { return wire::nullable_duration<std::chrono::nanoseconds>(wire::read_u64_le(at(56)), static_cast<std::uint64_t>(0ULL)); }
 
     void print(std::ostream& out) const {
         out << "ExecutionSummary55Message{";
@@ -75,7 +76,7 @@ class ExecutionSummary55Message {
         out << ", rpt_seq=";
         print::optional(out, rpt_seq());
         out << ", transact_time=";
-        print::optional(out, transact_time());
+        print::optional_duration(out, transact_time());
         out << '}';
     }
 

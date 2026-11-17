@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v2: structs/SymbolMapping.hpp
 #pragma once
 
 #include "../types/RawSymbolIn.hpp"

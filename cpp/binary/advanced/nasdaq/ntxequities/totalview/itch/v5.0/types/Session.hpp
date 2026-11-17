@@ -1,3 +1,4 @@
+// Nasdaq.NtxEquities.TotalView.Itch.v5.0: types/Session.hpp
 #pragma once
 
 #include <cstddef>

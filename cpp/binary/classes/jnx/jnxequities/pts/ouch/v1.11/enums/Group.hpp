@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Ouch.v1.11: enums/Group.hpp
 #pragma once
 
 #include <string_view>

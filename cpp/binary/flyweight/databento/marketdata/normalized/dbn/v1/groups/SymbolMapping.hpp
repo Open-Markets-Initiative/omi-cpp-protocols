@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v1: groups/SymbolMapping.hpp
 #pragma once
 
 #include <cstddef>

@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v1.91: main.cpp
 // Siac.Cts.Output.Cta.v1.91 benchmark, through the Classes Packet: every value it reads from every message of the simulated
 // sequence (tests/simulated/siac/cts/output/cta/v1.91.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -50,28 +51,28 @@ std::uint64_t read(const packet::Frame& frame) {
 
         if (const auto* message = dynamic_cast<const protocol::AdministrativeMessage*>(each.message())) {
             checksum += bench::digest((*message).administrative_message_type());
-            if (const auto* message_2 = dynamic_cast<const protocol::StartOfEndOfDayMessage*>(message->administrative_message_payload())) {
+            if (const auto* message_2 = dynamic_cast<const protocol::StartOfEndOfDaySummaryMessage*>(message->administrative_message_payload())) {
                 checksum += bench::digest((*message_2).participant_id());
                 checksum += bench::digest((*message_2).timestamp_1().seconds());
                 checksum += bench::digest((*message_2).timestamp_1().nanoseconds());
                 checksum += bench::digest((*message_2).message_id());
                 checksum += bench::digest((*message_2).transaction_id());
                 checksum += bench::digest((*message_2).participant_reference_number());
-            } else if (const auto* message_2 = dynamic_cast<const protocol::EndOfEndOfDayMessage*>(message->administrative_message_payload())) {
+            } else if (const auto* message_2 = dynamic_cast<const protocol::EndOfEndOfDaySummaryMessage*>(message->administrative_message_payload())) {
                 checksum += bench::digest((*message_2).participant_id());
                 checksum += bench::digest((*message_2).timestamp_1().seconds());
                 checksum += bench::digest((*message_2).timestamp_1().nanoseconds());
                 checksum += bench::digest((*message_2).message_id());
                 checksum += bench::digest((*message_2).transaction_id());
                 checksum += bench::digest((*message_2).participant_reference_number());
-            } else if (const auto* message_2 = dynamic_cast<const protocol::StartOfStartOfDayMessage*>(message->administrative_message_payload())) {
+            } else if (const auto* message_2 = dynamic_cast<const protocol::StartOfStartOfDaySummaryMessage*>(message->administrative_message_payload())) {
                 checksum += bench::digest((*message_2).participant_id());
                 checksum += bench::digest((*message_2).timestamp_1().seconds());
                 checksum += bench::digest((*message_2).timestamp_1().nanoseconds());
                 checksum += bench::digest((*message_2).message_id());
                 checksum += bench::digest((*message_2).transaction_id());
                 checksum += bench::digest((*message_2).participant_reference_number());
-            } else if (const auto* message_2 = dynamic_cast<const protocol::EndOfStartOfDayMessage*>(message->administrative_message_payload())) {
+            } else if (const auto* message_2 = dynamic_cast<const protocol::EndOfStartOfDaySummaryMessage*>(message->administrative_message_payload())) {
                 checksum += bench::digest((*message_2).participant_id());
                 checksum += bench::digest((*message_2).timestamp_1().seconds());
                 checksum += bench::digest((*message_2).timestamp_1().nanoseconds());
@@ -173,7 +174,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest((*message_2).mwcb_level_1().mantissa());
                 checksum += bench::digest((*message_2).mwcb_level_2().mantissa());
                 checksum += bench::digest((*message_2).mwcb_level_3().mantissa());
-                checksum += bench::digest((*message_2).reserved());
             } else if (const auto* message_2 = dynamic_cast<const protocol::MarketWideCircuitBreakerStatusMessage*>(message->market_status_message_payload())) {
                 checksum += bench::digest((*message_2).participant_id());
                 checksum += bench::digest((*message_2).timestamp_1().seconds());
@@ -182,7 +182,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest((*message_2).transaction_id());
                 checksum += bench::digest((*message_2).participant_reference_number());
                 checksum += bench::digest((*message_2).market_wide_circuit_breaker_level_indicator());
-                checksum += bench::digest((*message_2).reserved());
             } else if (const auto* message_2 = dynamic_cast<const protocol::ApproximateAdjustedVolumeMarketCenterMessage*>(message->market_status_message_payload())) {
                 checksum += bench::digest((*message_2).participant_id());
                 checksum += bench::digest((*message_2).timestamp_1().seconds());

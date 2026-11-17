@@ -1,3 +1,4 @@
+// Nasdaq.PsxEquities.TotalView.Itch.v5.0: main.cpp
 // Nasdaq.PsxEquities.TotalView.Itch.v5.0 write and read: every message built with each field it sets, written
 // into a capture through the Classes encoder, then read back - each field set must read as it was written.
 // 
@@ -114,7 +115,6 @@ std::unique_ptr<protocol::Message> build_StockTradingActionMessage() {
     message->set_timestamp(std::chrono::nanoseconds{3});
     message->set_stock(std::string("EFG"));
     message->set_trading_state(protocol::TradingState::Paused);
-    message->set_reserved('G');
     message->set_reason(std::string("HIJ"));
     return message;
 }
@@ -476,10 +476,6 @@ int check_StockTradingActionMessage(const protocol::Message* read) {
     }
     if (!(message->trading_state() == protocol::TradingState::Paused)) {
         std::printf("FAIL StockTradingActionMessage: trading_state does not read as it was written\n");
-        ++failures;
-    }
-    if (!(message->reserved() == 'G')) {
-        std::printf("FAIL StockTradingActionMessage: reserved does not read as it was written\n");
         ++failures;
     }
     if (!(message->reason() == std::string("HIJ"))) {

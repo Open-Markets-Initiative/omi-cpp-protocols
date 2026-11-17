@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.8: messages/RequestReject.cpp
 #include "RequestReject.hpp"
 
 #include "../common/Print.hpp"
@@ -6,8 +7,8 @@
 
 namespace cme::globex::mdp3::sbe::v1_8 {
 
-RequestReject::RequestReject(std::optional<std::uint32_t> md_req_id_optional, MdReqRejReason md_req_rej_reason, const std::string& text)
-  : md_req_id_optional_(md_req_id_optional), md_req_rej_reason_(md_req_rej_reason), text_(text) {}
+RequestReject::RequestReject(std::optional<std::uint32_t> md_req_id_optional, MdReqRejReason md_req_rej_reason, const std::string& session_text)
+  : md_req_id_optional_(md_req_id_optional), md_req_rej_reason_(md_req_rej_reason), session_text_(session_text) {}
 
 std::optional<std::uint32_t> RequestReject::md_req_id_optional() const { return md_req_id_optional_; }
 void RequestReject::set_md_req_id_optional(std::optional<std::uint32_t> value) { md_req_id_optional_ = value; }
@@ -15,9 +16,9 @@ void RequestReject::set_md_req_id_optional(std::optional<std::uint32_t> value) {
 MdReqRejReason RequestReject::md_req_rej_reason() const { return md_req_rej_reason_; }
 void RequestReject::set_md_req_rej_reason(MdReqRejReason value) { md_req_rej_reason_ = value; }
 
-const std::string& RequestReject::text() const { return text_; }
-std::string& RequestReject::text() { return text_; }
-void RequestReject::set_text(const std::string& value) { text_ = value; }
+const std::string& RequestReject::session_text() const { return session_text_; }
+std::string& RequestReject::session_text() { return session_text_; }
+void RequestReject::set_session_text(const std::string& value) { session_text_ = value; }
 
 MdpsessionmgmtPayloadCode RequestReject::type() const { return message_type; }
 
@@ -33,7 +34,7 @@ std::size_t RequestReject::decode(const std::byte* data, std::size_t length) {
     md_req_rej_reason_ = static_cast<MdReqRejReason>(wire::read_u8(data + offset));
     offset += 1;
 
-    text_ = wire::read_text(data + offset, 100, '\0');
+    session_text_ = wire::read_text(data + offset, 100, '\0');
     offset += 100;
 
     return offset;
@@ -49,7 +50,7 @@ std::size_t RequestReject::encode(std::byte* data, std::size_t capacity) const {
     wire::write_u8(data + offset, static_cast<std::uint8_t>(md_req_rej_reason_));
     offset += 1;
 
-    wire::write_text(data + offset, 100, '\0', text_);
+    wire::write_text(data + offset, 100, '\0', session_text_);
     offset += 100;
 
     return offset;
@@ -73,8 +74,8 @@ void RequestReject::print(std::ostream& out) const {
     print::optional(out, md_req_id_optional_);
     out << ", md_req_rej_reason=";
     out << md_req_rej_reason_;
-    out << ", text=";
-    print::text(out, text_);
+    out << ", session_text=";
+    print::text(out, session_text_);
     out << '}';
 }
 
@@ -86,7 +87,7 @@ bool RequestReject::equals(const MdpsessionmgmtPayload& other) const {
 bool RequestReject::operator==(const RequestReject& other) const {
     return md_req_id_optional_ == other.md_req_id_optional_
         && md_req_rej_reason_ == other.md_req_rej_reason_
-        && text_ == other.text_;
+        && session_text_ == other.session_text_;
 }
 
 bool RequestReject::operator!=(const RequestReject& other) const {

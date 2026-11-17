@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.9: bitfields/SettlPriceType.hpp
 #pragma once
 
 #include <cstddef>
@@ -30,18 +31,6 @@ class SettlPriceType {
     // Intraday: Intraday
     bool intraday() const;
     void set_intraday(bool value);
-
-    // Reserved Bits: ReservedBits
-    bool reserved_bits() const;
-    void set_reserved_bits(bool value);
-
-    // Unused Settl Price Type 5: Unused SettlPriceType 5
-    bool unused_settl_price_type_5() const;
-    void set_unused_settl_price_type_5(bool value);
-
-    // Unused Settl Price Type 6: Unused SettlPriceType 6
-    bool unused_settl_price_type_6() const;
-    void set_unused_settl_price_type_6(bool value);
 
     // Null Value: NullValue
     bool null_value() const;

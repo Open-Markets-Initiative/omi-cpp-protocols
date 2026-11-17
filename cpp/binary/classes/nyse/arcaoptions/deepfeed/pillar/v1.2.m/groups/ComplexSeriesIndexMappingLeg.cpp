@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.DeepFeed.Pillar.v1.2.m: groups/ComplexSeriesIndexMappingLeg.cpp
 #include "ComplexSeriesIndexMappingLeg.hpp"
 
 #include "../common/Print.hpp"

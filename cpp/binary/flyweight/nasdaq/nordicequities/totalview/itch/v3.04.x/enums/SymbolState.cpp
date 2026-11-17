@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: enums/SymbolState.cpp
 #include "SymbolState.hpp"
 
 namespace nasdaq::nordicequities::totalview::itch::v3_04_x {

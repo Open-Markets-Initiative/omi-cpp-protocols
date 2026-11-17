@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: actions/Heartbeat.hpp
 #pragma once
 
 #include <cstdint>

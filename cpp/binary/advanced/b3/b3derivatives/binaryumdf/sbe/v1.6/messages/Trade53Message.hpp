@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.6: messages/Trade53Message.hpp
 #pragma once
 
 #include <cstddef>
@@ -8,7 +9,7 @@
 #include "../types/TradingSessionId.hpp"
 #include "../types/TradeCondition.hpp"
 #include "../types/MdFuturePrice.hpp"
-#include "../types/MdEntrySizeQuantity.hpp"
+#include "../types/MdEntrySize.hpp"
 #include "../types/TradeId.hpp"
 #include "../types/MdEntryBuyer.hpp"
 #include "../types/MdEntrySeller.hpp"
@@ -33,7 +34,7 @@ struct trade_53_message {
         sbe_binaryumdf::trading_session_id trading_session_id;
         sbe_binaryumdf::trade_condition trade_condition;
         sbe_binaryumdf::md_future_price md_future_price;
-        sbe_binaryumdf::md_entry_size_quantity md_entry_size_quantity;
+        sbe_binaryumdf::md_entry_size md_entry_size;
         sbe_binaryumdf::trade_id trade_id;
         sbe_binaryumdf::md_entry_buyer md_entry_buyer;
         sbe_binaryumdf::md_entry_seller md_entry_seller;
@@ -67,7 +68,7 @@ static_assert(offsetof(trade_53_message::fields_type, match_event_indicator) == 
 static_assert(offsetof(trade_53_message::fields_type, trading_session_id) == 9, "unexpected offset of trade_53_message::fields_type::trading_session_id");
 static_assert(offsetof(trade_53_message::fields_type, trade_condition) == 10, "unexpected offset of trade_53_message::fields_type::trade_condition");
 static_assert(offsetof(trade_53_message::fields_type, md_future_price) == 12, "unexpected offset of trade_53_message::fields_type::md_future_price");
-static_assert(offsetof(trade_53_message::fields_type, md_entry_size_quantity) == 20, "unexpected offset of trade_53_message::fields_type::md_entry_size_quantity");
+static_assert(offsetof(trade_53_message::fields_type, md_entry_size) == 20, "unexpected offset of trade_53_message::fields_type::md_entry_size");
 static_assert(offsetof(trade_53_message::fields_type, trade_id) == 28, "unexpected offset of trade_53_message::fields_type::trade_id");
 static_assert(offsetof(trade_53_message::fields_type, md_entry_buyer) == 32, "unexpected offset of trade_53_message::fields_type::md_entry_buyer");
 static_assert(offsetof(trade_53_message::fields_type, md_entry_seller) == 36, "unexpected offset of trade_53_message::fields_type::md_entry_seller");

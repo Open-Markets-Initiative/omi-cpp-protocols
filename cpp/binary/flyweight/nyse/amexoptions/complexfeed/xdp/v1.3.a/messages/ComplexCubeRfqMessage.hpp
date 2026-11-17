@@ -1,5 +1,7 @@
+// Nyse.AmexOptions.ComplexFeed.Xdp.v1.3.a: messages/ComplexCubeRfqMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <ostream>
@@ -26,7 +28,7 @@ class ComplexCubeRfqMessage {
     static constexpr std::size_t fixed_size = 24;
     std::size_t encoded_size() const { return 24; }
 
-    std::uint32_t source_time() const { return wire::read_u32_le(at(0)); }
+    std::chrono::seconds source_time() const { return std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_le(at(0)))); }
 
     std::uint32_t source_ns() const { return wire::read_u32_le(at(4)); }
 
@@ -45,7 +47,7 @@ class ComplexCubeRfqMessage {
     void print(std::ostream& out) const {
         out << "ComplexCubeRfqMessage{";
         out << "source_time=";
-        out << source_time();
+        out << source_time().count();
         out << ", source_ns=";
         out << source_ns();
         out << ", complex_index=";

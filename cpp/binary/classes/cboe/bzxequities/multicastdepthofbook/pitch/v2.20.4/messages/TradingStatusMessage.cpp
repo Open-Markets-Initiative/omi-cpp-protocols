@@ -1,3 +1,4 @@
+// Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.20.4: messages/TradingStatusMessage.cpp
 #include "TradingStatusMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,7 +7,7 @@
 
 namespace cboe::bzxequities::multicastdepthofbook::pitch::v2_20_4 {
 
-TradingStatusMessage::TradingStatusMessage(std::chrono::nanoseconds time_offset, const std::string& symbol_long, TradingStatus trading_status, RegShoAction reg_sho_action, char reserved_1, char second_reserved_1)
+TradingStatusMessage::TradingStatusMessage(std::chrono::nanoseconds time_offset, const std::string& symbol_long, TradingStatus trading_status, RegShoAction reg_sho_action, const std::array<std::byte, 1>& reserved_1, const std::array<std::byte, 1>& second_reserved_1)
   : time_offset_(time_offset), symbol_long_(symbol_long), trading_status_(trading_status), reg_sho_action_(reg_sho_action), reserved_1_(reserved_1), second_reserved_1_(second_reserved_1) {}
 
 std::chrono::nanoseconds TradingStatusMessage::time_offset() const { return time_offset_; }
@@ -22,11 +23,13 @@ void TradingStatusMessage::set_trading_status(TradingStatus value) { trading_sta
 RegShoAction TradingStatusMessage::reg_sho_action() const { return reg_sho_action_; }
 void TradingStatusMessage::set_reg_sho_action(RegShoAction value) { reg_sho_action_ = value; }
 
-char TradingStatusMessage::reserved_1() const { return reserved_1_; }
-void TradingStatusMessage::set_reserved_1(char value) { reserved_1_ = value; }
+const std::array<std::byte, 1>& TradingStatusMessage::reserved_1() const { return reserved_1_; }
+std::array<std::byte, 1>& TradingStatusMessage::reserved_1() { return reserved_1_; }
+void TradingStatusMessage::set_reserved_1(const std::array<std::byte, 1>& value) { reserved_1_ = value; }
 
-char TradingStatusMessage::second_reserved_1() const { return second_reserved_1_; }
-void TradingStatusMessage::set_second_reserved_1(char value) { second_reserved_1_ = value; }
+const std::array<std::byte, 1>& TradingStatusMessage::second_reserved_1() const { return second_reserved_1_; }
+std::array<std::byte, 1>& TradingStatusMessage::second_reserved_1() { return second_reserved_1_; }
+void TradingStatusMessage::set_second_reserved_1(const std::array<std::byte, 1>& value) { second_reserved_1_ = value; }
 
 MessageCode TradingStatusMessage::type() const { return message_type; }
 
@@ -48,10 +51,10 @@ std::size_t TradingStatusMessage::decode(const std::byte* data, std::size_t leng
     reg_sho_action_ = static_cast<RegShoAction>(wire::read_char(data + offset));
     offset += 1;
 
-    reserved_1_ = wire::read_char(data + offset);
+    wire::read_bytes(data + offset, reserved_1_.data(), 1);
     offset += 1;
 
-    second_reserved_1_ = wire::read_char(data + offset);
+    wire::read_bytes(data + offset, second_reserved_1_.data(), 1);
     offset += 1;
 
     return offset;
@@ -73,10 +76,10 @@ std::size_t TradingStatusMessage::encode(std::byte* data, std::size_t capacity) 
     wire::write_char(data + offset, static_cast<char>(reg_sho_action_));
     offset += 1;
 
-    wire::write_char(data + offset, reserved_1_);
+    wire::write_bytes(data + offset, reserved_1_.data(), 1);
     offset += 1;
 
-    wire::write_char(data + offset, second_reserved_1_);
+    wire::write_bytes(data + offset, second_reserved_1_.data(), 1);
     offset += 1;
 
     return offset;
@@ -105,9 +108,9 @@ void TradingStatusMessage::print(std::ostream& out) const {
     out << ", reg_sho_action=";
     out << reg_sho_action_;
     out << ", reserved_1=";
-    print::character(out, reserved_1_);
+    print::hex(out, reserved_1_.data(), reserved_1_.size());
     out << ", second_reserved_1=";
-    print::character(out, second_reserved_1_);
+    print::hex(out, second_reserved_1_.data(), second_reserved_1_.size());
     out << '}';
 }
 

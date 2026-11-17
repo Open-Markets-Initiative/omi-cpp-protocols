@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v1.91: types/HeldTradeIndicator.hpp
 #pragma once
 
 #include <cstddef>

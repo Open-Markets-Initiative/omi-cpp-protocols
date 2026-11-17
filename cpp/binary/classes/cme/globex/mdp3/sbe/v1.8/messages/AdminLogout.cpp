@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.8: messages/AdminLogout.cpp
 #include "AdminLogout.hpp"
 
 #include "../common/Print.hpp"
@@ -21,8 +22,8 @@ std::size_t AdminLogout::decode(const std::byte* data, std::size_t length) {
     std::size_t offset = 0;
     wire::require("AdminLogout", wire_size, length);
 
-    text_ = wire::read_text(data + offset, 100, '\0');
-    offset += 100;
+    text_ = wire::read_text(data + offset, 180, '\0');
+    offset += 180;
 
     return offset;
 }
@@ -31,8 +32,8 @@ std::size_t AdminLogout::encode(std::byte* data, std::size_t capacity) const {
     std::size_t offset = 0;
     wire::require_capacity("AdminLogout", wire_size, capacity);
 
-    wire::write_text(data + offset, 100, '\0', text_);
-    offset += 100;
+    wire::write_text(data + offset, 180, '\0', text_);
+    offset += 180;
 
     return offset;
 }

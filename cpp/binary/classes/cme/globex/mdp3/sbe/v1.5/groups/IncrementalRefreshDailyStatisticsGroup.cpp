@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.5: groups/IncrementalRefreshDailyStatisticsGroup.cpp
 #include "IncrementalRefreshDailyStatisticsGroup.hpp"
 
 #include "../common/Print.hpp"

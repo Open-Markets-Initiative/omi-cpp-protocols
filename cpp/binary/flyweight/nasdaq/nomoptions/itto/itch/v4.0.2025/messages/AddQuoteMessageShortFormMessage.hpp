@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: messages/AddQuoteMessageShortFormMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -41,11 +42,11 @@ class AddQuoteMessageShortFormMessage {
 
     std::uint32_t option_id() const { return wire::read_u32_be(at(24)); }
 
-    Decimal bid_price_short() const { return Decimal(static_cast<std::int64_t>(wire::read_u16_be(at(28))), -4); }
+    Decimal bid_price_short() const { return Decimal(static_cast<std::int64_t>(wire::read_u16_be(at(28))), -2); }
 
     std::uint16_t bid_size_short() const { return wire::read_u16_be(at(30)); }
 
-    Decimal ask_price_short() const { return Decimal(static_cast<std::int64_t>(wire::read_u16_be(at(32))), -4); }
+    Decimal ask_price_short() const { return Decimal(static_cast<std::int64_t>(wire::read_u16_be(at(32))), -2); }
 
     std::uint16_t ask_size_short() const { return wire::read_u16_be(at(34)); }
 

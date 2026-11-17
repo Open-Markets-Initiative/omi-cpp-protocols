@@ -1,3 +1,4 @@
+// Asx.AsxDerivatives.Ntp.Itch.v1.05: messages/OptionsSymbolDirectoryMessage.cpp
 #include "OptionsSymbolDirectoryMessage.hpp"
 
 #include "../common/Print.hpp"

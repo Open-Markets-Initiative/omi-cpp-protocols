@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.TopOfMarket.Mach.v2.5: enums/LiquidityAcceptanceIncrementIndicator.cpp
 #include "LiquidityAcceptanceIncrementIndicator.hpp"
 
 namespace miax::miaxoptions::topofmarket::mach::v2_5 {

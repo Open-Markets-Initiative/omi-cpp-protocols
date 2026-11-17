@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v6.0: structs/PacketHeader.hpp
 #pragma once
 
 #include <array>
@@ -20,7 +21,7 @@ class PacketHeader {
     static constexpr std::size_t wire_size = 32;
 
     PacketHeader() = default;
-    PacketHeader(const EobiHeader& eobi_header, std::uint32_t appl_seq_num, std::optional<std::int32_t> market_segment_id, std::optional<std::uint8_t> partition_id, std::optional<CompletionIndicator> completion_indicator, std::optional<ApplSeqResetIndicator> appl_seq_reset_indicator, const std::array<std::byte, 5>& pad5, std::optional<std::chrono::nanoseconds> transact_time);
+    PacketHeader(const EobiHeader& eobi_header, std::optional<std::uint32_t> appl_seq_num, std::optional<std::int32_t> market_segment_id, std::optional<std::uint8_t> partition_id, std::optional<CompletionIndicator> completion_indicator, std::optional<ApplSeqResetIndicator> appl_seq_reset_indicator, const std::array<std::byte, 5>& pad5, std::optional<std::chrono::nanoseconds> transact_time);
 
     // Eobi Header: EOBI PacketHeader MessageHeaderComp (BodyLen + TemplateID + MsgSeqNum) —
     // first 8 bytes of every Eurex T7 EOBI packet.
@@ -29,8 +30,8 @@ class PacketHeader {
     void set_eobi_header(const EobiHeader& value);
 
     // Appl Seq Num: Application sequence number per Market Segment / Partition
-    std::uint32_t appl_seq_num() const;
-    void set_appl_seq_num(std::uint32_t value);
+    std::optional<std::uint32_t> appl_seq_num() const;
+    void set_appl_seq_num(std::optional<std::uint32_t> value);
 
     // Market Segment Id: Market Segment identifier for the partition
     std::optional<std::int32_t> market_segment_id() const;
@@ -71,7 +72,7 @@ class PacketHeader {
 
   private:
     EobiHeader eobi_header_{};
-    std::uint32_t appl_seq_num_{};
+    std::optional<std::uint32_t> appl_seq_num_{};
     std::optional<std::int32_t> market_segment_id_{};
     std::optional<std::uint8_t> partition_id_{};
     std::optional<CompletionIndicator> completion_indicator_{};

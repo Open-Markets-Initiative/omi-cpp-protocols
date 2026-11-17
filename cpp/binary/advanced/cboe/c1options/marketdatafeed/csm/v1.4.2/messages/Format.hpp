@@ -1,3 +1,4 @@
+// Cboe.C1Options.MarketDataFeed.Csm.v1.4.2: messages/Format.hpp
 #pragma once
 
 #include <ostream>
@@ -70,6 +71,7 @@ inline std::ostream& operator<<(std::ostream& os, const security_definition_mess
        << ",exercise_style=\"" << csm_marketdatafeed::exercise_style::to_string(msg.fields.exercise_style.get().value()) << '"'
        << ",contract_size=" << msg.fields.contract_size.get().value()
        << ",no_legs=" << static_cast<unsigned>(msg.fields.no_legs.get().value())
+       << ",tail=" << json::tail_to_json_string(msg)
        ;
     return os;
 }
@@ -81,6 +83,7 @@ inline std::ostream& operator<<(std::ostream& os, const current_market_refresh_m
        << ",price_type=" << static_cast<unsigned>(msg.fields.price_type.get().value())
        << ",appl_seq_num=" << msg.fields.appl_seq_num.get().value()
        << ",no_entries=" << static_cast<unsigned>(msg.fields.no_entries.get().value())
+       << ",tail=" << json::tail_to_json_string(msg)
        ;
     return os;
 }
@@ -95,6 +98,7 @@ inline std::ostream& operator<<(std::ostream& os, const market_data_refresh_mess
        << ",prev_close_px.prev_close_px_mantissa=" << msg.fields.prev_close_px.prev_close_px_mantissa.get().value()
        << ",trade_volume=" << msg.fields.trade_volume.get().value()
        << ",no_entries=" << static_cast<unsigned>(msg.fields.no_entries.get().value())
+       << ",tail=" << json::tail_to_json_string(msg)
        ;
     return os;
 }
@@ -105,6 +109,7 @@ inline std::ostream& operator<<(std::ostream& os, const current_market_update_me
        << ",security_trading_status=\"" << csm_marketdatafeed::security_trading_status::to_string(msg.fields.security_trading_status.get().value()) << '"'
        << ",price_type=" << static_cast<unsigned>(msg.fields.price_type.get().value())
        << ",no_entries=" << static_cast<unsigned>(msg.fields.no_entries.get().value())
+       << ",tail=" << json::tail_to_json_string(msg)
        ;
     return os;
 }
@@ -117,6 +122,7 @@ inline std::ostream& operator<<(std::ostream& os, const recap_update_message& ms
        << ",prev_close_px.prev_close_px_mantissa=" << msg.fields.prev_close_px.prev_close_px_mantissa.get().value()
        << ",trade_volume=" << msg.fields.trade_volume.get().value()
        << ",no_entries=" << static_cast<unsigned>(msg.fields.no_entries.get().value())
+       << ",tail=" << json::tail_to_json_string(msg)
        ;
     return os;
 }
@@ -126,6 +132,7 @@ inline std::ostream& operator<<(std::ostream& os, const ticker_message& msg) {
        << ",security_id=" << msg.fields.security_id.get().value()
        << ",price_type=" << static_cast<unsigned>(msg.fields.price_type.get().value())
        << ",no_entries=" << static_cast<unsigned>(msg.fields.no_entries.get().value())
+       << ",tail=" << json::tail_to_json_string(msg)
        ;
     return os;
 }
@@ -144,6 +151,7 @@ inline std::ostream& operator<<(std::ostream& os, const expected_opening_price_a
 
 inline std::ostream& operator<<(std::ostream& os, const index_value_message& msg) {
     os << "no_entries=" << static_cast<unsigned>(msg.fields.no_entries.get().value())
+       << ",tail=" << json::tail_to_json_string(msg)
        ;
     return os;
 }
@@ -153,6 +161,7 @@ inline std::ostream& operator<<(std::ostream& os, const settlement_value_message
        << ",security_id=" << msg.fields.security_id.get().value()
        << ",price_type=" << static_cast<unsigned>(msg.fields.price_type.get().value())
        << ",no_entries=" << static_cast<unsigned>(msg.fields.no_entries.get().value())
+       << ",tail=" << json::tail_to_json_string(msg)
        ;
     return os;
 }
@@ -168,6 +177,7 @@ inline std::ostream& operator<<(std::ostream& os, const summary_message& msg) {
        << ",underlying_px.underlying_px_exponent=" << static_cast<int>(msg.fields.underlying_px.underlying_px_exponent.get().value())
        << ",underlying_px.underlying_px_mantissa=" << msg.fields.underlying_px.underlying_px_mantissa.get().value()
        << ",no_entries=" << static_cast<unsigned>(msg.fields.no_entries.get().value())
+       << ",tail=" << json::tail_to_json_string(msg)
        ;
     return os;
 }

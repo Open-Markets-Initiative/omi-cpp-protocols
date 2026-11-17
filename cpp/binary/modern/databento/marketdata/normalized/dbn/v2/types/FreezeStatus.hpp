@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v2: types/FreezeStatus.hpp
 #pragma once
 
 #include <cstddef>

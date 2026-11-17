@@ -1,6 +1,8 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/SymbolDirectoryMessage.hpp
 #pragma once
 
 #include <array>
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
@@ -8,6 +10,7 @@
 #include <string>
 #include <string_view>
 
+#include "../common/Decimal.hpp"
 #include "../enums/SymbolStatus.hpp"
 #include "../messages/Message.hpp"
 
@@ -24,11 +27,11 @@ class SymbolDirectoryMessage : public Message {
     static constexpr std::size_t wire_size = 63;
 
     SymbolDirectoryMessage() = default;
-    SymbolDirectoryMessage(std::uint32_t nanosecond, std::uint32_t instrument_id, const std::array<std::byte, 1>& reserved_a, const std::array<std::byte, 1>& reserved_b, SymbolStatus symbol_status, const std::string& isin, const std::string& sedol, const std::string& segment, const std::string& underlying, const std::string& currency, const std::array<std::byte, 1>& reserved_byte, const std::array<std::byte, 4>& reserved_4, std::int64_t previous_close_price);
+    SymbolDirectoryMessage(std::chrono::nanoseconds nanosecond, std::uint32_t instrument_id, const std::array<std::byte, 1>& reserved_a, const std::array<std::byte, 1>& reserved_b, SymbolStatus symbol_status, const std::string& isin, const std::string& sedol, const std::string& segment, const std::string& underlying, const std::string& currency, const std::array<std::byte, 1>& reserved_byte, const std::array<std::byte, 4>& reserved_4, Decimal previous_close_price);
 
     // Nanosecond: Nanoseconds since last message, accurate to the nearest microsecond.
-    std::uint32_t nanosecond() const;
-    void set_nanosecond(std::uint32_t value);
+    std::chrono::nanoseconds nanosecond() const;
+    void set_nanosecond(std::chrono::nanoseconds value);
 
     // Instrument Id: Instrument's symbol.
     std::uint32_t instrument_id() const;
@@ -84,8 +87,8 @@ class SymbolDirectoryMessage : public Message {
     void set_reserved_4(const std::array<std::byte, 4>& value);
 
     // Previous Close Price: Previous Close Price of instrument
-    std::int64_t previous_close_price() const;
-    void set_previous_close_price(std::int64_t value);
+    Decimal previous_close_price() const;
+    void set_previous_close_price(Decimal value);
 
     // Message
     MessageCode type() const override;
@@ -102,7 +105,7 @@ class SymbolDirectoryMessage : public Message {
     bool operator!=(const SymbolDirectoryMessage& other) const;
 
   private:
-    std::uint32_t nanosecond_{};
+    std::chrono::nanoseconds nanosecond_{};
     std::uint32_t instrument_id_{};
     std::array<std::byte, 1> reserved_a_{};
     std::array<std::byte, 1> reserved_b_{};
@@ -114,7 +117,7 @@ class SymbolDirectoryMessage : public Message {
     std::string currency_{};
     std::array<std::byte, 1> reserved_byte_{};
     std::array<std::byte, 4> reserved_4_{};
-    std::int64_t previous_close_price_{};
+    Decimal previous_close_price_{ 0, -8 };
 };
 
 } // namespace lseg::millennium::level2::mitch::v11_9

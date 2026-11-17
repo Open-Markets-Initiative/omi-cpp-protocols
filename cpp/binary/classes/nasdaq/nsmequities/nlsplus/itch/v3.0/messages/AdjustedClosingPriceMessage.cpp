@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: messages/AdjustedClosingPriceMessage.cpp
 #include "AdjustedClosingPriceMessage.hpp"
 
 #include "../common/Print.hpp"

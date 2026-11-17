@@ -1,6 +1,6 @@
+// Nasdaq.PhlxOptions.TopOfMarket.Itch.v3.4: types/Source.hpp
 #pragma once
 
-#include <bit>
 #include <cstddef>
 #include <cstdint>
 

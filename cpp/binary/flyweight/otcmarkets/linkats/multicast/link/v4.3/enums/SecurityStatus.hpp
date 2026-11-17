@@ -1,3 +1,4 @@
+// OtcMarkets.LinkAts.Multicast.Link.v4.3: enums/SecurityStatus.hpp
 #pragma once
 
 #include <cstdint>

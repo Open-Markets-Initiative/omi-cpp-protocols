@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: enums/PriceNotation.hpp
 #pragma once
 
 #include <cstdint>

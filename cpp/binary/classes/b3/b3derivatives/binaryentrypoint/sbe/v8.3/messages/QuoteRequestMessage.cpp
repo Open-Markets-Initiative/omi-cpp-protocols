@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: messages/QuoteRequestMessage.cpp
 #include "QuoteRequestMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,8 +7,8 @@
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_3 {
 
-QuoteRequestMessage::QuoteRequestMessage(const BidirectionalBusinessHeader& bidirectional_business_header, std::uint64_t security_id, std::uint64_t quote_req_id, std::optional<std::uint64_t> quote_id_optional, std::optional<std::uint32_t> trade_id_optional, std::uint32_t contra_broker, std::chrono::nanoseconds transact_time, Decimal price_8, SettlType settl_type, ExecuteUnderlyingTrade execute_underlying_trade, std::uint64_t order_qty, const std::string& sender_location, const std::string& entering_trader, const std::string& executing_trader, Decimal fixed_rate_percentage_8, std::uint16_t days_to_settlement, const SidesGroups& sides_groups, const DeskId& desk_id, const Memo& memo)
-  : bidirectional_business_header_(bidirectional_business_header), security_id_(security_id), quote_req_id_(quote_req_id), quote_id_optional_(quote_id_optional), trade_id_optional_(trade_id_optional), contra_broker_(contra_broker), transact_time_(transact_time), price_8_(price_8), settl_type_(settl_type), execute_underlying_trade_(execute_underlying_trade), order_qty_(order_qty), sender_location_(sender_location), entering_trader_(entering_trader), executing_trader_(executing_trader), fixed_rate_percentage_8_(fixed_rate_percentage_8), days_to_settlement_(days_to_settlement), sides_groups_(sides_groups), desk_id_(desk_id), memo_(memo) {}
+QuoteRequestMessage::QuoteRequestMessage(const BidirectionalBusinessHeader& bidirectional_business_header, std::uint64_t security_id, std::uint64_t quote_req_id, std::optional<std::uint64_t> quote_id_optional, std::optional<std::uint32_t> trade_id_optional, std::uint32_t contra_broker, std::chrono::nanoseconds transact_time, Decimal price_8, SettlType settl_type, ExecuteUnderlyingTrade execute_underlying_trade, std::uint64_t order_qty, const std::string& sender_location, const std::string& entering_trader, const std::string& executing_trader, Decimal fixed_rate, std::uint16_t days_to_settlement, const SidesGroups& sides_groups, const DeskId& desk_id, const Memo& memo)
+  : bidirectional_business_header_(bidirectional_business_header), security_id_(security_id), quote_req_id_(quote_req_id), quote_id_optional_(quote_id_optional), trade_id_optional_(trade_id_optional), contra_broker_(contra_broker), transact_time_(transact_time), price_8_(price_8), settl_type_(settl_type), execute_underlying_trade_(execute_underlying_trade), order_qty_(order_qty), sender_location_(sender_location), entering_trader_(entering_trader), executing_trader_(executing_trader), fixed_rate_(fixed_rate), days_to_settlement_(days_to_settlement), sides_groups_(sides_groups), desk_id_(desk_id), memo_(memo) {}
 
 const BidirectionalBusinessHeader& QuoteRequestMessage::bidirectional_business_header() const { return bidirectional_business_header_; }
 BidirectionalBusinessHeader& QuoteRequestMessage::bidirectional_business_header() { return bidirectional_business_header_; }
@@ -55,8 +56,8 @@ const std::string& QuoteRequestMessage::executing_trader() const { return execut
 std::string& QuoteRequestMessage::executing_trader() { return executing_trader_; }
 void QuoteRequestMessage::set_executing_trader(const std::string& value) { executing_trader_ = value; }
 
-Decimal QuoteRequestMessage::fixed_rate_percentage_8() const { return fixed_rate_percentage_8_; }
-void QuoteRequestMessage::set_fixed_rate_percentage_8(Decimal value) { fixed_rate_percentage_8_ = value; }
+Decimal QuoteRequestMessage::fixed_rate() const { return fixed_rate_; }
+void QuoteRequestMessage::set_fixed_rate(Decimal value) { fixed_rate_ = value; }
 
 std::uint16_t QuoteRequestMessage::days_to_settlement() const { return days_to_settlement_; }
 void QuoteRequestMessage::set_days_to_settlement(std::uint16_t value) { days_to_settlement_ = value; }
@@ -135,7 +136,7 @@ std::size_t QuoteRequestMessage::decode(const std::byte* data, std::size_t lengt
     offset += 5;
 
     wire::require("QuoteRequestMessage", offset + 8, length);
-    fixed_rate_percentage_8_ = Decimal(static_cast<std::int64_t>(wire::read_i64_le(data + offset)), -8);
+    fixed_rate_ = Decimal(static_cast<std::int64_t>(wire::read_i64_le(data + offset)), -8);
     offset += 8;
 
     wire::require("QuoteRequestMessage", offset + 2, length);
@@ -196,7 +197,7 @@ std::size_t QuoteRequestMessage::encode(std::byte* data, std::size_t capacity) c
     wire::write_text(data + offset, 5, '\0', executing_trader_);
     offset += 5;
 
-    wire::write_i64_le(data + offset, static_cast<std::int64_t>(fixed_rate_percentage_8_.mantissa()));
+    wire::write_i64_le(data + offset, static_cast<std::int64_t>(fixed_rate_.mantissa()));
     offset += 8;
 
     wire::write_u16_le(data + offset, static_cast<std::uint16_t>(days_to_settlement_));
@@ -253,8 +254,8 @@ void QuoteRequestMessage::print(std::ostream& out) const {
     print::text(out, entering_trader_);
     out << ", executing_trader=";
     print::text(out, executing_trader_);
-    out << ", fixed_rate_percentage_8=";
-    out << fixed_rate_percentage_8_;
+    out << ", fixed_rate=";
+    out << fixed_rate_;
     out << ", days_to_settlement=";
     out << days_to_settlement_;
     out << ", sides_groups=";
@@ -286,7 +287,7 @@ bool QuoteRequestMessage::operator==(const QuoteRequestMessage& other) const {
         && sender_location_ == other.sender_location_
         && entering_trader_ == other.entering_trader_
         && executing_trader_ == other.executing_trader_
-        && fixed_rate_percentage_8_ == other.fixed_rate_percentage_8_
+        && fixed_rate_ == other.fixed_rate_
         && days_to_settlement_ == other.days_to_settlement_
         && sides_groups_ == other.sides_groups_
         && desk_id_ == other.desk_id_

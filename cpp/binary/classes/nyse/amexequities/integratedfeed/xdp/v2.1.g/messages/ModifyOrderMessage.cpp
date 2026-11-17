@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeed.Xdp.v2.1.g: messages/ModifyOrderMessage.cpp
 #include "ModifyOrderMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,11 +7,11 @@
 
 namespace nyse::amexequities::integratedfeed::xdp::v2_1_g {
 
-ModifyOrderMessage::ModifyOrderMessage(std::uint32_t source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, std::uint64_t order_id, std::uint32_t price, std::uint32_t volume, PositionChange position_change, std::uint8_t prev_price_parity_splits, std::uint8_t new_price_parity_splits)
+ModifyOrderMessage::ModifyOrderMessage(std::chrono::nanoseconds source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, std::uint64_t order_id, std::uint32_t price, std::uint32_t volume, PositionChange position_change, std::uint8_t prev_price_parity_splits, std::uint8_t new_price_parity_splits)
   : source_time_ns_(source_time_ns), symbol_index_(symbol_index), symbol_seq_num_(symbol_seq_num), order_id_(order_id), price_(price), volume_(volume), position_change_(position_change), prev_price_parity_splits_(prev_price_parity_splits), new_price_parity_splits_(new_price_parity_splits) {}
 
-std::uint32_t ModifyOrderMessage::source_time_ns() const { return source_time_ns_; }
-void ModifyOrderMessage::set_source_time_ns(std::uint32_t value) { source_time_ns_ = value; }
+std::chrono::nanoseconds ModifyOrderMessage::source_time_ns() const { return source_time_ns_; }
+void ModifyOrderMessage::set_source_time_ns(std::chrono::nanoseconds value) { source_time_ns_ = value; }
 
 std::uint32_t ModifyOrderMessage::symbol_index() const { return symbol_index_; }
 void ModifyOrderMessage::set_symbol_index(std::uint32_t value) { symbol_index_ = value; }
@@ -44,7 +45,7 @@ std::size_t ModifyOrderMessage::decode(const std::byte* data, std::size_t length
     std::size_t offset = 0;
     wire::require("ModifyOrderMessage", wire_size, length);
 
-    source_time_ns_ = wire::read_u32_le(data + offset);
+    source_time_ns_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     symbol_index_ = wire::read_u32_le(data + offset);
@@ -78,7 +79,7 @@ std::size_t ModifyOrderMessage::encode(std::byte* data, std::size_t capacity) co
     std::size_t offset = 0;
     wire::require_capacity("ModifyOrderMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_.count()));
     offset += 4;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(symbol_index_));
@@ -123,7 +124,7 @@ std::unique_ptr<Message> ModifyOrderMessage::clone() const {
 void ModifyOrderMessage::print(std::ostream& out) const {
     out << "ModifyOrderMessage{";
     out << "source_time_ns=";
-    out << source_time_ns_;
+    out << source_time_ns_.count();
     out << ", symbol_index=";
     out << symbol_index_;
     out << ", symbol_seq_num=";

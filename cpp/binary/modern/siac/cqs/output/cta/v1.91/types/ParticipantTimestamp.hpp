@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v1.91: types/ParticipantTimestamp.hpp
 #pragma once
 
 #include <cstddef>
@@ -13,6 +14,7 @@ struct ParticipantTimestamp {
 
     // underlying composed type (epoch nanoseconds)
     using type = std::uint64_t;
+static const type no_value = 0;
 
     // epoch nanoseconds composed from the little-endian Seconds + Nanoseconds parts
     [[nodiscard]] std::uint64_t get() const {

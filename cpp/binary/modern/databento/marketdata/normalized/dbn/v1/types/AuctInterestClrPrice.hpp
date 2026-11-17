@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v1: types/AuctInterestClrPrice.hpp
 #pragma once
 
 #include <cstddef>

@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.ComplexTopOfMarket.Mach.v1.1: definitions.hpp
 #pragma once
 
 #include "structs/MachPacketHeader.hpp"
@@ -19,6 +20,10 @@
 #include "messages/WideComplexDoubleSidedTopOfMarketMessage.hpp"
 #include "messages/StrategyTradeMessage.hpp"
 #include "messages/UnderlyingTradingStatusMessage.hpp"
+
+#include "actions/Heartbeat.hpp"
+#include "actions/StartOfSession.hpp"
+#include "actions/EndOfSession.hpp"
 
 #include "iterators/LegDefinitionIterator.hpp"
 #include "iterators/MachMessageIterator.hpp"

@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v2: enums/TradingEvent.cpp
 #include "TradingEvent.hpp"
 
 namespace databento::marketdata::normalized::dbn::v2 {

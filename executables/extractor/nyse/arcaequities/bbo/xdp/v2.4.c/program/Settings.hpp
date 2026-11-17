@@ -1,3 +1,4 @@
+// Nyse.ArcaEquities.Bbo.Xdp.v2.4.c: program/Settings.hpp
 #pragma once
 
 #include <filesystem>

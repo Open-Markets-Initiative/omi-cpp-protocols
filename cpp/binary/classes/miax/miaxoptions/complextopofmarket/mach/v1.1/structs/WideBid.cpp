@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.ComplexTopOfMarket.Mach.v1.1: structs/WideBid.cpp
 #include "WideBid.hpp"
 
 #include "../common/Print.hpp"

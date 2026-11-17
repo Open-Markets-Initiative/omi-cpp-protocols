@@ -1,3 +1,4 @@
+// Iex.IexEquities.DeepPlus.IexTp.v1.01: messages/OrderDeleteMessage.cpp
 #include "OrderDeleteMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,11 +7,12 @@
 
 namespace iex::iexequities::deepplus::iextp::v1_01 {
 
-OrderDeleteMessage::OrderDeleteMessage(char reserved_1, std::chrono::nanoseconds timestamp, const std::string& symbol, std::uint64_t order_id_reference)
+OrderDeleteMessage::OrderDeleteMessage(const std::array<std::byte, 1>& reserved_1, std::chrono::nanoseconds timestamp, const std::string& symbol, std::uint64_t order_id_reference)
   : reserved_1_(reserved_1), timestamp_(timestamp), symbol_(symbol), order_id_reference_(order_id_reference) {}
 
-char OrderDeleteMessage::reserved_1() const { return reserved_1_; }
-void OrderDeleteMessage::set_reserved_1(char value) { reserved_1_ = value; }
+const std::array<std::byte, 1>& OrderDeleteMessage::reserved_1() const { return reserved_1_; }
+std::array<std::byte, 1>& OrderDeleteMessage::reserved_1() { return reserved_1_; }
+void OrderDeleteMessage::set_reserved_1(const std::array<std::byte, 1>& value) { reserved_1_ = value; }
 
 std::chrono::nanoseconds OrderDeleteMessage::timestamp() const { return timestamp_; }
 void OrderDeleteMessage::set_timestamp(std::chrono::nanoseconds value) { timestamp_ = value; }
@@ -30,7 +32,7 @@ std::size_t OrderDeleteMessage::decode(const std::byte* data, std::size_t length
     std::size_t offset = 0;
     wire::require("OrderDeleteMessage", wire_size, length);
 
-    reserved_1_ = wire::read_char(data + offset);
+    wire::read_bytes(data + offset, reserved_1_.data(), 1);
     offset += 1;
 
     timestamp_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_i64_le(data + offset)));
@@ -49,7 +51,7 @@ std::size_t OrderDeleteMessage::encode(std::byte* data, std::size_t capacity) co
     std::size_t offset = 0;
     wire::require_capacity("OrderDeleteMessage", wire_size, capacity);
 
-    wire::write_char(data + offset, reserved_1_);
+    wire::write_bytes(data + offset, reserved_1_.data(), 1);
     offset += 1;
 
     wire::write_i64_le(data + offset, static_cast<std::int64_t>(timestamp_.count()));
@@ -79,7 +81,7 @@ std::unique_ptr<Message> OrderDeleteMessage::clone() const {
 void OrderDeleteMessage::print(std::ostream& out) const {
     out << "OrderDeleteMessage{";
     out << "reserved_1=";
-    print::character(out, reserved_1_);
+    print::hex(out, reserved_1_.data(), reserved_1_.size());
     out << ", timestamp=";
     out << timestamp_.count();
     out << ", symbol=";

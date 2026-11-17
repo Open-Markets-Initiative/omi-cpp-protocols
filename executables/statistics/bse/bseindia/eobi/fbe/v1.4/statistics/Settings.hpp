@@ -1,3 +1,4 @@
+// Bse.BseIndia.Eobi.Fbe.v1.4: statistics/Settings.hpp
 #pragma once
 
 #include <string>

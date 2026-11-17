@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v3: types/LegRawSymbol.hpp
 #pragma once
 
 #include <array>

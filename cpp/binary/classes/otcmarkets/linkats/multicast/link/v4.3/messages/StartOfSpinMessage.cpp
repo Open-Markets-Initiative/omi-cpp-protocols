@@ -1,3 +1,4 @@
+// OtcMarkets.LinkAts.Multicast.Link.v4.3: messages/StartOfSpinMessage.cpp
 #include "StartOfSpinMessage.hpp"
 
 #include "../common/Print.hpp"

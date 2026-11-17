@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: enums/AdministrativeMessageType.hpp
 #pragma once
 
 #include <cstdint>

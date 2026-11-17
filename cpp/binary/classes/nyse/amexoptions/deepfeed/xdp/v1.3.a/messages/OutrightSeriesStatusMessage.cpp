@@ -1,3 +1,4 @@
+// Nyse.AmexOptions.DeepFeed.Xdp.v1.3.a: messages/OutrightSeriesStatusMessage.cpp
 #include "OutrightSeriesStatusMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,14 +7,14 @@
 
 namespace nyse::amexoptions::deepfeed::xdp::v1_3_a {
 
-OutrightSeriesStatusMessage::OutrightSeriesStatusMessage(std::uint32_t source_time, std::uint32_t source_time_ns, std::uint32_t series_index, std::uint32_t symbol_seq_num, SecurityStatus security_status, char halt_condition, const std::array<std::byte, 2>& reserved_2)
+OutrightSeriesStatusMessage::OutrightSeriesStatusMessage(std::chrono::seconds source_time, std::chrono::nanoseconds source_time_ns, std::uint32_t series_index, std::uint32_t symbol_seq_num, SecurityStatus security_status, char halt_condition, const std::array<std::byte, 2>& reserved_2)
   : source_time_(source_time), source_time_ns_(source_time_ns), series_index_(series_index), symbol_seq_num_(symbol_seq_num), security_status_(security_status), halt_condition_(halt_condition), reserved_2_(reserved_2) {}
 
-std::uint32_t OutrightSeriesStatusMessage::source_time() const { return source_time_; }
-void OutrightSeriesStatusMessage::set_source_time(std::uint32_t value) { source_time_ = value; }
+std::chrono::seconds OutrightSeriesStatusMessage::source_time() const { return source_time_; }
+void OutrightSeriesStatusMessage::set_source_time(std::chrono::seconds value) { source_time_ = value; }
 
-std::uint32_t OutrightSeriesStatusMessage::source_time_ns() const { return source_time_ns_; }
-void OutrightSeriesStatusMessage::set_source_time_ns(std::uint32_t value) { source_time_ns_ = value; }
+std::chrono::nanoseconds OutrightSeriesStatusMessage::source_time_ns() const { return source_time_ns_; }
+void OutrightSeriesStatusMessage::set_source_time_ns(std::chrono::nanoseconds value) { source_time_ns_ = value; }
 
 std::uint32_t OutrightSeriesStatusMessage::series_index() const { return series_index_; }
 void OutrightSeriesStatusMessage::set_series_index(std::uint32_t value) { series_index_ = value; }
@@ -39,10 +40,10 @@ std::size_t OutrightSeriesStatusMessage::decode(const std::byte* data, std::size
     std::size_t offset = 0;
     wire::require("OutrightSeriesStatusMessage", wire_size, length);
 
-    source_time_ = wire::read_u32_le(data + offset);
+    source_time_ = std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
-    source_time_ns_ = wire::read_u32_le(data + offset);
+    source_time_ns_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     series_index_ = wire::read_u32_le(data + offset);
@@ -67,10 +68,10 @@ std::size_t OutrightSeriesStatusMessage::encode(std::byte* data, std::size_t cap
     std::size_t offset = 0;
     wire::require_capacity("OutrightSeriesStatusMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_.count()));
     offset += 4;
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_.count()));
     offset += 4;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(series_index_));
@@ -106,9 +107,9 @@ std::unique_ptr<Message> OutrightSeriesStatusMessage::clone() const {
 void OutrightSeriesStatusMessage::print(std::ostream& out) const {
     out << "OutrightSeriesStatusMessage{";
     out << "source_time=";
-    out << source_time_;
+    out << source_time_.count();
     out << ", source_time_ns=";
-    out << source_time_ns_;
+    out << source_time_ns_.count();
     out << ", series_index=";
     out << series_index_;
     out << ", symbol_seq_num=";

@@ -1,3 +1,4 @@
+// Cboe.EdgxOptions.MulticastDepthOfBook.Pitch.v2.41.80: messages/SymbolMappingMessage.cpp
 #include "SymbolMappingMessage.hpp"
 
 #include "../common/Print.hpp"

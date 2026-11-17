@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: messages/MarketWideCircuitBreakerDeclineLevelStatusMessage.hpp
 #pragma once
 
 #include <cstddef>
@@ -46,7 +47,7 @@ class MarketWideCircuitBreakerDeclineLevelStatusMessage {
 
     Decimal mwcb_level_3() const { return Decimal(static_cast<std::int64_t>(wire::read_i64_be(at(38))), -6); }
 
-    char reserved() const { return wire::read_char(at(46)); }
+    std::span<const std::byte, 1> reserved() const { return bytes_.subspan(46).template first<1>(); }
 
     void print(std::ostream& out) const {
         out << "MarketWideCircuitBreakerDeclineLevelStatusMessage{";
@@ -67,7 +68,7 @@ class MarketWideCircuitBreakerDeclineLevelStatusMessage {
         out << ", mwcb_level_3=";
         out << mwcb_level_3();
         out << ", reserved=";
-        print::character(out, reserved());
+        print::hex(out, reserved().data(), reserved().size());
         out << '}';
     }
 

@@ -1,3 +1,4 @@
+// Jpx.OseDerivatives.GeniumInet.Itch.v5.0.6: structs/Frame.hpp
 #pragma once
 
 #include <cstddef>

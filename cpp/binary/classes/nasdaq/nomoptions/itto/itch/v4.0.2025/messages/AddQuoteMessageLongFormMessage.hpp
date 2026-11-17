@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: messages/AddQuoteMessageLongFormMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -8,6 +9,7 @@
 #include <string_view>
 
 #include "../common/Day.hpp"
+#include "../common/Decimal.hpp"
 #include "../messages/SequencedMessage.hpp"
 
 namespace nasdaq::nomoptions::itto::itch::v4_0_2025 {
@@ -24,7 +26,7 @@ class AddQuoteMessageLongFormMessage : public SequencedMessage {
     static constexpr std::size_t wire_size = 44;
 
     AddQuoteMessageLongFormMessage() = default;
-    AddQuoteMessageLongFormMessage(std::uint16_t tracking_number, std::chrono::nanoseconds timestamp, std::uint64_t bid_reference_number, std::uint64_t ask_reference_number, std::uint32_t option_id, std::uint32_t bid, std::uint32_t bid_size_long, std::uint32_t ask, std::uint32_t ask_size_long);
+    AddQuoteMessageLongFormMessage(std::uint16_t tracking_number, std::chrono::nanoseconds timestamp, std::uint64_t bid_reference_number, std::uint64_t ask_reference_number, std::uint32_t option_id, Decimal bid, std::uint32_t bid_size_long, Decimal ask, std::uint32_t ask_size_long);
 
     // Tracking Number: Nasdaq Internal tracking number
     std::uint16_t tracking_number() const;
@@ -48,16 +50,16 @@ class AddQuoteMessageLongFormMessage : public SequencedMessage {
     void set_option_id(std::uint32_t value);
 
     // Bid: The display bid price of the new quote.
-    std::uint32_t bid() const;
-    void set_bid(std::uint32_t value);
+    Decimal bid() const;
+    void set_bid(Decimal value);
 
     // Bid Size Long: The bid contracts of the new quote.
     std::uint32_t bid_size_long() const;
     void set_bid_size_long(std::uint32_t value);
 
     // Ask: The display ask price of the new quote.
-    std::uint32_t ask() const;
-    void set_ask(std::uint32_t value);
+    Decimal ask() const;
+    void set_ask(Decimal value);
 
     // Ask Size Long: The ask contracts of the new quote.
     std::uint32_t ask_size_long() const;
@@ -83,9 +85,9 @@ class AddQuoteMessageLongFormMessage : public SequencedMessage {
     std::uint64_t bid_reference_number_{};
     std::uint64_t ask_reference_number_{};
     std::uint32_t option_id_{};
-    std::uint32_t bid_{};
+    Decimal bid_{ 0, -4 };
     std::uint32_t bid_size_long_{};
-    std::uint32_t ask_{};
+    Decimal ask_{ 0, -4 };
     std::uint32_t ask_size_long_{};
 };
 

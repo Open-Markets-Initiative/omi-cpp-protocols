@@ -1,3 +1,4 @@
+// Cboe.CfeFutures.MulticastDepthOfBook.Pitch.v1.2.22: types/Symbol.hpp
 #pragma once
 
 #include <array>

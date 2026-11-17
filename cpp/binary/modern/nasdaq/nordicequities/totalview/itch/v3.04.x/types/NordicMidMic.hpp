@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: types/NordicMidMic.hpp
 #pragma once
 
 #include <array>

@@ -1,6 +1,8 @@
+// Nyse.NyseEquities.Bbo.Xdp.v2.4.g: messages/QuoteMessage.hpp
 #pragma once
 
 #include <array>
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
@@ -25,11 +27,11 @@ class QuoteMessage : public Message {
     static constexpr std::size_t wire_size = 34;
 
     QuoteMessage() = default;
-    QuoteMessage(std::uint32_t source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, std::uint32_t ask_price, std::uint32_t ask_volume, std::uint32_t bid_price, std::uint32_t bid_volume, QuoteCondition quote_condition, RpiIndicator rpi_indicator, const std::array<std::byte, 4>& reserved_4);
+    QuoteMessage(std::chrono::nanoseconds source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, std::uint32_t ask_price, std::uint32_t ask_volume, std::uint32_t bid_price, std::uint32_t bid_volume, QuoteCondition quote_condition, RpiIndicator rpi_indicator, const std::array<std::byte, 4>& reserved_4);
 
     // Source Time Ns: The nanosecond offset from the SourceTime
-    std::uint32_t source_time_ns() const;
-    void set_source_time_ns(std::uint32_t value);
+    std::chrono::nanoseconds source_time_ns() const;
+    void set_source_time_ns(std::chrono::nanoseconds value);
 
     // Symbol Index: The unique ID of this symbol for all products within this market. This ID
     // cannot be used to cross reference a security between markets.
@@ -86,7 +88,7 @@ class QuoteMessage : public Message {
     bool operator!=(const QuoteMessage& other) const;
 
   private:
-    std::uint32_t source_time_ns_{};
+    std::chrono::nanoseconds source_time_ns_{};
     std::uint32_t symbol_index_{};
     std::uint32_t symbol_seq_num_{};
     std::uint32_t ask_price_{};

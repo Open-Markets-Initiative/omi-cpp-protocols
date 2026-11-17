@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.7: actions/EndOfSessionPacket.hpp
 #pragma once
 
 namespace jnx::jnxequities::pts::itch::v1_7 {

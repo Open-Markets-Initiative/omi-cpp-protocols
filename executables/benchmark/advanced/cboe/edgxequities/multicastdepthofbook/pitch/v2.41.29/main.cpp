@@ -1,3 +1,4 @@
+// Cboe.EdgxEquities.MulticastDepthOfBook.Pitch.v2.41.29: main.cpp
 // Cboe.EdgxEquities.MulticastDepthOfBook.Pitch.v2.41.29 benchmark, through the Advanced session layer: every value it reads from every message of the simulated
 // sequence (tests/simulated/cboe/edgxequities/multicastdepthofbook/pitch/v2.41.29.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -215,7 +216,7 @@ struct Reader {
         checksum += index++;
         checksum += bench::digest(message.header.message_length.get().value());
         checksum += bench::digest(message.header.message_type.get().value());
-        checksum += bench::digest(message.fields.last_timestamp.get().value());
+        checksum += bench::digest(message.fields.time_offset.get().value());
     }
 
     void on_message(const protocol::trading_status_message& message, std::uint64_t, const protocol::packet_header&) {

@@ -1,10 +1,11 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: groups/CrossSidesGroup.hpp
 #pragma once
 
 #include "../types/Side.hpp"
 #include "../types/Offset1Padding1.hpp"
 #include "../types/Account.hpp"
 #include "../types/EnteringFirmOptional.hpp"
-#include "../types/Clordid.hpp"
+#include "../types/ClOrdId.hpp"
 #include "../types/TradingSubAccount.hpp"
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_3 {
@@ -17,7 +18,7 @@ struct CrossSidesGroup {
     Offset1Padding1 offset_1_padding_1;
     Account account;
     EnteringFirmOptional entering_firm_optional;
-    Clordid clordid;
+    ClOrdId cl_ord_id;
     TradingSubAccount trading_sub_account;
 
     // parse method

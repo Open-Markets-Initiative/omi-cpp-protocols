@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: types/InverseIndicator.hpp
 #pragma once
 
 #include <cstddef>

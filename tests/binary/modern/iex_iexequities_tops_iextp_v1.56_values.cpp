@@ -64,7 +64,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".messagedata.tradereportmessage.size"] = canonical::number(message->size.get());
             values[entry + ".messagedata.tradereportmessage.price"] = canonical::scaled(message->price.integer(), -4);
             values[entry + ".messagedata.tradereportmessage.tradeid"] = canonical::number(message->trade_id.get());
-            values[entry + ".messagedata.tradereportmessage.reserved4"] = canonical::number(message->reserved_4.get());
         } else if (iterator.message_type == protocol::TradeBreakMessage::message_type) {
             values[entry + ".messagedata"] = "packet.messages.message.messagedata.tradebreakmessage";
             [[maybe_unused]] const auto* message = protocol::TradeBreakMessage::parse(iterator.message);
@@ -77,7 +76,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".messagedata.tradebreakmessage.size"] = canonical::number(message->size.get());
             values[entry + ".messagedata.tradebreakmessage.price"] = canonical::scaled(message->price.integer(), -4);
             values[entry + ".messagedata.tradebreakmessage.tradeid"] = canonical::number(message->trade_id.get());
-            values[entry + ".messagedata.tradebreakmessage.reserved4"] = canonical::number(message->reserved_4.get());
         }
     }
 

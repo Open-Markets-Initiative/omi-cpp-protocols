@@ -1,3 +1,4 @@
+// Nyse.NationalEquities.Trades.Pillar.v2.6: enums/SsrState.cpp
 #include "SsrState.hpp"
 
 namespace nyse::nationalequities::trades::pillar::v2_6 {

@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeed.Xdp.v2.1.g: enums/AuctionType.cpp
 #include "AuctionType.hpp"
 
 namespace nyse::amexequities::integratedfeed::xdp::v2_1_g {

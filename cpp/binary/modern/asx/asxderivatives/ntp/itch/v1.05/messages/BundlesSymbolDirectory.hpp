@@ -1,3 +1,4 @@
+// Asx.AsxDerivatives.Ntp.Itch.v1.05: messages/BundlesSymbolDirectory.hpp
 #pragma once
 
 #include "../types/Nanoseconds.hpp"
@@ -11,7 +12,6 @@
 #include "../types/PriceFractionalDenominator.hpp"
 #include "../types/PriceMinimumTick.hpp"
 #include "../types/Legs.hpp"
-#include "../structs/BundleLeg.hpp"
 #include "../structs/MessageHeader.hpp"
 
 namespace asx::asxderivatives::ntp::itch::v1_05 {
@@ -32,7 +32,6 @@ struct BundlesSymbolDirectory {
     PriceFractionalDenominator price_fractional_denominator;
     PriceMinimumTick price_minimum_tick;
     Legs legs;
-    BundleLeg bundle_leg[20];
 
     // the type code that selects this message in the dispatch switch
     static constexpr char message_type = 'm';

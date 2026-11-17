@@ -69,7 +69,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".messagedata.tradereportmessage.size"] = canonical::number((*message).size());
             values[entry + ".messagedata.tradereportmessage.price"] = canonical::scaled((*message).price().mantissa(), (*message).price().exponent());
             values[entry + ".messagedata.tradereportmessage.tradeid"] = canonical::number((*message).trade_id());
-            values[entry + ".messagedata.tradereportmessage.reserved4"] = canonical::number((*message).reserved_4());
         } else if (const auto* message = dynamic_cast<const protocol::TradeBreakMessage*>(each.message())) {
             values[entry + ".messagedata"] = "packet.messages.message.messagedata.tradebreakmessage";
             values[entry + ".messagedata.tradebreakmessage.saleconditionflags.tradethroughexempt"] = canonical::number(static_cast<std::uint64_t>((*message).sale_condition_flags().trade_through_exempt()));
@@ -81,7 +80,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".messagedata.tradebreakmessage.size"] = canonical::number((*message).size());
             values[entry + ".messagedata.tradebreakmessage.price"] = canonical::scaled((*message).price().mantissa(), (*message).price().exponent());
             values[entry + ".messagedata.tradebreakmessage.tradeid"] = canonical::number((*message).trade_id());
-            values[entry + ".messagedata.tradebreakmessage.reserved4"] = canonical::number((*message).reserved_4());
         }
     }
 

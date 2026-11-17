@@ -1,3 +1,4 @@
+// Asx.AsxDerivatives.Ntp.Itch.v1.05: enums/Side.cpp
 #include "Side.hpp"
 
 namespace asx::asxderivatives::ntp::itch::v1_05 {

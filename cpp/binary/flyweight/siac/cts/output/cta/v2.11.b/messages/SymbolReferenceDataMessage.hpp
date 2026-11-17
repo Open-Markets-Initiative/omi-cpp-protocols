@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: messages/SymbolReferenceDataMessage.hpp
 #pragma once
 
 #include <cstddef>
@@ -79,11 +80,11 @@ class SymbolReferenceDataMessage {
 
     InstrumentType instrument_type() const { return static_cast<InstrumentType>(wire::read_char(at(74))); }
 
-    char reserved() const { return wire::read_char(at(75)); }
+    std::span<const std::byte, 1> reserved() const { return bytes_.subspan(75).template first<1>(); }
 
-    char second_reserved() const { return wire::read_char(at(76)); }
+    std::span<const std::byte, 1> second_reserved() const { return bytes_.subspan(76).template first<1>(); }
 
-    std::string_view reserved_128() const { return view::text(at(77), 128, ' '); }
+    std::span<const std::byte, 128> reserved_128() const { return bytes_.subspan(77).template first<128>(); }
 
     void print(std::ostream& out) const {
         out << "SymbolReferenceDataMessage{";
@@ -128,11 +129,11 @@ class SymbolReferenceDataMessage {
         out << ", instrument_type=";
         out << instrument_type();
         out << ", reserved=";
-        print::character(out, reserved());
+        print::hex(out, reserved().data(), reserved().size());
         out << ", second_reserved=";
-        print::character(out, second_reserved());
+        print::hex(out, second_reserved().data(), second_reserved().size());
         out << ", reserved_128=";
-        print::text(out, reserved_128());
+        print::hex(out, reserved_128().data(), reserved_128().size());
         out << '}';
     }
 

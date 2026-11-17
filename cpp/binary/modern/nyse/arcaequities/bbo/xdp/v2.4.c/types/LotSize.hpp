@@ -1,3 +1,4 @@
+// Nyse.ArcaEquities.Bbo.Xdp.v2.4.c: types/LotSize.hpp
 #pragma once
 
 #include <cstddef>

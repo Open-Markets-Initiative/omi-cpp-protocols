@@ -1,5 +1,7 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.1: messages/ForwardTrade54Message.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <optional>
@@ -42,7 +44,7 @@ class ForwardTrade54Message {
 
     Decimal md_future_price() const { return Decimal(static_cast<std::int64_t>(wire::read_i64_le(at(12))), -4); }
 
-    std::int64_t md_entry_size_quantity() const { return wire::read_i64_le(at(20)); }
+    std::int64_t md_entry_size() const { return wire::read_i64_le(at(20)); }
 
     std::uint32_t trade_id() const { return wire::read_u32_le(at(28)); }
 
@@ -52,7 +54,7 @@ class ForwardTrade54Message {
 
     std::uint16_t trade_date() const { return wire::read_u16_le(at(40)); }
 
-    std::optional<std::uint64_t> transact_time() const { return wire::nullable(wire::read_u64_le(at(42)), static_cast<std::uint64_t>(0ULL)); }
+    std::optional<std::chrono::nanoseconds> transact_time() const { return wire::nullable_duration<std::chrono::nanoseconds>(wire::read_u64_le(at(42)), static_cast<std::uint64_t>(0ULL)); }
 
     std::optional<std::uint32_t> rpt_seq() const { return wire::nullable(wire::read_u32_le(at(50)), static_cast<std::uint32_t>(0ULL)); }
 
@@ -76,8 +78,8 @@ class ForwardTrade54Message {
         trade_condition().print(out);
         out << ", md_future_price=";
         out << md_future_price();
-        out << ", md_entry_size_quantity=";
-        out << md_entry_size_quantity();
+        out << ", md_entry_size=";
+        out << md_entry_size();
         out << ", trade_id=";
         out << trade_id();
         out << ", md_entry_buyer=";
@@ -87,7 +89,7 @@ class ForwardTrade54Message {
         out << ", trade_date=";
         out << trade_date();
         out << ", transact_time=";
-        print::optional(out, transact_time());
+        print::optional_duration(out, transact_time());
         out << ", rpt_seq=";
         print::optional(out, rpt_seq());
         out << ", seller_days=";

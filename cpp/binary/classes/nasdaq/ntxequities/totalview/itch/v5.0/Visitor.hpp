@@ -1,3 +1,4 @@
+// Nasdaq.NtxEquities.TotalView.Itch.v5.0: Visitor.hpp
 #pragma once
 
 namespace nasdaq::ntxequities::totalview::itch::v5_0 {

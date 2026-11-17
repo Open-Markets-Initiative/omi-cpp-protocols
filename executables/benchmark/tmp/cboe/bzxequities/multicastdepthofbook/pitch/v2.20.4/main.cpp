@@ -1,3 +1,4 @@
+// Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.20.4: main.cpp
 // Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.20.4 benchmark, through the Tmp header: every value it reads from every message of the simulated
 // sequence (tests/simulated/cboe/bzxequities/multicastdepthofbook/pitch/v2.20.4.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -504,7 +505,7 @@ struct Reader {
     }
 
     void operator()(const protocol::end_of_session_message& message) {
-        if constexpr (requires { message.template get<protocol::timestamp>(); }) { checksum += bench::digest(message.template get<protocol::timestamp>().value()); }
+        if constexpr (requires { message.template get<protocol::time_offset>(); }) { checksum += bench::digest(message.template get<protocol::time_offset>().value()); }
     }
 
     void operator()(const protocol::symbol_mapping_message& message) {
@@ -518,8 +519,6 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::symbol_long>(); }) { checksum += bench::digest(message.template get<protocol::symbol_long>().value()); }
         if constexpr (requires { message.template get<protocol::trading_status>(); }) { checksum += bench::digest(message.template get<protocol::trading_status>().value()); }
         if constexpr (requires { message.template get<protocol::reg_sho_action>(); }) { checksum += bench::digest(message.template get<protocol::reg_sho_action>().value()); }
-        if constexpr (requires { message.template get<protocol::reserved_1>(); }) { checksum += bench::digest(message.template get<protocol::reserved_1>().value()); }
-        if constexpr (requires { message.template get<protocol::second_reserved_1>(); }) { checksum += bench::digest(message.template get<protocol::second_reserved_1>().value()); }
     }
 
     void operator()(const protocol::auction_update_message& message) {

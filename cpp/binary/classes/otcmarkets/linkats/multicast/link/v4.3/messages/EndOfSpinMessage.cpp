@@ -1,3 +1,4 @@
+// OtcMarkets.LinkAts.Multicast.Link.v4.3: messages/EndOfSpinMessage.cpp
 #include "EndOfSpinMessage.hpp"
 
 #include "../common/Print.hpp"

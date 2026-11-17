@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.10: messages/details/FractionalApproximateAdjustedVolumeMarketCenterMessageReader.hpp
 #pragma once
 
 #include "FractionalApproximateAdjustedVolumeMarketCenterMessageWriter.hpp"

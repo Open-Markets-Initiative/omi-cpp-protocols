@@ -1,3 +1,4 @@
+// Asx.AsxDerivatives.Ntp.Itch.v1.05: types/OpeningTrade.hpp
 #pragma once
 
 #include <bit>

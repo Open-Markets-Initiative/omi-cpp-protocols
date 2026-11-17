@@ -1,5 +1,7 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.2: messages/MassDeleteOrdersMbO52Message.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <optional>
@@ -40,7 +42,7 @@ class MassDeleteOrdersMbO52Message {
 
     std::span<const std::byte, 5> offset_11_padding_5() const { return bytes_.subspan(11).template first<5>(); }
 
-    std::optional<std::uint64_t> transact_time() const { return wire::nullable(wire::read_u64_le(at(16)), static_cast<std::uint64_t>(0ULL)); }
+    std::optional<std::chrono::nanoseconds> transact_time() const { return wire::nullable_duration<std::chrono::nanoseconds>(wire::read_u64_le(at(16)), static_cast<std::uint64_t>(0ULL)); }
 
     std::optional<std::uint32_t> rpt_seq() const { return wire::nullable(wire::read_u32_le(at(24)), static_cast<std::uint32_t>(0ULL)); }
 
@@ -57,7 +59,7 @@ class MassDeleteOrdersMbO52Message {
         out << ", offset_11_padding_5=";
         print::hex(out, offset_11_padding_5().data(), offset_11_padding_5().size());
         out << ", transact_time=";
-        print::optional(out, transact_time());
+        print::optional_duration(out, transact_time());
         out << ", rpt_seq=";
         print::optional(out, rpt_seq());
         out << '}';

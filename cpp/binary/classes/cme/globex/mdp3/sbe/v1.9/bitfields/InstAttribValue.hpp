@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.9: bitfields/InstAttribValue.hpp
 #pragma once
 
 #include <cstddef>
@@ -102,10 +103,6 @@ class InstAttribValue {
     // Variable Cab Eligible: VariableCabEligible
     bool variable_cab_eligible() const;
     void set_variable_cab_eligible(bool value);
-
-    // Reserved 10: 10 reserved bits
-    std::uint16_t reserved_10() const;
-    void set_reserved_10(std::uint16_t value);
 
     // The whole bitfield as its wire integer
     std::uint32_t raw() const;

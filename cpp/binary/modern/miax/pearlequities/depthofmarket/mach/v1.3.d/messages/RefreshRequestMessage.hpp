@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: messages/RefreshRequestMessage.hpp
 #pragma once
 
 #include "../types/RefreshMessageType.hpp"

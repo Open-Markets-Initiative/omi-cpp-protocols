@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeed.Xdp.v2.1.g: messages/CrossTradeMessage.cpp
 #include "CrossTradeMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,11 +7,11 @@
 
 namespace nyse::amexequities::integratedfeed::xdp::v2_1_g {
 
-CrossTradeMessage::CrossTradeMessage(std::uint32_t source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, std::uint32_t cross_id, std::uint32_t price, std::uint32_t volume, CrossType cross_type)
+CrossTradeMessage::CrossTradeMessage(std::chrono::nanoseconds source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, std::uint32_t cross_id, std::uint32_t price, std::uint32_t volume, CrossType cross_type)
   : source_time_ns_(source_time_ns), symbol_index_(symbol_index), symbol_seq_num_(symbol_seq_num), cross_id_(cross_id), price_(price), volume_(volume), cross_type_(cross_type) {}
 
-std::uint32_t CrossTradeMessage::source_time_ns() const { return source_time_ns_; }
-void CrossTradeMessage::set_source_time_ns(std::uint32_t value) { source_time_ns_ = value; }
+std::chrono::nanoseconds CrossTradeMessage::source_time_ns() const { return source_time_ns_; }
+void CrossTradeMessage::set_source_time_ns(std::chrono::nanoseconds value) { source_time_ns_ = value; }
 
 std::uint32_t CrossTradeMessage::symbol_index() const { return symbol_index_; }
 void CrossTradeMessage::set_symbol_index(std::uint32_t value) { symbol_index_ = value; }
@@ -38,7 +39,7 @@ std::size_t CrossTradeMessage::decode(const std::byte* data, std::size_t length)
     std::size_t offset = 0;
     wire::require("CrossTradeMessage", wire_size, length);
 
-    source_time_ns_ = wire::read_u32_le(data + offset);
+    source_time_ns_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     symbol_index_ = wire::read_u32_le(data + offset);
@@ -66,7 +67,7 @@ std::size_t CrossTradeMessage::encode(std::byte* data, std::size_t capacity) con
     std::size_t offset = 0;
     wire::require_capacity("CrossTradeMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_.count()));
     offset += 4;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(symbol_index_));
@@ -105,7 +106,7 @@ std::unique_ptr<Message> CrossTradeMessage::clone() const {
 void CrossTradeMessage::print(std::ostream& out) const {
     out << "CrossTradeMessage{";
     out << "source_time_ns=";
-    out << source_time_ns_;
+    out << source_time_ns_.count();
     out << ", symbol_index=";
     out << symbol_index_;
     out << ", symbol_seq_num=";

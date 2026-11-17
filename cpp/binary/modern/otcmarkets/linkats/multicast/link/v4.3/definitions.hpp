@@ -1,0 +1,26 @@
+// OtcMarkets.LinkAts.Multicast.Link.v4.3: definitions.hpp
+#pragma once
+
+#include "structs/PacketHeader.hpp"
+#include "structs/MessageHeader.hpp"
+#include "structs/SecurityDetail.hpp"
+#include "structs/Issuer.hpp"
+
+#include "messages/StartOfSpinMessage.hpp"
+#include "messages/EndOfSpinMessage.hpp"
+#include "messages/MarketOpenMessage.hpp"
+#include "messages/MarketCloseMessage.hpp"
+#include "messages/SecurityMessage.hpp"
+#include "messages/QuoteMessage.hpp"
+#include "messages/QuoteUpdateMessage.hpp"
+#include "messages/InsideMessage.hpp"
+#include "messages/InsideUpdateMessage.hpp"
+#include "messages/ReferencePriceMessage.hpp"
+#include "messages/ReferencePriceUpdateMessage.hpp"
+#include "messages/ExtendedSecurityMessage.hpp"
+#include "messages/ExtendedSecurityNoCusipMessage.hpp"
+#include "messages/TradeMessage.hpp"
+
+#include "actions/HeartbeatPacket.hpp"
+
+#include "iterators/MessageIterator.hpp"

@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.ComplexTopOfMarket.Mach.v1.1: structs/CompactBid.hpp
 #pragma once
 
 #include <cstddef>

@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.2: groups/SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup.hpp
 #pragma once
 
 #include <chrono>
@@ -33,7 +34,7 @@ class SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup {
 
     std::optional<Decimal> md_corporate_offset_price_optional() const { return wire::nullable_decimal(wire::read_i64_le(at(0)), static_cast<std::int64_t>(-9223372036854775807LL - 1), -4); }
 
-    std::int64_t md_entry_size_quantity() const { return wire::read_i64_le(at(8)); }
+    std::int64_t md_entry_size() const { return wire::read_i64_le(at(8)); }
 
     std::span<const std::byte, 4> offset_16_padding_4() const { return bytes_.subspan(16).template first<4>(); }
 
@@ -51,8 +52,8 @@ class SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup {
         out << "SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroup{";
         out << "md_corporate_offset_price_optional=";
         print::optional(out, md_corporate_offset_price_optional());
-        out << ", md_entry_size_quantity=";
-        out << md_entry_size_quantity();
+        out << ", md_entry_size=";
+        out << md_entry_size();
         out << ", offset_16_padding_4=";
         print::hex(out, offset_16_padding_4().data(), offset_16_padding_4().size());
         out << ", entering_firm=";

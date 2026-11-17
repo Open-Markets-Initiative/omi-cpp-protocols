@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2026: iterators/FileMessageIterator.hpp
 #pragma once
 
 #include "../definitions.hpp"

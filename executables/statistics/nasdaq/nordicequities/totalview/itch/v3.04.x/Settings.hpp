@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: Settings.hpp
 #pragma once
 
 #include <iostream>

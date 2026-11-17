@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v13.0: messages/OrderAdd.hpp
 #pragma once
 
 #include <chrono>
@@ -30,7 +31,7 @@ class OrderAdd : public Message {
     std::optional<std::chrono::nanoseconds> request_time() const;
     void set_request_time(std::optional<std::chrono::nanoseconds> value);
 
-    // Security Id:
+    // Security Id: Unique instrument identifier
     std::optional<std::int64_t> security_id() const;
     void set_security_id(std::optional<std::int64_t> value);
 

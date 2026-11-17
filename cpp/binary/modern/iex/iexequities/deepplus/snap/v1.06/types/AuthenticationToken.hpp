@@ -1,3 +1,4 @@
+// Iex.IexEquities.DeepPlus.Snap.v1.06: types/AuthenticationToken.hpp
 #pragma once
 
 #include <array>

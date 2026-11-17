@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v2.10.a: messages/AuctionStatusMessage.cpp
 #include "AuctionStatusMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,7 +7,7 @@
 
 namespace siac::cqs::output::cta::v2_10_a {
 
-AuctionStatusMessage::AuctionStatusMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol, InstrumentType instrument_type, Decimal auction_collar_reference_price, Decimal auction_collar_upper_threshold_price, Decimal auction_collar_lower_threshold_price, std::uint8_t number_of_extensions, ShortSaleRestrictionIndicator short_sale_restriction_indicator, PrimaryListingMarketParticipantId primary_listing_market_participant_id, FinancialStatusIndicator financial_status_indicator, const std::string& reserved_62)
+AuctionStatusMessage::AuctionStatusMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, const std::string& security_symbol, InstrumentType instrument_type, Decimal auction_collar_reference_price, Decimal auction_collar_upper_threshold_price, Decimal auction_collar_lower_threshold_price, std::uint8_t number_of_extensions, ShortSaleRestrictionIndicator short_sale_restriction_indicator, PrimaryListingMarketParticipantId primary_listing_market_participant_id, FinancialStatusIndicator financial_status_indicator, const std::array<std::byte, 62>& reserved_62)
   : participant_id_(participant_id), timestamp_1_(timestamp_1), message_id_(message_id), transaction_id_(transaction_id), participant_reference_number_(participant_reference_number), security_symbol_(security_symbol), instrument_type_(instrument_type), auction_collar_reference_price_(auction_collar_reference_price), auction_collar_upper_threshold_price_(auction_collar_upper_threshold_price), auction_collar_lower_threshold_price_(auction_collar_lower_threshold_price), number_of_extensions_(number_of_extensions), short_sale_restriction_indicator_(short_sale_restriction_indicator), primary_listing_market_participant_id_(primary_listing_market_participant_id), financial_status_indicator_(financial_status_indicator), reserved_62_(reserved_62) {}
 
 ParticipantId AuctionStatusMessage::participant_id() const { return participant_id_; }
@@ -53,9 +54,9 @@ void AuctionStatusMessage::set_primary_listing_market_participant_id(PrimaryList
 FinancialStatusIndicator AuctionStatusMessage::financial_status_indicator() const { return financial_status_indicator_; }
 void AuctionStatusMessage::set_financial_status_indicator(FinancialStatusIndicator value) { financial_status_indicator_ = value; }
 
-const std::string& AuctionStatusMessage::reserved_62() const { return reserved_62_; }
-std::string& AuctionStatusMessage::reserved_62() { return reserved_62_; }
-void AuctionStatusMessage::set_reserved_62(const std::string& value) { reserved_62_ = value; }
+const std::array<std::byte, 62>& AuctionStatusMessage::reserved_62() const { return reserved_62_; }
+std::array<std::byte, 62>& AuctionStatusMessage::reserved_62() { return reserved_62_; }
+void AuctionStatusMessage::set_reserved_62(const std::array<std::byte, 62>& value) { reserved_62_ = value; }
 
 QuoteMessagePayloadCode AuctionStatusMessage::type() const { return message_type; }
 
@@ -106,7 +107,7 @@ std::size_t AuctionStatusMessage::decode(const std::byte* data, std::size_t leng
     financial_status_indicator_ = static_cast<FinancialStatusIndicator>(wire::read_char(data + offset));
     offset += 1;
 
-    reserved_62_ = wire::read_text(data + offset, 62, ' ');
+    wire::read_bytes(data + offset, reserved_62_.data(), 62);
     offset += 62;
 
     return offset;
@@ -157,7 +158,7 @@ std::size_t AuctionStatusMessage::encode(std::byte* data, std::size_t capacity) 
     wire::write_char(data + offset, static_cast<char>(financial_status_indicator_));
     offset += 1;
 
-    wire::write_text(data + offset, 62, ' ', reserved_62_);
+    wire::write_bytes(data + offset, reserved_62_.data(), 62);
     offset += 62;
 
     return offset;
@@ -206,7 +207,7 @@ void AuctionStatusMessage::print(std::ostream& out) const {
     out << ", financial_status_indicator=";
     out << financial_status_indicator_;
     out << ", reserved_62=";
-    print::text(out, reserved_62_);
+    print::hex(out, reserved_62_.data(), reserved_62_.size());
     out << '}';
 }
 

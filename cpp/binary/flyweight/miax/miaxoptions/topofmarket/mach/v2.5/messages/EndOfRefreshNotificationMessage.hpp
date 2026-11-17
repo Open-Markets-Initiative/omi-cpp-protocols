@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.TopOfMarket.Mach.v2.5: messages/EndOfRefreshNotificationMessage.hpp
 #pragma once
 
 #include <cstddef>

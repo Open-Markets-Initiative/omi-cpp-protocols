@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.ComplexTopOfMarket.Mach.v1.1: messages/WideComplexTopOfMarketBidMessage.cpp
 #include "WideComplexTopOfMarketBidMessage.hpp"
 
 #include "../common/Print.hpp"

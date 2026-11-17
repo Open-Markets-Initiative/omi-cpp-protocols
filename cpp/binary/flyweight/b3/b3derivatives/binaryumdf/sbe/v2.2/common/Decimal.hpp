@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.2: common/Decimal.hpp
 #pragma once
 
 #include <cmath>

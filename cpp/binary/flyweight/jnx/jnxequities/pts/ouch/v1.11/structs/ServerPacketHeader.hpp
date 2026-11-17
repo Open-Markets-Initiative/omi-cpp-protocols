@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Ouch.v1.11: structs/ServerPacketHeader.hpp
 #pragma once
 
 #include <cstddef>

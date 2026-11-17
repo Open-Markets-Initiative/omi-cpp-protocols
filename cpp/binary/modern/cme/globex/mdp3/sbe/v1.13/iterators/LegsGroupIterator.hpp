@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.13: iterators/LegsGroupIterator.hpp
 #pragma once
 
 #include "../definitions.hpp"

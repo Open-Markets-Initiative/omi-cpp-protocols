@@ -1,3 +1,4 @@
+// Miax.OnyxFutures.TopOfMarket.Mach.v1.0.b: iterators/MachMessageIterator.hpp
 #pragma once
 
 #include "../definitions.hpp"
@@ -9,6 +10,8 @@ struct MachMessageIterator {
     const std::byte* current = nullptr;
     const std::byte* end = nullptr;
 
+    const MachPacketHeader* mach_packet_header = nullptr;
+
     std::uint8_t packet_type = 0;
     std::uint16_t packet_length = 0;
     const std::byte* message = nullptr;
@@ -17,6 +20,7 @@ struct MachMessageIterator {
     void initialize(const std::byte* data, std::size_t length) {
 
         end = data + length;
+        mach_packet_header = nullptr;
 
         current = data;
         message = nullptr;
@@ -37,6 +41,7 @@ struct MachMessageIterator {
         }
 
         const auto* header = MachPacketHeader::parse(current);
+        mach_packet_header = header;
         message = current + sizeof(MachPacketHeader);
 
         packet_type = header->packet_type.get();
@@ -52,6 +57,7 @@ struct MachMessageIterator {
         current = nullptr;
         end = nullptr;
 
+        mach_packet_header = nullptr;
         message = nullptr;
         packet_type = 0;
         packet_length = 0;

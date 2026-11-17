@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeed.Pillar.v2.5.g: main.cpp
 // Nyse.NyseEquities.IntegratedFeed.Pillar.v2.5.g benchmark, through the Flyweight reader: every value it reads from every message of the simulated
 // sequence (tests/simulated/nyse/nyseequities/integratedfeed/pillar/v2.5.g.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 

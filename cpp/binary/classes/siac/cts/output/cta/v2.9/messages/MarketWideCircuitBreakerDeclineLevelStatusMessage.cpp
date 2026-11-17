@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.9: messages/MarketWideCircuitBreakerDeclineLevelStatusMessage.cpp
 #include "MarketWideCircuitBreakerDeclineLevelStatusMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,7 +7,7 @@
 
 namespace siac::cts::output::cta::v2_9 {
 
-MarketWideCircuitBreakerDeclineLevelStatusMessage::MarketWideCircuitBreakerDeclineLevelStatusMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, Decimal mwcb_level_1, Decimal mwcb_level_2, Decimal mwcb_level_3, std::uint8_t reserved)
+MarketWideCircuitBreakerDeclineLevelStatusMessage::MarketWideCircuitBreakerDeclineLevelStatusMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, Decimal mwcb_level_1, Decimal mwcb_level_2, Decimal mwcb_level_3, const std::array<std::byte, 1>& reserved)
   : participant_id_(participant_id), timestamp_1_(timestamp_1), message_id_(message_id), transaction_id_(transaction_id), participant_reference_number_(participant_reference_number), mwcb_level_1_(mwcb_level_1), mwcb_level_2_(mwcb_level_2), mwcb_level_3_(mwcb_level_3), reserved_(reserved) {}
 
 ParticipantId MarketWideCircuitBreakerDeclineLevelStatusMessage::participant_id() const { return participant_id_; }
@@ -34,8 +35,9 @@ void MarketWideCircuitBreakerDeclineLevelStatusMessage::set_mwcb_level_2(Decimal
 Decimal MarketWideCircuitBreakerDeclineLevelStatusMessage::mwcb_level_3() const { return mwcb_level_3_; }
 void MarketWideCircuitBreakerDeclineLevelStatusMessage::set_mwcb_level_3(Decimal value) { mwcb_level_3_ = value; }
 
-std::uint8_t MarketWideCircuitBreakerDeclineLevelStatusMessage::reserved() const { return reserved_; }
-void MarketWideCircuitBreakerDeclineLevelStatusMessage::set_reserved(std::uint8_t value) { reserved_ = value; }
+const std::array<std::byte, 1>& MarketWideCircuitBreakerDeclineLevelStatusMessage::reserved() const { return reserved_; }
+std::array<std::byte, 1>& MarketWideCircuitBreakerDeclineLevelStatusMessage::reserved() { return reserved_; }
+void MarketWideCircuitBreakerDeclineLevelStatusMessage::set_reserved(const std::array<std::byte, 1>& value) { reserved_ = value; }
 
 MarketStatusMessagePayloadCode MarketWideCircuitBreakerDeclineLevelStatusMessage::type() const { return message_type; }
 
@@ -68,7 +70,7 @@ std::size_t MarketWideCircuitBreakerDeclineLevelStatusMessage::decode(const std:
     mwcb_level_3_ = Decimal(static_cast<std::int64_t>(wire::read_i64_be(data + offset)), -6);
     offset += 8;
 
-    reserved_ = wire::read_u8(data + offset);
+    wire::read_bytes(data + offset, reserved_.data(), 1);
     offset += 1;
 
     return offset;
@@ -101,7 +103,7 @@ std::size_t MarketWideCircuitBreakerDeclineLevelStatusMessage::encode(std::byte*
     wire::write_i64_be(data + offset, static_cast<std::int64_t>(mwcb_level_3_.mantissa()));
     offset += 8;
 
-    wire::write_u8(data + offset, static_cast<std::uint8_t>(reserved_));
+    wire::write_bytes(data + offset, reserved_.data(), 1);
     offset += 1;
 
     return offset;
@@ -138,7 +140,7 @@ void MarketWideCircuitBreakerDeclineLevelStatusMessage::print(std::ostream& out)
     out << ", mwcb_level_3=";
     out << mwcb_level_3_;
     out << ", reserved=";
-    out << static_cast<int>(reserved_);
+    print::hex(out, reserved_.data(), reserved_.size());
     out << '}';
 }
 

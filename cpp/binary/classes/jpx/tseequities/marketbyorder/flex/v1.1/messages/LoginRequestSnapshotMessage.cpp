@@ -1,3 +1,4 @@
+// Jpx.TseEquities.MarketByOrder.Flex.v1.1: messages/LoginRequestSnapshotMessage.cpp
 #include "LoginRequestSnapshotMessage.hpp"
 
 #include "../common/Print.hpp"

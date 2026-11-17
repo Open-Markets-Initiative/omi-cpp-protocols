@@ -1,3 +1,4 @@
+// Nyse.ArcaEquities.Bbo.Xdp.v2.4.c: definitions.hpp
 #pragma once
 
 // Every flyweight view and reader of Nyse.ArcaEquities.Bbo.Xdp.v2.4.c.

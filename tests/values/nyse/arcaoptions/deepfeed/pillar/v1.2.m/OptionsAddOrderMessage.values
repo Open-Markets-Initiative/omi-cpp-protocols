@@ -1,0 +1,22 @@
+# Nyse.ArcaOptions.DeepFeed.Pillar.v1.2.m OptionsAddOrderMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 56
+packet.packetheader.deliveryflag = 11
+packet.packetheader.numbermsgs = 1
+packet.packetheader.seqnum = 544976
+packet.packetheader.sendtime.seconds = 1639231434
+packet.packetheader.sendtime.nanoseconds = 644348928
+packet.packetheader.sendtime = 1639231434644348928
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 40
+packet.messages.message[0].messageheader.messagetype = 300
+packet.messages.message[0].payload = packet.messages.message.payload.optionsaddordermessage
+packet.messages.message[0].payload.optionsaddordermessage.sourcetimens = 644337152
+packet.messages.message[0].payload.optionsaddordermessage.seriesindex = 34409296
+packet.messages.message[0].payload.optionsaddordermessage.seriesseqnum = 4
+packet.messages.message[0].payload.optionsaddordermessage.orderid = 14355240992112643
+packet.messages.message[0].payload.optionsaddordermessage.price = 110000
+packet.messages.message[0].payload.optionsaddordermessage.volume = 10
+packet.messages.message[0].payload.optionsaddordermessage.side = S
+packet.messages.message[0].payload.optionsaddordermessage.firmid = 
+packet.messages.message[0].payload.optionsaddordermessage.custindicator = N

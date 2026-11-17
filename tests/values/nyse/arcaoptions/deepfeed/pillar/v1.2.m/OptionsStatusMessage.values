@@ -1,0 +1,20 @@
+# Nyse.ArcaOptions.DeepFeed.Pillar.v1.2.m OptionsStatusMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 39
+packet.packetheader.deliveryflag = 11
+packet.packetheader.numbermsgs = 1
+packet.packetheader.seqnum = 9580
+packet.packetheader.sendtime.seconds = 1639202028
+packet.packetheader.sendtime.nanoseconds = 990026752
+packet.packetheader.sendtime = 1639202028990026752
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 23
+packet.messages.message[0].messageheader.messagetype = 51
+packet.messages.message[0].payload = packet.messages.message.payload.optionsstatusmessage
+packet.messages.message[0].payload.optionsstatusmessage.sourcetime = 1639202028
+packet.messages.message[0].payload.optionsstatusmessage.sourcetimens = 990000896
+packet.messages.message[0].payload.optionsstatusmessage.seriesindex = 31810620
+packet.messages.message[0].payload.optionsstatusmessage.seriesseqnum = 1
+packet.messages.message[0].payload.optionsstatusmessage.seriesstatus = P
+packet.messages.message[0].payload.optionsstatusmessage.marketstate = P
+packet.messages.message[0].payload.optionsstatusmessage.optionsstatushaltcondition = ~

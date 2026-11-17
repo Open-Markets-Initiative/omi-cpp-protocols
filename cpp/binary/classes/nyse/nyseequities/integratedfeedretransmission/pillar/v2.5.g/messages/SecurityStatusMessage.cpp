@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeedRetransmission.Pillar.v2.5.g: messages/SecurityStatusMessage.cpp
 #include "SecurityStatusMessage.hpp"
 
 #include "../common/Print.hpp"

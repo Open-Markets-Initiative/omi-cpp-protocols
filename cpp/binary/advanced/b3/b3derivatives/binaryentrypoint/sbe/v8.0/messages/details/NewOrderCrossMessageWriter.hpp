@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: messages/details/NewOrderCrossMessageWriter.hpp
 #pragma once
 
 #include "../NewOrderCrossMessage.hpp"
@@ -65,10 +66,10 @@ public:
         return *this;
     }
 
-    new_order_cross_message_cross_sides_groups_builder& clordid(std::uint64_t v) {
+    new_order_cross_message_cross_sides_groups_builder& cl_ord_id(std::uint64_t v) {
         if (pos_ + sizeof(new_order_cross_message_cross_sides_groups_entry) > end_) throw std::runtime_error("buffer overrun writing group entry");
         auto* entry = reinterpret_cast<new_order_cross_message_cross_sides_groups_entry*>(pos_);
-        entry->clordid.set(v);
+        entry->cl_ord_id.set(v);
         pos_ += header_->block_length.get().value();
         count_++;
         if (pos_ + sizeof(new_order_cross_message_cross_sides_groups_entry) <= end_) ::new (static_cast<void*>(pos_)) new_order_cross_message_cross_sides_groups_entry{};

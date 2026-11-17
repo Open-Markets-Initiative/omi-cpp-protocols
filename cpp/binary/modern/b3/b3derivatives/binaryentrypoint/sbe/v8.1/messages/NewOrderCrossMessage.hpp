@@ -1,8 +1,9 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1: messages/NewOrderCrossMessage.hpp
 #pragma once
 
 #include "../structs/InboundBusinessHeader.hpp"
 #include "../types/Offset18Padding2.hpp"
-#include "../types/Crossid.hpp"
+#include "../types/CrossId.hpp"
 #include "../types/SenderLocation.hpp"
 #include "../types/EnteringTrader.hpp"
 #include "../types/ExecutingTraderOptional.hpp"
@@ -23,7 +24,7 @@ struct NewOrderCrossMessage {
 
     InboundBusinessHeader inbound_business_header;
     Offset18Padding2 offset_18_padding_2;
-    Crossid crossid;
+    CrossId cross_id;
     SenderLocation sender_location;
     EnteringTrader entering_trader;
     ExecutingTraderOptional executing_trader_optional;

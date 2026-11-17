@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: groups/CrossSidesGroup.cpp
 #include "CrossSidesGroup.hpp"
 
 #include "../common/Print.hpp"
@@ -5,8 +6,8 @@
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_0 {
 
-CrossSidesGroup::CrossSidesGroup(Side side, const std::array<std::byte, 1>& offset_1_padding_1, std::optional<std::uint32_t> account, std::optional<std::uint32_t> entering_firm_optional, std::uint64_t clordid)
-  : side_(side), offset_1_padding_1_(offset_1_padding_1), account_(account), entering_firm_optional_(entering_firm_optional), clordid_(clordid) {}
+CrossSidesGroup::CrossSidesGroup(Side side, const std::array<std::byte, 1>& offset_1_padding_1, std::optional<std::uint32_t> account, std::optional<std::uint32_t> entering_firm_optional, std::uint64_t cl_ord_id)
+  : side_(side), offset_1_padding_1_(offset_1_padding_1), account_(account), entering_firm_optional_(entering_firm_optional), cl_ord_id_(cl_ord_id) {}
 
 Side CrossSidesGroup::side() const { return side_; }
 void CrossSidesGroup::set_side(Side value) { side_ = value; }
@@ -21,8 +22,8 @@ void CrossSidesGroup::set_account(std::optional<std::uint32_t> value) { account_
 std::optional<std::uint32_t> CrossSidesGroup::entering_firm_optional() const { return entering_firm_optional_; }
 void CrossSidesGroup::set_entering_firm_optional(std::optional<std::uint32_t> value) { entering_firm_optional_ = value; }
 
-std::uint64_t CrossSidesGroup::clordid() const { return clordid_; }
-void CrossSidesGroup::set_clordid(std::uint64_t value) { clordid_ = value; }
+std::uint64_t CrossSidesGroup::cl_ord_id() const { return cl_ord_id_; }
+void CrossSidesGroup::set_cl_ord_id(std::uint64_t value) { cl_ord_id_ = value; }
 
 std::size_t CrossSidesGroup::decode(const std::byte* data, std::size_t length) {
     std::size_t offset = 0;
@@ -40,7 +41,7 @@ std::size_t CrossSidesGroup::decode(const std::byte* data, std::size_t length) {
     entering_firm_optional_ = wire::nullable(wire::read_u32_le(data + offset), static_cast<std::uint32_t>(0ULL));
     offset += 4;
 
-    clordid_ = wire::read_u64_le(data + offset);
+    cl_ord_id_ = wire::read_u64_le(data + offset);
     offset += 8;
 
     return offset;
@@ -62,7 +63,7 @@ std::size_t CrossSidesGroup::encode(std::byte* data, std::size_t capacity) const
     wire::write_u32_le(data + offset, entering_firm_optional_.value_or(static_cast<std::uint32_t>(0ULL)));
     offset += 4;
 
-    wire::write_u64_le(data + offset, static_cast<std::uint64_t>(clordid_));
+    wire::write_u64_le(data + offset, static_cast<std::uint64_t>(cl_ord_id_));
     offset += 8;
 
     return offset;
@@ -82,8 +83,8 @@ void CrossSidesGroup::print(std::ostream& out) const {
     print::optional(out, account_);
     out << ", entering_firm_optional=";
     print::optional(out, entering_firm_optional_);
-    out << ", clordid=";
-    out << clordid_;
+    out << ", cl_ord_id=";
+    out << cl_ord_id_;
     out << '}';
 }
 
@@ -92,7 +93,7 @@ bool CrossSidesGroup::operator==(const CrossSidesGroup& other) const {
         && offset_1_padding_1_ == other.offset_1_padding_1_
         && account_ == other.account_
         && entering_firm_optional_ == other.entering_firm_optional_
-        && clordid_ == other.clordid_;
+        && cl_ord_id_ == other.cl_ord_id_;
 }
 
 bool CrossSidesGroup::operator!=(const CrossSidesGroup& other) const {

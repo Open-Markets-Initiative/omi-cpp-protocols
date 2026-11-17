@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.9: types/StrikeCurrency.hpp
 #pragma once
 
 #include <array>

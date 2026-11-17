@@ -1,5 +1,7 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v4.0: messages/PayloadStockTradingActionMessage.hpp
 #pragma once
 
+#include <array>
 #include <chrono>
 #include <cstddef>
 #include <memory>
@@ -25,7 +27,7 @@ class PayloadStockTradingActionMessage : public PacketMessage {
     static constexpr std::size_t wire_size = 16;
 
     PayloadStockTradingActionMessage() = default;
-    PayloadStockTradingActionMessage(std::chrono::nanoseconds nanoseconds, const std::string& stock, TradingState trading_state, char reserved, const std::string& reason);
+    PayloadStockTradingActionMessage(std::chrono::nanoseconds nanoseconds, const std::string& stock, TradingState trading_state, const std::array<std::byte, 1>& reserved, const std::string& reason);
 
     // Nanoseconds: Nanoseconds portion of the timestamp.
     std::chrono::nanoseconds nanoseconds() const;
@@ -42,8 +44,9 @@ class PayloadStockTradingActionMessage : public PacketMessage {
     void set_trading_state(TradingState value);
 
     // Reserved: Reserved.
-    char reserved() const;
-    void set_reserved(char value);
+    const std::array<std::byte, 1>& reserved() const;
+    std::array<std::byte, 1>& reserved();
+    void set_reserved(const std::array<std::byte, 1>& value);
 
     // Reason: Trading Action reason.
     const std::string& reason() const;
@@ -68,7 +71,7 @@ class PayloadStockTradingActionMessage : public PacketMessage {
     std::chrono::nanoseconds nanoseconds_{};
     std::string stock_{};
     TradingState trading_state_{};
-    char reserved_{};
+    std::array<std::byte, 1> reserved_{};
     std::string reason_{};
 };
 

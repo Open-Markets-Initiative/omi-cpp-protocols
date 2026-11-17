@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeed.Pillar.v2.5.g: messages/CrossTradeMessage.cpp
 #include "CrossTradeMessage.hpp"
 
 #include "../common/Print.hpp"

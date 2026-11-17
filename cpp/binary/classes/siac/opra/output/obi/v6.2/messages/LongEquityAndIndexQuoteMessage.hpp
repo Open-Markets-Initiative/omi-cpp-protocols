@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: messages/LongEquityAndIndexQuoteMessage.hpp
 #pragma once
 
 #include <array>

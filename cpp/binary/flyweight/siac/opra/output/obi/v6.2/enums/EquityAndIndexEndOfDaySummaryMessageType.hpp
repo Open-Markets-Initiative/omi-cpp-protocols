@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: enums/EquityAndIndexEndOfDaySummaryMessageType.hpp
 #pragma once
 
 #include <cstdint>

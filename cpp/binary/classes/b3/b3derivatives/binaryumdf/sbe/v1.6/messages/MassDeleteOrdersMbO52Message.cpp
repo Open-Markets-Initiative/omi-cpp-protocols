@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.6: messages/MassDeleteOrdersMbO52Message.cpp
 #include "MassDeleteOrdersMbO52Message.hpp"
 
 #include "../common/Print.hpp"

@@ -1,3 +1,4 @@
+// Memx.MemxEquities.MemoirDepthFeed.Sbe.v1.3: messages/TradingSessionStatusMessage.cpp
 #include "TradingSessionStatusMessage.hpp"
 
 #include "../common/Print.hpp"

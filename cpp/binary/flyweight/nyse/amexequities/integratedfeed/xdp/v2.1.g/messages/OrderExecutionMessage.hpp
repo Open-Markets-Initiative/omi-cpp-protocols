@@ -1,5 +1,7 @@
+// Nyse.AmexEquities.IntegratedFeed.Xdp.v2.1.g: messages/OrderExecutionMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <ostream>
@@ -27,7 +29,7 @@ class OrderExecutionMessage {
     static constexpr std::size_t fixed_size = 38;
     std::size_t encoded_size() const { return 38; }
 
-    std::uint32_t source_time_ns() const { return wire::read_u32_le(at(0)); }
+    std::chrono::nanoseconds source_time_ns() const { return std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(at(0)))); }
 
     std::uint32_t symbol_index() const { return wire::read_u32_le(at(4)); }
 
@@ -50,7 +52,7 @@ class OrderExecutionMessage {
     void print(std::ostream& out) const {
         out << "OrderExecutionMessage{";
         out << "source_time_ns=";
-        out << source_time_ns();
+        out << source_time_ns().count();
         out << ", symbol_index=";
         out << symbol_index();
         out << ", symbol_seq_num=";

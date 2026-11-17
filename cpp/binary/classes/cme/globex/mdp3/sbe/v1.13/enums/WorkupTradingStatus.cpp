@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.13: enums/WorkupTradingStatus.cpp
 #include "WorkupTradingStatus.hpp"
 
 namespace cme::globex::mdp3::sbe::v1_13 {

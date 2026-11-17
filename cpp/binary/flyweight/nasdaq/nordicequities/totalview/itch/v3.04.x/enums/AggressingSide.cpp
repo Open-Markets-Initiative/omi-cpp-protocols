@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: enums/AggressingSide.cpp
 #include "AggressingSide.hpp"
 
 namespace nasdaq::nordicequities::totalview::itch::v3_04_x {

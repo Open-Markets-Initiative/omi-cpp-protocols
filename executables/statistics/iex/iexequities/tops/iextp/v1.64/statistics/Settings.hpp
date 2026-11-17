@@ -1,3 +1,4 @@
+// Iex.IexEquities.Tops.IexTp.v1.64: statistics/Settings.hpp
 #pragma once
 
 #include <string>

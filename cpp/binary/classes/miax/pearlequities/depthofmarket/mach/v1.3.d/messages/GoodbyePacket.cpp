@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: messages/GoodbyePacket.cpp
 #include "GoodbyePacket.hpp"
 
 #include "../common/Print.hpp"
@@ -6,11 +7,11 @@
 
 namespace miax::pearlequities::depthofmarket::mach::v1_3_d {
 
-GoodbyePacket::GoodbyePacket(LogoutReason logout_reason, const std::string& logout_text)
-  : logout_reason_(logout_reason), logout_text_(logout_text) {}
+GoodbyePacket::GoodbyePacket(GoodbyeReason goodbye_reason, const std::string& logout_text)
+  : goodbye_reason_(goodbye_reason), logout_text_(logout_text) {}
 
-LogoutReason GoodbyePacket::logout_reason() const { return logout_reason_; }
-void GoodbyePacket::set_logout_reason(LogoutReason value) { logout_reason_ = value; }
+GoodbyeReason GoodbyePacket::goodbye_reason() const { return goodbye_reason_; }
+void GoodbyePacket::set_goodbye_reason(GoodbyeReason value) { goodbye_reason_ = value; }
 
 const std::string& GoodbyePacket::logout_text() const { return logout_text_; }
 std::string& GoodbyePacket::logout_text() { return logout_text_; }
@@ -24,7 +25,7 @@ std::size_t GoodbyePacket::decode(const std::byte* data, std::size_t length) {
     std::size_t offset = 0;
 
     wire::require("GoodbyePacket", offset + 1, length);
-    logout_reason_ = static_cast<LogoutReason>(wire::read_char(data + offset));
+    goodbye_reason_ = static_cast<GoodbyeReason>(wire::read_char(data + offset));
     offset += 1;
 
     {
@@ -41,7 +42,7 @@ std::size_t GoodbyePacket::encode(std::byte* data, std::size_t capacity) const {
     std::size_t offset = 0;
     wire::require_capacity("GoodbyePacket", encoded_size(), capacity);
 
-    wire::write_char(data + offset, static_cast<char>(logout_reason_));
+    wire::write_char(data + offset, static_cast<char>(goodbye_reason_));
     offset += 1;
 
     wire::require_capacity("encode", offset + logout_text_.size(), capacity);
@@ -65,8 +66,8 @@ std::unique_ptr<TcpMessage> GoodbyePacket::clone() const {
 
 void GoodbyePacket::print(std::ostream& out) const {
     out << "GoodbyePacket{";
-    out << "logout_reason=";
-    out << logout_reason_;
+    out << "goodbye_reason=";
+    out << goodbye_reason_;
     out << ", logout_text=";
     print::text(out, logout_text_);
     out << '}';
@@ -78,7 +79,7 @@ bool GoodbyePacket::equals(const TcpMessage& other) const {
 }
 
 bool GoodbyePacket::operator==(const GoodbyePacket& other) const {
-    return logout_reason_ == other.logout_reason_
+    return goodbye_reason_ == other.goodbye_reason_
         && logout_text_ == other.logout_text_;
 }
 

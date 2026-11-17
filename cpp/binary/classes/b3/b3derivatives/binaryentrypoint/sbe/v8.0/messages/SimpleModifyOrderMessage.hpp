@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: messages/SimpleModifyOrderMessage.hpp
 #pragma once
 
 #include <cstddef>
@@ -31,7 +32,7 @@ class SimpleModifyOrderMessage : public Message {
     static constexpr MessageCode message_type = TemplateId::SimpleModifyOrderMessage;
 
     SimpleModifyOrderMessage() = default;
-    SimpleModifyOrderMessage(const InboundBusinessHeader& inbound_business_header, std::optional<std::uint8_t> ordtagid, MmProtectionReset mm_protection_reset, std::uint64_t clordid, std::optional<std::uint32_t> account, const std::string& sender_location, const std::string& entering_trader, SelfTradePreventionInstruction self_trade_prevention_instruction, std::uint64_t security_id, Side side, SimpleOrdtype simple_ordtype, TimeInForceSimple time_in_force_simple, std::optional<RoutingInstruction> routing_instruction, std::uint64_t order_qty, std::optional<Decimal> price_optional, std::optional<std::uint64_t> order_id_optional, std::optional<std::uint64_t> origclordid, const InvestorId& investor_id, const Memo& memo);
+    SimpleModifyOrderMessage(const InboundBusinessHeader& inbound_business_header, std::optional<std::uint8_t> ordtagid, MmProtectionReset mm_protection_reset, std::uint64_t cl_ord_id, std::optional<std::uint32_t> account, const std::string& sender_location, const std::string& entering_trader, SelfTradePreventionInstruction self_trade_prevention_instruction, std::uint64_t security_id, Side side, SimpleOrdtype simple_ordtype, TimeInForceSimple time_in_force_simple, std::optional<RoutingInstruction> routing_instruction, std::uint64_t order_qty, std::optional<Decimal> price_optional, std::optional<std::uint64_t> order_id_optional, std::optional<std::uint64_t> origclordid, const InvestorId& investor_id, const Memo& memo);
 
     // Inbound Business Header: InboundBusinessHeader
     const InboundBusinessHeader& inbound_business_header() const;
@@ -46,9 +47,9 @@ class SimpleModifyOrderMessage : public Message {
     MmProtectionReset mm_protection_reset() const;
     void set_mm_protection_reset(MmProtectionReset value);
 
-    // ClOrdId: clOrdID
-    std::uint64_t clordid() const;
-    void set_clordid(std::uint64_t value);
+    // Cl Ord Id: clOrdID
+    std::uint64_t cl_ord_id() const;
+    void set_cl_ord_id(std::uint64_t value);
 
     // Account: account
     std::optional<std::uint32_t> account() const;
@@ -132,7 +133,7 @@ class SimpleModifyOrderMessage : public Message {
     InboundBusinessHeader inbound_business_header_{};
     std::optional<std::uint8_t> ordtagid_{};
     MmProtectionReset mm_protection_reset_{};
-    std::uint64_t clordid_{};
+    std::uint64_t cl_ord_id_{};
     std::optional<std::uint32_t> account_{};
     std::string sender_location_{};
     std::string entering_trader_{};

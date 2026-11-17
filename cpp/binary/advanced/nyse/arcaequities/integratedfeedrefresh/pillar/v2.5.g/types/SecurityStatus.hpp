@@ -1,3 +1,4 @@
+// Nyse.ArcaEquities.IntegratedFeedRefresh.Pillar.v2.5.g: types/SecurityStatus.hpp
 #pragma once
 
 #include <cstddef>

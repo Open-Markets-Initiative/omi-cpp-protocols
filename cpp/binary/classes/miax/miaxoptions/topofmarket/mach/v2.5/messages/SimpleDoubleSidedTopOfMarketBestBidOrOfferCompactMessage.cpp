@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.TopOfMarket.Mach.v2.5: messages/SimpleDoubleSidedTopOfMarketBestBidOrOfferCompactMessage.cpp
 #include "SimpleDoubleSidedTopOfMarketBestBidOrOfferCompactMessage.hpp"
 
 #include "../common/Print.hpp"

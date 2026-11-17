@@ -1,3 +1,4 @@
+// Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.20.4: messages/TradingStatusMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -38,9 +39,9 @@ class TradingStatusMessage {
 
     RegShoAction reg_sho_action() const { return static_cast<RegShoAction>(wire::read_char(at(13))); }
 
-    char reserved_1() const { return wire::read_char(at(14)); }
+    std::span<const std::byte, 1> reserved_1() const { return bytes_.subspan(14).template first<1>(); }
 
-    char second_reserved_1() const { return wire::read_char(at(15)); }
+    std::span<const std::byte, 1> second_reserved_1() const { return bytes_.subspan(15).template first<1>(); }
 
     void print(std::ostream& out) const {
         out << "TradingStatusMessage{";
@@ -53,9 +54,9 @@ class TradingStatusMessage {
         out << ", reg_sho_action=";
         out << reg_sho_action();
         out << ", reserved_1=";
-        print::character(out, reserved_1());
+        print::hex(out, reserved_1().data(), reserved_1().size());
         out << ", second_reserved_1=";
-        print::character(out, second_reserved_1());
+        print::hex(out, second_reserved_1().data(), second_reserved_1().size());
         out << '}';
     }
 

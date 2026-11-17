@@ -1,3 +1,4 @@
+// Cboe.CfeFutures.MulticastDepthOfBook.Pitch.v1.2.22: structs/MessageHeader.hpp
 #pragma once
 
 #include "../types/MessageLength.hpp"

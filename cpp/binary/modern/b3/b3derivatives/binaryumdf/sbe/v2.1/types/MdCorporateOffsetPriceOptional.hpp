@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.1: types/MdCorporateOffsetPriceOptional.hpp
 #pragma once
 
 #include <cstddef>

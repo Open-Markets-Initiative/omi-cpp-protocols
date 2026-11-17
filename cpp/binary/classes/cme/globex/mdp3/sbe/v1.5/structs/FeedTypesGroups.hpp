@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.5: structs/FeedTypesGroups.hpp
 #pragma once
 
 #include <cstddef>

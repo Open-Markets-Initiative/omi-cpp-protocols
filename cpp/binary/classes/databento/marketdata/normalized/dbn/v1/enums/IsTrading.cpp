@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v1: enums/IsTrading.cpp
 #include "IsTrading.hpp"
 
 namespace databento::marketdata::normalized::dbn::v1 {

@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v3: structs/Metadata.hpp
 #pragma once
 
 #include <chrono>

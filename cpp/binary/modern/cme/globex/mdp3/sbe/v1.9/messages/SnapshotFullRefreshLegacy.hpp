@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.9: messages/SnapshotFullRefreshLegacy.hpp
 #pragma once
 
 #include "../types/LastMsgSeqNumProcessed.hpp"

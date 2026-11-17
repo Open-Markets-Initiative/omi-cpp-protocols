@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeedRefresh.Pillar.v2.5.g: types/Reserved1.hpp
 #pragma once
 
 #include <cstddef>

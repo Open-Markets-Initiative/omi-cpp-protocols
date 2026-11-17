@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2026: messages/FilePayloadRetailPriceImprovementIndicatorMessage.cpp
 #include "FilePayloadRetailPriceImprovementIndicatorMessage.hpp"
 
 #include "../common/Print.hpp"

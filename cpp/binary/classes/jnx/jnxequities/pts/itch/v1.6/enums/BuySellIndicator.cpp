@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.6: enums/BuySellIndicator.cpp
 #include "BuySellIndicator.hpp"
 
 namespace jnx::jnxequities::pts::itch::v1_6 {

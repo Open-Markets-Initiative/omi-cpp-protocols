@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.9: types/Month.hpp
 #pragma once
 
 #include <cstddef>
@@ -12,6 +13,7 @@ struct Month {
     static constexpr auto name = "Month";
     static constexpr std::size_t size = 1;
     using type = std::uint8_t;
+static const type no_value = 0;
 
     // default constructor
     constexpr Month()

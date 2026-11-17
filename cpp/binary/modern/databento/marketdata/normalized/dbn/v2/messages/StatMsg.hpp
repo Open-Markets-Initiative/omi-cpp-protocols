@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v2: messages/StatMsg.hpp
 #pragma once
 
 #include "../types/TsRecv.hpp"

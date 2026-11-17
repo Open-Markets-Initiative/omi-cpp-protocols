@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.13: bitfields/InstAttribValue.cpp
 #include "InstAttribValue.hpp"
 
 #include "../common/Print.hpp"
@@ -91,9 +92,6 @@ void InstAttribValue::set_efix_instrument(bool value) { raw_ = static_cast<std::
 bool InstAttribValue::hedge_instrument() const { return (raw_ & static_cast<std::uint32_t>(0x8000000)) != 0; }
 void InstAttribValue::set_hedge_instrument(bool value) { raw_ = static_cast<std::uint32_t>(value ? (raw_ | static_cast<std::uint32_t>(0x8000000)) : (raw_ & ~static_cast<std::uint32_t>(0x8000000))); }
 
-std::uint8_t InstAttribValue::reserved_4() const { return static_cast<std::uint8_t>((raw_ & static_cast<std::uint32_t>(0xF0000000)) >> 28); }
-void InstAttribValue::set_reserved_4(std::uint8_t value) { raw_ = static_cast<std::uint32_t>((raw_ & ~static_cast<std::uint32_t>(0xF0000000)) | ((static_cast<std::uint32_t>(value) << 28) & static_cast<std::uint32_t>(0xF0000000))); }
-
 std::uint32_t InstAttribValue::raw() const { return raw_; }
 void InstAttribValue::set_raw(std::uint32_t value) { raw_ = value; }
 
@@ -171,8 +169,6 @@ void InstAttribValue::print(std::ostream& out) const {
     out << (efix_instrument() ? "true" : "false");
     out << ", hedge_instrument=";
     out << (hedge_instrument() ? "true" : "false");
-    out << ", reserved_4=";
-    out << static_cast<unsigned long long>(reserved_4());
     out << '}';
 }
 

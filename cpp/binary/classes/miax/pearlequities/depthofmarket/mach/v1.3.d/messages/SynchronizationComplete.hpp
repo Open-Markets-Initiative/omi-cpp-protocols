@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: messages/SynchronizationComplete.hpp
 #pragma once
 
 #include <cstddef>
@@ -12,8 +13,8 @@ namespace miax::pearlequities::depthofmarket::mach::v1_3_d {
 
 class TcpMessageVisitor;
 
-// The ESesM server sends a Login response packet in response a Login request packet from the
-// client
+// The ESesM server sends a Synchronization complete packet when it is done replaying all the
+// old packets and is ready to start sending new packets from the Matching Engine
 class SynchronizationComplete : public TcpMessage {
   public:
     // The code that selects this message
@@ -22,11 +23,11 @@ class SynchronizationComplete : public TcpMessage {
     static constexpr std::size_t wire_size = 1;
 
     SynchronizationComplete() = default;
-    SynchronizationComplete(std::uint8_t number_of_matching_engines);
+    SynchronizationComplete(std::uint8_t matching_engine_id);
 
-    // Number Of Matching Engines: Count of all Matching Engines for the exchange
-    std::uint8_t number_of_matching_engines() const;
-    void set_number_of_matching_engines(std::uint8_t value);
+    // Matching Engine Id: Matching Engine that originated the packet
+    std::uint8_t matching_engine_id() const;
+    void set_matching_engine_id(std::uint8_t value);
 
     // TcpMessage
     TcpMessageCode type() const override;
@@ -43,7 +44,7 @@ class SynchronizationComplete : public TcpMessage {
     bool operator!=(const SynchronizationComplete& other) const;
 
   private:
-    std::uint8_t number_of_matching_engines_{};
+    std::uint8_t matching_engine_id_{};
 };
 
 } // namespace miax::pearlequities::depthofmarket::mach::v1_3_d

@@ -1,3 +1,4 @@
+// OtcMarkets.LinkAts.Multicast.Link.v4.3: messages/InsideUpdateMessage.hpp
 #pragma once
 
 #include <cstddef>

@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v1: definitions.hpp
 #pragma once
 
 #include "structs/Metadata.hpp"

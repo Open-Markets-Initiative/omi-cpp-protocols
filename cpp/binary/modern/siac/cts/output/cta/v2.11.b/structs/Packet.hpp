@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: structs/Packet.hpp
 #pragma once
 
 #include "../structs/BlockHeader.hpp"

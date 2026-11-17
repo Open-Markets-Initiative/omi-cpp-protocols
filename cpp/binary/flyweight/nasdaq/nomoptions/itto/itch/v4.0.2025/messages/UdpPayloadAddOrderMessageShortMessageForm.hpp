@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: messages/UdpPayloadAddOrderMessageShortMessageForm.hpp
 #pragma once
 
 #include <chrono>
@@ -42,7 +43,7 @@ class UdpPayloadAddOrderMessageShortMessageForm {
 
     std::uint32_t option_id() const { return wire::read_u32_be(at(17)); }
 
-    Decimal price_short() const { return Decimal(static_cast<std::int64_t>(wire::read_u16_be(at(21))), -4); }
+    Decimal price_short() const { return Decimal(static_cast<std::int64_t>(wire::read_u16_be(at(21))), -2); }
 
     std::uint16_t volume_short() const { return wire::read_u16_be(at(23)); }
 

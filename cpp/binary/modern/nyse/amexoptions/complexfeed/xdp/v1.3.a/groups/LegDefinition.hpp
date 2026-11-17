@@ -1,3 +1,4 @@
+// Nyse.AmexOptions.ComplexFeed.Xdp.v1.3.a: groups/LegDefinition.hpp
 #pragma once
 
 #include "../types/SymbolIndex.hpp"

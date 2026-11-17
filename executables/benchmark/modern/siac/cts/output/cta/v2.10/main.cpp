@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.10: main.cpp
 // Siac.Cts.Output.Cta.v2.10 benchmark, through the Modern iterator: every value it reads from every message of the simulated
 // sequence (tests/simulated/siac/cts/output/cta/v2.10.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -45,7 +46,7 @@ std::uint64_t read(const packet::Frame& frame) {
             [[maybe_unused]] const auto* message = protocol::AdministrativeMessage::parse(iterator.message);
             checksum += bench::digest(message->administrative_message_type.get());
             if (message->administrative_message_type.get() == 'A') {
-                [[maybe_unused]] const auto* message_2 = protocol::StartOfEndOfDayMessage::parse(iterator.message + sizeof(protocol::AdministrativeMessage));
+                [[maybe_unused]] const auto* message_2 = protocol::StartOfEndOfDaySummaryMessage::parse(iterator.message + sizeof(protocol::AdministrativeMessage));
                 checksum += bench::digest(message_2->participant_id.get());
                 checksum += bench::digest(message_2->timestamp_1.seconds.get());
                 checksum += bench::digest(message_2->timestamp_1.nanoseconds.get());
@@ -53,7 +54,7 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest(message_2->transaction_id.get());
                 checksum += bench::digest(message_2->participant_reference_number.get());
             } else if (message->administrative_message_type.get() == 'B') {
-                [[maybe_unused]] const auto* message_2 = protocol::EndOfEndOfDayMessage::parse(iterator.message + sizeof(protocol::AdministrativeMessage));
+                [[maybe_unused]] const auto* message_2 = protocol::EndOfEndOfDaySummaryMessage::parse(iterator.message + sizeof(protocol::AdministrativeMessage));
                 checksum += bench::digest(message_2->participant_id.get());
                 checksum += bench::digest(message_2->timestamp_1.seconds.get());
                 checksum += bench::digest(message_2->timestamp_1.nanoseconds.get());
@@ -61,7 +62,7 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest(message_2->transaction_id.get());
                 checksum += bench::digest(message_2->participant_reference_number.get());
             } else if (message->administrative_message_type.get() == 'C') {
-                [[maybe_unused]] const auto* message_2 = protocol::StartOfStartOfDayMessage::parse(iterator.message + sizeof(protocol::AdministrativeMessage));
+                [[maybe_unused]] const auto* message_2 = protocol::StartOfStartOfDaySummaryMessage::parse(iterator.message + sizeof(protocol::AdministrativeMessage));
                 checksum += bench::digest(message_2->participant_id.get());
                 checksum += bench::digest(message_2->timestamp_1.seconds.get());
                 checksum += bench::digest(message_2->timestamp_1.nanoseconds.get());
@@ -69,7 +70,7 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest(message_2->transaction_id.get());
                 checksum += bench::digest(message_2->participant_reference_number.get());
             } else if (message->administrative_message_type.get() == 'D') {
-                [[maybe_unused]] const auto* message_2 = protocol::EndOfStartOfDayMessage::parse(iterator.message + sizeof(protocol::AdministrativeMessage));
+                [[maybe_unused]] const auto* message_2 = protocol::EndOfStartOfDaySummaryMessage::parse(iterator.message + sizeof(protocol::AdministrativeMessage));
                 checksum += bench::digest(message_2->participant_id.get());
                 checksum += bench::digest(message_2->timestamp_1.seconds.get());
                 checksum += bench::digest(message_2->timestamp_1.nanoseconds.get());
@@ -160,7 +161,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest(message_2->mwcb_level_1.integer());
                 checksum += bench::digest(message_2->mwcb_level_2.integer());
                 checksum += bench::digest(message_2->mwcb_level_3.integer());
-                checksum += bench::digest(message_2->reserved.get());
             } else if (message->market_status_message_type.get() == 'L') {
                 [[maybe_unused]] const auto* message_2 = protocol::MarketWideCircuitBreakerStatusMessage::parse(iterator.message + sizeof(protocol::MarketStatusMessage));
                 checksum += bench::digest(message_2->participant_id.get());
@@ -170,7 +170,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest(message_2->transaction_id.get());
                 checksum += bench::digest(message_2->participant_reference_number.get());
                 checksum += bench::digest(message_2->market_wide_circuit_breaker_level_indicator.get());
-                checksum += bench::digest(message_2->reserved.get());
             } else if (message->market_status_message_type.get() == 'N') {
                 [[maybe_unused]] const auto* message_2 = protocol::ApproximateAdjustedVolumeMarketCenterMessage::parse(iterator.message + sizeof(protocol::MarketStatusMessage));
                 checksum += bench::digest(message_2->participant_id.get());

@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: main.cpp
 // Nasdaq.NsmEquities.NlsPlus.Itch.v3.0 benchmark, through the Advanced session layer: every value it reads from every message of the simulated
 // sequence (tests/simulated/nasdaq/nsmequities/nlsplus/itch/v3.0.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -247,7 +248,6 @@ struct Reader {
         checksum += bench::digest(message.header.tracking_number.get().value());
         checksum += bench::digest(message.header.timestamp.get().value());
         checksum += bench::digest(message.header.message_type.get().value());
-        checksum += bench::digest(message.fields.reserved.get().value());
         checksum += bench::digest(message.fields.issue_symbol.get().value());
         checksum += bench::digest(message.fields.security_class.get().value());
         checksum += bench::digest(message.fields.current_trading_state.get().value());

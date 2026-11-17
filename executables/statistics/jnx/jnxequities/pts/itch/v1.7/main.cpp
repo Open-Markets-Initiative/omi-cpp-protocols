@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.7: main.cpp
 #include "Settings.hpp"
 
 int main(const int argc, char** argv) {

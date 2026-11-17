@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v1.91: messages/AdministrativeMessage.cpp
 #include "AdministrativeMessage.hpp"
 
 #include "../common/Print.hpp"

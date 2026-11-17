@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: types/LuldLeverageRatio.hpp
 #pragma once
 
 #include <cstddef>

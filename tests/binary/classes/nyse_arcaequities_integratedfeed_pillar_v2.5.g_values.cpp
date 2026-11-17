@@ -277,6 +277,7 @@ int main() {
     failures += check("AddOrderMessage", "Nyse/ArcaEquities.IntegratedFeed.Pillar.v2.5.g/AddOrderMessage.pcap", "nyse/arcaequities/integratedfeed/pillar/v2.5.g/AddOrderMessage.values");
     failures += check("CrossTradeMessage", "Nyse/ArcaEquities.IntegratedFeed.Pillar.v2.5.g/CrossTradeMessage.pcap", "nyse/arcaequities/integratedfeed/pillar/v2.5.g/CrossTradeMessage.values");
     failures += check("DeleteOrderMessage", "Nyse/ArcaEquities.IntegratedFeed.Pillar.v2.5.g/DeleteOrderMessage.pcap", "nyse/arcaequities/integratedfeed/pillar/v2.5.g/DeleteOrderMessage.values");
+    failures += check("ImbalanceMessage", "Nyse/ArcaEquities.IntegratedFeed.Pillar.v2.5.g/ImbalanceMessage.pcap", "nyse/arcaequities/integratedfeed/pillar/v2.5.g/ImbalanceMessage.values");
     failures += check("ModifyOrderMessage", "Nyse/ArcaEquities.IntegratedFeed.Pillar.v2.5.g/ModifyOrderMessage.pcap", "nyse/arcaequities/integratedfeed/pillar/v2.5.g/ModifyOrderMessage.values");
     failures += check("NonDisplayedTradeMessage", "Nyse/ArcaEquities.IntegratedFeed.Pillar.v2.5.g/NonDisplayedTradeMessage.pcap", "nyse/arcaequities/integratedfeed/pillar/v2.5.g/NonDisplayedTradeMessage.values");
     failures += check("OrderExecutionMessage", "Nyse/ArcaEquities.IntegratedFeed.Pillar.v2.5.g/OrderExecutionMessage.pcap", "nyse/arcaequities/integratedfeed/pillar/v2.5.g/OrderExecutionMessage.values");

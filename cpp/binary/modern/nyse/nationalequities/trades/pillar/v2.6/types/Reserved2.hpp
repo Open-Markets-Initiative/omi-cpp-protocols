@@ -1,3 +1,4 @@
+// Nyse.NationalEquities.Trades.Pillar.v2.6: types/Reserved2.hpp
 #pragma once
 
 #include <array>

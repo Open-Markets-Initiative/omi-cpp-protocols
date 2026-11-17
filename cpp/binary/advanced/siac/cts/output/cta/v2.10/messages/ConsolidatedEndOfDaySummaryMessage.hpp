@@ -1,7 +1,7 @@
+// Siac.Cts.Output.Cta.v2.10: messages/ConsolidatedEndOfDaySummaryMessage.hpp
 #pragma once
 
 #include <cstddef>
-#include "../structs/BlockHeader.hpp"
 #include "../types/ParticipantId.hpp"
 #include "../structs/Timestamp1.hpp"
 #include "../types/MessageId.hpp"
@@ -52,7 +52,6 @@ struct consolidated_end_of_day_summary_message {
         cta_output::number_of_participants number_of_participants;
     };
 
-    cta_output::block_header header = {{}, {}, {}, {}, {}, {}, {}, {}};
     // Transport framing: message size precedes the SBE header on the wire
     cta_output::message_length message_length;
     cta_output::message_category message_category = cta_output::message_category::enum_type::summary;
@@ -91,7 +90,7 @@ static_assert(offsetof(consolidated_end_of_day_summary_message::fields_type, pri
 static_assert(offsetof(consolidated_end_of_day_summary_message::fields_type, financial_status_indicator) == 73, "unexpected offset of consolidated_end_of_day_summary_message::fields_type::financial_status_indicator");
 static_assert(offsetof(consolidated_end_of_day_summary_message::fields_type, number_of_participants) == 74, "unexpected offset of consolidated_end_of_day_summary_message::fields_type::number_of_participants");
 static_assert(sizeof(consolidated_end_of_day_summary_message::fields_type) == 75, "unexpected sizeof consolidated_end_of_day_summary_message::fields_type");
-static_assert(sizeof(consolidated_end_of_day_summary_message) == sizeof(cta_output::block_header) + sizeof(cta_output::message_length) + sizeof(cta_output::message_category) + sizeof(cta_output::summary_message_type) + 75, "unexpected sizeof consolidated_end_of_day_summary_message");
+static_assert(sizeof(consolidated_end_of_day_summary_message) == sizeof(cta_output::message_length) + sizeof(cta_output::message_category) + sizeof(cta_output::summary_message_type) + 75, "unexpected sizeof consolidated_end_of_day_summary_message");
 
 #pragma pack(pop)
 }

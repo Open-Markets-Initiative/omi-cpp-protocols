@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.ComplexTopOfMarket.Mach.v1.1: types/RestrictedOption.hpp
 #pragma once
 
 #include <cstddef>

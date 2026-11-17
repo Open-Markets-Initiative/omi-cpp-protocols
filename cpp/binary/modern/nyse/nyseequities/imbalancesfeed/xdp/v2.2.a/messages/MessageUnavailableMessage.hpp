@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.ImbalancesFeed.Xdp.v2.2.a: messages/MessageUnavailableMessage.hpp
 #pragma once
 
 #include "../types/BeginSeqNum.hpp"

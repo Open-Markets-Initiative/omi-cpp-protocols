@@ -1,5 +1,7 @@
+// Nyse.NyseEquities.IntegratedFeed.Xdp.v2.3.a: messages/OrderExecutionMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
@@ -22,11 +24,11 @@ class OrderExecutionMessage : public Message {
     static constexpr std::size_t wire_size = 38;
 
     OrderExecutionMessage() = default;
-    OrderExecutionMessage(std::uint32_t source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, std::uint64_t order_id, std::uint32_t trade_id, std::uint32_t price, std::uint32_t volume, PrintableFlag printable_flag, std::uint8_t num_parity_splits, std::uint32_t db_exec_id);
+    OrderExecutionMessage(std::chrono::nanoseconds source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, std::uint64_t order_id, std::uint32_t trade_id, std::uint32_t price, std::uint32_t volume, PrintableFlag printable_flag, std::uint8_t num_parity_splits, std::uint32_t db_exec_id);
 
     // Source Time Ns: The nanosecond offset from the SourceTime
-    std::uint32_t source_time_ns() const;
-    void set_source_time_ns(std::uint32_t value);
+    std::chrono::nanoseconds source_time_ns() const;
+    void set_source_time_ns(std::chrono::nanoseconds value);
 
     // Symbol Index: The unique ID of this symbol for all products within this market. This ID
     // cannot be used to cross reference a security between markets.
@@ -86,7 +88,7 @@ class OrderExecutionMessage : public Message {
     bool operator!=(const OrderExecutionMessage& other) const;
 
   private:
-    std::uint32_t source_time_ns_{};
+    std::chrono::nanoseconds source_time_ns_{};
     std::uint32_t symbol_index_{};
     std::uint32_t symbol_seq_num_{};
     std::uint64_t order_id_{};

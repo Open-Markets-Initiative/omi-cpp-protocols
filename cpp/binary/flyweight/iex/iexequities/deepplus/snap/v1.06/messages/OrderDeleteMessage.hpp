@@ -1,3 +1,4 @@
+// Iex.IexEquities.DeepPlus.Snap.v1.06: messages/OrderDeleteMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -28,7 +29,7 @@ class OrderDeleteMessage {
     static constexpr std::size_t fixed_size = 25;
     std::size_t encoded_size() const { return 25; }
 
-    char reserved_1() const { return wire::read_char(at(0)); }
+    std::span<const std::byte, 1> reserved_1() const { return bytes_.subspan(0).template first<1>(); }
 
     std::chrono::nanoseconds timestamp() const { return std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_i64_le(at(1)))); }
 
@@ -39,7 +40,7 @@ class OrderDeleteMessage {
     void print(std::ostream& out) const {
         out << "OrderDeleteMessage{";
         out << "reserved_1=";
-        print::character(out, reserved_1());
+        print::hex(out, reserved_1().data(), reserved_1().size());
         out << ", timestamp=";
         out << timestamp().count();
         out << ", symbol=";

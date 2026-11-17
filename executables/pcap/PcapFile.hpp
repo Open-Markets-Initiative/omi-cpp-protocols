@@ -1,8 +1,12 @@
+// Asx.AsxDerivatives.Ntp.Itch.v1.05: pcap/PcapFile.hpp
 #pragma once
 
 #include "PcapSource.hpp"
 #include "PcapBuffer.hpp"
 #include "decompressor/Detect.hpp"
+#include "readers/Ietf.Pcap.Microsecond.v2.4/PcapFileReader.hpp"
+#include "readers/Ietf.Pcap.Nanosecond.v2.4/PcapFileReader.hpp"
+#include "readers/Ietf.Pcapng.Little.v1.0/PcapngFileReader.hpp"
 
 #include <bit>
 #include <cstring>
@@ -12,7 +16,11 @@
 
 namespace packet {
 
-// Pcap file reader — reads one pcap file, producing packets sequentially
+// Pcap file reader — reads one pcap file, producing packets sequentially. A little endian file is
+// read by the readers generated from the Ofi file models (Ietf.Pcap.Microsecond.v2.4,
+// Ietf.Pcap.Nanosecond.v2.4, Ietf.Pcapng.Little.v1.0); a big endian one, which no model describes,
+// as before. What stays here is the stream: records cut from the decompressed bytes, the file's
+// interfaces and their timestamp resolutions, and each timestamp in nanoseconds.
 struct PcapFile : PcapSource {
 
     // Construct from file path (auto-detects compression + pcap format)
@@ -36,7 +44,10 @@ struct PcapFile : PcapSource {
 
     bool advance() override {
         if (done_) return false;
-        return is_pcapng_ ? advance_pcapng() : advance_classic();
+        if (is_pcapng_) {
+            return swap_bytes_ ? advance_pcapng() : advance_pcapng_little();
+        }
+        return swap_bytes_ ? advance_classic() : advance_classic_little();
     }
 
     std::uint64_t timestamp_ns() const override { return ts_ns_; }
@@ -45,11 +56,19 @@ struct PcapFile : PcapSource {
     bool done() const override { return done_; }
 
 private:
+    using Microsecond = ietf::pcap::microsecond::v2_4::PcapFileReader;
+    using Nanosecond = ietf::pcap::nanosecond::v2_4::PcapFileReader;
+    using Pcapng = ietf::pcapng::little::v1_0::PcapngFileReader;
+
     PcapBuffer buffer_;
     bool swap_bytes_ = false;
     bool nanosecond_ts_ = false;
     bool is_pcapng_ = false;
     bool done_ = false;
+
+    Microsecond microsecond_;
+    Nanosecond nanosecond_;
+    Pcapng pcapng_;
 
     // Current packet state
     std::uint64_t ts_ns_ = 0;
@@ -98,7 +117,39 @@ private:
         buffer_.consume(24);
     }
 
-    // --- Classic pcap packet iteration ---
+    // --- Classic pcap, little endian: each record's header as the model lays it out ---
+
+    // the record header in front of the buffer: its capture time and how many bytes follow it
+    template <typename Reader>
+    bool record_little(Reader& reader) {
+        if (!buffer_.ensure(Reader::pcap_packet_record_header)) { done_ = true; return false; }
+
+        // the header is read where it lies; the buffer may move the data behind it, so it is consumed first
+        auto& record = reader.pcap_file.pcap_packet_record;
+        record.data = buffer_.data();
+        if (!buffer_.ensure(static_cast<std::size_t>(record.pcap_packet_data() - record.data))) { done_ = true; return false; }
+        record.data = buffer_.data();
+
+        const auto header = static_cast<std::size_t>(record.pcap_packet_data() - record.data);
+        const auto caplen = record.captured_packet_length();
+        ts_ns_ = record.capture_time();
+        buffer_.consume(header);
+
+        if (!buffer_.ensure(caplen)) { done_ = true; return false; }
+
+        pkt_data_ = buffer_.data();
+        pkt_len_  = caplen;
+
+        buffer_.consume(caplen);
+        return true;
+    }
+
+    bool advance_classic_little() {
+        if (nanosecond_ts_) return record_little(nanosecond_);
+        return record_little(microsecond_);
+    }
+
+    // --- Classic pcap packet iteration (big endian) ---
 
     bool advance_classic() {
         if (!buffer_.ensure(16)) { done_ = true; return false; }
@@ -155,6 +206,117 @@ private:
         buffer_.consume(block_len);
     }
 
+    // --- Pcap-ng, little endian: each block as the model lays it out ---
+
+    bool advance_pcapng_little() {
+        while (true) {
+            if (!buffer_.ensure(Pcapng::pcapng_block_header)) { done_ = true; return false; }
+
+            const auto length = Pcapng::pcapng_block_length(buffer_.data());
+            if (length < 12) { done_ = true; return false; }
+            const auto block_len = static_cast<std::uint32_t>(length);
+            if (!buffer_.ensure(block_len)) { done_ = true; return false; }
+
+            const std::byte* block = buffer_.data();
+            pcapng_.read_pcapng_block(block, block_len);
+            const auto& read = pcapng_.pcapng_file.pcapng_block;
+            const auto& content = read.pcapng_block_body.pcapng_block_content;
+
+            switch (read.pcapng_block_type()) {
+            case 0x0a0d0d0a:  // SHB — new section, whose byte order may change
+                parse_pcapng_new_section(block);
+                interfaces_.clear();
+                if (swap_bytes_) {
+                    buffer_.consume(block_len);
+                    return advance_pcapng();
+                }
+                break;
+
+            case 1:  // IDB — Interface Description Block
+                interfaces_.push_back(interface_little(block, block_len));
+                break;
+
+            case 6: {  // EPB — Enhanced Packet Block
+                const auto& packet = content.pcapng_enhanced_packet_body;
+                packet_little(packet);
+                buffer_.consume(block_len);
+                return true;
+            }
+
+            default:
+                break;
+            }
+
+            buffer_.consume(block_len);
+        }
+    }
+
+    // an interface's timestamp resolution, from its if_tsresol option
+    InterfaceInfo interface_little(const std::byte* block, std::uint32_t block_len) {
+        InterfaceInfo iface;
+        if (block_len <= 16 + 4) return iface;
+
+        // the options, each read on its own where the one before it ends, until one cannot be
+        const auto& body = pcapng_.pcapng_file.pcapng_block.pcapng_block_body.pcapng_block_content.pcapng_interface_description_body;
+        const auto& option = body.pcapng_idb_option;
+        const std::byte* at = block + 16;
+        const std::byte* end = block + block_len - 4;
+
+        while (at + 4 <= end) {
+            pcapng_.read_pcapng_idb_option(at, static_cast<std::size_t>(end - at));
+            const auto code = option.pcapng_idb_option_code();
+            const auto length = option.pcapng_option_length();
+            if (code == 0) break;
+            if (at + 4 + length > end) break;
+
+            if (code == 9 && length == 1) {
+                const auto& resolution = option.pcapng_idb_option_value.pcapng_idb_option_content.pcapng_if_timestamp_resolution;
+                if (resolution.data == at + 4) {
+                    if (resolution.pcapng_if_timestamp_resolution_base()) {
+                        iface.ts_resol = 1ULL << resolution.pcapng_if_timestamp_resolution_exponent();
+                    } else {
+                        iface.ts_resol = 1;
+                        for (std::uint8_t i = 0; i < resolution.pcapng_if_timestamp_resolution_exponent(); i++)
+                            iface.ts_resol *= 10;
+                    }
+                }
+            }
+
+            const auto next = static_cast<std::size_t>(4 + length + 3) & ~std::size_t{3};
+            at += next;
+        }
+        return iface;
+    }
+
+    // an enhanced packet's data and its time in nanoseconds, by its interface's resolution
+    template <typename Packet>
+    void packet_little(const Packet& packet) {
+        const auto iface_id = packet.pcapng_interface_id();
+        pkt_data_ = packet.pcapng_packet_data();
+        pkt_len_  = packet.pcapng_captured_packet_length();
+
+        std::uint64_t ts = packet.pcapng_packet_timestamp();
+        std::uint64_t resol = (iface_id < interfaces_.size())
+                            ? interfaces_[iface_id].ts_resol
+                            : 1000000ULL;
+
+        ts_ns_ = nanoseconds(ts, resol);
+    }
+
+    static std::uint64_t nanoseconds(std::uint64_t ts, std::uint64_t resol) {
+        if (resol == 1000000000ULL) {
+            return ts;
+        } else if (resol == 1000000ULL) {
+            return ts * 1000ULL;
+        } else if (resol > 0) {
+            return static_cast<std::uint64_t>(
+                static_cast<double>(ts) * 1e9 / static_cast<double>(resol));
+        }
+        return 0;
+    }
+
+    // --- Pcap-ng packet iteration (big endian) ---
+
     bool advance_pcapng() {
         while (true) {
             if (!buffer_.ensure(8)) { done_ = true; return false; }
@@ -174,6 +336,11 @@ private:
             switch (block_type) {
             case 0x0a0d0d0a:  // SHB — new section
                 parse_pcapng_new_section(block);
+                interfaces_.clear();
+                if (!swap_bytes_) {
+                    buffer_.consume(block_len);
+                    return advance_pcapng_little();
+                }
                 break;
 
             case 1:  // IDB — Interface Description Block
@@ -201,7 +368,6 @@ private:
         std::memcpy(&bom, block + 8, 4);
         if (bom == 0x1a2b3c4d) swap_bytes_ = false;
         else if (bom == 0x4d3c2b1a) swap_bytes_ = true;
-        interfaces_.clear();
     }
 
     void parse_pcapng_idb(const std::byte* block, std::uint32_t block_len) {
@@ -262,17 +428,7 @@ private:
                             ? interfaces_[iface_id].ts_resol
                             : 1000000ULL;
 
-        if (resol == 1000000000ULL) {
-            ts_ns_ = ts;
-        } else if (resol == 1000000ULL) {
-            ts_ns_ = ts * 1000ULL;
-        } else if (resol > 0) {
-            ts_ns_ = static_cast<std::uint64_t>(
-                static_cast<double>(ts) * 1e9 / static_cast<double>(resol));
-        } else {
-            ts_ns_ = 0;
-        }
-
+        ts_ns_ = nanoseconds(ts, resol);
         return true;
     }
 };

@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.Qbbo.Itch.v2.1: enums/OperationalHaltAction.cpp
 #include "OperationalHaltAction.hpp"
 
 namespace nasdaq::nsmequities::qbbo::itch::v2_1 {

@@ -1,3 +1,4 @@
+// Nasdaq.IseOptions.TopComboQuoteFeed.Itch.v1.0: main.cpp
 // Nasdaq.IseOptions.TopComboQuoteFeed.Itch.v1.0 benchmark, through the Flyweight reader: every value it reads from every message of the simulated
 // sequence (tests/simulated/nasdaq/iseoptions/topcomboquotefeed/itch/v1.0.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -132,9 +133,9 @@ struct Reader {
         checksum += bench::digest(message.last_price().mantissa());
         checksum += bench::digest(message.size());
         checksum += bench::digest(message.volume());
-        checksum += bench::digest(message.high());
-        checksum += bench::digest(message.low());
-        checksum += bench::digest(message.first());
+        checksum += bench::digest(message.high().mantissa());
+        checksum += bench::digest(message.low().mantissa());
+        checksum += bench::digest(message.first().mantissa());
         checksum += bench::digest(message.trade_condition());
     }
 };

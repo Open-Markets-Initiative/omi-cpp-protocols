@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.Bbo.Pillar.v2.5.b: types/PrevClosePrice.hpp
 #pragma once
 
 #include <cstddef>

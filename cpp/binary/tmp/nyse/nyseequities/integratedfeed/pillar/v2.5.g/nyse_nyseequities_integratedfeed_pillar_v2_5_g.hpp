@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeed.Pillar.v2.5.g: nyse_nyseequities_integratedfeed_pillar_v2_5_g.hpp
 // Nyse NyseEquities IntegratedFeed Pillar 2.5.g Template Meta Programming
 
 #pragma once

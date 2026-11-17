@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: types/BestBidSize.hpp
 #pragma once
 
 #include <cstddef>

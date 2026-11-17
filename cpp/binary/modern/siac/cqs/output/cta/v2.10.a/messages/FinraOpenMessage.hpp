@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v2.10.a: messages/FinraOpenMessage.hpp
 #pragma once
 
 #include "../types/ParticipantId.hpp"

@@ -1,7 +1,9 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: structs/SemanticVersion.hpp
 #pragma once
 
 #include <cstddef>
 #include <cstdint>
+#include <optional>
 #include <ostream>
 #include <span>
 
@@ -26,24 +28,24 @@ class SemanticVersion {
     static constexpr std::size_t fixed_size = 4;
     std::size_t encoded_size() const { return 4; }
 
-    std::uint8_t major_number() const { return wire::read_u8(at(0)); }
+    std::optional<std::uint8_t> major_number() const { return wire::nullable(wire::read_u8(at(0)), static_cast<std::uint8_t>(255ULL)); }
 
-    std::uint8_t minor_number() const { return wire::read_u8(at(1)); }
+    std::optional<std::uint8_t> minor_number() const { return wire::nullable(wire::read_u8(at(1)), static_cast<std::uint8_t>(255ULL)); }
 
-    std::uint8_t patch_number() const { return wire::read_u8(at(2)); }
+    std::optional<std::uint8_t> patch_number() const { return wire::nullable(wire::read_u8(at(2)), static_cast<std::uint8_t>(255ULL)); }
 
-    std::uint8_t build_number() const { return wire::read_u8(at(3)); }
+    std::optional<std::uint8_t> build_number() const { return wire::nullable(wire::read_u8(at(3)), static_cast<std::uint8_t>(255ULL)); }
 
     void print(std::ostream& out) const {
         out << "SemanticVersion{";
         out << "major_number=";
-        out << static_cast<int>(major_number());
+        print::optional(out, major_number());
         out << ", minor_number=";
-        out << static_cast<int>(minor_number());
+        print::optional(out, minor_number());
         out << ", patch_number=";
-        out << static_cast<int>(patch_number());
+        print::optional(out, patch_number());
         out << ", build_number=";
-        out << static_cast<int>(build_number());
+        print::optional(out, build_number());
         out << '}';
     }
 

@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: messages/ExecutionReportNewMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -31,7 +32,7 @@ class ExecutionReportNewMessage : public Message {
     static constexpr MessageCode message_type = TemplateId::ExecutionReportNewMessage;
 
     ExecutionReportNewMessage() = default;
-    ExecutionReportNewMessage(const OutboundBusinessHeader& outbound_business_header, Side side, OrdStatus ord_status, std::uint64_t clordid, std::uint64_t secondary_order_id, std::uint64_t security_id, std::uint64_t order_id, std::optional<std::uint32_t> account, std::uint64_t exec_id, std::chrono::nanoseconds transact_time, std::optional<std::chrono::nanoseconds> market_segment_received_time, std::optional<Decimal> protection_price, std::uint16_t trade_date, WorkingIndicator working_indicator, MultiLegReportingType multi_leg_reporting_type, Ordtype ordtype, TimeInForce time_in_force, std::optional<std::uint16_t> expire_date, std::uint64_t order_qty, std::optional<Decimal> price_optional, std::optional<Decimal> stop_px, std::optional<std::uint64_t> min_qty, std::optional<std::uint64_t> max_floor, std::optional<std::uint64_t> crossid_optional, const DeskId& desk_id, const Memo& memo);
+    ExecutionReportNewMessage(const OutboundBusinessHeader& outbound_business_header, Side side, OrdStatus ord_status, std::uint64_t cl_ord_id, std::uint64_t secondary_order_id, std::uint64_t security_id, std::uint64_t order_id, std::optional<std::uint32_t> account, std::uint64_t exec_id, std::chrono::nanoseconds transact_time, std::optional<std::chrono::nanoseconds> market_segment_received_time, std::optional<Decimal> protection_price, std::uint16_t trade_date, WorkingIndicator working_indicator, MultiLegReportingType multi_leg_reporting_type, Ordtype ordtype, TimeInForce time_in_force, std::optional<std::uint16_t> expire_date, std::uint64_t order_qty, std::optional<Decimal> price_optional, std::optional<Decimal> stop_px, std::optional<std::uint64_t> min_qty, std::optional<std::uint64_t> max_floor, std::optional<std::uint64_t> cross_id_optional, const DeskId& desk_id, const Memo& memo);
 
     // Outbound Business Header: OutboundBusinessHeader
     const OutboundBusinessHeader& outbound_business_header() const;
@@ -46,9 +47,9 @@ class ExecutionReportNewMessage : public Message {
     OrdStatus ord_status() const;
     void set_ord_status(OrdStatus value);
 
-    // ClOrdId: clOrdID
-    std::uint64_t clordid() const;
-    void set_clordid(std::uint64_t value);
+    // Cl Ord Id: clOrdID
+    std::uint64_t cl_ord_id() const;
+    void set_cl_ord_id(std::uint64_t value);
 
     // Secondary Order Id: secondaryOrderID
     std::uint64_t secondary_order_id() const;
@@ -126,9 +127,9 @@ class ExecutionReportNewMessage : public Message {
     std::optional<std::uint64_t> max_floor() const;
     void set_max_floor(std::optional<std::uint64_t> value);
 
-    // CrossId Optional: crossID
-    std::optional<std::uint64_t> crossid_optional() const;
-    void set_crossid_optional(std::optional<std::uint64_t> value);
+    // Cross Id Optional: crossID
+    std::optional<std::uint64_t> cross_id_optional() const;
+    void set_cross_id_optional(std::optional<std::uint64_t> value);
 
     // Desk Id: deskID data struct
     const DeskId& desk_id() const;
@@ -158,7 +159,7 @@ class ExecutionReportNewMessage : public Message {
     OutboundBusinessHeader outbound_business_header_{};
     Side side_{};
     OrdStatus ord_status_{};
-    std::uint64_t clordid_{};
+    std::uint64_t cl_ord_id_{};
     std::uint64_t secondary_order_id_{};
     std::uint64_t security_id_{};
     std::uint64_t order_id_{};
@@ -178,7 +179,7 @@ class ExecutionReportNewMessage : public Message {
     std::optional<Decimal> stop_px_{};
     std::optional<std::uint64_t> min_qty_{};
     std::optional<std::uint64_t> max_floor_{};
-    std::optional<std::uint64_t> crossid_optional_{};
+    std::optional<std::uint64_t> cross_id_optional_{};
     DeskId desk_id_{};
     Memo memo_{};
 };

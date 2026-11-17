@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.DeepFeed.Pillar.v1.2.m: enums/OptionsStatusHaltCondition.cpp
 #include "OptionsStatusHaltCondition.hpp"
 
 namespace nyse::arcaoptions::deepfeed::pillar::v1_2_m {

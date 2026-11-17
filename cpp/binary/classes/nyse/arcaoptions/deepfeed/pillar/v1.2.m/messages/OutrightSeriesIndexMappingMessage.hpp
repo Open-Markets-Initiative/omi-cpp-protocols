@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.DeepFeed.Pillar.v1.2.m: messages/OutrightSeriesIndexMappingMessage.hpp
 #pragma once
 
 #include <array>

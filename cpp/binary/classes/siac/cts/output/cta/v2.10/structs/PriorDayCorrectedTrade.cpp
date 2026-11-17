@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.10: structs/PriorDayCorrectedTrade.cpp
 #include "PriorDayCorrectedTrade.hpp"
 
 #include "../common/Print.hpp"

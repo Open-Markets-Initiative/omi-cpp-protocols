@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.9: messages/Trade53Message.hpp
 #pragma once
 
 #include "../types/SecurityId.hpp"
@@ -5,7 +6,7 @@
 #include "../types/TradingSessionId.hpp"
 #include "../bitfields/TradeCondition.hpp"
 #include "../types/MdFuturePrice.hpp"
-#include "../types/MdEntrySizeQuantity.hpp"
+#include "../types/MdEntrySize.hpp"
 #include "../types/TradeId.hpp"
 #include "../types/MdEntryBuyer.hpp"
 #include "../types/MdEntrySeller.hpp"
@@ -27,7 +28,7 @@ struct Trade53Message {
     TradingSessionId trading_session_id;
     TradeCondition trade_condition;
     MdFuturePrice md_future_price;
-    MdEntrySizeQuantity md_entry_size_quantity;
+    MdEntrySize md_entry_size;
     TradeId trade_id;
     MdEntryBuyer md_entry_buyer;
     MdEntrySeller md_entry_seller;

@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeedRefresh.Pillar.v2.5.g: program/Runner.hpp
 #pragma once
 
 #include "Settings.hpp"

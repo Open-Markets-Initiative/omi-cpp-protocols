@@ -1,3 +1,4 @@
+// Lseg.Lse.Level2Mbo.Gtp.v26.2: types/Segment.hpp
 #pragma once
 
 #include <array>

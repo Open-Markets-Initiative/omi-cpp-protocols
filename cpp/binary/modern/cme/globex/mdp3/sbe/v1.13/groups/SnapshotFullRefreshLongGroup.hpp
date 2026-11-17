@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.13: groups/SnapshotFullRefreshLongGroup.hpp
 #pragma once
 
 #include "../types/MdEntryPxOptionalEx.hpp"

@@ -1,3 +1,4 @@
+// Nasdaq.NtxEquities.TotalView.Itch.v5.0: messages/LuldAuctionCollarMessage.hpp
 #pragma once
 
 #include "../types/StockLocate.hpp"

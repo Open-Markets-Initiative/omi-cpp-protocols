@@ -133,6 +133,7 @@ int main() {
     expect<protocol::Packet, protocol::Visitor, protocol::ModifyOrderShortMessage>("ModifyOrderShortMessage", "Cboe/BzxEquities.MulticastDepthOfBook.Pitch.v2.41.29/ModifyOrderShortMessage.pcap");
     expect<protocol::Packet, protocol::Visitor, protocol::OrderExecutedAtPriceSizeMessage>("OrderExecutedAtPriceSizeMessage", "Cboe/BzxEquities.MulticastDepthOfBook.Pitch.v2.41.29/OrderExecutedAtPriceSizeMessage.pcap");
     expect<protocol::Packet, protocol::Visitor, protocol::OrderExecutedMessage>("OrderExecutedMessage", "Cboe/BzxEquities.MulticastDepthOfBook.Pitch.v2.41.29/OrderExecutedMessage.pcap");
+    expect<protocol::Packet, protocol::Visitor, protocol::ReduceSizeLongMessage>("ReduceSizeLongMessage", "Cboe/BzxEquities.MulticastDepthOfBook.Pitch.v2.41.29/ReduceSizeLongMessage.pcap");
     expect<protocol::Packet, protocol::Visitor, protocol::ReduceSizeShortMessage>("ReduceSizeShortMessage", "Cboe/BzxEquities.MulticastDepthOfBook.Pitch.v2.41.29/ReduceSizeShortMessage.pcap");
     expect<protocol::Packet, protocol::Visitor, protocol::TimeMessage>("TimeMessage", "Cboe/BzxEquities.MulticastDepthOfBook.Pitch.v2.41.29/TimeMessage.pcap");
     expect<protocol::Packet, protocol::Visitor, protocol::TradeLongMessage>("TradeLongMessage", "Cboe/BzxEquities.MulticastDepthOfBook.Pitch.v2.41.29/TradeLongMessage.pcap");

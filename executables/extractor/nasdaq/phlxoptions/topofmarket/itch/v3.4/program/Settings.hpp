@@ -1,3 +1,4 @@
+// Nasdaq.PhlxOptions.TopOfMarket.Itch.v3.4: program/Settings.hpp
 #pragma once
 
 #include <filesystem>

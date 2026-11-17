@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Ouch.v1.11: common/Day.hpp
 #pragma once
 
 #include <array>

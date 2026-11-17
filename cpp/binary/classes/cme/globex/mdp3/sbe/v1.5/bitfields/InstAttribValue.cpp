@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.5: bitfields/InstAttribValue.cpp
 #include "InstAttribValue.hpp"
 
 #include "../common/Print.hpp"
@@ -67,9 +68,6 @@ void InstAttribValue::set_gt_orders_eligibility(bool value) { raw_ = static_cast
 bool InstAttribValue::implied_matching_eligibility() const { return (raw_ & static_cast<std::uint32_t>(0x80000)) != 0; }
 void InstAttribValue::set_implied_matching_eligibility(bool value) { raw_ = static_cast<std::uint32_t>(value ? (raw_ | static_cast<std::uint32_t>(0x80000)) : (raw_ & ~static_cast<std::uint32_t>(0x80000))); }
 
-std::uint16_t InstAttribValue::reserved_12() const { return static_cast<std::uint16_t>((raw_ & static_cast<std::uint32_t>(0xFFF00000)) >> 20); }
-void InstAttribValue::set_reserved_12(std::uint16_t value) { raw_ = static_cast<std::uint32_t>((raw_ & ~static_cast<std::uint32_t>(0xFFF00000)) | ((static_cast<std::uint32_t>(value) << 20) & static_cast<std::uint32_t>(0xFFF00000))); }
-
 std::uint32_t InstAttribValue::raw() const { return raw_; }
 void InstAttribValue::set_raw(std::uint32_t value) { raw_ = value; }
 
@@ -131,8 +129,6 @@ void InstAttribValue::print(std::ostream& out) const {
     out << (gt_orders_eligibility() ? "true" : "false");
     out << ", implied_matching_eligibility=";
     out << (implied_matching_eligibility() ? "true" : "false");
-    out << ", reserved_12=";
-    out << static_cast<unsigned long long>(reserved_12());
     out << '}';
 }
 

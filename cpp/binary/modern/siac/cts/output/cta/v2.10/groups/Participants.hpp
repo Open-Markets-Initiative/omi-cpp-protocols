@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.10: groups/Participants.hpp
 #pragma once
 
 #include "../types/ParticipantId.hpp"

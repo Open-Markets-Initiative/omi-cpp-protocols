@@ -1,3 +1,4 @@
+// Lseg.Lse.Level2Mbo.Gtp.v26.2: common/Decimal.hpp
 #pragma once
 
 #include <cmath>

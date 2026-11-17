@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeedRefresh.Pillar.v2.5.g: messages/SourceTimeReferenceMessage.hpp
 #pragma once
 
 #include <chrono>

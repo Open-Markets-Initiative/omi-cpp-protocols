@@ -16,7 +16,6 @@ udppacket.message[0].payload.mktdatamessage.mktdatapayload.mdincrementalrefresht
 udppacket.message[0].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary.matcheventindicator.laststatsmsg = 0
 udppacket.message[0].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary.matcheventindicator.lastimpliedmsg = 0
 udppacket.message[0].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary.matcheventindicator.recoverymsg = 0
-udppacket.message[0].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary.matcheventindicator.reserved = 0
 udppacket.message[0].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary.matcheventindicator.endofevent = 0
 udppacket.message[0].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary.incrementalrefreshtradesummarygroups.groupsize.blocklength = 32
 udppacket.message[0].payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary.incrementalrefreshtradesummarygroups.groupsize.numingroup = 1

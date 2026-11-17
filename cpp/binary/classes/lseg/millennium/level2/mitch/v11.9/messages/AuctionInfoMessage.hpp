@@ -1,12 +1,15 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/AuctionInfoMessage.hpp
 #pragma once
 
 #include <array>
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
 #include <ostream>
 #include <string_view>
 
+#include "../common/Decimal.hpp"
 #include "../enums/AuctionType.hpp"
 #include "../messages/Message.hpp"
 
@@ -24,11 +27,11 @@ class AuctionInfoMessage : public Message {
     static constexpr std::size_t wire_size = 28;
 
     AuctionInfoMessage() = default;
-    AuctionInfoMessage(std::uint32_t nanosecond, std::uint32_t paired_quantity, const std::array<std::byte, 4>& reserved_4, const std::array<std::byte, 1>& reserved_1, std::uint32_t instrument_id, const std::array<std::byte, 1>& reserved_a, const std::array<std::byte, 1>& reserved_b, std::int64_t price, AuctionType auction_type);
+    AuctionInfoMessage(std::chrono::nanoseconds nanosecond, std::uint32_t paired_quantity, const std::array<std::byte, 4>& reserved_4, const std::array<std::byte, 1>& reserved_1, std::uint32_t instrument_id, const std::array<std::byte, 1>& reserved_a, const std::array<std::byte, 1>& reserved_b, Decimal price, AuctionType auction_type);
 
     // Nanosecond: Nanoseconds since last message, accurate to the nearest microsecond.
-    std::uint32_t nanosecond() const;
-    void set_nanosecond(std::uint32_t value);
+    std::chrono::nanoseconds nanosecond() const;
+    void set_nanosecond(std::chrono::nanoseconds value);
 
     // Paired Quantity: Quantity that will be matched at the indicative price.
     std::uint32_t paired_quantity() const;
@@ -59,8 +62,8 @@ class AuctionInfoMessage : public Message {
     void set_reserved_b(const std::array<std::byte, 1>& value);
 
     // Price: Limit price of the order.
-    std::int64_t price() const;
-    void set_price(std::int64_t value);
+    Decimal price() const;
+    void set_price(Decimal value);
 
     // Auction Type: Auction Type
     AuctionType auction_type() const;
@@ -81,14 +84,14 @@ class AuctionInfoMessage : public Message {
     bool operator!=(const AuctionInfoMessage& other) const;
 
   private:
-    std::uint32_t nanosecond_{};
+    std::chrono::nanoseconds nanosecond_{};
     std::uint32_t paired_quantity_{};
     std::array<std::byte, 4> reserved_4_{};
     std::array<std::byte, 1> reserved_1_{};
     std::uint32_t instrument_id_{};
     std::array<std::byte, 1> reserved_a_{};
     std::array<std::byte, 1> reserved_b_{};
-    std::int64_t price_{};
+    Decimal price_{ 0, -8 };
     AuctionType auction_type_{};
 };
 

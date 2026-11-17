@@ -1,3 +1,4 @@
+// Nyse.AmexOptions.ComplexFeed.Xdp.v1.3.a: groups/LegDefinition.cpp
 #include "LegDefinition.hpp"
 
 #include "../common/Print.hpp"

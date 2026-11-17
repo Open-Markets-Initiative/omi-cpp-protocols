@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v1.91: main.cpp
 // Siac.Cqs.Output.Cta.v1.91 benchmark, through the Classes Packet: every value it reads from every message of the simulated
 // sequence (tests/simulated/siac/cqs/output/cta/v1.91.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -137,7 +138,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest((*message_2).mwcb_level_1().mantissa());
                 checksum += bench::digest((*message_2).mwcb_level_2().mantissa());
                 checksum += bench::digest((*message_2).mwcb_level_3().mantissa());
-                checksum += bench::digest((*message_2).reserved());
             } else if (const auto* message_2 = dynamic_cast<const protocol::MarketWideCircuitBreakerStatusMessage*>(message->market_status_message_payload())) {
                 checksum += bench::digest((*message_2).participant_id());
                 checksum += bench::digest((*message_2).participant_timestamp().seconds());
@@ -146,7 +146,6 @@ std::uint64_t read(const packet::Frame& frame) {
                 checksum += bench::digest((*message_2).transaction_id());
                 checksum += bench::digest((*message_2).participant_reference_number());
                 checksum += bench::digest((*message_2).market_wide_circuit_breaker_level_indicator());
-                checksum += bench::digest((*message_2).reserved());
             }
         } else if (const auto* message = dynamic_cast<const protocol::QuoteMessage*>(each.message())) {
             checksum += bench::digest((*message).quote_message_type());

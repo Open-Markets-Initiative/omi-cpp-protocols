@@ -1,10 +1,11 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.2: messages/AuctionImbalance19Message.hpp
 #pragma once
 
 #include "../types/SecurityId.hpp"
 #include "../bitfields/MatchEventIndicator.hpp"
 #include "../types/MdUpdateAction.hpp"
 #include "../bitfields/ImbalanceCondition.hpp"
-#include "../types/MdEntrySizeQuantityOptional.hpp"
+#include "../types/MdEntrySizeOptional.hpp"
 #include "../types/MdEntryTimestamp.hpp"
 #include "../types/RptSeq.hpp"
 
@@ -19,7 +20,7 @@ struct AuctionImbalance19Message {
     MatchEventIndicator match_event_indicator;
     MdUpdateAction md_update_action;
     ImbalanceCondition imbalance_condition;
-    MdEntrySizeQuantityOptional md_entry_size_quantity_optional;
+    MdEntrySizeOptional md_entry_size_optional;
     MdEntryTimestamp md_entry_timestamp;
     RptSeq rpt_seq;
 

@@ -1,3 +1,4 @@
+// Nyse.NationalEquities.Trades.Pillar.v2.6: main.cpp
 // Nyse.NationalEquities.Trades.Pillar.v2.6 write and read: every message built with each field it sets, written
 // into a capture through the Classes encoder, then read back - each field set must read as it was written.
 // 
@@ -76,8 +77,8 @@ class Capture {
 // SequenceNumberResetMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_SequenceNumberResetMessage() {
     auto message = std::make_unique<protocol::SequenceNumberResetMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
-    message->set_source_time_ns(static_cast<std::uint32_t>(2));
+    message->set_source_time(std::chrono::seconds{1});
+    message->set_source_time_ns(std::chrono::nanoseconds{2});
     message->set_product_id(static_cast<std::uint8_t>(3));
     message->set_channel_id(static_cast<std::uint8_t>(4));
     return message;
@@ -88,7 +89,7 @@ std::unique_ptr<protocol::Message> build_SourceTimeReferenceMessage() {
     auto message = std::make_unique<protocol::SourceTimeReferenceMessage>();
     message->set_id(static_cast<std::uint32_t>(1));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(2));
-    message->set_source_time(static_cast<std::uint32_t>(3));
+    message->set_source_time(std::chrono::seconds{3});
     return message;
 }
 
@@ -115,8 +116,8 @@ std::unique_ptr<protocol::Message> build_SymbolIndexMappingMessage() {
 // SymbolClearMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_SymbolClearMessage() {
     auto message = std::make_unique<protocol::SymbolClearMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
-    message->set_source_time_ns(static_cast<std::uint32_t>(2));
+    message->set_source_time(std::chrono::seconds{1});
+    message->set_source_time_ns(std::chrono::nanoseconds{2});
     message->set_symbol_index(static_cast<std::uint32_t>(3));
     message->set_next_source_seq_num(static_cast<std::uint32_t>(4));
     return message;
@@ -125,8 +126,8 @@ std::unique_ptr<protocol::Message> build_SymbolClearMessage() {
 // SecurityStatusMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_SecurityStatusMessage() {
     auto message = std::make_unique<protocol::SecurityStatusMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
-    message->set_source_time_ns(static_cast<std::uint32_t>(2));
+    message->set_source_time(std::chrono::seconds{1});
+    message->set_source_time_ns(std::chrono::nanoseconds{2});
     message->set_symbol_index(static_cast<std::uint32_t>(3));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(4));
     message->set_security_status(protocol::SecurityStatus::ShortSaleRestrictionDeactivated);
@@ -207,8 +208,8 @@ std::unique_ptr<protocol::Message> build_HeartbeatResponseMessage() {
 // TradeMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_TradeMessage() {
     auto message = std::make_unique<protocol::TradeMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
-    message->set_source_time_ns(static_cast<std::uint32_t>(2));
+    message->set_source_time(std::chrono::seconds{1});
+    message->set_source_time_ns(std::chrono::nanoseconds{2});
     message->set_symbol_index(static_cast<std::uint32_t>(3));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(4));
     message->set_trade_id(static_cast<std::uint32_t>(5));
@@ -224,8 +225,8 @@ std::unique_ptr<protocol::Message> build_TradeMessage() {
 // TradeCancelMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_TradeCancelMessage() {
     auto message = std::make_unique<protocol::TradeCancelMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
-    message->set_source_time_ns(static_cast<std::uint32_t>(2));
+    message->set_source_time(std::chrono::seconds{1});
+    message->set_source_time_ns(std::chrono::nanoseconds{2});
     message->set_symbol_index(static_cast<std::uint32_t>(3));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(4));
     message->set_original_trade_id(static_cast<std::uint32_t>(5));
@@ -235,8 +236,8 @@ std::unique_ptr<protocol::Message> build_TradeCancelMessage() {
 // TradeCorrectionMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_TradeCorrectionMessage() {
     auto message = std::make_unique<protocol::TradeCorrectionMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
-    message->set_source_time_ns(static_cast<std::uint32_t>(2));
+    message->set_source_time(std::chrono::seconds{1});
+    message->set_source_time_ns(std::chrono::nanoseconds{2});
     message->set_symbol_index(static_cast<std::uint32_t>(3));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(4));
     message->set_original_trade_id(static_cast<std::uint32_t>(5));
@@ -253,8 +254,8 @@ std::unique_ptr<protocol::Message> build_TradeCorrectionMessage() {
 // StockSummaryMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_StockSummaryMessage() {
     auto message = std::make_unique<protocol::StockSummaryMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
-    message->set_source_time_ns(static_cast<std::uint32_t>(2));
+    message->set_source_time(std::chrono::seconds{1});
+    message->set_source_time_ns(std::chrono::nanoseconds{2});
     message->set_symbol_index(static_cast<std::uint32_t>(3));
     message->set_high_price(static_cast<std::int32_t>(4));
     message->set_low_price(static_cast<std::int32_t>(5));
@@ -267,8 +268,8 @@ std::unique_ptr<protocol::Message> build_StockSummaryMessage() {
 // TrfFractionalTradeMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_TrfFractionalTradeMessage() {
     auto message = std::make_unique<protocol::TrfFractionalTradeMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
-    message->set_source_time_ns(static_cast<std::uint32_t>(2));
+    message->set_source_time(std::chrono::seconds{1});
+    message->set_source_time_ns(std::chrono::nanoseconds{2});
     message->set_symbol_index(static_cast<std::uint32_t>(3));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(4));
     message->set_trade_id(static_cast<std::uint32_t>(5));
@@ -286,8 +287,8 @@ std::unique_ptr<protocol::Message> build_TrfFractionalTradeMessage() {
 // TrfTradeCancelMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_TrfTradeCancelMessage() {
     auto message = std::make_unique<protocol::TrfTradeCancelMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
-    message->set_source_time_ns(static_cast<std::uint32_t>(2));
+    message->set_source_time(std::chrono::seconds{1});
+    message->set_source_time_ns(std::chrono::nanoseconds{2});
     message->set_symbol_index(static_cast<std::uint32_t>(3));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(4));
     message->set_original_trade_id(static_cast<std::uint32_t>(5));
@@ -297,8 +298,8 @@ std::unique_ptr<protocol::Message> build_TrfTradeCancelMessage() {
 // TrfFractionalTradeCorrectionMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_TrfFractionalTradeCorrectionMessage() {
     auto message = std::make_unique<protocol::TrfFractionalTradeCorrectionMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
-    message->set_source_time_ns(static_cast<std::uint32_t>(2));
+    message->set_source_time(std::chrono::seconds{1});
+    message->set_source_time_ns(std::chrono::nanoseconds{2});
     message->set_symbol_index(static_cast<std::uint32_t>(3));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(4));
     message->set_original_trade_id(static_cast<std::uint32_t>(5));
@@ -317,8 +318,8 @@ std::unique_ptr<protocol::Message> build_TrfFractionalTradeCorrectionMessage() {
 // TrfFractionalPriorDayTradeMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_TrfFractionalPriorDayTradeMessage() {
     auto message = std::make_unique<protocol::TrfFractionalPriorDayTradeMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
-    message->set_source_time_ns(static_cast<std::uint32_t>(2));
+    message->set_source_time(std::chrono::seconds{1});
+    message->set_source_time_ns(std::chrono::nanoseconds{2});
     message->set_symbol_index(static_cast<std::uint32_t>(3));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(4));
     message->set_trade_id(static_cast<std::uint32_t>(5));
@@ -336,8 +337,8 @@ std::unique_ptr<protocol::Message> build_TrfFractionalPriorDayTradeMessage() {
 // TrfFractionalPriorDayTradeCancelMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_TrfFractionalPriorDayTradeCancelMessage() {
     auto message = std::make_unique<protocol::TrfFractionalPriorDayTradeCancelMessage>();
-    message->set_source_time(static_cast<std::uint32_t>(1));
-    message->set_source_time_ns(static_cast<std::uint32_t>(2));
+    message->set_source_time(std::chrono::seconds{1});
+    message->set_source_time_ns(std::chrono::nanoseconds{2});
     message->set_symbol_index(static_cast<std::uint32_t>(3));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(4));
     message->set_trade_id(static_cast<std::uint32_t>(5));
@@ -358,11 +359,11 @@ int check_SequenceNumberResetMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL SequenceNumberResetMessage: source_time does not read as it was written\n");
         ++failures;
     }
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(2))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{2})) {
         std::printf("FAIL SequenceNumberResetMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -395,7 +396,7 @@ int check_SourceTimeReferenceMessage(const protocol::Message* read) {
         std::printf("FAIL SourceTimeReferenceMessage: symbol_seq_num does not read as it was written\n");
         ++failures;
     }
-    if (!(message->source_time() == static_cast<std::uint32_t>(3))) {
+    if (!(message->source_time() == std::chrono::seconds{3})) {
         std::printf("FAIL SourceTimeReferenceMessage: source_time does not read as it was written\n");
         ++failures;
     }
@@ -481,11 +482,11 @@ int check_SymbolClearMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL SymbolClearMessage: source_time does not read as it was written\n");
         ++failures;
     }
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(2))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{2})) {
         std::printf("FAIL SymbolClearMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -510,11 +511,11 @@ int check_SecurityStatusMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL SecurityStatusMessage: source_time does not read as it was written\n");
         ++failures;
     }
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(2))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{2})) {
         std::printf("FAIL SecurityStatusMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -761,11 +762,11 @@ int check_TradeMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL TradeMessage: source_time does not read as it was written\n");
         ++failures;
     }
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(2))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{2})) {
         std::printf("FAIL TradeMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -818,11 +819,11 @@ int check_TradeCancelMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL TradeCancelMessage: source_time does not read as it was written\n");
         ++failures;
     }
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(2))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{2})) {
         std::printf("FAIL TradeCancelMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -851,11 +852,11 @@ int check_TradeCorrectionMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL TradeCorrectionMessage: source_time does not read as it was written\n");
         ++failures;
     }
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(2))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{2})) {
         std::printf("FAIL TradeCorrectionMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -912,11 +913,11 @@ int check_StockSummaryMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL StockSummaryMessage: source_time does not read as it was written\n");
         ++failures;
     }
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(2))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{2})) {
         std::printf("FAIL StockSummaryMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -957,11 +958,11 @@ int check_TrfFractionalTradeMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL TrfFractionalTradeMessage: source_time does not read as it was written\n");
         ++failures;
     }
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(2))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{2})) {
         std::printf("FAIL TrfFractionalTradeMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -1022,11 +1023,11 @@ int check_TrfTradeCancelMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL TrfTradeCancelMessage: source_time does not read as it was written\n");
         ++failures;
     }
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(2))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{2})) {
         std::printf("FAIL TrfTradeCancelMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -1055,11 +1056,11 @@ int check_TrfFractionalTradeCorrectionMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL TrfFractionalTradeCorrectionMessage: source_time does not read as it was written\n");
         ++failures;
     }
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(2))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{2})) {
         std::printf("FAIL TrfFractionalTradeCorrectionMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -1124,11 +1125,11 @@ int check_TrfFractionalPriorDayTradeMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL TrfFractionalPriorDayTradeMessage: source_time does not read as it was written\n");
         ++failures;
     }
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(2))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{2})) {
         std::printf("FAIL TrfFractionalPriorDayTradeMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }
@@ -1189,11 +1190,11 @@ int check_TrfFractionalPriorDayTradeCancelMessage(const protocol::Message* read)
     }
 
     int failures = 0;
-    if (!(message->source_time() == static_cast<std::uint32_t>(1))) {
+    if (!(message->source_time() == std::chrono::seconds{1})) {
         std::printf("FAIL TrfFractionalPriorDayTradeCancelMessage: source_time does not read as it was written\n");
         ++failures;
     }
-    if (!(message->source_time_ns() == static_cast<std::uint32_t>(2))) {
+    if (!(message->source_time_ns() == std::chrono::nanoseconds{2})) {
         std::printf("FAIL TrfFractionalPriorDayTradeCancelMessage: source_time_ns does not read as it was written\n");
         ++failures;
     }

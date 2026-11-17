@@ -1,3 +1,4 @@
+// OtcMarkets.LinkAts.Multicast.Link.v4.3: bitfields/QuoteFlags.hpp
 #pragma once
 
 #include <cstddef>

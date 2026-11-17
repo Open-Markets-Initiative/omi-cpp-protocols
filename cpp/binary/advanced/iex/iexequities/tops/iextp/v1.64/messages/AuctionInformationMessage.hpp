@@ -1,3 +1,4 @@
+// Iex.IexEquities.Tops.IexTp.v1.64: messages/AuctionInformationMessage.hpp
 #pragma once
 
 #include <cstddef>

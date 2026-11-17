@@ -164,7 +164,7 @@ canonical::Listing read(const packet::Frame& frame) {
         } else if (iterator.message_type == protocol::EndOfSessionMessage::message_type) {
             values[entry + ".payload"] = "packet.messages.message.payload.endofsessionmessage";
             [[maybe_unused]] const auto* message = protocol::EndOfSessionMessage::parse(iterator.message);
-            values[entry + ".payload.endofsessionmessage.timestamp"] = canonical::number(message->timestamp.get());
+            values[entry + ".payload.endofsessionmessage.timeoffset"] = canonical::number(message->time_offset.get());
         } else if (iterator.message_type == protocol::SymbolMappingMessage::message_type) {
             values[entry + ".payload"] = "packet.messages.message.payload.symbolmappingmessage";
             [[maybe_unused]] const auto* message = protocol::SymbolMappingMessage::parse(iterator.message);
@@ -178,8 +178,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.tradingstatusmessage.symbollong"] = canonical::text(std::string(message->symbol_long.get()), ' ', false);
             values[entry + ".payload.tradingstatusmessage.tradingstatus"] = canonical::text(canonical::character(message->trading_status.get()), ' ', false);
             values[entry + ".payload.tradingstatusmessage.regshoaction"] = canonical::text(canonical::character(message->reg_sho_action.get()), ' ', false);
-            values[entry + ".payload.tradingstatusmessage.reserved1"] = canonical::text(canonical::character(message->reserved_1.get()), ' ', false);
-            values[entry + ".payload.tradingstatusmessage.secondreserved1"] = canonical::text(canonical::character(message->second_reserved_1.get()), ' ', false);
         } else if (iterator.message_type == protocol::AuctionUpdateMessage::message_type) {
             values[entry + ".payload"] = "packet.messages.message.payload.auctionupdatemessage";
             [[maybe_unused]] const auto* message = protocol::AuctionUpdateMessage::parse(iterator.message);

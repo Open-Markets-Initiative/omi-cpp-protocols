@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: messages/OptionsDirectoryMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -50,7 +51,7 @@ class OptionsDirectoryMessage {
 
     std::uint8_t expiration_date() const { return wire::read_u8(at(20)); }
 
-    Decimal explicit_strike_price() const { return Decimal(static_cast<std::int64_t>(wire::read_u32_be(at(21))), -4); }
+    Decimal explicit_strike_price() const { return Decimal(static_cast<std::int64_t>(wire::read_i32_be(at(21))), -4); }
 
     OptionType option_type() const { return static_cast<OptionType>(wire::read_char(at(25))); }
 

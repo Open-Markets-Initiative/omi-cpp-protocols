@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: messages/EndOfDayTradeSummaryMessage.cpp
 #include "EndOfDayTradeSummaryMessage.hpp"
 
 #include "../common/Print.hpp"

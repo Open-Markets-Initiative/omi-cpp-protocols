@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: messages/StockTradingActionMessage.hpp
 #pragma once
 
 #include <cstddef>

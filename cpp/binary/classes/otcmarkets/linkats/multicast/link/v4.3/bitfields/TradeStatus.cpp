@@ -1,3 +1,4 @@
+// OtcMarkets.LinkAts.Multicast.Link.v4.3: bitfields/TradeStatus.cpp
 #include "TradeStatus.hpp"
 
 #include "../common/Print.hpp"

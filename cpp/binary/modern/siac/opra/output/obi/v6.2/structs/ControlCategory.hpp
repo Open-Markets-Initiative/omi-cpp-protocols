@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: structs/ControlCategory.hpp
 #pragma once
 
 #include "../types/ControlMessageType.hpp"

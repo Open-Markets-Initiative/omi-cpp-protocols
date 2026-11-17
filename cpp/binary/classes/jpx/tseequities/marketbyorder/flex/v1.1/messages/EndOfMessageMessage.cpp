@@ -1,3 +1,4 @@
+// Jpx.TseEquities.MarketByOrder.Flex.v1.1: messages/EndOfMessageMessage.cpp
 #include "EndOfMessageMessage.hpp"
 
 #include "../common/Print.hpp"

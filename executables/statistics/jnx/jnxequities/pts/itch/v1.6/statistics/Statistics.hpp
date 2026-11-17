@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.6: statistics/Statistics.hpp
 #pragma once
 
 #include <cstdint>

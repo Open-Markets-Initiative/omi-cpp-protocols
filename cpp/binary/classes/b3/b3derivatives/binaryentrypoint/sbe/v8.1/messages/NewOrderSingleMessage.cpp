@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1: messages/NewOrderSingleMessage.cpp
 #include "NewOrderSingleMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,8 +7,8 @@
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_1 {
 
-NewOrderSingleMessage::NewOrderSingleMessage(const InboundBusinessHeader& inbound_business_header, std::optional<std::uint8_t> ordtagid, MmProtectionReset mm_protection_reset, std::uint64_t clordid, std::optional<std::uint32_t> account, const std::string& sender_location, const std::string& entering_trader, SelfTradePreventionInstruction self_trade_prevention_instruction, std::uint64_t security_id, Side side, Ordtype ordtype, TimeInForce time_in_force, std::optional<RoutingInstruction> routing_instruction, std::uint64_t order_qty, std::optional<Decimal> price_optional, std::optional<Decimal> stop_px, std::optional<std::uint64_t> min_qty, std::optional<std::uint64_t> max_floor, const std::string& executing_trader_optional, std::optional<std::uint16_t> expire_date, const CustodianInfo& custodian_info, const InvestorId& investor_id, std::optional<std::int32_t> strategy_id, const DeskId& desk_id, const Memo& memo)
-  : inbound_business_header_(inbound_business_header), ordtagid_(ordtagid), mm_protection_reset_(mm_protection_reset), clordid_(clordid), account_(account), sender_location_(sender_location), entering_trader_(entering_trader), self_trade_prevention_instruction_(self_trade_prevention_instruction), security_id_(security_id), side_(side), ordtype_(ordtype), time_in_force_(time_in_force), routing_instruction_(routing_instruction), order_qty_(order_qty), price_optional_(price_optional), stop_px_(stop_px), min_qty_(min_qty), max_floor_(max_floor), executing_trader_optional_(executing_trader_optional), expire_date_(expire_date), custodian_info_(custodian_info), investor_id_(investor_id), strategy_id_(strategy_id), desk_id_(desk_id), memo_(memo) {}
+NewOrderSingleMessage::NewOrderSingleMessage(const InboundBusinessHeader& inbound_business_header, std::optional<std::uint8_t> ordtagid, MmProtectionReset mm_protection_reset, std::uint64_t cl_ord_id, std::optional<std::uint32_t> account, const std::string& sender_location, const std::string& entering_trader, SelfTradePreventionInstruction self_trade_prevention_instruction, std::uint64_t security_id, Side side, Ordtype ordtype, TimeInForce time_in_force, std::optional<RoutingInstruction> routing_instruction, std::uint64_t order_qty, std::optional<Decimal> price_optional, std::optional<Decimal> stop_px, std::optional<std::uint64_t> min_qty, std::optional<std::uint64_t> max_floor, const std::string& executing_trader_optional, std::optional<std::uint16_t> expire_date, const CustodianInfo& custodian_info, const InvestorId& investor_id, std::optional<std::int32_t> strategy_id, const DeskId& desk_id, const Memo& memo)
+  : inbound_business_header_(inbound_business_header), ordtagid_(ordtagid), mm_protection_reset_(mm_protection_reset), cl_ord_id_(cl_ord_id), account_(account), sender_location_(sender_location), entering_trader_(entering_trader), self_trade_prevention_instruction_(self_trade_prevention_instruction), security_id_(security_id), side_(side), ordtype_(ordtype), time_in_force_(time_in_force), routing_instruction_(routing_instruction), order_qty_(order_qty), price_optional_(price_optional), stop_px_(stop_px), min_qty_(min_qty), max_floor_(max_floor), executing_trader_optional_(executing_trader_optional), expire_date_(expire_date), custodian_info_(custodian_info), investor_id_(investor_id), strategy_id_(strategy_id), desk_id_(desk_id), memo_(memo) {}
 
 const InboundBusinessHeader& NewOrderSingleMessage::inbound_business_header() const { return inbound_business_header_; }
 InboundBusinessHeader& NewOrderSingleMessage::inbound_business_header() { return inbound_business_header_; }
@@ -19,8 +20,8 @@ void NewOrderSingleMessage::set_ordtagid(std::optional<std::uint8_t> value) { or
 MmProtectionReset NewOrderSingleMessage::mm_protection_reset() const { return mm_protection_reset_; }
 void NewOrderSingleMessage::set_mm_protection_reset(MmProtectionReset value) { mm_protection_reset_ = value; }
 
-std::uint64_t NewOrderSingleMessage::clordid() const { return clordid_; }
-void NewOrderSingleMessage::set_clordid(std::uint64_t value) { clordid_ = value; }
+std::uint64_t NewOrderSingleMessage::cl_ord_id() const { return cl_ord_id_; }
+void NewOrderSingleMessage::set_cl_ord_id(std::uint64_t value) { cl_ord_id_ = value; }
 
 std::optional<std::uint32_t> NewOrderSingleMessage::account() const { return account_; }
 void NewOrderSingleMessage::set_account(std::optional<std::uint32_t> value) { account_ = value; }
@@ -110,7 +111,7 @@ std::size_t NewOrderSingleMessage::decode(const std::byte* data, std::size_t len
     offset += 1;
 
     wire::require("NewOrderSingleMessage", offset + 8, length);
-    clordid_ = wire::read_u64_le(data + offset);
+    cl_ord_id_ = wire::read_u64_le(data + offset);
     offset += 8;
 
     wire::require("NewOrderSingleMessage", offset + 4, length);
@@ -204,7 +205,7 @@ std::size_t NewOrderSingleMessage::encode(std::byte* data, std::size_t capacity)
     wire::write_u8(data + offset, static_cast<std::uint8_t>(mm_protection_reset_));
     offset += 1;
 
-    wire::write_u64_le(data + offset, static_cast<std::uint64_t>(clordid_));
+    wire::write_u64_le(data + offset, static_cast<std::uint64_t>(cl_ord_id_));
     offset += 8;
 
     wire::write_u32_le(data + offset, account_.value_or(static_cast<std::uint32_t>(0ULL)));
@@ -289,8 +290,8 @@ void NewOrderSingleMessage::print(std::ostream& out) const {
     print::optional(out, ordtagid_);
     out << ", mm_protection_reset=";
     out << mm_protection_reset_;
-    out << ", clordid=";
-    out << clordid_;
+    out << ", cl_ord_id=";
+    out << cl_ord_id_;
     out << ", account=";
     print::optional(out, account_);
     out << ", sender_location=";
@@ -345,7 +346,7 @@ bool NewOrderSingleMessage::operator==(const NewOrderSingleMessage& other) const
     return inbound_business_header_ == other.inbound_business_header_
         && ordtagid_ == other.ordtagid_
         && mm_protection_reset_ == other.mm_protection_reset_
-        && clordid_ == other.clordid_
+        && cl_ord_id_ == other.cl_ord_id_
         && account_ == other.account_
         && sender_location_ == other.sender_location_
         && entering_trader_ == other.entering_trader_

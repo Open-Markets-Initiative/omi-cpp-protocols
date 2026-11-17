@@ -1,7 +1,7 @@
+// Siac.Cts.Output.Cta.v2.9: messages/TradeCancelErrorMessage.hpp
 #pragma once
 
 #include <cstddef>
-#include "../structs/BlockHeader.hpp"
 #include "../types/ParticipantId.hpp"
 #include "../structs/Timestamp1.hpp"
 #include "../types/MessageId.hpp"
@@ -62,7 +62,6 @@ struct trade_cancel_error_message {
         cta_output::participant_data participant_data;
     };
 
-    cta_output::block_header header = {{}, {}, {}, {}, {}, {}, {}, {}};
     // Transport framing: message size precedes the SBE header on the wire
     cta_output::message_length message_length;
     cta_output::message_category message_category = cta_output::message_category::enum_type::trade;
@@ -106,7 +105,7 @@ static_assert(offsetof(trade_cancel_error_message::fields_type, financial_status
 static_assert(offsetof(trade_cancel_error_message::fields_type, consolidated_data) == 74, "unexpected offset of trade_cancel_error_message::fields_type::consolidated_data");
 static_assert(offsetof(trade_cancel_error_message::fields_type, participant_data) == 108, "unexpected offset of trade_cancel_error_message::fields_type::participant_data");
 static_assert(sizeof(trade_cancel_error_message::fields_type) == 149, "unexpected sizeof trade_cancel_error_message::fields_type");
-static_assert(sizeof(trade_cancel_error_message) == sizeof(cta_output::block_header) + sizeof(cta_output::message_length) + sizeof(cta_output::message_category) + sizeof(cta_output::trade_message_type) + 149, "unexpected sizeof trade_cancel_error_message");
+static_assert(sizeof(trade_cancel_error_message) == sizeof(cta_output::message_length) + sizeof(cta_output::message_category) + sizeof(cta_output::trade_message_type) + 149, "unexpected sizeof trade_cancel_error_message");
 
 #pragma pack(pop)
 }

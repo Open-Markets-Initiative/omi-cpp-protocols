@@ -1,3 +1,4 @@
+// Cboe.C1Options.MulticastDepthOfBook.Pitch.v2.39.4: types/RemainingQuantity.hpp
 #pragma once
 
 #include <cstddef>

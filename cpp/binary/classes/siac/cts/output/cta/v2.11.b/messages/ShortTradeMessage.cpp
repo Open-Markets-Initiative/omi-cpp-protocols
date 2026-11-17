@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: messages/ShortTradeMessage.cpp
 #include "ShortTradeMessage.hpp"
 
 #include "../common/Print.hpp"

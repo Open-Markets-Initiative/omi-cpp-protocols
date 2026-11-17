@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.5: messages/details/MdpsessionmgmtMessageWriter.hpp
 #pragma once
 
 #include "../MdpsessionmgmtMessage.hpp"

@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: messages/BusinessMessageRejectMessage.hpp
 #pragma once
 
 #include "../structs/OutboundBusinessHeader.hpp"

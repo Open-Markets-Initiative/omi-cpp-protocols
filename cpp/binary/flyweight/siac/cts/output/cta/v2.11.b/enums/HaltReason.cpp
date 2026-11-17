@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: enums/HaltReason.cpp
 #include "HaltReason.hpp"
 
 namespace siac::cts::output::cta::v2_11_b {

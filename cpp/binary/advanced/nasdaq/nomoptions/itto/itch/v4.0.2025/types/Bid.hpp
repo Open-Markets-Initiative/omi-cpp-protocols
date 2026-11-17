@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: types/Bid.hpp
 #pragma once
 
 #include <cstddef>
@@ -12,6 +13,7 @@ struct bid {
     static constexpr const char* name = "bid";
     static constexpr std::size_t size = 4;
     static constexpr bool is_optional = false;
+    static constexpr int exponent = -4;
 
     using result_type = required<std::uint32_t>;
     using storage_type = result_type;

@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.TopOfMarket.Mach.v2.5: messages/LoginResponse.hpp
 #pragma once
 
 #include <cstddef>

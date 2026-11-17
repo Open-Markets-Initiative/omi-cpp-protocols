@@ -1,3 +1,4 @@
+// Nyse.AmexOptions.DeepFeed.Xdp.v1.3.a: messages/SequenceNumberResetMessage.hpp
 #pragma once
 
 #include "../types/SourceTime.hpp"

@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v13.0: messages/OrderMassDelete.hpp
 #pragma once
 
 #include <chrono>
@@ -25,7 +26,7 @@ class OrderMassDelete : public Message {
     OrderMassDelete() = default;
     OrderMassDelete(std::optional<std::int64_t> security_id, std::optional<std::chrono::nanoseconds> transact_time);
 
-    // Security Id:
+    // Security Id: Unique instrument identifier
     std::optional<std::int64_t> security_id() const;
     void set_security_id(std::optional<std::int64_t> value);
 

@@ -1,3 +1,4 @@
+// Nyse.NationalEquities.Trades.Pillar.v2.6: enums/SecurityType.cpp
 #include "SecurityType.hpp"
 
 namespace nyse::nationalequities::trades::pillar::v2_6 {

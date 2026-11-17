@@ -1,3 +1,4 @@
+// Iex.IexEquities.Tops.Snap.v1.6: bitfields/QuoteUpdateFlags.cpp
 #include "QuoteUpdateFlags.hpp"
 
 #include "../common/Print.hpp"

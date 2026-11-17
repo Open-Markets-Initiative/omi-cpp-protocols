@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1: messages/details/SimpleNewOrderMessageReader.hpp
 #pragma once
 
 #include "SimpleNewOrderMessageWriter.hpp"

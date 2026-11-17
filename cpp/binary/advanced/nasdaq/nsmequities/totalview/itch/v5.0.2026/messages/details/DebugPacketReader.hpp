@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2026: messages/details/DebugPacketReader.hpp
 #pragma once
 
 #include "DebugPacketWriter.hpp"

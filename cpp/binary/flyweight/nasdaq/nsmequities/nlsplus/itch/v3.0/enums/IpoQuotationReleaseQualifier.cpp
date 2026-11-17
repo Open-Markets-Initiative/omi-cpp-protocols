@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: enums/IpoQuotationReleaseQualifier.cpp
 #include "IpoQuotationReleaseQualifier.hpp"
 
 namespace nasdaq::nsmequities::nlsplus::itch::v3_0 {

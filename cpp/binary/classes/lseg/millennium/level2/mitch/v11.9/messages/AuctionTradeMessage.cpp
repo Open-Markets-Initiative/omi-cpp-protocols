@@ -1,3 +1,4 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/AuctionTradeMessage.cpp
 #include "AuctionTradeMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,11 +7,11 @@
 
 namespace lseg::millennium::level2::mitch::v11_9 {
 
-AuctionTradeMessage::AuctionTradeMessage(std::uint32_t nanosecond, std::uint32_t quantity, std::uint32_t instrument_id, const std::array<std::byte, 1>& reserved_a, const std::array<std::byte, 1>& reserved_b, std::int64_t price, std::uint64_t trade_match_id, AuctionType auction_type, const PtModFlags& pt_mod_flags)
+AuctionTradeMessage::AuctionTradeMessage(std::chrono::nanoseconds nanosecond, std::uint32_t quantity, std::uint32_t instrument_id, const std::array<std::byte, 1>& reserved_a, const std::array<std::byte, 1>& reserved_b, Decimal price, std::uint64_t trade_match_id, AuctionType auction_type, const PtModFlags& pt_mod_flags)
   : nanosecond_(nanosecond), quantity_(quantity), instrument_id_(instrument_id), reserved_a_(reserved_a), reserved_b_(reserved_b), price_(price), trade_match_id_(trade_match_id), auction_type_(auction_type), pt_mod_flags_(pt_mod_flags) {}
 
-std::uint32_t AuctionTradeMessage::nanosecond() const { return nanosecond_; }
-void AuctionTradeMessage::set_nanosecond(std::uint32_t value) { nanosecond_ = value; }
+std::chrono::nanoseconds AuctionTradeMessage::nanosecond() const { return nanosecond_; }
+void AuctionTradeMessage::set_nanosecond(std::chrono::nanoseconds value) { nanosecond_ = value; }
 
 std::uint32_t AuctionTradeMessage::quantity() const { return quantity_; }
 void AuctionTradeMessage::set_quantity(std::uint32_t value) { quantity_ = value; }
@@ -26,8 +27,8 @@ const std::array<std::byte, 1>& AuctionTradeMessage::reserved_b() const { return
 std::array<std::byte, 1>& AuctionTradeMessage::reserved_b() { return reserved_b_; }
 void AuctionTradeMessage::set_reserved_b(const std::array<std::byte, 1>& value) { reserved_b_ = value; }
 
-std::int64_t AuctionTradeMessage::price() const { return price_; }
-void AuctionTradeMessage::set_price(std::int64_t value) { price_ = value; }
+Decimal AuctionTradeMessage::price() const { return price_; }
+void AuctionTradeMessage::set_price(Decimal value) { price_ = value; }
 
 std::uint64_t AuctionTradeMessage::trade_match_id() const { return trade_match_id_; }
 void AuctionTradeMessage::set_trade_match_id(std::uint64_t value) { trade_match_id_ = value; }
@@ -47,7 +48,7 @@ std::size_t AuctionTradeMessage::decode(const std::byte* data, std::size_t lengt
     std::size_t offset = 0;
     wire::require("AuctionTradeMessage", wire_size, length);
 
-    nanosecond_ = wire::read_u32_le(data + offset);
+    nanosecond_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     quantity_ = wire::read_u32_le(data + offset);
@@ -62,7 +63,7 @@ std::size_t AuctionTradeMessage::decode(const std::byte* data, std::size_t lengt
     wire::read_bytes(data + offset, reserved_b_.data(), 1);
     offset += 1;
 
-    price_ = wire::read_i64_le(data + offset);
+    price_ = Decimal(static_cast<std::int64_t>(wire::read_i64_le(data + offset)), -8);
     offset += 8;
 
     trade_match_id_ = wire::read_u64_le(data + offset);
@@ -80,7 +81,7 @@ std::size_t AuctionTradeMessage::encode(std::byte* data, std::size_t capacity) c
     std::size_t offset = 0;
     wire::require_capacity("AuctionTradeMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(nanosecond_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(nanosecond_.count()));
     offset += 4;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(quantity_));
@@ -95,7 +96,7 @@ std::size_t AuctionTradeMessage::encode(std::byte* data, std::size_t capacity) c
     wire::write_bytes(data + offset, reserved_b_.data(), 1);
     offset += 1;
 
-    wire::write_i64_le(data + offset, static_cast<std::int64_t>(price_));
+    wire::write_i64_le(data + offset, static_cast<std::int64_t>(price_.mantissa()));
     offset += 8;
 
     wire::write_u64_le(data + offset, static_cast<std::uint64_t>(trade_match_id_));
@@ -124,7 +125,7 @@ std::unique_ptr<Message> AuctionTradeMessage::clone() const {
 void AuctionTradeMessage::print(std::ostream& out) const {
     out << "AuctionTradeMessage{";
     out << "nanosecond=";
-    out << nanosecond_;
+    out << nanosecond_.count();
     out << ", quantity=";
     out << quantity_;
     out << ", instrument_id=";

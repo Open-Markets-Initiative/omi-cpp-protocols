@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v2: Visitor.hpp
 #pragma once
 
 namespace databento::marketdata::normalized::dbn::v2 {

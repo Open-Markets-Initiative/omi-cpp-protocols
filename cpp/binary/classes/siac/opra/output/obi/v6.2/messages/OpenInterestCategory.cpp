@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: messages/OpenInterestCategory.cpp
 #include "OpenInterestCategory.hpp"
 
 #include "../common/Print.hpp"

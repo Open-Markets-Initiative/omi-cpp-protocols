@@ -1,3 +1,4 @@
+// Iex.IexEquities.DeepPlus.Snap.v1.06: iex_iexequities_deepplus_snap_v1_06.hpp
 // Iex IexEquities DeepPlus Snap 1.06 Template Meta Programming
 
 #pragma once
@@ -469,14 +470,14 @@ struct reserved {
 
 // Reserved 1: Reserved for future use
 struct reserved_1 {
-    using type = char;
+    using type = std::uint8_t;
     static constexpr std::size_t size = 1;
 
     constexpr type value() const noexcept { return value_; }
     constexpr operator type() const noexcept { return value(); }
 
   protected:
-    char value_;
+    type value_;
 };
 
 // Retail Liquidity Indicator: Retail Liquidity Indicator identifier

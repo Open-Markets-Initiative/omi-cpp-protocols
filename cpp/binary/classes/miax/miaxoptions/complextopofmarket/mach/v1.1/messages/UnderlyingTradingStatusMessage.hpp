@@ -1,9 +1,10 @@
+// Miax.MiaxOptions.ComplexTopOfMarket.Mach.v1.1: messages/UnderlyingTradingStatusMessage.hpp
 #pragma once
 
 #include <chrono>
 #include <cstddef>
-#include <cstdint>
 #include <memory>
+#include <optional>
 #include <ostream>
 #include <string>
 #include <string_view>
@@ -26,7 +27,7 @@ class UnderlyingTradingStatusMessage : public Data {
     static constexpr std::size_t wire_size = 25;
 
     UnderlyingTradingStatusMessage() = default;
-    UnderlyingTradingStatusMessage(std::chrono::nanoseconds nanoseconds, const std::string& underlying_symbol, TradingStatus trading_status, EventReason event_reason, std::uint32_t seconds_part, std::uint32_t expected_event_time_nano_seconds_part);
+    UnderlyingTradingStatusMessage(std::chrono::nanoseconds nanoseconds, const std::string& underlying_symbol, TradingStatus trading_status, EventReason event_reason, std::optional<std::chrono::seconds> expected_event_time_seconds_part, std::chrono::nanoseconds expected_event_time_nano_seconds_part);
 
     // Nanoseconds: Time at which this product is added/updated on MIAX system today.
     std::chrono::nanoseconds nanoseconds() const;
@@ -48,16 +49,16 @@ class UnderlyingTradingStatusMessage : public Data {
     EventReason event_reason() const;
     void set_event_reason(EventReason value);
 
-    // Seconds Part: Seconds portion of the expected time of the event. Always use in
-    // conjunction with the Nano-seconds part field.
-    std::uint32_t seconds_part() const;
-    void set_seconds_part(std::uint32_t value);
+    // Expected Event Time Seconds Part: Seconds portion of the expected time of the event.
+    // Always use in conjunction with the Nano-seconds part field.
+    std::optional<std::chrono::seconds> expected_event_time_seconds_part() const;
+    void set_expected_event_time_seconds_part(std::optional<std::chrono::seconds> value);
 
     // Expected Event Time Nano Seconds Part: Nano-seconds portion of the expected time of the
     // event. Specifies number of nano-seconds since the seconds specified in “Expected Event
     // Time Seconds” field.
-    std::uint32_t expected_event_time_nano_seconds_part() const;
-    void set_expected_event_time_nano_seconds_part(std::uint32_t value);
+    std::chrono::nanoseconds expected_event_time_nano_seconds_part() const;
+    void set_expected_event_time_nano_seconds_part(std::chrono::nanoseconds value);
 
     // Data
     DataCode type() const override;
@@ -78,8 +79,8 @@ class UnderlyingTradingStatusMessage : public Data {
     std::string underlying_symbol_{};
     TradingStatus trading_status_{};
     EventReason event_reason_{};
-    std::uint32_t seconds_part_{};
-    std::uint32_t expected_event_time_nano_seconds_part_{};
+    std::optional<std::chrono::seconds> expected_event_time_seconds_part_{};
+    std::chrono::nanoseconds expected_event_time_nano_seconds_part_{};
 };
 
 } // namespace miax::miaxoptions::complextopofmarket::mach::v1_1

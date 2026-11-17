@@ -1,3 +1,4 @@
+// Nyse.AmexOptions.DeepFeed.Xdp.v1.3.a: messages/UnderlyingStatusMessage.cpp
 #include "UnderlyingStatusMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,14 +7,14 @@
 
 namespace nyse::amexoptions::deepfeed::xdp::v1_3_a {
 
-UnderlyingStatusMessage::UnderlyingStatusMessage(std::uint32_t source_time, std::uint32_t source_time_ns, std::uint32_t underlying_index, std::uint32_t underlying_seq_num, SecurityStatus security_status, char halt_condition, const std::array<std::byte, 2>& reserved_2)
+UnderlyingStatusMessage::UnderlyingStatusMessage(std::chrono::seconds source_time, std::chrono::nanoseconds source_time_ns, std::uint32_t underlying_index, std::uint32_t underlying_seq_num, SecurityStatus security_status, char halt_condition, const std::array<std::byte, 2>& reserved_2)
   : source_time_(source_time), source_time_ns_(source_time_ns), underlying_index_(underlying_index), underlying_seq_num_(underlying_seq_num), security_status_(security_status), halt_condition_(halt_condition), reserved_2_(reserved_2) {}
 
-std::uint32_t UnderlyingStatusMessage::source_time() const { return source_time_; }
-void UnderlyingStatusMessage::set_source_time(std::uint32_t value) { source_time_ = value; }
+std::chrono::seconds UnderlyingStatusMessage::source_time() const { return source_time_; }
+void UnderlyingStatusMessage::set_source_time(std::chrono::seconds value) { source_time_ = value; }
 
-std::uint32_t UnderlyingStatusMessage::source_time_ns() const { return source_time_ns_; }
-void UnderlyingStatusMessage::set_source_time_ns(std::uint32_t value) { source_time_ns_ = value; }
+std::chrono::nanoseconds UnderlyingStatusMessage::source_time_ns() const { return source_time_ns_; }
+void UnderlyingStatusMessage::set_source_time_ns(std::chrono::nanoseconds value) { source_time_ns_ = value; }
 
 std::uint32_t UnderlyingStatusMessage::underlying_index() const { return underlying_index_; }
 void UnderlyingStatusMessage::set_underlying_index(std::uint32_t value) { underlying_index_ = value; }
@@ -39,10 +40,10 @@ std::size_t UnderlyingStatusMessage::decode(const std::byte* data, std::size_t l
     std::size_t offset = 0;
     wire::require("UnderlyingStatusMessage", wire_size, length);
 
-    source_time_ = wire::read_u32_le(data + offset);
+    source_time_ = std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
-    source_time_ns_ = wire::read_u32_le(data + offset);
+    source_time_ns_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     underlying_index_ = wire::read_u32_le(data + offset);
@@ -67,10 +68,10 @@ std::size_t UnderlyingStatusMessage::encode(std::byte* data, std::size_t capacit
     std::size_t offset = 0;
     wire::require_capacity("UnderlyingStatusMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_.count()));
     offset += 4;
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_.count()));
     offset += 4;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(underlying_index_));
@@ -106,9 +107,9 @@ std::unique_ptr<Message> UnderlyingStatusMessage::clone() const {
 void UnderlyingStatusMessage::print(std::ostream& out) const {
     out << "UnderlyingStatusMessage{";
     out << "source_time=";
-    out << source_time_;
+    out << source_time_.count();
     out << ", source_time_ns=";
-    out << source_time_ns_;
+    out << source_time_ns_.count();
     out << ", underlying_index=";
     out << underlying_index_;
     out << ", underlying_seq_num=";

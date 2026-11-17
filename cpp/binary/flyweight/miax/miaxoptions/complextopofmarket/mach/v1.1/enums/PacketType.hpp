@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.ComplexTopOfMarket.Mach.v1.1: enums/PacketType.hpp
 #pragma once
 
 #include <cstdint>
@@ -6,7 +7,7 @@
 
 namespace miax::miaxoptions::complextopofmarket::mach::v1_1 {
 
-// protocol packet type
+// Mach protocol packet type
 enum class PacketType : std::uint8_t {
     Heartbeat = 0,          // Heartbeat
     StartOfSession = 1,     // Start Of Session

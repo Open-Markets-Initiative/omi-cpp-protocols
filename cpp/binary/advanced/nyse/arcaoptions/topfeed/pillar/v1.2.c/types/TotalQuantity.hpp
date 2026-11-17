@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.TopFeed.Pillar.v1.2.c: types/TotalQuantity.hpp
 #pragma once
 
 #include <cstddef>

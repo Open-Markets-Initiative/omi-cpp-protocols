@@ -1,0 +1,28 @@
+# Nyse.ArcaOptions.DeepFeed.Pillar.v1.2.m OptionsImbalanceMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.pktsize = 81
+packet.packetheader.deliveryflag = 11
+packet.packetheader.numbermsgs = 1
+packet.packetheader.seqnum = 429088
+packet.packetheader.sendtime.seconds = 1639224814
+packet.packetheader.sendtime.nanoseconds = 417840896
+packet.packetheader.sendtime = 1639224814417840896
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagesize = 65
+packet.messages.message[0].messageheader.messagetype = 305
+packet.messages.message[0].payload = packet.messages.message.payload.optionsimbalancemessage
+packet.messages.message[0].payload.optionsimbalancemessage.sourcetime = 1639224814
+packet.messages.message[0].payload.optionsimbalancemessage.sourcetimens = 417833216
+packet.messages.message[0].payload.optionsimbalancemessage.seriesindex = 34957000
+packet.messages.message[0].payload.optionsimbalancemessage.seriesseqnum = 4
+packet.messages.message[0].payload.optionsimbalancemessage.pairedqty = 0
+packet.messages.message[0].payload.optionsimbalancemessage.totalimbalanceqty = 0
+packet.messages.message[0].payload.optionsimbalancemessage.marketimbalanceqty = 0
+packet.messages.message[0].payload.optionsimbalancemessage.auctiontype = H
+packet.messages.message[0].payload.optionsimbalancemessage.imbalanceside =  
+packet.messages.message[0].payload.optionsimbalancemessage.continuousbookclearingprice = 0
+packet.messages.message[0].payload.optionsimbalancemessage.auctioninterestclearingprice = 0
+packet.messages.message[0].payload.optionsimbalancemessage.indicativematchprice = 0
+packet.messages.message[0].payload.optionsimbalancemessage.uppercollar = 0
+packet.messages.message[0].payload.optionsimbalancemessage.lowercollar = 0
+packet.messages.message[0].payload.optionsimbalancemessage.auctionstatus = 0

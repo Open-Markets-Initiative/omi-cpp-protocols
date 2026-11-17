@@ -1,3 +1,4 @@
+// Nasdaq.IseOptions.OrderComboFeed.Itch.v1.1: types/StrategyType.hpp
 #pragma once
 
 #include <cstddef>

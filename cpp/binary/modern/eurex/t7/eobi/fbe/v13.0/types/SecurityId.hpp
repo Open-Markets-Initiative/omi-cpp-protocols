@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v13.0: types/SecurityId.hpp
 #pragma once
 
 #include <cstddef>
@@ -5,7 +6,7 @@
 
 namespace eurex::t7::eobi::fbe::v13_0 {
 
-// 
+// Unique instrument identifier
 struct SecurityId {
 
     static constexpr const char* name = "Security Id";

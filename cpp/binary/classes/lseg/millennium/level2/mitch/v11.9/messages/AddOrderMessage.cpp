@@ -1,3 +1,4 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/AddOrderMessage.cpp
 #include "AddOrderMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,11 +7,11 @@
 
 namespace lseg::millennium::level2::mitch::v11_9 {
 
-AddOrderMessage::AddOrderMessage(std::uint32_t nanosecond, std::uint64_t order_id, Side side, std::uint32_t quantity, std::uint32_t instrument_id, const std::array<std::byte, 1>& reserved_a, const std::array<std::byte, 1>& reserved_b, std::int64_t price, const AddOrderFlags& add_order_flags, const std::array<std::byte, 10>& reserved_10)
+AddOrderMessage::AddOrderMessage(std::chrono::nanoseconds nanosecond, std::uint64_t order_id, Side side, std::uint32_t quantity, std::uint32_t instrument_id, const std::array<std::byte, 1>& reserved_a, const std::array<std::byte, 1>& reserved_b, Decimal price, const AddOrderFlags& add_order_flags, const std::array<std::byte, 10>& reserved_10)
   : nanosecond_(nanosecond), order_id_(order_id), side_(side), quantity_(quantity), instrument_id_(instrument_id), reserved_a_(reserved_a), reserved_b_(reserved_b), price_(price), add_order_flags_(add_order_flags), reserved_10_(reserved_10) {}
 
-std::uint32_t AddOrderMessage::nanosecond() const { return nanosecond_; }
-void AddOrderMessage::set_nanosecond(std::uint32_t value) { nanosecond_ = value; }
+std::chrono::nanoseconds AddOrderMessage::nanosecond() const { return nanosecond_; }
+void AddOrderMessage::set_nanosecond(std::chrono::nanoseconds value) { nanosecond_ = value; }
 
 std::uint64_t AddOrderMessage::order_id() const { return order_id_; }
 void AddOrderMessage::set_order_id(std::uint64_t value) { order_id_ = value; }
@@ -32,8 +33,8 @@ const std::array<std::byte, 1>& AddOrderMessage::reserved_b() const { return res
 std::array<std::byte, 1>& AddOrderMessage::reserved_b() { return reserved_b_; }
 void AddOrderMessage::set_reserved_b(const std::array<std::byte, 1>& value) { reserved_b_ = value; }
 
-std::int64_t AddOrderMessage::price() const { return price_; }
-void AddOrderMessage::set_price(std::int64_t value) { price_ = value; }
+Decimal AddOrderMessage::price() const { return price_; }
+void AddOrderMessage::set_price(Decimal value) { price_ = value; }
 
 const AddOrderFlags& AddOrderMessage::add_order_flags() const { return add_order_flags_; }
 AddOrderFlags& AddOrderMessage::add_order_flags() { return add_order_flags_; }
@@ -51,7 +52,7 @@ std::size_t AddOrderMessage::decode(const std::byte* data, std::size_t length) {
     std::size_t offset = 0;
     wire::require("AddOrderMessage", wire_size, length);
 
-    nanosecond_ = wire::read_u32_le(data + offset);
+    nanosecond_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     order_id_ = wire::read_u64_le(data + offset);
@@ -72,7 +73,7 @@ std::size_t AddOrderMessage::decode(const std::byte* data, std::size_t length) {
     wire::read_bytes(data + offset, reserved_b_.data(), 1);
     offset += 1;
 
-    price_ = wire::read_i64_le(data + offset);
+    price_ = Decimal(static_cast<std::int64_t>(wire::read_i64_le(data + offset)), -8);
     offset += 8;
 
     offset += add_order_flags_.decode(data + offset, length - offset);
@@ -87,7 +88,7 @@ std::size_t AddOrderMessage::encode(std::byte* data, std::size_t capacity) const
     std::size_t offset = 0;
     wire::require_capacity("AddOrderMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(nanosecond_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(nanosecond_.count()));
     offset += 4;
 
     wire::write_u64_le(data + offset, static_cast<std::uint64_t>(order_id_));
@@ -108,7 +109,7 @@ std::size_t AddOrderMessage::encode(std::byte* data, std::size_t capacity) const
     wire::write_bytes(data + offset, reserved_b_.data(), 1);
     offset += 1;
 
-    wire::write_i64_le(data + offset, static_cast<std::int64_t>(price_));
+    wire::write_i64_le(data + offset, static_cast<std::int64_t>(price_.mantissa()));
     offset += 8;
 
     offset += add_order_flags_.encode(data + offset, capacity - offset);
@@ -134,7 +135,7 @@ std::unique_ptr<Message> AddOrderMessage::clone() const {
 void AddOrderMessage::print(std::ostream& out) const {
     out << "AddOrderMessage{";
     out << "nanosecond=";
-    out << nanosecond_;
+    out << nanosecond_.count();
     out << ", order_id=";
     out << order_id_;
     out << ", side=";

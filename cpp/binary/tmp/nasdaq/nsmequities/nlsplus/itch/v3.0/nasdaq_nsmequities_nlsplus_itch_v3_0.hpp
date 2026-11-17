@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: nasdaq_nsmequities_nlsplus_itch_v3_0.hpp
 // Nasdaq NsmEquities NlsPlus Itch 3.0 Template Meta Programming
 
 #pragma once
@@ -1619,14 +1620,14 @@ struct reg_sho_action {
 
 // Reserved: Reserved for future use; space filled in the initial release
 struct reserved {
-    using type = char;
+    using type = std::uint8_t;
     static constexpr std::size_t size = 1;
 
     constexpr type value() const noexcept { return value_; }
     constexpr operator type() const noexcept { return value(); }
 
   protected:
-    char value_;
+    type value_;
 };
 
 // Round Lot Size: Denotes the number of shares that represent a round lot for the issue

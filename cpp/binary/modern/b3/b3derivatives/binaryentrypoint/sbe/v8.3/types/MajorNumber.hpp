@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: types/MajorNumber.hpp
 #pragma once
 
 #include <cstddef>
@@ -12,6 +13,7 @@ struct MajorNumber {
     static constexpr auto name = "Major Number";
     static constexpr std::size_t size = 1;
     using type = std::uint8_t;
+static const type no_value = 255;
 
     // default constructor
     constexpr MajorNumber()

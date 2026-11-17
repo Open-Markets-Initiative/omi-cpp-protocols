@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: enums/BestOfferDenominatorCode.cpp
 #include "BestOfferDenominatorCode.hpp"
 
 namespace siac::opra::output::obi::v6_2 {

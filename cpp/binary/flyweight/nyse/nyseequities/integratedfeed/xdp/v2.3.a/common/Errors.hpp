@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeed.Xdp.v2.3.a: common/Errors.hpp
 #pragma once
 
 #include <cstddef>

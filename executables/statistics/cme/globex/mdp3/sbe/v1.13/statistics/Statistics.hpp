@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.13: statistics/Statistics.hpp
 #pragma once
 
 #include <cstdint>
@@ -28,7 +29,6 @@ struct Statistics {
     // message counters
     uint64_t mktdata_message = 0;
     uint64_t channel_reset = 0;
-    uint64_t admin_heartbeat = 0;
     uint64_t admin_login = 0;
     uint64_t admin_logout = 0;
     uint64_t security_status = 0;
@@ -68,7 +68,6 @@ struct Statistics {
     uint64_t request_reject = 0;
     uint64_t security_list_request = 0;
     uint64_t security_status_request = 0;
-    uint64_t subscriber_heartbeat = 0;
 
     explicit Statistics(const statistics::Options& options, packet::Parser& parser)
      : parser{ parser }, options{ options } {}
@@ -96,8 +95,6 @@ struct Statistics {
         { ++mktdata_message; ++matched_messages; ++total_messages; }
     void on_message(const cme::mdp3::v13::channel_reset&, std::uint64_t, const cme::mdp3::v13::binary_packet_header&)
         { ++channel_reset; ++matched_messages; ++total_messages; }
-    void on_message(const cme::mdp3::v13::admin_heartbeat&, std::uint64_t, const cme::mdp3::v13::binary_packet_header&)
-        { ++admin_heartbeat; ++matched_messages; ++total_messages; }
     void on_message(const cme::mdp3::v13::admin_login&, std::uint64_t, const cme::mdp3::v13::binary_packet_header&)
         { ++admin_login; ++matched_messages; ++total_messages; }
     void on_message(const cme::mdp3::v13::admin_logout&, std::uint64_t, const cme::mdp3::v13::binary_packet_header&)
@@ -176,8 +173,6 @@ struct Statistics {
         { ++security_list_request; ++matched_messages; ++total_messages; }
     void on_message(const cme::mdp3::v13::security_status_request&, std::uint64_t, const cme::mdp3::v13::binary_packet_header&)
         { ++security_status_request; ++matched_messages; ++total_messages; }
-    void on_message(const cme::mdp3::v13::subscriber_heartbeat&, std::uint64_t, const cme::mdp3::v13::binary_packet_header&)
-        { ++subscriber_heartbeat; ++matched_messages; ++total_messages; }
 
     // a code none of the messages answer to: counted, so what the walk found adds up
     void on_unknown(const std::byte*, std::size_t, std::uint64_t, const cme::mdp3::v13::binary_packet_header&)
@@ -199,7 +194,6 @@ struct Statistics {
         std::cout << "--------------" << std::endl;
         std::cout << "  MktdataMessage                                     " << mktdata_message << std::endl;
         std::cout << "  ChannelReset (4)                                   " << channel_reset << std::endl;
-        std::cout << "  AdminHeartbeat (12)                                " << admin_heartbeat << std::endl;
         std::cout << "  AdminLogin (15)                                    " << admin_login << std::endl;
         std::cout << "  AdminLogout (16)                                   " << admin_logout << std::endl;
         std::cout << "  SecurityStatus (30)                                " << security_status << std::endl;
@@ -239,7 +233,6 @@ struct Statistics {
         std::cout << "  RequestReject (207)                                " << request_reject << std::endl;
         std::cout << "  SecurityListRequest (208)                          " << security_list_request << std::endl;
         std::cout << "  SecurityStatusRequest (209)                        " << security_status_request << std::endl;
-        std::cout << "  SubscriberHeartbeat (210)                          " << subscriber_heartbeat << std::endl;
     }
 };
 }

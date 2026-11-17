@@ -1,3 +1,4 @@
+// Nyse.TexasEquities.IntegratedFeedRefresh.Pillar.v2.5.g: enums/Side.cpp
 #include "Side.hpp"
 
 namespace nyse::texasequities::integratedfeedrefresh::pillar::v2_5_g {

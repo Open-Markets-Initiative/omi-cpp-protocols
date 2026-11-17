@@ -1,3 +1,4 @@
+// Nyse.ArcaEquities.Bbo.Xdp.v2.4.c: messages/QuoteMessage.cpp
 #include "QuoteMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,11 +7,11 @@
 
 namespace nyse::arcaequities::bbo::xdp::v2_4_c {
 
-QuoteMessage::QuoteMessage(std::uint32_t source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, std::uint32_t ask_price, std::uint32_t ask_volume, std::uint32_t bid_price, std::uint32_t bid_volume, QuoteCondition quote_condition, RpiIndicator rpi_indicator, const std::array<std::byte, 4>& reserved_4)
+QuoteMessage::QuoteMessage(std::chrono::nanoseconds source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, std::uint32_t ask_price, std::uint32_t ask_volume, std::uint32_t bid_price, std::uint32_t bid_volume, QuoteCondition quote_condition, RpiIndicator rpi_indicator, const std::array<std::byte, 4>& reserved_4)
   : source_time_ns_(source_time_ns), symbol_index_(symbol_index), symbol_seq_num_(symbol_seq_num), ask_price_(ask_price), ask_volume_(ask_volume), bid_price_(bid_price), bid_volume_(bid_volume), quote_condition_(quote_condition), rpi_indicator_(rpi_indicator), reserved_4_(reserved_4) {}
 
-std::uint32_t QuoteMessage::source_time_ns() const { return source_time_ns_; }
-void QuoteMessage::set_source_time_ns(std::uint32_t value) { source_time_ns_ = value; }
+std::chrono::nanoseconds QuoteMessage::source_time_ns() const { return source_time_ns_; }
+void QuoteMessage::set_source_time_ns(std::chrono::nanoseconds value) { source_time_ns_ = value; }
 
 std::uint32_t QuoteMessage::symbol_index() const { return symbol_index_; }
 void QuoteMessage::set_symbol_index(std::uint32_t value) { symbol_index_ = value; }
@@ -48,7 +49,7 @@ std::size_t QuoteMessage::decode(const std::byte* data, std::size_t length) {
     std::size_t offset = 0;
     wire::require("QuoteMessage", wire_size, length);
 
-    source_time_ns_ = wire::read_u32_le(data + offset);
+    source_time_ns_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     symbol_index_ = wire::read_u32_le(data + offset);
@@ -85,7 +86,7 @@ std::size_t QuoteMessage::encode(std::byte* data, std::size_t capacity) const {
     std::size_t offset = 0;
     wire::require_capacity("QuoteMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_.count()));
     offset += 4;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(symbol_index_));
@@ -133,7 +134,7 @@ std::unique_ptr<Message> QuoteMessage::clone() const {
 void QuoteMessage::print(std::ostream& out) const {
     out << "QuoteMessage{";
     out << "source_time_ns=";
-    out << source_time_ns_;
+    out << source_time_ns_.count();
     out << ", symbol_index=";
     out << symbol_index_;
     out << ", symbol_seq_num=";

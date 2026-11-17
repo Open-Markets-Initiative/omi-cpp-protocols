@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.5: enums/OpenCloseSettlFlag.hpp
 #pragma once
 
 #include <cstdint>

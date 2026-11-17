@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v3: types/NullTerminatedString.hpp
 #pragma once
 
 // Shared null-terminated, runtime-bounded string parser.

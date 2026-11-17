@@ -1,3 +1,4 @@
+// Nasdaq.IseOptions.TopComboQuoteFeed.Itch.v1.0: enums/StrategyType.hpp
 #pragma once
 
 #include <cstdint>

@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v1: types/AuctionStatus.hpp
 #pragma once
 
 #include <cstddef>

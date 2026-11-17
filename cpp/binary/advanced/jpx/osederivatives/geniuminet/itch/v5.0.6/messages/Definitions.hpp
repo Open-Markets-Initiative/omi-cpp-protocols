@@ -1,3 +1,4 @@
+// Jpx.OseDerivatives.GeniumInet.Itch.v5.0.6: messages/Definitions.hpp
 #pragma once
 
 #include "../structs/PacketHeader.hpp"

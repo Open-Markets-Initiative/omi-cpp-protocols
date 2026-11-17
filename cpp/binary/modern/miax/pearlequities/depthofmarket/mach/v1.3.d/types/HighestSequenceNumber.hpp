@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: types/HighestSequenceNumber.hpp
 #pragma once
 
 #include <cstddef>
@@ -5,7 +6,7 @@
 
 namespace miax::pearlequities::depthofmarket::mach::v1_3_d {
 
-// the highest sequence number that the server currently has for the client
+// The highest sequence number the server currently has for the client from the Matching Engine
 struct HighestSequenceNumber {
 
     static constexpr const char* name = "Highest Sequence Number";

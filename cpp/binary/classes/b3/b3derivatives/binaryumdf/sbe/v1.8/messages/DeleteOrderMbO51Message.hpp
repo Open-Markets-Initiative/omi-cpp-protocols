@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.8: messages/DeleteOrderMbO51Message.hpp
 #pragma once
 
 #include <array>
@@ -26,7 +27,7 @@ class DeleteOrderMbO51Message : public Message {
     static constexpr std::size_t wire_size = 44;
 
     DeleteOrderMbO51Message() = default;
-    DeleteOrderMbO51Message(std::uint64_t security_id, const MatchEventIndicator& match_event_indicator, const std::array<std::byte, 1>& offset_9_padding_1, MdEntryType md_entry_type, const std::array<std::byte, 1>& offset_11_padding_1, std::uint32_t md_entry_position_no, std::optional<std::int64_t> md_entry_size_quantity_optional, std::uint64_t secondary_order_id, std::optional<std::chrono::nanoseconds> md_entry_timestamp, std::optional<std::uint32_t> rpt_seq);
+    DeleteOrderMbO51Message(std::uint64_t security_id, const MatchEventIndicator& match_event_indicator, const std::array<std::byte, 1>& offset_9_padding_1, MdEntryType md_entry_type, const std::array<std::byte, 1>& offset_11_padding_1, std::uint32_t md_entry_position_no, std::optional<std::int64_t> md_entry_size_optional, std::uint64_t secondary_order_id, std::optional<std::chrono::nanoseconds> md_entry_timestamp, std::optional<std::uint32_t> rpt_seq);
 
     // Security Id: securityID
     std::uint64_t security_id() const;
@@ -55,9 +56,9 @@ class DeleteOrderMbO51Message : public Message {
     std::uint32_t md_entry_position_no() const;
     void set_md_entry_position_no(std::uint32_t value);
 
-    // Md Entry Size Quantity Optional: mDEntrySize
-    std::optional<std::int64_t> md_entry_size_quantity_optional() const;
-    void set_md_entry_size_quantity_optional(std::optional<std::int64_t> value);
+    // Md Entry Size Optional: mDEntrySize
+    std::optional<std::int64_t> md_entry_size_optional() const;
+    void set_md_entry_size_optional(std::optional<std::int64_t> value);
 
     // Secondary Order Id: secondaryOrderID
     std::uint64_t secondary_order_id() const;
@@ -92,7 +93,7 @@ class DeleteOrderMbO51Message : public Message {
     MdEntryType md_entry_type_{};
     std::array<std::byte, 1> offset_11_padding_1_{};
     std::uint32_t md_entry_position_no_{};
-    std::optional<std::int64_t> md_entry_size_quantity_optional_{};
+    std::optional<std::int64_t> md_entry_size_optional_{};
     std::uint64_t secondary_order_id_{};
     std::optional<std::chrono::nanoseconds> md_entry_timestamp_{};
     std::optional<std::uint32_t> rpt_seq_{};

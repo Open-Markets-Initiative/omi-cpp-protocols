@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.10: definitions.hpp
 #pragma once
 
 #include "structs/Packet.hpp"
@@ -28,10 +29,10 @@
 #include "structs/FractionalConsolidatedData.hpp"
 #include "structs/FractionalParticipantData.hpp"
 
-#include "messages/StartOfEndOfDayMessage.hpp"
-#include "messages/EndOfEndOfDayMessage.hpp"
-#include "messages/StartOfStartOfDayMessage.hpp"
-#include "messages/EndOfStartOfDayMessage.hpp"
+#include "messages/StartOfEndOfDaySummaryMessage.hpp"
+#include "messages/EndOfEndOfDaySummaryMessage.hpp"
+#include "messages/StartOfStartOfDaySummaryMessage.hpp"
+#include "messages/EndOfStartOfDaySummaryMessage.hpp"
 #include "messages/StartOfDayMessage.hpp"
 #include "messages/ResetBlockSequenceNumberMessage.hpp"
 #include "messages/DisasterRecoveryDataCenterActivationMessage.hpp"

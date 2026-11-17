@@ -1,3 +1,4 @@
+// Asx.AsxDerivatives.Ntp.Itch.v1.05: types/MessageType.hpp
 #pragma once
 
 #include <cstddef>

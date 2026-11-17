@@ -1,3 +1,4 @@
+// Asx.AsxDerivatives.Ntp.Itch.v1.05: Settings.hpp
 #pragma once
 
 #include <iostream>

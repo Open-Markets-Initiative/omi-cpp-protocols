@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2026: main.cpp
 #include "Settings.hpp"
 
 int main(const int argc, char** argv) {

@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.13: types/SettlCurrency.hpp
 #pragma once
 
 #include <cstddef>

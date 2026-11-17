@@ -1,3 +1,4 @@
+// Jpx.TseEquities.MarketByOrder.Flex.v1.1: messages/ResetMessage.hpp
 #pragma once
 
 #include "../types/ResetStartEndFlag.hpp"

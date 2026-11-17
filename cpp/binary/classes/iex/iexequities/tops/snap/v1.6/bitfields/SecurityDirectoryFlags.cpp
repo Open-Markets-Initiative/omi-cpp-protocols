@@ -1,3 +1,4 @@
+// Iex.IexEquities.Tops.Snap.v1.6: bitfields/SecurityDirectoryFlags.cpp
 #include "SecurityDirectoryFlags.hpp"
 
 #include "../common/Print.hpp"

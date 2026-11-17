@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.3: bitfields/MatchEventIndicator.hpp
 #pragma once
 
 #include <cstddef>
@@ -15,22 +16,6 @@ class MatchEventIndicator {
     MatchEventIndicator() = default;
     explicit MatchEventIndicator(std::uint8_t raw);
 
-    // Unused Match Event Indicator 0: Unused MatchEventIndicator 0
-    bool unused_match_event_indicator_0() const;
-    void set_unused_match_event_indicator_0(bool value);
-
-    // Unused Match Event Indicator 1: Unused MatchEventIndicator 1
-    bool unused_match_event_indicator_1() const;
-    void set_unused_match_event_indicator_1(bool value);
-
-    // Unused Match Event Indicator 2: Unused MatchEventIndicator 2
-    bool unused_match_event_indicator_2() const;
-    void set_unused_match_event_indicator_2(bool value);
-
-    // Unused Match Event Indicator 3: Unused MatchEventIndicator 3
-    bool unused_match_event_indicator_3() const;
-    void set_unused_match_event_indicator_3(bool value);
-
     // Implied: Implied
     bool implied() const;
     void set_implied(bool value);
@@ -38,10 +23,6 @@ class MatchEventIndicator {
     // Recovery Msg: RecoveryMsg
     bool recovery_msg() const;
     void set_recovery_msg(bool value);
-
-    // Unused Match Event Indicator 6: Unused MatchEventIndicator 6
-    bool unused_match_event_indicator_6() const;
-    void set_unused_match_event_indicator_6(bool value);
 
     // End Of Event: EndOfEvent
     bool end_of_event() const;

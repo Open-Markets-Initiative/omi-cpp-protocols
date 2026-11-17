@@ -1,3 +1,4 @@
+// Cboe.EdgxOptions.MulticastDepthOfBook.Pitch.v2.41.80: Settings.hpp
 #pragma once
 
 #include <iostream>

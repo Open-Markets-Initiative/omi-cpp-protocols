@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.2: TypesAll.hpp
 #pragma once
 
 // All type headers for this protocol schema
@@ -112,7 +113,7 @@
 #include "types/NetChgPrevDay.hpp"
 #include "types/Padding2.hpp"
 #include "types/MdCorporateOffsetPriceOptional.hpp"
-#include "types/MdEntrySizeQuantityOptional.hpp"
+#include "types/MdEntrySizeOptional.hpp"
 #include "types/Offset10Padding2.hpp"
 #include "types/MdCorporatePrice.hpp"
 #include "types/LastTradeDate.hpp"
@@ -126,7 +127,7 @@
 #include "types/HighLimitPrice.hpp"
 #include "types/TradingReferencePrice.hpp"
 #include "types/TradeCondition.hpp"
-#include "types/MdEntrySizeQuantity.hpp"
+#include "types/MdEntrySize.hpp"
 #include "types/TradeId.hpp"
 #include "types/MdEntryBuyer.hpp"
 #include "types/MdEntrySeller.hpp"

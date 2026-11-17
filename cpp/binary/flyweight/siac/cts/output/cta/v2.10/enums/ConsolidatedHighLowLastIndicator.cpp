@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.10: enums/ConsolidatedHighLowLastIndicator.cpp
 #include "ConsolidatedHighLowLastIndicator.hpp"
 
 namespace siac::cts::output::cta::v2_10 {

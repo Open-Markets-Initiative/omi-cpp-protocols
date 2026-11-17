@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeedRefresh.Pillar.v2.5.g: definitions.hpp
 #pragma once
 
 #include "structs/PacketHeader.hpp"

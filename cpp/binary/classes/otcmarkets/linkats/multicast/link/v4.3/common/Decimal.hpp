@@ -1,3 +1,4 @@
+// OtcMarkets.LinkAts.Multicast.Link.v4.3: common/Decimal.hpp
 #pragma once
 
 #include <cmath>

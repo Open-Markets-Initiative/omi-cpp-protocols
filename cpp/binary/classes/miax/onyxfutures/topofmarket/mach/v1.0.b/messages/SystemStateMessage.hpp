@@ -1,3 +1,4 @@
+// Miax.OnyxFutures.TopOfMarket.Mach.v1.0.b: messages/SystemStateMessage.hpp
 #pragma once
 
 #include <chrono>

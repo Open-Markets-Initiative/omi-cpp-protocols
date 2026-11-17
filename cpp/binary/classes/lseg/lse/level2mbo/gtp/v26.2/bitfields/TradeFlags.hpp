@@ -1,3 +1,4 @@
+// Lseg.Lse.Level2Mbo.Gtp.v26.2: bitfields/TradeFlags.hpp
 #pragma once
 
 #include <cstddef>

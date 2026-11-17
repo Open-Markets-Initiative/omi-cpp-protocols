@@ -1,33 +1,18 @@
+// Cme.Globex.Mdp3.Sbe.v1.8: messages/SubscriberHeartbeat.hpp
 #pragma once
 
-#include <cstddef>
-#include "../structs/MessageHeader.hpp"
+#include <cstdint>
 
 namespace cme::mdp3::v8 {
-
-namespace sbe_mdp3 = ::cme::mdp3::v8;
-
-#pragma pack(push, 1)
 
 // Subscriber Heartbeat
 struct subscriber_heartbeat {
 
-    sbe_mdp3::message_header header = {std::uint16_t(sizeof(sbe_mdp3::message_header)), {{}, template_id::enum_type::subscriber_heartbeat, schema_id::enum_type::mdpsessionmgmt, version(8)}};
+    static constexpr auto name = "Subscriber Heartbeat";
 
-    // parse method
-    static subscriber_heartbeat* parse(std::byte* buffer) {
-        return reinterpret_cast<subscriber_heartbeat*>(buffer);
-    }
-
-    // parse method const
-    static const subscriber_heartbeat* parse(const std::byte* buffer) {
-        return reinterpret_cast<const subscriber_heartbeat*>(buffer);
-    }
-
+    // selected when template_id == 210
+    static constexpr auto field = "template_id";
+    static constexpr std::uint16_t value = 210;
 };
 
-// layout verification
-static_assert(sizeof(subscriber_heartbeat) == sizeof(sbe_mdp3::message_header) + 0, "unexpected sizeof subscriber_heartbeat");
-
-#pragma pack(pop)
 }

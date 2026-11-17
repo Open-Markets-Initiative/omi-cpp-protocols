@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.2: messages/OrderMbO50Message.cpp
 #include "OrderMbO50Message.hpp"
 
 #include "../common/Print.hpp"
@@ -6,8 +7,8 @@
 
 namespace b3::b3derivatives::binaryumdf::sbe::v2_2 {
 
-OrderMbO50Message::OrderMbO50Message(std::uint64_t security_id, const MatchEventIndicator& match_event_indicator, MdUpdateAction md_update_action, MdEntryType md_entry_type, const std::array<std::byte, 1>& offset_11_padding_1, std::optional<Decimal> md_corporate_offset_price_optional, std::int64_t md_entry_size_quantity, const std::array<std::byte, 4>& offset_28_padding_4, std::optional<std::uint32_t> entering_firm, std::optional<std::chrono::nanoseconds> md_insert_timestamp, std::uint64_t secondary_order_id, std::optional<std::uint32_t> rpt_seq, std::optional<std::uint64_t> transact_time, std::optional<std::int64_t> md_entry_prev_size)
-  : security_id_(security_id), match_event_indicator_(match_event_indicator), md_update_action_(md_update_action), md_entry_type_(md_entry_type), offset_11_padding_1_(offset_11_padding_1), md_corporate_offset_price_optional_(md_corporate_offset_price_optional), md_entry_size_quantity_(md_entry_size_quantity), offset_28_padding_4_(offset_28_padding_4), entering_firm_(entering_firm), md_insert_timestamp_(md_insert_timestamp), secondary_order_id_(secondary_order_id), rpt_seq_(rpt_seq), transact_time_(transact_time), md_entry_prev_size_(md_entry_prev_size) {}
+OrderMbO50Message::OrderMbO50Message(std::uint64_t security_id, const MatchEventIndicator& match_event_indicator, MdUpdateAction md_update_action, MdEntryType md_entry_type, const std::array<std::byte, 1>& offset_11_padding_1, std::optional<Decimal> md_corporate_offset_price_optional, std::int64_t md_entry_size, const std::array<std::byte, 4>& offset_28_padding_4, std::optional<std::uint32_t> entering_firm, std::optional<std::chrono::nanoseconds> md_insert_timestamp, std::uint64_t secondary_order_id, std::optional<std::uint32_t> rpt_seq, std::optional<std::chrono::nanoseconds> transact_time, std::optional<std::int64_t> md_entry_prev_size)
+  : security_id_(security_id), match_event_indicator_(match_event_indicator), md_update_action_(md_update_action), md_entry_type_(md_entry_type), offset_11_padding_1_(offset_11_padding_1), md_corporate_offset_price_optional_(md_corporate_offset_price_optional), md_entry_size_(md_entry_size), offset_28_padding_4_(offset_28_padding_4), entering_firm_(entering_firm), md_insert_timestamp_(md_insert_timestamp), secondary_order_id_(secondary_order_id), rpt_seq_(rpt_seq), transact_time_(transact_time), md_entry_prev_size_(md_entry_prev_size) {}
 
 std::uint64_t OrderMbO50Message::security_id() const { return security_id_; }
 void OrderMbO50Message::set_security_id(std::uint64_t value) { security_id_ = value; }
@@ -29,8 +30,8 @@ void OrderMbO50Message::set_offset_11_padding_1(const std::array<std::byte, 1>& 
 std::optional<Decimal> OrderMbO50Message::md_corporate_offset_price_optional() const { return md_corporate_offset_price_optional_; }
 void OrderMbO50Message::set_md_corporate_offset_price_optional(std::optional<Decimal> value) { md_corporate_offset_price_optional_ = value; }
 
-std::int64_t OrderMbO50Message::md_entry_size_quantity() const { return md_entry_size_quantity_; }
-void OrderMbO50Message::set_md_entry_size_quantity(std::int64_t value) { md_entry_size_quantity_ = value; }
+std::int64_t OrderMbO50Message::md_entry_size() const { return md_entry_size_; }
+void OrderMbO50Message::set_md_entry_size(std::int64_t value) { md_entry_size_ = value; }
 
 const std::array<std::byte, 4>& OrderMbO50Message::offset_28_padding_4() const { return offset_28_padding_4_; }
 std::array<std::byte, 4>& OrderMbO50Message::offset_28_padding_4() { return offset_28_padding_4_; }
@@ -48,8 +49,8 @@ void OrderMbO50Message::set_secondary_order_id(std::uint64_t value) { secondary_
 std::optional<std::uint32_t> OrderMbO50Message::rpt_seq() const { return rpt_seq_; }
 void OrderMbO50Message::set_rpt_seq(std::optional<std::uint32_t> value) { rpt_seq_ = value; }
 
-std::optional<std::uint64_t> OrderMbO50Message::transact_time() const { return transact_time_; }
-void OrderMbO50Message::set_transact_time(std::optional<std::uint64_t> value) { transact_time_ = value; }
+std::optional<std::chrono::nanoseconds> OrderMbO50Message::transact_time() const { return transact_time_; }
+void OrderMbO50Message::set_transact_time(std::optional<std::chrono::nanoseconds> value) { transact_time_ = value; }
 
 std::optional<std::int64_t> OrderMbO50Message::md_entry_prev_size() const { return md_entry_prev_size_; }
 void OrderMbO50Message::set_md_entry_prev_size(std::optional<std::int64_t> value) { md_entry_prev_size_ = value; }
@@ -79,7 +80,7 @@ std::size_t OrderMbO50Message::decode(const std::byte* data, std::size_t length)
     md_corporate_offset_price_optional_ = wire::nullable_decimal(wire::read_i64_le(data + offset), static_cast<std::int64_t>(-9223372036854775807LL - 1), -4);
     offset += 8;
 
-    md_entry_size_quantity_ = wire::read_i64_le(data + offset);
+    md_entry_size_ = wire::read_i64_le(data + offset);
     offset += 8;
 
     wire::read_bytes(data + offset, offset_28_padding_4_.data(), 4);
@@ -97,7 +98,7 @@ std::size_t OrderMbO50Message::decode(const std::byte* data, std::size_t length)
     rpt_seq_ = wire::nullable(wire::read_u32_le(data + offset), static_cast<std::uint32_t>(0ULL));
     offset += 4;
 
-    transact_time_ = wire::nullable(wire::read_u64_le(data + offset), static_cast<std::uint64_t>(0ULL));
+    transact_time_ = wire::nullable_duration<std::chrono::nanoseconds>(wire::read_u64_le(data + offset), static_cast<std::uint64_t>(0ULL));
     offset += 8;
 
     md_entry_prev_size_ = wire::nullable(wire::read_i64_le(data + offset), static_cast<std::int64_t>(-9223372036854775807LL - 1));
@@ -127,7 +128,7 @@ std::size_t OrderMbO50Message::encode(std::byte* data, std::size_t capacity) con
     wire::write_i64_le(data + offset, md_corporate_offset_price_optional_ ? static_cast<std::int64_t>(md_corporate_offset_price_optional_->mantissa()) : static_cast<std::int64_t>(-9223372036854775807LL - 1));
     offset += 8;
 
-    wire::write_i64_le(data + offset, static_cast<std::int64_t>(md_entry_size_quantity_));
+    wire::write_i64_le(data + offset, static_cast<std::int64_t>(md_entry_size_));
     offset += 8;
 
     wire::write_bytes(data + offset, offset_28_padding_4_.data(), 4);
@@ -145,7 +146,7 @@ std::size_t OrderMbO50Message::encode(std::byte* data, std::size_t capacity) con
     wire::write_u32_le(data + offset, rpt_seq_.value_or(static_cast<std::uint32_t>(0ULL)));
     offset += 4;
 
-    wire::write_u64_le(data + offset, transact_time_.value_or(static_cast<std::uint64_t>(0ULL)));
+    wire::write_u64_le(data + offset, transact_time_ ? static_cast<std::uint64_t>(transact_time_->count()) : static_cast<std::uint64_t>(0ULL));
     offset += 8;
 
     wire::write_i64_le(data + offset, md_entry_prev_size_.value_or(static_cast<std::int64_t>(-9223372036854775807LL - 1)));
@@ -180,8 +181,8 @@ void OrderMbO50Message::print(std::ostream& out) const {
     print::hex(out, offset_11_padding_1_.data(), offset_11_padding_1_.size());
     out << ", md_corporate_offset_price_optional=";
     print::optional(out, md_corporate_offset_price_optional_);
-    out << ", md_entry_size_quantity=";
-    out << md_entry_size_quantity_;
+    out << ", md_entry_size=";
+    out << md_entry_size_;
     out << ", offset_28_padding_4=";
     print::hex(out, offset_28_padding_4_.data(), offset_28_padding_4_.size());
     out << ", entering_firm=";
@@ -193,7 +194,7 @@ void OrderMbO50Message::print(std::ostream& out) const {
     out << ", rpt_seq=";
     print::optional(out, rpt_seq_);
     out << ", transact_time=";
-    print::optional(out, transact_time_);
+    print::optional_duration(out, transact_time_);
     out << ", md_entry_prev_size=";
     print::optional(out, md_entry_prev_size_);
     out << '}';
@@ -211,7 +212,7 @@ bool OrderMbO50Message::operator==(const OrderMbO50Message& other) const {
         && md_entry_type_ == other.md_entry_type_
         && offset_11_padding_1_ == other.offset_11_padding_1_
         && md_corporate_offset_price_optional_ == other.md_corporate_offset_price_optional_
-        && md_entry_size_quantity_ == other.md_entry_size_quantity_
+        && md_entry_size_ == other.md_entry_size_
         && offset_28_padding_4_ == other.offset_28_padding_4_
         && entering_firm_ == other.entering_firm_
         && md_insert_timestamp_ == other.md_insert_timestamp_

@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v1.91: messages/LongTradeMessage.cpp
 #include "LongTradeMessage.hpp"
 
 #include "../common/Print.hpp"

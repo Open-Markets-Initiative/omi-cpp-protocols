@@ -1,3 +1,4 @@
+// Iex.IexEquities.Tops.Snap.v1.6: enums/Detail.cpp
 #include "Detail.hpp"
 
 namespace iex::iexequities::tops::snap::v1_6 {

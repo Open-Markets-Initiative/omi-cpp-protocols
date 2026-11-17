@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.9: messages/dispatch.hpp
 #pragma once
 
 #include <cstdint>
@@ -17,20 +18,20 @@ template<typename Handler>
 void dispatch(Handler& handler, const std::byte* buffer, std::size_t length, std::uint64_t packet_receive_time, const block_header& transport) {
     (void)length;
 
-    switch (start_of_end_of_day_message::parse(buffer)->message_category.get().value()) {
+    switch (start_of_end_of_day_summary_message::parse(buffer)->message_category.get().value()) {
         case message_category::enum_type::administrative: {
-            switch (start_of_end_of_day_message::parse(buffer)->administrative_message_type.get().value()) {
-                case administrative_message_type::enum_type::start_of_end_of_day_message:
-                    handler.on_message(*start_of_end_of_day_message::parse(buffer), packet_receive_time, transport);
+            switch (start_of_end_of_day_summary_message::parse(buffer)->administrative_message_type.get().value()) {
+                case administrative_message_type::enum_type::start_of_end_of_day_summary_message:
+                    handler.on_message(*start_of_end_of_day_summary_message::parse(buffer), packet_receive_time, transport);
                     break;
-                case administrative_message_type::enum_type::end_of_end_of_day_message:
-                    handler.on_message(*end_of_end_of_day_message::parse(buffer), packet_receive_time, transport);
+                case administrative_message_type::enum_type::end_of_end_of_day_summary_message:
+                    handler.on_message(*end_of_end_of_day_summary_message::parse(buffer), packet_receive_time, transport);
                     break;
-                case administrative_message_type::enum_type::start_of_start_of_day_message:
-                    handler.on_message(*start_of_start_of_day_message::parse(buffer), packet_receive_time, transport);
+                case administrative_message_type::enum_type::start_of_start_of_day_summary_message:
+                    handler.on_message(*start_of_start_of_day_summary_message::parse(buffer), packet_receive_time, transport);
                     break;
-                case administrative_message_type::enum_type::end_of_start_of_day_message:
-                    handler.on_message(*end_of_start_of_day_message::parse(buffer), packet_receive_time, transport);
+                case administrative_message_type::enum_type::end_of_start_of_day_summary_message:
+                    handler.on_message(*end_of_start_of_day_summary_message::parse(buffer), packet_receive_time, transport);
                     break;
                 default:
                     // Unknown Administrative Message Type

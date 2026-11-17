@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: structs/OutboundBusinessHeader.hpp
 #pragma once
 
 #include <chrono>
@@ -15,7 +16,7 @@ class OutboundBusinessHeader {
     static constexpr std::size_t wire_size = 18;
 
     OutboundBusinessHeader() = default;
-    OutboundBusinessHeader(std::uint32_t session_id, std::uint32_t msg_seq_num, std::optional<std::chrono::nanoseconds> sending_time, std::uint8_t event_indicator, std::uint8_t market_segment_id_optional);
+    OutboundBusinessHeader(std::uint32_t session_id, std::uint32_t msg_seq_num, std::optional<std::chrono::nanoseconds> sending_time, std::uint8_t event_indicator, std::optional<std::uint8_t> market_segment_id_optional);
 
     // Session Id: sessionID
     std::uint32_t session_id() const;
@@ -34,8 +35,8 @@ class OutboundBusinessHeader {
     void set_event_indicator(std::uint8_t value);
 
     // Market Segment Id Optional: marketSegmentID
-    std::uint8_t market_segment_id_optional() const;
-    void set_market_segment_id_optional(std::uint8_t value);
+    std::optional<std::uint8_t> market_segment_id_optional() const;
+    void set_market_segment_id_optional(std::optional<std::uint8_t> value);
 
     // Read this from the bytes at data, and return how many were consumed; throws DecodeError when too few
     std::size_t decode(const std::byte* data, std::size_t length);
@@ -53,7 +54,7 @@ class OutboundBusinessHeader {
     std::uint32_t msg_seq_num_{};
     std::optional<std::chrono::nanoseconds> sending_time_{};
     std::uint8_t event_indicator_{};
-    std::uint8_t market_segment_id_optional_{};
+    std::optional<std::uint8_t> market_segment_id_optional_{};
 };
 
 std::ostream& operator<<(std::ostream& out, const OutboundBusinessHeader& value);

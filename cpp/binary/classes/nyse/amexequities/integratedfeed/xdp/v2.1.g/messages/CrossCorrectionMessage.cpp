@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeed.Xdp.v2.1.g: messages/CrossCorrectionMessage.cpp
 #include "CrossCorrectionMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,11 +7,11 @@
 
 namespace nyse::amexequities::integratedfeed::xdp::v2_1_g {
 
-CrossCorrectionMessage::CrossCorrectionMessage(std::uint32_t source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, std::uint32_t cross_id, std::uint32_t volume)
+CrossCorrectionMessage::CrossCorrectionMessage(std::chrono::nanoseconds source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, std::uint32_t cross_id, std::uint32_t volume)
   : source_time_ns_(source_time_ns), symbol_index_(symbol_index), symbol_seq_num_(symbol_seq_num), cross_id_(cross_id), volume_(volume) {}
 
-std::uint32_t CrossCorrectionMessage::source_time_ns() const { return source_time_ns_; }
-void CrossCorrectionMessage::set_source_time_ns(std::uint32_t value) { source_time_ns_ = value; }
+std::chrono::nanoseconds CrossCorrectionMessage::source_time_ns() const { return source_time_ns_; }
+void CrossCorrectionMessage::set_source_time_ns(std::chrono::nanoseconds value) { source_time_ns_ = value; }
 
 std::uint32_t CrossCorrectionMessage::symbol_index() const { return symbol_index_; }
 void CrossCorrectionMessage::set_symbol_index(std::uint32_t value) { symbol_index_ = value; }
@@ -32,7 +33,7 @@ std::size_t CrossCorrectionMessage::decode(const std::byte* data, std::size_t le
     std::size_t offset = 0;
     wire::require("CrossCorrectionMessage", wire_size, length);
 
-    source_time_ns_ = wire::read_u32_le(data + offset);
+    source_time_ns_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     symbol_index_ = wire::read_u32_le(data + offset);
@@ -54,7 +55,7 @@ std::size_t CrossCorrectionMessage::encode(std::byte* data, std::size_t capacity
     std::size_t offset = 0;
     wire::require_capacity("CrossCorrectionMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_.count()));
     offset += 4;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(symbol_index_));
@@ -87,7 +88,7 @@ std::unique_ptr<Message> CrossCorrectionMessage::clone() const {
 void CrossCorrectionMessage::print(std::ostream& out) const {
     out << "CrossCorrectionMessage{";
     out << "source_time_ns=";
-    out << source_time_ns_;
+    out << source_time_ns_.count();
     out << ", symbol_index=";
     out << symbol_index_;
     out << ", symbol_seq_num=";

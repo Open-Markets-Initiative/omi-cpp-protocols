@@ -1,3 +1,4 @@
+// Jpx.OseDerivatives.GeniumInet.Itch.v5.0.6: messages/EquilibriumPriceUpdate.cpp
 #include "EquilibriumPriceUpdate.hpp"
 
 #include "../common/Print.hpp"

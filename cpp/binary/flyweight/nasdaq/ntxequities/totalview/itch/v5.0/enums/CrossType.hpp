@@ -1,3 +1,4 @@
+// Nasdaq.NtxEquities.TotalView.Itch.v5.0: enums/CrossType.hpp
 #pragma once
 
 #include <cstdint>

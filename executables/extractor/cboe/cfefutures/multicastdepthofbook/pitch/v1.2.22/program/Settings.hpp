@@ -1,3 +1,4 @@
+// Cboe.CfeFutures.MulticastDepthOfBook.Pitch.v1.2.22: program/Settings.hpp
 #pragma once
 
 #include <filesystem>

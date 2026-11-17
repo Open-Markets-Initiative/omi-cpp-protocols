@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeed.Xdp.v2.1.g: types/UnitOfTrade.hpp
 #pragma once
 
 #include <cstddef>

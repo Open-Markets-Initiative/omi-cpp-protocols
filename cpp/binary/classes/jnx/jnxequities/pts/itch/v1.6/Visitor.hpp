@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.6: Visitor.hpp
 #pragma once
 
 namespace jnx::jnxequities::pts::itch::v1_6 {

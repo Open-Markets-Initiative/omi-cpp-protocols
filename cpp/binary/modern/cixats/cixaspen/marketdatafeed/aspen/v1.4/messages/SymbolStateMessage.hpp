@@ -1,3 +1,4 @@
+// CixAts.CixAspen.MarketDataFeed.Aspen.v1.4: messages/SymbolStateMessage.hpp
 #pragma once
 
 #include "../types/Timestamp.hpp"

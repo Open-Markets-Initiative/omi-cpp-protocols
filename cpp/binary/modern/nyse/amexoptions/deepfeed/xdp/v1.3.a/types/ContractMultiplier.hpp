@@ -1,3 +1,4 @@
+// Nyse.AmexOptions.DeepFeed.Xdp.v1.3.a: types/ContractMultiplier.hpp
 #pragma once
 
 #include <cstddef>

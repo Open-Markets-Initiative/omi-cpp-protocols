@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: Visitor.hpp
 #pragma once
 
 namespace miax::pearlequities::depthofmarket::mach::v1_3_d {
@@ -56,6 +57,7 @@ class SynchronizationComplete;
 class RetransmissionRequest;
 class LogoutRequest;
 class GoodbyePacket;
+class TradingSessionUpdate;
 class TestPacket;
 class UnknownTcpMessage;
 
@@ -73,6 +75,7 @@ class TcpMessageVisitor {
     virtual void visit(const RetransmissionRequest&) {}
     virtual void visit(const LogoutRequest&) {}
     virtual void visit(const GoodbyePacket&) {}
+    virtual void visit(const TradingSessionUpdate&) {}
     virtual void visit(const TestPacket&) {}
     virtual void visit(const UnknownTcpMessage&) {}
 };

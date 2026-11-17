@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: types/TradingSessionSubId.hpp
 #pragma once
 
 #include <cstddef>

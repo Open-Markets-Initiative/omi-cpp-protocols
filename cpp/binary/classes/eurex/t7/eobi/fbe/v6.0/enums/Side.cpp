@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v6.0: enums/Side.cpp
 #include "Side.hpp"
 
 namespace eurex::t7::eobi::fbe::v6_0 {

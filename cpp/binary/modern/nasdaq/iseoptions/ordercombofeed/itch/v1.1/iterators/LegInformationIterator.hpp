@@ -1,3 +1,4 @@
+// Nasdaq.IseOptions.OrderComboFeed.Itch.v1.1: iterators/LegInformationIterator.hpp
 #pragma once
 
 #include "../definitions.hpp"

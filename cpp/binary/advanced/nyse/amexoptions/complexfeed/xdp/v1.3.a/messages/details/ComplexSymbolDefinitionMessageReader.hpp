@@ -1,3 +1,4 @@
+// Nyse.AmexOptions.ComplexFeed.Xdp.v1.3.a: messages/details/ComplexSymbolDefinitionMessageReader.hpp
 #pragma once
 
 #include "ComplexSymbolDefinitionMessageWriter.hpp"

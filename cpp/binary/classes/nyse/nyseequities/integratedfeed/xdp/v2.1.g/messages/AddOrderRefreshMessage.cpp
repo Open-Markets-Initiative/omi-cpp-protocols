@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeed.Xdp.v2.1.g: messages/AddOrderRefreshMessage.cpp
 #include "AddOrderRefreshMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,14 +7,14 @@
 
 namespace nyse::nyseequities::integratedfeed::xdp::v2_1_g {
 
-AddOrderRefreshMessage::AddOrderRefreshMessage(std::uint32_t source_time, std::uint32_t source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, std::uint64_t order_id, std::uint32_t price, std::uint32_t volume, Side side, const std::string& firm_id, std::uint8_t num_parity_splits)
+AddOrderRefreshMessage::AddOrderRefreshMessage(std::chrono::seconds source_time, std::chrono::nanoseconds source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, std::uint64_t order_id, std::uint32_t price, std::uint32_t volume, Side side, const std::string& firm_id, std::uint8_t num_parity_splits)
   : source_time_(source_time), source_time_ns_(source_time_ns), symbol_index_(symbol_index), symbol_seq_num_(symbol_seq_num), order_id_(order_id), price_(price), volume_(volume), side_(side), firm_id_(firm_id), num_parity_splits_(num_parity_splits) {}
 
-std::uint32_t AddOrderRefreshMessage::source_time() const { return source_time_; }
-void AddOrderRefreshMessage::set_source_time(std::uint32_t value) { source_time_ = value; }
+std::chrono::seconds AddOrderRefreshMessage::source_time() const { return source_time_; }
+void AddOrderRefreshMessage::set_source_time(std::chrono::seconds value) { source_time_ = value; }
 
-std::uint32_t AddOrderRefreshMessage::source_time_ns() const { return source_time_ns_; }
-void AddOrderRefreshMessage::set_source_time_ns(std::uint32_t value) { source_time_ns_ = value; }
+std::chrono::nanoseconds AddOrderRefreshMessage::source_time_ns() const { return source_time_ns_; }
+void AddOrderRefreshMessage::set_source_time_ns(std::chrono::nanoseconds value) { source_time_ns_ = value; }
 
 std::uint32_t AddOrderRefreshMessage::symbol_index() const { return symbol_index_; }
 void AddOrderRefreshMessage::set_symbol_index(std::uint32_t value) { symbol_index_ = value; }
@@ -48,10 +49,10 @@ std::size_t AddOrderRefreshMessage::decode(const std::byte* data, std::size_t le
     std::size_t offset = 0;
     wire::require("AddOrderRefreshMessage", wire_size, length);
 
-    source_time_ = wire::read_u32_le(data + offset);
+    source_time_ = std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
-    source_time_ns_ = wire::read_u32_le(data + offset);
+    source_time_ns_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     symbol_index_ = wire::read_u32_le(data + offset);
@@ -85,10 +86,10 @@ std::size_t AddOrderRefreshMessage::encode(std::byte* data, std::size_t capacity
     std::size_t offset = 0;
     wire::require_capacity("AddOrderRefreshMessage", wire_size, capacity);
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_.count()));
     offset += 4;
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_ns_.count()));
     offset += 4;
 
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(symbol_index_));
@@ -133,9 +134,9 @@ std::unique_ptr<Message> AddOrderRefreshMessage::clone() const {
 void AddOrderRefreshMessage::print(std::ostream& out) const {
     out << "AddOrderRefreshMessage{";
     out << "source_time=";
-    out << source_time_;
+    out << source_time_.count();
     out << ", source_time_ns=";
-    out << source_time_ns_;
+    out << source_time_ns_.count();
     out << ", symbol_index=";
     out << symbol_index_;
     out << ", symbol_seq_num=";

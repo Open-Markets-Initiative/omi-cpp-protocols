@@ -2,7 +2,7 @@
 datagram 0
 packet.packetheader.eobiheader.bodylen = 32
 packet.packetheader.eobiheader.templateid = 13004
-packet.packetheader.eobiheader.msgseqnum = 4294967295
+packet.packetheader.eobiheader.msgseqnum = (null)
 packet.packetheader.applseqnum = 6535056
 packet.packetheader.marketsegmentid = 553020
 packet.packetheader.partitionid = 6

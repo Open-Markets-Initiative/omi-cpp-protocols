@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.10: messages/TradeCancelErrorMessage.hpp
 #pragma once
 
 #include <cstddef>

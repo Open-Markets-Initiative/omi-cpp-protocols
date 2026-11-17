@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.9: bitfields/InstAttribValue.hpp
 #pragma once
 
 #include <cstddef>
@@ -71,8 +72,6 @@ class InstAttribValue {
 
     bool variable_cab_eligible() const { return (raw() & static_cast<std::uint32_t>(0x200000)) != 0; }
 
-    std::uint16_t reserved_10() const { return static_cast<std::uint16_t>((raw() & static_cast<std::uint32_t>(0xFFC00000)) >> 22); }
-
     void print(std::ostream& out) const {
         out << "InstAttribValue{";
         out << "electronic_match_eligible=";
@@ -119,8 +118,6 @@ class InstAttribValue {
         out << (triangulation_eligible() ? "true" : "false");
         out << ", variable_cab_eligible=";
         out << (variable_cab_eligible() ? "true" : "false");
-        out << ", reserved_10=";
-        out << static_cast<unsigned long long>(reserved_10());
         out << '}';
     }
 

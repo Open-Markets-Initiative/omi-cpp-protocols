@@ -1,3 +1,4 @@
+// Iex.IexEquities.DeepPlus.Snap.v1.06: enums/Detail.cpp
 #include "Detail.hpp"
 
 namespace iex::iexequities::deepplus::snap::v1_06 {

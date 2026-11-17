@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: messages/QuoteRequestRejectMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -29,7 +30,7 @@ class QuoteRequestRejectMessage : public Message {
     static constexpr MessageCode message_type = TemplateId::QuoteRequestRejectMessage;
 
     QuoteRequestRejectMessage() = default;
-    QuoteRequestRejectMessage(const BidirectionalBusinessHeader& bidirectional_business_header, std::optional<std::uint32_t> quote_request_reject_reason, std::uint64_t security_id, std::uint64_t quote_req_id, std::optional<std::uint64_t> quote_id_optional, std::optional<std::uint32_t> trade_id_optional, std::uint32_t contra_broker, std::chrono::nanoseconds transact_time, const std::string& entering_trader, SettlTypeOptional settl_type_optional, std::optional<Decimal> price_8_optional, std::optional<std::uint64_t> order_qty_optional, const std::string& sender_location, const std::string& executing_trader, std::optional<Decimal> fixed_rate_percentage_8_optional, std::optional<std::uint16_t> days_to_settlement_optional, const SidesGroups& sides_groups, const DeskId& desk_id, const Memo& memo, const Text& text);
+    QuoteRequestRejectMessage(const BidirectionalBusinessHeader& bidirectional_business_header, std::optional<std::uint32_t> quote_request_reject_reason, std::uint64_t security_id, std::uint64_t quote_req_id, std::optional<std::uint64_t> quote_id_optional, std::optional<std::uint32_t> trade_id_optional, std::uint32_t contra_broker, std::chrono::nanoseconds transact_time, const std::string& entering_trader, SettlTypeOptional settl_type_optional, std::optional<Decimal> price_8_optional, std::optional<std::uint64_t> order_qty_optional, const std::string& sender_location, const std::string& executing_trader, std::optional<Decimal> fixed_rate_optional, std::optional<std::uint16_t> days_to_settlement_optional, const SidesGroups& sides_groups, const DeskId& desk_id, const Memo& memo, const Text& text);
 
     // Bidirectional Business Header: BidirectionalBusinessHeader
     const BidirectionalBusinessHeader& bidirectional_business_header() const;
@@ -91,9 +92,9 @@ class QuoteRequestRejectMessage : public Message {
     std::string& executing_trader();
     void set_executing_trader(const std::string& value);
 
-    // Fixed Rate Percentage 8 Optional: fixedRate
-    std::optional<Decimal> fixed_rate_percentage_8_optional() const;
-    void set_fixed_rate_percentage_8_optional(std::optional<Decimal> value);
+    // Fixed Rate Optional: fixedRate
+    std::optional<Decimal> fixed_rate_optional() const;
+    void set_fixed_rate_optional(std::optional<Decimal> value);
 
     // Days To Settlement Optional: daysToSettlement
     std::optional<std::uint16_t> days_to_settlement_optional() const;
@@ -148,7 +149,7 @@ class QuoteRequestRejectMessage : public Message {
     std::optional<std::uint64_t> order_qty_optional_{};
     std::string sender_location_{};
     std::string executing_trader_{};
-    std::optional<Decimal> fixed_rate_percentage_8_optional_{};
+    std::optional<Decimal> fixed_rate_optional_{};
     std::optional<std::uint16_t> days_to_settlement_optional_{};
     SidesGroups sides_groups_{};
     DeskId desk_id_{};

@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.Bbo.Pillar.v2.5.b: enums/QuoteCondition.cpp
 #include "QuoteCondition.hpp"
 
 namespace nyse::nyseequities::bbo::pillar::v2_5_b {

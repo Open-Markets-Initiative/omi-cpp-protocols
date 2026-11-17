@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2026: messages/IpoQuotingPeriodUpdate.hpp
 #pragma once
 
 #include <cstddef>

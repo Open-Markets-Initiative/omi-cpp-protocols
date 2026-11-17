@@ -1,3 +1,4 @@
+// Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d: messages/SymbolUpdateMessage.cpp
 #include "SymbolUpdateMessage.hpp"
 
 #include "../common/Print.hpp"

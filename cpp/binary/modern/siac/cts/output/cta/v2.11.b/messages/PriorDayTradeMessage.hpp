@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: messages/PriorDayTradeMessage.hpp
 #pragma once
 
 #include "../types/ParticipantId.hpp"

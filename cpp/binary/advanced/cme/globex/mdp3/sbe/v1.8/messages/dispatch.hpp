@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.8: messages/dispatch.hpp
 #pragma once
 
 #include <cstdint>
@@ -22,9 +23,6 @@ void dispatch(Handler& handler, const std::byte* buffer, std::size_t length, std
             switch (channel_reset::parse(buffer)->header.simple_binary_header.template_id.get().value()) {
                 case template_id::enum_type::channel_reset:
                     handler.on_message(*channel_reset::parse(buffer), packet_receive_time, transport);
-                    break;
-                case template_id::enum_type::admin_heartbeat:
-                    handler.on_message(*admin_heartbeat::parse(buffer), packet_receive_time, transport);
                     break;
                 case template_id::enum_type::admin_login:
                     handler.on_message(*admin_login::parse(buffer), packet_receive_time, transport);
@@ -112,9 +110,6 @@ void dispatch(Handler& handler, const std::byte* buffer, std::size_t length, std
                     break;
                 case template_id::enum_type::security_status_request:
                     handler.on_message(*security_status_request::parse(buffer), packet_receive_time, transport);
-                    break;
-                case template_id::enum_type::subscriber_heartbeat:
-                    handler.on_message(*subscriber_heartbeat::parse(buffer), packet_receive_time, transport);
                     break;
                 default:
                     // none of the messages it carries: the Mdpsessionmgmt Message itself

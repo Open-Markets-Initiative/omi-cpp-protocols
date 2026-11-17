@@ -521,7 +521,6 @@ struct Reader {
 
     void operator()(const protocol::stock_trading_action_message& message) {
         values[entry + ".payload"] = "packet.messages.message.payload.stocktradingactionmessage";
-        if constexpr (requires { message.template get<protocol::reserved>(); }) { values[entry + ".payload.stocktradingactionmessage.reserved"] = canonical::text(canonical::character(message.template get<protocol::reserved>().value()), ' ', false); }
         if constexpr (requires { message.template get<protocol::issue_symbol>(); }) { values[entry + ".payload.stocktradingactionmessage.issuesymbol"] = canonical::text(std::string(message.template get<protocol::issue_symbol>().value()), ' ', false); }
         if constexpr (requires { message.template get<protocol::security_class>(); }) { values[entry + ".payload.stocktradingactionmessage.securityclass"] = canonical::text(canonical::character(message.template get<protocol::security_class>().value()), ' ', false); }
         if constexpr (requires { message.template get<protocol::current_trading_state>(); }) { values[entry + ".payload.stocktradingactionmessage.currenttradingstate"] = canonical::text(canonical::character(message.template get<protocol::current_trading_state>().value()), ' ', false); }

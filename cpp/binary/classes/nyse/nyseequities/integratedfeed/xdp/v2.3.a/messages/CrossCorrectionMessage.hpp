@@ -1,5 +1,7 @@
+// Nyse.NyseEquities.IntegratedFeed.Xdp.v2.3.a: messages/CrossCorrectionMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
@@ -22,11 +24,11 @@ class CrossCorrectionMessage : public Message {
     static constexpr std::size_t wire_size = 20;
 
     CrossCorrectionMessage() = default;
-    CrossCorrectionMessage(std::uint32_t source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, std::uint32_t cross_id, std::uint32_t volume);
+    CrossCorrectionMessage(std::chrono::nanoseconds source_time_ns, std::uint32_t symbol_index, std::uint32_t symbol_seq_num, std::uint32_t cross_id, std::uint32_t volume);
 
     // Source Time Ns: The nanosecond offset from the SourceTime
-    std::uint32_t source_time_ns() const;
-    void set_source_time_ns(std::uint32_t value);
+    std::chrono::nanoseconds source_time_ns() const;
+    void set_source_time_ns(std::chrono::nanoseconds value);
 
     // Symbol Index: The unique ID of this symbol for all products within this market. This ID
     // cannot be used to cross reference a security between markets.
@@ -62,7 +64,7 @@ class CrossCorrectionMessage : public Message {
     bool operator!=(const CrossCorrectionMessage& other) const;
 
   private:
-    std::uint32_t source_time_ns_{};
+    std::chrono::nanoseconds source_time_ns_{};
     std::uint32_t symbol_index_{};
     std::uint32_t symbol_seq_num_{};
     std::uint32_t cross_id_{};

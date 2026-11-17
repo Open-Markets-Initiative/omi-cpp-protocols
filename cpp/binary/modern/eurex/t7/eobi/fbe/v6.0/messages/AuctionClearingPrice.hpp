@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v6.0: messages/AuctionClearingPrice.hpp
 #pragma once
 
 #include "../types/TransactTime.hpp"

@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeed.Xdp.v2.1.g: messages/Definitions.hpp
 #pragma once
 
 #include "../structs/PacketHeader.hpp"

@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: messages/OrderMassActionRequestMessage.hpp
 #pragma once
 
 #include <array>
@@ -30,7 +31,7 @@ class OrderMassActionRequestMessage : public Message {
     static constexpr std::size_t wire_size = 54;
 
     OrderMassActionRequestMessage() = default;
-    OrderMassActionRequestMessage(const InboundBusinessHeader& inbound_business_header, MassActionType mass_action_type, std::optional<MassActionScope> mass_action_scope, std::uint64_t clordid, std::optional<MassCancelRestatementReason> mass_cancel_restatement_reason, std::optional<std::uint8_t> ordtagid, SideOptional side_optional, const std::array<std::byte, 1>& offset_31_padding_1, const std::string& asset, std::optional<std::uint64_t> security_id_optional, const InvestorId& investor_id);
+    OrderMassActionRequestMessage(const InboundBusinessHeader& inbound_business_header, MassActionType mass_action_type, std::optional<MassActionScope> mass_action_scope, std::uint64_t cl_ord_id, std::optional<MassCancelRestatementReason> mass_cancel_restatement_reason, std::optional<std::uint8_t> ordtagid, SideOptional side_optional, const std::array<std::byte, 1>& offset_31_padding_1, const std::string& asset, std::optional<std::uint64_t> security_id_optional, const InvestorId& investor_id);
 
     // Inbound Business Header: InboundBusinessHeader
     const InboundBusinessHeader& inbound_business_header() const;
@@ -45,9 +46,9 @@ class OrderMassActionRequestMessage : public Message {
     std::optional<MassActionScope> mass_action_scope() const;
     void set_mass_action_scope(std::optional<MassActionScope> value);
 
-    // ClOrdId: clOrdID
-    std::uint64_t clordid() const;
-    void set_clordid(std::uint64_t value);
+    // Cl Ord Id: clOrdID
+    std::uint64_t cl_ord_id() const;
+    void set_cl_ord_id(std::uint64_t value);
 
     // Mass Cancel Restatement Reason: execRestatementReason
     std::optional<MassCancelRestatementReason> mass_cancel_restatement_reason() const;
@@ -98,7 +99,7 @@ class OrderMassActionRequestMessage : public Message {
     InboundBusinessHeader inbound_business_header_{};
     MassActionType mass_action_type_{};
     std::optional<MassActionScope> mass_action_scope_{};
-    std::uint64_t clordid_{};
+    std::uint64_t cl_ord_id_{};
     std::optional<MassCancelRestatementReason> mass_cancel_restatement_reason_{};
     std::optional<std::uint8_t> ordtagid_{};
     SideOptional side_optional_{};

@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.TopOfMarket.Mach.v2.5: structs/ApplicationMessage.hpp
 #pragma once
 
 #include "../types/MessageType.hpp"

@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.13: types/WorkupTradingStatus.hpp
 #pragma once
 
 #include <cstddef>

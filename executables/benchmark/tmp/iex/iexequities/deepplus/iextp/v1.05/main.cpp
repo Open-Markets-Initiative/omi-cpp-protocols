@@ -1,3 +1,4 @@
+// Iex.IexEquities.DeepPlus.IexTp.v1.05: main.cpp
 // Iex.IexEquities.DeepPlus.IexTp.v1.05 benchmark, through the Tmp header: every value it reads from every message of the simulated
 // sequence (tests/simulated/iex/iexequities/deepplus/iextp/v1.05.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -408,7 +409,6 @@ struct Reader {
     }
 
     void operator()(const protocol::order_delete_message& message) {
-        if constexpr (requires { message.template get<protocol::reserved_1>(); }) { checksum += bench::digest(message.template get<protocol::reserved_1>().value()); }
         if constexpr (requires { message.template get<protocol::timestamp>(); }) { checksum += bench::digest(message.template get<protocol::timestamp>().value()); }
         if constexpr (requires { message.template get<protocol::symbol>(); }) { checksum += bench::digest(message.template get<protocol::symbol>().value()); }
         if constexpr (requires { message.template get<protocol::order_id_reference>(); }) { checksum += bench::digest(message.template get<protocol::order_id_reference>().value()); }
@@ -440,7 +440,6 @@ struct Reader {
     }
 
     void operator()(const protocol::clear_book_message& message) {
-        if constexpr (requires { message.template get<protocol::reserved_1>(); }) { checksum += bench::digest(message.template get<protocol::reserved_1>().value()); }
         if constexpr (requires { message.template get<protocol::timestamp>(); }) { checksum += bench::digest(message.template get<protocol::timestamp>().value()); }
         if constexpr (requires { message.template get<protocol::symbol>(); }) { checksum += bench::digest(message.template get<protocol::symbol>().value()); }
     }

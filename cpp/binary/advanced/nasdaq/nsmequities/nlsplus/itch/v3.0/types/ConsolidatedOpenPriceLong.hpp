@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: types/ConsolidatedOpenPriceLong.hpp
 #pragma once
 
 #include <cstddef>

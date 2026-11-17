@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: cache/Required.hpp
 #pragma once
 
 #include <string_view>

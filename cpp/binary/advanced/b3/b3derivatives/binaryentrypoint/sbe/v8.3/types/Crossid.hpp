@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: types/CrossId.hpp
 #pragma once
 
 #include <cstddef>
@@ -6,20 +7,20 @@
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_3 {
 
-// crossid
-struct crossid {
+// cross_id
+struct cross_id {
 
-    static constexpr const char* name = "crossid";
+    static constexpr const char* name = "cross_id";
     static constexpr std::size_t size = 8;
     static constexpr bool is_optional = false;
 
     using result_type = required<std::uint64_t>;
     using storage_type = result_type;
 
-    constexpr crossid()
+    constexpr cross_id()
      : value{ 0 } {}
 
-    constexpr crossid(std::uint64_t v)
+    constexpr cross_id(std::uint64_t v)
      : value{ v } {}
 
     [[nodiscard]] constexpr result_type get() const {

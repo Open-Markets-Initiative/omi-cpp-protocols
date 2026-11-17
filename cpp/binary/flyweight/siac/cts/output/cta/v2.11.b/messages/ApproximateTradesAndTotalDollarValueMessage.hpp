@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: messages/ApproximateTradesAndTotalDollarValueMessage.hpp
 #pragma once
 
 #include <cstddef>

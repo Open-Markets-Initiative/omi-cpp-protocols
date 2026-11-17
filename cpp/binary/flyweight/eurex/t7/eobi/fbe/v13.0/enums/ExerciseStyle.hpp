@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v13.0: enums/ExerciseStyle.hpp
 #pragma once
 
 #include <cstdint>

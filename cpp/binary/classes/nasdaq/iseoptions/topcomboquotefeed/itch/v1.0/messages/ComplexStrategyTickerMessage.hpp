@@ -1,3 +1,4 @@
+// Nasdaq.IseOptions.TopComboQuoteFeed.Itch.v1.0: messages/ComplexStrategyTickerMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -24,7 +25,7 @@ class ComplexStrategyTickerMessage : public Message {
     static constexpr std::size_t wire_size = 51;
 
     ComplexStrategyTickerMessage() = default;
-    ComplexStrategyTickerMessage(std::chrono::nanoseconds timestamp, std::uint32_t strategy_id, Decimal last_price, std::uint32_t size, std::uint32_t volume, std::uint64_t high, std::uint64_t low, std::uint64_t first, char trade_condition);
+    ComplexStrategyTickerMessage(std::chrono::nanoseconds timestamp, std::uint32_t strategy_id, Decimal last_price, std::uint32_t size, std::uint32_t volume, Decimal high, Decimal low, Decimal first, char trade_condition);
 
     // Timestamp: The time, expressed as the number of nanoseconds after midnight.
     std::chrono::nanoseconds timestamp() const;
@@ -50,16 +51,16 @@ class ComplexStrategyTickerMessage : public Message {
     void set_volume(std::uint32_t value);
 
     // High: High price for the day.
-    std::uint64_t high() const;
-    void set_high(std::uint64_t value);
+    Decimal high() const;
+    void set_high(Decimal value);
 
     // Low: Low price for the day.
-    std::uint64_t low() const;
-    void set_low(std::uint64_t value);
+    Decimal low() const;
+    void set_low(Decimal value);
 
     // First: Opening price for the day
-    std::uint64_t first() const;
-    void set_first(std::uint64_t value);
+    Decimal first() const;
+    void set_first(Decimal value);
 
     // Trade Condition: Same value as the Trade Condition sent to OPRA for this trade. To
     // obtain a list of Trade Conditions, refer to the NOTES below.
@@ -86,9 +87,9 @@ class ComplexStrategyTickerMessage : public Message {
     Decimal last_price_{ 0, -8 };
     std::uint32_t size_{};
     std::uint32_t volume_{};
-    std::uint64_t high_{};
-    std::uint64_t low_{};
-    std::uint64_t first_{};
+    Decimal high_{ 0, -8 };
+    Decimal low_{ 0, -8 };
+    Decimal first_{ 0, -8 };
     char trade_condition_{};
 };
 

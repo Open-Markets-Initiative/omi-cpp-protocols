@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.TopOfMarket.Mach.v2.5: types/SessionNumber.hpp
 #pragma once
 
 #include <cstddef>
@@ -6,7 +7,7 @@
 namespace miax::miaxoptions::topofmarket::mach::v2_5 {
 
 
-// protocol packet type
+// The Session this packet was generated from
 struct SessionNumber {
 
     static constexpr auto name = "Session Number";

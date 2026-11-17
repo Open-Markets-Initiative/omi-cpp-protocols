@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.ComplexTopOfMarket.Mach.v1.1: structs/CompactOffer.cpp
 #include "CompactOffer.hpp"
 
 #include "../common/Print.hpp"

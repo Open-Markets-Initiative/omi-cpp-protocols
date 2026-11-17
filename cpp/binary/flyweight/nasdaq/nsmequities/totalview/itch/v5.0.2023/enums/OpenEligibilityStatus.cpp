@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2023: enums/OpenEligibilityStatus.cpp
 #include "OpenEligibilityStatus.hpp"
 
 namespace nasdaq::nsmequities::totalview::itch::v5_0_2023 {

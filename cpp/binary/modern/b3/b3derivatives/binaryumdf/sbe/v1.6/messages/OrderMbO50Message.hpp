@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.6: messages/OrderMbO50Message.hpp
 #pragma once
 
 #include "../types/SecurityId.hpp"
@@ -6,7 +7,7 @@
 #include "../types/MdEntryType.hpp"
 #include "../types/Offset11Padding1.hpp"
 #include "../types/MdCorporateOffsetPriceOptional.hpp"
-#include "../types/MdEntrySizeQuantity.hpp"
+#include "../types/MdEntrySize.hpp"
 #include "../types/MdEntryPositionNo.hpp"
 #include "../types/EnteringFirm.hpp"
 #include "../types/MdInsertTimestamp.hpp"
@@ -27,7 +28,7 @@ struct OrderMbO50Message {
     MdEntryType md_entry_type;
     Offset11Padding1 offset_11_padding_1;
     MdCorporateOffsetPriceOptional md_corporate_offset_price_optional;
-    MdEntrySizeQuantity md_entry_size_quantity;
+    MdEntrySize md_entry_size;
     MdEntryPositionNo md_entry_position_no;
     EnteringFirm entering_firm;
     MdInsertTimestamp md_insert_timestamp;

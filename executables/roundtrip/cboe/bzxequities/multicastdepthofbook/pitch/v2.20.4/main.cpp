@@ -1,3 +1,4 @@
+// Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.20.4: main.cpp
 // Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.20.4 write and read: every message built with each field it sets, written
 // into a capture through the Classes encoder, then read back - each field set must read as it was written.
 // 
@@ -247,7 +248,7 @@ std::unique_ptr<protocol::Message> build_TradeBreakMessage() {
 // EndOfSessionMessage built with each field it sets
 std::unique_ptr<protocol::Message> build_EndOfSessionMessage() {
     auto message = std::make_unique<protocol::EndOfSessionMessage>();
-    message->set_timestamp(static_cast<std::uint32_t>(1));
+    message->set_time_offset(std::chrono::nanoseconds{1});
     return message;
 }
 
@@ -267,8 +268,6 @@ std::unique_ptr<protocol::Message> build_TradingStatusMessage() {
     message->set_symbol_long(std::string("CDE"));
     message->set_trading_status(protocol::TradingStatus::Halted);
     message->set_reg_sho_action(protocol::RegShoAction::NoPriceTestInEffect);
-    message->set_reserved_1('F');
-    message->set_second_reserved_1('G');
     return message;
 }
 
@@ -832,8 +831,8 @@ int check_EndOfSessionMessage(const protocol::Message* read) {
     }
 
     int failures = 0;
-    if (!(message->timestamp() == static_cast<std::uint32_t>(1))) {
-        std::printf("FAIL EndOfSessionMessage: timestamp does not read as it was written\n");
+    if (!(message->time_offset() == std::chrono::nanoseconds{1})) {
+        std::printf("FAIL EndOfSessionMessage: time_offset does not read as it was written\n");
         ++failures;
     }
     return failures;
@@ -888,14 +887,6 @@ int check_TradingStatusMessage(const protocol::Message* read) {
     }
     if (!(message->reg_sho_action() == protocol::RegShoAction::NoPriceTestInEffect)) {
         std::printf("FAIL TradingStatusMessage: reg_sho_action does not read as it was written\n");
-        ++failures;
-    }
-    if (!(message->reserved_1() == 'F')) {
-        std::printf("FAIL TradingStatusMessage: reserved_1 does not read as it was written\n");
-        ++failures;
-    }
-    if (!(message->second_reserved_1() == 'G')) {
-        std::printf("FAIL TradingStatusMessage: second_reserved_1 does not read as it was written\n");
         ++failures;
     }
     return failures;

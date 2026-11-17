@@ -1,3 +1,4 @@
+// Cboe.C1Options.MulticastDepthOfBook.Pitch.v2.39.4: Settings.hpp
 #pragma once
 
 #include <iostream>

@@ -155,7 +155,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.tradebreakmessage.executionid"] = canonical::number((*message).execution_id());
         } else if (const auto* message = dynamic_cast<const protocol::EndOfSession*>(each.message())) {
             values[entry + ".payload"] = "packet.messages.message.payload.endofsession";
-            values[entry + ".payload.endofsession.lasttimestamp"] = canonical::number((*message).last_timestamp());
+            values[entry + ".payload.endofsession.timeoffset"] = canonical::number((*message).time_offset());
         } else if (const auto* message = dynamic_cast<const protocol::TradingStatusMessage*>(each.message())) {
             values[entry + ".payload"] = "packet.messages.message.payload.tradingstatusmessage";
             values[entry + ".payload.tradingstatusmessage.timeoffset"] = canonical::number((*message).time_offset());

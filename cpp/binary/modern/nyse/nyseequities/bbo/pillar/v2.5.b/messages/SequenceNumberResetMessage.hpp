@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.Bbo.Pillar.v2.5.b: messages/SequenceNumberResetMessage.hpp
 #pragma once
 
 #include "../types/SourceTime.hpp"

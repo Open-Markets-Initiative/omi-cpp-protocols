@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeed.Xdp.v2.3.a: statistics/Settings.hpp
 #pragma once
 
 #include <string>

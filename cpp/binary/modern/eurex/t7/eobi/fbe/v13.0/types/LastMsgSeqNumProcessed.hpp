@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v13.0: types/LastMsgSeqNumProcessed.hpp
 #pragma once
 
 #include <cstddef>
@@ -5,7 +6,7 @@
 
 namespace eurex::t7::eobi::fbe::v13_0 {
 
-// 
+// Last message sequence number that was processed, regardless of message type
 struct LastMsgSeqNumProcessed {
 
     static constexpr const char* name = "Last Msg Seq Num Processed";

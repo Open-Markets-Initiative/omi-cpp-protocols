@@ -1,3 +1,4 @@
+// Nasdaq.PsxEquities.TotalView.Itch.v5.0: common/Day.hpp
 #pragma once
 
 #include <array>

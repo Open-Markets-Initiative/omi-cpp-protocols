@@ -1,3 +1,4 @@
+// Cboe.EdgxOptions.MulticastDepthOfBook.Pitch.v2.41.80: enums/TradingStatus.cpp
 #include "TradingStatus.hpp"
 
 namespace cboe::edgxoptions::multicastdepthofbook::pitch::v2_41_80 {

@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.Bbo.Pillar.v2.5.b: enums/HaltCondition.cpp
 #include "HaltCondition.hpp"
 
 namespace nyse::nyseequities::bbo::pillar::v2_5_b {

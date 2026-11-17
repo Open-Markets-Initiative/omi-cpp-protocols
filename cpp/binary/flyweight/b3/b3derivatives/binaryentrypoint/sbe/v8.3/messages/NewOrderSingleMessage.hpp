@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: messages/NewOrderSingleMessage.hpp
 #pragma once
 
 #include <cstddef>
@@ -45,7 +46,7 @@ class NewOrderSingleMessage {
 
     MmProtectionReset mm_protection_reset() const { return static_cast<MmProtectionReset>(wire::read_u8(at(19))); }
 
-    std::uint64_t clordid() const { return wire::read_u64_le(at(20)); }
+    std::uint64_t cl_ord_id() const { return wire::read_u64_le(at(20)); }
 
     std::optional<std::uint32_t> account() const { return wire::nullable(wire::read_u32_le(at(28)), static_cast<std::uint32_t>(0ULL)); }
 
@@ -102,8 +103,8 @@ class NewOrderSingleMessage {
         print::optional(out, ordtagid());
         out << ", mm_protection_reset=";
         out << mm_protection_reset();
-        out << ", clordid=";
-        out << clordid();
+        out << ", cl_ord_id=";
+        out << cl_ord_id();
         out << ", account=";
         print::optional(out, account());
         out << ", sender_location=";

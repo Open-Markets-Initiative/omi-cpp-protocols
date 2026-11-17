@@ -1,3 +1,4 @@
+// Cboe.C1Options.MarketDataFeed.Csm.v1.4.2: definitions.hpp
 #pragma once
 
 #include "common/Decimal.hpp"

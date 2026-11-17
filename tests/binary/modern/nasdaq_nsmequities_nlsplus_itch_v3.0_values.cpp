@@ -195,7 +195,6 @@ canonical::Listing read(const packet::Frame& frame) {
         } else if (iterator.message_type == protocol::StockTradingActionMessage::message_type) {
             values[entry + ".payload"] = "packet.messages.message.payload.stocktradingactionmessage";
             [[maybe_unused]] const auto* message = protocol::StockTradingActionMessage::parse(iterator.message);
-            values[entry + ".payload.stocktradingactionmessage.reserved"] = canonical::text(canonical::character(message->reserved.get()), ' ', false);
             values[entry + ".payload.stocktradingactionmessage.issuesymbol"] = canonical::text(std::string(message->issue_symbol.get()), ' ', false);
             values[entry + ".payload.stocktradingactionmessage.securityclass"] = canonical::text(canonical::character(message->security_class.get()), ' ', false);
             values[entry + ".payload.stocktradingactionmessage.currenttradingstate"] = canonical::text(canonical::character(message->current_trading_state.get()), ' ', false);

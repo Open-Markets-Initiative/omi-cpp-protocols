@@ -1,9 +1,9 @@
+// Siac.Cts.Output.Cta.v1.91: messages/IndexMessage.hpp
 #pragma once
 
 #include <cstddef>
-#include "../structs/BlockHeader.hpp"
 #include "../types/ParticipantId.hpp"
-#include "../structs/Timestamp1.hpp"
+#include "../types/Timestamp1Optional.hpp"
 #include "../types/MessageId.hpp"
 #include "../types/TransactionId.hpp"
 #include "../types/ParticipantReferenceNumber.hpp"
@@ -24,7 +24,7 @@ struct index_message {
 
     struct fields_type {
         cta_output::participant_id participant_id;
-        cta_output::timestamp_1 timestamp_1;
+        cta_output::timestamp_1_optional timestamp_1;
         cta_output::message_id message_id;
         cta_output::transaction_id transaction_id;
         cta_output::participant_reference_number participant_reference_number;
@@ -32,7 +32,6 @@ struct index_message {
         cta_output::index_value index_value;
     };
 
-    cta_output::block_header header = {{}, {}, {}, {}, {}, {}, {}, {}};
     // Transport framing: message size precedes the SBE header on the wire
     cta_output::message_length message_length;
     cta_output::message_category message_category = cta_output::message_category::enum_type::indices;
@@ -61,7 +60,7 @@ static_assert(offsetof(index_message::fields_type, participant_reference_number)
 static_assert(offsetof(index_message::fields_type, index_symbol) == 22, "unexpected offset of index_message::fields_type::index_symbol");
 static_assert(offsetof(index_message::fields_type, index_value) == 33, "unexpected offset of index_message::fields_type::index_value");
 static_assert(sizeof(index_message::fields_type) == 41, "unexpected sizeof index_message::fields_type");
-static_assert(sizeof(index_message) == sizeof(cta_output::block_header) + sizeof(cta_output::message_length) + sizeof(cta_output::message_category) + sizeof(cta_output::indices_message_type) + 41, "unexpected sizeof index_message");
+static_assert(sizeof(index_message) == sizeof(cta_output::message_length) + sizeof(cta_output::message_category) + sizeof(cta_output::indices_message_type) + 41, "unexpected sizeof index_message");
 
 #pragma pack(pop)
 }

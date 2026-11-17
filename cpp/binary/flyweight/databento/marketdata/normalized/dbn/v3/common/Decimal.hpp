@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v3: common/Decimal.hpp
 #pragma once
 
 #include <cmath>

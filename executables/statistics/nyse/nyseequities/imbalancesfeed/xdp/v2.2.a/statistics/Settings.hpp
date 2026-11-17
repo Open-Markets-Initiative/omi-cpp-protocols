@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.ImbalancesFeed.Xdp.v2.2.a: statistics/Settings.hpp
 #pragma once
 
 #include <string>

@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: structs/MessageHeader.hpp
 #pragma once
 
 #include "../types/ParticipantId.hpp"

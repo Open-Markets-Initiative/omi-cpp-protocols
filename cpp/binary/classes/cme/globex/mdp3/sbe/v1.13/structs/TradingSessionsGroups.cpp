@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.13: structs/TradingSessionsGroups.cpp
 #include "TradingSessionsGroups.hpp"
 
 #include "../common/Print.hpp"

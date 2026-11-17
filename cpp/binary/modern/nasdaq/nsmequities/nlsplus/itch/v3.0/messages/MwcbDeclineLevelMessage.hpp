@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: messages/MwcbDeclineLevelMessage.hpp
 #pragma once
 
 #include "../types/Level1.hpp"

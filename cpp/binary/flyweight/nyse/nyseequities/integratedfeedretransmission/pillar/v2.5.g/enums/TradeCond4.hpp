@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeedRetransmission.Pillar.v2.5.g: enums/TradeCond4.hpp
 #pragma once
 
 #include <cstdint>

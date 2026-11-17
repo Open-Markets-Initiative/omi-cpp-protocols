@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.10: Visitor.hpp
 #pragma once
 
 namespace siac::cts::output::cta::v2_10 {
@@ -27,10 +28,10 @@ class Visitor {
     virtual void visit(const UnknownMessage&) {}
 };
 
-class StartOfEndOfDayMessage;
-class EndOfEndOfDayMessage;
-class StartOfStartOfDayMessage;
-class EndOfStartOfDayMessage;
+class StartOfEndOfDaySummaryMessage;
+class EndOfEndOfDaySummaryMessage;
+class StartOfStartOfDaySummaryMessage;
+class EndOfStartOfDaySummaryMessage;
 class UnknownAdministrativeMessagePayload;
 
 // What the messages of the Administrative Message Payload dispatch are handed to,
@@ -39,10 +40,10 @@ class AdministrativeMessagePayloadVisitor {
   public:
     virtual ~AdministrativeMessagePayloadVisitor() = default;
 
-    virtual void visit(const StartOfEndOfDayMessage&) {}
-    virtual void visit(const EndOfEndOfDayMessage&) {}
-    virtual void visit(const StartOfStartOfDayMessage&) {}
-    virtual void visit(const EndOfStartOfDayMessage&) {}
+    virtual void visit(const StartOfEndOfDaySummaryMessage&) {}
+    virtual void visit(const EndOfEndOfDaySummaryMessage&) {}
+    virtual void visit(const StartOfStartOfDaySummaryMessage&) {}
+    virtual void visit(const EndOfStartOfDaySummaryMessage&) {}
     virtual void visit(const UnknownAdministrativeMessagePayload&) {}
 };
 

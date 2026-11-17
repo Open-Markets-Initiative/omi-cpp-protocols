@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1: iterators/LegsGroupIterator.hpp
 #pragma once
 
 #include "../definitions.hpp"

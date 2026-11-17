@@ -1,3 +1,4 @@
+// Nasdaq.IseOptions.TopComboQuoteFeed.Itch.v1.0: enums/QuoteCondition.cpp
 #include "QuoteCondition.hpp"
 
 namespace nasdaq::iseoptions::topcomboquotefeed::itch::v1_0 {

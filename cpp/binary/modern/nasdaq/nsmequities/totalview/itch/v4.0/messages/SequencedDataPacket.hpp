@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v4.0: messages/SequencedDataPacket.hpp
 #pragma once
 
 #include "../types/SequencedMessageType.hpp"

@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.9: structs/GroupSize.cpp
 #include "GroupSize.hpp"
 
 #include "../common/Print.hpp"

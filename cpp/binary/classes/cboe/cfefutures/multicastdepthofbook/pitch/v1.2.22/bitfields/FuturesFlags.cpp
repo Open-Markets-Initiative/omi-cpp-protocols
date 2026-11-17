@@ -1,3 +1,4 @@
+// Cboe.CfeFutures.MulticastDepthOfBook.Pitch.v1.2.22: bitfields/FuturesFlags.cpp
 #include "FuturesFlags.hpp"
 
 #include "../common/Print.hpp"

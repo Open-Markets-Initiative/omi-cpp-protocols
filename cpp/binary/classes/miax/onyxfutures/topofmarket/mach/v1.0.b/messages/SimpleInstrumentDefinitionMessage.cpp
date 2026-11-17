@@ -1,3 +1,4 @@
+// Miax.OnyxFutures.TopOfMarket.Mach.v1.0.b: messages/SimpleInstrumentDefinitionMessage.cpp
 #include "SimpleInstrumentDefinitionMessage.hpp"
 
 #include "../common/Print.hpp"

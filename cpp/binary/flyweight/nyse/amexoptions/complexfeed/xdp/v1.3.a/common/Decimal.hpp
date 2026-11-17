@@ -1,3 +1,4 @@
+// Nyse.AmexOptions.ComplexFeed.Xdp.v1.3.a: common/Decimal.hpp
 #pragma once
 
 #include <cmath>

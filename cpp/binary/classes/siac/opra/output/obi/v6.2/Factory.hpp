@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: Factory.hpp
 #pragma once
 
 #include <memory>

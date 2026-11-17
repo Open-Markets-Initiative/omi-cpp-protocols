@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: messages/ExecutionReportNewMessage.hpp
 #pragma once
 
 #include <cstddef>
@@ -7,7 +8,7 @@
 #include "../structs/OutboundBusinessHeader.hpp"
 #include "../types/Side.hpp"
 #include "../types/OrdStatus.hpp"
-#include "../types/Clordid.hpp"
+#include "../types/ClOrdId.hpp"
 #include "../types/SecondaryOrderId.hpp"
 #include "../types/SecurityId.hpp"
 #include "../types/OrderId.hpp"
@@ -27,7 +28,7 @@
 #include "../types/StopPx.hpp"
 #include "../types/MinQty.hpp"
 #include "../types/MaxFloor.hpp"
-#include "../types/CrossidOptional.hpp"
+#include "../types/CrossIdOptional.hpp"
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_0 {
 
@@ -43,7 +44,7 @@ struct execution_report_new_message {
         sbe_binaryentrypoint::outbound_business_header outbound_business_header;
         sbe_binaryentrypoint::side side;
         sbe_binaryentrypoint::ord_status ord_status;
-        sbe_binaryentrypoint::clordid clordid;
+        sbe_binaryentrypoint::cl_ord_id cl_ord_id;
         sbe_binaryentrypoint::secondary_order_id secondary_order_id;
         sbe_binaryentrypoint::security_id security_id;
         sbe_binaryentrypoint::order_id order_id;
@@ -63,7 +64,7 @@ struct execution_report_new_message {
         sbe_binaryentrypoint::stop_px stop_px;
         sbe_binaryentrypoint::min_qty min_qty;
         sbe_binaryentrypoint::max_floor max_floor;
-        sbe_binaryentrypoint::crossid_optional crossid_optional;
+        sbe_binaryentrypoint::cross_id_optional cross_id_optional;
     };
 
     sbe_binaryentrypoint::simple_open_framing_header header = {std::uint16_t(sizeof(sbe_binaryentrypoint::simple_open_framing_header) + sizeof(fields_type) + sizeof(sbe_binaryentrypoint::message_header)), encoding_type(60240)};
@@ -110,7 +111,7 @@ struct execution_report_new_message {
 static_assert(offsetof(execution_report_new_message::fields_type, outbound_business_header) == 0, "unexpected offset of execution_report_new_message::fields_type::outbound_business_header");
 static_assert(offsetof(execution_report_new_message::fields_type, side) == 18, "unexpected offset of execution_report_new_message::fields_type::side");
 static_assert(offsetof(execution_report_new_message::fields_type, ord_status) == 19, "unexpected offset of execution_report_new_message::fields_type::ord_status");
-static_assert(offsetof(execution_report_new_message::fields_type, clordid) == 20, "unexpected offset of execution_report_new_message::fields_type::clordid");
+static_assert(offsetof(execution_report_new_message::fields_type, cl_ord_id) == 20, "unexpected offset of execution_report_new_message::fields_type::cl_ord_id");
 static_assert(offsetof(execution_report_new_message::fields_type, secondary_order_id) == 28, "unexpected offset of execution_report_new_message::fields_type::secondary_order_id");
 static_assert(offsetof(execution_report_new_message::fields_type, security_id) == 36, "unexpected offset of execution_report_new_message::fields_type::security_id");
 static_assert(offsetof(execution_report_new_message::fields_type, order_id) == 44, "unexpected offset of execution_report_new_message::fields_type::order_id");
@@ -130,7 +131,7 @@ static_assert(offsetof(execution_report_new_message::fields_type, price_optional
 static_assert(offsetof(execution_report_new_message::fields_type, stop_px) == 112, "unexpected offset of execution_report_new_message::fields_type::stop_px");
 static_assert(offsetof(execution_report_new_message::fields_type, min_qty) == 120, "unexpected offset of execution_report_new_message::fields_type::min_qty");
 static_assert(offsetof(execution_report_new_message::fields_type, max_floor) == 128, "unexpected offset of execution_report_new_message::fields_type::max_floor");
-static_assert(offsetof(execution_report_new_message::fields_type, crossid_optional) == 136, "unexpected offset of execution_report_new_message::fields_type::crossid_optional");
+static_assert(offsetof(execution_report_new_message::fields_type, cross_id_optional) == 136, "unexpected offset of execution_report_new_message::fields_type::cross_id_optional");
 static_assert(sizeof(execution_report_new_message::fields_type) == 144, "unexpected sizeof execution_report_new_message::fields_type");
 
 #pragma pack(pop)

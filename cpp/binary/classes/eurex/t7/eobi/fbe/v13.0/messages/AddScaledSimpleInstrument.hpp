@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v13.0: messages/AddScaledSimpleInstrument.hpp
 #pragma once
 
 #include <array>
@@ -29,7 +30,7 @@ class AddScaledSimpleInstrument : public Message {
     AddScaledSimpleInstrument() = default;
     AddScaledSimpleInstrument(std::optional<std::int64_t> security_id, std::optional<std::chrono::nanoseconds> transact_time, const std::string& security_desc, std::optional<SecurityType> security_type, const std::array<std::byte, 1>& pad1, std::optional<std::uint16_t> quantity_scaling_factor, const std::array<std::byte, 4>& pad4, const RelatedInstrumentGrpComp& related_instrument_grp_comp);
 
-    // Security Id:
+    // Security Id: Unique instrument identifier
     std::optional<std::int64_t> security_id() const;
     void set_security_id(std::optional<std::int64_t> value);
 

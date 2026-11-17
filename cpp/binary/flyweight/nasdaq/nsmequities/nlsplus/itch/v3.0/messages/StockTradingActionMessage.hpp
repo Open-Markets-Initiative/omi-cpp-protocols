@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: messages/StockTradingActionMessage.hpp
 #pragma once
 
 #include <cstddef>
@@ -30,7 +31,7 @@ class StockTradingActionMessage {
     static constexpr std::size_t fixed_size = 15;
     std::size_t encoded_size() const { return 15; }
 
-    char reserved() const { return wire::read_char(at(0)); }
+    std::span<const std::byte, 1> reserved() const { return bytes_.subspan(0).template first<1>(); }
 
     std::string_view issue_symbol() const { return view::text(at(1), 8, ' '); }
 
@@ -43,7 +44,7 @@ class StockTradingActionMessage {
     void print(std::ostream& out) const {
         out << "StockTradingActionMessage{";
         out << "reserved=";
-        print::character(out, reserved());
+        print::hex(out, reserved().data(), reserved().size());
         out << ", issue_symbol=";
         print::text(out, issue_symbol());
         out << ", security_class=";

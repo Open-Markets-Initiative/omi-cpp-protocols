@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v2: messages/SymbolMappingMsg.hpp
 #pragma once
 
 #include "../types/StypeIn.hpp"

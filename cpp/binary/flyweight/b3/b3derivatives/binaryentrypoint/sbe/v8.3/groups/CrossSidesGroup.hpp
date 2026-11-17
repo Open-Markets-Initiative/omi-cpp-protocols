@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: groups/CrossSidesGroup.hpp
 #pragma once
 
 #include <cstddef>
@@ -36,7 +37,7 @@ class CrossSidesGroup {
 
     std::optional<std::uint32_t> entering_firm_optional() const { return wire::nullable(wire::read_u32_le(at(6)), static_cast<std::uint32_t>(0ULL)); }
 
-    std::uint64_t clordid() const { return wire::read_u64_le(at(10)); }
+    std::uint64_t cl_ord_id() const { return wire::read_u64_le(at(10)); }
 
     std::optional<std::uint32_t> trading_sub_account() const { return wire::nullable(wire::read_u32_le(at(18)), static_cast<std::uint32_t>(0ULL)); }
 
@@ -50,8 +51,8 @@ class CrossSidesGroup {
         print::optional(out, account());
         out << ", entering_firm_optional=";
         print::optional(out, entering_firm_optional());
-        out << ", clordid=";
-        out << clordid();
+        out << ", cl_ord_id=";
+        out << cl_ord_id();
         out << ", trading_sub_account=";
         print::optional(out, trading_sub_account());
         out << '}';

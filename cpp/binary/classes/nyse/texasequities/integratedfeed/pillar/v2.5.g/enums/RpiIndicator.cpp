@@ -1,3 +1,4 @@
+// Nyse.TexasEquities.IntegratedFeed.Pillar.v2.5.g: enums/RpiIndicator.cpp
 #include "RpiIndicator.hpp"
 
 namespace nyse::texasequities::integratedfeed::pillar::v2_5_g {

@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.5: groups/LegacyLegsGroup.hpp
 #pragma once
 
 #include "../types/LegSecurityId.hpp"

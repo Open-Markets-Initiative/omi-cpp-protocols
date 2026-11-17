@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2017: enums/ShortSaleThresholdIndicator.cpp
 #include "ShortSaleThresholdIndicator.hpp"
 
 namespace nasdaq::nsmequities::totalview::itch::v5_0_2017 {

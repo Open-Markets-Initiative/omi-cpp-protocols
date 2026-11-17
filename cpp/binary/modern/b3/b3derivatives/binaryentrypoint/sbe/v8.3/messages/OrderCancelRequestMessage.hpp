@@ -1,8 +1,9 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: messages/OrderCancelRequestMessage.hpp
 #pragma once
 
 #include "../structs/InboundBusinessHeader.hpp"
 #include "../types/Offset18Padding2.hpp"
-#include "../types/Clordid.hpp"
+#include "../types/ClOrdId.hpp"
 #include "../types/SecurityId.hpp"
 #include "../types/OrderIdOptional.hpp"
 #include "../types/Origclordid.hpp"
@@ -22,7 +23,7 @@ struct OrderCancelRequestMessage {
 
     InboundBusinessHeader inbound_business_header;
     Offset18Padding2 offset_18_padding_2;
-    Clordid clordid;
+    ClOrdId cl_ord_id;
     SecurityId security_id;
     OrderIdOptional order_id_optional;
     Origclordid origclordid;

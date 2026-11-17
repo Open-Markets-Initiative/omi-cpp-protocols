@@ -1,3 +1,4 @@
+// Jpx.TseEquities.MarketByOrder.Flex.v1.1: enums/PacketType.hpp
 #pragma once
 
 #include <cstdint>

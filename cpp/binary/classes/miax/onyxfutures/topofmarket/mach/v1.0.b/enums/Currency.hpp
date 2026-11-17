@@ -1,3 +1,4 @@
+// Miax.OnyxFutures.TopOfMarket.Mach.v1.0.b: enums/Currency.hpp
 #pragma once
 
 #include <cstdint>

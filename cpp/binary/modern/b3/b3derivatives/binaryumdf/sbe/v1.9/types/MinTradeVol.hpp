@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.9: types/MinTradeVol.hpp
 #pragma once
 
 #include <cstddef>

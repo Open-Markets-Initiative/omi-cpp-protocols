@@ -1,3 +1,4 @@
+// Iex.IexEquities.Tops.IexTp.v1.66: messages/AuctionInformationMessage.cpp
 #include "AuctionInformationMessage.hpp"
 
 #include "../common/Print.hpp"

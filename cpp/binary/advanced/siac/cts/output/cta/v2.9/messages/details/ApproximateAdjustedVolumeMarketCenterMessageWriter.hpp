@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.9: messages/details/ApproximateAdjustedVolumeMarketCenterMessageWriter.hpp
 #pragma once
 
 #include "../ApproximateAdjustedVolumeMarketCenterMessage.hpp"
@@ -35,7 +36,7 @@ public:
 
     std::span<std::byte> finish() {
         reinterpret_cast<cta_output::approximate_adjusted_volume_market_center_message*>(msg_start_)->fields.number_of_participants.set(count_);
-        reinterpret_cast<cta_output::approximate_adjusted_volume_market_center_message*>(msg_start_)->message_length.set(static_cast<uint16_t>(pos_ - msg_start_ - sizeof(cta_output::block_header)));
+        reinterpret_cast<cta_output::message_length*>(msg_start_)->set(static_cast<uint16_t>(pos_ - msg_start_));
         return { msg_start_, static_cast<size_t>(pos_ - msg_start_) };
     }
 };

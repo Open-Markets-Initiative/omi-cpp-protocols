@@ -1,3 +1,4 @@
+// Memx.MemxEquities.MemoirDepthFeed.Sbe.v1.3: messages/SnapshotCompleteMessage.cpp
 #include "SnapshotCompleteMessage.hpp"
 
 #include "../common/Print.hpp"

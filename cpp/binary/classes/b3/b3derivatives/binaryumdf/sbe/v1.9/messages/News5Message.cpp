@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.9: messages/News5Message.cpp
 #include "News5Message.hpp"
 
 #include "../common/Print.hpp"

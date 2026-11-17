@@ -1,3 +1,4 @@
+// Nyse.NationalEquities.Trades.Pillar.v2.6: definitions.hpp
 #pragma once
 
 // Every flyweight view and reader of Nyse.NationalEquities.Trades.Pillar.v2.6.

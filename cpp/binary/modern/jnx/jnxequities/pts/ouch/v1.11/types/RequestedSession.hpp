@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Ouch.v1.11: types/RequestedSession.hpp
 #pragma once
 
 #include <array>

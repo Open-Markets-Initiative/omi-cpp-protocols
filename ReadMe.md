@@ -26,34 +26,34 @@ Updates are greatly appreciated; however, this entire repository is source gener
 
 | Parser | Protocol Count | Generated Lines |
 | --- | --- | --- |
-| Advanced | 95 | 744,772 |
-| Modern | 99 | 433,521 |
-| Classes | 100 | 1,009,386 |
-| Flyweight | 99 | 470,508 |
-| Tmp | 101 | 250,664 |
-| Delimited | 11 | 4,050 |
+| Advanced | 100 | 785,233 |
+| Modern | 101 | 453,316 |
+| Classes | 100 | 1,021,244 |
+| Flyweight | 100 | 481,043 |
+| Tmp | 101 | 250,163 |
+| Delimited | 11 | 4,076 |
 
 | Organization | Protocol Count | Generated Lines |
 | --- | --- | --- |
-| Asx | 1 | 29,010 |
-| B3 | 10 | 548,850 |
-| Bse | 1 | 21,538 |
-| Cboe | 10 | 192,162 |
-| CixAts | 1 | 11,314 |
-| Cme | 4 | 358,782 |
-| Databento | 3 | 128,113 |
-| Eurex | 4 | 124,647 |
-| Iex | 10 | 145,057 |
-| Jnx | 3 | 54,794 |
-| Jpx | 2 | 32,544 |
-| Lseg | 2 | 37,140 |
-| Memx | 2 | 12,938 |
-| Miax | 4 | 55,372 |
-| Nasdaq | 13 | 387,579 |
-| Nyse | 33 | 478,386 |
-| OtcMarkets | 1 | 13,619 |
-| Siac | 7 | 275,070 |
-| Tmx | 1 | 4,917 |
+| Asx | 1 | 29,461 |
+| B3 | 10 | 554,449 |
+| Bse | 1 | 21,898 |
+| Cboe | 10 | 199,609 |
+| CixAts | 1 | 11,491 |
+| Cme | 4 | 363,084 |
+| Databento | 3 | 129,991 |
+| Eurex | 4 | 126,843 |
+| Iex | 10 | 147,533 |
+| Jnx | 3 | 55,637 |
+| Jpx | 2 | 33,074 |
+| Lseg | 2 | 37,822 |
+| Memx | 2 | 13,154 |
+| Miax | 4 | 81,369 |
+| Nasdaq | 13 | 393,428 |
+| Nyse | 33 | 486,815 |
+| OtcMarkets | 1 | 24,672 |
+| Siac | 7 | 278,666 |
+| Tmx | 1 | 5,006 |
 
 ## Programs
 
@@ -108,9 +108,9 @@ makes it where zlib is found.
 
 ## Tests
 
-`tests/` holds a test per protocol and format (483 of them), each written against the
+`tests/` holds a test per protocol and format (542 of them), each written against the
 surface that format's program uses, plus one run of each program on its protocol's first
-declared capture (306 of them):
+declared capture (314 of them):
 
 - `tests/binary/modern/` walks every payload with the Modern iterator and requires the declared
   message — what extractor reads through
@@ -121,7 +121,7 @@ declared capture (306 of them):
   dump reads through
 - the program runs require dump to print the message's class, statistics to count it,
   extractor to write a sample, and verify to pass the whole capture
-- roundtrip runs without a capture (416 of them): each must read back every
+- roundtrip runs without a capture (495 of them): each must read back every
   message it wrote as it was written
 
 Every build compiles them, so a test that does not build fails the build like anything under
@@ -136,14 +136,6 @@ cmake --build build --parallel && ctest --test-dir build
 A protocol a format's generator refuses is left out of that format, and out of the programs
 and tests that read through it:
 
-- Cboe.C1Options.MarketDataFeed.Csm.v1.4.2, Modern: 'packet.message.payload.securitydefinitionmessage' has no size known before it is read, nor a Size rule stating one
-- Miax.PearlEquities.DepthOfMarket.Mach.v1.3.d, Advanced: 'Heartbeat' is an action the model neither calls a message nor sets in a packet, so it has no place among the messages or the packets
-- Miax.MiaxOptions.TopOfMarket.Mach.v2.5, Advanced: 'Heartbeat' is an action the model neither calls a message nor sets in a packet, so it has no place among the messages or the packets
-- Miax.MiaxOptions.ComplexTopOfMarket.Mach.v1.1, Advanced: 'Heartbeat' is an action the model neither calls a message nor sets in a packet, so it has no place among the messages or the packets
-- Miax.OnyxFutures.TopOfMarket.Mach.v1.0.b, Advanced: 'Heartbeat' is an action the model neither calls a message nor sets in a packet, so it has no place among the messages or the packets
-- Miax.OnyxFutures.TopOfMarket.Mach.v1.0.b, Flyweight: 'packet.machmessage.payload.applicationmessage.data.simpleinstrumentdefinitionmessage.minimumsize' is named minimum_size, which its view declares for itself
-- OtcMarkets.LinkAts.Multicast.Link.v4.3, Advanced: Unrecognized C++ type for element 'Heartbeat' (size=1, addr=packet.packetheader.packetflag.heartbeat). Traits: [Size=1, Memory=Bits]. Add a kind in TypeKind.For(), or a branch in TypeKind.CppType.
-- OtcMarkets.LinkAts.Multicast.Link.v4.3, Modern: Unsupported C++ integer: 'Heartbeat' (1 bytes, signed=False, unsigned=False, isBytes=False)
 - Tmx.Tsx.QuantumFeedLevel2.Xmt.v2.10, Advanced: 'packet.frameheader.numbody' counts a group of 'packet.packetbody.heartbeatbody' but lies outside it
 - Tmx.Tsx.QuantumFeedLevel2.Xmt.v2.10, Classes: the payload branch selecting 'Business Bodies' has no dependency and data; default and composite dispatch keys are not yet supported by the Classes generator
 - Tmx.Tsx.QuantumFeedLevel2.Xmt.v2.10, Flyweight: the payload branch selecting 'Business Bodies' has no dependency and data; default and composite dispatch keys are not yet supported by the Flyweight generator

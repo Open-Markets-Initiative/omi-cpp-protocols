@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.13: iterators/IncrementalRefreshSessionStatisticsLongGroupIterator.hpp
 #pragma once
 
 #include "../definitions.hpp"

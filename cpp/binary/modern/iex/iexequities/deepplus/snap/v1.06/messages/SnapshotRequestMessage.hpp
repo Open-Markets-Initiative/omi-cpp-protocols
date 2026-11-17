@@ -1,3 +1,4 @@
+// Iex.IexEquities.DeepPlus.Snap.v1.06: messages/SnapshotRequestMessage.hpp
 #pragma once
 
 #include "../types/AuthenticationToken.hpp"

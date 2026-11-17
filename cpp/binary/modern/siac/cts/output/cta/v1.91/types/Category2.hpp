@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v1.91: types/Category2.hpp
 #pragma once
 
 #include <cstddef>

@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: messages/MarketWideCircuitBreakerDeclineLevelStatusMessage.hpp
 #pragma once
 
 #include "../types/ParticipantId.hpp"

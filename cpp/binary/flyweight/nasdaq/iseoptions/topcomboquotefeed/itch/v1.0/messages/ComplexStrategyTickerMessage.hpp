@@ -1,3 +1,4 @@
+// Nasdaq.IseOptions.TopComboQuoteFeed.Itch.v1.0: messages/ComplexStrategyTickerMessage.hpp
 #pragma once
 
 #include <chrono>
@@ -40,11 +41,11 @@ class ComplexStrategyTickerMessage {
 
     std::uint32_t volume() const { return wire::read_u32_be(at(22)); }
 
-    std::uint64_t high() const { return wire::read_u64_be(at(26)); }
+    Decimal high() const { return Decimal(static_cast<std::int64_t>(wire::read_i64_be(at(26))), -8); }
 
-    std::uint64_t low() const { return wire::read_u64_be(at(34)); }
+    Decimal low() const { return Decimal(static_cast<std::int64_t>(wire::read_i64_be(at(34))), -8); }
 
-    std::uint64_t first() const { return wire::read_u64_be(at(42)); }
+    Decimal first() const { return Decimal(static_cast<std::int64_t>(wire::read_i64_be(at(42))), -8); }
 
     char trade_condition() const { return wire::read_char(at(50)); }
 

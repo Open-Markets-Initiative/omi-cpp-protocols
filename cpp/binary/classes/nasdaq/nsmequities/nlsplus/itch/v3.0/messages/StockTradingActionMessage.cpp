@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: messages/StockTradingActionMessage.cpp
 #include "StockTradingActionMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,11 +7,12 @@
 
 namespace nasdaq::nsmequities::nlsplus::itch::v3_0 {
 
-StockTradingActionMessage::StockTradingActionMessage(char reserved, const std::string& issue_symbol, SecurityClass security_class, CurrentTradingState current_trading_state, const std::string& reason)
+StockTradingActionMessage::StockTradingActionMessage(const std::array<std::byte, 1>& reserved, const std::string& issue_symbol, SecurityClass security_class, CurrentTradingState current_trading_state, const std::string& reason)
   : reserved_(reserved), issue_symbol_(issue_symbol), security_class_(security_class), current_trading_state_(current_trading_state), reason_(reason) {}
 
-char StockTradingActionMessage::reserved() const { return reserved_; }
-void StockTradingActionMessage::set_reserved(char value) { reserved_ = value; }
+const std::array<std::byte, 1>& StockTradingActionMessage::reserved() const { return reserved_; }
+std::array<std::byte, 1>& StockTradingActionMessage::reserved() { return reserved_; }
+void StockTradingActionMessage::set_reserved(const std::array<std::byte, 1>& value) { reserved_ = value; }
 
 const std::string& StockTradingActionMessage::issue_symbol() const { return issue_symbol_; }
 std::string& StockTradingActionMessage::issue_symbol() { return issue_symbol_; }
@@ -34,7 +36,7 @@ std::size_t StockTradingActionMessage::decode(const std::byte* data, std::size_t
     std::size_t offset = 0;
     wire::require("StockTradingActionMessage", wire_size, length);
 
-    reserved_ = wire::read_char(data + offset);
+    wire::read_bytes(data + offset, reserved_.data(), 1);
     offset += 1;
 
     issue_symbol_ = wire::read_text(data + offset, 8, ' ');
@@ -56,7 +58,7 @@ std::size_t StockTradingActionMessage::encode(std::byte* data, std::size_t capac
     std::size_t offset = 0;
     wire::require_capacity("StockTradingActionMessage", wire_size, capacity);
 
-    wire::write_char(data + offset, reserved_);
+    wire::write_bytes(data + offset, reserved_.data(), 1);
     offset += 1;
 
     wire::write_text(data + offset, 8, ' ', issue_symbol_);
@@ -89,7 +91,7 @@ std::unique_ptr<Message> StockTradingActionMessage::clone() const {
 void StockTradingActionMessage::print(std::ostream& out) const {
     out << "StockTradingActionMessage{";
     out << "reserved=";
-    print::character(out, reserved_);
+    print::hex(out, reserved_.data(), reserved_.size());
     out << ", issue_symbol=";
     print::text(out, issue_symbol_);
     out << ", security_class=";

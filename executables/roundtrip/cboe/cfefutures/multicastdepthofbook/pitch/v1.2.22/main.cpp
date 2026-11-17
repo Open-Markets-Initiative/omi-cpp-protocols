@@ -1,3 +1,4 @@
+// Cboe.CfeFutures.MulticastDepthOfBook.Pitch.v1.2.22: main.cpp
 // Cboe.CfeFutures.MulticastDepthOfBook.Pitch.v1.2.22 write and read: every message built with each field it sets, written
 // into a capture through the Classes encoder, then read back - each field set must read as it was written.
 // 
@@ -87,7 +88,7 @@ std::unique_ptr<protocol::Message> build_TimeReferenceMessage() {
 std::unique_ptr<protocol::Message> build_TimeMessage() {
     auto message = std::make_unique<protocol::TimeMessage>();
     message->set_time_reference(std::chrono::seconds{1});
-    message->set_epoch_time(static_cast<std::uint32_t>(2));
+    message->set_epoch_time(std::chrono::seconds{2});
     return message;
 }
 
@@ -370,7 +371,7 @@ int check_TimeMessage(const protocol::Message* read) {
         std::printf("FAIL TimeMessage: time_reference does not read as it was written\n");
         ++failures;
     }
-    if (!(message->epoch_time() == static_cast<std::uint32_t>(2))) {
+    if (!(message->epoch_time() == std::chrono::seconds{2})) {
         std::printf("FAIL TimeMessage: epoch_time does not read as it was written\n");
         ++failures;
     }

@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v1.91: groups/Participants.hpp
 #pragma once
 
 #include <cstddef>

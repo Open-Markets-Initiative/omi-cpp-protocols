@@ -1,3 +1,4 @@
+// Jpx.OseDerivatives.GeniumInet.Itch.v5.0.6: definitions.hpp
 #pragma once
 
 #include "common/Decimal.hpp"

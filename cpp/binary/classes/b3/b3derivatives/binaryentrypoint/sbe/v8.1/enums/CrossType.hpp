@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1: enums/CrossType.hpp
 #pragma once
 
 #include <cstdint>

@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v3: structs/MappingInterval.hpp
 #pragma once
 
 #include "../types/StartDate.hpp"

@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: messages/NewOrderCrossMessage.hpp
 #pragma once
 
 #include <cstddef>
@@ -6,7 +7,7 @@
 #include "../structs/SbeGroupSupport.hpp"
 #include "../structs/InboundBusinessHeader.hpp"
 #include "../types/Offset18Padding2.hpp"
-#include "../types/Crossid.hpp"
+#include "../types/CrossId.hpp"
 #include "../types/SenderLocation.hpp"
 #include "../types/EnteringTrader.hpp"
 #include "../types/ExecutingTraderOptional.hpp"
@@ -21,7 +22,7 @@
 #include "../types/Offset1Padding1.hpp"
 #include "../types/Account.hpp"
 #include "../types/EnteringFirmOptional.hpp"
-#include "../types/Clordid.hpp"
+#include "../types/ClOrdId.hpp"
 #include "../types/TradingSubAccount.hpp"
 #include "../structs/GroupSizeEncoding.hpp"
 
@@ -35,7 +36,7 @@ struct new_order_cross_message_cross_sides_groups_entry {
     sbe_binaryentrypoint::offset_1_padding_1 offset_1_padding_1;
     sbe_binaryentrypoint::account account;
     sbe_binaryentrypoint::entering_firm_optional entering_firm_optional;
-    sbe_binaryentrypoint::clordid clordid;
+    sbe_binaryentrypoint::cl_ord_id cl_ord_id;
     sbe_binaryentrypoint::trading_sub_account trading_sub_account;
 };
 #pragma pack(pop)
@@ -49,7 +50,7 @@ struct new_order_cross_message {
     struct fields_type {
         sbe_binaryentrypoint::inbound_business_header inbound_business_header;
         sbe_binaryentrypoint::offset_18_padding_2 offset_18_padding_2;
-        sbe_binaryentrypoint::crossid crossid;
+        sbe_binaryentrypoint::cross_id cross_id;
         sbe_binaryentrypoint::sender_location sender_location;
         sbe_binaryentrypoint::entering_trader entering_trader;
         sbe_binaryentrypoint::executing_trader_optional executing_trader_optional;
@@ -109,7 +110,7 @@ struct new_order_cross_message {
 // layout verification
 static_assert(offsetof(new_order_cross_message::fields_type, inbound_business_header) == 0, "unexpected offset of new_order_cross_message::fields_type::inbound_business_header");
 static_assert(offsetof(new_order_cross_message::fields_type, offset_18_padding_2) == 18, "unexpected offset of new_order_cross_message::fields_type::offset_18_padding_2");
-static_assert(offsetof(new_order_cross_message::fields_type, crossid) == 20, "unexpected offset of new_order_cross_message::fields_type::crossid");
+static_assert(offsetof(new_order_cross_message::fields_type, cross_id) == 20, "unexpected offset of new_order_cross_message::fields_type::cross_id");
 static_assert(offsetof(new_order_cross_message::fields_type, sender_location) == 28, "unexpected offset of new_order_cross_message::fields_type::sender_location");
 static_assert(offsetof(new_order_cross_message::fields_type, entering_trader) == 38, "unexpected offset of new_order_cross_message::fields_type::entering_trader");
 static_assert(offsetof(new_order_cross_message::fields_type, executing_trader_optional) == 43, "unexpected offset of new_order_cross_message::fields_type::executing_trader_optional");

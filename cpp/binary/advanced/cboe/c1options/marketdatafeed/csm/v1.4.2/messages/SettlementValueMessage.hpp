@@ -1,3 +1,4 @@
+// Cboe.C1Options.MarketDataFeed.Csm.v1.4.2: messages/SettlementValueMessage.hpp
 #pragma once
 
 #include <cstddef>
@@ -34,7 +35,7 @@ struct settlement_value_message {
         csm_marketdatafeed::no_entries no_entries;
     };
 
-    csm_marketdatafeed::message_header header = {{}, template_id::enum_type::settlement_value_message, {}, {}};
+    csm_marketdatafeed::message_header header = {std::uint16_t(sizeof(csm_marketdatafeed::message_header) + sizeof(fields_type)), template_id::enum_type::settlement_value_message, {}, {}};
 
     static constexpr std::size_t max_message_size = 1280;
     static constexpr std::size_t tail_capacity = max_message_size - sizeof(csm_marketdatafeed::message_header) - sizeof(fields_type);
@@ -44,7 +45,12 @@ struct settlement_value_message {
 
     // tail buffer accessors
     const std::byte* tail_begin() const { return tail; }
-    const std::byte* tail_end() const { return tail + tail_capacity; }
+    const std::byte* tail_end() const {
+        auto sz = header.message_length.get().value();
+        return sz == sizeof(csm_marketdatafeed::message_header) + sizeof(fields_type)
+            ? tail + tail_capacity
+            : tail + (sz - sizeof(csm_marketdatafeed::message_header) - sizeof(fields_type));
+    }
 
     // sequential access to variable-length regions
     external_count_iterator<settlement_value_message_settlement_value_md_entry_entry> settlement_value_md_entry() const {
@@ -73,3 +79,6 @@ static_assert(sizeof(settlement_value_message::fields_type) == 10, "unexpected s
 
 #pragma pack(pop)
 }
+
+#include "details/SettlementValueMessageWriter.hpp"
+#include "details/SettlementValueMessageReader.hpp"

@@ -1,3 +1,4 @@
+// Lseg.Lse.Level2Mbo.Gtp.v26.2: structs/MessageHeader.hpp
 #pragma once
 
 #include "../types/MessageLength.hpp"

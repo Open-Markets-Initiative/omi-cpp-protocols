@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.ComplexTopOfMarket.Mach.v1.1: main.cpp
 // Miax.MiaxOptions.ComplexTopOfMarket.Mach.v1.1 benchmark, through the Flyweight reader: every value it reads from every message of the simulated
 // sequence (tests/simulated/miax/miaxoptions/complextopofmarket/mach/v1.1.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -130,7 +131,7 @@ struct DataHandler {
         checksum += bench::digest(message.underlying_symbol());
         checksum += bench::digest(message.trading_status());
         checksum += bench::digest(message.event_reason());
-        checksum += bench::digest(message.seconds_part());
+        checksum += (message.expected_event_time_seconds_part().has_value() ? bench::digest((*message.expected_event_time_seconds_part())) : std::uint64_t{0});
         checksum += bench::digest(message.expected_event_time_nano_seconds_part());
     }
 };

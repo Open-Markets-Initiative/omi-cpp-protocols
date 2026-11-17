@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.8: bitfields/InstAttribValue.hpp
 #pragma once
 
 #include <cstddef>
@@ -35,7 +36,6 @@ struct InstAttribValue {
         static const type DailyProductEligibility = 0x00020000;
         static const type GtOrdersEligibility = 0x00040000;
         static const type ImpliedMatchingEligibility = 0x00080000;
-        static const type Reserved12 = 0xFFF00000;
     };
 
     // default constructor
@@ -140,11 +140,6 @@ struct InstAttribValue {
     // ImpliedMatchingEligibility
     [[nodiscard]] constexpr bool ImpliedMatchingEligibility() const {
         return value & mask::ImpliedMatchingEligibility;
-    }
-
-    // 12 reserved bits
-    [[nodiscard]] constexpr bool Reserved12() const {
-        return value & mask::Reserved12;
     }
 
     // all bits

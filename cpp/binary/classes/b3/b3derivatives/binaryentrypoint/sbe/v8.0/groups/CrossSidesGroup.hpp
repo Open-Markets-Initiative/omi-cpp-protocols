@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: groups/CrossSidesGroup.hpp
 #pragma once
 
 #include <array>
@@ -17,7 +18,7 @@ class CrossSidesGroup {
     static constexpr std::size_t wire_size = 18;
 
     CrossSidesGroup() = default;
-    CrossSidesGroup(Side side, const std::array<std::byte, 1>& offset_1_padding_1, std::optional<std::uint32_t> account, std::optional<std::uint32_t> entering_firm_optional, std::uint64_t clordid);
+    CrossSidesGroup(Side side, const std::array<std::byte, 1>& offset_1_padding_1, std::optional<std::uint32_t> account, std::optional<std::uint32_t> entering_firm_optional, std::uint64_t cl_ord_id);
 
     // Side: side
     Side side() const;
@@ -36,9 +37,9 @@ class CrossSidesGroup {
     std::optional<std::uint32_t> entering_firm_optional() const;
     void set_entering_firm_optional(std::optional<std::uint32_t> value);
 
-    // ClOrdId: clOrdID
-    std::uint64_t clordid() const;
-    void set_clordid(std::uint64_t value);
+    // Cl Ord Id: clOrdID
+    std::uint64_t cl_ord_id() const;
+    void set_cl_ord_id(std::uint64_t value);
 
     // Read this from the bytes at data, and return how many were consumed; throws DecodeError when too few
     std::size_t decode(const std::byte* data, std::size_t length);
@@ -56,7 +57,7 @@ class CrossSidesGroup {
     std::array<std::byte, 1> offset_1_padding_1_{};
     std::optional<std::uint32_t> account_{};
     std::optional<std::uint32_t> entering_firm_optional_{};
-    std::uint64_t clordid_{};
+    std::uint64_t cl_ord_id_{};
 };
 
 std::ostream& operator<<(std::ostream& out, const CrossSidesGroup& value);

@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: messages/OrderMassActionRequestMessage.cpp
 #include "OrderMassActionRequestMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,8 +7,8 @@
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_0 {
 
-OrderMassActionRequestMessage::OrderMassActionRequestMessage(const InboundBusinessHeader& inbound_business_header, MassActionType mass_action_type, std::optional<MassActionScope> mass_action_scope, std::uint64_t clordid, std::optional<MassCancelRestatementReason> mass_cancel_restatement_reason, std::optional<std::uint8_t> ordtagid, SideOptional side_optional, const std::array<std::byte, 1>& offset_31_padding_1, const std::string& asset, std::optional<std::uint64_t> security_id_optional, const InvestorId& investor_id)
-  : inbound_business_header_(inbound_business_header), mass_action_type_(mass_action_type), mass_action_scope_(mass_action_scope), clordid_(clordid), mass_cancel_restatement_reason_(mass_cancel_restatement_reason), ordtagid_(ordtagid), side_optional_(side_optional), offset_31_padding_1_(offset_31_padding_1), asset_(asset), security_id_optional_(security_id_optional), investor_id_(investor_id) {}
+OrderMassActionRequestMessage::OrderMassActionRequestMessage(const InboundBusinessHeader& inbound_business_header, MassActionType mass_action_type, std::optional<MassActionScope> mass_action_scope, std::uint64_t cl_ord_id, std::optional<MassCancelRestatementReason> mass_cancel_restatement_reason, std::optional<std::uint8_t> ordtagid, SideOptional side_optional, const std::array<std::byte, 1>& offset_31_padding_1, const std::string& asset, std::optional<std::uint64_t> security_id_optional, const InvestorId& investor_id)
+  : inbound_business_header_(inbound_business_header), mass_action_type_(mass_action_type), mass_action_scope_(mass_action_scope), cl_ord_id_(cl_ord_id), mass_cancel_restatement_reason_(mass_cancel_restatement_reason), ordtagid_(ordtagid), side_optional_(side_optional), offset_31_padding_1_(offset_31_padding_1), asset_(asset), security_id_optional_(security_id_optional), investor_id_(investor_id) {}
 
 const InboundBusinessHeader& OrderMassActionRequestMessage::inbound_business_header() const { return inbound_business_header_; }
 InboundBusinessHeader& OrderMassActionRequestMessage::inbound_business_header() { return inbound_business_header_; }
@@ -19,8 +20,8 @@ void OrderMassActionRequestMessage::set_mass_action_type(MassActionType value) {
 std::optional<MassActionScope> OrderMassActionRequestMessage::mass_action_scope() const { return mass_action_scope_; }
 void OrderMassActionRequestMessage::set_mass_action_scope(std::optional<MassActionScope> value) { mass_action_scope_ = value; }
 
-std::uint64_t OrderMassActionRequestMessage::clordid() const { return clordid_; }
-void OrderMassActionRequestMessage::set_clordid(std::uint64_t value) { clordid_ = value; }
+std::uint64_t OrderMassActionRequestMessage::cl_ord_id() const { return cl_ord_id_; }
+void OrderMassActionRequestMessage::set_cl_ord_id(std::uint64_t value) { cl_ord_id_ = value; }
 
 std::optional<MassCancelRestatementReason> OrderMassActionRequestMessage::mass_cancel_restatement_reason() const { return mass_cancel_restatement_reason_; }
 void OrderMassActionRequestMessage::set_mass_cancel_restatement_reason(std::optional<MassCancelRestatementReason> value) { mass_cancel_restatement_reason_ = value; }
@@ -62,7 +63,7 @@ std::size_t OrderMassActionRequestMessage::decode(const std::byte* data, std::si
     mass_action_scope_ = wire::nullable_enum<MassActionScope>(wire::read_u8(data + offset), static_cast<std::uint8_t>(0ULL));
     offset += 1;
 
-    clordid_ = wire::read_u64_le(data + offset);
+    cl_ord_id_ = wire::read_u64_le(data + offset);
     offset += 8;
 
     mass_cancel_restatement_reason_ = wire::nullable_enum<MassCancelRestatementReason>(wire::read_u8(data + offset), static_cast<std::uint8_t>(0ULL));
@@ -100,7 +101,7 @@ std::size_t OrderMassActionRequestMessage::encode(std::byte* data, std::size_t c
     wire::write_u8(data + offset, mass_action_scope_ ? static_cast<std::uint8_t>(*mass_action_scope_) : static_cast<std::uint8_t>(0ULL));
     offset += 1;
 
-    wire::write_u64_le(data + offset, static_cast<std::uint64_t>(clordid_));
+    wire::write_u64_le(data + offset, static_cast<std::uint64_t>(cl_ord_id_));
     offset += 8;
 
     wire::write_u8(data + offset, mass_cancel_restatement_reason_ ? static_cast<std::uint8_t>(*mass_cancel_restatement_reason_) : static_cast<std::uint8_t>(0ULL));
@@ -146,8 +147,8 @@ void OrderMassActionRequestMessage::print(std::ostream& out) const {
     out << mass_action_type_;
     out << ", mass_action_scope=";
     print::optional(out, mass_action_scope_);
-    out << ", clordid=";
-    out << clordid_;
+    out << ", cl_ord_id=";
+    out << cl_ord_id_;
     out << ", mass_cancel_restatement_reason=";
     print::optional(out, mass_cancel_restatement_reason_);
     out << ", ordtagid=";
@@ -174,7 +175,7 @@ bool OrderMassActionRequestMessage::operator==(const OrderMassActionRequestMessa
     return inbound_business_header_ == other.inbound_business_header_
         && mass_action_type_ == other.mass_action_type_
         && mass_action_scope_ == other.mass_action_scope_
-        && clordid_ == other.clordid_
+        && cl_ord_id_ == other.cl_ord_id_
         && mass_cancel_restatement_reason_ == other.mass_cancel_restatement_reason_
         && ordtagid_ == other.ordtagid_
         && side_optional_ == other.side_optional_

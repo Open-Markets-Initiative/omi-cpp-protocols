@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.DeepFeed.Pillar.v1.2.m: types/HighPrice.hpp
 #pragma once
 
 #include <cstddef>

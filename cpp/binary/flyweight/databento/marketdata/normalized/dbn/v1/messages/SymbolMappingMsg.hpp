@@ -1,3 +1,4 @@
+// Databento.MarketData.Normalized.Dbn.v1: messages/SymbolMappingMsg.hpp
 #pragma once
 
 #include <chrono>

@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.5: structs/GroupSize.hpp
 #pragma once
 
 #include "../types/BlockLength.hpp"

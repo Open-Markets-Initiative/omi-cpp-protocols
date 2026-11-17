@@ -1,3 +1,4 @@
+// Nyse.AmexOptions.DeepFeed.Xdp.v1.3.a: types/UnderlyingSymbol.hpp
 #pragma once
 
 #include <array>

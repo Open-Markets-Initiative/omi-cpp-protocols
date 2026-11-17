@@ -1,3 +1,4 @@
+// Iex.IexEquities.Deep.Snap.v1.6: definitions.hpp
 #pragma once
 
 // Every flyweight view and reader of Iex.IexEquities.Deep.Snap.v1.6.

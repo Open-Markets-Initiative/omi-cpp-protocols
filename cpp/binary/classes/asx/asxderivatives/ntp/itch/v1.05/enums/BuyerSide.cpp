@@ -1,3 +1,4 @@
+// Asx.AsxDerivatives.Ntp.Itch.v1.05: enums/BuyerSide.cpp
 #include "BuyerSide.hpp"
 
 namespace asx::asxderivatives::ntp::itch::v1_05 {

@@ -1,3 +1,4 @@
+// Nyse.ArcaEquities.IntegratedFeed.Pillar.v2.5.g: enums/AuctionType.cpp
 #include "AuctionType.hpp"
 
 namespace nyse::arcaequities::integratedfeed::pillar::v2_5_g {

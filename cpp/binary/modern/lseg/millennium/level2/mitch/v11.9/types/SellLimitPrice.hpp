@@ -1,3 +1,4 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: types/SellLimitPrice.hpp
 #pragma once
 
 #include <cstddef>
@@ -10,19 +11,26 @@ struct SellLimitPrice {
 
     static constexpr const char* name = "Sell Limit Price";
     static constexpr std::size_t size =  8;
+    static constexpr std::size_t precision = 8;
+    static constexpr double denominator = 100000000;
     using type = std::int64_t;
 
     // default constructor
     constexpr SellLimitPrice()
      : value{ 0 } {}
 
-    // standard constructor
+    // constructor for SellLimitPrice field
     constexpr explicit SellLimitPrice(const std::int64_t value)
      : value{ value } {}
 
-    // get value of SellLimitPrice field
-    [[nodiscard]] std::int64_t get() const {
+    // get underlying integer of SellLimitPrice field
+    [[nodiscard]] std::int64_t integer() const {
         return value;
+    }
+
+    // decimal value of SellLimitPrice field
+    [[nodiscard]] double get() const {
+        return integer() / denominator;
     }
 
   protected:

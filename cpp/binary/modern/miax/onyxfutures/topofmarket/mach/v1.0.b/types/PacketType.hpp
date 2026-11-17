@@ -1,3 +1,4 @@
+// Miax.OnyxFutures.TopOfMarket.Mach.v1.0.b: types/PacketType.hpp
 #pragma once
 
 #include <cstddef>
@@ -6,7 +7,7 @@
 namespace miax::onyxfutures::topofmarket::mach::v1_0_b {
 
 
-// protocol packet type
+// Mach protocol packet type
 struct PacketType {
 
     static constexpr auto name = "Packet Type";

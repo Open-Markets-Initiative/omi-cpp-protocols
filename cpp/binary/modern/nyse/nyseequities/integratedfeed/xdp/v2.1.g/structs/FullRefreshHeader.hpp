@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeed.Xdp.v2.1.g: structs/FullRefreshHeader.hpp
 #pragma once
 
 #include "../types/LastSeqNum.hpp"

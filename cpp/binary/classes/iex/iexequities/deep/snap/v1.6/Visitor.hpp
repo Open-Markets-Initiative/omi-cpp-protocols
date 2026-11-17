@@ -1,3 +1,4 @@
+// Iex.IexEquities.Deep.Snap.v1.6: Visitor.hpp
 #pragma once
 
 namespace iex::iexequities::deep::snap::v1_6 {

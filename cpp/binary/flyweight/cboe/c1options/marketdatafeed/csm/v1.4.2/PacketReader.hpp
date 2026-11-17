@@ -1,3 +1,4 @@
+// Cboe.C1Options.MarketDataFeed.Csm.v1.4.2: PacketReader.hpp
 #pragma once
 
 #include <cstddef>
@@ -37,10 +38,14 @@ struct PacketReader {
         const std::size_t count = wire::count(packet.packet_header().message_count());
 
         for (std::size_t index = 0; index < count; ++index) {
+            const std::size_t start = offset;
             wire::require(Frame::name, offset + Frame::minimum_size, bytes.size());
             const Frame frame{ bytes.subspan(offset) };
             offset += frame.encoded_size();
-            offset += dispatch(frame, bytes.subspan(offset), handler);
+            const std::size_t frame_size = wire::count(frame.message_header().message_length());
+            wire::require(Packet::name, start + frame_size, bytes.size());
+            dispatch(frame, bytes.subspan(offset, start + frame_size - offset), handler);
+            offset = start + frame_size;
         }
 
         return offset;

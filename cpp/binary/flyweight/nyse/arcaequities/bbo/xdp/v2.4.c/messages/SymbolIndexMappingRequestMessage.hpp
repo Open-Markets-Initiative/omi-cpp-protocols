@@ -1,3 +1,4 @@
+// Nyse.ArcaEquities.Bbo.Xdp.v2.4.c: messages/SymbolIndexMappingRequestMessage.hpp
 #pragma once
 
 #include <cstddef>

@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.13: program/Settings.hpp
 #pragma once
 
 #include <filesystem>

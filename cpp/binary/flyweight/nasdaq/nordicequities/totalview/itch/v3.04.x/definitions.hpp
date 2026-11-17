@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: definitions.hpp
 #pragma once
 
 // Every flyweight view and reader of Nasdaq.NordicEquities.TotalView.Itch.v3.04.X.

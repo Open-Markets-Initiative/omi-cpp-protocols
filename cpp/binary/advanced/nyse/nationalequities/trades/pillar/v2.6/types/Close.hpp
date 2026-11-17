@@ -1,3 +1,4 @@
+// Nyse.NationalEquities.Trades.Pillar.v2.6: types/Close.hpp
 #pragma once
 
 #include <cstddef>

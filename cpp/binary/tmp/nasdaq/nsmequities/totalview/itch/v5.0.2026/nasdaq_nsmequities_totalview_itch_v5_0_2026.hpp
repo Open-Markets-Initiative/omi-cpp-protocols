@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2026: nasdaq_nsmequities_totalview_itch_v5_0_2026.hpp
 // Nasdaq NsmEquities TotalView Itch 5.0.2026 Template Meta Programming
 
 #pragma once
@@ -1292,6 +1293,9 @@ struct near_execution_time {
     constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
     constexpr operator type() const noexcept { return value(); }
 
+    // near_execution_time on a day: its nanoseconds since midnight, America/New_York, as UTC Unix nanoseconds
+    std::int64_t utc(const calendar::Day& day) const { return calendar::midnight(day, "America/New_York").utc(static_cast<std::int64_t>(value())); }
+
   protected:
     type value_;
 };
@@ -1576,14 +1580,14 @@ struct requested_session {
 
 // Reserved
 struct reserved {
-    using type = char;
+    using type = std::uint8_t;
     static constexpr std::size_t size = 1;
 
     constexpr type value() const noexcept { return value_; }
     constexpr operator type() const noexcept { return value(); }
 
   protected:
-    char value_;
+    type value_;
 };
 
 // Round Lot Size: Denotes the number of shares that represent a round lot for the issue

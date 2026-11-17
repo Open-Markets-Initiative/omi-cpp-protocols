@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: messages/ExecutionReportTradeMessage.hpp
 #pragma once
 
 #include <cstddef>
@@ -7,7 +8,7 @@
 #include "../structs/OutboundBusinessHeader.hpp"
 #include "../types/Side.hpp"
 #include "../types/OrdStatus.hpp"
-#include "../types/ClordidOptional.hpp"
+#include "../types/ClOrdIdOptional.hpp"
 #include "../types/SecondaryOrderId.hpp"
 #include "../types/SecurityId.hpp"
 #include "../types/Account.hpp"
@@ -29,7 +30,7 @@
 #include "../types/Offset119Padding1.hpp"
 #include "../types/SecondaryExecId.hpp"
 #include "../types/ExecRefId.hpp"
-#include "../types/CrossidOptional.hpp"
+#include "../types/CrossIdOptional.hpp"
 #include "../types/CrossedIndicator.hpp"
 #include "../types/OrderQty.hpp"
 
@@ -47,7 +48,7 @@ struct execution_report_trade_message {
         sbe_binaryentrypoint::outbound_business_header outbound_business_header;
         sbe_binaryentrypoint::side side;
         sbe_binaryentrypoint::ord_status ord_status;
-        sbe_binaryentrypoint::clordid_optional clordid_optional;
+        sbe_binaryentrypoint::cl_ord_id_optional cl_ord_id_optional;
         sbe_binaryentrypoint::secondary_order_id secondary_order_id;
         sbe_binaryentrypoint::security_id security_id;
         sbe_binaryentrypoint::account account;
@@ -69,7 +70,7 @@ struct execution_report_trade_message {
         sbe_binaryentrypoint::offset_119_padding_1 offset_119_padding_1;
         sbe_binaryentrypoint::secondary_exec_id secondary_exec_id;
         sbe_binaryentrypoint::exec_ref_id exec_ref_id;
-        sbe_binaryentrypoint::crossid_optional crossid_optional;
+        sbe_binaryentrypoint::cross_id_optional cross_id_optional;
         sbe_binaryentrypoint::crossed_indicator crossed_indicator;
         sbe_binaryentrypoint::order_qty order_qty;
     };
@@ -118,7 +119,7 @@ struct execution_report_trade_message {
 static_assert(offsetof(execution_report_trade_message::fields_type, outbound_business_header) == 0, "unexpected offset of execution_report_trade_message::fields_type::outbound_business_header");
 static_assert(offsetof(execution_report_trade_message::fields_type, side) == 18, "unexpected offset of execution_report_trade_message::fields_type::side");
 static_assert(offsetof(execution_report_trade_message::fields_type, ord_status) == 19, "unexpected offset of execution_report_trade_message::fields_type::ord_status");
-static_assert(offsetof(execution_report_trade_message::fields_type, clordid_optional) == 20, "unexpected offset of execution_report_trade_message::fields_type::clordid_optional");
+static_assert(offsetof(execution_report_trade_message::fields_type, cl_ord_id_optional) == 20, "unexpected offset of execution_report_trade_message::fields_type::cl_ord_id_optional");
 static_assert(offsetof(execution_report_trade_message::fields_type, secondary_order_id) == 28, "unexpected offset of execution_report_trade_message::fields_type::secondary_order_id");
 static_assert(offsetof(execution_report_trade_message::fields_type, security_id) == 36, "unexpected offset of execution_report_trade_message::fields_type::security_id");
 static_assert(offsetof(execution_report_trade_message::fields_type, account) == 44, "unexpected offset of execution_report_trade_message::fields_type::account");
@@ -140,7 +141,7 @@ static_assert(offsetof(execution_report_trade_message::fields_type, tot_no_relat
 static_assert(offsetof(execution_report_trade_message::fields_type, offset_119_padding_1) == 119, "unexpected offset of execution_report_trade_message::fields_type::offset_119_padding_1");
 static_assert(offsetof(execution_report_trade_message::fields_type, secondary_exec_id) == 120, "unexpected offset of execution_report_trade_message::fields_type::secondary_exec_id");
 static_assert(offsetof(execution_report_trade_message::fields_type, exec_ref_id) == 128, "unexpected offset of execution_report_trade_message::fields_type::exec_ref_id");
-static_assert(offsetof(execution_report_trade_message::fields_type, crossid_optional) == 136, "unexpected offset of execution_report_trade_message::fields_type::crossid_optional");
+static_assert(offsetof(execution_report_trade_message::fields_type, cross_id_optional) == 136, "unexpected offset of execution_report_trade_message::fields_type::cross_id_optional");
 static_assert(offsetof(execution_report_trade_message::fields_type, crossed_indicator) == 144, "unexpected offset of execution_report_trade_message::fields_type::crossed_indicator");
 static_assert(offsetof(execution_report_trade_message::fields_type, order_qty) == 146, "unexpected offset of execution_report_trade_message::fields_type::order_qty");
 static_assert(sizeof(execution_report_trade_message::fields_type) == 154, "unexpected sizeof execution_report_trade_message::fields_type");

@@ -1,3 +1,4 @@
+// Bse.BseIndia.Eobi.Fbe.v1.4: types/MsgSeqNum.hpp
 #pragma once
 
 #include <cstddef>

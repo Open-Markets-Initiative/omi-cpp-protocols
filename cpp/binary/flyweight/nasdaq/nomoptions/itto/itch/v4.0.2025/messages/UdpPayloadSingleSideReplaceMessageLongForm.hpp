@@ -1,3 +1,4 @@
+// Nasdaq.NomOptions.Itto.Itch.v4.0.2025: messages/UdpPayloadSingleSideReplaceMessageLongForm.hpp
 #pragma once
 
 #include <chrono>
@@ -39,7 +40,7 @@ class UdpPayloadSingleSideReplaceMessageLongForm {
 
     std::uint64_t new_reference_number() const { return wire::read_u64_be(at(16)); }
 
-    Decimal price_long() const { return Decimal(static_cast<std::int64_t>(wire::read_u32_be(at(24))), -4); }
+    Decimal price_long() const { return Decimal(static_cast<std::int64_t>(wire::read_i32_be(at(24))), -4); }
 
     std::uint32_t volume_long() const { return wire::read_u32_be(at(28)); }
 

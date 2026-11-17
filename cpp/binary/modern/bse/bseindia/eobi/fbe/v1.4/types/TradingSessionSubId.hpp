@@ -1,3 +1,4 @@
+// Bse.BseIndia.Eobi.Fbe.v1.4: types/TradingSessionSubId.hpp
 #pragma once
 
 #include <cstddef>

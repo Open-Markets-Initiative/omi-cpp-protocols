@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v15.0: messages/Format.hpp
 #pragma once
 
 #include <ostream>
@@ -35,24 +36,24 @@ namespace eurex::t7::eobi::fbe::v15_0 {
 namespace fbe_eobi = ::eurex::t7::eobi::fbe::v15_0;
 
 inline std::ostream& operator<<(std::ostream& os, const packet_header& value) {
-    os << "eobi_header.body_len=" << value.eobi_header.body_len.get().value()
+    os << "eobi_header.body_len=" << (value.eobi_header.body_len.get().has_value() ? std::to_string(value.eobi_header.body_len.get().value()) : std::string_view("null"))
        << ",eobi_header.template_id=\"" << fbe_eobi::template_id::to_string(value.eobi_header.template_id.get().value()) << '"'
-       << ",eobi_header.msg_seq_num=" << value.eobi_header.msg_seq_num.get().value()
-       << ",appl_seq_num=" << value.appl_seq_num.get().value()
+       << ",eobi_header.msg_seq_num=" << (value.eobi_header.msg_seq_num.get().has_value() ? std::to_string(value.eobi_header.msg_seq_num.get().value()) : std::string_view("null"))
+       << ",appl_seq_num=" << (value.appl_seq_num.get().has_value() ? std::to_string(value.appl_seq_num.get().value()) : std::string_view("null"))
        << ",market_segment_id=" << (value.market_segment_id.get().has_value() ? std::to_string(value.market_segment_id.get().value()) : std::string_view("null"))
        << ",partition_id=" << (value.partition_id.get().has_value() ? std::to_string(value.partition_id.get().value()) : std::string_view("null"))
        << ",completion_indicator=\"" << fbe_eobi::completion_indicator::to_string(value.completion_indicator.get().value()) << '"'
        << ",appl_seq_reset_indicator=\"" << fbe_eobi::appl_seq_reset_indicator::to_string(value.appl_seq_reset_indicator.get().value()) << '"'
-       << ",dscp=" << static_cast<unsigned>(value.dscp.get().value())
+       << ",dscp=" << (value.dscp.get().has_value() ? std::to_string(value.dscp.get().value()) : std::string_view("null"))
        << ",transact_time=" << (value.transact_time.get().has_value() ? std::to_string(value.transact_time.get().value()) : std::string_view("null"))
        ;
     return os;
 }
 
 inline std::ostream& operator<<(std::ostream& os, const eobi_header& value) {
-    os << "body_len=" << value.body_len.get().value()
+    os << "body_len=" << (value.body_len.get().has_value() ? std::to_string(value.body_len.get().value()) : std::string_view("null"))
        << ",template_id=\"" << fbe_eobi::template_id::to_string(value.template_id.get().value()) << '"'
-       << ",msg_seq_num=" << value.msg_seq_num.get().value()
+       << ",msg_seq_num=" << (value.msg_seq_num.get().has_value() ? std::to_string(value.msg_seq_num.get().value()) : std::string_view("null"))
        ;
     return os;
 }

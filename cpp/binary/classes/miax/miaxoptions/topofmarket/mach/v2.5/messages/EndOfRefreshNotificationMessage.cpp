@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.TopOfMarket.Mach.v2.5: messages/EndOfRefreshNotificationMessage.cpp
 #include "EndOfRefreshNotificationMessage.hpp"
 
 #include "../common/Print.hpp"

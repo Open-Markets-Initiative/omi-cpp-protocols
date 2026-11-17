@@ -1,3 +1,4 @@
+// Cboe.ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29: enums/MessageType.hpp
 #pragma once
 
 #include <cstdint>

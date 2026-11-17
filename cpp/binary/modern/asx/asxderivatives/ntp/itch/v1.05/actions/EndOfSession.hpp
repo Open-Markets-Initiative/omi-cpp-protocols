@@ -1,3 +1,4 @@
+// Asx.AsxDerivatives.Ntp.Itch.v1.05: actions/EndOfSession.hpp
 #pragma once
 
 #include <cstdint>

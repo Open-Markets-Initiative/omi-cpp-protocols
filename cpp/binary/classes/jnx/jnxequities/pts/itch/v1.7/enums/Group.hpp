@@ -1,3 +1,4 @@
+// Jnx.JnxEquities.Pts.Itch.v1.7: enums/Group.hpp
 #pragma once
 
 #include <string_view>

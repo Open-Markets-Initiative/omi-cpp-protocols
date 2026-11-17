@@ -1,3 +1,4 @@
+// Cboe.C1Options.MarketDataFeed.Csm.v1.4.2: messages/HeartbeatMessage.hpp
 #pragma once
 
 #include <cstddef>
@@ -12,7 +13,7 @@ namespace csm_marketdatafeed = ::cboe::c1options::marketdatafeed::csm::v1_4_2;
 // Heartbeat Message
 struct heartbeat_message {
 
-    csm_marketdatafeed::message_header header = {{}, template_id::enum_type::heartbeat_message, {}, {}};
+    csm_marketdatafeed::message_header header = {std::uint16_t(sizeof(csm_marketdatafeed::message_header)), template_id::enum_type::heartbeat_message, {}, {}};
 
     // parse method
     static heartbeat_message* parse(std::byte* buffer) {

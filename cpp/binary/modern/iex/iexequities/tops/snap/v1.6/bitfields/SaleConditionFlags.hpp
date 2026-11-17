@@ -1,3 +1,4 @@
+// Iex.IexEquities.Tops.Snap.v1.6: bitfields/SaleConditionFlags.hpp
 #pragma once
 
 #include <cstddef>

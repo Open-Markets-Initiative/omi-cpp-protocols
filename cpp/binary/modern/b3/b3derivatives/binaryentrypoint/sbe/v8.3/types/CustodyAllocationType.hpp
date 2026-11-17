@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: types/CustodyAllocationType.hpp
 #pragma once
 
 #include <cstddef>
@@ -11,10 +12,11 @@ struct CustodyAllocationType {
     static constexpr const char* name = "Custody Allocation Type";
     static constexpr std::size_t size =  4;
     using type = std::uint32_t;
+static const type no_value = 0;
 
-    // default constructor
+    // default constructor: the null the model states, where it states one
     constexpr CustodyAllocationType()
-     : value{ 0 } {}
+     : value{ no_value } {}
 
     // standard constructor
     constexpr explicit CustodyAllocationType(const std::uint32_t value)

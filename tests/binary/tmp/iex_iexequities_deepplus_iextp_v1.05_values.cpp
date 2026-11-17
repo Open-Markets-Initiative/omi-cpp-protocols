@@ -419,7 +419,6 @@ struct Reader {
 
     void operator()(const protocol::order_delete_message& message) {
         values[entry + ".messagedata"] = "packet.messages.message.messagedata.orderdeletemessage";
-        if constexpr (requires { message.template get<protocol::reserved_1>(); }) { values[entry + ".messagedata.orderdeletemessage.reserved1"] = canonical::text(canonical::character(message.template get<protocol::reserved_1>().value())); }
         if constexpr (requires { message.template get<protocol::timestamp>(); }) { values[entry + ".messagedata.orderdeletemessage.timestamp"] = canonical::number(message.template get<protocol::timestamp>().value()); }
         if constexpr (requires { message.template get<protocol::symbol>(); }) { values[entry + ".messagedata.orderdeletemessage.symbol"] = canonical::text(std::string(message.template get<protocol::symbol>().value()), ' ', false); }
         if constexpr (requires { message.template get<protocol::order_id_reference>(); }) { values[entry + ".messagedata.orderdeletemessage.orderidreference"] = canonical::number(message.template get<protocol::order_id_reference>().value()); }
@@ -455,7 +454,6 @@ struct Reader {
 
     void operator()(const protocol::clear_book_message& message) {
         values[entry + ".messagedata"] = "packet.messages.message.messagedata.clearbookmessage";
-        if constexpr (requires { message.template get<protocol::reserved_1>(); }) { values[entry + ".messagedata.clearbookmessage.reserved1"] = canonical::text(canonical::character(message.template get<protocol::reserved_1>().value())); }
         if constexpr (requires { message.template get<protocol::timestamp>(); }) { values[entry + ".messagedata.clearbookmessage.timestamp"] = canonical::number(message.template get<protocol::timestamp>().value()); }
         if constexpr (requires { message.template get<protocol::symbol>(); }) { values[entry + ".messagedata.clearbookmessage.symbol"] = canonical::text(std::string(message.template get<protocol::symbol>().value()), ' ', false); }
     }

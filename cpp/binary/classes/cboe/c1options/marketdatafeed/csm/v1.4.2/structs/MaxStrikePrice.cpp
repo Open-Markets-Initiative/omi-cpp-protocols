@@ -1,3 +1,4 @@
+// Cboe.C1Options.MarketDataFeed.Csm.v1.4.2: structs/MaxStrikePrice.cpp
 #include "MaxStrikePrice.hpp"
 
 #include "../common/Print.hpp"

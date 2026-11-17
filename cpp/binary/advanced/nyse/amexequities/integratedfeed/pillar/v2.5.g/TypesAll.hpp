@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeed.Pillar.v2.5.g: TypesAll.hpp
 #pragma once
 
 // All type headers for this protocol schema

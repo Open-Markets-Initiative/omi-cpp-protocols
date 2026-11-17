@@ -1,8 +1,10 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.1: structs/InvestorId.hpp
 #pragma once
 
 #include <array>
 #include <cstddef>
 #include <cstdint>
+#include <optional>
 #include <ostream>
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_1 {
@@ -14,11 +16,11 @@ class InvestorId {
     static constexpr std::size_t wire_size = 8;
 
     InvestorId() = default;
-    InvestorId(std::uint16_t prefix, const std::array<std::byte, 2>& offset_2_padding_2, std::uint32_t document);
+    InvestorId(std::optional<std::uint16_t> prefix, const std::array<std::byte, 2>& offset_2_padding_2, std::optional<std::uint32_t> document);
 
     // Prefix: prefix
-    std::uint16_t prefix() const;
-    void set_prefix(std::uint16_t value);
+    std::optional<std::uint16_t> prefix() const;
+    void set_prefix(std::optional<std::uint16_t> value);
 
     // Offset 2 Padding 2: 2 bytes padding
     const std::array<std::byte, 2>& offset_2_padding_2() const;
@@ -26,8 +28,8 @@ class InvestorId {
     void set_offset_2_padding_2(const std::array<std::byte, 2>& value);
 
     // Document: document
-    std::uint32_t document() const;
-    void set_document(std::uint32_t value);
+    std::optional<std::uint32_t> document() const;
+    void set_document(std::optional<std::uint32_t> value);
 
     // Read this from the bytes at data, and return how many were consumed; throws DecodeError when too few
     std::size_t decode(const std::byte* data, std::size_t length);
@@ -41,9 +43,9 @@ class InvestorId {
     bool operator!=(const InvestorId& other) const;
 
   private:
-    std::uint16_t prefix_{};
+    std::optional<std::uint16_t> prefix_{};
     std::array<std::byte, 2> offset_2_padding_2_{};
-    std::uint32_t document_{};
+    std::optional<std::uint32_t> document_{};
 };
 
 std::ostream& operator<<(std::ostream& out, const InvestorId& value);

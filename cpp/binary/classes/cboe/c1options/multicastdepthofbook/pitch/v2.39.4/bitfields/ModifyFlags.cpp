@@ -1,3 +1,4 @@
+// Cboe.C1Options.MulticastDepthOfBook.Pitch.v2.39.4: bitfields/ModifyFlags.cpp
 #include "ModifyFlags.hpp"
 
 #include "../common/Print.hpp"

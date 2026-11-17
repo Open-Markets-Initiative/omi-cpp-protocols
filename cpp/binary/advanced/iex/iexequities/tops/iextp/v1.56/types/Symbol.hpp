@@ -1,3 +1,4 @@
+// Iex.IexEquities.Tops.IexTp.v1.56: types/Symbol.hpp
 #pragma once
 
 #include <cstddef>

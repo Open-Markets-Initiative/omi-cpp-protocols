@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.9: messages/TradeBust57Message.hpp
 #pragma once
 
 #include <chrono>
@@ -41,7 +42,7 @@ class TradeBust57Message {
 
     Decimal md_future_price() const { return Decimal(static_cast<std::int64_t>(wire::read_i64_le(at(12))), -4); }
 
-    std::int64_t md_entry_size_quantity() const { return wire::read_i64_le(at(20)); }
+    std::int64_t md_entry_size() const { return wire::read_i64_le(at(20)); }
 
     std::uint32_t trade_id() const { return wire::read_u32_le(at(28)); }
 
@@ -65,8 +66,8 @@ class TradeBust57Message {
         print::hex(out, offset_10_padding_2().data(), offset_10_padding_2().size());
         out << ", md_future_price=";
         out << md_future_price();
-        out << ", md_entry_size_quantity=";
-        out << md_entry_size_quantity();
+        out << ", md_entry_size=";
+        out << md_entry_size();
         out << ", trade_id=";
         out << trade_id();
         out << ", trade_date=";

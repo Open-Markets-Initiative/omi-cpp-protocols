@@ -1,5 +1,7 @@
+// Nyse.ArcaOptions.DeepFeed.Pillar.v1.2.m: messages/OptionsModifyOrderMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
@@ -24,11 +26,11 @@ class OptionsModifyOrderMessage : public Message {
     static constexpr std::size_t wire_size = 31;
 
     OptionsModifyOrderMessage() = default;
-    OptionsModifyOrderMessage(std::uint32_t source_time_ns, std::uint32_t series_index, std::uint32_t series_seq_num, std::uint64_t order_id, std::int32_t price, std::uint32_t volume, std::uint8_t position_change, Side side, CustIndicator cust_indicator);
+    OptionsModifyOrderMessage(std::chrono::nanoseconds source_time_ns, std::uint32_t series_index, std::uint32_t series_seq_num, std::uint64_t order_id, std::int32_t price, std::uint32_t volume, std::uint8_t position_change, Side side, CustIndicator cust_indicator);
 
     // Source Time Ns: The nanosecond offset (UTC Time) from the Time Reference message.
-    std::uint32_t source_time_ns() const;
-    void set_source_time_ns(std::uint32_t value);
+    std::chrono::nanoseconds source_time_ns() const;
+    void set_source_time_ns(std::chrono::nanoseconds value);
 
     // Series Index: The unique ID of this series within this market.
     std::uint32_t series_index() const;
@@ -79,7 +81,7 @@ class OptionsModifyOrderMessage : public Message {
     bool operator!=(const OptionsModifyOrderMessage& other) const;
 
   private:
-    std::uint32_t source_time_ns_{};
+    std::chrono::nanoseconds source_time_ns_{};
     std::uint32_t series_index_{};
     std::uint32_t series_seq_num_{};
     std::uint64_t order_id_{};

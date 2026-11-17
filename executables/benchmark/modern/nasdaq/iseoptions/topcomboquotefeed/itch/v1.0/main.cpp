@@ -1,3 +1,4 @@
+// Nasdaq.IseOptions.TopComboQuoteFeed.Itch.v1.0: main.cpp
 // Nasdaq.IseOptions.TopComboQuoteFeed.Itch.v1.0 benchmark, through the Modern iterator: every value it reads from every message of the simulated
 // sequence (tests/simulated/nasdaq/iseoptions/topcomboquotefeed/itch/v1.0.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -112,9 +113,9 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest(message->last_price.integer());
             checksum += bench::digest(message->size.get());
             checksum += bench::digest(message->volume.get());
-            checksum += bench::digest(message->high.get());
-            checksum += bench::digest(message->low.get());
-            checksum += bench::digest(message->first.get());
+            checksum += bench::digest(message->high.integer());
+            checksum += bench::digest(message->low.integer());
+            checksum += bench::digest(message->first.integer());
             checksum += bench::digest(message->trade_condition.get());
         }
     }

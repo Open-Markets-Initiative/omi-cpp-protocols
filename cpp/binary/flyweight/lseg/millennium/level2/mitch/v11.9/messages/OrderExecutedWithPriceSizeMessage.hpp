@@ -1,5 +1,7 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/OrderExecutedWithPriceSizeMessage.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <ostream>
@@ -9,6 +11,7 @@
 #include "../common/Print.hpp"
 #include "../common/View.hpp"
 #include "../enums/Printable.hpp"
+#include "../common/Decimal.hpp"
 
 namespace lseg::millennium::level2::mitch::v11_9 {
 
@@ -28,7 +31,7 @@ class OrderExecutedWithPriceSizeMessage {
     static constexpr std::size_t fixed_size = 37;
     std::size_t encoded_size() const { return 37; }
 
-    std::uint32_t nanosecond() const { return wire::read_u32_le(at(0)); }
+    std::chrono::nanoseconds nanosecond() const { return std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(at(0)))); }
 
     std::uint64_t order_id() const { return wire::read_u64_le(at(4)); }
 
@@ -40,12 +43,12 @@ class OrderExecutedWithPriceSizeMessage {
 
     Printable printable() const { return static_cast<Printable>(wire::read_char(at(28))); }
 
-    std::int64_t price() const { return wire::read_i64_le(at(29)); }
+    Decimal price() const { return Decimal(static_cast<std::int64_t>(wire::read_i64_le(at(29))), -8); }
 
     void print(std::ostream& out) const {
         out << "OrderExecutedWithPriceSizeMessage{";
         out << "nanosecond=";
-        out << nanosecond();
+        out << nanosecond().count();
         out << ", order_id=";
         out << order_id();
         out << ", executed_quantity=";

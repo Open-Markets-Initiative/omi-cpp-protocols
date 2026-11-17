@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.8: enums/ExerciseStyle.cpp
 #include "ExerciseStyle.hpp"
 
 namespace b3::b3derivatives::binaryumdf::sbe::v1_8 {

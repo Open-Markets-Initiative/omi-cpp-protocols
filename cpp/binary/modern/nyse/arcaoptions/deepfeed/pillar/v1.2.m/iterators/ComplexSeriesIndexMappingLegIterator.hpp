@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.DeepFeed.Pillar.v1.2.m: iterators/ComplexSeriesIndexMappingLegIterator.hpp
 #pragma once
 
 #include "../definitions.hpp"

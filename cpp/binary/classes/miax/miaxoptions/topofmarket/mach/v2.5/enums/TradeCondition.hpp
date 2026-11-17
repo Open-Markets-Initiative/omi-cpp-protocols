@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.TopOfMarket.Mach.v2.5: enums/TradeCondition.hpp
 #pragma once
 
 #include <cstdint>

@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.13: messages/details/SecurityStatusWorkupReader.hpp
 #pragma once
 
 #include "SecurityStatusWorkupWriter.hpp"

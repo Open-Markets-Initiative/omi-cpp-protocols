@@ -1,3 +1,4 @@
+// Nyse.TexasEquities.IntegratedFeed.Pillar.v2.5.g: messages/SecurityStatusMessage.hpp
 #pragma once
 
 #include "../types/SourceTime.hpp"

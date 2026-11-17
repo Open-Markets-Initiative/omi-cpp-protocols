@@ -1,3 +1,4 @@
+// Memx.MemxEquities.MemoirDepthFeed.Sbe.v1.3: messages/RegShoRestrictionMessage.cpp
 #include "RegShoRestrictionMessage.hpp"
 
 #include "../common/Print.hpp"

@@ -1,3 +1,4 @@
+// Iex.IexEquities.DeepPlus.IexTp.v1.05: statistics/Settings.hpp
 #pragma once
 
 #include <string>

@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.10: groups/FractionalParticipants.cpp
 #include "FractionalParticipants.hpp"
 
 #include "../common/Print.hpp"

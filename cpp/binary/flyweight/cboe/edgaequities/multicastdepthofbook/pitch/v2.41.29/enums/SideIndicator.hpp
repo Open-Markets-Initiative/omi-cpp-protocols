@@ -1,3 +1,4 @@
+// Cboe.EdgaEquities.MulticastDepthOfBook.Pitch.v2.41.29: enums/SideIndicator.hpp
 #pragma once
 
 #include <cstdint>

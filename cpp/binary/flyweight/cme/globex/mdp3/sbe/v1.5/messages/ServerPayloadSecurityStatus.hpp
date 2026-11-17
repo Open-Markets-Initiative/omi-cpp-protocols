@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.5: messages/ServerPayloadSecurityStatus.hpp
 #pragma once
 
 #include <chrono>

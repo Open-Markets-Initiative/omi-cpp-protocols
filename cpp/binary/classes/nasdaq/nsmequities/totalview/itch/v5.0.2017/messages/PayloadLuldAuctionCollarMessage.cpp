@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2017: messages/PayloadLuldAuctionCollarMessage.cpp
 #include "PayloadLuldAuctionCollarMessage.hpp"
 
 #include "../common/Print.hpp"

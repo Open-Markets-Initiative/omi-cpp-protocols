@@ -1,3 +1,4 @@
+// Nasdaq.NtxEquities.TotalView.Itch.v5.0: types/CurrentReferencePrice.hpp
 #pragma once
 
 #include <cstddef>

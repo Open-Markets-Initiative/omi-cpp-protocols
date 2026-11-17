@@ -1,3 +1,4 @@
+// OtcMarkets.LinkAts.Multicast.Link.v4.3: structs/PacketHeader.hpp
 #pragma once
 
 #include <chrono>

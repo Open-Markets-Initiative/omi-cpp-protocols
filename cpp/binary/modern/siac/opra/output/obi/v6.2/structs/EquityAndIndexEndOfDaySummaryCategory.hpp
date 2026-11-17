@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: structs/EquityAndIndexEndOfDaySummaryCategory.hpp
 #pragma once
 
 #include "../types/EquityAndIndexEndOfDaySummaryMessageType.hpp"

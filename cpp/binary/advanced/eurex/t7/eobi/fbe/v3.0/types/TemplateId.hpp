@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v3.0: types/TemplateId.hpp
 #pragma once
 
 #include <cstddef>
@@ -118,7 +119,7 @@ struct template_id {
     using storage_type = result_type;
 
     constexpr template_id()
-     : value{ enum_type{} } {}
+     : value{ static_cast<enum_type>(0xFFFF) } {}
 
     constexpr template_id(enum_type v)
      : value{ v } {}

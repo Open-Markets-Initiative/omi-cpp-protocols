@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.TopOfMarket.Mach.v2.5: enums/TradeCondition.cpp
 #include "TradeCondition.hpp"
 
 namespace miax::miaxoptions::topofmarket::mach::v2_5 {

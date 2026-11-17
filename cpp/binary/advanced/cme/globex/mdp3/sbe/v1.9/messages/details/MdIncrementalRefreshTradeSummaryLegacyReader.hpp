@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.9: messages/details/MdIncrementalRefreshTradeSummaryLegacyReader.hpp
 #pragma once
 
 #include "MdIncrementalRefreshTradeSummaryLegacyWriter.hpp"

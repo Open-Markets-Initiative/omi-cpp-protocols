@@ -1,9 +1,10 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.0: messages/ExecutionReportForwardMessage.hpp
 #pragma once
 
 #include "../structs/OutboundBusinessHeader.hpp"
 #include "../types/Side.hpp"
 #include "../types/OrdStatus.hpp"
-#include "../types/ClordidOptional.hpp"
+#include "../types/ClOrdIdOptional.hpp"
 #include "../types/SecondaryOrderId.hpp"
 #include "../types/SecurityId.hpp"
 #include "../types/Account.hpp"
@@ -36,7 +37,7 @@ struct ExecutionReportForwardMessage {
     OutboundBusinessHeader outbound_business_header;
     Side side;
     OrdStatus ord_status;
-    ClordidOptional clordid_optional;
+    ClOrdIdOptional cl_ord_id_optional;
     SecondaryOrderId secondary_order_id;
     SecurityId security_id;
     Account account;

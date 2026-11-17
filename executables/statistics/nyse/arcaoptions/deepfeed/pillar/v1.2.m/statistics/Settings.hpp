@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.DeepFeed.Pillar.v1.2.m: statistics/Settings.hpp
 #pragma once
 
 #include <string>

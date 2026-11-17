@@ -1,3 +1,4 @@
+// Jpx.OseDerivatives.GeniumInet.Itch.v5.0.6: structs/MessageHeader.hpp
 #pragma once
 
 #include "../types/MessageLength.hpp"

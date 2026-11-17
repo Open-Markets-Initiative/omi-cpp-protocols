@@ -17,6 +17,5 @@ packet.sequencedmessages.sequencedmessage.message[0].sbemessage.payload.instrume
 packet.sequencedmessages.sequencedmessage.message[0].sbemessage.payload.instrumentdirectorymessage.symbol = AGZ
 packet.sequencedmessages.sequencedmessage.message[0].sbemessage.payload.instrumentdirectorymessage.symbolsfx = 
 packet.sequencedmessages.sequencedmessage.message[0].sbemessage.payload.instrumentdirectorymessage.roundlot = 100
-packet.sequencedmessages.sequencedmessage.message[0].sbemessage.payload.instrumentdirectorymessage.reserved = 0
 packet.sequencedmessages.sequencedmessage.message[0].sbemessage.payload.instrumentdirectorymessage.istestsymbol = 0
 packet.sequencedmessages.sequencedmessage.message[0].sbemessage.payload.instrumentdirectorymessage.mpv = 0.01

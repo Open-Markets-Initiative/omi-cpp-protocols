@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: structs/EquityAndIndexLastSaleCategory.hpp
 #pragma once
 
 #include "../types/EquityAndIndexLastSaleMessageType.hpp"

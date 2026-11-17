@@ -1,3 +1,4 @@
+// Nyse.ArcaOptions.TopFeed.Pillar.v1.2.c: messages/TimeReferenceMessage.cpp
 #include "TimeReferenceMessage.hpp"
 
 #include "../common/Print.hpp"
@@ -6,7 +7,7 @@
 
 namespace nyse::arcaoptions::topfeed::pillar::v1_2_c {
 
-TimeReferenceMessage::TimeReferenceMessage(std::uint32_t id, const std::array<std::byte, 4>& reserved_4, std::uint32_t source_time)
+TimeReferenceMessage::TimeReferenceMessage(std::uint32_t id, const std::array<std::byte, 4>& reserved_4, std::chrono::seconds source_time)
   : id_(id), reserved_4_(reserved_4), source_time_(source_time) {}
 
 std::uint32_t TimeReferenceMessage::id() const { return id_; }
@@ -16,8 +17,8 @@ const std::array<std::byte, 4>& TimeReferenceMessage::reserved_4() const { retur
 std::array<std::byte, 4>& TimeReferenceMessage::reserved_4() { return reserved_4_; }
 void TimeReferenceMessage::set_reserved_4(const std::array<std::byte, 4>& value) { reserved_4_ = value; }
 
-std::uint32_t TimeReferenceMessage::source_time() const { return source_time_; }
-void TimeReferenceMessage::set_source_time(std::uint32_t value) { source_time_ = value; }
+std::chrono::seconds TimeReferenceMessage::source_time() const { return source_time_; }
+void TimeReferenceMessage::set_source_time(std::chrono::seconds value) { source_time_ = value; }
 
 MessageCode TimeReferenceMessage::type() const { return message_type; }
 
@@ -33,7 +34,7 @@ std::size_t TimeReferenceMessage::decode(const std::byte* data, std::size_t leng
     wire::read_bytes(data + offset, reserved_4_.data(), 4);
     offset += 4;
 
-    source_time_ = wire::read_u32_le(data + offset);
+    source_time_ = std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     return offset;
@@ -49,7 +50,7 @@ std::size_t TimeReferenceMessage::encode(std::byte* data, std::size_t capacity) 
     wire::write_bytes(data + offset, reserved_4_.data(), 4);
     offset += 4;
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(source_time_.count()));
     offset += 4;
 
     return offset;
@@ -74,7 +75,7 @@ void TimeReferenceMessage::print(std::ostream& out) const {
     out << ", reserved_4=";
     print::hex(out, reserved_4_.data(), reserved_4_.size());
     out << ", source_time=";
-    out << source_time_;
+    out << source_time_.count();
     out << '}';
 }
 

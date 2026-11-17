@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.11.b: messages/FractionalPriorDayTradeCorrectionMessage.hpp
 #pragma once
 
 #include "../types/ParticipantId.hpp"

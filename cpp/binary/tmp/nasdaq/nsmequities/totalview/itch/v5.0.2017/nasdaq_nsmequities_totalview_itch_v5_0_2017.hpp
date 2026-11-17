@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2017: nasdaq_nsmequities_totalview_itch_v5_0_2017.hpp
 // Nasdaq NsmEquities TotalView Itch 5.0.2017 Template Meta Programming
 
 #pragma once
@@ -1449,14 +1450,14 @@ struct requested_session {
 
 // Reserved
 struct reserved {
-    using type = char;
+    using type = std::uint8_t;
     static constexpr std::size_t size = 1;
 
     constexpr type value() const noexcept { return value_; }
     constexpr operator type() const noexcept { return value(); }
 
   protected:
-    char value_;
+    type value_;
 };
 
 // Round Lot Size: Denotes the number of shares that represent a round lot for the issue

@@ -1,3 +1,4 @@
+// Nyse.AmexOptions.ComplexFeed.Xdp.v1.3.a: enums/Side.hpp
 #pragma once
 
 #include <cstdint>

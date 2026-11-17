@@ -1,3 +1,4 @@
+// Iex.IexEquities.Deep.Snap.v1.6: messages/SnapshotDataMessage.hpp
 #pragma once
 
 #include "../structs/IextpHeader.hpp"

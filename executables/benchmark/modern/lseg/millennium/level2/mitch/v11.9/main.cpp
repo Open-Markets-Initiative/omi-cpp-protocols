@@ -1,3 +1,4 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: main.cpp
 // Lseg.Millennium.Level2.Mitch.v11.9 benchmark, through the Modern iterator: every value it reads from every message of the simulated
 // sequence (tests/simulated/lseg/millennium/level2/mitch/v11.9.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -53,7 +54,7 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest(message->segment.get());
             checksum += bench::digest(message->underlying.get());
             checksum += bench::digest(message->currency.get());
-            checksum += bench::digest(message->previous_close_price.get());
+            checksum += bench::digest(message->previous_close_price.integer());
         } else if (iterator.message_type == protocol::SymbolStatusMessage::message_type) {
             [[maybe_unused]] const auto* message = protocol::SymbolStatusMessage::parse(iterator.message);
             checksum += bench::digest(message->nanosecond.get());
@@ -71,7 +72,7 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest(message->side.get());
             checksum += bench::digest(message->quantity.get());
             checksum += bench::digest(message->instrument_id.get());
-            checksum += bench::digest(message->price.get());
+            checksum += bench::digest(message->price.integer());
             checksum += bench::digest(message->add_order_flags.MarketOrder());
             checksum += bench::digest(message->add_order_flags.Unused1());
             checksum += bench::digest(message->add_order_flags.PrivateRfq());
@@ -83,7 +84,7 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest(message->side.get());
             checksum += bench::digest(message->quantity.get());
             checksum += bench::digest(message->instrument_id.get());
-            checksum += bench::digest(message->price.get());
+            checksum += bench::digest(message->price.integer());
             checksum += bench::digest(message->attribution.get());
             checksum += bench::digest(message->add_attributed_order_flags.NamedMarketOrder());
             checksum += bench::digest(message->add_attributed_order_flags.FirmQuote());
@@ -98,7 +99,7 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest(message->nanosecond.get());
             checksum += bench::digest(message->order_id.get());
             checksum += bench::digest(message->new_quantity.get());
-            checksum += bench::digest(message->new_price.get());
+            checksum += bench::digest(message->new_price.integer());
             checksum += bench::digest(message->order_modified_flags.PriorityFlag());
             checksum += bench::digest(message->order_modified_flags.FirmQuote());
         } else if (iterator.message_type == protocol::OrderBookClearMessage::message_type) {
@@ -122,13 +123,13 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest(message->display_quantity.get());
             checksum += bench::digest(message->trade_match_id.get());
             checksum += bench::digest(message->printable.get());
-            checksum += bench::digest(message->price.get());
+            checksum += bench::digest(message->price.integer());
         } else if (iterator.message_type == protocol::TradeMessage::message_type) {
             [[maybe_unused]] const auto* message = protocol::TradeMessage::parse(iterator.message);
             checksum += bench::digest(message->nanosecond.get());
             checksum += bench::digest(message->executed_quantity.get());
             checksum += bench::digest(message->instrument_id.get());
-            checksum += bench::digest(message->price.get());
+            checksum += bench::digest(message->price.integer());
             checksum += bench::digest(message->trade_match_id.get());
             checksum += (static_cast<std::uint8_t>(message->cross_type.get()) != 0x0U ? bench::digest(message->cross_type.get()) : std::uint64_t{0});
             checksum += bench::digest(message->sub_book.get());
@@ -139,7 +140,7 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest(message->nanosecond.get());
             checksum += bench::digest(message->quantity.get());
             checksum += bench::digest(message->instrument_id.get());
-            checksum += bench::digest(message->price.get());
+            checksum += bench::digest(message->price.integer());
             checksum += bench::digest(message->trade_match_id.get());
             checksum += bench::digest(message->auction_type.get());
             checksum += bench::digest(message->pt_mod_flags.Canc());
@@ -149,22 +150,22 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest(message->nanosecond.get());
             checksum += bench::digest(message->paired_quantity.get());
             checksum += bench::digest(message->instrument_id.get());
-            checksum += bench::digest(message->price.get());
+            checksum += bench::digest(message->price.integer());
             checksum += bench::digest(message->auction_type.get());
         } else if (iterator.message_type == protocol::StatisticsMessage::message_type) {
             [[maybe_unused]] const auto* message = protocol::StatisticsMessage::parse(iterator.message);
             checksum += bench::digest(message->nanosecond.get());
             checksum += bench::digest(message->instrument_id.get());
             checksum += bench::digest(message->statistic_type.get());
-            checksum += bench::digest(message->price.get());
+            checksum += bench::digest(message->price.integer());
             checksum += bench::digest(message->open_close_price_indicator.get());
         } else if (iterator.message_type == protocol::TopOfBookMessage::message_type) {
             [[maybe_unused]] const auto* message = protocol::TopOfBookMessage::parse(iterator.message);
             checksum += bench::digest(message->nanosecond.get());
             checksum += bench::digest(message->instrument_id.get());
-            checksum += bench::digest(message->buy_limit_price.get());
+            checksum += bench::digest(message->buy_limit_price.integer());
             checksum += bench::digest(message->buy_limit_size.get());
-            checksum += bench::digest(message->sell_limit_price.get());
+            checksum += bench::digest(message->sell_limit_price.integer());
             checksum += bench::digest(message->sell_limit_size.get());
         }
     }

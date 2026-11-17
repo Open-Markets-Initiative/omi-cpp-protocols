@@ -1,3 +1,4 @@
+// Siac.Opra.Output.Obi.v6.2: structs/ShortEquityAndIndexQuoteCategory.hpp
 #pragma once
 
 #include "../types/ShortEquityAndIndexQuoteMessageType.hpp"

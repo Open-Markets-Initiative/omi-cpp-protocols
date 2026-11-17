@@ -1,3 +1,4 @@
+// Siac.Cqs.Output.Cta.v2.10.a: messages/MarketWideCircuitBreakerStatusMessage.hpp
 #pragma once
 
 #include <cstddef>
@@ -41,7 +42,7 @@ class MarketWideCircuitBreakerStatusMessage {
 
     MarketWideCircuitBreakerLevelIndicator market_wide_circuit_breaker_level_indicator() const { return static_cast<MarketWideCircuitBreakerLevelIndicator>(wire::read_char(at(22))); }
 
-    char reserved() const { return wire::read_char(at(23)); }
+    std::span<const std::byte, 1> reserved() const { return bytes_.subspan(23).template first<1>(); }
 
     void print(std::ostream& out) const {
         out << "MarketWideCircuitBreakerStatusMessage{";
@@ -58,7 +59,7 @@ class MarketWideCircuitBreakerStatusMessage {
         out << ", market_wide_circuit_breaker_level_indicator=";
         out << market_wide_circuit_breaker_level_indicator();
         out << ", reserved=";
-        print::character(out, reserved());
+        print::hex(out, reserved().data(), reserved().size());
         out << '}';
     }
 

@@ -1,3 +1,4 @@
+// Cboe.C1Options.Complex.Pitch.v2.1.18: messages/SymbolMappingMessage.cpp
 #include "SymbolMappingMessage.hpp"
 
 #include "../common/Print.hpp"

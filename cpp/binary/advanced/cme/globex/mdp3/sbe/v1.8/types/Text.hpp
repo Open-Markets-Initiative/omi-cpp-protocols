@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.8: types/Text.hpp
 #pragma once
 
 #include <cstddef>
@@ -12,12 +13,12 @@ namespace cme::mdp3::v8 {
 struct text {
 
     static constexpr const char* name = "text";
-    static constexpr std::size_t size = 100;
+    static constexpr std::size_t size = 180;
     static constexpr char fill_char = '\0';
     static constexpr bool is_optional = false;
 
     using result_type = required<std::string_view>;
-    using storage_type = required<std::array<char, 100>>;
+    using storage_type = required<std::array<char, 180>>;
 
     constexpr text() {
         value.fill(fill_char);
@@ -55,6 +56,6 @@ struct text {
     }
 
   protected:
-    std::array<char, 100> value;
+    std::array<char, 180> value;
 };
 }

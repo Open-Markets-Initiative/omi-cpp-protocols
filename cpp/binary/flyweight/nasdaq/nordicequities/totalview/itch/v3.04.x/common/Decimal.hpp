@@ -1,3 +1,4 @@
+// Nasdaq.NordicEquities.TotalView.Itch.v3.04.X: common/Decimal.hpp
 #pragma once
 
 #include <cmath>

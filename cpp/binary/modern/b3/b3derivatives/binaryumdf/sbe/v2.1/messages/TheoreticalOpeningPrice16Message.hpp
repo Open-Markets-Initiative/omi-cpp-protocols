@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.1: messages/TheoreticalOpeningPrice16Message.hpp
 #pragma once
 
 #include "../types/SecurityId.hpp"
@@ -5,7 +6,7 @@
 #include "../types/MdUpdateAction.hpp"
 #include "../types/TradeDate.hpp"
 #include "../types/MdCorporateOffsetPriceOptional.hpp"
-#include "../types/MdEntrySizeQuantityOptional.hpp"
+#include "../types/MdEntrySizeOptional.hpp"
 #include "../types/MdEntryTimestamp.hpp"
 #include "../types/RptSeq.hpp"
 
@@ -21,7 +22,7 @@ struct TheoreticalOpeningPrice16Message {
     MdUpdateAction md_update_action;
     TradeDate trade_date;
     MdCorporateOffsetPriceOptional md_corporate_offset_price_optional;
-    MdEntrySizeQuantityOptional md_entry_size_quantity_optional;
+    MdEntrySizeOptional md_entry_size_optional;
     MdEntryTimestamp md_entry_timestamp;
     RptSeq rpt_seq;
 

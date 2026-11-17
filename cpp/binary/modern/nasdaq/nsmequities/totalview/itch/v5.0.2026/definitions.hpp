@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.TotalView.Itch.v5.0.2026: definitions.hpp
 #pragma once
 
 #include "structs/ClientPacketHeader.hpp"

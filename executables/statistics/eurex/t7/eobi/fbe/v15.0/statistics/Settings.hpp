@@ -1,3 +1,4 @@
+// Eurex.T7.Eobi.Fbe.v15.0: statistics/Settings.hpp
 #pragma once
 
 #include <string>

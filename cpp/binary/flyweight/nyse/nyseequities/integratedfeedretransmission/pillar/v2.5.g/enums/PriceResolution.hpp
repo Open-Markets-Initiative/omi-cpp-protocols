@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeedRetransmission.Pillar.v2.5.g: enums/PriceResolution.hpp
 #pragma once
 
 #include <cstdint>

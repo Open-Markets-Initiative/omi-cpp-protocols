@@ -1,3 +1,4 @@
+// Bse.BseIndia.Eobi.Fbe.v1.4: messages/InstrumentSummaryMessage.cpp
 #include "InstrumentSummaryMessage.hpp"
 
 #include "../common/Print.hpp"

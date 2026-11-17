@@ -1,3 +1,4 @@
+// Nasdaq.NsmEquities.NlsPlus.Itch.v3.0: messages/RegShoShortSalePriceTestRestrictedIndicatorMessage.cpp
 #include "RegShoShortSalePriceTestRestrictedIndicatorMessage.hpp"
 
 #include "../common/Print.hpp"

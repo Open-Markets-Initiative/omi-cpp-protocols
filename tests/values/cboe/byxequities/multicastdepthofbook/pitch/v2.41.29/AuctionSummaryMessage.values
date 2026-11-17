@@ -1,0 +1,26 @@
+# Cboe.ByxEquities.MulticastDepthOfBook.Pitch.v2.41.29 AuctionSummaryMessage: canonical values, read by the model
+datagram 0
+packet.packetheader.length = 82
+packet.packetheader.messagecount = 2
+packet.packetheader.unit = 24
+packet.packetheader.sequence = 203249
+packet.messages = packet.messages.message
+packet.messages.message[0].messageheader.messagelength = 47
+packet.messages.message[0].messageheader.messagetype = 149
+packet.messages.message[0].payload = packet.messages.message.payload.auctionupdatemessage
+packet.messages.message[0].payload.auctionupdatemessage.timeoffset = 142463000
+packet.messages.message[0].payload.auctionupdatemessage.symbollong = SOXL
+packet.messages.message[0].payload.auctionupdatemessage.auctiontype = P
+packet.messages.message[0].payload.auctionupdatemessage.referenceprice = 226600
+packet.messages.message[0].payload.auctionupdatemessage.buyshares = 0
+packet.messages.message[0].payload.auctionupdatemessage.sellshares = 0
+packet.messages.message[0].payload.auctionupdatemessage.indicativeprice = 0
+packet.messages.message[0].payload.auctionupdatemessage.auctiononlyprice = 0
+packet.messages.message[1].messageheader.messagelength = 27
+packet.messages.message[1].messageheader.messagetype = 150
+packet.messages.message[1].payload = packet.messages.message.payload.auctionsummarymessage
+packet.messages.message[1].payload.auctionsummarymessage.timeoffset = 142463000
+packet.messages.message[1].payload.auctionsummarymessage.symbollong = SOXL
+packet.messages.message[1].payload.auctionsummarymessage.auctionopeningtype = P
+packet.messages.message[1].payload.auctionsummarymessage.price = 0
+packet.messages.message[1].payload.auctionsummarymessage.sharescontracts = 0

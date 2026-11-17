@@ -1,5 +1,7 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.2: messages/TradeBust57Message.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <optional>
@@ -40,7 +42,7 @@ class TradeBust57Message {
 
     Decimal md_future_price() const { return Decimal(static_cast<std::int64_t>(wire::read_i64_le(at(12))), -4); }
 
-    std::int64_t md_entry_size_quantity() const { return wire::read_i64_le(at(20)); }
+    std::int64_t md_entry_size() const { return wire::read_i64_le(at(20)); }
 
     std::uint32_t trade_id() const { return wire::read_u32_le(at(28)); }
 
@@ -48,7 +50,7 @@ class TradeBust57Message {
 
     std::span<const std::byte, 2> offset_34_padding_2() const { return bytes_.subspan(34).template first<2>(); }
 
-    std::optional<std::uint64_t> transact_time() const { return wire::nullable(wire::read_u64_le(at(36)), static_cast<std::uint64_t>(0ULL)); }
+    std::optional<std::chrono::nanoseconds> transact_time() const { return wire::nullable_duration<std::chrono::nanoseconds>(wire::read_u64_le(at(36)), static_cast<std::uint64_t>(0ULL)); }
 
     std::optional<std::uint32_t> rpt_seq() const { return wire::nullable(wire::read_u32_le(at(44)), static_cast<std::uint32_t>(0ULL)); }
 
@@ -64,8 +66,8 @@ class TradeBust57Message {
         print::hex(out, offset_10_padding_2().data(), offset_10_padding_2().size());
         out << ", md_future_price=";
         out << md_future_price();
-        out << ", md_entry_size_quantity=";
-        out << md_entry_size_quantity();
+        out << ", md_entry_size=";
+        out << md_entry_size();
         out << ", trade_id=";
         out << trade_id();
         out << ", trade_date=";
@@ -73,7 +75,7 @@ class TradeBust57Message {
         out << ", offset_34_padding_2=";
         print::hex(out, offset_34_padding_2().data(), offset_34_padding_2().size());
         out << ", transact_time=";
-        print::optional(out, transact_time());
+        print::optional_duration(out, transact_time());
         out << ", rpt_seq=";
         print::optional(out, rpt_seq());
         out << '}';

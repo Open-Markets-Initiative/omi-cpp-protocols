@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeedRefresh.Pillar.v2.5.g: nyse_amexequities_integratedfeedrefresh_pillar_v2_5_g.hpp
 // Nyse AmexEquities IntegratedFeedRefresh Pillar 2.5.g Template Meta Programming
 
 #pragma once

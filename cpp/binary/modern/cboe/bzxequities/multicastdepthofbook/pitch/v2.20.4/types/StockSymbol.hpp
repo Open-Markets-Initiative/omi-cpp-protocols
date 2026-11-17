@@ -1,3 +1,4 @@
+// Cboe.BzxEquities.MulticastDepthOfBook.Pitch.v2.20.4: types/StockSymbol.hpp
 #pragma once
 
 #include <array>

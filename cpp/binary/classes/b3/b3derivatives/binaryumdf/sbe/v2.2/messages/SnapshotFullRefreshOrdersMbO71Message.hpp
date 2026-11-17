@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.2: messages/SnapshotFullRefreshOrdersMbO71Message.hpp
 #pragma once
 
 #include <cstddef>
@@ -26,7 +27,7 @@ class SnapshotFullRefreshOrdersMbO71Message : public Message {
     std::uint64_t security_id() const;
     void set_security_id(std::uint64_t value);
 
-    // Snapshot Full Refresh Orders Mb O 71 Message no M D Entries Groups: noMDEntries Block
+    // Snapshot Full Refresh Orders Mb O 71 Message No M D Entries Groups: noMDEntries Block
     const SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroups& snapshot_full_refresh_orders_mb_o_71_message_no_m_d_entries_groups() const;
     SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroups& snapshot_full_refresh_orders_mb_o_71_message_no_m_d_entries_groups();
     void set_snapshot_full_refresh_orders_mb_o_71_message_no_m_d_entries_groups(const SnapshotFullRefreshOrdersMbO71MessageNoMDEntriesGroups& value);

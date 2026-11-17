@@ -1,6 +1,8 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: messages/TradeMessage.hpp
 #pragma once
 
 #include <array>
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
@@ -9,6 +11,7 @@
 #include <string_view>
 
 #include "../bitfields/PtModFlags.hpp"
+#include "../common/Decimal.hpp"
 #include "../enums/CrossType.hpp"
 #include "../enums/SubBook.hpp"
 #include "../messages/Message.hpp"
@@ -26,11 +29,11 @@ class TradeMessage : public Message {
     static constexpr std::size_t wire_size = 33;
 
     TradeMessage() = default;
-    TradeMessage(std::uint32_t nanosecond, std::uint32_t executed_quantity, std::uint32_t instrument_id, const std::array<std::byte, 1>& reserved_a, const std::array<std::byte, 1>& reserved_b, std::int64_t price, std::uint64_t trade_match_id, std::optional<CrossType> cross_type, SubBook sub_book, const PtModFlags& pt_mod_flags);
+    TradeMessage(std::chrono::nanoseconds nanosecond, std::uint32_t executed_quantity, std::uint32_t instrument_id, const std::array<std::byte, 1>& reserved_a, const std::array<std::byte, 1>& reserved_b, Decimal price, std::uint64_t trade_match_id, std::optional<CrossType> cross_type, SubBook sub_book, const PtModFlags& pt_mod_flags);
 
     // Nanosecond: Nanoseconds since last message, accurate to the nearest microsecond.
-    std::uint32_t nanosecond() const;
-    void set_nanosecond(std::uint32_t value);
+    std::chrono::nanoseconds nanosecond() const;
+    void set_nanosecond(std::chrono::nanoseconds value);
 
     // Executed Quantity: Quantity executed.
     std::uint32_t executed_quantity() const;
@@ -51,8 +54,8 @@ class TradeMessage : public Message {
     void set_reserved_b(const std::array<std::byte, 1>& value);
 
     // Price: Limit price of the order.
-    std::int64_t price() const;
-    void set_price(std::int64_t value);
+    Decimal price() const;
+    void set_price(Decimal value);
 
     // Trade Match Id: Unique identifier of the trade.
     std::uint64_t trade_match_id() const;
@@ -86,12 +89,12 @@ class TradeMessage : public Message {
     bool operator!=(const TradeMessage& other) const;
 
   private:
-    std::uint32_t nanosecond_{};
+    std::chrono::nanoseconds nanosecond_{};
     std::uint32_t executed_quantity_{};
     std::uint32_t instrument_id_{};
     std::array<std::byte, 1> reserved_a_{};
     std::array<std::byte, 1> reserved_b_{};
-    std::int64_t price_{};
+    Decimal price_{ 0, -8 };
     std::uint64_t trade_match_id_{};
     std::optional<CrossType> cross_type_{};
     SubBook sub_book_{};

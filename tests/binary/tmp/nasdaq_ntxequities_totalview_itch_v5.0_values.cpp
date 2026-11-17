@@ -424,7 +424,6 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::timestamp>(); }) { values[entry + ".payload.stocktradingactionmessage.timestamp"] = canonical::number(message.template get<protocol::timestamp>().value()); }
         if constexpr (requires { message.template get<protocol::stock>(); }) { values[entry + ".payload.stocktradingactionmessage.stock"] = canonical::text(std::string(message.template get<protocol::stock>().value()), ' ', false); }
         if constexpr (requires { message.template get<protocol::trading_state>(); }) { values[entry + ".payload.stocktradingactionmessage.tradingstate"] = canonical::text(canonical::character(message.template get<protocol::trading_state>().value()), ' ', false); }
-        if constexpr (requires { message.template get<protocol::reserved>(); }) { values[entry + ".payload.stocktradingactionmessage.reserved"] = canonical::text(canonical::character(message.template get<protocol::reserved>().value()), ' ', false); }
         if constexpr (requires { message.template get<protocol::trading_action_reason>(); }) { values[entry + ".payload.stocktradingactionmessage.tradingactionreason"] = canonical::text(std::string(message.template get<protocol::trading_action_reason>().value()), ' ', false); }
     }
 

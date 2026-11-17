@@ -1,5 +1,7 @@
+// Siac.Cts.Output.Cta.v2.9: messages/MarketWideCircuitBreakerDeclineLevelStatusMessage.hpp
 #pragma once
 
+#include <array>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
@@ -26,7 +28,7 @@ class MarketWideCircuitBreakerDeclineLevelStatusMessage : public MarketStatusMes
     static constexpr std::size_t wire_size = 47;
 
     MarketWideCircuitBreakerDeclineLevelStatusMessage() = default;
-    MarketWideCircuitBreakerDeclineLevelStatusMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, Decimal mwcb_level_1, Decimal mwcb_level_2, Decimal mwcb_level_3, std::uint8_t reserved);
+    MarketWideCircuitBreakerDeclineLevelStatusMessage(ParticipantId participant_id, const Timestamp1& timestamp_1, std::uint8_t message_id, std::uint32_t transaction_id, std::int64_t participant_reference_number, Decimal mwcb_level_1, Decimal mwcb_level_2, Decimal mwcb_level_3, const std::array<std::byte, 1>& reserved);
 
     // Participant Id: Participant or Processor that generated the message
     ParticipantId participant_id() const;
@@ -66,8 +68,9 @@ class MarketWideCircuitBreakerDeclineLevelStatusMessage : public MarketStatusMes
     void set_mwcb_level_3(Decimal value);
 
     // Reserved: Field is reserved for future use.
-    std::uint8_t reserved() const;
-    void set_reserved(std::uint8_t value);
+    const std::array<std::byte, 1>& reserved() const;
+    std::array<std::byte, 1>& reserved();
+    void set_reserved(const std::array<std::byte, 1>& value);
 
     // MarketStatusMessagePayload
     MarketStatusMessagePayloadCode type() const override;
@@ -92,7 +95,7 @@ class MarketWideCircuitBreakerDeclineLevelStatusMessage : public MarketStatusMes
     Decimal mwcb_level_1_{ 0, -6 };
     Decimal mwcb_level_2_{ 0, -6 };
     Decimal mwcb_level_3_{ 0, -6 };
-    std::uint8_t reserved_{};
+    std::array<std::byte, 1> reserved_{};
 };
 
 } // namespace siac::cts::output::cta::v2_9

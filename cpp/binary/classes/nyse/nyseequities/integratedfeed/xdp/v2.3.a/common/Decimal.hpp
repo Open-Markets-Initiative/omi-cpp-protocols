@@ -1,3 +1,4 @@
+// Nyse.NyseEquities.IntegratedFeed.Xdp.v2.3.a: common/Decimal.hpp
 #pragma once
 
 #include <cmath>

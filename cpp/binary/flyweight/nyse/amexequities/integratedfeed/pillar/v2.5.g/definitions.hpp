@@ -1,3 +1,4 @@
+// Nyse.AmexEquities.IntegratedFeed.Pillar.v2.5.g: definitions.hpp
 #pragma once
 
 // Every flyweight view and reader of Nyse.AmexEquities.IntegratedFeed.Pillar.v2.5.g.

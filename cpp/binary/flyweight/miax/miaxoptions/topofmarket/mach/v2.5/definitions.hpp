@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.TopOfMarket.Mach.v2.5: definitions.hpp
 #pragma once
 
 // Every flyweight view and reader of Miax.MiaxOptions.TopOfMarket.Mach.v2.5.

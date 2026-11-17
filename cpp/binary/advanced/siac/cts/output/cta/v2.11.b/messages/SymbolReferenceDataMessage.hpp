@@ -1,7 +1,7 @@
+// Siac.Cts.Output.Cta.v2.11.b: messages/SymbolReferenceDataMessage.hpp
 #pragma once
 
 #include <cstddef>
-#include "../structs/BlockHeader.hpp"
 #include "../types/ParticipantId.hpp"
 #include "../structs/Timestamp1.hpp"
 #include "../types/MessageId.hpp"
@@ -64,7 +64,6 @@ struct symbol_reference_data_message {
         cta_output::reserved_128 reserved_128;
     };
 
-    cta_output::block_header header = {{}, {}, {}, {}, {}, {}, {}, {}};
     // Transport framing: message size precedes the SBE header on the wire
     cta_output::message_length message_length;
     cta_output::message_category message_category = cta_output::message_category::enum_type::administrative;
@@ -109,7 +108,7 @@ static_assert(offsetof(symbol_reference_data_message::fields_type, reserved) == 
 static_assert(offsetof(symbol_reference_data_message::fields_type, second_reserved) == 76, "unexpected offset of symbol_reference_data_message::fields_type::second_reserved");
 static_assert(offsetof(symbol_reference_data_message::fields_type, reserved_128) == 77, "unexpected offset of symbol_reference_data_message::fields_type::reserved_128");
 static_assert(sizeof(symbol_reference_data_message::fields_type) == 205, "unexpected sizeof symbol_reference_data_message::fields_type");
-static_assert(sizeof(symbol_reference_data_message) == sizeof(cta_output::block_header) + sizeof(cta_output::message_length) + sizeof(cta_output::message_category) + sizeof(cta_output::administrative_message_type) + 205, "unexpected sizeof symbol_reference_data_message");
+static_assert(sizeof(symbol_reference_data_message) == sizeof(cta_output::message_length) + sizeof(cta_output::message_category) + sizeof(cta_output::administrative_message_type) + 205, "unexpected sizeof symbol_reference_data_message");
 
 #pragma pack(pop)
 }

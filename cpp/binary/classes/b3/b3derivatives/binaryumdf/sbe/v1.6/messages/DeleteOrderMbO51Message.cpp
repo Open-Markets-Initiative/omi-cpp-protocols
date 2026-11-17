@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.6: messages/DeleteOrderMbO51Message.cpp
 #include "DeleteOrderMbO51Message.hpp"
 
 #include "../common/Print.hpp"
@@ -6,8 +7,8 @@
 
 namespace b3::b3derivatives::binaryumdf::sbe::v1_6 {
 
-DeleteOrderMbO51Message::DeleteOrderMbO51Message(std::uint64_t security_id, const MatchEventIndicator& match_event_indicator, const std::array<std::byte, 1>& offset_9_padding_1, MdEntryType md_entry_type, const std::array<std::byte, 1>& offset_11_padding_1, std::uint32_t md_entry_position_no, std::optional<std::int64_t> md_entry_size_quantity_optional, std::uint64_t secondary_order_id, std::optional<std::chrono::nanoseconds> md_entry_timestamp, std::optional<std::uint32_t> rpt_seq)
-  : security_id_(security_id), match_event_indicator_(match_event_indicator), offset_9_padding_1_(offset_9_padding_1), md_entry_type_(md_entry_type), offset_11_padding_1_(offset_11_padding_1), md_entry_position_no_(md_entry_position_no), md_entry_size_quantity_optional_(md_entry_size_quantity_optional), secondary_order_id_(secondary_order_id), md_entry_timestamp_(md_entry_timestamp), rpt_seq_(rpt_seq) {}
+DeleteOrderMbO51Message::DeleteOrderMbO51Message(std::uint64_t security_id, const MatchEventIndicator& match_event_indicator, const std::array<std::byte, 1>& offset_9_padding_1, MdEntryType md_entry_type, const std::array<std::byte, 1>& offset_11_padding_1, std::uint32_t md_entry_position_no, std::optional<std::int64_t> md_entry_size_optional, std::uint64_t secondary_order_id, std::optional<std::chrono::nanoseconds> md_entry_timestamp, std::optional<std::uint32_t> rpt_seq)
+  : security_id_(security_id), match_event_indicator_(match_event_indicator), offset_9_padding_1_(offset_9_padding_1), md_entry_type_(md_entry_type), offset_11_padding_1_(offset_11_padding_1), md_entry_position_no_(md_entry_position_no), md_entry_size_optional_(md_entry_size_optional), secondary_order_id_(secondary_order_id), md_entry_timestamp_(md_entry_timestamp), rpt_seq_(rpt_seq) {}
 
 std::uint64_t DeleteOrderMbO51Message::security_id() const { return security_id_; }
 void DeleteOrderMbO51Message::set_security_id(std::uint64_t value) { security_id_ = value; }
@@ -30,8 +31,8 @@ void DeleteOrderMbO51Message::set_offset_11_padding_1(const std::array<std::byte
 std::uint32_t DeleteOrderMbO51Message::md_entry_position_no() const { return md_entry_position_no_; }
 void DeleteOrderMbO51Message::set_md_entry_position_no(std::uint32_t value) { md_entry_position_no_ = value; }
 
-std::optional<std::int64_t> DeleteOrderMbO51Message::md_entry_size_quantity_optional() const { return md_entry_size_quantity_optional_; }
-void DeleteOrderMbO51Message::set_md_entry_size_quantity_optional(std::optional<std::int64_t> value) { md_entry_size_quantity_optional_ = value; }
+std::optional<std::int64_t> DeleteOrderMbO51Message::md_entry_size_optional() const { return md_entry_size_optional_; }
+void DeleteOrderMbO51Message::set_md_entry_size_optional(std::optional<std::int64_t> value) { md_entry_size_optional_ = value; }
 
 std::uint64_t DeleteOrderMbO51Message::secondary_order_id() const { return secondary_order_id_; }
 void DeleteOrderMbO51Message::set_secondary_order_id(std::uint64_t value) { secondary_order_id_ = value; }
@@ -67,7 +68,7 @@ std::size_t DeleteOrderMbO51Message::decode(const std::byte* data, std::size_t l
     md_entry_position_no_ = wire::read_u32_le(data + offset);
     offset += 4;
 
-    md_entry_size_quantity_optional_ = wire::nullable(wire::read_i64_le(data + offset), static_cast<std::int64_t>(-9223372036854775807LL - 1));
+    md_entry_size_optional_ = wire::nullable(wire::read_i64_le(data + offset), static_cast<std::int64_t>(-9223372036854775807LL - 1));
     offset += 8;
 
     secondary_order_id_ = wire::read_u64_le(data + offset);
@@ -103,7 +104,7 @@ std::size_t DeleteOrderMbO51Message::encode(std::byte* data, std::size_t capacit
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(md_entry_position_no_));
     offset += 4;
 
-    wire::write_i64_le(data + offset, md_entry_size_quantity_optional_.value_or(static_cast<std::int64_t>(-9223372036854775807LL - 1)));
+    wire::write_i64_le(data + offset, md_entry_size_optional_.value_or(static_cast<std::int64_t>(-9223372036854775807LL - 1)));
     offset += 8;
 
     wire::write_u64_le(data + offset, static_cast<std::uint64_t>(secondary_order_id_));
@@ -144,8 +145,8 @@ void DeleteOrderMbO51Message::print(std::ostream& out) const {
     print::hex(out, offset_11_padding_1_.data(), offset_11_padding_1_.size());
     out << ", md_entry_position_no=";
     out << md_entry_position_no_;
-    out << ", md_entry_size_quantity_optional=";
-    print::optional(out, md_entry_size_quantity_optional_);
+    out << ", md_entry_size_optional=";
+    print::optional(out, md_entry_size_optional_);
     out << ", secondary_order_id=";
     out << secondary_order_id_;
     out << ", md_entry_timestamp=";
@@ -167,7 +168,7 @@ bool DeleteOrderMbO51Message::operator==(const DeleteOrderMbO51Message& other) c
         && md_entry_type_ == other.md_entry_type_
         && offset_11_padding_1_ == other.offset_11_padding_1_
         && md_entry_position_no_ == other.md_entry_position_no_
-        && md_entry_size_quantity_optional_ == other.md_entry_size_quantity_optional_
+        && md_entry_size_optional_ == other.md_entry_size_optional_
         && secondary_order_id_ == other.secondary_order_id_
         && md_entry_timestamp_ == other.md_entry_timestamp_
         && rpt_seq_ == other.rpt_seq_;

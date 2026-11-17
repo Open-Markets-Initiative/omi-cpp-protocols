@@ -1,3 +1,4 @@
+// Cme.Globex.Mdp3.Sbe.v1.9: structs/SnapshotFullRefreshOrderBookGroups.cpp
 #include "SnapshotFullRefreshOrderBookGroups.hpp"
 
 #include "../common/Print.hpp"

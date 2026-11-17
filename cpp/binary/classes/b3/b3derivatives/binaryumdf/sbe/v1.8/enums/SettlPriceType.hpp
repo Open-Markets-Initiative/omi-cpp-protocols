@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v1.8: enums/SettlPriceType.hpp
 #pragma once
 
 #include <cstdint>

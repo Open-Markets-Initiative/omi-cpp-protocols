@@ -1,9 +1,9 @@
+// Siac.Cts.Output.Cta.v1.91: messages/MarketWideCircuitBreakerStatusMessage.hpp
 #pragma once
 
 #include <cstddef>
-#include "../structs/BlockHeader.hpp"
 #include "../types/ParticipantId.hpp"
-#include "../structs/Timestamp1.hpp"
+#include "../types/Timestamp1Optional.hpp"
 #include "../types/MessageId.hpp"
 #include "../types/TransactionId.hpp"
 #include "../types/ParticipantReferenceNumber.hpp"
@@ -24,7 +24,7 @@ struct market_wide_circuit_breaker_status_message {
 
     struct fields_type {
         cta_output::participant_id participant_id;
-        cta_output::timestamp_1 timestamp_1;
+        cta_output::timestamp_1_optional timestamp_1;
         cta_output::message_id message_id;
         cta_output::transaction_id transaction_id;
         cta_output::participant_reference_number participant_reference_number;
@@ -32,7 +32,6 @@ struct market_wide_circuit_breaker_status_message {
         cta_output::reserved reserved;
     };
 
-    cta_output::block_header header = {{}, {}, {}, {}, {}, {}, {}, {}};
     // Transport framing: message size precedes the SBE header on the wire
     cta_output::message_length message_length;
     cta_output::message_category message_category = cta_output::message_category::enum_type::market_status;
@@ -61,7 +60,7 @@ static_assert(offsetof(market_wide_circuit_breaker_status_message::fields_type, 
 static_assert(offsetof(market_wide_circuit_breaker_status_message::fields_type, market_wide_circuit_breaker_level_indicator) == 22, "unexpected offset of market_wide_circuit_breaker_status_message::fields_type::market_wide_circuit_breaker_level_indicator");
 static_assert(offsetof(market_wide_circuit_breaker_status_message::fields_type, reserved) == 23, "unexpected offset of market_wide_circuit_breaker_status_message::fields_type::reserved");
 static_assert(sizeof(market_wide_circuit_breaker_status_message::fields_type) == 24, "unexpected sizeof market_wide_circuit_breaker_status_message::fields_type");
-static_assert(sizeof(market_wide_circuit_breaker_status_message) == sizeof(cta_output::block_header) + sizeof(cta_output::message_length) + sizeof(cta_output::message_category) + sizeof(cta_output::market_status_message_type) + 24, "unexpected sizeof market_wide_circuit_breaker_status_message");
+static_assert(sizeof(market_wide_circuit_breaker_status_message) == sizeof(cta_output::message_length) + sizeof(cta_output::message_category) + sizeof(cta_output::market_status_message_type) + 24, "unexpected sizeof market_wide_circuit_breaker_status_message");
 
 #pragma pack(pop)
 }

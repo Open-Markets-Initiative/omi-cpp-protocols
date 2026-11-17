@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryEntryPoint.Sbe.v8.3: messages/QuoteStatusReportMessage.hpp
 #pragma once
 
 #include "../structs/BidirectionalBusinessHeader.hpp"
@@ -18,7 +19,7 @@
 #include "../types/SenderLocation.hpp"
 #include "../types/EnteringTrader.hpp"
 #include "../types/ExecutingTrader.hpp"
-#include "../types/FixedRatePercentage8Optional.hpp"
+#include "../types/FixedRateOptional.hpp"
 #include "../types/ExecuteUnderlyingTrade.hpp"
 #include "../types/DaysToSettlementOptional.hpp"
 #include "../types/TradingSubAccount.hpp"
@@ -48,7 +49,7 @@ struct QuoteStatusReportMessage {
     SenderLocation sender_location;
     EnteringTrader entering_trader;
     ExecutingTrader executing_trader;
-    FixedRatePercentage8Optional fixed_rate_percentage_8_optional;
+    FixedRateOptional fixed_rate_optional;
     ExecuteUnderlyingTrade execute_underlying_trade;
     DaysToSettlementOptional days_to_settlement_optional;
     TradingSubAccount trading_sub_account;

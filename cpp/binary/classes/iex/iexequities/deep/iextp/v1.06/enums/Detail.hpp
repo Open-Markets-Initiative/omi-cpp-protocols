@@ -1,3 +1,4 @@
+// Iex.IexEquities.Deep.IexTp.v1.06: enums/Detail.hpp
 #pragma once
 
 #include <cstdint>

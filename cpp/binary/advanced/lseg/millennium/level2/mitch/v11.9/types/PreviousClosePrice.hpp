@@ -1,3 +1,4 @@
+// Lseg.Millennium.Level2.Mitch.v11.9: types/PreviousClosePrice.hpp
 #pragma once
 
 #include <cstddef>
@@ -12,6 +13,7 @@ struct previous_close_price {
     static constexpr const char* name = "previous_close_price";
     static constexpr std::size_t size = 8;
     static constexpr bool is_optional = false;
+    static constexpr int exponent = -8;
 
     using result_type = required<std::int64_t>;
     using storage_type = result_type;

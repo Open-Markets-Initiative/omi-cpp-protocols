@@ -1,3 +1,4 @@
+// Iex.IexEquities.DeepPlus.Snap.v1.06: bitfields/SaleConditionFlags.cpp
 #include "SaleConditionFlags.hpp"
 
 #include "../common/Print.hpp"

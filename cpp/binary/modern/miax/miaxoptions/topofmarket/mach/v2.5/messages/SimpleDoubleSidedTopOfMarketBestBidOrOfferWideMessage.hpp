@@ -1,3 +1,4 @@
+// Miax.MiaxOptions.TopOfMarket.Mach.v2.5: messages/SimpleDoubleSidedTopOfMarketBestBidOrOfferWideMessage.hpp
 #pragma once
 
 #include "../types/Nanoseconds.hpp"

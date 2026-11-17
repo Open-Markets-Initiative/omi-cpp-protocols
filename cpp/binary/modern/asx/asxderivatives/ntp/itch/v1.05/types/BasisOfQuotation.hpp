@@ -1,3 +1,4 @@
+// Asx.AsxDerivatives.Ntp.Itch.v1.05: types/BasisOfQuotation.hpp
 #pragma once
 
 #include <array>

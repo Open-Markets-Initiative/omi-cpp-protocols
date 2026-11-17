@@ -1,3 +1,4 @@
+// Siac.Cts.Output.Cta.v2.10: messages/ApproximateTradesAndTotalDollarValueMessage.cpp
 #include "ApproximateTradesAndTotalDollarValueMessage.hpp"
 
 #include "../common/Print.hpp"

@@ -1,3 +1,4 @@
+// Iex.IexEquities.Tops.IexTp.v1.56: main.cpp
 // Iex.IexEquities.Tops.IexTp.v1.56 benchmark, through the Advanced session layer: every value it reads from every message of the simulated
 // sequence (tests/simulated/iex/iexequities/tops/iextp/v1.56.pcap), folded into a checksum and timed by executables/benchmark/Benchmark.hpp.
 
@@ -69,7 +70,6 @@ struct Reader {
         checksum += bench::digest(message.fields.size.get().value());
         checksum += bench::digest(message.fields.price.get().value());
         checksum += bench::digest(message.fields.trade_id.get().value());
-        checksum += bench::digest(message.fields.reserved_4.get().value());
     }
 
     void on_message(const protocol::trade_break_message& message, std::uint64_t, const protocol::iextp_header&) {
@@ -85,7 +85,6 @@ struct Reader {
         checksum += bench::digest(message.fields.size.get().value());
         checksum += bench::digest(message.fields.price.get().value());
         checksum += bench::digest(message.fields.trade_id.get().value());
-        checksum += bench::digest(message.fields.reserved_4.get().value());
     }
 };
 

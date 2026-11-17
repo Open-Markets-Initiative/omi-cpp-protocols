@@ -1,3 +1,4 @@
+// B3.B3Derivatives.BinaryUmdf.Sbe.v2.2: enums/Product.cpp
 #include "Product.hpp"
 
 namespace b3::b3derivatives::binaryumdf::sbe::v2_2 {

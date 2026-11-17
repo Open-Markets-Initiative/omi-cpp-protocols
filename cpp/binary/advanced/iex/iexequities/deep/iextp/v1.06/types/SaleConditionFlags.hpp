@@ -1,3 +1,4 @@
+// Iex.IexEquities.Deep.IexTp.v1.06: types/SaleConditionFlags.hpp
 #pragma once
 
 #include <cstddef>
