@@ -24,7 +24,7 @@ class OrderExecutedAtPriceSizeMessage : public Message {
     static constexpr std::size_t wire_size = 36;
 
     OrderExecutedAtPriceSizeMessage() = default;
-    OrderExecutedAtPriceSizeMessage(std::chrono::nanoseconds time_offset, std::uint64_t order_id, std::uint32_t executed_quantity, std::uint32_t remaining_quantity, std::uint64_t execution_id, Decimal price_binary_long_price_8);
+    OrderExecutedAtPriceSizeMessage(std::chrono::nanoseconds time_offset, std::uint64_t order_id, std::uint32_t executed_quantity, std::uint32_t remaining_quantity, std::uint64_t execution_id, Decimal price_long);
 
     // Time Offset: Nanosecond offset from last
     std::chrono::nanoseconds time_offset() const;
@@ -47,9 +47,9 @@ class OrderExecutedAtPriceSizeMessage : public Message {
     std::uint64_t execution_id() const;
     void set_execution_id(std::uint64_t value);
 
-    // Price Binary Long Price 8: The limit order price
-    Decimal price_binary_long_price_8() const;
-    void set_price_binary_long_price_8(Decimal value);
+    // Price Long: The limit order price
+    Decimal price_long() const;
+    void set_price_long(Decimal value);
 
     // Message
     MessageCode type() const override;
@@ -71,7 +71,7 @@ class OrderExecutedAtPriceSizeMessage : public Message {
     std::uint32_t executed_quantity_{};
     std::uint32_t remaining_quantity_{};
     std::uint64_t execution_id_{};
-    Decimal price_binary_long_price_8_{ 0, -4 };
+    Decimal price_long_{ 0, -4 };
 };
 
 } // namespace cboe::bzxequities::multicastdepthofbook::pitch::v2_20_4

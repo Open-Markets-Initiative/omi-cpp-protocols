@@ -14,36 +14,24 @@ namespace nyse::amexoptions::complexfeed::xdp::v1_3_a {
 struct security_status {
 
     enum class enum_type : char {
-        light_up_a_dark_series = 'L',
-        open_a_dark_series = 'N',
         open = 'O',
         close = 'X',
         halt = 'S',
-        unhalt = 'U',
-        unhalt_a_dark_series = 'T',
         end_of_rfq_auction = 'Q'
     };
 
-    static constexpr std::array<std::pair<std::string_view, enum_type>, 8> from_string_map = {{
+    static constexpr std::array<std::pair<std::string_view, enum_type>, 4> from_string_map = {{
         {"Close", enum_type::close},
         {"End Of Rfq Auction", enum_type::end_of_rfq_auction},
         {"Halt", enum_type::halt},
-        {"Light Up A Dark Series", enum_type::light_up_a_dark_series},
-        {"Open", enum_type::open},
-        {"Open A Dark Series", enum_type::open_a_dark_series},
-        {"Unhalt", enum_type::unhalt},
-        {"Unhalt A Dark Series", enum_type::unhalt_a_dark_series}
+        {"Open", enum_type::open}
     }};
 
     static constexpr std::string_view to_string(enum_type value) {
         switch (value) {
-            case enum_type::light_up_a_dark_series: return "Light Up A Dark Series";
-            case enum_type::open_a_dark_series: return "Open A Dark Series";
             case enum_type::open: return "Open";
             case enum_type::close: return "Close";
             case enum_type::halt: return "Halt";
-            case enum_type::unhalt: return "Unhalt";
-            case enum_type::unhalt_a_dark_series: return "Unhalt A Dark Series";
             case enum_type::end_of_rfq_auction: return "End Of Rfq Auction";
             default: return "unknown";
         }

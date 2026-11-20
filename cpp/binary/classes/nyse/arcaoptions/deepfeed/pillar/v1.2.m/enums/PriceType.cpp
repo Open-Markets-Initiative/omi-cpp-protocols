@@ -5,8 +5,8 @@ namespace nyse::arcaoptions::deepfeed::pillar::v1_2_m {
 
 std::string_view to_string(PriceType value) {
     switch (value) {
-        case PriceType::StrikePriceIsAmount: return "Strike Price Is Amount";
-        case PriceType::StrikePriceIsAmount2: return "Strike Price Is Amount";
+        case PriceType::StrikePriceIsDollarAmount: return "Strike Price Is Dollar Amount";
+        case PriceType::StrikePriceIsPercentAmount: return "Strike Price Is Percent Amount";
         default: return {};
     }
 }

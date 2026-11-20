@@ -1,6 +1,6 @@
 # Nasdaq.NsmEquities.Qbbo.Itch.v2.1 BboQuotationMessage: canonical values, read by the model
 datagram 0
-packet.packetheader.session = 
+packet.packetheader.session = (null)
 packet.packetheader.sequencenumber = 0
 packet.packetheader.messagecount = 1
 packet.messages = packet.messages.message
@@ -16,7 +16,7 @@ packet.messages.message[0].payload.bboquotationmessage.bestbidsize = 400
 packet.messages.message[0].payload.bboquotationmessage.bestofferprice = 93
 packet.messages.message[0].payload.bboquotationmessage.bestoffersize = 800
 datagram 1
-packet.packetheader.session = 
+packet.packetheader.session = (null)
 packet.packetheader.sequencenumber = 0
 packet.packetheader.messagecount = 1
 packet.messages = packet.messages.message
@@ -32,7 +32,7 @@ packet.messages.message[0].payload.bboquotationmessage.bestbidsize = 4000
 packet.messages.message[0].payload.bboquotationmessage.bestofferprice = 99.09
 packet.messages.message[0].payload.bboquotationmessage.bestoffersize = 100
 datagram 2
-packet.packetheader.session = 
+packet.packetheader.session = (null)
 packet.packetheader.sequencenumber = 0
 packet.packetheader.messagecount = 1
 packet.messages = packet.messages.message
@@ -48,7 +48,7 @@ packet.messages.message[0].payload.bboquotationmessage.bestbidsize = 1
 packet.messages.message[0].payload.bboquotationmessage.bestofferprice = 126.69
 packet.messages.message[0].payload.bboquotationmessage.bestoffersize = 3
 datagram 3
-packet.packetheader.session = 
+packet.packetheader.session = (null)
 packet.packetheader.sequencenumber = 0
 packet.packetheader.messagecount = 1
 packet.messages = packet.messages.message
@@ -64,7 +64,7 @@ packet.messages.message[0].payload.bboquotationmessage.bestbidsize = 1400
 packet.messages.message[0].payload.bboquotationmessage.bestofferprice = 21.28
 packet.messages.message[0].payload.bboquotationmessage.bestoffersize = 200
 datagram 4
-packet.packetheader.session = 
+packet.packetheader.session = (null)
 packet.packetheader.sequencenumber = 0
 packet.packetheader.messagecount = 1
 packet.messages = packet.messages.message

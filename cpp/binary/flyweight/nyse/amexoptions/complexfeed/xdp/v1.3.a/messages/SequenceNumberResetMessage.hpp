@@ -25,9 +25,9 @@ class SequenceNumberResetMessage {
     std::span<const std::byte> bytes() const noexcept { return bytes_; }
 
     // the bytes every SequenceNumberResetMessage has, which a reader checks before it views them
-    static constexpr std::size_t minimum_size = 10;
-    static constexpr std::size_t fixed_size = 10;
-    std::size_t encoded_size() const { return 10; }
+    static constexpr std::size_t minimum_size = 12;
+    static constexpr std::size_t fixed_size = 12;
+    std::size_t encoded_size() const { return 12; }
 
     std::chrono::seconds source_time() const { return std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_le(at(0)))); }
 
@@ -36,6 +36,8 @@ class SequenceNumberResetMessage {
     std::uint8_t product_id() const { return wire::read_u8(at(8)); }
 
     std::uint8_t channel_id() const { return wire::read_u8(at(9)); }
+
+    std::span<const std::byte, 2> reserved_2() const { return bytes_.subspan(10).template first<2>(); }
 
     void print(std::ostream& out) const {
         out << "SequenceNumberResetMessage{";
@@ -47,6 +49,8 @@ class SequenceNumberResetMessage {
         out << static_cast<int>(product_id());
         out << ", channel_id=";
         out << static_cast<int>(channel_id());
+        out << ", reserved_2=";
+        print::hex(out, reserved_2().data(), reserved_2().size());
         out << '}';
     }
 

@@ -11,7 +11,7 @@
 #include "../common/Print.hpp"
 #include "../common/View.hpp"
 #include "../bitfields/MatchEventIndicator.hpp"
-#include "../structs/IncrementalRefreshTradeSummaryGroups.hpp"
+#include "../structs/IncrementalRefreshTradeSummaryLegacyGroups.hpp"
 #include "../structs/IncrementalRefreshTradeSummaryOrderIdGroups.hpp"
 
 namespace cme::globex::mdp3::sbe::v1_9 {
@@ -36,11 +36,11 @@ class MdIncrementalRefreshTradeSummaryLegacy {
 
     std::span<const std::byte, 2> padding_2() const { return bytes_.subspan(9).template first<2>(); }
 
-    IncrementalRefreshTradeSummaryGroups incremental_refresh_trade_summary_groups() const { return IncrementalRefreshTradeSummaryGroups{ bytes_.subspan(11) }; }
+    IncrementalRefreshTradeSummaryLegacyGroups incremental_refresh_trade_summary_legacy_groups() const { return IncrementalRefreshTradeSummaryLegacyGroups{ bytes_.subspan(11) }; }
 
     IncrementalRefreshTradeSummaryOrderIdGroups incremental_refresh_trade_summary_order_id_groups() const {
-        wire::require("MdIncrementalRefreshTradeSummaryLegacy", incremental_refresh_trade_summary_groups_end() + IncrementalRefreshTradeSummaryOrderIdGroups::minimum_size, bytes_.size());
-        return IncrementalRefreshTradeSummaryOrderIdGroups{ bytes_.subspan(incremental_refresh_trade_summary_groups_end()) };
+        wire::require("MdIncrementalRefreshTradeSummaryLegacy", incremental_refresh_trade_summary_legacy_groups_end() + IncrementalRefreshTradeSummaryOrderIdGroups::minimum_size, bytes_.size());
+        return IncrementalRefreshTradeSummaryOrderIdGroups{ bytes_.subspan(incremental_refresh_trade_summary_legacy_groups_end()) };
     }
 
     void print(std::ostream& out) const {
@@ -51,8 +51,8 @@ class MdIncrementalRefreshTradeSummaryLegacy {
         match_event_indicator().print(out);
         out << ", padding_2=";
         print::hex(out, padding_2().data(), padding_2().size());
-        out << ", incremental_refresh_trade_summary_groups=";
-        incremental_refresh_trade_summary_groups().print(out);
+        out << ", incremental_refresh_trade_summary_legacy_groups=";
+        incremental_refresh_trade_summary_legacy_groups().print(out);
         out << ", incremental_refresh_trade_summary_order_id_groups=";
         incremental_refresh_trade_summary_order_id_groups().print(out);
         out << '}';
@@ -60,8 +60,8 @@ class MdIncrementalRefreshTradeSummaryLegacy {
 
   private:
     const std::byte* at(std::size_t offset) const noexcept { return bytes_.data() + offset; }
-    std::size_t incremental_refresh_trade_summary_groups_end() const { return 11 + incremental_refresh_trade_summary_groups().encoded_size(); }
-    std::size_t incremental_refresh_trade_summary_order_id_groups_end() const { return incremental_refresh_trade_summary_groups_end() + incremental_refresh_trade_summary_order_id_groups().encoded_size(); }
+    std::size_t incremental_refresh_trade_summary_legacy_groups_end() const { return 11 + incremental_refresh_trade_summary_legacy_groups().encoded_size(); }
+    std::size_t incremental_refresh_trade_summary_order_id_groups_end() const { return incremental_refresh_trade_summary_legacy_groups_end() + incremental_refresh_trade_summary_order_id_groups().encoded_size(); }
 
     std::span<const std::byte> bytes_;
 };

@@ -41,15 +41,32 @@ struct Seen : Visitor {
     void visit(const Expected&) override { ++matched; }
 };
 
+// Hands the message a message's own branch selects (an OUCH order in a SoupBinTCP data packet, a
+// CTA message within its category) on to the counter of the dispatch below: the message holding
+// the branch is seen through the visitor its own dispatch is seen by.
+template <typename Visitor, typename Holder, auto Reach, typename Inner>
+struct Within : Visitor {
+    Inner inner;
+    std::size_t matched = 0;
+
+    void visit(const Holder& holder) override {
+        if (const auto* held = Reach(holder)) {
+            const std::size_t before = inner.matched;
+            held->accept(inner);
+            matched += inner.matched - before;
+        }
+    }
+};
+
 // Decode every datagram in a capture, require the expected message to be visited, and
 // require every datagram to encode back to the bytes it came from.
-template <typename Packet, typename Visitor, typename Message>
-void expect(const char* name, const char* relative) {
+template <typename Packet, typename Counter>
+void expect_seen(const char* name, const char* relative) {
     std::vector<std::pair<std::string, std::int64_t>> sources;
     sources.emplace_back(root() + "/" + relative, 0);
 
     packet::PcapIterator captures(sources);
-    Seen<Visitor, Message> seen;
+    Counter seen;
     std::vector<std::byte> buffer;
 
     std::size_t frames = 0;
@@ -119,10 +136,24 @@ void expect(const char* name, const char* relative) {
     std::printf("ok   %s: %zu of %zu messages\n", name, matched, messages);
 }
 
+// Require the expected message through the visitor of the tree's own dispatch.
+template <typename Packet, typename Visitor, typename Message>
+void expect(const char* name, const char* relative) {
+    expect_seen<Packet, Seen<Visitor, Message>>(name, relative);
+}
+
 }
 
 int main() {
     std::printf("== Jnx.JnxEquities.Pts.Ouch.v1.11 (classes)\n");
+    expect_seen<protocol::ClientPacket, Within<protocol::Visitor, protocol::UnsequencedDataPacket, [](const protocol::UnsequencedDataPacket& message) { return message.unsequenced_message(); }, Seen<protocol::UnsequencedMessageVisitor, protocol::CancelOrderMessage>>>("CancelOrderMessage", "Jnx/JnxEquities.Pts.Ouch.v1.11/CancelOrderMessage.pcap");
+    expect_seen<protocol::ClientPacket, Within<protocol::Visitor, protocol::UnsequencedDataPacket, [](const protocol::UnsequencedDataPacket& message) { return message.unsequenced_message(); }, Seen<protocol::UnsequencedMessageVisitor, protocol::EnterOrderMessage>>>("EnterOrderMessage", "Jnx/JnxEquities.Pts.Ouch.v1.11/EnterOrderMessage.pcap");
+    expect<protocol::ServerPacket, protocol::ServerMessageVisitor, protocol::LoginAcceptedPacket>("LoginAcceptedPacket", "Jnx/JnxEquities.Pts.Ouch.v1.11/LoginAcceptedPacket.pcap");
     expect<protocol::ClientPacket, protocol::Visitor, protocol::LoginRequestPacket>("LoginRequestPacket", "Jnx/JnxEquities.Pts.Ouch.v1.11/LoginRequestPacket.pcap");
+    expect_seen<protocol::ServerPacket, Within<protocol::ServerMessageVisitor, protocol::SequencedDataPacket, [](const protocol::SequencedDataPacket& message) { return message.sequenced_message(); }, Seen<protocol::SequencedMessageVisitor, protocol::OrderAcceptedMessage>>>("OrderAcceptedMessage", "Jnx/JnxEquities.Pts.Ouch.v1.11/OrderAcceptedMessage.pcap");
+    expect_seen<protocol::ServerPacket, Within<protocol::ServerMessageVisitor, protocol::SequencedDataPacket, [](const protocol::SequencedDataPacket& message) { return message.sequenced_message(); }, Seen<protocol::SequencedMessageVisitor, protocol::OrderCanceledMessage>>>("OrderCanceledMessage", "Jnx/JnxEquities.Pts.Ouch.v1.11/OrderCanceledMessage.pcap");
+    expect_seen<protocol::ServerPacket, Within<protocol::ServerMessageVisitor, protocol::SequencedDataPacket, [](const protocol::SequencedDataPacket& message) { return message.sequenced_message(); }, Seen<protocol::SequencedMessageVisitor, protocol::OrderExecutedMessage>>>("OrderExecutedMessage", "Jnx/JnxEquities.Pts.Ouch.v1.11/OrderExecutedMessage.pcap");
+    expect_seen<protocol::ServerPacket, Within<protocol::ServerMessageVisitor, protocol::SequencedDataPacket, [](const protocol::SequencedDataPacket& message) { return message.sequenced_message(); }, Seen<protocol::SequencedMessageVisitor, protocol::OrderRejectedMessage>>>("OrderRejectedMessage", "Jnx/JnxEquities.Pts.Ouch.v1.11/OrderRejectedMessage.pcap");
+    expect_seen<protocol::ClientPacket, Within<protocol::Visitor, protocol::UnsequencedDataPacket, [](const protocol::UnsequencedDataPacket& message) { return message.unsequenced_message(); }, Seen<protocol::UnsequencedMessageVisitor, protocol::ReplaceOrderMessage>>>("ReplaceOrderMessage", "Jnx/JnxEquities.Pts.Ouch.v1.11/ReplaceOrderMessage.pcap");
     return failures == 0 ? 0 : 1;
 }

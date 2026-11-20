@@ -18,7 +18,7 @@ std::string_view to_string(SecurityType value) {
         case SecurityType::Rights: return "Rights";
         case SecurityType::SharesOfBeneficiaryInterest: return "Shares Of Beneficiary Interest";
         case SecurityType::Test: return "Test";
-        case SecurityType::Units2: return "Units";
+        case SecurityType::ClosedEndFund: return "Closed End Fund";
         case SecurityType::Warrant: return "Warrant";
         case SecurityType::Index: return "Index";
         default: return {};

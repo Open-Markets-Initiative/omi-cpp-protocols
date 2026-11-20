@@ -50,9 +50,10 @@ struct last_fragment {
 
     static constexpr const char* name = "last_fragment";
     static constexpr std::size_t size = 1;
-    static constexpr bool is_optional = false;
+    static constexpr bool is_optional = true;
+    static constexpr enum_type null_value = static_cast<enum_type>(255);
 
-    using result_type = required<last_fragment::enum_type>;
+    using result_type = std::optional<last_fragment::enum_type>;
     using storage_type = result_type;
 
     constexpr last_fragment()
@@ -62,7 +63,8 @@ struct last_fragment {
      : value{ v } {}
 
     [[nodiscard]] constexpr result_type get() const {
-        return result_type{value};
+        const enum_type held = value;
+        return held == null_value ? std::nullopt : result_type{held};
     }
 
     constexpr void set(enum_type v) {
@@ -73,7 +75,11 @@ struct last_fragment {
         if (value.has_value())
             set(value.value());
         else
-            set(static_cast<enum_type>(255));
+            set(null_value);
+    }
+
+    constexpr void set_null() {
+        set(null_value);
     }
 
   protected:

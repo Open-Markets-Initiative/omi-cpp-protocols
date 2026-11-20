@@ -28,6 +28,34 @@ Within a protocol:
 Each library is compiled as `flyweight_<protocol>` by the repository's `CMakeLists.txt`, its
 enumerations being the only sources a header-only view library has.
 
+## Generated
+
+| Parser | Protocol Count | Generated Lines |
+| --- | --- | --- |
+| Flyweight | 101 | 485,660 |
+
+| Organization | Protocol Count | Generated Lines |
+| --- | --- | --- |
+| Asx | 1 | 4,151 |
+| B3 | 10 | 79,092 |
+| Bse | 1 | 3,519 |
+| Cboe | 10 | 33,956 |
+| CixAts | 1 | 1,995 |
+| Cme | 4 | 57,213 |
+| Databento | 3 | 18,938 |
+| Eurex | 4 | 20,203 |
+| Iex | 10 | 25,727 |
+| Jnx | 3 | 10,297 |
+| Jpx | 2 | 5,361 |
+| Lseg | 2 | 6,262 |
+| Memx | 1 | 2,253 |
+| Miax | 4 | 13,761 |
+| Nasdaq | 13 | 72,883 |
+| Nyse | 23 | 76,487 |
+| OtcMarkets | 1 | 3,710 |
+| Siac | 7 | 46,225 |
+| Tmx | 1 | 3,627 |
+
 ## Protocols (101)
 
 - `Asx.AsxDerivatives.Ntp.Itch.v1.05`

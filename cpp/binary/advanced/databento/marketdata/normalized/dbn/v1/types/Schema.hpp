@@ -104,9 +104,10 @@ struct schema {
 
     static constexpr const char* name = "schema";
     static constexpr std::size_t size = 2;
-    static constexpr bool is_optional = false;
+    static constexpr bool is_optional = true;
+    static constexpr enum_type null_value = static_cast<enum_type>(65535);
 
-    using result_type = required<schema::enum_type>;
+    using result_type = std::optional<schema::enum_type>;
     using storage_type = result_type;
 
     constexpr schema()
@@ -116,7 +117,8 @@ struct schema {
      : value{ v } {}
 
     [[nodiscard]] constexpr result_type get() const {
-        return result_type{value};
+        const enum_type held = value;
+        return held == null_value ? std::nullopt : result_type{held};
     }
 
     constexpr void set(enum_type v) {
@@ -127,7 +129,11 @@ struct schema {
         if (value.has_value())
             set(value.value());
         else
-            set(static_cast<enum_type>(65535));
+            set(null_value);
+    }
+
+    constexpr void set_null() {
+        set(null_value);
     }
 
   protected:

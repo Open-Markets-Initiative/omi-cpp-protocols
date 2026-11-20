@@ -7,8 +7,8 @@
 
 namespace cboe::bzxequities::multicastdepthofbook::pitch::v2_20_4 {
 
-AddOrderLongMessage::AddOrderLongMessage(std::chrono::nanoseconds time_offset, std::uint64_t order_id, SideIndicator side_indicator, std::uint32_t quantity_binary_4, const std::string& symbol_short, Decimal price_binary_long_price_8, const AddFlags& add_flags)
-  : time_offset_(time_offset), order_id_(order_id), side_indicator_(side_indicator), quantity_binary_4_(quantity_binary_4), symbol_short_(symbol_short), price_binary_long_price_8_(price_binary_long_price_8), add_flags_(add_flags) {}
+AddOrderLongMessage::AddOrderLongMessage(std::chrono::nanoseconds time_offset, std::uint64_t order_id, SideIndicator side_indicator, std::uint32_t quantity_long, const std::string& symbol_short, Decimal price_long, const AddFlags& add_flags)
+  : time_offset_(time_offset), order_id_(order_id), side_indicator_(side_indicator), quantity_long_(quantity_long), symbol_short_(symbol_short), price_long_(price_long), add_flags_(add_flags) {}
 
 std::chrono::nanoseconds AddOrderLongMessage::time_offset() const { return time_offset_; }
 void AddOrderLongMessage::set_time_offset(std::chrono::nanoseconds value) { time_offset_ = value; }
@@ -19,15 +19,15 @@ void AddOrderLongMessage::set_order_id(std::uint64_t value) { order_id_ = value;
 SideIndicator AddOrderLongMessage::side_indicator() const { return side_indicator_; }
 void AddOrderLongMessage::set_side_indicator(SideIndicator value) { side_indicator_ = value; }
 
-std::uint32_t AddOrderLongMessage::quantity_binary_4() const { return quantity_binary_4_; }
-void AddOrderLongMessage::set_quantity_binary_4(std::uint32_t value) { quantity_binary_4_ = value; }
+std::uint32_t AddOrderLongMessage::quantity_long() const { return quantity_long_; }
+void AddOrderLongMessage::set_quantity_long(std::uint32_t value) { quantity_long_ = value; }
 
 const std::string& AddOrderLongMessage::symbol_short() const { return symbol_short_; }
 std::string& AddOrderLongMessage::symbol_short() { return symbol_short_; }
 void AddOrderLongMessage::set_symbol_short(const std::string& value) { symbol_short_ = value; }
 
-Decimal AddOrderLongMessage::price_binary_long_price_8() const { return price_binary_long_price_8_; }
-void AddOrderLongMessage::set_price_binary_long_price_8(Decimal value) { price_binary_long_price_8_ = value; }
+Decimal AddOrderLongMessage::price_long() const { return price_long_; }
+void AddOrderLongMessage::set_price_long(Decimal value) { price_long_ = value; }
 
 const AddFlags& AddOrderLongMessage::add_flags() const { return add_flags_; }
 AddFlags& AddOrderLongMessage::add_flags() { return add_flags_; }
@@ -50,13 +50,13 @@ std::size_t AddOrderLongMessage::decode(const std::byte* data, std::size_t lengt
     side_indicator_ = static_cast<SideIndicator>(wire::read_char(data + offset));
     offset += 1;
 
-    quantity_binary_4_ = wire::read_u32_le(data + offset);
+    quantity_long_ = wire::read_u32_le(data + offset);
     offset += 4;
 
     symbol_short_ = wire::read_text(data + offset, 6, ' ');
     offset += 6;
 
-    price_binary_long_price_8_ = Decimal(static_cast<std::int64_t>(wire::read_u64_le(data + offset)), -4);
+    price_long_ = Decimal(static_cast<std::int64_t>(wire::read_u64_le(data + offset)), -4);
     offset += 8;
 
     offset += add_flags_.decode(data + offset, length - offset);
@@ -77,13 +77,13 @@ std::size_t AddOrderLongMessage::encode(std::byte* data, std::size_t capacity) c
     wire::write_char(data + offset, static_cast<char>(side_indicator_));
     offset += 1;
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(quantity_binary_4_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(quantity_long_));
     offset += 4;
 
     wire::write_text(data + offset, 6, ' ', symbol_short_);
     offset += 6;
 
-    wire::write_u64_le(data + offset, static_cast<std::uint64_t>(price_binary_long_price_8_.mantissa()));
+    wire::write_u64_le(data + offset, static_cast<std::uint64_t>(price_long_.mantissa()));
     offset += 8;
 
     offset += add_flags_.encode(data + offset, capacity - offset);
@@ -111,12 +111,12 @@ void AddOrderLongMessage::print(std::ostream& out) const {
     out << order_id_;
     out << ", side_indicator=";
     out << side_indicator_;
-    out << ", quantity_binary_4=";
-    out << quantity_binary_4_;
+    out << ", quantity_long=";
+    out << quantity_long_;
     out << ", symbol_short=";
     print::text(out, symbol_short_);
-    out << ", price_binary_long_price_8=";
-    out << price_binary_long_price_8_;
+    out << ", price_long=";
+    out << price_long_;
     out << ", add_flags=";
     add_flags_.print(out);
     out << '}';
@@ -131,9 +131,9 @@ bool AddOrderLongMessage::operator==(const AddOrderLongMessage& other) const {
     return time_offset_ == other.time_offset_
         && order_id_ == other.order_id_
         && side_indicator_ == other.side_indicator_
-        && quantity_binary_4_ == other.quantity_binary_4_
+        && quantity_long_ == other.quantity_long_
         && symbol_short_ == other.symbol_short_
-        && price_binary_long_price_8_ == other.price_binary_long_price_8_
+        && price_long_ == other.price_long_
         && add_flags_ == other.add_flags_;
 }
 

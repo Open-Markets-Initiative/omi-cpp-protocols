@@ -706,13 +706,55 @@ std::size_t parse_md_incremental_refresh_book([[maybe_unused]] const std::byte* 
     return offset;
 }
 
+// Snapshot Full Refresh Order Book Legacy Groups: read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
+template <typename Handler>
+std::size_t parse_snapshot_full_refresh_order_book_legacy_groups([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler) {
+    std::size_t offset = 0;
+    const std::size_t bound = length;
+    [[maybe_unused]] const auto& group_size_ = tmp::read<group_size>(data + offset, bound - offset, handler); offset += group_size::size;
+    {
+        std::size_t count = static_cast<std::size_t>(tmp::rule(group_size_.template get<num_in_group>()));
+        while (count-- > 0) {
+            {
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(group_size_.template get<block_length>()));
+                const std::size_t start = offset;
+                offset += tmp::take<snapshot_full_refresh_order_book_legacy_group>(data + offset, bound - offset, handler);
+                if (offset - start < block) { offset = start + block; }
+                tmp::require(offset, bound);
+            }
+        }
+    }
+    return offset;
+}
+
 // Snapshot Full Refresh Order Book Legacy: read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
 template <typename Handler>
 std::size_t parse_snapshot_full_refresh_order_book_legacy([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler) {
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& snapshot_full_refresh_order_book_legacy_section_1_ = tmp::read<snapshot_full_refresh_order_book_legacy_section_1>(data + offset, bound - offset, handler); offset += snapshot_full_refresh_order_book_legacy_section_1::size;
-    offset += parse_snapshot_full_refresh_order_book_groups(data + offset, bound - offset, handler);
+    offset += parse_snapshot_full_refresh_order_book_legacy_groups(data + offset, bound - offset, handler);
+    return offset;
+}
+
+// Incremental Refresh Order Book Legacy Groups: read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
+template <typename Handler>
+std::size_t parse_incremental_refresh_order_book_legacy_groups([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler) {
+    std::size_t offset = 0;
+    const std::size_t bound = length;
+    [[maybe_unused]] const auto& group_size_ = tmp::read<group_size>(data + offset, bound - offset, handler); offset += group_size::size;
+    {
+        std::size_t count = static_cast<std::size_t>(tmp::rule(group_size_.template get<num_in_group>()));
+        while (count-- > 0) {
+            {
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(group_size_.template get<block_length>()));
+                const std::size_t start = offset;
+                offset += tmp::take<incremental_refresh_order_book_legacy_group>(data + offset, bound - offset, handler);
+                if (offset - start < block) { offset = start + block; }
+                tmp::require(offset, bound);
+            }
+        }
+    }
     return offset;
 }
 
@@ -722,7 +764,28 @@ std::size_t parse_md_incremental_refresh_order_book_legacy([[maybe_unused]] cons
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& md_incremental_refresh_order_book_legacy_section_1_ = tmp::read<md_incremental_refresh_order_book_legacy_section_1>(data + offset, bound - offset, handler); offset += md_incremental_refresh_order_book_legacy_section_1::size;
-    offset += parse_incremental_refresh_order_book_groups(data + offset, bound - offset, handler);
+    offset += parse_incremental_refresh_order_book_legacy_groups(data + offset, bound - offset, handler);
+    return offset;
+}
+
+// Incremental Refresh Trade Summary Legacy Groups: read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
+template <typename Handler>
+std::size_t parse_incremental_refresh_trade_summary_legacy_groups([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler) {
+    std::size_t offset = 0;
+    const std::size_t bound = length;
+    [[maybe_unused]] const auto& group_size_ = tmp::read<group_size>(data + offset, bound - offset, handler); offset += group_size::size;
+    {
+        std::size_t count = static_cast<std::size_t>(tmp::rule(group_size_.template get<num_in_group>()));
+        while (count-- > 0) {
+            {
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(group_size_.template get<block_length>()));
+                const std::size_t start = offset;
+                offset += tmp::take<incremental_refresh_trade_summary_legacy_group>(data + offset, bound - offset, handler);
+                if (offset - start < block) { offset = start + block; }
+                tmp::require(offset, bound);
+            }
+        }
+    }
     return offset;
 }
 
@@ -732,7 +795,7 @@ std::size_t parse_md_incremental_refresh_trade_summary_legacy([[maybe_unused]] c
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& md_incremental_refresh_trade_summary_legacy_section_1_ = tmp::read<md_incremental_refresh_trade_summary_legacy_section_1>(data + offset, bound - offset, handler); offset += md_incremental_refresh_trade_summary_legacy_section_1::size;
-    offset += parse_incremental_refresh_trade_summary_groups(data + offset, bound - offset, handler);
+    offset += parse_incremental_refresh_trade_summary_legacy_groups(data + offset, bound - offset, handler);
     offset += parse_incremental_refresh_trade_summary_order_id_groups(data + offset, bound - offset, handler);
     return offset;
 }
@@ -783,13 +846,34 @@ std::size_t parse_quote_request([[maybe_unused]] const std::byte* data, [[maybe_
     return offset;
 }
 
+// Snapshot Full Refresh Legacy Groups: read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
+template <typename Handler>
+std::size_t parse_snapshot_full_refresh_legacy_groups([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler) {
+    std::size_t offset = 0;
+    const std::size_t bound = length;
+    [[maybe_unused]] const auto& group_size_ = tmp::read<group_size>(data + offset, bound - offset, handler); offset += group_size::size;
+    {
+        std::size_t count = static_cast<std::size_t>(tmp::rule(group_size_.template get<num_in_group>()));
+        while (count-- > 0) {
+            {
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(group_size_.template get<block_length>()));
+                const std::size_t start = offset;
+                offset += tmp::take<snapshot_full_refresh_legacy_group>(data + offset, bound - offset, handler);
+                if (offset - start < block) { offset = start + block; }
+                tmp::require(offset, bound);
+            }
+        }
+    }
+    return offset;
+}
+
 // Snapshot Full Refresh Legacy: read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
 template <typename Handler>
 std::size_t parse_snapshot_full_refresh_legacy([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler) {
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& snapshot_full_refresh_legacy_section_1_ = tmp::read<snapshot_full_refresh_legacy_section_1>(data + offset, bound - offset, handler); offset += snapshot_full_refresh_legacy_section_1::size;
-    offset += parse_snapshot_full_refresh_groups(data + offset, bound - offset, handler);
+    offset += parse_snapshot_full_refresh_legacy_groups(data + offset, bound - offset, handler);
     return offset;
 }
 
@@ -824,13 +908,55 @@ std::size_t parse_md_incremental_refresh_volume([[maybe_unused]] const std::byte
     return offset;
 }
 
+// Incremental Refresh Session Statistics Legacy Groups: read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
+template <typename Handler>
+std::size_t parse_incremental_refresh_session_statistics_legacy_groups([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler) {
+    std::size_t offset = 0;
+    const std::size_t bound = length;
+    [[maybe_unused]] const auto& group_size_ = tmp::read<group_size>(data + offset, bound - offset, handler); offset += group_size::size;
+    {
+        std::size_t count = static_cast<std::size_t>(tmp::rule(group_size_.template get<num_in_group>()));
+        while (count-- > 0) {
+            {
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(group_size_.template get<block_length>()));
+                const std::size_t start = offset;
+                offset += tmp::take<incremental_refresh_session_statistics_legacy_group>(data + offset, bound - offset, handler);
+                if (offset - start < block) { offset = start + block; }
+                tmp::require(offset, bound);
+            }
+        }
+    }
+    return offset;
+}
+
 // Md Incremental Refresh Session Statistics Legacy: read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
 template <typename Handler>
 std::size_t parse_md_incremental_refresh_session_statistics_legacy([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler) {
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& md_incremental_refresh_session_statistics_legacy_section_1_ = tmp::read<md_incremental_refresh_session_statistics_legacy_section_1>(data + offset, bound - offset, handler); offset += md_incremental_refresh_session_statistics_legacy_section_1::size;
-    offset += parse_incremental_refresh_session_statistics_groups(data + offset, bound - offset, handler);
+    offset += parse_incremental_refresh_session_statistics_legacy_groups(data + offset, bound - offset, handler);
+    return offset;
+}
+
+// Incremental Refresh Limits Banding Legacy Groups: read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
+template <typename Handler>
+std::size_t parse_incremental_refresh_limits_banding_legacy_groups([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler) {
+    std::size_t offset = 0;
+    const std::size_t bound = length;
+    [[maybe_unused]] const auto& group_size_ = tmp::read<group_size>(data + offset, bound - offset, handler); offset += group_size::size;
+    {
+        std::size_t count = static_cast<std::size_t>(tmp::rule(group_size_.template get<num_in_group>()));
+        while (count-- > 0) {
+            {
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(group_size_.template get<block_length>()));
+                const std::size_t start = offset;
+                offset += tmp::take<incremental_refresh_limits_banding_legacy_group>(data + offset, bound - offset, handler);
+                if (offset - start < block) { offset = start + block; }
+                tmp::require(offset, bound);
+            }
+        }
+    }
     return offset;
 }
 
@@ -840,7 +966,28 @@ std::size_t parse_md_incremental_refresh_limits_banding_legacy([[maybe_unused]] 
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& md_incremental_refresh_limits_banding_legacy_section_1_ = tmp::read<md_incremental_refresh_limits_banding_legacy_section_1>(data + offset, bound - offset, handler); offset += md_incremental_refresh_limits_banding_legacy_section_1::size;
-    offset += parse_incremental_refresh_limits_banding_groups(data + offset, bound - offset, handler);
+    offset += parse_incremental_refresh_limits_banding_legacy_groups(data + offset, bound - offset, handler);
+    return offset;
+}
+
+// Incremental Refresh Daily Statistics Legacy Groups: read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
+template <typename Handler>
+std::size_t parse_incremental_refresh_daily_statistics_legacy_groups([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler) {
+    std::size_t offset = 0;
+    const std::size_t bound = length;
+    [[maybe_unused]] const auto& group_size_ = tmp::read<group_size>(data + offset, bound - offset, handler); offset += group_size::size;
+    {
+        std::size_t count = static_cast<std::size_t>(tmp::rule(group_size_.template get<num_in_group>()));
+        while (count-- > 0) {
+            {
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(group_size_.template get<block_length>()));
+                const std::size_t start = offset;
+                offset += tmp::take<incremental_refresh_daily_statistics_legacy_group>(data + offset, bound - offset, handler);
+                if (offset - start < block) { offset = start + block; }
+                tmp::require(offset, bound);
+            }
+        }
+    }
     return offset;
 }
 
@@ -850,7 +997,28 @@ std::size_t parse_md_incremental_refresh_daily_statistics_legacy([[maybe_unused]
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& md_incremental_refresh_daily_statistics_legacy_section_1_ = tmp::read<md_incremental_refresh_daily_statistics_legacy_section_1>(data + offset, bound - offset, handler); offset += md_incremental_refresh_daily_statistics_legacy_section_1::size;
-    offset += parse_incremental_refresh_daily_statistics_groups(data + offset, bound - offset, handler);
+    offset += parse_incremental_refresh_daily_statistics_legacy_groups(data + offset, bound - offset, handler);
+    return offset;
+}
+
+// Incremental Refresh Book Legacy Groups: read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
+template <typename Handler>
+std::size_t parse_incremental_refresh_book_legacy_groups([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler) {
+    std::size_t offset = 0;
+    const std::size_t bound = length;
+    [[maybe_unused]] const auto& group_size_ = tmp::read<group_size>(data + offset, bound - offset, handler); offset += group_size::size;
+    {
+        std::size_t count = static_cast<std::size_t>(tmp::rule(group_size_.template get<num_in_group>()));
+        while (count-- > 0) {
+            {
+                const std::size_t block = static_cast<std::size_t>(tmp::rule(group_size_.template get<block_length>()));
+                const std::size_t start = offset;
+                offset += tmp::take<incremental_refresh_book_legacy_group>(data + offset, bound - offset, handler);
+                if (offset - start < block) { offset = start + block; }
+                tmp::require(offset, bound);
+            }
+        }
+    }
     return offset;
 }
 
@@ -860,7 +1028,7 @@ std::size_t parse_md_incremental_refresh_book_legacy([[maybe_unused]] const std:
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& md_incremental_refresh_book_legacy_section_1_ = tmp::read<md_incremental_refresh_book_legacy_section_1>(data + offset, bound - offset, handler); offset += md_incremental_refresh_book_legacy_section_1::size;
-    offset += parse_incremental_refresh_book_groups(data + offset, bound - offset, handler);
+    offset += parse_incremental_refresh_book_legacy_groups(data + offset, bound - offset, handler);
     offset += parse_incremental_refresh_book_order_id_groups(data + offset, bound - offset, handler);
     return offset;
 }
@@ -2224,9 +2392,9 @@ std::size_t parse_payload([[maybe_unused]] const std::byte* data, [[maybe_unused
     return length;
 }
 
-// Message: read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
+// Mdp3 Message: read from the bytes at data, handing the handler each type laid over them; what it returns is the bytes it took
 template <typename Handler>
-std::size_t parse_message([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler) {
+std::size_t parse_mdp3_message([[maybe_unused]] const std::byte* data, [[maybe_unused]] std::size_t length, [[maybe_unused]] Handler& handler) {
     std::size_t offset = 0;
     std::size_t bound = length;
     [[maybe_unused]] const auto& message_header_ = tmp::read<message_header>(data + offset, bound - offset, handler); offset += message_header::size;
@@ -2247,7 +2415,7 @@ std::size_t parse_udp_packet([[maybe_unused]] const std::byte* data, [[maybe_unu
         tmp::require(end, bound);
         while (offset < end) {
             [[maybe_unused]] const std::size_t bound = end;
-            offset += parse_message(data + offset, bound - offset, handler);
+            offset += parse_mdp3_message(data + offset, bound - offset, handler);
         }
     }
     return offset;
@@ -2277,6 +2445,10 @@ struct Reader {
     void operator()(const protocol::message_header& header) {
         checksum += index++;
         if constexpr (requires { header.template get<protocol::message_size>(); }) { checksum += bench::digest(header.template get<protocol::message_size>().value()); }
+        if constexpr (requires { header.template get<protocol::simple_binary_header>().template get<protocol::block_length>(); }) { checksum += bench::digest(header.template get<protocol::simple_binary_header>().template get<protocol::block_length>().value()); }
+        if constexpr (requires { header.template get<protocol::simple_binary_header>().template get<protocol::template_id>(); }) { checksum += bench::digest(header.template get<protocol::simple_binary_header>().template get<protocol::template_id>().value()); }
+        if constexpr (requires { header.template get<protocol::simple_binary_header>().template get<protocol::schema_id>(); }) { checksum += bench::digest(header.template get<protocol::simple_binary_header>().template get<protocol::schema_id>().value()); }
+        if constexpr (requires { header.template get<protocol::simple_binary_header>().template get<protocol::version>(); }) { checksum += bench::digest(header.template get<protocol::simple_binary_header>().template get<protocol::version>().value()); }
     }
 
     void operator()(const protocol::mktdata_message&) {

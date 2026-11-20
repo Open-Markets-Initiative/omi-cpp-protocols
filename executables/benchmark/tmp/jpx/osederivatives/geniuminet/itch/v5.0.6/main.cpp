@@ -407,6 +407,12 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::order_book_position>(); }) { checksum += bench::digest(message.template get<protocol::order_book_position>().value()); }
         if constexpr (requires { message.template get<protocol::quantity>(); }) { checksum += bench::digest(message.template get<protocol::quantity>().value()); }
         if constexpr (requires { message.template get<protocol::price>(); }) { checksum += bench::digest(message.template get<protocol::price>().value()); }
+        if constexpr (requires { message.template get<protocol::order_attributes>(); }) { checksum += bench::digest(message.template get<protocol::order_attributes>().template get<protocol::force>()); }
+        if constexpr (requires { message.template get<protocol::order_attributes>(); }) { checksum += bench::digest(message.template get<protocol::order_attributes>().template get<protocol::short_sell>()); }
+        if constexpr (requires { message.template get<protocol::order_attributes>(); }) { checksum += bench::digest(message.template get<protocol::order_attributes>().template get<protocol::market_bid>()); }
+        if constexpr (requires { message.template get<protocol::order_attributes>(); }) { checksum += bench::digest(message.template get<protocol::order_attributes>().template get<protocol::price_stabilization>()); }
+        if constexpr (requires { message.template get<protocol::order_attributes>(); }) { checksum += bench::digest(message.template get<protocol::order_attributes>().template get<protocol::override_crossing>()); }
+        if constexpr (requires { message.template get<protocol::order_attributes>(); }) { checksum += bench::digest(message.template get<protocol::order_attributes>().template get<protocol::undisclosed>()); }
         if constexpr (requires { message.template get<protocol::lot_type>(); }) { checksum += bench::digest(message.template get<protocol::lot_type>().value()); }
     }
 
@@ -418,6 +424,12 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::order_book_position>(); }) { checksum += bench::digest(message.template get<protocol::order_book_position>().value()); }
         if constexpr (requires { message.template get<protocol::quantity>(); }) { checksum += bench::digest(message.template get<protocol::quantity>().value()); }
         if constexpr (requires { message.template get<protocol::price>(); }) { checksum += bench::digest(message.template get<protocol::price>().value()); }
+        if constexpr (requires { message.template get<protocol::order_attributes>(); }) { checksum += bench::digest(message.template get<protocol::order_attributes>().template get<protocol::force>()); }
+        if constexpr (requires { message.template get<protocol::order_attributes>(); }) { checksum += bench::digest(message.template get<protocol::order_attributes>().template get<protocol::short_sell>()); }
+        if constexpr (requires { message.template get<protocol::order_attributes>(); }) { checksum += bench::digest(message.template get<protocol::order_attributes>().template get<protocol::market_bid>()); }
+        if constexpr (requires { message.template get<protocol::order_attributes>(); }) { checksum += bench::digest(message.template get<protocol::order_attributes>().template get<protocol::price_stabilization>()); }
+        if constexpr (requires { message.template get<protocol::order_attributes>(); }) { checksum += bench::digest(message.template get<protocol::order_attributes>().template get<protocol::override_crossing>()); }
+        if constexpr (requires { message.template get<protocol::order_attributes>(); }) { checksum += bench::digest(message.template get<protocol::order_attributes>().template get<protocol::undisclosed>()); }
         if constexpr (requires { message.template get<protocol::lot_type>(); }) { checksum += bench::digest(message.template get<protocol::lot_type>().value()); }
         if constexpr (requires { message.template get<protocol::participant_id>(); }) { checksum += bench::digest(message.template get<protocol::participant_id>().value()); }
     }
@@ -457,6 +469,12 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::new_orderbook_position>(); }) { checksum += bench::digest(message.template get<protocol::new_orderbook_position>().value()); }
         if constexpr (requires { message.template get<protocol::quantity>(); }) { checksum += bench::digest(message.template get<protocol::quantity>().value()); }
         if constexpr (requires { message.template get<protocol::price>(); }) { checksum += bench::digest(message.template get<protocol::price>().value()); }
+        if constexpr (requires { message.template get<protocol::order_attributes>(); }) { checksum += bench::digest(message.template get<protocol::order_attributes>().template get<protocol::force>()); }
+        if constexpr (requires { message.template get<protocol::order_attributes>(); }) { checksum += bench::digest(message.template get<protocol::order_attributes>().template get<protocol::short_sell>()); }
+        if constexpr (requires { message.template get<protocol::order_attributes>(); }) { checksum += bench::digest(message.template get<protocol::order_attributes>().template get<protocol::market_bid>()); }
+        if constexpr (requires { message.template get<protocol::order_attributes>(); }) { checksum += bench::digest(message.template get<protocol::order_attributes>().template get<protocol::price_stabilization>()); }
+        if constexpr (requires { message.template get<protocol::order_attributes>(); }) { checksum += bench::digest(message.template get<protocol::order_attributes>().template get<protocol::override_crossing>()); }
+        if constexpr (requires { message.template get<protocol::order_attributes>(); }) { checksum += bench::digest(message.template get<protocol::order_attributes>().template get<protocol::undisclosed>()); }
     }
 
     void operator()(const protocol::order_delete_message& message) {

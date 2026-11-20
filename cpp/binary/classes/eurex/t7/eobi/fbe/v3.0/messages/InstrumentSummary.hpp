@@ -31,7 +31,7 @@ class InstrumentSummary : public Message {
     InstrumentSummary() = default;
     InstrumentSummary(std::optional<std::int64_t> security_id, std::optional<std::chrono::nanoseconds> last_update_time, std::optional<std::chrono::nanoseconds> trd_reg_ts_execution_time, std::optional<std::uint16_t> tot_no_orders, std::optional<SecurityStatus> security_status, std::optional<SecurityTradingStatus> security_trading_status, std::optional<FastMarketIndicator> fast_market_indicator, std::optional<std::uint8_t> no_md_entries, const std::array<std::byte, 2>& pad2, const std::array<MdInstrumentEntryGrpComp, 11>& md_instrument_entry_grp_comp);
 
-    // Security Id:
+    // Security Id: Unique instrument identifier
     std::optional<std::int64_t> security_id() const;
     void set_security_id(std::optional<std::int64_t> value);
 

@@ -5,8 +5,8 @@ namespace nyse::nyseequities::imbalancesfeed::xdp::v2_2_a {
 
 std::string_view to_string(SignificantImbalance value) {
     switch (value) {
-        case SignificantImbalance::NotApplicable: return "Not Applicable";
-        case SignificantImbalance::Yes: return "Yes";
+        case SignificantImbalance::NotSignificant: return "Not Significant";
+        case SignificantImbalance::Significant: return "Significant";
         default: return {};
     }
 }

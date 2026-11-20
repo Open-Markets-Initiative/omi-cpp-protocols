@@ -79,7 +79,7 @@ struct Reader {
     void on(const protocol::RetailLiquidityIndicatorMessage& message) {
         const std::string entry = "packet.messages.message[" + std::to_string(index++) + "]";
         values[entry + ".messagedata"] = "packet.messages.message.messagedata.retailliquidityindicatormessage";
-        values[entry + ".messagedata.retailliquidityindicatormessage.retailliquidityindicator"] = canonical::text(canonical::character(message.retail_liquidity_indicator()));
+        values[entry + ".messagedata.retailliquidityindicatormessage.retailliquidityindicator"] = canonical::text(canonical::character(message.retail_liquidity_indicator()), {std::string_view(" ", 1)});
         values[entry + ".messagedata.retailliquidityindicatormessage.timestamp"] = canonical::number(message.timestamp());
         values[entry + ".messagedata.retailliquidityindicatormessage.symbol"] = canonical::text(std::string(message.symbol()), ' ', false);
     }
@@ -98,7 +98,7 @@ struct Reader {
         values[entry + ".messagedata.shortsalepriceteststatusmessage.shortsalepriceteststatus"] = canonical::number(message.short_sale_price_test_status());
         values[entry + ".messagedata.shortsalepriceteststatusmessage.timestamp"] = canonical::number(message.timestamp());
         values[entry + ".messagedata.shortsalepriceteststatusmessage.symbol"] = canonical::text(std::string(message.symbol()), ' ', false);
-        values[entry + ".messagedata.shortsalepriceteststatusmessage.detail"] = canonical::text(canonical::character(message.detail()));
+        values[entry + ".messagedata.shortsalepriceteststatusmessage.detail"] = canonical::text(canonical::character(message.detail()), {std::string_view(" ", 1)});
     }
 
     void on(const protocol::QuoteUpdateMessage& message) {

@@ -602,7 +602,7 @@ struct security_type {
         rights = 'R',
         shares_of_beneficiary_interest = 'S',
         test = 'T',
-        units_2 = 'U',
+        closed_end_fund = 'U',
         warrant = 'W',
         index = 'X',
     };
@@ -834,7 +834,7 @@ struct underlying_symbol {
 // Sequence Number Reset Message: This message is sent to reset the Message Sequence Number at start of day, or in response to failures.
 struct sequence_number_reset_message {
     static constexpr std::string_view name = "Sequence Number Reset Message";
-    static constexpr std::size_t size = 10;
+    static constexpr std::size_t size = 12;
     static constexpr bool is_message = true;
 
     // the types of its members, in wire order
@@ -842,7 +842,8 @@ struct sequence_number_reset_message {
         source_time,
         source_time_ns,
         product_id,
-        channel_id>;
+        channel_id,
+        reserved_2>;
 
     // the member of the type asked for
     template <typename Field>
@@ -853,6 +854,7 @@ struct sequence_number_reset_message {
     XDPFIELD(source_time_ns);
     XDPFIELD(product_id);
     XDPFIELD(channel_id);
+    XDPFIELD(reserved_2);
 };
 
 static_assert(sizeof(sequence_number_reset_message) == sequence_number_reset_message::size, "sequence_number_reset_message lies over its bytes exactly");

@@ -137,7 +137,8 @@ struct auction_type {
         core_opening = 'M',
         reopening = 'H',
         closing = 'C',
-        regulatory_imbalance = 'R',
+        extreme_closing_imbalance = 'P',
+        regulatory_closing_imbalance = 'R',
     };
 
     static constexpr std::size_t size = 1;
@@ -786,8 +787,8 @@ struct session_state {
 // Significant Imbalance: For Auction Types=C or P in NYSE-listed symbols. Using historical closing data for each symbol,NYSE will set this indicator if the Continuous Book Clearing Price is more than a ‘significant’ range away from the Reference Price.
 struct significant_imbalance {
     enum class type : char {
-        not_applicable = ' ',
-        yes = 'Y',
+        not_significant = ' ',
+        significant = 'Y',
     };
 
     static constexpr std::size_t size = 1;

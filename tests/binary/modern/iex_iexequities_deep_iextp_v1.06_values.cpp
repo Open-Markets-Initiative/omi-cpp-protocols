@@ -76,7 +76,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".messagedata.shortsalepriceteststatusmessage.shortsalepriceteststatus"] = canonical::number(message->short_sale_price_test_status.get());
             values[entry + ".messagedata.shortsalepriceteststatusmessage.timestamp"] = canonical::number(message->timestamp.get());
             values[entry + ".messagedata.shortsalepriceteststatusmessage.symbol"] = canonical::text(std::string(message->symbol.get()), ' ', false);
-            values[entry + ".messagedata.shortsalepriceteststatusmessage.detail"] = canonical::text(canonical::character(message->detail.get()));
+            values[entry + ".messagedata.shortsalepriceteststatusmessage.detail"] = canonical::text(canonical::character(message->detail.get()), {std::string_view(" ", 1)});
         } else if (iterator.message_type == protocol::SecurityEventMessage::message_type) {
             values[entry + ".messagedata"] = "packet.messages.message.messagedata.securityeventmessage";
             [[maybe_unused]] const auto* message = protocol::SecurityEventMessage::parse(iterator.message);

@@ -18,5 +18,5 @@ packet.messages.message[0].payload.optionsmodifyordermessage.orderid = 143552409
 packet.messages.message[0].payload.optionsmodifyordermessage.price = 106000
 packet.messages.message[0].payload.optionsmodifyordermessage.volume = 3
 packet.messages.message[0].payload.optionsmodifyordermessage.positionchange = 0
-packet.messages.message[0].payload.optionsmodifyordermessage.side = 
-packet.messages.message[0].payload.optionsmodifyordermessage.custindicator = 
+packet.messages.message[0].payload.optionsmodifyordermessage.side = (null)
+packet.messages.message[0].payload.optionsmodifyordermessage.custindicator = (null)

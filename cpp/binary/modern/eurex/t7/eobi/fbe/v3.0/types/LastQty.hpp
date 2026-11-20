@@ -6,7 +6,7 @@
 
 namespace eurex::t7::eobi::fbe::v3_0 {
 
-// 
+// Total executed matched quantity of this match event
 struct LastQty {
 
     static constexpr const char* name = "Last Qty";

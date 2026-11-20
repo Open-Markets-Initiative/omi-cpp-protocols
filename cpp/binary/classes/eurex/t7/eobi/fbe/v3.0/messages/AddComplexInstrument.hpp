@@ -30,7 +30,7 @@ class AddComplexInstrument : public Message {
     AddComplexInstrument() = default;
     AddComplexInstrument(std::optional<std::int64_t> security_id, std::optional<std::chrono::nanoseconds> transact_time, std::optional<std::int32_t> security_sub_type, std::optional<ProductComplex> product_complex, std::optional<ImpliedMarketIndicator> implied_market_indicator, std::optional<std::uint8_t> no_legs, const std::array<std::byte, 1>& pad1, const std::array<InstrmtLegGrpComp, 20>& instrmt_leg_grp_comp);
 
-    // Security Id:
+    // Security Id: Unique instrument identifier
     std::optional<std::int64_t> security_id() const;
     void set_security_id(std::optional<std::int64_t> value);
 

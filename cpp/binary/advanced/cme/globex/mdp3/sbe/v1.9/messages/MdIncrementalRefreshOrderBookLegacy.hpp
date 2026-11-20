@@ -9,7 +9,7 @@
 #include "../types/Padding2.hpp"
 #include "../types/OrderIdOptional.hpp"
 #include "../types/MdOrderPriority.hpp"
-#include "../types/MdEntryPxOptionalEx.hpp"
+#include "../types/MdEntryPxOptional.hpp"
 #include "../types/MdDisplayQtyOptional.hpp"
 #include "../types/SecurityId.hpp"
 #include "../types/MdUpdateAction.hpp"
@@ -22,10 +22,10 @@ namespace cme::mdp3::v9 {
 namespace sbe_mdp3 = ::cme::mdp3::v9;
 
 #pragma pack(push, 1)
-struct md_incremental_refresh_order_book_legacy_incremental_refresh_order_book_groups_entry {
+struct md_incremental_refresh_order_book_legacy_incremental_refresh_order_book_legacy_groups_entry {
     sbe_mdp3::order_id_optional order_id_optional;
     sbe_mdp3::md_order_priority md_order_priority;
-    sbe_mdp3::md_entry_px_optional_ex md_entry_px_optional_ex;
+    sbe_mdp3::md_entry_px_optional md_entry_px_optional;
     sbe_mdp3::md_display_qty_optional md_display_qty_optional;
     sbe_mdp3::security_id security_id;
     sbe_mdp3::md_update_action md_update_action;
@@ -64,7 +64,7 @@ struct md_incremental_refresh_order_book_legacy {
     }
 
     // sequential access to variable-length regions
-    sbe_group_iterator<md_incremental_refresh_order_book_legacy_incremental_refresh_order_book_groups_entry, group_size> incremental_refresh_order_book_groups() const {
+    sbe_group_iterator<md_incremental_refresh_order_book_legacy_incremental_refresh_order_book_legacy_groups_entry, group_size> incremental_refresh_order_book_legacy_groups() const {
         return { tail_begin(), tail_end() };
     }
 

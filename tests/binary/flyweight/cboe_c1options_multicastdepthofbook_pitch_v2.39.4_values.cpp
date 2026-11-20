@@ -99,7 +99,7 @@ struct Reader {
         values[entry + ".payload.orderexecutedmessage.orderid"] = canonical::number(message.order_id());
         values[entry + ".payload.orderexecutedmessage.executedquantity"] = canonical::number(message.executed_quantity());
         values[entry + ".payload.orderexecutedmessage.executionid"] = canonical::number(message.execution_id());
-        values[entry + ".payload.orderexecutedmessage.tradecondition"] = canonical::text(canonical::character(message.trade_condition()), ' ', false);
+        values[entry + ".payload.orderexecutedmessage.tradecondition"] = canonical::text(canonical::character(message.trade_condition()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
     }
 
     void on(const protocol::OrderExecutedAtPriceSizeMessage& message) {
@@ -111,7 +111,7 @@ struct Reader {
         values[entry + ".payload.orderexecutedatpricesizemessage.remainingquantity"] = canonical::number(message.remaining_quantity());
         values[entry + ".payload.orderexecutedatpricesizemessage.executionid"] = canonical::number(message.execution_id());
         values[entry + ".payload.orderexecutedatpricesizemessage.longprice"] = canonical::scaled(message.long_price().mantissa(), message.long_price().exponent());
-        values[entry + ".payload.orderexecutedatpricesizemessage.tradecondition"] = canonical::text(canonical::character(message.trade_condition()), ' ', false);
+        values[entry + ".payload.orderexecutedatpricesizemessage.tradecondition"] = canonical::text(canonical::character(message.trade_condition()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
     }
 
     void on(const protocol::ReduceSizeLongMessage& message) {
@@ -169,7 +169,7 @@ struct Reader {
         values[entry + ".payload.tradelongmessage.symbol"] = canonical::text(std::string(message.symbol()), ' ', false);
         values[entry + ".payload.tradelongmessage.longprice"] = canonical::scaled(message.long_price().mantissa(), message.long_price().exponent());
         values[entry + ".payload.tradelongmessage.executionid"] = canonical::number(message.execution_id());
-        values[entry + ".payload.tradelongmessage.tradecondition"] = canonical::text(canonical::character(message.trade_condition()), ' ', false);
+        values[entry + ".payload.tradelongmessage.tradecondition"] = canonical::text(canonical::character(message.trade_condition()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
     }
 
     void on(const protocol::TradeShortMessage& message) {
@@ -182,7 +182,7 @@ struct Reader {
         values[entry + ".payload.tradeshortmessage.symbol"] = canonical::text(std::string(message.symbol()), ' ', false);
         values[entry + ".payload.tradeshortmessage.shortprice"] = canonical::scaled(message.short_price().mantissa(), message.short_price().exponent());
         values[entry + ".payload.tradeshortmessage.executionid"] = canonical::number(message.execution_id());
-        values[entry + ".payload.tradeshortmessage.tradecondition"] = canonical::text(canonical::character(message.trade_condition()), ' ', false);
+        values[entry + ".payload.tradeshortmessage.tradecondition"] = canonical::text(canonical::character(message.trade_condition()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
     }
 
     void on(const protocol::TradeExpandedMessage& message) {
@@ -195,7 +195,7 @@ struct Reader {
         values[entry + ".payload.tradeexpandedmessage.expandedsymbol"] = canonical::text(std::string(message.expanded_symbol()), ' ', false);
         values[entry + ".payload.tradeexpandedmessage.longprice"] = canonical::scaled(message.long_price().mantissa(), message.long_price().exponent());
         values[entry + ".payload.tradeexpandedmessage.executionid"] = canonical::number(message.execution_id());
-        values[entry + ".payload.tradeexpandedmessage.tradecondition"] = canonical::text(canonical::character(message.trade_condition()), ' ', false);
+        values[entry + ".payload.tradeexpandedmessage.tradecondition"] = canonical::text(canonical::character(message.trade_condition()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
     }
 
     void on(const protocol::TradeBreakMessage& message) {

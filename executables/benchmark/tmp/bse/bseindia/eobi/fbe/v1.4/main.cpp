@@ -351,6 +351,9 @@ struct Reader {
     void operator()(const T&) {}
 
     void operator()(const protocol::packet_header& header) {
+        if constexpr (requires { header.template get<protocol::eobi_header>().template get<protocol::body_len>(); }) { checksum += bench::digest(header.template get<protocol::eobi_header>().template get<protocol::body_len>().value()); }
+        if constexpr (requires { header.template get<protocol::eobi_header>().template get<protocol::template_id>(); }) { checksum += bench::digest(header.template get<protocol::eobi_header>().template get<protocol::template_id>().value()); }
+        if constexpr (requires { header.template get<protocol::eobi_header>().template get<protocol::msg_seq_num>(); }) { checksum += bench::digest(header.template get<protocol::eobi_header>().template get<protocol::msg_seq_num>().value()); }
         if constexpr (requires { header.template get<protocol::appl_seq_num>(); }) { checksum += bench::digest(header.template get<protocol::appl_seq_num>().value()); }
         if constexpr (requires { header.template get<protocol::market_segment_id>(); }) { checksum += bench::digest(header.template get<protocol::market_segment_id>().value()); }
         if constexpr (requires { header.template get<protocol::partition_id>(); }) { checksum += bench::digest(header.template get<protocol::partition_id>().value()); }
@@ -378,7 +381,11 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::fast_market_indicator>(); }) { checksum += bench::digest(message.template get<protocol::fast_market_indicator>().value()); }
     }
 
-    void operator()(const protocol::snapshot_order_message&) {
+    void operator()(const protocol::snapshot_order_message& message) {
+        if constexpr (requires { message.template get<protocol::order_details>().template get<protocol::trd_reg_ts_time_priority>(); }) { checksum += bench::digest(message.template get<protocol::order_details>().template get<protocol::trd_reg_ts_time_priority>().value()); }
+        if constexpr (requires { message.template get<protocol::order_details>().template get<protocol::display_qty>(); }) { checksum += bench::digest(message.template get<protocol::order_details>().template get<protocol::display_qty>().value()); }
+        if constexpr (requires { message.template get<protocol::order_details>().template get<protocol::side>(); }) { checksum += bench::digest(message.template get<protocol::order_details>().template get<protocol::side>().value()); }
+        if constexpr (requires { message.template get<protocol::order_details>().template get<protocol::price>(); }) { checksum += bench::digest(message.template get<protocol::order_details>().template get<protocol::price>().value()); }
     }
 
     void operator()(const protocol::instrument_summary_message& message) {
@@ -418,6 +425,10 @@ struct Reader {
     void operator()(const protocol::order_add_message& message) {
         if constexpr (requires { message.template get<protocol::trd_reg_ts_time_in>(); }) { checksum += (static_cast<std::uint64_t>(message.template get<protocol::trd_reg_ts_time_in>().value()) != 0x0FFFFFFFFFFFFFFFFULL ? bench::digest(message.template get<protocol::trd_reg_ts_time_in>().value()) : std::uint64_t{0}); }
         if constexpr (requires { message.template get<protocol::security_id>(); }) { checksum += bench::digest(message.template get<protocol::security_id>().value()); }
+        if constexpr (requires { message.template get<protocol::order_details>().template get<protocol::trd_reg_ts_time_priority>(); }) { checksum += bench::digest(message.template get<protocol::order_details>().template get<protocol::trd_reg_ts_time_priority>().value()); }
+        if constexpr (requires { message.template get<protocol::order_details>().template get<protocol::display_qty>(); }) { checksum += bench::digest(message.template get<protocol::order_details>().template get<protocol::display_qty>().value()); }
+        if constexpr (requires { message.template get<protocol::order_details>().template get<protocol::side>(); }) { checksum += bench::digest(message.template get<protocol::order_details>().template get<protocol::side>().value()); }
+        if constexpr (requires { message.template get<protocol::order_details>().template get<protocol::price>(); }) { checksum += bench::digest(message.template get<protocol::order_details>().template get<protocol::price>().value()); }
     }
 
     void operator()(const protocol::order_modify_message& message) {
@@ -426,6 +437,10 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::prev_price>(); }) { checksum += bench::digest(message.template get<protocol::prev_price>().value()); }
         if constexpr (requires { message.template get<protocol::prev_display_qty>(); }) { checksum += bench::digest(message.template get<protocol::prev_display_qty>().value()); }
         if constexpr (requires { message.template get<protocol::security_id>(); }) { checksum += bench::digest(message.template get<protocol::security_id>().value()); }
+        if constexpr (requires { message.template get<protocol::order_details>().template get<protocol::trd_reg_ts_time_priority>(); }) { checksum += bench::digest(message.template get<protocol::order_details>().template get<protocol::trd_reg_ts_time_priority>().value()); }
+        if constexpr (requires { message.template get<protocol::order_details>().template get<protocol::display_qty>(); }) { checksum += bench::digest(message.template get<protocol::order_details>().template get<protocol::display_qty>().value()); }
+        if constexpr (requires { message.template get<protocol::order_details>().template get<protocol::side>(); }) { checksum += bench::digest(message.template get<protocol::order_details>().template get<protocol::side>().value()); }
+        if constexpr (requires { message.template get<protocol::order_details>().template get<protocol::price>(); }) { checksum += bench::digest(message.template get<protocol::order_details>().template get<protocol::price>().value()); }
     }
 
     void operator()(const protocol::order_modify_same_priority_message& message) {
@@ -433,12 +448,20 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::transact_time>(); }) { checksum += bench::digest(message.template get<protocol::transact_time>().value()); }
         if constexpr (requires { message.template get<protocol::prev_display_qty>(); }) { checksum += bench::digest(message.template get<protocol::prev_display_qty>().value()); }
         if constexpr (requires { message.template get<protocol::security_id>(); }) { checksum += bench::digest(message.template get<protocol::security_id>().value()); }
+        if constexpr (requires { message.template get<protocol::order_details>().template get<protocol::trd_reg_ts_time_priority>(); }) { checksum += bench::digest(message.template get<protocol::order_details>().template get<protocol::trd_reg_ts_time_priority>().value()); }
+        if constexpr (requires { message.template get<protocol::order_details>().template get<protocol::display_qty>(); }) { checksum += bench::digest(message.template get<protocol::order_details>().template get<protocol::display_qty>().value()); }
+        if constexpr (requires { message.template get<protocol::order_details>().template get<protocol::side>(); }) { checksum += bench::digest(message.template get<protocol::order_details>().template get<protocol::side>().value()); }
+        if constexpr (requires { message.template get<protocol::order_details>().template get<protocol::price>(); }) { checksum += bench::digest(message.template get<protocol::order_details>().template get<protocol::price>().value()); }
     }
 
     void operator()(const protocol::order_delete_message& message) {
         if constexpr (requires { message.template get<protocol::trd_reg_ts_time_in>(); }) { checksum += (static_cast<std::uint64_t>(message.template get<protocol::trd_reg_ts_time_in>().value()) != 0x0FFFFFFFFFFFFFFFFULL ? bench::digest(message.template get<protocol::trd_reg_ts_time_in>().value()) : std::uint64_t{0}); }
         if constexpr (requires { message.template get<protocol::transact_time>(); }) { checksum += bench::digest(message.template get<protocol::transact_time>().value()); }
         if constexpr (requires { message.template get<protocol::security_id>(); }) { checksum += bench::digest(message.template get<protocol::security_id>().value()); }
+        if constexpr (requires { message.template get<protocol::order_details>().template get<protocol::trd_reg_ts_time_priority>(); }) { checksum += bench::digest(message.template get<protocol::order_details>().template get<protocol::trd_reg_ts_time_priority>().value()); }
+        if constexpr (requires { message.template get<protocol::order_details>().template get<protocol::display_qty>(); }) { checksum += bench::digest(message.template get<protocol::order_details>().template get<protocol::display_qty>().value()); }
+        if constexpr (requires { message.template get<protocol::order_details>().template get<protocol::side>(); }) { checksum += bench::digest(message.template get<protocol::order_details>().template get<protocol::side>().value()); }
+        if constexpr (requires { message.template get<protocol::order_details>().template get<protocol::price>(); }) { checksum += bench::digest(message.template get<protocol::order_details>().template get<protocol::price>().value()); }
     }
 
     void operator()(const protocol::order_mass_delete_message& message) {

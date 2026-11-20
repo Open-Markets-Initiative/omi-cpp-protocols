@@ -118,8 +118,10 @@ void summarize(const Tally& tally) {
     std::printf("%-12s %zu\n", "messages", tally.messages);
     std::printf("%-12s %zu\n", "undecodable", tally.undecodable);
     std::printf("%-12s %zu\n", "mismatched", tally.mismatched);
+    std::printf("%-12s %zu\n", "size rule", tally.sizes);
     std::printf("%-12s %zu\n", "dispatch", tally.dispatches);
     std::printf("%-12s %zu\n", "unknown", tally.unknown);
+    std::printf("%-12s %zu\n", "trailing", tally.trailing);
 
     if (!tally.codes.empty()) {
         std::printf("%-12s", "codes");
@@ -149,8 +151,26 @@ void read_packet(protocol::Packet& decoded, const packet::Frame& frame, Tally& t
         return;
     }
 
-    if (const protocol::Message* message = decoded.message()) {
+    ++tally.kinds[std::string(protocol::to_string(decoded.kind()))];
+
+    std::size_t index = 0;
+
+    for (const auto& held : decoded.frames()) {
+        ++index;
+        const protocol::Message* message = held.message();
+
+        if (message == nullptr) { continue; }
+
         ++tally.messages;
+
+        // The size rule: the length the frame's header declares against what the model reads.
+        const std::size_t declared = wire::count(held.message_length()) + 2;
+        const std::size_t derived = frame_size(held);
+
+        if (declared != derived && ++tally.sizes <= shown) {
+            std::cerr << "read " << number << " frame " << index << " (" << message->name() << "): declares "
+                      << declared << " bytes, the model reads " << derived << '\n';
+        }
 
         // The dispatch: a code the specification does not list, or one that selected
         // a message whose own code is another.
@@ -160,14 +180,20 @@ void read_packet(protocol::Packet& decoded, const packet::Frame& frame, Tally& t
             ++tally.codes[value];
 
             if (++tally.unknown <= shown) {
-                std::cerr << "read " << number << ": unknown message code " << value << '\n';
+                std::cerr << "read " << number << " frame " << index << ": unknown message code " << value << '\n';
             }
-        } else if (message->type() != decoded.common_header().message_type()) {
+        } else if (message->type() != held.sbe_header().template_id()) {
             if (++tally.dispatches <= shown) {
-                std::cerr << "read " << number << ": code " << code_value(decoded.common_header().message_type())
+                std::cerr << "read " << number << " frame " << index << ": code " << code_value(held.sbe_header().template_id())
                           << " decoded as " << message->name() << ", whose code is " << code_value(message->type()) << '\n';
             }
         }
+    }
+
+    // Bytes after the last frame the model reads: a pad or a trailer the specification
+    // leaves out. Kept and written back, so not a failure, but worth knowing about.
+    if (!decoded.trailer().empty() && ++tally.trailing <= shown) {
+        std::cerr << "read " << number << ": " << decoded.trailer().size() << " bytes after the last frame\n";
     }
 
     // The round trip. Encode derives the count, every length and every code again from the
@@ -179,7 +205,8 @@ void read_packet(protocol::Packet& decoded, const packet::Frame& frame, Tally& t
 
         if ((written != frame.payload_len || offset < written) && ++tally.mismatched <= shown) {
             std::cerr << "read " << number << ": encodes to " << written << " bytes against " << frame.payload_len
-                      << " read, first difference at byte " << offset << '\n';
+                      << " read, first difference at byte " << offset << ' '
+                      << place(decoded.frames(), frames_begin(decoded.frames(), written - decoded.trailer().size()), offset) << '\n';
         }
     } catch (const protocol::EncodeError& error) {
         if (++tally.mismatched <= shown) {

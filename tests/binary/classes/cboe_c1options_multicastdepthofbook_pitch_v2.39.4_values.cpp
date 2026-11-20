@@ -84,7 +84,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.orderexecutedmessage.orderid"] = canonical::number((*message).order_id());
             values[entry + ".payload.orderexecutedmessage.executedquantity"] = canonical::number((*message).executed_quantity());
             values[entry + ".payload.orderexecutedmessage.executionid"] = canonical::number((*message).execution_id());
-            values[entry + ".payload.orderexecutedmessage.tradecondition"] = canonical::text(canonical::character((*message).trade_condition()), ' ', false);
+            values[entry + ".payload.orderexecutedmessage.tradecondition"] = canonical::text(canonical::character((*message).trade_condition()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
         } else if (const auto* message = dynamic_cast<const protocol::OrderExecutedAtPriceSizeMessage*>(each.message())) {
             values[entry + ".payload"] = "packet.messages.message.payload.orderexecutedatpricesizemessage";
             values[entry + ".payload.orderexecutedatpricesizemessage.timeoffset"] = canonical::number((*message).time_offset());
@@ -93,7 +93,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.orderexecutedatpricesizemessage.remainingquantity"] = canonical::number((*message).remaining_quantity());
             values[entry + ".payload.orderexecutedatpricesizemessage.executionid"] = canonical::number((*message).execution_id());
             values[entry + ".payload.orderexecutedatpricesizemessage.longprice"] = canonical::scaled((*message).long_price().mantissa(), (*message).long_price().exponent());
-            values[entry + ".payload.orderexecutedatpricesizemessage.tradecondition"] = canonical::text(canonical::character((*message).trade_condition()), ' ', false);
+            values[entry + ".payload.orderexecutedatpricesizemessage.tradecondition"] = canonical::text(canonical::character((*message).trade_condition()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
         } else if (const auto* message = dynamic_cast<const protocol::ReduceSizeLongMessage*>(each.message())) {
             values[entry + ".payload"] = "packet.messages.message.payload.reducesizelongmessage";
             values[entry + ".payload.reducesizelongmessage.timeoffset"] = canonical::number((*message).time_offset());
@@ -133,7 +133,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.tradelongmessage.symbol"] = canonical::text(std::string((*message).symbol()), ' ', false);
             values[entry + ".payload.tradelongmessage.longprice"] = canonical::scaled((*message).long_price().mantissa(), (*message).long_price().exponent());
             values[entry + ".payload.tradelongmessage.executionid"] = canonical::number((*message).execution_id());
-            values[entry + ".payload.tradelongmessage.tradecondition"] = canonical::text(canonical::character((*message).trade_condition()), ' ', false);
+            values[entry + ".payload.tradelongmessage.tradecondition"] = canonical::text(canonical::character((*message).trade_condition()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
         } else if (const auto* message = dynamic_cast<const protocol::TradeShortMessage*>(each.message())) {
             values[entry + ".payload"] = "packet.messages.message.payload.tradeshortmessage";
             values[entry + ".payload.tradeshortmessage.timeoffset"] = canonical::number((*message).time_offset());
@@ -143,7 +143,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.tradeshortmessage.symbol"] = canonical::text(std::string((*message).symbol()), ' ', false);
             values[entry + ".payload.tradeshortmessage.shortprice"] = canonical::scaled((*message).short_price().mantissa(), (*message).short_price().exponent());
             values[entry + ".payload.tradeshortmessage.executionid"] = canonical::number((*message).execution_id());
-            values[entry + ".payload.tradeshortmessage.tradecondition"] = canonical::text(canonical::character((*message).trade_condition()), ' ', false);
+            values[entry + ".payload.tradeshortmessage.tradecondition"] = canonical::text(canonical::character((*message).trade_condition()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
         } else if (const auto* message = dynamic_cast<const protocol::TradeExpandedMessage*>(each.message())) {
             values[entry + ".payload"] = "packet.messages.message.payload.tradeexpandedmessage";
             values[entry + ".payload.tradeexpandedmessage.timeoffset"] = canonical::number((*message).time_offset());
@@ -153,7 +153,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.tradeexpandedmessage.expandedsymbol"] = canonical::text(std::string((*message).expanded_symbol()), ' ', false);
             values[entry + ".payload.tradeexpandedmessage.longprice"] = canonical::scaled((*message).long_price().mantissa(), (*message).long_price().exponent());
             values[entry + ".payload.tradeexpandedmessage.executionid"] = canonical::number((*message).execution_id());
-            values[entry + ".payload.tradeexpandedmessage.tradecondition"] = canonical::text(canonical::character((*message).trade_condition()), ' ', false);
+            values[entry + ".payload.tradeexpandedmessage.tradecondition"] = canonical::text(canonical::character((*message).trade_condition()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
         } else if (const auto* message = dynamic_cast<const protocol::TradeBreakMessage*>(each.message())) {
             values[entry + ".payload"] = "packet.messages.message.payload.tradebreakmessage";
             values[entry + ".payload.tradebreakmessage.timeoffset"] = canonical::number((*message).time_offset());

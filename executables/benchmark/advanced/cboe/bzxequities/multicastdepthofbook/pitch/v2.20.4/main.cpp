@@ -59,9 +59,9 @@ struct Reader {
         checksum += bench::digest(message.fields.time_offset.get().value());
         checksum += bench::digest(message.fields.order_id.get().value());
         checksum += bench::digest(message.fields.side_indicator.get().value());
-        checksum += bench::digest(message.fields.quantity_binary_4.get().value());
+        checksum += bench::digest(message.fields.quantity_long.get().value());
         checksum += bench::digest(message.fields.symbol_short.get().value());
-        checksum += bench::digest(message.fields.price_binary_long_price_8.get().value());
+        checksum += bench::digest(message.fields.price_long.get().value());
         checksum += bench::digest(message.fields.add_flags.has_display());
     }
 
@@ -72,9 +72,9 @@ struct Reader {
         checksum += bench::digest(message.fields.time_offset.get().value());
         checksum += bench::digest(message.fields.order_id.get().value());
         checksum += bench::digest(message.fields.side_indicator.get().value());
-        checksum += bench::digest(message.fields.quantity_binary_2.get().value());
+        checksum += bench::digest(message.fields.quantity_short.get().value());
         checksum += bench::digest(message.fields.symbol_short.get().value());
-        checksum += bench::digest(message.fields.price_binary_short_price_2.get().value());
+        checksum += bench::digest(message.fields.price_short.get().value());
         checksum += bench::digest(message.fields.add_flags.has_display());
     }
 
@@ -85,9 +85,9 @@ struct Reader {
         checksum += bench::digest(message.fields.time_offset.get().value());
         checksum += bench::digest(message.fields.order_id.get().value());
         checksum += bench::digest(message.fields.side_indicator.get().value());
-        checksum += bench::digest(message.fields.quantity_binary_4.get().value());
+        checksum += bench::digest(message.fields.quantity_long.get().value());
         checksum += bench::digest(message.fields.symbol_long.get().value());
-        checksum += bench::digest(message.fields.price_binary_long_price_8.get().value());
+        checksum += bench::digest(message.fields.price_long.get().value());
         checksum += bench::digest(message.fields.add_flags.has_display());
         checksum += bench::digest(message.fields.participant_id.get().value());
     }
@@ -111,7 +111,7 @@ struct Reader {
         checksum += bench::digest(message.fields.executed_quantity.get().value());
         checksum += bench::digest(message.fields.remaining_quantity.get().value());
         checksum += bench::digest(message.fields.execution_id.get().value());
-        checksum += bench::digest(message.fields.price_binary_long_price_8.get().value());
+        checksum += bench::digest(message.fields.price_long.get().value());
     }
 
     void on_message(const protocol::reduce_size_long_message& message, std::uint64_t, const protocol::packet_header&) {
@@ -120,7 +120,7 @@ struct Reader {
         checksum += bench::digest(message.header.message_type.get().value());
         checksum += bench::digest(message.fields.time_offset.get().value());
         checksum += bench::digest(message.fields.order_id.get().value());
-        checksum += bench::digest(message.fields.canceled_quantity_binary_4.get().value());
+        checksum += bench::digest(message.fields.canceled_quantity_long.get().value());
     }
 
     void on_message(const protocol::reduce_size_short_message& message, std::uint64_t, const protocol::packet_header&) {
@@ -129,7 +129,7 @@ struct Reader {
         checksum += bench::digest(message.header.message_type.get().value());
         checksum += bench::digest(message.fields.time_offset.get().value());
         checksum += bench::digest(message.fields.order_id.get().value());
-        checksum += bench::digest(message.fields.canceled_quantity_binary_2.get().value());
+        checksum += bench::digest(message.fields.canceled_quantity_short.get().value());
     }
 
     void on_message(const protocol::modify_order_long_message& message, std::uint64_t, const protocol::packet_header&) {
@@ -138,8 +138,8 @@ struct Reader {
         checksum += bench::digest(message.header.message_type.get().value());
         checksum += bench::digest(message.fields.time_offset.get().value());
         checksum += bench::digest(message.fields.order_id.get().value());
-        checksum += bench::digest(message.fields.quantity_binary_4.get().value());
-        checksum += bench::digest(message.fields.price_binary_long_price_8.get().value());
+        checksum += bench::digest(message.fields.quantity_long.get().value());
+        checksum += bench::digest(message.fields.price_long.get().value());
         checksum += bench::digest(message.fields.modify_flags.has_display());
         checksum += bench::digest(message.fields.modify_flags.has_maintain_priority());
     }
@@ -150,8 +150,8 @@ struct Reader {
         checksum += bench::digest(message.header.message_type.get().value());
         checksum += bench::digest(message.fields.time_offset.get().value());
         checksum += bench::digest(message.fields.order_id.get().value());
-        checksum += bench::digest(message.fields.quantity_binary_2.get().value());
-        checksum += bench::digest(message.fields.price_binary_short_price_2.get().value());
+        checksum += bench::digest(message.fields.quantity_short.get().value());
+        checksum += bench::digest(message.fields.price_short.get().value());
         checksum += bench::digest(message.fields.modify_flags.has_display());
         checksum += bench::digest(message.fields.modify_flags.has_maintain_priority());
     }
@@ -171,9 +171,9 @@ struct Reader {
         checksum += bench::digest(message.fields.time_offset.get().value());
         checksum += bench::digest(message.fields.order_id.get().value());
         checksum += bench::digest(message.fields.side_indicator.get().value());
-        checksum += bench::digest(message.fields.quantity_binary_4.get().value());
+        checksum += bench::digest(message.fields.quantity_long.get().value());
         checksum += bench::digest(message.fields.symbol_short.get().value());
-        checksum += bench::digest(message.fields.price_binary_long_price_8.get().value());
+        checksum += bench::digest(message.fields.price_long.get().value());
         checksum += bench::digest(message.fields.execution_id.get().value());
     }
 
@@ -184,9 +184,9 @@ struct Reader {
         checksum += bench::digest(message.fields.time_offset.get().value());
         checksum += bench::digest(message.fields.order_id.get().value());
         checksum += bench::digest(message.fields.side_indicator.get().value());
-        checksum += bench::digest(message.fields.quantity_binary_2.get().value());
+        checksum += bench::digest(message.fields.quantity_short.get().value());
         checksum += bench::digest(message.fields.symbol_short.get().value());
-        checksum += bench::digest(message.fields.price_binary_short_price_2.get().value());
+        checksum += bench::digest(message.fields.price_short.get().value());
         checksum += bench::digest(message.fields.execution_id.get().value());
     }
 
@@ -197,9 +197,9 @@ struct Reader {
         checksum += bench::digest(message.fields.time_offset.get().value());
         checksum += bench::digest(message.fields.order_id.get().value());
         checksum += bench::digest(message.fields.side_indicator.get().value());
-        checksum += bench::digest(message.fields.quantity_binary_4.get().value());
+        checksum += bench::digest(message.fields.quantity_long.get().value());
         checksum += bench::digest(message.fields.symbol_long.get().value());
-        checksum += bench::digest(message.fields.price_binary_long_price_8.get().value());
+        checksum += bench::digest(message.fields.price_long.get().value());
         checksum += bench::digest(message.fields.execution_id.get().value());
     }
 
@@ -258,7 +258,7 @@ struct Reader {
         checksum += bench::digest(message.fields.time_offset.get().value());
         checksum += bench::digest(message.fields.stock_symbol.get().value());
         checksum += bench::digest(message.fields.auction_type.get().value());
-        checksum += bench::digest(message.fields.price_binary_8.get().value());
+        checksum += bench::digest(message.fields.price_long.get().value());
         checksum += bench::digest(message.fields.shares.get().value());
     }
 

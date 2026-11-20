@@ -8,17 +8,17 @@
 #include <string_view>
 
 #include "../enums/TradingSession.hpp"
-#include "../messages/Payload.hpp"
+#include "../messages/Message.hpp"
 
 namespace memx::memxequities::memoirdepthfeed::sbe::v1_3 {
 
-class PayloadVisitor;
+class Visitor;
 
 // TradingSessionStatusMessage
-class TradingSessionStatusMessage : public Payload {
+class TradingSessionStatusMessage : public Message {
   public:
     // The code that selects this message
-    static constexpr PayloadCode message_type = TemplateId::TradingSessionStatusMessage;
+    static constexpr MessageCode message_type = TemplateId::TradingSessionStatusMessage;
     // Bytes of this message on the wire
     static constexpr std::size_t wire_size = 9;
 
@@ -33,16 +33,16 @@ class TradingSessionStatusMessage : public Payload {
     TradingSession trading_session() const;
     void set_trading_session(TradingSession value);
 
-    // Payload
-    PayloadCode type() const override;
+    // Message
+    MessageCode type() const override;
     std::string_view name() const override;
     std::size_t decode(const std::byte* data, std::size_t length) override;
     std::size_t encode(std::byte* data, std::size_t capacity) const override;
     std::size_t encoded_size() const override;
-    void accept(PayloadVisitor& visitor) const override;
-    std::unique_ptr<Payload> clone() const override;
+    void accept(Visitor& visitor) const override;
+    std::unique_ptr<Message> clone() const override;
     void print(std::ostream& out) const override;
-    bool equals(const Payload& other) const override;
+    bool equals(const Message& other) const override;
 
     bool operator==(const TradingSessionStatusMessage& other) const;
     bool operator!=(const TradingSessionStatusMessage& other) const;

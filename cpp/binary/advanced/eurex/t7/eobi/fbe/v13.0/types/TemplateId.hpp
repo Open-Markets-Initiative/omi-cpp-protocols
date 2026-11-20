@@ -125,9 +125,10 @@ struct template_id {
 
     static constexpr const char* name = "template_id";
     static constexpr std::size_t size = 2;
-    static constexpr bool is_optional = false;
+    static constexpr bool is_optional = true;
+    static constexpr enum_type null_value = static_cast<enum_type>(0xFFFF);
 
-    using result_type = required<template_id::enum_type>;
+    using result_type = std::optional<template_id::enum_type>;
     using storage_type = result_type;
 
     constexpr template_id()
@@ -137,7 +138,8 @@ struct template_id {
      : value{ v } {}
 
     [[nodiscard]] constexpr result_type get() const {
-        return result_type{value};
+        const enum_type held = value;
+        return held == null_value ? std::nullopt : result_type{held};
     }
 
     constexpr void set(enum_type v) {
@@ -148,7 +150,11 @@ struct template_id {
         if (value.has_value())
             set(value.value());
         else
-            set(static_cast<enum_type>(0xFFFF));
+            set(null_value);
+    }
+
+    constexpr void set_null() {
+        set(null_value);
     }
 
   protected:

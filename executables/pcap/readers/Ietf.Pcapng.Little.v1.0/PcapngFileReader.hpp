@@ -1254,8 +1254,7 @@ struct PcapngFileReader {
             self.size = self.pcapng_custom_body.size;
             return true;
         }
-        self.size = 0;
-        return true;
+        return false;
     }
 
     // Section Header Block: byte order, version and length of the section, then its options
@@ -1380,8 +1379,7 @@ struct PcapngFileReader {
             self.size = self.pcapng_shb_user_application_option.size;
             return true;
         }
-        self.size = 0;
-        return true;
+        return false;
     }
 
     // opt_comment: a comment on the block
@@ -1707,8 +1705,7 @@ struct PcapngFileReader {
             self.size = self.pcapng_if_iana_time_zone_name_option.size;
             return true;
         }
-        self.size = 0;
-        return true;
+        return false;
     }
 
     // opt_comment: a comment on the block
@@ -2177,8 +2174,7 @@ struct PcapngFileReader {
             self.size = self.pcapng_epb_hash_option.size;
             return true;
         }
-        self.size = 0;
-        return true;
+        return false;
     }
 
     // opt_comment: a comment on the block
@@ -2467,8 +2463,7 @@ struct PcapngFileReader {
             self.size = self.pcapng_isb_counter_option.size;
             return true;
         }
-        self.size = 0;
-        return true;
+        return false;
     }
 
     // opt_comment: a comment on the block
@@ -2741,8 +2736,7 @@ struct PcapngFileReader {
             self.size = self.pcapng_epb_process_id_thread_id_option.size;
             return true;
         }
-        self.size = 0;
-        return true;
+        return false;
     }
 
     // opt_comment: a comment on the block
@@ -3040,8 +3034,7 @@ struct PcapngFileReader {
             self.size = self.pcapng_custom_data_option.size;
             return true;
         }
-        self.size = 0;
-        return true;
+        return false;
     }
 
     // opt_comment: a comment on the block

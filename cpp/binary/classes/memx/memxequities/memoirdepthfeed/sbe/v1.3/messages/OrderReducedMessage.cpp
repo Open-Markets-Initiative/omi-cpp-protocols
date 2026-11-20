@@ -22,7 +22,7 @@ void OrderReducedMessage::set_order_id(std::uint64_t value) { order_id_ = value;
 std::uint32_t OrderReducedMessage::quantity() const { return quantity_; }
 void OrderReducedMessage::set_quantity(std::uint32_t value) { quantity_ = value; }
 
-PayloadCode OrderReducedMessage::type() const { return message_type; }
+MessageCode OrderReducedMessage::type() const { return message_type; }
 
 std::string_view OrderReducedMessage::name() const { return "Order Reduced Message"; }
 
@@ -68,11 +68,11 @@ std::size_t OrderReducedMessage::encoded_size() const {
     return wire_size;
 }
 
-void OrderReducedMessage::accept(PayloadVisitor& visitor) const {
+void OrderReducedMessage::accept(Visitor& visitor) const {
     visitor.visit(*this);
 }
 
-std::unique_ptr<Payload> OrderReducedMessage::clone() const {
+std::unique_ptr<Message> OrderReducedMessage::clone() const {
     return std::make_unique<OrderReducedMessage>(*this);
 }
 
@@ -89,7 +89,7 @@ void OrderReducedMessage::print(std::ostream& out) const {
     out << '}';
 }
 
-bool OrderReducedMessage::equals(const Payload& other) const {
+bool OrderReducedMessage::equals(const Message& other) const {
     const auto* that = dynamic_cast<const OrderReducedMessage*>(&other);
     return that != nullptr && *this == *that;
 }

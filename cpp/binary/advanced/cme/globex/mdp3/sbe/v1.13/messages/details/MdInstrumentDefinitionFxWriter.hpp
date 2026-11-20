@@ -167,10 +167,10 @@ public:
         return *this;
     }
 
-    md_instrument_definition_fx_fx_lot_type_rules_groups_builder& min_lot_size_u_int_64(std::uint64_t v) {
+    md_instrument_definition_fx_fx_lot_type_rules_groups_builder& fx_min_lot_size(std::uint64_t v) {
         if (pos_ + sizeof(md_instrument_definition_fx_fx_lot_type_rules_groups_entry) > end_) throw std::runtime_error("buffer overrun writing group entry");
         auto* entry = reinterpret_cast<md_instrument_definition_fx_fx_lot_type_rules_groups_entry*>(pos_);
-        entry->min_lot_size_u_int_64.set(v);
+        entry->fx_min_lot_size.set(v);
         pos_ += header_->block_length.get().value();
         count_++;
         if (pos_ + sizeof(md_instrument_definition_fx_fx_lot_type_rules_groups_entry) <= end_) ::new (static_cast<void*>(pos_)) md_instrument_definition_fx_fx_lot_type_rules_groups_entry{};

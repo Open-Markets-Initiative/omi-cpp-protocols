@@ -15,10 +15,8 @@
 #include "enums/TemplateId.hpp"
 #include "enums/TradingSession.hpp"
 
-#include "groups/SequencedMessageMessage.hpp"
 #include "structs/CommonHeader.hpp"
 #include "structs/SbeHeader.hpp"
-#include "structs/SbeMessage.hpp"
 
 #include "messages/BrokenTradeMessage.hpp"
 #include "messages/ClearBookMessage.hpp"
@@ -29,15 +27,12 @@
 #include "messages/OrderDeletedMessage.hpp"
 #include "messages/OrderExecutedMessage.hpp"
 #include "messages/OrderReducedMessage.hpp"
-#include "messages/Payload.hpp"
 #include "messages/RegShoRestrictionMessage.hpp"
 #include "messages/SecurityTradingStatusMessage.hpp"
-#include "messages/SequencedMessage.hpp"
 #include "messages/SnapshotCompleteMessage.hpp"
 #include "messages/TradeMessage.hpp"
 #include "messages/TradingSessionStatusMessage.hpp"
 #include "messages/UnknownMessage.hpp"
-#include "messages/UnknownPayload.hpp"
 
 #include "Factory.hpp"
 #include "Packet.hpp"

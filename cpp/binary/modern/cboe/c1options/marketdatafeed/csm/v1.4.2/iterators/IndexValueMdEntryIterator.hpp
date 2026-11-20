@@ -2,6 +2,8 @@
 #pragma once
 
 #include "../definitions.hpp"
+#include "../structs/Symbol.hpp"
+#include "../types/NoEntries.hpp"
 
 namespace cboe::c1options::marketdatafeed::csm::v1_4_2 {
 // IndexValueMdEntryIterator
@@ -21,9 +23,12 @@ struct IndexValueMdEntryIterator {
         current = data;
 
         index_value_message = IndexValueMessage::parse(current);
-        current += sizeof(IndexValueMessage);
 
-        no_entries = index_value_message->no_entries.get();
+        // no_entries lies behind what IndexValueMessage holds: step over what is in front of it
+        current += sizeof(Symbol) + Symbol::parse(current)->symbol_length.get();
+
+        no_entries = reinterpret_cast<const NoEntries*>(current)->get();
+        current += sizeof(NoEntries);
         entry_index = 0;
         entry = nullptr;
     }

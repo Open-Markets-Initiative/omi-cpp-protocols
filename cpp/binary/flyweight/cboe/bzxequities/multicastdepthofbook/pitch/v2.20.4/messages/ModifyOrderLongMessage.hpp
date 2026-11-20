@@ -34,9 +34,9 @@ class ModifyOrderLongMessage {
 
     std::uint64_t order_id() const { return wire::read_u64_le(at(4)); }
 
-    std::uint32_t quantity_binary_4() const { return wire::read_u32_le(at(12)); }
+    std::uint32_t quantity_long() const { return wire::read_u32_le(at(12)); }
 
-    Decimal price_binary_long_price_8() const { return Decimal(static_cast<std::int64_t>(wire::read_u64_le(at(16))), -4); }
+    Decimal price_long() const { return Decimal(static_cast<std::int64_t>(wire::read_u64_le(at(16))), -4); }
 
     ModifyFlags modify_flags() const { return ModifyFlags{ bytes_.subspan(24) }; }
 
@@ -46,10 +46,10 @@ class ModifyOrderLongMessage {
         out << time_offset().count();
         out << ", order_id=";
         out << order_id();
-        out << ", quantity_binary_4=";
-        out << quantity_binary_4();
-        out << ", price_binary_long_price_8=";
-        out << price_binary_long_price_8();
+        out << ", quantity_long=";
+        out << quantity_long();
+        out << ", price_long=";
+        out << price_long();
         out << ", modify_flags=";
         modify_flags().print(out);
         out << '}';

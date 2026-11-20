@@ -9,11 +9,12 @@ namespace nyse::nyseequities::imbalancesfeed::xdp::v2_2_a {
 
 // Type of auction
 enum class AuctionType : char {
-    EarlyOpening = 'O',        // Early Opening
-    CoreOpening = 'M',         // Core Opening
-    Reopening = 'H',           // Reopening
-    Closing = 'C',             // Closing
-    RegulatoryImbalance = 'R', // Regulatory Imbalance
+    EarlyOpening = 'O',               // Early Opening
+    CoreOpening = 'M',                // Core Opening
+    Reopening = 'H',                  // Reopening
+    Closing = 'C',                    // Closing
+    ExtremeClosingImbalance = 'P',    // Extreme Closing Imbalance
+    RegulatoryClosingImbalance = 'R', // Regulatory Closing Imbalance
 };
 
 // The documented name of a code, or empty for one the specification does not list

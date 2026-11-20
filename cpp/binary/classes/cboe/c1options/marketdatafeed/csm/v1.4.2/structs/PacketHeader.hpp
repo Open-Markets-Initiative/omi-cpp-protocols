@@ -1,6 +1,7 @@
 // Cboe.C1Options.MarketDataFeed.Csm.v1.4.2: structs/PacketHeader.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <ostream>
@@ -14,7 +15,7 @@ class PacketHeader {
     static constexpr std::size_t wire_size = 16;
 
     PacketHeader() = default;
-    PacketHeader(std::uint8_t version, std::uint16_t packet_length, std::uint64_t sending_time, std::uint8_t message_count, std::uint32_t first_msg_seq_num);
+    PacketHeader(std::uint8_t version, std::uint16_t packet_length, std::chrono::milliseconds sending_time, std::uint8_t message_count, std::uint32_t first_msg_seq_num);
 
     // Version: The version associated with the contents and format of this header. Currently,
     // this will be a constant value of 1.
@@ -27,8 +28,8 @@ class PacketHeader {
 
     // Sending Time: The time that this packet was sent. It applies to all messages in this
     // packet.
-    std::uint64_t sending_time() const;
-    void set_sending_time(std::uint64_t value);
+    std::chrono::milliseconds sending_time() const;
+    void set_sending_time(std::chrono::milliseconds value);
 
     // Message Count: The number of messages in this packet
     std::uint8_t message_count() const;
@@ -52,7 +53,7 @@ class PacketHeader {
   private:
     std::uint8_t version_{};
     std::uint16_t packet_length_{};
-    std::uint64_t sending_time_{};
+    std::chrono::milliseconds sending_time_{};
     std::uint8_t message_count_{};
     std::uint32_t first_msg_seq_num_{};
 };

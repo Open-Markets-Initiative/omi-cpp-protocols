@@ -7,6 +7,8 @@
 #include <optional>
 #include <ostream>
 
+#include "../bitfields/EventIndicator.hpp"
+
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_3 {
 
 // OutboundBusinessHeader
@@ -16,7 +18,7 @@ class OutboundBusinessHeader {
     static constexpr std::size_t wire_size = 18;
 
     OutboundBusinessHeader() = default;
-    OutboundBusinessHeader(std::uint32_t session_id, std::uint32_t msg_seq_num, std::optional<std::chrono::nanoseconds> sending_time, std::uint8_t event_indicator, std::optional<std::uint8_t> market_segment_id_optional);
+    OutboundBusinessHeader(std::uint32_t session_id, std::uint32_t msg_seq_num, std::optional<std::chrono::nanoseconds> sending_time, const EventIndicator& event_indicator, std::optional<std::uint8_t> market_segment_id_optional);
 
     // Session Id: sessionID
     std::uint32_t session_id() const;
@@ -30,9 +32,10 @@ class OutboundBusinessHeader {
     std::optional<std::chrono::nanoseconds> sending_time() const;
     void set_sending_time(std::optional<std::chrono::nanoseconds> value);
 
-    // Event Indicator: eventIndicator
-    std::uint8_t event_indicator() const;
-    void set_event_indicator(std::uint8_t value);
+    // Event Indicator: EventIndicator bit set
+    const EventIndicator& event_indicator() const;
+    EventIndicator& event_indicator();
+    void set_event_indicator(const EventIndicator& value);
 
     // Market Segment Id Optional: marketSegmentID
     std::optional<std::uint8_t> market_segment_id_optional() const;
@@ -53,7 +56,7 @@ class OutboundBusinessHeader {
     std::uint32_t session_id_{};
     std::uint32_t msg_seq_num_{};
     std::optional<std::chrono::nanoseconds> sending_time_{};
-    std::uint8_t event_indicator_{};
+    EventIndicator event_indicator_{};
     std::optional<std::uint8_t> market_segment_id_optional_{};
 };
 

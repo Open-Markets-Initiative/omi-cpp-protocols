@@ -387,6 +387,10 @@ struct Reader {
     void operator()(const protocol::packet_header& header) {
         if constexpr (requires { header.template get<protocol::packet_size>(); }) { checksum += bench::digest(header.template get<protocol::packet_size>().value()); }
         if constexpr (requires { header.template get<protocol::seq_num>(); }) { checksum += bench::digest(header.template get<protocol::seq_num>().value()); }
+        if constexpr (requires { header.template get<protocol::packet_flag>(); }) { checksum += bench::digest(header.template get<protocol::packet_flag>().template get<protocol::heartbeat>()); }
+        if constexpr (requires { header.template get<protocol::packet_flag>(); }) { checksum += bench::digest(header.template get<protocol::packet_flag>().template get<protocol::seq_num_reset>()); }
+        if constexpr (requires { header.template get<protocol::packet_flag>(); }) { checksum += bench::digest(header.template get<protocol::packet_flag>().template get<protocol::replay>()); }
+        if constexpr (requires { header.template get<protocol::packet_flag>(); }) { checksum += bench::digest(header.template get<protocol::packet_flag>().template get<protocol::test>()); }
         if constexpr (requires { header.template get<protocol::message_count>(); }) { checksum += bench::digest(header.template get<protocol::message_count>().value()); }
         if constexpr (requires { header.template get<protocol::packet_milli>(); }) { checksum += bench::digest(header.template get<protocol::packet_milli>().value()); }
     }
@@ -431,6 +435,14 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::security_action>(); }) { checksum += bench::digest(message.template get<protocol::security_action>().value()); }
         if constexpr (requires { message.template get<protocol::asset_class>(); }) { checksum += bench::digest(message.template get<protocol::asset_class>().value()); }
         if constexpr (requires { message.template get<protocol::security_id>(); }) { checksum += bench::digest(message.template get<protocol::security_id>().value()); }
+        if constexpr (requires { message.template get<protocol::security_flags>(); }) { checksum += bench::digest(message.template get<protocol::security_flags>().template get<protocol::piggyback>()); }
+        if constexpr (requires { message.template get<protocol::security_flags>(); }) { checksum += bench::digest(message.template get<protocol::security_flags>().template get<protocol::caveat_emptor_warning>()); }
+        if constexpr (requires { message.template get<protocol::security_flags>(); }) { checksum += bench::digest(message.template get<protocol::security_flags>().template get<protocol::qualified_institutional_buyers_only>()); }
+        if constexpr (requires { message.template get<protocol::security_flags>(); }) { checksum += bench::digest(message.template get<protocol::security_flags>().template get<protocol::unsolicited_only>()); }
+        if constexpr (requires { message.template get<protocol::security_flags>(); }) { checksum += bench::digest(message.template get<protocol::security_flags>().template get<protocol::bb_quoted>()); }
+        if constexpr (requires { message.template get<protocol::security_flags>(); }) { checksum += bench::digest(message.template get<protocol::security_flags>().template get<protocol::otc_link_ecn_eligible>()); }
+        if constexpr (requires { message.template get<protocol::security_flags>(); }) { checksum += bench::digest(message.template get<protocol::security_flags>().template get<protocol::otc_link_messaging_disabled>()); }
+        if constexpr (requires { message.template get<protocol::security_flags>(); }) { checksum += bench::digest(message.template get<protocol::security_flags>().template get<protocol::saturation_eligible>()); }
         if constexpr (requires { message.template get<protocol::tier>(); }) { checksum += bench::digest(message.template get<protocol::tier>().value()); }
         if constexpr (requires { message.template get<protocol::reporting_status>(); }) { checksum += bench::digest(message.template get<protocol::reporting_status>().value()); }
         if constexpr (requires { message.template get<protocol::security_status>(); }) { checksum += bench::digest(message.template get<protocol::security_status>().value()); }
@@ -440,6 +452,14 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::channel_seq_num>(); }) { checksum += bench::digest(message.template get<protocol::channel_seq_num>().value()); }
         if constexpr (requires { message.template get<protocol::quote_id>(); }) { checksum += bench::digest(message.template get<protocol::quote_id>().value()); }
         if constexpr (requires { message.template get<protocol::quote_action>(); }) { checksum += bench::digest(message.template get<protocol::quote_action>().value()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::update_side>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::state>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::ask_unsolicited>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::ask_priced>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::ask_bid_wanted>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::bid_unsolicited>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::bid_priced>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::bid_ask_wanted>()); }
         if constexpr (requires { message.template get<protocol::security_id>(); }) { checksum += bench::digest(message.template get<protocol::security_id>().value()); }
         if constexpr (requires { message.template get<protocol::mpid>(); }) { checksum += bench::digest(message.template get<protocol::mpid>().value()); }
         if constexpr (requires { message.template get<protocol::ask_price>(); }) { checksum += bench::digest(message.template get<protocol::ask_price>().value()); }
@@ -451,22 +471,46 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::bid_qap>(); }) { checksum += bench::digest(message.template get<protocol::bid_qap>().value()); }
         if constexpr (requires { message.template get<protocol::bid_time_milli>(); }) { checksum += bench::digest(message.template get<protocol::bid_time_milli>().value()); }
         if constexpr (requires { message.template get<protocol::quote_reference_id>(); }) { checksum += bench::digest(message.template get<protocol::quote_reference_id>().value()); }
+        if constexpr (requires { message.template get<protocol::extended_quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::extended_quote_flags>().template get<protocol::quote_saturated>()); }
+        if constexpr (requires { message.template get<protocol::extended_quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::extended_quote_flags>().template get<protocol::bid_auto_ex>()); }
+        if constexpr (requires { message.template get<protocol::extended_quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::extended_quote_flags>().template get<protocol::offer_auto_ex>()); }
+        if constexpr (requires { message.template get<protocol::extended_quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::extended_quote_flags>().template get<protocol::nms_conditional_quote>()); }
     }
 
     void operator()(const protocol::quote_update_message& message) {
         if constexpr (requires { message.template get<protocol::channel_seq_num>(); }) { checksum += bench::digest(message.template get<protocol::channel_seq_num>().value()); }
         if constexpr (requires { message.template get<protocol::quote_id>(); }) { checksum += bench::digest(message.template get<protocol::quote_id>().value()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::update_side>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::state>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::ask_unsolicited>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::ask_priced>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::ask_bid_wanted>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::bid_unsolicited>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::bid_priced>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::bid_ask_wanted>()); }
         if constexpr (requires { message.template get<protocol::price>(); }) { checksum += bench::digest(message.template get<protocol::price>().value()); }
         if constexpr (requires { message.template get<protocol::size_type>(); }) { checksum += bench::digest(message.template get<protocol::size_type>().value()); }
         if constexpr (requires { message.template get<protocol::qap>(); }) { checksum += bench::digest(message.template get<protocol::qap>().value()); }
         if constexpr (requires { message.template get<protocol::quote_time_milli>(); }) { checksum += bench::digest(message.template get<protocol::quote_time_milli>().value()); }
         if constexpr (requires { message.template get<protocol::quote_reference_id>(); }) { checksum += bench::digest(message.template get<protocol::quote_reference_id>().value()); }
+        if constexpr (requires { message.template get<protocol::extended_quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::extended_quote_flags>().template get<protocol::quote_saturated>()); }
+        if constexpr (requires { message.template get<protocol::extended_quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::extended_quote_flags>().template get<protocol::bid_auto_ex>()); }
+        if constexpr (requires { message.template get<protocol::extended_quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::extended_quote_flags>().template get<protocol::offer_auto_ex>()); }
+        if constexpr (requires { message.template get<protocol::extended_quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::extended_quote_flags>().template get<protocol::nms_conditional_quote>()); }
     }
 
     void operator()(const protocol::inside_message& message) {
         if constexpr (requires { message.template get<protocol::channel_seq_num>(); }) { checksum += bench::digest(message.template get<protocol::channel_seq_num>().value()); }
         if constexpr (requires { message.template get<protocol::inside_id>(); }) { checksum += bench::digest(message.template get<protocol::inside_id>().value()); }
         if constexpr (requires { message.template get<protocol::inside_action>(); }) { checksum += bench::digest(message.template get<protocol::inside_action>().value()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::update_side>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::state>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::ask_unsolicited>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::ask_priced>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::ask_bid_wanted>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::bid_unsolicited>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::bid_priced>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::bid_ask_wanted>()); }
         if constexpr (requires { message.template get<protocol::security_id>(); }) { checksum += bench::digest(message.template get<protocol::security_id>().value()); }
         if constexpr (requires { message.template get<protocol::ask_price>(); }) { checksum += bench::digest(message.template get<protocol::ask_price>().value()); }
         if constexpr (requires { message.template get<protocol::ask_size>(); }) { checksum += bench::digest(message.template get<protocol::ask_size>().value()); }
@@ -481,6 +525,14 @@ struct Reader {
     void operator()(const protocol::inside_update_message& message) {
         if constexpr (requires { message.template get<protocol::channel_seq_num>(); }) { checksum += bench::digest(message.template get<protocol::channel_seq_num>().value()); }
         if constexpr (requires { message.template get<protocol::inside_id>(); }) { checksum += bench::digest(message.template get<protocol::inside_id>().value()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::update_side>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::state>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::ask_unsolicited>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::ask_priced>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::ask_bid_wanted>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::bid_unsolicited>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::bid_priced>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::bid_ask_wanted>()); }
         if constexpr (requires { message.template get<protocol::price>(); }) { checksum += bench::digest(message.template get<protocol::price>().value()); }
         if constexpr (requires { message.template get<protocol::size_type>(); }) { checksum += bench::digest(message.template get<protocol::size_type>().value()); }
         if constexpr (requires { message.template get<protocol::inside_time_milli>(); }) { checksum += bench::digest(message.template get<protocol::inside_time_milli>().value()); }
@@ -491,6 +543,14 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::channel_seq_num>(); }) { checksum += bench::digest(message.template get<protocol::channel_seq_num>().value()); }
         if constexpr (requires { message.template get<protocol::reference_price_id>(); }) { checksum += bench::digest(message.template get<protocol::reference_price_id>().value()); }
         if constexpr (requires { message.template get<protocol::reference_price_action>(); }) { checksum += bench::digest(message.template get<protocol::reference_price_action>().value()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::update_side>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::state>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::ask_unsolicited>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::ask_priced>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::ask_bid_wanted>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::bid_unsolicited>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::bid_priced>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::bid_ask_wanted>()); }
         if constexpr (requires { message.template get<protocol::security_id>(); }) { checksum += bench::digest(message.template get<protocol::security_id>().value()); }
         if constexpr (requires { message.template get<protocol::ask_price>(); }) { checksum += bench::digest(message.template get<protocol::ask_price>().value()); }
         if constexpr (requires { message.template get<protocol::ask_size>(); }) { checksum += bench::digest(message.template get<protocol::ask_size>().value()); }
@@ -503,6 +563,14 @@ struct Reader {
     void operator()(const protocol::reference_price_update_message& message) {
         if constexpr (requires { message.template get<protocol::channel_seq_num>(); }) { checksum += bench::digest(message.template get<protocol::channel_seq_num>().value()); }
         if constexpr (requires { message.template get<protocol::reference_price_id>(); }) { checksum += bench::digest(message.template get<protocol::reference_price_id>().value()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::update_side>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::state>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::ask_unsolicited>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::ask_priced>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::ask_bid_wanted>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::bid_unsolicited>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::bid_priced>()); }
+        if constexpr (requires { message.template get<protocol::quote_flags>(); }) { checksum += bench::digest(message.template get<protocol::quote_flags>().template get<protocol::bid_ask_wanted>()); }
         if constexpr (requires { message.template get<protocol::price>(); }) { checksum += bench::digest(message.template get<protocol::price>().value()); }
         if constexpr (requires { message.template get<protocol::size_type>(); }) { checksum += bench::digest(message.template get<protocol::size_type>().value()); }
         if constexpr (requires { message.template get<protocol::time_milli>(); }) { checksum += bench::digest(message.template get<protocol::time_milli>().value()); }
@@ -520,6 +588,7 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::trade_action>(); }) { checksum += bench::digest(message.template get<protocol::trade_action>().value()); }
         if constexpr (requires { message.template get<protocol::trade_flags>(); }) { checksum += bench::digest(message.template get<protocol::trade_flags>().value()); }
         if constexpr (requires { message.template get<protocol::security_id>(); }) { checksum += bench::digest(message.template get<protocol::security_id>().value()); }
+        if constexpr (requires { message.template get<protocol::trade_status>(); }) { checksum += bench::digest(message.template get<protocol::trade_status>().template get<protocol::irregular>()); }
         if constexpr (requires { message.template get<protocol::deprecated>(); }) { checksum += bench::digest(message.template get<protocol::deprecated>().value()); }
         if constexpr (requires { message.template get<protocol::trade_price>(); }) { checksum += bench::digest(message.template get<protocol::trade_price>().value()); }
         if constexpr (requires { message.template get<protocol::trade_size>(); }) { checksum += bench::digest(message.template get<protocol::trade_size>().value()); }

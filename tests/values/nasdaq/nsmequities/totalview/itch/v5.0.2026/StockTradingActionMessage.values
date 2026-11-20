@@ -12,4 +12,4 @@ packet.messages.message[0].payload.stocktradingactionmessage.trackingnumber = 0
 packet.messages.message[0].payload.stocktradingactionmessage.timestamp = 11097196486632
 packet.messages.message[0].payload.stocktradingactionmessage.stock = A
 packet.messages.message[0].payload.stocktradingactionmessage.tradingstate = T
-packet.messages.message[0].payload.stocktradingactionmessage.reasoncode = 
+packet.messages.message[0].payload.stocktradingactionmessage.reasoncode = (null)

@@ -8,8 +8,10 @@
 #include <cstdio>
 #include <cstdlib>
 #include <fstream>
+#include <initializer_list>
 #include <map>
 #include <string>
+#include <string_view>
 #include <type_traits>
 #include <utility>
 #include <vector>
@@ -79,32 +81,56 @@ std::string character(T value) {
     }
 }
 
-// Text as the model leaves it: the fill it names taken off the side its justification leaves open
-inline std::string text(std::string value, char fill, bool right) {
-    if (right) {
-        const auto first = value.find_first_not_of(fill);
-        return first == std::string::npos ? std::string{} : value.substr(first);
-    }
-
-    const auto last = value.find_last_not_of(fill);
-    return last == std::string::npos ? std::string{} : value.substr(0, last + 1);
-}
-
-// Text stating no fill: every character kept
-inline std::string text(std::string value) {
-    return value;
-}
-
-// A nullable field holding no value, as the model lists it
+// A field holding no value, as the model lists it: a nullable field's null, or blank text
 inline std::string absent() {
     return "(null)";
 }
 
-// Numeric text as the number it spells, without the zeros or spaces in front of it
+// Is the text blank: no characters, or only spaces and null characters
+inline bool unwritten(const std::string& value) {
+    return value.find_first_not_of(" \0", 0, 2) == std::string::npos;
+}
+
+// Is the text one its field's own values state, as written or with its fill taken off
+inline bool stated(const std::string& value, const std::string& kept, std::initializer_list<std::string_view> values) {
+    for (const auto written : values) {
+        if (value == written || kept == written) { return true; }
+    }
+
+    return false;
+}
+
+// Text as the model leaves it: the fill it names taken off the side its justification leaves open.
+// Blank text holds nothing and is null, unless the field's own values state those characters.
+inline std::string text(std::string value, char fill, bool right, std::initializer_list<std::string_view> values = {}) {
+    std::string kept;
+
+    if (right) {
+        const auto first = value.find_first_not_of(fill);
+        kept = first == std::string::npos ? std::string{} : value.substr(first);
+    } else {
+        const auto last = value.find_last_not_of(fill);
+        kept = last == std::string::npos ? std::string{} : value.substr(0, last + 1);
+    }
+
+    if (unwritten(value) && !stated(value, kept, values)) { return absent(); }
+
+    return kept;
+}
+
+// Text stating no fill: every character kept, and blank text null as above
+inline std::string text(std::string value, std::initializer_list<std::string_view> values = {}) {
+    if (unwritten(value) && !stated(value, value, values)) { return absent(); }
+
+    return value;
+}
+
+// Numeric text as the number it spells, without the zeros or spaces in front of it; blank numeric
+// text spells none and is null, never zero
 inline std::string numeric(std::string value) {
     const auto first = value.find_first_not_of(" \0", 0, 2);
 
-    if (first == std::string::npos) { return std::string{}; }
+    if (first == std::string::npos) { return absent(); }
 
     const auto last = value.find_last_not_of(" \0", std::string::npos, 2);
     std::string digits = value.substr(first, last - first + 1);

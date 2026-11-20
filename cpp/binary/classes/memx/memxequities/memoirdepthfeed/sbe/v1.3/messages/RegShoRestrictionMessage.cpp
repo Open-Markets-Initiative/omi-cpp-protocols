@@ -19,7 +19,7 @@ void RegShoRestrictionMessage::set_security_id(std::uint16_t value) { security_i
 ShortSaleRestriction RegShoRestrictionMessage::short_sale_restriction() const { return short_sale_restriction_; }
 void RegShoRestrictionMessage::set_short_sale_restriction(ShortSaleRestriction value) { short_sale_restriction_ = value; }
 
-PayloadCode RegShoRestrictionMessage::type() const { return message_type; }
+MessageCode RegShoRestrictionMessage::type() const { return message_type; }
 
 std::string_view RegShoRestrictionMessage::name() const { return "Reg Sho Restriction Message"; }
 
@@ -59,11 +59,11 @@ std::size_t RegShoRestrictionMessage::encoded_size() const {
     return wire_size;
 }
 
-void RegShoRestrictionMessage::accept(PayloadVisitor& visitor) const {
+void RegShoRestrictionMessage::accept(Visitor& visitor) const {
     visitor.visit(*this);
 }
 
-std::unique_ptr<Payload> RegShoRestrictionMessage::clone() const {
+std::unique_ptr<Message> RegShoRestrictionMessage::clone() const {
     return std::make_unique<RegShoRestrictionMessage>(*this);
 }
 
@@ -78,7 +78,7 @@ void RegShoRestrictionMessage::print(std::ostream& out) const {
     out << '}';
 }
 
-bool RegShoRestrictionMessage::equals(const Payload& other) const {
+bool RegShoRestrictionMessage::equals(const Message& other) const {
     const auto* that = dynamic_cast<const RegShoRestrictionMessage*>(&other);
     return that != nullptr && *this == *that;
 }

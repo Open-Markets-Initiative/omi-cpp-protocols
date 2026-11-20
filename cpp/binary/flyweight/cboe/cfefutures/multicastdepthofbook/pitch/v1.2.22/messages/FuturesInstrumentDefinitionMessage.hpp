@@ -39,7 +39,7 @@ class FuturesInstrumentDefinitionMessage {
 
     std::string_view symbol() const { return view::text(at(4), 6, ' '); }
 
-    std::uint32_t unit_timestamp() const { return wire::read_u32_le(at(10)); }
+    std::chrono::seconds unit_timestamp() const { return std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_le(at(10)))); }
 
     std::string_view report_symbol() const { return view::text(at(14), 6, ' '); }
 
@@ -70,7 +70,7 @@ class FuturesInstrumentDefinitionMessage {
         out << ", symbol=";
         print::text(out, symbol());
         out << ", unit_timestamp=";
-        out << unit_timestamp();
+        out << unit_timestamp().count();
         out << ", report_symbol=";
         print::text(out, report_symbol());
         out << ", futures_flags=";

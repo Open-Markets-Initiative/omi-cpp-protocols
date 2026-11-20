@@ -9,5 +9,5 @@ packet.messages.message[0].messageheader.messagetype = x
 packet.messages.message[0].payload = packet.messages.message.payload.textmessage
 packet.messages.message[0].payload.textmessage.nanoseconds = 678981000
 packet.messages.message[0].payload.textmessage.tradedate = 18143
-packet.messages.message[0].payload.textmessage.sourceid = 
+packet.messages.message[0].payload.textmessage.sourceid = (null)
 packet.messages.message[0].payload.textmessage.text = EFP Regd @ 16:30 599 XTU9 @ 99.0800

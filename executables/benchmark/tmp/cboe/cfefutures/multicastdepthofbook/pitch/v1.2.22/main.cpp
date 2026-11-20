@@ -569,6 +569,11 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::total_volume>(); }) { checksum += bench::digest(message.template get<protocol::total_volume>().value()); }
         if constexpr (requires { message.template get<protocol::block_volume>(); }) { checksum += bench::digest(message.template get<protocol::block_volume>().value()); }
         if constexpr (requires { message.template get<protocol::ecrp_volume>(); }) { checksum += bench::digest(message.template get<protocol::ecrp_volume>().value()); }
+        if constexpr (requires { message.template get<protocol::summary_flags>(); }) { checksum += bench::digest(message.template get<protocol::summary_flags>().template get<protocol::high_price_valid>()); }
+        if constexpr (requires { message.template get<protocol::summary_flags>(); }) { checksum += bench::digest(message.template get<protocol::summary_flags>().template get<protocol::high_price_is_bid>()); }
+        if constexpr (requires { message.template get<protocol::summary_flags>(); }) { checksum += bench::digest(message.template get<protocol::summary_flags>().template get<protocol::low_price_valid>()); }
+        if constexpr (requires { message.template get<protocol::summary_flags>(); }) { checksum += bench::digest(message.template get<protocol::summary_flags>().template get<protocol::low_price_is_offer>()); }
+        if constexpr (requires { message.template get<protocol::summary_flags>(); }) { checksum += bench::digest(message.template get<protocol::summary_flags>().template get<protocol::open_close_valid>()); }
     }
 
     void operator()(const protocol::trading_status_message& message) {

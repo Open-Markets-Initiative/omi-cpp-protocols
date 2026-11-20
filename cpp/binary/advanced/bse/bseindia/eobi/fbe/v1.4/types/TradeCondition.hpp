@@ -47,9 +47,10 @@ struct trade_condition {
 
     static constexpr const char* name = "trade_condition";
     static constexpr std::size_t size = 1;
-    static constexpr bool is_optional = false;
+    static constexpr bool is_optional = true;
+    static constexpr enum_type null_value = static_cast<enum_type>(255);
 
-    using result_type = required<trade_condition::enum_type>;
+    using result_type = std::optional<trade_condition::enum_type>;
     using storage_type = result_type;
 
     constexpr trade_condition()
@@ -59,7 +60,8 @@ struct trade_condition {
      : value{ v } {}
 
     [[nodiscard]] constexpr result_type get() const {
-        return result_type{value};
+        const enum_type held = value;
+        return held == null_value ? std::nullopt : result_type{held};
     }
 
     constexpr void set(enum_type v) {
@@ -70,7 +72,11 @@ struct trade_condition {
         if (value.has_value())
             set(value.value());
         else
-            set(static_cast<enum_type>(255));
+            set(null_value);
+    }
+
+    constexpr void set_null() {
+        set(null_value);
     }
 
   protected:

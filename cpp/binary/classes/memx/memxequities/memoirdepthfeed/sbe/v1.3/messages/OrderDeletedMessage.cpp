@@ -19,7 +19,7 @@ void OrderDeletedMessage::set_security_id(std::uint16_t value) { security_id_ = 
 std::uint64_t OrderDeletedMessage::order_id() const { return order_id_; }
 void OrderDeletedMessage::set_order_id(std::uint64_t value) { order_id_ = value; }
 
-PayloadCode OrderDeletedMessage::type() const { return message_type; }
+MessageCode OrderDeletedMessage::type() const { return message_type; }
 
 std::string_view OrderDeletedMessage::name() const { return "Order Deleted Message"; }
 
@@ -59,11 +59,11 @@ std::size_t OrderDeletedMessage::encoded_size() const {
     return wire_size;
 }
 
-void OrderDeletedMessage::accept(PayloadVisitor& visitor) const {
+void OrderDeletedMessage::accept(Visitor& visitor) const {
     visitor.visit(*this);
 }
 
-std::unique_ptr<Payload> OrderDeletedMessage::clone() const {
+std::unique_ptr<Message> OrderDeletedMessage::clone() const {
     return std::make_unique<OrderDeletedMessage>(*this);
 }
 
@@ -78,7 +78,7 @@ void OrderDeletedMessage::print(std::ostream& out) const {
     out << '}';
 }
 
-bool OrderDeletedMessage::equals(const Payload& other) const {
+bool OrderDeletedMessage::equals(const Message& other) const {
     const auto* that = dynamic_cast<const OrderDeletedMessage*>(&other);
     return that != nullptr && *this == *that;
 }

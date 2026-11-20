@@ -3,7 +3,7 @@
 
 #include "../types/TimeOffset.hpp"
 #include "../types/OrderId.hpp"
-#include "../types/CanceledQuantityBinary4.hpp"
+#include "../types/CanceledQuantityLong.hpp"
 #include "../structs/MessageHeader.hpp"
 
 namespace cboe::bzxequities::multicastdepthofbook::pitch::v2_20_4 {
@@ -15,7 +15,7 @@ struct ReduceSizeLongMessage {
 
     TimeOffset time_offset;
     OrderId order_id;
-    CanceledQuantityBinary4 canceled_quantity_binary_4;
+    CanceledQuantityLong canceled_quantity_long;
 
     // the type code that selects this message in the dispatch switch
     static constexpr std::uint8_t message_type = 0x25;

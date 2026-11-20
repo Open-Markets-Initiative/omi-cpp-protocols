@@ -31,14 +31,14 @@ class LotTypeRulesGroup {
 
     std::int8_t lot_type() const { return wire::read_i8(at(0)); }
 
-    std::optional<Decimal> min_lot_size_decimal_qty() const { return wire::nullable_decimal(wire::read_i32_le(at(1)), static_cast<std::int32_t>(2147483647LL), -4); }
+    std::optional<Decimal> min_lot_size() const { return wire::nullable_decimal(wire::read_i32_le(at(1)), static_cast<std::int32_t>(2147483647LL), -4); }
 
     void print(std::ostream& out) const {
         out << "LotTypeRulesGroup{";
         out << "lot_type=";
         out << static_cast<int>(lot_type());
-        out << ", min_lot_size_decimal_qty=";
-        print::optional(out, min_lot_size_decimal_qty());
+        out << ", min_lot_size=";
+        print::optional(out, min_lot_size());
         out << '}';
     }
 

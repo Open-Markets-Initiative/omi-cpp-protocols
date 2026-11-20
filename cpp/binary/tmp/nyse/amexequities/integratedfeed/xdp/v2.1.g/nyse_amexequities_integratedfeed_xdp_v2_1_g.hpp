@@ -1107,7 +1107,7 @@ struct security_type {
         rights = 'R',
         shares_of_beneficiary_interest = 'S',
         test = 'T',
-        units_2 = 'U',
+        closed_end_fund = 'U',
         warrant = 'W',
     };
 

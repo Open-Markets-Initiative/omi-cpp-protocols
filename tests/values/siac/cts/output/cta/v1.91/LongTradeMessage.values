@@ -24,7 +24,7 @@ packet.message[0].categorypayload.trademessage.trademessagepayload.longtrademess
 packet.message[0].categorypayload.trademessage.trademessagepayload.longtrademessage.participantreferencenumber = 53078603287364
 packet.message[0].categorypayload.trademessage.trademessagepayload.longtrademessage.securitysymbol = ALLE
 packet.message[0].categorypayload.trademessage.trademessagepayload.longtrademessage.instrumenttype = 0
-packet.message[0].categorypayload.trademessage.trademessagepayload.longtrademessage.saleconditions.category1 =  
+packet.message[0].categorypayload.trademessage.trademessagepayload.longtrademessage.saleconditions.category1 = (null)
 packet.message[0].categorypayload.trademessage.trademessagepayload.longtrademessage.saleconditions.category2 = F
 packet.message[0].categorypayload.trademessage.trademessagepayload.longtrademessage.saleconditions.category3 =  
 packet.message[0].categorypayload.trademessage.trademessagepayload.longtrademessage.saleconditions.category4 = I

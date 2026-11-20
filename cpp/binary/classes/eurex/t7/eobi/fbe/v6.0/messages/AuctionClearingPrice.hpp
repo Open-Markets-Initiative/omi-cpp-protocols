@@ -34,7 +34,7 @@ class AuctionClearingPrice : public Message {
     std::optional<std::chrono::nanoseconds> transact_time() const;
     void set_transact_time(std::optional<std::chrono::nanoseconds> value);
 
-    // Security Id:
+    // Security Id: Unique instrument identifier
     std::optional<std::int64_t> security_id() const;
     void set_security_id(std::optional<std::int64_t> value);
 
@@ -42,7 +42,7 @@ class AuctionClearingPrice : public Message {
     std::optional<Decimal> last_px() const;
     void set_last_px(std::optional<Decimal> value);
 
-    // Last Qty:
+    // Last Qty: Total executed matched quantity of this match event
     std::optional<std::int32_t> last_qty() const;
     void set_last_qty(std::optional<std::int32_t> value);
 

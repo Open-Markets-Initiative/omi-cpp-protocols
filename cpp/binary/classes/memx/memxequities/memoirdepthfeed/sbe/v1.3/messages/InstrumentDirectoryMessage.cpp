@@ -37,7 +37,7 @@ void InstrumentDirectoryMessage::set_is_test_symbol(IsTestSymbol value) { is_tes
 Decimal InstrumentDirectoryMessage::mpv() const { return mpv_; }
 void InstrumentDirectoryMessage::set_mpv(Decimal value) { mpv_ = value; }
 
-PayloadCode InstrumentDirectoryMessage::type() const { return message_type; }
+MessageCode InstrumentDirectoryMessage::type() const { return message_type; }
 
 std::string_view InstrumentDirectoryMessage::name() const { return "Instrument Directory Message"; }
 
@@ -107,11 +107,11 @@ std::size_t InstrumentDirectoryMessage::encoded_size() const {
     return wire_size;
 }
 
-void InstrumentDirectoryMessage::accept(PayloadVisitor& visitor) const {
+void InstrumentDirectoryMessage::accept(Visitor& visitor) const {
     visitor.visit(*this);
 }
 
-std::unique_ptr<Payload> InstrumentDirectoryMessage::clone() const {
+std::unique_ptr<Message> InstrumentDirectoryMessage::clone() const {
     return std::make_unique<InstrumentDirectoryMessage>(*this);
 }
 
@@ -136,7 +136,7 @@ void InstrumentDirectoryMessage::print(std::ostream& out) const {
     out << '}';
 }
 
-bool InstrumentDirectoryMessage::equals(const Payload& other) const {
+bool InstrumentDirectoryMessage::equals(const Message& other) const {
     const auto* that = dynamic_cast<const InstrumentDirectoryMessage*>(&other);
     return that != nullptr && *this == *that;
 }

@@ -153,10 +153,10 @@ struct Reader {
         values[entry + ".payload.securitystatusmessage.symbolindex"] = canonical::number(message.symbol_index());
         values[entry + ".payload.securitystatusmessage.symbolseqnum"] = canonical::number(message.symbol_seq_num());
         values[entry + ".payload.securitystatusmessage.securitystatus"] = canonical::text(canonical::character(message.security_status()), '\0', false);
-        values[entry + ".payload.securitystatusmessage.haltcondition"] = canonical::text(canonical::character(message.halt_condition()), '\0', false);
+        values[entry + ".payload.securitystatusmessage.haltcondition"] = canonical::text(canonical::character(message.halt_condition()), '\0', false, {std::string_view(" ", 1)});
         values[entry + ".payload.securitystatusmessage.price1"] = canonical::number(message.price_1());
         values[entry + ".payload.securitystatusmessage.price2"] = canonical::number(message.price_2());
-        values[entry + ".payload.securitystatusmessage.ssrtriggeringexchangeid"] = canonical::text(canonical::character(message.ssr_triggering_exchange_id()), '\0', false);
+        values[entry + ".payload.securitystatusmessage.ssrtriggeringexchangeid"] = canonical::text(canonical::character(message.ssr_triggering_exchange_id()), '\0', false, {std::string_view(" ", 1)});
         values[entry + ".payload.securitystatusmessage.ssrtriggeringvolume"] = canonical::number(message.ssr_triggering_volume());
         values[entry + ".payload.securitystatusmessage.time"] = (message.time().has_value() ? canonical::number((*message.time())) : canonical::absent());
         values[entry + ".payload.securitystatusmessage.ssrstate"] = canonical::text(canonical::character(message.ssr_state()), '\0', false);
@@ -260,7 +260,7 @@ struct Reader {
         values[entry + ".payload.retailpriceimprovementmessage.sourcetimens"] = canonical::number(message.source_time_ns());
         values[entry + ".payload.retailpriceimprovementmessage.symbolindex"] = canonical::number(message.symbol_index());
         values[entry + ".payload.retailpriceimprovementmessage.symbolseqnum"] = canonical::number(message.symbol_seq_num());
-        values[entry + ".payload.retailpriceimprovementmessage.rpiindicator"] = canonical::text(canonical::character(message.rpi_indicator()), '\0', false);
+        values[entry + ".payload.retailpriceimprovementmessage.rpiindicator"] = canonical::text(canonical::character(message.rpi_indicator()), '\0', false, {std::string_view(" ", 1)});
     }
 
     void on(const protocol::AddOrderRefreshMessage& message) {
@@ -291,7 +291,7 @@ struct Reader {
         values[entry + ".payload.imbalancemessage.marketimbalanceqty"] = canonical::number(message.market_imbalance_qty());
         values[entry + ".payload.imbalancemessage.auctiontime"] = canonical::number(message.auction_time());
         values[entry + ".payload.imbalancemessage.auctiontype"] = canonical::text(canonical::character(message.auction_type()), '\0', false);
-        values[entry + ".payload.imbalancemessage.imbalanceside"] = canonical::text(canonical::character(message.imbalance_side()), '\0', false);
+        values[entry + ".payload.imbalancemessage.imbalanceside"] = canonical::text(canonical::character(message.imbalance_side()), '\0', false, {std::string_view(" ", 1)});
         values[entry + ".payload.imbalancemessage.continuousbookclearingprice"] = canonical::number(message.continuous_book_clearing_price());
         values[entry + ".payload.imbalancemessage.closingonlyclearingprice"] = canonical::number(message.closing_only_clearing_price());
         values[entry + ".payload.imbalancemessage.ssrfilingprice"] = canonical::number(message.ssr_filing_price());

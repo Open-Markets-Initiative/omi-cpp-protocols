@@ -7,7 +7,7 @@
 #include "../types/TransactTime.hpp"
 #include "../types/MatchEventIndicator.hpp"
 #include "../types/Padding2.hpp"
-#include "../types/MdEntryPxOptionalEx.hpp"
+#include "../types/MdEntryPxOptional.hpp"
 #include "../types/MdEntrySizeShortOptional.hpp"
 #include "../types/SecurityId.hpp"
 #include "../types/RptSeq.hpp"
@@ -23,8 +23,8 @@ namespace cme::mdp3::v9 {
 namespace sbe_mdp3 = ::cme::mdp3::v9;
 
 #pragma pack(push, 1)
-struct md_incremental_refresh_daily_statistics_legacy_incremental_refresh_daily_statistics_groups_entry {
-    sbe_mdp3::md_entry_px_optional_ex md_entry_px_optional_ex;
+struct md_incremental_refresh_daily_statistics_legacy_incremental_refresh_daily_statistics_legacy_groups_entry {
+    sbe_mdp3::md_entry_px_optional md_entry_px_optional;
     sbe_mdp3::md_entry_size_short_optional md_entry_size_short_optional;
     sbe_mdp3::security_id security_id;
     sbe_mdp3::rpt_seq rpt_seq;
@@ -66,7 +66,7 @@ struct md_incremental_refresh_daily_statistics_legacy {
     }
 
     // sequential access to variable-length regions
-    sbe_group_iterator<md_incremental_refresh_daily_statistics_legacy_incremental_refresh_daily_statistics_groups_entry, group_size> incremental_refresh_daily_statistics_groups() const {
+    sbe_group_iterator<md_incremental_refresh_daily_statistics_legacy_incremental_refresh_daily_statistics_legacy_groups_entry, group_size> incremental_refresh_daily_statistics_legacy_groups() const {
         return { tail_begin(), tail_end() };
     }
 

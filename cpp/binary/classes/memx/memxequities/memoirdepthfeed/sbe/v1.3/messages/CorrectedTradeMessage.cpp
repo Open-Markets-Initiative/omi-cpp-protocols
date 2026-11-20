@@ -31,7 +31,7 @@ void CorrectedTradeMessage::set_corrected_quantity(std::uint32_t value) { correc
 Decimal CorrectedTradeMessage::corrected_price() const { return corrected_price_; }
 void CorrectedTradeMessage::set_corrected_price(Decimal value) { corrected_price_ = value; }
 
-PayloadCode CorrectedTradeMessage::type() const { return message_type; }
+MessageCode CorrectedTradeMessage::type() const { return message_type; }
 
 std::string_view CorrectedTradeMessage::name() const { return "Corrected Trade Message"; }
 
@@ -95,11 +95,11 @@ std::size_t CorrectedTradeMessage::encoded_size() const {
     return wire_size;
 }
 
-void CorrectedTradeMessage::accept(PayloadVisitor& visitor) const {
+void CorrectedTradeMessage::accept(Visitor& visitor) const {
     visitor.visit(*this);
 }
 
-std::unique_ptr<Payload> CorrectedTradeMessage::clone() const {
+std::unique_ptr<Message> CorrectedTradeMessage::clone() const {
     return std::make_unique<CorrectedTradeMessage>(*this);
 }
 
@@ -122,7 +122,7 @@ void CorrectedTradeMessage::print(std::ostream& out) const {
     out << '}';
 }
 
-bool CorrectedTradeMessage::equals(const Payload& other) const {
+bool CorrectedTradeMessage::equals(const Message& other) const {
     const auto* that = dynamic_cast<const CorrectedTradeMessage*>(&other);
     return that != nullptr && *this == *that;
 }

@@ -69,7 +69,7 @@ struct Reader {
         values[entry + ".payload.symbolindexmappingmessage.symbol"] = canonical::text(std::string(message.fields.symbol.get().value()), '\0', false);
         values[entry + ".payload.symbolindexmappingmessage.marketid"] = canonical::number(message.fields.market_id.get().value());
         values[entry + ".payload.symbolindexmappingmessage.systemid"] = canonical::number(message.fields.system_id.get().value());
-        values[entry + ".payload.symbolindexmappingmessage.exchangecode"] = canonical::text(canonical::character(message.fields.exchange_code.get().value()), '\0', false);
+        values[entry + ".payload.symbolindexmappingmessage.exchangecode"] = canonical::text(canonical::character(message.fields.exchange_code.get().value()), '\0', false, {std::string_view(" ", 1)});
         values[entry + ".payload.symbolindexmappingmessage.pricescalecode"] = canonical::number(message.fields.price_scale_code.get().value());
         values[entry + ".payload.symbolindexmappingmessage.securitytype"] = canonical::text(canonical::character(message.fields.security_type.get().value()), '\0', false);
         values[entry + ".payload.symbolindexmappingmessage.lotsize"] = canonical::number(message.fields.lot_size.get().value());
@@ -103,7 +103,7 @@ struct Reader {
         values[entry + ".payload.securitystatusmessage.haltcondition"] = canonical::text(canonical::character(message.fields.halt_condition.get().value()), '\0', false);
         values[entry + ".payload.securitystatusmessage.price1"] = canonical::number(message.fields.price_1.get().value());
         values[entry + ".payload.securitystatusmessage.price2"] = canonical::number(message.fields.price_2.get().value());
-        values[entry + ".payload.securitystatusmessage.ssrtriggeringexchangeid"] = canonical::text(canonical::character(message.fields.ssr_triggering_exchange_id.get().value()), '\0', false);
+        values[entry + ".payload.securitystatusmessage.ssrtriggeringexchangeid"] = canonical::text(canonical::character(message.fields.ssr_triggering_exchange_id.get().value()), '\0', false, {std::string_view(" ", 1)});
         values[entry + ".payload.securitystatusmessage.ssrtriggeringvolume"] = canonical::number(message.fields.ssr_triggering_volume.get().value());
         values[entry + ".payload.securitystatusmessage.time"] = (message.fields.time.get().has_value() ? canonical::number(message.fields.time.get().value()) : canonical::absent());
         values[entry + ".payload.securitystatusmessage.ssrstate"] = canonical::text(canonical::character(message.fields.ssr_state.get().value()), '\0', false);
@@ -321,7 +321,7 @@ struct Reader {
         values[entry + ".payload.optionsimbalancemessage.totalimbalanceqty"] = canonical::number(message.fields.total_imbalance_qty.get().value());
         values[entry + ".payload.optionsimbalancemessage.marketimbalanceqty"] = canonical::number(message.fields.market_imbalance_qty.get().value());
         values[entry + ".payload.optionsimbalancemessage.auctiontype"] = canonical::text(canonical::character(message.fields.auction_type.get().value()), '\0', false);
-        values[entry + ".payload.optionsimbalancemessage.imbalanceside"] = canonical::text(canonical::character(message.fields.imbalance_side.get().value()), '\0', false);
+        values[entry + ".payload.optionsimbalancemessage.imbalanceside"] = canonical::text(canonical::character(message.fields.imbalance_side.get().value()), '\0', false, {std::string_view(" ", 1)});
         values[entry + ".payload.optionsimbalancemessage.continuousbookclearingprice"] = canonical::number(message.fields.continuous_book_clearing_price.get().value());
         values[entry + ".payload.optionsimbalancemessage.auctioninterestclearingprice"] = canonical::number(message.fields.auction_interest_clearing_price.get().value());
         values[entry + ".payload.optionsimbalancemessage.indicativematchprice"] = canonical::number(message.fields.indicative_match_price.get().value());
@@ -358,7 +358,7 @@ struct Reader {
         values[entry + ".payload.optionsseriesrfqmessage.seriesseqnum"] = canonical::number(message.fields.series_seq_num.get().value());
         values[entry + ".payload.optionsseriesrfqmessage.rfqside"] = canonical::text(canonical::character(message.fields.rfq_side.get().value()), '\0', false);
         values[entry + ".payload.optionsseriesrfqmessage.type"] = canonical::text(canonical::character(message.fields.type.get().value()), '\0', false);
-        values[entry + ".payload.optionsseriesrfqmessage.capacity"] = canonical::text(canonical::character(message.fields.capacity.get().value()), '\0', false);
+        values[entry + ".payload.optionsseriesrfqmessage.capacity"] = canonical::text(canonical::character(message.fields.capacity.get().value()), '\0', false, {std::string_view(" ", 1)});
         values[entry + ".payload.optionsseriesrfqmessage.totalquantity"] = canonical::number(message.fields.total_quantity.get().value());
         values[entry + ".payload.optionsseriesrfqmessage.workingprice"] = canonical::number(message.fields.working_price.get().value());
         values[entry + ".payload.optionsseriesrfqmessage.participant"] = canonical::number(message.fields.participant.get().value());

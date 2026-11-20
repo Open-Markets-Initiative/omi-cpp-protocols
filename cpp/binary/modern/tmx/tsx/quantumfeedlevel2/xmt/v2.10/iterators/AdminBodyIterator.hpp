@@ -2,6 +2,9 @@
 #pragma once
 
 #include "../definitions.hpp"
+#include "../structs/BodyHeader.hpp"
+#include "../types/AdminId.hpp"
+#include "../types/HbInterval.hpp"
 
 namespace tmx::tsx::quantumfeedlevel2::xmt::v2_10 {
 // AdminBodyIterator
@@ -24,6 +27,12 @@ struct AdminBodyIterator {
         current += sizeof(FrameHeader);
 
         num_body = frame_header->num_body.get();
+
+        // the first entry lies elsewhere than where FrameHeader ends: step over what is in front of it
+        current += sizeof(BodyHeader);
+        current += sizeof(AdminId);
+        current += sizeof(HbInterval);
+
         entry_index = 0;
         entry = nullptr;
     }

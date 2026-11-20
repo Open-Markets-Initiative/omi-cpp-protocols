@@ -10,7 +10,8 @@ packet.simpleopenframe[0].payload = packet.simpleopenframe.payload.ordermassacti
 packet.simpleopenframe[0].payload.ordermassactionreportmessage.outboundbusinessheader.sessionid = 200000006
 packet.simpleopenframe[0].payload.ordermassactionreportmessage.outboundbusinessheader.msgseqnum = 1984
 packet.simpleopenframe[0].payload.ordermassactionreportmessage.outboundbusinessheader.sendingtime = 1739219362931483510
-packet.simpleopenframe[0].payload.ordermassactionreportmessage.outboundbusinessheader.eventindicator = 0
+packet.simpleopenframe[0].payload.ordermassactionreportmessage.outboundbusinessheader.eventindicator.possresend = 0
+packet.simpleopenframe[0].payload.ordermassactionreportmessage.outboundbusinessheader.eventindicator.lowpriority = 0
 packet.simpleopenframe[0].payload.ordermassactionreportmessage.outboundbusinessheader.marketsegmentidoptional = 84
 packet.simpleopenframe[0].payload.ordermassactionreportmessage.massactiontype = 3
 packet.simpleopenframe[0].payload.ordermassactionreportmessage.massactionscope = 6
@@ -27,4 +28,4 @@ packet.simpleopenframe[0].payload.ordermassactionreportmessage.securityidoptiona
 packet.simpleopenframe[0].payload.ordermassactionreportmessage.investorid.prefix = (null)
 packet.simpleopenframe[0].payload.ordermassactionreportmessage.investorid.document = (null)
 packet.simpleopenframe[0].payload.ordermassactionreportmessage.text.textlength = 0
-packet.simpleopenframe[0].payload.ordermassactionreportmessage.text = 
+packet.simpleopenframe[0].payload.ordermassactionreportmessage.text = (null)

@@ -50,7 +50,7 @@ class OrderModify : public Message {
     std::array<std::byte, 4>& pad4();
     void set_pad4(const std::array<std::byte, 4>& value);
 
-    // Security Id:
+    // Security Id: Unique instrument identifier
     std::optional<std::int64_t> security_id() const;
     void set_security_id(std::optional<std::int64_t> value);
 

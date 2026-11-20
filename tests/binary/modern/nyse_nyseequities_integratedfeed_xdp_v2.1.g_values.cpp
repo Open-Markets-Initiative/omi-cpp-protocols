@@ -127,10 +127,10 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.securitystatusmessage.symbolindex"] = canonical::number(message->symbol_index.get());
             values[entry + ".payload.securitystatusmessage.symbolseqnum"] = canonical::number(message->symbol_seq_num.get());
             values[entry + ".payload.securitystatusmessage.securitystatus"] = canonical::text(canonical::character(message->security_status.get()), '\0', false);
-            values[entry + ".payload.securitystatusmessage.haltcondition"] = canonical::text(canonical::character(message->halt_condition.get()), '\0', false);
+            values[entry + ".payload.securitystatusmessage.haltcondition"] = canonical::text(canonical::character(message->halt_condition.get()), '\0', false, {std::string_view(" ", 1)});
             values[entry + ".payload.securitystatusmessage.price1"] = canonical::number(message->price_1.get());
             values[entry + ".payload.securitystatusmessage.price2"] = canonical::number(message->price_2.get());
-            values[entry + ".payload.securitystatusmessage.ssrtriggeringexchangeid"] = canonical::text(canonical::character(message->ssr_triggering_exchange_id.get()), '\0', false);
+            values[entry + ".payload.securitystatusmessage.ssrtriggeringexchangeid"] = canonical::text(canonical::character(message->ssr_triggering_exchange_id.get()), '\0', false, {std::string_view(" ", 1)});
             values[entry + ".payload.securitystatusmessage.ssrtriggeringvolume"] = canonical::number(message->ssr_triggering_volume.get());
             values[entry + ".payload.securitystatusmessage.time"] = (static_cast<std::uint32_t>(message->time.get()) != 0x0U ? canonical::number(message->time.get()) : canonical::absent());
             values[entry + ".payload.securitystatusmessage.ssrstate"] = canonical::text(canonical::character(message->ssr_state.get()), '\0', false);
@@ -216,7 +216,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.retailpriceimprovementmessage.sourcetimens"] = canonical::number(message->source_time_ns.get());
             values[entry + ".payload.retailpriceimprovementmessage.symbolindex"] = canonical::number(message->symbol_index.get());
             values[entry + ".payload.retailpriceimprovementmessage.symbolseqnum"] = canonical::number(message->symbol_seq_num.get());
-            values[entry + ".payload.retailpriceimprovementmessage.rpiindicator"] = canonical::text(canonical::character(message->rpi_indicator.get()), '\0', false);
+            values[entry + ".payload.retailpriceimprovementmessage.rpiindicator"] = canonical::text(canonical::character(message->rpi_indicator.get()), '\0', false, {std::string_view(" ", 1)});
         } else if (iterator.message_type == protocol::AddOrderRefreshMessage::message_type) {
             values[entry + ".payload"] = "packet.message.payload.addorderrefreshmessage";
             [[maybe_unused]] const auto* message = protocol::AddOrderRefreshMessage::parse(iterator.message);
@@ -243,7 +243,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.imbalancemessage.marketimbalanceqty"] = canonical::number(message->market_imbalance_qty.get());
             values[entry + ".payload.imbalancemessage.auctiontime"] = canonical::number(message->auction_time.get());
             values[entry + ".payload.imbalancemessage.auctiontype"] = canonical::text(canonical::character(message->auction_type.get()), '\0', false);
-            values[entry + ".payload.imbalancemessage.imbalanceside"] = canonical::text(canonical::character(message->imbalance_side.get()), '\0', false);
+            values[entry + ".payload.imbalancemessage.imbalanceside"] = canonical::text(canonical::character(message->imbalance_side.get()), '\0', false, {std::string_view(" ", 1)});
             values[entry + ".payload.imbalancemessage.continuousbookclearingprice"] = canonical::number(message->continuous_book_clearing_price.get());
             values[entry + ".payload.imbalancemessage.closingonlyclearingprice"] = canonical::number(message->closing_only_clearing_price.get());
             values[entry + ".payload.imbalancemessage.ssrfilingprice"] = canonical::number(message->ssr_filing_price.get());

@@ -33,6 +33,17 @@ A reader includes them as `../delimited/`, which resolves with `cpp/delimited/de
 include path. `checks/` compiles each reader that way, and the programs under `executables/rows/`
 read through them. Nothing here needs Arrow.
 
+## Generated
+
+| Parser | Protocol Count | Generated Lines |
+| --- | --- | --- |
+| Delimited | 11 | 4,076 |
+
+| Organization | Protocol Count | Generated Lines |
+| --- | --- | --- |
+| Memx | 1 | 152 |
+| Nyse | 10 | 2,851 |
+
 ## Protocols (11)
 
 - `Memx.MemxEquities.InstrumentDirectory.Csv.v2026.10.14`

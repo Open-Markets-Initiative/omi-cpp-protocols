@@ -61,7 +61,7 @@ struct Reader {
         values[entry + ".payload.stockdirectorymessage.nanoseconds"] = canonical::number(message.fields.nanoseconds.get().value());
         values[entry + ".payload.stockdirectorymessage.stock"] = canonical::text(std::string(message.fields.stock.get().value()), ' ', false);
         values[entry + ".payload.stockdirectorymessage.marketcategory"] = canonical::text(canonical::character(message.fields.market_category.get().value()), ' ', false);
-        values[entry + ".payload.stockdirectorymessage.financialstatusindicator"] = canonical::text(canonical::character(message.fields.financial_status_indicator.get().value()), ' ', false);
+        values[entry + ".payload.stockdirectorymessage.financialstatusindicator"] = canonical::text(canonical::character(message.fields.financial_status_indicator.get().value()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
         values[entry + ".payload.stockdirectorymessage.roundlotsize"] = canonical::number(message.fields.round_lot_size.get().value());
         values[entry + ".payload.stockdirectorymessage.roundlotsonly"] = canonical::text(canonical::character(message.fields.round_lots_only.get().value()), ' ', false);
     }
@@ -74,7 +74,7 @@ struct Reader {
         values[entry + ".payload.stocktradingactionmessage.nanoseconds"] = canonical::number(message.fields.nanoseconds.get().value());
         values[entry + ".payload.stocktradingactionmessage.stock"] = canonical::text(std::string(message.fields.stock.get().value()), ' ', false);
         values[entry + ".payload.stocktradingactionmessage.tradingstate"] = canonical::text(canonical::character(message.fields.trading_state.get().value()), ' ', false);
-        values[entry + ".payload.stocktradingactionmessage.reason"] = canonical::text(std::string(message.fields.reason.get().value()), ' ', false);
+        values[entry + ".payload.stocktradingactionmessage.reason"] = canonical::text(std::string(message.fields.reason.get().value()), ' ', false, {std::string_view("    ", 4), std::string_view("", 0)});
     }
 
     void on_message(const protocol::market_participant_position_message& message, std::uint64_t, const protocol::packet_header&) {
@@ -222,7 +222,7 @@ struct Reader {
         values[entry + ".payload.netorderimbalanceindicatormessage.nearprice"] = canonical::scaled(message.fields.near_price.get().value(), -4);
         values[entry + ".payload.netorderimbalanceindicatormessage.currentreferenceprice"] = canonical::scaled(message.fields.current_reference_price.get().value(), -4);
         values[entry + ".payload.netorderimbalanceindicatormessage.crosstype"] = canonical::text(canonical::character(message.fields.cross_type.get().value()), ' ', false);
-        values[entry + ".payload.netorderimbalanceindicatormessage.pricevariationindicator"] = canonical::text(canonical::character(message.fields.price_variation_indicator.get().value()), ' ', false);
+        values[entry + ".payload.netorderimbalanceindicatormessage.pricevariationindicator"] = canonical::text(canonical::character(message.fields.price_variation_indicator.get().value()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
     }
 };
 

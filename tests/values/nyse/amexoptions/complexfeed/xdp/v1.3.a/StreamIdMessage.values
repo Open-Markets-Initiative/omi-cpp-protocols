@@ -19,4 +19,4 @@ packet.message[1].payload.complexstatusmessage.sourcetimens = 340414000
 packet.message[1].payload.complexstatusmessage.complexindex = 261336045
 packet.message[1].payload.complexstatusmessage.symbolseqnum = 6
 packet.message[1].payload.complexstatusmessage.securitystatus = Q
-packet.message[1].payload.complexstatusmessage.haltcondition =  
+packet.message[1].payload.complexstatusmessage.haltcondition = (null)

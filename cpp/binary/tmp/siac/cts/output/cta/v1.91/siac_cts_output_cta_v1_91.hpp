@@ -422,7 +422,7 @@ struct crossing_session_ii_total_trades_volume {
     type value_;
 };
 
-// Data Feed Indicator: Q for Consolidated Quotation System
+// Data Feed Indicator: T for Consolidated Tape System (CTS)
 struct data_feed_indicator {
     using type = char;
     static constexpr std::size_t size = 1;

@@ -208,7 +208,7 @@ std::unique_ptr<protocol::Message> build_ImbalanceMessage() {
     message->set_total_imbalance_qty(static_cast<std::uint32_t>(7));
     message->set_market_imbalance_qty(static_cast<std::uint32_t>(8));
     message->set_auction_time(static_cast<std::uint16_t>(9));
-    message->set_auction_type(protocol::AuctionType::EarlyOpening);
+    message->set_auction_type(protocol::AuctionType::ExtremeClosingImbalance);
     message->set_imbalance_side(protocol::ImbalanceSide::SellSide);
     message->set_continuous_book_clearing_price(static_cast<std::uint32_t>(12));
     message->set_closing_only_clearing_price(static_cast<std::uint32_t>(13));
@@ -221,7 +221,7 @@ std::unique_ptr<protocol::Message> build_ImbalanceMessage() {
     message->set_num_extensions(static_cast<std::uint8_t>(20));
     message->set_unpaired_qty(static_cast<std::uint32_t>(21));
     message->set_unpaired_side(protocol::UnpairedSide::BuySide);
-    message->set_significant_imbalance(protocol::SignificantImbalance::Yes);
+    message->set_significant_imbalance(protocol::SignificantImbalance::Significant);
     return message;
 }
 
@@ -649,7 +649,7 @@ int check_ImbalanceMessage(const protocol::Message* read) {
         std::printf("FAIL ImbalanceMessage: auction_time does not read as it was written\n");
         ++failures;
     }
-    if (!(message->auction_type() == protocol::AuctionType::EarlyOpening)) {
+    if (!(message->auction_type() == protocol::AuctionType::ExtremeClosingImbalance)) {
         std::printf("FAIL ImbalanceMessage: auction_type does not read as it was written\n");
         ++failures;
     }
@@ -701,7 +701,7 @@ int check_ImbalanceMessage(const protocol::Message* read) {
         std::printf("FAIL ImbalanceMessage: unpaired_side does not read as it was written\n");
         ++failures;
     }
-    if (!(message->significant_imbalance() == protocol::SignificantImbalance::Yes)) {
+    if (!(message->significant_imbalance() == protocol::SignificantImbalance::Significant)) {
         std::printf("FAIL ImbalanceMessage: significant_imbalance does not read as it was written\n");
         ++failures;
     }

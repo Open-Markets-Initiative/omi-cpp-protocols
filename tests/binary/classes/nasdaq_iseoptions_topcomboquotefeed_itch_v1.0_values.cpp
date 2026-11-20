@@ -73,7 +73,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload"] = "packet.messages.message.payload.strategybestbidandaskupdate";
             values[entry + ".payload.strategybestbidandaskupdate.timestamp"] = canonical::number((*message).timestamp());
             values[entry + ".payload.strategybestbidandaskupdate.strategyid"] = canonical::number((*message).strategy_id());
-            values[entry + ".payload.strategybestbidandaskupdate.quotecondition"] = canonical::text(canonical::character((*message).quote_condition()), ' ', false);
+            values[entry + ".payload.strategybestbidandaskupdate.quotecondition"] = canonical::text(canonical::character((*message).quote_condition()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
             values[entry + ".payload.strategybestbidandaskupdate.bidprice"] = canonical::scaled((*message).bid_price().mantissa(), (*message).bid_price().exponent());
             values[entry + ".payload.strategybestbidandaskupdate.bidsize"] = canonical::number((*message).bid_size());
             values[entry + ".payload.strategybestbidandaskupdate.bidcustsize"] = canonical::number((*message).bid_cust_size());
@@ -92,7 +92,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload"] = "packet.messages.message.payload.strategybestbidupdate";
             values[entry + ".payload.strategybestbidupdate.timestamp"] = canonical::number((*message).timestamp());
             values[entry + ".payload.strategybestbidupdate.strategyid"] = canonical::number((*message).strategy_id());
-            values[entry + ".payload.strategybestbidupdate.quotecondition"] = canonical::text(canonical::character((*message).quote_condition()), ' ', false);
+            values[entry + ".payload.strategybestbidupdate.quotecondition"] = canonical::text(canonical::character((*message).quote_condition()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
             values[entry + ".payload.strategybestbidupdate.price"] = canonical::scaled((*message).price().mantissa(), (*message).price().exponent());
             values[entry + ".payload.strategybestbidupdate.size"] = canonical::number((*message).size());
             values[entry + ".payload.strategybestbidupdate.custsize"] = canonical::number((*message).cust_size());
@@ -104,7 +104,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload"] = "packet.messages.message.payload.strategybestaskupdate";
             values[entry + ".payload.strategybestaskupdate.timestamp"] = canonical::number((*message).timestamp());
             values[entry + ".payload.strategybestaskupdate.strategyid"] = canonical::number((*message).strategy_id());
-            values[entry + ".payload.strategybestaskupdate.quotecondition"] = canonical::text(canonical::character((*message).quote_condition()), ' ', false);
+            values[entry + ".payload.strategybestaskupdate.quotecondition"] = canonical::text(canonical::character((*message).quote_condition()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
             values[entry + ".payload.strategybestaskupdate.price"] = canonical::scaled((*message).price().mantissa(), (*message).price().exponent());
             values[entry + ".payload.strategybestaskupdate.size"] = canonical::number((*message).size());
             values[entry + ".payload.strategybestaskupdate.custsize"] = canonical::number((*message).cust_size());

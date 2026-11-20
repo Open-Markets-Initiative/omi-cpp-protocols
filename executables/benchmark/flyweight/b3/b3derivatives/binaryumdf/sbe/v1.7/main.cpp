@@ -58,7 +58,6 @@ struct Reader {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += (message.md_entry_timestamp().has_value() ? bench::digest((*message.md_entry_timestamp())) : std::uint64_t{0});
     }
@@ -71,7 +70,6 @@ struct Reader {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += (message.md_entry_timestamp().has_value() ? bench::digest((*message.md_entry_timestamp())) : std::uint64_t{0});
     }
@@ -85,7 +83,6 @@ struct Reader {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.trading_session_id());
         checksum += bench::digest(message.security_trading_status());
@@ -105,7 +102,6 @@ struct Reader {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.trading_session_id());
         checksum += bench::digest(message.trading_session_sub_id());
@@ -236,7 +232,6 @@ struct Reader {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.news_source());
         checksum += bench::digest(message.part_count());
@@ -255,7 +250,6 @@ struct Reader {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.md_update_action());
         checksum += bench::digest(message.open_close_settl_flag());
@@ -275,7 +269,6 @@ struct Reader {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.md_update_action());
         checksum += bench::digest(message.trade_date());
@@ -294,7 +287,6 @@ struct Reader {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.open_close_settl_flag());
         checksum += bench::digest(message.md_corporate_price().mantissa());
@@ -313,7 +305,6 @@ struct Reader {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.md_update_action());
         checksum += bench::digest(message.imbalance_condition().imbalance_more_buyers());
@@ -332,7 +323,6 @@ struct Reader {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += (message.price_band_type().has_value() ? bench::digest((*message.price_band_type())) : std::uint64_t{0});
         checksum += (message.price_limit_type().has_value() ? bench::digest((*message.price_limit_type())) : std::uint64_t{0});
@@ -353,7 +343,6 @@ struct Reader {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += (message.avg_daily_traded_qty().has_value() ? bench::digest((*message.avg_daily_traded_qty())) : std::uint64_t{0});
         checksum += (message.max_trade_vol().has_value() ? bench::digest((*message.max_trade_vol())) : std::uint64_t{0});
@@ -370,7 +359,6 @@ struct Reader {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += (message.price_band_type().has_value() ? bench::digest((*message.price_band_type())) : std::uint64_t{0});
         checksum += (message.price_limit_type().has_value() ? bench::digest((*message.price_limit_type())) : std::uint64_t{0});
@@ -391,7 +379,6 @@ struct Reader {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.md_update_action());
         checksum += bench::digest(message.trade_date());
@@ -409,7 +396,6 @@ struct Reader {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.md_update_action());
         checksum += bench::digest(message.trade_date());
@@ -427,7 +413,6 @@ struct Reader {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.trading_session_id());
         checksum += bench::digest(message.trade_condition().opening_price());
@@ -470,7 +455,6 @@ struct Reader {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.md_update_action());
         checksum += bench::digest(message.md_entry_type());
@@ -493,7 +477,6 @@ struct Reader {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.md_entry_type());
         checksum += bench::digest(message.md_entry_position_no());
@@ -512,7 +495,6 @@ struct Reader {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.md_update_action());
         checksum += bench::digest(message.md_entry_type());
@@ -530,7 +512,6 @@ struct Reader {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.trading_session_id());
         checksum += bench::digest(message.trade_condition().opening_price());
@@ -560,7 +541,6 @@ struct Reader {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.trading_session_id());
         checksum += bench::digest(message.trade_condition().opening_price());
@@ -605,7 +585,6 @@ struct Reader {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.trading_session_id());
         checksum += bench::digest(message.trade_date());
@@ -626,7 +605,6 @@ struct Reader {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.trading_session_id());
         checksum += bench::digest(message.md_future_price().mantissa());

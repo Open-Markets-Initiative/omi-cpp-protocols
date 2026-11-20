@@ -14,5 +14,5 @@ packet.messages.message[0].payload.orderexecutedmessage.side = S
 packet.messages.message[0].payload.orderexecutedmessage.executedquantity = 1
 packet.messages.message[0].payload.orderexecutedmessage.matchid = 81879544294020192
 packet.messages.message[0].payload.orderexecutedmessage.combogroupid = 0
-packet.messages.message[0].payload.orderexecutedmessage.participantidowner = 
-packet.messages.message[0].payload.orderexecutedmessage.participantidcounterparty = 
+packet.messages.message[0].payload.orderexecutedmessage.participantidowner = (null)
+packet.messages.message[0].payload.orderexecutedmessage.participantidcounterparty = (null)

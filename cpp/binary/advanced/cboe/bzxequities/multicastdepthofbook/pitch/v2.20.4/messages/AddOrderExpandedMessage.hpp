@@ -6,9 +6,9 @@
 #include "../types/TimeOffset.hpp"
 #include "../types/OrderId.hpp"
 #include "../types/SideIndicator.hpp"
-#include "../types/QuantityBinary4.hpp"
+#include "../types/QuantityLong.hpp"
 #include "../types/SymbolLong.hpp"
-#include "../types/PriceBinaryLongPrice8.hpp"
+#include "../types/PriceLong.hpp"
 #include "../types/AddFlags.hpp"
 #include "../types/ParticipantId.hpp"
 
@@ -25,9 +25,9 @@ struct add_order_expanded_message {
         pitch_multicastdepthofbook::time_offset time_offset;
         pitch_multicastdepthofbook::order_id order_id;
         pitch_multicastdepthofbook::side_indicator side_indicator;
-        pitch_multicastdepthofbook::quantity_binary_4 quantity_binary_4;
+        pitch_multicastdepthofbook::quantity_long quantity_long;
         pitch_multicastdepthofbook::symbol_long symbol_long;
-        pitch_multicastdepthofbook::price_binary_long_price_8 price_binary_long_price_8;
+        pitch_multicastdepthofbook::price_long price_long;
         pitch_multicastdepthofbook::add_flags add_flags;
         pitch_multicastdepthofbook::participant_id participant_id;
     };
@@ -52,9 +52,9 @@ struct add_order_expanded_message {
 static_assert(offsetof(add_order_expanded_message::fields_type, time_offset) == 0, "unexpected offset of add_order_expanded_message::fields_type::time_offset");
 static_assert(offsetof(add_order_expanded_message::fields_type, order_id) == 4, "unexpected offset of add_order_expanded_message::fields_type::order_id");
 static_assert(offsetof(add_order_expanded_message::fields_type, side_indicator) == 12, "unexpected offset of add_order_expanded_message::fields_type::side_indicator");
-static_assert(offsetof(add_order_expanded_message::fields_type, quantity_binary_4) == 13, "unexpected offset of add_order_expanded_message::fields_type::quantity_binary_4");
+static_assert(offsetof(add_order_expanded_message::fields_type, quantity_long) == 13, "unexpected offset of add_order_expanded_message::fields_type::quantity_long");
 static_assert(offsetof(add_order_expanded_message::fields_type, symbol_long) == 17, "unexpected offset of add_order_expanded_message::fields_type::symbol_long");
-static_assert(offsetof(add_order_expanded_message::fields_type, price_binary_long_price_8) == 25, "unexpected offset of add_order_expanded_message::fields_type::price_binary_long_price_8");
+static_assert(offsetof(add_order_expanded_message::fields_type, price_long) == 25, "unexpected offset of add_order_expanded_message::fields_type::price_long");
 static_assert(offsetof(add_order_expanded_message::fields_type, add_flags) == 33, "unexpected offset of add_order_expanded_message::fields_type::add_flags");
 static_assert(offsetof(add_order_expanded_message::fields_type, participant_id) == 34, "unexpected offset of add_order_expanded_message::fields_type::participant_id");
 static_assert(sizeof(add_order_expanded_message::fields_type) == 38, "unexpected sizeof add_order_expanded_message::fields_type");

@@ -86,7 +86,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.securitystatusmessage.haltcondition"] = canonical::text(canonical::character(message->halt_condition.get()), '\0', false);
             values[entry + ".payload.securitystatusmessage.price1"] = canonical::number(message->price_1.get());
             values[entry + ".payload.securitystatusmessage.price2"] = canonical::number(message->price_2.get());
-            values[entry + ".payload.securitystatusmessage.ssrtriggeringexchangeid"] = canonical::text(canonical::character(message->ssr_triggering_exchange_id.get()), '\0', false);
+            values[entry + ".payload.securitystatusmessage.ssrtriggeringexchangeid"] = canonical::text(canonical::character(message->ssr_triggering_exchange_id.get()), '\0', false, {std::string_view(" ", 1)});
             values[entry + ".payload.securitystatusmessage.ssrtriggeringvolume"] = canonical::number(message->ssr_triggering_volume.get());
             values[entry + ".payload.securitystatusmessage.time"] = (static_cast<std::uint32_t>(message->time.get()) != 0x0U ? canonical::number(message->time.get()) : canonical::absent());
             values[entry + ".payload.securitystatusmessage.ssrstate"] = canonical::text(canonical::character(message->ssr_state.get()), '\0', false);
@@ -152,7 +152,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.quotemessage.bidprice"] = canonical::number(message->bid_price.get());
             values[entry + ".payload.quotemessage.bidvolume"] = canonical::number(message->bid_volume.get());
             values[entry + ".payload.quotemessage.quotecondition"] = canonical::text(canonical::character(message->quote_condition.get()), '\0', false);
-            values[entry + ".payload.quotemessage.rpiindicator"] = canonical::text(canonical::character(message->rpi_indicator.get()), '\0', false);
+            values[entry + ".payload.quotemessage.rpiindicator"] = canonical::text(canonical::character(message->rpi_indicator.get()), '\0', false, {std::string_view(" ", 1)});
         }
     }
 

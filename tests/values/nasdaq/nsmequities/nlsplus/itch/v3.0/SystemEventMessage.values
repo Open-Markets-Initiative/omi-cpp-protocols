@@ -1,6 +1,6 @@
 # Nasdaq.NsmEquities.NlsPlus.Itch.v3.0 SystemEventMessage: canonical values, read by the model
 datagram 0
-packet.packetheader.session = 
+packet.packetheader.session = (null)
 packet.packetheader.sequencenumber = 0
 packet.packetheader.messagecount = 1
 packet.messages = packet.messages.message
@@ -11,7 +11,7 @@ packet.messages.message[0].messageheader.messagetype = S
 packet.messages.message[0].payload = packet.messages.message.payload.systemeventmessage
 packet.messages.message[0].payload.systemeventmessage.eventcode = Q
 datagram 1
-packet.packetheader.session = 
+packet.packetheader.session = (null)
 packet.packetheader.sequencenumber = 0
 packet.packetheader.messagecount = 1
 packet.messages = packet.messages.message

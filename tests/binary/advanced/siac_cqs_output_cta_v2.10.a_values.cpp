@@ -55,7 +55,7 @@ struct Reader {
         values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.participantreferencenumber"] = canonical::number(message.fields.participant_reference_number.get().value());
         values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.securitysymbol"] = canonical::text(std::string(message.fields.security_symbol.get().value()), ' ', false);
         values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.priorsecuritysymbol"] = canonical::text(std::string(message.fields.prior_security_symbol.get().value()), ' ', false);
-        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.primarylistingmarketparticipantid"] = canonical::text(canonical::character(message.fields.primary_listing_market_participant_id.get().value()));
+        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.primarylistingmarketparticipantid"] = canonical::text(canonical::character(message.fields.primary_listing_market_participant_id.get().value()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.primarylistingmarketpreviousclosingprice"] = canonical::scaled(message.fields.primary_listing_market_previous_closing_price.get().value(), -6);
         values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.consolidatedclosingprice"] = canonical::scaled(message.fields.consolidated_closing_price.get().value(), -6);
         values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.roundlotsize"] = canonical::number(message.fields.round_lot_size.get().value());
@@ -64,7 +64,7 @@ struct Reader {
         values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.test"] = canonical::text(canonical::character(message.fields.test.get().value()));
         values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.ipo"] = canonical::text(canonical::character(message.fields.ipo.get().value()));
         values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.financialstatusindicator"] = canonical::text(canonical::character(message.fields.financial_status_indicator.get().value()));
-        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.shortsalerestrictionindicator"] = canonical::text(canonical::character(message.fields.short_sale_restriction_indicator.get().value()));
+        values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.shortsalerestrictionindicator"] = canonical::text(canonical::character(message.fields.short_sale_restriction_indicator.get().value()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.haltreason"] = canonical::text(canonical::character(message.fields.halt_reason.get().value()));
         values[entry + ".categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.instrumenttype"] = canonical::text(canonical::character(message.fields.instrument_type.get().value()));
     }
@@ -187,7 +187,7 @@ struct Reader {
         values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerstatusmessage.messageid"] = canonical::number(message.fields.message_id.get().value());
         values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerstatusmessage.transactionid"] = canonical::number(message.fields.transaction_id.get().value());
         values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerstatusmessage.participantreferencenumber"] = canonical::number(message.fields.participant_reference_number.get().value());
-        values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerstatusmessage.marketwidecircuitbreakerlevelindicator"] = canonical::text(canonical::character(message.fields.market_wide_circuit_breaker_level_indicator.get().value()));
+        values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerstatusmessage.marketwidecircuitbreakerlevelindicator"] = canonical::text(canonical::character(message.fields.market_wide_circuit_breaker_level_indicator.get().value()), {std::string_view(" ", 1)});
     }
 
     void on_message(const protocol::auction_status_message& message, std::uint64_t, const protocol::block_header&) {
@@ -207,8 +207,8 @@ struct Reader {
         values[entry + ".categorypayload.quotemessage.quotemessagepayload.auctionstatusmessage.auctioncollarupperthresholdprice"] = canonical::scaled(message.fields.auction_collar_upper_threshold_price.get().value(), -6);
         values[entry + ".categorypayload.quotemessage.quotemessagepayload.auctionstatusmessage.auctioncollarlowerthresholdprice"] = canonical::scaled(message.fields.auction_collar_lower_threshold_price.get().value(), -6);
         values[entry + ".categorypayload.quotemessage.quotemessagepayload.auctionstatusmessage.numberofextensions"] = canonical::number(message.fields.number_of_extensions.get().value());
-        values[entry + ".categorypayload.quotemessage.quotemessagepayload.auctionstatusmessage.shortsalerestrictionindicator"] = canonical::text(canonical::character(message.fields.short_sale_restriction_indicator.get().value()));
-        values[entry + ".categorypayload.quotemessage.quotemessagepayload.auctionstatusmessage.primarylistingmarketparticipantid"] = canonical::text(canonical::character(message.fields.primary_listing_market_participant_id.get().value()));
+        values[entry + ".categorypayload.quotemessage.quotemessagepayload.auctionstatusmessage.shortsalerestrictionindicator"] = canonical::text(canonical::character(message.fields.short_sale_restriction_indicator.get().value()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.quotemessage.quotemessagepayload.auctionstatusmessage.primarylistingmarketparticipantid"] = canonical::text(canonical::character(message.fields.primary_listing_market_participant_id.get().value()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.quotemessage.quotemessagepayload.auctionstatusmessage.financialstatusindicator"] = canonical::text(canonical::character(message.fields.financial_status_indicator.get().value()));
     }
 
@@ -225,24 +225,24 @@ struct Reader {
         values[entry + ".categorypayload.quotemessage.quotemessagepayload.longquotemessage.participantreferencenumber"] = canonical::number(message.fields.participant_reference_number.get().value());
         values[entry + ".categorypayload.quotemessage.quotemessagepayload.longquotemessage.securitysymbol"] = canonical::text(std::string(message.fields.security_symbol.get().value()), ' ', false);
         values[entry + ".categorypayload.quotemessage.quotemessagepayload.longquotemessage.instrumenttype"] = canonical::text(canonical::character(message.fields.instrument_type.get().value()));
-        values[entry + ".categorypayload.quotemessage.quotemessagepayload.longquotemessage.quotecondition"] = canonical::text(canonical::character(message.fields.quote_condition.get().value()));
-        values[entry + ".categorypayload.quotemessage.quotemessagepayload.longquotemessage.securitystatusindicator"] = canonical::text(canonical::character(message.fields.security_status_indicator.get().value()));
+        values[entry + ".categorypayload.quotemessage.quotemessagepayload.longquotemessage.quotecondition"] = canonical::text(canonical::character(message.fields.quote_condition.get().value()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.quotemessage.quotemessagepayload.longquotemessage.securitystatusindicator"] = canonical::text(canonical::character(message.fields.security_status_indicator.get().value()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.quotemessage.quotemessagepayload.longquotemessage.bidpricelowerlimitpriceband"] = canonical::scaled(message.fields.bid_price_lower_limit_price_band.get().value(), -6);
         values[entry + ".categorypayload.quotemessage.quotemessagepayload.longquotemessage.bidsizelong"] = canonical::number(message.fields.bid_size_long.get().value());
         values[entry + ".categorypayload.quotemessage.quotemessagepayload.longquotemessage.offerpriceupperlimitpriceband"] = canonical::scaled(message.fields.offer_price_upper_limit_price_band.get().value(), -6);
         values[entry + ".categorypayload.quotemessage.quotemessagepayload.longquotemessage.offersizelong"] = canonical::number(message.fields.offer_size_long.get().value());
-        values[entry + ".categorypayload.quotemessage.quotemessagepayload.longquotemessage.retailinterestindicator"] = canonical::text(canonical::character(message.fields.retail_interest_indicator.get().value()));
-        values[entry + ".categorypayload.quotemessage.quotemessagepayload.longquotemessage.settlementcondition"] = canonical::text(canonical::character(message.fields.settlement_condition.get().value()));
-        values[entry + ".categorypayload.quotemessage.quotemessagepayload.longquotemessage.marketcondition"] = canonical::text(canonical::character(message.fields.market_condition.get().value()));
+        values[entry + ".categorypayload.quotemessage.quotemessagepayload.longquotemessage.retailinterestindicator"] = canonical::text(canonical::character(message.fields.retail_interest_indicator.get().value()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.quotemessage.quotemessagepayload.longquotemessage.settlementcondition"] = canonical::text(canonical::character(message.fields.settlement_condition.get().value()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.quotemessage.quotemessagepayload.longquotemessage.marketcondition"] = canonical::text(canonical::character(message.fields.market_condition.get().value()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.quotemessage.quotemessagepayload.longquotemessage.finramarketmakerid"] = canonical::text(std::string(message.fields.finra_market_maker_id.get().value()), ' ', false);
-        values[entry + ".categorypayload.quotemessage.quotemessagepayload.longquotemessage.finrabboindicator"] = canonical::text(canonical::character(message.fields.finra_bbo_indicator.get().value()));
-        values[entry + ".categorypayload.quotemessage.quotemessagepayload.longquotemessage.shortsalerestrictionindicator"] = canonical::text(canonical::character(message.fields.short_sale_restriction_indicator.get().value()));
-        values[entry + ".categorypayload.quotemessage.quotemessagepayload.longquotemessage.primarylistingmarketparticipantid"] = canonical::text(canonical::character(message.fields.primary_listing_market_participant_id.get().value()));
+        values[entry + ".categorypayload.quotemessage.quotemessagepayload.longquotemessage.finrabboindicator"] = canonical::text(canonical::character(message.fields.finra_bbo_indicator.get().value()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.quotemessage.quotemessagepayload.longquotemessage.shortsalerestrictionindicator"] = canonical::text(canonical::character(message.fields.short_sale_restriction_indicator.get().value()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.quotemessage.quotemessagepayload.longquotemessage.primarylistingmarketparticipantid"] = canonical::text(canonical::character(message.fields.primary_listing_market_participant_id.get().value()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.quotemessage.quotemessagepayload.longquotemessage.financialstatusindicator"] = canonical::text(canonical::character(message.fields.financial_status_indicator.get().value()));
-        values[entry + ".categorypayload.quotemessage.quotemessagepayload.longquotemessage.sipgeneratedmessageidentifier"] = canonical::text(canonical::character(message.fields.sip_generated_message_identifier.get().value()));
-        values[entry + ".categorypayload.quotemessage.quotemessagepayload.longquotemessage.limituplimitdownluldindicator"] = canonical::text(canonical::character(message.fields.limit_up_limit_down_luld_indicator.get().value()));
-        values[entry + ".categorypayload.quotemessage.quotemessagepayload.longquotemessage.nationalbboluldindicator"] = canonical::text(canonical::character(message.fields.national_bbo_luld_indicator.get().value()));
-        values[entry + ".categorypayload.quotemessage.quotemessagepayload.longquotemessage.nationalbboindicator"] = canonical::text(canonical::character(message.fields.national_bbo_indicator.get().value()));
+        values[entry + ".categorypayload.quotemessage.quotemessagepayload.longquotemessage.sipgeneratedmessageidentifier"] = canonical::text(canonical::character(message.fields.sip_generated_message_identifier.get().value()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.quotemessage.quotemessagepayload.longquotemessage.limituplimitdownluldindicator"] = canonical::text(canonical::character(message.fields.limit_up_limit_down_luld_indicator.get().value()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.quotemessage.quotemessagepayload.longquotemessage.nationalbboluldindicator"] = canonical::text(canonical::character(message.fields.national_bbo_luld_indicator.get().value()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.quotemessage.quotemessagepayload.longquotemessage.nationalbboindicator"] = canonical::text(canonical::character(message.fields.national_bbo_indicator.get().value()), {std::string_view(" ", 1)});
     }
 
     void on_message(const protocol::short_quote_message& message, std::uint64_t, const protocol::block_header&) {
@@ -261,8 +261,8 @@ struct Reader {
         values[entry + ".categorypayload.quotemessage.quotemessagepayload.shortquotemessage.bidsizeshort"] = canonical::number(message.fields.bid_size_short.get().value());
         values[entry + ".categorypayload.quotemessage.quotemessagepayload.shortquotemessage.offerpriceshort"] = canonical::scaled(message.fields.offer_price_short.get().value(), -2);
         values[entry + ".categorypayload.quotemessage.quotemessagepayload.shortquotemessage.offersizeshort"] = canonical::number(message.fields.offer_size_short.get().value());
-        values[entry + ".categorypayload.quotemessage.quotemessagepayload.shortquotemessage.primarylistingmarketparticipantid"] = canonical::text(canonical::character(message.fields.primary_listing_market_participant_id.get().value()));
-        values[entry + ".categorypayload.quotemessage.quotemessagepayload.shortquotemessage.nationalbboindicator"] = canonical::text(canonical::character(message.fields.national_bbo_indicator.get().value()));
+        values[entry + ".categorypayload.quotemessage.quotemessagepayload.shortquotemessage.primarylistingmarketparticipantid"] = canonical::text(canonical::character(message.fields.primary_listing_market_participant_id.get().value()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.quotemessage.quotemessagepayload.shortquotemessage.nationalbboindicator"] = canonical::text(canonical::character(message.fields.national_bbo_indicator.get().value()), {std::string_view(" ", 1)});
     }
 
     void on_message(const protocol::special_long_quote_message& message, std::uint64_t, const protocol::block_header&) {
@@ -278,15 +278,15 @@ struct Reader {
         values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.participantreferencenumber"] = canonical::number(message.fields.participant_reference_number.get().value());
         values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.securitysymbol"] = canonical::text(std::string(message.fields.security_symbol.get().value()), ' ', false);
         values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.instrumenttype"] = canonical::text(canonical::character(message.fields.instrument_type.get().value()));
-        values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.quotecondition"] = canonical::text(canonical::character(message.fields.quote_condition.get().value()));
-        values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.securitystatusindicator"] = canonical::text(canonical::character(message.fields.security_status_indicator.get().value()));
+        values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.quotecondition"] = canonical::text(canonical::character(message.fields.quote_condition.get().value()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.securitystatusindicator"] = canonical::text(canonical::character(message.fields.security_status_indicator.get().value()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.bidpricelong"] = canonical::scaled(message.fields.bid_price_long.get().value(), -6);
         values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.bidsizelong"] = canonical::number(message.fields.bid_size_long.get().value());
         values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.offerpricelong"] = canonical::scaled(message.fields.offer_price_long.get().value(), -6);
         values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.offersizelong"] = canonical::number(message.fields.offer_size_long.get().value());
-        values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.retailinterestindicator"] = canonical::text(canonical::character(message.fields.retail_interest_indicator.get().value()));
-        values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.settlementcondition"] = canonical::text(canonical::character(message.fields.settlement_condition.get().value()));
-        values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.marketcondition"] = canonical::text(canonical::character(message.fields.market_condition.get().value()));
+        values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.retailinterestindicator"] = canonical::text(canonical::character(message.fields.retail_interest_indicator.get().value()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.settlementcondition"] = canonical::text(canonical::character(message.fields.settlement_condition.get().value()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.marketcondition"] = canonical::text(canonical::character(message.fields.market_condition.get().value()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.finramarketmakerid"] = canonical::text(std::string(message.fields.finra_market_maker_id.get().value()), ' ', false);
         values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.finrabestbidquotecondition"] = canonical::text(canonical::character(message.fields.finra_best_bid_quote_condition.get().value()));
         values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.finrabestbidprice"] = canonical::scaled(message.fields.finra_best_bid_price.get().value(), -6);
@@ -296,13 +296,13 @@ struct Reader {
         values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.finrabestofferprice"] = canonical::scaled(message.fields.finra_best_offer_price.get().value(), -6);
         values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.finrabestoffersize"] = canonical::number(message.fields.finra_best_offer_size.get().value());
         values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.finrabestoffermarketmakerid"] = canonical::text(std::string(message.fields.finra_best_offer_market_maker_id.get().value()), ' ', false);
-        values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.shortsalerestrictionindicator"] = canonical::text(canonical::character(message.fields.short_sale_restriction_indicator.get().value()));
-        values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.primarylistingmarketparticipantid"] = canonical::text(canonical::character(message.fields.primary_listing_market_participant_id.get().value()));
+        values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.shortsalerestrictionindicator"] = canonical::text(canonical::character(message.fields.short_sale_restriction_indicator.get().value()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.primarylistingmarketparticipantid"] = canonical::text(canonical::character(message.fields.primary_listing_market_participant_id.get().value()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.financialstatusindicator"] = canonical::text(canonical::character(message.fields.financial_status_indicator.get().value()));
-        values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.sipgeneratedmessageidentifier"] = canonical::text(canonical::character(message.fields.sip_generated_message_identifier.get().value()));
-        values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.finrabboluldindicator"] = canonical::text(canonical::character(message.fields.finra_bbo_luld_indicator.get().value()));
-        values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.nationalbboluldindicator"] = canonical::text(canonical::character(message.fields.national_bbo_luld_indicator.get().value()));
-        values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.nationalbboindicator"] = canonical::text(canonical::character(message.fields.national_bbo_indicator.get().value()));
+        values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.sipgeneratedmessageidentifier"] = canonical::text(canonical::character(message.fields.sip_generated_message_identifier.get().value()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.finrabboluldindicator"] = canonical::text(canonical::character(message.fields.finra_bbo_luld_indicator.get().value()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.nationalbboluldindicator"] = canonical::text(canonical::character(message.fields.national_bbo_luld_indicator.get().value()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.quotemessage.quotemessagepayload.speciallongquotemessage.nationalbboindicator"] = canonical::text(canonical::character(message.fields.national_bbo_indicator.get().value()), {std::string_view(" ", 1)});
     }
 };
 

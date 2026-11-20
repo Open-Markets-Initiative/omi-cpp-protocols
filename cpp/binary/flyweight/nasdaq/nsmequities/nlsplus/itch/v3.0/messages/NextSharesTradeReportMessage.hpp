@@ -45,7 +45,7 @@ class NextSharesTradeReportMessage {
 
     std::uint32_t trade_size() const { return wire::read_u32_be(at(24)); }
 
-    Decimal nav_offset_amount() const { return Decimal(static_cast<std::int64_t>(wire::read_u32_be(at(28))), -4); }
+    Decimal nav_offset_amount() const { return Decimal(static_cast<std::int64_t>(wire::read_i32_be(at(28))), -4); }
 
     SaleConditionModifier sale_condition_modifier() const { return SaleConditionModifier{ bytes_.subspan(32) }; }
 

@@ -13,4 +13,4 @@ udppacket.machmessage[0].payload.applicationmessage.data.addordermessage.orderid
 udppacket.machmessage[0].payload.applicationmessage.data.addordermessage.orderside = B
 udppacket.machmessage[0].payload.applicationmessage.data.addordermessage.price = 69
 udppacket.machmessage[0].payload.applicationmessage.data.addordermessage.size = 100
-udppacket.machmessage[0].payload.applicationmessage.data.addordermessage.attributableid = 
+udppacket.machmessage[0].payload.applicationmessage.data.addordermessage.attributableid = (null)

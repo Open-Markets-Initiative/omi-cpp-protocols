@@ -33,7 +33,7 @@ class FuturesVarianceSymbolMappingMessage {
 
     std::chrono::nanoseconds time_offset() const { return std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(at(0)))); }
 
-    std::uint32_t unit_timestamp() const { return wire::read_u32_le(at(4)); }
+    std::chrono::seconds unit_timestamp() const { return std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_le(at(4)))); }
 
     std::string_view feed_symbol() const { return view::text(at(8), 6, ' '); }
 
@@ -50,7 +50,7 @@ class FuturesVarianceSymbolMappingMessage {
         out << "time_offset=";
         out << time_offset().count();
         out << ", unit_timestamp=";
-        out << unit_timestamp();
+        out << unit_timestamp().count();
         out << ", feed_symbol=";
         print::text(out, feed_symbol());
         out << ", futures_symbol=";

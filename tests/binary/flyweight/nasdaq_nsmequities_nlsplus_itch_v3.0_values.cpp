@@ -57,9 +57,9 @@ struct Reader {
         values[entry + ".payload.tradereportmessage.tradeprice"] = canonical::scaled(message.trade_price().mantissa(), message.trade_price().exponent());
         values[entry + ".payload.tradereportmessage.tradesize"] = canonical::number(message.trade_size());
         values[entry + ".payload.tradereportmessage.saleconditionmodifier.settlementtype"] = canonical::text(canonical::character(message.sale_condition_modifier().settlement_type()), ' ', false);
-        values[entry + ".payload.tradereportmessage.saleconditionmodifier.tradethroughexemption"] = canonical::text(canonical::character(message.sale_condition_modifier().trade_through_exemption()), ' ', false);
-        values[entry + ".payload.tradereportmessage.saleconditionmodifier.extendedhoursorsoldcode"] = canonical::text(canonical::character(message.sale_condition_modifier().extended_hours_or_sold_code()), ' ', false);
-        values[entry + ".payload.tradereportmessage.saleconditionmodifier.specialsalecondition"] = canonical::text(canonical::character(message.sale_condition_modifier().special_sale_condition()), ' ', false);
+        values[entry + ".payload.tradereportmessage.saleconditionmodifier.tradethroughexemption"] = canonical::text(canonical::character(message.sale_condition_modifier().trade_through_exemption()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+        values[entry + ".payload.tradereportmessage.saleconditionmodifier.extendedhoursorsoldcode"] = canonical::text(canonical::character(message.sale_condition_modifier().extended_hours_or_sold_code()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+        values[entry + ".payload.tradereportmessage.saleconditionmodifier.specialsalecondition"] = canonical::text(canonical::character(message.sale_condition_modifier().special_sale_condition()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
         values[entry + ".payload.tradereportmessage.consolidatedvolume"] = canonical::number(message.consolidated_volume());
     }
 
@@ -73,9 +73,9 @@ struct Reader {
         values[entry + ".payload.longformtradereportmessage.tradepricelong"] = canonical::scaled(message.trade_price_long().mantissa(), message.trade_price_long().exponent());
         values[entry + ".payload.longformtradereportmessage.tradesize"] = canonical::number(message.trade_size());
         values[entry + ".payload.longformtradereportmessage.saleconditionmodifier.settlementtype"] = canonical::text(canonical::character(message.sale_condition_modifier().settlement_type()), ' ', false);
-        values[entry + ".payload.longformtradereportmessage.saleconditionmodifier.tradethroughexemption"] = canonical::text(canonical::character(message.sale_condition_modifier().trade_through_exemption()), ' ', false);
-        values[entry + ".payload.longformtradereportmessage.saleconditionmodifier.extendedhoursorsoldcode"] = canonical::text(canonical::character(message.sale_condition_modifier().extended_hours_or_sold_code()), ' ', false);
-        values[entry + ".payload.longformtradereportmessage.saleconditionmodifier.specialsalecondition"] = canonical::text(canonical::character(message.sale_condition_modifier().special_sale_condition()), ' ', false);
+        values[entry + ".payload.longformtradereportmessage.saleconditionmodifier.tradethroughexemption"] = canonical::text(canonical::character(message.sale_condition_modifier().trade_through_exemption()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+        values[entry + ".payload.longformtradereportmessage.saleconditionmodifier.extendedhoursorsoldcode"] = canonical::text(canonical::character(message.sale_condition_modifier().extended_hours_or_sold_code()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+        values[entry + ".payload.longformtradereportmessage.saleconditionmodifier.specialsalecondition"] = canonical::text(canonical::character(message.sale_condition_modifier().special_sale_condition()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
         values[entry + ".payload.longformtradereportmessage.consolidatedvolume"] = canonical::number(message.consolidated_volume());
     }
 
@@ -90,9 +90,9 @@ struct Reader {
         values[entry + ".payload.nextsharestradereportmessage.tradesize"] = canonical::number(message.trade_size());
         values[entry + ".payload.nextsharestradereportmessage.navoffsetamount"] = canonical::scaled(message.nav_offset_amount().mantissa(), message.nav_offset_amount().exponent());
         values[entry + ".payload.nextsharestradereportmessage.saleconditionmodifier.settlementtype"] = canonical::text(canonical::character(message.sale_condition_modifier().settlement_type()), ' ', false);
-        values[entry + ".payload.nextsharestradereportmessage.saleconditionmodifier.tradethroughexemption"] = canonical::text(canonical::character(message.sale_condition_modifier().trade_through_exemption()), ' ', false);
-        values[entry + ".payload.nextsharestradereportmessage.saleconditionmodifier.extendedhoursorsoldcode"] = canonical::text(canonical::character(message.sale_condition_modifier().extended_hours_or_sold_code()), ' ', false);
-        values[entry + ".payload.nextsharestradereportmessage.saleconditionmodifier.specialsalecondition"] = canonical::text(canonical::character(message.sale_condition_modifier().special_sale_condition()), ' ', false);
+        values[entry + ".payload.nextsharestradereportmessage.saleconditionmodifier.tradethroughexemption"] = canonical::text(canonical::character(message.sale_condition_modifier().trade_through_exemption()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+        values[entry + ".payload.nextsharestradereportmessage.saleconditionmodifier.extendedhoursorsoldcode"] = canonical::text(canonical::character(message.sale_condition_modifier().extended_hours_or_sold_code()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+        values[entry + ".payload.nextsharestradereportmessage.saleconditionmodifier.specialsalecondition"] = canonical::text(canonical::character(message.sale_condition_modifier().special_sale_condition()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
         values[entry + ".payload.nextsharestradereportmessage.consolidatedvolume"] = canonical::number(message.consolidated_volume());
     }
 
@@ -106,9 +106,9 @@ struct Reader {
         values[entry + ".payload.tradecancelerrormessage.originaltradeprice"] = canonical::scaled(message.original_trade_price().mantissa(), message.original_trade_price().exponent());
         values[entry + ".payload.tradecancelerrormessage.originaltradesize"] = canonical::number(message.original_trade_size());
         values[entry + ".payload.tradecancelerrormessage.originalsaleconditionmodifier.originalsettlementtype"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_settlement_type()), ' ', false);
-        values[entry + ".payload.tradecancelerrormessage.originalsaleconditionmodifier.originaltradethroughexemption"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_trade_through_exemption()), ' ', false);
-        values[entry + ".payload.tradecancelerrormessage.originalsaleconditionmodifier.originalextendedhoursorsoldcode"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_extended_hours_or_sold_code()), ' ', false);
-        values[entry + ".payload.tradecancelerrormessage.originalsaleconditionmodifier.originalspecialsalecondition"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_special_sale_condition()), ' ', false);
+        values[entry + ".payload.tradecancelerrormessage.originalsaleconditionmodifier.originaltradethroughexemption"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_trade_through_exemption()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+        values[entry + ".payload.tradecancelerrormessage.originalsaleconditionmodifier.originalextendedhoursorsoldcode"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_extended_hours_or_sold_code()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+        values[entry + ".payload.tradecancelerrormessage.originalsaleconditionmodifier.originalspecialsalecondition"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_special_sale_condition()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
         values[entry + ".payload.tradecancelerrormessage.consolidatedvolume"] = canonical::number(message.consolidated_volume());
     }
 
@@ -122,9 +122,9 @@ struct Reader {
         values[entry + ".payload.longformtradecancelerrormessage.originaltradepricelong"] = canonical::scaled(message.original_trade_price_long().mantissa(), message.original_trade_price_long().exponent());
         values[entry + ".payload.longformtradecancelerrormessage.originaltradesize"] = canonical::number(message.original_trade_size());
         values[entry + ".payload.longformtradecancelerrormessage.originalsaleconditionmodifier.originalsettlementtype"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_settlement_type()), ' ', false);
-        values[entry + ".payload.longformtradecancelerrormessage.originalsaleconditionmodifier.originaltradethroughexemption"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_trade_through_exemption()), ' ', false);
-        values[entry + ".payload.longformtradecancelerrormessage.originalsaleconditionmodifier.originalextendedhoursorsoldcode"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_extended_hours_or_sold_code()), ' ', false);
-        values[entry + ".payload.longformtradecancelerrormessage.originalsaleconditionmodifier.originalspecialsalecondition"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_special_sale_condition()), ' ', false);
+        values[entry + ".payload.longformtradecancelerrormessage.originalsaleconditionmodifier.originaltradethroughexemption"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_trade_through_exemption()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+        values[entry + ".payload.longformtradecancelerrormessage.originalsaleconditionmodifier.originalextendedhoursorsoldcode"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_extended_hours_or_sold_code()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+        values[entry + ".payload.longformtradecancelerrormessage.originalsaleconditionmodifier.originalspecialsalecondition"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_special_sale_condition()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
         values[entry + ".payload.longformtradecancelerrormessage.consolidatedvolume"] = canonical::number(message.consolidated_volume());
     }
 
@@ -139,9 +139,9 @@ struct Reader {
         values[entry + ".payload.nextsharestradecancelerrormessage.originalnavoffsetamount"] = canonical::scaled(message.original_nav_offset_amount().mantissa(), message.original_nav_offset_amount().exponent());
         values[entry + ".payload.nextsharestradecancelerrormessage.originaltradesize"] = canonical::number(message.original_trade_size());
         values[entry + ".payload.nextsharestradecancelerrormessage.originalsaleconditionmodifier.originalsettlementtype"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_settlement_type()), ' ', false);
-        values[entry + ".payload.nextsharestradecancelerrormessage.originalsaleconditionmodifier.originaltradethroughexemption"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_trade_through_exemption()), ' ', false);
-        values[entry + ".payload.nextsharestradecancelerrormessage.originalsaleconditionmodifier.originalextendedhoursorsoldcode"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_extended_hours_or_sold_code()), ' ', false);
-        values[entry + ".payload.nextsharestradecancelerrormessage.originalsaleconditionmodifier.originalspecialsalecondition"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_special_sale_condition()), ' ', false);
+        values[entry + ".payload.nextsharestradecancelerrormessage.originalsaleconditionmodifier.originaltradethroughexemption"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_trade_through_exemption()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+        values[entry + ".payload.nextsharestradecancelerrormessage.originalsaleconditionmodifier.originalextendedhoursorsoldcode"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_extended_hours_or_sold_code()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+        values[entry + ".payload.nextsharestradecancelerrormessage.originalsaleconditionmodifier.originalspecialsalecondition"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_special_sale_condition()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
         values[entry + ".payload.nextsharestradecancelerrormessage.consolidatedvolume"] = canonical::number(message.consolidated_volume());
     }
 
@@ -155,16 +155,16 @@ struct Reader {
         values[entry + ".payload.tradecorrectionmessage.originaltradeprice"] = canonical::scaled(message.original_trade_price().mantissa(), message.original_trade_price().exponent());
         values[entry + ".payload.tradecorrectionmessage.originaltradesize"] = canonical::number(message.original_trade_size());
         values[entry + ".payload.tradecorrectionmessage.originalsaleconditionmodifier.originalsettlementtype"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_settlement_type()), ' ', false);
-        values[entry + ".payload.tradecorrectionmessage.originalsaleconditionmodifier.originaltradethroughexemption"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_trade_through_exemption()), ' ', false);
-        values[entry + ".payload.tradecorrectionmessage.originalsaleconditionmodifier.originalextendedhoursorsoldcode"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_extended_hours_or_sold_code()), ' ', false);
-        values[entry + ".payload.tradecorrectionmessage.originalsaleconditionmodifier.originalspecialsalecondition"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_special_sale_condition()), ' ', false);
+        values[entry + ".payload.tradecorrectionmessage.originalsaleconditionmodifier.originaltradethroughexemption"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_trade_through_exemption()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+        values[entry + ".payload.tradecorrectionmessage.originalsaleconditionmodifier.originalextendedhoursorsoldcode"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_extended_hours_or_sold_code()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+        values[entry + ".payload.tradecorrectionmessage.originalsaleconditionmodifier.originalspecialsalecondition"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_special_sale_condition()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
         values[entry + ".payload.tradecorrectionmessage.correctedtradecontrolnumber"] = canonical::text(std::string(message.corrected_trade_control_number()), ' ', false);
         values[entry + ".payload.tradecorrectionmessage.correctedtradeprice"] = canonical::scaled(message.corrected_trade_price().mantissa(), message.corrected_trade_price().exponent());
         values[entry + ".payload.tradecorrectionmessage.correctedtradesize"] = canonical::number(message.corrected_trade_size());
         values[entry + ".payload.tradecorrectionmessage.correctedsaleconditionmodifier.correctedsettlementtype"] = canonical::text(canonical::character(message.corrected_sale_condition_modifier().corrected_settlement_type()), ' ', false);
-        values[entry + ".payload.tradecorrectionmessage.correctedsaleconditionmodifier.correctedtradethroughexemption"] = canonical::text(canonical::character(message.corrected_sale_condition_modifier().corrected_trade_through_exemption()), ' ', false);
-        values[entry + ".payload.tradecorrectionmessage.correctedsaleconditionmodifier.correctedextendedhoursorsoldcode"] = canonical::text(canonical::character(message.corrected_sale_condition_modifier().corrected_extended_hours_or_sold_code()), ' ', false);
-        values[entry + ".payload.tradecorrectionmessage.correctedsaleconditionmodifier.correctedspecialsalecondition"] = canonical::text(canonical::character(message.corrected_sale_condition_modifier().corrected_special_sale_condition()), ' ', false);
+        values[entry + ".payload.tradecorrectionmessage.correctedsaleconditionmodifier.correctedtradethroughexemption"] = canonical::text(canonical::character(message.corrected_sale_condition_modifier().corrected_trade_through_exemption()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+        values[entry + ".payload.tradecorrectionmessage.correctedsaleconditionmodifier.correctedextendedhoursorsoldcode"] = canonical::text(canonical::character(message.corrected_sale_condition_modifier().corrected_extended_hours_or_sold_code()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+        values[entry + ".payload.tradecorrectionmessage.correctedsaleconditionmodifier.correctedspecialsalecondition"] = canonical::text(canonical::character(message.corrected_sale_condition_modifier().corrected_special_sale_condition()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
         values[entry + ".payload.tradecorrectionmessage.consolidatedvolume"] = canonical::number(message.consolidated_volume());
     }
 
@@ -178,16 +178,16 @@ struct Reader {
         values[entry + ".payload.longformtradecorrectionmessage.originaltradepricelong"] = canonical::scaled(message.original_trade_price_long().mantissa(), message.original_trade_price_long().exponent());
         values[entry + ".payload.longformtradecorrectionmessage.originaltradesize"] = canonical::number(message.original_trade_size());
         values[entry + ".payload.longformtradecorrectionmessage.originalsaleconditionmodifier.originalsettlementtype"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_settlement_type()), ' ', false);
-        values[entry + ".payload.longformtradecorrectionmessage.originalsaleconditionmodifier.originaltradethroughexemption"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_trade_through_exemption()), ' ', false);
-        values[entry + ".payload.longformtradecorrectionmessage.originalsaleconditionmodifier.originalextendedhoursorsoldcode"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_extended_hours_or_sold_code()), ' ', false);
-        values[entry + ".payload.longformtradecorrectionmessage.originalsaleconditionmodifier.originalspecialsalecondition"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_special_sale_condition()), ' ', false);
+        values[entry + ".payload.longformtradecorrectionmessage.originalsaleconditionmodifier.originaltradethroughexemption"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_trade_through_exemption()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+        values[entry + ".payload.longformtradecorrectionmessage.originalsaleconditionmodifier.originalextendedhoursorsoldcode"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_extended_hours_or_sold_code()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+        values[entry + ".payload.longformtradecorrectionmessage.originalsaleconditionmodifier.originalspecialsalecondition"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_special_sale_condition()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
         values[entry + ".payload.longformtradecorrectionmessage.correctedtradecontrolnumber"] = canonical::text(std::string(message.corrected_trade_control_number()), ' ', false);
         values[entry + ".payload.longformtradecorrectionmessage.correctedtradepricelong"] = canonical::scaled(message.corrected_trade_price_long().mantissa(), message.corrected_trade_price_long().exponent());
         values[entry + ".payload.longformtradecorrectionmessage.correctedtradesize"] = canonical::number(message.corrected_trade_size());
         values[entry + ".payload.longformtradecorrectionmessage.correctedsaleconditionmodifier.correctedsettlementtype"] = canonical::text(canonical::character(message.corrected_sale_condition_modifier().corrected_settlement_type()), ' ', false);
-        values[entry + ".payload.longformtradecorrectionmessage.correctedsaleconditionmodifier.correctedtradethroughexemption"] = canonical::text(canonical::character(message.corrected_sale_condition_modifier().corrected_trade_through_exemption()), ' ', false);
-        values[entry + ".payload.longformtradecorrectionmessage.correctedsaleconditionmodifier.correctedextendedhoursorsoldcode"] = canonical::text(canonical::character(message.corrected_sale_condition_modifier().corrected_extended_hours_or_sold_code()), ' ', false);
-        values[entry + ".payload.longformtradecorrectionmessage.correctedsaleconditionmodifier.correctedspecialsalecondition"] = canonical::text(canonical::character(message.corrected_sale_condition_modifier().corrected_special_sale_condition()), ' ', false);
+        values[entry + ".payload.longformtradecorrectionmessage.correctedsaleconditionmodifier.correctedtradethroughexemption"] = canonical::text(canonical::character(message.corrected_sale_condition_modifier().corrected_trade_through_exemption()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+        values[entry + ".payload.longformtradecorrectionmessage.correctedsaleconditionmodifier.correctedextendedhoursorsoldcode"] = canonical::text(canonical::character(message.corrected_sale_condition_modifier().corrected_extended_hours_or_sold_code()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+        values[entry + ".payload.longformtradecorrectionmessage.correctedsaleconditionmodifier.correctedspecialsalecondition"] = canonical::text(canonical::character(message.corrected_sale_condition_modifier().corrected_special_sale_condition()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
         values[entry + ".payload.longformtradecorrectionmessage.consolidatedvolume"] = canonical::number(message.consolidated_volume());
     }
 
@@ -202,17 +202,17 @@ struct Reader {
         values[entry + ".payload.nextsharestradecorrectionmessage.originalnavoffsetamount"] = canonical::scaled(message.original_nav_offset_amount().mantissa(), message.original_nav_offset_amount().exponent());
         values[entry + ".payload.nextsharestradecorrectionmessage.originaltradesize"] = canonical::number(message.original_trade_size());
         values[entry + ".payload.nextsharestradecorrectionmessage.originalsaleconditionmodifier.originalsettlementtype"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_settlement_type()), ' ', false);
-        values[entry + ".payload.nextsharestradecorrectionmessage.originalsaleconditionmodifier.originaltradethroughexemption"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_trade_through_exemption()), ' ', false);
-        values[entry + ".payload.nextsharestradecorrectionmessage.originalsaleconditionmodifier.originalextendedhoursorsoldcode"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_extended_hours_or_sold_code()), ' ', false);
-        values[entry + ".payload.nextsharestradecorrectionmessage.originalsaleconditionmodifier.originalspecialsalecondition"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_special_sale_condition()), ' ', false);
+        values[entry + ".payload.nextsharestradecorrectionmessage.originalsaleconditionmodifier.originaltradethroughexemption"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_trade_through_exemption()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+        values[entry + ".payload.nextsharestradecorrectionmessage.originalsaleconditionmodifier.originalextendedhoursorsoldcode"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_extended_hours_or_sold_code()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+        values[entry + ".payload.nextsharestradecorrectionmessage.originalsaleconditionmodifier.originalspecialsalecondition"] = canonical::text(canonical::character(message.original_sale_condition_modifier().original_special_sale_condition()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
         values[entry + ".payload.nextsharestradecorrectionmessage.correctedtradecontrolnumber"] = canonical::text(std::string(message.corrected_trade_control_number()), ' ', false);
         values[entry + ".payload.nextsharestradecorrectionmessage.correctedproxyprice"] = canonical::scaled(message.corrected_proxy_price().mantissa(), message.corrected_proxy_price().exponent());
         values[entry + ".payload.nextsharestradecorrectionmessage.correctednavoffsetamount"] = canonical::scaled(message.corrected_nav_offset_amount().mantissa(), message.corrected_nav_offset_amount().exponent());
         values[entry + ".payload.nextsharestradecorrectionmessage.correctedtradesize"] = canonical::number(message.corrected_trade_size());
         values[entry + ".payload.nextsharestradecorrectionmessage.correctedsaleconditionmodifier.correctedsettlementtype"] = canonical::text(canonical::character(message.corrected_sale_condition_modifier().corrected_settlement_type()), ' ', false);
-        values[entry + ".payload.nextsharestradecorrectionmessage.correctedsaleconditionmodifier.correctedtradethroughexemption"] = canonical::text(canonical::character(message.corrected_sale_condition_modifier().corrected_trade_through_exemption()), ' ', false);
-        values[entry + ".payload.nextsharestradecorrectionmessage.correctedsaleconditionmodifier.correctedextendedhoursorsoldcode"] = canonical::text(canonical::character(message.corrected_sale_condition_modifier().corrected_extended_hours_or_sold_code()), ' ', false);
-        values[entry + ".payload.nextsharestradecorrectionmessage.correctedsaleconditionmodifier.correctedspecialsalecondition"] = canonical::text(canonical::character(message.corrected_sale_condition_modifier().corrected_special_sale_condition()), ' ', false);
+        values[entry + ".payload.nextsharestradecorrectionmessage.correctedsaleconditionmodifier.correctedtradethroughexemption"] = canonical::text(canonical::character(message.corrected_sale_condition_modifier().corrected_trade_through_exemption()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+        values[entry + ".payload.nextsharestradecorrectionmessage.correctedsaleconditionmodifier.correctedextendedhoursorsoldcode"] = canonical::text(canonical::character(message.corrected_sale_condition_modifier().corrected_extended_hours_or_sold_code()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+        values[entry + ".payload.nextsharestradecorrectionmessage.correctedsaleconditionmodifier.correctedspecialsalecondition"] = canonical::text(canonical::character(message.corrected_sale_condition_modifier().corrected_special_sale_condition()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
         values[entry + ".payload.nextsharestradecorrectionmessage.consolidatedvolume"] = canonical::number(message.consolidated_volume());
     }
 
@@ -230,16 +230,16 @@ struct Reader {
         values[entry + ".payload"] = "packet.messages.message.payload.stockdirectorymessage";
         values[entry + ".payload.stockdirectorymessage.stock"] = canonical::text(std::string(message.stock()), ' ', false);
         values[entry + ".payload.stockdirectorymessage.marketcategory"] = canonical::text(canonical::character(message.market_category()), ' ', false);
-        values[entry + ".payload.stockdirectorymessage.financialstatusindicator"] = canonical::text(canonical::character(message.financial_status_indicator()), ' ', false);
+        values[entry + ".payload.stockdirectorymessage.financialstatusindicator"] = canonical::text(canonical::character(message.financial_status_indicator()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
         values[entry + ".payload.stockdirectorymessage.roundlotsize"] = canonical::number(message.round_lot_size());
         values[entry + ".payload.stockdirectorymessage.roundlotsonly"] = canonical::text(canonical::character(message.round_lots_only()), ' ', false);
         values[entry + ".payload.stockdirectorymessage.issueclassification"] = canonical::text(canonical::character(message.issue_classification()), ' ', false);
         values[entry + ".payload.stockdirectorymessage.issuesubtype"] = canonical::text(std::string(message.issue_sub_type()), ' ', false);
         values[entry + ".payload.stockdirectorymessage.authenticity"] = canonical::text(canonical::character(message.authenticity()), ' ', false);
-        values[entry + ".payload.stockdirectorymessage.shortsalethresholdindicator"] = canonical::text(canonical::character(message.short_sale_threshold_indicator()), ' ', false);
-        values[entry + ".payload.stockdirectorymessage.ipoflag"] = canonical::text(canonical::character(message.ipo_flag()), ' ', false);
-        values[entry + ".payload.stockdirectorymessage.luldreferencepricetier"] = canonical::text(canonical::character(message.luld_reference_price_tier()), ' ', false);
-        values[entry + ".payload.stockdirectorymessage.etpflag"] = canonical::text(canonical::character(message.etp_flag()), ' ', false);
+        values[entry + ".payload.stockdirectorymessage.shortsalethresholdindicator"] = canonical::text(canonical::character(message.short_sale_threshold_indicator()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+        values[entry + ".payload.stockdirectorymessage.ipoflag"] = canonical::text(canonical::character(message.ipo_flag()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+        values[entry + ".payload.stockdirectorymessage.luldreferencepricetier"] = canonical::text(canonical::character(message.luld_reference_price_tier()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+        values[entry + ".payload.stockdirectorymessage.etpflag"] = canonical::text(canonical::character(message.etp_flag()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
         values[entry + ".payload.stockdirectorymessage.etpleveragefactor"] = canonical::number(message.etp_leverage_factor());
         values[entry + ".payload.stockdirectorymessage.inverseindicator"] = canonical::text(canonical::character(message.inverse_indicator()), ' ', false);
         values[entry + ".payload.stockdirectorymessage.bloombergid"] = canonical::text(std::string(message.bloomberg_id()), ' ', false);

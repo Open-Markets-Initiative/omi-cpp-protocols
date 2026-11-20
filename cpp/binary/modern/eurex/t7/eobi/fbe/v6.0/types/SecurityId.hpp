@@ -6,7 +6,7 @@
 
 namespace eurex::t7::eobi::fbe::v6_0 {
 
-// 
+// Unique instrument identifier
 struct SecurityId {
 
     static constexpr const char* name = "Security Id";

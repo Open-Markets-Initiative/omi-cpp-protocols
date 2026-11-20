@@ -485,10 +485,10 @@ struct buy_shares {
     type value_;
 };
 
-// Canceled Quantity Binary 2: Number of shares/contracts
-struct canceled_quantity_binary_2 {
-    using type = std::uint16_t;
-    static constexpr std::size_t size = 2;
+// Canceled Quantity Long: Number of shares/contracts
+struct canceled_quantity_long {
+    using type = std::uint32_t;
+    static constexpr std::size_t size = 4;
     static constexpr std::endian order = std::endian::little;
 
     constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
@@ -498,10 +498,10 @@ struct canceled_quantity_binary_2 {
     type value_;
 };
 
-// Canceled Quantity Binary 4: Number of shares/contracts
-struct canceled_quantity_binary_4 {
-    using type = std::uint32_t;
-    static constexpr std::size_t size = 4;
+// Canceled Quantity Short: Number of shares/contracts
+struct canceled_quantity_short {
+    using type = std::uint16_t;
+    static constexpr std::size_t size = 2;
     static constexpr std::endian order = std::endian::little;
 
     constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
@@ -690,21 +690,8 @@ struct participant_id {
     std::array<char, 4> value_;
 };
 
-// Price Binary 8: Auction price
-struct price_binary_8 {
-    using type = std::uint64_t;
-    static constexpr std::size_t size = 8;
-    static constexpr std::endian order = std::endian::little;
-
-    constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
-    constexpr operator type() const noexcept { return value(); }
-
-  protected:
-    type value_;
-};
-
-// Price Binary Long Price 8: The limit order price
-struct price_binary_long_price_8 {
+// Price Long: The limit order price
+struct price_long {
     using type = std::uint64_t;
     static constexpr std::size_t size = 8;
     static constexpr std::endian order = std::endian::little;
@@ -717,8 +704,8 @@ struct price_binary_long_price_8 {
     type value_;
 };
 
-// Price Binary Short Price 2: The limit order price
-struct price_binary_short_price_2 {
+// Price Short: The limit order price
+struct price_short {
     using type = std::uint16_t;
     static constexpr std::size_t size = 2;
     static constexpr std::endian order = std::endian::little;
@@ -731,10 +718,10 @@ struct price_binary_short_price_2 {
     type value_;
 };
 
-// Quantity Binary 2: Number of shares/contracts being added to the book (may be less than the number entered)
-struct quantity_binary_2 {
-    using type = std::uint16_t;
-    static constexpr std::size_t size = 2;
+// Quantity Long: Number of shares/contracts being added to the book (may be less than the number entered)
+struct quantity_long {
+    using type = std::uint32_t;
+    static constexpr std::size_t size = 4;
     static constexpr std::endian order = std::endian::little;
 
     constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
@@ -744,10 +731,10 @@ struct quantity_binary_2 {
     type value_;
 };
 
-// Quantity Binary 4: Number of shares/contracts being added to the book (may be less than the number entered)
-struct quantity_binary_4 {
-    using type = std::uint32_t;
-    static constexpr std::size_t size = 4;
+// Quantity Short: Number of shares/contracts being added to the book (may be less than the number entered)
+struct quantity_short {
+    using type = std::uint16_t;
+    static constexpr std::size_t size = 2;
     static constexpr std::endian order = std::endian::little;
 
     constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
@@ -1070,7 +1057,7 @@ struct auction_summary_message {
         time_offset,
         stock_symbol,
         auction_type,
-        price_binary_8,
+        price_long,
         shares>;
 
     // the member of the type asked for
@@ -1081,7 +1068,7 @@ struct auction_summary_message {
     PITCHFIELD(time_offset);
     PITCHFIELD(stock_symbol);
     PITCHFIELD(auction_type);
-    PITCHFIELD(price_binary_8);
+    PITCHFIELD(price_long);
     PITCHFIELD(shares);
 };
 
@@ -1228,9 +1215,9 @@ struct trade_expanded_message {
         time_offset,
         order_id,
         side_indicator,
-        quantity_binary_4,
+        quantity_long,
         symbol_long,
-        price_binary_long_price_8,
+        price_long,
         execution_id>;
 
     // the member of the type asked for
@@ -1241,9 +1228,9 @@ struct trade_expanded_message {
     PITCHFIELD(time_offset);
     PITCHFIELD(order_id);
     PITCHFIELD(side_indicator);
-    PITCHFIELD(quantity_binary_4);
+    PITCHFIELD(quantity_long);
     PITCHFIELD(symbol_long);
-    PITCHFIELD(price_binary_long_price_8);
+    PITCHFIELD(price_long);
     PITCHFIELD(execution_id);
 };
 
@@ -1260,9 +1247,9 @@ struct trade_short_message {
         time_offset,
         order_id,
         side_indicator,
-        quantity_binary_2,
+        quantity_short,
         symbol_short,
-        price_binary_short_price_2,
+        price_short,
         execution_id>;
 
     // the member of the type asked for
@@ -1273,9 +1260,9 @@ struct trade_short_message {
     PITCHFIELD(time_offset);
     PITCHFIELD(order_id);
     PITCHFIELD(side_indicator);
-    PITCHFIELD(quantity_binary_2);
+    PITCHFIELD(quantity_short);
     PITCHFIELD(symbol_short);
-    PITCHFIELD(price_binary_short_price_2);
+    PITCHFIELD(price_short);
     PITCHFIELD(execution_id);
 };
 
@@ -1292,9 +1279,9 @@ struct trade_long_message {
         time_offset,
         order_id,
         side_indicator,
-        quantity_binary_4,
+        quantity_long,
         symbol_short,
-        price_binary_long_price_8,
+        price_long,
         execution_id>;
 
     // the member of the type asked for
@@ -1305,9 +1292,9 @@ struct trade_long_message {
     PITCHFIELD(time_offset);
     PITCHFIELD(order_id);
     PITCHFIELD(side_indicator);
-    PITCHFIELD(quantity_binary_4);
+    PITCHFIELD(quantity_long);
     PITCHFIELD(symbol_short);
-    PITCHFIELD(price_binary_long_price_8);
+    PITCHFIELD(price_long);
     PITCHFIELD(execution_id);
 };
 
@@ -1363,8 +1350,8 @@ struct modify_order_short_message {
     using fields = tmp::list<
         time_offset,
         order_id,
-        quantity_binary_2,
-        price_binary_short_price_2,
+        quantity_short,
+        price_short,
         modify_flags>;
 
     // the member of the type asked for
@@ -1374,8 +1361,8 @@ struct modify_order_short_message {
   protected:
     PITCHFIELD(time_offset);
     PITCHFIELD(order_id);
-    PITCHFIELD(quantity_binary_2);
-    PITCHFIELD(price_binary_short_price_2);
+    PITCHFIELD(quantity_short);
+    PITCHFIELD(price_short);
     PITCHFIELD(modify_flags);
 };
 
@@ -1391,8 +1378,8 @@ struct modify_order_long_message {
     using fields = tmp::list<
         time_offset,
         order_id,
-        quantity_binary_4,
-        price_binary_long_price_8,
+        quantity_long,
+        price_long,
         modify_flags>;
 
     // the member of the type asked for
@@ -1402,8 +1389,8 @@ struct modify_order_long_message {
   protected:
     PITCHFIELD(time_offset);
     PITCHFIELD(order_id);
-    PITCHFIELD(quantity_binary_4);
-    PITCHFIELD(price_binary_long_price_8);
+    PITCHFIELD(quantity_long);
+    PITCHFIELD(price_long);
     PITCHFIELD(modify_flags);
 };
 
@@ -1419,7 +1406,7 @@ struct reduce_size_short_message {
     using fields = tmp::list<
         time_offset,
         order_id,
-        canceled_quantity_binary_2>;
+        canceled_quantity_short>;
 
     // the member of the type asked for
     template <typename Field>
@@ -1428,7 +1415,7 @@ struct reduce_size_short_message {
   protected:
     PITCHFIELD(time_offset);
     PITCHFIELD(order_id);
-    PITCHFIELD(canceled_quantity_binary_2);
+    PITCHFIELD(canceled_quantity_short);
 };
 
 static_assert(sizeof(reduce_size_short_message) == reduce_size_short_message::size, "reduce_size_short_message lies over its bytes exactly");
@@ -1443,7 +1430,7 @@ struct reduce_size_long_message {
     using fields = tmp::list<
         time_offset,
         order_id,
-        canceled_quantity_binary_4>;
+        canceled_quantity_long>;
 
     // the member of the type asked for
     template <typename Field>
@@ -1452,7 +1439,7 @@ struct reduce_size_long_message {
   protected:
     PITCHFIELD(time_offset);
     PITCHFIELD(order_id);
-    PITCHFIELD(canceled_quantity_binary_4);
+    PITCHFIELD(canceled_quantity_long);
 };
 
 static_assert(sizeof(reduce_size_long_message) == reduce_size_long_message::size, "reduce_size_long_message lies over its bytes exactly");
@@ -1470,7 +1457,7 @@ struct order_executed_at_price_size_message {
         executed_quantity,
         remaining_quantity,
         execution_id,
-        price_binary_long_price_8>;
+        price_long>;
 
     // the member of the type asked for
     template <typename Field>
@@ -1482,7 +1469,7 @@ struct order_executed_at_price_size_message {
     PITCHFIELD(executed_quantity);
     PITCHFIELD(remaining_quantity);
     PITCHFIELD(execution_id);
-    PITCHFIELD(price_binary_long_price_8);
+    PITCHFIELD(price_long);
 };
 
 static_assert(sizeof(order_executed_at_price_size_message) == order_executed_at_price_size_message::size, "order_executed_at_price_size_message lies over its bytes exactly");
@@ -1542,9 +1529,9 @@ struct add_order_expanded_message {
         time_offset,
         order_id,
         side_indicator,
-        quantity_binary_4,
+        quantity_long,
         symbol_long,
-        price_binary_long_price_8,
+        price_long,
         add_flags,
         participant_id>;
 
@@ -1556,9 +1543,9 @@ struct add_order_expanded_message {
     PITCHFIELD(time_offset);
     PITCHFIELD(order_id);
     PITCHFIELD(side_indicator);
-    PITCHFIELD(quantity_binary_4);
+    PITCHFIELD(quantity_long);
     PITCHFIELD(symbol_long);
-    PITCHFIELD(price_binary_long_price_8);
+    PITCHFIELD(price_long);
     PITCHFIELD(add_flags);
     PITCHFIELD(participant_id);
 };
@@ -1576,9 +1563,9 @@ struct add_order_short_message {
         time_offset,
         order_id,
         side_indicator,
-        quantity_binary_2,
+        quantity_short,
         symbol_short,
-        price_binary_short_price_2,
+        price_short,
         add_flags>;
 
     // the member of the type asked for
@@ -1589,9 +1576,9 @@ struct add_order_short_message {
     PITCHFIELD(time_offset);
     PITCHFIELD(order_id);
     PITCHFIELD(side_indicator);
-    PITCHFIELD(quantity_binary_2);
+    PITCHFIELD(quantity_short);
     PITCHFIELD(symbol_short);
-    PITCHFIELD(price_binary_short_price_2);
+    PITCHFIELD(price_short);
     PITCHFIELD(add_flags);
 };
 
@@ -1608,9 +1595,9 @@ struct add_order_long_message {
         time_offset,
         order_id,
         side_indicator,
-        quantity_binary_4,
+        quantity_long,
         symbol_short,
-        price_binary_long_price_8,
+        price_long,
         add_flags>;
 
     // the member of the type asked for
@@ -1621,9 +1608,9 @@ struct add_order_long_message {
     PITCHFIELD(time_offset);
     PITCHFIELD(order_id);
     PITCHFIELD(side_indicator);
-    PITCHFIELD(quantity_binary_4);
+    PITCHFIELD(quantity_long);
     PITCHFIELD(symbol_short);
-    PITCHFIELD(price_binary_long_price_8);
+    PITCHFIELD(price_long);
     PITCHFIELD(add_flags);
 };
 

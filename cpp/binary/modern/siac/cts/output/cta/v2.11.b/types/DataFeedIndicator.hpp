@@ -11,6 +11,8 @@ struct DataFeedIndicator {
 
     static constexpr auto name = "Data Feed Indicator";
     static constexpr std::size_t size = 1;
+    using type = char;
+static const type static_value = 'T';
 
     // default constructor
     constexpr DataFeedIndicator()

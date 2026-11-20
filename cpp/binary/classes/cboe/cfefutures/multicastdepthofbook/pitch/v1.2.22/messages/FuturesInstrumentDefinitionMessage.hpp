@@ -30,7 +30,7 @@ class FuturesInstrumentDefinitionMessage : public Message {
     static constexpr MessageCode message_type = MessageType::FuturesInstrumentDefinitionMessage;
 
     FuturesInstrumentDefinitionMessage() = default;
-    FuturesInstrumentDefinitionMessage(std::chrono::nanoseconds time_offset, const std::string& symbol, std::uint32_t unit_timestamp, const std::string& report_symbol, const FuturesFlags& futures_flags, std::uint32_t expiration_date, std::uint16_t contract_size, ListingState listing_state, Decimal price_increment, std::uint8_t leg_count, std::uint8_t leg_offset, std::uint8_t reserved_1, std::uint32_t contract_date, const std::vector<FutureLeg>& future_leg);
+    FuturesInstrumentDefinitionMessage(std::chrono::nanoseconds time_offset, const std::string& symbol, std::chrono::seconds unit_timestamp, const std::string& report_symbol, const FuturesFlags& futures_flags, std::uint32_t expiration_date, std::uint16_t contract_size, ListingState listing_state, Decimal price_increment, std::uint8_t leg_count, std::uint8_t leg_offset, std::uint8_t reserved_1, std::uint32_t contract_date, const std::vector<FutureLeg>& future_leg);
 
     // Time Offset: Nanosecond offset from last unit timestamp.
     std::chrono::nanoseconds time_offset() const;
@@ -43,8 +43,8 @@ class FuturesInstrumentDefinitionMessage : public Message {
 
     // Unit Timestamp: Unit timestamp expressed as number of whole seconds since the Epoch
     // (Midnight, January 1, 1970 UTC).
-    std::uint32_t unit_timestamp() const;
-    void set_unit_timestamp(std::uint32_t value);
+    std::chrono::seconds unit_timestamp() const;
+    void set_unit_timestamp(std::chrono::seconds value);
 
     // Report Symbol: Symbol for product or underlying security.
     const std::string& report_symbol() const;
@@ -114,7 +114,7 @@ class FuturesInstrumentDefinitionMessage : public Message {
   private:
     std::chrono::nanoseconds time_offset_{};
     std::string symbol_{};
-    std::uint32_t unit_timestamp_{};
+    std::chrono::seconds unit_timestamp_{};
     std::string report_symbol_{};
     FuturesFlags futures_flags_{};
     std::uint32_t expiration_date_{};

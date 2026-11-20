@@ -9,8 +9,8 @@ namespace nyse::arcaoptions::deepfeed::pillar::v1_2_m {
 
 // Price type indicator.
 enum class PriceType : std::uint8_t {
-    StrikePriceIsAmount = 0,  // Strike Price Is Amount
-    StrikePriceIsAmount2 = 1, // Strike Price Is Amount
+    StrikePriceIsDollarAmount = 0,  // Strike Price Is Dollar Amount
+    StrikePriceIsPercentAmount = 1, // Strike Price Is Percent Amount
 };
 
 // The documented name of a code, or empty for one the specification does not list

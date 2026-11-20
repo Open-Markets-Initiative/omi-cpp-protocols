@@ -49,9 +49,10 @@ struct execute_underlying_trade {
 
     static constexpr const char* name = "execute_underlying_trade";
     static constexpr std::size_t size = 1;
-    static constexpr bool is_optional = false;
+    static constexpr bool is_optional = true;
+    static constexpr enum_type null_value = static_cast<enum_type>(0);
 
-    using result_type = required<execute_underlying_trade::enum_type>;
+    using result_type = std::optional<execute_underlying_trade::enum_type>;
     using storage_type = result_type;
 
     constexpr execute_underlying_trade()
@@ -61,7 +62,8 @@ struct execute_underlying_trade {
      : value{ v } {}
 
     [[nodiscard]] constexpr result_type get() const {
-        return result_type{value};
+        const enum_type held = value;
+        return held == null_value ? std::nullopt : result_type{held};
     }
 
     constexpr void set(enum_type v) {
@@ -72,7 +74,11 @@ struct execute_underlying_trade {
         if (value.has_value())
             set(value.value());
         else
-            set(static_cast<enum_type>(0));
+            set(null_value);
+    }
+
+    constexpr void set_null() {
+        set(null_value);
     }
 
   protected:

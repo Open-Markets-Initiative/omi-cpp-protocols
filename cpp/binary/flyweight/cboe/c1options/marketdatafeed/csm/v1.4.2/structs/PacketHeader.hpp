@@ -1,6 +1,7 @@
 // Cboe.C1Options.MarketDataFeed.Csm.v1.4.2: structs/PacketHeader.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <ostream>
@@ -30,7 +31,7 @@ class PacketHeader {
 
     std::uint16_t packet_length() const { return wire::read_u16_be(at(1)); }
 
-    std::uint64_t sending_time() const { return wire::read_u64_be(at(3)); }
+    std::chrono::milliseconds sending_time() const { return std::chrono::milliseconds(static_cast<std::int64_t>(wire::read_u64_be(at(3)))); }
 
     std::uint8_t message_count() const { return wire::read_u8(at(11)); }
 
@@ -43,7 +44,7 @@ class PacketHeader {
         out << ", packet_length=";
         out << packet_length();
         out << ", sending_time=";
-        out << sending_time();
+        out << sending_time().count();
         out << ", message_count=";
         out << static_cast<int>(message_count());
         out << ", first_msg_seq_num=";

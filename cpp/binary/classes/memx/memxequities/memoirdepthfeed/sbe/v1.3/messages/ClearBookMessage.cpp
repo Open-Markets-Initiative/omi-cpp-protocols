@@ -16,7 +16,7 @@ void ClearBookMessage::set_timestamp(std::chrono::nanoseconds value) { timestamp
 std::uint16_t ClearBookMessage::security_id() const { return security_id_; }
 void ClearBookMessage::set_security_id(std::uint16_t value) { security_id_ = value; }
 
-PayloadCode ClearBookMessage::type() const { return message_type; }
+MessageCode ClearBookMessage::type() const { return message_type; }
 
 std::string_view ClearBookMessage::name() const { return "Clear Book Message"; }
 
@@ -50,11 +50,11 @@ std::size_t ClearBookMessage::encoded_size() const {
     return wire_size;
 }
 
-void ClearBookMessage::accept(PayloadVisitor& visitor) const {
+void ClearBookMessage::accept(Visitor& visitor) const {
     visitor.visit(*this);
 }
 
-std::unique_ptr<Payload> ClearBookMessage::clone() const {
+std::unique_ptr<Message> ClearBookMessage::clone() const {
     return std::make_unique<ClearBookMessage>(*this);
 }
 
@@ -67,7 +67,7 @@ void ClearBookMessage::print(std::ostream& out) const {
     out << '}';
 }
 
-bool ClearBookMessage::equals(const Payload& other) const {
+bool ClearBookMessage::equals(const Message& other) const {
     const auto* that = dynamic_cast<const ClearBookMessage*>(&other);
     return that != nullptr && *this == *that;
 }

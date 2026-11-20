@@ -7,8 +7,8 @@
 
 namespace nyse::amexoptions::complexfeed::xdp::v1_3_a {
 
-SequenceNumberResetMessage::SequenceNumberResetMessage(std::chrono::seconds source_time, std::chrono::nanoseconds source_time_ns, std::uint8_t product_id, std::uint8_t channel_id)
-  : source_time_(source_time), source_time_ns_(source_time_ns), product_id_(product_id), channel_id_(channel_id) {}
+SequenceNumberResetMessage::SequenceNumberResetMessage(std::chrono::seconds source_time, std::chrono::nanoseconds source_time_ns, std::uint8_t product_id, std::uint8_t channel_id, const std::array<std::byte, 2>& reserved_2)
+  : source_time_(source_time), source_time_ns_(source_time_ns), product_id_(product_id), channel_id_(channel_id), reserved_2_(reserved_2) {}
 
 std::chrono::seconds SequenceNumberResetMessage::source_time() const { return source_time_; }
 void SequenceNumberResetMessage::set_source_time(std::chrono::seconds value) { source_time_ = value; }
@@ -21,6 +21,10 @@ void SequenceNumberResetMessage::set_product_id(std::uint8_t value) { product_id
 
 std::uint8_t SequenceNumberResetMessage::channel_id() const { return channel_id_; }
 void SequenceNumberResetMessage::set_channel_id(std::uint8_t value) { channel_id_ = value; }
+
+const std::array<std::byte, 2>& SequenceNumberResetMessage::reserved_2() const { return reserved_2_; }
+std::array<std::byte, 2>& SequenceNumberResetMessage::reserved_2() { return reserved_2_; }
+void SequenceNumberResetMessage::set_reserved_2(const std::array<std::byte, 2>& value) { reserved_2_ = value; }
 
 MessageCode SequenceNumberResetMessage::type() const { return message_type; }
 
@@ -42,6 +46,9 @@ std::size_t SequenceNumberResetMessage::decode(const std::byte* data, std::size_
     channel_id_ = wire::read_u8(data + offset);
     offset += 1;
 
+    wire::read_bytes(data + offset, reserved_2_.data(), 2);
+    offset += 2;
+
     return offset;
 }
 
@@ -60,6 +67,9 @@ std::size_t SequenceNumberResetMessage::encode(std::byte* data, std::size_t capa
 
     wire::write_u8(data + offset, static_cast<std::uint8_t>(channel_id_));
     offset += 1;
+
+    wire::write_bytes(data + offset, reserved_2_.data(), 2);
+    offset += 2;
 
     return offset;
 }
@@ -86,6 +96,8 @@ void SequenceNumberResetMessage::print(std::ostream& out) const {
     out << static_cast<int>(product_id_);
     out << ", channel_id=";
     out << static_cast<int>(channel_id_);
+    out << ", reserved_2=";
+    print::hex(out, reserved_2_.data(), reserved_2_.size());
     out << '}';
 }
 
@@ -98,7 +110,8 @@ bool SequenceNumberResetMessage::operator==(const SequenceNumberResetMessage& ot
     return source_time_ == other.source_time_
         && source_time_ns_ == other.source_time_ns_
         && product_id_ == other.product_id_
-        && channel_id_ == other.channel_id_;
+        && channel_id_ == other.channel_id_
+        && reserved_2_ == other.reserved_2_;
 }
 
 bool SequenceNumberResetMessage::operator!=(const SequenceNumberResetMessage& other) const {

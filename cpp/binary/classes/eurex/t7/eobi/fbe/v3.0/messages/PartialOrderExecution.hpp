@@ -46,7 +46,7 @@ class PartialOrderExecution : public Message {
     std::optional<std::chrono::nanoseconds> trd_reg_ts_time_priority() const;
     void set_trd_reg_ts_time_priority(std::optional<std::chrono::nanoseconds> value);
 
-    // Security Id:
+    // Security Id: Unique instrument identifier
     std::optional<std::int64_t> security_id() const;
     void set_security_id(std::optional<std::int64_t> value);
 
@@ -54,7 +54,7 @@ class PartialOrderExecution : public Message {
     std::optional<std::uint32_t> trd_match_id() const;
     void set_trd_match_id(std::optional<std::uint32_t> value);
 
-    // Last Qty:
+    // Last Qty: Total executed matched quantity of this match event
     std::optional<std::int32_t> last_qty() const;
     void set_last_qty(std::optional<std::int32_t> value);
 

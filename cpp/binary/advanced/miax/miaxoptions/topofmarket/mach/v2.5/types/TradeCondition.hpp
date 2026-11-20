@@ -25,16 +25,16 @@ struct trade_condition {
         late_report_of_the_opening_trade_and_is_in_correct_sequence = 'H',
         auto_value = 'I',
         reopening_of_an_option = 'J',
-        reserved_K = 'K',
+        reserved_k = 'K',
         a_buy_and_a_sell_in_the_same_class = 'L',
         a_buy_and_a_sell_in_a_put_and_a_call = 'M',
-        reserved_N = 'N',
-        reserved_O = 'O',
+        reserved_n = 'N',
+        reserved_o = 'O',
         buy_or_sell_of_a_call_or_put = 'P',
         buy_of_a_call_and_a_sell_of_a_put_for_the_same_underlying_stock_or_index = 'Q',
         execution_of_an_order_which_was_stopped_at_a_price_that_did_not_constitute_a_trade_through_on_another_market_at_the_time_of_the_stop = 'R',
         execution_of_an_iso_order = 'S',
-        reserved_T = 'T',
+        reserved_t = 'T',
         trade_through_exempt = 'X',
         paired_prime = 'a',
         iso_paired_prime = 'b',
@@ -55,7 +55,7 @@ struct trade_condition {
         reserved_q = 'q',
         reserved_r = 'r',
         reserved_s = 's',
-        reserved_t = 't'
+        reserved_lower_case_t = 't'
     };
 
     static constexpr std::array<std::pair<std::string_view, enum_type>, 42> from_string_map = {{
@@ -87,19 +87,19 @@ struct trade_condition {
         {"Prime Customer To Customer Cross Or Prime Qcc", enum_type::prime_customer_to_customer_cross_or_prime_qcc},
         {"Regular", enum_type::regular},
         {"Reopening Of An Option", enum_type::reopening_of_an_option},
-        {"Reserved", enum_type::reserved_K},
-        {"Reserved", enum_type::reserved_N},
-        {"Reserved", enum_type::reserved_O},
-        {"Reserved", enum_type::reserved_T},
-        {"Reserved", enum_type::reserved_d},
-        {"Reserved", enum_type::reserved_e},
-        {"Reserved", enum_type::reserved_i},
-        {"Reserved", enum_type::reserved_m},
-        {"Reserved", enum_type::reserved_p},
-        {"Reserved", enum_type::reserved_q},
-        {"Reserved", enum_type::reserved_r},
-        {"Reserved", enum_type::reserved_s},
-        {"Reserved", enum_type::reserved_t},
+        {"Reserved d", enum_type::reserved_d},
+        {"Reserved e", enum_type::reserved_e},
+        {"Reserved i", enum_type::reserved_i},
+        {"Reserved K", enum_type::reserved_k},
+        {"Reserved Lower Case T", enum_type::reserved_lower_case_t},
+        {"Reserved m", enum_type::reserved_m},
+        {"Reserved N", enum_type::reserved_n},
+        {"Reserved O", enum_type::reserved_o},
+        {"Reserved p", enum_type::reserved_p},
+        {"Reserved q", enum_type::reserved_q},
+        {"Reserved r", enum_type::reserved_r},
+        {"Reserved s", enum_type::reserved_s},
+        {"Reserved T", enum_type::reserved_t},
         {"Trade Through Exempt", enum_type::trade_through_exempt}
     }};
 
@@ -116,37 +116,37 @@ struct trade_condition {
             case enum_type::late_report_of_the_opening_trade_and_is_in_correct_sequence: return "Late Report Of The Opening Trade And Is In Correct Sequence";
             case enum_type::auto_value: return "Auto";
             case enum_type::reopening_of_an_option: return "Reopening Of An Option";
-            case enum_type::reserved_K: return "Reserved";
+            case enum_type::reserved_k: return "Reserved K";
             case enum_type::a_buy_and_a_sell_in_the_same_class: return "A Buy And A Sell In The Same Class";
             case enum_type::a_buy_and_a_sell_in_a_put_and_a_call: return "A Buy And A Sell In A Put And A Call";
-            case enum_type::reserved_N: return "Reserved";
-            case enum_type::reserved_O: return "Reserved";
+            case enum_type::reserved_n: return "Reserved N";
+            case enum_type::reserved_o: return "Reserved O";
             case enum_type::buy_or_sell_of_a_call_or_put: return "Buy Or Sell Of A Call Or Put";
             case enum_type::buy_of_a_call_and_a_sell_of_a_put_for_the_same_underlying_stock_or_index: return "Buy Of A Call And A Sell Of A Put For The Same Underlying Stock Or Index";
             case enum_type::execution_of_an_order_which_was_stopped_at_a_price_that_did_not_constitute_a_trade_through_on_another_market_at_the_time_of_the_stop: return "Execution Of An Order Which Was Stopped At A Price That Did Not Constitute A Trade Through On Another Market At The Time Of The Stop";
             case enum_type::execution_of_an_iso_order: return "Execution Of An Iso Order";
-            case enum_type::reserved_T: return "Reserved";
+            case enum_type::reserved_t: return "Reserved T";
             case enum_type::trade_through_exempt: return "Trade Through Exempt";
             case enum_type::paired_prime: return "Paired Prime";
             case enum_type::iso_paired_prime: return "Iso Paired Prime";
             case enum_type::prime_customer_to_customer_cross_or_prime_qcc: return "Prime Customer To Customer Cross Or Prime Qcc";
-            case enum_type::reserved_d: return "Reserved";
-            case enum_type::reserved_e: return "Reserved";
+            case enum_type::reserved_d: return "Reserved d";
+            case enum_type::reserved_e: return "Reserved e";
             case enum_type::complex_transaction_that_is_not_complex_stock_tied_and_does_not_involve_legging: return "Complex Transaction That Is Not Complex Stock Tied And Does Not Involve Legging";
             case enum_type::complex_prime_transaction_that_is_not_complex_stock_tied_and_does_not_involve_legging: return "Complex Prime Transaction That Is Not Complex Stock Tied And Does Not Involve Legging";
             case enum_type::complex_prime_customer_to_customer_cross_or_complex_prime_qcc_transaction_that_is_not_complex_stock_tied: return "Complex Prime Customer To Customer Cross Or Complex Prime Qcc Transaction That Is Not Complex Stock Tied";
-            case enum_type::reserved_i: return "Reserved";
+            case enum_type::reserved_i: return "Reserved i";
             case enum_type::complex_legging_transaction_that_is_not_complex_stock_tied: return "Complex Legging Transaction That Is Not Complex Stock Tied";
             case enum_type::complex_prime_stock_tied_transaction_that_does_not_involve_legging: return "Complex Prime Stock Tied Transaction That Does Not Involve Legging";
             case enum_type::complex_prime_legging_transaction_that_is_not_complex_stock_tied: return "Complex Prime Legging Transaction That Is Not Complex Stock Tied";
-            case enum_type::reserved_m: return "Reserved";
+            case enum_type::reserved_m: return "Reserved m";
             case enum_type::complex_stock_tied_transaction_that_does_not_involve_legging: return "Complex Stock Tied Transaction That Does Not Involve Legging";
             case enum_type::complex_customer_to_customer_cross_stock_tied_or_complex_qcc_stock_tied_transaction: return "Complex Customer To Customer Cross Stock Tied Or Complex Qcc Stock Tied Transaction";
-            case enum_type::reserved_p: return "Reserved";
-            case enum_type::reserved_q: return "Reserved";
-            case enum_type::reserved_r: return "Reserved";
-            case enum_type::reserved_s: return "Reserved";
-            case enum_type::reserved_t: return "Reserved";
+            case enum_type::reserved_p: return "Reserved p";
+            case enum_type::reserved_q: return "Reserved q";
+            case enum_type::reserved_r: return "Reserved r";
+            case enum_type::reserved_s: return "Reserved s";
+            case enum_type::reserved_lower_case_t: return "Reserved Lower Case T";
             default: return "unknown";
         }
     }
@@ -189,7 +189,7 @@ struct trade_condition {
         if (value.has_value())
             set(value.value());
         else
-            set(enum_type::reserved_t);
+            set(enum_type::reserved_lower_case_t);
     }
 
   protected:

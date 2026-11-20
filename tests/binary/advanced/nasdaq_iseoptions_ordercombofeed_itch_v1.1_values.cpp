@@ -91,7 +91,7 @@ struct Reader {
         values[entry + ".payload.complexstrategyorderonbookmessage.timestamp"] = canonical::number(message.fields.timestamp.get().value());
         values[entry + ".payload.complexstrategyorderonbookmessage.strategyid"] = canonical::number(message.fields.strategy_id.get().value());
         values[entry + ".payload.complexstrategyorderonbookmessage.ordertype"] = canonical::text(canonical::character(message.fields.order_type.get().value()), ' ', false);
-        values[entry + ".payload.complexstrategyorderonbookmessage.side"] = canonical::text(canonical::character(message.fields.side.get().value()), ' ', false);
+        values[entry + ".payload.complexstrategyorderonbookmessage.side"] = canonical::text(canonical::character(message.fields.side.get().value()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
         values[entry + ".payload.complexstrategyorderonbookmessage.price"] = canonical::scaled(message.fields.price.get().value(), -4);
         values[entry + ".payload.complexstrategyorderonbookmessage.size"] = canonical::number(message.fields.size.get().value());
         values[entry + ".payload.complexstrategyorderonbookmessage.execflag"] = canonical::text(canonical::character(message.fields.exec_flag.get().value()), ' ', false);
@@ -111,7 +111,7 @@ struct Reader {
         values[entry + ".payload.complexstrategyauctionmessage.strategyid"] = canonical::number(message.fields.strategy_id.get().value());
         values[entry + ".payload.complexstrategyauctionmessage.auctionid"] = canonical::number(message.fields.auction_id.get().value());
         values[entry + ".payload.complexstrategyauctionmessage.ordertype"] = canonical::text(canonical::character(message.fields.order_type.get().value()), ' ', false);
-        values[entry + ".payload.complexstrategyauctionmessage.side"] = canonical::text(canonical::character(message.fields.side.get().value()), ' ', false);
+        values[entry + ".payload.complexstrategyauctionmessage.side"] = canonical::text(canonical::character(message.fields.side.get().value()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
         values[entry + ".payload.complexstrategyauctionmessage.price"] = canonical::scaled(message.fields.price.get().value(), -4);
         values[entry + ".payload.complexstrategyauctionmessage.size"] = canonical::number(message.fields.size.get().value());
         values[entry + ".payload.complexstrategyauctionmessage.execflag"] = canonical::text(canonical::character(message.fields.exec_flag.get().value()), ' ', false);

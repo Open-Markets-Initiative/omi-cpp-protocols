@@ -19,7 +19,7 @@ struct ord_rej_reason {
         orders_may_not_be_entered_while_the_market_is_closedpaused = 1003,
         fix_field_missing_or_incorrect = 1007,
         required_field_missing = 1010,
-        fix_field_incorrect_001011 = 1011,
+        fix_field_incorrect = 1011,
         price_must_be_greater_than_zero = 1012,
         invalid_order_qualifier = 1013,
         user_not_authorized_to_trade = 1014,
@@ -30,7 +30,7 @@ struct ord_rej_reason {
         order_gtd_expire_date_is_before_the_current_or_next_if_not_currently_in_a_session_trading_session_end_date = 2019,
         cannot_modify_order_because_order_does_not_exist = 2045,
         disclosed_quantity_cannot_be_greater_than_total_or_remaining_quantity = 2046,
-        order_contract_is_unknown_002047 = 2047,
+        order_contract_is_unknown = 2047,
         the_order_was_submitted_with_a_different_sendercompid_than_the_requesting_cancel = 2048,
         the_order_was_submitted_with_a_different_clorderid_than_the_correlationclorderid_of_the_requesting_cancel = 2049,
         the_order_was_submitted_with_a_different_clorderid_than_the_originalclorderid_of_the_requesting_cancel = 2050,
@@ -122,11 +122,11 @@ struct ord_rej_reason {
         wrong_type_of_request_for_termo = 6018,
         days_to_settlement_must_be_between_16_and_999 = 6019,
         days_to_settlement_must_be_between_16_and_90 = 6020,
-        instrument_not_allowed_to_this_market_006021 = 6021,
+        instrument_not_allowed_to_this_market = 6021,
         instrument_not_allowed_to_this_market_006022 = 6022,
         termo_price_should_be_greater_than_zero = 6023,
         termo_messages_should_not_be_entered_when_market_is_paused = 6024,
-        termo_messages_should_not_be_entered_when_market_is_pre_open_006025 = 6025,
+        termo_messages_should_not_be_entered_when_market_is_pre_open = 6025,
         termo_messages_should_not_be_entered_when_market_is_pcp = 6026,
         termo_messages_should_not_be_entered_when_market_is_no_cancel = 6027,
         termo_messages_should_not_be_entered_when_market_is_reserved = 6028,
@@ -137,10 +137,10 @@ struct ord_rej_reason {
         received_a_null_adminoperation = 6033,
         first_trade_of_day_for_underlying_termo_instrument = 6034,
         termo_messages_should_not_be_entered_when_market_is_in_final_closing_call = 6035,
-        invalid_cash_trade_in_tvr_006036 = 6036,
+        invalid_cash_trade_in_tvr = 6036,
         only_buy_entry_request_for_tvr_is_accepted = 6037,
         there_is_no_bid_and_ask_for_underlying_contract = 6038,
-        invalid_price_006039 = 6039,
+        invalid_price = 6039,
         invalid_cash_trade_in_tvr_006040 = 6040,
         invalid_cash_trade_in_tvr_006041 = 6041,
         invalid_cash_trade_in_tvr_006042 = 6042,
@@ -168,7 +168,7 @@ struct ord_rej_reason {
         order_type_not_permitted_while_the_market_is_reserved = 7027,
         order_session_date_is_in_the_past = 7028,
         orders_may_not_be_entered_while_the_market_is_forbidden = 7029,
-        quote_rejected_exchange_security_is_forbidden_007030 = 7030,
+        quote_rejected_exchange_security_is_forbidden = 7030,
         orders_may_not_be_entered_while_the_market_is_preclosed = 7031,
         quote_rejected_exchange_security_is_preclosed = 7032,
         orders_may_not_be_entered_while_the_market_is_open = 7033,
@@ -268,44 +268,44 @@ struct ord_rej_reason {
         internal_error = 30005,
         timeout_waiting_risk_evaluation = 30006,
         timeout_waiting_risk_evaluation_low_priority = 30007,
-        broker_negotiation_blocked_030011 = 30011,
-        broker_not_available_030012 = 30012,
-        brokers_capture_account_not_found_030013 = 30013,
-        brokers_segment_negotiation_blocked_030014 = 30014,
-        broker_segment_not_available_030015 = 30015,
-        brokers_segment_protected_mode_under_activation_030016 = 30016,
+        broker_negotiation_blocked = 30011,
+        broker_not_available = 30012,
+        brokers_capture_account_not_found = 30013,
+        brokers_segment_negotiation_blocked = 30014,
+        broker_segment_not_available = 30015,
+        brokers_segment_protected_mode_under_activation = 30016,
         broker_pn_negotiation_blocked = 30017,
         broker_pn_not_available = 30018,
         broker_pn_protected_mode_under_activation = 30019,
-        account_negotiation_blocked_030021 = 30021,
-        account_not_available_030022 = 30022,
-        accounts_protected_mode_under_activation_030023 = 30023,
-        account_mandatory_on_dma_orders_030024 = 30024,
-        transient_account_is_hierarchically_blocked_on_protected_mode_030025 = 30025,
-        crossorders_or_crossforward_not_allowed_while_account_in_protected_mode_030026 = 30026,
-        transient_account_not_allowed_in_extended_hours_030027 = 30027,
-        document_negotiation_blocked_030031 = 30031,
-        document_not_available_030032 = 30032,
-        documents_protected_mode_under_activation_030033 = 30033,
-        executor_document_cannot_use_default_broker_profile_030034 = 30034,
-        document_in_blocked_profile_030035 = 30035,
-        crossorders_or_crossforward_not_allowed_while_document_in_protected_mode_030036 = 30036,
-        entering_trader_negotiation_blocked_030041 = 30041,
-        entering_trader_not_available_030042 = 30042,
-        entering_trader_blocked_by_sfd_overflow_030043 = 30043,
-        non_dma_orders_must_provide_account_while_in_brokers_protected_mode_030044 = 30044,
-        entering_trader_not_authorized_to_trade_accountless_orders_030045 = 30045,
-        entering_trader_cannot_trade_on_behalf_of_other_firms_account_030046 = 30046,
-        symbol_not_available_030050 = 30050,
-        symbol_internal_data_corrupted_030051 = 30051,
-        fix_message_type_does_not_support_operations_on_such_symbol_030052 = 30052,
-        symbols_underlying_not_found_for_risk_aggregation_030053 = 30053,
-        symbols_risk_unit_matrix_not_available_030054 = 30054,
-        symbols_reference_price_missing_market_orders_not_allowed_030055 = 30055,
-        symbols_calculated_price_invalid_032056 = 32056,
-        spreads_leg_not_available_030060 = 30060,
-        spreads_leg_internal_data_corrupted_030061 = 30061,
-        unexpected_internal_error_during_risk_evaluation_030070 = 30070,
+        account_negotiation_blocked = 30021,
+        account_not_available = 30022,
+        accounts_protected_mode_under_activation = 30023,
+        account_mandatory_on_dma_orders = 30024,
+        transient_account_is_hierarchically_blocked_on_protected_mode = 30025,
+        crossorders_or_crossforward_not_allowed_while_account_in_protected_mode = 30026,
+        transient_account_not_allowed_in_extended_hours = 30027,
+        document_negotiation_blocked = 30031,
+        document_not_available = 30032,
+        documents_protected_mode_under_activation = 30033,
+        executor_document_cannot_use_default_broker_profile = 30034,
+        document_in_blocked_profile = 30035,
+        crossorders_or_crossforward_not_allowed_while_document_in_protected_mode = 30036,
+        entering_trader_negotiation_blocked = 30041,
+        entering_trader_not_available = 30042,
+        entering_trader_blocked_by_sfd_overflow = 30043,
+        non_dma_orders_must_provide_account_while_in_brokers_protected_mode = 30044,
+        entering_trader_not_authorized_to_trade_accountless_orders = 30045,
+        entering_trader_cannot_trade_on_behalf_of_other_firms_account = 30046,
+        symbol_not_available = 30050,
+        symbol_internal_data_corrupted = 30051,
+        fix_message_type_does_not_support_operations_on_such_symbol = 30052,
+        symbols_underlying_not_found_for_risk_aggregation = 30053,
+        symbols_risk_unit_matrix_not_available = 30054,
+        symbols_reference_price_missing_market_orders_not_allowed = 30055,
+        symbols_calculated_price_invalid = 32056,
+        spreads_leg_not_available = 30060,
+        spreads_leg_internal_data_corrupted = 30061,
+        unexpected_internal_error_during_risk_evaluation = 30070,
         sfd_broker_pn_pn_document_aggregation_day_trade_cash_balance_stop_loss_not_configured = 30113,
         sdp_broker_pn_pn_document_aggregation_order_exceeded_cash_settlement_exposure = 30114,
         rmkt_broker_pn_pn_document_aggregation_order_quantity_exceeded_risk_increase = 30115,
@@ -314,8 +314,8 @@ struct ord_rej_reason {
         spvd_broker_pn_pn_trader_aggregation_order_exceeded_potential_short_uncovered_balance = 30118,
         rmse_broker_pn_pn_document_aggregation_order_exceeded_risk_increase_at_extended_session = 30119,
         rmse_broker_order_exceeded_risk_increase_at_extended_session = 30166,
-        mkta_account_buy_not_allowed_for_symbols_market_030201 = 30201,
-        mkta_account_sell_not_allowed_for_symbols_market_030202 = 30202,
+        mkta_account_buy_not_allowed_for_symbols_market = 30201,
+        mkta_account_sell_not_allowed_for_symbols_market = 30202,
         tmoc_account_maximum_order_size_exceeded_for_single_order = 30204,
         tmov_account_maximum_order_size_exceeded_for_single_order = 30205,
         spci_account_order_quantity_exceeded_short_position_per_instrument = 30206,
@@ -324,95 +324,95 @@ struct ord_rej_reason {
         rmkt_account_order_quantity_exceeded_risk_increase = 30210,
         irmkt_account_order_quantity_exceeded_risk_increase_reducing_mode = 30211,
         spi_account_order_quantity_exceeded_long_and_short_position_reducing_mode = 30212,
-        std_account_termo_not_allowed_protected_mode_enabled_030213 = 30213,
-        spvd_account_order_exceeded_potential_short_uncovered_balance_030215 = 30215,
-        mkta_document_buysell_symbols_market_not_configured_030300 = 30300,
-        mkta_document_buy_not_allowed_for_symbols_market_030301 = 30301,
-        mkta_document_sell_not_allowed_for_symbols_market_030302 = 30302,
-        tmox_document_max = 30303,
+        std_account_termo_not_allowed_protected_mode_enabled = 30213,
+        spvd_account_order_exceeded_potential_short_uncovered_balance = 30215,
+        mkta_document_buysell_symbols_market_not_configured = 30300,
+        mkta_document_buy_not_allowed_for_symbols_market = 30301,
+        mkta_document_sell_not_allowed_for_symbols_market = 30302,
+        tmox_document_max_bidoffer_quantity_not_configured = 30303,
         tmoc_document_max_bid_quantity_exceeded_for_single_order = 30304,
         tmov_document_max_offer_quantity_exceeded_for_single_order = 30305,
         spci_document_order_quantity_exceeded_max_bid_potential_balance = 30306,
         spvi_document_order_quantity_exceeded_max_offer_potential_balance = 30307,
         sdp_document_order_exceeded_max_financial_potential_balance_due = 30308,
         std_document_order_quantity_exceeded_max_operations_forward_balance = 30309,
-        rmkt = 30310,
+        rmkt_document_order_quantity_exceeded_max_market_risk = 30310,
         irmkt_document_order_quantity_exceeded_max_incremental_market_risk = 30311,
         spi_document_order_quantity_exceeded_previous_potencial_balance = 30312,
-        std_document_termo_not_allowed = 30313,
-        sfd_document_day_trade_cash_balance_stop_loss_not_configured_030314 = 30314,
+        std_document_termo_not_allowed_protected_mode_enabled = 30313,
+        sfd_document_day_trade_cash_balance_stop_loss_not_configured = 30314,
         spvd_document_order_exceeded_potential_short_uncovered_balance_030315 = 30315,
-        rmse_document_order_exceeded_risk_increase_at_extended_session_030316 = 30316,
-        rmse_document_order_exceeded_risk_increase_of_broker_at_extended_session_030317 = 30317,
-        mkta_entering_trader_buysell_symbols_market_not_configured_030400 = 30400,
-        mkta_entering_trader_buy_not_allowed_for_symbols_market_030401 = 30401,
-        mkta_entering = 30402,
+        rmse_document_order_exceeded_risk_increase_at_extended_session = 30316,
+        rmse_document_order_exceeded_risk_increase_of_broker_at_extended_session = 30317,
+        mkta_entering_trader_buysell_symbols_market_not_configured = 30400,
+        mkta_entering_trader_buy_not_allowed_for_symbols_market = 30401,
+        mkta_entering_trader_sell_not_allowed_for_symbols_market = 30402,
         tmox_entering_trader_max_bidoffer_quantity_not_configured = 30403,
         tmoc_entering_trader_max_bid_quantity_exceeded_for_single_order = 30404,
-        tmov_entering_trader_max_offer_quantity_exceeded_for_si = 30405,
+        tmov_entering_trader_max_offer_quantity_exceeded_for_single_order = 30405,
         spci_entering_trader_order_quantity_exceeded_max_bid_potential_balance = 30406,
         spvi_entering_trader_order_quantity_exceeded_max_offer_potential_balance = 30407,
-        sdp_entering_trader_order_exceeded_max_financial_potential = 30408,
+        sdp_entering_trader_order_exceeded_max_financial_potential_balance_due = 30408,
         spvd_trader_order_exceeded_potential_short_uncovered_balance = 30415,
-        oms_unexpected_internal_error_030500 = 30500,
-        oms_invalid_session_or_symbol_030501 = 30501,
-        oms_clordid_cannot_be_empty_030502 = 30502,
-        oms_clordid_is_duplicated_030503 = 30503,
-        oms_clordid_not_found_030504 = 30504,
-        oms_origclordid_cannot_be_empty_030505 = 30505,
-        oms_crossid_cannot_be_empty_030506 = 30506,
-        oms_clordid_is_duplicated_within_cross_order_030507 = 30507,
-        oms_cross_order_modification_is_not_allowed_030508 = 30508,
-        oms_orderid_not_found_030509 = 30509,
-        oms_orderid_cannot_be_empty_030510 = 30510,
-        oms_quotereqid_cannot_be_empty_030511 = 30511,
-        oms_quotereqid_is_duplicated_030512 = 30512,
-        oms_quotereqid_not_found_030513 = 30513,
-        oms_quoteid_cannot_be_empty_030514 = 30514,
-        oms_in = 30521,
-        oms = 30522,
-        oms_entering_firm_modification_is_not_allowed_030523 = 30523,
-        oms_account_modification_on_dma_order_is_not_allowed_030524 = 30524,
-        oms_account_information_missing_on_non = 30525,
-        oms_entering_trader = 30526,
-        oms_received_execution_report_rejection_for_an_active_order_030527 = 30527,
-        broker_negotiation_blocked_031011 = 31011,
-        broker_not_available_031012 = 31012,
-        brokers_capture_account_not_found_031013 = 31013,
-        brokers_segment_negotiation_blocked_031014 = 31014,
-        broker_segment_not_available_031015 = 31015,
-        brokers_segment_protected_mode_under_activation_031016 = 31016,
-        account_negotiation_blocked_031021 = 31021,
-        account_not_available_031022 = 31022,
-        accounts_protected_mode_under_activation_031023 = 31023,
-        account_mandatory_on_dma_orders_031024 = 31024,
-        transient_account_is_hierarchically_blocked_on_protected_mode_031025 = 31025,
-        crossorders_or_crossforward_not_allowed_while_account_in_protected_mode_031026 = 31026,
-        transient_account_not_allowed_in_extended_hours_031027 = 31027,
-        document_negotiation_blocked_031031 = 31031,
-        document_not_available_031032 = 31032,
-        documents_protected_mode_under_activation_031033 = 31033,
-        executor_document_cannot_use_default_broker_profile_031034 = 31034,
-        document_in_blocked_profile_031035 = 31035,
-        crossorders_or_crossforward_not_allowed_while_document_in_protected_mode_031036 = 31036,
-        entering_trader_negotiation_blocked_031041 = 31041,
-        entering_trader_not_available_031042 = 31042,
-        entering_trader_blocked_by_sfd_overflow_031043 = 31043,
-        non_dma_orders_must_provide_account_while_in_brokers_protected_mode_031044 = 31044,
-        entering_trader_not_authorized_to_trade_accountless_orders_031045 = 31045,
-        entering_trader_cannot_trade_on_behalf_of_other_firms_account_031046 = 31046,
-        symbol_not_available_031050 = 31050,
-        symbol_internal_data_corrupted_031051 = 31051,
-        fix_message_type_does_not_support_operations_on_such_symbol_031052 = 31052,
-        symbols_underlying_not_found_for_risk_aggregation_031053 = 31053,
-        symbols_risk_unit_matrix_not_available_031054 = 31054,
-        symbols_reference_price_missing_market_orders_not_allowed_031055 = 31055,
-        symbols_calculated_price_invalid_031056 = 31056,
-        spreads_leg_not_available_031060 = 31060,
-        spreads_leg_internal_data_corrupted_031061 = 31061,
-        unexpected_internal_error_during_risk_evaluation_031070 = 31070,
-        mkta_account_buy_not_allowed_for_symbols_market_031201 = 31201,
-        mkta_account_sell_not_allowed_for_symbols_market_031202 = 31202,
+        oms_unexpected_internal_error = 30500,
+        oms_invalid_session_or_symbol = 30501,
+        oms_clordid_cannot_be_empty = 30502,
+        oms_clordid_is_duplicated = 30503,
+        oms_clordid_not_found = 30504,
+        oms_origclordid_cannot_be_empty = 30505,
+        oms_crossid_cannot_be_empty = 30506,
+        oms_clordid_is_duplicated_within_cross_order = 30507,
+        oms_cross_order_modification_is_not_allowed = 30508,
+        oms_orderid_not_found = 30509,
+        oms_orderid_cannot_be_empty = 30510,
+        oms_quotereqid_cannot_be_empty = 30511,
+        oms_quotereqid_is_duplicated = 30512,
+        oms_quotereqid_not_found = 30513,
+        oms_quoteid_cannot_be_empty = 30514,
+        oms_inflight_modification_is_not_allowed = 30521,
+        oms_side_modification_is_not_allowed = 30522,
+        oms_entering_firm_modification_is_not_allowed = 30523,
+        oms_account_modification_on_dma_order_is_not_allowed = 30524,
+        oms_account_information_missing_on_nondma_order = 30525,
+        oms_entering_trader_modification_on_nondma_order_is_not_allowed = 30526,
+        oms_received_execution_report_rejection_for_an_active_order = 30527,
+        broker_negotiation_blocked_line_carrying = 31011,
+        broker_not_available_line_carrying = 31012,
+        brokers_capture_account_not_found_line_carrying = 31013,
+        brokers_segment_negotiation_blocked_line_carrying = 31014,
+        broker_segment_not_available_line_carrying = 31015,
+        brokers_segment_protected_mode_under_activation_line_carrying = 31016,
+        account_negotiation_blocked_line_carrying = 31021,
+        account_not_available_line_carrying = 31022,
+        accounts_protected_mode_under_activation_line_carrying = 31023,
+        account_mandatory_on_dma_orders_line_carrying = 31024,
+        transient_account_is_hierarchically_blocked_on_protected_mode_line_carrying = 31025,
+        crossorders_or_crossforward_not_allowed_while_account_in_protected_mode_line_carrying = 31026,
+        transient_account_not_allowed_in_extended_hours_line_carrying = 31027,
+        document_negotiation_blocked_line_carrying = 31031,
+        document_not_available_line_carrying = 31032,
+        documents_protected_mode_under_activation_line_carrying = 31033,
+        executor_document_cannot_use_default_broker_profile_line_carrying = 31034,
+        document_in_blocked_profile_line_carrying = 31035,
+        crossorders_or_crossforward_not_allowed_while_document_in_protected_mode_line_carrying = 31036,
+        entering_trader_negotiation_blocked_line_carrying = 31041,
+        entering_trader_not_available_line_carrying = 31042,
+        entering_trader_blocked_by_sfd_overflow_line_carrying = 31043,
+        non_dma_orders_must_provide_account_while_in_brokers_protected_mode_line_carrying = 31044,
+        entering_trader_not_authorized_to_trade_accountless_orders_line_carrying = 31045,
+        entering_trader_cannot_trade_on_behalf_of_other_firms_account_line_carrying = 31046,
+        symbol_not_available_line_carrying = 31050,
+        symbol_internal_data_corrupted_line_carrying = 31051,
+        fix_message_type_does_not_support_operations_on_such_symbol_line_carrying = 31052,
+        symbols_underlying_not_found_for_risk_aggregation_line_carrying = 31053,
+        symbols_risk_unit_matrix_not_available_line_carrying = 31054,
+        symbols_reference_price_missing_market_orders_not_allowed_line_carrying = 31055,
+        symbols_calculated_price_invalid_line_carrying = 31056,
+        spreads_leg_not_available_line_carrying = 31060,
+        spreads_leg_internal_data_corrupted_line_carrying = 31061,
+        unexpected_internal_error_during_risk_evaluation_line_carrying = 31070,
+        mkta_account_buy_not_allowed_for_symbols_market_line_carrying = 31201,
+        mkta_account_sell_not_allowed_for_symbols_market_line_carrying = 31202,
         tmoc_account_max_bid_quantity_exceeded_for_single_order = 31204,
         tmov_account_max_offer_quantity_exceeded_for_single_order = 31205,
         spci_account_order_quantity_exceeded_max_bid_potential_balance = 31206,
@@ -421,11 +421,11 @@ struct ord_rej_reason {
         rmkt_account_order_quantity_exceeded_max_market_risk = 31210,
         irmkt_account_order_quantity_exceeded_max_incremental_market_risk = 31211,
         spi_account_order_quantity_exceeded_previous_potencial_balance = 31212,
-        std_account_termo_not_allowed_protected_mode_enabled_031213 = 31213,
-        spvd_account_order_exceeded_potential_short_uncovered_balance_031215 = 31215,
-        mkta_document_buysell_symbols_market_not_configured_031300 = 31300,
-        mkta_document_buy_not_allowed_for_symbols_market_031301 = 31301,
-        mkta_document_sell_not_allowed_for_symbols_market_031302 = 31302,
+        std_account_termo_not_allowed_protected_mode_enabled_line_carrying = 31213,
+        spvd_account_order_exceeded_potential_short_uncovered_balance_line_carrying = 31215,
+        mkta_document_buysell_symbols_market_not_configured_line_carrying = 31300,
+        mkta_document_buy_not_allowed_for_symbols_market_line_carrying = 31301,
+        mkta_document_sell_not_allowed_for_symbols_market_line_carrying = 31302,
         tmox_document_maximum_order_size_not_configured = 31303,
         tmoc_document_maximum_order_size_exceeded_for_single_order = 31304,
         tmov_document_maximum_order_size_exceeded_for_single_order = 31305,
@@ -436,43 +436,43 @@ struct ord_rej_reason {
         rmkt_document_order_quantity_exceeded_risk_increase = 31310,
         irmkt_document_order_quantity_exceeded_risk_increase_reducing_mode = 31311,
         spi_document_order_quantity_exceeded_long_and_short_position_reducing_mode = 31312,
-        std_document_termo_not_allowed_protected_mode_enabled = 31313,
-        sfd_document_day_trade_cash_balance_stop_loss_not_configured_031314 = 31314,
+        std_document_termo_not_allowed_protected_mode_enabled_line_carrying = 31313,
+        sfd_document_day_trade_cash_balance_stop_loss_not_configured_line_carrying = 31314,
         spvd_document_order_exceeded_potential_short_uncovered_balance_031315 = 31315,
-        rmse_document_order_exceeded_risk_increase_at_extended_session_031316 = 31316,
-        rmse_document_order_exceeded_risk_increase_of_broker_at_extended_session_031317 = 31317,
-        mkta_entering_trader_buysell_symbols_market_not_configured_031400 = 31400,
-        mkta_entering_trader_buy_not_allowed_for_symbols_market_031401 = 31401,
-        mkta_entering_trader_sell_not_allowed_for_symbols_market = 31402,
+        rmse_document_order_exceeded_risk_increase_at_extended_session_line_carrying = 31316,
+        rmse_document_order_exceeded_risk_increase_of_broker_at_extended_session_line_carrying = 31317,
+        mkta_entering_trader_buysell_symbols_market_not_configured_line_carrying = 31400,
+        mkta_entering_trader_buy_not_allowed_for_symbols_market_line_carrying = 31401,
+        mkta_entering_trader_sell_not_allowed_for_symbols_market_line_carrying = 31402,
         tmox_entering_trader_maximum_order_size_not_configured = 31403,
         tmoc_entering_trader_maximum_order_size_exceeded_for_single_order = 31404,
         tmov_entering_trader_maximum_order_size_exceeded_for_single_order = 31405,
         spci_entering_trader_order_quantity_exceeded_short_position_per_instrument = 31406,
         spvi_entering_trader_order_quantity_exceeded_long_position_per_instrument = 31407,
         sdp_entering_trader_order_exceeded_cash_settlement_exposure = 31408,
-        oms_unexpected_internal_error_031500 = 31500,
-        oms_invalid_session_or_symbol_031501 = 31501,
-        oms_clordid_cannot_be_empty_031502 = 31502,
-        oms_clordid_is_duplicated_031503 = 31503,
-        oms_clordid_not_found_031504 = 31504,
-        oms_origclordid_cannot_be_empty_031505 = 31505,
-        oms_crossid_cannot_be_empty_031506 = 31506,
-        oms_clordid_is_duplicated_within_cross_order_031507 = 31507,
-        oms_cross_order_modification_is_not_allowed_031508 = 31508,
-        oms_orderid_not_found_031509 = 31509,
-        oms_orderid_cannot_be_empty_031510 = 31510,
-        oms_quotereqid_cannot_be_empty_031511 = 31511,
-        oms_quotereqid_is_duplicated_031512 = 31512,
-        oms_quotereqid_not_found_031513 = 31513,
-        oms_quoteid_cannot_be_empty_031514 = 31514,
-        oms_inflight_modification_is_not_allowed = 31521,
-        oms_side_modification_is_not_allowed = 31522,
-        oms_entering_firm_modification_is_not_allowed_031523 = 31523,
-        oms_account_modification_on_dma_order_is_not_allowed_031524 = 31524,
-        oms_account_information_missing_on_nondma_order = 31525,
-        oms_entering_trader_modification_on_nondma_order_is_not_allowed = 31526,
-        oms_received_execution_report_rejection_for_an_active_order_031527 = 31527,
-        field_missing_or_incorrect_032000 = 32000,
+        oms_unexpected_internal_error_line_carrying = 31500,
+        oms_invalid_session_or_symbol_line_carrying = 31501,
+        oms_clordid_cannot_be_empty_line_carrying = 31502,
+        oms_clordid_is_duplicated_line_carrying = 31503,
+        oms_clordid_not_found_line_carrying = 31504,
+        oms_origclordid_cannot_be_empty_line_carrying = 31505,
+        oms_crossid_cannot_be_empty_line_carrying = 31506,
+        oms_clordid_is_duplicated_within_cross_order_line_carrying = 31507,
+        oms_cross_order_modification_is_not_allowed_line_carrying = 31508,
+        oms_orderid_not_found_line_carrying = 31509,
+        oms_orderid_cannot_be_empty_line_carrying = 31510,
+        oms_quotereqid_cannot_be_empty_line_carrying = 31511,
+        oms_quotereqid_is_duplicated_line_carrying = 31512,
+        oms_quotereqid_not_found_line_carrying = 31513,
+        oms_quoteid_cannot_be_empty_line_carrying = 31514,
+        oms_inflight_modification_is_not_allowed_line_carrying = 31521,
+        oms_side_modification_is_not_allowed_line_carrying = 31522,
+        oms_entering_firm_modification_is_not_allowed_line_carrying = 31523,
+        oms_account_modification_on_dma_order_is_not_allowed_line_carrying = 31524,
+        oms_account_information_missing_on_nondma_order_line_carrying = 31525,
+        oms_entering_trader_modification_on_nondma_order_is_not_allowed_line_carrying = 31526,
+        oms_received_execution_report_rejection_for_an_active_order_line_carrying = 31527,
+        field_missing_or_incorrect = 32000,
         line_not_available_or_busy = 32001,
         line_internal_error = 32002,
         line_recovering_or_starting_up = 32003,
@@ -495,12 +495,12 @@ struct ord_rej_reason {
         line_administratively_blocked = 32020,
         invalid_price_032021 = 32021,
         system_overloaded = 32022,
-        system_error_032023 = 32023,
+        system_error = 32023,
         throttle_limit_reached = 33000,
         invalid_security_id = 33001,
         unknown_market_segment_id = 33002,
-        field_missing_or_incorrect_033003 = 33003,
-        system_error_033050 = 33050
+        field_missing_or_incorrect_binary_gateway = 33003,
+        system_error_binary_gateway = 33050
     };
 
     static constexpr std::array<std::pair<std::string_view, enum_type>, 486> from_string_map = {{
@@ -508,77 +508,77 @@ struct ord_rej_reason {
         {"[IRMKT] Account: Order quantity exceeded risk increase - reducing mode", enum_type::irmkt_account_order_quantity_exceeded_risk_increase_reducing_mode},
         {"[IRMKT] Document: Order quantity exceeded Max Incremental Market Risk", enum_type::irmkt_document_order_quantity_exceeded_max_incremental_market_risk},
         {"[IRMKT] Document: Order quantity exceeded risk increase - reducing mode", enum_type::irmkt_document_order_quantity_exceeded_risk_increase_reducing_mode},
-        {"[MKTA] Account: Buy not allowed for symbol's market", enum_type::mkta_account_buy_not_allowed_for_symbols_market_030201},
-        {"[MKTA] Account: Buy not allowed for symbol's market", enum_type::mkta_account_buy_not_allowed_for_symbols_market_031201},
-        {"[MKTA] Account: Sell not allowed for symbol's market", enum_type::mkta_account_sell_not_allowed_for_symbols_market_030202},
-        {"[MKTA] Account: Sell not allowed for symbol's market", enum_type::mkta_account_sell_not_allowed_for_symbols_market_031202},
-        {"[MKTA] Document: Buy not allowed for symbol's market", enum_type::mkta_document_buy_not_allowed_for_symbols_market_030301},
-        {"[MKTA] Document: Buy not allowed for symbol's market", enum_type::mkta_document_buy_not_allowed_for_symbols_market_031301},
-        {"[MKTA] Document: Buy/Sell symbol's market not configured", enum_type::mkta_document_buysell_symbols_market_not_configured_030300},
-        {"[MKTA] Document: Buy/Sell symbol's market not configured", enum_type::mkta_document_buysell_symbols_market_not_configured_031300},
-        {"[MKTA] Document: Sell not allowed for symbol's market", enum_type::mkta_document_sell_not_allowed_for_symbols_market_030302},
-        {"[MKTA] Document: Sell not allowed for symbol's market", enum_type::mkta_document_sell_not_allowed_for_symbols_market_031302},
-        {"[MKTA] Entering", enum_type::mkta_entering},
-        {"[MKTA] Entering trader: Buy not allowed for symbol's market", enum_type::mkta_entering_trader_buy_not_allowed_for_symbols_market_030401},
-        {"[MKTA] Entering trader: Buy not allowed for symbol's market", enum_type::mkta_entering_trader_buy_not_allowed_for_symbols_market_031401},
-        {"[MKTA] Entering trader: Buy/Sell symbol's market not configured", enum_type::mkta_entering_trader_buysell_symbols_market_not_configured_030400},
-        {"[MKTA] Entering trader: Buy/Sell symbol's market not configured", enum_type::mkta_entering_trader_buysell_symbols_market_not_configured_031400},
+        {"[MKTA] Account: Buy not allowed for symbol's market", enum_type::mkta_account_buy_not_allowed_for_symbols_market},
+        {"[MKTA] Account: Buy not allowed for symbol's market (LINe Carrying)", enum_type::mkta_account_buy_not_allowed_for_symbols_market_line_carrying},
+        {"[MKTA] Account: Sell not allowed for symbol's market", enum_type::mkta_account_sell_not_allowed_for_symbols_market},
+        {"[MKTA] Account: Sell not allowed for symbol's market (LINe Carrying)", enum_type::mkta_account_sell_not_allowed_for_symbols_market_line_carrying},
+        {"[MKTA] Document: Buy not allowed for symbol's market", enum_type::mkta_document_buy_not_allowed_for_symbols_market},
+        {"[MKTA] Document: Buy not allowed for symbol's market (LINe Carrying)", enum_type::mkta_document_buy_not_allowed_for_symbols_market_line_carrying},
+        {"[MKTA] Document: Buy/Sell symbol's market not configured", enum_type::mkta_document_buysell_symbols_market_not_configured},
+        {"[MKTA] Document: Buy/Sell symbol's market not configured (LINe Carrying)", enum_type::mkta_document_buysell_symbols_market_not_configured_line_carrying},
+        {"[MKTA] Document: Sell not allowed for symbol's market", enum_type::mkta_document_sell_not_allowed_for_symbols_market},
+        {"[MKTA] Document: Sell not allowed for symbol's market (LINe Carrying)", enum_type::mkta_document_sell_not_allowed_for_symbols_market_line_carrying},
+        {"[MKTA] Entering trader: Buy not allowed for symbol's market", enum_type::mkta_entering_trader_buy_not_allowed_for_symbols_market},
+        {"[MKTA] Entering trader: Buy not allowed for symbol's market (LINe Carrying)", enum_type::mkta_entering_trader_buy_not_allowed_for_symbols_market_line_carrying},
+        {"[MKTA] Entering trader: Buy/Sell symbol's market not configured", enum_type::mkta_entering_trader_buysell_symbols_market_not_configured},
+        {"[MKTA] Entering trader: Buy/Sell symbol's market not configured (LINe Carrying)", enum_type::mkta_entering_trader_buysell_symbols_market_not_configured_line_carrying},
         {"[MKTA] Entering trader: Sell not allowed for symbol's market", enum_type::mkta_entering_trader_sell_not_allowed_for_symbols_market},
-        {"[OMS]", enum_type::oms},
-        {"[OMS] Account information missing on non", enum_type::oms_account_information_missing_on_non},
+        {"[MKTA] Entering trader: Sell not allowed for symbol's market (LINe Carrying)", enum_type::mkta_entering_trader_sell_not_allowed_for_symbols_market_line_carrying},
         {"[OMS] Account information missing on non-DMA order", enum_type::oms_account_information_missing_on_nondma_order},
-        {"[OMS] Account modification on DMA order is not allowed", enum_type::oms_account_modification_on_dma_order_is_not_allowed_030524},
-        {"[OMS] Account modification on DMA order is not allowed", enum_type::oms_account_modification_on_dma_order_is_not_allowed_031524},
-        {"[OMS] ClOrdID cannot be empty", enum_type::oms_clordid_cannot_be_empty_030502},
-        {"[OMS] ClOrdID cannot be empty", enum_type::oms_clordid_cannot_be_empty_031502},
-        {"[OMS] ClOrdID is duplicated", enum_type::oms_clordid_is_duplicated_030503},
-        {"[OMS] ClOrdID is duplicated", enum_type::oms_clordid_is_duplicated_031503},
-        {"[OMS] ClOrdID is duplicated within Cross Order", enum_type::oms_clordid_is_duplicated_within_cross_order_030507},
-        {"[OMS] ClOrdID is duplicated within Cross Order", enum_type::oms_clordid_is_duplicated_within_cross_order_031507},
-        {"[OMS] ClOrdID not found", enum_type::oms_clordid_not_found_030504},
-        {"[OMS] ClOrdID not found", enum_type::oms_clordid_not_found_031504},
-        {"[OMS] Cross Order modification is not allowed", enum_type::oms_cross_order_modification_is_not_allowed_030508},
-        {"[OMS] Cross Order modification is not allowed", enum_type::oms_cross_order_modification_is_not_allowed_031508},
-        {"[OMS] CrossID cannot be empty", enum_type::oms_crossid_cannot_be_empty_030506},
-        {"[OMS] CrossID cannot be empty", enum_type::oms_crossid_cannot_be_empty_031506},
-        {"[OMS] Entering firm modification is not allowed", enum_type::oms_entering_firm_modification_is_not_allowed_030523},
-        {"[OMS] Entering firm modification is not allowed", enum_type::oms_entering_firm_modification_is_not_allowed_031523},
-        {"[OMS] Entering trader", enum_type::oms_entering_trader},
+        {"[OMS] Account information missing on non-DMA order (LINe Carrying)", enum_type::oms_account_information_missing_on_nondma_order_line_carrying},
+        {"[OMS] Account modification on DMA order is not allowed", enum_type::oms_account_modification_on_dma_order_is_not_allowed},
+        {"[OMS] Account modification on DMA order is not allowed (LINe Carrying)", enum_type::oms_account_modification_on_dma_order_is_not_allowed_line_carrying},
+        {"[OMS] ClOrdID cannot be empty", enum_type::oms_clordid_cannot_be_empty},
+        {"[OMS] ClOrdID cannot be empty (LINe Carrying)", enum_type::oms_clordid_cannot_be_empty_line_carrying},
+        {"[OMS] ClOrdID is duplicated", enum_type::oms_clordid_is_duplicated},
+        {"[OMS] ClOrdID is duplicated (LINe Carrying)", enum_type::oms_clordid_is_duplicated_line_carrying},
+        {"[OMS] ClOrdID is duplicated within Cross Order", enum_type::oms_clordid_is_duplicated_within_cross_order},
+        {"[OMS] ClOrdID is duplicated within Cross Order (LINe Carrying)", enum_type::oms_clordid_is_duplicated_within_cross_order_line_carrying},
+        {"[OMS] ClOrdID not found", enum_type::oms_clordid_not_found},
+        {"[OMS] ClOrdID not found (LINe Carrying)", enum_type::oms_clordid_not_found_line_carrying},
+        {"[OMS] Cross Order modification is not allowed", enum_type::oms_cross_order_modification_is_not_allowed},
+        {"[OMS] Cross Order modification is not allowed (LINe Carrying)", enum_type::oms_cross_order_modification_is_not_allowed_line_carrying},
+        {"[OMS] CrossID cannot be empty", enum_type::oms_crossid_cannot_be_empty},
+        {"[OMS] CrossID cannot be empty (LINe Carrying)", enum_type::oms_crossid_cannot_be_empty_line_carrying},
+        {"[OMS] Entering firm modification is not allowed", enum_type::oms_entering_firm_modification_is_not_allowed},
+        {"[OMS] Entering firm modification is not allowed (LINe Carrying)", enum_type::oms_entering_firm_modification_is_not_allowed_line_carrying},
         {"[OMS] Entering trader modification on non-DMA order is not allowed", enum_type::oms_entering_trader_modification_on_nondma_order_is_not_allowed},
-        {"[OMS] In", enum_type::oms_in},
+        {"[OMS] Entering trader modification on non-DMA order is not allowed (LINe Carrying)", enum_type::oms_entering_trader_modification_on_nondma_order_is_not_allowed_line_carrying},
         {"[OMS] In-Flight modification is not allowed", enum_type::oms_inflight_modification_is_not_allowed},
-        {"[OMS] Invalid session or symbol", enum_type::oms_invalid_session_or_symbol_030501},
-        {"[OMS] Invalid session or symbol", enum_type::oms_invalid_session_or_symbol_031501},
-        {"[OMS] OrderID cannot be empty", enum_type::oms_orderid_cannot_be_empty_030510},
-        {"[OMS] OrderID cannot be empty", enum_type::oms_orderid_cannot_be_empty_031510},
-        {"[OMS] OrderID not found", enum_type::oms_orderid_not_found_030509},
-        {"[OMS] OrderID not found", enum_type::oms_orderid_not_found_031509},
-        {"[OMS] OrigClOrdID cannot be empty", enum_type::oms_origclordid_cannot_be_empty_030505},
-        {"[OMS] OrigClOrdID cannot be empty", enum_type::oms_origclordid_cannot_be_empty_031505},
-        {"[OMS] QuoteID cannot be empty", enum_type::oms_quoteid_cannot_be_empty_030514},
-        {"[OMS] QuoteID cannot be empty", enum_type::oms_quoteid_cannot_be_empty_031514},
-        {"[OMS] QuoteReqID cannot be empty", enum_type::oms_quotereqid_cannot_be_empty_030511},
-        {"[OMS] QuoteReqID cannot be empty", enum_type::oms_quotereqid_cannot_be_empty_031511},
-        {"[OMS] QuoteReqID is duplicated", enum_type::oms_quotereqid_is_duplicated_030512},
-        {"[OMS] QuoteReqID is duplicated", enum_type::oms_quotereqid_is_duplicated_031512},
-        {"[OMS] QuoteReqID not found", enum_type::oms_quotereqid_not_found_030513},
-        {"[OMS] QuoteReqID not found", enum_type::oms_quotereqid_not_found_031513},
-        {"[OMS] Received Execution Report Rejection for an active order", enum_type::oms_received_execution_report_rejection_for_an_active_order_030527},
-        {"[OMS] Received Execution Report Rejection for an active order", enum_type::oms_received_execution_report_rejection_for_an_active_order_031527},
+        {"[OMS] In-Flight modification is not allowed (LINe Carrying)", enum_type::oms_inflight_modification_is_not_allowed_line_carrying},
+        {"[OMS] Invalid session or symbol", enum_type::oms_invalid_session_or_symbol},
+        {"[OMS] Invalid session or symbol (LINe Carrying)", enum_type::oms_invalid_session_or_symbol_line_carrying},
+        {"[OMS] OrderID cannot be empty", enum_type::oms_orderid_cannot_be_empty},
+        {"[OMS] OrderID cannot be empty (LINe Carrying)", enum_type::oms_orderid_cannot_be_empty_line_carrying},
+        {"[OMS] OrderID not found", enum_type::oms_orderid_not_found},
+        {"[OMS] OrderID not found (LINe Carrying)", enum_type::oms_orderid_not_found_line_carrying},
+        {"[OMS] OrigClOrdID cannot be empty", enum_type::oms_origclordid_cannot_be_empty},
+        {"[OMS] OrigClOrdID cannot be empty (LINe Carrying)", enum_type::oms_origclordid_cannot_be_empty_line_carrying},
+        {"[OMS] QuoteID cannot be empty", enum_type::oms_quoteid_cannot_be_empty},
+        {"[OMS] QuoteID cannot be empty (LINe Carrying)", enum_type::oms_quoteid_cannot_be_empty_line_carrying},
+        {"[OMS] QuoteReqID cannot be empty", enum_type::oms_quotereqid_cannot_be_empty},
+        {"[OMS] QuoteReqID cannot be empty (LINe Carrying)", enum_type::oms_quotereqid_cannot_be_empty_line_carrying},
+        {"[OMS] QuoteReqID is duplicated", enum_type::oms_quotereqid_is_duplicated},
+        {"[OMS] QuoteReqID is duplicated (LINe Carrying)", enum_type::oms_quotereqid_is_duplicated_line_carrying},
+        {"[OMS] QuoteReqID not found", enum_type::oms_quotereqid_not_found},
+        {"[OMS] QuoteReqID not found (LINe Carrying)", enum_type::oms_quotereqid_not_found_line_carrying},
+        {"[OMS] Received Execution Report Rejection for an active order", enum_type::oms_received_execution_report_rejection_for_an_active_order},
+        {"[OMS] Received Execution Report Rejection for an active order (LINe Carrying)", enum_type::oms_received_execution_report_rejection_for_an_active_order_line_carrying},
         {"[OMS] Side modification is not allowed", enum_type::oms_side_modification_is_not_allowed},
-        {"[OMS] Unexpected internal error", enum_type::oms_unexpected_internal_error_030500},
-        {"[OMS] Unexpected internal error", enum_type::oms_unexpected_internal_error_031500},
-        {"[RMKT]", enum_type::rmkt},
+        {"[OMS] Side modification is not allowed (LINe Carrying)", enum_type::oms_side_modification_is_not_allowed_line_carrying},
+        {"[OMS] Unexpected internal error", enum_type::oms_unexpected_internal_error},
+        {"[OMS] Unexpected internal error (LINe Carrying)", enum_type::oms_unexpected_internal_error_line_carrying},
         {"[RMKT] Account: Order quantity exceeded Max Market Risk", enum_type::rmkt_account_order_quantity_exceeded_max_market_risk},
         {"[RMKT] Account: Order quantity exceeded risk increase", enum_type::rmkt_account_order_quantity_exceeded_risk_increase},
         {"[RMKT] Broker PN <pn> document aggregation: Order quantity exceeded risk increase", enum_type::rmkt_broker_pn_pn_document_aggregation_order_quantity_exceeded_risk_increase},
+        {"[RMKT] Document: Order quantity exceeded Max Market Risk", enum_type::rmkt_document_order_quantity_exceeded_max_market_risk},
         {"[RMKT] Document: Order quantity exceeded risk increase", enum_type::rmkt_document_order_quantity_exceeded_risk_increase},
         {"[RMSE] Broker PN <pn> document aggregation: Order exceeded risk increase at extended session", enum_type::rmse_broker_pn_pn_document_aggregation_order_exceeded_risk_increase_at_extended_session},
         {"[RMSE] Broker: Order exceeded risk increase at extended session", enum_type::rmse_broker_order_exceeded_risk_increase_at_extended_session},
-        {"[RMSE] Document: Order exceeded risk increase at extended session", enum_type::rmse_document_order_exceeded_risk_increase_at_extended_session_030316},
-        {"[RMSE] Document: Order exceeded risk increase at extended session", enum_type::rmse_document_order_exceeded_risk_increase_at_extended_session_031316},
-        {"[RMSE] Document: Order exceeded risk increase of broker at extended session", enum_type::rmse_document_order_exceeded_risk_increase_of_broker_at_extended_session_030317},
-        {"[RMSE] Document: Order exceeded risk increase of broker at extended session", enum_type::rmse_document_order_exceeded_risk_increase_of_broker_at_extended_session_031317},
+        {"[RMSE] Document: Order exceeded risk increase at extended session", enum_type::rmse_document_order_exceeded_risk_increase_at_extended_session},
+        {"[RMSE] Document: Order exceeded risk increase at extended session (LINe Carrying)", enum_type::rmse_document_order_exceeded_risk_increase_at_extended_session_line_carrying},
+        {"[RMSE] Document: Order exceeded risk increase of broker at extended session", enum_type::rmse_document_order_exceeded_risk_increase_of_broker_at_extended_session},
+        {"[RMSE] Document: Order exceeded risk increase of broker at extended session (LINe Carrying)", enum_type::rmse_document_order_exceeded_risk_increase_of_broker_at_extended_session_line_carrying},
         {"[SDP] Account: Order exceeded cash settlement exposure", enum_type::sdp_account_order_exceeded_cash_settlement_exposure},
         {"[SDP] Account: Order exceeded Max Financial Potential Balance Due", enum_type::sdp_account_order_exceeded_max_financial_potential_balance_due},
         {"[SDP] Broker PN <pn> document aggregation: Order exceeded cash settlement exposure", enum_type::sdp_broker_pn_pn_document_aggregation_order_exceeded_cash_settlement_exposure},
@@ -586,10 +586,10 @@ struct ord_rej_reason {
         {"[SDP] Document: Order exceeded cash settlement exposure", enum_type::sdp_document_order_exceeded_cash_settlement_exposure},
         {"[SDP] Document: Order exceeded Max Financial Potential Balance Due", enum_type::sdp_document_order_exceeded_max_financial_potential_balance_due},
         {"[SDP] Entering trader: Order exceeded cash settlement exposure", enum_type::sdp_entering_trader_order_exceeded_cash_settlement_exposure},
-        {"[SDP] Entering trader: Order exceeded Max Financial Potential", enum_type::sdp_entering_trader_order_exceeded_max_financial_potential},
+        {"[SDP] Entering trader: Order exceeded Max Financial Potential Balance Due", enum_type::sdp_entering_trader_order_exceeded_max_financial_potential_balance_due},
         {"[SFD] Broker PN <pn> document aggregation: Day trade cash balance (stop loss) not configured", enum_type::sfd_broker_pn_pn_document_aggregation_day_trade_cash_balance_stop_loss_not_configured},
-        {"[SFD] Document: Day trade cash balance (stop loss) not configured", enum_type::sfd_document_day_trade_cash_balance_stop_loss_not_configured_030314},
-        {"[SFD] Document: Day trade cash balance (stop loss) not configured", enum_type::sfd_document_day_trade_cash_balance_stop_loss_not_configured_031314},
+        {"[SFD] Document: Day trade cash balance (stop loss) not configured", enum_type::sfd_document_day_trade_cash_balance_stop_loss_not_configured},
+        {"[SFD] Document: Day trade cash balance (stop loss) not configured (LINe Carrying)", enum_type::sfd_document_day_trade_cash_balance_stop_loss_not_configured_line_carrying},
         {"[SPCI] Account: Order quantity exceeded Max Bid Potential Balance", enum_type::spci_account_order_quantity_exceeded_max_bid_potential_balance},
         {"[SPCI] Account: Order quantity exceeded short position per instrument", enum_type::spci_account_order_quantity_exceeded_short_position_per_instrument},
         {"[SPCI] Document: Order quantity exceeded Max Bid Potential Balance", enum_type::spci_document_order_quantity_exceeded_max_bid_potential_balance},
@@ -600,8 +600,8 @@ struct ord_rej_reason {
         {"[SPI] Account: Order quantity exceeded Previous Potencial Balance", enum_type::spi_account_order_quantity_exceeded_previous_potencial_balance},
         {"[SPI] Document: Order quantity exceeded long and short position - reducing mode", enum_type::spi_document_order_quantity_exceeded_long_and_short_position_reducing_mode},
         {"[SPI] Document: Order quantity exceeded Previous Potencial Balance", enum_type::spi_document_order_quantity_exceeded_previous_potencial_balance},
-        {"[SPVD] Account: Order exceeded potential short uncovered balance.", enum_type::spvd_account_order_exceeded_potential_short_uncovered_balance_030215},
-        {"[SPVD] Account: Order exceeded potential short uncovered balance.", enum_type::spvd_account_order_exceeded_potential_short_uncovered_balance_031215},
+        {"[SPVD] Account: Order exceeded potential short uncovered balance.", enum_type::spvd_account_order_exceeded_potential_short_uncovered_balance},
+        {"[SPVD] Account: Order exceeded potential short uncovered balance. (LINe Carrying)", enum_type::spvd_account_order_exceeded_potential_short_uncovered_balance_line_carrying},
         {"[SPVD] Broker PN <pn> document aggregation: Order exceeded potential short uncovered balance.", enum_type::spvd_broker_pn_pn_document_aggregation_order_exceeded_potential_short_uncovered_balance},
         {"[SPVD] Broker PN <pn> trader aggregation: Order exceeded potential short uncovered balance.", enum_type::spvd_broker_pn_pn_trader_aggregation_order_exceeded_potential_short_uncovered_balance},
         {"[SPVD] Document: Order exceeded potential short uncovered balance", enum_type::spvd_document_order_exceeded_potential_short_uncovered_balance_030315},
@@ -613,12 +613,12 @@ struct ord_rej_reason {
         {"[SPVI] Document: Order quantity exceeded Max Offer Potential Balance", enum_type::spvi_document_order_quantity_exceeded_max_offer_potential_balance},
         {"[SPVI] Entering trader: Order quantity exceeded long position per instrument", enum_type::spvi_entering_trader_order_quantity_exceeded_long_position_per_instrument},
         {"[SPVI] Entering trader: Order quantity exceeded Max Offer Potential Balance", enum_type::spvi_entering_trader_order_quantity_exceeded_max_offer_potential_balance},
-        {"[STD] Account: Termo not allowed, protected mode enabled", enum_type::std_account_termo_not_allowed_protected_mode_enabled_030213},
-        {"[STD] Account: Termo not allowed, protected mode enabled", enum_type::std_account_termo_not_allowed_protected_mode_enabled_031213},
+        {"[STD] Account: Termo not allowed, protected mode enabled", enum_type::std_account_termo_not_allowed_protected_mode_enabled},
+        {"[STD] Account: Termo not allowed, protected mode enabled (LINe Carrying)", enum_type::std_account_termo_not_allowed_protected_mode_enabled_line_carrying},
         {"[STD] Document: Order quantity exceeded forward contracts exposure", enum_type::std_document_order_quantity_exceeded_forward_contracts_exposure},
         {"[STD] Document: Order quantity exceeded Max Operations Forward Balance", enum_type::std_document_order_quantity_exceeded_max_operations_forward_balance},
-        {"[STD] Document: Termo not allowed,", enum_type::std_document_termo_not_allowed},
         {"[STD] Document: Termo not allowed, protected mode enabled", enum_type::std_document_termo_not_allowed_protected_mode_enabled},
+        {"[STD] Document: Termo not allowed, protected mode enabled (LINe Carrying)", enum_type::std_document_termo_not_allowed_protected_mode_enabled_line_carrying},
         {"[TMOC] Account: Max Bid quantity exceeded for single order", enum_type::tmoc_account_max_bid_quantity_exceeded_for_single_order},
         {"[TMOC] Account: Maximum order size exceeded for single order", enum_type::tmoc_account_maximum_order_size_exceeded_for_single_order},
         {"[TMOC] Document: Max Bid quantity exceeded for single order", enum_type::tmoc_document_max_bid_quantity_exceeded_for_single_order},
@@ -629,24 +629,24 @@ struct ord_rej_reason {
         {"[TMOV] Account: Maximum order size exceeded for single order", enum_type::tmov_account_maximum_order_size_exceeded_for_single_order},
         {"[TMOV] Document: Max Offer quantity exceeded for single order", enum_type::tmov_document_max_offer_quantity_exceeded_for_single_order},
         {"[TMOV] Document: Maximum order size exceeded for single order", enum_type::tmov_document_maximum_order_size_exceeded_for_single_order},
-        {"[TMOV] Entering trader: Max Offer quantity exceeded for si", enum_type::tmov_entering_trader_max_offer_quantity_exceeded_for_si},
+        {"[TMOV] Entering trader: Max Offer quantity exceeded for single order", enum_type::tmov_entering_trader_max_offer_quantity_exceeded_for_single_order},
         {"[TMOV] Entering trader: Maximum order size exceeded for single order", enum_type::tmov_entering_trader_maximum_order_size_exceeded_for_single_order},
-        {"[TMOX] Document: Max", enum_type::tmox_document_max},
+        {"[TMOX] Document: Max Bid/Offer quantity not configured", enum_type::tmox_document_max_bidoffer_quantity_not_configured},
         {"[TMOX] Document: Maximum order size not configured", enum_type::tmox_document_maximum_order_size_not_configured},
         {"[TMOX] Entering trader: Max Bid/Offer quantity not configured", enum_type::tmox_entering_trader_max_bidoffer_quantity_not_configured},
         {"[TMOX] Entering trader: Maximum order size not configured", enum_type::tmox_entering_trader_maximum_order_size_not_configured},
         {"Account is mandatory for FX SPOT", enum_type::account_is_mandatory_for_fx_spot},
         {"Account is mandatory for Pegged Order", enum_type::account_is_mandatory_for_pegged_order},
-        {"Account mandatory on DMA orders", enum_type::account_mandatory_on_dma_orders_030024},
-        {"Account mandatory on DMA orders", enum_type::account_mandatory_on_dma_orders_031024},
-        {"Account negotiation blocked", enum_type::account_negotiation_blocked_030021},
-        {"Account negotiation blocked", enum_type::account_negotiation_blocked_031021},
-        {"Account not available", enum_type::account_not_available_030022},
-        {"Account not available", enum_type::account_not_available_031022},
+        {"Account mandatory on DMA orders", enum_type::account_mandatory_on_dma_orders},
+        {"Account mandatory on DMA orders (LINe Carrying)", enum_type::account_mandatory_on_dma_orders_line_carrying},
+        {"Account negotiation blocked", enum_type::account_negotiation_blocked},
+        {"Account negotiation blocked (LINe Carrying)", enum_type::account_negotiation_blocked_line_carrying},
+        {"Account not available", enum_type::account_not_available},
+        {"Account not available (LINe Carrying)", enum_type::account_not_available_line_carrying},
         {"Account or Give Up firm required for DMA customers", enum_type::account_or_give_up_firm_required_for_dma_customers},
         {"Account or Give Up firm required for equities", enum_type::account_or_give_up_firm_required_for_equities},
-        {"Account's protected mode under activation", enum_type::accounts_protected_mode_under_activation_030023},
-        {"Account's protected mode under activation", enum_type::accounts_protected_mode_under_activation_031023},
+        {"Account's protected mode under activation", enum_type::accounts_protected_mode_under_activation},
+        {"Account's protected mode under activation (LINe Carrying)", enum_type::accounts_protected_mode_under_activation_line_carrying},
         {"Acct Type(38) not valid for Tag 581 for DMA customers", enum_type::acct_type38_not_valid_for_tag_581_for_dma_customers},
         {"ActionTargetGroupID  invalid . It doesn't exist or it is disabled", enum_type::actiontargetgroupid_invalid_it_doesnt_exist_or_it_is_disabled},
         {"ActionTargetGroupID must be informed", enum_type::actiontargetgroupid_must_be_informed},
@@ -675,21 +675,21 @@ struct ord_rej_reason {
         {"BBT messages should not be entered when market is reserved", enum_type::bbt_messages_should_not_be_entered_when_market_is_reserved},
         {"Blocking qty more than available quantity", enum_type::blocking_qty_more_than_available_quantity},
         {"Blocking quantity more than 999999999", enum_type::blocking_quantity_more_than_999999999},
-        {"Broker negotiation blocked", enum_type::broker_negotiation_blocked_030011},
-        {"Broker negotiation blocked", enum_type::broker_negotiation_blocked_031011},
-        {"Broker not available", enum_type::broker_not_available_030012},
-        {"Broker not available", enum_type::broker_not_available_031012},
+        {"Broker negotiation blocked", enum_type::broker_negotiation_blocked},
+        {"Broker negotiation blocked (LINe Carrying)", enum_type::broker_negotiation_blocked_line_carrying},
+        {"Broker not available", enum_type::broker_not_available},
+        {"Broker not available (LINe Carrying)", enum_type::broker_not_available_line_carrying},
         {"Broker PN negotiation blocked", enum_type::broker_pn_negotiation_blocked},
         {"Broker PN not available", enum_type::broker_pn_not_available},
         {"Broker PN protected mode under activation", enum_type::broker_pn_protected_mode_under_activation},
-        {"Broker segment not available", enum_type::broker_segment_not_available_030015},
-        {"Broker segment not available", enum_type::broker_segment_not_available_031015},
-        {"Broker's capture account not found", enum_type::brokers_capture_account_not_found_030013},
-        {"Broker's capture account not found", enum_type::brokers_capture_account_not_found_031013},
-        {"Broker's segment negotiation blocked", enum_type::brokers_segment_negotiation_blocked_030014},
-        {"Broker's segment negotiation blocked", enum_type::brokers_segment_negotiation_blocked_031014},
-        {"Broker's segment protected mode under activation", enum_type::brokers_segment_protected_mode_under_activation_030016},
-        {"Broker's segment protected mode under activation", enum_type::brokers_segment_protected_mode_under_activation_031016},
+        {"Broker segment not available", enum_type::broker_segment_not_available},
+        {"Broker segment not available (LINe Carrying)", enum_type::broker_segment_not_available_line_carrying},
+        {"Broker's capture account not found", enum_type::brokers_capture_account_not_found},
+        {"Broker's capture account not found (LINe Carrying)", enum_type::brokers_capture_account_not_found_line_carrying},
+        {"Broker's segment negotiation blocked", enum_type::brokers_segment_negotiation_blocked},
+        {"Broker's segment negotiation blocked (LINe Carrying)", enum_type::brokers_segment_negotiation_blocked_line_carrying},
+        {"Broker's segment protected mode under activation", enum_type::brokers_segment_protected_mode_under_activation},
+        {"Broker's segment protected mode under activation (LINe Carrying)", enum_type::brokers_segment_protected_mode_under_activation_line_carrying},
         {"Business reject: Application Not Available", enum_type::business_reject_application_not_available},
         {"Business reject: Other", enum_type::business_reject_other},
         {"Business reject: Required field missing", enum_type::business_reject_required_field_missing},
@@ -708,10 +708,10 @@ struct ord_rej_reason {
         {"Contract not eligible for negotiated quote", enum_type::contract_not_eligible_for_negotiated_quote},
         {"Cross Order Rejected due to Auction Trigger Validation", enum_type::cross_order_rejected_due_to_auction_trigger_validation},
         {"Cross order suspended for the participant or session", enum_type::cross_order_suspended_for_the_participant_or_session},
-        {"Cross-orders or cross-forward not allowed while account in protected mode", enum_type::crossorders_or_crossforward_not_allowed_while_account_in_protected_mode_030026},
-        {"Cross-orders or cross-forward not allowed while account in protected mode", enum_type::crossorders_or_crossforward_not_allowed_while_account_in_protected_mode_031026},
-        {"Cross-orders or cross-forward not allowed while document in protected mode", enum_type::crossorders_or_crossforward_not_allowed_while_document_in_protected_mode_030036},
-        {"Cross-orders or cross-forward not allowed while document in protected mode", enum_type::crossorders_or_crossforward_not_allowed_while_document_in_protected_mode_031036},
+        {"Cross-orders or cross-forward not allowed while account in protected mode", enum_type::crossorders_or_crossforward_not_allowed_while_account_in_protected_mode},
+        {"Cross-orders or cross-forward not allowed while account in protected mode (LINe Carrying)", enum_type::crossorders_or_crossforward_not_allowed_while_account_in_protected_mode_line_carrying},
+        {"Cross-orders or cross-forward not allowed while document in protected mode", enum_type::crossorders_or_crossforward_not_allowed_while_document_in_protected_mode},
+        {"Cross-orders or cross-forward not allowed while document in protected mode (LINe Carrying)", enum_type::crossorders_or_crossforward_not_allowed_while_document_in_protected_mode_line_carrying},
         {"CrossType ineligible for instrument", enum_type::crosstype_ineligible_for_instrument},
         {"Current termo request status does not allow acceptance", enum_type::current_termo_request_status_does_not_allow_acceptance},
         {"Current termo request status does not allow rejection", enum_type::current_termo_request_status_does_not_allow_rejection},
@@ -721,49 +721,49 @@ struct ord_rej_reason {
         {"Disclosed Quantity cannot be greater than total or remaining quantity", enum_type::disclosed_quantity_cannot_be_greater_than_total_or_remaining_quantity},
         {"Disclosed Quantity is not allowed", enum_type::disclosed_quantity_is_not_allowed},
         {"DMA CrossOrder Not allowed", enum_type::dma_crossorder_not_allowed},
-        {"Document in blocked profile", enum_type::document_in_blocked_profile_030035},
-        {"Document in blocked profile", enum_type::document_in_blocked_profile_031035},
-        {"Document negotiation blocked", enum_type::document_negotiation_blocked_030031},
-        {"Document negotiation blocked", enum_type::document_negotiation_blocked_031031},
-        {"Document not available", enum_type::document_not_available_030032},
-        {"Document not available", enum_type::document_not_available_031032},
-        {"Document's protected mode under activation", enum_type::documents_protected_mode_under_activation_030033},
-        {"Document's protected mode under activation", enum_type::documents_protected_mode_under_activation_031033},
+        {"Document in blocked profile", enum_type::document_in_blocked_profile},
+        {"Document in blocked profile (LINe Carrying)", enum_type::document_in_blocked_profile_line_carrying},
+        {"Document negotiation blocked", enum_type::document_negotiation_blocked},
+        {"Document negotiation blocked (LINe Carrying)", enum_type::document_negotiation_blocked_line_carrying},
+        {"Document not available", enum_type::document_not_available},
+        {"Document not available (LINe Carrying)", enum_type::document_not_available_line_carrying},
+        {"Document's protected mode under activation", enum_type::documents_protected_mode_under_activation},
+        {"Document's protected mode under activation (LINe Carrying)", enum_type::documents_protected_mode_under_activation_line_carrying},
         {"Duplicate Client Order Id for this Session/Contract.", enum_type::duplicate_client_order_id_for_this_sessioncontract},
         {"Duplicate Entering Trader", enum_type::duplicate_entering_trader},
         {"Duplicate FirmID", enum_type::duplicate_firmid},
         {"Duplicate Order", enum_type::duplicate_order},
         {"Duplicate Sender Location", enum_type::duplicate_sender_location},
         {"Engine did not respond to FAS request", enum_type::engine_did_not_respond_to_fas_request},
-        {"Entering Trader blocked by SFD overflow", enum_type::entering_trader_blocked_by_sfd_overflow_030043},
-        {"Entering Trader blocked by SFD overflow", enum_type::entering_trader_blocked_by_sfd_overflow_031043},
-        {"Entering Trader cannot trade on behalf of other firm's account", enum_type::entering_trader_cannot_trade_on_behalf_of_other_firms_account_030046},
-        {"Entering Trader cannot trade on behalf of other firm's account", enum_type::entering_trader_cannot_trade_on_behalf_of_other_firms_account_031046},
-        {"Entering Trader negotiation blocked", enum_type::entering_trader_negotiation_blocked_030041},
-        {"Entering Trader negotiation blocked", enum_type::entering_trader_negotiation_blocked_031041},
-        {"Entering Trader not authorized to trade accountless orders", enum_type::entering_trader_not_authorized_to_trade_accountless_orders_030045},
-        {"Entering Trader not authorized to trade accountless orders", enum_type::entering_trader_not_authorized_to_trade_accountless_orders_031045},
-        {"Entering Trader not available", enum_type::entering_trader_not_available_030042},
-        {"Entering Trader not available", enum_type::entering_trader_not_available_031042},
+        {"Entering Trader blocked by SFD overflow", enum_type::entering_trader_blocked_by_sfd_overflow},
+        {"Entering Trader blocked by SFD overflow (LINe Carrying)", enum_type::entering_trader_blocked_by_sfd_overflow_line_carrying},
+        {"Entering Trader cannot trade on behalf of other firm's account", enum_type::entering_trader_cannot_trade_on_behalf_of_other_firms_account},
+        {"Entering Trader cannot trade on behalf of other firm's account (LINe Carrying)", enum_type::entering_trader_cannot_trade_on_behalf_of_other_firms_account_line_carrying},
+        {"Entering Trader negotiation blocked", enum_type::entering_trader_negotiation_blocked},
+        {"Entering Trader negotiation blocked (LINe Carrying)", enum_type::entering_trader_negotiation_blocked_line_carrying},
+        {"Entering Trader not authorized to trade accountless orders", enum_type::entering_trader_not_authorized_to_trade_accountless_orders},
+        {"Entering Trader not authorized to trade accountless orders (LINe Carrying)", enum_type::entering_trader_not_authorized_to_trade_accountless_orders_line_carrying},
+        {"Entering Trader not available", enum_type::entering_trader_not_available},
+        {"Entering Trader not available (LINe Carrying)", enum_type::entering_trader_not_available_line_carrying},
         {"Error creating contract", enum_type::error_creating_contract},
         {"Executing Trader doesn't have access to Product Group", enum_type::executing_trader_doesnt_have_access_to_product_group},
-        {"Executor document cannot use default broker profile", enum_type::executor_document_cannot_use_default_broker_profile_030034},
-        {"Executor document cannot use default broker profile", enum_type::executor_document_cannot_use_default_broker_profile_031034},
+        {"Executor document cannot use default broker profile", enum_type::executor_document_cannot_use_default_broker_profile},
+        {"Executor document cannot use default broker profile (LINe Carrying)", enum_type::executor_document_cannot_use_default_broker_profile_line_carrying},
         {"Exercise must be on maturity date.", enum_type::exercise_must_be_on_maturity_date},
         {"Exercise price not allowed", enum_type::exercise_price_not_allowed},
         {"Exercise price outside required moneyness.", enum_type::exercise_price_outside_required_moneyness},
         {"Exercise quantity should be greater than zero", enum_type::exercise_quantity_should_be_greater_than_zero},
-        {"Field missing or incorrect", enum_type::field_missing_or_incorrect_032000},
-        {"Field missing or incorrect", enum_type::field_missing_or_incorrect_033003},
+        {"Field missing or incorrect", enum_type::field_missing_or_incorrect},
+        {"Field missing or incorrect (Binary Gateway)", enum_type::field_missing_or_incorrect_binary_gateway},
         {"Firm or Account is missing in DMA order", enum_type::firm_or_account_is_missing_in_dma_order},
         {"Firm or Trader is missing in non-DMA order", enum_type::firm_or_trader_is_missing_in_nondma_order},
         {"First trade of day for underlying termo instrument", enum_type::first_trade_of_day_for_underlying_termo_instrument},
-        {"Fix field incorrect", enum_type::fix_field_incorrect_006012},
-        {"FIX field incorrect", enum_type::fix_field_incorrect_001011},
+        {"FIX field incorrect", enum_type::fix_field_incorrect},
+        {"Fix field incorrect (006012)", enum_type::fix_field_incorrect_006012},
         {"Fix Field Length Exceeds Max Length", enum_type::fix_field_length_exceeds_max_length},
         {"FIX field missing or incorrect", enum_type::fix_field_missing_or_incorrect},
-        {"FIX Message Type does not support operations on such symbol", enum_type::fix_message_type_does_not_support_operations_on_such_symbol_030052},
-        {"FIX Message Type does not support operations on such symbol", enum_type::fix_message_type_does_not_support_operations_on_such_symbol_031052},
+        {"FIX Message Type does not support operations on such symbol", enum_type::fix_message_type_does_not_support_operations_on_such_symbol},
+        {"FIX Message Type does not support operations on such symbol (LINe Carrying)", enum_type::fix_message_type_does_not_support_operations_on_such_symbol_line_carrying},
         {"Fix Session doesn't belong to the ActionTargetGroupID", enum_type::fix_session_doesnt_belong_to_the_actiontargetgroupid},
         {"Fix Session is blocked due to Mass Cancel", enum_type::fix_session_is_blocked_due_to_mass_cancel},
         {"FOK order unmatchable in market", enum_type::fok_order_unmatchable_in_market},
@@ -775,17 +775,17 @@ struct ord_rej_reason {
         {"Good for auction order modify not allowed.", enum_type::good_for_auction_order_modify_not_allowed},
         {"Good for auction order not allowed.", enum_type::good_for_auction_order_not_allowed},
         {"Instrument has an request for cross in progress", enum_type::instrument_has_an_request_for_cross_in_progress},
-        {"Instrument not allowed to this market.", enum_type::instrument_not_allowed_to_this_market_006021},
-        {"Instrument not allowed to this market.", enum_type::instrument_not_allowed_to_this_market_006022},
+        {"Instrument not allowed to this market (006022)", enum_type::instrument_not_allowed_to_this_market_006022},
+        {"Instrument not allowed to this market.", enum_type::instrument_not_allowed_to_this_market},
         {"Internal error", enum_type::internal_error},
         {"Internal gateway error (message forwarding failure)", enum_type::internal_gateway_error_message_forwarding_failure},
         {"Invalid blocking Id to unblock", enum_type::invalid_blocking_id_to_unblock},
-        {"Invalid Cash Trade in TVR", enum_type::invalid_cash_trade_in_tvr_006036},
-        {"Invalid Cash Trade in TVR", enum_type::invalid_cash_trade_in_tvr_006040},
-        {"Invalid Cash Trade in TVR", enum_type::invalid_cash_trade_in_tvr_006041},
-        {"Invalid Cash Trade in TVR", enum_type::invalid_cash_trade_in_tvr_006042},
-        {"Invalid Cash Trade in TVR", enum_type::invalid_cash_trade_in_tvr_006043},
-        {"Invalid Cash Trade in TVR", enum_type::invalid_cash_trade_in_tvr_006044},
+        {"Invalid Cash Trade in TVR", enum_type::invalid_cash_trade_in_tvr},
+        {"Invalid Cash Trade in TVR (006040)", enum_type::invalid_cash_trade_in_tvr_006040},
+        {"Invalid Cash Trade in TVR (006041)", enum_type::invalid_cash_trade_in_tvr_006041},
+        {"Invalid Cash Trade in TVR (006042)", enum_type::invalid_cash_trade_in_tvr_006042},
+        {"Invalid Cash Trade in TVR (006043)", enum_type::invalid_cash_trade_in_tvr_006043},
+        {"Invalid Cash Trade in TVR (006044)", enum_type::invalid_cash_trade_in_tvr_006044},
         {"Invalid exercise request id to cancel", enum_type::invalid_exercise_request_id_to_cancel},
         {"Invalid field for BBT Order", enum_type::invalid_field_for_bbt_order},
         {"Invalid field for Order with Order Type (tag 40) equals P (PEGGED)", enum_type::invalid_field_for_order_with_order_type_tag_40_equals_p_pegged},
@@ -793,9 +793,9 @@ struct ord_rej_reason {
         {"Invalid field for Order with Routing Instruction (tag 35487) equals 1 (RETAIL_LIQUIDITY_TAKER)", enum_type::invalid_field_for_order_with_routing_instruction_tag_35487_equals_1_retail_liquidity_taker},
         {"Invalid Operation for contract type.", enum_type::invalid_operation_for_contract_type},
         {"Invalid order qualifier", enum_type::invalid_order_qualifier},
-        {"Invalid price", enum_type::invalid_price_006039},
-        {"Invalid Price", enum_type::invalid_price_032018},
-        {"Invalid Price", enum_type::invalid_price_032021},
+        {"Invalid price", enum_type::invalid_price},
+        {"Invalid Price (032018)", enum_type::invalid_price_032018},
+        {"Invalid Price (032021)", enum_type::invalid_price_032021},
         {"Invalid Quantity", enum_type::invalid_quantity},
         {"Invalid quantity to unblock", enum_type::invalid_quantity_to_unblock},
         {"Invalid Security ID", enum_type::invalid_security_id},
@@ -818,8 +818,8 @@ struct ord_rej_reason {
         {"No partial match found for this FAK order", enum_type::no_partial_match_found_for_this_fak_order},
         {"No positions blocked", enum_type::no_positions_blocked},
         {"No Trading Calendar found on or after order GTD Expire Date", enum_type::no_trading_calendar_found_on_or_after_order_gtd_expire_date},
-        {"Non DMA orders must provide account while in broker's protected mode", enum_type::non_dma_orders_must_provide_account_while_in_brokers_protected_mode_030044},
-        {"Non DMA orders must provide account while in broker's protected mode", enum_type::non_dma_orders_must_provide_account_while_in_brokers_protected_mode_031044},
+        {"Non DMA orders must provide account while in broker's protected mode", enum_type::non_dma_orders_must_provide_account_while_in_brokers_protected_mode},
+        {"Non DMA orders must provide account while in broker's protected mode (LINe Carrying)", enum_type::non_dma_orders_must_provide_account_while_in_brokers_protected_mode_line_carrying},
         {"Not a valid termo instrument", enum_type::not_a_valid_termo_instrument},
         {"Not a valid Termo Underlying Instrument.", enum_type::not_a_valid_termo_underlying_instrument},
         {"On Behalf Operation not allowed during CCR recovery", enum_type::on_behalf_operation_not_allowed_during_ccr_recovery},
@@ -830,8 +830,8 @@ struct ord_rej_reason {
         {"Order Attributes Not Allowed to Trip an Auction", enum_type::order_attributes_not_allowed_to_trip_an_auction},
         {"Order cannot be modified or cancelled while the market is in no cancel", enum_type::order_cannot_be_modified_or_cancelled_while_the_market_is_in_no_cancel},
         {"Order contract is not GTC or GTD eligible", enum_type::order_contract_is_not_gtc_or_gtd_eligible},
-        {"Order contract is unknown", enum_type::order_contract_is_unknown_002047},
-        {"Order contract is unknown", enum_type::order_contract_is_unknown_007005},
+        {"Order contract is unknown", enum_type::order_contract_is_unknown},
+        {"Order contract is unknown (007005)", enum_type::order_contract_is_unknown_007005},
         {"Order Entry was unsuccessful. Error Message: Is not possible to send orders with Validity Type 'Market on Auction' with Minimum quantity.", enum_type::order_entry_was_unsuccessful_error_message_is_not_possible_to_send_orders_with_validity_type_market_on_auction_with_minimum_quantity},
         {"Order group does not match group of contract", enum_type::order_group_does_not_match_group_of_contract},
         {"Order GTD Expire Date is before the current (or next, if not currently in a session) trading session end date", enum_type::order_gtd_expire_date_is_before_the_current_or_next_if_not_currently_in_a_session_trading_session_end_date},
@@ -879,8 +879,8 @@ struct ord_rej_reason {
         {"Quote rejected: Duplicate Quote in same message", enum_type::quote_rejected_duplicate_quote_in_same_message},
         {"Quote rejected: Duplicate Quote, different ID;", enum_type::quote_rejected_duplicate_quote_different_id},
         {"Quote rejected: Exchange (security) closed", enum_type::quote_rejected_exchange_security_closed},
-        {"Quote rejected: Exchange (security) is forbidden", enum_type::quote_rejected_exchange_security_is_forbidden_007030},
-        {"Quote rejected: Exchange (security) is forbidden", enum_type::quote_rejected_exchange_security_is_forbidden_007034},
+        {"Quote rejected: Exchange (security) is forbidden", enum_type::quote_rejected_exchange_security_is_forbidden},
+        {"Quote rejected: Exchange (security) is forbidden (007034)", enum_type::quote_rejected_exchange_security_is_forbidden_007034},
         {"Quote rejected: Exchange (security) is in no cancel", enum_type::quote_rejected_exchange_security_is_in_no_cancel},
         {"Quote rejected: Exchange (security) is in pre open", enum_type::quote_rejected_exchange_security_is_in_pre_open},
         {"Quote rejected: Exchange (security) is preclosed", enum_type::quote_rejected_exchange_security_is_preclosed},
@@ -908,25 +908,25 @@ struct ord_rej_reason {
         {"Sell order stop price must be below last trade price", enum_type::sell_order_stop_price_must_be_below_last_trade_price},
         {"Special Auction Permissions: 'Order entry not allowed.'", enum_type::special_auction_permissions_order_entry_not_allowed},
         {"Spread orders may not be entered while the underlying leg market is in non trading state", enum_type::spread_orders_may_not_be_entered_while_the_underlying_leg_market_is_in_non_trading_state},
-        {"Spread's leg internal data corrupted", enum_type::spreads_leg_internal_data_corrupted_030061},
-        {"Spread's leg internal data corrupted", enum_type::spreads_leg_internal_data_corrupted_031061},
-        {"Spread's leg not available", enum_type::spreads_leg_not_available_030060},
-        {"Spread's leg not available", enum_type::spreads_leg_not_available_031060},
+        {"Spread's leg internal data corrupted", enum_type::spreads_leg_internal_data_corrupted},
+        {"Spread's leg internal data corrupted (LINe Carrying)", enum_type::spreads_leg_internal_data_corrupted_line_carrying},
+        {"Spread's leg not available", enum_type::spreads_leg_not_available},
+        {"Spread's leg not available (LINe Carrying)", enum_type::spreads_leg_not_available_line_carrying},
         {"Stop price maxi-mini must be smaller than or equal to trigger price", enum_type::stop_price_maximini_must_be_smaller_than_or_equal_to_trigger_price},
-        {"Symbol internal data corrupted", enum_type::symbol_internal_data_corrupted_030051},
-        {"Symbol internal data corrupted", enum_type::symbol_internal_data_corrupted_031051},
-        {"Symbol not available", enum_type::symbol_not_available_030050},
-        {"Symbol not available", enum_type::symbol_not_available_031050},
-        {"Symbol's calculated price invalid", enum_type::symbols_calculated_price_invalid_032056},
-        {"Symbol's calculated price invalid", enum_type::symbols_calculated_price_invalid_031056},
-        {"Symbol's reference price missing, market orders not allowed", enum_type::symbols_reference_price_missing_market_orders_not_allowed_030055},
-        {"Symbol's reference price missing, market orders not allowed", enum_type::symbols_reference_price_missing_market_orders_not_allowed_031055},
-        {"Symbol's risk unit matrix not available", enum_type::symbols_risk_unit_matrix_not_available_030054},
-        {"Symbol's risk unit matrix not available", enum_type::symbols_risk_unit_matrix_not_available_031054},
-        {"Symbol's underlying not found for risk aggregation", enum_type::symbols_underlying_not_found_for_risk_aggregation_030053},
-        {"Symbol's underlying not found for risk aggregation", enum_type::symbols_underlying_not_found_for_risk_aggregation_031053},
-        {"System Error", enum_type::system_error_032023},
-        {"System Error", enum_type::system_error_033050},
+        {"Symbol internal data corrupted", enum_type::symbol_internal_data_corrupted},
+        {"Symbol internal data corrupted (LINe Carrying)", enum_type::symbol_internal_data_corrupted_line_carrying},
+        {"Symbol not available", enum_type::symbol_not_available},
+        {"Symbol not available (LINe Carrying)", enum_type::symbol_not_available_line_carrying},
+        {"Symbol's calculated price invalid", enum_type::symbols_calculated_price_invalid},
+        {"Symbol's calculated price invalid (LINe Carrying)", enum_type::symbols_calculated_price_invalid_line_carrying},
+        {"Symbol's reference price missing, market orders not allowed", enum_type::symbols_reference_price_missing_market_orders_not_allowed},
+        {"Symbol's reference price missing, market orders not allowed (LINe Carrying)", enum_type::symbols_reference_price_missing_market_orders_not_allowed_line_carrying},
+        {"Symbol's risk unit matrix not available", enum_type::symbols_risk_unit_matrix_not_available},
+        {"Symbol's risk unit matrix not available (LINe Carrying)", enum_type::symbols_risk_unit_matrix_not_available_line_carrying},
+        {"Symbol's underlying not found for risk aggregation", enum_type::symbols_underlying_not_found_for_risk_aggregation},
+        {"Symbol's underlying not found for risk aggregation (LINe Carrying)", enum_type::symbols_underlying_not_found_for_risk_aggregation_line_carrying},
+        {"System Error", enum_type::system_error},
+        {"System Error (Binary Gateway)", enum_type::system_error_binary_gateway},
         {"System initialization", enum_type::system_initialization},
         {"System Overloaded", enum_type::system_overloaded},
         {"Tag ExpireDate (432) beyond instrument expiration.", enum_type::tag_expiredate_432_beyond_instrument_expiration},
@@ -948,8 +948,8 @@ struct ord_rej_reason {
         {"Termo messages should not be entered when market is paused", enum_type::termo_messages_should_not_be_entered_when_market_is_paused},
         {"Termo messages should not be entered when market is PCP", enum_type::termo_messages_should_not_be_entered_when_market_is_pcp},
         {"Termo messages should not be entered when market is pre close", enum_type::termo_messages_should_not_be_entered_when_market_is_pre_close},
-        {"Termo messages should not be entered when market is pre open", enum_type::termo_messages_should_not_be_entered_when_market_is_pre_open_006025},
-        {"Termo messages should not be entered when market is pre open", enum_type::termo_messages_should_not_be_entered_when_market_is_pre_open_006031},
+        {"Termo messages should not be entered when market is pre open", enum_type::termo_messages_should_not_be_entered_when_market_is_pre_open},
+        {"Termo messages should not be entered when market is pre open (006031)", enum_type::termo_messages_should_not_be_entered_when_market_is_pre_open_006031},
         {"Termo messages should not be entered when market is reserved", enum_type::termo_messages_should_not_be_entered_when_market_is_reserved},
         {"Termo Price should be greater than zero.", enum_type::termo_price_should_be_greater_than_zero},
         {"Termo rejected, instrument/exchange not tradable", enum_type::termo_rejected_instrumentexchange_not_tradable},
@@ -975,13 +975,13 @@ struct ord_rej_reason {
         {"Trade on Behalf Rejected.", enum_type::trade_on_behalf_rejected},
         {"Trade outside of short term volatility bands", enum_type::trade_outside_of_short_term_volatility_bands},
         {"Trade price is outside of static limits", enum_type::trade_price_is_outside_of_static_limits},
-        {"Transient Account is hierarchically blocked on protected mode", enum_type::transient_account_is_hierarchically_blocked_on_protected_mode_030025},
-        {"Transient Account is hierarchically blocked on protected mode", enum_type::transient_account_is_hierarchically_blocked_on_protected_mode_031025},
-        {"Transient Account not allowed in Extended Hours", enum_type::transient_account_not_allowed_in_extended_hours_030027},
-        {"Transient Account not allowed in Extended Hours", enum_type::transient_account_not_allowed_in_extended_hours_031027},
+        {"Transient Account is hierarchically blocked on protected mode", enum_type::transient_account_is_hierarchically_blocked_on_protected_mode},
+        {"Transient Account is hierarchically blocked on protected mode (LINe Carrying)", enum_type::transient_account_is_hierarchically_blocked_on_protected_mode_line_carrying},
+        {"Transient Account not allowed in Extended Hours", enum_type::transient_account_not_allowed_in_extended_hours},
+        {"Transient Account not allowed in Extended Hours (LINe Carrying)", enum_type::transient_account_not_allowed_in_extended_hours_line_carrying},
         {"Unable to send FIX from VolatilityUpdate message", enum_type::unable_to_send_fix_from_volatilityupdate_message},
-        {"Unexpected internal error during risk evaluation", enum_type::unexpected_internal_error_during_risk_evaluation_030070},
-        {"Unexpected internal error during risk evaluation", enum_type::unexpected_internal_error_during_risk_evaluation_031070},
+        {"Unexpected internal error during risk evaluation", enum_type::unexpected_internal_error_during_risk_evaluation},
+        {"Unexpected internal error during risk evaluation (LINe Carrying)", enum_type::unexpected_internal_error_during_risk_evaluation_line_carrying},
         {"Unknown Account", enum_type::unknown_account},
         {"Unknown FirmID (for routing)", enum_type::unknown_firmid_for_routing},
         {"Unknown Market Segment ID", enum_type::unknown_market_segment_id},
@@ -998,7 +998,7 @@ struct ord_rej_reason {
             case enum_type::orders_may_not_be_entered_while_the_market_is_closedpaused: return "Orders may not be entered while the market is closed/paused";
             case enum_type::fix_field_missing_or_incorrect: return "FIX field missing or incorrect";
             case enum_type::required_field_missing: return "Required field missing";
-            case enum_type::fix_field_incorrect_001011: return "FIX field incorrect";
+            case enum_type::fix_field_incorrect: return "FIX field incorrect";
             case enum_type::price_must_be_greater_than_zero: return "Price must be greater than zero";
             case enum_type::invalid_order_qualifier: return "Invalid order qualifier";
             case enum_type::user_not_authorized_to_trade: return "User not authorized to trade";
@@ -1009,7 +1009,7 @@ struct ord_rej_reason {
             case enum_type::order_gtd_expire_date_is_before_the_current_or_next_if_not_currently_in_a_session_trading_session_end_date: return "Order GTD Expire Date is before the current (or next, if not currently in a session) trading session end date";
             case enum_type::cannot_modify_order_because_order_does_not_exist: return "Cannot modify order because order does not exist";
             case enum_type::disclosed_quantity_cannot_be_greater_than_total_or_remaining_quantity: return "Disclosed Quantity cannot be greater than total or remaining quantity";
-            case enum_type::order_contract_is_unknown_002047: return "Order contract is unknown";
+            case enum_type::order_contract_is_unknown: return "Order contract is unknown";
             case enum_type::the_order_was_submitted_with_a_different_sendercompid_than_the_requesting_cancel: return "The Order was submitted with a different SenderCompID than the requesting Cancel";
             case enum_type::the_order_was_submitted_with_a_different_clorderid_than_the_correlationclorderid_of_the_requesting_cancel: return "The Order was submitted with a different CLOrderID than the CorrelationClOrderID of the requesting Cancel";
             case enum_type::the_order_was_submitted_with_a_different_clorderid_than_the_originalclorderid_of_the_requesting_cancel: return "The Order was submitted with a different CLOrderID than the OriginalClOrderID of the requesting Cancel";
@@ -1092,7 +1092,7 @@ struct ord_rej_reason {
             case enum_type::termo_message_rejected_invalid_price: return "Termo message rejected: Invalid price";
             case enum_type::termo_message_rejected_not_authorized_to_termo_quote_this_instrument: return "Termo message rejected: Not authorized to termo quote this instrument";
             case enum_type::termo_message_rejected_pass: return "Termo message rejected: Pass";
-            case enum_type::fix_field_incorrect_006012: return "Fix field incorrect";
+            case enum_type::fix_field_incorrect_006012: return "Fix field incorrect (006012)";
             case enum_type::not_a_valid_termo_instrument: return "Not a valid termo instrument";
             case enum_type::values_dont_match_with_the_original_request: return "Values don`t match with the original request";
             case enum_type::current_termo_request_status_does_not_allow_rejection: return "Current termo request status does not allow rejection";
@@ -1101,34 +1101,34 @@ struct ord_rej_reason {
             case enum_type::wrong_type_of_request_for_termo: return "Wrong type of request for Termo.";
             case enum_type::days_to_settlement_must_be_between_16_and_999: return "Days to Settlement must be between 16 and 999.";
             case enum_type::days_to_settlement_must_be_between_16_and_90: return "Days to Settlement must be between 16 and 90";
-            case enum_type::instrument_not_allowed_to_this_market_006021: return "Instrument not allowed to this market.";
-            case enum_type::instrument_not_allowed_to_this_market_006022: return "Instrument not allowed to this market.";
+            case enum_type::instrument_not_allowed_to_this_market: return "Instrument not allowed to this market.";
+            case enum_type::instrument_not_allowed_to_this_market_006022: return "Instrument not allowed to this market (006022)";
             case enum_type::termo_price_should_be_greater_than_zero: return "Termo Price should be greater than zero.";
             case enum_type::termo_messages_should_not_be_entered_when_market_is_paused: return "Termo messages should not be entered when market is paused";
-            case enum_type::termo_messages_should_not_be_entered_when_market_is_pre_open_006025: return "Termo messages should not be entered when market is pre open";
+            case enum_type::termo_messages_should_not_be_entered_when_market_is_pre_open: return "Termo messages should not be entered when market is pre open";
             case enum_type::termo_messages_should_not_be_entered_when_market_is_pcp: return "Termo messages should not be entered when market is PCP";
             case enum_type::termo_messages_should_not_be_entered_when_market_is_no_cancel: return "Termo messages should not be entered when market is no cancel";
             case enum_type::termo_messages_should_not_be_entered_when_market_is_reserved: return "Termo messages should not be entered when market is reserved";
             case enum_type::termo_messages_should_not_be_entered_when_market_is_forbidden: return "Termo messages should not be entered when market is forbidden";
             case enum_type::termo_messages_should_not_be_entered_when_market_is_pre_close: return "Termo messages should not be entered when market is pre close";
-            case enum_type::termo_messages_should_not_be_entered_when_market_is_pre_open_006031: return "Termo messages should not be entered when market is pre open";
+            case enum_type::termo_messages_should_not_be_entered_when_market_is_pre_open_006031: return "Termo messages should not be entered when market is pre open (006031)";
             case enum_type::not_a_valid_termo_underlying_instrument: return "Not a valid Termo Underlying Instrument.";
             case enum_type::received_a_null_adminoperation: return "Received a null AdminOperation";
             case enum_type::first_trade_of_day_for_underlying_termo_instrument: return "First trade of day for underlying termo instrument";
             case enum_type::termo_messages_should_not_be_entered_when_market_is_in_final_closing_call: return "Termo messages should not be entered when market is in final closing call";
-            case enum_type::invalid_cash_trade_in_tvr_006036: return "Invalid Cash Trade in TVR";
+            case enum_type::invalid_cash_trade_in_tvr: return "Invalid Cash Trade in TVR";
             case enum_type::only_buy_entry_request_for_tvr_is_accepted: return "Only Buy Entry Request for TVR is accepted";
             case enum_type::there_is_no_bid_and_ask_for_underlying_contract: return "There is no bid and ask for underlying contract";
-            case enum_type::invalid_price_006039: return "Invalid price";
-            case enum_type::invalid_cash_trade_in_tvr_006040: return "Invalid Cash Trade in TVR";
-            case enum_type::invalid_cash_trade_in_tvr_006041: return "Invalid Cash Trade in TVR";
-            case enum_type::invalid_cash_trade_in_tvr_006042: return "Invalid Cash Trade in TVR";
-            case enum_type::invalid_cash_trade_in_tvr_006043: return "Invalid Cash Trade in TVR";
-            case enum_type::invalid_cash_trade_in_tvr_006044: return "Invalid Cash Trade in TVR";
+            case enum_type::invalid_price: return "Invalid price";
+            case enum_type::invalid_cash_trade_in_tvr_006040: return "Invalid Cash Trade in TVR (006040)";
+            case enum_type::invalid_cash_trade_in_tvr_006041: return "Invalid Cash Trade in TVR (006041)";
+            case enum_type::invalid_cash_trade_in_tvr_006042: return "Invalid Cash Trade in TVR (006042)";
+            case enum_type::invalid_cash_trade_in_tvr_006043: return "Invalid Cash Trade in TVR (006043)";
+            case enum_type::invalid_cash_trade_in_tvr_006044: return "Invalid Cash Trade in TVR (006044)";
             case enum_type::order_rejected: return "Order rejected";
             case enum_type::fok_order_unmatchable_in_market: return "FOK order unmatchable in market";
             case enum_type::orders_may_not_be_entered_while_the_market_is_closed: return "Orders may not be entered while the market is closed";
-            case enum_type::order_contract_is_unknown_007005: return "Order contract is unknown";
+            case enum_type::order_contract_is_unknown_007005: return "Order contract is unknown (007005)";
             case enum_type::no_partial_match_found_for_this_fak_order: return "No partial match found for this FAK order";
             case enum_type::maximum_quantity_depth_for_any_one_price_group_max_may_not_exceed_integermax_value: return "Maximum quantity depth for any one price group max may not exceed + Integer.MAX_VALUE";
             case enum_type::contract_for_this_order_contract_is_past_expiration_date_and_may_no_longer_be_traded: return "Contract for this order contract is past expiration date and may no longer be traded";
@@ -1147,11 +1147,11 @@ struct ord_rej_reason {
             case enum_type::order_type_not_permitted_while_the_market_is_reserved: return "Order type not permitted while the market is reserved";
             case enum_type::order_session_date_is_in_the_past: return "Order session date is in the past";
             case enum_type::orders_may_not_be_entered_while_the_market_is_forbidden: return "Orders may not be entered while the market is forbidden";
-            case enum_type::quote_rejected_exchange_security_is_forbidden_007030: return "Quote rejected: Exchange (security) is forbidden";
+            case enum_type::quote_rejected_exchange_security_is_forbidden: return "Quote rejected: Exchange (security) is forbidden";
             case enum_type::orders_may_not_be_entered_while_the_market_is_preclosed: return "Orders may not be entered while the market is preclosed";
             case enum_type::quote_rejected_exchange_security_is_preclosed: return "Quote rejected: Exchange (security) is preclosed";
             case enum_type::orders_may_not_be_entered_while_the_market_is_open: return "Orders may not be entered while the market is open";
-            case enum_type::quote_rejected_exchange_security_is_forbidden_007034: return "Quote rejected: Exchange (security) is forbidden";
+            case enum_type::quote_rejected_exchange_security_is_forbidden_007034: return "Quote rejected: Exchange (security) is forbidden (007034)";
             case enum_type::rfq_rejected_instrument_exchange_is_open: return "RFQ rejected: Instrument / exchange is open";
             case enum_type::time_in_force_59_not_valid_for_order_type_40: return "Time in Force (59) not valid for Order Type (40).";
             case enum_type::good_for_auction_order_not_allowed: return "Good for auction order not allowed.";
@@ -1247,44 +1247,44 @@ struct ord_rej_reason {
             case enum_type::internal_error: return "Internal error";
             case enum_type::timeout_waiting_risk_evaluation: return "Timeout waiting risk evaluation";
             case enum_type::timeout_waiting_risk_evaluation_low_priority: return "Timeout waiting risk evaluation (low priority)";
-            case enum_type::broker_negotiation_blocked_030011: return "Broker negotiation blocked";
-            case enum_type::broker_not_available_030012: return "Broker not available";
-            case enum_type::brokers_capture_account_not_found_030013: return "Broker's capture account not found";
-            case enum_type::brokers_segment_negotiation_blocked_030014: return "Broker's segment negotiation blocked";
-            case enum_type::broker_segment_not_available_030015: return "Broker segment not available";
-            case enum_type::brokers_segment_protected_mode_under_activation_030016: return "Broker's segment protected mode under activation";
+            case enum_type::broker_negotiation_blocked: return "Broker negotiation blocked";
+            case enum_type::broker_not_available: return "Broker not available";
+            case enum_type::brokers_capture_account_not_found: return "Broker's capture account not found";
+            case enum_type::brokers_segment_negotiation_blocked: return "Broker's segment negotiation blocked";
+            case enum_type::broker_segment_not_available: return "Broker segment not available";
+            case enum_type::brokers_segment_protected_mode_under_activation: return "Broker's segment protected mode under activation";
             case enum_type::broker_pn_negotiation_blocked: return "Broker PN negotiation blocked";
             case enum_type::broker_pn_not_available: return "Broker PN not available";
             case enum_type::broker_pn_protected_mode_under_activation: return "Broker PN protected mode under activation";
-            case enum_type::account_negotiation_blocked_030021: return "Account negotiation blocked";
-            case enum_type::account_not_available_030022: return "Account not available";
-            case enum_type::accounts_protected_mode_under_activation_030023: return "Account's protected mode under activation";
-            case enum_type::account_mandatory_on_dma_orders_030024: return "Account mandatory on DMA orders";
-            case enum_type::transient_account_is_hierarchically_blocked_on_protected_mode_030025: return "Transient Account is hierarchically blocked on protected mode";
-            case enum_type::crossorders_or_crossforward_not_allowed_while_account_in_protected_mode_030026: return "Cross-orders or cross-forward not allowed while account in protected mode";
-            case enum_type::transient_account_not_allowed_in_extended_hours_030027: return "Transient Account not allowed in Extended Hours";
-            case enum_type::document_negotiation_blocked_030031: return "Document negotiation blocked";
-            case enum_type::document_not_available_030032: return "Document not available";
-            case enum_type::documents_protected_mode_under_activation_030033: return "Document's protected mode under activation";
-            case enum_type::executor_document_cannot_use_default_broker_profile_030034: return "Executor document cannot use default broker profile";
-            case enum_type::document_in_blocked_profile_030035: return "Document in blocked profile";
-            case enum_type::crossorders_or_crossforward_not_allowed_while_document_in_protected_mode_030036: return "Cross-orders or cross-forward not allowed while document in protected mode";
-            case enum_type::entering_trader_negotiation_blocked_030041: return "Entering Trader negotiation blocked";
-            case enum_type::entering_trader_not_available_030042: return "Entering Trader not available";
-            case enum_type::entering_trader_blocked_by_sfd_overflow_030043: return "Entering Trader blocked by SFD overflow";
-            case enum_type::non_dma_orders_must_provide_account_while_in_brokers_protected_mode_030044: return "Non DMA orders must provide account while in broker's protected mode";
-            case enum_type::entering_trader_not_authorized_to_trade_accountless_orders_030045: return "Entering Trader not authorized to trade accountless orders";
-            case enum_type::entering_trader_cannot_trade_on_behalf_of_other_firms_account_030046: return "Entering Trader cannot trade on behalf of other firm's account";
-            case enum_type::symbol_not_available_030050: return "Symbol not available";
-            case enum_type::symbol_internal_data_corrupted_030051: return "Symbol internal data corrupted";
-            case enum_type::fix_message_type_does_not_support_operations_on_such_symbol_030052: return "FIX Message Type does not support operations on such symbol";
-            case enum_type::symbols_underlying_not_found_for_risk_aggregation_030053: return "Symbol's underlying not found for risk aggregation";
-            case enum_type::symbols_risk_unit_matrix_not_available_030054: return "Symbol's risk unit matrix not available";
-            case enum_type::symbols_reference_price_missing_market_orders_not_allowed_030055: return "Symbol's reference price missing, market orders not allowed";
-            case enum_type::symbols_calculated_price_invalid_032056: return "Symbol's calculated price invalid";
-            case enum_type::spreads_leg_not_available_030060: return "Spread's leg not available";
-            case enum_type::spreads_leg_internal_data_corrupted_030061: return "Spread's leg internal data corrupted";
-            case enum_type::unexpected_internal_error_during_risk_evaluation_030070: return "Unexpected internal error during risk evaluation";
+            case enum_type::account_negotiation_blocked: return "Account negotiation blocked";
+            case enum_type::account_not_available: return "Account not available";
+            case enum_type::accounts_protected_mode_under_activation: return "Account's protected mode under activation";
+            case enum_type::account_mandatory_on_dma_orders: return "Account mandatory on DMA orders";
+            case enum_type::transient_account_is_hierarchically_blocked_on_protected_mode: return "Transient Account is hierarchically blocked on protected mode";
+            case enum_type::crossorders_or_crossforward_not_allowed_while_account_in_protected_mode: return "Cross-orders or cross-forward not allowed while account in protected mode";
+            case enum_type::transient_account_not_allowed_in_extended_hours: return "Transient Account not allowed in Extended Hours";
+            case enum_type::document_negotiation_blocked: return "Document negotiation blocked";
+            case enum_type::document_not_available: return "Document not available";
+            case enum_type::documents_protected_mode_under_activation: return "Document's protected mode under activation";
+            case enum_type::executor_document_cannot_use_default_broker_profile: return "Executor document cannot use default broker profile";
+            case enum_type::document_in_blocked_profile: return "Document in blocked profile";
+            case enum_type::crossorders_or_crossforward_not_allowed_while_document_in_protected_mode: return "Cross-orders or cross-forward not allowed while document in protected mode";
+            case enum_type::entering_trader_negotiation_blocked: return "Entering Trader negotiation blocked";
+            case enum_type::entering_trader_not_available: return "Entering Trader not available";
+            case enum_type::entering_trader_blocked_by_sfd_overflow: return "Entering Trader blocked by SFD overflow";
+            case enum_type::non_dma_orders_must_provide_account_while_in_brokers_protected_mode: return "Non DMA orders must provide account while in broker's protected mode";
+            case enum_type::entering_trader_not_authorized_to_trade_accountless_orders: return "Entering Trader not authorized to trade accountless orders";
+            case enum_type::entering_trader_cannot_trade_on_behalf_of_other_firms_account: return "Entering Trader cannot trade on behalf of other firm's account";
+            case enum_type::symbol_not_available: return "Symbol not available";
+            case enum_type::symbol_internal_data_corrupted: return "Symbol internal data corrupted";
+            case enum_type::fix_message_type_does_not_support_operations_on_such_symbol: return "FIX Message Type does not support operations on such symbol";
+            case enum_type::symbols_underlying_not_found_for_risk_aggregation: return "Symbol's underlying not found for risk aggregation";
+            case enum_type::symbols_risk_unit_matrix_not_available: return "Symbol's risk unit matrix not available";
+            case enum_type::symbols_reference_price_missing_market_orders_not_allowed: return "Symbol's reference price missing, market orders not allowed";
+            case enum_type::symbols_calculated_price_invalid: return "Symbol's calculated price invalid";
+            case enum_type::spreads_leg_not_available: return "Spread's leg not available";
+            case enum_type::spreads_leg_internal_data_corrupted: return "Spread's leg internal data corrupted";
+            case enum_type::unexpected_internal_error_during_risk_evaluation: return "Unexpected internal error during risk evaluation";
             case enum_type::sfd_broker_pn_pn_document_aggregation_day_trade_cash_balance_stop_loss_not_configured: return "[SFD] Broker PN <pn> document aggregation: Day trade cash balance (stop loss) not configured";
             case enum_type::sdp_broker_pn_pn_document_aggregation_order_exceeded_cash_settlement_exposure: return "[SDP] Broker PN <pn> document aggregation: Order exceeded cash settlement exposure";
             case enum_type::rmkt_broker_pn_pn_document_aggregation_order_quantity_exceeded_risk_increase: return "[RMKT] Broker PN <pn> document aggregation: Order quantity exceeded risk increase";
@@ -1293,8 +1293,8 @@ struct ord_rej_reason {
             case enum_type::spvd_broker_pn_pn_trader_aggregation_order_exceeded_potential_short_uncovered_balance: return "[SPVD] Broker PN <pn> trader aggregation: Order exceeded potential short uncovered balance.";
             case enum_type::rmse_broker_pn_pn_document_aggregation_order_exceeded_risk_increase_at_extended_session: return "[RMSE] Broker PN <pn> document aggregation: Order exceeded risk increase at extended session";
             case enum_type::rmse_broker_order_exceeded_risk_increase_at_extended_session: return "[RMSE] Broker: Order exceeded risk increase at extended session";
-            case enum_type::mkta_account_buy_not_allowed_for_symbols_market_030201: return "[MKTA] Account: Buy not allowed for symbol's market";
-            case enum_type::mkta_account_sell_not_allowed_for_symbols_market_030202: return "[MKTA] Account: Sell not allowed for symbol's market";
+            case enum_type::mkta_account_buy_not_allowed_for_symbols_market: return "[MKTA] Account: Buy not allowed for symbol's market";
+            case enum_type::mkta_account_sell_not_allowed_for_symbols_market: return "[MKTA] Account: Sell not allowed for symbol's market";
             case enum_type::tmoc_account_maximum_order_size_exceeded_for_single_order: return "[TMOC] Account: Maximum order size exceeded for single order";
             case enum_type::tmov_account_maximum_order_size_exceeded_for_single_order: return "[TMOV] Account: Maximum order size exceeded for single order";
             case enum_type::spci_account_order_quantity_exceeded_short_position_per_instrument: return "[SPCI] Account: Order quantity exceeded short position per instrument";
@@ -1303,95 +1303,95 @@ struct ord_rej_reason {
             case enum_type::rmkt_account_order_quantity_exceeded_risk_increase: return "[RMKT] Account: Order quantity exceeded risk increase";
             case enum_type::irmkt_account_order_quantity_exceeded_risk_increase_reducing_mode: return "[IRMKT] Account: Order quantity exceeded risk increase - reducing mode";
             case enum_type::spi_account_order_quantity_exceeded_long_and_short_position_reducing_mode: return "[SPI] Account: Order quantity exceeded long and short position - reducing mode";
-            case enum_type::std_account_termo_not_allowed_protected_mode_enabled_030213: return "[STD] Account: Termo not allowed, protected mode enabled";
-            case enum_type::spvd_account_order_exceeded_potential_short_uncovered_balance_030215: return "[SPVD] Account: Order exceeded potential short uncovered balance.";
-            case enum_type::mkta_document_buysell_symbols_market_not_configured_030300: return "[MKTA] Document: Buy/Sell symbol's market not configured";
-            case enum_type::mkta_document_buy_not_allowed_for_symbols_market_030301: return "[MKTA] Document: Buy not allowed for symbol's market";
-            case enum_type::mkta_document_sell_not_allowed_for_symbols_market_030302: return "[MKTA] Document: Sell not allowed for symbol's market";
-            case enum_type::tmox_document_max: return "[TMOX] Document: Max";
+            case enum_type::std_account_termo_not_allowed_protected_mode_enabled: return "[STD] Account: Termo not allowed, protected mode enabled";
+            case enum_type::spvd_account_order_exceeded_potential_short_uncovered_balance: return "[SPVD] Account: Order exceeded potential short uncovered balance.";
+            case enum_type::mkta_document_buysell_symbols_market_not_configured: return "[MKTA] Document: Buy/Sell symbol's market not configured";
+            case enum_type::mkta_document_buy_not_allowed_for_symbols_market: return "[MKTA] Document: Buy not allowed for symbol's market";
+            case enum_type::mkta_document_sell_not_allowed_for_symbols_market: return "[MKTA] Document: Sell not allowed for symbol's market";
+            case enum_type::tmox_document_max_bidoffer_quantity_not_configured: return "[TMOX] Document: Max Bid/Offer quantity not configured";
             case enum_type::tmoc_document_max_bid_quantity_exceeded_for_single_order: return "[TMOC] Document: Max Bid quantity exceeded for single order";
             case enum_type::tmov_document_max_offer_quantity_exceeded_for_single_order: return "[TMOV] Document: Max Offer quantity exceeded for single order";
             case enum_type::spci_document_order_quantity_exceeded_max_bid_potential_balance: return "[SPCI] Document: Order quantity exceeded Max Bid Potential Balance";
             case enum_type::spvi_document_order_quantity_exceeded_max_offer_potential_balance: return "[SPVI] Document: Order quantity exceeded Max Offer Potential Balance";
             case enum_type::sdp_document_order_exceeded_max_financial_potential_balance_due: return "[SDP] Document: Order exceeded Max Financial Potential Balance Due";
             case enum_type::std_document_order_quantity_exceeded_max_operations_forward_balance: return "[STD] Document: Order quantity exceeded Max Operations Forward Balance";
-            case enum_type::rmkt: return "[RMKT]";
+            case enum_type::rmkt_document_order_quantity_exceeded_max_market_risk: return "[RMKT] Document: Order quantity exceeded Max Market Risk";
             case enum_type::irmkt_document_order_quantity_exceeded_max_incremental_market_risk: return "[IRMKT] Document: Order quantity exceeded Max Incremental Market Risk";
             case enum_type::spi_document_order_quantity_exceeded_previous_potencial_balance: return "[SPI] Document: Order quantity exceeded Previous Potencial Balance";
-            case enum_type::std_document_termo_not_allowed: return "[STD] Document: Termo not allowed,";
-            case enum_type::sfd_document_day_trade_cash_balance_stop_loss_not_configured_030314: return "[SFD] Document: Day trade cash balance (stop loss) not configured";
+            case enum_type::std_document_termo_not_allowed_protected_mode_enabled: return "[STD] Document: Termo not allowed, protected mode enabled";
+            case enum_type::sfd_document_day_trade_cash_balance_stop_loss_not_configured: return "[SFD] Document: Day trade cash balance (stop loss) not configured";
             case enum_type::spvd_document_order_exceeded_potential_short_uncovered_balance_030315: return "[SPVD] Document: Order exceeded potential short uncovered balance";
-            case enum_type::rmse_document_order_exceeded_risk_increase_at_extended_session_030316: return "[RMSE] Document: Order exceeded risk increase at extended session";
-            case enum_type::rmse_document_order_exceeded_risk_increase_of_broker_at_extended_session_030317: return "[RMSE] Document: Order exceeded risk increase of broker at extended session";
-            case enum_type::mkta_entering_trader_buysell_symbols_market_not_configured_030400: return "[MKTA] Entering trader: Buy/Sell symbol's market not configured";
-            case enum_type::mkta_entering_trader_buy_not_allowed_for_symbols_market_030401: return "[MKTA] Entering trader: Buy not allowed for symbol's market";
-            case enum_type::mkta_entering: return "[MKTA] Entering";
+            case enum_type::rmse_document_order_exceeded_risk_increase_at_extended_session: return "[RMSE] Document: Order exceeded risk increase at extended session";
+            case enum_type::rmse_document_order_exceeded_risk_increase_of_broker_at_extended_session: return "[RMSE] Document: Order exceeded risk increase of broker at extended session";
+            case enum_type::mkta_entering_trader_buysell_symbols_market_not_configured: return "[MKTA] Entering trader: Buy/Sell symbol's market not configured";
+            case enum_type::mkta_entering_trader_buy_not_allowed_for_symbols_market: return "[MKTA] Entering trader: Buy not allowed for symbol's market";
+            case enum_type::mkta_entering_trader_sell_not_allowed_for_symbols_market: return "[MKTA] Entering trader: Sell not allowed for symbol's market";
             case enum_type::tmox_entering_trader_max_bidoffer_quantity_not_configured: return "[TMOX] Entering trader: Max Bid/Offer quantity not configured";
             case enum_type::tmoc_entering_trader_max_bid_quantity_exceeded_for_single_order: return "[TMOC] Entering trader: Max Bid quantity exceeded for single order";
-            case enum_type::tmov_entering_trader_max_offer_quantity_exceeded_for_si: return "[TMOV] Entering trader: Max Offer quantity exceeded for si";
+            case enum_type::tmov_entering_trader_max_offer_quantity_exceeded_for_single_order: return "[TMOV] Entering trader: Max Offer quantity exceeded for single order";
             case enum_type::spci_entering_trader_order_quantity_exceeded_max_bid_potential_balance: return "[SPCI] Entering trader: Order quantity exceeded Max Bid Potential Balance";
             case enum_type::spvi_entering_trader_order_quantity_exceeded_max_offer_potential_balance: return "[SPVI] Entering trader: Order quantity exceeded Max Offer Potential Balance";
-            case enum_type::sdp_entering_trader_order_exceeded_max_financial_potential: return "[SDP] Entering trader: Order exceeded Max Financial Potential";
+            case enum_type::sdp_entering_trader_order_exceeded_max_financial_potential_balance_due: return "[SDP] Entering trader: Order exceeded Max Financial Potential Balance Due";
             case enum_type::spvd_trader_order_exceeded_potential_short_uncovered_balance: return "[SPVD] Trader: Order exceeded potential short uncovered balance.";
-            case enum_type::oms_unexpected_internal_error_030500: return "[OMS] Unexpected internal error";
-            case enum_type::oms_invalid_session_or_symbol_030501: return "[OMS] Invalid session or symbol";
-            case enum_type::oms_clordid_cannot_be_empty_030502: return "[OMS] ClOrdID cannot be empty";
-            case enum_type::oms_clordid_is_duplicated_030503: return "[OMS] ClOrdID is duplicated";
-            case enum_type::oms_clordid_not_found_030504: return "[OMS] ClOrdID not found";
-            case enum_type::oms_origclordid_cannot_be_empty_030505: return "[OMS] OrigClOrdID cannot be empty";
-            case enum_type::oms_crossid_cannot_be_empty_030506: return "[OMS] CrossID cannot be empty";
-            case enum_type::oms_clordid_is_duplicated_within_cross_order_030507: return "[OMS] ClOrdID is duplicated within Cross Order";
-            case enum_type::oms_cross_order_modification_is_not_allowed_030508: return "[OMS] Cross Order modification is not allowed";
-            case enum_type::oms_orderid_not_found_030509: return "[OMS] OrderID not found";
-            case enum_type::oms_orderid_cannot_be_empty_030510: return "[OMS] OrderID cannot be empty";
-            case enum_type::oms_quotereqid_cannot_be_empty_030511: return "[OMS] QuoteReqID cannot be empty";
-            case enum_type::oms_quotereqid_is_duplicated_030512: return "[OMS] QuoteReqID is duplicated";
-            case enum_type::oms_quotereqid_not_found_030513: return "[OMS] QuoteReqID not found";
-            case enum_type::oms_quoteid_cannot_be_empty_030514: return "[OMS] QuoteID cannot be empty";
-            case enum_type::oms_in: return "[OMS] In";
-            case enum_type::oms: return "[OMS]";
-            case enum_type::oms_entering_firm_modification_is_not_allowed_030523: return "[OMS] Entering firm modification is not allowed";
-            case enum_type::oms_account_modification_on_dma_order_is_not_allowed_030524: return "[OMS] Account modification on DMA order is not allowed";
-            case enum_type::oms_account_information_missing_on_non: return "[OMS] Account information missing on non";
-            case enum_type::oms_entering_trader: return "[OMS] Entering trader";
-            case enum_type::oms_received_execution_report_rejection_for_an_active_order_030527: return "[OMS] Received Execution Report Rejection for an active order";
-            case enum_type::broker_negotiation_blocked_031011: return "Broker negotiation blocked";
-            case enum_type::broker_not_available_031012: return "Broker not available";
-            case enum_type::brokers_capture_account_not_found_031013: return "Broker's capture account not found";
-            case enum_type::brokers_segment_negotiation_blocked_031014: return "Broker's segment negotiation blocked";
-            case enum_type::broker_segment_not_available_031015: return "Broker segment not available";
-            case enum_type::brokers_segment_protected_mode_under_activation_031016: return "Broker's segment protected mode under activation";
-            case enum_type::account_negotiation_blocked_031021: return "Account negotiation blocked";
-            case enum_type::account_not_available_031022: return "Account not available";
-            case enum_type::accounts_protected_mode_under_activation_031023: return "Account's protected mode under activation";
-            case enum_type::account_mandatory_on_dma_orders_031024: return "Account mandatory on DMA orders";
-            case enum_type::transient_account_is_hierarchically_blocked_on_protected_mode_031025: return "Transient Account is hierarchically blocked on protected mode";
-            case enum_type::crossorders_or_crossforward_not_allowed_while_account_in_protected_mode_031026: return "Cross-orders or cross-forward not allowed while account in protected mode";
-            case enum_type::transient_account_not_allowed_in_extended_hours_031027: return "Transient Account not allowed in Extended Hours";
-            case enum_type::document_negotiation_blocked_031031: return "Document negotiation blocked";
-            case enum_type::document_not_available_031032: return "Document not available";
-            case enum_type::documents_protected_mode_under_activation_031033: return "Document's protected mode under activation";
-            case enum_type::executor_document_cannot_use_default_broker_profile_031034: return "Executor document cannot use default broker profile";
-            case enum_type::document_in_blocked_profile_031035: return "Document in blocked profile";
-            case enum_type::crossorders_or_crossforward_not_allowed_while_document_in_protected_mode_031036: return "Cross-orders or cross-forward not allowed while document in protected mode";
-            case enum_type::entering_trader_negotiation_blocked_031041: return "Entering Trader negotiation blocked";
-            case enum_type::entering_trader_not_available_031042: return "Entering Trader not available";
-            case enum_type::entering_trader_blocked_by_sfd_overflow_031043: return "Entering Trader blocked by SFD overflow";
-            case enum_type::non_dma_orders_must_provide_account_while_in_brokers_protected_mode_031044: return "Non DMA orders must provide account while in broker's protected mode";
-            case enum_type::entering_trader_not_authorized_to_trade_accountless_orders_031045: return "Entering Trader not authorized to trade accountless orders";
-            case enum_type::entering_trader_cannot_trade_on_behalf_of_other_firms_account_031046: return "Entering Trader cannot trade on behalf of other firm's account";
-            case enum_type::symbol_not_available_031050: return "Symbol not available";
-            case enum_type::symbol_internal_data_corrupted_031051: return "Symbol internal data corrupted";
-            case enum_type::fix_message_type_does_not_support_operations_on_such_symbol_031052: return "FIX Message Type does not support operations on such symbol";
-            case enum_type::symbols_underlying_not_found_for_risk_aggregation_031053: return "Symbol's underlying not found for risk aggregation";
-            case enum_type::symbols_risk_unit_matrix_not_available_031054: return "Symbol's risk unit matrix not available";
-            case enum_type::symbols_reference_price_missing_market_orders_not_allowed_031055: return "Symbol's reference price missing, market orders not allowed";
-            case enum_type::symbols_calculated_price_invalid_031056: return "Symbol's calculated price invalid";
-            case enum_type::spreads_leg_not_available_031060: return "Spread's leg not available";
-            case enum_type::spreads_leg_internal_data_corrupted_031061: return "Spread's leg internal data corrupted";
-            case enum_type::unexpected_internal_error_during_risk_evaluation_031070: return "Unexpected internal error during risk evaluation";
-            case enum_type::mkta_account_buy_not_allowed_for_symbols_market_031201: return "[MKTA] Account: Buy not allowed for symbol's market";
-            case enum_type::mkta_account_sell_not_allowed_for_symbols_market_031202: return "[MKTA] Account: Sell not allowed for symbol's market";
+            case enum_type::oms_unexpected_internal_error: return "[OMS] Unexpected internal error";
+            case enum_type::oms_invalid_session_or_symbol: return "[OMS] Invalid session or symbol";
+            case enum_type::oms_clordid_cannot_be_empty: return "[OMS] ClOrdID cannot be empty";
+            case enum_type::oms_clordid_is_duplicated: return "[OMS] ClOrdID is duplicated";
+            case enum_type::oms_clordid_not_found: return "[OMS] ClOrdID not found";
+            case enum_type::oms_origclordid_cannot_be_empty: return "[OMS] OrigClOrdID cannot be empty";
+            case enum_type::oms_crossid_cannot_be_empty: return "[OMS] CrossID cannot be empty";
+            case enum_type::oms_clordid_is_duplicated_within_cross_order: return "[OMS] ClOrdID is duplicated within Cross Order";
+            case enum_type::oms_cross_order_modification_is_not_allowed: return "[OMS] Cross Order modification is not allowed";
+            case enum_type::oms_orderid_not_found: return "[OMS] OrderID not found";
+            case enum_type::oms_orderid_cannot_be_empty: return "[OMS] OrderID cannot be empty";
+            case enum_type::oms_quotereqid_cannot_be_empty: return "[OMS] QuoteReqID cannot be empty";
+            case enum_type::oms_quotereqid_is_duplicated: return "[OMS] QuoteReqID is duplicated";
+            case enum_type::oms_quotereqid_not_found: return "[OMS] QuoteReqID not found";
+            case enum_type::oms_quoteid_cannot_be_empty: return "[OMS] QuoteID cannot be empty";
+            case enum_type::oms_inflight_modification_is_not_allowed: return "[OMS] In-Flight modification is not allowed";
+            case enum_type::oms_side_modification_is_not_allowed: return "[OMS] Side modification is not allowed";
+            case enum_type::oms_entering_firm_modification_is_not_allowed: return "[OMS] Entering firm modification is not allowed";
+            case enum_type::oms_account_modification_on_dma_order_is_not_allowed: return "[OMS] Account modification on DMA order is not allowed";
+            case enum_type::oms_account_information_missing_on_nondma_order: return "[OMS] Account information missing on non-DMA order";
+            case enum_type::oms_entering_trader_modification_on_nondma_order_is_not_allowed: return "[OMS] Entering trader modification on non-DMA order is not allowed";
+            case enum_type::oms_received_execution_report_rejection_for_an_active_order: return "[OMS] Received Execution Report Rejection for an active order";
+            case enum_type::broker_negotiation_blocked_line_carrying: return "Broker negotiation blocked (LINe Carrying)";
+            case enum_type::broker_not_available_line_carrying: return "Broker not available (LINe Carrying)";
+            case enum_type::brokers_capture_account_not_found_line_carrying: return "Broker's capture account not found (LINe Carrying)";
+            case enum_type::brokers_segment_negotiation_blocked_line_carrying: return "Broker's segment negotiation blocked (LINe Carrying)";
+            case enum_type::broker_segment_not_available_line_carrying: return "Broker segment not available (LINe Carrying)";
+            case enum_type::brokers_segment_protected_mode_under_activation_line_carrying: return "Broker's segment protected mode under activation (LINe Carrying)";
+            case enum_type::account_negotiation_blocked_line_carrying: return "Account negotiation blocked (LINe Carrying)";
+            case enum_type::account_not_available_line_carrying: return "Account not available (LINe Carrying)";
+            case enum_type::accounts_protected_mode_under_activation_line_carrying: return "Account's protected mode under activation (LINe Carrying)";
+            case enum_type::account_mandatory_on_dma_orders_line_carrying: return "Account mandatory on DMA orders (LINe Carrying)";
+            case enum_type::transient_account_is_hierarchically_blocked_on_protected_mode_line_carrying: return "Transient Account is hierarchically blocked on protected mode (LINe Carrying)";
+            case enum_type::crossorders_or_crossforward_not_allowed_while_account_in_protected_mode_line_carrying: return "Cross-orders or cross-forward not allowed while account in protected mode (LINe Carrying)";
+            case enum_type::transient_account_not_allowed_in_extended_hours_line_carrying: return "Transient Account not allowed in Extended Hours (LINe Carrying)";
+            case enum_type::document_negotiation_blocked_line_carrying: return "Document negotiation blocked (LINe Carrying)";
+            case enum_type::document_not_available_line_carrying: return "Document not available (LINe Carrying)";
+            case enum_type::documents_protected_mode_under_activation_line_carrying: return "Document's protected mode under activation (LINe Carrying)";
+            case enum_type::executor_document_cannot_use_default_broker_profile_line_carrying: return "Executor document cannot use default broker profile (LINe Carrying)";
+            case enum_type::document_in_blocked_profile_line_carrying: return "Document in blocked profile (LINe Carrying)";
+            case enum_type::crossorders_or_crossforward_not_allowed_while_document_in_protected_mode_line_carrying: return "Cross-orders or cross-forward not allowed while document in protected mode (LINe Carrying)";
+            case enum_type::entering_trader_negotiation_blocked_line_carrying: return "Entering Trader negotiation blocked (LINe Carrying)";
+            case enum_type::entering_trader_not_available_line_carrying: return "Entering Trader not available (LINe Carrying)";
+            case enum_type::entering_trader_blocked_by_sfd_overflow_line_carrying: return "Entering Trader blocked by SFD overflow (LINe Carrying)";
+            case enum_type::non_dma_orders_must_provide_account_while_in_brokers_protected_mode_line_carrying: return "Non DMA orders must provide account while in broker's protected mode (LINe Carrying)";
+            case enum_type::entering_trader_not_authorized_to_trade_accountless_orders_line_carrying: return "Entering Trader not authorized to trade accountless orders (LINe Carrying)";
+            case enum_type::entering_trader_cannot_trade_on_behalf_of_other_firms_account_line_carrying: return "Entering Trader cannot trade on behalf of other firm's account (LINe Carrying)";
+            case enum_type::symbol_not_available_line_carrying: return "Symbol not available (LINe Carrying)";
+            case enum_type::symbol_internal_data_corrupted_line_carrying: return "Symbol internal data corrupted (LINe Carrying)";
+            case enum_type::fix_message_type_does_not_support_operations_on_such_symbol_line_carrying: return "FIX Message Type does not support operations on such symbol (LINe Carrying)";
+            case enum_type::symbols_underlying_not_found_for_risk_aggregation_line_carrying: return "Symbol's underlying not found for risk aggregation (LINe Carrying)";
+            case enum_type::symbols_risk_unit_matrix_not_available_line_carrying: return "Symbol's risk unit matrix not available (LINe Carrying)";
+            case enum_type::symbols_reference_price_missing_market_orders_not_allowed_line_carrying: return "Symbol's reference price missing, market orders not allowed (LINe Carrying)";
+            case enum_type::symbols_calculated_price_invalid_line_carrying: return "Symbol's calculated price invalid (LINe Carrying)";
+            case enum_type::spreads_leg_not_available_line_carrying: return "Spread's leg not available (LINe Carrying)";
+            case enum_type::spreads_leg_internal_data_corrupted_line_carrying: return "Spread's leg internal data corrupted (LINe Carrying)";
+            case enum_type::unexpected_internal_error_during_risk_evaluation_line_carrying: return "Unexpected internal error during risk evaluation (LINe Carrying)";
+            case enum_type::mkta_account_buy_not_allowed_for_symbols_market_line_carrying: return "[MKTA] Account: Buy not allowed for symbol's market (LINe Carrying)";
+            case enum_type::mkta_account_sell_not_allowed_for_symbols_market_line_carrying: return "[MKTA] Account: Sell not allowed for symbol's market (LINe Carrying)";
             case enum_type::tmoc_account_max_bid_quantity_exceeded_for_single_order: return "[TMOC] Account: Max Bid quantity exceeded for single order";
             case enum_type::tmov_account_max_offer_quantity_exceeded_for_single_order: return "[TMOV] Account: Max Offer quantity exceeded for single order";
             case enum_type::spci_account_order_quantity_exceeded_max_bid_potential_balance: return "[SPCI] Account: Order quantity exceeded Max Bid Potential Balance";
@@ -1400,11 +1400,11 @@ struct ord_rej_reason {
             case enum_type::rmkt_account_order_quantity_exceeded_max_market_risk: return "[RMKT] Account: Order quantity exceeded Max Market Risk";
             case enum_type::irmkt_account_order_quantity_exceeded_max_incremental_market_risk: return "[IRMKT] Account: Order quantity exceeded Max Incremental Market Risk";
             case enum_type::spi_account_order_quantity_exceeded_previous_potencial_balance: return "[SPI] Account: Order quantity exceeded Previous Potencial Balance";
-            case enum_type::std_account_termo_not_allowed_protected_mode_enabled_031213: return "[STD] Account: Termo not allowed, protected mode enabled";
-            case enum_type::spvd_account_order_exceeded_potential_short_uncovered_balance_031215: return "[SPVD] Account: Order exceeded potential short uncovered balance.";
-            case enum_type::mkta_document_buysell_symbols_market_not_configured_031300: return "[MKTA] Document: Buy/Sell symbol's market not configured";
-            case enum_type::mkta_document_buy_not_allowed_for_symbols_market_031301: return "[MKTA] Document: Buy not allowed for symbol's market";
-            case enum_type::mkta_document_sell_not_allowed_for_symbols_market_031302: return "[MKTA] Document: Sell not allowed for symbol's market";
+            case enum_type::std_account_termo_not_allowed_protected_mode_enabled_line_carrying: return "[STD] Account: Termo not allowed, protected mode enabled (LINe Carrying)";
+            case enum_type::spvd_account_order_exceeded_potential_short_uncovered_balance_line_carrying: return "[SPVD] Account: Order exceeded potential short uncovered balance. (LINe Carrying)";
+            case enum_type::mkta_document_buysell_symbols_market_not_configured_line_carrying: return "[MKTA] Document: Buy/Sell symbol's market not configured (LINe Carrying)";
+            case enum_type::mkta_document_buy_not_allowed_for_symbols_market_line_carrying: return "[MKTA] Document: Buy not allowed for symbol's market (LINe Carrying)";
+            case enum_type::mkta_document_sell_not_allowed_for_symbols_market_line_carrying: return "[MKTA] Document: Sell not allowed for symbol's market (LINe Carrying)";
             case enum_type::tmox_document_maximum_order_size_not_configured: return "[TMOX] Document: Maximum order size not configured";
             case enum_type::tmoc_document_maximum_order_size_exceeded_for_single_order: return "[TMOC] Document: Maximum order size exceeded for single order";
             case enum_type::tmov_document_maximum_order_size_exceeded_for_single_order: return "[TMOV] Document: Maximum order size exceeded for single order";
@@ -1415,43 +1415,43 @@ struct ord_rej_reason {
             case enum_type::rmkt_document_order_quantity_exceeded_risk_increase: return "[RMKT] Document: Order quantity exceeded risk increase";
             case enum_type::irmkt_document_order_quantity_exceeded_risk_increase_reducing_mode: return "[IRMKT] Document: Order quantity exceeded risk increase - reducing mode";
             case enum_type::spi_document_order_quantity_exceeded_long_and_short_position_reducing_mode: return "[SPI] Document: Order quantity exceeded long and short position - reducing mode";
-            case enum_type::std_document_termo_not_allowed_protected_mode_enabled: return "[STD] Document: Termo not allowed, protected mode enabled";
-            case enum_type::sfd_document_day_trade_cash_balance_stop_loss_not_configured_031314: return "[SFD] Document: Day trade cash balance (stop loss) not configured";
+            case enum_type::std_document_termo_not_allowed_protected_mode_enabled_line_carrying: return "[STD] Document: Termo not allowed, protected mode enabled (LINe Carrying)";
+            case enum_type::sfd_document_day_trade_cash_balance_stop_loss_not_configured_line_carrying: return "[SFD] Document: Day trade cash balance (stop loss) not configured (LINe Carrying)";
             case enum_type::spvd_document_order_exceeded_potential_short_uncovered_balance_031315: return "[SPVD] Document: Order exceeded potential short uncovered balance.";
-            case enum_type::rmse_document_order_exceeded_risk_increase_at_extended_session_031316: return "[RMSE] Document: Order exceeded risk increase at extended session";
-            case enum_type::rmse_document_order_exceeded_risk_increase_of_broker_at_extended_session_031317: return "[RMSE] Document: Order exceeded risk increase of broker at extended session";
-            case enum_type::mkta_entering_trader_buysell_symbols_market_not_configured_031400: return "[MKTA] Entering trader: Buy/Sell symbol's market not configured";
-            case enum_type::mkta_entering_trader_buy_not_allowed_for_symbols_market_031401: return "[MKTA] Entering trader: Buy not allowed for symbol's market";
-            case enum_type::mkta_entering_trader_sell_not_allowed_for_symbols_market: return "[MKTA] Entering trader: Sell not allowed for symbol's market";
+            case enum_type::rmse_document_order_exceeded_risk_increase_at_extended_session_line_carrying: return "[RMSE] Document: Order exceeded risk increase at extended session (LINe Carrying)";
+            case enum_type::rmse_document_order_exceeded_risk_increase_of_broker_at_extended_session_line_carrying: return "[RMSE] Document: Order exceeded risk increase of broker at extended session (LINe Carrying)";
+            case enum_type::mkta_entering_trader_buysell_symbols_market_not_configured_line_carrying: return "[MKTA] Entering trader: Buy/Sell symbol's market not configured (LINe Carrying)";
+            case enum_type::mkta_entering_trader_buy_not_allowed_for_symbols_market_line_carrying: return "[MKTA] Entering trader: Buy not allowed for symbol's market (LINe Carrying)";
+            case enum_type::mkta_entering_trader_sell_not_allowed_for_symbols_market_line_carrying: return "[MKTA] Entering trader: Sell not allowed for symbol's market (LINe Carrying)";
             case enum_type::tmox_entering_trader_maximum_order_size_not_configured: return "[TMOX] Entering trader: Maximum order size not configured";
             case enum_type::tmoc_entering_trader_maximum_order_size_exceeded_for_single_order: return "[TMOC] Entering trader: Maximum order size exceeded for single order";
             case enum_type::tmov_entering_trader_maximum_order_size_exceeded_for_single_order: return "[TMOV] Entering trader: Maximum order size exceeded for single order";
             case enum_type::spci_entering_trader_order_quantity_exceeded_short_position_per_instrument: return "[SPCI] Entering trader: Order quantity exceeded short position per instrument";
             case enum_type::spvi_entering_trader_order_quantity_exceeded_long_position_per_instrument: return "[SPVI] Entering trader: Order quantity exceeded long position per instrument";
             case enum_type::sdp_entering_trader_order_exceeded_cash_settlement_exposure: return "[SDP] Entering trader: Order exceeded cash settlement exposure";
-            case enum_type::oms_unexpected_internal_error_031500: return "[OMS] Unexpected internal error";
-            case enum_type::oms_invalid_session_or_symbol_031501: return "[OMS] Invalid session or symbol";
-            case enum_type::oms_clordid_cannot_be_empty_031502: return "[OMS] ClOrdID cannot be empty";
-            case enum_type::oms_clordid_is_duplicated_031503: return "[OMS] ClOrdID is duplicated";
-            case enum_type::oms_clordid_not_found_031504: return "[OMS] ClOrdID not found";
-            case enum_type::oms_origclordid_cannot_be_empty_031505: return "[OMS] OrigClOrdID cannot be empty";
-            case enum_type::oms_crossid_cannot_be_empty_031506: return "[OMS] CrossID cannot be empty";
-            case enum_type::oms_clordid_is_duplicated_within_cross_order_031507: return "[OMS] ClOrdID is duplicated within Cross Order";
-            case enum_type::oms_cross_order_modification_is_not_allowed_031508: return "[OMS] Cross Order modification is not allowed";
-            case enum_type::oms_orderid_not_found_031509: return "[OMS] OrderID not found";
-            case enum_type::oms_orderid_cannot_be_empty_031510: return "[OMS] OrderID cannot be empty";
-            case enum_type::oms_quotereqid_cannot_be_empty_031511: return "[OMS] QuoteReqID cannot be empty";
-            case enum_type::oms_quotereqid_is_duplicated_031512: return "[OMS] QuoteReqID is duplicated";
-            case enum_type::oms_quotereqid_not_found_031513: return "[OMS] QuoteReqID not found";
-            case enum_type::oms_quoteid_cannot_be_empty_031514: return "[OMS] QuoteID cannot be empty";
-            case enum_type::oms_inflight_modification_is_not_allowed: return "[OMS] In-Flight modification is not allowed";
-            case enum_type::oms_side_modification_is_not_allowed: return "[OMS] Side modification is not allowed";
-            case enum_type::oms_entering_firm_modification_is_not_allowed_031523: return "[OMS] Entering firm modification is not allowed";
-            case enum_type::oms_account_modification_on_dma_order_is_not_allowed_031524: return "[OMS] Account modification on DMA order is not allowed";
-            case enum_type::oms_account_information_missing_on_nondma_order: return "[OMS] Account information missing on non-DMA order";
-            case enum_type::oms_entering_trader_modification_on_nondma_order_is_not_allowed: return "[OMS] Entering trader modification on non-DMA order is not allowed";
-            case enum_type::oms_received_execution_report_rejection_for_an_active_order_031527: return "[OMS] Received Execution Report Rejection for an active order";
-            case enum_type::field_missing_or_incorrect_032000: return "Field missing or incorrect";
+            case enum_type::oms_unexpected_internal_error_line_carrying: return "[OMS] Unexpected internal error (LINe Carrying)";
+            case enum_type::oms_invalid_session_or_symbol_line_carrying: return "[OMS] Invalid session or symbol (LINe Carrying)";
+            case enum_type::oms_clordid_cannot_be_empty_line_carrying: return "[OMS] ClOrdID cannot be empty (LINe Carrying)";
+            case enum_type::oms_clordid_is_duplicated_line_carrying: return "[OMS] ClOrdID is duplicated (LINe Carrying)";
+            case enum_type::oms_clordid_not_found_line_carrying: return "[OMS] ClOrdID not found (LINe Carrying)";
+            case enum_type::oms_origclordid_cannot_be_empty_line_carrying: return "[OMS] OrigClOrdID cannot be empty (LINe Carrying)";
+            case enum_type::oms_crossid_cannot_be_empty_line_carrying: return "[OMS] CrossID cannot be empty (LINe Carrying)";
+            case enum_type::oms_clordid_is_duplicated_within_cross_order_line_carrying: return "[OMS] ClOrdID is duplicated within Cross Order (LINe Carrying)";
+            case enum_type::oms_cross_order_modification_is_not_allowed_line_carrying: return "[OMS] Cross Order modification is not allowed (LINe Carrying)";
+            case enum_type::oms_orderid_not_found_line_carrying: return "[OMS] OrderID not found (LINe Carrying)";
+            case enum_type::oms_orderid_cannot_be_empty_line_carrying: return "[OMS] OrderID cannot be empty (LINe Carrying)";
+            case enum_type::oms_quotereqid_cannot_be_empty_line_carrying: return "[OMS] QuoteReqID cannot be empty (LINe Carrying)";
+            case enum_type::oms_quotereqid_is_duplicated_line_carrying: return "[OMS] QuoteReqID is duplicated (LINe Carrying)";
+            case enum_type::oms_quotereqid_not_found_line_carrying: return "[OMS] QuoteReqID not found (LINe Carrying)";
+            case enum_type::oms_quoteid_cannot_be_empty_line_carrying: return "[OMS] QuoteID cannot be empty (LINe Carrying)";
+            case enum_type::oms_inflight_modification_is_not_allowed_line_carrying: return "[OMS] In-Flight modification is not allowed (LINe Carrying)";
+            case enum_type::oms_side_modification_is_not_allowed_line_carrying: return "[OMS] Side modification is not allowed (LINe Carrying)";
+            case enum_type::oms_entering_firm_modification_is_not_allowed_line_carrying: return "[OMS] Entering firm modification is not allowed (LINe Carrying)";
+            case enum_type::oms_account_modification_on_dma_order_is_not_allowed_line_carrying: return "[OMS] Account modification on DMA order is not allowed (LINe Carrying)";
+            case enum_type::oms_account_information_missing_on_nondma_order_line_carrying: return "[OMS] Account information missing on non-DMA order (LINe Carrying)";
+            case enum_type::oms_entering_trader_modification_on_nondma_order_is_not_allowed_line_carrying: return "[OMS] Entering trader modification on non-DMA order is not allowed (LINe Carrying)";
+            case enum_type::oms_received_execution_report_rejection_for_an_active_order_line_carrying: return "[OMS] Received Execution Report Rejection for an active order (LINe Carrying)";
+            case enum_type::field_missing_or_incorrect: return "Field missing or incorrect";
             case enum_type::line_not_available_or_busy: return "LiNe not available or busy";
             case enum_type::line_internal_error: return "LiNe internal error";
             case enum_type::line_recovering_or_starting_up: return "LiNe recovering or starting up";
@@ -1469,17 +1469,17 @@ struct ord_rej_reason {
             case enum_type::same_participants_on_both_sides_or_invalid_sides: return "Same Participants on both sides or invalid sides";
             case enum_type::buy_side_and_sell_side_having_different_firmids: return "BUY side and SELL side having different FirmIDs";
             case enum_type::buy_side_and_sell_side_trading_different_assets: return "BUY side and SELL side trading different assets";
-            case enum_type::invalid_price_032018: return "Invalid Price";
+            case enum_type::invalid_price_032018: return "Invalid Price (032018)";
             case enum_type::line_overloaded: return "LiNe overloaded";
             case enum_type::line_administratively_blocked: return "LiNe administratively blocked";
-            case enum_type::invalid_price_032021: return "Invalid Price";
+            case enum_type::invalid_price_032021: return "Invalid Price (032021)";
             case enum_type::system_overloaded: return "System Overloaded";
-            case enum_type::system_error_032023: return "System Error";
+            case enum_type::system_error: return "System Error";
             case enum_type::throttle_limit_reached: return "Throttle limit reached";
             case enum_type::invalid_security_id: return "Invalid Security ID";
             case enum_type::unknown_market_segment_id: return "Unknown Market Segment ID";
-            case enum_type::field_missing_or_incorrect_033003: return "Field missing or incorrect";
-            case enum_type::system_error_033050: return "System Error";
+            case enum_type::field_missing_or_incorrect_binary_gateway: return "Field missing or incorrect (Binary Gateway)";
+            case enum_type::system_error_binary_gateway: return "System Error (Binary Gateway)";
             default: return "unknown";
         }
     }
@@ -1522,7 +1522,7 @@ struct ord_rej_reason {
         if (value.has_value())
             set(value.value());
         else
-            set(enum_type::system_error_033050);
+            set(enum_type::system_error_binary_gateway);
     }
 
   protected:

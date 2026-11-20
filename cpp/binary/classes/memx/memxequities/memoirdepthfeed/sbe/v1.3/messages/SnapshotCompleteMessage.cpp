@@ -16,7 +16,7 @@ void SnapshotCompleteMessage::set_timestamp(std::chrono::nanoseconds value) { ti
 std::uint64_t SnapshotCompleteMessage::as_of_sequence_number() const { return as_of_sequence_number_; }
 void SnapshotCompleteMessage::set_as_of_sequence_number(std::uint64_t value) { as_of_sequence_number_ = value; }
 
-PayloadCode SnapshotCompleteMessage::type() const { return message_type; }
+MessageCode SnapshotCompleteMessage::type() const { return message_type; }
 
 std::string_view SnapshotCompleteMessage::name() const { return "Snapshot Complete Message"; }
 
@@ -50,11 +50,11 @@ std::size_t SnapshotCompleteMessage::encoded_size() const {
     return wire_size;
 }
 
-void SnapshotCompleteMessage::accept(PayloadVisitor& visitor) const {
+void SnapshotCompleteMessage::accept(Visitor& visitor) const {
     visitor.visit(*this);
 }
 
-std::unique_ptr<Payload> SnapshotCompleteMessage::clone() const {
+std::unique_ptr<Message> SnapshotCompleteMessage::clone() const {
     return std::make_unique<SnapshotCompleteMessage>(*this);
 }
 
@@ -67,7 +67,7 @@ void SnapshotCompleteMessage::print(std::ostream& out) const {
     out << '}';
 }
 
-bool SnapshotCompleteMessage::equals(const Payload& other) const {
+bool SnapshotCompleteMessage::equals(const Message& other) const {
     const auto* that = dynamic_cast<const SnapshotCompleteMessage*>(&other);
     return that != nullptr && *this == *that;
 }

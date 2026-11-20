@@ -48,27 +48,27 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest(message->time_offset.get());
             checksum += bench::digest(message->order_id.get());
             checksum += bench::digest(message->side_indicator.get());
-            checksum += bench::digest(message->quantity_binary_4.get());
+            checksum += bench::digest(message->quantity_long.get());
             checksum += bench::digest(message->symbol_short.get());
-            checksum += bench::digest(message->price_binary_long_price_8.integer());
+            checksum += bench::digest(message->price_long.integer());
             checksum += bench::digest(message->add_flags.Display());
         } else if (iterator.message_type == protocol::AddOrderShortMessage::message_type) {
             [[maybe_unused]] const auto* message = protocol::AddOrderShortMessage::parse(iterator.message);
             checksum += bench::digest(message->time_offset.get());
             checksum += bench::digest(message->order_id.get());
             checksum += bench::digest(message->side_indicator.get());
-            checksum += bench::digest(message->quantity_binary_2.get());
+            checksum += bench::digest(message->quantity_short.get());
             checksum += bench::digest(message->symbol_short.get());
-            checksum += bench::digest(message->price_binary_short_price_2.integer());
+            checksum += bench::digest(message->price_short.integer());
             checksum += bench::digest(message->add_flags.Display());
         } else if (iterator.message_type == protocol::AddOrderExpandedMessage::message_type) {
             [[maybe_unused]] const auto* message = protocol::AddOrderExpandedMessage::parse(iterator.message);
             checksum += bench::digest(message->time_offset.get());
             checksum += bench::digest(message->order_id.get());
             checksum += bench::digest(message->side_indicator.get());
-            checksum += bench::digest(message->quantity_binary_4.get());
+            checksum += bench::digest(message->quantity_long.get());
             checksum += bench::digest(message->symbol_long.get());
-            checksum += bench::digest(message->price_binary_long_price_8.integer());
+            checksum += bench::digest(message->price_long.integer());
             checksum += bench::digest(message->add_flags.Display());
             checksum += bench::digest(message->participant_id.get());
         } else if (iterator.message_type == protocol::OrderExecutedMessage::message_type) {
@@ -84,31 +84,31 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest(message->executed_quantity.get());
             checksum += bench::digest(message->remaining_quantity.get());
             checksum += bench::digest(message->execution_id.get());
-            checksum += bench::digest(message->price_binary_long_price_8.integer());
+            checksum += bench::digest(message->price_long.integer());
         } else if (iterator.message_type == protocol::ReduceSizeLongMessage::message_type) {
             [[maybe_unused]] const auto* message = protocol::ReduceSizeLongMessage::parse(iterator.message);
             checksum += bench::digest(message->time_offset.get());
             checksum += bench::digest(message->order_id.get());
-            checksum += bench::digest(message->canceled_quantity_binary_4.get());
+            checksum += bench::digest(message->canceled_quantity_long.get());
         } else if (iterator.message_type == protocol::ReduceSizeShortMessage::message_type) {
             [[maybe_unused]] const auto* message = protocol::ReduceSizeShortMessage::parse(iterator.message);
             checksum += bench::digest(message->time_offset.get());
             checksum += bench::digest(message->order_id.get());
-            checksum += bench::digest(message->canceled_quantity_binary_2.get());
+            checksum += bench::digest(message->canceled_quantity_short.get());
         } else if (iterator.message_type == protocol::ModifyOrderLongMessage::message_type) {
             [[maybe_unused]] const auto* message = protocol::ModifyOrderLongMessage::parse(iterator.message);
             checksum += bench::digest(message->time_offset.get());
             checksum += bench::digest(message->order_id.get());
-            checksum += bench::digest(message->quantity_binary_4.get());
-            checksum += bench::digest(message->price_binary_long_price_8.integer());
+            checksum += bench::digest(message->quantity_long.get());
+            checksum += bench::digest(message->price_long.integer());
             checksum += bench::digest(message->modify_flags.Display());
             checksum += bench::digest(message->modify_flags.MaintainPriority());
         } else if (iterator.message_type == protocol::ModifyOrderShortMessage::message_type) {
             [[maybe_unused]] const auto* message = protocol::ModifyOrderShortMessage::parse(iterator.message);
             checksum += bench::digest(message->time_offset.get());
             checksum += bench::digest(message->order_id.get());
-            checksum += bench::digest(message->quantity_binary_2.get());
-            checksum += bench::digest(message->price_binary_short_price_2.integer());
+            checksum += bench::digest(message->quantity_short.get());
+            checksum += bench::digest(message->price_short.integer());
             checksum += bench::digest(message->modify_flags.Display());
             checksum += bench::digest(message->modify_flags.MaintainPriority());
         } else if (iterator.message_type == protocol::DeleteOrderMessage::message_type) {
@@ -120,27 +120,27 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest(message->time_offset.get());
             checksum += bench::digest(message->order_id.get());
             checksum += bench::digest(message->side_indicator.get());
-            checksum += bench::digest(message->quantity_binary_4.get());
+            checksum += bench::digest(message->quantity_long.get());
             checksum += bench::digest(message->symbol_short.get());
-            checksum += bench::digest(message->price_binary_long_price_8.integer());
+            checksum += bench::digest(message->price_long.integer());
             checksum += bench::digest(message->execution_id.get());
         } else if (iterator.message_type == protocol::TradeShortMessage::message_type) {
             [[maybe_unused]] const auto* message = protocol::TradeShortMessage::parse(iterator.message);
             checksum += bench::digest(message->time_offset.get());
             checksum += bench::digest(message->order_id.get());
             checksum += bench::digest(message->side_indicator.get());
-            checksum += bench::digest(message->quantity_binary_2.get());
+            checksum += bench::digest(message->quantity_short.get());
             checksum += bench::digest(message->symbol_short.get());
-            checksum += bench::digest(message->price_binary_short_price_2.integer());
+            checksum += bench::digest(message->price_short.integer());
             checksum += bench::digest(message->execution_id.get());
         } else if (iterator.message_type == protocol::TradeExpandedMessage::message_type) {
             [[maybe_unused]] const auto* message = protocol::TradeExpandedMessage::parse(iterator.message);
             checksum += bench::digest(message->time_offset.get());
             checksum += bench::digest(message->order_id.get());
             checksum += bench::digest(message->side_indicator.get());
-            checksum += bench::digest(message->quantity_binary_4.get());
+            checksum += bench::digest(message->quantity_long.get());
             checksum += bench::digest(message->symbol_long.get());
-            checksum += bench::digest(message->price_binary_long_price_8.integer());
+            checksum += bench::digest(message->price_long.integer());
             checksum += bench::digest(message->execution_id.get());
         } else if (iterator.message_type == protocol::TradeBreakMessage::message_type) {
             [[maybe_unused]] const auto* message = protocol::TradeBreakMessage::parse(iterator.message);
@@ -175,7 +175,7 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest(message->time_offset.get());
             checksum += bench::digest(message->stock_symbol.get());
             checksum += bench::digest(message->auction_type.get());
-            checksum += bench::digest(message->price_binary_8.get());
+            checksum += bench::digest(message->price_long.integer());
             checksum += bench::digest(message->shares.get());
         } else if (iterator.message_type == protocol::RetailPriceImprovementMessage::message_type) {
             [[maybe_unused]] const auto* message = protocol::RetailPriceImprovementMessage::parse(iterator.message);

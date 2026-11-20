@@ -18,9 +18,8 @@
 #include "messages/CorrectedTradeMessage.hpp"
 #include "messages/ClearBookMessage.hpp"
 #include "messages/SnapshotCompleteMessage.hpp"
-#include "structs/SbeMessage.hpp"
-#include "groups/SequencedMessageMessage.hpp"
-#include "messages/SequencedMessage.hpp"
 #include "structs/Packet.hpp"
+#include "structs/Frame.hpp"
+#include "structs/SequencedMessage.hpp"
 
 #include "PacketReader.hpp"

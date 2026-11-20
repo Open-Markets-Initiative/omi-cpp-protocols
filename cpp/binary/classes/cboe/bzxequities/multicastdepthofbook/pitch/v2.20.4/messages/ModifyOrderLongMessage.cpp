@@ -7,8 +7,8 @@
 
 namespace cboe::bzxequities::multicastdepthofbook::pitch::v2_20_4 {
 
-ModifyOrderLongMessage::ModifyOrderLongMessage(std::chrono::nanoseconds time_offset, std::uint64_t order_id, std::uint32_t quantity_binary_4, Decimal price_binary_long_price_8, const ModifyFlags& modify_flags)
-  : time_offset_(time_offset), order_id_(order_id), quantity_binary_4_(quantity_binary_4), price_binary_long_price_8_(price_binary_long_price_8), modify_flags_(modify_flags) {}
+ModifyOrderLongMessage::ModifyOrderLongMessage(std::chrono::nanoseconds time_offset, std::uint64_t order_id, std::uint32_t quantity_long, Decimal price_long, const ModifyFlags& modify_flags)
+  : time_offset_(time_offset), order_id_(order_id), quantity_long_(quantity_long), price_long_(price_long), modify_flags_(modify_flags) {}
 
 std::chrono::nanoseconds ModifyOrderLongMessage::time_offset() const { return time_offset_; }
 void ModifyOrderLongMessage::set_time_offset(std::chrono::nanoseconds value) { time_offset_ = value; }
@@ -16,11 +16,11 @@ void ModifyOrderLongMessage::set_time_offset(std::chrono::nanoseconds value) { t
 std::uint64_t ModifyOrderLongMessage::order_id() const { return order_id_; }
 void ModifyOrderLongMessage::set_order_id(std::uint64_t value) { order_id_ = value; }
 
-std::uint32_t ModifyOrderLongMessage::quantity_binary_4() const { return quantity_binary_4_; }
-void ModifyOrderLongMessage::set_quantity_binary_4(std::uint32_t value) { quantity_binary_4_ = value; }
+std::uint32_t ModifyOrderLongMessage::quantity_long() const { return quantity_long_; }
+void ModifyOrderLongMessage::set_quantity_long(std::uint32_t value) { quantity_long_ = value; }
 
-Decimal ModifyOrderLongMessage::price_binary_long_price_8() const { return price_binary_long_price_8_; }
-void ModifyOrderLongMessage::set_price_binary_long_price_8(Decimal value) { price_binary_long_price_8_ = value; }
+Decimal ModifyOrderLongMessage::price_long() const { return price_long_; }
+void ModifyOrderLongMessage::set_price_long(Decimal value) { price_long_ = value; }
 
 const ModifyFlags& ModifyOrderLongMessage::modify_flags() const { return modify_flags_; }
 ModifyFlags& ModifyOrderLongMessage::modify_flags() { return modify_flags_; }
@@ -40,10 +40,10 @@ std::size_t ModifyOrderLongMessage::decode(const std::byte* data, std::size_t le
     order_id_ = wire::read_u64_le(data + offset);
     offset += 8;
 
-    quantity_binary_4_ = wire::read_u32_le(data + offset);
+    quantity_long_ = wire::read_u32_le(data + offset);
     offset += 4;
 
-    price_binary_long_price_8_ = Decimal(static_cast<std::int64_t>(wire::read_u64_le(data + offset)), -4);
+    price_long_ = Decimal(static_cast<std::int64_t>(wire::read_u64_le(data + offset)), -4);
     offset += 8;
 
     offset += modify_flags_.decode(data + offset, length - offset);
@@ -61,10 +61,10 @@ std::size_t ModifyOrderLongMessage::encode(std::byte* data, std::size_t capacity
     wire::write_u64_le(data + offset, static_cast<std::uint64_t>(order_id_));
     offset += 8;
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(quantity_binary_4_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(quantity_long_));
     offset += 4;
 
-    wire::write_u64_le(data + offset, static_cast<std::uint64_t>(price_binary_long_price_8_.mantissa()));
+    wire::write_u64_le(data + offset, static_cast<std::uint64_t>(price_long_.mantissa()));
     offset += 8;
 
     offset += modify_flags_.encode(data + offset, capacity - offset);
@@ -90,10 +90,10 @@ void ModifyOrderLongMessage::print(std::ostream& out) const {
     out << time_offset_.count();
     out << ", order_id=";
     out << order_id_;
-    out << ", quantity_binary_4=";
-    out << quantity_binary_4_;
-    out << ", price_binary_long_price_8=";
-    out << price_binary_long_price_8_;
+    out << ", quantity_long=";
+    out << quantity_long_;
+    out << ", price_long=";
+    out << price_long_;
     out << ", modify_flags=";
     modify_flags_.print(out);
     out << '}';
@@ -107,8 +107,8 @@ bool ModifyOrderLongMessage::equals(const Message& other) const {
 bool ModifyOrderLongMessage::operator==(const ModifyOrderLongMessage& other) const {
     return time_offset_ == other.time_offset_
         && order_id_ == other.order_id_
-        && quantity_binary_4_ == other.quantity_binary_4_
-        && price_binary_long_price_8_ == other.price_binary_long_price_8_
+        && quantity_long_ == other.quantity_long_
+        && price_long_ == other.price_long_
         && modify_flags_ == other.modify_flags_;
 }
 

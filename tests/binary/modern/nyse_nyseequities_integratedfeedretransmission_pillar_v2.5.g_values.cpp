@@ -86,7 +86,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.securitystatusmessage.haltcondition"] = canonical::text(canonical::character(message->halt_condition.get()), '\0', false);
             values[entry + ".payload.securitystatusmessage.price1"] = canonical::number(message->price_1.get());
             values[entry + ".payload.securitystatusmessage.price2"] = canonical::number(message->price_2.get());
-            values[entry + ".payload.securitystatusmessage.ssrtriggeringexchangeid"] = canonical::text(canonical::character(message->ssr_triggering_exchange_id.get()), '\0', false);
+            values[entry + ".payload.securitystatusmessage.ssrtriggeringexchangeid"] = canonical::text(canonical::character(message->ssr_triggering_exchange_id.get()), '\0', false, {std::string_view(" ", 1)});
             values[entry + ".payload.securitystatusmessage.ssrtriggeringvolume"] = canonical::number(message->ssr_triggering_volume.get());
             values[entry + ".payload.securitystatusmessage.time"] = (static_cast<std::uint32_t>(message->time.get()) != 0x0U ? canonical::number(message->time.get()) : canonical::absent());
             values[entry + ".payload.securitystatusmessage.ssrstate"] = canonical::text(canonical::character(message->ssr_state.get()), '\0', false);
@@ -140,9 +140,9 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.orderexecutionmessage.volume"] = canonical::number(message->volume.get());
             values[entry + ".payload.orderexecutionmessage.printableflag"] = canonical::number(message->printable_flag.get());
             values[entry + ".payload.orderexecutionmessage.tradecond1"] = canonical::text(canonical::character(message->trade_cond_1.get()), '\0', false);
-            values[entry + ".payload.orderexecutionmessage.tradecond2"] = canonical::text(canonical::character(message->trade_cond_2.get()), '\0', false);
-            values[entry + ".payload.orderexecutionmessage.tradecond3"] = canonical::text(canonical::character(message->trade_cond_3.get()), '\0', false);
-            values[entry + ".payload.orderexecutionmessage.tradecond4"] = canonical::text(canonical::character(message->trade_cond_4.get()), '\0', false);
+            values[entry + ".payload.orderexecutionmessage.tradecond2"] = canonical::text(canonical::character(message->trade_cond_2.get()), '\0', false, {std::string_view(" ", 1)});
+            values[entry + ".payload.orderexecutionmessage.tradecond3"] = canonical::text(canonical::character(message->trade_cond_3.get()), '\0', false, {std::string_view(" ", 1)});
+            values[entry + ".payload.orderexecutionmessage.tradecond4"] = canonical::text(canonical::character(message->trade_cond_4.get()), '\0', false, {std::string_view(" ", 1)});
         } else if (iterator.message_type == protocol::ReplaceOrderMessage::message_type) {
             values[entry + ".payload"] = "packet.messages.message.payload.replaceordermessage";
             [[maybe_unused]] const auto* message = protocol::ReplaceOrderMessage::parse(iterator.message);
@@ -167,7 +167,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.imbalancemessage.marketimbalanceqty"] = canonical::number(message->market_imbalance_qty.get());
             values[entry + ".payload.imbalancemessage.auctiontime"] = canonical::number(message->auction_time.get());
             values[entry + ".payload.imbalancemessage.auctiontype"] = canonical::text(canonical::character(message->auction_type.get()), '\0', false);
-            values[entry + ".payload.imbalancemessage.imbalanceside"] = canonical::text(canonical::character(message->imbalance_side.get()), '\0', false);
+            values[entry + ".payload.imbalancemessage.imbalanceside"] = canonical::text(canonical::character(message->imbalance_side.get()), '\0', false, {std::string_view(" ", 1)});
             values[entry + ".payload.imbalancemessage.continuousbookclearingprice"] = canonical::number(message->continuous_book_clearing_price.get());
             values[entry + ".payload.imbalancemessage.auctioninterestclearingprice"] = canonical::number(message->auction_interest_clearing_price.get());
             values[entry + ".payload.imbalancemessage.ssrfilingprice"] = canonical::number(message->ssr_filing_price.get());
@@ -178,7 +178,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.imbalancemessage.freezestatus"] = canonical::number(message->freeze_status.get());
             values[entry + ".payload.imbalancemessage.numextensions"] = canonical::number(message->num_extensions.get());
             values[entry + ".payload.imbalancemessage.unpairedqty"] = canonical::number(message->unpaired_qty.get());
-            values[entry + ".payload.imbalancemessage.unpairedside"] = canonical::text(canonical::character(message->unpaired_side.get()), '\0', false);
+            values[entry + ".payload.imbalancemessage.unpairedside"] = canonical::text(canonical::character(message->unpaired_side.get()), '\0', false, {std::string_view(" ", 1)});
         } else if (iterator.message_type == protocol::AddOrderRefreshMessage::message_type) {
             values[entry + ".payload"] = "packet.messages.message.payload.addorderrefreshmessage";
             [[maybe_unused]] const auto* message = protocol::AddOrderRefreshMessage::parse(iterator.message);
@@ -202,9 +202,9 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.nondisplayedtrademessage.volume"] = canonical::number(message->volume.get());
             values[entry + ".payload.nondisplayedtrademessage.printableflag"] = canonical::number(message->printable_flag.get());
             values[entry + ".payload.nondisplayedtrademessage.tradecond1"] = canonical::text(canonical::character(message->trade_cond_1.get()), '\0', false);
-            values[entry + ".payload.nondisplayedtrademessage.tradecond2"] = canonical::text(canonical::character(message->trade_cond_2.get()), '\0', false);
-            values[entry + ".payload.nondisplayedtrademessage.tradecond3"] = canonical::text(canonical::character(message->trade_cond_3.get()), '\0', false);
-            values[entry + ".payload.nondisplayedtrademessage.tradecond4"] = canonical::text(canonical::character(message->trade_cond_4.get()), '\0', false);
+            values[entry + ".payload.nondisplayedtrademessage.tradecond2"] = canonical::text(canonical::character(message->trade_cond_2.get()), '\0', false, {std::string_view(" ", 1)});
+            values[entry + ".payload.nondisplayedtrademessage.tradecond3"] = canonical::text(canonical::character(message->trade_cond_3.get()), '\0', false, {std::string_view(" ", 1)});
+            values[entry + ".payload.nondisplayedtrademessage.tradecond4"] = canonical::text(canonical::character(message->trade_cond_4.get()), '\0', false, {std::string_view(" ", 1)});
         } else if (iterator.message_type == protocol::CrossTradeMessage::message_type) {
             values[entry + ".payload"] = "packet.messages.message.payload.crosstrademessage";
             [[maybe_unused]] const auto* message = protocol::CrossTradeMessage::parse(iterator.message);
@@ -236,7 +236,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.retailpriceimprovementmessage.sourcetimens"] = canonical::number(message->source_time_ns.get());
             values[entry + ".payload.retailpriceimprovementmessage.symbolindex"] = canonical::number(message->symbol_index.get());
             values[entry + ".payload.retailpriceimprovementmessage.symbolseqnum"] = canonical::number(message->symbol_seq_num.get());
-            values[entry + ".payload.retailpriceimprovementmessage.rpiindicator"] = canonical::text(canonical::character(message->rpi_indicator.get()), '\0', false);
+            values[entry + ".payload.retailpriceimprovementmessage.rpiindicator"] = canonical::text(canonical::character(message->rpi_indicator.get()), '\0', false, {std::string_view(" ", 1)});
         }
     }
 

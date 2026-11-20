@@ -30,7 +30,7 @@ class InstrumentStateChange : public Message {
     InstrumentStateChange() = default;
     InstrumentStateChange(std::optional<std::int64_t> security_id, std::optional<SecurityStatus> security_status, std::optional<SecurityTradingStatus> security_trading_status, std::optional<FastMarketIndicator> fast_market_indicator, const std::array<std::byte, 5>& pad5, std::optional<std::chrono::nanoseconds> transact_time);
 
-    // Security Id:
+    // Security Id: Unique instrument identifier
     std::optional<std::int64_t> security_id() const;
     void set_security_id(std::optional<std::int64_t> value);
 

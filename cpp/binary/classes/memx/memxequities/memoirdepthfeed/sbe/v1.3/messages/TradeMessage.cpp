@@ -25,7 +25,7 @@ void TradeMessage::set_quantity(std::uint32_t value) { quantity_ = value; }
 Decimal TradeMessage::price() const { return price_; }
 void TradeMessage::set_price(Decimal value) { price_ = value; }
 
-PayloadCode TradeMessage::type() const { return message_type; }
+MessageCode TradeMessage::type() const { return message_type; }
 
 std::string_view TradeMessage::name() const { return "Trade Message"; }
 
@@ -77,11 +77,11 @@ std::size_t TradeMessage::encoded_size() const {
     return wire_size;
 }
 
-void TradeMessage::accept(PayloadVisitor& visitor) const {
+void TradeMessage::accept(Visitor& visitor) const {
     visitor.visit(*this);
 }
 
-std::unique_ptr<Payload> TradeMessage::clone() const {
+std::unique_ptr<Message> TradeMessage::clone() const {
     return std::make_unique<TradeMessage>(*this);
 }
 
@@ -100,7 +100,7 @@ void TradeMessage::print(std::ostream& out) const {
     out << '}';
 }
 
-bool TradeMessage::equals(const Payload& other) const {
+bool TradeMessage::equals(const Message& other) const {
     const auto* that = dynamic_cast<const TradeMessage*>(&other);
     return that != nullptr && *this == *that;
 }

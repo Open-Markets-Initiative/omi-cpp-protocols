@@ -380,7 +380,7 @@ std::unique_ptr<protocol::Message> build_OptionsNonDisplayedTradeMessage() {
     message->set_volume(static_cast<std::uint32_t>(6));
     message->set_printable_flag(protocol::PrintableFlag::TradeIncludedInTotalVolume);
     message->set_non_displayed_trade_trade_cond_1(protocol::NonDisplayedTradeTradeCond1::TradingOfAComplexQccOrderOrCustomerToCustomerCrossOrder);
-    message->set_price_type(protocol::PriceType::StrikePriceIsAmount);
+    message->set_price_type(protocol::PriceType::StrikePriceIsDollarAmount);
     return message;
 }
 
@@ -1401,7 +1401,7 @@ int check_OptionsNonDisplayedTradeMessage(const protocol::Message* read) {
         std::printf("FAIL OptionsNonDisplayedTradeMessage: non_displayed_trade_trade_cond_1 does not read as it was written\n");
         ++failures;
     }
-    if (!(message->price_type() == protocol::PriceType::StrikePriceIsAmount)) {
+    if (!(message->price_type() == protocol::PriceType::StrikePriceIsDollarAmount)) {
         std::printf("FAIL OptionsNonDisplayedTradeMessage: price_type does not read as it was written\n");
         ++failures;
     }

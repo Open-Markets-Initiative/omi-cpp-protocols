@@ -27,7 +27,7 @@ class BlockHeader {
     std::uint16_t block_size() const;
     void set_block_size(std::uint16_t value);
 
-    // Data Feed Indicator: Q for Consolidated Quotation System
+    // Data Feed Indicator: T for Consolidated Tape System (CTS)
     char data_feed_indicator() const;
     void set_data_feed_indicator(char value);
 

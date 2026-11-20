@@ -23,7 +23,7 @@ packet.message[0].categorypayload.administrativemessage.administrativemessagepay
 packet.message[0].categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.transactionid = 0
 packet.message[0].categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.participantreferencenumber = 0
 packet.message[0].categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.securitysymbol = JENA
-packet.message[0].categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.priorsecuritysymbol = 
+packet.message[0].categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.priorsecuritysymbol = (null)
 packet.message[0].categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.primarylistingmarketparticipantid = N
 packet.message[0].categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.primarylistingmarketpreviousclosingprice = 10.21
 packet.message[0].categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.consolidatedclosingprice = 10.21
@@ -34,7 +34,7 @@ packet.message[0].categorypayload.administrativemessage.administrativemessagepay
 packet.message[0].categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.ipo = 0
 packet.message[0].categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.financialstatusindicator = 0
 packet.message[0].categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.shortsalerestrictionindicator =  
-packet.message[0].categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.haltreason =  
+packet.message[0].categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.haltreason = (null)
 packet.message[0].categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.instrumenttype = 0
 packet.message[1].messagelength = 209
 packet.message[1].messagecategory = A
@@ -49,7 +49,7 @@ packet.message[1].categorypayload.administrativemessage.administrativemessagepay
 packet.message[1].categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.transactionid = 0
 packet.message[1].categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.participantreferencenumber = 0
 packet.message[1].categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.securitysymbol = JENAr
-packet.message[1].categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.priorsecuritysymbol = 
+packet.message[1].categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.priorsecuritysymbol = (null)
 packet.message[1].categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.primarylistingmarketparticipantid = N
 packet.message[1].categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.primarylistingmarketpreviousclosingprice = 0.17
 packet.message[1].categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.consolidatedclosingprice = 0.17
@@ -60,5 +60,5 @@ packet.message[1].categorypayload.administrativemessage.administrativemessagepay
 packet.message[1].categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.ipo = 0
 packet.message[1].categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.financialstatusindicator = 0
 packet.message[1].categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.shortsalerestrictionindicator =  
-packet.message[1].categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.haltreason =  
+packet.message[1].categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.haltreason = (null)
 packet.message[1].categorypayload.administrativemessage.administrativemessagepayload.symbolreferencedatamessage.instrumenttype = 0

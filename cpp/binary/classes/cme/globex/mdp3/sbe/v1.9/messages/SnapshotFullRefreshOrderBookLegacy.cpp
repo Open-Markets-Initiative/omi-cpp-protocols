@@ -7,8 +7,8 @@
 
 namespace cme::globex::mdp3::sbe::v1_9 {
 
-SnapshotFullRefreshOrderBookLegacy::SnapshotFullRefreshOrderBookLegacy(std::uint32_t last_msg_seq_num_processed, std::uint32_t tot_num_reports, std::int32_t security_id, std::uint32_t no_chunks, std::uint32_t current_chunk, std::chrono::nanoseconds transact_time, const SnapshotFullRefreshOrderBookGroups& snapshot_full_refresh_order_book_groups)
-  : last_msg_seq_num_processed_(last_msg_seq_num_processed), tot_num_reports_(tot_num_reports), security_id_(security_id), no_chunks_(no_chunks), current_chunk_(current_chunk), transact_time_(transact_time), snapshot_full_refresh_order_book_groups_(snapshot_full_refresh_order_book_groups) {}
+SnapshotFullRefreshOrderBookLegacy::SnapshotFullRefreshOrderBookLegacy(std::uint32_t last_msg_seq_num_processed, std::uint32_t tot_num_reports, std::int32_t security_id, std::uint32_t no_chunks, std::uint32_t current_chunk, std::chrono::nanoseconds transact_time, const SnapshotFullRefreshOrderBookLegacyGroups& snapshot_full_refresh_order_book_legacy_groups)
+  : last_msg_seq_num_processed_(last_msg_seq_num_processed), tot_num_reports_(tot_num_reports), security_id_(security_id), no_chunks_(no_chunks), current_chunk_(current_chunk), transact_time_(transact_time), snapshot_full_refresh_order_book_legacy_groups_(snapshot_full_refresh_order_book_legacy_groups) {}
 
 std::uint32_t SnapshotFullRefreshOrderBookLegacy::last_msg_seq_num_processed() const { return last_msg_seq_num_processed_; }
 void SnapshotFullRefreshOrderBookLegacy::set_last_msg_seq_num_processed(std::uint32_t value) { last_msg_seq_num_processed_ = value; }
@@ -28,9 +28,9 @@ void SnapshotFullRefreshOrderBookLegacy::set_current_chunk(std::uint32_t value) 
 std::chrono::nanoseconds SnapshotFullRefreshOrderBookLegacy::transact_time() const { return transact_time_; }
 void SnapshotFullRefreshOrderBookLegacy::set_transact_time(std::chrono::nanoseconds value) { transact_time_ = value; }
 
-const SnapshotFullRefreshOrderBookGroups& SnapshotFullRefreshOrderBookLegacy::snapshot_full_refresh_order_book_groups() const { return snapshot_full_refresh_order_book_groups_; }
-SnapshotFullRefreshOrderBookGroups& SnapshotFullRefreshOrderBookLegacy::snapshot_full_refresh_order_book_groups() { return snapshot_full_refresh_order_book_groups_; }
-void SnapshotFullRefreshOrderBookLegacy::set_snapshot_full_refresh_order_book_groups(const SnapshotFullRefreshOrderBookGroups& value) { snapshot_full_refresh_order_book_groups_ = value; }
+const SnapshotFullRefreshOrderBookLegacyGroups& SnapshotFullRefreshOrderBookLegacy::snapshot_full_refresh_order_book_legacy_groups() const { return snapshot_full_refresh_order_book_legacy_groups_; }
+SnapshotFullRefreshOrderBookLegacyGroups& SnapshotFullRefreshOrderBookLegacy::snapshot_full_refresh_order_book_legacy_groups() { return snapshot_full_refresh_order_book_legacy_groups_; }
+void SnapshotFullRefreshOrderBookLegacy::set_snapshot_full_refresh_order_book_legacy_groups(const SnapshotFullRefreshOrderBookLegacyGroups& value) { snapshot_full_refresh_order_book_legacy_groups_ = value; }
 
 MktdataPayloadCode SnapshotFullRefreshOrderBookLegacy::type() const { return message_type; }
 
@@ -63,7 +63,7 @@ std::size_t SnapshotFullRefreshOrderBookLegacy::decode(const std::byte* data, st
     transact_time_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u64_le(data + offset)));
     offset += 8;
 
-    offset += snapshot_full_refresh_order_book_groups_.decode(data + offset, length - offset);
+    offset += snapshot_full_refresh_order_book_legacy_groups_.decode(data + offset, length - offset);
 
     return offset;
 }
@@ -90,13 +90,13 @@ std::size_t SnapshotFullRefreshOrderBookLegacy::encode(std::byte* data, std::siz
     wire::write_u64_le(data + offset, static_cast<std::uint64_t>(transact_time_.count()));
     offset += 8;
 
-    offset += snapshot_full_refresh_order_book_groups_.encode(data + offset, capacity - offset);
+    offset += snapshot_full_refresh_order_book_legacy_groups_.encode(data + offset, capacity - offset);
 
     return offset;
 }
 
 std::size_t SnapshotFullRefreshOrderBookLegacy::encoded_size() const {
-    return 4 + 4 + 4 + 4 + 4 + 8 + snapshot_full_refresh_order_book_groups_.encoded_size();
+    return 4 + 4 + 4 + 4 + 4 + 8 + snapshot_full_refresh_order_book_legacy_groups_.encoded_size();
 }
 
 void SnapshotFullRefreshOrderBookLegacy::accept(MktdataPayloadVisitor& visitor) const {
@@ -121,8 +121,8 @@ void SnapshotFullRefreshOrderBookLegacy::print(std::ostream& out) const {
     out << current_chunk_;
     out << ", transact_time=";
     out << transact_time_.count();
-    out << ", snapshot_full_refresh_order_book_groups=";
-    snapshot_full_refresh_order_book_groups_.print(out);
+    out << ", snapshot_full_refresh_order_book_legacy_groups=";
+    snapshot_full_refresh_order_book_legacy_groups_.print(out);
     out << '}';
 }
 
@@ -138,7 +138,7 @@ bool SnapshotFullRefreshOrderBookLegacy::operator==(const SnapshotFullRefreshOrd
         && no_chunks_ == other.no_chunks_
         && current_chunk_ == other.current_chunk_
         && transact_time_ == other.transact_time_
-        && snapshot_full_refresh_order_book_groups_ == other.snapshot_full_refresh_order_book_groups_;
+        && snapshot_full_refresh_order_book_legacy_groups_ == other.snapshot_full_refresh_order_book_legacy_groups_;
 }
 
 bool SnapshotFullRefreshOrderBookLegacy::operator!=(const SnapshotFullRefreshOrderBookLegacy& other) const {

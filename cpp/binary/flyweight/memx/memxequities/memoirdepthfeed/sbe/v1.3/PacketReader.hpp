@@ -6,8 +6,22 @@
 
 #include "common/Wire.hpp"
 #include "structs/Packet.hpp"
-#include "enums/MessageType.hpp"
-#include "messages/SequencedMessage.hpp"
+#include "structs/Frame.hpp"
+#include "structs/SequencedMessage.hpp"
+#include "enums/TemplateId.hpp"
+#include "messages/InstrumentDirectoryMessage.hpp"
+#include "messages/RegShoRestrictionMessage.hpp"
+#include "messages/SecurityTradingStatusMessage.hpp"
+#include "messages/TradingSessionStatusMessage.hpp"
+#include "messages/OrderAddedMessage.hpp"
+#include "messages/OrderDeletedMessage.hpp"
+#include "messages/OrderReducedMessage.hpp"
+#include "messages/OrderExecutedMessage.hpp"
+#include "messages/TradeMessage.hpp"
+#include "messages/BrokenTradeMessage.hpp"
+#include "messages/CorrectedTradeMessage.hpp"
+#include "messages/ClearBookMessage.hpp"
+#include "messages/SnapshotCompleteMessage.hpp"
 
 namespace memx::memxequities::memoirdepthfeed::sbe::v1_3 {
 
@@ -23,17 +37,56 @@ struct PacketReader {
         const Packet packet{ bytes };
         if constexpr (requires { handler.on(packet); }) { handler.on(packet); }
 
-        const std::size_t offset = packet.encoded_size();
-        return offset + dispatch(packet, bytes.subspan(offset), handler);
+        // Heartbeat: the packet carries no messages
+        if (static_cast<std::uint8_t>(packet.common_header().message_type()) == 0) { return packet.encoded_size(); }
+
+        // Session Shutdown: the packet carries no messages
+        if (static_cast<std::uint8_t>(packet.common_header().message_type()) == 1) { return packet.encoded_size(); }
+
+        std::size_t offset = packet.encoded_size();
+
+        // Sequenced Message: the packet's frames; a packet selecting none of its alternatives is not read
+        if (!(static_cast<std::uint8_t>(packet.common_header().message_type()) == 2)) { throw DecodeError(Packet::name, "no alternative of its Sequenced Messages is selected"); }
+
+        // the fields its Sequenced Message holds before its frames
+        wire::require(SequencedMessage::name, offset + SequencedMessage::minimum_size, bytes.size());
+        const SequencedMessage sequenced_message{ bytes.subspan(offset) };
+        offset += sequenced_message.encoded_size();
+        const std::size_t count = wire::count(sequenced_message.message_count());
+
+        for (std::size_t index = 0; index < count; ++index) {
+            const std::size_t start = offset;
+            wire::require(Frame::name, offset + Frame::minimum_size, bytes.size());
+            const Frame frame{ bytes.subspan(offset) };
+            offset += frame.encoded_size();
+            const std::size_t frame_size = wire::count(frame.message_length()) + 2;
+            wire::require(Packet::name, start + frame_size, bytes.size());
+            dispatch(frame, bytes.subspan(offset, start + frame_size - offset), handler);
+            offset = start + frame_size;
+        }
+
+        return offset;
     }
 
   private:
     template <typename Handler>
-    static std::size_t dispatch(const Packet& packet, std::span<const std::byte> body, Handler& handler) {
-        switch (packet.common_header().message_type()) {
-            case MessageType::SequencedMessage: return handle<SequencedMessage>(body, handler);
+    static std::size_t dispatch(const Frame& frame, std::span<const std::byte> body, Handler& handler) {
+        switch (frame.sbe_header().template_id()) {
+            case TemplateId::InstrumentDirectoryMessage: return handle<InstrumentDirectoryMessage>(body, handler);
+            case TemplateId::RegShoRestrictionMessage: return handle<RegShoRestrictionMessage>(body, handler);
+            case TemplateId::SecurityTradingStatusMessage: return handle<SecurityTradingStatusMessage>(body, handler);
+            case TemplateId::TradingSessionStatusMessage: return handle<TradingSessionStatusMessage>(body, handler);
+            case TemplateId::OrderAddedMessage: return handle<OrderAddedMessage>(body, handler);
+            case TemplateId::OrderDeletedMessage: return handle<OrderDeletedMessage>(body, handler);
+            case TemplateId::OrderReducedMessage: return handle<OrderReducedMessage>(body, handler);
+            case TemplateId::OrderExecutedMessage: return handle<OrderExecutedMessage>(body, handler);
+            case TemplateId::TradeMessage: return handle<TradeMessage>(body, handler);
+            case TemplateId::BrokenTradeMessage: return handle<BrokenTradeMessage>(body, handler);
+            case TemplateId::CorrectedTradeMessage: return handle<CorrectedTradeMessage>(body, handler);
+            case TemplateId::ClearBookMessage: return handle<ClearBookMessage>(body, handler);
+            case TemplateId::SnapshotCompleteMessage: return handle<SnapshotCompleteMessage>(body, handler);
             default:
-                if constexpr (requires { handler.on_unknown(packet.common_header().message_type(), body); }) { handler.on_unknown(packet.common_header().message_type(), body); }
+                if constexpr (requires { handler.on_unknown(frame.sbe_header().template_id(), body); }) { handler.on_unknown(frame.sbe_header().template_id(), body); }
                 return body.size();
         }
     }

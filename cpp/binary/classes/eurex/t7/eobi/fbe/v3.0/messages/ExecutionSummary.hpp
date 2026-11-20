@@ -30,7 +30,7 @@ class ExecutionSummary : public Message {
     ExecutionSummary() = default;
     ExecutionSummary(std::optional<std::int64_t> security_id, std::optional<std::chrono::nanoseconds> aggressor_timestamp, std::optional<std::chrono::nanoseconds> request_time, std::optional<std::chrono::nanoseconds> exec_id, std::optional<std::int32_t> last_qty, std::optional<AggressorSide> aggressor_side, std::optional<TradeCondition> trade_condition, const std::array<std::byte, 2>& pad2, std::optional<Decimal> last_px, std::optional<std::int32_t> resting_hidden_qty, std::optional<std::int32_t> resting_cxl_qty);
 
-    // Security Id:
+    // Security Id: Unique instrument identifier
     std::optional<std::int64_t> security_id() const;
     void set_security_id(std::optional<std::int64_t> value);
 
@@ -46,7 +46,7 @@ class ExecutionSummary : public Message {
     std::optional<std::chrono::nanoseconds> exec_id() const;
     void set_exec_id(std::optional<std::chrono::nanoseconds> value);
 
-    // Last Qty:
+    // Last Qty: Total executed matched quantity of this match event
     std::optional<std::int32_t> last_qty() const;
     void set_last_qty(std::optional<std::int32_t> value);
 

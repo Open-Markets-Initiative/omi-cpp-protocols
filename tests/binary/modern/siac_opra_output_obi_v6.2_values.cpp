@@ -27,7 +27,7 @@ canonical::Listing read(const packet::Frame& frame) {
     values["packet.blockheader.version"] = canonical::number(iterator.block_header->version.get());
     values["packet.blockheader.blocksize"] = canonical::number(iterator.block_header->block_size.get());
     values["packet.blockheader.datafeedindicator"] = canonical::text(canonical::character(iterator.block_header->data_feed_indicator.get()));
-    values["packet.blockheader.retransmissionindicator"] = canonical::text(canonical::character(iterator.block_header->retransmission_indicator.get()));
+    values["packet.blockheader.retransmissionindicator"] = canonical::text(canonical::character(iterator.block_header->retransmission_indicator.get()), {std::string_view(" ", 1)});
     values["packet.blockheader.sessionindicator"] = canonical::number(iterator.block_header->session_indicator.get());
     values["packet.blockheader.blocksequencenumber"] = canonical::number(iterator.block_header->block_sequence_number.get());
     values["packet.blockheader.messagesinblock"] = canonical::number(iterator.block_header->messages_in_block.get());
@@ -45,7 +45,7 @@ canonical::Listing read(const packet::Frame& frame) {
         if (iterator.message_category == 'C') {
             values[entry + ".payload"] = "packet.message.payload.administrativecategory";
             [[maybe_unused]] const auto* message = protocol::AdministrativeCategory::parse(iterator.message);
-            values[entry + ".payload.administrativecategory.administrativemessagetype"] = canonical::text(canonical::character(message->administrative_message_type.get()));
+            values[entry + ".payload.administrativecategory.administrativemessagetype"] = canonical::text(canonical::character(message->administrative_message_type.get()), {std::string_view(" ", 1)});
             if (message->administrative_message_type.get() == ' ') {
                 values[entry + ".payload.administrativecategory.administrativemessagepayload"] = "packet.message.payload.administrativecategory.administrativemessagepayload.administrativemessage";
                 [[maybe_unused]] const auto* message_2 = protocol::AdministrativeMessage::parse(iterator.message + sizeof(protocol::AdministrativeCategory));
@@ -89,7 +89,7 @@ canonical::Listing read(const packet::Frame& frame) {
         } else if (iterator.message_category == 'd') {
             values[entry + ".payload"] = "packet.message.payload.openinterestcategory";
             [[maybe_unused]] const auto* message = protocol::OpenInterestCategory::parse(iterator.message);
-            values[entry + ".payload.openinterestcategory.openinterestmessagetype"] = canonical::text(canonical::character(message->open_interest_message_type.get()));
+            values[entry + ".payload.openinterestcategory.openinterestmessagetype"] = canonical::text(canonical::character(message->open_interest_message_type.get()), {std::string_view(" ", 1)});
             if (message->open_interest_message_type.get() == ' ') {
                 values[entry + ".payload.openinterestcategory.openinterestmessagepayload"] = "packet.message.payload.openinterestcategory.openinterestmessagepayload.openinterestmessage";
                 [[maybe_unused]] const auto* message_2 = protocol::OpenInterestMessage::parse(iterator.message + sizeof(protocol::OpenInterestCategory));
@@ -107,7 +107,7 @@ canonical::Listing read(const packet::Frame& frame) {
         } else if (iterator.message_category == 'f') {
             values[entry + ".payload"] = "packet.message.payload.equityandindexendofdaysummarycategory";
             [[maybe_unused]] const auto* message = protocol::EquityAndIndexEndOfDaySummaryCategory::parse(iterator.message);
-            values[entry + ".payload.equityandindexendofdaysummarycategory.equityandindexendofdaysummarymessagetype"] = canonical::text(canonical::character(message->equity_and_index_end_of_day_summary_message_type.get()));
+            values[entry + ".payload.equityandindexendofdaysummarycategory.equityandindexendofdaysummarymessagetype"] = canonical::text(canonical::character(message->equity_and_index_end_of_day_summary_message_type.get()), {std::string_view(" ", 1)});
             if (message->equity_and_index_end_of_day_summary_message_type.get() == ' ') {
                 values[entry + ".payload.equityandindexendofdaysummarycategory.equityandindexendofdaysummarymessagepayload"] = "packet.message.payload.equityandindexendofdaysummarycategory.equityandindexendofdaysummarymessagepayload.equityandindexendofdaysummarymessage";
                 [[maybe_unused]] const auto* message_2 = protocol::EquityAndIndexEndOfDaySummaryMessage::parse(iterator.message + sizeof(protocol::EquityAndIndexEndOfDaySummaryCategory));
@@ -136,11 +136,11 @@ canonical::Listing read(const packet::Frame& frame) {
         } else if (iterator.message_category == 'k') {
             values[entry + ".payload"] = "packet.message.payload.longequityandindexquotecategory";
             [[maybe_unused]] const auto* message = protocol::LongEquityAndIndexQuoteCategory::parse(iterator.message);
-            values[entry + ".payload.longequityandindexquotecategory.longequityandindexquotemessagetype"] = canonical::text(canonical::character(message->long_equity_and_index_quote_message_type.get()));
+            values[entry + ".payload.longequityandindexquotecategory.longequityandindexquotemessagetype"] = canonical::text(canonical::character(message->long_equity_and_index_quote_message_type.get()), {std::string_view(" ", 1)});
             if (message->long_equity_and_index_quote_message_type.get() == ' ' || message->long_equity_and_index_quote_message_type.get() == 'F' || message->long_equity_and_index_quote_message_type.get() == 'I' || message->long_equity_and_index_quote_message_type.get() == 'R' || message->long_equity_and_index_quote_message_type.get() == 'T' || message->long_equity_and_index_quote_message_type.get() == 'A' || message->long_equity_and_index_quote_message_type.get() == 'B' || message->long_equity_and_index_quote_message_type.get() == 'O' || message->long_equity_and_index_quote_message_type.get() == 'C' || message->long_equity_and_index_quote_message_type.get() == 'X' || message->long_equity_and_index_quote_message_type.get() == 'Y') {
                 values[entry + ".payload.longequityandindexquotecategory.longequityandindexquotemessagepayload"] = "packet.message.payload.longequityandindexquotecategory.longequityandindexquotemessagepayload.longequityandindexquotemessage";
                 [[maybe_unused]] const auto* message_2 = protocol::LongEquityAndIndexQuoteMessage::parse(iterator.message + sizeof(protocol::LongEquityAndIndexQuoteCategory));
-                values[entry + ".payload.longequityandindexquotecategory.longequityandindexquotemessagepayload.longequityandindexquotemessage.bboindicator"] = canonical::text(canonical::character(message_2->bbo_indicator.get()), ' ', false);
+                values[entry + ".payload.longequityandindexquotecategory.longequityandindexquotemessagepayload.longequityandindexquotemessage.bboindicator"] = canonical::text(canonical::character(message_2->bbo_indicator.get()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
                 values[entry + ".payload.longequityandindexquotecategory.longequityandindexquotemessagepayload.longequityandindexquotemessage.transactionid"] = canonical::number(message_2->transaction_id.get());
                 values[entry + ".payload.longequityandindexquotecategory.longequityandindexquotemessagepayload.longequityandindexquotemessage.participantreferencenumber"] = canonical::number(message_2->participant_reference_number.get());
                 values[entry + ".payload.longequityandindexquotecategory.longequityandindexquotemessagepayload.longequityandindexquotemessage.securitysymbol"] = canonical::text(std::string(message_2->security_symbol.get()), ' ', false);
@@ -158,11 +158,11 @@ canonical::Listing read(const packet::Frame& frame) {
         } else if (iterator.message_category == 'q') {
             values[entry + ".payload"] = "packet.message.payload.shortequityandindexquotecategory";
             [[maybe_unused]] const auto* message = protocol::ShortEquityAndIndexQuoteCategory::parse(iterator.message);
-            values[entry + ".payload.shortequityandindexquotecategory.shortequityandindexquotemessagetype"] = canonical::text(canonical::character(message->short_equity_and_index_quote_message_type.get()));
+            values[entry + ".payload.shortequityandindexquotecategory.shortequityandindexquotemessagetype"] = canonical::text(canonical::character(message->short_equity_and_index_quote_message_type.get()), {std::string_view(" ", 1)});
             if (message->short_equity_and_index_quote_message_type.get() == ' ' || message->short_equity_and_index_quote_message_type.get() == 'F' || message->short_equity_and_index_quote_message_type.get() == 'I' || message->short_equity_and_index_quote_message_type.get() == 'R' || message->short_equity_and_index_quote_message_type.get() == 'T' || message->short_equity_and_index_quote_message_type.get() == 'A' || message->short_equity_and_index_quote_message_type.get() == 'B' || message->short_equity_and_index_quote_message_type.get() == 'O' || message->short_equity_and_index_quote_message_type.get() == 'C' || message->short_equity_and_index_quote_message_type.get() == 'X' || message->short_equity_and_index_quote_message_type.get() == 'Y') {
                 values[entry + ".payload.shortequityandindexquotecategory.shortequityandindexquotemessagepayload"] = "packet.message.payload.shortequityandindexquotecategory.shortequityandindexquotemessagepayload.shortequityandindexquotemessage";
                 [[maybe_unused]] const auto* message_2 = protocol::ShortEquityAndIndexQuoteMessage::parse(iterator.message + sizeof(protocol::ShortEquityAndIndexQuoteCategory));
-                values[entry + ".payload.shortequityandindexquotecategory.shortequityandindexquotemessagepayload.shortequityandindexquotemessage.bboindicator"] = canonical::text(canonical::character(message_2->bbo_indicator.get()), ' ', false);
+                values[entry + ".payload.shortequityandindexquotecategory.shortequityandindexquotemessagepayload.shortequityandindexquotemessage.bboindicator"] = canonical::text(canonical::character(message_2->bbo_indicator.get()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
                 values[entry + ".payload.shortequityandindexquotecategory.shortequityandindexquotemessagepayload.shortequityandindexquotemessage.transactionid"] = canonical::number(message_2->transaction_id.get());
                 values[entry + ".payload.shortequityandindexquotecategory.shortequityandindexquotemessagepayload.shortequityandindexquotemessage.participantreferencenumber"] = canonical::number(message_2->participant_reference_number.get());
                 values[entry + ".payload.shortequityandindexquotecategory.shortequityandindexquotemessagepayload.shortequityandindexquotemessage.securitysymbolshort"] = canonical::text(std::string(message_2->security_symbol_short.get()), ' ', false);
@@ -178,7 +178,7 @@ canonical::Listing read(const packet::Frame& frame) {
         } else if (iterator.message_category == 'Y') {
             values[entry + ".payload"] = "packet.message.payload.underlyingvaluecategory";
             [[maybe_unused]] const auto* message = protocol::UnderlyingValueCategory::parse(iterator.message);
-            values[entry + ".payload.underlyingvaluecategory.underlyingvaluemessagetype"] = canonical::text(canonical::character(message->underlying_value_message_type.get()));
+            values[entry + ".payload.underlyingvaluecategory.underlyingvaluemessagetype"] = canonical::text(canonical::character(message->underlying_value_message_type.get()), {std::string_view(" ", 1)});
             if (message->underlying_value_message_type.get() == ' ') {
                 values[entry + ".payload.underlyingvaluecategory.underlyingvaluemessagepayload"] = "packet.message.payload.underlyingvaluecategory.underlyingvaluemessagepayload.underlyingvaluelastsalemessage";
                 [[maybe_unused]] const auto* message_2 = protocol::UnderlyingValueLastSaleMessage::parse(iterator.message + sizeof(protocol::UnderlyingValueCategory));

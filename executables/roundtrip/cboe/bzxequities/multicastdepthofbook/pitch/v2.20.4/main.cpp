@@ -94,9 +94,9 @@ std::unique_ptr<protocol::Message> build_AddOrderLongMessage() {
     message->set_time_offset(std::chrono::nanoseconds{1});
     message->set_order_id(static_cast<std::uint64_t>(2));
     message->set_side_indicator(protocol::SideIndicator::SellOrder);
-    message->set_quantity_binary_4(static_cast<std::uint32_t>(4));
+    message->set_quantity_long(static_cast<std::uint32_t>(4));
     message->set_symbol_short(std::string("FGH"));
-    message->set_price_binary_long_price_8(protocol::Decimal(6, -4));
+    message->set_price_long(protocol::Decimal(6, -4));
     message->set_add_flags([] { protocol::AddFlags value; value.set_display(true); return value; }());
     return message;
 }
@@ -107,9 +107,9 @@ std::unique_ptr<protocol::Message> build_AddOrderShortMessage() {
     message->set_time_offset(std::chrono::nanoseconds{1});
     message->set_order_id(static_cast<std::uint64_t>(2));
     message->set_side_indicator(protocol::SideIndicator::SellOrder);
-    message->set_quantity_binary_2(static_cast<std::uint16_t>(4));
+    message->set_quantity_short(static_cast<std::uint16_t>(4));
     message->set_symbol_short(std::string("FGH"));
-    message->set_price_binary_short_price_2(protocol::Decimal(6, -2));
+    message->set_price_short(protocol::Decimal(6, -2));
     message->set_add_flags([] { protocol::AddFlags value; value.set_display(true); return value; }());
     return message;
 }
@@ -120,9 +120,9 @@ std::unique_ptr<protocol::Message> build_AddOrderExpandedMessage() {
     message->set_time_offset(std::chrono::nanoseconds{1});
     message->set_order_id(static_cast<std::uint64_t>(2));
     message->set_side_indicator(protocol::SideIndicator::SellOrder);
-    message->set_quantity_binary_4(static_cast<std::uint32_t>(4));
+    message->set_quantity_long(static_cast<std::uint32_t>(4));
     message->set_symbol_long(std::string("FGH"));
-    message->set_price_binary_long_price_8(protocol::Decimal(6, -4));
+    message->set_price_long(protocol::Decimal(6, -4));
     message->set_add_flags([] { protocol::AddFlags value; value.set_display(true); return value; }());
     message->set_participant_id(std::string("IJK"));
     return message;
@@ -146,7 +146,7 @@ std::unique_ptr<protocol::Message> build_OrderExecutedAtPriceSizeMessage() {
     message->set_executed_quantity(static_cast<std::uint32_t>(3));
     message->set_remaining_quantity(static_cast<std::uint32_t>(4));
     message->set_execution_id(static_cast<std::uint64_t>(5));
-    message->set_price_binary_long_price_8(protocol::Decimal(6, -4));
+    message->set_price_long(protocol::Decimal(6, -4));
     return message;
 }
 
@@ -155,7 +155,7 @@ std::unique_ptr<protocol::Message> build_ReduceSizeLongMessage() {
     auto message = std::make_unique<protocol::ReduceSizeLongMessage>();
     message->set_time_offset(std::chrono::nanoseconds{1});
     message->set_order_id(static_cast<std::uint64_t>(2));
-    message->set_canceled_quantity_binary_4(static_cast<std::uint32_t>(3));
+    message->set_canceled_quantity_long(static_cast<std::uint32_t>(3));
     return message;
 }
 
@@ -164,7 +164,7 @@ std::unique_ptr<protocol::Message> build_ReduceSizeShortMessage() {
     auto message = std::make_unique<protocol::ReduceSizeShortMessage>();
     message->set_time_offset(std::chrono::nanoseconds{1});
     message->set_order_id(static_cast<std::uint64_t>(2));
-    message->set_canceled_quantity_binary_2(static_cast<std::uint16_t>(3));
+    message->set_canceled_quantity_short(static_cast<std::uint16_t>(3));
     return message;
 }
 
@@ -173,8 +173,8 @@ std::unique_ptr<protocol::Message> build_ModifyOrderLongMessage() {
     auto message = std::make_unique<protocol::ModifyOrderLongMessage>();
     message->set_time_offset(std::chrono::nanoseconds{1});
     message->set_order_id(static_cast<std::uint64_t>(2));
-    message->set_quantity_binary_4(static_cast<std::uint32_t>(3));
-    message->set_price_binary_long_price_8(protocol::Decimal(4, -4));
+    message->set_quantity_long(static_cast<std::uint32_t>(3));
+    message->set_price_long(protocol::Decimal(4, -4));
     message->set_modify_flags([] { protocol::ModifyFlags value; value.set_display(true); value.set_maintain_priority(true); return value; }());
     return message;
 }
@@ -184,8 +184,8 @@ std::unique_ptr<protocol::Message> build_ModifyOrderShortMessage() {
     auto message = std::make_unique<protocol::ModifyOrderShortMessage>();
     message->set_time_offset(std::chrono::nanoseconds{1});
     message->set_order_id(static_cast<std::uint64_t>(2));
-    message->set_quantity_binary_2(static_cast<std::uint16_t>(3));
-    message->set_price_binary_short_price_2(protocol::Decimal(4, -2));
+    message->set_quantity_short(static_cast<std::uint16_t>(3));
+    message->set_price_short(protocol::Decimal(4, -2));
     message->set_modify_flags([] { protocol::ModifyFlags value; value.set_display(true); value.set_maintain_priority(true); return value; }());
     return message;
 }
@@ -204,9 +204,9 @@ std::unique_ptr<protocol::Message> build_TradeLongMessage() {
     message->set_time_offset(std::chrono::nanoseconds{1});
     message->set_order_id(static_cast<std::uint64_t>(2));
     message->set_side_indicator(protocol::SideIndicator::SellOrder);
-    message->set_quantity_binary_4(static_cast<std::uint32_t>(4));
+    message->set_quantity_long(static_cast<std::uint32_t>(4));
     message->set_symbol_short(std::string("FGH"));
-    message->set_price_binary_long_price_8(protocol::Decimal(6, -4));
+    message->set_price_long(protocol::Decimal(6, -4));
     message->set_execution_id(static_cast<std::uint64_t>(7));
     return message;
 }
@@ -217,9 +217,9 @@ std::unique_ptr<protocol::Message> build_TradeShortMessage() {
     message->set_time_offset(std::chrono::nanoseconds{1});
     message->set_order_id(static_cast<std::uint64_t>(2));
     message->set_side_indicator(protocol::SideIndicator::SellOrder);
-    message->set_quantity_binary_2(static_cast<std::uint16_t>(4));
+    message->set_quantity_short(static_cast<std::uint16_t>(4));
     message->set_symbol_short(std::string("FGH"));
-    message->set_price_binary_short_price_2(protocol::Decimal(6, -2));
+    message->set_price_short(protocol::Decimal(6, -2));
     message->set_execution_id(static_cast<std::uint64_t>(7));
     return message;
 }
@@ -230,9 +230,9 @@ std::unique_ptr<protocol::Message> build_TradeExpandedMessage() {
     message->set_time_offset(std::chrono::nanoseconds{1});
     message->set_order_id(static_cast<std::uint64_t>(2));
     message->set_side_indicator(protocol::SideIndicator::SellOrder);
-    message->set_quantity_binary_4(static_cast<std::uint32_t>(4));
+    message->set_quantity_long(static_cast<std::uint32_t>(4));
     message->set_symbol_long(std::string("FGH"));
-    message->set_price_binary_long_price_8(protocol::Decimal(6, -4));
+    message->set_price_long(protocol::Decimal(6, -4));
     message->set_execution_id(static_cast<std::uint64_t>(7));
     return message;
 }
@@ -291,7 +291,7 @@ std::unique_ptr<protocol::Message> build_AuctionSummaryMessage() {
     message->set_time_offset(std::chrono::nanoseconds{1});
     message->set_stock_symbol(std::string("CDE"));
     message->set_auction_type(protocol::AuctionType::IpoAuction);
-    message->set_price_binary_8(static_cast<std::uint64_t>(4));
+    message->set_price_long(protocol::Decimal(4, -4));
     message->set_shares(static_cast<std::uint32_t>(5));
     return message;
 }
@@ -361,16 +361,16 @@ int check_AddOrderLongMessage(const protocol::Message* read) {
         std::printf("FAIL AddOrderLongMessage: side_indicator does not read as it was written\n");
         ++failures;
     }
-    if (!(message->quantity_binary_4() == static_cast<std::uint32_t>(4))) {
-        std::printf("FAIL AddOrderLongMessage: quantity_binary_4 does not read as it was written\n");
+    if (!(message->quantity_long() == static_cast<std::uint32_t>(4))) {
+        std::printf("FAIL AddOrderLongMessage: quantity_long does not read as it was written\n");
         ++failures;
     }
     if (!(message->symbol_short() == std::string("FGH"))) {
         std::printf("FAIL AddOrderLongMessage: symbol_short does not read as it was written\n");
         ++failures;
     }
-    if (!(message->price_binary_long_price_8() == protocol::Decimal(6, -4))) {
-        std::printf("FAIL AddOrderLongMessage: price_binary_long_price_8 does not read as it was written\n");
+    if (!(message->price_long() == protocol::Decimal(6, -4))) {
+        std::printf("FAIL AddOrderLongMessage: price_long does not read as it was written\n");
         ++failures;
     }
     if (!(message->add_flags().display() == true)) {
@@ -402,16 +402,16 @@ int check_AddOrderShortMessage(const protocol::Message* read) {
         std::printf("FAIL AddOrderShortMessage: side_indicator does not read as it was written\n");
         ++failures;
     }
-    if (!(message->quantity_binary_2() == static_cast<std::uint16_t>(4))) {
-        std::printf("FAIL AddOrderShortMessage: quantity_binary_2 does not read as it was written\n");
+    if (!(message->quantity_short() == static_cast<std::uint16_t>(4))) {
+        std::printf("FAIL AddOrderShortMessage: quantity_short does not read as it was written\n");
         ++failures;
     }
     if (!(message->symbol_short() == std::string("FGH"))) {
         std::printf("FAIL AddOrderShortMessage: symbol_short does not read as it was written\n");
         ++failures;
     }
-    if (!(message->price_binary_short_price_2() == protocol::Decimal(6, -2))) {
-        std::printf("FAIL AddOrderShortMessage: price_binary_short_price_2 does not read as it was written\n");
+    if (!(message->price_short() == protocol::Decimal(6, -2))) {
+        std::printf("FAIL AddOrderShortMessage: price_short does not read as it was written\n");
         ++failures;
     }
     if (!(message->add_flags().display() == true)) {
@@ -443,16 +443,16 @@ int check_AddOrderExpandedMessage(const protocol::Message* read) {
         std::printf("FAIL AddOrderExpandedMessage: side_indicator does not read as it was written\n");
         ++failures;
     }
-    if (!(message->quantity_binary_4() == static_cast<std::uint32_t>(4))) {
-        std::printf("FAIL AddOrderExpandedMessage: quantity_binary_4 does not read as it was written\n");
+    if (!(message->quantity_long() == static_cast<std::uint32_t>(4))) {
+        std::printf("FAIL AddOrderExpandedMessage: quantity_long does not read as it was written\n");
         ++failures;
     }
     if (!(message->symbol_long() == std::string("FGH"))) {
         std::printf("FAIL AddOrderExpandedMessage: symbol_long does not read as it was written\n");
         ++failures;
     }
-    if (!(message->price_binary_long_price_8() == protocol::Decimal(6, -4))) {
-        std::printf("FAIL AddOrderExpandedMessage: price_binary_long_price_8 does not read as it was written\n");
+    if (!(message->price_long() == protocol::Decimal(6, -4))) {
+        std::printf("FAIL AddOrderExpandedMessage: price_long does not read as it was written\n");
         ++failures;
     }
     if (!(message->add_flags().display() == true)) {
@@ -525,8 +525,8 @@ int check_OrderExecutedAtPriceSizeMessage(const protocol::Message* read) {
         std::printf("FAIL OrderExecutedAtPriceSizeMessage: execution_id does not read as it was written\n");
         ++failures;
     }
-    if (!(message->price_binary_long_price_8() == protocol::Decimal(6, -4))) {
-        std::printf("FAIL OrderExecutedAtPriceSizeMessage: price_binary_long_price_8 does not read as it was written\n");
+    if (!(message->price_long() == protocol::Decimal(6, -4))) {
+        std::printf("FAIL OrderExecutedAtPriceSizeMessage: price_long does not read as it was written\n");
         ++failures;
     }
     return failures;
@@ -550,8 +550,8 @@ int check_ReduceSizeLongMessage(const protocol::Message* read) {
         std::printf("FAIL ReduceSizeLongMessage: order_id does not read as it was written\n");
         ++failures;
     }
-    if (!(message->canceled_quantity_binary_4() == static_cast<std::uint32_t>(3))) {
-        std::printf("FAIL ReduceSizeLongMessage: canceled_quantity_binary_4 does not read as it was written\n");
+    if (!(message->canceled_quantity_long() == static_cast<std::uint32_t>(3))) {
+        std::printf("FAIL ReduceSizeLongMessage: canceled_quantity_long does not read as it was written\n");
         ++failures;
     }
     return failures;
@@ -575,8 +575,8 @@ int check_ReduceSizeShortMessage(const protocol::Message* read) {
         std::printf("FAIL ReduceSizeShortMessage: order_id does not read as it was written\n");
         ++failures;
     }
-    if (!(message->canceled_quantity_binary_2() == static_cast<std::uint16_t>(3))) {
-        std::printf("FAIL ReduceSizeShortMessage: canceled_quantity_binary_2 does not read as it was written\n");
+    if (!(message->canceled_quantity_short() == static_cast<std::uint16_t>(3))) {
+        std::printf("FAIL ReduceSizeShortMessage: canceled_quantity_short does not read as it was written\n");
         ++failures;
     }
     return failures;
@@ -600,12 +600,12 @@ int check_ModifyOrderLongMessage(const protocol::Message* read) {
         std::printf("FAIL ModifyOrderLongMessage: order_id does not read as it was written\n");
         ++failures;
     }
-    if (!(message->quantity_binary_4() == static_cast<std::uint32_t>(3))) {
-        std::printf("FAIL ModifyOrderLongMessage: quantity_binary_4 does not read as it was written\n");
+    if (!(message->quantity_long() == static_cast<std::uint32_t>(3))) {
+        std::printf("FAIL ModifyOrderLongMessage: quantity_long does not read as it was written\n");
         ++failures;
     }
-    if (!(message->price_binary_long_price_8() == protocol::Decimal(4, -4))) {
-        std::printf("FAIL ModifyOrderLongMessage: price_binary_long_price_8 does not read as it was written\n");
+    if (!(message->price_long() == protocol::Decimal(4, -4))) {
+        std::printf("FAIL ModifyOrderLongMessage: price_long does not read as it was written\n");
         ++failures;
     }
     if (!(message->modify_flags().display() == true)) {
@@ -637,12 +637,12 @@ int check_ModifyOrderShortMessage(const protocol::Message* read) {
         std::printf("FAIL ModifyOrderShortMessage: order_id does not read as it was written\n");
         ++failures;
     }
-    if (!(message->quantity_binary_2() == static_cast<std::uint16_t>(3))) {
-        std::printf("FAIL ModifyOrderShortMessage: quantity_binary_2 does not read as it was written\n");
+    if (!(message->quantity_short() == static_cast<std::uint16_t>(3))) {
+        std::printf("FAIL ModifyOrderShortMessage: quantity_short does not read as it was written\n");
         ++failures;
     }
-    if (!(message->price_binary_short_price_2() == protocol::Decimal(4, -2))) {
-        std::printf("FAIL ModifyOrderShortMessage: price_binary_short_price_2 does not read as it was written\n");
+    if (!(message->price_short() == protocol::Decimal(4, -2))) {
+        std::printf("FAIL ModifyOrderShortMessage: price_short does not read as it was written\n");
         ++failures;
     }
     if (!(message->modify_flags().display() == true)) {
@@ -699,16 +699,16 @@ int check_TradeLongMessage(const protocol::Message* read) {
         std::printf("FAIL TradeLongMessage: side_indicator does not read as it was written\n");
         ++failures;
     }
-    if (!(message->quantity_binary_4() == static_cast<std::uint32_t>(4))) {
-        std::printf("FAIL TradeLongMessage: quantity_binary_4 does not read as it was written\n");
+    if (!(message->quantity_long() == static_cast<std::uint32_t>(4))) {
+        std::printf("FAIL TradeLongMessage: quantity_long does not read as it was written\n");
         ++failures;
     }
     if (!(message->symbol_short() == std::string("FGH"))) {
         std::printf("FAIL TradeLongMessage: symbol_short does not read as it was written\n");
         ++failures;
     }
-    if (!(message->price_binary_long_price_8() == protocol::Decimal(6, -4))) {
-        std::printf("FAIL TradeLongMessage: price_binary_long_price_8 does not read as it was written\n");
+    if (!(message->price_long() == protocol::Decimal(6, -4))) {
+        std::printf("FAIL TradeLongMessage: price_long does not read as it was written\n");
         ++failures;
     }
     if (!(message->execution_id() == static_cast<std::uint64_t>(7))) {
@@ -740,16 +740,16 @@ int check_TradeShortMessage(const protocol::Message* read) {
         std::printf("FAIL TradeShortMessage: side_indicator does not read as it was written\n");
         ++failures;
     }
-    if (!(message->quantity_binary_2() == static_cast<std::uint16_t>(4))) {
-        std::printf("FAIL TradeShortMessage: quantity_binary_2 does not read as it was written\n");
+    if (!(message->quantity_short() == static_cast<std::uint16_t>(4))) {
+        std::printf("FAIL TradeShortMessage: quantity_short does not read as it was written\n");
         ++failures;
     }
     if (!(message->symbol_short() == std::string("FGH"))) {
         std::printf("FAIL TradeShortMessage: symbol_short does not read as it was written\n");
         ++failures;
     }
-    if (!(message->price_binary_short_price_2() == protocol::Decimal(6, -2))) {
-        std::printf("FAIL TradeShortMessage: price_binary_short_price_2 does not read as it was written\n");
+    if (!(message->price_short() == protocol::Decimal(6, -2))) {
+        std::printf("FAIL TradeShortMessage: price_short does not read as it was written\n");
         ++failures;
     }
     if (!(message->execution_id() == static_cast<std::uint64_t>(7))) {
@@ -781,16 +781,16 @@ int check_TradeExpandedMessage(const protocol::Message* read) {
         std::printf("FAIL TradeExpandedMessage: side_indicator does not read as it was written\n");
         ++failures;
     }
-    if (!(message->quantity_binary_4() == static_cast<std::uint32_t>(4))) {
-        std::printf("FAIL TradeExpandedMessage: quantity_binary_4 does not read as it was written\n");
+    if (!(message->quantity_long() == static_cast<std::uint32_t>(4))) {
+        std::printf("FAIL TradeExpandedMessage: quantity_long does not read as it was written\n");
         ++failures;
     }
     if (!(message->symbol_long() == std::string("FGH"))) {
         std::printf("FAIL TradeExpandedMessage: symbol_long does not read as it was written\n");
         ++failures;
     }
-    if (!(message->price_binary_long_price_8() == protocol::Decimal(6, -4))) {
-        std::printf("FAIL TradeExpandedMessage: price_binary_long_price_8 does not read as it was written\n");
+    if (!(message->price_long() == protocol::Decimal(6, -4))) {
+        std::printf("FAIL TradeExpandedMessage: price_long does not read as it was written\n");
         ++failures;
     }
     if (!(message->execution_id() == static_cast<std::uint64_t>(7))) {
@@ -959,8 +959,8 @@ int check_AuctionSummaryMessage(const protocol::Message* read) {
         std::printf("FAIL AuctionSummaryMessage: auction_type does not read as it was written\n");
         ++failures;
     }
-    if (!(message->price_binary_8() == static_cast<std::uint64_t>(4))) {
-        std::printf("FAIL AuctionSummaryMessage: price_binary_8 does not read as it was written\n");
+    if (!(message->price_long() == protocol::Decimal(4, -4))) {
+        std::printf("FAIL AuctionSummaryMessage: price_long does not read as it was written\n");
         ++failures;
     }
     if (!(message->shares() == static_cast<std::uint32_t>(5))) {

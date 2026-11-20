@@ -4,7 +4,7 @@
 #include "../types/SessionId.hpp"
 #include "../types/MsgSeqNum.hpp"
 #include "../types/SendingTime.hpp"
-#include "../types/EventIndicator.hpp"
+#include "../bitfields/EventIndicator.hpp"
 #include "../types/MarketSegmentIdOptional.hpp"
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_3 {

@@ -11,7 +11,7 @@
 #include "../common/Print.hpp"
 #include "../common/View.hpp"
 #include "../bitfields/MatchEventIndicator.hpp"
-#include "../structs/IncrementalRefreshOrderBookGroups.hpp"
+#include "../structs/IncrementalRefreshOrderBookLegacyGroups.hpp"
 
 namespace cme::globex::mdp3::sbe::v1_9 {
 
@@ -27,7 +27,7 @@ class ServerPayloadMdIncrementalRefreshOrderBookLegacy {
 
     // the bytes every ServerPayloadMdIncrementalRefreshOrderBookLegacy has, which a reader checks before it views them
     static constexpr std::size_t minimum_size = 11;
-    std::size_t encoded_size() const { return incremental_refresh_order_book_groups_end(); }
+    std::size_t encoded_size() const { return incremental_refresh_order_book_legacy_groups_end(); }
 
     std::chrono::nanoseconds transact_time() const { return std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u64_le(at(0)))); }
 
@@ -35,7 +35,7 @@ class ServerPayloadMdIncrementalRefreshOrderBookLegacy {
 
     std::span<const std::byte, 2> padding_2() const { return bytes_.subspan(9).template first<2>(); }
 
-    IncrementalRefreshOrderBookGroups incremental_refresh_order_book_groups() const { return IncrementalRefreshOrderBookGroups{ bytes_.subspan(11) }; }
+    IncrementalRefreshOrderBookLegacyGroups incremental_refresh_order_book_legacy_groups() const { return IncrementalRefreshOrderBookLegacyGroups{ bytes_.subspan(11) }; }
 
     void print(std::ostream& out) const {
         out << "ServerPayloadMdIncrementalRefreshOrderBookLegacy{";
@@ -45,14 +45,14 @@ class ServerPayloadMdIncrementalRefreshOrderBookLegacy {
         match_event_indicator().print(out);
         out << ", padding_2=";
         print::hex(out, padding_2().data(), padding_2().size());
-        out << ", incremental_refresh_order_book_groups=";
-        incremental_refresh_order_book_groups().print(out);
+        out << ", incremental_refresh_order_book_legacy_groups=";
+        incremental_refresh_order_book_legacy_groups().print(out);
         out << '}';
     }
 
   private:
     const std::byte* at(std::size_t offset) const noexcept { return bytes_.data() + offset; }
-    std::size_t incremental_refresh_order_book_groups_end() const { return 11 + incremental_refresh_order_book_groups().encoded_size(); }
+    std::size_t incremental_refresh_order_book_legacy_groups_end() const { return 11 + incremental_refresh_order_book_legacy_groups().encoded_size(); }
 
     std::span<const std::byte> bytes_;
 };

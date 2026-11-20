@@ -1,6 +1,6 @@
 # Nasdaq.NtxEquities.TotalView.Itch.v5.0 StockTradingActionMessage: canonical values, read by the model
 datagram 0
-packet.packetheader.session = 
+packet.packetheader.session = (null)
 packet.packetheader.sequencenumber = 0
 packet.packetheader.messagecount = 1
 packet.messages = packet.messages.message
@@ -12,9 +12,9 @@ packet.messages.message[0].payload.stocktradingactionmessage.trackingnumber = 0
 packet.messages.message[0].payload.stocktradingactionmessage.timestamp = 34215592434152
 packet.messages.message[0].payload.stocktradingactionmessage.stock = ZXZZT
 packet.messages.message[0].payload.stocktradingactionmessage.tradingstate = H
-packet.messages.message[0].payload.stocktradingactionmessage.tradingactionreason = 
+packet.messages.message[0].payload.stocktradingactionmessage.tradingactionreason = (null)
 datagram 1
-packet.packetheader.session = 
+packet.packetheader.session = (null)
 packet.packetheader.sequencenumber = 0
 packet.packetheader.messagecount = 1
 packet.messages = packet.messages.message
@@ -26,9 +26,9 @@ packet.messages.message[0].payload.stocktradingactionmessage.trackingnumber = 0
 packet.messages.message[0].payload.stocktradingactionmessage.timestamp = 34216302242573
 packet.messages.message[0].payload.stocktradingactionmessage.stock = ZVZZT
 packet.messages.message[0].payload.stocktradingactionmessage.tradingstate = H
-packet.messages.message[0].payload.stocktradingactionmessage.tradingactionreason = 
+packet.messages.message[0].payload.stocktradingactionmessage.tradingactionreason = (null)
 datagram 2
-packet.packetheader.session = 
+packet.packetheader.session = (null)
 packet.packetheader.sequencenumber = 0
 packet.packetheader.messagecount = 1
 packet.messages = packet.messages.message
@@ -40,9 +40,9 @@ packet.messages.message[0].payload.stocktradingactionmessage.trackingnumber = 0
 packet.messages.message[0].payload.stocktradingactionmessage.timestamp = 34220598975485
 packet.messages.message[0].payload.stocktradingactionmessage.stock = CAML
 packet.messages.message[0].payload.stocktradingactionmessage.tradingstate = H
-packet.messages.message[0].payload.stocktradingactionmessage.tradingactionreason = 
+packet.messages.message[0].payload.stocktradingactionmessage.tradingactionreason = (null)
 datagram 3
-packet.packetheader.session = 
+packet.packetheader.session = (null)
 packet.packetheader.sequencenumber = 0
 packet.packetheader.messagecount = 1
 packet.messages = packet.messages.message
@@ -54,9 +54,9 @@ packet.messages.message[0].payload.stocktradingactionmessage.trackingnumber = 0
 packet.messages.message[0].payload.stocktradingactionmessage.timestamp = 34241583264138
 packet.messages.message[0].payload.stocktradingactionmessage.stock = LTRY
 packet.messages.message[0].payload.stocktradingactionmessage.tradingstate = H
-packet.messages.message[0].payload.stocktradingactionmessage.tradingactionreason = 
+packet.messages.message[0].payload.stocktradingactionmessage.tradingactionreason = (null)
 datagram 4
-packet.packetheader.session = 
+packet.packetheader.session = (null)
 packet.packetheader.sequencenumber = 0
 packet.packetheader.messagecount = 1
 packet.messages = packet.messages.message
@@ -68,4 +68,4 @@ packet.messages.message[0].payload.stocktradingactionmessage.trackingnumber = 0
 packet.messages.message[0].payload.stocktradingactionmessage.timestamp = 34260849892739
 packet.messages.message[0].payload.stocktradingactionmessage.stock = CSMD
 packet.messages.message[0].payload.stocktradingactionmessage.tradingstate = H
-packet.messages.message[0].payload.stocktradingactionmessage.tradingactionreason = 
+packet.messages.message[0].payload.stocktradingactionmessage.tradingactionreason = (null)

@@ -64,7 +64,7 @@ struct Reader {
         values[entry + ".payload.futuresymboldirectorymessage.tradeableinstrumentid"] = canonical::number(message.fields.tradeable_instrument_id.get().value());
         values[entry + ".payload.futuresymboldirectorymessage.symbolname"] = canonical::text(std::string(message.fields.symbol_name.get().value()), ' ', false);
         values[entry + ".payload.futuresymboldirectorymessage.longname"] = canonical::text(std::string(message.fields.long_name.get().value()), ' ', false);
-        values[entry + ".payload.futuresymboldirectorymessage.isin"] = (canonical::text(std::string(message.fields.isin.get().value()), ' ', false) != "" ? canonical::text(std::string(message.fields.isin.get().value()), ' ', false) : canonical::absent());
+        values[entry + ".payload.futuresymboldirectorymessage.isin"] = (canonical::text(std::string(message.fields.isin.get().value()), ' ', false, {std::string_view("            ", 12), std::string_view("", 0)}) != "" ? canonical::text(std::string(message.fields.isin.get().value()), ' ', false, {std::string_view("            ", 12), std::string_view("", 0)}) : canonical::absent());
         values[entry + ".payload.futuresymboldirectorymessage.exchange"] = canonical::text(std::string(message.fields.exchange.get().value()), ' ', false);
         values[entry + ".payload.futuresymboldirectorymessage.instrument"] = canonical::text(std::string(message.fields.instrument.get().value()), ' ', false);
         values[entry + ".payload.futuresymboldirectorymessage.cficode"] = canonical::text(std::string(message.fields.cfi_code.get().value()), ' ', false);
@@ -94,7 +94,7 @@ struct Reader {
         values[entry + ".payload.optionssymboldirectorymessage.tradeableinstrumentid"] = canonical::number(message.fields.tradeable_instrument_id.get().value());
         values[entry + ".payload.optionssymboldirectorymessage.symbolname"] = canonical::text(std::string(message.fields.symbol_name.get().value()), ' ', false);
         values[entry + ".payload.optionssymboldirectorymessage.longname"] = canonical::text(std::string(message.fields.long_name.get().value()), ' ', false);
-        values[entry + ".payload.optionssymboldirectorymessage.isin"] = (canonical::text(std::string(message.fields.isin.get().value()), ' ', false) != "" ? canonical::text(std::string(message.fields.isin.get().value()), ' ', false) : canonical::absent());
+        values[entry + ".payload.optionssymboldirectorymessage.isin"] = (canonical::text(std::string(message.fields.isin.get().value()), ' ', false, {std::string_view("            ", 12), std::string_view("", 0)}) != "" ? canonical::text(std::string(message.fields.isin.get().value()), ' ', false, {std::string_view("            ", 12), std::string_view("", 0)}) : canonical::absent());
         values[entry + ".payload.optionssymboldirectorymessage.exchange"] = canonical::text(std::string(message.fields.exchange.get().value()), ' ', false);
         values[entry + ".payload.optionssymboldirectorymessage.instrument"] = canonical::text(std::string(message.fields.instrument.get().value()), ' ', false);
         values[entry + ".payload.optionssymboldirectorymessage.cficode"] = canonical::text(std::string(message.fields.cfi_code.get().value()), ' ', false);
@@ -119,7 +119,7 @@ struct Reader {
         values[entry + ".payload.optionssymboldirectorymessage.paymentsperyear"] = canonical::number(message.fields.payments_per_year.get().value());
         values[entry + ".payload.optionssymboldirectorymessage.blocklotsize"] = canonical::number(message.fields.block_lot_size.get().value());
         values[entry + ".payload.optionssymboldirectorymessage.expirydate"] = canonical::number(message.fields.expiry_date.get().value());
-        values[entry + ".payload.optionssymboldirectorymessage.basisofquotation"] = (canonical::text(std::string(message.fields.basis_of_quotation.get().value()), ' ', false) != "" ? canonical::text(std::string(message.fields.basis_of_quotation.get().value()), ' ', false) : canonical::absent());
+        values[entry + ".payload.optionssymboldirectorymessage.basisofquotation"] = (canonical::text(std::string(message.fields.basis_of_quotation.get().value()), ' ', false, {std::string_view("          ", 10), std::string_view("", 0)}) != "" ? canonical::text(std::string(message.fields.basis_of_quotation.get().value()), ' ', false, {std::string_view("          ", 10), std::string_view("", 0)}) : canonical::absent());
     }
 
     void on_message(const protocol::combination_symbol_directory_message& message, std::uint64_t, const protocol::packet_header&) {
@@ -225,7 +225,7 @@ struct Reader {
         values[entry + ".payload.orderexecutedmessage.executedquantity"] = canonical::number(message.fields.executed_quantity.get().value());
         values[entry + ".payload.orderexecutedmessage.tradeprice"] = canonical::scaled(message.fields.trade_price.get().value(), -2);
         values[entry + ".payload.orderexecutedmessage.combinationtradeid"] = canonical::number(message.fields.combination_trade_id.get().value());
-        values[entry + ".payload.orderexecutedmessage.counterpartyid"] = canonical::text(std::string(message.fields.counter_party_id.get().value()), ' ', false);
+        values[entry + ".payload.orderexecutedmessage.counterpartyid"] = canonical::text(std::string(message.fields.counter_party_id.get().value()), ' ', false, {std::string_view("   ", 3), std::string_view("", 0)});
     }
 
     void on_message(const protocol::auction_order_executed_message& message, std::uint64_t, const protocol::packet_header&) {
@@ -322,8 +322,8 @@ struct Reader {
         values[entry + ".payload.tradeexecutedmessage.executedquantity"] = canonical::number(message.fields.executed_quantity.get().value());
         values[entry + ".payload.tradeexecutedmessage.tradeprice"] = canonical::scaled(message.fields.trade_price.get().value(), -2);
         values[entry + ".payload.tradeexecutedmessage.combinationtradeid"] = canonical::number(message.fields.combination_trade_id.get().value());
-        values[entry + ".payload.tradeexecutedmessage.participantidbuyer"] = canonical::text(std::string(message.fields.participant_id_buyer.get().value()), ' ', false);
-        values[entry + ".payload.tradeexecutedmessage.participantidseller"] = canonical::text(std::string(message.fields.participant_id_seller.get().value()), ' ', false);
+        values[entry + ".payload.tradeexecutedmessage.participantidbuyer"] = canonical::text(std::string(message.fields.participant_id_buyer.get().value()), ' ', false, {std::string_view("   ", 3), std::string_view("", 0)});
+        values[entry + ".payload.tradeexecutedmessage.participantidseller"] = canonical::text(std::string(message.fields.participant_id_seller.get().value()), ' ', false, {std::string_view("   ", 3), std::string_view("", 0)});
     }
 
     void on_message(const protocol::combination_trade_executed_message& message, std::uint64_t, const protocol::packet_header&) {
@@ -342,12 +342,12 @@ struct Reader {
         values[entry + ".payload.combinationtradeexecutedmessage.buyerside"] = canonical::text(canonical::character(message.fields.buyer_side.get().value()), ' ', false);
         values[entry + ".payload.combinationtradeexecutedmessage.buyerorderid"] = canonical::number(message.fields.buyer_order_id.get().value());
         values[entry + ".payload.combinationtradeexecutedmessage.buyercombinationtradeid"] = canonical::number(message.fields.buyer_combination_trade_id.get().value());
-        values[entry + ".payload.combinationtradeexecutedmessage.buyerparticipantid"] = canonical::text(std::string(message.fields.buyer_participant_id.get().value()), ' ', false);
+        values[entry + ".payload.combinationtradeexecutedmessage.buyerparticipantid"] = canonical::text(std::string(message.fields.buyer_participant_id.get().value()), ' ', false, {std::string_view("   ", 3), std::string_view("", 0)});
         values[entry + ".payload.combinationtradeexecutedmessage.sellertradeableinstrumentid"] = canonical::number(message.fields.seller_tradeable_instrument_id.get().value());
         values[entry + ".payload.combinationtradeexecutedmessage.sellerside"] = canonical::text(canonical::character(message.fields.seller_side.get().value()), ' ', false);
         values[entry + ".payload.combinationtradeexecutedmessage.sellerorderid"] = canonical::number(message.fields.seller_order_id.get().value());
         values[entry + ".payload.combinationtradeexecutedmessage.sellercombinationtradeid"] = canonical::number(message.fields.seller_combination_trade_id.get().value());
-        values[entry + ".payload.combinationtradeexecutedmessage.sellerparticipantid"] = canonical::text(std::string(message.fields.seller_participant_id.get().value()), ' ', false);
+        values[entry + ".payload.combinationtradeexecutedmessage.sellerparticipantid"] = canonical::text(std::string(message.fields.seller_participant_id.get().value()), ' ', false, {std::string_view("   ", 3), std::string_view("", 0)});
     }
 
     void on_message(const protocol::trade_cancellation_message& message, std::uint64_t, const protocol::packet_header&) {

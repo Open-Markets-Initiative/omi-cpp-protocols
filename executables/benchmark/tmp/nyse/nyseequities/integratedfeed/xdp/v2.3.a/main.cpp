@@ -392,6 +392,8 @@ struct Reader {
         if constexpr (requires { header.template get<protocol::delivery_flag>(); }) { checksum += bench::digest(header.template get<protocol::delivery_flag>().value()); }
         if constexpr (requires { header.template get<protocol::message_count>(); }) { checksum += bench::digest(header.template get<protocol::message_count>().value()); }
         if constexpr (requires { header.template get<protocol::sequence_number>(); }) { checksum += bench::digest(header.template get<protocol::sequence_number>().value()); }
+        if constexpr (requires { header.template get<protocol::send_time>().template get<protocol::seconds>(); }) { checksum += bench::digest(header.template get<protocol::send_time>().template get<protocol::seconds>().value()); }
+        if constexpr (requires { header.template get<protocol::send_time>().template get<protocol::nanoseconds>(); }) { checksum += bench::digest(header.template get<protocol::send_time>().template get<protocol::nanoseconds>().value()); }
     }
 
     void operator()(const protocol::message_header& header) {

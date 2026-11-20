@@ -66,7 +66,7 @@ std::size_t NextSharesTradeReportMessage::decode(const std::byte* data, std::siz
     trade_size_ = wire::read_u32_be(data + offset);
     offset += 4;
 
-    nav_offset_amount_ = Decimal(static_cast<std::int64_t>(wire::read_u32_be(data + offset)), -4);
+    nav_offset_amount_ = Decimal(static_cast<std::int64_t>(wire::read_i32_be(data + offset)), -4);
     offset += 4;
 
     offset += sale_condition_modifier_.decode(data + offset, length - offset);
@@ -99,7 +99,7 @@ std::size_t NextSharesTradeReportMessage::encode(std::byte* data, std::size_t ca
     wire::write_u32_be(data + offset, static_cast<std::uint32_t>(trade_size_));
     offset += 4;
 
-    wire::write_u32_be(data + offset, static_cast<std::uint32_t>(nav_offset_amount_.mantissa()));
+    wire::write_i32_be(data + offset, static_cast<std::int32_t>(nav_offset_amount_.mantissa()));
     offset += 4;
 
     offset += sale_condition_modifier_.encode(data + offset, capacity - offset);

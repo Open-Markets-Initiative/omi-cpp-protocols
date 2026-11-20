@@ -28,7 +28,7 @@ void OrderAddedMessage::set_quantity(std::uint32_t value) { quantity_ = value; }
 Decimal OrderAddedMessage::price() const { return price_; }
 void OrderAddedMessage::set_price(Decimal value) { price_ = value; }
 
-PayloadCode OrderAddedMessage::type() const { return message_type; }
+MessageCode OrderAddedMessage::type() const { return message_type; }
 
 std::string_view OrderAddedMessage::name() const { return "Order Added Message"; }
 
@@ -86,11 +86,11 @@ std::size_t OrderAddedMessage::encoded_size() const {
     return wire_size;
 }
 
-void OrderAddedMessage::accept(PayloadVisitor& visitor) const {
+void OrderAddedMessage::accept(Visitor& visitor) const {
     visitor.visit(*this);
 }
 
-std::unique_ptr<Payload> OrderAddedMessage::clone() const {
+std::unique_ptr<Message> OrderAddedMessage::clone() const {
     return std::make_unique<OrderAddedMessage>(*this);
 }
 
@@ -111,7 +111,7 @@ void OrderAddedMessage::print(std::ostream& out) const {
     out << '}';
 }
 
-bool OrderAddedMessage::equals(const Payload& other) const {
+bool OrderAddedMessage::equals(const Message& other) const {
     const auto* that = dynamic_cast<const OrderAddedMessage*>(&other);
     return that != nullptr && *this == *that;
 }

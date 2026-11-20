@@ -40,10 +40,6 @@ class MatchEventIndicator {
     bool recovery_msg() const;
     void set_recovery_msg(bool value);
 
-    // Reserved: Reserved
-    bool reserved() const;
-    void set_reserved(bool value);
-
     // End Of Event: EndOfEvent
     bool end_of_event() const;
     void set_end_of_event(bool value);

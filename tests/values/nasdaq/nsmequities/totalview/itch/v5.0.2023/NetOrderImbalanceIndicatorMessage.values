@@ -1,6 +1,6 @@
 # Nasdaq.NsmEquities.TotalView.Itch.v5.0.2023 NetOrderImbalanceIndicatorMessage: canonical values, read by the model
 datagram 0
-packet.packetheader.session = 
+packet.packetheader.session = (null)
 packet.packetheader.sequencenumber = 0
 packet.packetheader.messagecount = 1
 packet.messages = packet.messages.message
@@ -20,7 +20,7 @@ packet.messages.message[0].payload.netorderimbalanceindicatormessage.currentrefe
 packet.messages.message[0].payload.netorderimbalanceindicatormessage.crosstype = O
 packet.messages.message[0].payload.netorderimbalanceindicatormessage.pricevariationindicator = 
 datagram 1
-packet.packetheader.session = 
+packet.packetheader.session = (null)
 packet.packetheader.sequencenumber = 0
 packet.packetheader.messagecount = 1
 packet.messages = packet.messages.message
@@ -40,7 +40,7 @@ packet.messages.message[0].payload.netorderimbalanceindicatormessage.currentrefe
 packet.messages.message[0].payload.netorderimbalanceindicatormessage.crosstype = O
 packet.messages.message[0].payload.netorderimbalanceindicatormessage.pricevariationindicator = 
 datagram 2
-packet.packetheader.session = 
+packet.packetheader.session = (null)
 packet.packetheader.sequencenumber = 0
 packet.packetheader.messagecount = 1
 packet.messages = packet.messages.message
@@ -60,7 +60,7 @@ packet.messages.message[0].payload.netorderimbalanceindicatormessage.currentrefe
 packet.messages.message[0].payload.netorderimbalanceindicatormessage.crosstype = O
 packet.messages.message[0].payload.netorderimbalanceindicatormessage.pricevariationindicator = 
 datagram 3
-packet.packetheader.session = 
+packet.packetheader.session = (null)
 packet.packetheader.sequencenumber = 0
 packet.packetheader.messagecount = 1
 packet.messages = packet.messages.message
@@ -80,7 +80,7 @@ packet.messages.message[0].payload.netorderimbalanceindicatormessage.currentrefe
 packet.messages.message[0].payload.netorderimbalanceindicatormessage.crosstype = O
 packet.messages.message[0].payload.netorderimbalanceindicatormessage.pricevariationindicator = L
 datagram 4
-packet.packetheader.session = 
+packet.packetheader.session = (null)
 packet.packetheader.sequencenumber = 0
 packet.packetheader.messagecount = 1
 packet.messages = packet.messages.message

@@ -65,6 +65,8 @@
 #include "enums/TradingSessionSubId.hpp"
 #include "enums/WorkingIndicator.hpp"
 
+#include "bitfields/EventIndicator.hpp"
+
 #include "groups/CrossSidesGroup.hpp"
 #include "groups/LegsGroup.hpp"
 #include "groups/PositionsGroup.hpp"

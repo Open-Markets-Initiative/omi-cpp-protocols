@@ -7,9 +7,9 @@
 #include "../types/TransactTime.hpp"
 #include "../types/MatchEventIndicator.hpp"
 #include "../types/Padding2.hpp"
-#include "../types/HighLimitPriceEx.hpp"
-#include "../types/LowLimitPriceEx.hpp"
-#include "../types/MaxPriceVariationEx.hpp"
+#include "../types/HighLimitPrice.hpp"
+#include "../types/LowLimitPrice.hpp"
+#include "../types/MaxPriceVariation.hpp"
 #include "../types/SecurityId.hpp"
 #include "../types/RptSeq.hpp"
 #include "../structs/GroupSize.hpp"
@@ -19,10 +19,10 @@ namespace cme::mdp3::v9 {
 namespace sbe_mdp3 = ::cme::mdp3::v9;
 
 #pragma pack(push, 1)
-struct md_incremental_refresh_limits_banding_legacy_incremental_refresh_limits_banding_groups_entry {
-    sbe_mdp3::high_limit_price_ex high_limit_price_ex;
-    sbe_mdp3::low_limit_price_ex low_limit_price_ex;
-    sbe_mdp3::max_price_variation_ex max_price_variation_ex;
+struct md_incremental_refresh_limits_banding_legacy_incremental_refresh_limits_banding_legacy_groups_entry {
+    sbe_mdp3::high_limit_price high_limit_price;
+    sbe_mdp3::low_limit_price low_limit_price;
+    sbe_mdp3::max_price_variation max_price_variation;
     sbe_mdp3::security_id security_id;
     sbe_mdp3::rpt_seq rpt_seq;
 };
@@ -58,7 +58,7 @@ struct md_incremental_refresh_limits_banding_legacy {
     }
 
     // sequential access to variable-length regions
-    sbe_group_iterator<md_incremental_refresh_limits_banding_legacy_incremental_refresh_limits_banding_groups_entry, group_size> incremental_refresh_limits_banding_groups() const {
+    sbe_group_iterator<md_incremental_refresh_limits_banding_legacy_incremental_refresh_limits_banding_legacy_groups_entry, group_size> incremental_refresh_limits_banding_legacy_groups() const {
         return { tail_begin(), tail_end() };
     }
 

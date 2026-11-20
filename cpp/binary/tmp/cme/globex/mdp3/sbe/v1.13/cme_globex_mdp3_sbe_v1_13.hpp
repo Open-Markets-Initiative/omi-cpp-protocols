@@ -794,6 +794,19 @@ struct fx_currency_symbol {
     std::array<char, 7> value_;
 };
 
+// Fx Min Lot Size: For FX instruments in the repeating group with Tag 1093-LotType=2, Tag 1231-MinLotSize provides a Regular Amount - a default order size on the Workstation screen. With tag 1093-LotType= 5, Tag 1231-MinLotSize value represents standard min order qty increment. With tag 1093-LotType=6 tag 1231-MinLotSize contains SizePriorityQty for instruments trading with Match Algorithm = P (Size Priority)
+struct fx_min_lot_size {
+    using type = std::uint64_t;
+    static constexpr std::size_t size = 8;
+    static constexpr std::endian order = std::endian::little;
+
+    constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
+    constexpr operator type() const noexcept { return value(); }
+
+  protected:
+    type value_;
+};
+
 // Gt Orders Eligibility: GTOrdersEligibility
 struct gt_orders_eligibility {
     using type = bool;
@@ -1784,26 +1797,13 @@ struct min_cab_price {
     type value_;
 };
 
-// Min Lot Size Decimal Qty: Minimum quantity accepted for order entry. If tag 1093-LotType=4, this value is the minimum quantity for order entry expressed in the applicable units, specified in tag 996-UnitOfMeasure, e.g. megawatts
-struct min_lot_size_decimal_qty {
+// Min Lot Size: Minimum quantity accepted for order entry. If tag 1093-LotType=4, this value is the minimum quantity for order entry expressed in the applicable units, specified in tag 996-UnitOfMeasure, e.g. megawatts
+struct min_lot_size {
     using type = std::int32_t;
     static constexpr std::size_t size = 4;
     static constexpr std::endian order = std::endian::little;
     static constexpr type no_value = static_cast<type>(2147483647LL);
     static constexpr int exponent = -4;
-
-    constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
-    constexpr operator type() const noexcept { return value(); }
-
-  protected:
-    type value_;
-};
-
-// Min Lot Size u Int 64: For FX instruments in the repeating group with Tag 1093-LotType=2, Tag 1231-MinLotSize provides a Regular Amount - a default order size on the Workstation screen. With tag 1093-LotType= 5, Tag 1231-MinLotSize value represents standard min order qty increment. With tag 1093-LotType=6 tag 1231-MinLotSize contains SizePriorityQty for instruments trading with Match Algorithm = P (Size Priority)
-struct min_lot_size_u_int_64 {
-    using type = std::uint64_t;
-    static constexpr std::size_t size = 8;
-    static constexpr std::endian order = std::endian::little;
 
     constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
     constexpr operator type() const noexcept { return value(); }
@@ -2472,25 +2472,25 @@ struct request_timestamp {
     type value_;
 };
 
-// Reserved
-struct reserved {
-    using type = bool;
-    static constexpr std::uint64_t mask = 0x40ULL;
-    static constexpr int shift = 6;
-};
-
-// Reserved 4: 4 reserved bits
-struct reserved_4 {
+// Reserved 29 To 32: 4 reserved bits
+struct reserved_29_to_32 {
     using type = std::uint32_t;
     static constexpr std::uint64_t mask = 0xF0000000ULL;
     static constexpr int shift = 28;
 };
 
-// Reserved Bits: ReservedBits
-struct reserved_bits {
-    using type = bool;
-    static constexpr std::uint64_t mask = 0x10ULL;
+// Reserved 5 To 7: 3 reserved bits
+struct reserved_5_to_7 {
+    using type = std::uint8_t;
+    static constexpr std::uint64_t mask = 0x70ULL;
     static constexpr int shift = 4;
+};
+
+// Reserved 7: 1 reserved bit
+struct reserved_7 {
+    using type = bool;
+    static constexpr std::uint64_t mask = 0x40ULL;
+    static constexpr int shift = 6;
 };
 
 // Rfq Cross Eligible: RFQCrossEligible
@@ -3426,13 +3426,6 @@ struct unit_of_measure_qty {
 
   protected:
     type value_;
-};
-
-// Unused 2: 2 unused bits
-struct unused_2 {
-    using type = std::uint8_t;
-    static constexpr std::uint64_t mask = 0x60ULL;
-    static constexpr int shift = 5;
 };
 
 // User Defined Instrument: User-defined instruments flag
@@ -4392,7 +4385,7 @@ struct fx_lot_type_rules_group {
     // the types of its members, in wire order
     using fields = tmp::list<
         lot_type,
-        min_lot_size_u_int_64>;
+        fx_min_lot_size>;
 
     // the member of the type asked for
     template <typename Field>
@@ -4400,7 +4393,7 @@ struct fx_lot_type_rules_group {
 
   protected:
     MDP3FIELD(lot_type);
-    MDP3FIELD(min_lot_size_u_int_64);
+    MDP3FIELD(fx_min_lot_size);
 };
 
 static_assert(sizeof(fx_lot_type_rules_group) == fx_lot_type_rules_group::size, "fx_lot_type_rules_group lies over its bytes exactly");
@@ -5118,7 +5111,7 @@ struct lot_type_rules_group {
     // the types of its members, in wire order
     using fields = tmp::list<
         lot_type,
-        min_lot_size_decimal_qty>;
+        min_lot_size>;
 
     // the member of the type asked for
     template <typename Field>
@@ -5126,7 +5119,7 @@ struct lot_type_rules_group {
 
   protected:
     MDP3FIELD(lot_type);
-    MDP3FIELD(min_lot_size_decimal_qty);
+    MDP3FIELD(min_lot_size);
 };
 
 static_assert(sizeof(lot_type_rules_group) == lot_type_rules_group::size, "lot_type_rules_group lies over its bytes exactly");
@@ -7272,9 +7265,9 @@ struct payload {
     static constexpr bool is_message = false;
 };
 
-// Message: Cme Market Data Message
-struct message {
-    static constexpr std::string_view name = "Message";
+// Mdp3 Message: Cme Market Data Message
+struct mdp3_message {
+    static constexpr std::string_view name = "Mdp3 Message";
     static constexpr bool is_message = false;
 };
 

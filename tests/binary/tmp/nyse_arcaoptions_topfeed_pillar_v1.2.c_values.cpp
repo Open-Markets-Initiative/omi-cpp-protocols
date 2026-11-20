@@ -390,6 +390,8 @@ struct Reader {
         if constexpr (requires { header.template get<protocol::delivery_flag>(); }) { values["packet.packetheader.deliveryflag"] = canonical::number(header.template get<protocol::delivery_flag>().value()); }
         if constexpr (requires { header.template get<protocol::number_msgs>(); }) { values["packet.packetheader.numbermsgs"] = canonical::number(header.template get<protocol::number_msgs>().value()); }
         if constexpr (requires { header.template get<protocol::seq_num>(); }) { values["packet.packetheader.seqnum"] = canonical::number(header.template get<protocol::seq_num>().value()); }
+        if constexpr (requires { header.template get<protocol::send_time>().template get<protocol::seconds>(); }) { values["packet.packetheader.sendtime.seconds"] = canonical::number(header.template get<protocol::send_time>().template get<protocol::seconds>().value()); }
+        if constexpr (requires { header.template get<protocol::send_time>().template get<protocol::nanoseconds>(); }) { values["packet.packetheader.sendtime.nanoseconds"] = canonical::number(header.template get<protocol::send_time>().template get<protocol::nanoseconds>().value()); }
     }
 
     void operator()(const protocol::message_header& header) {
@@ -418,7 +420,7 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::symbol>(); }) { values[entry + ".payload.symbolindexmappingmessage.symbol"] = canonical::text(std::string(message.template get<protocol::symbol>().value()), '\0', false); }
         if constexpr (requires { message.template get<protocol::market_id>(); }) { values[entry + ".payload.symbolindexmappingmessage.marketid"] = canonical::number(message.template get<protocol::market_id>().value()); }
         if constexpr (requires { message.template get<protocol::system_id>(); }) { values[entry + ".payload.symbolindexmappingmessage.systemid"] = canonical::number(message.template get<protocol::system_id>().value()); }
-        if constexpr (requires { message.template get<protocol::exchange_code>(); }) { values[entry + ".payload.symbolindexmappingmessage.exchangecode"] = canonical::text(canonical::character(message.template get<protocol::exchange_code>().value()), '\0', false); }
+        if constexpr (requires { message.template get<protocol::exchange_code>(); }) { values[entry + ".payload.symbolindexmappingmessage.exchangecode"] = canonical::text(canonical::character(message.template get<protocol::exchange_code>().value()), '\0', false, {std::string_view(" ", 1)}); }
         if constexpr (requires { message.template get<protocol::price_scale_code>(); }) { values[entry + ".payload.symbolindexmappingmessage.pricescalecode"] = canonical::number(message.template get<protocol::price_scale_code>().value()); }
         if constexpr (requires { message.template get<protocol::security_type>(); }) { values[entry + ".payload.symbolindexmappingmessage.securitytype"] = canonical::text(canonical::character(message.template get<protocol::security_type>().value()), '\0', false); }
         if constexpr (requires { message.template get<protocol::lot_size>(); }) { values[entry + ".payload.symbolindexmappingmessage.lotsize"] = canonical::number(message.template get<protocol::lot_size>().value()); }
@@ -496,7 +498,7 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::halt_condition>(); }) { values[entry + ".payload.securitystatusmessage.haltcondition"] = canonical::text(canonical::character(message.template get<protocol::halt_condition>().value()), '\0', false); }
         if constexpr (requires { message.template get<protocol::price_1>(); }) { values[entry + ".payload.securitystatusmessage.price1"] = canonical::number(message.template get<protocol::price_1>().value()); }
         if constexpr (requires { message.template get<protocol::price_2>(); }) { values[entry + ".payload.securitystatusmessage.price2"] = canonical::number(message.template get<protocol::price_2>().value()); }
-        if constexpr (requires { message.template get<protocol::ssr_triggering_exchange_id>(); }) { values[entry + ".payload.securitystatusmessage.ssrtriggeringexchangeid"] = canonical::text(canonical::character(message.template get<protocol::ssr_triggering_exchange_id>().value()), '\0', false); }
+        if constexpr (requires { message.template get<protocol::ssr_triggering_exchange_id>(); }) { values[entry + ".payload.securitystatusmessage.ssrtriggeringexchangeid"] = canonical::text(canonical::character(message.template get<protocol::ssr_triggering_exchange_id>().value()), '\0', false, {std::string_view(" ", 1)}); }
         if constexpr (requires { message.template get<protocol::ssr_triggering_volume>(); }) { values[entry + ".payload.securitystatusmessage.ssrtriggeringvolume"] = canonical::number(message.template get<protocol::ssr_triggering_volume>().value()); }
         if constexpr (requires { message.template get<protocol::time>(); }) { values[entry + ".payload.securitystatusmessage.time"] = (static_cast<std::uint32_t>(message.template get<protocol::time>().value()) != 0x0U ? canonical::number(message.template get<protocol::time>().value()) : canonical::absent()); }
         if constexpr (requires { message.template get<protocol::ssr_state>(); }) { values[entry + ".payload.securitystatusmessage.ssrstate"] = canonical::text(canonical::character(message.template get<protocol::ssr_state>().value()), '\0', false); }
@@ -559,6 +561,9 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::trade_id>(); }) { values[entry + ".payload.optionstrademessage.tradeid"] = canonical::number(message.template get<protocol::trade_id>().value()); }
         if constexpr (requires { message.template get<protocol::price>(); }) { values[entry + ".payload.optionstrademessage.price"] = canonical::number(message.template get<protocol::price>().value()); }
         if constexpr (requires { message.template get<protocol::volume>(); }) { values[entry + ".payload.optionstrademessage.volume"] = canonical::number(message.template get<protocol::volume>().value()); }
+        if constexpr (requires { message.template get<protocol::trade_condition>().template get<protocol::series>(); }) { values[entry + ".payload.optionstrademessage.tradecondition.series"] = canonical::text(canonical::character(message.template get<protocol::trade_condition>().template get<protocol::series>().value()), '\0', false); }
+        if constexpr (requires { message.template get<protocol::trade_condition>().template get<protocol::opening>(); }) { values[entry + ".payload.optionstrademessage.tradecondition.opening"] = canonical::text(canonical::character(message.template get<protocol::trade_condition>().template get<protocol::opening>().value()), '\0', false, {std::string_view(" ", 1)}); }
+        if constexpr (requires { message.template get<protocol::trade_condition>().template get<protocol::offical>(); }) { values[entry + ".payload.optionstrademessage.tradecondition.offical"] = canonical::text(canonical::character(message.template get<protocol::trade_condition>().template get<protocol::offical>().value()), '\0', false); }
     }
 
     void operator()(const protocol::options_trade_cancel_message& message) {
@@ -580,6 +585,7 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::trade_id>(); }) { values[entry + ".payload.optionstradecorrectionmessage.tradeid"] = canonical::number(message.template get<protocol::trade_id>().value()); }
         if constexpr (requires { message.template get<protocol::price>(); }) { values[entry + ".payload.optionstradecorrectionmessage.price"] = canonical::number(message.template get<protocol::price>().value()); }
         if constexpr (requires { message.template get<protocol::volume>(); }) { values[entry + ".payload.optionstradecorrectionmessage.volume"] = canonical::number(message.template get<protocol::volume>().value()); }
+        if constexpr (requires { message.template get<protocol::correction_condition>().template get<protocol::transaction>(); }) { values[entry + ".payload.optionstradecorrectionmessage.correctioncondition.transaction"] = canonical::text(canonical::character(message.template get<protocol::correction_condition>().template get<protocol::transaction>().value()), '\0', false); }
     }
 
     void operator()(const protocol::options_imbalance_message& message) {
@@ -592,7 +598,7 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::total_imbalance_qty>(); }) { values[entry + ".payload.optionsimbalancemessage.totalimbalanceqty"] = canonical::number(message.template get<protocol::total_imbalance_qty>().value()); }
         if constexpr (requires { message.template get<protocol::market_imbalance_qty>(); }) { values[entry + ".payload.optionsimbalancemessage.marketimbalanceqty"] = canonical::number(message.template get<protocol::market_imbalance_qty>().value()); }
         if constexpr (requires { message.template get<protocol::auction_type>(); }) { values[entry + ".payload.optionsimbalancemessage.auctiontype"] = canonical::text(canonical::character(message.template get<protocol::auction_type>().value()), '\0', false); }
-        if constexpr (requires { message.template get<protocol::imbalance_side>(); }) { values[entry + ".payload.optionsimbalancemessage.imbalanceside"] = canonical::text(canonical::character(message.template get<protocol::imbalance_side>().value()), '\0', false); }
+        if constexpr (requires { message.template get<protocol::imbalance_side>(); }) { values[entry + ".payload.optionsimbalancemessage.imbalanceside"] = canonical::text(canonical::character(message.template get<protocol::imbalance_side>().value()), '\0', false, {std::string_view(" ", 1)}); }
         if constexpr (requires { message.template get<protocol::continuous_book_clearing_price>(); }) { values[entry + ".payload.optionsimbalancemessage.continuousbookclearingprice"] = canonical::number(message.template get<protocol::continuous_book_clearing_price>().value()); }
         if constexpr (requires { message.template get<protocol::auction_interest_clearing_price>(); }) { values[entry + ".payload.optionsimbalancemessage.auctioninterestclearingprice"] = canonical::number(message.template get<protocol::auction_interest_clearing_price>().value()); }
         if constexpr (requires { message.template get<protocol::indicative_match_price>(); }) { values[entry + ".payload.optionsimbalancemessage.indicativematchprice"] = canonical::number(message.template get<protocol::indicative_match_price>().value()); }
@@ -609,7 +615,7 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::series_seq_num>(); }) { values[entry + ".payload.seriesrfqmessage.seriesseqnum"] = canonical::number(message.template get<protocol::series_seq_num>().value()); }
         if constexpr (requires { message.template get<protocol::side>(); }) { values[entry + ".payload.seriesrfqmessage.side"] = canonical::text(canonical::character(message.template get<protocol::side>().value()), '\0', false); }
         if constexpr (requires { message.template get<protocol::type_type>(); }) { values[entry + ".payload.seriesrfqmessage.type"] = canonical::text(canonical::character(message.template get<protocol::type_type>().value()), '\0', false); }
-        if constexpr (requires { message.template get<protocol::capacity>(); }) { values[entry + ".payload.seriesrfqmessage.capacity"] = canonical::text(canonical::character(message.template get<protocol::capacity>().value()), '\0', false); }
+        if constexpr (requires { message.template get<protocol::capacity>(); }) { values[entry + ".payload.seriesrfqmessage.capacity"] = canonical::text(canonical::character(message.template get<protocol::capacity>().value()), '\0', false, {std::string_view(" ", 1)}); }
         if constexpr (requires { message.template get<protocol::total_quantity>(); }) { values[entry + ".payload.seriesrfqmessage.totalquantity"] = canonical::number(message.template get<protocol::total_quantity>().value()); }
         if constexpr (requires { message.template get<protocol::working_price>(); }) { values[entry + ".payload.seriesrfqmessage.workingprice"] = canonical::number(message.template get<protocol::working_price>().value()); }
         if constexpr (requires { message.template get<protocol::participant>(); }) { values[entry + ".payload.seriesrfqmessage.participant"] = canonical::number(message.template get<protocol::participant>().value()); }

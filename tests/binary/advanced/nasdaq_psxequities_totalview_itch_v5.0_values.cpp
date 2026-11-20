@@ -56,17 +56,17 @@ struct Reader {
         values[entry + ".payload.stockdirectorymessage.trackingnumber"] = canonical::number(message.fields.tracking_number.get().value());
         values[entry + ".payload.stockdirectorymessage.timestamp"] = canonical::number(message.fields.timestamp.get().value());
         values[entry + ".payload.stockdirectorymessage.stock"] = canonical::text(std::string(message.fields.stock.get().value()), ' ', false);
-        values[entry + ".payload.stockdirectorymessage.marketcategory"] = canonical::text(canonical::character(message.fields.market_category.get().value()), ' ', false);
-        values[entry + ".payload.stockdirectorymessage.financialstatusindicator"] = canonical::text(canonical::character(message.fields.financial_status_indicator.get().value()), ' ', false);
+        values[entry + ".payload.stockdirectorymessage.marketcategory"] = canonical::text(canonical::character(message.fields.market_category.get().value()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+        values[entry + ".payload.stockdirectorymessage.financialstatusindicator"] = canonical::text(canonical::character(message.fields.financial_status_indicator.get().value()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
         values[entry + ".payload.stockdirectorymessage.roundlotsize"] = canonical::number(message.fields.round_lot_size.get().value());
         values[entry + ".payload.stockdirectorymessage.roundlotsonly"] = canonical::text(canonical::character(message.fields.round_lots_only.get().value()), ' ', false);
         values[entry + ".payload.stockdirectorymessage.issueclassification"] = canonical::text(canonical::character(message.fields.issue_classification.get().value()), ' ', false);
         values[entry + ".payload.stockdirectorymessage.issuesubtype"] = canonical::text(std::string(message.fields.issue_sub_type.get().value()), ' ', false);
         values[entry + ".payload.stockdirectorymessage.authenticity"] = canonical::text(canonical::character(message.fields.authenticity.get().value()), ' ', false);
-        values[entry + ".payload.stockdirectorymessage.shortsalethresholdindicator"] = canonical::text(canonical::character(message.fields.short_sale_threshold_indicator.get().value()), ' ', false);
-        values[entry + ".payload.stockdirectorymessage.ipoflag"] = canonical::text(canonical::character(message.fields.ipo_flag.get().value()), ' ', false);
-        values[entry + ".payload.stockdirectorymessage.luldreferencepricetier"] = canonical::text(canonical::character(message.fields.luld_reference_price_tier.get().value()), ' ', false);
-        values[entry + ".payload.stockdirectorymessage.etpflag"] = canonical::text(canonical::character(message.fields.etp_flag.get().value()), ' ', false);
+        values[entry + ".payload.stockdirectorymessage.shortsalethresholdindicator"] = canonical::text(canonical::character(message.fields.short_sale_threshold_indicator.get().value()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+        values[entry + ".payload.stockdirectorymessage.ipoflag"] = canonical::text(canonical::character(message.fields.ipo_flag.get().value()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+        values[entry + ".payload.stockdirectorymessage.luldreferencepricetier"] = canonical::text(canonical::character(message.fields.luld_reference_price_tier.get().value()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+        values[entry + ".payload.stockdirectorymessage.etpflag"] = canonical::text(canonical::character(message.fields.etp_flag.get().value()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
         values[entry + ".payload.stockdirectorymessage.etpleveragefactor"] = canonical::number(message.fields.etp_leverage_factor.get().value());
         values[entry + ".payload.stockdirectorymessage.inverseindicator"] = canonical::text(canonical::character(message.fields.inverse_indicator.get().value()), ' ', false);
     }
@@ -317,7 +317,7 @@ struct Reader {
         values[entry + ".payload.netorderimbalanceindicatormessage.nearprice"] = canonical::scaled(message.fields.near_price.get().value(), -4);
         values[entry + ".payload.netorderimbalanceindicatormessage.currentreferenceprice"] = canonical::scaled(message.fields.current_reference_price.get().value(), -4);
         values[entry + ".payload.netorderimbalanceindicatormessage.crosstype"] = canonical::text(canonical::character(message.fields.cross_type.get().value()), ' ', false);
-        values[entry + ".payload.netorderimbalanceindicatormessage.pricevariationindicator"] = canonical::text(canonical::character(message.fields.price_variation_indicator.get().value()), ' ', false);
+        values[entry + ".payload.netorderimbalanceindicatormessage.pricevariationindicator"] = canonical::text(canonical::character(message.fields.price_variation_indicator.get().value()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
     }
 };
 

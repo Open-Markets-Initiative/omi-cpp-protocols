@@ -10,7 +10,7 @@
 
 #include "../bitfields/MatchEventIndicator.hpp"
 #include "../messages/ServerTcpMessage.hpp"
-#include "../structs/IncrementalRefreshBookGroups.hpp"
+#include "../structs/IncrementalRefreshBookLegacyGroups.hpp"
 #include "../structs/IncrementalRefreshBookOrderIdGroups.hpp"
 
 namespace cme::globex::mdp3::sbe::v1_9 {
@@ -24,7 +24,7 @@ class ServerPayloadMdIncrementalRefreshBookLegacy : public ServerTcpMessage {
     static constexpr ServerTcpMessageCode message_type = TemplateId::MdIncrementalRefreshBookLegacy;
 
     ServerPayloadMdIncrementalRefreshBookLegacy() = default;
-    ServerPayloadMdIncrementalRefreshBookLegacy(std::chrono::nanoseconds transact_time, const MatchEventIndicator& match_event_indicator, const std::array<std::byte, 2>& padding_2, const IncrementalRefreshBookGroups& incremental_refresh_book_groups, const IncrementalRefreshBookOrderIdGroups& incremental_refresh_book_order_id_groups);
+    ServerPayloadMdIncrementalRefreshBookLegacy(std::chrono::nanoseconds transact_time, const MatchEventIndicator& match_event_indicator, const std::array<std::byte, 2>& padding_2, const IncrementalRefreshBookLegacyGroups& incremental_refresh_book_legacy_groups, const IncrementalRefreshBookOrderIdGroups& incremental_refresh_book_order_id_groups);
 
     // Transact Time: Start of event processing time in number of nanoseconds since Unix epoch
     std::chrono::nanoseconds transact_time() const;
@@ -40,10 +40,10 @@ class ServerPayloadMdIncrementalRefreshBookLegacy : public ServerTcpMessage {
     std::array<std::byte, 2>& padding_2();
     void set_padding_2(const std::array<std::byte, 2>& value);
 
-    // Incremental Refresh Book Groups: NoMDEntries Block
-    const IncrementalRefreshBookGroups& incremental_refresh_book_groups() const;
-    IncrementalRefreshBookGroups& incremental_refresh_book_groups();
-    void set_incremental_refresh_book_groups(const IncrementalRefreshBookGroups& value);
+    // Incremental Refresh Book Legacy Groups: NoMDEntries Block
+    const IncrementalRefreshBookLegacyGroups& incremental_refresh_book_legacy_groups() const;
+    IncrementalRefreshBookLegacyGroups& incremental_refresh_book_legacy_groups();
+    void set_incremental_refresh_book_legacy_groups(const IncrementalRefreshBookLegacyGroups& value);
 
     // Incremental Refresh Book Order Id Groups: NoOrderIDEntries Block
     const IncrementalRefreshBookOrderIdGroups& incremental_refresh_book_order_id_groups() const;
@@ -68,7 +68,7 @@ class ServerPayloadMdIncrementalRefreshBookLegacy : public ServerTcpMessage {
     std::chrono::nanoseconds transact_time_{};
     MatchEventIndicator match_event_indicator_{};
     std::array<std::byte, 2> padding_2_{};
-    IncrementalRefreshBookGroups incremental_refresh_book_groups_{};
+    IncrementalRefreshBookLegacyGroups incremental_refresh_book_legacy_groups_{};
     IncrementalRefreshBookOrderIdGroups incremental_refresh_book_order_id_groups_{};
 };
 

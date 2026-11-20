@@ -18,4 +18,4 @@ packet.messages.message[0].payload.addordermessage.orderid = 14919273277939074
 packet.messages.message[0].payload.addordermessage.price = 84980000
 packet.messages.message[0].payload.addordermessage.volume = 107
 packet.messages.message[0].payload.addordermessage.side = B
-packet.messages.message[0].payload.addordermessage.firmid = 
+packet.messages.message[0].payload.addordermessage.firmid = (null)

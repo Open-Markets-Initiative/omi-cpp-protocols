@@ -1037,8 +1037,8 @@ struct price_scale_code {
 // Price Type: Price type indicator.
 struct price_type {
     enum class type : std::uint8_t {
-        strike_price_is_amount = 0,
-        strike_price_is_amount_2 = 1,
+        strike_price_is_dollar_amount = 0,
+        strike_price_is_percent_amount = 1,
     };
 
     static constexpr std::size_t size = 1;

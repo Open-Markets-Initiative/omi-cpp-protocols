@@ -31,7 +31,7 @@ class OrderAdd : public Message {
     std::optional<std::chrono::nanoseconds> trd_reg_ts_time_in() const;
     void set_trd_reg_ts_time_in(std::optional<std::chrono::nanoseconds> value);
 
-    // Security Id:
+    // Security Id: Unique instrument identifier
     std::optional<std::int64_t> security_id() const;
     void set_security_id(std::optional<std::int64_t> value);
 

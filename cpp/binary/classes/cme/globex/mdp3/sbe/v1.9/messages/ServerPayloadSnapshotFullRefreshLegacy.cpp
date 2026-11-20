@@ -7,8 +7,8 @@
 
 namespace cme::globex::mdp3::sbe::v1_9 {
 
-ServerPayloadSnapshotFullRefreshLegacy::ServerPayloadSnapshotFullRefreshLegacy(std::uint32_t last_msg_seq_num_processed, std::uint32_t tot_num_reports, std::int32_t security_id, std::uint32_t rpt_seq, std::chrono::nanoseconds transact_time, std::chrono::nanoseconds last_update_time, std::optional<std::uint16_t> trade_date, std::optional<MdSecurityTradingStatus> md_security_trading_status, std::optional<Decimal> high_limit_price, std::optional<Decimal> low_limit_price, std::optional<Decimal> max_price_variation, const SnapshotFullRefreshGroups& snapshot_full_refresh_groups)
-  : last_msg_seq_num_processed_(last_msg_seq_num_processed), tot_num_reports_(tot_num_reports), security_id_(security_id), rpt_seq_(rpt_seq), transact_time_(transact_time), last_update_time_(last_update_time), trade_date_(trade_date), md_security_trading_status_(md_security_trading_status), high_limit_price_(high_limit_price), low_limit_price_(low_limit_price), max_price_variation_(max_price_variation), snapshot_full_refresh_groups_(snapshot_full_refresh_groups) {}
+ServerPayloadSnapshotFullRefreshLegacy::ServerPayloadSnapshotFullRefreshLegacy(std::uint32_t last_msg_seq_num_processed, std::uint32_t tot_num_reports, std::int32_t security_id, std::uint32_t rpt_seq, std::chrono::nanoseconds transact_time, std::chrono::nanoseconds last_update_time, std::optional<std::uint16_t> trade_date, std::optional<MdSecurityTradingStatus> md_security_trading_status, std::optional<Decimal> high_limit_price, std::optional<Decimal> low_limit_price, std::optional<Decimal> max_price_variation, const SnapshotFullRefreshLegacyGroups& snapshot_full_refresh_legacy_groups)
+  : last_msg_seq_num_processed_(last_msg_seq_num_processed), tot_num_reports_(tot_num_reports), security_id_(security_id), rpt_seq_(rpt_seq), transact_time_(transact_time), last_update_time_(last_update_time), trade_date_(trade_date), md_security_trading_status_(md_security_trading_status), high_limit_price_(high_limit_price), low_limit_price_(low_limit_price), max_price_variation_(max_price_variation), snapshot_full_refresh_legacy_groups_(snapshot_full_refresh_legacy_groups) {}
 
 std::uint32_t ServerPayloadSnapshotFullRefreshLegacy::last_msg_seq_num_processed() const { return last_msg_seq_num_processed_; }
 void ServerPayloadSnapshotFullRefreshLegacy::set_last_msg_seq_num_processed(std::uint32_t value) { last_msg_seq_num_processed_ = value; }
@@ -43,9 +43,9 @@ void ServerPayloadSnapshotFullRefreshLegacy::set_low_limit_price(std::optional<D
 std::optional<Decimal> ServerPayloadSnapshotFullRefreshLegacy::max_price_variation() const { return max_price_variation_; }
 void ServerPayloadSnapshotFullRefreshLegacy::set_max_price_variation(std::optional<Decimal> value) { max_price_variation_ = value; }
 
-const SnapshotFullRefreshGroups& ServerPayloadSnapshotFullRefreshLegacy::snapshot_full_refresh_groups() const { return snapshot_full_refresh_groups_; }
-SnapshotFullRefreshGroups& ServerPayloadSnapshotFullRefreshLegacy::snapshot_full_refresh_groups() { return snapshot_full_refresh_groups_; }
-void ServerPayloadSnapshotFullRefreshLegacy::set_snapshot_full_refresh_groups(const SnapshotFullRefreshGroups& value) { snapshot_full_refresh_groups_ = value; }
+const SnapshotFullRefreshLegacyGroups& ServerPayloadSnapshotFullRefreshLegacy::snapshot_full_refresh_legacy_groups() const { return snapshot_full_refresh_legacy_groups_; }
+SnapshotFullRefreshLegacyGroups& ServerPayloadSnapshotFullRefreshLegacy::snapshot_full_refresh_legacy_groups() { return snapshot_full_refresh_legacy_groups_; }
+void ServerPayloadSnapshotFullRefreshLegacy::set_snapshot_full_refresh_legacy_groups(const SnapshotFullRefreshLegacyGroups& value) { snapshot_full_refresh_legacy_groups_ = value; }
 
 ServerTcpMessageCode ServerPayloadSnapshotFullRefreshLegacy::type() const { return message_type; }
 
@@ -98,7 +98,7 @@ std::size_t ServerPayloadSnapshotFullRefreshLegacy::decode(const std::byte* data
     max_price_variation_ = wire::nullable_decimal(wire::read_i64_le(data + offset), static_cast<std::int64_t>(9223372036854775807LL), -7);
     offset += 8;
 
-    offset += snapshot_full_refresh_groups_.decode(data + offset, length - offset);
+    offset += snapshot_full_refresh_legacy_groups_.decode(data + offset, length - offset);
 
     return offset;
 }
@@ -140,13 +140,13 @@ std::size_t ServerPayloadSnapshotFullRefreshLegacy::encode(std::byte* data, std:
     wire::write_i64_le(data + offset, max_price_variation_ ? static_cast<std::int64_t>(max_price_variation_->mantissa()) : static_cast<std::int64_t>(9223372036854775807LL));
     offset += 8;
 
-    offset += snapshot_full_refresh_groups_.encode(data + offset, capacity - offset);
+    offset += snapshot_full_refresh_legacy_groups_.encode(data + offset, capacity - offset);
 
     return offset;
 }
 
 std::size_t ServerPayloadSnapshotFullRefreshLegacy::encoded_size() const {
-    return 4 + 4 + 4 + 4 + 8 + 8 + 2 + 1 + 8 + 8 + 8 + snapshot_full_refresh_groups_.encoded_size();
+    return 4 + 4 + 4 + 4 + 8 + 8 + 2 + 1 + 8 + 8 + 8 + snapshot_full_refresh_legacy_groups_.encoded_size();
 }
 
 void ServerPayloadSnapshotFullRefreshLegacy::accept(ServerTcpMessageVisitor& visitor) const {
@@ -181,8 +181,8 @@ void ServerPayloadSnapshotFullRefreshLegacy::print(std::ostream& out) const {
     print::optional(out, low_limit_price_);
     out << ", max_price_variation=";
     print::optional(out, max_price_variation_);
-    out << ", snapshot_full_refresh_groups=";
-    snapshot_full_refresh_groups_.print(out);
+    out << ", snapshot_full_refresh_legacy_groups=";
+    snapshot_full_refresh_legacy_groups_.print(out);
     out << '}';
 }
 
@@ -203,7 +203,7 @@ bool ServerPayloadSnapshotFullRefreshLegacy::operator==(const ServerPayloadSnaps
         && high_limit_price_ == other.high_limit_price_
         && low_limit_price_ == other.low_limit_price_
         && max_price_variation_ == other.max_price_variation_
-        && snapshot_full_refresh_groups_ == other.snapshot_full_refresh_groups_;
+        && snapshot_full_refresh_legacy_groups_ == other.snapshot_full_refresh_legacy_groups_;
 }
 
 bool ServerPayloadSnapshotFullRefreshLegacy::operator!=(const ServerPayloadSnapshotFullRefreshLegacy& other) const {

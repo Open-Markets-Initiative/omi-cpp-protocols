@@ -8,17 +8,17 @@
 #include <ostream>
 #include <string_view>
 
-#include "../messages/Payload.hpp"
+#include "../messages/Message.hpp"
 
 namespace memx::memxequities::memoirdepthfeed::sbe::v1_3 {
 
-class PayloadVisitor;
+class Visitor;
 
 // SnapshotCompleteMessage
-class SnapshotCompleteMessage : public Payload {
+class SnapshotCompleteMessage : public Message {
   public:
     // The code that selects this message
-    static constexpr PayloadCode message_type = TemplateId::SnapshotCompleteMessage;
+    static constexpr MessageCode message_type = TemplateId::SnapshotCompleteMessage;
     // Bytes of this message on the wire
     static constexpr std::size_t wire_size = 16;
 
@@ -33,16 +33,16 @@ class SnapshotCompleteMessage : public Payload {
     std::uint64_t as_of_sequence_number() const;
     void set_as_of_sequence_number(std::uint64_t value);
 
-    // Payload
-    PayloadCode type() const override;
+    // Message
+    MessageCode type() const override;
     std::string_view name() const override;
     std::size_t decode(const std::byte* data, std::size_t length) override;
     std::size_t encode(std::byte* data, std::size_t capacity) const override;
     std::size_t encoded_size() const override;
-    void accept(PayloadVisitor& visitor) const override;
-    std::unique_ptr<Payload> clone() const override;
+    void accept(Visitor& visitor) const override;
+    std::unique_ptr<Message> clone() const override;
     void print(std::ostream& out) const override;
-    bool equals(const Payload& other) const override;
+    bool equals(const Message& other) const override;
 
     bool operator==(const SnapshotCompleteMessage& other) const;
     bool operator!=(const SnapshotCompleteMessage& other) const;

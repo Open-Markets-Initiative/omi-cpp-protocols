@@ -62,7 +62,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.complextrademessage.tradeid"] = canonical::number(message->trade_id.get());
             values[entry + ".payload.complextrademessage.price"] = canonical::number(message->price.get());
             values[entry + ".payload.complextrademessage.volume4"] = canonical::number(message->volume_4.get());
-            values[entry + ".payload.complextrademessage.tradecond1"] = canonical::text(canonical::character(message->trade_cond_1.get()), '\0', false);
+            values[entry + ".payload.complextrademessage.tradecond1"] = canonical::text(canonical::character(message->trade_cond_1.get()), '\0', false, {std::string_view(" ", 1)});
             values[entry + ".payload.complextrademessage.tradecond2"] = canonical::text(canonical::character(message->trade_cond_2.get()), '\0', false);
         } else if (iterator.message_type == protocol::ComplexCrossingRfqMessage::message_type) {
             values[entry + ".payload"] = "packet.message.payload.complexcrossingrfqmessage";
@@ -117,7 +117,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.refreshcomplextrademessage.tradeid"] = canonical::number(message->trade_id.get());
             values[entry + ".payload.refreshcomplextrademessage.price"] = canonical::number(message->price.get());
             values[entry + ".payload.refreshcomplextrademessage.volume4"] = canonical::number(message->volume_4.get());
-            values[entry + ".payload.refreshcomplextrademessage.tradecond1"] = canonical::text(canonical::character(message->trade_cond_1.get()), '\0', false);
+            values[entry + ".payload.refreshcomplextrademessage.tradecond1"] = canonical::text(canonical::character(message->trade_cond_1.get()), '\0', false, {std::string_view(" ", 1)});
             values[entry + ".payload.refreshcomplextrademessage.tradecond2"] = canonical::text(canonical::character(message->trade_cond_2.get()), '\0', false);
         } else if (iterator.message_type == protocol::ComplexSymbolDefinitionMessage::message_type) {
             values[entry + ".payload"] = "packet.message.payload.complexsymboldefinitionmessage";

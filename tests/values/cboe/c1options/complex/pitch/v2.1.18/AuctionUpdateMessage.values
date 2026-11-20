@@ -16,6 +16,6 @@ packet.messages.message[0].payload.auctionupdatemessage.buycontracts = 0
 packet.messages.message[0].payload.auctionupdatemessage.sellcontracts = 0
 packet.messages.message[0].payload.auctionupdatemessage.indicativeprice = 0
 packet.messages.message[0].payload.auctionupdatemessage.auctiononlyprice = 0
-packet.messages.message[0].payload.auctionupdatemessage.openingcondition = 
+packet.messages.message[0].payload.auctionupdatemessage.openingcondition = (null)
 packet.messages.message[0].payload.auctionupdatemessage.compositemarketbidprice = 0
 packet.messages.message[0].payload.auctionupdatemessage.compositemarketofferprice = 0

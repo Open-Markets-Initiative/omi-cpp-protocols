@@ -1,0 +1,26 @@
+# Tmx.Tsx.QuantumFeedLevel2.Xmt.v2.10 OrderBookedMessage: canonical values, read by the model
+datagram 0
+packet.frameheader.startofframe = 2
+packet.frameheader.protocolname = X
+packet.frameheader.protocolversion = 1
+packet.frameheader.messagelength = 66
+packet.frameheader.sessionid = 1010113
+packet.frameheader.ackrequiredpossdup = 0
+packet.frameheader.numbody = 1
+packet.packetbody = packet.packetbody.businessbodies
+packet.packetbody.businessbodies.body[0].bodyheader.msglength = 60
+packet.packetbody.businessbodies.body[0].bodyheader.msgtype = P
+packet.packetbody.businessbodies.body[0].bodymessage.businessheader.msgversion = 210
+packet.packetbody.businessbodies.body[0].bodymessage.businessheader.sourceid = Q
+packet.packetbody.businessbodies.body[0].bodymessage.businessheader.streamid = 213
+packet.packetbody.businessbodies.body[0].bodymessage.businessheader.sequence0 = 0
+packet.packetbody.businessbodies.body[0].bodymessage.businessheader.sequence1 = 50991
+packet.packetbody.businessbodies.body[0].bodymessage.businessmessage = packet.packetbody.businessbodies.body.bodymessage.businessmessage.orderbookedmessage
+packet.packetbody.businessbodies.body[0].bodymessage.businessmessage.orderbookedmessage.symbol = CDZ.A
+packet.packetbody.businessbodies.body[0].bodymessage.businessmessage.orderbookedmessage.brokernumber = 9
+packet.packetbody.businessbodies.body[0].bodymessage.businessmessage.orderbookedmessage.orderside = B
+packet.packetbody.businessbodies.body[0].bodymessage.businessmessage.orderbookedmessage.orderid = 20150508000000178
+packet.packetbody.businessbodies.body[0].bodymessage.businessmessage.orderbookedmessage.price = 26.28
+packet.packetbody.businessbodies.body[0].bodymessage.businessmessage.orderbookedmessage.volume = 8000
+packet.packetbody.businessbodies.body[0].bodymessage.businessmessage.orderbookedmessage.prioritytimestamp = 1431091799899988
+packet.packetbody.businessbodies.body[0].bodymessage.businessmessage.orderbookedmessage.tradingsystemtimestamp = 1431091799899988

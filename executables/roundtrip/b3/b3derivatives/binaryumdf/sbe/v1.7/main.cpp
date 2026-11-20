@@ -85,7 +85,7 @@ std::unique_ptr<protocol::Message> build_SequenceMessage() {
 std::unique_ptr<protocol::Message> build_EmptyBookMessage() {
     auto message = std::make_unique<protocol::EmptyBookMessage>();
     message->set_security_id(static_cast<std::uint64_t>(1));
-    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_reserved(true); value.set_end_of_event(true); return value; }());
+    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_end_of_event(true); return value; }());
     message->set_md_entry_timestamp(std::chrono::nanoseconds{4});
     return message;
 }
@@ -93,7 +93,7 @@ std::unique_ptr<protocol::Message> build_EmptyBookMessage() {
 // ChannelReset11Message built with each field it sets
 std::unique_ptr<protocol::Message> build_ChannelReset11Message() {
     auto message = std::make_unique<protocol::ChannelReset11Message>();
-    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_reserved(true); value.set_end_of_event(true); return value; }());
+    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_end_of_event(true); return value; }());
     message->set_md_entry_timestamp(std::chrono::nanoseconds{3});
     return message;
 }
@@ -102,7 +102,7 @@ std::unique_ptr<protocol::Message> build_ChannelReset11Message() {
 std::unique_ptr<protocol::Message> build_SecurityStatus3Message() {
     auto message = std::make_unique<protocol::SecurityStatus3Message>();
     message->set_security_id(static_cast<std::uint64_t>(1));
-    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_reserved(true); value.set_end_of_event(true); return value; }());
+    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_end_of_event(true); return value; }());
     message->set_trading_session_id(protocol::TradingSessionId::NonRegularTradingSession);
     message->set_security_trading_status(protocol::SecurityTradingStatus::UnknownOrInvalid);
     message->set_security_trading_event(protocol::SecurityTradingEvent::SecurityRejoinsSecurityGroupStatus);
@@ -117,7 +117,7 @@ std::unique_ptr<protocol::Message> build_SecurityStatus3Message() {
 std::unique_ptr<protocol::Message> build_SecurityGroupPhase10Message() {
     auto message = std::make_unique<protocol::SecurityGroupPhase10Message>();
     message->set_security_group(std::string("BCD"));
-    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_reserved(true); value.set_end_of_event(true); return value; }());
+    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_end_of_event(true); return value; }());
     message->set_trading_session_id(protocol::TradingSessionId::RegularTradingSession);
     message->set_trading_session_sub_id(protocol::TradingSessionSubId::Reserved);
     message->set_security_trading_event(protocol::SecurityTradingEvent::TradingSessionChange);
@@ -253,7 +253,7 @@ std::unique_ptr<protocol::Message> build_SecurityDefinitionMessage() {
 std::unique_ptr<protocol::Message> build_News5Message() {
     auto message = std::make_unique<protocol::News5Message>();
     message->set_security_id_optional(static_cast<std::uint64_t>(1));
-    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_reserved(true); value.set_end_of_event(true); return value; }());
+    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_end_of_event(true); return value; }());
     message->set_news_source(protocol::NewsSource::MarketSurveillance);
     message->set_language_code(std::string("EF"));
     message->set_part_count(static_cast<std::uint16_t>(5));
@@ -271,7 +271,7 @@ std::unique_ptr<protocol::Message> build_News5Message() {
 std::unique_ptr<protocol::Message> build_OpeningPrice15Message() {
     auto message = std::make_unique<protocol::OpeningPrice15Message>();
     message->set_security_id(static_cast<std::uint64_t>(1));
-    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_reserved(true); value.set_end_of_event(true); return value; }());
+    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_end_of_event(true); return value; }());
     message->set_md_update_action(protocol::MdUpdateAction::DeleteThru);
     message->set_open_close_settl_flag(protocol::OpenCloseSettlFlag::TheoreticalPrice);
     message->set_md_future_price(protocol::Decimal(6, -4));
@@ -286,7 +286,7 @@ std::unique_ptr<protocol::Message> build_OpeningPrice15Message() {
 std::unique_ptr<protocol::Message> build_TheoreticalOpeningPrice16Message() {
     auto message = std::make_unique<protocol::TheoreticalOpeningPrice16Message>();
     message->set_security_id(static_cast<std::uint64_t>(1));
-    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_reserved(true); value.set_end_of_event(true); return value; }());
+    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_end_of_event(true); return value; }());
     message->set_md_update_action(protocol::MdUpdateAction::DeleteThru);
     message->set_trade_date(static_cast<std::uint16_t>(4));
     message->set_md_corporate_offset_price_optional(protocol::Decimal(5, -4));
@@ -300,7 +300,7 @@ std::unique_ptr<protocol::Message> build_TheoreticalOpeningPrice16Message() {
 std::unique_ptr<protocol::Message> build_ClosingPrice17Message() {
     auto message = std::make_unique<protocol::ClosingPrice17Message>();
     message->set_security_id(static_cast<std::uint64_t>(1));
-    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_reserved(true); value.set_end_of_event(true); return value; }());
+    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_end_of_event(true); return value; }());
     message->set_open_close_settl_flag(protocol::OpenCloseSettlFlag::EntryFromPreviousBusinessDay);
     message->set_md_corporate_price(protocol::Decimal(5, -8));
     message->set_last_trade_date(static_cast<std::uint16_t>(6));
@@ -314,7 +314,7 @@ std::unique_ptr<protocol::Message> build_ClosingPrice17Message() {
 std::unique_ptr<protocol::Message> build_AuctionImbalance19Message() {
     auto message = std::make_unique<protocol::AuctionImbalance19Message>();
     message->set_security_id(static_cast<std::uint64_t>(1));
-    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_reserved(true); value.set_end_of_event(true); return value; }());
+    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_end_of_event(true); return value; }());
     message->set_md_update_action(protocol::MdUpdateAction::DeleteThru);
     message->set_imbalance_condition([] { protocol::ImbalanceCondition value; value.set_imbalance_more_buyers(true); value.set_imbalance_more_sellers(true); return value; }());
     message->set_md_entry_size_optional(static_cast<std::int64_t>(5));
@@ -327,7 +327,7 @@ std::unique_ptr<protocol::Message> build_AuctionImbalance19Message() {
 std::unique_ptr<protocol::Message> build_PriceBand20Message() {
     auto message = std::make_unique<protocol::PriceBand20Message>();
     message->set_security_id(static_cast<std::uint64_t>(1));
-    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_reserved(true); value.set_end_of_event(true); return value; }());
+    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_end_of_event(true); return value; }());
     message->set_price_band_type(protocol::PriceBandType::StaticLimits);
     message->set_price_limit_type(protocol::PriceLimitType::Ticks);
     message->set_price_band_midpoint_price_type(protocol::PriceBandMidpointPriceType::TheoreticalPrice);
@@ -343,7 +343,7 @@ std::unique_ptr<protocol::Message> build_PriceBand20Message() {
 std::unique_ptr<protocol::Message> build_QuantityBand21Message() {
     auto message = std::make_unique<protocol::QuantityBand21Message>();
     message->set_security_id(static_cast<std::uint64_t>(1));
-    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_reserved(true); value.set_end_of_event(true); return value; }());
+    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_end_of_event(true); return value; }());
     message->set_avg_daily_traded_qty(static_cast<std::int64_t>(4));
     message->set_max_trade_vol(static_cast<std::int64_t>(5));
     message->set_md_entry_timestamp(std::chrono::nanoseconds{6});
@@ -355,7 +355,7 @@ std::unique_ptr<protocol::Message> build_QuantityBand21Message() {
 std::unique_ptr<protocol::Message> build_PriceBand22Message() {
     auto message = std::make_unique<protocol::PriceBand22Message>();
     message->set_security_id(static_cast<std::uint64_t>(1));
-    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_reserved(true); value.set_end_of_event(true); return value; }());
+    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_end_of_event(true); return value; }());
     message->set_price_band_type(protocol::PriceBandType::StaticLimits);
     message->set_price_limit_type(protocol::PriceLimitType::Ticks);
     message->set_price_band_midpoint_price_type(protocol::PriceBandMidpointPriceType::TheoreticalPrice);
@@ -371,7 +371,7 @@ std::unique_ptr<protocol::Message> build_PriceBand22Message() {
 std::unique_ptr<protocol::Message> build_HighPrice24Message() {
     auto message = std::make_unique<protocol::HighPrice24Message>();
     message->set_security_id(static_cast<std::uint64_t>(1));
-    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_reserved(true); value.set_end_of_event(true); return value; }());
+    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_end_of_event(true); return value; }());
     message->set_md_update_action(protocol::MdUpdateAction::DeleteThru);
     message->set_trade_date(static_cast<std::uint16_t>(4));
     message->set_md_future_price(protocol::Decimal(5, -4));
@@ -384,7 +384,7 @@ std::unique_ptr<protocol::Message> build_HighPrice24Message() {
 std::unique_ptr<protocol::Message> build_LowPrice25Message() {
     auto message = std::make_unique<protocol::LowPrice25Message>();
     message->set_security_id(static_cast<std::uint64_t>(1));
-    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_reserved(true); value.set_end_of_event(true); return value; }());
+    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_end_of_event(true); return value; }());
     message->set_md_update_action(protocol::MdUpdateAction::DeleteThru);
     message->set_trade_date(static_cast<std::uint16_t>(4));
     message->set_md_future_price(protocol::Decimal(5, -4));
@@ -397,7 +397,7 @@ std::unique_ptr<protocol::Message> build_LowPrice25Message() {
 std::unique_ptr<protocol::Message> build_LastTradePrice27Message() {
     auto message = std::make_unique<protocol::LastTradePrice27Message>();
     message->set_security_id(static_cast<std::uint64_t>(1));
-    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_reserved(true); value.set_end_of_event(true); return value; }());
+    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_end_of_event(true); return value; }());
     message->set_trading_session_id(protocol::TradingSessionId::NonRegularTradingSession);
     message->set_trade_condition([] { protocol::TradeCondition value; value.set_opening_price(true); value.set_crossed(true); value.set_last_trade_at_the_same_price(true); value.set_out_of_sequence(true); value.set_trade_on_behalf(true); value.set_regular_trade(true); value.set_block_trade(true); return value; }());
     message->set_md_future_price(protocol::Decimal(5, -4));
@@ -431,7 +431,7 @@ std::unique_ptr<protocol::Message> build_SnapshotFullRefreshHeader30Message() {
 std::unique_ptr<protocol::Message> build_OrderMbO50Message() {
     auto message = std::make_unique<protocol::OrderMbO50Message>();
     message->set_security_id(static_cast<std::uint64_t>(1));
-    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_reserved(true); value.set_end_of_event(true); return value; }());
+    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_end_of_event(true); return value; }());
     message->set_md_update_action(protocol::MdUpdateAction::DeleteThru);
     message->set_md_entry_type(protocol::MdEntryType::OpeningPrice);
     message->set_md_corporate_offset_price_optional(protocol::Decimal(6, -4));
@@ -449,7 +449,7 @@ std::unique_ptr<protocol::Message> build_OrderMbO50Message() {
 std::unique_ptr<protocol::Message> build_DeleteOrderMbO51Message() {
     auto message = std::make_unique<protocol::DeleteOrderMbO51Message>();
     message->set_security_id(static_cast<std::uint64_t>(1));
-    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_reserved(true); value.set_end_of_event(true); return value; }());
+    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_end_of_event(true); return value; }());
     message->set_md_entry_type(protocol::MdEntryType::OpeningPrice);
     message->set_md_entry_position_no(static_cast<std::uint32_t>(6));
     message->set_md_entry_size_optional(static_cast<std::int64_t>(7));
@@ -463,7 +463,7 @@ std::unique_ptr<protocol::Message> build_DeleteOrderMbO51Message() {
 std::unique_ptr<protocol::Message> build_MassDeleteOrdersMbO52Message() {
     auto message = std::make_unique<protocol::MassDeleteOrdersMbO52Message>();
     message->set_security_id(static_cast<std::uint64_t>(1));
-    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_reserved(true); value.set_end_of_event(true); return value; }());
+    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_end_of_event(true); return value; }());
     message->set_md_update_action(protocol::MdUpdateAction::DeleteThru);
     message->set_md_entry_type(protocol::MdEntryType::OpeningPrice);
     message->set_md_entry_position_no(static_cast<std::uint32_t>(6));
@@ -476,7 +476,7 @@ std::unique_ptr<protocol::Message> build_MassDeleteOrdersMbO52Message() {
 std::unique_ptr<protocol::Message> build_Trade53Message() {
     auto message = std::make_unique<protocol::Trade53Message>();
     message->set_security_id(static_cast<std::uint64_t>(1));
-    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_reserved(true); value.set_end_of_event(true); return value; }());
+    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_end_of_event(true); return value; }());
     message->set_trading_session_id(protocol::TradingSessionId::NonRegularTradingSession);
     message->set_trade_condition([] { protocol::TradeCondition value; value.set_opening_price(true); value.set_crossed(true); value.set_last_trade_at_the_same_price(true); value.set_out_of_sequence(true); value.set_trade_on_behalf(true); value.set_regular_trade(true); value.set_block_trade(true); return value; }());
     message->set_md_future_price(protocol::Decimal(5, -4));
@@ -495,7 +495,7 @@ std::unique_ptr<protocol::Message> build_Trade53Message() {
 std::unique_ptr<protocol::Message> build_ForwardTrade54Message() {
     auto message = std::make_unique<protocol::ForwardTrade54Message>();
     message->set_security_id(static_cast<std::uint64_t>(1));
-    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_reserved(true); value.set_end_of_event(true); return value; }());
+    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_end_of_event(true); return value; }());
     message->set_trading_session_id(protocol::TradingSessionId::NonRegularTradingSession);
     message->set_trade_condition([] { protocol::TradeCondition value; value.set_opening_price(true); value.set_crossed(true); value.set_last_trade_at_the_same_price(true); value.set_out_of_sequence(true); value.set_trade_on_behalf(true); value.set_regular_trade(true); value.set_block_trade(true); return value; }());
     message->set_md_future_price(protocol::Decimal(5, -4));
@@ -531,7 +531,7 @@ std::unique_ptr<protocol::Message> build_ExecutionSummary55Message() {
 std::unique_ptr<protocol::Message> build_ExecutionStatistics56Message() {
     auto message = std::make_unique<protocol::ExecutionStatistics56Message>();
     message->set_security_id(static_cast<std::uint64_t>(1));
-    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_reserved(true); value.set_end_of_event(true); return value; }());
+    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_end_of_event(true); return value; }());
     message->set_trading_session_id(protocol::TradingSessionId::NonRegularTradingSession);
     message->set_trade_date(static_cast<std::uint16_t>(4));
     message->set_trade_volume(static_cast<std::int64_t>(5));
@@ -547,7 +547,7 @@ std::unique_ptr<protocol::Message> build_ExecutionStatistics56Message() {
 std::unique_ptr<protocol::Message> build_TradeBust57Message() {
     auto message = std::make_unique<protocol::TradeBust57Message>();
     message->set_security_id(static_cast<std::uint64_t>(1));
-    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_reserved(true); value.set_end_of_event(true); return value; }());
+    message->set_match_event_indicator([] { protocol::MatchEventIndicator value; value.set_last_trade_msg(true); value.set_last_volume_msg(true); value.set_last_quote_msg(true); value.set_last_stats_msg(true); value.set_last_implied_msg(true); value.set_recovery_msg(true); value.set_end_of_event(true); return value; }());
     message->set_trading_session_id(protocol::TradingSessionId::NonRegularTradingSession);
     message->set_md_future_price(protocol::Decimal(5, -4));
     message->set_md_entry_size(static_cast<std::int64_t>(6));
@@ -621,10 +621,6 @@ int check_EmptyBookMessage(const protocol::Message* read) {
         std::printf("FAIL EmptyBookMessage: match_event_indicator.recovery_msg does not read as it was written\n");
         ++failures;
     }
-    if (!(message->match_event_indicator().reserved() == true)) {
-        std::printf("FAIL EmptyBookMessage: match_event_indicator.reserved does not read as it was written\n");
-        ++failures;
-    }
     if (!(message->match_event_indicator().end_of_event() == true)) {
         std::printf("FAIL EmptyBookMessage: match_event_indicator.end_of_event does not read as it was written\n");
         ++failures;
@@ -668,10 +664,6 @@ int check_ChannelReset11Message(const protocol::Message* read) {
     }
     if (!(message->match_event_indicator().recovery_msg() == true)) {
         std::printf("FAIL ChannelReset11Message: match_event_indicator.recovery_msg does not read as it was written\n");
-        ++failures;
-    }
-    if (!(message->match_event_indicator().reserved() == true)) {
-        std::printf("FAIL ChannelReset11Message: match_event_indicator.reserved does not read as it was written\n");
         ++failures;
     }
     if (!(message->match_event_indicator().end_of_event() == true)) {
@@ -721,10 +713,6 @@ int check_SecurityStatus3Message(const protocol::Message* read) {
     }
     if (!(message->match_event_indicator().recovery_msg() == true)) {
         std::printf("FAIL SecurityStatus3Message: match_event_indicator.recovery_msg does not read as it was written\n");
-        ++failures;
-    }
-    if (!(message->match_event_indicator().reserved() == true)) {
-        std::printf("FAIL SecurityStatus3Message: match_event_indicator.reserved does not read as it was written\n");
         ++failures;
     }
     if (!(message->match_event_indicator().end_of_event() == true)) {
@@ -798,10 +786,6 @@ int check_SecurityGroupPhase10Message(const protocol::Message* read) {
     }
     if (!(message->match_event_indicator().recovery_msg() == true)) {
         std::printf("FAIL SecurityGroupPhase10Message: match_event_indicator.recovery_msg does not read as it was written\n");
-        ++failures;
-    }
-    if (!(message->match_event_indicator().reserved() == true)) {
-        std::printf("FAIL SecurityGroupPhase10Message: match_event_indicator.reserved does not read as it was written\n");
         ++failures;
     }
     if (!(message->match_event_indicator().end_of_event() == true)) {
@@ -1363,10 +1347,6 @@ int check_News5Message(const protocol::Message* read) {
         std::printf("FAIL News5Message: match_event_indicator.recovery_msg does not read as it was written\n");
         ++failures;
     }
-    if (!(message->match_event_indicator().reserved() == true)) {
-        std::printf("FAIL News5Message: match_event_indicator.reserved does not read as it was written\n");
-        ++failures;
-    }
     if (!(message->match_event_indicator().end_of_event() == true)) {
         std::printf("FAIL News5Message: match_event_indicator.end_of_event does not read as it was written\n");
         ++failures;
@@ -1452,10 +1432,6 @@ int check_OpeningPrice15Message(const protocol::Message* read) {
         std::printf("FAIL OpeningPrice15Message: match_event_indicator.recovery_msg does not read as it was written\n");
         ++failures;
     }
-    if (!(message->match_event_indicator().reserved() == true)) {
-        std::printf("FAIL OpeningPrice15Message: match_event_indicator.reserved does not read as it was written\n");
-        ++failures;
-    }
     if (!(message->match_event_indicator().end_of_event() == true)) {
         std::printf("FAIL OpeningPrice15Message: match_event_indicator.end_of_event does not read as it was written\n");
         ++failures;
@@ -1529,10 +1505,6 @@ int check_TheoreticalOpeningPrice16Message(const protocol::Message* read) {
         std::printf("FAIL TheoreticalOpeningPrice16Message: match_event_indicator.recovery_msg does not read as it was written\n");
         ++failures;
     }
-    if (!(message->match_event_indicator().reserved() == true)) {
-        std::printf("FAIL TheoreticalOpeningPrice16Message: match_event_indicator.reserved does not read as it was written\n");
-        ++failures;
-    }
     if (!(message->match_event_indicator().end_of_event() == true)) {
         std::printf("FAIL TheoreticalOpeningPrice16Message: match_event_indicator.end_of_event does not read as it was written\n");
         ++failures;
@@ -1600,10 +1572,6 @@ int check_ClosingPrice17Message(const protocol::Message* read) {
     }
     if (!(message->match_event_indicator().recovery_msg() == true)) {
         std::printf("FAIL ClosingPrice17Message: match_event_indicator.recovery_msg does not read as it was written\n");
-        ++failures;
-    }
-    if (!(message->match_event_indicator().reserved() == true)) {
-        std::printf("FAIL ClosingPrice17Message: match_event_indicator.reserved does not read as it was written\n");
         ++failures;
     }
     if (!(message->match_event_indicator().end_of_event() == true)) {
@@ -1675,10 +1643,6 @@ int check_AuctionImbalance19Message(const protocol::Message* read) {
         std::printf("FAIL AuctionImbalance19Message: match_event_indicator.recovery_msg does not read as it was written\n");
         ++failures;
     }
-    if (!(message->match_event_indicator().reserved() == true)) {
-        std::printf("FAIL AuctionImbalance19Message: match_event_indicator.reserved does not read as it was written\n");
-        ++failures;
-    }
     if (!(message->match_event_indicator().end_of_event() == true)) {
         std::printf("FAIL AuctionImbalance19Message: match_event_indicator.end_of_event does not read as it was written\n");
         ++failures;
@@ -1746,10 +1710,6 @@ int check_PriceBand20Message(const protocol::Message* read) {
     }
     if (!(message->match_event_indicator().recovery_msg() == true)) {
         std::printf("FAIL PriceBand20Message: match_event_indicator.recovery_msg does not read as it was written\n");
-        ++failures;
-    }
-    if (!(message->match_event_indicator().reserved() == true)) {
-        std::printf("FAIL PriceBand20Message: match_event_indicator.reserved does not read as it was written\n");
         ++failures;
     }
     if (!(message->match_event_indicator().end_of_event() == true)) {
@@ -1829,10 +1789,6 @@ int check_QuantityBand21Message(const protocol::Message* read) {
         std::printf("FAIL QuantityBand21Message: match_event_indicator.recovery_msg does not read as it was written\n");
         ++failures;
     }
-    if (!(message->match_event_indicator().reserved() == true)) {
-        std::printf("FAIL QuantityBand21Message: match_event_indicator.reserved does not read as it was written\n");
-        ++failures;
-    }
     if (!(message->match_event_indicator().end_of_event() == true)) {
         std::printf("FAIL QuantityBand21Message: match_event_indicator.end_of_event does not read as it was written\n");
         ++failures;
@@ -1892,10 +1848,6 @@ int check_PriceBand22Message(const protocol::Message* read) {
     }
     if (!(message->match_event_indicator().recovery_msg() == true)) {
         std::printf("FAIL PriceBand22Message: match_event_indicator.recovery_msg does not read as it was written\n");
-        ++failures;
-    }
-    if (!(message->match_event_indicator().reserved() == true)) {
-        std::printf("FAIL PriceBand22Message: match_event_indicator.reserved does not read as it was written\n");
         ++failures;
     }
     if (!(message->match_event_indicator().end_of_event() == true)) {
@@ -1975,10 +1927,6 @@ int check_HighPrice24Message(const protocol::Message* read) {
         std::printf("FAIL HighPrice24Message: match_event_indicator.recovery_msg does not read as it was written\n");
         ++failures;
     }
-    if (!(message->match_event_indicator().reserved() == true)) {
-        std::printf("FAIL HighPrice24Message: match_event_indicator.reserved does not read as it was written\n");
-        ++failures;
-    }
     if (!(message->match_event_indicator().end_of_event() == true)) {
         std::printf("FAIL HighPrice24Message: match_event_indicator.end_of_event does not read as it was written\n");
         ++failures;
@@ -2044,10 +1992,6 @@ int check_LowPrice25Message(const protocol::Message* read) {
         std::printf("FAIL LowPrice25Message: match_event_indicator.recovery_msg does not read as it was written\n");
         ++failures;
     }
-    if (!(message->match_event_indicator().reserved() == true)) {
-        std::printf("FAIL LowPrice25Message: match_event_indicator.reserved does not read as it was written\n");
-        ++failures;
-    }
     if (!(message->match_event_indicator().end_of_event() == true)) {
         std::printf("FAIL LowPrice25Message: match_event_indicator.end_of_event does not read as it was written\n");
         ++failures;
@@ -2111,10 +2055,6 @@ int check_LastTradePrice27Message(const protocol::Message* read) {
     }
     if (!(message->match_event_indicator().recovery_msg() == true)) {
         std::printf("FAIL LastTradePrice27Message: match_event_indicator.recovery_msg does not read as it was written\n");
-        ++failures;
-    }
-    if (!(message->match_event_indicator().reserved() == true)) {
-        std::printf("FAIL LastTradePrice27Message: match_event_indicator.reserved does not read as it was written\n");
         ++failures;
     }
     if (!(message->match_event_indicator().end_of_event() == true)) {
@@ -2279,10 +2219,6 @@ int check_OrderMbO50Message(const protocol::Message* read) {
         std::printf("FAIL OrderMbO50Message: match_event_indicator.recovery_msg does not read as it was written\n");
         ++failures;
     }
-    if (!(message->match_event_indicator().reserved() == true)) {
-        std::printf("FAIL OrderMbO50Message: match_event_indicator.reserved does not read as it was written\n");
-        ++failures;
-    }
     if (!(message->match_event_indicator().end_of_event() == true)) {
         std::printf("FAIL OrderMbO50Message: match_event_indicator.end_of_event does not read as it was written\n");
         ++failures;
@@ -2368,10 +2304,6 @@ int check_DeleteOrderMbO51Message(const protocol::Message* read) {
         std::printf("FAIL DeleteOrderMbO51Message: match_event_indicator.recovery_msg does not read as it was written\n");
         ++failures;
     }
-    if (!(message->match_event_indicator().reserved() == true)) {
-        std::printf("FAIL DeleteOrderMbO51Message: match_event_indicator.reserved does not read as it was written\n");
-        ++failures;
-    }
     if (!(message->match_event_indicator().end_of_event() == true)) {
         std::printf("FAIL DeleteOrderMbO51Message: match_event_indicator.end_of_event does not read as it was written\n");
         ++failures;
@@ -2441,10 +2373,6 @@ int check_MassDeleteOrdersMbO52Message(const protocol::Message* read) {
         std::printf("FAIL MassDeleteOrdersMbO52Message: match_event_indicator.recovery_msg does not read as it was written\n");
         ++failures;
     }
-    if (!(message->match_event_indicator().reserved() == true)) {
-        std::printf("FAIL MassDeleteOrdersMbO52Message: match_event_indicator.reserved does not read as it was written\n");
-        ++failures;
-    }
     if (!(message->match_event_indicator().end_of_event() == true)) {
         std::printf("FAIL MassDeleteOrdersMbO52Message: match_event_indicator.end_of_event does not read as it was written\n");
         ++failures;
@@ -2508,10 +2436,6 @@ int check_Trade53Message(const protocol::Message* read) {
     }
     if (!(message->match_event_indicator().recovery_msg() == true)) {
         std::printf("FAIL Trade53Message: match_event_indicator.recovery_msg does not read as it was written\n");
-        ++failures;
-    }
-    if (!(message->match_event_indicator().reserved() == true)) {
-        std::printf("FAIL Trade53Message: match_event_indicator.reserved does not read as it was written\n");
         ++failures;
     }
     if (!(message->match_event_indicator().end_of_event() == true)) {
@@ -2625,10 +2549,6 @@ int check_ForwardTrade54Message(const protocol::Message* read) {
     }
     if (!(message->match_event_indicator().recovery_msg() == true)) {
         std::printf("FAIL ForwardTrade54Message: match_event_indicator.recovery_msg does not read as it was written\n");
-        ++failures;
-    }
-    if (!(message->match_event_indicator().reserved() == true)) {
-        std::printf("FAIL ForwardTrade54Message: match_event_indicator.reserved does not read as it was written\n");
         ++failures;
     }
     if (!(message->match_event_indicator().end_of_event() == true)) {
@@ -2801,10 +2721,6 @@ int check_ExecutionStatistics56Message(const protocol::Message* read) {
         std::printf("FAIL ExecutionStatistics56Message: match_event_indicator.recovery_msg does not read as it was written\n");
         ++failures;
     }
-    if (!(message->match_event_indicator().reserved() == true)) {
-        std::printf("FAIL ExecutionStatistics56Message: match_event_indicator.reserved does not read as it was written\n");
-        ++failures;
-    }
     if (!(message->match_event_indicator().end_of_event() == true)) {
         std::printf("FAIL ExecutionStatistics56Message: match_event_indicator.end_of_event does not read as it was written\n");
         ++failures;
@@ -2880,10 +2796,6 @@ int check_TradeBust57Message(const protocol::Message* read) {
     }
     if (!(message->match_event_indicator().recovery_msg() == true)) {
         std::printf("FAIL TradeBust57Message: match_event_indicator.recovery_msg does not read as it was written\n");
-        ++failures;
-    }
-    if (!(message->match_event_indicator().reserved() == true)) {
-        std::printf("FAIL TradeBust57Message: match_event_indicator.reserved does not read as it was written\n");
         ++failures;
     }
     if (!(message->match_event_indicator().end_of_event() == true)) {

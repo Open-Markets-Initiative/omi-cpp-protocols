@@ -53,7 +53,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.futuresymboldirectorymessage.tradeableinstrumentid"] = canonical::number(message->tradeable_instrument_id.get());
             values[entry + ".payload.futuresymboldirectorymessage.symbolname"] = canonical::text(std::string(message->symbol_name.get()), ' ', false);
             values[entry + ".payload.futuresymboldirectorymessage.longname"] = canonical::text(std::string(message->long_name.get()), ' ', false);
-            values[entry + ".payload.futuresymboldirectorymessage.isin"] = (canonical::text(std::string(message->isin.get()), ' ', false) != "" ? canonical::text(std::string(message->isin.get()), ' ', false) : canonical::absent());
+            values[entry + ".payload.futuresymboldirectorymessage.isin"] = (canonical::text(std::string(message->isin.get()), ' ', false, {std::string_view("            ", 12), std::string_view("", 0)}) != "" ? canonical::text(std::string(message->isin.get()), ' ', false, {std::string_view("            ", 12), std::string_view("", 0)}) : canonical::absent());
             values[entry + ".payload.futuresymboldirectorymessage.exchange"] = canonical::text(std::string(message->exchange.get()), ' ', false);
             values[entry + ".payload.futuresymboldirectorymessage.instrument"] = canonical::text(std::string(message->instrument.get()), ' ', false);
             values[entry + ".payload.futuresymboldirectorymessage.cficode"] = canonical::text(std::string(message->cfi_code.get()), ' ', false);
@@ -79,7 +79,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.optionssymboldirectorymessage.tradeableinstrumentid"] = canonical::number(message->tradeable_instrument_id.get());
             values[entry + ".payload.optionssymboldirectorymessage.symbolname"] = canonical::text(std::string(message->symbol_name.get()), ' ', false);
             values[entry + ".payload.optionssymboldirectorymessage.longname"] = canonical::text(std::string(message->long_name.get()), ' ', false);
-            values[entry + ".payload.optionssymboldirectorymessage.isin"] = (canonical::text(std::string(message->isin.get()), ' ', false) != "" ? canonical::text(std::string(message->isin.get()), ' ', false) : canonical::absent());
+            values[entry + ".payload.optionssymboldirectorymessage.isin"] = (canonical::text(std::string(message->isin.get()), ' ', false, {std::string_view("            ", 12), std::string_view("", 0)}) != "" ? canonical::text(std::string(message->isin.get()), ' ', false, {std::string_view("            ", 12), std::string_view("", 0)}) : canonical::absent());
             values[entry + ".payload.optionssymboldirectorymessage.exchange"] = canonical::text(std::string(message->exchange.get()), ' ', false);
             values[entry + ".payload.optionssymboldirectorymessage.instrument"] = canonical::text(std::string(message->instrument.get()), ' ', false);
             values[entry + ".payload.optionssymboldirectorymessage.cficode"] = canonical::text(std::string(message->cfi_code.get()), ' ', false);
@@ -104,7 +104,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.optionssymboldirectorymessage.paymentsperyear"] = canonical::number(message->payments_per_year.get());
             values[entry + ".payload.optionssymboldirectorymessage.blocklotsize"] = canonical::number(message->block_lot_size.get());
             values[entry + ".payload.optionssymboldirectorymessage.expirydate"] = canonical::number(message->expiry_date.get());
-            values[entry + ".payload.optionssymboldirectorymessage.basisofquotation"] = (canonical::text(std::string(message->basis_of_quotation.get()), ' ', false) != "" ? canonical::text(std::string(message->basis_of_quotation.get()), ' ', false) : canonical::absent());
+            values[entry + ".payload.optionssymboldirectorymessage.basisofquotation"] = (canonical::text(std::string(message->basis_of_quotation.get()), ' ', false, {std::string_view("          ", 10), std::string_view("", 0)}) != "" ? canonical::text(std::string(message->basis_of_quotation.get()), ' ', false, {std::string_view("          ", 10), std::string_view("", 0)}) : canonical::absent());
         } else if (iterator.message_type == protocol::CombinationSymbolDirectoryMessage::message_type) {
             values[entry + ".payload"] = "packet.messages.message.payload.combinationsymboldirectorymessage";
             [[maybe_unused]] const auto* message = protocol::CombinationSymbolDirectoryMessage::parse(iterator.message);
@@ -182,7 +182,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.orderexecutedmessage.executedquantity"] = canonical::number(message->executed_quantity.get());
             values[entry + ".payload.orderexecutedmessage.tradeprice"] = canonical::scaled(message->trade_price.integer(), -2);
             values[entry + ".payload.orderexecutedmessage.combinationtradeid"] = canonical::number(message->combination_trade_id.get());
-            values[entry + ".payload.orderexecutedmessage.counterpartyid"] = canonical::text(std::string(message->counter_party_id.get()), ' ', false);
+            values[entry + ".payload.orderexecutedmessage.counterpartyid"] = canonical::text(std::string(message->counter_party_id.get()), ' ', false, {std::string_view("   ", 3), std::string_view("", 0)});
         } else if (iterator.message_type == protocol::AuctionOrderExecutedMessage::message_type) {
             values[entry + ".payload"] = "packet.messages.message.payload.auctionorderexecutedmessage";
             [[maybe_unused]] const auto* message = protocol::AuctionOrderExecutedMessage::parse(iterator.message);
@@ -255,8 +255,8 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.tradeexecutedmessage.executedquantity"] = canonical::number(message->executed_quantity.get());
             values[entry + ".payload.tradeexecutedmessage.tradeprice"] = canonical::scaled(message->trade_price.integer(), -2);
             values[entry + ".payload.tradeexecutedmessage.combinationtradeid"] = canonical::number(message->combination_trade_id.get());
-            values[entry + ".payload.tradeexecutedmessage.participantidbuyer"] = canonical::text(std::string(message->participant_id_buyer.get()), ' ', false);
-            values[entry + ".payload.tradeexecutedmessage.participantidseller"] = canonical::text(std::string(message->participant_id_seller.get()), ' ', false);
+            values[entry + ".payload.tradeexecutedmessage.participantidbuyer"] = canonical::text(std::string(message->participant_id_buyer.get()), ' ', false, {std::string_view("   ", 3), std::string_view("", 0)});
+            values[entry + ".payload.tradeexecutedmessage.participantidseller"] = canonical::text(std::string(message->participant_id_seller.get()), ' ', false, {std::string_view("   ", 3), std::string_view("", 0)});
         } else if (iterator.message_type == protocol::CombinationTradeExecutedMessage::message_type) {
             values[entry + ".payload"] = "packet.messages.message.payload.combinationtradeexecutedmessage";
             [[maybe_unused]] const auto* message = protocol::CombinationTradeExecutedMessage::parse(iterator.message);
@@ -271,12 +271,12 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.combinationtradeexecutedmessage.buyerside"] = canonical::text(canonical::character(message->buyer_side.get()), ' ', false);
             values[entry + ".payload.combinationtradeexecutedmessage.buyerorderid"] = canonical::number(message->buyer_order_id.get());
             values[entry + ".payload.combinationtradeexecutedmessage.buyercombinationtradeid"] = canonical::number(message->buyer_combination_trade_id.get());
-            values[entry + ".payload.combinationtradeexecutedmessage.buyerparticipantid"] = canonical::text(std::string(message->buyer_participant_id.get()), ' ', false);
+            values[entry + ".payload.combinationtradeexecutedmessage.buyerparticipantid"] = canonical::text(std::string(message->buyer_participant_id.get()), ' ', false, {std::string_view("   ", 3), std::string_view("", 0)});
             values[entry + ".payload.combinationtradeexecutedmessage.sellertradeableinstrumentid"] = canonical::number(message->seller_tradeable_instrument_id.get());
             values[entry + ".payload.combinationtradeexecutedmessage.sellerside"] = canonical::text(canonical::character(message->seller_side.get()), ' ', false);
             values[entry + ".payload.combinationtradeexecutedmessage.sellerorderid"] = canonical::number(message->seller_order_id.get());
             values[entry + ".payload.combinationtradeexecutedmessage.sellercombinationtradeid"] = canonical::number(message->seller_combination_trade_id.get());
-            values[entry + ".payload.combinationtradeexecutedmessage.sellerparticipantid"] = canonical::text(std::string(message->seller_participant_id.get()), ' ', false);
+            values[entry + ".payload.combinationtradeexecutedmessage.sellerparticipantid"] = canonical::text(std::string(message->seller_participant_id.get()), ' ', false, {std::string_view("   ", 3), std::string_view("", 0)});
         } else if (iterator.message_type == protocol::TradeCancellationMessage::message_type) {
             values[entry + ".payload"] = "packet.messages.message.payload.tradecancellationmessage";
             [[maybe_unused]] const auto* message = protocol::TradeCancellationMessage::parse(iterator.message);

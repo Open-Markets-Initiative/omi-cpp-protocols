@@ -9,10 +9,10 @@ namespace nyse::amexoptions::complexfeed::xdp::v1_3_a {
 
 // TradeCond1 value
 enum class TradeCond1 : char {
-    RegularTrade = ' ', // Regular Trade
-    LateReport = 'I',   // Late Report
-    FloorTrade = 'R',   // Floor Trade
-    SoSweepTrade = 'S', // So Sweep Trade
+    RegularTrade = ' ',  // Regular Trade
+    LateReport = 'I',    // Late Report
+    FloorTrade = 'R',    // Floor Trade
+    IsoSweepTrade = 'S', // ISO Sweep Trade
 };
 
 // The documented name of a code, or empty for one the specification does not list

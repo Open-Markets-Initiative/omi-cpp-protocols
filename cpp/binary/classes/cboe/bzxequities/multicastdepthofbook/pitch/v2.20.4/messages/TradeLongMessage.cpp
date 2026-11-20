@@ -7,8 +7,8 @@
 
 namespace cboe::bzxequities::multicastdepthofbook::pitch::v2_20_4 {
 
-TradeLongMessage::TradeLongMessage(std::chrono::nanoseconds time_offset, std::uint64_t order_id, SideIndicator side_indicator, std::uint32_t quantity_binary_4, const std::string& symbol_short, Decimal price_binary_long_price_8, std::uint64_t execution_id)
-  : time_offset_(time_offset), order_id_(order_id), side_indicator_(side_indicator), quantity_binary_4_(quantity_binary_4), symbol_short_(symbol_short), price_binary_long_price_8_(price_binary_long_price_8), execution_id_(execution_id) {}
+TradeLongMessage::TradeLongMessage(std::chrono::nanoseconds time_offset, std::uint64_t order_id, SideIndicator side_indicator, std::uint32_t quantity_long, const std::string& symbol_short, Decimal price_long, std::uint64_t execution_id)
+  : time_offset_(time_offset), order_id_(order_id), side_indicator_(side_indicator), quantity_long_(quantity_long), symbol_short_(symbol_short), price_long_(price_long), execution_id_(execution_id) {}
 
 std::chrono::nanoseconds TradeLongMessage::time_offset() const { return time_offset_; }
 void TradeLongMessage::set_time_offset(std::chrono::nanoseconds value) { time_offset_ = value; }
@@ -19,15 +19,15 @@ void TradeLongMessage::set_order_id(std::uint64_t value) { order_id_ = value; }
 SideIndicator TradeLongMessage::side_indicator() const { return side_indicator_; }
 void TradeLongMessage::set_side_indicator(SideIndicator value) { side_indicator_ = value; }
 
-std::uint32_t TradeLongMessage::quantity_binary_4() const { return quantity_binary_4_; }
-void TradeLongMessage::set_quantity_binary_4(std::uint32_t value) { quantity_binary_4_ = value; }
+std::uint32_t TradeLongMessage::quantity_long() const { return quantity_long_; }
+void TradeLongMessage::set_quantity_long(std::uint32_t value) { quantity_long_ = value; }
 
 const std::string& TradeLongMessage::symbol_short() const { return symbol_short_; }
 std::string& TradeLongMessage::symbol_short() { return symbol_short_; }
 void TradeLongMessage::set_symbol_short(const std::string& value) { symbol_short_ = value; }
 
-Decimal TradeLongMessage::price_binary_long_price_8() const { return price_binary_long_price_8_; }
-void TradeLongMessage::set_price_binary_long_price_8(Decimal value) { price_binary_long_price_8_ = value; }
+Decimal TradeLongMessage::price_long() const { return price_long_; }
+void TradeLongMessage::set_price_long(Decimal value) { price_long_ = value; }
 
 std::uint64_t TradeLongMessage::execution_id() const { return execution_id_; }
 void TradeLongMessage::set_execution_id(std::uint64_t value) { execution_id_ = value; }
@@ -49,13 +49,13 @@ std::size_t TradeLongMessage::decode(const std::byte* data, std::size_t length) 
     side_indicator_ = static_cast<SideIndicator>(wire::read_char(data + offset));
     offset += 1;
 
-    quantity_binary_4_ = wire::read_u32_le(data + offset);
+    quantity_long_ = wire::read_u32_le(data + offset);
     offset += 4;
 
     symbol_short_ = wire::read_text(data + offset, 6, ' ');
     offset += 6;
 
-    price_binary_long_price_8_ = Decimal(static_cast<std::int64_t>(wire::read_u64_le(data + offset)), -4);
+    price_long_ = Decimal(static_cast<std::int64_t>(wire::read_u64_le(data + offset)), -4);
     offset += 8;
 
     execution_id_ = wire::read_u64_le(data + offset);
@@ -77,13 +77,13 @@ std::size_t TradeLongMessage::encode(std::byte* data, std::size_t capacity) cons
     wire::write_char(data + offset, static_cast<char>(side_indicator_));
     offset += 1;
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(quantity_binary_4_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(quantity_long_));
     offset += 4;
 
     wire::write_text(data + offset, 6, ' ', symbol_short_);
     offset += 6;
 
-    wire::write_u64_le(data + offset, static_cast<std::uint64_t>(price_binary_long_price_8_.mantissa()));
+    wire::write_u64_le(data + offset, static_cast<std::uint64_t>(price_long_.mantissa()));
     offset += 8;
 
     wire::write_u64_le(data + offset, static_cast<std::uint64_t>(execution_id_));
@@ -112,12 +112,12 @@ void TradeLongMessage::print(std::ostream& out) const {
     out << order_id_;
     out << ", side_indicator=";
     out << side_indicator_;
-    out << ", quantity_binary_4=";
-    out << quantity_binary_4_;
+    out << ", quantity_long=";
+    out << quantity_long_;
     out << ", symbol_short=";
     print::text(out, symbol_short_);
-    out << ", price_binary_long_price_8=";
-    out << price_binary_long_price_8_;
+    out << ", price_long=";
+    out << price_long_;
     out << ", execution_id=";
     out << execution_id_;
     out << '}';
@@ -132,9 +132,9 @@ bool TradeLongMessage::operator==(const TradeLongMessage& other) const {
     return time_offset_ == other.time_offset_
         && order_id_ == other.order_id_
         && side_indicator_ == other.side_indicator_
-        && quantity_binary_4_ == other.quantity_binary_4_
+        && quantity_long_ == other.quantity_long_
         && symbol_short_ == other.symbol_short_
-        && price_binary_long_price_8_ == other.price_binary_long_price_8_
+        && price_long_ == other.price_long_
         && execution_id_ == other.execution_id_;
 }
 

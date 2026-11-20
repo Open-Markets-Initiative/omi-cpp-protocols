@@ -18,6 +18,11 @@ struct TestPacket {
     static const TestPacket* parse(const std::byte* buffer) {
         return reinterpret_cast<const TestPacket*>(buffer);
     }
+
+    // parse the overlaid body from its selecting header
+    static const TestPacket* parse(const SesmPacketHeader* header) {
+        return reinterpret_cast<const TestPacket*>(reinterpret_cast<const std::byte*>(header) + sizeof(SesmPacketHeader));
+    }
 };
 
 #pragma pack(pop)

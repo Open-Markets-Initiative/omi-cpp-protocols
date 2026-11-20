@@ -18,14 +18,16 @@ struct auction_type {
         core_opening = 'M',
         reopening = 'H',
         closing = 'C',
-        regulatory_imbalance = 'R'
+        extreme_closing_imbalance = 'P',
+        regulatory_closing_imbalance = 'R'
     };
 
-    static constexpr std::array<std::pair<std::string_view, enum_type>, 5> from_string_map = {{
+    static constexpr std::array<std::pair<std::string_view, enum_type>, 6> from_string_map = {{
         {"Closing", enum_type::closing},
         {"Core Opening", enum_type::core_opening},
         {"Early Opening", enum_type::early_opening},
-        {"Regulatory Imbalance", enum_type::regulatory_imbalance},
+        {"Extreme Closing Imbalance", enum_type::extreme_closing_imbalance},
+        {"Regulatory Closing Imbalance", enum_type::regulatory_closing_imbalance},
         {"Reopening", enum_type::reopening}
     }};
 
@@ -35,7 +37,8 @@ struct auction_type {
             case enum_type::core_opening: return "Core Opening";
             case enum_type::reopening: return "Reopening";
             case enum_type::closing: return "Closing";
-            case enum_type::regulatory_imbalance: return "Regulatory Imbalance";
+            case enum_type::extreme_closing_imbalance: return "Extreme Closing Imbalance";
+            case enum_type::regulatory_closing_imbalance: return "Regulatory Closing Imbalance";
             default: return "unknown";
         }
     }
@@ -78,7 +81,7 @@ struct auction_type {
         if (value.has_value())
             set(value.value());
         else
-            set(enum_type::regulatory_imbalance);
+            set(enum_type::regulatory_closing_imbalance);
     }
 
   protected:

@@ -7,14 +7,14 @@
 
 namespace cboe::cfefutures::multicastdepthofbook::pitch::v1_2_22 {
 
-FuturesVarianceSymbolMappingMessage::FuturesVarianceSymbolMappingMessage(std::chrono::nanoseconds time_offset, std::uint32_t unit_timestamp, const std::string& feed_symbol, const std::string& futures_symbol, Decimal accrued_day_variance, std::uint16_t num_final_returns, std::uint16_t num_elapsed_returns)
+FuturesVarianceSymbolMappingMessage::FuturesVarianceSymbolMappingMessage(std::chrono::nanoseconds time_offset, std::chrono::seconds unit_timestamp, const std::string& feed_symbol, const std::string& futures_symbol, Decimal accrued_day_variance, std::uint16_t num_final_returns, std::uint16_t num_elapsed_returns)
   : time_offset_(time_offset), unit_timestamp_(unit_timestamp), feed_symbol_(feed_symbol), futures_symbol_(futures_symbol), accrued_day_variance_(accrued_day_variance), num_final_returns_(num_final_returns), num_elapsed_returns_(num_elapsed_returns) {}
 
 std::chrono::nanoseconds FuturesVarianceSymbolMappingMessage::time_offset() const { return time_offset_; }
 void FuturesVarianceSymbolMappingMessage::set_time_offset(std::chrono::nanoseconds value) { time_offset_ = value; }
 
-std::uint32_t FuturesVarianceSymbolMappingMessage::unit_timestamp() const { return unit_timestamp_; }
-void FuturesVarianceSymbolMappingMessage::set_unit_timestamp(std::uint32_t value) { unit_timestamp_ = value; }
+std::chrono::seconds FuturesVarianceSymbolMappingMessage::unit_timestamp() const { return unit_timestamp_; }
+void FuturesVarianceSymbolMappingMessage::set_unit_timestamp(std::chrono::seconds value) { unit_timestamp_ = value; }
 
 const std::string& FuturesVarianceSymbolMappingMessage::feed_symbol() const { return feed_symbol_; }
 std::string& FuturesVarianceSymbolMappingMessage::feed_symbol() { return feed_symbol_; }
@@ -44,7 +44,7 @@ std::size_t FuturesVarianceSymbolMappingMessage::decode(const std::byte* data, s
     time_offset_ = std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
-    unit_timestamp_ = wire::read_u32_le(data + offset);
+    unit_timestamp_ = std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     feed_symbol_ = wire::read_text(data + offset, 6, ' ');
@@ -72,7 +72,7 @@ std::size_t FuturesVarianceSymbolMappingMessage::encode(std::byte* data, std::si
     wire::write_u32_le(data + offset, static_cast<std::uint32_t>(time_offset_.count()));
     offset += 4;
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(unit_timestamp_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(unit_timestamp_.count()));
     offset += 4;
 
     wire::write_text(data + offset, 6, ' ', feed_symbol_);
@@ -110,7 +110,7 @@ void FuturesVarianceSymbolMappingMessage::print(std::ostream& out) const {
     out << "time_offset=";
     out << time_offset_.count();
     out << ", unit_timestamp=";
-    out << unit_timestamp_;
+    out << unit_timestamp_.count();
     out << ", feed_symbol=";
     print::text(out, feed_symbol_);
     out << ", futures_symbol=";

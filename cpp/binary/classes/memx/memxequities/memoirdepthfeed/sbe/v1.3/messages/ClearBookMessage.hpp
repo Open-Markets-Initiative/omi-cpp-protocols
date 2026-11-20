@@ -8,17 +8,17 @@
 #include <ostream>
 #include <string_view>
 
-#include "../messages/Payload.hpp"
+#include "../messages/Message.hpp"
 
 namespace memx::memxequities::memoirdepthfeed::sbe::v1_3 {
 
-class PayloadVisitor;
+class Visitor;
 
 // ClearBookMessage
-class ClearBookMessage : public Payload {
+class ClearBookMessage : public Message {
   public:
     // The code that selects this message
-    static constexpr PayloadCode message_type = TemplateId::ClearBookMessage;
+    static constexpr MessageCode message_type = TemplateId::ClearBookMessage;
     // Bytes of this message on the wire
     static constexpr std::size_t wire_size = 10;
 
@@ -33,16 +33,16 @@ class ClearBookMessage : public Payload {
     std::uint16_t security_id() const;
     void set_security_id(std::uint16_t value);
 
-    // Payload
-    PayloadCode type() const override;
+    // Message
+    MessageCode type() const override;
     std::string_view name() const override;
     std::size_t decode(const std::byte* data, std::size_t length) override;
     std::size_t encode(std::byte* data, std::size_t capacity) const override;
     std::size_t encoded_size() const override;
-    void accept(PayloadVisitor& visitor) const override;
-    std::unique_ptr<Payload> clone() const override;
+    void accept(Visitor& visitor) const override;
+    std::unique_ptr<Message> clone() const override;
     void print(std::ostream& out) const override;
-    bool equals(const Payload& other) const override;
+    bool equals(const Message& other) const override;
 
     bool operator==(const ClearBookMessage& other) const;
     bool operator!=(const ClearBookMessage& other) const;

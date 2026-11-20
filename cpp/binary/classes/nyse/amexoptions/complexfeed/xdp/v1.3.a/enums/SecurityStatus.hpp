@@ -9,14 +9,10 @@ namespace nyse::amexoptions::complexfeed::xdp::v1_3_a {
 
 // SecurityStatus value
 enum class SecurityStatus : char {
-    LightUpADarkSeries = 'L', // Light Up A Dark Series
-    OpenADarkSeries = 'N',    // Open A Dark Series
-    Open = 'O',               // Open
-    Close = 'X',              // Close
-    Halt = 'S',               // Halt
-    Unhalt = 'U',             // Unhalt
-    UnhaltADarkSeries = 'T',  // Unhalt A Dark Series
-    EndOfRfqAuction = 'Q',    // End Of Rfq Auction
+    Open = 'O',            // Open
+    Close = 'X',           // Close
+    Halt = 'S',            // Halt
+    EndOfRfqAuction = 'Q', // End Of Rfq Auction
 };
 
 // The documented name of a code, or empty for one the specification does not list

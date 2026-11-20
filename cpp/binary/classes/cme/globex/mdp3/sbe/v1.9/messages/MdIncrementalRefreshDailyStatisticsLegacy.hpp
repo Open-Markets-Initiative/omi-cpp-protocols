@@ -10,7 +10,7 @@
 
 #include "../bitfields/MatchEventIndicator.hpp"
 #include "../messages/MktdataPayload.hpp"
-#include "../structs/IncrementalRefreshDailyStatisticsGroups.hpp"
+#include "../structs/IncrementalRefreshDailyStatisticsLegacyGroups.hpp"
 
 namespace cme::globex::mdp3::sbe::v1_9 {
 
@@ -23,7 +23,7 @@ class MdIncrementalRefreshDailyStatisticsLegacy : public MktdataPayload {
     static constexpr MktdataPayloadCode message_type = TemplateId::MdIncrementalRefreshDailyStatisticsLegacy;
 
     MdIncrementalRefreshDailyStatisticsLegacy() = default;
-    MdIncrementalRefreshDailyStatisticsLegacy(std::chrono::nanoseconds transact_time, const MatchEventIndicator& match_event_indicator, const std::array<std::byte, 2>& padding_2, const IncrementalRefreshDailyStatisticsGroups& incremental_refresh_daily_statistics_groups);
+    MdIncrementalRefreshDailyStatisticsLegacy(std::chrono::nanoseconds transact_time, const MatchEventIndicator& match_event_indicator, const std::array<std::byte, 2>& padding_2, const IncrementalRefreshDailyStatisticsLegacyGroups& incremental_refresh_daily_statistics_legacy_groups);
 
     // Transact Time: Start of event processing time in number of nanoseconds since Unix epoch
     std::chrono::nanoseconds transact_time() const;
@@ -39,10 +39,10 @@ class MdIncrementalRefreshDailyStatisticsLegacy : public MktdataPayload {
     std::array<std::byte, 2>& padding_2();
     void set_padding_2(const std::array<std::byte, 2>& value);
 
-    // Incremental Refresh Daily Statistics Groups: NoMDEntries Block
-    const IncrementalRefreshDailyStatisticsGroups& incremental_refresh_daily_statistics_groups() const;
-    IncrementalRefreshDailyStatisticsGroups& incremental_refresh_daily_statistics_groups();
-    void set_incremental_refresh_daily_statistics_groups(const IncrementalRefreshDailyStatisticsGroups& value);
+    // Incremental Refresh Daily Statistics Legacy Groups: NoMDEntries Block
+    const IncrementalRefreshDailyStatisticsLegacyGroups& incremental_refresh_daily_statistics_legacy_groups() const;
+    IncrementalRefreshDailyStatisticsLegacyGroups& incremental_refresh_daily_statistics_legacy_groups();
+    void set_incremental_refresh_daily_statistics_legacy_groups(const IncrementalRefreshDailyStatisticsLegacyGroups& value);
 
     // MktdataPayload
     MktdataPayloadCode type() const override;
@@ -62,7 +62,7 @@ class MdIncrementalRefreshDailyStatisticsLegacy : public MktdataPayload {
     std::chrono::nanoseconds transact_time_{};
     MatchEventIndicator match_event_indicator_{};
     std::array<std::byte, 2> padding_2_{};
-    IncrementalRefreshDailyStatisticsGroups incremental_refresh_daily_statistics_groups_{};
+    IncrementalRefreshDailyStatisticsLegacyGroups incremental_refresh_daily_statistics_legacy_groups_{};
 };
 
 } // namespace cme::globex::mdp3::sbe::v1_9

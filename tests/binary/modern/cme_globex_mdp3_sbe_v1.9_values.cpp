@@ -21,7 +21,7 @@ namespace {
 // The values the Modern iterator reads from one datagram, by indexed address
 canonical::Listing read(const packet::Frame& frame) {
     canonical::Listing values;
-    protocol::MessageIterator iterator;
+    protocol::Mdp3MessageIterator iterator;
     iterator.initialize(frame.payload, frame.payload_len);
 
     values["udppacket.binarypacketheader.packetsequencenumber"] = canonical::number(iterator.binary_packet_header->packet_sequence_number.get());
@@ -30,7 +30,7 @@ canonical::Listing read(const packet::Frame& frame) {
     std::size_t index = 0;
 
     while (iterator.next()) {
-        const std::string entry = "udppacket.message[" + std::to_string(index++) + "]";
+        const std::string entry = "udppacket.mdp3message[" + std::to_string(index++) + "]";
         values[entry + ".messageheader.messagesize"] = canonical::number(iterator.message_header->message_size.get());
         values[entry + ".messageheader.simplebinaryheader.blocklength"] = canonical::number(iterator.message_header->simple_binary_header.block_length.get());
         values[entry + ".messageheader.simplebinaryheader.templateid"] = canonical::number(iterator.message_header->simple_binary_header.template_id.get());
@@ -38,10 +38,10 @@ canonical::Listing read(const packet::Frame& frame) {
         values[entry + ".messageheader.simplebinaryheader.version"] = canonical::number(iterator.message_header->simple_binary_header.version.get());
 
         if (iterator.schema_id == 1) {
-            values[entry + ".payload"] = "udppacket.message.payload.mktdatamessage";
+            values[entry + ".payload"] = "udppacket.mdp3message.payload.mktdatamessage";
             [[maybe_unused]] const auto* message = protocol::MktdataMessage::parse(iterator.message);
         } else if (iterator.schema_id == 2) {
-            values[entry + ".payload"] = "udppacket.message.payload.mdpsessionmgmtmessage";
+            values[entry + ".payload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage";
             [[maybe_unused]] const auto* message = protocol::MdpsessionmgmtMessage::parse(iterator.message);
         }
     }

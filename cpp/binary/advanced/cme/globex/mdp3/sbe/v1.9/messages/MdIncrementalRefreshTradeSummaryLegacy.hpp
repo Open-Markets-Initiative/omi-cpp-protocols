@@ -7,11 +7,11 @@
 #include "../types/TransactTime.hpp"
 #include "../types/MatchEventIndicator.hpp"
 #include "../types/Padding2.hpp"
-#include "../types/MdEntryPxEx.hpp"
+#include "../types/MdEntryPx.hpp"
 #include "../types/MdEntrySizeShort.hpp"
 #include "../types/SecurityId.hpp"
 #include "../types/RptSeq.hpp"
-#include "../types/NumberOfOrders.hpp"
+#include "../types/NumberOfOrdersOptional.hpp"
 #include "../types/AggressorSide.hpp"
 #include "../types/MdUpdateAction.hpp"
 #include "../types/MdTradeEntryId.hpp"
@@ -26,12 +26,12 @@ namespace cme::mdp3::v9 {
 namespace sbe_mdp3 = ::cme::mdp3::v9;
 
 #pragma pack(push, 1)
-struct md_incremental_refresh_trade_summary_legacy_incremental_refresh_trade_summary_groups_entry {
-    sbe_mdp3::md_entry_px_ex md_entry_px_ex;
+struct md_incremental_refresh_trade_summary_legacy_incremental_refresh_trade_summary_legacy_groups_entry {
+    sbe_mdp3::md_entry_px md_entry_px;
     sbe_mdp3::md_entry_size_short md_entry_size_short;
     sbe_mdp3::security_id security_id;
     sbe_mdp3::rpt_seq rpt_seq;
-    sbe_mdp3::number_of_orders number_of_orders;
+    sbe_mdp3::number_of_orders_optional number_of_orders_optional;
     sbe_mdp3::aggressor_side aggressor_side;
     sbe_mdp3::md_update_action md_update_action;
     sbe_mdp3::md_trade_entry_id md_trade_entry_id;
@@ -77,7 +77,7 @@ struct md_incremental_refresh_trade_summary_legacy {
     }
 
     // sequential access to variable-length regions
-    sbe_group_iterator<md_incremental_refresh_trade_summary_legacy_incremental_refresh_trade_summary_groups_entry, group_size> incremental_refresh_trade_summary_groups() const {
+    sbe_group_iterator<md_incremental_refresh_trade_summary_legacy_incremental_refresh_trade_summary_legacy_groups_entry, group_size> incremental_refresh_trade_summary_legacy_groups() const {
         return { tail_begin(), tail_end() };
     }
 

@@ -167,10 +167,10 @@ public:
         return *this;
     }
 
-    md_instrument_definition_spread_lot_type_rules_groups_builder& min_lot_size_decimal_qty(typename sbe_mdp3::min_lot_size_decimal_qty::result_type v) {
+    md_instrument_definition_spread_lot_type_rules_groups_builder& min_lot_size(typename sbe_mdp3::min_lot_size::result_type v) {
         if (pos_ + sizeof(md_instrument_definition_spread_lot_type_rules_groups_entry) > end_) throw std::runtime_error("buffer overrun writing group entry");
         auto* entry = reinterpret_cast<md_instrument_definition_spread_lot_type_rules_groups_entry*>(pos_);
-        entry->min_lot_size_decimal_qty.set(v);
+        entry->min_lot_size.set(v);
         pos_ += header_->block_length.get().value();
         count_++;
         if (pos_ + sizeof(md_instrument_definition_spread_lot_type_rules_groups_entry) <= end_) ::new (static_cast<void*>(pos_)) md_instrument_definition_spread_lot_type_rules_groups_entry{};

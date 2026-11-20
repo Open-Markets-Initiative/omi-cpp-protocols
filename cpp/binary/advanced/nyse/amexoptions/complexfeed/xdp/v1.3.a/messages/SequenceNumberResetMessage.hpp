@@ -7,6 +7,7 @@
 #include "../types/SourceTimeNs.hpp"
 #include "../types/ProductId.hpp"
 #include "../types/ChannelId.hpp"
+#include "../types/Reserved2.hpp"
 
 namespace nyse::amexoptions::complexfeed::xdp::v1_3_a {
 
@@ -22,6 +23,7 @@ struct sequence_number_reset_message {
         xdp_complexfeed::source_time_ns source_time_ns;
         xdp_complexfeed::product_id product_id;
         xdp_complexfeed::channel_id channel_id;
+        xdp_complexfeed::reserved_2 reserved_2;
     };
 
     xdp_complexfeed::message_header header = {std::uint16_t(sizeof(xdp_complexfeed::message_header) + sizeof(fields_type)), message_type::enum_type::sequence_number_reset_message};
@@ -45,8 +47,9 @@ static_assert(offsetof(sequence_number_reset_message::fields_type, source_time) 
 static_assert(offsetof(sequence_number_reset_message::fields_type, source_time_ns) == 4, "unexpected offset of sequence_number_reset_message::fields_type::source_time_ns");
 static_assert(offsetof(sequence_number_reset_message::fields_type, product_id) == 8, "unexpected offset of sequence_number_reset_message::fields_type::product_id");
 static_assert(offsetof(sequence_number_reset_message::fields_type, channel_id) == 9, "unexpected offset of sequence_number_reset_message::fields_type::channel_id");
-static_assert(sizeof(sequence_number_reset_message::fields_type) == 10, "unexpected sizeof sequence_number_reset_message::fields_type");
-static_assert(sizeof(sequence_number_reset_message) == sizeof(xdp_complexfeed::message_header) + 10, "unexpected sizeof sequence_number_reset_message");
+static_assert(offsetof(sequence_number_reset_message::fields_type, reserved_2) == 10, "unexpected offset of sequence_number_reset_message::fields_type::reserved_2");
+static_assert(sizeof(sequence_number_reset_message::fields_type) == 12, "unexpected sizeof sequence_number_reset_message::fields_type");
+static_assert(sizeof(sequence_number_reset_message) == sizeof(xdp_complexfeed::message_header) + 12, "unexpected sizeof sequence_number_reset_message");
 
 #pragma pack(pop)
 }

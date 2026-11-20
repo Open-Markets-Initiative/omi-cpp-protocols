@@ -1,6 +1,6 @@
 # Nasdaq.NsmEquities.NlsPlus.Itch.v3.0 TradeReportMessage: canonical values, read by the model
 datagram 0
-packet.packetheader.session = 
+packet.packetheader.session = (null)
 packet.packetheader.sequencenumber = 0
 packet.packetheader.messagecount = 1
 packet.messages = packet.messages.message
@@ -21,7 +21,7 @@ packet.messages.message[0].payload.tradereportmessage.saleconditionmodifier.exte
 packet.messages.message[0].payload.tradereportmessage.saleconditionmodifier.specialsalecondition = 
 packet.messages.message[0].payload.tradereportmessage.consolidatedvolume = 142734
 datagram 1
-packet.packetheader.session = 
+packet.packetheader.session = (null)
 packet.packetheader.sequencenumber = 0
 packet.packetheader.messagecount = 1
 packet.messages = packet.messages.message
@@ -42,7 +42,7 @@ packet.messages.message[0].payload.tradereportmessage.saleconditionmodifier.exte
 packet.messages.message[0].payload.tradereportmessage.saleconditionmodifier.specialsalecondition = o
 packet.messages.message[0].payload.tradereportmessage.consolidatedvolume = 11096
 datagram 2
-packet.packetheader.session = 
+packet.packetheader.session = (null)
 packet.packetheader.sequencenumber = 0
 packet.packetheader.messagecount = 1
 packet.messages = packet.messages.message
@@ -63,7 +63,7 @@ packet.messages.message[0].payload.tradereportmessage.saleconditionmodifier.exte
 packet.messages.message[0].payload.tradereportmessage.saleconditionmodifier.specialsalecondition = o
 packet.messages.message[0].payload.tradereportmessage.consolidatedvolume = 17
 datagram 3
-packet.packetheader.session = 
+packet.packetheader.session = (null)
 packet.packetheader.sequencenumber = 0
 packet.packetheader.messagecount = 1
 packet.messages = packet.messages.message
@@ -84,7 +84,7 @@ packet.messages.message[0].payload.tradereportmessage.saleconditionmodifier.exte
 packet.messages.message[0].payload.tradereportmessage.saleconditionmodifier.specialsalecondition = 
 packet.messages.message[0].payload.tradereportmessage.consolidatedvolume = 35246
 datagram 4
-packet.packetheader.session = 
+packet.packetheader.session = (null)
 packet.packetheader.sequencenumber = 0
 packet.packetheader.messagecount = 1
 packet.messages = packet.messages.message

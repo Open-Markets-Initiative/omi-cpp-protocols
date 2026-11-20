@@ -39,7 +39,7 @@ class OrderExecutedAtPriceSizeMessage {
 
     std::uint64_t execution_id() const { return wire::read_u64_le(at(20)); }
 
-    Decimal price_binary_long_price_8() const { return Decimal(static_cast<std::int64_t>(wire::read_u64_le(at(28))), -4); }
+    Decimal price_long() const { return Decimal(static_cast<std::int64_t>(wire::read_u64_le(at(28))), -4); }
 
     void print(std::ostream& out) const {
         out << "OrderExecutedAtPriceSizeMessage{";
@@ -53,8 +53,8 @@ class OrderExecutedAtPriceSizeMessage {
         out << remaining_quantity();
         out << ", execution_id=";
         out << execution_id();
-        out << ", price_binary_long_price_8=";
-        out << price_binary_long_price_8();
+        out << ", price_long=";
+        out << price_long();
         out << '}';
     }
 

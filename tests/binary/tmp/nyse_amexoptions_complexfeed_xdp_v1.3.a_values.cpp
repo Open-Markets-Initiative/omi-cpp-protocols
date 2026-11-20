@@ -305,6 +305,8 @@ struct Reader {
         if constexpr (requires { header.template get<protocol::delivery_flag>(); }) { values["packet.packetheader.deliveryflag"] = canonical::number(header.template get<protocol::delivery_flag>().value()); }
         if constexpr (requires { header.template get<protocol::message_count>(); }) { values["packet.packetheader.messagecount"] = canonical::number(header.template get<protocol::message_count>().value()); }
         if constexpr (requires { header.template get<protocol::sequence_number>(); }) { values["packet.packetheader.sequencenumber"] = canonical::number(header.template get<protocol::sequence_number>().value()); }
+        if constexpr (requires { header.template get<protocol::send_time>().template get<protocol::seconds>(); }) { values["packet.packetheader.sendtime.seconds"] = canonical::number(header.template get<protocol::send_time>().template get<protocol::seconds>().value()); }
+        if constexpr (requires { header.template get<protocol::send_time>().template get<protocol::nanoseconds>(); }) { values["packet.packetheader.sendtime.nanoseconds"] = canonical::number(header.template get<protocol::send_time>().template get<protocol::nanoseconds>().value()); }
     }
 
     void operator()(const protocol::message_header& header) {
@@ -337,7 +339,7 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::trade_id>(); }) { values[entry + ".payload.complextrademessage.tradeid"] = canonical::number(message.template get<protocol::trade_id>().value()); }
         if constexpr (requires { message.template get<protocol::price>(); }) { values[entry + ".payload.complextrademessage.price"] = canonical::number(message.template get<protocol::price>().value()); }
         if constexpr (requires { message.template get<protocol::volume_4>(); }) { values[entry + ".payload.complextrademessage.volume4"] = canonical::number(message.template get<protocol::volume_4>().value()); }
-        if constexpr (requires { message.template get<protocol::trade_cond_1>(); }) { values[entry + ".payload.complextrademessage.tradecond1"] = canonical::text(canonical::character(message.template get<protocol::trade_cond_1>().value()), '\0', false); }
+        if constexpr (requires { message.template get<protocol::trade_cond_1>(); }) { values[entry + ".payload.complextrademessage.tradecond1"] = canonical::text(canonical::character(message.template get<protocol::trade_cond_1>().value()), '\0', false, {std::string_view(" ", 1)}); }
         if constexpr (requires { message.template get<protocol::trade_cond_2>(); }) { values[entry + ".payload.complextrademessage.tradecond2"] = canonical::text(canonical::character(message.template get<protocol::trade_cond_2>().value()), '\0', false); }
     }
 
@@ -397,7 +399,7 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::trade_id>(); }) { values[entry + ".payload.refreshcomplextrademessage.tradeid"] = canonical::number(message.template get<protocol::trade_id>().value()); }
         if constexpr (requires { message.template get<protocol::price>(); }) { values[entry + ".payload.refreshcomplextrademessage.price"] = canonical::number(message.template get<protocol::price>().value()); }
         if constexpr (requires { message.template get<protocol::volume_4>(); }) { values[entry + ".payload.refreshcomplextrademessage.volume4"] = canonical::number(message.template get<protocol::volume_4>().value()); }
-        if constexpr (requires { message.template get<protocol::trade_cond_1>(); }) { values[entry + ".payload.refreshcomplextrademessage.tradecond1"] = canonical::text(canonical::character(message.template get<protocol::trade_cond_1>().value()), '\0', false); }
+        if constexpr (requires { message.template get<protocol::trade_cond_1>(); }) { values[entry + ".payload.refreshcomplextrademessage.tradecond1"] = canonical::text(canonical::character(message.template get<protocol::trade_cond_1>().value()), '\0', false, {std::string_view(" ", 1)}); }
         if constexpr (requires { message.template get<protocol::trade_cond_2>(); }) { values[entry + ".payload.refreshcomplextrademessage.tradecond2"] = canonical::text(canonical::character(message.template get<protocol::trade_cond_2>().value()), '\0', false); }
     }
 

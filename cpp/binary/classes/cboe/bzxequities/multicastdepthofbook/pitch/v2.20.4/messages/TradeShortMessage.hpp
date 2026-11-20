@@ -26,7 +26,7 @@ class TradeShortMessage : public Message {
     static constexpr std::size_t wire_size = 31;
 
     TradeShortMessage() = default;
-    TradeShortMessage(std::chrono::nanoseconds time_offset, std::uint64_t order_id, SideIndicator side_indicator, std::uint16_t quantity_binary_2, const std::string& symbol_short, Decimal price_binary_short_price_2, std::uint64_t execution_id);
+    TradeShortMessage(std::chrono::nanoseconds time_offset, std::uint64_t order_id, SideIndicator side_indicator, std::uint16_t quantity_short, const std::string& symbol_short, Decimal price_short, std::uint64_t execution_id);
 
     // Time Offset: Nanosecond offset from last
     std::chrono::nanoseconds time_offset() const;
@@ -40,19 +40,19 @@ class TradeShortMessage : public Message {
     SideIndicator side_indicator() const;
     void set_side_indicator(SideIndicator value);
 
-    // Quantity Binary 2: Number of shares/contracts being added to the book (may be less than
-    // the number entered)
-    std::uint16_t quantity_binary_2() const;
-    void set_quantity_binary_2(std::uint16_t value);
+    // Quantity Short: Number of shares/contracts being added to the book (may be less than the
+    // number entered)
+    std::uint16_t quantity_short() const;
+    void set_quantity_short(std::uint16_t value);
 
     // Symbol Short: Symbol right padded with spaces
     const std::string& symbol_short() const;
     std::string& symbol_short();
     void set_symbol_short(const std::string& value);
 
-    // Price Binary Short Price 2: The limit order price
-    Decimal price_binary_short_price_2() const;
-    void set_price_binary_short_price_2(Decimal value);
+    // Price Short: The limit order price
+    Decimal price_short() const;
+    void set_price_short(Decimal value);
 
     // Execution Id: BATS generated day-unique execution identifier of this execution.
     // Execution Id is also referenced in the
@@ -77,9 +77,9 @@ class TradeShortMessage : public Message {
     std::chrono::nanoseconds time_offset_{};
     std::uint64_t order_id_{};
     SideIndicator side_indicator_{};
-    std::uint16_t quantity_binary_2_{};
+    std::uint16_t quantity_short_{};
     std::string symbol_short_{};
-    Decimal price_binary_short_price_2_{ 0, -2 };
+    Decimal price_short_{ 0, -2 };
     std::uint64_t execution_id_{};
 };
 

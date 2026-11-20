@@ -4,7 +4,7 @@
 #include "../types/TimeOffset.hpp"
 #include "../types/StockSymbol.hpp"
 #include "../types/AuctionType.hpp"
-#include "../types/PriceBinary8.hpp"
+#include "../types/PriceLong.hpp"
 #include "../types/Shares.hpp"
 #include "../structs/MessageHeader.hpp"
 
@@ -18,7 +18,7 @@ struct AuctionSummaryMessage {
     TimeOffset time_offset;
     StockSymbol stock_symbol;
     AuctionType auction_type;
-    PriceBinary8 price_binary_8;
+    PriceLong price_long;
     Shares shares;
 
     // the type code that selects this message in the dispatch switch

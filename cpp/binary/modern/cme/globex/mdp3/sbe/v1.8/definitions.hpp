@@ -74,4 +74,4 @@
 #include "iterators/SnapshotFullRefreshOrderBookGroupIterator.hpp"
 #include "iterators/ClientTcpFrameIterator.hpp"
 #include "iterators/ServerTcpFrameIterator.hpp"
-#include "iterators/MessageIterator.hpp"
+#include "iterators/Mdp3MessageIterator.hpp"

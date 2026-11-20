@@ -9,7 +9,8 @@ std::string_view to_string(AuctionType value) {
         case AuctionType::CoreOpening: return "Core Opening";
         case AuctionType::Reopening: return "Reopening";
         case AuctionType::Closing: return "Closing";
-        case AuctionType::RegulatoryImbalance: return "Regulatory Imbalance";
+        case AuctionType::ExtremeClosingImbalance: return "Extreme Closing Imbalance";
+        case AuctionType::RegulatoryClosingImbalance: return "Regulatory Closing Imbalance";
         default: return {};
     }
 }

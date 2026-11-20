@@ -95,7 +95,7 @@ struct Reader {
         values[entry + ".messagedata.shortsalepriceteststatusmessage.shortsalepriceteststatus"] = canonical::number(message.fields.short_sale_price_test_status.get().value());
         values[entry + ".messagedata.shortsalepriceteststatusmessage.timestamp"] = canonical::number(message.fields.timestamp.get().value());
         values[entry + ".messagedata.shortsalepriceteststatusmessage.symbol"] = canonical::text(std::string(message.fields.symbol.get().value()), ' ', false);
-        values[entry + ".messagedata.shortsalepriceteststatusmessage.detail"] = canonical::text(canonical::character(message.fields.detail.get().value()));
+        values[entry + ".messagedata.shortsalepriceteststatusmessage.detail"] = canonical::text(canonical::character(message.fields.detail.get().value()), {std::string_view(" ", 1)});
     }
 
     void on_message(const protocol::security_event_message& message, std::uint64_t, const protocol::iextp_header&) {

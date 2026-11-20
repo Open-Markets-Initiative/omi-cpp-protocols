@@ -8,7 +8,7 @@ std::string_view to_string(TradeCond1 value) {
         case TradeCond1::RegularTrade: return "Regular Trade";
         case TradeCond1::LateReport: return "Late Report";
         case TradeCond1::FloorTrade: return "Floor Trade";
-        case TradeCond1::SoSweepTrade: return "So Sweep Trade";
+        case TradeCond1::IsoSweepTrade: return "ISO Sweep Trade";
         default: return {};
     }
 }

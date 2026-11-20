@@ -90,7 +90,7 @@ struct Reader {
         values[entry + ".payload"] = "packet.messages.message.payload.strategybestbidandaskupdate";
         values[entry + ".payload.strategybestbidandaskupdate.timestamp"] = canonical::number(message.fields.timestamp.get().value());
         values[entry + ".payload.strategybestbidandaskupdate.strategyid"] = canonical::number(message.fields.strategy_id.get().value());
-        values[entry + ".payload.strategybestbidandaskupdate.quotecondition"] = canonical::text(canonical::character(message.fields.quote_condition.get().value()), ' ', false);
+        values[entry + ".payload.strategybestbidandaskupdate.quotecondition"] = canonical::text(canonical::character(message.fields.quote_condition.get().value()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
         values[entry + ".payload.strategybestbidandaskupdate.bidprice"] = canonical::scaled(message.fields.bid_price.get().value(), -4);
         values[entry + ".payload.strategybestbidandaskupdate.bidsize"] = canonical::number(message.fields.bid_size.get().value());
         values[entry + ".payload.strategybestbidandaskupdate.bidcustsize"] = canonical::number(message.fields.bid_cust_size.get().value());
@@ -114,7 +114,7 @@ struct Reader {
         values[entry + ".payload"] = "packet.messages.message.payload.strategybestbidupdate";
         values[entry + ".payload.strategybestbidupdate.timestamp"] = canonical::number(message.fields.timestamp.get().value());
         values[entry + ".payload.strategybestbidupdate.strategyid"] = canonical::number(message.fields.strategy_id.get().value());
-        values[entry + ".payload.strategybestbidupdate.quotecondition"] = canonical::text(canonical::character(message.fields.quote_condition.get().value()), ' ', false);
+        values[entry + ".payload.strategybestbidupdate.quotecondition"] = canonical::text(canonical::character(message.fields.quote_condition.get().value()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
         values[entry + ".payload.strategybestbidupdate.price"] = canonical::scaled(message.fields.price.get().value(), -4);
         values[entry + ".payload.strategybestbidupdate.size"] = canonical::number(message.fields.size.get().value());
         values[entry + ".payload.strategybestbidupdate.custsize"] = canonical::number(message.fields.cust_size.get().value());
@@ -131,7 +131,7 @@ struct Reader {
         values[entry + ".payload"] = "packet.messages.message.payload.strategybestaskupdate";
         values[entry + ".payload.strategybestaskupdate.timestamp"] = canonical::number(message.fields.timestamp.get().value());
         values[entry + ".payload.strategybestaskupdate.strategyid"] = canonical::number(message.fields.strategy_id.get().value());
-        values[entry + ".payload.strategybestaskupdate.quotecondition"] = canonical::text(canonical::character(message.fields.quote_condition.get().value()), ' ', false);
+        values[entry + ".payload.strategybestaskupdate.quotecondition"] = canonical::text(canonical::character(message.fields.quote_condition.get().value()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
         values[entry + ".payload.strategybestaskupdate.price"] = canonical::scaled(message.fields.price.get().value(), -4);
         values[entry + ".payload.strategybestaskupdate.size"] = canonical::number(message.fields.size.get().value());
         values[entry + ".payload.strategybestaskupdate.custsize"] = canonical::number(message.fields.cust_size.get().value());

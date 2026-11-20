@@ -148,7 +148,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.imbalancemessage.marketimbalanceqty"] = canonical::number(message->market_imbalance_qty.get());
             values[entry + ".payload.imbalancemessage.auctiontime"] = canonical::number(message->auction_time.get());
             values[entry + ".payload.imbalancemessage.auctiontype"] = canonical::text(canonical::character(message->auction_type.get()), '\0', false);
-            values[entry + ".payload.imbalancemessage.imbalanceside"] = canonical::text(canonical::character(message->imbalance_side.get()), '\0', false);
+            values[entry + ".payload.imbalancemessage.imbalanceside"] = canonical::text(canonical::character(message->imbalance_side.get()), '\0', false, {std::string_view(" ", 1)});
             values[entry + ".payload.imbalancemessage.continuousbookclearingprice"] = canonical::number(message->continuous_book_clearing_price.get());
             values[entry + ".payload.imbalancemessage.closingonlyclearingprice"] = canonical::number(message->closing_only_clearing_price.get());
             values[entry + ".payload.imbalancemessage.ssrfilingprice"] = canonical::number(message->ssr_filing_price.get());
@@ -159,8 +159,8 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.imbalancemessage.freezestatus"] = canonical::number(message->freeze_status.get());
             values[entry + ".payload.imbalancemessage.numextensions"] = canonical::number(message->num_extensions.get());
             values[entry + ".payload.imbalancemessage.unpairedqty"] = canonical::number(message->unpaired_qty.get());
-            values[entry + ".payload.imbalancemessage.unpairedside"] = canonical::text(canonical::character(message->unpaired_side.get()), '\0', false);
-            values[entry + ".payload.imbalancemessage.significantimbalance"] = canonical::text(canonical::character(message->significant_imbalance.get()), '\0', false);
+            values[entry + ".payload.imbalancemessage.unpairedside"] = canonical::text(canonical::character(message->unpaired_side.get()), '\0', false, {std::string_view(" ", 1)});
+            values[entry + ".payload.imbalancemessage.significantimbalance"] = canonical::text(canonical::character(message->significant_imbalance.get()), '\0', false, {std::string_view(" ", 1)});
         }
     }
 

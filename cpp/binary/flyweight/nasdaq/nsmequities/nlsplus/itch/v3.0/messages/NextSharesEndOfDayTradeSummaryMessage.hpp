@@ -37,21 +37,21 @@ class NextSharesEndOfDayTradeSummaryMessage {
 
     Decimal consolidated_high_price() const { return Decimal(static_cast<std::int64_t>(wire::read_u32_be(at(9))), -4); }
 
-    Decimal nav_offset_amount_high() const { return Decimal(static_cast<std::int64_t>(wire::read_u32_be(at(13))), -4); }
+    Decimal nav_offset_amount_high() const { return Decimal(static_cast<std::int64_t>(wire::read_i32_be(at(13))), -4); }
 
     Decimal consolidated_low_price() const { return Decimal(static_cast<std::int64_t>(wire::read_u32_be(at(17))), -4); }
 
-    Decimal nav_offset_amount_low() const { return Decimal(static_cast<std::int64_t>(wire::read_u32_be(at(21))), -4); }
+    Decimal nav_offset_amount_low() const { return Decimal(static_cast<std::int64_t>(wire::read_i32_be(at(21))), -4); }
 
     Decimal consolidated_closing_price() const { return Decimal(static_cast<std::int64_t>(wire::read_u32_be(at(25))), -4); }
 
-    Decimal nav_offset_amount_closing() const { return Decimal(static_cast<std::int64_t>(wire::read_u32_be(at(29))), -4); }
+    Decimal nav_offset_amount_closing() const { return Decimal(static_cast<std::int64_t>(wire::read_i32_be(at(29))), -4); }
 
     std::uint64_t consolidated_volume() const { return wire::read_u64_be(at(33)); }
 
     Decimal consolidated_open_price() const { return Decimal(static_cast<std::int64_t>(wire::read_u32_be(at(41))), -4); }
 
-    Decimal nav_offset_amount_open() const { return Decimal(static_cast<std::int64_t>(wire::read_u32_be(at(45))), -4); }
+    Decimal nav_offset_amount_open() const { return Decimal(static_cast<std::int64_t>(wire::read_i32_be(at(45))), -4); }
 
     void print(std::ostream& out) const {
         out << "NextSharesEndOfDayTradeSummaryMessage{";

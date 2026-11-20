@@ -22,6 +22,34 @@ Within a protocol:
 Each library is compiled as `classes_<protocol>` by the repository's `CMakeLists.txt`. The
 dump program and the tests under `tests/binary/classes/` are written against these.
 
+## Generated
+
+| Parser | Protocol Count | Generated Lines |
+| --- | --- | --- |
+| Classes | 101 | 1,031,794 |
+
+| Organization | Protocol Count | Generated Lines |
+| --- | --- | --- |
+| Asx | 1 | 9,539 |
+| B3 | 10 | 171,763 |
+| Bse | 1 | 7,263 |
+| Cboe | 10 | 67,469 |
+| CixAts | 1 | 3,917 |
+| Cme | 4 | 143,950 |
+| Databento | 3 | 44,937 |
+| Eurex | 4 | 40,505 |
+| Iex | 10 | 48,298 |
+| Jnx | 3 | 19,673 |
+| Jpx | 2 | 10,514 |
+| Lseg | 2 | 11,840 |
+| Memx | 1 | 4,185 |
+| Miax | 4 | 26,556 |
+| Nasdaq | 13 | 151,110 |
+| Nyse | 23 | 148,714 |
+| OtcMarkets | 1 | 7,513 |
+| Siac | 7 | 106,078 |
+| Tmx | 1 | 7,970 |
+
 ## Protocols (101)
 
 - `Asx.AsxDerivatives.Ntp.Itch.v1.05`

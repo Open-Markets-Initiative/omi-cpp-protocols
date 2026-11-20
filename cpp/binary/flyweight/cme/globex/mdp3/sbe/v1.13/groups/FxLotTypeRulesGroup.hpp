@@ -29,14 +29,14 @@ class FxLotTypeRulesGroup {
 
     std::int8_t lot_type() const { return wire::read_i8(at(0)); }
 
-    std::uint64_t min_lot_size_u_int_64() const { return wire::read_u64_le(at(1)); }
+    std::uint64_t fx_min_lot_size() const { return wire::read_u64_le(at(1)); }
 
     void print(std::ostream& out) const {
         out << "FxLotTypeRulesGroup{";
         out << "lot_type=";
         out << static_cast<int>(lot_type());
-        out << ", min_lot_size_u_int_64=";
-        out << min_lot_size_u_int_64();
+        out << ", fx_min_lot_size=";
+        out << fx_min_lot_size();
         out << '}';
     }
 

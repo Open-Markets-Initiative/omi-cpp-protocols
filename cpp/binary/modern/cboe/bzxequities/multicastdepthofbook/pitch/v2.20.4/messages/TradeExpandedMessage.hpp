@@ -4,9 +4,9 @@
 #include "../types/TimeOffset.hpp"
 #include "../types/OrderId.hpp"
 #include "../types/SideIndicator.hpp"
-#include "../types/QuantityBinary4.hpp"
+#include "../types/QuantityLong.hpp"
 #include "../types/SymbolLong.hpp"
-#include "../types/PriceBinaryLongPrice8.hpp"
+#include "../types/PriceLong.hpp"
 #include "../types/ExecutionId.hpp"
 #include "../structs/MessageHeader.hpp"
 
@@ -20,9 +20,9 @@ struct TradeExpandedMessage {
     TimeOffset time_offset;
     OrderId order_id;
     SideIndicator side_indicator;
-    QuantityBinary4 quantity_binary_4;
+    QuantityLong quantity_long;
     SymbolLong symbol_long;
-    PriceBinaryLongPrice8 price_binary_long_price_8;
+    PriceLong price_long;
     ExecutionId execution_id;
 
     // the type code that selects this message in the dispatch switch

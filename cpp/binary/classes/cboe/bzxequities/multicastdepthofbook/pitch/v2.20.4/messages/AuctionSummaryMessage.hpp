@@ -9,6 +9,7 @@
 #include <string>
 #include <string_view>
 
+#include "../common/Decimal.hpp"
 #include "../enums/AuctionType.hpp"
 #include "../messages/Message.hpp"
 
@@ -25,7 +26,7 @@ class AuctionSummaryMessage : public Message {
     static constexpr std::size_t wire_size = 25;
 
     AuctionSummaryMessage() = default;
-    AuctionSummaryMessage(std::chrono::nanoseconds time_offset, const std::string& stock_symbol, AuctionType auction_type, std::uint64_t price_binary_8, std::uint32_t shares);
+    AuctionSummaryMessage(std::chrono::nanoseconds time_offset, const std::string& stock_symbol, AuctionType auction_type, Decimal price_long, std::uint32_t shares);
 
     // Time Offset: Nanosecond offset from last
     std::chrono::nanoseconds time_offset() const;
@@ -41,9 +42,9 @@ class AuctionSummaryMessage : public Message {
     AuctionType auction_type() const;
     void set_auction_type(AuctionType value);
 
-    // Price Binary 8: Auction price
-    std::uint64_t price_binary_8() const;
-    void set_price_binary_8(std::uint64_t value);
+    // Price Long: The limit order price
+    Decimal price_long() const;
+    void set_price_long(Decimal value);
 
     // Shares: Cumulative number of shares executed
     std::uint32_t shares() const;
@@ -67,7 +68,7 @@ class AuctionSummaryMessage : public Message {
     std::chrono::nanoseconds time_offset_{};
     std::string stock_symbol_{};
     AuctionType auction_type_{};
-    std::uint64_t price_binary_8_{};
+    Decimal price_long_{ 0, -4 };
     std::uint32_t shares_{};
 };
 

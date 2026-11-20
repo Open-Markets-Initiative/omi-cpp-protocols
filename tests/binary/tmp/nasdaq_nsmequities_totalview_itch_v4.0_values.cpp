@@ -668,7 +668,7 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::nanoseconds>(); }) { values[entry + ".payload.stockdirectorymessage.nanoseconds"] = canonical::number(message.template get<protocol::nanoseconds>().value()); }
         if constexpr (requires { message.template get<protocol::stock>(); }) { values[entry + ".payload.stockdirectorymessage.stock"] = canonical::text(std::string(message.template get<protocol::stock>().value()), ' ', false); }
         if constexpr (requires { message.template get<protocol::market_category>(); }) { values[entry + ".payload.stockdirectorymessage.marketcategory"] = canonical::text(canonical::character(message.template get<protocol::market_category>().value()), ' ', false); }
-        if constexpr (requires { message.template get<protocol::financial_status_indicator>(); }) { values[entry + ".payload.stockdirectorymessage.financialstatusindicator"] = canonical::text(canonical::character(message.template get<protocol::financial_status_indicator>().value()), ' ', false); }
+        if constexpr (requires { message.template get<protocol::financial_status_indicator>(); }) { values[entry + ".payload.stockdirectorymessage.financialstatusindicator"] = canonical::text(canonical::character(message.template get<protocol::financial_status_indicator>().value()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)}); }
         if constexpr (requires { message.template get<protocol::round_lot_size>(); }) { values[entry + ".payload.stockdirectorymessage.roundlotsize"] = canonical::number(message.template get<protocol::round_lot_size>().value()); }
         if constexpr (requires { message.template get<protocol::round_lots_only>(); }) { values[entry + ".payload.stockdirectorymessage.roundlotsonly"] = canonical::text(canonical::character(message.template get<protocol::round_lots_only>().value()), ' ', false); }
     }
@@ -678,7 +678,7 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::nanoseconds>(); }) { values[entry + ".payload.stocktradingactionmessage.nanoseconds"] = canonical::number(message.template get<protocol::nanoseconds>().value()); }
         if constexpr (requires { message.template get<protocol::stock>(); }) { values[entry + ".payload.stocktradingactionmessage.stock"] = canonical::text(std::string(message.template get<protocol::stock>().value()), ' ', false); }
         if constexpr (requires { message.template get<protocol::trading_state>(); }) { values[entry + ".payload.stocktradingactionmessage.tradingstate"] = canonical::text(canonical::character(message.template get<protocol::trading_state>().value()), ' ', false); }
-        if constexpr (requires { message.template get<protocol::reason>(); }) { values[entry + ".payload.stocktradingactionmessage.reason"] = canonical::text(std::string(message.template get<protocol::reason>().value()), ' ', false); }
+        if constexpr (requires { message.template get<protocol::reason>(); }) { values[entry + ".payload.stocktradingactionmessage.reason"] = canonical::text(std::string(message.template get<protocol::reason>().value()), ' ', false, {std::string_view("    ", 4), std::string_view("", 0)}); }
     }
 
     void operator()(const protocol::market_participant_position_message& message) {
@@ -790,7 +790,7 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::near_price>(); }) { values[entry + ".payload.netorderimbalanceindicatormessage.nearprice"] = canonical::scaled(message.template get<protocol::near_price>().value(), -4); }
         if constexpr (requires { message.template get<protocol::current_reference_price>(); }) { values[entry + ".payload.netorderimbalanceindicatormessage.currentreferenceprice"] = canonical::scaled(message.template get<protocol::current_reference_price>().value(), -4); }
         if constexpr (requires { message.template get<protocol::cross_type>(); }) { values[entry + ".payload.netorderimbalanceindicatormessage.crosstype"] = canonical::text(canonical::character(message.template get<protocol::cross_type>().value()), ' ', false); }
-        if constexpr (requires { message.template get<protocol::price_variation_indicator>(); }) { values[entry + ".payload.netorderimbalanceindicatormessage.pricevariationindicator"] = canonical::text(canonical::character(message.template get<protocol::price_variation_indicator>().value()), ' ', false); }
+        if constexpr (requires { message.template get<protocol::price_variation_indicator>(); }) { values[entry + ".payload.netorderimbalanceindicatormessage.pricevariationindicator"] = canonical::text(canonical::character(message.template get<protocol::price_variation_indicator>().value()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)}); }
     }
 };
 

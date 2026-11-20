@@ -209,7 +209,7 @@ struct MarketStatusMessagePayloadHandler {
         values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerstatusmessage.messageid"] = canonical::number(message.message_id());
         values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerstatusmessage.transactionid"] = canonical::number(message.transaction_id());
         values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerstatusmessage.participantreferencenumber"] = canonical::number(message.participant_reference_number());
-        values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerstatusmessage.marketwidecircuitbreakerlevelindicator"] = canonical::text(canonical::character(message.market_wide_circuit_breaker_level_indicator()));
+        values[entry + ".categorypayload.marketstatusmessage.marketstatusmessagepayload.marketwidecircuitbreakerstatusmessage.marketwidecircuitbreakerlevelindicator"] = canonical::text(canonical::character(message.market_wide_circuit_breaker_level_indicator()), {std::string_view(" ", 1)});
     }
 
     void on(const protocol::ApproximateAdjustedVolumeMarketCenterMessage& message) {
@@ -265,28 +265,28 @@ struct PriorDayMessagePayloadHandler {
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.securitysymbol"] = canonical::text(std::string(message.security_symbol()), ' ', false);
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.instrumenttype"] = canonical::text(canonical::character(message.instrument_type()));
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.correctedtrade.saleconditions.category1"] = canonical::text(canonical::character(message.corrected_trade().sale_conditions().category_1()));
-        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.correctedtrade.saleconditions.category2"] = canonical::text(canonical::character(message.corrected_trade().sale_conditions().category_2()));
-        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.correctedtrade.saleconditions.category3"] = canonical::text(canonical::character(message.corrected_trade().sale_conditions().category_3()));
-        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.correctedtrade.saleconditions.category4"] = canonical::text(canonical::character(message.corrected_trade().sale_conditions().category_4()));
+        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.correctedtrade.saleconditions.category2"] = canonical::text(canonical::character(message.corrected_trade().sale_conditions().category_2()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.correctedtrade.saleconditions.category3"] = canonical::text(canonical::character(message.corrected_trade().sale_conditions().category_3()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.correctedtrade.saleconditions.category4"] = canonical::text(canonical::character(message.corrected_trade().sale_conditions().category_4()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.correctedtrade.tradepricelong"] = canonical::scaled(message.corrected_trade().trade_price_long().mantissa(), message.corrected_trade().trade_price_long().exponent());
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.correctedtrade.tradevolumelong"] = canonical::number(message.corrected_trade().trade_volume_long());
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.correctedtrade.sellerssaledays"] = canonical::number(message.corrected_trade().sellers_sale_days());
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.correctedtrade.stopstockindicator"] = canonical::text(canonical::character(message.corrected_trade().stop_stock_indicator()));
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.correctedtrade.tradethroughexemptindicator"] = canonical::text(canonical::character(message.corrected_trade().trade_through_exempt_indicator()));
-        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.correctedtrade.shortsalerestrictionindicator"] = canonical::text(canonical::character(message.corrected_trade().short_sale_restriction_indicator()));
+        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.correctedtrade.shortsalerestrictionindicator"] = canonical::text(canonical::character(message.corrected_trade().short_sale_restriction_indicator()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.correctedtrade.priordaytradedateandtime.seconds"] = canonical::number(message.corrected_trade().prior_day_trade_date_and_time().seconds());
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.correctedtrade.priordaytradedateandtime.nanoseconds"] = canonical::number(message.corrected_trade().prior_day_trade_date_and_time().nanoseconds());
-        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.tradereportingfacilityid"] = canonical::text(canonical::character(message.trade_reporting_facility_id()));
+        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.tradereportingfacilityid"] = canonical::text(canonical::character(message.trade_reporting_facility_id()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.originaltrade.saleconditions.category1"] = canonical::text(canonical::character(message.original_trade().sale_conditions().category_1()));
-        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.originaltrade.saleconditions.category2"] = canonical::text(canonical::character(message.original_trade().sale_conditions().category_2()));
-        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.originaltrade.saleconditions.category3"] = canonical::text(canonical::character(message.original_trade().sale_conditions().category_3()));
-        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.originaltrade.saleconditions.category4"] = canonical::text(canonical::character(message.original_trade().sale_conditions().category_4()));
+        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.originaltrade.saleconditions.category2"] = canonical::text(canonical::character(message.original_trade().sale_conditions().category_2()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.originaltrade.saleconditions.category3"] = canonical::text(canonical::character(message.original_trade().sale_conditions().category_3()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.originaltrade.saleconditions.category4"] = canonical::text(canonical::character(message.original_trade().sale_conditions().category_4()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.originaltrade.tradepricelong"] = canonical::scaled(message.original_trade().trade_price_long().mantissa(), message.original_trade().trade_price_long().exponent());
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.originaltrade.tradevolumelong"] = canonical::number(message.original_trade().trade_volume_long());
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.originaltrade.sellerssaledays"] = canonical::number(message.original_trade().sellers_sale_days());
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.originaltrade.stopstockindicator"] = canonical::text(canonical::character(message.original_trade().stop_stock_indicator()));
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.originaltrade.tradethroughexemptindicator"] = canonical::text(canonical::character(message.original_trade().trade_through_exempt_indicator()));
-        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.originaltrade.shortsalerestrictionindicator"] = canonical::text(canonical::character(message.original_trade().short_sale_restriction_indicator()));
+        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.originaltrade.shortsalerestrictionindicator"] = canonical::text(canonical::character(message.original_trade().short_sale_restriction_indicator()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.originaltrade.priordaytradedateandtime.seconds"] = canonical::number(message.original_trade().prior_day_trade_date_and_time().seconds());
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecorrectionmessage.originaltrade.priordaytradedateandtime.nanoseconds"] = canonical::number(message.original_trade().prior_day_trade_date_and_time().nanoseconds());
     }
@@ -302,16 +302,16 @@ struct PriorDayMessagePayloadHandler {
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytrademessage.securitysymbol"] = canonical::text(std::string(message.security_symbol()), ' ', false);
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytrademessage.instrumenttype"] = canonical::text(canonical::character(message.instrument_type()));
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytrademessage.saleconditions.category1"] = canonical::text(canonical::character(message.sale_conditions().category_1()));
-        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytrademessage.saleconditions.category2"] = canonical::text(canonical::character(message.sale_conditions().category_2()));
-        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytrademessage.saleconditions.category3"] = canonical::text(canonical::character(message.sale_conditions().category_3()));
-        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytrademessage.saleconditions.category4"] = canonical::text(canonical::character(message.sale_conditions().category_4()));
+        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytrademessage.saleconditions.category2"] = canonical::text(canonical::character(message.sale_conditions().category_2()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytrademessage.saleconditions.category3"] = canonical::text(canonical::character(message.sale_conditions().category_3()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytrademessage.saleconditions.category4"] = canonical::text(canonical::character(message.sale_conditions().category_4()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytrademessage.tradeprice"] = canonical::scaled(message.trade_price().mantissa(), message.trade_price().exponent());
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytrademessage.tradevolume"] = canonical::number(message.trade_volume());
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytrademessage.sellerssaledays"] = canonical::number(message.sellers_sale_days());
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytrademessage.stopstockindicator"] = canonical::text(canonical::character(message.stop_stock_indicator()));
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytrademessage.tradethroughexemptindicator"] = canonical::text(canonical::character(message.trade_through_exempt_indicator()));
-        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytrademessage.shortsalerestrictionindicator"] = canonical::text(canonical::character(message.short_sale_restriction_indicator()));
-        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytrademessage.tradereportingfacilityid"] = canonical::text(canonical::character(message.trade_reporting_facility_id()));
+        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytrademessage.shortsalerestrictionindicator"] = canonical::text(canonical::character(message.short_sale_restriction_indicator()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytrademessage.tradereportingfacilityid"] = canonical::text(canonical::character(message.trade_reporting_facility_id()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytrademessage.priordaytradedateandtime.seconds"] = canonical::number(message.prior_day_trade_date_and_time().seconds());
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytrademessage.priordaytradedateandtime.nanoseconds"] = canonical::number(message.prior_day_trade_date_and_time().nanoseconds());
     }
@@ -327,16 +327,16 @@ struct PriorDayMessagePayloadHandler {
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecancelerrormessage.securitysymbol"] = canonical::text(std::string(message.security_symbol()), ' ', false);
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecancelerrormessage.instrumenttype"] = canonical::text(canonical::character(message.instrument_type()));
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecancelerrormessage.saleconditions.category1"] = canonical::text(canonical::character(message.sale_conditions().category_1()));
-        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecancelerrormessage.saleconditions.category2"] = canonical::text(canonical::character(message.sale_conditions().category_2()));
-        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecancelerrormessage.saleconditions.category3"] = canonical::text(canonical::character(message.sale_conditions().category_3()));
-        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecancelerrormessage.saleconditions.category4"] = canonical::text(canonical::character(message.sale_conditions().category_4()));
+        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecancelerrormessage.saleconditions.category2"] = canonical::text(canonical::character(message.sale_conditions().category_2()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecancelerrormessage.saleconditions.category3"] = canonical::text(canonical::character(message.sale_conditions().category_3()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecancelerrormessage.saleconditions.category4"] = canonical::text(canonical::character(message.sale_conditions().category_4()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecancelerrormessage.tradeprice"] = canonical::scaled(message.trade_price().mantissa(), message.trade_price().exponent());
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecancelerrormessage.tradevolume"] = canonical::number(message.trade_volume());
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecancelerrormessage.sellerssaledays"] = canonical::number(message.sellers_sale_days());
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecancelerrormessage.stopstockindicator"] = canonical::text(canonical::character(message.stop_stock_indicator()));
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecancelerrormessage.tradethroughexemptindicator"] = canonical::text(canonical::character(message.trade_through_exempt_indicator()));
-        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecancelerrormessage.shortsalerestrictionindicator"] = canonical::text(canonical::character(message.short_sale_restriction_indicator()));
-        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecancelerrormessage.tradereportingfacilityid"] = canonical::text(canonical::character(message.trade_reporting_facility_id()));
+        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecancelerrormessage.shortsalerestrictionindicator"] = canonical::text(canonical::character(message.short_sale_restriction_indicator()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecancelerrormessage.tradereportingfacilityid"] = canonical::text(canonical::character(message.trade_reporting_facility_id()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecancelerrormessage.priordaytradedateandtime.seconds"] = canonical::number(message.prior_day_trade_date_and_time().seconds());
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecancelerrormessage.priordaytradedateandtime.nanoseconds"] = canonical::number(message.prior_day_trade_date_and_time().nanoseconds());
         values[entry + ".categorypayload.priordaymessage.priordaymessagepayload.priordaytradecancelerrormessage.cancelerroraction"] = canonical::text(canonical::character(message.cancel_error_action()));
@@ -361,7 +361,7 @@ struct SummaryMessagePayloadHandler {
         values[entry + ".categorypayload.summarymessage.summarymessagepayload.consolidatedstartofdaysummarymessage.summaryparticipantid"] = canonical::text(canonical::character(message.summary_participant_id()));
         values[entry + ".categorypayload.summarymessage.summarymessagepayload.consolidatedstartofdaysummarymessage.previousclosepricedate"] = canonical::number(message.previous_close_price_date());
         values[entry + ".categorypayload.summarymessage.summarymessagepayload.consolidatedstartofdaysummarymessage.previouscloseprice"] = canonical::scaled(message.previous_close_price().mantissa(), message.previous_close_price().exponent());
-        values[entry + ".categorypayload.summarymessage.summarymessagepayload.consolidatedstartofdaysummarymessage.shortsalerestrictionindicator"] = canonical::text(canonical::character(message.short_sale_restriction_indicator()));
+        values[entry + ".categorypayload.summarymessage.summarymessagepayload.consolidatedstartofdaysummarymessage.shortsalerestrictionindicator"] = canonical::text(canonical::character(message.short_sale_restriction_indicator()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.summarymessage.summarymessagepayload.consolidatedstartofdaysummarymessage.primarylistingmarketparticipantid"] = canonical::text(canonical::character(message.primary_listing_market_participant_id()));
         values[entry + ".categorypayload.summarymessage.summarymessagepayload.consolidatedstartofdaysummarymessage.financialstatusindicator"] = canonical::text(canonical::character(message.financial_status_indicator()));
         values[entry + ".categorypayload.summarymessage.summarymessagepayload.consolidatedstartofdaysummarymessage.numberofparticipants"] = canonical::number(message.number_of_participants());
@@ -398,7 +398,7 @@ struct SummaryMessagePayloadHandler {
         values[entry + ".categorypayload.summarymessage.summarymessagepayload.consolidatedendofdaysummarymessage.highprice"] = canonical::scaled(message.high_price().mantissa(), message.high_price().exponent());
         values[entry + ".categorypayload.summarymessage.summarymessagepayload.consolidatedendofdaysummarymessage.lowprice"] = canonical::scaled(message.low_price().mantissa(), message.low_price().exponent());
         values[entry + ".categorypayload.summarymessage.summarymessagepayload.consolidatedendofdaysummarymessage.totalvolume"] = canonical::number(message.total_volume());
-        values[entry + ".categorypayload.summarymessage.summarymessagepayload.consolidatedendofdaysummarymessage.shortsalerestrictionindicator"] = canonical::text(canonical::character(message.short_sale_restriction_indicator()));
+        values[entry + ".categorypayload.summarymessage.summarymessagepayload.consolidatedendofdaysummarymessage.shortsalerestrictionindicator"] = canonical::text(canonical::character(message.short_sale_restriction_indicator()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.summarymessage.summarymessagepayload.consolidatedendofdaysummarymessage.primarylistingmarketparticipantid"] = canonical::text(canonical::character(message.primary_listing_market_participant_id()));
         values[entry + ".categorypayload.summarymessage.summarymessagepayload.consolidatedendofdaysummarymessage.financialstatusindicator"] = canonical::text(canonical::character(message.financial_status_indicator()));
         values[entry + ".categorypayload.summarymessage.summarymessagepayload.consolidatedendofdaysummarymessage.numberofparticipants"] = canonical::number(message.number_of_participants());
@@ -421,7 +421,7 @@ struct SummaryMessagePayloadHandler {
         values[entry + ".categorypayload.summarymessage.summarymessagepayload.participantendofdaysummarymessage.lowprice"] = canonical::scaled(message.low_price().mantissa(), message.low_price().exponent());
         values[entry + ".categorypayload.summarymessage.summarymessagepayload.participantendofdaysummarymessage.openprice"] = canonical::scaled(message.open_price().mantissa(), message.open_price().exponent());
         values[entry + ".categorypayload.summarymessage.summarymessagepayload.participantendofdaysummarymessage.totalvolume"] = canonical::number(message.total_volume());
-        values[entry + ".categorypayload.summarymessage.summarymessagepayload.participantendofdaysummarymessage.tick"] = canonical::text(canonical::character(message.tick()));
+        values[entry + ".categorypayload.summarymessage.summarymessagepayload.participantendofdaysummarymessage.tick"] = canonical::text(canonical::character(message.tick()), {std::string_view(" ", 1)});
     }
 };
 
@@ -444,7 +444,7 @@ struct TradeMessagePayloadHandler {
         values[entry + ".categorypayload.trademessage.trademessagepayload.auctionstatusmessage.auctioncollarupperthresholdprice"] = canonical::scaled(message.auction_collar_upper_threshold_price().mantissa(), message.auction_collar_upper_threshold_price().exponent());
         values[entry + ".categorypayload.trademessage.trademessagepayload.auctionstatusmessage.auctioncollarlowerthresholdprice"] = canonical::scaled(message.auction_collar_lower_threshold_price().mantissa(), message.auction_collar_lower_threshold_price().exponent());
         values[entry + ".categorypayload.trademessage.trademessagepayload.auctionstatusmessage.numberofextensions"] = canonical::number(message.number_of_extensions());
-        values[entry + ".categorypayload.trademessage.trademessagepayload.auctionstatusmessage.shortsalerestrictionindicator"] = canonical::text(canonical::character(message.short_sale_restriction_indicator()));
+        values[entry + ".categorypayload.trademessage.trademessagepayload.auctionstatusmessage.shortsalerestrictionindicator"] = canonical::text(canonical::character(message.short_sale_restriction_indicator()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.trademessage.trademessagepayload.auctionstatusmessage.primarylistingmarketparticipantid"] = canonical::text(canonical::character(message.primary_listing_market_participant_id()));
         values[entry + ".categorypayload.trademessage.trademessagepayload.auctionstatusmessage.financialstatusindicator"] = canonical::text(canonical::character(message.financial_status_indicator()));
         values[entry + ".categorypayload.trademessage.trademessagepayload.auctionstatusmessage.futureuse"] = canonical::text(std::string(message.future_use()), ' ', false);
@@ -461,31 +461,31 @@ struct TradeMessagePayloadHandler {
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.securitysymbol"] = canonical::text(std::string(message.security_symbol()), ' ', false);
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.instrumenttype"] = canonical::text(canonical::character(message.instrument_type()));
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.correctedtrade.saleconditions.category1"] = canonical::text(canonical::character(message.corrected_trade().sale_conditions().category_1()));
-        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.correctedtrade.saleconditions.category2"] = canonical::text(canonical::character(message.corrected_trade().sale_conditions().category_2()));
-        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.correctedtrade.saleconditions.category3"] = canonical::text(canonical::character(message.corrected_trade().sale_conditions().category_3()));
-        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.correctedtrade.saleconditions.category4"] = canonical::text(canonical::character(message.corrected_trade().sale_conditions().category_4()));
+        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.correctedtrade.saleconditions.category2"] = canonical::text(canonical::character(message.corrected_trade().sale_conditions().category_2()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.correctedtrade.saleconditions.category3"] = canonical::text(canonical::character(message.corrected_trade().sale_conditions().category_3()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.correctedtrade.saleconditions.category4"] = canonical::text(canonical::character(message.corrected_trade().sale_conditions().category_4()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.correctedtrade.tradepricelong"] = canonical::scaled(message.corrected_trade().trade_price_long().mantissa(), message.corrected_trade().trade_price_long().exponent());
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.correctedtrade.tradevolumelong"] = canonical::number(message.corrected_trade().trade_volume_long());
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.correctedtrade.sellerssaledays"] = canonical::number(message.corrected_trade().sellers_sale_days());
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.correctedtrade.stopstockindicator"] = canonical::text(canonical::character(message.corrected_trade().stop_stock_indicator()));
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.correctedtrade.tradethroughexemptindicator"] = canonical::text(canonical::character(message.corrected_trade().trade_through_exempt_indicator()));
-        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.correctedtrade.shortsalerestrictionindicator"] = canonical::text(canonical::character(message.corrected_trade().short_sale_restriction_indicator()));
+        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.correctedtrade.shortsalerestrictionindicator"] = canonical::text(canonical::character(message.corrected_trade().short_sale_restriction_indicator()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.correctedtrade.priordaytradedateandtime.seconds"] = canonical::number(message.corrected_trade().prior_day_trade_date_and_time().seconds());
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.correctedtrade.priordaytradedateandtime.nanoseconds"] = canonical::number(message.corrected_trade().prior_day_trade_date_and_time().nanoseconds());
-        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.tradereportingfacilityid"] = canonical::text(canonical::character(message.trade_reporting_facility_id()));
+        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.tradereportingfacilityid"] = canonical::text(canonical::character(message.trade_reporting_facility_id()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.timestamp2.seconds"] = canonical::number(message.timestamp_2().seconds());
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.timestamp2.nanoseconds"] = canonical::number(message.timestamp_2().nanoseconds());
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.originalparticipantreferencenumber"] = canonical::number(message.original_participant_reference_number());
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.originaltrade.saleconditions.category1"] = canonical::text(canonical::character(message.original_trade().sale_conditions().category_1()));
-        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.originaltrade.saleconditions.category2"] = canonical::text(canonical::character(message.original_trade().sale_conditions().category_2()));
-        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.originaltrade.saleconditions.category3"] = canonical::text(canonical::character(message.original_trade().sale_conditions().category_3()));
-        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.originaltrade.saleconditions.category4"] = canonical::text(canonical::character(message.original_trade().sale_conditions().category_4()));
+        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.originaltrade.saleconditions.category2"] = canonical::text(canonical::character(message.original_trade().sale_conditions().category_2()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.originaltrade.saleconditions.category3"] = canonical::text(canonical::character(message.original_trade().sale_conditions().category_3()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.originaltrade.saleconditions.category4"] = canonical::text(canonical::character(message.original_trade().sale_conditions().category_4()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.originaltrade.tradepricelong"] = canonical::scaled(message.original_trade().trade_price_long().mantissa(), message.original_trade().trade_price_long().exponent());
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.originaltrade.tradevolumelong"] = canonical::number(message.original_trade().trade_volume_long());
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.originaltrade.sellerssaledays"] = canonical::number(message.original_trade().sellers_sale_days());
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.originaltrade.stopstockindicator"] = canonical::text(canonical::character(message.original_trade().stop_stock_indicator()));
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.originaltrade.tradethroughexemptindicator"] = canonical::text(canonical::character(message.original_trade().trade_through_exempt_indicator()));
-        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.originaltrade.shortsalerestrictionindicator"] = canonical::text(canonical::character(message.original_trade().short_sale_restriction_indicator()));
+        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.originaltrade.shortsalerestrictionindicator"] = canonical::text(canonical::character(message.original_trade().short_sale_restriction_indicator()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.originaltrade.priordaytradedateandtime.seconds"] = canonical::number(message.original_trade().prior_day_trade_date_and_time().seconds());
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.originaltrade.priordaytradedateandtime.nanoseconds"] = canonical::number(message.original_trade().prior_day_trade_date_and_time().nanoseconds());
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.primarylistingmarketparticipantid"] = canonical::text(canonical::character(message.primary_listing_market_participant_id()));
@@ -496,14 +496,14 @@ struct TradeMessagePayloadHandler {
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.consolidateddata.highprice"] = canonical::scaled(message.consolidated_data().high_price().mantissa(), message.consolidated_data().high_price().exponent());
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.consolidateddata.lowprice"] = canonical::scaled(message.consolidated_data().low_price().mantissa(), message.consolidated_data().low_price().exponent());
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.consolidateddata.totalvolume"] = canonical::number(message.consolidated_data().total_volume());
-        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.consolidateddata.tick"] = canonical::text(canonical::character(message.consolidated_data().tick()));
+        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.consolidateddata.tick"] = canonical::text(canonical::character(message.consolidated_data().tick()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.participantdata.previousclosepricedate"] = canonical::number(message.participant_data().previous_close_price_date());
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.participantdata.lastparticipantid"] = canonical::text(canonical::character(message.participant_data().last_participant_id()));
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.participantdata.lastprice"] = canonical::scaled(message.participant_data().last_price().mantissa(), message.participant_data().last_price().exponent());
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.participantdata.highprice"] = canonical::scaled(message.participant_data().high_price().mantissa(), message.participant_data().high_price().exponent());
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.participantdata.lowprice"] = canonical::scaled(message.participant_data().low_price().mantissa(), message.participant_data().low_price().exponent());
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.participantdata.totalvolume"] = canonical::number(message.participant_data().total_volume());
-        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.participantdata.tick"] = canonical::text(canonical::character(message.participant_data().tick()));
+        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecorrectionmessage.participantdata.tick"] = canonical::text(canonical::character(message.participant_data().tick()), {std::string_view(" ", 1)});
     }
 
     void on(const protocol::LongTradeMessage& message) {
@@ -517,21 +517,21 @@ struct TradeMessagePayloadHandler {
         values[entry + ".categorypayload.trademessage.trademessagepayload.longtrademessage.securitysymbol"] = canonical::text(std::string(message.security_symbol()), ' ', false);
         values[entry + ".categorypayload.trademessage.trademessagepayload.longtrademessage.instrumenttype"] = canonical::text(canonical::character(message.instrument_type()));
         values[entry + ".categorypayload.trademessage.trademessagepayload.longtrademessage.saleconditions.category1"] = canonical::text(canonical::character(message.sale_conditions().category_1()));
-        values[entry + ".categorypayload.trademessage.trademessagepayload.longtrademessage.saleconditions.category2"] = canonical::text(canonical::character(message.sale_conditions().category_2()));
-        values[entry + ".categorypayload.trademessage.trademessagepayload.longtrademessage.saleconditions.category3"] = canonical::text(canonical::character(message.sale_conditions().category_3()));
-        values[entry + ".categorypayload.trademessage.trademessagepayload.longtrademessage.saleconditions.category4"] = canonical::text(canonical::character(message.sale_conditions().category_4()));
+        values[entry + ".categorypayload.trademessage.trademessagepayload.longtrademessage.saleconditions.category2"] = canonical::text(canonical::character(message.sale_conditions().category_2()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.trademessage.trademessagepayload.longtrademessage.saleconditions.category3"] = canonical::text(canonical::character(message.sale_conditions().category_3()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.trademessage.trademessagepayload.longtrademessage.saleconditions.category4"] = canonical::text(canonical::character(message.sale_conditions().category_4()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.trademessage.trademessagepayload.longtrademessage.tradeprice"] = canonical::scaled(message.trade_price().mantissa(), message.trade_price().exponent());
         values[entry + ".categorypayload.trademessage.trademessagepayload.longtrademessage.tradevolume"] = canonical::number(message.trade_volume());
         values[entry + ".categorypayload.trademessage.trademessagepayload.longtrademessage.sellerssaledays"] = canonical::number(message.sellers_sale_days());
         values[entry + ".categorypayload.trademessage.trademessagepayload.longtrademessage.stopstockindicator"] = canonical::text(canonical::character(message.stop_stock_indicator()));
         values[entry + ".categorypayload.trademessage.trademessagepayload.longtrademessage.tradethroughexemptindicator"] = canonical::text(canonical::character(message.trade_through_exempt_indicator()));
-        values[entry + ".categorypayload.trademessage.trademessagepayload.longtrademessage.tradereportingfacilityid"] = canonical::text(canonical::character(message.trade_reporting_facility_id()));
+        values[entry + ".categorypayload.trademessage.trademessagepayload.longtrademessage.tradereportingfacilityid"] = canonical::text(canonical::character(message.trade_reporting_facility_id()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.trademessage.trademessagepayload.longtrademessage.timestamp2.seconds"] = canonical::number(message.timestamp_2().seconds());
         values[entry + ".categorypayload.trademessage.trademessagepayload.longtrademessage.timestamp2.nanoseconds"] = canonical::number(message.timestamp_2().nanoseconds());
-        values[entry + ".categorypayload.trademessage.trademessagepayload.longtrademessage.shortsalerestrictionindicator"] = canonical::text(canonical::character(message.short_sale_restriction_indicator()));
+        values[entry + ".categorypayload.trademessage.trademessagepayload.longtrademessage.shortsalerestrictionindicator"] = canonical::text(canonical::character(message.short_sale_restriction_indicator()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.trademessage.trademessagepayload.longtrademessage.primarylistingmarketparticipantid"] = canonical::text(canonical::character(message.primary_listing_market_participant_id()));
         values[entry + ".categorypayload.trademessage.trademessagepayload.longtrademessage.financialstatusindicator"] = canonical::text(canonical::character(message.financial_status_indicator()));
-        values[entry + ".categorypayload.trademessage.trademessagepayload.longtrademessage.heldtradeindicator"] = canonical::text(canonical::character(message.held_trade_indicator()));
+        values[entry + ".categorypayload.trademessage.trademessagepayload.longtrademessage.heldtradeindicator"] = canonical::text(canonical::character(message.held_trade_indicator()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.trademessage.trademessagepayload.longtrademessage.consolidatedhighlowlastindicator"] = canonical::text(canonical::character(message.consolidated_high_low_last_indicator()));
         values[entry + ".categorypayload.trademessage.trademessagepayload.longtrademessage.participantopenhighlowlastindicator"] = canonical::text(canonical::character(message.participant_open_high_low_last_indicator()));
     }
@@ -551,12 +551,12 @@ struct TradeMessagePayloadHandler {
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradingstatusmessage.lowindicationpricelowerlimitpriceband"] = canonical::scaled(message.low_indication_price_lower_limit_price_band().mantissa(), message.low_indication_price_lower_limit_price_band().exponent());
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradingstatusmessage.buyvolume"] = canonical::number(message.buy_volume());
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradingstatusmessage.sellvolume"] = canonical::number(message.sell_volume());
-        values[entry + ".categorypayload.trademessage.trademessagepayload.tradingstatusmessage.securitystatus"] = canonical::text(canonical::character(message.security_status()));
-        values[entry + ".categorypayload.trademessage.trademessagepayload.tradingstatusmessage.haltreason"] = canonical::text(canonical::character(message.halt_reason()));
-        values[entry + ".categorypayload.trademessage.trademessagepayload.tradingstatusmessage.shortsalerestrictionindicator"] = canonical::text(canonical::character(message.short_sale_restriction_indicator()));
+        values[entry + ".categorypayload.trademessage.trademessagepayload.tradingstatusmessage.securitystatus"] = canonical::text(canonical::character(message.security_status()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.trademessage.trademessagepayload.tradingstatusmessage.haltreason"] = canonical::text(canonical::character(message.halt_reason()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.trademessage.trademessagepayload.tradingstatusmessage.shortsalerestrictionindicator"] = canonical::text(canonical::character(message.short_sale_restriction_indicator()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradingstatusmessage.primarylistingmarketparticipantid"] = canonical::text(canonical::character(message.primary_listing_market_participant_id()));
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradingstatusmessage.financialstatusindicator"] = canonical::text(canonical::character(message.financial_status_indicator()));
-        values[entry + ".categorypayload.trademessage.trademessagepayload.tradingstatusmessage.limituplimitdownindicator"] = canonical::text(canonical::character(message.limit_up_limit_down_indicator()));
+        values[entry + ".categorypayload.trademessage.trademessagepayload.tradingstatusmessage.limituplimitdownindicator"] = canonical::text(canonical::character(message.limit_up_limit_down_indicator()), {std::string_view(" ", 1)});
     }
 
     void on(const protocol::ShortTradeMessage& message) {
@@ -568,8 +568,8 @@ struct TradeMessagePayloadHandler {
         values[entry + ".categorypayload.trademessage.trademessagepayload.shorttrademessage.transactionid"] = canonical::number(message.transaction_id());
         values[entry + ".categorypayload.trademessage.trademessagepayload.shorttrademessage.participantreferencenumber"] = canonical::number(message.participant_reference_number());
         values[entry + ".categorypayload.trademessage.trademessagepayload.shorttrademessage.securitysymbolshort"] = canonical::text(std::string(message.security_symbol_short()), ' ', false);
-        values[entry + ".categorypayload.trademessage.trademessagepayload.shorttrademessage.salecondition"] = canonical::text(canonical::character(message.sale_condition()));
-        values[entry + ".categorypayload.trademessage.trademessagepayload.shorttrademessage.saleconditioncategory"] = canonical::text(canonical::character(message.sale_condition_category()));
+        values[entry + ".categorypayload.trademessage.trademessagepayload.shorttrademessage.salecondition"] = canonical::text(canonical::character(message.sale_condition()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.trademessage.trademessagepayload.shorttrademessage.saleconditioncategory"] = canonical::text(canonical::character(message.sale_condition_category()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.trademessage.trademessagepayload.shorttrademessage.tradepriceshort"] = canonical::scaled(message.trade_price_short().mantissa(), message.trade_price_short().exponent());
         values[entry + ".categorypayload.trademessage.trademessagepayload.shorttrademessage.tradevolumeshort"] = canonical::number(message.trade_volume_short());
         values[entry + ".categorypayload.trademessage.trademessagepayload.shorttrademessage.primarylistingmarketparticipantid"] = canonical::text(canonical::character(message.primary_listing_market_participant_id()));
@@ -588,20 +588,20 @@ struct TradeMessagePayloadHandler {
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.securitysymbol"] = canonical::text(std::string(message.security_symbol()), ' ', false);
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.instrumenttype"] = canonical::text(canonical::character(message.instrument_type()));
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.saleconditions.category1"] = canonical::text(canonical::character(message.sale_conditions().category_1()));
-        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.saleconditions.category2"] = canonical::text(canonical::character(message.sale_conditions().category_2()));
-        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.saleconditions.category3"] = canonical::text(canonical::character(message.sale_conditions().category_3()));
-        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.saleconditions.category4"] = canonical::text(canonical::character(message.sale_conditions().category_4()));
+        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.saleconditions.category2"] = canonical::text(canonical::character(message.sale_conditions().category_2()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.saleconditions.category3"] = canonical::text(canonical::character(message.sale_conditions().category_3()), {std::string_view(" ", 1)});
+        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.saleconditions.category4"] = canonical::text(canonical::character(message.sale_conditions().category_4()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.tradeprice"] = canonical::scaled(message.trade_price().mantissa(), message.trade_price().exponent());
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.tradevolume"] = canonical::number(message.trade_volume());
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.sellerssaledays"] = canonical::number(message.sellers_sale_days());
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.stopstockindicator"] = canonical::text(canonical::character(message.stop_stock_indicator()));
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.tradethroughexemptindicator"] = canonical::text(canonical::character(message.trade_through_exempt_indicator()));
-        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.tradereportingfacilityid"] = canonical::text(canonical::character(message.trade_reporting_facility_id()));
+        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.tradereportingfacilityid"] = canonical::text(canonical::character(message.trade_reporting_facility_id()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.originalparticipantreferencenumber"] = canonical::number(message.original_participant_reference_number());
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.timestamp2.seconds"] = canonical::number(message.timestamp_2().seconds());
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.timestamp2.nanoseconds"] = canonical::number(message.timestamp_2().nanoseconds());
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.cancelerroraction"] = canonical::text(canonical::character(message.cancel_error_action()));
-        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.shortsalerestrictionindicator"] = canonical::text(canonical::character(message.short_sale_restriction_indicator()));
+        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.shortsalerestrictionindicator"] = canonical::text(canonical::character(message.short_sale_restriction_indicator()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.primarylistingmarketparticipantid"] = canonical::text(canonical::character(message.primary_listing_market_participant_id()));
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.financialstatusindicator"] = canonical::text(canonical::character(message.financial_status_indicator()));
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.consolidateddata.previousclosepricedate"] = canonical::number(message.consolidated_data().previous_close_price_date());
@@ -610,14 +610,14 @@ struct TradeMessagePayloadHandler {
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.consolidateddata.highprice"] = canonical::scaled(message.consolidated_data().high_price().mantissa(), message.consolidated_data().high_price().exponent());
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.consolidateddata.lowprice"] = canonical::scaled(message.consolidated_data().low_price().mantissa(), message.consolidated_data().low_price().exponent());
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.consolidateddata.totalvolume"] = canonical::number(message.consolidated_data().total_volume());
-        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.consolidateddata.tick"] = canonical::text(canonical::character(message.consolidated_data().tick()));
+        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.consolidateddata.tick"] = canonical::text(canonical::character(message.consolidated_data().tick()), {std::string_view(" ", 1)});
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.participantdata.previousclosepricedate"] = canonical::number(message.participant_data().previous_close_price_date());
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.participantdata.lastparticipantid"] = canonical::text(canonical::character(message.participant_data().last_participant_id()));
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.participantdata.lastprice"] = canonical::scaled(message.participant_data().last_price().mantissa(), message.participant_data().last_price().exponent());
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.participantdata.highprice"] = canonical::scaled(message.participant_data().high_price().mantissa(), message.participant_data().high_price().exponent());
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.participantdata.lowprice"] = canonical::scaled(message.participant_data().low_price().mantissa(), message.participant_data().low_price().exponent());
         values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.participantdata.totalvolume"] = canonical::number(message.participant_data().total_volume());
-        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.participantdata.tick"] = canonical::text(canonical::character(message.participant_data().tick()));
+        values[entry + ".categorypayload.trademessage.trademessagepayload.tradecancelerrormessage.participantdata.tick"] = canonical::text(canonical::character(message.participant_data().tick()), {std::string_view(" ", 1)});
     }
 };
 

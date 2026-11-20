@@ -1,6 +1,7 @@
 // Cboe.CfeFutures.MulticastDepthOfBook.Pitch.v1.2.22: types/ContractDate.hpp
 #pragma once
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 

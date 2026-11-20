@@ -74,7 +74,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.complexstrategyorderonbookmessage.timestamp"] = canonical::number((*message).timestamp());
             values[entry + ".payload.complexstrategyorderonbookmessage.strategyid"] = canonical::number((*message).strategy_id());
             values[entry + ".payload.complexstrategyorderonbookmessage.ordertype"] = canonical::text(canonical::character((*message).order_type()), ' ', false);
-            values[entry + ".payload.complexstrategyorderonbookmessage.side"] = canonical::text(canonical::character((*message).side()), ' ', false);
+            values[entry + ".payload.complexstrategyorderonbookmessage.side"] = canonical::text(canonical::character((*message).side()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
             values[entry + ".payload.complexstrategyorderonbookmessage.price"] = canonical::scaled((*message).price().mantissa(), (*message).price().exponent());
             values[entry + ".payload.complexstrategyorderonbookmessage.size"] = canonical::number((*message).size());
             values[entry + ".payload.complexstrategyorderonbookmessage.execflag"] = canonical::text(canonical::character((*message).exec_flag()), ' ', false);
@@ -89,7 +89,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.complexstrategyauctionmessage.strategyid"] = canonical::number((*message).strategy_id());
             values[entry + ".payload.complexstrategyauctionmessage.auctionid"] = canonical::number((*message).auction_id());
             values[entry + ".payload.complexstrategyauctionmessage.ordertype"] = canonical::text(canonical::character((*message).order_type()), ' ', false);
-            values[entry + ".payload.complexstrategyauctionmessage.side"] = canonical::text(canonical::character((*message).side()), ' ', false);
+            values[entry + ".payload.complexstrategyauctionmessage.side"] = canonical::text(canonical::character((*message).side()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
             values[entry + ".payload.complexstrategyauctionmessage.price"] = canonical::scaled((*message).price().mantissa(), (*message).price().exponent());
             values[entry + ".payload.complexstrategyauctionmessage.size"] = canonical::number((*message).size());
             values[entry + ".payload.complexstrategyauctionmessage.execflag"] = canonical::text(canonical::character((*message).exec_flag()), ' ', false);

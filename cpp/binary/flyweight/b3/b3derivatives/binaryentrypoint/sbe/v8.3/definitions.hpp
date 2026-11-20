@@ -36,6 +36,7 @@
 #include "groups/CrossSidesGroup.hpp"
 #include "structs/CrossSidesGroups.hpp"
 #include "messages/NewOrderCrossMessage.hpp"
+#include "bitfields/EventIndicator.hpp"
 #include "structs/OutboundBusinessHeader.hpp"
 #include "messages/ExecutionReportNewMessage.hpp"
 #include "messages/ExecutionReportModifyMessage.hpp"

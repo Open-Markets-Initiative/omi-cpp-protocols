@@ -25,7 +25,7 @@ void BrokenTradeMessage::set_original_quantity(std::uint32_t value) { original_q
 Decimal BrokenTradeMessage::original_price() const { return original_price_; }
 void BrokenTradeMessage::set_original_price(Decimal value) { original_price_ = value; }
 
-PayloadCode BrokenTradeMessage::type() const { return message_type; }
+MessageCode BrokenTradeMessage::type() const { return message_type; }
 
 std::string_view BrokenTradeMessage::name() const { return "Broken Trade Message"; }
 
@@ -77,11 +77,11 @@ std::size_t BrokenTradeMessage::encoded_size() const {
     return wire_size;
 }
 
-void BrokenTradeMessage::accept(PayloadVisitor& visitor) const {
+void BrokenTradeMessage::accept(Visitor& visitor) const {
     visitor.visit(*this);
 }
 
-std::unique_ptr<Payload> BrokenTradeMessage::clone() const {
+std::unique_ptr<Message> BrokenTradeMessage::clone() const {
     return std::make_unique<BrokenTradeMessage>(*this);
 }
 
@@ -100,7 +100,7 @@ void BrokenTradeMessage::print(std::ostream& out) const {
     out << '}';
 }
 
-bool BrokenTradeMessage::equals(const Payload& other) const {
+bool BrokenTradeMessage::equals(const Message& other) const {
     const auto* that = dynamic_cast<const BrokenTradeMessage*>(&other);
     return that != nullptr && *this == *that;
 }

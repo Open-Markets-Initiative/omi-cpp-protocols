@@ -32,7 +32,7 @@ class ReduceSizeLongMessage {
 
     std::uint64_t order_id() const { return wire::read_u64_le(at(4)); }
 
-    std::uint32_t canceled_quantity_binary_4() const { return wire::read_u32_le(at(12)); }
+    std::uint32_t canceled_quantity_long() const { return wire::read_u32_le(at(12)); }
 
     void print(std::ostream& out) const {
         out << "ReduceSizeLongMessage{";
@@ -40,8 +40,8 @@ class ReduceSizeLongMessage {
         out << time_offset().count();
         out << ", order_id=";
         out << order_id();
-        out << ", canceled_quantity_binary_4=";
-        out << canceled_quantity_binary_4();
+        out << ", canceled_quantity_long=";
+        out << canceled_quantity_long();
         out << '}';
     }
 

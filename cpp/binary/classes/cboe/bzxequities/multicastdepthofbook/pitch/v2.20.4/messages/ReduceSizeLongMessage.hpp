@@ -23,7 +23,7 @@ class ReduceSizeLongMessage : public Message {
     static constexpr std::size_t wire_size = 16;
 
     ReduceSizeLongMessage() = default;
-    ReduceSizeLongMessage(std::chrono::nanoseconds time_offset, std::uint64_t order_id, std::uint32_t canceled_quantity_binary_4);
+    ReduceSizeLongMessage(std::chrono::nanoseconds time_offset, std::uint64_t order_id, std::uint32_t canceled_quantity_long);
 
     // Time Offset: Nanosecond offset from last
     std::chrono::nanoseconds time_offset() const;
@@ -33,9 +33,9 @@ class ReduceSizeLongMessage : public Message {
     std::uint64_t order_id() const;
     void set_order_id(std::uint64_t value);
 
-    // Canceled Quantity Binary 4: Number of shares/contracts
-    std::uint32_t canceled_quantity_binary_4() const;
-    void set_canceled_quantity_binary_4(std::uint32_t value);
+    // Canceled Quantity Long: Number of shares/contracts
+    std::uint32_t canceled_quantity_long() const;
+    void set_canceled_quantity_long(std::uint32_t value);
 
     // Message
     MessageCode type() const override;
@@ -54,7 +54,7 @@ class ReduceSizeLongMessage : public Message {
   private:
     std::chrono::nanoseconds time_offset_{};
     std::uint64_t order_id_{};
-    std::uint32_t canceled_quantity_binary_4_{};
+    std::uint32_t canceled_quantity_long_{};
 };
 
 } // namespace cboe::bzxequities::multicastdepthofbook::pitch::v2_20_4

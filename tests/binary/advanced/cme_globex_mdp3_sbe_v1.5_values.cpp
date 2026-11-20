@@ -36,14 +36,14 @@ struct Reader {
     }
 
     void on_message(const protocol::channel_reset& message, std::uint64_t, const protocol::binary_packet_header&) {
-        const std::string entry = "udppacket.message[" + std::to_string(index++) + "]";
+        const std::string entry = "udppacket.mdp3message[" + std::to_string(index++) + "]";
         values[entry + ".messageheader.messagesize"] = canonical::number(message.header.message_size.get().value());
         values[entry + ".messageheader.simplebinaryheader.blocklength"] = canonical::number(message.header.simple_binary_header.block_length.get().value());
         values[entry + ".messageheader.simplebinaryheader.templateid"] = canonical::number(message.header.simple_binary_header.template_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.schemaid"] = canonical::number(message.header.simple_binary_header.schema_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.version"] = canonical::number(message.header.simple_binary_header.version.get().value());
-        values[entry + ".payload"] = "udppacket.message.payload.mktdatamessage";
-        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.channelreset";
+        values[entry + ".payload"] = "udppacket.mdp3message.payload.mktdatamessage";
+        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.channelreset";
         values[entry + ".payload.mktdatamessage.mktdatapayload.channelreset.transacttime"] = canonical::number(message.fields.transact_time.get().value());
         values[entry + ".payload.mktdatamessage.mktdatapayload.channelreset.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>(message.fields.match_event_indicator.has_last_trade_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.channelreset.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>(message.fields.match_event_indicator.has_last_volume_msg()));
@@ -55,38 +55,38 @@ struct Reader {
     }
 
     void on_message(const protocol::admin_login& message, std::uint64_t, const protocol::binary_packet_header&) {
-        const std::string entry = "udppacket.message[" + std::to_string(index++) + "]";
+        const std::string entry = "udppacket.mdp3message[" + std::to_string(index++) + "]";
         values[entry + ".messageheader.messagesize"] = canonical::number(message.header.message_size.get().value());
         values[entry + ".messageheader.simplebinaryheader.blocklength"] = canonical::number(message.header.simple_binary_header.block_length.get().value());
         values[entry + ".messageheader.simplebinaryheader.templateid"] = canonical::number(message.header.simple_binary_header.template_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.schemaid"] = canonical::number(message.header.simple_binary_header.schema_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.version"] = canonical::number(message.header.simple_binary_header.version.get().value());
-        values[entry + ".payload"] = "udppacket.message.payload.mktdatamessage";
-        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.adminlogin";
+        values[entry + ".payload"] = "udppacket.mdp3message.payload.mktdatamessage";
+        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.adminlogin";
         values[entry + ".payload.mktdatamessage.mktdatapayload.adminlogin.heartbtint"] = canonical::number(message.fields.heart_bt_int.get().value());
     }
 
     void on_message(const protocol::admin_logout& message, std::uint64_t, const protocol::binary_packet_header&) {
-        const std::string entry = "udppacket.message[" + std::to_string(index++) + "]";
+        const std::string entry = "udppacket.mdp3message[" + std::to_string(index++) + "]";
         values[entry + ".messageheader.messagesize"] = canonical::number(message.header.message_size.get().value());
         values[entry + ".messageheader.simplebinaryheader.blocklength"] = canonical::number(message.header.simple_binary_header.block_length.get().value());
         values[entry + ".messageheader.simplebinaryheader.templateid"] = canonical::number(message.header.simple_binary_header.template_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.schemaid"] = canonical::number(message.header.simple_binary_header.schema_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.version"] = canonical::number(message.header.simple_binary_header.version.get().value());
-        values[entry + ".payload"] = "udppacket.message.payload.mktdatamessage";
-        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.adminlogout";
+        values[entry + ".payload"] = "udppacket.mdp3message.payload.mktdatamessage";
+        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.adminlogout";
         values[entry + ".payload.mktdatamessage.mktdatapayload.adminlogout.text"] = canonical::text(std::string(message.fields.text.get().value()), '\0', false);
     }
 
     void on_message(const protocol::md_instrument_definition_future& message, std::uint64_t, const protocol::binary_packet_header&) {
-        const std::string entry = "udppacket.message[" + std::to_string(index++) + "]";
+        const std::string entry = "udppacket.mdp3message[" + std::to_string(index++) + "]";
         values[entry + ".messageheader.messagesize"] = canonical::number(message.header.message_size.get().value());
         values[entry + ".messageheader.simplebinaryheader.blocklength"] = canonical::number(message.header.simple_binary_header.block_length.get().value());
         values[entry + ".messageheader.simplebinaryheader.templateid"] = canonical::number(message.header.simple_binary_header.template_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.schemaid"] = canonical::number(message.header.simple_binary_header.schema_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.version"] = canonical::number(message.header.simple_binary_header.version.get().value());
-        values[entry + ".payload"] = "udppacket.message.payload.mktdatamessage";
-        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuture";
+        values[entry + ".payload"] = "udppacket.mdp3message.payload.mktdatamessage";
+        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuture";
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuture.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>(message.fields.match_event_indicator.has_last_trade_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuture.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>(message.fields.match_event_indicator.has_last_volume_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuture.matcheventindicator.lastquotemsg"] = canonical::number(static_cast<std::uint64_t>(message.fields.match_event_indicator.has_last_quote_msg()));
@@ -146,14 +146,14 @@ struct Reader {
     }
 
     void on_message(const protocol::md_instrument_definition_spread& message, std::uint64_t, const protocol::binary_packet_header&) {
-        const std::string entry = "udppacket.message[" + std::to_string(index++) + "]";
+        const std::string entry = "udppacket.mdp3message[" + std::to_string(index++) + "]";
         values[entry + ".messageheader.messagesize"] = canonical::number(message.header.message_size.get().value());
         values[entry + ".messageheader.simplebinaryheader.blocklength"] = canonical::number(message.header.simple_binary_header.block_length.get().value());
         values[entry + ".messageheader.simplebinaryheader.templateid"] = canonical::number(message.header.simple_binary_header.template_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.schemaid"] = canonical::number(message.header.simple_binary_header.schema_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.version"] = canonical::number(message.header.simple_binary_header.version.get().value());
-        values[entry + ".payload"] = "udppacket.message.payload.mktdatamessage";
-        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspread";
+        values[entry + ".payload"] = "udppacket.mdp3message.payload.mktdatamessage";
+        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspread";
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspread.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>(message.fields.match_event_indicator.has_last_trade_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspread.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>(message.fields.match_event_indicator.has_last_volume_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspread.matcheventindicator.lastquotemsg"] = canonical::number(static_cast<std::uint64_t>(message.fields.match_event_indicator.has_last_quote_msg()));
@@ -207,14 +207,14 @@ struct Reader {
     }
 
     void on_message(const protocol::security_status& message, std::uint64_t, const protocol::binary_packet_header&) {
-        const std::string entry = "udppacket.message[" + std::to_string(index++) + "]";
+        const std::string entry = "udppacket.mdp3message[" + std::to_string(index++) + "]";
         values[entry + ".messageheader.messagesize"] = canonical::number(message.header.message_size.get().value());
         values[entry + ".messageheader.simplebinaryheader.blocklength"] = canonical::number(message.header.simple_binary_header.block_length.get().value());
         values[entry + ".messageheader.simplebinaryheader.templateid"] = canonical::number(message.header.simple_binary_header.template_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.schemaid"] = canonical::number(message.header.simple_binary_header.schema_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.version"] = canonical::number(message.header.simple_binary_header.version.get().value());
-        values[entry + ".payload"] = "udppacket.message.payload.mktdatamessage";
-        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.securitystatus";
+        values[entry + ".payload"] = "udppacket.mdp3message.payload.mktdatamessage";
+        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.securitystatus";
         values[entry + ".payload.mktdatamessage.mktdatapayload.securitystatus.transacttime"] = canonical::number(message.fields.transact_time.get().value());
         values[entry + ".payload.mktdatamessage.mktdatapayload.securitystatus.securitygroup"] = canonical::text(std::string(message.fields.security_group.get().value()), '\0', false);
         values[entry + ".payload.mktdatamessage.mktdatapayload.securitystatus.asset"] = canonical::text(std::string(message.fields.asset.get().value()), '\0', false);
@@ -233,14 +233,14 @@ struct Reader {
     }
 
     void on_message(const protocol::md_incremental_refresh_book& message, std::uint64_t, const protocol::binary_packet_header&) {
-        const std::string entry = "udppacket.message[" + std::to_string(index++) + "]";
+        const std::string entry = "udppacket.mdp3message[" + std::to_string(index++) + "]";
         values[entry + ".messageheader.messagesize"] = canonical::number(message.header.message_size.get().value());
         values[entry + ".messageheader.simplebinaryheader.blocklength"] = canonical::number(message.header.simple_binary_header.block_length.get().value());
         values[entry + ".messageheader.simplebinaryheader.templateid"] = canonical::number(message.header.simple_binary_header.template_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.schemaid"] = canonical::number(message.header.simple_binary_header.schema_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.version"] = canonical::number(message.header.simple_binary_header.version.get().value());
-        values[entry + ".payload"] = "udppacket.message.payload.mktdatamessage";
-        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook";
+        values[entry + ".payload"] = "udppacket.mdp3message.payload.mktdatamessage";
+        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook";
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.transacttime"] = canonical::number(message.fields.transact_time.get().value());
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>(message.fields.match_event_indicator.has_last_trade_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>(message.fields.match_event_indicator.has_last_volume_msg()));
@@ -252,14 +252,14 @@ struct Reader {
     }
 
     void on_message(const protocol::md_incremental_refresh_daily_statistics& message, std::uint64_t, const protocol::binary_packet_header&) {
-        const std::string entry = "udppacket.message[" + std::to_string(index++) + "]";
+        const std::string entry = "udppacket.mdp3message[" + std::to_string(index++) + "]";
         values[entry + ".messageheader.messagesize"] = canonical::number(message.header.message_size.get().value());
         values[entry + ".messageheader.simplebinaryheader.blocklength"] = canonical::number(message.header.simple_binary_header.block_length.get().value());
         values[entry + ".messageheader.simplebinaryheader.templateid"] = canonical::number(message.header.simple_binary_header.template_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.schemaid"] = canonical::number(message.header.simple_binary_header.schema_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.version"] = canonical::number(message.header.simple_binary_header.version.get().value());
-        values[entry + ".payload"] = "udppacket.message.payload.mktdatamessage";
-        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshdailystatistics";
+        values[entry + ".payload"] = "udppacket.mdp3message.payload.mktdatamessage";
+        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshdailystatistics";
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshdailystatistics.transacttime"] = canonical::number(message.fields.transact_time.get().value());
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshdailystatistics.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>(message.fields.match_event_indicator.has_last_trade_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshdailystatistics.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>(message.fields.match_event_indicator.has_last_volume_msg()));
@@ -271,14 +271,14 @@ struct Reader {
     }
 
     void on_message(const protocol::md_incremental_refresh_limits_banding& message, std::uint64_t, const protocol::binary_packet_header&) {
-        const std::string entry = "udppacket.message[" + std::to_string(index++) + "]";
+        const std::string entry = "udppacket.mdp3message[" + std::to_string(index++) + "]";
         values[entry + ".messageheader.messagesize"] = canonical::number(message.header.message_size.get().value());
         values[entry + ".messageheader.simplebinaryheader.blocklength"] = canonical::number(message.header.simple_binary_header.block_length.get().value());
         values[entry + ".messageheader.simplebinaryheader.templateid"] = canonical::number(message.header.simple_binary_header.template_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.schemaid"] = canonical::number(message.header.simple_binary_header.schema_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.version"] = canonical::number(message.header.simple_binary_header.version.get().value());
-        values[entry + ".payload"] = "udppacket.message.payload.mktdatamessage";
-        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshlimitsbanding";
+        values[entry + ".payload"] = "udppacket.mdp3message.payload.mktdatamessage";
+        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshlimitsbanding";
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshlimitsbanding.transacttime"] = canonical::number(message.fields.transact_time.get().value());
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshlimitsbanding.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>(message.fields.match_event_indicator.has_last_trade_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshlimitsbanding.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>(message.fields.match_event_indicator.has_last_volume_msg()));
@@ -290,14 +290,14 @@ struct Reader {
     }
 
     void on_message(const protocol::md_incremental_refresh_session_statistics& message, std::uint64_t, const protocol::binary_packet_header&) {
-        const std::string entry = "udppacket.message[" + std::to_string(index++) + "]";
+        const std::string entry = "udppacket.mdp3message[" + std::to_string(index++) + "]";
         values[entry + ".messageheader.messagesize"] = canonical::number(message.header.message_size.get().value());
         values[entry + ".messageheader.simplebinaryheader.blocklength"] = canonical::number(message.header.simple_binary_header.block_length.get().value());
         values[entry + ".messageheader.simplebinaryheader.templateid"] = canonical::number(message.header.simple_binary_header.template_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.schemaid"] = canonical::number(message.header.simple_binary_header.schema_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.version"] = canonical::number(message.header.simple_binary_header.version.get().value());
-        values[entry + ".payload"] = "udppacket.message.payload.mktdatamessage";
-        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshsessionstatistics";
+        values[entry + ".payload"] = "udppacket.mdp3message.payload.mktdatamessage";
+        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshsessionstatistics";
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshsessionstatistics.transacttime"] = canonical::number(message.fields.transact_time.get().value());
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshsessionstatistics.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>(message.fields.match_event_indicator.has_last_trade_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshsessionstatistics.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>(message.fields.match_event_indicator.has_last_volume_msg()));
@@ -309,14 +309,14 @@ struct Reader {
     }
 
     void on_message(const protocol::md_incremental_refresh_trade& message, std::uint64_t, const protocol::binary_packet_header&) {
-        const std::string entry = "udppacket.message[" + std::to_string(index++) + "]";
+        const std::string entry = "udppacket.mdp3message[" + std::to_string(index++) + "]";
         values[entry + ".messageheader.messagesize"] = canonical::number(message.header.message_size.get().value());
         values[entry + ".messageheader.simplebinaryheader.blocklength"] = canonical::number(message.header.simple_binary_header.block_length.get().value());
         values[entry + ".messageheader.simplebinaryheader.templateid"] = canonical::number(message.header.simple_binary_header.template_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.schemaid"] = canonical::number(message.header.simple_binary_header.schema_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.version"] = canonical::number(message.header.simple_binary_header.version.get().value());
-        values[entry + ".payload"] = "udppacket.message.payload.mktdatamessage";
-        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtrade";
+        values[entry + ".payload"] = "udppacket.mdp3message.payload.mktdatamessage";
+        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtrade";
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtrade.transacttime"] = canonical::number(message.fields.transact_time.get().value());
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtrade.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>(message.fields.match_event_indicator.has_last_trade_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtrade.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>(message.fields.match_event_indicator.has_last_volume_msg()));
@@ -328,14 +328,14 @@ struct Reader {
     }
 
     void on_message(const protocol::md_incremental_refresh_volume& message, std::uint64_t, const protocol::binary_packet_header&) {
-        const std::string entry = "udppacket.message[" + std::to_string(index++) + "]";
+        const std::string entry = "udppacket.mdp3message[" + std::to_string(index++) + "]";
         values[entry + ".messageheader.messagesize"] = canonical::number(message.header.message_size.get().value());
         values[entry + ".messageheader.simplebinaryheader.blocklength"] = canonical::number(message.header.simple_binary_header.block_length.get().value());
         values[entry + ".messageheader.simplebinaryheader.templateid"] = canonical::number(message.header.simple_binary_header.template_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.schemaid"] = canonical::number(message.header.simple_binary_header.schema_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.version"] = canonical::number(message.header.simple_binary_header.version.get().value());
-        values[entry + ".payload"] = "udppacket.message.payload.mktdatamessage";
-        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshvolume";
+        values[entry + ".payload"] = "udppacket.mdp3message.payload.mktdatamessage";
+        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshvolume";
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshvolume.transacttime"] = canonical::number(message.fields.transact_time.get().value());
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshvolume.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>(message.fields.match_event_indicator.has_last_trade_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshvolume.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>(message.fields.match_event_indicator.has_last_volume_msg()));
@@ -347,14 +347,14 @@ struct Reader {
     }
 
     void on_message(const protocol::snapshot_full_refresh& message, std::uint64_t, const protocol::binary_packet_header&) {
-        const std::string entry = "udppacket.message[" + std::to_string(index++) + "]";
+        const std::string entry = "udppacket.mdp3message[" + std::to_string(index++) + "]";
         values[entry + ".messageheader.messagesize"] = canonical::number(message.header.message_size.get().value());
         values[entry + ".messageheader.simplebinaryheader.blocklength"] = canonical::number(message.header.simple_binary_header.block_length.get().value());
         values[entry + ".messageheader.simplebinaryheader.templateid"] = canonical::number(message.header.simple_binary_header.template_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.schemaid"] = canonical::number(message.header.simple_binary_header.schema_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.version"] = canonical::number(message.header.simple_binary_header.version.get().value());
-        values[entry + ".payload"] = "udppacket.message.payload.mktdatamessage";
-        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.snapshotfullrefresh";
+        values[entry + ".payload"] = "udppacket.mdp3message.payload.mktdatamessage";
+        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.snapshotfullrefresh";
         values[entry + ".payload.mktdatamessage.mktdatapayload.snapshotfullrefresh.lastmsgseqnumprocessed"] = canonical::number(message.fields.last_msg_seq_num_processed.get().value());
         values[entry + ".payload.mktdatamessage.mktdatapayload.snapshotfullrefresh.totnumreports"] = canonical::number(message.fields.tot_num_reports.get().value());
         values[entry + ".payload.mktdatamessage.mktdatapayload.snapshotfullrefresh.securityid"] = canonical::number(message.fields.security_id.get().value());
@@ -369,14 +369,14 @@ struct Reader {
     }
 
     void on_message(const protocol::quote_request& message, std::uint64_t, const protocol::binary_packet_header&) {
-        const std::string entry = "udppacket.message[" + std::to_string(index++) + "]";
+        const std::string entry = "udppacket.mdp3message[" + std::to_string(index++) + "]";
         values[entry + ".messageheader.messagesize"] = canonical::number(message.header.message_size.get().value());
         values[entry + ".messageheader.simplebinaryheader.blocklength"] = canonical::number(message.header.simple_binary_header.block_length.get().value());
         values[entry + ".messageheader.simplebinaryheader.templateid"] = canonical::number(message.header.simple_binary_header.template_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.schemaid"] = canonical::number(message.header.simple_binary_header.schema_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.version"] = canonical::number(message.header.simple_binary_header.version.get().value());
-        values[entry + ".payload"] = "udppacket.message.payload.mktdatamessage";
-        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.quoterequest";
+        values[entry + ".payload"] = "udppacket.mdp3message.payload.mktdatamessage";
+        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.quoterequest";
         values[entry + ".payload.mktdatamessage.mktdatapayload.quoterequest.transacttime"] = canonical::number(message.fields.transact_time.get().value());
         values[entry + ".payload.mktdatamessage.mktdatapayload.quoterequest.quotereqid"] = canonical::text(std::string(message.fields.quote_req_id.get().value()), '\0', false);
         values[entry + ".payload.mktdatamessage.mktdatapayload.quoterequest.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>(message.fields.match_event_indicator.has_last_trade_msg()));
@@ -389,14 +389,14 @@ struct Reader {
     }
 
     void on_message(const protocol::md_instrument_definition_option& message, std::uint64_t, const protocol::binary_packet_header&) {
-        const std::string entry = "udppacket.message[" + std::to_string(index++) + "]";
+        const std::string entry = "udppacket.mdp3message[" + std::to_string(index++) + "]";
         values[entry + ".messageheader.messagesize"] = canonical::number(message.header.message_size.get().value());
         values[entry + ".messageheader.simplebinaryheader.blocklength"] = canonical::number(message.header.simple_binary_header.block_length.get().value());
         values[entry + ".messageheader.simplebinaryheader.templateid"] = canonical::number(message.header.simple_binary_header.template_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.schemaid"] = canonical::number(message.header.simple_binary_header.schema_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.version"] = canonical::number(message.header.simple_binary_header.version.get().value());
-        values[entry + ".payload"] = "udppacket.message.payload.mktdatamessage";
-        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoption";
+        values[entry + ".payload"] = "udppacket.mdp3message.payload.mktdatamessage";
+        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoption";
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoption.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>(message.fields.match_event_indicator.has_last_trade_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoption.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>(message.fields.match_event_indicator.has_last_volume_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoption.matcheventindicator.lastquotemsg"] = canonical::number(static_cast<std::uint64_t>(message.fields.match_event_indicator.has_last_quote_msg()));
@@ -454,14 +454,14 @@ struct Reader {
     }
 
     void on_message(const protocol::md_incremental_refresh_trade_summary& message, std::uint64_t, const protocol::binary_packet_header&) {
-        const std::string entry = "udppacket.message[" + std::to_string(index++) + "]";
+        const std::string entry = "udppacket.mdp3message[" + std::to_string(index++) + "]";
         values[entry + ".messageheader.messagesize"] = canonical::number(message.header.message_size.get().value());
         values[entry + ".messageheader.simplebinaryheader.blocklength"] = canonical::number(message.header.simple_binary_header.block_length.get().value());
         values[entry + ".messageheader.simplebinaryheader.templateid"] = canonical::number(message.header.simple_binary_header.template_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.schemaid"] = canonical::number(message.header.simple_binary_header.schema_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.version"] = canonical::number(message.header.simple_binary_header.version.get().value());
-        values[entry + ".payload"] = "udppacket.message.payload.mktdatamessage";
-        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary";
+        values[entry + ".payload"] = "udppacket.mdp3message.payload.mktdatamessage";
+        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary";
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary.transacttime"] = canonical::number(message.fields.transact_time.get().value());
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>(message.fields.match_event_indicator.has_last_trade_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>(message.fields.match_event_indicator.has_last_volume_msg()));
@@ -473,14 +473,14 @@ struct Reader {
     }
 
     void on_message(const protocol::negotiate& message, std::uint64_t, const protocol::binary_packet_header&) {
-        const std::string entry = "udppacket.message[" + std::to_string(index++) + "]";
+        const std::string entry = "udppacket.mdp3message[" + std::to_string(index++) + "]";
         values[entry + ".messageheader.messagesize"] = canonical::number(message.header.message_size.get().value());
         values[entry + ".messageheader.simplebinaryheader.blocklength"] = canonical::number(message.header.simple_binary_header.block_length.get().value());
         values[entry + ".messageheader.simplebinaryheader.templateid"] = canonical::number(message.header.simple_binary_header.template_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.schemaid"] = canonical::number(message.header.simple_binary_header.schema_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.version"] = canonical::number(message.header.simple_binary_header.version.get().value());
-        values[entry + ".payload"] = "udppacket.message.payload.mdpsessionmgmtmessage";
-        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiate";
+        values[entry + ".payload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage";
+        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiate";
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiate.hmacsignature"] = canonical::text(std::string(message.fields.hmac_signature.get().value()), '\0', false);
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiate.accesskeyid"] = canonical::text(std::string(message.fields.access_key_id.get().value()), '\0', false);
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiate.uuid"] = canonical::number(message.fields.uuid.get().value());
@@ -490,14 +490,14 @@ struct Reader {
     }
 
     void on_message(const protocol::negotiation_reject& message, std::uint64_t, const protocol::binary_packet_header&) {
-        const std::string entry = "udppacket.message[" + std::to_string(index++) + "]";
+        const std::string entry = "udppacket.mdp3message[" + std::to_string(index++) + "]";
         values[entry + ".messageheader.messagesize"] = canonical::number(message.header.message_size.get().value());
         values[entry + ".messageheader.simplebinaryheader.blocklength"] = canonical::number(message.header.simple_binary_header.block_length.get().value());
         values[entry + ".messageheader.simplebinaryheader.templateid"] = canonical::number(message.header.simple_binary_header.template_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.schemaid"] = canonical::number(message.header.simple_binary_header.schema_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.version"] = canonical::number(message.header.simple_binary_header.version.get().value());
-        values[entry + ".payload"] = "udppacket.message.payload.mdpsessionmgmtmessage";
-        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiationreject";
+        values[entry + ".payload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage";
+        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiationreject";
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiationreject.reason"] = canonical::text(std::string(message.fields.reason.get().value()), '\0', false);
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiationreject.uuid"] = canonical::number(message.fields.uuid.get().value());
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiationreject.requesttimestamp"] = canonical::number(message.fields.request_timestamp.get().value());
@@ -505,28 +505,28 @@ struct Reader {
     }
 
     void on_message(const protocol::negotiation_response& message, std::uint64_t, const protocol::binary_packet_header&) {
-        const std::string entry = "udppacket.message[" + std::to_string(index++) + "]";
+        const std::string entry = "udppacket.mdp3message[" + std::to_string(index++) + "]";
         values[entry + ".messageheader.messagesize"] = canonical::number(message.header.message_size.get().value());
         values[entry + ".messageheader.simplebinaryheader.blocklength"] = canonical::number(message.header.simple_binary_header.block_length.get().value());
         values[entry + ".messageheader.simplebinaryheader.templateid"] = canonical::number(message.header.simple_binary_header.template_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.schemaid"] = canonical::number(message.header.simple_binary_header.schema_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.version"] = canonical::number(message.header.simple_binary_header.version.get().value());
-        values[entry + ".payload"] = "udppacket.message.payload.mdpsessionmgmtmessage";
-        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiationresponse";
+        values[entry + ".payload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage";
+        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiationresponse";
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiationresponse.uuid"] = canonical::number(message.fields.uuid.get().value());
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiationresponse.requesttimestamp"] = canonical::number(message.fields.request_timestamp.get().value());
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiationresponse.secretkeysecureidexpiration"] = (message.fields.secret_key_secure_id_expiration.get().has_value() ? canonical::number(message.fields.secret_key_secure_id_expiration.get().value()) : canonical::absent());
     }
 
     void on_message(const protocol::terminate& message, std::uint64_t, const protocol::binary_packet_header&) {
-        const std::string entry = "udppacket.message[" + std::to_string(index++) + "]";
+        const std::string entry = "udppacket.mdp3message[" + std::to_string(index++) + "]";
         values[entry + ".messageheader.messagesize"] = canonical::number(message.header.message_size.get().value());
         values[entry + ".messageheader.simplebinaryheader.blocklength"] = canonical::number(message.header.simple_binary_header.block_length.get().value());
         values[entry + ".messageheader.simplebinaryheader.templateid"] = canonical::number(message.header.simple_binary_header.template_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.schemaid"] = canonical::number(message.header.simple_binary_header.schema_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.version"] = canonical::number(message.header.simple_binary_header.version.get().value());
-        values[entry + ".payload"] = "udppacket.message.payload.mdpsessionmgmtmessage";
-        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.terminate";
+        values[entry + ".payload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage";
+        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.terminate";
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.terminate.reason"] = canonical::text(std::string(message.fields.reason.get().value()), '\0', false);
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.terminate.uuid"] = canonical::number(message.fields.uuid.get().value());
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.terminate.requesttimestamp"] = canonical::number(message.fields.request_timestamp.get().value());
@@ -534,68 +534,68 @@ struct Reader {
     }
 
     void on_message(const protocol::market_data_request& message, std::uint64_t, const protocol::binary_packet_header&) {
-        const std::string entry = "udppacket.message[" + std::to_string(index++) + "]";
+        const std::string entry = "udppacket.mdp3message[" + std::to_string(index++) + "]";
         values[entry + ".messageheader.messagesize"] = canonical::number(message.header.message_size.get().value());
         values[entry + ".messageheader.simplebinaryheader.blocklength"] = canonical::number(message.header.simple_binary_header.block_length.get().value());
         values[entry + ".messageheader.simplebinaryheader.templateid"] = canonical::number(message.header.simple_binary_header.template_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.schemaid"] = canonical::number(message.header.simple_binary_header.schema_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.version"] = canonical::number(message.header.simple_binary_header.version.get().value());
-        values[entry + ".payload"] = "udppacket.message.payload.mdpsessionmgmtmessage";
-        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.marketdatarequest";
+        values[entry + ".payload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage";
+        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.marketdatarequest";
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.marketdatarequest.mdreqid"] = canonical::number(message.fields.md_req_id.get().value());
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.marketdatarequest.subscriptionreqtype"] = canonical::number(message.fields.subscription_req_type.get().value());
     }
 
     void on_message(const protocol::request_ack& message, std::uint64_t, const protocol::binary_packet_header&) {
-        const std::string entry = "udppacket.message[" + std::to_string(index++) + "]";
+        const std::string entry = "udppacket.mdp3message[" + std::to_string(index++) + "]";
         values[entry + ".messageheader.messagesize"] = canonical::number(message.header.message_size.get().value());
         values[entry + ".messageheader.simplebinaryheader.blocklength"] = canonical::number(message.header.simple_binary_header.block_length.get().value());
         values[entry + ".messageheader.simplebinaryheader.templateid"] = canonical::number(message.header.simple_binary_header.template_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.schemaid"] = canonical::number(message.header.simple_binary_header.schema_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.version"] = canonical::number(message.header.simple_binary_header.version.get().value());
-        values[entry + ".payload"] = "udppacket.message.payload.mdpsessionmgmtmessage";
-        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestack";
+        values[entry + ".payload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage";
+        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestack";
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestack.mdreqid"] = canonical::number(message.fields.md_req_id.get().value());
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestack.subscriptionreqtype"] = canonical::number(message.fields.subscription_req_type.get().value());
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestack.mdreqidstatus"] = canonical::number(message.fields.md_req_id_status.get().value());
     }
 
     void on_message(const protocol::request_reject& message, std::uint64_t, const protocol::binary_packet_header&) {
-        const std::string entry = "udppacket.message[" + std::to_string(index++) + "]";
+        const std::string entry = "udppacket.mdp3message[" + std::to_string(index++) + "]";
         values[entry + ".messageheader.messagesize"] = canonical::number(message.header.message_size.get().value());
         values[entry + ".messageheader.simplebinaryheader.blocklength"] = canonical::number(message.header.simple_binary_header.block_length.get().value());
         values[entry + ".messageheader.simplebinaryheader.templateid"] = canonical::number(message.header.simple_binary_header.template_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.schemaid"] = canonical::number(message.header.simple_binary_header.schema_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.version"] = canonical::number(message.header.simple_binary_header.version.get().value());
-        values[entry + ".payload"] = "udppacket.message.payload.mdpsessionmgmtmessage";
-        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestreject";
+        values[entry + ".payload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage";
+        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestreject";
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestreject.mdreqidoptional"] = (message.fields.md_req_id_optional.get().has_value() ? canonical::number(message.fields.md_req_id_optional.get().value()) : canonical::absent());
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestreject.mdreqrejreason"] = canonical::number(message.fields.md_req_rej_reason.get().value());
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestreject.sessiontext"] = canonical::text(std::string(message.fields.session_text.get().value()), '\0', false);
     }
 
     void on_message(const protocol::security_list_request& message, std::uint64_t, const protocol::binary_packet_header&) {
-        const std::string entry = "udppacket.message[" + std::to_string(index++) + "]";
+        const std::string entry = "udppacket.mdp3message[" + std::to_string(index++) + "]";
         values[entry + ".messageheader.messagesize"] = canonical::number(message.header.message_size.get().value());
         values[entry + ".messageheader.simplebinaryheader.blocklength"] = canonical::number(message.header.simple_binary_header.block_length.get().value());
         values[entry + ".messageheader.simplebinaryheader.templateid"] = canonical::number(message.header.simple_binary_header.template_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.schemaid"] = canonical::number(message.header.simple_binary_header.schema_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.version"] = canonical::number(message.header.simple_binary_header.version.get().value());
-        values[entry + ".payload"] = "udppacket.message.payload.mdpsessionmgmtmessage";
-        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.securitylistrequest";
+        values[entry + ".payload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage";
+        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.securitylistrequest";
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.securitylistrequest.mdreqid"] = canonical::number(message.fields.md_req_id.get().value());
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.securitylistrequest.subscriptionreqtype"] = canonical::number(message.fields.subscription_req_type.get().value());
     }
 
     void on_message(const protocol::security_status_request& message, std::uint64_t, const protocol::binary_packet_header&) {
-        const std::string entry = "udppacket.message[" + std::to_string(index++) + "]";
+        const std::string entry = "udppacket.mdp3message[" + std::to_string(index++) + "]";
         values[entry + ".messageheader.messagesize"] = canonical::number(message.header.message_size.get().value());
         values[entry + ".messageheader.simplebinaryheader.blocklength"] = canonical::number(message.header.simple_binary_header.block_length.get().value());
         values[entry + ".messageheader.simplebinaryheader.templateid"] = canonical::number(message.header.simple_binary_header.template_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.schemaid"] = canonical::number(message.header.simple_binary_header.schema_id.get().value());
         values[entry + ".messageheader.simplebinaryheader.version"] = canonical::number(message.header.simple_binary_header.version.get().value());
-        values[entry + ".payload"] = "udppacket.message.payload.mdpsessionmgmtmessage";
-        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.securitystatusrequest";
+        values[entry + ".payload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage";
+        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.securitystatusrequest";
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.securitystatusrequest.mdreqid"] = canonical::number(message.fields.md_req_id.get().value());
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.securitystatusrequest.subscriptionreqtype"] = canonical::number(message.fields.subscription_req_type.get().value());
     }

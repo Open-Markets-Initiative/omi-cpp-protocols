@@ -32,10 +32,6 @@ class SettlPriceType {
     bool intraday() const;
     void set_intraday(bool value);
 
-    // Reserved Bits: ReservedBits
-    bool reserved_bits() const;
-    void set_reserved_bits(bool value);
-
     // Null Value: NullValue
     bool null_value() const;
     void set_null_value(bool value);

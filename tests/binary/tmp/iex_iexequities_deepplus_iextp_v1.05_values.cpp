@@ -354,6 +354,9 @@ struct Reader {
 
     void operator()(const protocol::security_directory_message& message) {
         values[entry + ".messagedata"] = "packet.messages.message.messagedata.securitydirectorymessage";
+        if constexpr (requires { message.template get<protocol::security_directory_flags>(); }) { values[entry + ".messagedata.securitydirectorymessage.securitydirectoryflags.etp"] = canonical::number(static_cast<std::uint64_t>(message.template get<protocol::security_directory_flags>().template get<protocol::etp>())); }
+        if constexpr (requires { message.template get<protocol::security_directory_flags>(); }) { values[entry + ".messagedata.securitydirectorymessage.securitydirectoryflags.whenissued"] = canonical::number(static_cast<std::uint64_t>(message.template get<protocol::security_directory_flags>().template get<protocol::when_issued>())); }
+        if constexpr (requires { message.template get<protocol::security_directory_flags>(); }) { values[entry + ".messagedata.securitydirectorymessage.securitydirectoryflags.testsecurity"] = canonical::number(static_cast<std::uint64_t>(message.template get<protocol::security_directory_flags>().template get<protocol::test_security>())); }
         if constexpr (requires { message.template get<protocol::timestamp>(); }) { values[entry + ".messagedata.securitydirectorymessage.timestamp"] = canonical::number(message.template get<protocol::timestamp>().value()); }
         if constexpr (requires { message.template get<protocol::symbol>(); }) { values[entry + ".messagedata.securitydirectorymessage.symbol"] = canonical::text(std::string(message.template get<protocol::symbol>().value()), ' ', false); }
         if constexpr (requires { message.template get<protocol::round_lot_size>(); }) { values[entry + ".messagedata.securitydirectorymessage.roundlotsize"] = canonical::number(message.template get<protocol::round_lot_size>().value()); }
@@ -371,7 +374,7 @@ struct Reader {
 
     void operator()(const protocol::retail_liquidity_indicator_message& message) {
         values[entry + ".messagedata"] = "packet.messages.message.messagedata.retailliquidityindicatormessage";
-        if constexpr (requires { message.template get<protocol::retail_liquidity_indicator>(); }) { values[entry + ".messagedata.retailliquidityindicatormessage.retailliquidityindicator"] = canonical::text(canonical::character(message.template get<protocol::retail_liquidity_indicator>().value())); }
+        if constexpr (requires { message.template get<protocol::retail_liquidity_indicator>(); }) { values[entry + ".messagedata.retailliquidityindicatormessage.retailliquidityindicator"] = canonical::text(canonical::character(message.template get<protocol::retail_liquidity_indicator>().value()), {std::string_view(" ", 1)}); }
         if constexpr (requires { message.template get<protocol::timestamp>(); }) { values[entry + ".messagedata.retailliquidityindicatormessage.timestamp"] = canonical::number(message.template get<protocol::timestamp>().value()); }
         if constexpr (requires { message.template get<protocol::symbol>(); }) { values[entry + ".messagedata.retailliquidityindicatormessage.symbol"] = canonical::text(std::string(message.template get<protocol::symbol>().value()), ' ', false); }
     }
@@ -388,7 +391,7 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::short_sale_price_test_status>(); }) { values[entry + ".messagedata.shortsalepriceteststatusmessage.shortsalepriceteststatus"] = canonical::number(message.template get<protocol::short_sale_price_test_status>().value()); }
         if constexpr (requires { message.template get<protocol::timestamp>(); }) { values[entry + ".messagedata.shortsalepriceteststatusmessage.timestamp"] = canonical::number(message.template get<protocol::timestamp>().value()); }
         if constexpr (requires { message.template get<protocol::symbol>(); }) { values[entry + ".messagedata.shortsalepriceteststatusmessage.symbol"] = canonical::text(std::string(message.template get<protocol::symbol>().value()), ' ', false); }
-        if constexpr (requires { message.template get<protocol::detail>(); }) { values[entry + ".messagedata.shortsalepriceteststatusmessage.detail"] = canonical::text(canonical::character(message.template get<protocol::detail>().value())); }
+        if constexpr (requires { message.template get<protocol::detail>(); }) { values[entry + ".messagedata.shortsalepriceteststatusmessage.detail"] = canonical::text(canonical::character(message.template get<protocol::detail>().value()), {std::string_view(" ", 1)}); }
     }
 
     void operator()(const protocol::security_event_message& message) {
@@ -410,6 +413,7 @@ struct Reader {
 
     void operator()(const protocol::order_modify_message& message) {
         values[entry + ".messagedata"] = "packet.messages.message.messagedata.ordermodifymessage";
+        if constexpr (requires { message.template get<protocol::modify_flags>(); }) { values[entry + ".messagedata.ordermodifymessage.modifyflags.priority"] = canonical::number(static_cast<std::uint64_t>(message.template get<protocol::modify_flags>().template get<protocol::priority>())); }
         if constexpr (requires { message.template get<protocol::timestamp>(); }) { values[entry + ".messagedata.ordermodifymessage.timestamp"] = canonical::number(message.template get<protocol::timestamp>().value()); }
         if constexpr (requires { message.template get<protocol::symbol>(); }) { values[entry + ".messagedata.ordermodifymessage.symbol"] = canonical::text(std::string(message.template get<protocol::symbol>().value()), ' ', false); }
         if constexpr (requires { message.template get<protocol::order_id_reference>(); }) { values[entry + ".messagedata.ordermodifymessage.orderidreference"] = canonical::number(message.template get<protocol::order_id_reference>().value()); }
@@ -426,6 +430,11 @@ struct Reader {
 
     void operator()(const protocol::order_executed_message& message) {
         values[entry + ".messagedata"] = "packet.messages.message.messagedata.orderexecutedmessage";
+        if constexpr (requires { message.template get<protocol::sale_condition_flags>(); }) { values[entry + ".messagedata.orderexecutedmessage.saleconditionflags.singlepricecrosstrade"] = canonical::number(static_cast<std::uint64_t>(message.template get<protocol::sale_condition_flags>().template get<protocol::single_price_cross_trade>())); }
+        if constexpr (requires { message.template get<protocol::sale_condition_flags>(); }) { values[entry + ".messagedata.orderexecutedmessage.saleconditionflags.tradethroughexempt"] = canonical::number(static_cast<std::uint64_t>(message.template get<protocol::sale_condition_flags>().template get<protocol::trade_through_exempt>())); }
+        if constexpr (requires { message.template get<protocol::sale_condition_flags>(); }) { values[entry + ".messagedata.orderexecutedmessage.saleconditionflags.oddlot"] = canonical::number(static_cast<std::uint64_t>(message.template get<protocol::sale_condition_flags>().template get<protocol::odd_lot>())); }
+        if constexpr (requires { message.template get<protocol::sale_condition_flags>(); }) { values[entry + ".messagedata.orderexecutedmessage.saleconditionflags.extendedhours"] = canonical::number(static_cast<std::uint64_t>(message.template get<protocol::sale_condition_flags>().template get<protocol::extended_hours>())); }
+        if constexpr (requires { message.template get<protocol::sale_condition_flags>(); }) { values[entry + ".messagedata.orderexecutedmessage.saleconditionflags.intermarketsweep"] = canonical::number(static_cast<std::uint64_t>(message.template get<protocol::sale_condition_flags>().template get<protocol::intermarket_sweep>())); }
         if constexpr (requires { message.template get<protocol::timestamp>(); }) { values[entry + ".messagedata.orderexecutedmessage.timestamp"] = canonical::number(message.template get<protocol::timestamp>().value()); }
         if constexpr (requires { message.template get<protocol::symbol>(); }) { values[entry + ".messagedata.orderexecutedmessage.symbol"] = canonical::text(std::string(message.template get<protocol::symbol>().value()), ' ', false); }
         if constexpr (requires { message.template get<protocol::order_id_reference>(); }) { values[entry + ".messagedata.orderexecutedmessage.orderidreference"] = canonical::number(message.template get<protocol::order_id_reference>().value()); }
@@ -436,6 +445,11 @@ struct Reader {
 
     void operator()(const protocol::trade_message& message) {
         values[entry + ".messagedata"] = "packet.messages.message.messagedata.trademessage";
+        if constexpr (requires { message.template get<protocol::sale_condition_flags>(); }) { values[entry + ".messagedata.trademessage.saleconditionflags.singlepricecrosstrade"] = canonical::number(static_cast<std::uint64_t>(message.template get<protocol::sale_condition_flags>().template get<protocol::single_price_cross_trade>())); }
+        if constexpr (requires { message.template get<protocol::sale_condition_flags>(); }) { values[entry + ".messagedata.trademessage.saleconditionflags.tradethroughexempt"] = canonical::number(static_cast<std::uint64_t>(message.template get<protocol::sale_condition_flags>().template get<protocol::trade_through_exempt>())); }
+        if constexpr (requires { message.template get<protocol::sale_condition_flags>(); }) { values[entry + ".messagedata.trademessage.saleconditionflags.oddlot"] = canonical::number(static_cast<std::uint64_t>(message.template get<protocol::sale_condition_flags>().template get<protocol::odd_lot>())); }
+        if constexpr (requires { message.template get<protocol::sale_condition_flags>(); }) { values[entry + ".messagedata.trademessage.saleconditionflags.extendedhours"] = canonical::number(static_cast<std::uint64_t>(message.template get<protocol::sale_condition_flags>().template get<protocol::extended_hours>())); }
+        if constexpr (requires { message.template get<protocol::sale_condition_flags>(); }) { values[entry + ".messagedata.trademessage.saleconditionflags.intermarketsweep"] = canonical::number(static_cast<std::uint64_t>(message.template get<protocol::sale_condition_flags>().template get<protocol::intermarket_sweep>())); }
         if constexpr (requires { message.template get<protocol::timestamp>(); }) { values[entry + ".messagedata.trademessage.timestamp"] = canonical::number(message.template get<protocol::timestamp>().value()); }
         if constexpr (requires { message.template get<protocol::symbol>(); }) { values[entry + ".messagedata.trademessage.symbol"] = canonical::text(std::string(message.template get<protocol::symbol>().value()), ' ', false); }
         if constexpr (requires { message.template get<protocol::size_type>(); }) { values[entry + ".messagedata.trademessage.size"] = canonical::number(message.template get<protocol::size_type>().value()); }
@@ -445,6 +459,11 @@ struct Reader {
 
     void operator()(const protocol::trade_break_message& message) {
         values[entry + ".messagedata"] = "packet.messages.message.messagedata.tradebreakmessage";
+        if constexpr (requires { message.template get<protocol::sale_condition_flags>(); }) { values[entry + ".messagedata.tradebreakmessage.saleconditionflags.singlepricecrosstrade"] = canonical::number(static_cast<std::uint64_t>(message.template get<protocol::sale_condition_flags>().template get<protocol::single_price_cross_trade>())); }
+        if constexpr (requires { message.template get<protocol::sale_condition_flags>(); }) { values[entry + ".messagedata.tradebreakmessage.saleconditionflags.tradethroughexempt"] = canonical::number(static_cast<std::uint64_t>(message.template get<protocol::sale_condition_flags>().template get<protocol::trade_through_exempt>())); }
+        if constexpr (requires { message.template get<protocol::sale_condition_flags>(); }) { values[entry + ".messagedata.tradebreakmessage.saleconditionflags.oddlot"] = canonical::number(static_cast<std::uint64_t>(message.template get<protocol::sale_condition_flags>().template get<protocol::odd_lot>())); }
+        if constexpr (requires { message.template get<protocol::sale_condition_flags>(); }) { values[entry + ".messagedata.tradebreakmessage.saleconditionflags.extendedhours"] = canonical::number(static_cast<std::uint64_t>(message.template get<protocol::sale_condition_flags>().template get<protocol::extended_hours>())); }
+        if constexpr (requires { message.template get<protocol::sale_condition_flags>(); }) { values[entry + ".messagedata.tradebreakmessage.saleconditionflags.intermarketsweep"] = canonical::number(static_cast<std::uint64_t>(message.template get<protocol::sale_condition_flags>().template get<protocol::intermarket_sweep>())); }
         if constexpr (requires { message.template get<protocol::timestamp>(); }) { values[entry + ".messagedata.tradebreakmessage.timestamp"] = canonical::number(message.template get<protocol::timestamp>().value()); }
         if constexpr (requires { message.template get<protocol::symbol>(); }) { values[entry + ".messagedata.tradebreakmessage.symbol"] = canonical::text(std::string(message.template get<protocol::symbol>().value()), ' ', false); }
         if constexpr (requires { message.template get<protocol::size_type>(); }) { values[entry + ".messagedata.tradebreakmessage.size"] = canonical::number(message.template get<protocol::size_type>().value()); }

@@ -42,8 +42,8 @@ struct best_offer {
             set(null_value);
     }
 
-    constexpr void set_null() {
-        value = null_value;
+    void set_null() {
+        value = static_cast<std::uint64_t>(__builtin_bswap64(null_value));
     }
 
   protected:

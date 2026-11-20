@@ -16,6 +16,6 @@ packet.message[0].messageheader.messagecategory = H
 packet.message[0].payload = packet.message.payload.controlcategory
 packet.message[0].payload.controlcategory.controlmessagetype = N
 packet.message[0].payload.controlcategory.controlmessagepayload = packet.message.payload.controlcategory.controlmessagepayload.controlmessage
-packet.message[0].payload.controlcategory.controlmessagepayload.controlmessage.messageindicator =  
+packet.message[0].payload.controlcategory.controlmessagepayload.controlmessage.messageindicator = (null)
 packet.message[0].payload.controlcategory.controlmessagepayload.controlmessage.transactionid = 0
 packet.message[0].payload.controlcategory.controlmessagepayload.controlmessage.participantreferencenumber = 0

@@ -87,7 +87,7 @@ std::unique_ptr<protocol::Message> build_ComplexQuoteMessage() {
     message->set_bid_volume(static_cast<std::uint16_t>(8));
     message->set_ask_customer_volume(static_cast<std::uint16_t>(9));
     message->set_bid_customer_volume(static_cast<std::uint16_t>(10));
-    message->set_quote_condition(protocol::QuoteCondition::Rotation);
+    message->set_quote_condition(protocol::QuoteCondition::PreOpen);
     return message;
 }
 
@@ -139,7 +139,7 @@ std::unique_ptr<protocol::Message> build_ComplexStatusMessage() {
     message->set_source_time_ns(std::chrono::nanoseconds{2});
     message->set_complex_index(static_cast<std::uint32_t>(3));
     message->set_symbol_seq_num(static_cast<std::uint32_t>(4));
-    message->set_security_status(protocol::SecurityStatus::Unhalt);
+    message->set_security_status(protocol::SecurityStatus::Close);
     message->set_halt_condition('G');
     return message;
 }
@@ -157,7 +157,7 @@ std::unique_ptr<protocol::Message> build_RefreshComplexQuoteMessage() {
     message->set_bid_volume(static_cast<std::uint16_t>(8));
     message->set_ask_customer_volume(static_cast<std::uint16_t>(9));
     message->set_bid_customer_volume(static_cast<std::uint16_t>(10));
-    message->set_quote_condition(protocol::QuoteCondition::Rotation);
+    message->set_quote_condition(protocol::QuoteCondition::PreOpen);
     return message;
 }
 
@@ -255,7 +255,7 @@ int check_ComplexQuoteMessage(const protocol::Message* read) {
         std::printf("FAIL ComplexQuoteMessage: bid_customer_volume does not read as it was written\n");
         ++failures;
     }
-    if (!(message->quote_condition() == protocol::QuoteCondition::Rotation)) {
+    if (!(message->quote_condition() == protocol::QuoteCondition::PreOpen)) {
         std::printf("FAIL ComplexQuoteMessage: quote_condition does not read as it was written\n");
         ++failures;
     }
@@ -419,7 +419,7 @@ int check_ComplexStatusMessage(const protocol::Message* read) {
         std::printf("FAIL ComplexStatusMessage: symbol_seq_num does not read as it was written\n");
         ++failures;
     }
-    if (!(message->security_status() == protocol::SecurityStatus::Unhalt)) {
+    if (!(message->security_status() == protocol::SecurityStatus::Close)) {
         std::printf("FAIL ComplexStatusMessage: security_status does not read as it was written\n");
         ++failures;
     }
@@ -480,7 +480,7 @@ int check_RefreshComplexQuoteMessage(const protocol::Message* read) {
         std::printf("FAIL RefreshComplexQuoteMessage: bid_customer_volume does not read as it was written\n");
         ++failures;
     }
-    if (!(message->quote_condition() == protocol::QuoteCondition::Rotation)) {
+    if (!(message->quote_condition() == protocol::QuoteCondition::PreOpen)) {
         std::printf("FAIL RefreshComplexQuoteMessage: quote_condition does not read as it was written\n");
         ++failures;
     }

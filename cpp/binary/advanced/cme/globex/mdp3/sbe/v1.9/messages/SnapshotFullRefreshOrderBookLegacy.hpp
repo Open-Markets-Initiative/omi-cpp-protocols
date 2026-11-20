@@ -12,7 +12,7 @@
 #include "../types/TransactTime.hpp"
 #include "../types/OrderId.hpp"
 #include "../types/MdOrderPriority.hpp"
-#include "../types/MdEntryPxEx.hpp"
+#include "../types/MdEntryPx.hpp"
 #include "../types/MdDisplayQty.hpp"
 #include "../types/MdEntryTypeBook.hpp"
 #include "../structs/GroupSize.hpp"
@@ -22,10 +22,10 @@ namespace cme::mdp3::v9 {
 namespace sbe_mdp3 = ::cme::mdp3::v9;
 
 #pragma pack(push, 1)
-struct snapshot_full_refresh_order_book_legacy_snapshot_full_refresh_order_book_groups_entry {
+struct snapshot_full_refresh_order_book_legacy_groups_entry {
     sbe_mdp3::order_id order_id;
     sbe_mdp3::md_order_priority md_order_priority;
-    sbe_mdp3::md_entry_px_ex md_entry_px_ex;
+    sbe_mdp3::md_entry_px md_entry_px;
     sbe_mdp3::md_display_qty md_display_qty;
     sbe_mdp3::md_entry_type_book md_entry_type_book;
 };
@@ -64,7 +64,7 @@ struct snapshot_full_refresh_order_book_legacy {
     }
 
     // sequential access to variable-length regions
-    sbe_group_iterator<snapshot_full_refresh_order_book_legacy_snapshot_full_refresh_order_book_groups_entry, group_size> snapshot_full_refresh_order_book_groups() const {
+    sbe_group_iterator<snapshot_full_refresh_order_book_legacy_groups_entry, group_size> snapshot_full_refresh_order_book_legacy_groups() const {
         return { tail_begin(), tail_end() };
     }
 

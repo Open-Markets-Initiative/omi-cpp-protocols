@@ -10,7 +10,7 @@
 #include "../common/Wire.hpp"
 #include "../common/Print.hpp"
 #include "../common/View.hpp"
-#include "../structs/SnapshotFullRefreshOrderBookGroups.hpp"
+#include "../structs/SnapshotFullRefreshOrderBookLegacyGroups.hpp"
 
 namespace cme::globex::mdp3::sbe::v1_9 {
 
@@ -26,7 +26,7 @@ class SnapshotFullRefreshOrderBookLegacy {
 
     // the bytes every SnapshotFullRefreshOrderBookLegacy has, which a reader checks before it views them
     static constexpr std::size_t minimum_size = 28;
-    std::size_t encoded_size() const { return snapshot_full_refresh_order_book_groups_end(); }
+    std::size_t encoded_size() const { return snapshot_full_refresh_order_book_legacy_groups_end(); }
 
     std::uint32_t last_msg_seq_num_processed() const { return wire::read_u32_le(at(0)); }
 
@@ -40,7 +40,7 @@ class SnapshotFullRefreshOrderBookLegacy {
 
     std::chrono::nanoseconds transact_time() const { return std::chrono::nanoseconds(static_cast<std::int64_t>(wire::read_u64_le(at(20)))); }
 
-    SnapshotFullRefreshOrderBookGroups snapshot_full_refresh_order_book_groups() const { return SnapshotFullRefreshOrderBookGroups{ bytes_.subspan(28) }; }
+    SnapshotFullRefreshOrderBookLegacyGroups snapshot_full_refresh_order_book_legacy_groups() const { return SnapshotFullRefreshOrderBookLegacyGroups{ bytes_.subspan(28) }; }
 
     void print(std::ostream& out) const {
         out << "SnapshotFullRefreshOrderBookLegacy{";
@@ -56,14 +56,14 @@ class SnapshotFullRefreshOrderBookLegacy {
         out << current_chunk();
         out << ", transact_time=";
         out << transact_time().count();
-        out << ", snapshot_full_refresh_order_book_groups=";
-        snapshot_full_refresh_order_book_groups().print(out);
+        out << ", snapshot_full_refresh_order_book_legacy_groups=";
+        snapshot_full_refresh_order_book_legacy_groups().print(out);
         out << '}';
     }
 
   private:
     const std::byte* at(std::size_t offset) const noexcept { return bytes_.data() + offset; }
-    std::size_t snapshot_full_refresh_order_book_groups_end() const { return 28 + snapshot_full_refresh_order_book_groups().encoded_size(); }
+    std::size_t snapshot_full_refresh_order_book_legacy_groups_end() const { return 28 + snapshot_full_refresh_order_book_legacy_groups().encoded_size(); }
 
     std::span<const std::byte> bytes_;
 };

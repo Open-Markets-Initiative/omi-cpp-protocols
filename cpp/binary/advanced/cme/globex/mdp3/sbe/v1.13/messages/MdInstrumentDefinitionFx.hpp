@@ -58,7 +58,7 @@
 #include "../types/MarketDepth.hpp"
 #include "../types/InstAttribValue.hpp"
 #include "../types/LotType.hpp"
-#include "../types/MinLotSizeUInt64.hpp"
+#include "../types/FxMinLotSize.hpp"
 #include "../types/TradeDate.hpp"
 #include "../types/SettlDate.hpp"
 #include "../types/MaturityDate.hpp"
@@ -91,7 +91,7 @@ struct md_instrument_definition_fx_inst_attrib_groups_entry {
 #pragma pack(push, 1)
 struct md_instrument_definition_fx_fx_lot_type_rules_groups_entry {
     sbe_mdp3::lot_type lot_type;
-    sbe_mdp3::min_lot_size_u_int_64 min_lot_size_u_int_64;
+    sbe_mdp3::fx_min_lot_size fx_min_lot_size;
 };
 #pragma pack(pop)
 

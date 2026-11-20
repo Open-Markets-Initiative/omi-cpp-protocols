@@ -10,49 +10,49 @@ namespace cme::mdp3::v9 {
 
 namespace sbe_mdp3 = ::cme::mdp3::v9;
 
-class snapshot_full_refresh_order_book_legacy_snapshot_full_refresh_order_book_groups_entry_reader {
+class snapshot_full_refresh_order_book_legacy_groups_entry_reader {
     const std::byte* pos_;
     const std::byte* end_;
     uint16_t block_length_;
 
 public:
-    snapshot_full_refresh_order_book_legacy_snapshot_full_refresh_order_book_groups_entry_reader(const std::byte* pos, const std::byte* end, uint16_t block_length)
+    snapshot_full_refresh_order_book_legacy_groups_entry_reader(const std::byte* pos, const std::byte* end, uint16_t block_length)
         : pos_(pos), end_(end), block_length_(block_length) {
     }
 
-    const snapshot_full_refresh_order_book_legacy_snapshot_full_refresh_order_book_groups_entry& entry() const {
-        return *reinterpret_cast<const snapshot_full_refresh_order_book_legacy_snapshot_full_refresh_order_book_groups_entry*>(pos_);
+    const snapshot_full_refresh_order_book_legacy_groups_entry& entry() const {
+        return *reinterpret_cast<const snapshot_full_refresh_order_book_legacy_groups_entry*>(pos_);
     }
 
     std::uint64_t order_id() const {
-        auto* entry = reinterpret_cast<const snapshot_full_refresh_order_book_legacy_snapshot_full_refresh_order_book_groups_entry*>(pos_);
+        auto* entry = reinterpret_cast<const snapshot_full_refresh_order_book_legacy_groups_entry*>(pos_);
         return entry->order_id.get().value();
     }
 
     std::optional<std::uint64_t> md_order_priority() const {
-        auto* entry = reinterpret_cast<const snapshot_full_refresh_order_book_legacy_snapshot_full_refresh_order_book_groups_entry*>(pos_);
+        auto* entry = reinterpret_cast<const snapshot_full_refresh_order_book_legacy_groups_entry*>(pos_);
         return entry->md_order_priority.get();
     }
 
-    std::int64_t md_entry_px_ex() const {
-        auto* entry = reinterpret_cast<const snapshot_full_refresh_order_book_legacy_snapshot_full_refresh_order_book_groups_entry*>(pos_);
-        return entry->md_entry_px_ex.get().value();
+    std::int64_t md_entry_px() const {
+        auto* entry = reinterpret_cast<const snapshot_full_refresh_order_book_legacy_groups_entry*>(pos_);
+        return entry->md_entry_px.get().value();
     }
 
     std::int32_t md_display_qty() const {
-        auto* entry = reinterpret_cast<const snapshot_full_refresh_order_book_legacy_snapshot_full_refresh_order_book_groups_entry*>(pos_);
+        auto* entry = reinterpret_cast<const snapshot_full_refresh_order_book_legacy_groups_entry*>(pos_);
         return entry->md_display_qty.get().value();
     }
 
     sbe_mdp3::md_entry_type_book::enum_type md_entry_type_book() const {
-        auto* entry = reinterpret_cast<const snapshot_full_refresh_order_book_legacy_snapshot_full_refresh_order_book_groups_entry*>(pos_);
+        auto* entry = reinterpret_cast<const snapshot_full_refresh_order_book_legacy_groups_entry*>(pos_);
         return entry->md_entry_type_book.get().value();
     }
 
     const std::byte* end_position() const { return pos_ + block_length_; }
 };
 
-class snapshot_full_refresh_order_book_legacy_snapshot_full_refresh_order_book_groups_reader {
+class snapshot_full_refresh_order_book_legacy_groups_reader {
     const std::byte* pos_;
     const std::byte* end_;
     uint16_t block_length_;
@@ -60,7 +60,7 @@ class snapshot_full_refresh_order_book_legacy_snapshot_full_refresh_order_book_g
     uint16_t index_;
 
 public:
-    snapshot_full_refresh_order_book_legacy_snapshot_full_refresh_order_book_groups_reader(const std::byte* data, const std::byte* end)
+    snapshot_full_refresh_order_book_legacy_groups_reader(const std::byte* data, const std::byte* end)
         : end_(end) {
         if (data + sizeof(sbe_mdp3::group_size) > end_)
             throw std::runtime_error("buffer overrun reading group header");
@@ -75,9 +75,9 @@ public:
 
     bool has_next() const { return index_ < count_; }
 
-    snapshot_full_refresh_order_book_legacy_snapshot_full_refresh_order_book_groups_entry_reader next() {
+    snapshot_full_refresh_order_book_legacy_groups_entry_reader next() {
         if (!has_next()) throw std::runtime_error("no more entries in group");
-        snapshot_full_refresh_order_book_legacy_snapshot_full_refresh_order_book_groups_entry_reader entry(pos_, end_, block_length_);
+        snapshot_full_refresh_order_book_legacy_groups_entry_reader entry(pos_, end_, block_length_);
         pos_ = entry.end_position();
         ++index_;
         return entry;
@@ -91,7 +91,7 @@ public:
 };
 
 
-inline snapshot_full_refresh_order_book_legacy_snapshot_full_refresh_order_book_groups_reader read_snapshot_full_refresh_order_book(const snapshot_full_refresh_order_book_legacy& msg) {
+inline snapshot_full_refresh_order_book_legacy_groups_reader read_groups(const snapshot_full_refresh_order_book_legacy& msg) {
     return { msg.tail_begin(), msg.tail_end() };
 }
 

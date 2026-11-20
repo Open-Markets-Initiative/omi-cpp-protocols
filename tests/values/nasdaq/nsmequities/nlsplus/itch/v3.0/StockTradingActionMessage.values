@@ -1,6 +1,6 @@
 # Nasdaq.NsmEquities.NlsPlus.Itch.v3.0 StockTradingActionMessage: canonical values, read by the model
 datagram 0
-packet.packetheader.session = 
+packet.packetheader.session = (null)
 packet.packetheader.sequencenumber = 0
 packet.packetheader.messagecount = 1
 packet.messages = packet.messages.message
@@ -14,7 +14,7 @@ packet.messages.message[0].payload.stocktradingactionmessage.securityclass = Q
 packet.messages.message[0].payload.stocktradingactionmessage.currenttradingstate = P
 packet.messages.message[0].payload.stocktradingactionmessage.reason = LUDP
 datagram 1
-packet.packetheader.session = 
+packet.packetheader.session = (null)
 packet.packetheader.sequencenumber = 0
 packet.packetheader.messagecount = 1
 packet.messages = packet.messages.message
@@ -28,7 +28,7 @@ packet.messages.message[0].payload.stocktradingactionmessage.securityclass = Q
 packet.messages.message[0].payload.stocktradingactionmessage.currenttradingstate = P
 packet.messages.message[0].payload.stocktradingactionmessage.reason = LUDP
 datagram 2
-packet.packetheader.session = 
+packet.packetheader.session = (null)
 packet.packetheader.sequencenumber = 0
 packet.packetheader.messagecount = 1
 packet.messages = packet.messages.message
@@ -42,7 +42,7 @@ packet.messages.message[0].payload.stocktradingactionmessage.securityclass = Q
 packet.messages.message[0].payload.stocktradingactionmessage.currenttradingstate = P
 packet.messages.message[0].payload.stocktradingactionmessage.reason = LUDP
 datagram 3
-packet.packetheader.session = 
+packet.packetheader.session = (null)
 packet.packetheader.sequencenumber = 0
 packet.packetheader.messagecount = 1
 packet.messages = packet.messages.message
@@ -54,9 +54,9 @@ packet.messages.message[0].payload = packet.messages.message.payload.stocktradin
 packet.messages.message[0].payload.stocktradingactionmessage.issuesymbol = ZVZZT
 packet.messages.message[0].payload.stocktradingactionmessage.securityclass = Q
 packet.messages.message[0].payload.stocktradingactionmessage.currenttradingstate = T
-packet.messages.message[0].payload.stocktradingactionmessage.reason = 
+packet.messages.message[0].payload.stocktradingactionmessage.reason = (null)
 datagram 4
-packet.packetheader.session = 
+packet.packetheader.session = (null)
 packet.packetheader.sequencenumber = 0
 packet.packetheader.messagecount = 1
 packet.messages = packet.messages.message
@@ -68,4 +68,4 @@ packet.messages.message[0].payload = packet.messages.message.payload.stocktradin
 packet.messages.message[0].payload.stocktradingactionmessage.issuesymbol = ZXZZT
 packet.messages.message[0].payload.stocktradingactionmessage.securityclass = Q
 packet.messages.message[0].payload.stocktradingactionmessage.currenttradingstate = T
-packet.messages.message[0].payload.stocktradingactionmessage.reason = 
+packet.messages.message[0].payload.stocktradingactionmessage.reason = (null)

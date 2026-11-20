@@ -6,7 +6,7 @@
 
 namespace cboe::c1options::marketdatafeed::csm::v1_4_2 {
 
-PacketHeader::PacketHeader(std::uint8_t version, std::uint16_t packet_length, std::uint64_t sending_time, std::uint8_t message_count, std::uint32_t first_msg_seq_num)
+PacketHeader::PacketHeader(std::uint8_t version, std::uint16_t packet_length, std::chrono::milliseconds sending_time, std::uint8_t message_count, std::uint32_t first_msg_seq_num)
   : version_(version), packet_length_(packet_length), sending_time_(sending_time), message_count_(message_count), first_msg_seq_num_(first_msg_seq_num) {}
 
 std::uint8_t PacketHeader::version() const { return version_; }
@@ -15,8 +15,8 @@ void PacketHeader::set_version(std::uint8_t value) { version_ = value; }
 std::uint16_t PacketHeader::packet_length() const { return packet_length_; }
 void PacketHeader::set_packet_length(std::uint16_t value) { packet_length_ = value; }
 
-std::uint64_t PacketHeader::sending_time() const { return sending_time_; }
-void PacketHeader::set_sending_time(std::uint64_t value) { sending_time_ = value; }
+std::chrono::milliseconds PacketHeader::sending_time() const { return sending_time_; }
+void PacketHeader::set_sending_time(std::chrono::milliseconds value) { sending_time_ = value; }
 
 std::uint8_t PacketHeader::message_count() const { return message_count_; }
 void PacketHeader::set_message_count(std::uint8_t value) { message_count_ = value; }
@@ -34,7 +34,7 @@ std::size_t PacketHeader::decode(const std::byte* data, std::size_t length) {
     packet_length_ = wire::read_u16_be(data + offset);
     offset += 2;
 
-    sending_time_ = wire::read_u64_be(data + offset);
+    sending_time_ = std::chrono::milliseconds(static_cast<std::int64_t>(wire::read_u64_be(data + offset)));
     offset += 8;
 
     message_count_ = wire::read_u8(data + offset);
@@ -56,7 +56,7 @@ std::size_t PacketHeader::encode(std::byte* data, std::size_t capacity) const {
     wire::write_u16_be(data + offset, static_cast<std::uint16_t>(packet_length_));
     offset += 2;
 
-    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(sending_time_));
+    wire::write_u64_be(data + offset, static_cast<std::uint64_t>(sending_time_.count()));
     offset += 8;
 
     wire::write_u8(data + offset, static_cast<std::uint8_t>(message_count_));
@@ -79,7 +79,7 @@ void PacketHeader::print(std::ostream& out) const {
     out << ", packet_length=";
     out << packet_length_;
     out << ", sending_time=";
-    out << sending_time_;
+    out << sending_time_.count();
     out << ", message_count=";
     out << static_cast<int>(message_count_);
     out << ", first_msg_seq_num=";

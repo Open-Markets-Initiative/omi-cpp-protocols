@@ -7,8 +7,8 @@
 
 namespace cboe::bzxequities::multicastdepthofbook::pitch::v2_20_4 {
 
-OrderExecutedAtPriceSizeMessage::OrderExecutedAtPriceSizeMessage(std::chrono::nanoseconds time_offset, std::uint64_t order_id, std::uint32_t executed_quantity, std::uint32_t remaining_quantity, std::uint64_t execution_id, Decimal price_binary_long_price_8)
-  : time_offset_(time_offset), order_id_(order_id), executed_quantity_(executed_quantity), remaining_quantity_(remaining_quantity), execution_id_(execution_id), price_binary_long_price_8_(price_binary_long_price_8) {}
+OrderExecutedAtPriceSizeMessage::OrderExecutedAtPriceSizeMessage(std::chrono::nanoseconds time_offset, std::uint64_t order_id, std::uint32_t executed_quantity, std::uint32_t remaining_quantity, std::uint64_t execution_id, Decimal price_long)
+  : time_offset_(time_offset), order_id_(order_id), executed_quantity_(executed_quantity), remaining_quantity_(remaining_quantity), execution_id_(execution_id), price_long_(price_long) {}
 
 std::chrono::nanoseconds OrderExecutedAtPriceSizeMessage::time_offset() const { return time_offset_; }
 void OrderExecutedAtPriceSizeMessage::set_time_offset(std::chrono::nanoseconds value) { time_offset_ = value; }
@@ -25,8 +25,8 @@ void OrderExecutedAtPriceSizeMessage::set_remaining_quantity(std::uint32_t value
 std::uint64_t OrderExecutedAtPriceSizeMessage::execution_id() const { return execution_id_; }
 void OrderExecutedAtPriceSizeMessage::set_execution_id(std::uint64_t value) { execution_id_ = value; }
 
-Decimal OrderExecutedAtPriceSizeMessage::price_binary_long_price_8() const { return price_binary_long_price_8_; }
-void OrderExecutedAtPriceSizeMessage::set_price_binary_long_price_8(Decimal value) { price_binary_long_price_8_ = value; }
+Decimal OrderExecutedAtPriceSizeMessage::price_long() const { return price_long_; }
+void OrderExecutedAtPriceSizeMessage::set_price_long(Decimal value) { price_long_ = value; }
 
 MessageCode OrderExecutedAtPriceSizeMessage::type() const { return message_type; }
 
@@ -51,7 +51,7 @@ std::size_t OrderExecutedAtPriceSizeMessage::decode(const std::byte* data, std::
     execution_id_ = wire::read_u64_le(data + offset);
     offset += 8;
 
-    price_binary_long_price_8_ = Decimal(static_cast<std::int64_t>(wire::read_u64_le(data + offset)), -4);
+    price_long_ = Decimal(static_cast<std::int64_t>(wire::read_u64_le(data + offset)), -4);
     offset += 8;
 
     return offset;
@@ -76,7 +76,7 @@ std::size_t OrderExecutedAtPriceSizeMessage::encode(std::byte* data, std::size_t
     wire::write_u64_le(data + offset, static_cast<std::uint64_t>(execution_id_));
     offset += 8;
 
-    wire::write_u64_le(data + offset, static_cast<std::uint64_t>(price_binary_long_price_8_.mantissa()));
+    wire::write_u64_le(data + offset, static_cast<std::uint64_t>(price_long_.mantissa()));
     offset += 8;
 
     return offset;
@@ -106,8 +106,8 @@ void OrderExecutedAtPriceSizeMessage::print(std::ostream& out) const {
     out << remaining_quantity_;
     out << ", execution_id=";
     out << execution_id_;
-    out << ", price_binary_long_price_8=";
-    out << price_binary_long_price_8_;
+    out << ", price_long=";
+    out << price_long_;
     out << '}';
 }
 
@@ -122,7 +122,7 @@ bool OrderExecutedAtPriceSizeMessage::operator==(const OrderExecutedAtPriceSizeM
         && executed_quantity_ == other.executed_quantity_
         && remaining_quantity_ == other.remaining_quantity_
         && execution_id_ == other.execution_id_
-        && price_binary_long_price_8_ == other.price_binary_long_price_8_;
+        && price_long_ == other.price_long_;
 }
 
 bool OrderExecutedAtPriceSizeMessage::operator!=(const OrderExecutedAtPriceSizeMessage& other) const {

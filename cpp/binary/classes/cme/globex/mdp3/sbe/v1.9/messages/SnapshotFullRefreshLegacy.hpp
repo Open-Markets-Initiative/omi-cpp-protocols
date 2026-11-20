@@ -12,7 +12,7 @@
 #include "../common/Decimal.hpp"
 #include "../enums/MdSecurityTradingStatus.hpp"
 #include "../messages/MktdataPayload.hpp"
-#include "../structs/SnapshotFullRefreshGroups.hpp"
+#include "../structs/SnapshotFullRefreshLegacyGroups.hpp"
 
 namespace cme::globex::mdp3::sbe::v1_9 {
 
@@ -25,7 +25,7 @@ class SnapshotFullRefreshLegacy : public MktdataPayload {
     static constexpr MktdataPayloadCode message_type = TemplateId::SnapshotFullRefreshLegacy;
 
     SnapshotFullRefreshLegacy() = default;
-    SnapshotFullRefreshLegacy(std::uint32_t last_msg_seq_num_processed, std::uint32_t tot_num_reports, std::int32_t security_id, std::uint32_t rpt_seq, std::chrono::nanoseconds transact_time, std::chrono::nanoseconds last_update_time, std::optional<std::uint16_t> trade_date, std::optional<MdSecurityTradingStatus> md_security_trading_status, std::optional<Decimal> high_limit_price, std::optional<Decimal> low_limit_price, std::optional<Decimal> max_price_variation, const SnapshotFullRefreshGroups& snapshot_full_refresh_groups);
+    SnapshotFullRefreshLegacy(std::uint32_t last_msg_seq_num_processed, std::uint32_t tot_num_reports, std::int32_t security_id, std::uint32_t rpt_seq, std::chrono::nanoseconds transact_time, std::chrono::nanoseconds last_update_time, std::optional<std::uint16_t> trade_date, std::optional<MdSecurityTradingStatus> md_security_trading_status, std::optional<Decimal> high_limit_price, std::optional<Decimal> low_limit_price, std::optional<Decimal> max_price_variation, const SnapshotFullRefreshLegacyGroups& snapshot_full_refresh_legacy_groups);
 
     // Last Msg Seq Num Processed: Sequence number of the last Incremental feed packet
     // processed. This value is used to synchronize the snapshot loop with the real-time feed
@@ -73,10 +73,10 @@ class SnapshotFullRefreshLegacy : public MktdataPayload {
     std::optional<Decimal> max_price_variation() const;
     void set_max_price_variation(std::optional<Decimal> value);
 
-    // Snapshot Full Refresh Groups: NoMDEntries Block
-    const SnapshotFullRefreshGroups& snapshot_full_refresh_groups() const;
-    SnapshotFullRefreshGroups& snapshot_full_refresh_groups();
-    void set_snapshot_full_refresh_groups(const SnapshotFullRefreshGroups& value);
+    // Snapshot Full Refresh Legacy Groups: NoMDEntries Block
+    const SnapshotFullRefreshLegacyGroups& snapshot_full_refresh_legacy_groups() const;
+    SnapshotFullRefreshLegacyGroups& snapshot_full_refresh_legacy_groups();
+    void set_snapshot_full_refresh_legacy_groups(const SnapshotFullRefreshLegacyGroups& value);
 
     // MktdataPayload
     MktdataPayloadCode type() const override;
@@ -104,7 +104,7 @@ class SnapshotFullRefreshLegacy : public MktdataPayload {
     std::optional<Decimal> high_limit_price_{};
     std::optional<Decimal> low_limit_price_{};
     std::optional<Decimal> max_price_variation_{};
-    SnapshotFullRefreshGroups snapshot_full_refresh_groups_{};
+    SnapshotFullRefreshLegacyGroups snapshot_full_refresh_legacy_groups_{};
 };
 
 } // namespace cme::globex::mdp3::sbe::v1_9

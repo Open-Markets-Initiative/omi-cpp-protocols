@@ -1,6 +1,7 @@
 // Nyse.AmexOptions.DeepFeed.Xdp.v1.3.a: messages/SequenceNumberResetMessage.hpp
 #pragma once
 
+#include <array>
 #include <chrono>
 #include <cstddef>
 #include <cstdint>
@@ -21,10 +22,10 @@ class SequenceNumberResetMessage : public Message {
     // The code that selects this message
     static constexpr MessageCode message_type = MessageType::SequenceNumberResetMessage;
     // Bytes of this message on the wire
-    static constexpr std::size_t wire_size = 10;
+    static constexpr std::size_t wire_size = 12;
 
     SequenceNumberResetMessage() = default;
-    SequenceNumberResetMessage(std::chrono::seconds source_time, std::chrono::nanoseconds source_time_ns, std::uint8_t product_id, std::uint8_t channel_id);
+    SequenceNumberResetMessage(std::chrono::seconds source_time, std::chrono::nanoseconds source_time_ns, std::uint8_t product_id, std::uint8_t channel_id, const std::array<std::byte, 2>& reserved_2);
 
     // Source Time: The time when this msg was generated in the order book, in seconds since
     // Jan 1, 1970 00:00:00 UTC.
@@ -42,6 +43,11 @@ class SequenceNumberResetMessage : public Message {
     // Channel Id: Multicast channel ID of the symbols being provided.
     std::uint8_t channel_id() const;
     void set_channel_id(std::uint8_t value);
+
+    // Reserved 2: Filler
+    const std::array<std::byte, 2>& reserved_2() const;
+    std::array<std::byte, 2>& reserved_2();
+    void set_reserved_2(const std::array<std::byte, 2>& value);
 
     // Message
     MessageCode type() const override;
@@ -62,6 +68,7 @@ class SequenceNumberResetMessage : public Message {
     std::chrono::nanoseconds source_time_ns_{};
     std::uint8_t product_id_{};
     std::uint8_t channel_id_{};
+    std::array<std::byte, 2> reserved_2_{};
 };
 
 } // namespace nyse::amexoptions::deepfeed::xdp::v1_3_a

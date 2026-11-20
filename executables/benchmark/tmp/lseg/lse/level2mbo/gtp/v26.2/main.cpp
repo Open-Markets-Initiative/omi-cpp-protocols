@@ -299,6 +299,10 @@ struct Reader {
     void operator()(const protocol::instrument_directory_message& message) {
         if constexpr (requires { message.template get<protocol::timestamp>(); }) { checksum += bench::digest(message.template get<protocol::timestamp>().value()); }
         if constexpr (requires { message.template get<protocol::instrument>(); }) { checksum += bench::digest(message.template get<protocol::instrument>().value()); }
+        if constexpr (requires { message.template get<protocol::allowed_book_types>(); }) { checksum += bench::digest(message.template get<protocol::allowed_book_types>().template get<protocol::firm_quote_book>()); }
+        if constexpr (requires { message.template get<protocol::allowed_book_types>(); }) { checksum += bench::digest(message.template get<protocol::allowed_book_types>().template get<protocol::off_book>()); }
+        if constexpr (requires { message.template get<protocol::allowed_book_types>(); }) { checksum += bench::digest(message.template get<protocol::allowed_book_types>().template get<protocol::electronic_order_book>()); }
+        if constexpr (requires { message.template get<protocol::allowed_book_types>(); }) { checksum += bench::digest(message.template get<protocol::allowed_book_types>().template get<protocol::private_rfq>()); }
         if constexpr (requires { message.template get<protocol::source_venue>(); }) { checksum += bench::digest(message.template get<protocol::source_venue>().value()); }
         if constexpr (requires { message.template get<protocol::dynamic_circuit_breaker_tolerances>(); }) { checksum += bench::digest(message.template get<protocol::dynamic_circuit_breaker_tolerances>().value()); }
         if constexpr (requires { message.template get<protocol::static_circuit_breaker_tolerances>(); }) { checksum += bench::digest(message.template get<protocol::static_circuit_breaker_tolerances>().value()); }
@@ -346,6 +350,8 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::price>(); }) { checksum += bench::digest(message.template get<protocol::price>().value()); }
         if constexpr (requires { message.template get<protocol::trade_id>(); }) { checksum += bench::digest(message.template get<protocol::trade_id>().value()); }
         if constexpr (requires { message.template get<protocol::trade_type>(); }) { checksum += bench::digest(message.template get<protocol::trade_type>().value()); }
+        if constexpr (requires { message.template get<protocol::trade_flags>(); }) { checksum += bench::digest(message.template get<protocol::trade_flags>().template get<protocol::trade_cancellation>()); }
+        if constexpr (requires { message.template get<protocol::trade_flags>(); }) { checksum += bench::digest(message.template get<protocol::trade_flags>().template get<protocol::trade_correction>()); }
         if constexpr (requires { message.template get<protocol::hidden_execution_indicator>(); }) { checksum += bench::digest(message.template get<protocol::hidden_execution_indicator>().value()); }
     }
 

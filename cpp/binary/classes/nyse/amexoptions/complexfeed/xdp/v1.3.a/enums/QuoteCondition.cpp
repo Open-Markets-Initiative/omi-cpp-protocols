@@ -9,7 +9,6 @@ std::string_view to_string(QuoteCondition value) {
         case QuoteCondition::Rotation: return "Rotation";
         case QuoteCondition::TradingHalted: return "Trading Halted";
         case QuoteCondition::PreOpen: return "Pre Open";
-        case QuoteCondition::RotationLegalWidthQuotePending: return "Rotation Legal Width Quote Pending";
         default: return {};
     }
 }

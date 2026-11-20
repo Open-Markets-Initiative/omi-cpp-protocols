@@ -70,7 +70,7 @@ struct Reader {
         values[entry + ".payload.complextrademessage.tradeid"] = canonical::number(message.trade_id());
         values[entry + ".payload.complextrademessage.price"] = canonical::number(message.price());
         values[entry + ".payload.complextrademessage.volume4"] = canonical::number(message.volume_4());
-        values[entry + ".payload.complextrademessage.tradecond1"] = canonical::text(canonical::character(message.trade_cond_1()), '\0', false);
+        values[entry + ".payload.complextrademessage.tradecond1"] = canonical::text(canonical::character(message.trade_cond_1()), '\0', false, {std::string_view(" ", 1)});
         values[entry + ".payload.complextrademessage.tradecond2"] = canonical::text(canonical::character(message.trade_cond_2()), '\0', false);
     }
 
@@ -135,7 +135,7 @@ struct Reader {
         values[entry + ".payload.refreshcomplextrademessage.tradeid"] = canonical::number(message.trade_id());
         values[entry + ".payload.refreshcomplextrademessage.price"] = canonical::number(message.price());
         values[entry + ".payload.refreshcomplextrademessage.volume4"] = canonical::number(message.volume_4());
-        values[entry + ".payload.refreshcomplextrademessage.tradecond1"] = canonical::text(canonical::character(message.trade_cond_1()), '\0', false);
+        values[entry + ".payload.refreshcomplextrademessage.tradecond1"] = canonical::text(canonical::character(message.trade_cond_1()), '\0', false, {std::string_view(" ", 1)});
         values[entry + ".payload.refreshcomplextrademessage.tradecond2"] = canonical::text(canonical::character(message.trade_cond_2()), '\0', false);
     }
 

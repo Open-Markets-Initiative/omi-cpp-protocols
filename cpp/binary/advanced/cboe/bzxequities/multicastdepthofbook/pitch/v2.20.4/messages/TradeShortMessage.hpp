@@ -6,9 +6,9 @@
 #include "../types/TimeOffset.hpp"
 #include "../types/OrderId.hpp"
 #include "../types/SideIndicator.hpp"
-#include "../types/QuantityBinary2.hpp"
+#include "../types/QuantityShort.hpp"
 #include "../types/SymbolShort.hpp"
-#include "../types/PriceBinaryShortPrice2.hpp"
+#include "../types/PriceShort.hpp"
 #include "../types/ExecutionId.hpp"
 
 namespace cboe::bzxequities::multicastdepthofbook::pitch::v2_20_4 {
@@ -24,9 +24,9 @@ struct trade_short_message {
         pitch_multicastdepthofbook::time_offset time_offset;
         pitch_multicastdepthofbook::order_id order_id;
         pitch_multicastdepthofbook::side_indicator side_indicator;
-        pitch_multicastdepthofbook::quantity_binary_2 quantity_binary_2;
+        pitch_multicastdepthofbook::quantity_short quantity_short;
         pitch_multicastdepthofbook::symbol_short symbol_short;
-        pitch_multicastdepthofbook::price_binary_short_price_2 price_binary_short_price_2;
+        pitch_multicastdepthofbook::price_short price_short;
         pitch_multicastdepthofbook::execution_id execution_id;
     };
 
@@ -50,9 +50,9 @@ struct trade_short_message {
 static_assert(offsetof(trade_short_message::fields_type, time_offset) == 0, "unexpected offset of trade_short_message::fields_type::time_offset");
 static_assert(offsetof(trade_short_message::fields_type, order_id) == 4, "unexpected offset of trade_short_message::fields_type::order_id");
 static_assert(offsetof(trade_short_message::fields_type, side_indicator) == 12, "unexpected offset of trade_short_message::fields_type::side_indicator");
-static_assert(offsetof(trade_short_message::fields_type, quantity_binary_2) == 13, "unexpected offset of trade_short_message::fields_type::quantity_binary_2");
+static_assert(offsetof(trade_short_message::fields_type, quantity_short) == 13, "unexpected offset of trade_short_message::fields_type::quantity_short");
 static_assert(offsetof(trade_short_message::fields_type, symbol_short) == 15, "unexpected offset of trade_short_message::fields_type::symbol_short");
-static_assert(offsetof(trade_short_message::fields_type, price_binary_short_price_2) == 21, "unexpected offset of trade_short_message::fields_type::price_binary_short_price_2");
+static_assert(offsetof(trade_short_message::fields_type, price_short) == 21, "unexpected offset of trade_short_message::fields_type::price_short");
 static_assert(offsetof(trade_short_message::fields_type, execution_id) == 23, "unexpected offset of trade_short_message::fields_type::execution_id");
 static_assert(sizeof(trade_short_message::fields_type) == 31, "unexpected sizeof trade_short_message::fields_type");
 static_assert(sizeof(trade_short_message) == sizeof(pitch_multicastdepthofbook::message_header) + 31, "unexpected sizeof trade_short_message");

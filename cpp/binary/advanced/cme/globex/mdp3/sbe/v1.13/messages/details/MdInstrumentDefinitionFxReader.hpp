@@ -219,9 +219,9 @@ public:
         return entry->lot_type.get().value();
     }
 
-    std::uint64_t min_lot_size_u_int_64() const {
+    std::uint64_t fx_min_lot_size() const {
         auto* entry = reinterpret_cast<const md_instrument_definition_fx_fx_lot_type_rules_groups_entry*>(pos_);
-        return entry->min_lot_size_u_int_64.get().value();
+        return entry->fx_min_lot_size.get().value();
     }
 
     const std::byte* end_position() const { return pos_ + block_length_; }

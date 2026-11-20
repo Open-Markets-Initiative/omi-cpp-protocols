@@ -2,58 +2,131 @@
 #pragma once
 
 #include <cstddef>
+#include <cstdint>
 #include <memory>
 #include <ostream>
 #include <string_view>
+#include <vector>
 
 #include "messages/Message.hpp"
 #include "structs/CommonHeader.hpp"
+#include "structs/SbeHeader.hpp"
 
 namespace memx::memxequities::memoirdepthfeed::sbe::v1_3 {
 
 class Visitor;
 
-// A packet: the common header, and the one message they select. Decode reads a
-// whole packet; encode writes one back, deriving its length and code from the message held.
+// The frame around one message: the message length and sbe header and the message they select.
+// Decode and encode here cover the headers; the packet decodes and encodes the message.
+class Frame {
+  public:
+    Frame() = default;
+    explicit Frame(std::unique_ptr<Message> message);
+    Frame(const Frame& other);
+    Frame& operator=(const Frame& other);
+    Frame(Frame&& other) noexcept = default;
+    Frame& operator=(Frame&& other) noexcept = default;
+    ~Frame() = default;
+
+    // Message Length: Number of bytes in the following message
+    std::uint16_t message_length() const;
+    void set_message_length(std::uint16_t value);
+
+    // Sbe Header: Sbe Header
+    const SbeHeader& sbe_header() const;
+    SbeHeader& sbe_header();
+    void set_sbe_header(const SbeHeader& value);
+
+    // The message this frame carries, or null before one is set
+    const Message* message() const;
+    Message* message();
+    void set_message(std::unique_ptr<Message> message);
+    std::unique_ptr<Message> release();
+
+    // Bytes inside the frame's declared size after its message ends, which the model does not
+    // describe. They are kept as they came and written back, so the frame still encodes to the
+    // bytes it was read from.
+    const std::vector<std::byte>& trailer() const;
+    std::vector<std::byte>& trailer();
+
+    // The frame headers only
+    std::size_t decode(const std::byte* data, std::size_t length);
+    std::size_t encode(std::byte* data, std::size_t capacity) const;
+    std::size_t encoded_size() const;
+    void print(std::ostream& out) const;
+
+    // Same headers, the same trailer and, both present, the same message
+    bool operator==(const Frame& other) const;
+    bool operator!=(const Frame& other) const;
+
+  private:
+    std::uint16_t message_length_{};
+    SbeHeader sbe_header_{};
+    std::unique_ptr<Message> message_;
+    std::vector<std::byte> trailer_;
+};
+
+// A packet: the common header and message count, then either its messages, each in a frame, or one
+// of the actions the packet header can announce instead. Decode reads a whole datagram;
+// encode writes one back, deriving every count, length and code from the frames held.
 class Packet {
   public:
+    // What the packet holds: messages, or an action announced by its header
+    enum class Kind {
+        Messages,                // the packet holds messages
+        Heartbeat,               // Heartbeat
+        SessionShutdown,         // Session Shutdown
+    };
+
     Packet() = default;
-    explicit Packet(std::unique_ptr<Message> message);
-    Packet(const Packet& other);
-    Packet& operator=(const Packet& other);
-    Packet(Packet&& other) noexcept = default;
-    Packet& operator=(Packet&& other) noexcept = default;
-    ~Packet() = default;
 
     // Common Header: Common Header
     const CommonHeader& common_header() const;
     CommonHeader& common_header();
     void set_common_header(const CommonHeader& value);
 
-    // The message this packet carries, or null before one is set
-    const Message* message() const;
-    Message* message();
-    void set_message(std::unique_ptr<Message> message);
-    std::unique_ptr<Message> release();
+    // Message Count: Number of messages in this packet
+    std::uint16_t message_count() const;
+    void set_message_count(std::uint16_t value);
+
+    Kind kind() const;
+    void set_kind(Kind value);
+
+    // The frames, each holding one message
+    const std::vector<Frame>& frames() const;
+    std::vector<Frame>& frames();
+
+    // Bytes after the last frame that the model does not account for — a pad or a
+    // trailer the specification leaves out. They are kept as they came and written
+    // back, so a packet carrying one still encodes to the bytes it was read from.
+    const std::vector<std::byte>& trailer() const;
+    std::vector<std::byte>& trailer();
+    // Append a frame holding this message; the frame headers are derived on encode
+    void add(std::unique_ptr<Message> message);
 
     // Read a whole packet from the bytes at data, and return how many were consumed; throws DecodeError
     std::size_t decode(const std::byte* data, std::size_t length);
     // Write a whole packet to the bytes at data, and return how many were written; throws EncodeError
     std::size_t encode(std::byte* data, std::size_t capacity) const;
     std::size_t encoded_size() const;
-    // Hand the message to the visitor
+    // Hand every message, in order, to the visitor
     void accept(Visitor& visitor) const;
     void print(std::ostream& out) const;
 
-    // Same headers and, both present, the same message
     bool operator==(const Packet& other) const;
     bool operator!=(const Packet& other) const;
 
   private:
     CommonHeader common_header_{};
-    std::unique_ptr<Message> message_;
+    std::uint16_t message_count_{};
+    Kind kind_{ Kind::Messages };
+    std::vector<Frame> frames_;
+    std::vector<std::byte> trailer_;
 };
 
+std::string_view to_string(Packet::Kind kind);
+std::ostream& operator<<(std::ostream& out, Packet::Kind kind);
+std::ostream& operator<<(std::ostream& out, const Frame& frame);
 std::ostream& operator<<(std::ostream& out, const Packet& packet);
 
 } // namespace memx::memxequities::memoirdepthfeed::sbe::v1_3

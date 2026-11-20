@@ -13,7 +13,7 @@
 #include "../common/View.hpp"
 #include "../enums/MdSecurityTradingStatus.hpp"
 #include "../common/Decimal.hpp"
-#include "../structs/SnapshotFullRefreshGroups.hpp"
+#include "../structs/SnapshotFullRefreshLegacyGroups.hpp"
 
 namespace cme::globex::mdp3::sbe::v1_9 {
 
@@ -29,7 +29,7 @@ class ServerPayloadSnapshotFullRefreshLegacy {
 
     // the bytes every ServerPayloadSnapshotFullRefreshLegacy has, which a reader checks before it views them
     static constexpr std::size_t minimum_size = 59;
-    std::size_t encoded_size() const { return snapshot_full_refresh_groups_end(); }
+    std::size_t encoded_size() const { return snapshot_full_refresh_legacy_groups_end(); }
 
     std::uint32_t last_msg_seq_num_processed() const { return wire::read_u32_le(at(0)); }
 
@@ -53,7 +53,7 @@ class ServerPayloadSnapshotFullRefreshLegacy {
 
     std::optional<Decimal> max_price_variation() const { return wire::nullable_decimal(wire::read_i64_le(at(51)), static_cast<std::int64_t>(9223372036854775807LL), -7); }
 
-    SnapshotFullRefreshGroups snapshot_full_refresh_groups() const { return SnapshotFullRefreshGroups{ bytes_.subspan(59) }; }
+    SnapshotFullRefreshLegacyGroups snapshot_full_refresh_legacy_groups() const { return SnapshotFullRefreshLegacyGroups{ bytes_.subspan(59) }; }
 
     void print(std::ostream& out) const {
         out << "ServerPayloadSnapshotFullRefreshLegacy{";
@@ -79,14 +79,14 @@ class ServerPayloadSnapshotFullRefreshLegacy {
         print::optional(out, low_limit_price());
         out << ", max_price_variation=";
         print::optional(out, max_price_variation());
-        out << ", snapshot_full_refresh_groups=";
-        snapshot_full_refresh_groups().print(out);
+        out << ", snapshot_full_refresh_legacy_groups=";
+        snapshot_full_refresh_legacy_groups().print(out);
         out << '}';
     }
 
   private:
     const std::byte* at(std::size_t offset) const noexcept { return bytes_.data() + offset; }
-    std::size_t snapshot_full_refresh_groups_end() const { return 59 + snapshot_full_refresh_groups().encoded_size(); }
+    std::size_t snapshot_full_refresh_legacy_groups_end() const { return 59 + snapshot_full_refresh_legacy_groups().encoded_size(); }
 
     std::span<const std::byte> bytes_;
 };

@@ -3,6 +3,7 @@
 
 #include <cstddef>
 #include <cstdint>
+#include <cstdint>
 #include "../cache/Required.hpp"
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_3 {
@@ -10,35 +11,46 @@ namespace b3::b3derivatives::binaryentrypoint::sbe::v8_3 {
 // event_indicator
 struct event_indicator {
 
+    using type = uint8_t;
+
+    static constexpr type poss_resend = type{1} << 0;
+    static constexpr type low_priority = type{1} << 1;
+
     static constexpr const char* name = "event_indicator";
     static constexpr std::size_t size = 1;
     static constexpr bool is_optional = false;
 
-    using result_type = required<std::uint8_t>;
+    using result_type = required<uint8_t>;
     using storage_type = result_type;
 
     constexpr event_indicator()
      : value{ 0 } {}
 
-    constexpr event_indicator(std::uint8_t v)
-     : value{ v } {}
-
     [[nodiscard]] constexpr result_type get() const {
         return result_type{value};
     }
 
-    constexpr void set(std::uint8_t v) {
+    constexpr void set(uint8_t v) {
         value = v;
     }
 
-    constexpr void set(result_type value) {
-        if (value.has_value())
-            set(value.value());
+    constexpr void set(result_type v) {
+        if (v.has_value())
+            set(v.value());
         else
-            set(0);
+            set(type{0});
     }
 
+    [[nodiscard]] constexpr bool has(type bit) const { return (value & bit) != 0; }
+    constexpr void set(type bit, bool enabled) { if (enabled) value |= bit; else value &= static_cast<type>(~bit); }
+
+    [[nodiscard]] constexpr bool has_poss_resend() const { return has(poss_resend); }
+    [[nodiscard]] constexpr bool has_low_priority() const { return has(low_priority); }
+
+    constexpr void set_poss_resend(bool v) { set(poss_resend, v); }
+    constexpr void set_low_priority(bool v) { set(low_priority, v); }
+
   protected:
-    std::uint8_t value;
+    type value;
 };
 }

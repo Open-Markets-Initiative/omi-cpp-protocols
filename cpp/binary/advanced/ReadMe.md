@@ -16,6 +16,34 @@ Within a protocol:
 - `cache/` — support headers the generated code relies on
 - `TypesAll.hpp` — every type in one include
 
+## Generated
+
+| Parser | Protocol Count | Generated Lines |
+| --- | --- | --- |
+| Advanced | 101 | 793,068 |
+
+| Organization | Protocol Count | Generated Lines |
+| --- | --- | --- |
+| Asx | 1 | 8,027 |
+| B3 | 10 | 166,276 |
+| Bse | 1 | 5,662 |
+| Cboe | 10 | 48,224 |
+| CixAts | 1 | 2,854 |
+| Cme | 4 | 95,919 |
+| Databento | 3 | 33,425 |
+| Eurex | 4 | 35,301 |
+| Iex | 10 | 38,169 |
+| Jnx | 3 | 12,892 |
+| Jpx | 2 | 8,882 |
+| Lseg | 2 | 10,078 |
+| Memx | 1 | 3,124 |
+| Miax | 4 | 21,310 |
+| Nasdaq | 13 | 86,462 |
+| Nyse | 23 | 137,773 |
+| OtcMarkets | 1 | 6,529 |
+| Siac | 7 | 66,751 |
+| Tmx | 1 | 5,410 |
+
 ## Protocols (101)
 
 - `Asx.AsxDerivatives.Ntp.Itch.v1.05`

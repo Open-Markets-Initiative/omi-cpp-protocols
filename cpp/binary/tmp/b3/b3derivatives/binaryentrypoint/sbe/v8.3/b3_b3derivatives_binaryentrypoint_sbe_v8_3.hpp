@@ -944,18 +944,6 @@ struct event_id {
     type value_;
 };
 
-// Event Indicator: eventIndicator
-struct event_indicator {
-    using type = std::uint8_t;
-    static constexpr std::size_t size = 1;
-
-    constexpr type value() const noexcept { return value_; }
-    constexpr operator type() const noexcept { return value(); }
-
-  protected:
-    type value_;
-};
-
 // Exec Id: execID
 struct exec_id {
     using type = std::uint64_t;
@@ -1300,6 +1288,13 @@ struct long_qty_optional {
 
   protected:
     type value_;
+};
+
+// Low Priority: LowPriority
+struct low_priority {
+    using type = bool;
+    static constexpr std::uint64_t mask = 0x2ULL;
+    static constexpr int shift = 1;
 };
 
 // Major Number: majorNumber
@@ -2066,7 +2061,7 @@ struct ord_rej_reason {
         termo_message_rejected_invalid_price = 6009,
         termo_message_rejected_not_authorized_to_termo_quote_this_instrument = 6010,
         termo_message_rejected_pass = 6011,
-        fix_field_incorrect_2 = 6012,
+        fix_field_incorrect_006012 = 6012,
         not_a_valid_termo_instrument = 6013,
         values_dont_match_with_the_original_request = 6014,
         current_termo_request_status_does_not_allow_rejection = 6015,
@@ -2076,7 +2071,7 @@ struct ord_rej_reason {
         days_to_settlement_must_be_between_16_and_999 = 6019,
         days_to_settlement_must_be_between_16_and_90 = 6020,
         instrument_not_allowed_to_this_market = 6021,
-        instrument_not_allowed_to_this_market_2 = 6022,
+        instrument_not_allowed_to_this_market_006022 = 6022,
         termo_price_should_be_greater_than_zero = 6023,
         termo_messages_should_not_be_entered_when_market_is_paused = 6024,
         termo_messages_should_not_be_entered_when_market_is_pre_open = 6025,
@@ -2085,7 +2080,7 @@ struct ord_rej_reason {
         termo_messages_should_not_be_entered_when_market_is_reserved = 6028,
         termo_messages_should_not_be_entered_when_market_is_forbidden = 6029,
         termo_messages_should_not_be_entered_when_market_is_pre_close = 6030,
-        termo_messages_should_not_be_entered_when_market_is_pre_open_2 = 6031,
+        termo_messages_should_not_be_entered_when_market_is_pre_open_006031 = 6031,
         not_a_valid_termo_underlying_instrument = 6032,
         received_a_null_adminoperation = 6033,
         first_trade_of_day_for_underlying_termo_instrument = 6034,
@@ -2094,15 +2089,15 @@ struct ord_rej_reason {
         only_buy_entry_request_for_tvr_is_accepted = 6037,
         there_is_no_bid_and_ask_for_underlying_contract = 6038,
         invalid_price = 6039,
-        invalid_cash_trade_in_tvr_2 = 6040,
-        invalid_cash_trade_in_tvr_3 = 6041,
-        invalid_cash_trade_in_tvr_4 = 6042,
-        invalid_cash_trade_in_tvr_5 = 6043,
-        invalid_cash_trade_in_tvr_6 = 6044,
+        invalid_cash_trade_in_tvr_006040 = 6040,
+        invalid_cash_trade_in_tvr_006041 = 6041,
+        invalid_cash_trade_in_tvr_006042 = 6042,
+        invalid_cash_trade_in_tvr_006043 = 6043,
+        invalid_cash_trade_in_tvr_006044 = 6044,
         order_rejected = 7000,
         fok_order_unmatchable_in_market = 7001,
         orders_may_not_be_entered_while_the_market_is_closed = 7002,
-        order_contract_is_unknown_2 = 7005,
+        order_contract_is_unknown_007005 = 7005,
         no_partial_match_found_for_this_fak_order = 7006,
         maximum_quantity_depth_for_any_one_price_group_max_may_not_exceed_integermax_value = 7008,
         contract_for_this_order_contract_is_past_expiration_date_and_may_no_longer_be_traded = 7009,
@@ -2125,7 +2120,7 @@ struct ord_rej_reason {
         orders_may_not_be_entered_while_the_market_is_preclosed = 7031,
         quote_rejected_exchange_security_is_preclosed = 7032,
         orders_may_not_be_entered_while_the_market_is_open = 7033,
-        quote_rejected_exchange_security_is_forbidden_2 = 7034,
+        quote_rejected_exchange_security_is_forbidden_007034 = 7034,
         rfq_rejected_instrument_exchange_is_open = 7035,
         time_in_force_59_not_valid_for_order_type_40 = 7036,
         good_for_auction_order_not_allowed = 7037,
@@ -2282,30 +2277,30 @@ struct ord_rej_reason {
         mkta_document_buysell_symbols_market_not_configured = 30300,
         mkta_document_buy_not_allowed_for_symbols_market = 30301,
         mkta_document_sell_not_allowed_for_symbols_market = 30302,
-        tmox_document_max = 30303,
+        tmox_document_max_bidoffer_quantity_not_configured = 30303,
         tmoc_document_max_bid_quantity_exceeded_for_single_order = 30304,
         tmov_document_max_offer_quantity_exceeded_for_single_order = 30305,
         spci_document_order_quantity_exceeded_max_bid_potential_balance = 30306,
         spvi_document_order_quantity_exceeded_max_offer_potential_balance = 30307,
         sdp_document_order_exceeded_max_financial_potential_balance_due = 30308,
         std_document_order_quantity_exceeded_max_operations_forward_balance = 30309,
-        rmkt = 30310,
+        rmkt_document_order_quantity_exceeded_max_market_risk = 30310,
         irmkt_document_order_quantity_exceeded_max_incremental_market_risk = 30311,
         spi_document_order_quantity_exceeded_previous_potencial_balance = 30312,
-        std_document_termo_not_allowed = 30313,
+        std_document_termo_not_allowed_protected_mode_enabled = 30313,
         sfd_document_day_trade_cash_balance_stop_loss_not_configured = 30314,
         spvd_document_order_exceeded_potential_short_uncovered_balance = 30315,
         rmse_document_order_exceeded_risk_increase_at_extended_session = 30316,
         rmse_document_order_exceeded_risk_increase_of_broker_at_extended_session = 30317,
         mkta_entering_trader_buysell_symbols_market_not_configured = 30400,
         mkta_entering_trader_buy_not_allowed_for_symbols_market = 30401,
-        mkta_entering = 30402,
+        mkta_entering_trader_sell_not_allowed_for_symbols_market = 30402,
         tmox_entering_trader_max_bidoffer_quantity_not_configured = 30403,
         tmoc_entering_trader_max_bid_quantity_exceeded_for_single_order = 30404,
-        tmov_entering_trader_max_offer_quantity_exceeded_for_si = 30405,
+        tmov_entering_trader_max_offer_quantity_exceeded_for_single_order = 30405,
         spci_entering_trader_order_quantity_exceeded_max_bid_potential_balance = 30406,
         spvi_entering_trader_order_quantity_exceeded_max_offer_potential_balance = 30407,
-        sdp_entering_trader_order_exceeded_max_financial_potential = 30408,
+        sdp_entering_trader_order_exceeded_max_financial_potential_balance_due = 30408,
         spvd_trader_order_exceeded_potential_short_uncovered_balance = 30415,
         oms_unexpected_internal_error = 30500,
         oms_invalid_session_or_symbol = 30501,
@@ -2322,50 +2317,50 @@ struct ord_rej_reason {
         oms_quotereqid_is_duplicated = 30512,
         oms_quotereqid_not_found = 30513,
         oms_quoteid_cannot_be_empty = 30514,
-        oms_in = 30521,
-        oms = 30522,
+        oms_inflight_modification_is_not_allowed = 30521,
+        oms_side_modification_is_not_allowed = 30522,
         oms_entering_firm_modification_is_not_allowed = 30523,
         oms_account_modification_on_dma_order_is_not_allowed = 30524,
-        oms_account_information_missing_on_non = 30525,
-        oms_entering_trader = 30526,
+        oms_account_information_missing_on_nondma_order = 30525,
+        oms_entering_trader_modification_on_nondma_order_is_not_allowed = 30526,
         oms_received_execution_report_rejection_for_an_active_order = 30527,
-        broker_negotiation_blocked_2 = 31011,
-        broker_not_available_2 = 31012,
-        brokers_capture_account_not_found_2 = 31013,
-        brokers_segment_negotiation_blocked_2 = 31014,
-        broker_segment_not_available_2 = 31015,
-        brokers_segment_protected_mode_under_activation_2 = 31016,
-        account_negotiation_blocked_2 = 31021,
-        account_not_available_2 = 31022,
-        accounts_protected_mode_under_activation_2 = 31023,
-        account_mandatory_on_dma_orders_2 = 31024,
-        transient_account_is_hierarchically_blocked_on_protected_mode_2 = 31025,
-        crossorders_or_crossforward_not_allowed_while_account_in_protected_mode_2 = 31026,
-        transient_account_not_allowed_in_extended_hours_2 = 31027,
-        document_negotiation_blocked_2 = 31031,
-        document_not_available_2 = 31032,
-        documents_protected_mode_under_activation_2 = 31033,
-        executor_document_cannot_use_default_broker_profile_2 = 31034,
-        document_in_blocked_profile_2 = 31035,
-        crossorders_or_crossforward_not_allowed_while_document_in_protected_mode_2 = 31036,
-        entering_trader_negotiation_blocked_2 = 31041,
-        entering_trader_not_available_2 = 31042,
-        entering_trader_blocked_by_sfd_overflow_2 = 31043,
-        non_dma_orders_must_provide_account_while_in_brokers_protected_mode_2 = 31044,
-        entering_trader_not_authorized_to_trade_accountless_orders_2 = 31045,
-        entering_trader_cannot_trade_on_behalf_of_other_firms_account_2 = 31046,
-        symbol_not_available_2 = 31050,
-        symbol_internal_data_corrupted_2 = 31051,
-        fix_message_type_does_not_support_operations_on_such_symbol_2 = 31052,
-        symbols_underlying_not_found_for_risk_aggregation_2 = 31053,
-        symbols_risk_unit_matrix_not_available_2 = 31054,
-        symbols_reference_price_missing_market_orders_not_allowed_2 = 31055,
-        symbols_calculated_price_invalid_2 = 31056,
-        spreads_leg_not_available_2 = 31060,
-        spreads_leg_internal_data_corrupted_2 = 31061,
-        unexpected_internal_error_during_risk_evaluation_2 = 31070,
-        mkta_account_buy_not_allowed_for_symbols_market_2 = 31201,
-        mkta_account_sell_not_allowed_for_symbols_market_2 = 31202,
+        broker_negotiation_blocked_line_carrying = 31011,
+        broker_not_available_line_carrying = 31012,
+        brokers_capture_account_not_found_line_carrying = 31013,
+        brokers_segment_negotiation_blocked_line_carrying = 31014,
+        broker_segment_not_available_line_carrying = 31015,
+        brokers_segment_protected_mode_under_activation_line_carrying = 31016,
+        account_negotiation_blocked_line_carrying = 31021,
+        account_not_available_line_carrying = 31022,
+        accounts_protected_mode_under_activation_line_carrying = 31023,
+        account_mandatory_on_dma_orders_line_carrying = 31024,
+        transient_account_is_hierarchically_blocked_on_protected_mode_line_carrying = 31025,
+        crossorders_or_crossforward_not_allowed_while_account_in_protected_mode_line_carrying = 31026,
+        transient_account_not_allowed_in_extended_hours_line_carrying = 31027,
+        document_negotiation_blocked_line_carrying = 31031,
+        document_not_available_line_carrying = 31032,
+        documents_protected_mode_under_activation_line_carrying = 31033,
+        executor_document_cannot_use_default_broker_profile_line_carrying = 31034,
+        document_in_blocked_profile_line_carrying = 31035,
+        crossorders_or_crossforward_not_allowed_while_document_in_protected_mode_line_carrying = 31036,
+        entering_trader_negotiation_blocked_line_carrying = 31041,
+        entering_trader_not_available_line_carrying = 31042,
+        entering_trader_blocked_by_sfd_overflow_line_carrying = 31043,
+        non_dma_orders_must_provide_account_while_in_brokers_protected_mode_line_carrying = 31044,
+        entering_trader_not_authorized_to_trade_accountless_orders_line_carrying = 31045,
+        entering_trader_cannot_trade_on_behalf_of_other_firms_account_line_carrying = 31046,
+        symbol_not_available_line_carrying = 31050,
+        symbol_internal_data_corrupted_line_carrying = 31051,
+        fix_message_type_does_not_support_operations_on_such_symbol_line_carrying = 31052,
+        symbols_underlying_not_found_for_risk_aggregation_line_carrying = 31053,
+        symbols_risk_unit_matrix_not_available_line_carrying = 31054,
+        symbols_reference_price_missing_market_orders_not_allowed_line_carrying = 31055,
+        symbols_calculated_price_invalid_line_carrying = 31056,
+        spreads_leg_not_available_line_carrying = 31060,
+        spreads_leg_internal_data_corrupted_line_carrying = 31061,
+        unexpected_internal_error_during_risk_evaluation_line_carrying = 31070,
+        mkta_account_buy_not_allowed_for_symbols_market_line_carrying = 31201,
+        mkta_account_sell_not_allowed_for_symbols_market_line_carrying = 31202,
         tmoc_account_max_bid_quantity_exceeded_for_single_order = 31204,
         tmov_account_max_offer_quantity_exceeded_for_single_order = 31205,
         spci_account_order_quantity_exceeded_max_bid_potential_balance = 31206,
@@ -2374,11 +2369,11 @@ struct ord_rej_reason {
         rmkt_account_order_quantity_exceeded_max_market_risk = 31210,
         irmkt_account_order_quantity_exceeded_max_incremental_market_risk = 31211,
         spi_account_order_quantity_exceeded_previous_potencial_balance = 31212,
-        std_account_termo_not_allowed_protected_mode_enabled_2 = 31213,
-        spvd_account_order_exceeded_potential_short_uncovered_balance_2 = 31215,
-        mkta_document_buysell_symbols_market_not_configured_2 = 31300,
-        mkta_document_buy_not_allowed_for_symbols_market_2 = 31301,
-        mkta_document_sell_not_allowed_for_symbols_market_2 = 31302,
+        std_account_termo_not_allowed_protected_mode_enabled_line_carrying = 31213,
+        spvd_account_order_exceeded_potential_short_uncovered_balance_line_carrying = 31215,
+        mkta_document_buysell_symbols_market_not_configured_line_carrying = 31300,
+        mkta_document_buy_not_allowed_for_symbols_market_line_carrying = 31301,
+        mkta_document_sell_not_allowed_for_symbols_market_line_carrying = 31302,
         tmox_document_maximum_order_size_not_configured = 31303,
         tmoc_document_maximum_order_size_exceeded_for_single_order = 31304,
         tmov_document_maximum_order_size_exceeded_for_single_order = 31305,
@@ -2389,42 +2384,42 @@ struct ord_rej_reason {
         rmkt_document_order_quantity_exceeded_risk_increase = 31310,
         irmkt_document_order_quantity_exceeded_risk_increase_reducing_mode = 31311,
         spi_document_order_quantity_exceeded_long_and_short_position_reducing_mode = 31312,
-        std_document_termo_not_allowed_protected_mode_enabled = 31313,
-        sfd_document_day_trade_cash_balance_stop_loss_not_configured_2 = 31314,
+        std_document_termo_not_allowed_protected_mode_enabled_line_carrying = 31313,
+        sfd_document_day_trade_cash_balance_stop_loss_not_configured_line_carrying = 31314,
         spvd_document_order_exceeded_potential_short_uncovered_balance_2 = 31315,
-        rmse_document_order_exceeded_risk_increase_at_extended_session_2 = 31316,
-        rmse_document_order_exceeded_risk_increase_of_broker_at_extended_session_2 = 31317,
-        mkta_entering_trader_buysell_symbols_market_not_configured_2 = 31400,
-        mkta_entering_trader_buy_not_allowed_for_symbols_market_2 = 31401,
-        mkta_entering_trader_sell_not_allowed_for_symbols_market = 31402,
+        rmse_document_order_exceeded_risk_increase_at_extended_session_line_carrying = 31316,
+        rmse_document_order_exceeded_risk_increase_of_broker_at_extended_session_line_carrying = 31317,
+        mkta_entering_trader_buysell_symbols_market_not_configured_line_carrying = 31400,
+        mkta_entering_trader_buy_not_allowed_for_symbols_market_line_carrying = 31401,
+        mkta_entering_trader_sell_not_allowed_for_symbols_market_line_carrying = 31402,
         tmox_entering_trader_maximum_order_size_not_configured = 31403,
         tmoc_entering_trader_maximum_order_size_exceeded_for_single_order = 31404,
         tmov_entering_trader_maximum_order_size_exceeded_for_single_order = 31405,
         spci_entering_trader_order_quantity_exceeded_short_position_per_instrument = 31406,
         spvi_entering_trader_order_quantity_exceeded_long_position_per_instrument = 31407,
         sdp_entering_trader_order_exceeded_cash_settlement_exposure = 31408,
-        oms_unexpected_internal_error_2 = 31500,
-        oms_invalid_session_or_symbol_2 = 31501,
-        oms_clordid_cannot_be_empty_2 = 31502,
-        oms_clordid_is_duplicated_2 = 31503,
-        oms_clordid_not_found_2 = 31504,
-        oms_origclordid_cannot_be_empty_2 = 31505,
-        oms_crossid_cannot_be_empty_2 = 31506,
-        oms_clordid_is_duplicated_within_cross_order_2 = 31507,
-        oms_cross_order_modification_is_not_allowed_2 = 31508,
-        oms_orderid_not_found_2 = 31509,
-        oms_orderid_cannot_be_empty_2 = 31510,
-        oms_quotereqid_cannot_be_empty_2 = 31511,
-        oms_quotereqid_is_duplicated_2 = 31512,
-        oms_quotereqid_not_found_2 = 31513,
-        oms_quoteid_cannot_be_empty_2 = 31514,
-        oms_inflight_modification_is_not_allowed = 31521,
-        oms_side_modification_is_not_allowed = 31522,
-        oms_entering_firm_modification_is_not_allowed_2 = 31523,
-        oms_account_modification_on_dma_order_is_not_allowed_2 = 31524,
-        oms_account_information_missing_on_nondma_order = 31525,
-        oms_entering_trader_modification_on_nondma_order_is_not_allowed = 31526,
-        oms_received_execution_report_rejection_for_an_active_order_2 = 31527,
+        oms_unexpected_internal_error_line_carrying = 31500,
+        oms_invalid_session_or_symbol_line_carrying = 31501,
+        oms_clordid_cannot_be_empty_line_carrying = 31502,
+        oms_clordid_is_duplicated_line_carrying = 31503,
+        oms_clordid_not_found_line_carrying = 31504,
+        oms_origclordid_cannot_be_empty_line_carrying = 31505,
+        oms_crossid_cannot_be_empty_line_carrying = 31506,
+        oms_clordid_is_duplicated_within_cross_order_line_carrying = 31507,
+        oms_cross_order_modification_is_not_allowed_line_carrying = 31508,
+        oms_orderid_not_found_line_carrying = 31509,
+        oms_orderid_cannot_be_empty_line_carrying = 31510,
+        oms_quotereqid_cannot_be_empty_line_carrying = 31511,
+        oms_quotereqid_is_duplicated_line_carrying = 31512,
+        oms_quotereqid_not_found_line_carrying = 31513,
+        oms_quoteid_cannot_be_empty_line_carrying = 31514,
+        oms_inflight_modification_is_not_allowed_line_carrying = 31521,
+        oms_side_modification_is_not_allowed_line_carrying = 31522,
+        oms_entering_firm_modification_is_not_allowed_line_carrying = 31523,
+        oms_account_modification_on_dma_order_is_not_allowed_line_carrying = 31524,
+        oms_account_information_missing_on_nondma_order_line_carrying = 31525,
+        oms_entering_trader_modification_on_nondma_order_is_not_allowed_line_carrying = 31526,
+        oms_received_execution_report_rejection_for_an_active_order_line_carrying = 31527,
         field_missing_or_incorrect = 32000,
         line_not_available_or_busy = 32001,
         line_internal_error = 32002,
@@ -2443,17 +2438,17 @@ struct ord_rej_reason {
         same_participants_on_both_sides_or_invalid_sides = 32015,
         buy_side_and_sell_side_having_different_firmids = 32016,
         buy_side_and_sell_side_trading_different_assets = 32017,
-        invalid_price_2 = 32018,
+        invalid_price_032018 = 32018,
         line_overloaded = 32019,
         line_administratively_blocked = 32020,
-        invalid_price_3 = 32021,
+        invalid_price_032021 = 32021,
         system_overloaded = 32022,
         system_error = 32023,
         throttle_limit_reached = 33000,
         invalid_security_id = 33001,
         unknown_market_segment_id = 33002,
-        field_missing_or_incorrect_2 = 33003,
-        system_error_2 = 33050,
+        field_missing_or_incorrect_binary_gateway = 33003,
+        system_error_binary_gateway = 33050,
     };
 
     static constexpr std::size_t size = 4;
@@ -2825,6 +2820,13 @@ struct pos_type {
     std::underlying_type_t<type> value_;
 };
 
+// Poss Resend: PossResend
+struct poss_resend {
+    using type = bool;
+    static constexpr std::uint64_t mask = 0x1ULL;
+    static constexpr int shift = 0;
+};
+
 // Prefix
 struct prefix {
     using type = std::uint16_t;
@@ -3173,6 +3175,13 @@ struct request_timestamp {
 
   protected:
     type value_;
+};
+
+// Reserved 3 To 8: 6 reserved bits
+struct reserved_3_to_8 {
+    using type = std::uint8_t;
+    static constexpr std::uint64_t mask = 0xFCULL;
+    static constexpr int shift = 2;
 };
 
 // Retransmit Reject Code: retransmitRejectCode
@@ -4046,6 +4055,24 @@ struct investor_id {
 };
 
 static_assert(sizeof(investor_id) == investor_id::size, "investor_id lies over its bytes exactly");
+
+// Event Indicator: EventIndicator bit set
+struct event_indicator {
+    static constexpr std::string_view name = "Event Indicator";
+    using type = std::uint8_t;
+    static constexpr std::size_t size = 1;
+
+    // the bits of the type asked for
+    template <typename Bit>
+    constexpr typename Bit::type get() const noexcept { return static_cast<typename Bit::type>((value() & Bit::mask) >> Bit::shift); }
+
+    constexpr type value() const noexcept { return value_; }
+
+  protected:
+    type value_;
+};
+
+static_assert(sizeof(event_indicator) == event_indicator::size, "event_indicator lies over its bytes exactly");
 
 // Outbound Business Header: OutboundBusinessHeader
 struct outbound_business_header {

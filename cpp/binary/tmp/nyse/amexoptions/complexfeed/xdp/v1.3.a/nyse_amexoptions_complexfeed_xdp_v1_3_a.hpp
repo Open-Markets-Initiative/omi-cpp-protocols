@@ -424,7 +424,6 @@ struct quote_condition {
         rotation = '2',
         trading_halted = '3',
         pre_open = '4',
-        rotation_legal_width_quote_pending = '5',
     };
 
     static constexpr std::size_t size = 1;
@@ -478,13 +477,9 @@ struct seconds {
 // Security Status: SecurityStatus value
 struct security_status {
     enum class type : char {
-        light_up_a_dark_series = 'L',
-        open_a_dark_series = 'N',
         open = 'O',
         close = 'X',
         halt = 'S',
-        unhalt = 'U',
-        unhalt_a_dark_series = 'T',
         end_of_rfq_auction = 'Q',
     };
 
@@ -624,7 +619,7 @@ struct trade_cond_1 {
         regular_trade = ' ',
         late_report = 'I',
         floor_trade = 'R',
-        so_sweep_trade = 'S',
+        iso_sweep_trade = 'S',
     };
 
     static constexpr std::size_t size = 1;
@@ -698,7 +693,7 @@ struct volume_4 {
 // Sequence Number Reset Message: This message is sent to reset the Message Sequence Number at start of day, or in response to failures.
 struct sequence_number_reset_message {
     static constexpr std::string_view name = "Sequence Number Reset Message";
-    static constexpr std::size_t size = 10;
+    static constexpr std::size_t size = 12;
     static constexpr bool is_message = true;
 
     // the types of its members, in wire order
@@ -706,7 +701,8 @@ struct sequence_number_reset_message {
         source_time,
         source_time_ns,
         product_id,
-        channel_id>;
+        channel_id,
+        reserved_2>;
 
     // the member of the type asked for
     template <typename Field>
@@ -717,6 +713,7 @@ struct sequence_number_reset_message {
     XDPFIELD(source_time_ns);
     XDPFIELD(product_id);
     XDPFIELD(channel_id);
+    XDPFIELD(reserved_2);
 };
 
 static_assert(sizeof(sequence_number_reset_message) == sequence_number_reset_message::size, "sequence_number_reset_message lies over its bytes exactly");

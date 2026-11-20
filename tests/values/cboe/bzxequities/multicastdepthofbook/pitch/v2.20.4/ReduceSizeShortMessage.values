@@ -14,4 +14,4 @@ packet.messages.message[1].messageheader.messagetype = 38
 packet.messages.message[1].payload = packet.messages.message.payload.reducesizeshortmessage
 packet.messages.message[1].payload.reducesizeshortmessage.timeoffset = 95582000
 packet.messages.message[1].payload.reducesizeshortmessage.orderid = 245620911467925523
-packet.messages.message[1].payload.reducesizeshortmessage.canceledquantitybinary2 = 100
+packet.messages.message[1].payload.reducesizeshortmessage.canceledquantityshort = 100

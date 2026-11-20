@@ -63,7 +63,7 @@
 #include "../types/MarketDepth.hpp"
 #include "../types/InstAttribValue.hpp"
 #include "../types/LotType.hpp"
-#include "../types/MinLotSizeDecimalQty.hpp"
+#include "../types/MinLotSize.hpp"
 
 namespace cme::mdp3::v13 {
 
@@ -92,7 +92,7 @@ struct md_instrument_definition_fixed_income_inst_attrib_groups_entry {
 #pragma pack(push, 1)
 struct md_instrument_definition_fixed_income_lot_type_rules_groups_entry {
     sbe_mdp3::lot_type lot_type;
-    sbe_mdp3::min_lot_size_decimal_qty min_lot_size_decimal_qty;
+    sbe_mdp3::min_lot_size min_lot_size;
 };
 #pragma pack(pop)
 

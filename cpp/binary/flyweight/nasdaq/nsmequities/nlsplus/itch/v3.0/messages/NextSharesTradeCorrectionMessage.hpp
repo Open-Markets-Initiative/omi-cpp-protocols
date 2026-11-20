@@ -43,7 +43,7 @@ class NextSharesTradeCorrectionMessage {
 
     Decimal original_proxy_price() const { return Decimal(static_cast<std::int64_t>(wire::read_u32_be(at(20))), -4); }
 
-    Decimal original_nav_offset_amount() const { return Decimal(static_cast<std::int64_t>(wire::read_u32_be(at(24))), -4); }
+    Decimal original_nav_offset_amount() const { return Decimal(static_cast<std::int64_t>(wire::read_i32_be(at(24))), -4); }
 
     std::uint32_t original_trade_size() const { return wire::read_u32_be(at(28)); }
 
@@ -53,7 +53,7 @@ class NextSharesTradeCorrectionMessage {
 
     Decimal corrected_proxy_price() const { return Decimal(static_cast<std::int64_t>(wire::read_u32_be(at(46))), -4); }
 
-    Decimal corrected_nav_offset_amount() const { return Decimal(static_cast<std::int64_t>(wire::read_u32_be(at(50))), -4); }
+    Decimal corrected_nav_offset_amount() const { return Decimal(static_cast<std::int64_t>(wire::read_i32_be(at(50))), -4); }
 
     std::uint32_t corrected_trade_size() const { return wire::read_u32_be(at(54)); }
 

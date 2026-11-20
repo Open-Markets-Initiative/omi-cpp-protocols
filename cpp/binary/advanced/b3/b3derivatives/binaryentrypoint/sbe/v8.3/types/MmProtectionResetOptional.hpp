@@ -50,9 +50,10 @@ struct mm_protection_reset_optional {
 
     static constexpr const char* name = "mm_protection_reset_optional";
     static constexpr std::size_t size = 1;
-    static constexpr bool is_optional = false;
+    static constexpr bool is_optional = true;
+    static constexpr enum_type null_value = static_cast<enum_type>(255);
 
-    using result_type = required<mm_protection_reset_optional::enum_type>;
+    using result_type = std::optional<mm_protection_reset_optional::enum_type>;
     using storage_type = result_type;
 
     constexpr mm_protection_reset_optional()
@@ -62,7 +63,8 @@ struct mm_protection_reset_optional {
      : value{ v } {}
 
     [[nodiscard]] constexpr result_type get() const {
-        return result_type{value};
+        const enum_type held = value;
+        return held == null_value ? std::nullopt : result_type{held};
     }
 
     constexpr void set(enum_type v) {
@@ -73,7 +75,11 @@ struct mm_protection_reset_optional {
         if (value.has_value())
             set(value.value());
         else
-            set(static_cast<enum_type>(255));
+            set(null_value);
+    }
+
+    constexpr void set_null() {
+        set(null_value);
     }
 
   protected:

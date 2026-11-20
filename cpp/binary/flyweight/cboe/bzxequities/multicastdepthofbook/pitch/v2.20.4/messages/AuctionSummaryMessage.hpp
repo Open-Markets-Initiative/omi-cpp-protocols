@@ -12,6 +12,7 @@
 #include "../common/Print.hpp"
 #include "../common/View.hpp"
 #include "../enums/AuctionType.hpp"
+#include "../common/Decimal.hpp"
 
 namespace cboe::bzxequities::multicastdepthofbook::pitch::v2_20_4 {
 
@@ -36,7 +37,7 @@ class AuctionSummaryMessage {
 
     AuctionType auction_type() const { return static_cast<AuctionType>(wire::read_char(at(12))); }
 
-    std::uint64_t price_binary_8() const { return wire::read_u64_le(at(13)); }
+    Decimal price_long() const { return Decimal(static_cast<std::int64_t>(wire::read_u64_le(at(13))), -4); }
 
     std::uint32_t shares() const { return wire::read_u32_le(at(21)); }
 
@@ -48,8 +49,8 @@ class AuctionSummaryMessage {
         print::text(out, stock_symbol());
         out << ", auction_type=";
         out << auction_type();
-        out << ", price_binary_8=";
-        out << price_binary_8();
+        out << ", price_long=";
+        out << price_long();
         out << ", shares=";
         out << shares();
         out << '}';

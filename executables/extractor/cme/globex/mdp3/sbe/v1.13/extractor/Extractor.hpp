@@ -203,9 +203,9 @@ inline int sample(const fs::path& in_path, const fs::path& out_dir) {
         smallest[id] = std::move(sample);
     };
 
-    // The Udp Packet tree: MessageIterator walks each datagram's messages.
-    auto walk_message = [&](const packet::Frame& frame) {
-        cme::mdp3::v13::MessageIterator messages;
+    // The Udp Packet tree: Mdp3MessageIterator walks each datagram's messages.
+    auto walk_mdp3_message = [&](const packet::Frame& frame) {
+        cme::mdp3::v13::Mdp3MessageIterator messages;
         messages.initialize(frame.payload, frame.payload_len);
 
         std::size_t count = 0;
@@ -374,7 +374,7 @@ inline int sample(const fs::path& in_path, const fs::path& out_dir) {
         if (!frame.valid()) { continue; }
 
         if (frame.is_udp()) {
-            walk_message(frame);
+            walk_mdp3_message(frame);
         }
 
         if (frame.is_tcp()) {

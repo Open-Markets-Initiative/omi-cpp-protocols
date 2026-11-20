@@ -104,7 +104,7 @@ std::unique_ptr<protocol::Message> build_FuturesInstrumentDefinitionMessage() {
     auto message = std::make_unique<protocol::FuturesInstrumentDefinitionMessage>();
     message->set_time_offset(std::chrono::nanoseconds{1});
     message->set_symbol(std::string("CDE"));
-    message->set_unit_timestamp(static_cast<std::uint32_t>(3));
+    message->set_unit_timestamp(std::chrono::seconds{3});
     message->set_report_symbol(std::string("EFG"));
     message->set_futures_flags([] { protocol::FuturesFlags value; value.set_variance(true); return value; }());
     message->set_expiration_date(static_cast<std::uint32_t>(6));
@@ -121,7 +121,7 @@ std::unique_ptr<protocol::Message> build_FuturesInstrumentDefinitionMessage() {
 std::unique_ptr<protocol::Message> build_FuturesVarianceSymbolMappingMessage() {
     auto message = std::make_unique<protocol::FuturesVarianceSymbolMappingMessage>();
     message->set_time_offset(std::chrono::nanoseconds{1});
-    message->set_unit_timestamp(static_cast<std::uint32_t>(2));
+    message->set_unit_timestamp(std::chrono::seconds{2});
     message->set_feed_symbol(std::string("DEF"));
     message->set_futures_symbol(std::string("EFG"));
     message->set_accrued_day_variance(protocol::Decimal(5, -12));
@@ -413,7 +413,7 @@ int check_FuturesInstrumentDefinitionMessage(const protocol::Message* read) {
         std::printf("FAIL FuturesInstrumentDefinitionMessage: symbol does not read as it was written\n");
         ++failures;
     }
-    if (!(message->unit_timestamp() == static_cast<std::uint32_t>(3))) {
+    if (!(message->unit_timestamp() == std::chrono::seconds{3})) {
         std::printf("FAIL FuturesInstrumentDefinitionMessage: unit_timestamp does not read as it was written\n");
         ++failures;
     }
@@ -470,7 +470,7 @@ int check_FuturesVarianceSymbolMappingMessage(const protocol::Message* read) {
         std::printf("FAIL FuturesVarianceSymbolMappingMessage: time_offset does not read as it was written\n");
         ++failures;
     }
-    if (!(message->unit_timestamp() == static_cast<std::uint32_t>(2))) {
+    if (!(message->unit_timestamp() == std::chrono::seconds{2})) {
         std::printf("FAIL FuturesVarianceSymbolMappingMessage: unit_timestamp does not read as it was written\n");
         ++failures;
     }

@@ -82,7 +82,7 @@ struct Reader {
         values[entry + ".messageheader.messagelength"] = canonical::number(message.header.message_length.get().value());
         values[entry + ".messageheader.messagetype"] = canonical::text(canonical::character(message.header.message_type.get().value()));
         values[entry + ".messagedata"] = "packet.messages.message.messagedata.retailliquidityindicatormessage";
-        values[entry + ".messagedata.retailliquidityindicatormessage.retailliquidityindicator"] = canonical::text(canonical::character(message.fields.retail_liquidity_indicator.get().value()));
+        values[entry + ".messagedata.retailliquidityindicatormessage.retailliquidityindicator"] = canonical::text(canonical::character(message.fields.retail_liquidity_indicator.get().value()), {std::string_view(" ", 1)});
         values[entry + ".messagedata.retailliquidityindicatormessage.timestamp"] = canonical::number(message.fields.timestamp.get().value());
         values[entry + ".messagedata.retailliquidityindicatormessage.symbol"] = canonical::text(std::string(message.fields.symbol.get().value()), ' ', false);
     }
@@ -105,7 +105,7 @@ struct Reader {
         values[entry + ".messagedata.shortsalepriceteststatusmessage.shortsalepriceteststatus"] = canonical::number(message.fields.short_sale_price_test_status.get().value());
         values[entry + ".messagedata.shortsalepriceteststatusmessage.timestamp"] = canonical::number(message.fields.timestamp.get().value());
         values[entry + ".messagedata.shortsalepriceteststatusmessage.symbol"] = canonical::text(std::string(message.fields.symbol.get().value()), ' ', false);
-        values[entry + ".messagedata.shortsalepriceteststatusmessage.detail"] = canonical::text(canonical::character(message.fields.detail.get().value()));
+        values[entry + ".messagedata.shortsalepriceteststatusmessage.detail"] = canonical::text(canonical::character(message.fields.detail.get().value()), {std::string_view(" ", 1)});
     }
 
     void on_message(const protocol::quote_update_message& message, std::uint64_t, const protocol::iextp_header&) {

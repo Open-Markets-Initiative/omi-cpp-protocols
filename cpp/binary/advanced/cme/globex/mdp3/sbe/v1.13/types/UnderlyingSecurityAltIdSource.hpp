@@ -50,9 +50,10 @@ struct underlying_security_alt_id_source {
 
     static constexpr const char* name = "underlying_security_alt_id_source";
     static constexpr std::size_t size = 1;
-    static constexpr bool is_optional = false;
+    static constexpr bool is_optional = true;
+    static constexpr enum_type null_value = static_cast<enum_type>(255);
 
-    using result_type = required<underlying_security_alt_id_source::enum_type>;
+    using result_type = std::optional<underlying_security_alt_id_source::enum_type>;
     using storage_type = result_type;
 
     constexpr underlying_security_alt_id_source()
@@ -62,7 +63,8 @@ struct underlying_security_alt_id_source {
      : value{ v } {}
 
     [[nodiscard]] constexpr result_type get() const {
-        return result_type{value};
+        const enum_type held = value;
+        return held == null_value ? std::nullopt : result_type{held};
     }
 
     constexpr void set(enum_type v) {
@@ -73,7 +75,11 @@ struct underlying_security_alt_id_source {
         if (value.has_value())
             set(value.value());
         else
-            set(static_cast<enum_type>(255));
+            set(null_value);
+    }
+
+    constexpr void set_null() {
+        set(null_value);
     }
 
   protected:

@@ -20,7 +20,6 @@ struct SettlPriceType {
         static const type Actual = 0x02;
         static const type Rounded = 0x04;
         static const type Intraday = 0x08;
-        static const type ReservedBits = 0x10;
         static const type NullValue = 0x80;
     };
 
@@ -46,11 +45,6 @@ struct SettlPriceType {
     // Intraday
     [[nodiscard]] constexpr bool Intraday() const {
         return value & mask::Intraday;
-    }
-
-    // ReservedBits
-    [[nodiscard]] constexpr bool ReservedBits() const {
-        return value & mask::ReservedBits;
     }
 
     // NullValue

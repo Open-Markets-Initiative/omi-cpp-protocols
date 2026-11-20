@@ -30,7 +30,7 @@ class TradeReport : public Message {
     TradeReport() = default;
     TradeReport(std::optional<std::int64_t> security_id, std::optional<std::chrono::nanoseconds> transact_time, std::optional<std::uint32_t> trd_match_id, std::optional<std::int32_t> last_qty, std::optional<Decimal> last_px, std::optional<MatchType> match_type, std::optional<MatchSubType> match_sub_type, const std::array<std::byte, 6>& pad6);
 
-    // Security Id:
+    // Security Id: Unique instrument identifier
     std::optional<std::int64_t> security_id() const;
     void set_security_id(std::optional<std::int64_t> value);
 
@@ -42,7 +42,7 @@ class TradeReport : public Message {
     std::optional<std::uint32_t> trd_match_id() const;
     void set_trd_match_id(std::optional<std::uint32_t> value);
 
-    // Last Qty:
+    // Last Qty: Total executed matched quantity of this match event
     std::optional<std::int32_t> last_qty() const;
     void set_last_qty(std::optional<std::int32_t> value);
 

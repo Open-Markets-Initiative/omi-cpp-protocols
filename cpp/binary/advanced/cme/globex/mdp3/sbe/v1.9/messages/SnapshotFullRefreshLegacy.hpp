@@ -15,7 +15,7 @@
 #include "../types/HighLimitPrice.hpp"
 #include "../types/LowLimitPrice.hpp"
 #include "../types/MaxPriceVariation.hpp"
-#include "../types/MdEntryPxOptionalEx.hpp"
+#include "../types/MdEntryPxOptional.hpp"
 #include "../types/MdEntrySizeShortOptional.hpp"
 #include "../types/NumberOfOrdersOptional.hpp"
 #include "../types/MdPriceLevelOptional.hpp"
@@ -30,8 +30,8 @@ namespace cme::mdp3::v9 {
 namespace sbe_mdp3 = ::cme::mdp3::v9;
 
 #pragma pack(push, 1)
-struct snapshot_full_refresh_legacy_snapshot_full_refresh_groups_entry {
-    sbe_mdp3::md_entry_px_optional_ex md_entry_px_optional_ex;
+struct snapshot_full_refresh_legacy_groups_entry {
+    sbe_mdp3::md_entry_px_optional md_entry_px_optional;
     sbe_mdp3::md_entry_size_short_optional md_entry_size_short_optional;
     sbe_mdp3::number_of_orders_optional number_of_orders_optional;
     sbe_mdp3::md_price_level_optional md_price_level_optional;
@@ -80,7 +80,7 @@ struct snapshot_full_refresh_legacy {
     }
 
     // sequential access to variable-length regions
-    sbe_group_iterator<snapshot_full_refresh_legacy_snapshot_full_refresh_groups_entry, group_size> snapshot_full_refresh_groups() const {
+    sbe_group_iterator<snapshot_full_refresh_legacy_groups_entry, group_size> snapshot_full_refresh_legacy_groups() const {
         return { tail_begin(), tail_end() };
     }
 

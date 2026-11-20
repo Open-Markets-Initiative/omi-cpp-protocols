@@ -36,8 +36,6 @@ class SettlPriceType {
 
     bool intraday() const { return (raw() & static_cast<std::uint8_t>(0x8)) != 0; }
 
-    bool reserved_bits() const { return (raw() & static_cast<std::uint8_t>(0x10)) != 0; }
-
     bool null_value() const { return (raw() & static_cast<std::uint8_t>(0x80)) != 0; }
 
     void print(std::ostream& out) const {
@@ -50,8 +48,6 @@ class SettlPriceType {
         out << (rounded() ? "true" : "false");
         out << ", intraday=";
         out << (intraday() ? "true" : "false");
-        out << ", reserved_bits=";
-        out << (reserved_bits() ? "true" : "false");
         out << ", null_value=";
         out << (null_value() ? "true" : "false");
         out << '}';

@@ -37,11 +37,11 @@ class TradeShortMessage {
 
     SideIndicator side_indicator() const { return static_cast<SideIndicator>(wire::read_char(at(12))); }
 
-    std::uint16_t quantity_binary_2() const { return wire::read_u16_le(at(13)); }
+    std::uint16_t quantity_short() const { return wire::read_u16_le(at(13)); }
 
     std::string_view symbol_short() const { return view::text(at(15), 6, ' '); }
 
-    Decimal price_binary_short_price_2() const { return Decimal(static_cast<std::int64_t>(wire::read_u16_le(at(21))), -2); }
+    Decimal price_short() const { return Decimal(static_cast<std::int64_t>(wire::read_u16_le(at(21))), -2); }
 
     std::uint64_t execution_id() const { return wire::read_u64_le(at(23)); }
 
@@ -53,12 +53,12 @@ class TradeShortMessage {
         out << order_id();
         out << ", side_indicator=";
         out << side_indicator();
-        out << ", quantity_binary_2=";
-        out << quantity_binary_2();
+        out << ", quantity_short=";
+        out << quantity_short();
         out << ", symbol_short=";
         print::text(out, symbol_short());
-        out << ", price_binary_short_price_2=";
-        out << price_binary_short_price_2();
+        out << ", price_short=";
+        out << price_short();
         out << ", execution_id=";
         out << execution_id();
         out << '}';

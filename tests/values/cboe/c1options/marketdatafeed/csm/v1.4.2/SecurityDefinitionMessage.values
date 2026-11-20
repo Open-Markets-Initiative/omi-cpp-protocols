@@ -36,7 +36,7 @@ packet.message[0].payload.securitydefinitionmessage.minimumbelowpremiumfraction.
 packet.message[0].payload.securitydefinitionmessage.minimumbelowpremiumfraction.minimumbelowpremiumfractionmantissa = 5
 packet.message[0].payload.securitydefinitionmessage.exercisestyle = 0
 packet.message[0].payload.securitydefinitionmessage.currencycode.currencycodelength = 0
-packet.message[0].payload.securitydefinitionmessage.currencycode.currencycodetext = 
+packet.message[0].payload.securitydefinitionmessage.currencycode.currencycodetext = (null)
 packet.message[0].payload.securitydefinitionmessage.underlyingsymbol.underlyingsymbollength = 3
 packet.message[0].payload.securitydefinitionmessage.underlyingsymbol.underlyingsymboltext = SPX
 packet.message[0].payload.securitydefinitionmessage.underlyingtype.underlyingtypelength = 4

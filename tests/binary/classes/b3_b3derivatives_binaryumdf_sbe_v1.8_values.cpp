@@ -60,7 +60,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.emptybookmessage.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_stats_msg()));
             values[entry + ".payload.emptybookmessage.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_implied_msg()));
             values[entry + ".payload.emptybookmessage.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().recovery_msg()));
-            values[entry + ".payload.emptybookmessage.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().reserved()));
             values[entry + ".payload.emptybookmessage.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().end_of_event()));
             values[entry + ".payload.emptybookmessage.mdentrytimestamp"] = ((*message).md_entry_timestamp().has_value() ? canonical::number((*(*message).md_entry_timestamp())) : canonical::absent());
         } else if (const auto* message = dynamic_cast<const protocol::ChannelReset11Message*>(each.message())) {
@@ -71,7 +70,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.channelreset11message.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_stats_msg()));
             values[entry + ".payload.channelreset11message.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_implied_msg()));
             values[entry + ".payload.channelreset11message.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().recovery_msg()));
-            values[entry + ".payload.channelreset11message.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().reserved()));
             values[entry + ".payload.channelreset11message.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().end_of_event()));
             values[entry + ".payload.channelreset11message.mdentrytimestamp"] = ((*message).md_entry_timestamp().has_value() ? canonical::number((*(*message).md_entry_timestamp())) : canonical::absent());
         } else if (const auto* message = dynamic_cast<const protocol::SecurityStatus3Message*>(each.message())) {
@@ -83,7 +81,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.securitystatus3message.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_stats_msg()));
             values[entry + ".payload.securitystatus3message.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_implied_msg()));
             values[entry + ".payload.securitystatus3message.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().recovery_msg()));
-            values[entry + ".payload.securitystatus3message.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().reserved()));
             values[entry + ".payload.securitystatus3message.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().end_of_event()));
             values[entry + ".payload.securitystatus3message.tradingsessionid"] = canonical::number((*message).trading_session_id());
             values[entry + ".payload.securitystatus3message.securitytradingstatus"] = canonical::number((*message).security_trading_status());
@@ -101,7 +98,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.securitygroupphase10message.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_stats_msg()));
             values[entry + ".payload.securitygroupphase10message.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_implied_msg()));
             values[entry + ".payload.securitygroupphase10message.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().recovery_msg()));
-            values[entry + ".payload.securitygroupphase10message.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().reserved()));
             values[entry + ".payload.securitygroupphase10message.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().end_of_event()));
             values[entry + ".payload.securitygroupphase10message.tradingsessionid"] = canonical::number((*message).trading_session_id());
             values[entry + ".payload.securitygroupphase10message.tradingsessionsubid"] = canonical::number((*message).trading_session_sub_id());
@@ -226,7 +222,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.news5message.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_stats_msg()));
             values[entry + ".payload.news5message.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_implied_msg()));
             values[entry + ".payload.news5message.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().recovery_msg()));
-            values[entry + ".payload.news5message.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().reserved()));
             values[entry + ".payload.news5message.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().end_of_event()));
             values[entry + ".payload.news5message.newssource"] = canonical::number((*message).news_source());
             values[entry + ".payload.news5message.partcount"] = canonical::number((*message).part_count());
@@ -243,7 +238,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.openingprice15message.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_stats_msg()));
             values[entry + ".payload.openingprice15message.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_implied_msg()));
             values[entry + ".payload.openingprice15message.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().recovery_msg()));
-            values[entry + ".payload.openingprice15message.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().reserved()));
             values[entry + ".payload.openingprice15message.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().end_of_event()));
             values[entry + ".payload.openingprice15message.mdupdateaction"] = canonical::number((*message).md_update_action());
             values[entry + ".payload.openingprice15message.openclosesettlflag"] = canonical::number((*message).open_close_settl_flag());
@@ -261,7 +255,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.theoreticalopeningprice16message.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_stats_msg()));
             values[entry + ".payload.theoreticalopeningprice16message.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_implied_msg()));
             values[entry + ".payload.theoreticalopeningprice16message.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().recovery_msg()));
-            values[entry + ".payload.theoreticalopeningprice16message.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().reserved()));
             values[entry + ".payload.theoreticalopeningprice16message.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().end_of_event()));
             values[entry + ".payload.theoreticalopeningprice16message.mdupdateaction"] = canonical::number((*message).md_update_action());
             values[entry + ".payload.theoreticalopeningprice16message.tradedate"] = canonical::number((*message).trade_date());
@@ -278,7 +271,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.closingprice17message.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_stats_msg()));
             values[entry + ".payload.closingprice17message.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_implied_msg()));
             values[entry + ".payload.closingprice17message.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().recovery_msg()));
-            values[entry + ".payload.closingprice17message.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().reserved()));
             values[entry + ".payload.closingprice17message.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().end_of_event()));
             values[entry + ".payload.closingprice17message.openclosesettlflag"] = canonical::number((*message).open_close_settl_flag());
             values[entry + ".payload.closingprice17message.mdcorporateprice"] = canonical::scaled((*message).md_corporate_price().mantissa(), (*message).md_corporate_price().exponent());
@@ -295,7 +287,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.auctionimbalance19message.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_stats_msg()));
             values[entry + ".payload.auctionimbalance19message.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_implied_msg()));
             values[entry + ".payload.auctionimbalance19message.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().recovery_msg()));
-            values[entry + ".payload.auctionimbalance19message.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().reserved()));
             values[entry + ".payload.auctionimbalance19message.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().end_of_event()));
             values[entry + ".payload.auctionimbalance19message.mdupdateaction"] = canonical::number((*message).md_update_action());
             values[entry + ".payload.auctionimbalance19message.imbalancecondition.imbalancemorebuyers"] = canonical::number(static_cast<std::uint64_t>((*message).imbalance_condition().imbalance_more_buyers()));
@@ -312,7 +303,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.priceband20message.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_stats_msg()));
             values[entry + ".payload.priceband20message.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_implied_msg()));
             values[entry + ".payload.priceband20message.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().recovery_msg()));
-            values[entry + ".payload.priceband20message.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().reserved()));
             values[entry + ".payload.priceband20message.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().end_of_event()));
             values[entry + ".payload.priceband20message.pricebandtype"] = ((*message).price_band_type().has_value() ? canonical::number((*(*message).price_band_type())) : canonical::absent());
             values[entry + ".payload.priceband20message.pricelimittype"] = ((*message).price_limit_type().has_value() ? canonical::number((*(*message).price_limit_type())) : canonical::absent());
@@ -331,7 +321,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.quantityband21message.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_stats_msg()));
             values[entry + ".payload.quantityband21message.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_implied_msg()));
             values[entry + ".payload.quantityband21message.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().recovery_msg()));
-            values[entry + ".payload.quantityband21message.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().reserved()));
             values[entry + ".payload.quantityband21message.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().end_of_event()));
             values[entry + ".payload.quantityband21message.avgdailytradedqty"] = ((*message).avg_daily_traded_qty().has_value() ? canonical::number((*(*message).avg_daily_traded_qty())) : canonical::absent());
             values[entry + ".payload.quantityband21message.maxtradevol"] = ((*message).max_trade_vol().has_value() ? canonical::number((*(*message).max_trade_vol())) : canonical::absent());
@@ -346,7 +335,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.priceband22message.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_stats_msg()));
             values[entry + ".payload.priceband22message.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_implied_msg()));
             values[entry + ".payload.priceband22message.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().recovery_msg()));
-            values[entry + ".payload.priceband22message.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().reserved()));
             values[entry + ".payload.priceband22message.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().end_of_event()));
             values[entry + ".payload.priceband22message.pricebandtype"] = ((*message).price_band_type().has_value() ? canonical::number((*(*message).price_band_type())) : canonical::absent());
             values[entry + ".payload.priceband22message.pricelimittype"] = ((*message).price_limit_type().has_value() ? canonical::number((*(*message).price_limit_type())) : canonical::absent());
@@ -365,7 +353,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.highprice24message.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_stats_msg()));
             values[entry + ".payload.highprice24message.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_implied_msg()));
             values[entry + ".payload.highprice24message.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().recovery_msg()));
-            values[entry + ".payload.highprice24message.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().reserved()));
             values[entry + ".payload.highprice24message.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().end_of_event()));
             values[entry + ".payload.highprice24message.mdupdateaction"] = canonical::number((*message).md_update_action());
             values[entry + ".payload.highprice24message.tradedate"] = canonical::number((*message).trade_date());
@@ -381,7 +368,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.lowprice25message.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_stats_msg()));
             values[entry + ".payload.lowprice25message.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_implied_msg()));
             values[entry + ".payload.lowprice25message.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().recovery_msg()));
-            values[entry + ".payload.lowprice25message.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().reserved()));
             values[entry + ".payload.lowprice25message.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().end_of_event()));
             values[entry + ".payload.lowprice25message.mdupdateaction"] = canonical::number((*message).md_update_action());
             values[entry + ".payload.lowprice25message.tradedate"] = canonical::number((*message).trade_date());
@@ -397,7 +383,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.lasttradeprice27message.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_stats_msg()));
             values[entry + ".payload.lasttradeprice27message.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_implied_msg()));
             values[entry + ".payload.lasttradeprice27message.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().recovery_msg()));
-            values[entry + ".payload.lasttradeprice27message.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().reserved()));
             values[entry + ".payload.lasttradeprice27message.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().end_of_event()));
             values[entry + ".payload.lasttradeprice27message.tradingsessionid"] = canonical::number((*message).trading_session_id());
             values[entry + ".payload.lasttradeprice27message.tradecondition.openingprice"] = canonical::number(static_cast<std::uint64_t>((*message).trade_condition().opening_price()));
@@ -427,7 +412,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.settlementprice28message.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_stats_msg()));
             values[entry + ".payload.settlementprice28message.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_implied_msg()));
             values[entry + ".payload.settlementprice28message.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().recovery_msg()));
-            values[entry + ".payload.settlementprice28message.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().reserved()));
             values[entry + ".payload.settlementprice28message.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().end_of_event()));
             values[entry + ".payload.settlementprice28message.tradedate"] = canonical::number((*message).trade_date());
             values[entry + ".payload.settlementprice28message.mdfutureprice"] = canonical::scaled((*message).md_future_price().mantissa(), (*message).md_future_price().exponent());
@@ -445,7 +429,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.openinterest29message.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_stats_msg()));
             values[entry + ".payload.openinterest29message.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_implied_msg()));
             values[entry + ".payload.openinterest29message.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().recovery_msg()));
-            values[entry + ".payload.openinterest29message.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().reserved()));
             values[entry + ".payload.openinterest29message.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().end_of_event()));
             values[entry + ".payload.openinterest29message.tradedate"] = canonical::number((*message).trade_date());
             values[entry + ".payload.openinterest29message.mdentrysize"] = canonical::number((*message).md_entry_size());
@@ -469,7 +452,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.ordermbo50message.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_stats_msg()));
             values[entry + ".payload.ordermbo50message.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_implied_msg()));
             values[entry + ".payload.ordermbo50message.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().recovery_msg()));
-            values[entry + ".payload.ordermbo50message.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().reserved()));
             values[entry + ".payload.ordermbo50message.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().end_of_event()));
             values[entry + ".payload.ordermbo50message.mdupdateaction"] = canonical::number((*message).md_update_action());
             values[entry + ".payload.ordermbo50message.mdentrytype"] = canonical::text(canonical::character((*message).md_entry_type()));
@@ -490,7 +472,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.deleteordermbo51message.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_stats_msg()));
             values[entry + ".payload.deleteordermbo51message.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_implied_msg()));
             values[entry + ".payload.deleteordermbo51message.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().recovery_msg()));
-            values[entry + ".payload.deleteordermbo51message.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().reserved()));
             values[entry + ".payload.deleteordermbo51message.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().end_of_event()));
             values[entry + ".payload.deleteordermbo51message.mdentrytype"] = canonical::text(canonical::character((*message).md_entry_type()));
             values[entry + ".payload.deleteordermbo51message.mdentrypositionno"] = canonical::number((*message).md_entry_position_no());
@@ -507,7 +488,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.massdeleteordersmbo52message.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_stats_msg()));
             values[entry + ".payload.massdeleteordersmbo52message.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_implied_msg()));
             values[entry + ".payload.massdeleteordersmbo52message.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().recovery_msg()));
-            values[entry + ".payload.massdeleteordersmbo52message.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().reserved()));
             values[entry + ".payload.massdeleteordersmbo52message.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().end_of_event()));
             values[entry + ".payload.massdeleteordersmbo52message.mdupdateaction"] = canonical::number((*message).md_update_action());
             values[entry + ".payload.massdeleteordersmbo52message.mdentrytype"] = canonical::text(canonical::character((*message).md_entry_type()));
@@ -523,7 +503,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.trade53message.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_stats_msg()));
             values[entry + ".payload.trade53message.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_implied_msg()));
             values[entry + ".payload.trade53message.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().recovery_msg()));
-            values[entry + ".payload.trade53message.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().reserved()));
             values[entry + ".payload.trade53message.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().end_of_event()));
             values[entry + ".payload.trade53message.tradingsessionid"] = canonical::number((*message).trading_session_id());
             values[entry + ".payload.trade53message.tradecondition.openingprice"] = canonical::number(static_cast<std::uint64_t>((*message).trade_condition().opening_price()));
@@ -551,7 +530,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.forwardtrade54message.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_stats_msg()));
             values[entry + ".payload.forwardtrade54message.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_implied_msg()));
             values[entry + ".payload.forwardtrade54message.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().recovery_msg()));
-            values[entry + ".payload.forwardtrade54message.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().reserved()));
             values[entry + ".payload.forwardtrade54message.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().end_of_event()));
             values[entry + ".payload.forwardtrade54message.tradingsessionid"] = canonical::number((*message).trading_session_id());
             values[entry + ".payload.forwardtrade54message.tradecondition.openingprice"] = canonical::number(static_cast<std::uint64_t>((*message).trade_condition().opening_price()));
@@ -592,7 +570,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.executionstatistics56message.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_stats_msg()));
             values[entry + ".payload.executionstatistics56message.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_implied_msg()));
             values[entry + ".payload.executionstatistics56message.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().recovery_msg()));
-            values[entry + ".payload.executionstatistics56message.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().reserved()));
             values[entry + ".payload.executionstatistics56message.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().end_of_event()));
             values[entry + ".payload.executionstatistics56message.tradingsessionid"] = canonical::number((*message).trading_session_id());
             values[entry + ".payload.executionstatistics56message.tradedate"] = canonical::number((*message).trade_date());
@@ -611,7 +588,6 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.tradebust57message.matcheventindicator.laststatsmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_stats_msg()));
             values[entry + ".payload.tradebust57message.matcheventindicator.lastimpliedmsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().last_implied_msg()));
             values[entry + ".payload.tradebust57message.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().recovery_msg()));
-            values[entry + ".payload.tradebust57message.matcheventindicator.reserved"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().reserved()));
             values[entry + ".payload.tradebust57message.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message).match_event_indicator().end_of_event()));
             values[entry + ".payload.tradebust57message.tradingsessionid"] = canonical::number((*message).trading_session_id());
             values[entry + ".payload.tradebust57message.mdfutureprice"] = canonical::scaled((*message).md_future_price().mantissa(), (*message).md_future_price().exponent());

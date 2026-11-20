@@ -14,18 +14,18 @@ struct CorrectedNavOffsetAmount {
     static constexpr std::size_t size =  4;
     static constexpr std::size_t precision = 4;
     static constexpr double denominator = 10000;
-    using type = std::uint32_t;
+    using type = std::int32_t;
 
     // default constructor
     constexpr CorrectedNavOffsetAmount()
      : value{ 0 } {}
 
     // constructor for CorrectedNavOffsetAmount field
-    constexpr explicit CorrectedNavOffsetAmount(const std::uint32_t value)
+    constexpr explicit CorrectedNavOffsetAmount(const std::int32_t value)
      : value{ std::byteswap(value) } {}
 
     // get underlying integer of CorrectedNavOffsetAmount field
-    [[nodiscard]] std::uint32_t integer() const {
+    [[nodiscard]] std::int32_t integer() const {
         return std::byteswap(value);
     }
 
@@ -35,6 +35,6 @@ struct CorrectedNavOffsetAmount {
     }
 
   protected:
-    std::uint32_t value;
+    std::int32_t value;
 };
 }

@@ -11,8 +11,8 @@ namespace nyse::nyseequities::imbalancesfeed::xdp::v2_2_a {
 // symbol,NYSE will set this indicator if the Continuous Book Clearing Price is more than a
 // ‘significant’ range away from the Reference Price.
 enum class SignificantImbalance : char {
-    NotApplicable = ' ', // Not Applicable
-    Yes = 'Y',           // Yes
+    NotSignificant = ' ', // Not Significant
+    Significant = 'Y',    // Significant
 };
 
 // The documented name of a code, or empty for one the specification does not list

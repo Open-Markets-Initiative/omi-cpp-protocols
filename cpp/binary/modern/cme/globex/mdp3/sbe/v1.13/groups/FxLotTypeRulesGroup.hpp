@@ -2,7 +2,7 @@
 #pragma once
 
 #include "../types/LotType.hpp"
-#include "../types/MinLotSizeUInt64.hpp"
+#include "../types/FxMinLotSize.hpp"
 
 namespace cme::mdp3::v13 {
 
@@ -11,7 +11,7 @@ namespace cme::mdp3::v13 {
 struct FxLotTypeRulesGroup {
 
     LotType lot_type;
-    MinLotSizeUInt64 min_lot_size_u_int_64;
+    FxMinLotSize fx_min_lot_size;
 
     // parse method
     static FxLotTypeRulesGroup* parse(std::byte* buffer) {

@@ -24,5 +24,5 @@ packet.messages.message[1].payload.optionsaddordermessage.orderid = 143552409921
 packet.messages.message[1].payload.optionsaddordermessage.price = 134000
 packet.messages.message[1].payload.optionsaddordermessage.volume = 10
 packet.messages.message[1].payload.optionsaddordermessage.side = S
-packet.messages.message[1].payload.optionsaddordermessage.firmid = 
+packet.messages.message[1].payload.optionsaddordermessage.firmid = (null)
 packet.messages.message[1].payload.optionsaddordermessage.custindicator = C

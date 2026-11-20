@@ -63,7 +63,7 @@ std::size_t NextSharesTradeCancelErrorMessage::decode(const std::byte* data, std
     original_proxy_price_ = Decimal(static_cast<std::int64_t>(wire::read_u32_be(data + offset)), -4);
     offset += 4;
 
-    original_nav_offset_amount_ = Decimal(static_cast<std::int64_t>(wire::read_u32_be(data + offset)), -4);
+    original_nav_offset_amount_ = Decimal(static_cast<std::int64_t>(wire::read_i32_be(data + offset)), -4);
     offset += 4;
 
     original_trade_size_ = wire::read_u32_be(data + offset);
@@ -96,7 +96,7 @@ std::size_t NextSharesTradeCancelErrorMessage::encode(std::byte* data, std::size
     wire::write_u32_be(data + offset, static_cast<std::uint32_t>(original_proxy_price_.mantissa()));
     offset += 4;
 
-    wire::write_u32_be(data + offset, static_cast<std::uint32_t>(original_nav_offset_amount_.mantissa()));
+    wire::write_i32_be(data + offset, static_cast<std::int32_t>(original_nav_offset_amount_.mantissa()));
     offset += 4;
 
     wire::write_u32_be(data + offset, static_cast<std::uint32_t>(original_trade_size_));

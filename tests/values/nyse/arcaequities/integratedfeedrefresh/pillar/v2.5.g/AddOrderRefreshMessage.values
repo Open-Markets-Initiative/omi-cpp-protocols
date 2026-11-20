@@ -24,4 +24,4 @@ packet.messages.message[1].payload.addorderrefreshmessage.orderid = 163288471861
 packet.messages.message[1].payload.addorderrefreshmessage.price = 63120000
 packet.messages.message[1].payload.addorderrefreshmessage.volume = 400
 packet.messages.message[1].payload.addorderrefreshmessage.side = B
-packet.messages.message[1].payload.addorderrefreshmessage.firmid = 
+packet.messages.message[1].payload.addorderrefreshmessage.firmid = (null)

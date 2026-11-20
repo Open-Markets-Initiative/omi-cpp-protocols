@@ -25,7 +25,7 @@ struct MktdataPayloadHandler {
     const std::string& entry;
 
     void on(const protocol::ChannelReset& message) {
-        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.channelreset";
+        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.channelreset";
         values[entry + ".payload.mktdatamessage.mktdatapayload.channelreset.transacttime"] = canonical::number(message.transact_time());
         values[entry + ".payload.mktdatamessage.mktdatapayload.channelreset.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_trade_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.channelreset.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_volume_msg()));
@@ -37,17 +37,17 @@ struct MktdataPayloadHandler {
     }
 
     void on(const protocol::AdminLogin& message) {
-        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.adminlogin";
+        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.adminlogin";
         values[entry + ".payload.mktdatamessage.mktdatapayload.adminlogin.heartbtint"] = canonical::number(message.heart_bt_int());
     }
 
     void on(const protocol::AdminLogout& message) {
-        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.adminlogout";
+        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.adminlogout";
         values[entry + ".payload.mktdatamessage.mktdatapayload.adminlogout.text"] = canonical::text(std::string(message.text()), '\0', false);
     }
 
     void on(const protocol::MdInstrumentDefinitionFuture& message) {
-        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuture";
+        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuture";
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuture.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_trade_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuture.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_volume_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuture.matcheventindicator.lastquotemsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_quote_msg()));
@@ -107,7 +107,7 @@ struct MktdataPayloadHandler {
     }
 
     void on(const protocol::MdInstrumentDefinitionSpread& message) {
-        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspread";
+        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspread";
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspread.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_trade_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspread.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_volume_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspread.matcheventindicator.lastquotemsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_quote_msg()));
@@ -161,7 +161,7 @@ struct MktdataPayloadHandler {
     }
 
     void on(const protocol::SecurityStatus& message) {
-        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.securitystatus";
+        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.securitystatus";
         values[entry + ".payload.mktdatamessage.mktdatapayload.securitystatus.transacttime"] = canonical::number(message.transact_time());
         values[entry + ".payload.mktdatamessage.mktdatapayload.securitystatus.securitygroup"] = canonical::text(std::string(message.security_group()), '\0', false);
         values[entry + ".payload.mktdatamessage.mktdatapayload.securitystatus.asset"] = canonical::text(std::string(message.asset()), '\0', false);
@@ -180,7 +180,7 @@ struct MktdataPayloadHandler {
     }
 
     void on(const protocol::MdIncrementalRefreshBook& message) {
-        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook";
+        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook";
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.transacttime"] = canonical::number(message.transact_time());
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_trade_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_volume_msg()));
@@ -192,7 +192,7 @@ struct MktdataPayloadHandler {
     }
 
     void on(const protocol::MdIncrementalRefreshDailyStatistics& message) {
-        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshdailystatistics";
+        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshdailystatistics";
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshdailystatistics.transacttime"] = canonical::number(message.transact_time());
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshdailystatistics.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_trade_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshdailystatistics.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_volume_msg()));
@@ -204,7 +204,7 @@ struct MktdataPayloadHandler {
     }
 
     void on(const protocol::MdIncrementalRefreshLimitsBanding& message) {
-        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshlimitsbanding";
+        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshlimitsbanding";
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshlimitsbanding.transacttime"] = canonical::number(message.transact_time());
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshlimitsbanding.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_trade_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshlimitsbanding.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_volume_msg()));
@@ -216,7 +216,7 @@ struct MktdataPayloadHandler {
     }
 
     void on(const protocol::MdIncrementalRefreshSessionStatistics& message) {
-        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshsessionstatistics";
+        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshsessionstatistics";
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshsessionstatistics.transacttime"] = canonical::number(message.transact_time());
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshsessionstatistics.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_trade_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshsessionstatistics.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_volume_msg()));
@@ -228,7 +228,7 @@ struct MktdataPayloadHandler {
     }
 
     void on(const protocol::MdIncrementalRefreshTrade& message) {
-        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtrade";
+        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtrade";
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtrade.transacttime"] = canonical::number(message.transact_time());
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtrade.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_trade_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtrade.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_volume_msg()));
@@ -240,7 +240,7 @@ struct MktdataPayloadHandler {
     }
 
     void on(const protocol::MdIncrementalRefreshVolume& message) {
-        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshvolume";
+        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshvolume";
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshvolume.transacttime"] = canonical::number(message.transact_time());
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshvolume.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_trade_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshvolume.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_volume_msg()));
@@ -252,7 +252,7 @@ struct MktdataPayloadHandler {
     }
 
     void on(const protocol::SnapshotFullRefresh& message) {
-        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.snapshotfullrefresh";
+        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.snapshotfullrefresh";
         values[entry + ".payload.mktdatamessage.mktdatapayload.snapshotfullrefresh.lastmsgseqnumprocessed"] = canonical::number(message.last_msg_seq_num_processed());
         values[entry + ".payload.mktdatamessage.mktdatapayload.snapshotfullrefresh.totnumreports"] = canonical::number(message.tot_num_reports());
         values[entry + ".payload.mktdatamessage.mktdatapayload.snapshotfullrefresh.securityid"] = canonical::number(message.security_id());
@@ -267,7 +267,7 @@ struct MktdataPayloadHandler {
     }
 
     void on(const protocol::QuoteRequest& message) {
-        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.quoterequest";
+        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.quoterequest";
         values[entry + ".payload.mktdatamessage.mktdatapayload.quoterequest.transacttime"] = canonical::number(message.transact_time());
         values[entry + ".payload.mktdatamessage.mktdatapayload.quoterequest.quotereqid"] = canonical::text(std::string(message.quote_req_id()), '\0', false);
         values[entry + ".payload.mktdatamessage.mktdatapayload.quoterequest.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_trade_msg()));
@@ -280,7 +280,7 @@ struct MktdataPayloadHandler {
     }
 
     void on(const protocol::MdInstrumentDefinitionOption& message) {
-        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoption";
+        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoption";
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoption.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_trade_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoption.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_volume_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoption.matcheventindicator.lastquotemsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_quote_msg()));
@@ -338,7 +338,7 @@ struct MktdataPayloadHandler {
     }
 
     void on(const protocol::MdIncrementalRefreshTradeSummary& message) {
-        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary";
+        values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary";
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary.transacttime"] = canonical::number(message.transact_time());
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_trade_msg()));
         values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>(message.match_event_indicator().last_volume_msg()));
@@ -356,7 +356,7 @@ struct MdpsessionmgmtPayloadHandler {
     const std::string& entry;
 
     void on(const protocol::Negotiate& message) {
-        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiate";
+        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiate";
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiate.hmacsignature"] = canonical::text(std::string(message.hmac_signature()), '\0', false);
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiate.accesskeyid"] = canonical::text(std::string(message.access_key_id()), '\0', false);
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiate.uuid"] = canonical::number(message.uuid());
@@ -366,7 +366,7 @@ struct MdpsessionmgmtPayloadHandler {
     }
 
     void on(const protocol::NegotiationReject& message) {
-        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiationreject";
+        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiationreject";
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiationreject.reason"] = canonical::text(std::string(message.reason()), '\0', false);
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiationreject.uuid"] = canonical::number(message.uuid());
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiationreject.requesttimestamp"] = canonical::number(message.request_timestamp());
@@ -374,14 +374,14 @@ struct MdpsessionmgmtPayloadHandler {
     }
 
     void on(const protocol::NegotiationResponse& message) {
-        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiationresponse";
+        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiationresponse";
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiationresponse.uuid"] = canonical::number(message.uuid());
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiationresponse.requesttimestamp"] = canonical::number(message.request_timestamp());
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiationresponse.secretkeysecureidexpiration"] = (message.secret_key_secure_id_expiration().has_value() ? canonical::number((*message.secret_key_secure_id_expiration())) : canonical::absent());
     }
 
     void on(const protocol::Terminate& message) {
-        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.terminate";
+        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.terminate";
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.terminate.reason"] = canonical::text(std::string(message.reason()), '\0', false);
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.terminate.uuid"] = canonical::number(message.uuid());
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.terminate.requesttimestamp"] = canonical::number(message.request_timestamp());
@@ -389,33 +389,33 @@ struct MdpsessionmgmtPayloadHandler {
     }
 
     void on(const protocol::MarketDataRequest& message) {
-        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.marketdatarequest";
+        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.marketdatarequest";
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.marketdatarequest.mdreqid"] = canonical::number(message.md_req_id());
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.marketdatarequest.subscriptionreqtype"] = canonical::number(message.subscription_req_type());
     }
 
     void on(const protocol::RequestAck& message) {
-        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestack";
+        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestack";
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestack.mdreqid"] = canonical::number(message.md_req_id());
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestack.subscriptionreqtype"] = canonical::number(message.subscription_req_type());
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestack.mdreqidstatus"] = canonical::number(message.md_req_id_status());
     }
 
     void on(const protocol::RequestReject& message) {
-        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestreject";
+        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestreject";
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestreject.mdreqidoptional"] = (message.md_req_id_optional().has_value() ? canonical::number((*message.md_req_id_optional())) : canonical::absent());
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestreject.mdreqrejreason"] = canonical::number(message.md_req_rej_reason());
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestreject.sessiontext"] = canonical::text(std::string(message.session_text()), '\0', false);
     }
 
     void on(const protocol::SecurityListRequest& message) {
-        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.securitylistrequest";
+        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.securitylistrequest";
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.securitylistrequest.mdreqid"] = canonical::number(message.md_req_id());
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.securitylistrequest.subscriptionreqtype"] = canonical::number(message.subscription_req_type());
     }
 
     void on(const protocol::SecurityStatusRequest& message) {
-        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.securitystatusrequest";
+        values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.securitystatusrequest";
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.securitystatusrequest.mdreqid"] = canonical::number(message.md_req_id());
         values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.securitystatusrequest.subscriptionreqtype"] = canonical::number(message.subscription_req_type());
     }
@@ -443,15 +443,15 @@ struct Reader {
     }
 
     void on(const protocol::MktdataMessage& message) {
-        const std::string entry = "udppacket.message[" + std::to_string(index++) + "]";
-        values[entry + ".payload"] = "udppacket.message.payload.mktdatamessage";
+        const std::string entry = "udppacket.mdp3message[" + std::to_string(index++) + "]";
+        values[entry + ".payload"] = "udppacket.mdp3message.payload.mktdatamessage";
         MktdataPayloadHandler selected{ values, entry };
         message.mktdata_payload(selected);
     }
 
     void on(const protocol::MdpsessionmgmtMessage& message) {
-        const std::string entry = "udppacket.message[" + std::to_string(index++) + "]";
-        values[entry + ".payload"] = "udppacket.message.payload.mdpsessionmgmtmessage";
+        const std::string entry = "udppacket.mdp3message[" + std::to_string(index++) + "]";
+        values[entry + ".payload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage";
         MdpsessionmgmtPayloadHandler selected{ values, entry };
         message.mdpsessionmgmt_payload(selected);
     }

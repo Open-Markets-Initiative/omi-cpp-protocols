@@ -6,9 +6,9 @@
 #include "../types/TimeOffset.hpp"
 #include "../types/OrderId.hpp"
 #include "../types/SideIndicator.hpp"
-#include "../types/QuantityBinary4.hpp"
+#include "../types/QuantityLong.hpp"
 #include "../types/SymbolLong.hpp"
-#include "../types/PriceBinaryLongPrice8.hpp"
+#include "../types/PriceLong.hpp"
 #include "../types/ExecutionId.hpp"
 
 namespace cboe::bzxequities::multicastdepthofbook::pitch::v2_20_4 {
@@ -24,9 +24,9 @@ struct trade_expanded_message {
         pitch_multicastdepthofbook::time_offset time_offset;
         pitch_multicastdepthofbook::order_id order_id;
         pitch_multicastdepthofbook::side_indicator side_indicator;
-        pitch_multicastdepthofbook::quantity_binary_4 quantity_binary_4;
+        pitch_multicastdepthofbook::quantity_long quantity_long;
         pitch_multicastdepthofbook::symbol_long symbol_long;
-        pitch_multicastdepthofbook::price_binary_long_price_8 price_binary_long_price_8;
+        pitch_multicastdepthofbook::price_long price_long;
         pitch_multicastdepthofbook::execution_id execution_id;
     };
 
@@ -50,9 +50,9 @@ struct trade_expanded_message {
 static_assert(offsetof(trade_expanded_message::fields_type, time_offset) == 0, "unexpected offset of trade_expanded_message::fields_type::time_offset");
 static_assert(offsetof(trade_expanded_message::fields_type, order_id) == 4, "unexpected offset of trade_expanded_message::fields_type::order_id");
 static_assert(offsetof(trade_expanded_message::fields_type, side_indicator) == 12, "unexpected offset of trade_expanded_message::fields_type::side_indicator");
-static_assert(offsetof(trade_expanded_message::fields_type, quantity_binary_4) == 13, "unexpected offset of trade_expanded_message::fields_type::quantity_binary_4");
+static_assert(offsetof(trade_expanded_message::fields_type, quantity_long) == 13, "unexpected offset of trade_expanded_message::fields_type::quantity_long");
 static_assert(offsetof(trade_expanded_message::fields_type, symbol_long) == 17, "unexpected offset of trade_expanded_message::fields_type::symbol_long");
-static_assert(offsetof(trade_expanded_message::fields_type, price_binary_long_price_8) == 25, "unexpected offset of trade_expanded_message::fields_type::price_binary_long_price_8");
+static_assert(offsetof(trade_expanded_message::fields_type, price_long) == 25, "unexpected offset of trade_expanded_message::fields_type::price_long");
 static_assert(offsetof(trade_expanded_message::fields_type, execution_id) == 33, "unexpected offset of trade_expanded_message::fields_type::execution_id");
 static_assert(sizeof(trade_expanded_message::fields_type) == 41, "unexpected sizeof trade_expanded_message::fields_type");
 static_assert(sizeof(trade_expanded_message) == sizeof(pitch_multicastdepthofbook::message_header) + 41, "unexpected sizeof trade_expanded_message");

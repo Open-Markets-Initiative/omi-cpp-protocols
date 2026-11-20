@@ -10,7 +10,7 @@
 
 #include "../bitfields/MatchEventIndicator.hpp"
 #include "../messages/MktdataPayload.hpp"
-#include "../structs/IncrementalRefreshOrderBookGroups.hpp"
+#include "../structs/IncrementalRefreshOrderBookLegacyGroups.hpp"
 
 namespace cme::globex::mdp3::sbe::v1_9 {
 
@@ -23,7 +23,7 @@ class MdIncrementalRefreshOrderBookLegacy : public MktdataPayload {
     static constexpr MktdataPayloadCode message_type = TemplateId::MdIncrementalRefreshOrderBookLegacy;
 
     MdIncrementalRefreshOrderBookLegacy() = default;
-    MdIncrementalRefreshOrderBookLegacy(std::chrono::nanoseconds transact_time, const MatchEventIndicator& match_event_indicator, const std::array<std::byte, 2>& padding_2, const IncrementalRefreshOrderBookGroups& incremental_refresh_order_book_groups);
+    MdIncrementalRefreshOrderBookLegacy(std::chrono::nanoseconds transact_time, const MatchEventIndicator& match_event_indicator, const std::array<std::byte, 2>& padding_2, const IncrementalRefreshOrderBookLegacyGroups& incremental_refresh_order_book_legacy_groups);
 
     // Transact Time: Start of event processing time in number of nanoseconds since Unix epoch
     std::chrono::nanoseconds transact_time() const;
@@ -39,10 +39,10 @@ class MdIncrementalRefreshOrderBookLegacy : public MktdataPayload {
     std::array<std::byte, 2>& padding_2();
     void set_padding_2(const std::array<std::byte, 2>& value);
 
-    // Incremental Refresh Order Book Groups: NoMDEntries Block
-    const IncrementalRefreshOrderBookGroups& incremental_refresh_order_book_groups() const;
-    IncrementalRefreshOrderBookGroups& incremental_refresh_order_book_groups();
-    void set_incremental_refresh_order_book_groups(const IncrementalRefreshOrderBookGroups& value);
+    // Incremental Refresh Order Book Legacy Groups: NoMDEntries Block
+    const IncrementalRefreshOrderBookLegacyGroups& incremental_refresh_order_book_legacy_groups() const;
+    IncrementalRefreshOrderBookLegacyGroups& incremental_refresh_order_book_legacy_groups();
+    void set_incremental_refresh_order_book_legacy_groups(const IncrementalRefreshOrderBookLegacyGroups& value);
 
     // MktdataPayload
     MktdataPayloadCode type() const override;
@@ -62,7 +62,7 @@ class MdIncrementalRefreshOrderBookLegacy : public MktdataPayload {
     std::chrono::nanoseconds transact_time_{};
     MatchEventIndicator match_event_indicator_{};
     std::array<std::byte, 2> padding_2_{};
-    IncrementalRefreshOrderBookGroups incremental_refresh_order_book_groups_{};
+    IncrementalRefreshOrderBookLegacyGroups incremental_refresh_order_book_legacy_groups_{};
 };
 
 } // namespace cme::globex::mdp3::sbe::v1_9

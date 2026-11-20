@@ -11,6 +11,7 @@
 #include "../common/Wire.hpp"
 #include "../common/Print.hpp"
 #include "../common/View.hpp"
+#include "../bitfields/EventIndicator.hpp"
 
 namespace b3::b3derivatives::binaryentrypoint::sbe::v8_3 {
 
@@ -35,7 +36,7 @@ class OutboundBusinessHeader {
 
     std::optional<std::chrono::nanoseconds> sending_time() const { return wire::nullable_duration<std::chrono::nanoseconds>(wire::read_u64_le(at(8)), static_cast<std::uint64_t>(0ULL)); }
 
-    std::uint8_t event_indicator() const { return wire::read_u8(at(16)); }
+    EventIndicator event_indicator() const { return EventIndicator{ bytes_.subspan(16) }; }
 
     std::optional<std::uint8_t> market_segment_id_optional() const { return wire::nullable(wire::read_u8(at(17)), static_cast<std::uint8_t>(0ULL)); }
 
@@ -48,7 +49,7 @@ class OutboundBusinessHeader {
         out << ", sending_time=";
         print::optional_duration(out, sending_time());
         out << ", event_indicator=";
-        out << static_cast<int>(event_indicator());
+        event_indicator().print(out);
         out << ", market_segment_id_optional=";
         print::optional(out, market_segment_id_optional());
         out << '}';

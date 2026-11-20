@@ -28,11 +28,11 @@ class QuoteRequest : public Message {
     QuoteRequest() = default;
     QuoteRequest(std::optional<std::int64_t> security_id, std::optional<std::int32_t> last_qty, std::optional<Side> side, const std::array<std::byte, 3>& pad3, std::optional<std::chrono::nanoseconds> transact_time);
 
-    // Security Id:
+    // Security Id: Unique instrument identifier
     std::optional<std::int64_t> security_id() const;
     void set_security_id(std::optional<std::int64_t> value);
 
-    // Last Qty:
+    // Last Qty: Total executed matched quantity of this match event
     std::optional<std::int32_t> last_qty() const;
     void set_last_qty(std::optional<std::int32_t> value);
 

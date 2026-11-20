@@ -60,7 +60,7 @@ struct Reader {
         values[entry + ".payload.stockdirectorymessage.nanoseconds"] = canonical::number(message.nanoseconds());
         values[entry + ".payload.stockdirectorymessage.stock"] = canonical::text(std::string(message.stock()), ' ', false);
         values[entry + ".payload.stockdirectorymessage.marketcategory"] = canonical::text(canonical::character(message.market_category()), ' ', false);
-        values[entry + ".payload.stockdirectorymessage.financialstatusindicator"] = canonical::text(canonical::character(message.financial_status_indicator()), ' ', false);
+        values[entry + ".payload.stockdirectorymessage.financialstatusindicator"] = canonical::text(canonical::character(message.financial_status_indicator()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
         values[entry + ".payload.stockdirectorymessage.roundlotsize"] = canonical::number(message.round_lot_size());
         values[entry + ".payload.stockdirectorymessage.roundlotsonly"] = canonical::text(canonical::character(message.round_lots_only()), ' ', false);
     }
@@ -71,7 +71,7 @@ struct Reader {
         values[entry + ".payload.stocktradingactionmessage.nanoseconds"] = canonical::number(message.nanoseconds());
         values[entry + ".payload.stocktradingactionmessage.stock"] = canonical::text(std::string(message.stock()), ' ', false);
         values[entry + ".payload.stocktradingactionmessage.tradingstate"] = canonical::text(canonical::character(message.trading_state()), ' ', false);
-        values[entry + ".payload.stocktradingactionmessage.reason"] = canonical::text(std::string(message.reason()), ' ', false);
+        values[entry + ".payload.stocktradingactionmessage.reason"] = canonical::text(std::string(message.reason()), ' ', false, {std::string_view("    ", 4), std::string_view("", 0)});
     }
 
     void on(const protocol::PayloadMarketParticipantPositionMessage& message) {
@@ -195,7 +195,7 @@ struct Reader {
         values[entry + ".payload.netorderimbalanceindicatormessage.nearprice"] = canonical::scaled(message.near_price().mantissa(), message.near_price().exponent());
         values[entry + ".payload.netorderimbalanceindicatormessage.currentreferenceprice"] = canonical::scaled(message.current_reference_price().mantissa(), message.current_reference_price().exponent());
         values[entry + ".payload.netorderimbalanceindicatormessage.crosstype"] = canonical::text(canonical::character(message.cross_type()), ' ', false);
-        values[entry + ".payload.netorderimbalanceindicatormessage.pricevariationindicator"] = canonical::text(canonical::character(message.price_variation_indicator()), ' ', false);
+        values[entry + ".payload.netorderimbalanceindicatormessage.pricevariationindicator"] = canonical::text(canonical::character(message.price_variation_indicator()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
     }
 };
 

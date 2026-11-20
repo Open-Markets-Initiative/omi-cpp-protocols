@@ -1,0 +1,32 @@
+# Tmx.Tsx.QuantumFeedLevel2.Xmt.v2.10 TradeReportMessage: canonical values, read by the model
+datagram 0
+packet.frameheader.startofframe = 2
+packet.frameheader.protocolname = X
+packet.frameheader.protocolversion = 1
+packet.frameheader.messagelength = 85
+packet.frameheader.sessionid = 1010113
+packet.frameheader.ackrequiredpossdup = 0
+packet.frameheader.numbody = 1
+packet.packetbody = packet.packetbody.businessbodies
+packet.packetbody.businessbodies.body[0].bodyheader.msglength = 79
+packet.packetbody.businessbodies.body[0].bodyheader.msgtype = S
+packet.packetbody.businessbodies.body[0].bodymessage.businessheader.msgversion = 210
+packet.packetbody.businessbodies.body[0].bodymessage.businessheader.sourceid = Q
+packet.packetbody.businessbodies.body[0].bodymessage.businessheader.streamid = 252
+packet.packetbody.businessbodies.body[0].bodymessage.businessheader.sequence0 = 0
+packet.packetbody.businessbodies.body[0].bodymessage.businessheader.sequence1 = 24693
+packet.packetbody.businessbodies.body[0].bodymessage.businessmessage = packet.packetbody.businessbodies.body.bodymessage.businessmessage.tradereportmessage
+packet.packetbody.businessbodies.body[0].bodymessage.businessmessage.tradereportmessage.symbol = MFC
+packet.packetbody.businessbodies.body[0].bodymessage.businessmessage.tradereportmessage.tradenumber = 53
+packet.packetbody.businessbodies.body[0].bodymessage.businessmessage.tradereportmessage.price = 23
+packet.packetbody.businessbodies.body[0].bodymessage.businessmessage.tradereportmessage.volume = 100
+packet.packetbody.businessbodies.body[0].bodymessage.businessmessage.tradereportmessage.buybrokernumber = 9
+packet.packetbody.businessbodies.body[0].bodymessage.businessmessage.tradereportmessage.buyorderid = 20150508000000002
+packet.packetbody.businessbodies.body[0].bodymessage.businessmessage.tradereportmessage.buydisplayvolume = 1400
+packet.packetbody.businessbodies.body[0].bodymessage.businessmessage.tradereportmessage.sellbrokernumber = 9
+packet.packetbody.businessbodies.body[0].bodymessage.businessmessage.tradereportmessage.sellorderid = 20150508000000007
+packet.packetbody.businessbodies.body[0].bodymessage.businessmessage.tradereportmessage.selldisplayvolume = (null)
+packet.packetbody.businessbodies.body[0].bodymessage.businessmessage.tradereportmessage.bypass = N
+packet.packetbody.businessbodies.body[0].bodymessage.businessmessage.tradereportmessage.tradetimestamp = 93000
+packet.packetbody.businessbodies.body[0].bodymessage.businessmessage.tradereportmessage.crosstype = (null)
+packet.packetbody.businessbodies.body[0].bodymessage.businessmessage.tradereportmessage.tradingsystemtimestamp = 1431091800012694

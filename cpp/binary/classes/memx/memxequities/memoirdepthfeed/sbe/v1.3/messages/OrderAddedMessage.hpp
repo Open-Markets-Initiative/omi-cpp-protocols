@@ -10,17 +10,17 @@
 
 #include "../common/Decimal.hpp"
 #include "../enums/Side.hpp"
-#include "../messages/Payload.hpp"
+#include "../messages/Message.hpp"
 
 namespace memx::memxequities::memoirdepthfeed::sbe::v1_3 {
 
-class PayloadVisitor;
+class Visitor;
 
 // OrderAddedMessage
-class OrderAddedMessage : public Payload {
+class OrderAddedMessage : public Message {
   public:
     // The code that selects this message
-    static constexpr PayloadCode message_type = TemplateId::OrderAddedMessage;
+    static constexpr MessageCode message_type = TemplateId::OrderAddedMessage;
     // Bytes of this message on the wire
     static constexpr std::size_t wire_size = 31;
 
@@ -51,16 +51,16 @@ class OrderAddedMessage : public Payload {
     Decimal price() const;
     void set_price(Decimal value);
 
-    // Payload
-    PayloadCode type() const override;
+    // Message
+    MessageCode type() const override;
     std::string_view name() const override;
     std::size_t decode(const std::byte* data, std::size_t length) override;
     std::size_t encode(std::byte* data, std::size_t capacity) const override;
     std::size_t encoded_size() const override;
-    void accept(PayloadVisitor& visitor) const override;
-    std::unique_ptr<Payload> clone() const override;
+    void accept(Visitor& visitor) const override;
+    std::unique_ptr<Message> clone() const override;
     void print(std::ostream& out) const override;
-    bool equals(const Payload& other) const override;
+    bool equals(const Message& other) const override;
 
     bool operator==(const OrderAddedMessage& other) const;
     bool operator!=(const OrderAddedMessage& other) const;

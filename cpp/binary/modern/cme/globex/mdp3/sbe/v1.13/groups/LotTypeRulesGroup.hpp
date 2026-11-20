@@ -2,7 +2,7 @@
 #pragma once
 
 #include "../types/LotType.hpp"
-#include "../types/MinLotSizeDecimalQty.hpp"
+#include "../types/MinLotSize.hpp"
 
 namespace cme::mdp3::v13 {
 
@@ -11,7 +11,7 @@ namespace cme::mdp3::v13 {
 struct LotTypeRulesGroup {
 
     LotType lot_type;
-    MinLotSizeDecimalQty min_lot_size_decimal_qty;
+    MinLotSize min_lot_size;
 
     // parse method
     static LotTypeRulesGroup* parse(std::byte* buffer) {

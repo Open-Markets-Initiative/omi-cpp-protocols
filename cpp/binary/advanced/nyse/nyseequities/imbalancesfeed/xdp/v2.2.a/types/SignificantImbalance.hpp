@@ -14,19 +14,19 @@ namespace nyse::nyseequities::imbalancesfeed::xdp::v2_2_a {
 struct significant_imbalance {
 
     enum class enum_type : char {
-        not_applicable = ' ',
-        yes = 'Y'
+        not_significant = ' ',
+        significant = 'Y'
     };
 
     static constexpr std::array<std::pair<std::string_view, enum_type>, 2> from_string_map = {{
-        {"Not Applicable", enum_type::not_applicable},
-        {"Yes", enum_type::yes}
+        {"Not Significant", enum_type::not_significant},
+        {"Significant", enum_type::significant}
     }};
 
     static constexpr std::string_view to_string(enum_type value) {
         switch (value) {
-            case enum_type::not_applicable: return "Not Applicable";
-            case enum_type::yes: return "Yes";
+            case enum_type::not_significant: return "Not Significant";
+            case enum_type::significant: return "Significant";
             default: return "unknown";
         }
     }
@@ -69,7 +69,7 @@ struct significant_imbalance {
         if (value.has_value())
             set(value.value());
         else
-            set(enum_type::yes);
+            set(enum_type::significant);
     }
 
   protected:

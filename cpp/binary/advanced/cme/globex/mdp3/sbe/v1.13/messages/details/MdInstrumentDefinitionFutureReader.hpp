@@ -219,9 +219,9 @@ public:
         return entry->lot_type.get().value();
     }
 
-    std::optional<std::int32_t> min_lot_size_decimal_qty() const {
+    std::optional<std::int32_t> min_lot_size() const {
         auto* entry = reinterpret_cast<const md_instrument_definition_future_lot_type_rules_groups_entry*>(pos_);
-        return entry->min_lot_size_decimal_qty.get();
+        return entry->min_lot_size.get();
     }
 
     const std::byte* end_position() const { return pos_ + block_length_; }

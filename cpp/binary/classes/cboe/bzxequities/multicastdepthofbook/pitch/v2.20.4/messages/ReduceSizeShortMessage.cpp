@@ -7,8 +7,8 @@
 
 namespace cboe::bzxequities::multicastdepthofbook::pitch::v2_20_4 {
 
-ReduceSizeShortMessage::ReduceSizeShortMessage(std::chrono::nanoseconds time_offset, std::uint64_t order_id, std::uint16_t canceled_quantity_binary_2)
-  : time_offset_(time_offset), order_id_(order_id), canceled_quantity_binary_2_(canceled_quantity_binary_2) {}
+ReduceSizeShortMessage::ReduceSizeShortMessage(std::chrono::nanoseconds time_offset, std::uint64_t order_id, std::uint16_t canceled_quantity_short)
+  : time_offset_(time_offset), order_id_(order_id), canceled_quantity_short_(canceled_quantity_short) {}
 
 std::chrono::nanoseconds ReduceSizeShortMessage::time_offset() const { return time_offset_; }
 void ReduceSizeShortMessage::set_time_offset(std::chrono::nanoseconds value) { time_offset_ = value; }
@@ -16,8 +16,8 @@ void ReduceSizeShortMessage::set_time_offset(std::chrono::nanoseconds value) { t
 std::uint64_t ReduceSizeShortMessage::order_id() const { return order_id_; }
 void ReduceSizeShortMessage::set_order_id(std::uint64_t value) { order_id_ = value; }
 
-std::uint16_t ReduceSizeShortMessage::canceled_quantity_binary_2() const { return canceled_quantity_binary_2_; }
-void ReduceSizeShortMessage::set_canceled_quantity_binary_2(std::uint16_t value) { canceled_quantity_binary_2_ = value; }
+std::uint16_t ReduceSizeShortMessage::canceled_quantity_short() const { return canceled_quantity_short_; }
+void ReduceSizeShortMessage::set_canceled_quantity_short(std::uint16_t value) { canceled_quantity_short_ = value; }
 
 MessageCode ReduceSizeShortMessage::type() const { return message_type; }
 
@@ -33,7 +33,7 @@ std::size_t ReduceSizeShortMessage::decode(const std::byte* data, std::size_t le
     order_id_ = wire::read_u64_le(data + offset);
     offset += 8;
 
-    canceled_quantity_binary_2_ = wire::read_u16_le(data + offset);
+    canceled_quantity_short_ = wire::read_u16_le(data + offset);
     offset += 2;
 
     return offset;
@@ -49,7 +49,7 @@ std::size_t ReduceSizeShortMessage::encode(std::byte* data, std::size_t capacity
     wire::write_u64_le(data + offset, static_cast<std::uint64_t>(order_id_));
     offset += 8;
 
-    wire::write_u16_le(data + offset, static_cast<std::uint16_t>(canceled_quantity_binary_2_));
+    wire::write_u16_le(data + offset, static_cast<std::uint16_t>(canceled_quantity_short_));
     offset += 2;
 
     return offset;
@@ -73,8 +73,8 @@ void ReduceSizeShortMessage::print(std::ostream& out) const {
     out << time_offset_.count();
     out << ", order_id=";
     out << order_id_;
-    out << ", canceled_quantity_binary_2=";
-    out << canceled_quantity_binary_2_;
+    out << ", canceled_quantity_short=";
+    out << canceled_quantity_short_;
     out << '}';
 }
 
@@ -86,7 +86,7 @@ bool ReduceSizeShortMessage::equals(const Message& other) const {
 bool ReduceSizeShortMessage::operator==(const ReduceSizeShortMessage& other) const {
     return time_offset_ == other.time_offset_
         && order_id_ == other.order_id_
-        && canceled_quantity_binary_2_ == other.canceled_quantity_binary_2_;
+        && canceled_quantity_short_ == other.canceled_quantity_short_;
 }
 
 bool ReduceSizeShortMessage::operator!=(const ReduceSizeShortMessage& other) const {

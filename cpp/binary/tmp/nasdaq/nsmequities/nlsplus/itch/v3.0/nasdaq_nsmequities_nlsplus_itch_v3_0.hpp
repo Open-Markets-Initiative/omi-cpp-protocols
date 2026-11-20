@@ -663,7 +663,7 @@ struct corrected_extended_hours_or_sold_code {
 
 // Corrected Nav Offset Amount: The corrected Nav offset applied to the Proxy Price
 struct corrected_nav_offset_amount {
-    using type = std::uint32_t;
+    using type = std::int32_t;
     static constexpr std::size_t size = 4;
     static constexpr std::endian order = std::endian::big;
     static constexpr int exponent = -4;
@@ -1252,7 +1252,7 @@ struct message_type {
 
 // Nav Offset Amount: The Nav offset that should be applied to the Proxy Price
 struct nav_offset_amount {
-    using type = std::uint32_t;
+    using type = std::int32_t;
     static constexpr std::size_t size = 4;
     static constexpr std::endian order = std::endian::big;
     static constexpr int exponent = -4;
@@ -1266,7 +1266,7 @@ struct nav_offset_amount {
 
 // Nav Offset Amount Closing: The Nav offset that should be applied to the consolidated closing proxy price
 struct nav_offset_amount_closing {
-    using type = std::uint32_t;
+    using type = std::int32_t;
     static constexpr std::size_t size = 4;
     static constexpr std::endian order = std::endian::big;
     static constexpr int exponent = -4;
@@ -1280,7 +1280,7 @@ struct nav_offset_amount_closing {
 
 // Nav Offset Amount High: The Nav offset that should be applied to the consolidated high proxy price
 struct nav_offset_amount_high {
-    using type = std::uint32_t;
+    using type = std::int32_t;
     static constexpr std::size_t size = 4;
     static constexpr std::endian order = std::endian::big;
     static constexpr int exponent = -4;
@@ -1294,7 +1294,7 @@ struct nav_offset_amount_high {
 
 // Nav Offset Amount Low: The Nav offset that should be applied to the consolidated low proxy price
 struct nav_offset_amount_low {
-    using type = std::uint32_t;
+    using type = std::int32_t;
     static constexpr std::size_t size = 4;
     static constexpr std::endian order = std::endian::big;
     static constexpr int exponent = -4;
@@ -1308,7 +1308,7 @@ struct nav_offset_amount_low {
 
 // Nav Offset Amount Open: The Nav offset that should be applied to the consolidated opening proxy price
 struct nav_offset_amount_open {
-    using type = std::uint32_t;
+    using type = std::int32_t;
     static constexpr std::size_t size = 4;
     static constexpr std::endian order = std::endian::big;
     static constexpr int exponent = -4;
@@ -1372,7 +1372,7 @@ struct original_extended_hours_or_sold_code {
 
 // Original Nav Offset Amount: The Nav offset originally applied to the Proxy Price
 struct original_nav_offset_amount {
-    using type = std::uint32_t;
+    using type = std::int32_t;
     static constexpr std::size_t size = 4;
     static constexpr std::endian order = std::endian::big;
     static constexpr int exponent = -4;

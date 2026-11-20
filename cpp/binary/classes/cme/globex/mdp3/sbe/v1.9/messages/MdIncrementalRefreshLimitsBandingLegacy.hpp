@@ -10,7 +10,7 @@
 
 #include "../bitfields/MatchEventIndicator.hpp"
 #include "../messages/MktdataPayload.hpp"
-#include "../structs/IncrementalRefreshLimitsBandingGroups.hpp"
+#include "../structs/IncrementalRefreshLimitsBandingLegacyGroups.hpp"
 
 namespace cme::globex::mdp3::sbe::v1_9 {
 
@@ -23,7 +23,7 @@ class MdIncrementalRefreshLimitsBandingLegacy : public MktdataPayload {
     static constexpr MktdataPayloadCode message_type = TemplateId::MdIncrementalRefreshLimitsBandingLegacy;
 
     MdIncrementalRefreshLimitsBandingLegacy() = default;
-    MdIncrementalRefreshLimitsBandingLegacy(std::chrono::nanoseconds transact_time, const MatchEventIndicator& match_event_indicator, const std::array<std::byte, 2>& padding_2, const IncrementalRefreshLimitsBandingGroups& incremental_refresh_limits_banding_groups);
+    MdIncrementalRefreshLimitsBandingLegacy(std::chrono::nanoseconds transact_time, const MatchEventIndicator& match_event_indicator, const std::array<std::byte, 2>& padding_2, const IncrementalRefreshLimitsBandingLegacyGroups& incremental_refresh_limits_banding_legacy_groups);
 
     // Transact Time: Start of event processing time in number of nanoseconds since Unix epoch
     std::chrono::nanoseconds transact_time() const;
@@ -39,10 +39,10 @@ class MdIncrementalRefreshLimitsBandingLegacy : public MktdataPayload {
     std::array<std::byte, 2>& padding_2();
     void set_padding_2(const std::array<std::byte, 2>& value);
 
-    // Incremental Refresh Limits Banding Groups: NoMDEntries Block
-    const IncrementalRefreshLimitsBandingGroups& incremental_refresh_limits_banding_groups() const;
-    IncrementalRefreshLimitsBandingGroups& incremental_refresh_limits_banding_groups();
-    void set_incremental_refresh_limits_banding_groups(const IncrementalRefreshLimitsBandingGroups& value);
+    // Incremental Refresh Limits Banding Legacy Groups: NoMDEntries Block
+    const IncrementalRefreshLimitsBandingLegacyGroups& incremental_refresh_limits_banding_legacy_groups() const;
+    IncrementalRefreshLimitsBandingLegacyGroups& incremental_refresh_limits_banding_legacy_groups();
+    void set_incremental_refresh_limits_banding_legacy_groups(const IncrementalRefreshLimitsBandingLegacyGroups& value);
 
     // MktdataPayload
     MktdataPayloadCode type() const override;
@@ -62,7 +62,7 @@ class MdIncrementalRefreshLimitsBandingLegacy : public MktdataPayload {
     std::chrono::nanoseconds transact_time_{};
     MatchEventIndicator match_event_indicator_{};
     std::array<std::byte, 2> padding_2_{};
-    IncrementalRefreshLimitsBandingGroups incremental_refresh_limits_banding_groups_{};
+    IncrementalRefreshLimitsBandingLegacyGroups incremental_refresh_limits_banding_legacy_groups_{};
 };
 
 } // namespace cme::globex::mdp3::sbe::v1_9

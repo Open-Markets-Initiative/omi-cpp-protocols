@@ -46,4 +46,4 @@ packet.messages.message[2].payload.securitystatusmessage.ssrtriggeringvolume = 0
 packet.messages.message[2].payload.securitystatusmessage.time = (null)
 packet.messages.message[2].payload.securitystatusmessage.ssrstate = ~
 packet.messages.message[2].payload.securitystatusmessage.marketstate = P
-packet.messages.message[2].payload.securitystatusmessage.sessionstate = 
+packet.messages.message[2].payload.securitystatusmessage.sessionstate = (null)

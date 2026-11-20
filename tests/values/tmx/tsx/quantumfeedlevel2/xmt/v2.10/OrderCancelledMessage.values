@@ -1,0 +1,23 @@
+# Tmx.Tsx.QuantumFeedLevel2.Xmt.v2.10 OrderCancelledMessage: canonical values, read by the model
+datagram 0
+packet.frameheader.startofframe = 2
+packet.frameheader.protocolname = X
+packet.frameheader.protocolversion = 1
+packet.frameheader.messagelength = 46
+packet.frameheader.sessionid = 1010013
+packet.frameheader.ackrequiredpossdup = 0
+packet.frameheader.numbody = 1
+packet.packetbody = packet.packetbody.businessbodies
+packet.packetbody.businessbodies.body[0].bodyheader.msglength = 40
+packet.packetbody.businessbodies.body[0].bodyheader.msgtype = Q
+packet.packetbody.businessbodies.body[0].bodymessage.businessheader.msgversion = 210
+packet.packetbody.businessbodies.body[0].bodymessage.businessheader.sourceid = Q
+packet.packetbody.businessbodies.body[0].bodymessage.businessheader.streamid = 213
+packet.packetbody.businessbodies.body[0].bodymessage.businessheader.sequence0 = 0
+packet.packetbody.businessbodies.body[0].bodymessage.businessheader.sequence1 = 50990
+packet.packetbody.businessbodies.body[0].bodymessage.businessmessage = packet.packetbody.businessbodies.body.bodymessage.businessmessage.ordercancelledmessage
+packet.packetbody.businessbodies.body[0].bodymessage.businessmessage.ordercancelledmessage.symbol = CDZ.A
+packet.packetbody.businessbodies.body[0].bodymessage.businessmessage.ordercancelledmessage.brokernumber = 9
+packet.packetbody.businessbodies.body[0].bodymessage.businessmessage.ordercancelledmessage.orderside = B
+packet.packetbody.businessbodies.body[0].bodymessage.businessmessage.ordercancelledmessage.orderid = 20150508000000171
+packet.packetbody.businessbodies.body[0].bodymessage.businessmessage.ordercancelledmessage.tradingsystemtimestamp = 1431091799899988

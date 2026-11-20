@@ -23,7 +23,7 @@ enum class SecurityType : char {
     Rights = 'R',                      // Rights
     SharesOfBeneficiaryInterest = 'S', // Shares Of Beneficiary Interest
     Test = 'T',                        // Test
-    Units2 = 'U',                      // Units
+    ClosedEndFund = 'U',               // Closed End Fund
     Warrant = 'W',                     // Warrant
 };
 

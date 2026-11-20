@@ -6,7 +6,7 @@
 #include "../types/ExecutedQuantity.hpp"
 #include "../types/RemainingQuantity.hpp"
 #include "../types/ExecutionId.hpp"
-#include "../types/PriceBinaryLongPrice8.hpp"
+#include "../types/PriceLong.hpp"
 #include "../structs/MessageHeader.hpp"
 
 namespace cboe::bzxequities::multicastdepthofbook::pitch::v2_20_4 {
@@ -21,7 +21,7 @@ struct OrderExecutedAtPriceSizeMessage {
     ExecutedQuantity executed_quantity;
     RemainingQuantity remaining_quantity;
     ExecutionId execution_id;
-    PriceBinaryLongPrice8 price_binary_long_price_8;
+    PriceLong price_long;
 
     // the type code that selects this message in the dispatch switch
     static constexpr std::uint8_t message_type = 0x24;

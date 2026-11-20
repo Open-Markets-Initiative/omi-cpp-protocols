@@ -20,14 +20,14 @@ struct security_type {
         etf = 'E',
         foreign = 'F',
         american_depository_shares = 'H',
-        units_I = 'I',
+        units = 'I',
         miscliquid_trust = 'M',
         ordinary_shares = 'O',
         preferred_stock = 'P',
         rights = 'R',
         shares_of_beneficiary_interest = 'S',
         test = 'T',
-        units_U = 'U',
+        closed_end_fund = 'U',
         warrant = 'W',
         index = 'X'
     };
@@ -35,6 +35,7 @@ struct security_type {
     static constexpr std::array<std::pair<std::string_view, enum_type>, 16> from_string_map = {{
         {"Adr", enum_type::adr},
         {"American Depository Shares", enum_type::american_depository_shares},
+        {"Closed End Fund", enum_type::closed_end_fund},
         {"Common Stock", enum_type::common_stock},
         {"Debentures", enum_type::debentures},
         {"Etf", enum_type::etf},
@@ -46,8 +47,7 @@ struct security_type {
         {"Rights", enum_type::rights},
         {"Shares Of Beneficiary Interest", enum_type::shares_of_beneficiary_interest},
         {"Test", enum_type::test},
-        {"Units", enum_type::units_I},
-        {"Units", enum_type::units_U},
+        {"Units", enum_type::units},
         {"Warrant", enum_type::warrant}
     }};
 
@@ -59,14 +59,14 @@ struct security_type {
             case enum_type::etf: return "Etf";
             case enum_type::foreign: return "Foreign";
             case enum_type::american_depository_shares: return "American Depository Shares";
-            case enum_type::units_I: return "Units";
+            case enum_type::units: return "Units";
             case enum_type::miscliquid_trust: return "Miscliquid Trust";
             case enum_type::ordinary_shares: return "Ordinary Shares";
             case enum_type::preferred_stock: return "Preferred Stock";
             case enum_type::rights: return "Rights";
             case enum_type::shares_of_beneficiary_interest: return "Shares Of Beneficiary Interest";
             case enum_type::test: return "Test";
-            case enum_type::units_U: return "Units";
+            case enum_type::closed_end_fund: return "Closed End Fund";
             case enum_type::warrant: return "Warrant";
             case enum_type::index: return "Index";
             default: return "unknown";

@@ -7,13 +7,6 @@ namespace memx::memxequities::memoirdepthfeed::sbe::v1_3 {
 
 std::unique_ptr<Message> Factory::create(MessageCode code) {
     switch (code) {
-        case SequencedMessage::message_type: return std::make_unique<SequencedMessage>();
-        default: return std::make_unique<UnknownMessage>(code);
-    }
-}
-
-std::unique_ptr<Payload> PayloadFactory::create(PayloadCode code) {
-    switch (code) {
         case InstrumentDirectoryMessage::message_type: return std::make_unique<InstrumentDirectoryMessage>();
         case RegShoRestrictionMessage::message_type: return std::make_unique<RegShoRestrictionMessage>();
         case SecurityTradingStatusMessage::message_type: return std::make_unique<SecurityTradingStatusMessage>();
@@ -27,7 +20,7 @@ std::unique_ptr<Payload> PayloadFactory::create(PayloadCode code) {
         case CorrectedTradeMessage::message_type: return std::make_unique<CorrectedTradeMessage>();
         case ClearBookMessage::message_type: return std::make_unique<ClearBookMessage>();
         case SnapshotCompleteMessage::message_type: return std::make_unique<SnapshotCompleteMessage>();
-        default: return std::make_unique<UnknownPayload>(code);
+        default: return std::make_unique<UnknownMessage>(code);
     }
 }
 

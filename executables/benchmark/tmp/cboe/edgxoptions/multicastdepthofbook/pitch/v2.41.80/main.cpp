@@ -451,6 +451,7 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::quantity_long>(); }) { checksum += bench::digest(message.template get<protocol::quantity_long>().value()); }
         if constexpr (requires { message.template get<protocol::symbol>(); }) { checksum += bench::digest(message.template get<protocol::symbol>().value()); }
         if constexpr (requires { message.template get<protocol::price_long>(); }) { checksum += bench::digest(message.template get<protocol::price_long>().value()); }
+        if constexpr (requires { message.template get<protocol::add_flags>(); }) { checksum += bench::digest(message.template get<protocol::add_flags>().template get<protocol::aon>()); }
     }
 
     void operator()(const protocol::add_order_short_message& message) {
@@ -460,6 +461,7 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::quantity_short>(); }) { checksum += bench::digest(message.template get<protocol::quantity_short>().value()); }
         if constexpr (requires { message.template get<protocol::symbol>(); }) { checksum += bench::digest(message.template get<protocol::symbol>().value()); }
         if constexpr (requires { message.template get<protocol::price_short>(); }) { checksum += bench::digest(message.template get<protocol::price_short>().value()); }
+        if constexpr (requires { message.template get<protocol::add_flags>(); }) { checksum += bench::digest(message.template get<protocol::add_flags>().template get<protocol::aon>()); }
     }
 
     void operator()(const protocol::add_order_expanded_message& message) {
@@ -469,6 +471,7 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::quantity_long>(); }) { checksum += bench::digest(message.template get<protocol::quantity_long>().value()); }
         if constexpr (requires { message.template get<protocol::expanded_symbol>(); }) { checksum += bench::digest(message.template get<protocol::expanded_symbol>().value()); }
         if constexpr (requires { message.template get<protocol::price_long>(); }) { checksum += bench::digest(message.template get<protocol::price_long>().value()); }
+        if constexpr (requires { message.template get<protocol::add_flags>(); }) { checksum += bench::digest(message.template get<protocol::add_flags>().template get<protocol::aon>()); }
         if constexpr (requires { message.template get<protocol::participant_id>(); }) { checksum += bench::digest(message.template get<protocol::participant_id>().value()); }
         if constexpr (requires { message.template get<protocol::customer_indicator>(); }) { checksum += bench::digest(message.template get<protocol::customer_indicator>().value()); }
         if constexpr (requires { message.template get<protocol::client_id>(); }) { checksum += bench::digest(message.template get<protocol::client_id>().value()); }
@@ -509,6 +512,8 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::order_id>(); }) { checksum += bench::digest(message.template get<protocol::order_id>().value()); }
         if constexpr (requires { message.template get<protocol::quantity_long>(); }) { checksum += bench::digest(message.template get<protocol::quantity_long>().value()); }
         if constexpr (requires { message.template get<protocol::price_long>(); }) { checksum += bench::digest(message.template get<protocol::price_long>().value()); }
+        if constexpr (requires { message.template get<protocol::modify_flags>(); }) { checksum += bench::digest(message.template get<protocol::modify_flags>().template get<protocol::display>()); }
+        if constexpr (requires { message.template get<protocol::modify_flags>(); }) { checksum += bench::digest(message.template get<protocol::modify_flags>().template get<protocol::maintain_priority>()); }
     }
 
     void operator()(const protocol::modify_order_short_message& message) {
@@ -516,6 +521,8 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::order_id>(); }) { checksum += bench::digest(message.template get<protocol::order_id>().value()); }
         if constexpr (requires { message.template get<protocol::quantity_short>(); }) { checksum += bench::digest(message.template get<protocol::quantity_short>().value()); }
         if constexpr (requires { message.template get<protocol::price_short>(); }) { checksum += bench::digest(message.template get<protocol::price_short>().value()); }
+        if constexpr (requires { message.template get<protocol::modify_flags>(); }) { checksum += bench::digest(message.template get<protocol::modify_flags>().template get<protocol::display>()); }
+        if constexpr (requires { message.template get<protocol::modify_flags>(); }) { checksum += bench::digest(message.template get<protocol::modify_flags>().template get<protocol::maintain_priority>()); }
     }
 
     void operator()(const protocol::delete_order_message& message) {

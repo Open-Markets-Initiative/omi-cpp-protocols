@@ -17,15 +17,13 @@ struct quote_condition {
         regular_trading = '1',
         rotation = '2',
         trading_halted = '3',
-        pre_open = '4',
-        rotation_legal_width_quote_pending = '5'
+        pre_open = '4'
     };
 
-    static constexpr std::array<std::pair<std::string_view, enum_type>, 5> from_string_map = {{
+    static constexpr std::array<std::pair<std::string_view, enum_type>, 4> from_string_map = {{
         {"Pre Open", enum_type::pre_open},
         {"Regular Trading", enum_type::regular_trading},
         {"Rotation", enum_type::rotation},
-        {"Rotation Legal Width Quote Pending", enum_type::rotation_legal_width_quote_pending},
         {"Trading Halted", enum_type::trading_halted}
     }};
 
@@ -35,7 +33,6 @@ struct quote_condition {
             case enum_type::rotation: return "Rotation";
             case enum_type::trading_halted: return "Trading Halted";
             case enum_type::pre_open: return "Pre Open";
-            case enum_type::rotation_legal_width_quote_pending: return "Rotation Legal Width Quote Pending";
             default: return "unknown";
         }
     }
@@ -78,7 +75,7 @@ struct quote_condition {
         if (value.has_value())
             set(value.value());
         else
-            set(enum_type::rotation_legal_width_quote_pending);
+            set(enum_type::pre_open);
     }
 
   protected:

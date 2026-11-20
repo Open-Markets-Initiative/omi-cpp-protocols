@@ -7,7 +7,7 @@
 
 namespace cboe::cfefutures::multicastdepthofbook::pitch::v1_2_22 {
 
-FuturesInstrumentDefinitionMessage::FuturesInstrumentDefinitionMessage(std::chrono::nanoseconds time_offset, const std::string& symbol, std::uint32_t unit_timestamp, const std::string& report_symbol, const FuturesFlags& futures_flags, std::uint32_t expiration_date, std::uint16_t contract_size, ListingState listing_state, Decimal price_increment, std::uint8_t leg_count, std::uint8_t leg_offset, std::uint8_t reserved_1, std::uint32_t contract_date, const std::vector<FutureLeg>& future_leg)
+FuturesInstrumentDefinitionMessage::FuturesInstrumentDefinitionMessage(std::chrono::nanoseconds time_offset, const std::string& symbol, std::chrono::seconds unit_timestamp, const std::string& report_symbol, const FuturesFlags& futures_flags, std::uint32_t expiration_date, std::uint16_t contract_size, ListingState listing_state, Decimal price_increment, std::uint8_t leg_count, std::uint8_t leg_offset, std::uint8_t reserved_1, std::uint32_t contract_date, const std::vector<FutureLeg>& future_leg)
   : time_offset_(time_offset), symbol_(symbol), unit_timestamp_(unit_timestamp), report_symbol_(report_symbol), futures_flags_(futures_flags), expiration_date_(expiration_date), contract_size_(contract_size), listing_state_(listing_state), price_increment_(price_increment), leg_count_(leg_count), leg_offset_(leg_offset), reserved_1_(reserved_1), contract_date_(contract_date), future_leg_(future_leg) {}
 
 std::chrono::nanoseconds FuturesInstrumentDefinitionMessage::time_offset() const { return time_offset_; }
@@ -17,8 +17,8 @@ const std::string& FuturesInstrumentDefinitionMessage::symbol() const { return s
 std::string& FuturesInstrumentDefinitionMessage::symbol() { return symbol_; }
 void FuturesInstrumentDefinitionMessage::set_symbol(const std::string& value) { symbol_ = value; }
 
-std::uint32_t FuturesInstrumentDefinitionMessage::unit_timestamp() const { return unit_timestamp_; }
-void FuturesInstrumentDefinitionMessage::set_unit_timestamp(std::uint32_t value) { unit_timestamp_ = value; }
+std::chrono::seconds FuturesInstrumentDefinitionMessage::unit_timestamp() const { return unit_timestamp_; }
+void FuturesInstrumentDefinitionMessage::set_unit_timestamp(std::chrono::seconds value) { unit_timestamp_ = value; }
 
 const std::string& FuturesInstrumentDefinitionMessage::report_symbol() const { return report_symbol_; }
 std::string& FuturesInstrumentDefinitionMessage::report_symbol() { return report_symbol_; }
@@ -72,7 +72,7 @@ std::size_t FuturesInstrumentDefinitionMessage::decode(const std::byte* data, st
     offset += 6;
 
     wire::require("FuturesInstrumentDefinitionMessage", offset + 4, length);
-    unit_timestamp_ = wire::read_u32_le(data + offset);
+    unit_timestamp_ = std::chrono::seconds(static_cast<std::int64_t>(wire::read_u32_le(data + offset)));
     offset += 4;
 
     wire::require("FuturesInstrumentDefinitionMessage", offset + 6, length);
@@ -142,7 +142,7 @@ std::size_t FuturesInstrumentDefinitionMessage::encode(std::byte* data, std::siz
     wire::write_text(data + offset, 6, ' ', symbol_);
     offset += 6;
 
-    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(unit_timestamp_));
+    wire::write_u32_le(data + offset, static_cast<std::uint32_t>(unit_timestamp_.count()));
     offset += 4;
 
     wire::write_text(data + offset, 6, ' ', report_symbol_);
@@ -200,7 +200,7 @@ void FuturesInstrumentDefinitionMessage::print(std::ostream& out) const {
     out << ", symbol=";
     print::text(out, symbol_);
     out << ", unit_timestamp=";
-    out << unit_timestamp_;
+    out << unit_timestamp_.count();
     out << ", report_symbol=";
     print::text(out, report_symbol_);
     out << ", futures_flags=";

@@ -314,6 +314,8 @@ struct Reader {
         if constexpr (requires { header.template get<protocol::delivery_flag>(); }) { values["packet.packetheader.deliveryflag"] = canonical::number(header.template get<protocol::delivery_flag>().value()); }
         if constexpr (requires { header.template get<protocol::message_count>(); }) { values["packet.packetheader.messagecount"] = canonical::number(header.template get<protocol::message_count>().value()); }
         if constexpr (requires { header.template get<protocol::sequence_number>(); }) { values["packet.packetheader.sequencenumber"] = canonical::number(header.template get<protocol::sequence_number>().value()); }
+        if constexpr (requires { header.template get<protocol::send_time>().template get<protocol::seconds>(); }) { values["packet.packetheader.sendtime.seconds"] = canonical::number(header.template get<protocol::send_time>().template get<protocol::seconds>().value()); }
+        if constexpr (requires { header.template get<protocol::send_time>().template get<protocol::nanoseconds>(); }) { values["packet.packetheader.sendtime.nanoseconds"] = canonical::number(header.template get<protocol::send_time>().template get<protocol::nanoseconds>().value()); }
     }
 
     void operator()(const protocol::message_header& header) {
@@ -440,7 +442,7 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::market_imbalance_qty>(); }) { values[entry + ".payload.imbalancemessage.marketimbalanceqty"] = canonical::number(message.template get<protocol::market_imbalance_qty>().value()); }
         if constexpr (requires { message.template get<protocol::auction_time>(); }) { values[entry + ".payload.imbalancemessage.auctiontime"] = canonical::number(message.template get<protocol::auction_time>().value()); }
         if constexpr (requires { message.template get<protocol::auction_type>(); }) { values[entry + ".payload.imbalancemessage.auctiontype"] = canonical::text(canonical::character(message.template get<protocol::auction_type>().value()), '\0', false); }
-        if constexpr (requires { message.template get<protocol::imbalance_side>(); }) { values[entry + ".payload.imbalancemessage.imbalanceside"] = canonical::text(canonical::character(message.template get<protocol::imbalance_side>().value()), '\0', false); }
+        if constexpr (requires { message.template get<protocol::imbalance_side>(); }) { values[entry + ".payload.imbalancemessage.imbalanceside"] = canonical::text(canonical::character(message.template get<protocol::imbalance_side>().value()), '\0', false, {std::string_view(" ", 1)}); }
         if constexpr (requires { message.template get<protocol::continuous_book_clearing_price>(); }) { values[entry + ".payload.imbalancemessage.continuousbookclearingprice"] = canonical::number(message.template get<protocol::continuous_book_clearing_price>().value()); }
         if constexpr (requires { message.template get<protocol::closing_only_clearing_price>(); }) { values[entry + ".payload.imbalancemessage.closingonlyclearingprice"] = canonical::number(message.template get<protocol::closing_only_clearing_price>().value()); }
         if constexpr (requires { message.template get<protocol::ssr_filing_price>(); }) { values[entry + ".payload.imbalancemessage.ssrfilingprice"] = canonical::number(message.template get<protocol::ssr_filing_price>().value()); }

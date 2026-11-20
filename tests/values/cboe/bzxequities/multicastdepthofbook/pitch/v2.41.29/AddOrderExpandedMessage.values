@@ -16,4 +16,4 @@ packet.messages.message[0].payload.addorderexpandedmessage.symbollong = CODI
 packet.messages.message[0].payload.addorderexpandedmessage.price = 19.35
 packet.messages.message[0].payload.addorderexpandedmessage.addorderflags.display = 1
 packet.messages.message[0].payload.addorderexpandedmessage.participantid = XGWD
-packet.messages.message[0].payload.addorderexpandedmessage.customerindicator = 
+packet.messages.message[0].payload.addorderexpandedmessage.customerindicator = (null)

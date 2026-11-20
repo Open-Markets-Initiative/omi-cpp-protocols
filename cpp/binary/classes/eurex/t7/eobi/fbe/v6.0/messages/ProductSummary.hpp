@@ -31,7 +31,8 @@ class ProductSummary : public Message {
     ProductSummary() = default;
     ProductSummary(std::optional<std::uint32_t> last_msg_seq_num_processed, std::optional<TradingSessionId> trading_session_id, std::optional<TradingSessionSubId> trading_session_sub_id, std::optional<TradSesStatus> trad_ses_status, std::optional<MarketCondition> market_condition, std::optional<FastMarketIndicator> fast_market_indicator, const std::array<std::byte, 7>& pad7);
 
-    // Last Msg Seq Num Processed:
+    // Last Msg Seq Num Processed: Last message sequence number that was processed, regardless
+    // of message type
     std::optional<std::uint32_t> last_msg_seq_num_processed() const;
     void set_last_msg_seq_num_processed(std::optional<std::uint32_t> value);
 

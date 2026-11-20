@@ -32,7 +32,6 @@ struct MktdataPayloadHandler {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
     }
 
@@ -56,7 +55,6 @@ struct MktdataPayloadHandler {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += (message.security_trading_status().has_value() ? bench::digest((*message.security_trading_status())) : std::uint64_t{0});
         checksum += bench::digest(message.halt_reason());
@@ -71,7 +69,6 @@ struct MktdataPayloadHandler {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
     }
 
@@ -84,7 +81,6 @@ struct MktdataPayloadHandler {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
     }
 
@@ -96,7 +92,6 @@ struct MktdataPayloadHandler {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
     }
 
@@ -108,7 +103,6 @@ struct MktdataPayloadHandler {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
     }
 
@@ -120,7 +114,6 @@ struct MktdataPayloadHandler {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
     }
 
@@ -132,7 +125,6 @@ struct MktdataPayloadHandler {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
     }
 
@@ -144,7 +136,6 @@ struct MktdataPayloadHandler {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
     }
 
@@ -156,7 +147,6 @@ struct MktdataPayloadHandler {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
     }
 
@@ -190,7 +180,6 @@ struct MktdataPayloadHandler {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += (message.tot_num_reports_optional().has_value() ? bench::digest((*message.tot_num_reports_optional())) : std::uint64_t{0});
         checksum += bench::digest(message.security_update_action());
@@ -227,7 +216,6 @@ struct MktdataPayloadHandler {
         checksum += bench::digest(message.settl_price_type().actual());
         checksum += bench::digest(message.settl_price_type().rounded());
         checksum += bench::digest(message.settl_price_type().intraday());
-        checksum += bench::digest(message.settl_price_type().reserved_bits());
         checksum += bench::digest(message.settl_price_type().null_value());
         checksum += (message.open_interest_qty().has_value() ? bench::digest((*message.open_interest_qty())) : std::uint64_t{0});
         checksum += (message.cleared_volume().has_value() ? bench::digest((*message.cleared_volume())) : std::uint64_t{0});
@@ -253,7 +241,6 @@ struct MktdataPayloadHandler {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += (message.tot_num_reports_optional().has_value() ? bench::digest((*message.tot_num_reports_optional())) : std::uint64_t{0});
         checksum += bench::digest(message.security_update_action());
@@ -296,7 +283,6 @@ struct MktdataPayloadHandler {
         checksum += bench::digest(message.settl_price_type().actual());
         checksum += bench::digest(message.settl_price_type().rounded());
         checksum += bench::digest(message.settl_price_type().intraday());
-        checksum += bench::digest(message.settl_price_type().reserved_bits());
         checksum += bench::digest(message.settl_price_type().null_value());
         checksum += (message.cleared_volume().has_value() ? bench::digest((*message.cleared_volume())) : std::uint64_t{0});
         checksum += (message.open_interest_qty().has_value() ? bench::digest((*message.open_interest_qty())) : std::uint64_t{0});
@@ -314,7 +300,6 @@ struct MktdataPayloadHandler {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += (message.tot_num_reports_optional().has_value() ? bench::digest((*message.tot_num_reports_optional())) : std::uint64_t{0});
         checksum += bench::digest(message.security_update_action());
@@ -351,7 +336,6 @@ struct MktdataPayloadHandler {
         checksum += bench::digest(message.settl_price_type().actual());
         checksum += bench::digest(message.settl_price_type().rounded());
         checksum += bench::digest(message.settl_price_type().intraday());
-        checksum += bench::digest(message.settl_price_type().reserved_bits());
         checksum += bench::digest(message.settl_price_type().null_value());
         checksum += (message.open_interest_qty().has_value() ? bench::digest((*message.open_interest_qty())) : std::uint64_t{0});
         checksum += (message.cleared_volume().has_value() ? bench::digest((*message.cleared_volume())) : std::uint64_t{0});
@@ -375,7 +359,6 @@ struct MktdataPayloadHandler {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += (message.tot_num_reports_optional().has_value() ? bench::digest((*message.tot_num_reports_optional())) : std::uint64_t{0});
         checksum += bench::digest(message.security_update_action());
@@ -437,7 +420,6 @@ struct MktdataPayloadHandler {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += (message.tot_num_reports_optional().has_value() ? bench::digest((*message.tot_num_reports_optional())) : std::uint64_t{0});
         checksum += bench::digest(message.security_update_action());
@@ -492,7 +474,6 @@ struct MktdataPayloadHandler {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.security_id());
     }
@@ -507,7 +488,6 @@ struct MktdataPayloadHandler {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += (message.trade_date().has_value() ? bench::digest((*message.trade_date())) : std::uint64_t{0});
         checksum += bench::digest(message.trade_link_id());
@@ -524,7 +504,6 @@ struct MktdataPayloadHandler {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.security_id());
         checksum += (message.high_limit_price().has_value() ? bench::digest((*message.high_limit_price()).mantissa()) : std::uint64_t{0});
@@ -540,7 +519,6 @@ struct MktdataPayloadHandler {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
     }
 
@@ -551,7 +529,6 @@ struct MktdataPayloadHandler {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += (message.tot_num_reports_optional().has_value() ? bench::digest((*message.tot_num_reports_optional())) : std::uint64_t{0});
         checksum += bench::digest(message.security_update_action());
@@ -612,7 +589,6 @@ struct MktdataPayloadHandler {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
     }
 
@@ -624,7 +600,6 @@ struct MktdataPayloadHandler {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
     }
 
@@ -636,7 +611,6 @@ struct MktdataPayloadHandler {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
     }
 
@@ -648,7 +622,6 @@ struct MktdataPayloadHandler {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
     }
 
@@ -660,7 +633,6 @@ struct MktdataPayloadHandler {
         checksum += bench::digest(message.match_event_indicator().last_stats_msg());
         checksum += bench::digest(message.match_event_indicator().last_implied_msg());
         checksum += bench::digest(message.match_event_indicator().recovery_msg());
-        checksum += bench::digest(message.match_event_indicator().reserved());
         checksum += bench::digest(message.match_event_indicator().end_of_event());
         checksum += bench::digest(message.security_id());
         checksum += (message.high_limit_price().has_value() ? bench::digest((*message.high_limit_price()).mantissa()) : std::uint64_t{0});

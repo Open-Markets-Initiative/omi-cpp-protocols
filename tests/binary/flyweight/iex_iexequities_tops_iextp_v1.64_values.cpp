@@ -90,7 +90,7 @@ struct Reader {
         values[entry + ".messagedata.shortsalepriceteststatusmessage.shortsalepriceteststatus"] = canonical::number(message.short_sale_price_test_status());
         values[entry + ".messagedata.shortsalepriceteststatusmessage.timestamp"] = canonical::number(message.timestamp());
         values[entry + ".messagedata.shortsalepriceteststatusmessage.symbol"] = canonical::text(std::string(message.symbol()), ' ', false);
-        values[entry + ".messagedata.shortsalepriceteststatusmessage.detail"] = canonical::text(canonical::character(message.detail()));
+        values[entry + ".messagedata.shortsalepriceteststatusmessage.detail"] = canonical::text(canonical::character(message.detail()), {std::string_view(" ", 1)});
     }
 
     void on(const protocol::SecurityEventMessage& message) {

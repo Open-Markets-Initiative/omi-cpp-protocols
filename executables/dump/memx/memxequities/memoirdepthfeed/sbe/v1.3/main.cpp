@@ -19,14 +19,19 @@ namespace protocol = ::memx::memxequities::memoirdepthfeed::sbe::v1_3;
 
 namespace {
 
+// Every message a read frames, printed through the message's own print. A tree's frame class
+// is its own, so the frames are taken as they come rather than by naming their type.
+constexpr auto framed = [](const auto& read) {
+    std::size_t messages = 0;
 
-// The one message a packet declared around a single message carries.
-constexpr auto alone = [](const auto& read) -> std::size_t {
-    if (read.message() == nullptr) { return 0; }
+    for (const auto& held : read.frames()) {
+        if (held.message() == nullptr) { continue; }
 
-    std::cout << *read.message() << '\n';
+        ++messages;
+        std::cout << *held.message() << '\n';
+    }
 
-    return 1;
+    return messages;
 };
 
 // A frame that arrives whole is a whole packet: what it does not hold belongs to no other frame.
@@ -67,7 +72,7 @@ int main(int argc, char** argv) {
         if (!frame.valid()) { continue; }
 
         if (frame.is_udp()) {
-            messages += whole<protocol::Packet>(frame, undecodable, alone);
+            messages += whole<protocol::Packet>(frame, undecodable, framed);
             continue;
         }
     }

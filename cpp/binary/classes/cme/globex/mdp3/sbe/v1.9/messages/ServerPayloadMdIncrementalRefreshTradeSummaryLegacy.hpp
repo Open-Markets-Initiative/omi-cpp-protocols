@@ -10,7 +10,7 @@
 
 #include "../bitfields/MatchEventIndicator.hpp"
 #include "../messages/ServerTcpMessage.hpp"
-#include "../structs/IncrementalRefreshTradeSummaryGroups.hpp"
+#include "../structs/IncrementalRefreshTradeSummaryLegacyGroups.hpp"
 #include "../structs/IncrementalRefreshTradeSummaryOrderIdGroups.hpp"
 
 namespace cme::globex::mdp3::sbe::v1_9 {
@@ -24,7 +24,7 @@ class ServerPayloadMdIncrementalRefreshTradeSummaryLegacy : public ServerTcpMess
     static constexpr ServerTcpMessageCode message_type = TemplateId::MdIncrementalRefreshTradeSummaryLegacy;
 
     ServerPayloadMdIncrementalRefreshTradeSummaryLegacy() = default;
-    ServerPayloadMdIncrementalRefreshTradeSummaryLegacy(std::chrono::nanoseconds transact_time, const MatchEventIndicator& match_event_indicator, const std::array<std::byte, 2>& padding_2, const IncrementalRefreshTradeSummaryGroups& incremental_refresh_trade_summary_groups, const IncrementalRefreshTradeSummaryOrderIdGroups& incremental_refresh_trade_summary_order_id_groups);
+    ServerPayloadMdIncrementalRefreshTradeSummaryLegacy(std::chrono::nanoseconds transact_time, const MatchEventIndicator& match_event_indicator, const std::array<std::byte, 2>& padding_2, const IncrementalRefreshTradeSummaryLegacyGroups& incremental_refresh_trade_summary_legacy_groups, const IncrementalRefreshTradeSummaryOrderIdGroups& incremental_refresh_trade_summary_order_id_groups);
 
     // Transact Time: Start of event processing time in number of nanoseconds since Unix epoch
     std::chrono::nanoseconds transact_time() const;
@@ -40,10 +40,10 @@ class ServerPayloadMdIncrementalRefreshTradeSummaryLegacy : public ServerTcpMess
     std::array<std::byte, 2>& padding_2();
     void set_padding_2(const std::array<std::byte, 2>& value);
 
-    // Incremental Refresh Trade Summary Groups: NoMDEntries Block
-    const IncrementalRefreshTradeSummaryGroups& incremental_refresh_trade_summary_groups() const;
-    IncrementalRefreshTradeSummaryGroups& incremental_refresh_trade_summary_groups();
-    void set_incremental_refresh_trade_summary_groups(const IncrementalRefreshTradeSummaryGroups& value);
+    // Incremental Refresh Trade Summary Legacy Groups: NoMDEntries Block
+    const IncrementalRefreshTradeSummaryLegacyGroups& incremental_refresh_trade_summary_legacy_groups() const;
+    IncrementalRefreshTradeSummaryLegacyGroups& incremental_refresh_trade_summary_legacy_groups();
+    void set_incremental_refresh_trade_summary_legacy_groups(const IncrementalRefreshTradeSummaryLegacyGroups& value);
 
     // Incremental Refresh Trade Summary Order Id Groups: NoOrderIDEntries Block
     const IncrementalRefreshTradeSummaryOrderIdGroups& incremental_refresh_trade_summary_order_id_groups() const;
@@ -68,7 +68,7 @@ class ServerPayloadMdIncrementalRefreshTradeSummaryLegacy : public ServerTcpMess
     std::chrono::nanoseconds transact_time_{};
     MatchEventIndicator match_event_indicator_{};
     std::array<std::byte, 2> padding_2_{};
-    IncrementalRefreshTradeSummaryGroups incremental_refresh_trade_summary_groups_{};
+    IncrementalRefreshTradeSummaryLegacyGroups incremental_refresh_trade_summary_legacy_groups_{};
     IncrementalRefreshTradeSummaryOrderIdGroups incremental_refresh_trade_summary_order_id_groups_{};
 };
 

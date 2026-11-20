@@ -4,9 +4,9 @@
 #include "../types/TimeOffset.hpp"
 #include "../types/OrderId.hpp"
 #include "../types/SideIndicator.hpp"
-#include "../types/QuantityBinary2.hpp"
+#include "../types/QuantityShort.hpp"
 #include "../types/SymbolShort.hpp"
-#include "../types/PriceBinaryShortPrice2.hpp"
+#include "../types/PriceShort.hpp"
 #include "../bitfields/AddFlags.hpp"
 #include "../structs/MessageHeader.hpp"
 
@@ -20,9 +20,9 @@ struct AddOrderShortMessage {
     TimeOffset time_offset;
     OrderId order_id;
     SideIndicator side_indicator;
-    QuantityBinary2 quantity_binary_2;
+    QuantityShort quantity_short;
     SymbolShort symbol_short;
-    PriceBinaryShortPrice2 price_binary_short_price_2;
+    PriceShort price_short;
     AddFlags add_flags;
 
     // the type code that selects this message in the dispatch switch

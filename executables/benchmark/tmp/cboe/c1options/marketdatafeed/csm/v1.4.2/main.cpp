@@ -599,6 +599,8 @@ struct Reader {
     void operator()(const protocol::expected_opening_price_and_size_message& message) {
         if constexpr (requires { message.template get<protocol::class_key>(); }) { checksum += bench::digest(message.template get<protocol::class_key>().value()); }
         if constexpr (requires { message.template get<protocol::security_id>(); }) { checksum += bench::digest(message.template get<protocol::security_id>().value()); }
+        if constexpr (requires { message.template get<protocol::eop>().template get<protocol::eop_exponent>(); }) { checksum += bench::digest(message.template get<protocol::eop>().template get<protocol::eop_exponent>().value()); }
+        if constexpr (requires { message.template get<protocol::eop>().template get<protocol::eop_mantissa>(); }) { checksum += bench::digest(message.template get<protocol::eop>().template get<protocol::eop_mantissa>().value()); }
         if constexpr (requires { message.template get<protocol::eos>(); }) { checksum += bench::digest(message.template get<protocol::eos>().value()); }
         if constexpr (requires { message.template get<protocol::eop_type>(); }) { checksum += bench::digest(message.template get<protocol::eop_type>().value()); }
         if constexpr (requires { message.template get<protocol::legal_market>(); }) { checksum += bench::digest(message.template get<protocol::legal_market>().value()); }

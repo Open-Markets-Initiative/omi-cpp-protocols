@@ -524,10 +524,12 @@ struct Reader {
         if constexpr (requires { header.template get<protocol::version>(); }) { values["packet.blockheader.version"] = canonical::number(header.template get<protocol::version>().value()); }
         if constexpr (requires { header.template get<protocol::block_size>(); }) { values["packet.blockheader.blocksize"] = canonical::number(header.template get<protocol::block_size>().value()); }
         if constexpr (requires { header.template get<protocol::data_feed_indicator>(); }) { values["packet.blockheader.datafeedindicator"] = canonical::text(canonical::character(header.template get<protocol::data_feed_indicator>().value())); }
-        if constexpr (requires { header.template get<protocol::retransmission_indicator>(); }) { values["packet.blockheader.retransmissionindicator"] = canonical::text(canonical::character(header.template get<protocol::retransmission_indicator>().value())); }
+        if constexpr (requires { header.template get<protocol::retransmission_indicator>(); }) { values["packet.blockheader.retransmissionindicator"] = canonical::text(canonical::character(header.template get<protocol::retransmission_indicator>().value()), {std::string_view(" ", 1)}); }
         if constexpr (requires { header.template get<protocol::session_indicator>(); }) { values["packet.blockheader.sessionindicator"] = canonical::number(header.template get<protocol::session_indicator>().value()); }
         if constexpr (requires { header.template get<protocol::block_sequence_number>(); }) { values["packet.blockheader.blocksequencenumber"] = canonical::number(header.template get<protocol::block_sequence_number>().value()); }
         if constexpr (requires { header.template get<protocol::messages_in_block>(); }) { values["packet.blockheader.messagesinblock"] = canonical::number(header.template get<protocol::messages_in_block>().value()); }
+        if constexpr (requires { header.template get<protocol::block_timestamp>().template get<protocol::seconds>(); }) { values["packet.blockheader.blocktimestamp.seconds"] = canonical::number(header.template get<protocol::block_timestamp>().template get<protocol::seconds>().value()); }
+        if constexpr (requires { header.template get<protocol::block_timestamp>().template get<protocol::nanoseconds>(); }) { values["packet.blockheader.blocktimestamp.nanoseconds"] = canonical::number(header.template get<protocol::block_timestamp>().template get<protocol::nanoseconds>().value()); }
         if constexpr (requires { header.template get<protocol::block_checksum>(); }) { values["packet.blockheader.blockchecksum"] = canonical::number(header.template get<protocol::block_checksum>().value()); }
     }
 

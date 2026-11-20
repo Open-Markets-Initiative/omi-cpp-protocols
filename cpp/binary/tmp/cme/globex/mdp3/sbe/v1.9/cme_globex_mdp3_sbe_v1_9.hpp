@@ -917,12 +917,41 @@ struct md_display_qty_optional {
     type value_;
 };
 
+// Md Entry Px: Market Data entry price
+struct md_entry_px {
+    using type = std::int64_t;
+    static constexpr std::size_t size = 8;
+    static constexpr std::endian order = std::endian::little;
+    static constexpr int exponent = -7;
+
+    constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
+    constexpr operator type() const noexcept { return value(); }
+
+  protected:
+    type value_;
+};
+
 // Md Entry Px Ex: Trade price
 struct md_entry_px_ex {
     using type = std::int64_t;
     static constexpr std::size_t size = 8;
     static constexpr std::endian order = std::endian::little;
     static constexpr int exponent = -9;
+
+    constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
+    constexpr operator type() const noexcept { return value(); }
+
+  protected:
+    type value_;
+};
+
+// Md Entry Px Optional: Market Data entry price
+struct md_entry_px_optional {
+    using type = std::int64_t;
+    static constexpr std::size_t size = 8;
+    static constexpr std::endian order = std::endian::little;
+    static constexpr type no_value = static_cast<type>(9223372036854775807LL);
+    static constexpr int exponent = -7;
 
     constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
     constexpr operator type() const noexcept { return value(); }
@@ -1878,25 +1907,25 @@ struct request_timestamp {
     type value_;
 };
 
-// Reserved
-struct reserved {
-    using type = bool;
-    static constexpr std::uint64_t mask = 0x40ULL;
-    static constexpr int shift = 6;
-};
-
-// Reserved 10: 10 reserved bits
-struct reserved_10 {
+// Reserved 23 To 32: 10 reserved bits
+struct reserved_23_to_32 {
     using type = std::uint32_t;
     static constexpr std::uint64_t mask = 0xFFC00000ULL;
     static constexpr int shift = 22;
 };
 
-// Reserved Bits: ReservedBits
-struct reserved_bits {
-    using type = bool;
-    static constexpr std::uint64_t mask = 0x10ULL;
+// Reserved 5 To 7: 3 reserved bits
+struct reserved_5_to_7 {
+    using type = std::uint8_t;
+    static constexpr std::uint64_t mask = 0x70ULL;
     static constexpr int shift = 4;
+};
+
+// Reserved 7: 1 reserved bit
+struct reserved_7 {
+    using type = bool;
+    static constexpr std::uint64_t mask = 0x40ULL;
+    static constexpr int shift = 6;
 };
 
 // Rfq Cross Eligible: RFQCrossEligible
@@ -2545,13 +2574,6 @@ struct unit_of_measure_qty_ex {
 
   protected:
     type value_;
-};
-
-// Unused 2: 2 unused bits
-struct unused_2 {
-    using type = std::uint8_t;
-    static constexpr std::uint64_t mask = 0x60ULL;
-    static constexpr int shift = 5;
 };
 
 // User Defined Instrument: User-defined instruments flag
@@ -4212,6 +4234,43 @@ struct md_incremental_refresh_book {
     static constexpr bool is_message = true;
 };
 
+// Snapshot Full Refresh Order Book Legacy Group: Number of entries in Market Data message
+struct snapshot_full_refresh_order_book_legacy_group {
+    static constexpr std::string_view name = "Snapshot Full Refresh Order Book Legacy Group";
+    static constexpr std::size_t size = 29;
+    static constexpr bool is_message = false;
+
+    // the types of its members, in wire order
+    using fields = tmp::list<
+        order_id,
+        md_order_priority,
+        md_entry_px,
+        md_display_qty,
+        md_entry_type_book>;
+
+    // the member of the type asked for
+    template <typename Field>
+    constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
+
+  protected:
+    MDP3FIELD(order_id);
+    MDP3FIELD(md_order_priority);
+    MDP3FIELD(md_entry_px);
+    MDP3FIELD(md_display_qty);
+    MDP3FIELD(md_entry_type_book);
+};
+
+static_assert(sizeof(snapshot_full_refresh_order_book_legacy_group) == snapshot_full_refresh_order_book_legacy_group::size, "snapshot_full_refresh_order_book_legacy_group lies over its bytes exactly");
+
+// Snapshot Full Refresh Order Book Legacy Groups: NoMDEntries Block
+struct snapshot_full_refresh_order_book_legacy_groups {
+    static constexpr std::string_view name = "Snapshot Full Refresh Order Book Legacy Groups";
+    static constexpr bool is_message = false;
+
+    // its repeating groups, whose entries the parse hands over one at a time
+    MDP3SEQUENCE(snapshot_full_refresh_order_book_legacy_group);
+};
+
 // Snapshot Full Refresh Order Book Legacy Section 1
 struct snapshot_full_refresh_order_book_legacy_section_1 {
     static constexpr std::string_view name = "Snapshot Full Refresh Order Book Legacy Section 1";
@@ -4250,6 +4309,49 @@ struct snapshot_full_refresh_order_book_legacy {
     static constexpr bool is_message = true;
 };
 
+// Incremental Refresh Order Book Legacy Group: Number of entries in Market Data message
+struct incremental_refresh_order_book_legacy_group {
+    static constexpr std::string_view name = "Incremental Refresh Order Book Legacy Group";
+    static constexpr std::size_t size = 40;
+    static constexpr bool is_message = false;
+
+    // the types of its members, in wire order
+    using fields = tmp::list<
+        order_id_optional,
+        md_order_priority,
+        md_entry_px_optional,
+        md_display_qty_optional,
+        security_id,
+        md_update_action,
+        md_entry_type_book,
+        padding_6>;
+
+    // the member of the type asked for
+    template <typename Field>
+    constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
+
+  protected:
+    MDP3FIELD(order_id_optional);
+    MDP3FIELD(md_order_priority);
+    MDP3FIELD(md_entry_px_optional);
+    MDP3FIELD(md_display_qty_optional);
+    MDP3FIELD(security_id);
+    MDP3FIELD(md_update_action);
+    MDP3FIELD(md_entry_type_book);
+    MDP3FIELD(padding_6);
+};
+
+static_assert(sizeof(incremental_refresh_order_book_legacy_group) == incremental_refresh_order_book_legacy_group::size, "incremental_refresh_order_book_legacy_group lies over its bytes exactly");
+
+// Incremental Refresh Order Book Legacy Groups: NoMDEntries Block
+struct incremental_refresh_order_book_legacy_groups {
+    static constexpr std::string_view name = "Incremental Refresh Order Book Legacy Groups";
+    static constexpr bool is_message = false;
+
+    // its repeating groups, whose entries the parse hands over one at a time
+    MDP3SEQUENCE(incremental_refresh_order_book_legacy_group);
+};
+
 // Md Incremental Refresh Order Book Legacy Section 1
 struct md_incremental_refresh_order_book_legacy_section_1 {
     static constexpr std::string_view name = "Md Incremental Refresh Order Book Legacy Section 1";
@@ -4280,6 +4382,51 @@ static_assert(sizeof(md_incremental_refresh_order_book_legacy_section_1) == md_i
 struct md_incremental_refresh_order_book_legacy {
     static constexpr std::string_view name = "Md Incremental Refresh Order Book Legacy";
     static constexpr bool is_message = true;
+};
+
+// Incremental Refresh Trade Summary Legacy Group: Number of Trade Summary entries
+struct incremental_refresh_trade_summary_legacy_group {
+    static constexpr std::string_view name = "Incremental Refresh Trade Summary Legacy Group";
+    static constexpr std::size_t size = 32;
+    static constexpr bool is_message = false;
+
+    // the types of its members, in wire order
+    using fields = tmp::list<
+        md_entry_px,
+        md_entry_size_short,
+        security_id,
+        rpt_seq,
+        number_of_orders_optional,
+        aggressor_side,
+        md_update_action,
+        md_trade_entry_id,
+        padding_2>;
+
+    // the member of the type asked for
+    template <typename Field>
+    constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
+
+  protected:
+    MDP3FIELD(md_entry_px);
+    MDP3FIELD(md_entry_size_short);
+    MDP3FIELD(security_id);
+    MDP3FIELD(rpt_seq);
+    MDP3FIELD(number_of_orders_optional);
+    MDP3FIELD(aggressor_side);
+    MDP3FIELD(md_update_action);
+    MDP3FIELD(md_trade_entry_id);
+    MDP3FIELD(padding_2);
+};
+
+static_assert(sizeof(incremental_refresh_trade_summary_legacy_group) == incremental_refresh_trade_summary_legacy_group::size, "incremental_refresh_trade_summary_legacy_group lies over its bytes exactly");
+
+// Incremental Refresh Trade Summary Legacy Groups: NoMDEntries Block
+struct incremental_refresh_trade_summary_legacy_groups {
+    static constexpr std::string_view name = "Incremental Refresh Trade Summary Legacy Groups";
+    static constexpr bool is_message = false;
+
+    // its repeating groups, whose entries the parse hands over one at a time
+    MDP3SEQUENCE(incremental_refresh_trade_summary_legacy_group);
 };
 
 // Md Incremental Refresh Trade Summary Legacy Section 1
@@ -4497,6 +4644,49 @@ struct quote_request {
     static constexpr bool is_message = true;
 };
 
+// Snapshot Full Refresh Legacy Group: Number of entries in Market Data message
+struct snapshot_full_refresh_legacy_group {
+    static constexpr std::string_view name = "Snapshot Full Refresh Legacy Group";
+    static constexpr std::size_t size = 22;
+    static constexpr bool is_message = false;
+
+    // the types of its members, in wire order
+    using fields = tmp::list<
+        md_entry_px_optional,
+        md_entry_size_short_optional,
+        number_of_orders_optional,
+        md_price_level_optional,
+        trading_reference_date,
+        open_close_settl_flag,
+        settl_price_type,
+        md_entry_type>;
+
+    // the member of the type asked for
+    template <typename Field>
+    constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
+
+  protected:
+    MDP3FIELD(md_entry_px_optional);
+    MDP3FIELD(md_entry_size_short_optional);
+    MDP3FIELD(number_of_orders_optional);
+    MDP3FIELD(md_price_level_optional);
+    MDP3FIELD(trading_reference_date);
+    MDP3FIELD(open_close_settl_flag);
+    MDP3FIELD(settl_price_type);
+    MDP3FIELD(md_entry_type);
+};
+
+static_assert(sizeof(snapshot_full_refresh_legacy_group) == snapshot_full_refresh_legacy_group::size, "snapshot_full_refresh_legacy_group lies over its bytes exactly");
+
+// Snapshot Full Refresh Legacy Groups: NoMDEntries Block
+struct snapshot_full_refresh_legacy_groups {
+    static constexpr std::string_view name = "Snapshot Full Refresh Legacy Groups";
+    static constexpr bool is_message = false;
+
+    // its repeating groups, whose entries the parse hands over one at a time
+    MDP3SEQUENCE(snapshot_full_refresh_legacy_group);
+};
+
 // Snapshot Full Refresh Legacy Section 1
 struct snapshot_full_refresh_legacy_section_1 {
     static constexpr std::string_view name = "Snapshot Full Refresh Legacy Section 1";
@@ -4614,6 +4804,49 @@ struct md_incremental_refresh_volume {
     static constexpr bool is_message = true;
 };
 
+// Incremental Refresh Session Statistics Legacy Group: Number of entries in Market Data message
+struct incremental_refresh_session_statistics_legacy_group {
+    static constexpr std::string_view name = "Incremental Refresh Session Statistics Legacy Group";
+    static constexpr std::size_t size = 24;
+    static constexpr bool is_message = false;
+
+    // the types of its members, in wire order
+    using fields = tmp::list<
+        md_entry_px,
+        security_id,
+        rpt_seq,
+        open_close_settl_flag,
+        md_update_action,
+        md_entry_type_statistics,
+        md_entry_size_short_optional,
+        padding_1>;
+
+    // the member of the type asked for
+    template <typename Field>
+    constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
+
+  protected:
+    MDP3FIELD(md_entry_px);
+    MDP3FIELD(security_id);
+    MDP3FIELD(rpt_seq);
+    MDP3FIELD(open_close_settl_flag);
+    MDP3FIELD(md_update_action);
+    MDP3FIELD(md_entry_type_statistics);
+    MDP3FIELD(md_entry_size_short_optional);
+    MDP3FIELD(padding_1);
+};
+
+static_assert(sizeof(incremental_refresh_session_statistics_legacy_group) == incremental_refresh_session_statistics_legacy_group::size, "incremental_refresh_session_statistics_legacy_group lies over its bytes exactly");
+
+// Incremental Refresh Session Statistics Legacy Groups: NoMDEntries Block
+struct incremental_refresh_session_statistics_legacy_groups {
+    static constexpr std::string_view name = "Incremental Refresh Session Statistics Legacy Groups";
+    static constexpr bool is_message = false;
+
+    // its repeating groups, whose entries the parse hands over one at a time
+    MDP3SEQUENCE(incremental_refresh_session_statistics_legacy_group);
+};
+
 // Md Incremental Refresh Session Statistics Legacy Section 1
 struct md_incremental_refresh_session_statistics_legacy_section_1 {
     static constexpr std::string_view name = "Md Incremental Refresh Session Statistics Legacy Section 1";
@@ -4644,6 +4877,43 @@ static_assert(sizeof(md_incremental_refresh_session_statistics_legacy_section_1)
 struct md_incremental_refresh_session_statistics_legacy {
     static constexpr std::string_view name = "Md Incremental Refresh Session Statistics Legacy";
     static constexpr bool is_message = true;
+};
+
+// Incremental Refresh Limits Banding Legacy Group: Number of entries in Market Data message
+struct incremental_refresh_limits_banding_legacy_group {
+    static constexpr std::string_view name = "Incremental Refresh Limits Banding Legacy Group";
+    static constexpr std::size_t size = 32;
+    static constexpr bool is_message = false;
+
+    // the types of its members, in wire order
+    using fields = tmp::list<
+        high_limit_price,
+        low_limit_price,
+        max_price_variation,
+        security_id,
+        rpt_seq>;
+
+    // the member of the type asked for
+    template <typename Field>
+    constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
+
+  protected:
+    MDP3FIELD(high_limit_price);
+    MDP3FIELD(low_limit_price);
+    MDP3FIELD(max_price_variation);
+    MDP3FIELD(security_id);
+    MDP3FIELD(rpt_seq);
+};
+
+static_assert(sizeof(incremental_refresh_limits_banding_legacy_group) == incremental_refresh_limits_banding_legacy_group::size, "incremental_refresh_limits_banding_legacy_group lies over its bytes exactly");
+
+// Incremental Refresh Limits Banding Legacy Groups: NoMDEntries Block
+struct incremental_refresh_limits_banding_legacy_groups {
+    static constexpr std::string_view name = "Incremental Refresh Limits Banding Legacy Groups";
+    static constexpr bool is_message = false;
+
+    // its repeating groups, whose entries the parse hands over one at a time
+    MDP3SEQUENCE(incremental_refresh_limits_banding_legacy_group);
 };
 
 // Md Incremental Refresh Limits Banding Legacy Section 1
@@ -4678,6 +4948,51 @@ struct md_incremental_refresh_limits_banding_legacy {
     static constexpr bool is_message = true;
 };
 
+// Incremental Refresh Daily Statistics Legacy Group: Number of entries in Market Data message
+struct incremental_refresh_daily_statistics_legacy_group {
+    static constexpr std::string_view name = "Incremental Refresh Daily Statistics Legacy Group";
+    static constexpr std::size_t size = 32;
+    static constexpr bool is_message = false;
+
+    // the types of its members, in wire order
+    using fields = tmp::list<
+        md_entry_px_optional,
+        md_entry_size_short_optional,
+        security_id,
+        rpt_seq,
+        trading_reference_date,
+        settl_price_type,
+        md_update_action,
+        md_entry_type_daily_statistics,
+        padding_7>;
+
+    // the member of the type asked for
+    template <typename Field>
+    constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
+
+  protected:
+    MDP3FIELD(md_entry_px_optional);
+    MDP3FIELD(md_entry_size_short_optional);
+    MDP3FIELD(security_id);
+    MDP3FIELD(rpt_seq);
+    MDP3FIELD(trading_reference_date);
+    MDP3FIELD(settl_price_type);
+    MDP3FIELD(md_update_action);
+    MDP3FIELD(md_entry_type_daily_statistics);
+    MDP3FIELD(padding_7);
+};
+
+static_assert(sizeof(incremental_refresh_daily_statistics_legacy_group) == incremental_refresh_daily_statistics_legacy_group::size, "incremental_refresh_daily_statistics_legacy_group lies over its bytes exactly");
+
+// Incremental Refresh Daily Statistics Legacy Groups: NoMDEntries Block
+struct incremental_refresh_daily_statistics_legacy_groups {
+    static constexpr std::string_view name = "Incremental Refresh Daily Statistics Legacy Groups";
+    static constexpr bool is_message = false;
+
+    // its repeating groups, whose entries the parse hands over one at a time
+    MDP3SEQUENCE(incremental_refresh_daily_statistics_legacy_group);
+};
+
 // Md Incremental Refresh Daily Statistics Legacy Section 1
 struct md_incremental_refresh_daily_statistics_legacy_section_1 {
     static constexpr std::string_view name = "Md Incremental Refresh Daily Statistics Legacy Section 1";
@@ -4708,6 +5023,51 @@ static_assert(sizeof(md_incremental_refresh_daily_statistics_legacy_section_1) =
 struct md_incremental_refresh_daily_statistics_legacy {
     static constexpr std::string_view name = "Md Incremental Refresh Daily Statistics Legacy";
     static constexpr bool is_message = true;
+};
+
+// Incremental Refresh Book Legacy Group: Number of entries in Market Data message
+struct incremental_refresh_book_legacy_group {
+    static constexpr std::string_view name = "Incremental Refresh Book Legacy Group";
+    static constexpr std::size_t size = 32;
+    static constexpr bool is_message = false;
+
+    // the types of its members, in wire order
+    using fields = tmp::list<
+        md_entry_px_optional,
+        md_entry_size_short_optional,
+        security_id,
+        rpt_seq,
+        number_of_orders_optional,
+        md_price_level,
+        md_update_action,
+        md_entry_type_book,
+        padding_5>;
+
+    // the member of the type asked for
+    template <typename Field>
+    constexpr const Field& get() const noexcept { return ref(static_cast<const Field*>(nullptr)); }
+
+  protected:
+    MDP3FIELD(md_entry_px_optional);
+    MDP3FIELD(md_entry_size_short_optional);
+    MDP3FIELD(security_id);
+    MDP3FIELD(rpt_seq);
+    MDP3FIELD(number_of_orders_optional);
+    MDP3FIELD(md_price_level);
+    MDP3FIELD(md_update_action);
+    MDP3FIELD(md_entry_type_book);
+    MDP3FIELD(padding_5);
+};
+
+static_assert(sizeof(incremental_refresh_book_legacy_group) == incremental_refresh_book_legacy_group::size, "incremental_refresh_book_legacy_group lies over its bytes exactly");
+
+// Incremental Refresh Book Legacy Groups: NoMDEntries Block
+struct incremental_refresh_book_legacy_groups {
+    static constexpr std::string_view name = "Incremental Refresh Book Legacy Groups";
+    static constexpr bool is_message = false;
+
+    // its repeating groups, whose entries the parse hands over one at a time
+    MDP3SEQUENCE(incremental_refresh_book_legacy_group);
 };
 
 // Md Incremental Refresh Book Legacy Section 1
@@ -5612,9 +5972,9 @@ struct payload {
     static constexpr bool is_message = false;
 };
 
-// Message: Cme Market Data Message
-struct message {
-    static constexpr std::string_view name = "Message";
+// Mdp3 Message: Cme Market Data Message
+struct mdp3_message {
+    static constexpr std::string_view name = "Mdp3 Message";
     static constexpr bool is_message = false;
 };
 

@@ -22,7 +22,7 @@ void SecurityTradingStatusMessage::set_security_trading_status(SecurityTradingSt
 SecurityTradingStatusReason SecurityTradingStatusMessage::security_trading_status_reason() const { return security_trading_status_reason_; }
 void SecurityTradingStatusMessage::set_security_trading_status_reason(SecurityTradingStatusReason value) { security_trading_status_reason_ = value; }
 
-PayloadCode SecurityTradingStatusMessage::type() const { return message_type; }
+MessageCode SecurityTradingStatusMessage::type() const { return message_type; }
 
 std::string_view SecurityTradingStatusMessage::name() const { return "Security Trading Status Message"; }
 
@@ -68,11 +68,11 @@ std::size_t SecurityTradingStatusMessage::encoded_size() const {
     return wire_size;
 }
 
-void SecurityTradingStatusMessage::accept(PayloadVisitor& visitor) const {
+void SecurityTradingStatusMessage::accept(Visitor& visitor) const {
     visitor.visit(*this);
 }
 
-std::unique_ptr<Payload> SecurityTradingStatusMessage::clone() const {
+std::unique_ptr<Message> SecurityTradingStatusMessage::clone() const {
     return std::make_unique<SecurityTradingStatusMessage>(*this);
 }
 
@@ -89,7 +89,7 @@ void SecurityTradingStatusMessage::print(std::ostream& out) const {
     out << '}';
 }
 
-bool SecurityTradingStatusMessage::equals(const Payload& other) const {
+bool SecurityTradingStatusMessage::equals(const Message& other) const {
     const auto* that = dynamic_cast<const SecurityTradingStatusMessage*>(&other);
     return that != nullptr && *this == *that;
 }

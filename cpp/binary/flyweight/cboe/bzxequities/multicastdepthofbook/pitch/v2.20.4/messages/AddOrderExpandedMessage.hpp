@@ -38,11 +38,11 @@ class AddOrderExpandedMessage {
 
     SideIndicator side_indicator() const { return static_cast<SideIndicator>(wire::read_char(at(12))); }
 
-    std::uint32_t quantity_binary_4() const { return wire::read_u32_le(at(13)); }
+    std::uint32_t quantity_long() const { return wire::read_u32_le(at(13)); }
 
     std::string_view symbol_long() const { return view::text(at(17), 8, ' '); }
 
-    Decimal price_binary_long_price_8() const { return Decimal(static_cast<std::int64_t>(wire::read_u64_le(at(25))), -4); }
+    Decimal price_long() const { return Decimal(static_cast<std::int64_t>(wire::read_u64_le(at(25))), -4); }
 
     AddFlags add_flags() const { return AddFlags{ bytes_.subspan(33) }; }
 
@@ -56,12 +56,12 @@ class AddOrderExpandedMessage {
         out << order_id();
         out << ", side_indicator=";
         out << side_indicator();
-        out << ", quantity_binary_4=";
-        out << quantity_binary_4();
+        out << ", quantity_long=";
+        out << quantity_long();
         out << ", symbol_long=";
         print::text(out, symbol_long());
-        out << ", price_binary_long_price_8=";
-        out << price_binary_long_price_8();
+        out << ", price_long=";
+        out << price_long();
         out << ", add_flags=";
         add_flags().print(out);
         out << ", participant_id=";

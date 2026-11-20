@@ -2311,8 +2311,7 @@ struct SllFrameReader {
             self.size = self.destination_options_header.size;
             return true;
         }
-        self.size = 0;
-        return true;
+        return false;
     }
 
     // Hop-by-Hop Options header: options every node along the delivery path may examine (RFC 8200 4.3)

@@ -138,7 +138,7 @@ inline std::ostream& operator<<(std::ostream& os, const legacy_legs_groups& valu
     return os;
 }
 
-inline std::ostream& operator<<(std::ostream& os, const incremental_refresh_book_groups& value) {
+inline std::ostream& operator<<(std::ostream& os, const incremental_refresh_book_legacy_groups& value) {
     os << "group_size.block_length=" << value.group_size.block_length.get().value()
        << ",group_size.num_in_group=" << static_cast<unsigned>(value.group_size.num_in_group.get().value())
        ;
@@ -152,21 +152,21 @@ inline std::ostream& operator<<(std::ostream& os, const incremental_refresh_book
     return os;
 }
 
-inline std::ostream& operator<<(std::ostream& os, const incremental_refresh_daily_statistics_groups& value) {
+inline std::ostream& operator<<(std::ostream& os, const incremental_refresh_daily_statistics_legacy_groups& value) {
     os << "group_size.block_length=" << value.group_size.block_length.get().value()
        << ",group_size.num_in_group=" << static_cast<unsigned>(value.group_size.num_in_group.get().value())
        ;
     return os;
 }
 
-inline std::ostream& operator<<(std::ostream& os, const incremental_refresh_limits_banding_groups& value) {
+inline std::ostream& operator<<(std::ostream& os, const incremental_refresh_limits_banding_legacy_groups& value) {
     os << "group_size.block_length=" << value.group_size.block_length.get().value()
        << ",group_size.num_in_group=" << static_cast<unsigned>(value.group_size.num_in_group.get().value())
        ;
     return os;
 }
 
-inline std::ostream& operator<<(std::ostream& os, const incremental_refresh_session_statistics_groups& value) {
+inline std::ostream& operator<<(std::ostream& os, const incremental_refresh_session_statistics_legacy_groups& value) {
     os << "group_size.block_length=" << value.group_size.block_length.get().value()
        << ",group_size.num_in_group=" << static_cast<unsigned>(value.group_size.num_in_group.get().value())
        ;
@@ -180,7 +180,7 @@ inline std::ostream& operator<<(std::ostream& os, const incremental_refresh_volu
     return os;
 }
 
-inline std::ostream& operator<<(std::ostream& os, const snapshot_full_refresh_groups& value) {
+inline std::ostream& operator<<(std::ostream& os, const snapshot_full_refresh_legacy_groups& value) {
     os << "group_size.block_length=" << value.group_size.block_length.get().value()
        << ",group_size.num_in_group=" << static_cast<unsigned>(value.group_size.num_in_group.get().value())
        ;
@@ -208,7 +208,7 @@ inline std::ostream& operator<<(std::ostream& os, const option_related_instrumen
     return os;
 }
 
-inline std::ostream& operator<<(std::ostream& os, const incremental_refresh_trade_summary_groups& value) {
+inline std::ostream& operator<<(std::ostream& os, const incremental_refresh_trade_summary_legacy_groups& value) {
     os << "group_size.block_length=" << value.group_size.block_length.get().value()
        << ",group_size.num_in_group=" << static_cast<unsigned>(value.group_size.num_in_group.get().value())
        ;
@@ -222,7 +222,63 @@ inline std::ostream& operator<<(std::ostream& os, const incremental_refresh_trad
     return os;
 }
 
+inline std::ostream& operator<<(std::ostream& os, const incremental_refresh_order_book_legacy_groups& value) {
+    os << "group_size.block_length=" << value.group_size.block_length.get().value()
+       << ",group_size.num_in_group=" << static_cast<unsigned>(value.group_size.num_in_group.get().value())
+       ;
+    return os;
+}
+
+inline std::ostream& operator<<(std::ostream& os, const snapshot_full_refresh_order_book_legacy_groups& value) {
+    os << "group_size.block_length=" << value.group_size.block_length.get().value()
+       << ",group_size.num_in_group=" << static_cast<unsigned>(value.group_size.num_in_group.get().value())
+       ;
+    return os;
+}
+
+inline std::ostream& operator<<(std::ostream& os, const incremental_refresh_book_groups& value) {
+    os << "group_size.block_length=" << value.group_size.block_length.get().value()
+       << ",group_size.num_in_group=" << static_cast<unsigned>(value.group_size.num_in_group.get().value())
+       ;
+    return os;
+}
+
 inline std::ostream& operator<<(std::ostream& os, const incremental_refresh_order_book_groups& value) {
+    os << "group_size.block_length=" << value.group_size.block_length.get().value()
+       << ",group_size.num_in_group=" << static_cast<unsigned>(value.group_size.num_in_group.get().value())
+       ;
+    return os;
+}
+
+inline std::ostream& operator<<(std::ostream& os, const incremental_refresh_trade_summary_groups& value) {
+    os << "group_size.block_length=" << value.group_size.block_length.get().value()
+       << ",group_size.num_in_group=" << static_cast<unsigned>(value.group_size.num_in_group.get().value())
+       ;
+    return os;
+}
+
+inline std::ostream& operator<<(std::ostream& os, const incremental_refresh_daily_statistics_groups& value) {
+    os << "group_size.block_length=" << value.group_size.block_length.get().value()
+       << ",group_size.num_in_group=" << static_cast<unsigned>(value.group_size.num_in_group.get().value())
+       ;
+    return os;
+}
+
+inline std::ostream& operator<<(std::ostream& os, const incremental_refresh_limits_banding_groups& value) {
+    os << "group_size.block_length=" << value.group_size.block_length.get().value()
+       << ",group_size.num_in_group=" << static_cast<unsigned>(value.group_size.num_in_group.get().value())
+       ;
+    return os;
+}
+
+inline std::ostream& operator<<(std::ostream& os, const incremental_refresh_session_statistics_groups& value) {
+    os << "group_size.block_length=" << value.group_size.block_length.get().value()
+       << ",group_size.num_in_group=" << static_cast<unsigned>(value.group_size.num_in_group.get().value())
+       ;
+    return os;
+}
+
+inline std::ostream& operator<<(std::ostream& os, const snapshot_full_refresh_groups& value) {
     os << "group_size.block_length=" << value.group_size.block_length.get().value()
        << ",group_size.num_in_group=" << static_cast<unsigned>(value.group_size.num_in_group.get().value())
        ;

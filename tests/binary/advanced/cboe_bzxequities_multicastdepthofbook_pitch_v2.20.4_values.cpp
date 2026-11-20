@@ -61,9 +61,9 @@ struct Reader {
         values[entry + ".payload.addorderlongmessage.timeoffset"] = canonical::number(message.fields.time_offset.get().value());
         values[entry + ".payload.addorderlongmessage.orderid"] = canonical::number(message.fields.order_id.get().value());
         values[entry + ".payload.addorderlongmessage.sideindicator"] = canonical::text(canonical::character(message.fields.side_indicator.get().value()), ' ', false);
-        values[entry + ".payload.addorderlongmessage.quantitybinary4"] = canonical::number(message.fields.quantity_binary_4.get().value());
+        values[entry + ".payload.addorderlongmessage.quantitylong"] = canonical::number(message.fields.quantity_long.get().value());
         values[entry + ".payload.addorderlongmessage.symbolshort"] = canonical::text(std::string(message.fields.symbol_short.get().value()), ' ', false);
-        values[entry + ".payload.addorderlongmessage.pricebinarylongprice8"] = canonical::scaled(message.fields.price_binary_long_price_8.get().value(), -4);
+        values[entry + ".payload.addorderlongmessage.pricelong"] = canonical::scaled(message.fields.price_long.get().value(), -4);
         values[entry + ".payload.addorderlongmessage.addflags.display"] = canonical::number(static_cast<std::uint64_t>(message.fields.add_flags.has_display()));
     }
 
@@ -75,9 +75,9 @@ struct Reader {
         values[entry + ".payload.addordershortmessage.timeoffset"] = canonical::number(message.fields.time_offset.get().value());
         values[entry + ".payload.addordershortmessage.orderid"] = canonical::number(message.fields.order_id.get().value());
         values[entry + ".payload.addordershortmessage.sideindicator"] = canonical::text(canonical::character(message.fields.side_indicator.get().value()), ' ', false);
-        values[entry + ".payload.addordershortmessage.quantitybinary2"] = canonical::number(message.fields.quantity_binary_2.get().value());
+        values[entry + ".payload.addordershortmessage.quantityshort"] = canonical::number(message.fields.quantity_short.get().value());
         values[entry + ".payload.addordershortmessage.symbolshort"] = canonical::text(std::string(message.fields.symbol_short.get().value()), ' ', false);
-        values[entry + ".payload.addordershortmessage.pricebinaryshortprice2"] = canonical::scaled(message.fields.price_binary_short_price_2.get().value(), -2);
+        values[entry + ".payload.addordershortmessage.priceshort"] = canonical::scaled(message.fields.price_short.get().value(), -2);
         values[entry + ".payload.addordershortmessage.addflags.display"] = canonical::number(static_cast<std::uint64_t>(message.fields.add_flags.has_display()));
     }
 
@@ -89,9 +89,9 @@ struct Reader {
         values[entry + ".payload.addorderexpandedmessage.timeoffset"] = canonical::number(message.fields.time_offset.get().value());
         values[entry + ".payload.addorderexpandedmessage.orderid"] = canonical::number(message.fields.order_id.get().value());
         values[entry + ".payload.addorderexpandedmessage.sideindicator"] = canonical::text(canonical::character(message.fields.side_indicator.get().value()), ' ', false);
-        values[entry + ".payload.addorderexpandedmessage.quantitybinary4"] = canonical::number(message.fields.quantity_binary_4.get().value());
+        values[entry + ".payload.addorderexpandedmessage.quantitylong"] = canonical::number(message.fields.quantity_long.get().value());
         values[entry + ".payload.addorderexpandedmessage.symbollong"] = canonical::text(std::string(message.fields.symbol_long.get().value()), ' ', false);
-        values[entry + ".payload.addorderexpandedmessage.pricebinarylongprice8"] = canonical::scaled(message.fields.price_binary_long_price_8.get().value(), -4);
+        values[entry + ".payload.addorderexpandedmessage.pricelong"] = canonical::scaled(message.fields.price_long.get().value(), -4);
         values[entry + ".payload.addorderexpandedmessage.addflags.display"] = canonical::number(static_cast<std::uint64_t>(message.fields.add_flags.has_display()));
         values[entry + ".payload.addorderexpandedmessage.participantid"] = canonical::text(std::string(message.fields.participant_id.get().value()), ' ', false);
     }
@@ -117,7 +117,7 @@ struct Reader {
         values[entry + ".payload.orderexecutedatpricesizemessage.executedquantity"] = canonical::number(message.fields.executed_quantity.get().value());
         values[entry + ".payload.orderexecutedatpricesizemessage.remainingquantity"] = canonical::number(message.fields.remaining_quantity.get().value());
         values[entry + ".payload.orderexecutedatpricesizemessage.executionid"] = canonical::number(message.fields.execution_id.get().value());
-        values[entry + ".payload.orderexecutedatpricesizemessage.pricebinarylongprice8"] = canonical::scaled(message.fields.price_binary_long_price_8.get().value(), -4);
+        values[entry + ".payload.orderexecutedatpricesizemessage.pricelong"] = canonical::scaled(message.fields.price_long.get().value(), -4);
     }
 
     void on_message(const protocol::reduce_size_long_message& message, std::uint64_t, const protocol::packet_header&) {
@@ -127,7 +127,7 @@ struct Reader {
         values[entry + ".payload"] = "packet.messages.message.payload.reducesizelongmessage";
         values[entry + ".payload.reducesizelongmessage.timeoffset"] = canonical::number(message.fields.time_offset.get().value());
         values[entry + ".payload.reducesizelongmessage.orderid"] = canonical::number(message.fields.order_id.get().value());
-        values[entry + ".payload.reducesizelongmessage.canceledquantitybinary4"] = canonical::number(message.fields.canceled_quantity_binary_4.get().value());
+        values[entry + ".payload.reducesizelongmessage.canceledquantitylong"] = canonical::number(message.fields.canceled_quantity_long.get().value());
     }
 
     void on_message(const protocol::reduce_size_short_message& message, std::uint64_t, const protocol::packet_header&) {
@@ -137,7 +137,7 @@ struct Reader {
         values[entry + ".payload"] = "packet.messages.message.payload.reducesizeshortmessage";
         values[entry + ".payload.reducesizeshortmessage.timeoffset"] = canonical::number(message.fields.time_offset.get().value());
         values[entry + ".payload.reducesizeshortmessage.orderid"] = canonical::number(message.fields.order_id.get().value());
-        values[entry + ".payload.reducesizeshortmessage.canceledquantitybinary2"] = canonical::number(message.fields.canceled_quantity_binary_2.get().value());
+        values[entry + ".payload.reducesizeshortmessage.canceledquantityshort"] = canonical::number(message.fields.canceled_quantity_short.get().value());
     }
 
     void on_message(const protocol::modify_order_long_message& message, std::uint64_t, const protocol::packet_header&) {
@@ -147,8 +147,8 @@ struct Reader {
         values[entry + ".payload"] = "packet.messages.message.payload.modifyorderlongmessage";
         values[entry + ".payload.modifyorderlongmessage.timeoffset"] = canonical::number(message.fields.time_offset.get().value());
         values[entry + ".payload.modifyorderlongmessage.orderid"] = canonical::number(message.fields.order_id.get().value());
-        values[entry + ".payload.modifyorderlongmessage.quantitybinary4"] = canonical::number(message.fields.quantity_binary_4.get().value());
-        values[entry + ".payload.modifyorderlongmessage.pricebinarylongprice8"] = canonical::scaled(message.fields.price_binary_long_price_8.get().value(), -4);
+        values[entry + ".payload.modifyorderlongmessage.quantitylong"] = canonical::number(message.fields.quantity_long.get().value());
+        values[entry + ".payload.modifyorderlongmessage.pricelong"] = canonical::scaled(message.fields.price_long.get().value(), -4);
         values[entry + ".payload.modifyorderlongmessage.modifyflags.display"] = canonical::number(static_cast<std::uint64_t>(message.fields.modify_flags.has_display()));
         values[entry + ".payload.modifyorderlongmessage.modifyflags.maintainpriority"] = canonical::number(static_cast<std::uint64_t>(message.fields.modify_flags.has_maintain_priority()));
     }
@@ -160,8 +160,8 @@ struct Reader {
         values[entry + ".payload"] = "packet.messages.message.payload.modifyordershortmessage";
         values[entry + ".payload.modifyordershortmessage.timeoffset"] = canonical::number(message.fields.time_offset.get().value());
         values[entry + ".payload.modifyordershortmessage.orderid"] = canonical::number(message.fields.order_id.get().value());
-        values[entry + ".payload.modifyordershortmessage.quantitybinary2"] = canonical::number(message.fields.quantity_binary_2.get().value());
-        values[entry + ".payload.modifyordershortmessage.pricebinaryshortprice2"] = canonical::scaled(message.fields.price_binary_short_price_2.get().value(), -2);
+        values[entry + ".payload.modifyordershortmessage.quantityshort"] = canonical::number(message.fields.quantity_short.get().value());
+        values[entry + ".payload.modifyordershortmessage.priceshort"] = canonical::scaled(message.fields.price_short.get().value(), -2);
         values[entry + ".payload.modifyordershortmessage.modifyflags.display"] = canonical::number(static_cast<std::uint64_t>(message.fields.modify_flags.has_display()));
         values[entry + ".payload.modifyordershortmessage.modifyflags.maintainpriority"] = canonical::number(static_cast<std::uint64_t>(message.fields.modify_flags.has_maintain_priority()));
     }
@@ -183,9 +183,9 @@ struct Reader {
         values[entry + ".payload.tradelongmessage.timeoffset"] = canonical::number(message.fields.time_offset.get().value());
         values[entry + ".payload.tradelongmessage.orderid"] = canonical::number(message.fields.order_id.get().value());
         values[entry + ".payload.tradelongmessage.sideindicator"] = canonical::text(canonical::character(message.fields.side_indicator.get().value()), ' ', false);
-        values[entry + ".payload.tradelongmessage.quantitybinary4"] = canonical::number(message.fields.quantity_binary_4.get().value());
+        values[entry + ".payload.tradelongmessage.quantitylong"] = canonical::number(message.fields.quantity_long.get().value());
         values[entry + ".payload.tradelongmessage.symbolshort"] = canonical::text(std::string(message.fields.symbol_short.get().value()), ' ', false);
-        values[entry + ".payload.tradelongmessage.pricebinarylongprice8"] = canonical::scaled(message.fields.price_binary_long_price_8.get().value(), -4);
+        values[entry + ".payload.tradelongmessage.pricelong"] = canonical::scaled(message.fields.price_long.get().value(), -4);
         values[entry + ".payload.tradelongmessage.executionid"] = canonical::number(message.fields.execution_id.get().value());
     }
 
@@ -197,9 +197,9 @@ struct Reader {
         values[entry + ".payload.tradeshortmessage.timeoffset"] = canonical::number(message.fields.time_offset.get().value());
         values[entry + ".payload.tradeshortmessage.orderid"] = canonical::number(message.fields.order_id.get().value());
         values[entry + ".payload.tradeshortmessage.sideindicator"] = canonical::text(canonical::character(message.fields.side_indicator.get().value()), ' ', false);
-        values[entry + ".payload.tradeshortmessage.quantitybinary2"] = canonical::number(message.fields.quantity_binary_2.get().value());
+        values[entry + ".payload.tradeshortmessage.quantityshort"] = canonical::number(message.fields.quantity_short.get().value());
         values[entry + ".payload.tradeshortmessage.symbolshort"] = canonical::text(std::string(message.fields.symbol_short.get().value()), ' ', false);
-        values[entry + ".payload.tradeshortmessage.pricebinaryshortprice2"] = canonical::scaled(message.fields.price_binary_short_price_2.get().value(), -2);
+        values[entry + ".payload.tradeshortmessage.priceshort"] = canonical::scaled(message.fields.price_short.get().value(), -2);
         values[entry + ".payload.tradeshortmessage.executionid"] = canonical::number(message.fields.execution_id.get().value());
     }
 
@@ -211,9 +211,9 @@ struct Reader {
         values[entry + ".payload.tradeexpandedmessage.timeoffset"] = canonical::number(message.fields.time_offset.get().value());
         values[entry + ".payload.tradeexpandedmessage.orderid"] = canonical::number(message.fields.order_id.get().value());
         values[entry + ".payload.tradeexpandedmessage.sideindicator"] = canonical::text(canonical::character(message.fields.side_indicator.get().value()), ' ', false);
-        values[entry + ".payload.tradeexpandedmessage.quantitybinary4"] = canonical::number(message.fields.quantity_binary_4.get().value());
+        values[entry + ".payload.tradeexpandedmessage.quantitylong"] = canonical::number(message.fields.quantity_long.get().value());
         values[entry + ".payload.tradeexpandedmessage.symbollong"] = canonical::text(std::string(message.fields.symbol_long.get().value()), ' ', false);
-        values[entry + ".payload.tradeexpandedmessage.pricebinarylongprice8"] = canonical::scaled(message.fields.price_binary_long_price_8.get().value(), -4);
+        values[entry + ".payload.tradeexpandedmessage.pricelong"] = canonical::scaled(message.fields.price_long.get().value(), -4);
         values[entry + ".payload.tradeexpandedmessage.executionid"] = canonical::number(message.fields.execution_id.get().value());
     }
 
@@ -278,7 +278,7 @@ struct Reader {
         values[entry + ".payload.auctionsummarymessage.timeoffset"] = canonical::number(message.fields.time_offset.get().value());
         values[entry + ".payload.auctionsummarymessage.stocksymbol"] = canonical::text(std::string(message.fields.stock_symbol.get().value()), ' ', false);
         values[entry + ".payload.auctionsummarymessage.auctiontype"] = canonical::text(canonical::character(message.fields.auction_type.get().value()), ' ', false);
-        values[entry + ".payload.auctionsummarymessage.pricebinary8"] = canonical::number(message.fields.price_binary_8.get().value());
+        values[entry + ".payload.auctionsummarymessage.pricelong"] = canonical::scaled(message.fields.price_long.get().value(), -4);
         values[entry + ".payload.auctionsummarymessage.shares"] = canonical::number(message.fields.shares.get().value());
     }
 

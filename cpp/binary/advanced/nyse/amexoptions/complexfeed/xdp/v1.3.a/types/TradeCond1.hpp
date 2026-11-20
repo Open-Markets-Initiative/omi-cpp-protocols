@@ -17,14 +17,14 @@ struct trade_cond_1 {
         regular_trade = ' ',
         late_report = 'I',
         floor_trade = 'R',
-        so_sweep_trade = 'S'
+        iso_sweep_trade = 'S'
     };
 
     static constexpr std::array<std::pair<std::string_view, enum_type>, 4> from_string_map = {{
         {"Floor Trade", enum_type::floor_trade},
+        {"ISO Sweep Trade", enum_type::iso_sweep_trade},
         {"Late Report", enum_type::late_report},
-        {"Regular Trade", enum_type::regular_trade},
-        {"So Sweep Trade", enum_type::so_sweep_trade}
+        {"Regular Trade", enum_type::regular_trade}
     }};
 
     static constexpr std::string_view to_string(enum_type value) {
@@ -32,7 +32,7 @@ struct trade_cond_1 {
             case enum_type::regular_trade: return "Regular Trade";
             case enum_type::late_report: return "Late Report";
             case enum_type::floor_trade: return "Floor Trade";
-            case enum_type::so_sweep_trade: return "So Sweep Trade";
+            case enum_type::iso_sweep_trade: return "ISO Sweep Trade";
             default: return "unknown";
         }
     }
@@ -75,7 +75,7 @@ struct trade_cond_1 {
         if (value.has_value())
             set(value.value());
         else
-            set(enum_type::so_sweep_trade);
+            set(enum_type::iso_sweep_trade);
     }
 
   protected:

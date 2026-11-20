@@ -4,7 +4,7 @@
 #include "../types/SessionId.hpp"
 #include "../types/MsgSeqNum.hpp"
 #include "../types/SendingTime.hpp"
-#include "../types/EventIndicator.hpp"
+#include "../bitfields/EventIndicator.hpp"
 #include "../types/MarketSegmentIdOptional.hpp"
 #include "../types/PaddingChar2.hpp"
 

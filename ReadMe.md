@@ -24,36 +24,9 @@ cmake -S . -B build && cmake --build build
 
 Updates are greatly appreciated; however, this entire repository is source generated. If you wish to suggest updates, the recommended process is to create an issue with changes and explanation.
 
-| Parser | Protocol Count | Generated Lines |
+| Repository | Protocol Count | Generated Lines |
 | --- | --- | --- |
-| Advanced | 100 | 785,233 |
-| Modern | 101 | 453,316 |
-| Classes | 100 | 1,021,244 |
-| Flyweight | 100 | 481,043 |
-| Tmp | 101 | 250,163 |
-| Delimited | 11 | 4,076 |
-
-| Organization | Protocol Count | Generated Lines |
-| --- | --- | --- |
-| Asx | 1 | 29,461 |
-| B3 | 10 | 554,449 |
-| Bse | 1 | 21,898 |
-| Cboe | 10 | 199,609 |
-| CixAts | 1 | 11,491 |
-| Cme | 4 | 363,084 |
-| Databento | 3 | 129,991 |
-| Eurex | 4 | 126,843 |
-| Iex | 10 | 147,533 |
-| Jnx | 3 | 55,637 |
-| Jpx | 2 | 33,074 |
-| Lseg | 2 | 37,822 |
-| Memx | 2 | 13,154 |
-| Miax | 4 | 81,369 |
-| Nasdaq | 13 | 393,428 |
-| Nyse | 33 | 486,815 |
-| OtcMarkets | 1 | 24,672 |
-| Siac | 7 | 278,666 |
-| Tmx | 1 | 5,006 |
+| Omi C++ Protocols | 112 | 3,019,532 |
 
 ## Programs
 
@@ -108,9 +81,9 @@ makes it where zlib is found.
 
 ## Tests
 
-`tests/` holds a test per protocol and format (542 of them), each written against the
+`tests/` holds a test per protocol and format (553 of them), each written against the
 surface that format's program uses, plus one run of each program on its protocol's first
-declared capture (314 of them):
+declared capture (304 of them):
 
 - `tests/binary/modern/` walks every payload with the Modern iterator and requires the declared
   message — what extractor reads through
@@ -121,7 +94,7 @@ declared capture (314 of them):
   dump reads through
 - the program runs require dump to print the message's class, statistics to count it,
   extractor to write a sample, and verify to pass the whole capture
-- roundtrip runs without a capture (495 of them): each must read back every
+- roundtrip runs without a capture (503 of them): each must read back every
   message it wrote as it was written
 
 Every build compiles them, so a test that does not build fails the build like anything under
@@ -132,13 +105,6 @@ corpus checkout:
 cmake -S . -B build -DOMI_PACKETS_DIR=/path/to/packets
 cmake --build build --parallel && ctest --test-dir build
 ```
-
-A protocol a format's generator refuses is left out of that format, and out of the programs
-and tests that read through it:
-
-- Tmx.Tsx.QuantumFeedLevel2.Xmt.v2.10, Advanced: 'packet.frameheader.numbody' counts a group of 'packet.packetbody.heartbeatbody' but lies outside it
-- Tmx.Tsx.QuantumFeedLevel2.Xmt.v2.10, Classes: the payload branch selecting 'Business Bodies' has no dependency and data; default and composite dispatch keys are not yet supported by the Classes generator
-- Tmx.Tsx.QuantumFeedLevel2.Xmt.v2.10, Flyweight: the payload branch selecting 'Business Bodies' has no dependency and data; default and composite dispatch keys are not yet supported by the Flyweight generator
 
 ## Organizations
 

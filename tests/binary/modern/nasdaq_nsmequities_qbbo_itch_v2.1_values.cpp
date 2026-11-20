@@ -47,17 +47,17 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".payload.stockdirectorymessage.trackingnumber"] = canonical::number(message->tracking_number.get());
             values[entry + ".payload.stockdirectorymessage.timestamp"] = canonical::number(message->time_stamp.get());
             values[entry + ".payload.stockdirectorymessage.stock"] = canonical::text(std::string(message->stock.get()), ' ', false);
-            values[entry + ".payload.stockdirectorymessage.marketcategory"] = canonical::text(canonical::character(message->market_category.get()), ' ', false);
-            values[entry + ".payload.stockdirectorymessage.financialstatusindicator"] = canonical::text(canonical::character(message->financial_status_indicator.get()), ' ', false);
+            values[entry + ".payload.stockdirectorymessage.marketcategory"] = canonical::text(canonical::character(message->market_category.get()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+            values[entry + ".payload.stockdirectorymessage.financialstatusindicator"] = canonical::text(canonical::character(message->financial_status_indicator.get()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
             values[entry + ".payload.stockdirectorymessage.roundlotsize"] = canonical::number(message->round_lot_size.get());
             values[entry + ".payload.stockdirectorymessage.roundlotsonly"] = canonical::text(canonical::character(message->round_lots_only.get()), ' ', false);
             values[entry + ".payload.stockdirectorymessage.issueclassification"] = canonical::text(canonical::character(message->issue_classification.get()), ' ', false);
             values[entry + ".payload.stockdirectorymessage.issuesubtype"] = canonical::text(std::string(message->issue_sub_type.get()), ' ', false);
             values[entry + ".payload.stockdirectorymessage.authenticity"] = canonical::text(canonical::character(message->authenticity.get()), ' ', false);
-            values[entry + ".payload.stockdirectorymessage.shortsalethresholdindicator"] = canonical::text(canonical::character(message->short_sale_threshold_indicator.get()), ' ', false);
-            values[entry + ".payload.stockdirectorymessage.ipoflag"] = canonical::text(canonical::character(message->ipo_flag.get()), ' ', false);
-            values[entry + ".payload.stockdirectorymessage.luldreferencepricetier"] = canonical::text(canonical::character(message->luld_reference_price_tier.get()), ' ', false);
-            values[entry + ".payload.stockdirectorymessage.etpflag"] = canonical::text(canonical::character(message->etp_flag.get()), ' ', false);
+            values[entry + ".payload.stockdirectorymessage.shortsalethresholdindicator"] = canonical::text(canonical::character(message->short_sale_threshold_indicator.get()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+            values[entry + ".payload.stockdirectorymessage.ipoflag"] = canonical::text(canonical::character(message->ipo_flag.get()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+            values[entry + ".payload.stockdirectorymessage.luldreferencepricetier"] = canonical::text(canonical::character(message->luld_reference_price_tier.get()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
+            values[entry + ".payload.stockdirectorymessage.etpflag"] = canonical::text(canonical::character(message->etp_flag.get()), ' ', false, {std::string_view(" ", 1), std::string_view("", 0)});
             values[entry + ".payload.stockdirectorymessage.etpleveragefactor"] = canonical::number(message->etp_leverage_factor.get());
             values[entry + ".payload.stockdirectorymessage.inverseindicator"] = canonical::text(canonical::character(message->inverse_indicator.get()), ' ', false);
         } else if (iterator.message_type == protocol::StockTradingActionMessage::message_type) {

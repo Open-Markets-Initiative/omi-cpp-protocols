@@ -37,7 +37,7 @@ canonical::Listing read(const packet::Frame& frame) {
     std::size_t index = 0;
 
     for (const auto& each : packet.frames()) {
-        const std::string entry = "udppacket.message[" + std::to_string(index++) + "]";
+        const std::string entry = "udppacket.mdp3message[" + std::to_string(index++) + "]";
         values[entry + ".messageheader.messagesize"] = canonical::number(each.message_header().message_size());
         values[entry + ".messageheader.simplebinaryheader.blocklength"] = canonical::number(each.message_header().simple_binary_header().block_length());
         values[entry + ".messageheader.simplebinaryheader.templateid"] = canonical::number(each.message_header().simple_binary_header().template_id());
@@ -45,9 +45,9 @@ canonical::Listing read(const packet::Frame& frame) {
         values[entry + ".messageheader.simplebinaryheader.version"] = canonical::number(each.message_header().simple_binary_header().version());
 
         if (const auto* message = dynamic_cast<const protocol::MktdataMessage*>(each.message())) {
-            values[entry + ".payload"] = "udppacket.message.payload.mktdatamessage";
+            values[entry + ".payload"] = "udppacket.mdp3message.payload.mktdatamessage";
             if (const auto* message_2 = dynamic_cast<const protocol::ChannelReset*>(message->mktdata_payload())) {
-                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.channelreset";
+                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.channelreset";
                 values[entry + ".payload.mktdatamessage.mktdatapayload.channelreset.transacttime"] = canonical::number((*message_2).transact_time());
                 values[entry + ".payload.mktdatamessage.mktdatapayload.channelreset.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_trade_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.channelreset.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_volume_msg()));
@@ -57,13 +57,13 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".payload.mktdatamessage.mktdatapayload.channelreset.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().recovery_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.channelreset.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().end_of_event()));
             } else if (const auto* message_2 = dynamic_cast<const protocol::AdminLogin*>(message->mktdata_payload())) {
-                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.adminlogin";
+                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.adminlogin";
                 values[entry + ".payload.mktdatamessage.mktdatapayload.adminlogin.heartbtint"] = canonical::number((*message_2).heart_bt_int());
             } else if (const auto* message_2 = dynamic_cast<const protocol::AdminLogout*>(message->mktdata_payload())) {
-                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.adminlogout";
+                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.adminlogout";
                 values[entry + ".payload.mktdatamessage.mktdatapayload.adminlogout.text"] = canonical::text(std::string((*message_2).text()), '\0', false);
             } else if (const auto* message_2 = dynamic_cast<const protocol::MdInstrumentDefinitionFutureLegacy*>(message->mktdata_payload())) {
-                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuturelegacy";
+                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuturelegacy";
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuturelegacy.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_trade_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuturelegacy.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_volume_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuturelegacy.matcheventindicator.lastquotemsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_quote_msg()));
@@ -122,7 +122,7 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuturelegacy.userdefinedinstrument"] = canonical::text(canonical::character((*message_2).user_defined_instrument()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuturelegacy.tradingreferencedate"] = ((*message_2).trading_reference_date().has_value() ? canonical::number((*(*message_2).trading_reference_date())) : canonical::absent());
             } else if (const auto* message_2 = dynamic_cast<const protocol::MdInstrumentDefinitionSpreadLegacy*>(message->mktdata_payload())) {
-                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspreadlegacy";
+                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspreadlegacy";
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspreadlegacy.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_trade_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspreadlegacy.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_volume_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspreadlegacy.matcheventindicator.lastquotemsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_quote_msg()));
@@ -175,7 +175,7 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspreadlegacy.subfraction"] = ((*message_2).sub_fraction().has_value() ? canonical::number((*(*message_2).sub_fraction())) : canonical::absent());
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspreadlegacy.tradingreferencedate"] = ((*message_2).trading_reference_date().has_value() ? canonical::number((*(*message_2).trading_reference_date())) : canonical::absent());
             } else if (const auto* message_2 = dynamic_cast<const protocol::SecurityStatus*>(message->mktdata_payload())) {
-                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.securitystatus";
+                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.securitystatus";
                 values[entry + ".payload.mktdatamessage.mktdatapayload.securitystatus.transacttime"] = canonical::number((*message_2).transact_time());
                 values[entry + ".payload.mktdatamessage.mktdatapayload.securitystatus.securitygroup"] = canonical::text(std::string((*message_2).security_group()), '\0', false);
                 values[entry + ".payload.mktdatamessage.mktdatapayload.securitystatus.asset"] = canonical::text(std::string((*message_2).asset()), '\0', false);
@@ -192,7 +192,7 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".payload.mktdatamessage.mktdatapayload.securitystatus.haltreason"] = canonical::number((*message_2).halt_reason());
                 values[entry + ".payload.mktdatamessage.mktdatapayload.securitystatus.securitytradingevent"] = canonical::number((*message_2).security_trading_event());
             } else if (const auto* message_2 = dynamic_cast<const protocol::MdIncrementalRefreshBookLegacy*>(message->mktdata_payload())) {
-                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbooklegacy";
+                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbooklegacy";
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbooklegacy.transacttime"] = canonical::number((*message_2).transact_time());
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbooklegacy.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_trade_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbooklegacy.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_volume_msg()));
@@ -202,7 +202,7 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbooklegacy.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().recovery_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbooklegacy.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().end_of_event()));
             } else if (const auto* message_2 = dynamic_cast<const protocol::MdIncrementalRefreshDailyStatisticsLegacy*>(message->mktdata_payload())) {
-                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshdailystatisticslegacy";
+                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshdailystatisticslegacy";
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshdailystatisticslegacy.transacttime"] = canonical::number((*message_2).transact_time());
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshdailystatisticslegacy.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_trade_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshdailystatisticslegacy.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_volume_msg()));
@@ -212,7 +212,7 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshdailystatisticslegacy.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().recovery_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshdailystatisticslegacy.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().end_of_event()));
             } else if (const auto* message_2 = dynamic_cast<const protocol::MdIncrementalRefreshLimitsBandingLegacy*>(message->mktdata_payload())) {
-                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshlimitsbandinglegacy";
+                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshlimitsbandinglegacy";
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshlimitsbandinglegacy.transacttime"] = canonical::number((*message_2).transact_time());
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshlimitsbandinglegacy.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_trade_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshlimitsbandinglegacy.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_volume_msg()));
@@ -222,7 +222,7 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshlimitsbandinglegacy.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().recovery_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshlimitsbandinglegacy.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().end_of_event()));
             } else if (const auto* message_2 = dynamic_cast<const protocol::MdIncrementalRefreshSessionStatisticsLegacy*>(message->mktdata_payload())) {
-                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshsessionstatisticslegacy";
+                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshsessionstatisticslegacy";
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshsessionstatisticslegacy.transacttime"] = canonical::number((*message_2).transact_time());
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshsessionstatisticslegacy.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_trade_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshsessionstatisticslegacy.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_volume_msg()));
@@ -232,7 +232,7 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshsessionstatisticslegacy.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().recovery_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshsessionstatisticslegacy.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().end_of_event()));
             } else if (const auto* message_2 = dynamic_cast<const protocol::MdIncrementalRefreshVolume*>(message->mktdata_payload())) {
-                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshvolume";
+                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshvolume";
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshvolume.transacttime"] = canonical::number((*message_2).transact_time());
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshvolume.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_trade_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshvolume.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_volume_msg()));
@@ -242,7 +242,7 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshvolume.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().recovery_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshvolume.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().end_of_event()));
             } else if (const auto* message_2 = dynamic_cast<const protocol::SnapshotFullRefreshLegacy*>(message->mktdata_payload())) {
-                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.snapshotfullrefreshlegacy";
+                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.snapshotfullrefreshlegacy";
                 values[entry + ".payload.mktdatamessage.mktdatapayload.snapshotfullrefreshlegacy.lastmsgseqnumprocessed"] = canonical::number((*message_2).last_msg_seq_num_processed());
                 values[entry + ".payload.mktdatamessage.mktdatapayload.snapshotfullrefreshlegacy.totnumreports"] = canonical::number((*message_2).tot_num_reports());
                 values[entry + ".payload.mktdatamessage.mktdatapayload.snapshotfullrefreshlegacy.securityid"] = canonical::number((*message_2).security_id());
@@ -255,7 +255,7 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".payload.mktdatamessage.mktdatapayload.snapshotfullrefreshlegacy.lowlimitprice"] = ((*message_2).low_limit_price().has_value() ? canonical::scaled((*(*message_2).low_limit_price()).mantissa(), (*(*message_2).low_limit_price()).exponent()) : canonical::absent());
                 values[entry + ".payload.mktdatamessage.mktdatapayload.snapshotfullrefreshlegacy.maxpricevariation"] = ((*message_2).max_price_variation().has_value() ? canonical::scaled((*(*message_2).max_price_variation()).mantissa(), (*(*message_2).max_price_variation()).exponent()) : canonical::absent());
             } else if (const auto* message_2 = dynamic_cast<const protocol::QuoteRequest*>(message->mktdata_payload())) {
-                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.quoterequest";
+                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.quoterequest";
                 values[entry + ".payload.mktdatamessage.mktdatapayload.quoterequest.transacttime"] = canonical::number((*message_2).transact_time());
                 values[entry + ".payload.mktdatamessage.mktdatapayload.quoterequest.quotereqid"] = canonical::text(std::string((*message_2).quote_req_id()), '\0', false);
                 values[entry + ".payload.mktdatamessage.mktdatapayload.quoterequest.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_trade_msg()));
@@ -266,7 +266,7 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".payload.mktdatamessage.mktdatapayload.quoterequest.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().recovery_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.quoterequest.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().end_of_event()));
             } else if (const auto* message_2 = dynamic_cast<const protocol::MdInstrumentDefinitionOptionLegacy*>(message->mktdata_payload())) {
-                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoptionlegacy";
+                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoptionlegacy";
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoptionlegacy.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_trade_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoptionlegacy.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_volume_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoptionlegacy.matcheventindicator.lastquotemsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_quote_msg()));
@@ -323,7 +323,7 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoptionlegacy.userdefinedinstrument"] = canonical::text(canonical::character((*message_2).user_defined_instrument()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoptionlegacy.tradingreferencedate"] = ((*message_2).trading_reference_date().has_value() ? canonical::number((*(*message_2).trading_reference_date())) : canonical::absent());
             } else if (const auto* message_2 = dynamic_cast<const protocol::MdIncrementalRefreshTradeSummaryLegacy*>(message->mktdata_payload())) {
-                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummarylegacy";
+                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummarylegacy";
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummarylegacy.transacttime"] = canonical::number((*message_2).transact_time());
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummarylegacy.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_trade_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummarylegacy.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_volume_msg()));
@@ -333,7 +333,7 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummarylegacy.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().recovery_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummarylegacy.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().end_of_event()));
             } else if (const auto* message_2 = dynamic_cast<const protocol::MdIncrementalRefreshOrderBookLegacy*>(message->mktdata_payload())) {
-                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbooklegacy";
+                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbooklegacy";
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbooklegacy.transacttime"] = canonical::number((*message_2).transact_time());
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbooklegacy.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_trade_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbooklegacy.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_volume_msg()));
@@ -343,7 +343,7 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbooklegacy.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().recovery_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbooklegacy.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().end_of_event()));
             } else if (const auto* message_2 = dynamic_cast<const protocol::SnapshotFullRefreshOrderBookLegacy*>(message->mktdata_payload())) {
-                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.snapshotfullrefreshorderbooklegacy";
+                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.snapshotfullrefreshorderbooklegacy";
                 values[entry + ".payload.mktdatamessage.mktdatapayload.snapshotfullrefreshorderbooklegacy.lastmsgseqnumprocessed"] = canonical::number((*message_2).last_msg_seq_num_processed());
                 values[entry + ".payload.mktdatamessage.mktdatapayload.snapshotfullrefreshorderbooklegacy.totnumreports"] = canonical::number((*message_2).tot_num_reports());
                 values[entry + ".payload.mktdatamessage.mktdatapayload.snapshotfullrefreshorderbooklegacy.securityid"] = canonical::number((*message_2).security_id());
@@ -351,7 +351,7 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".payload.mktdatamessage.mktdatapayload.snapshotfullrefreshorderbooklegacy.currentchunk"] = canonical::number((*message_2).current_chunk());
                 values[entry + ".payload.mktdatamessage.mktdatapayload.snapshotfullrefreshorderbooklegacy.transacttime"] = canonical::number((*message_2).transact_time());
             } else if (const auto* message_2 = dynamic_cast<const protocol::MdIncrementalRefreshBook*>(message->mktdata_payload())) {
-                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook";
+                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook";
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.transacttime"] = canonical::number((*message_2).transact_time());
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_trade_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_volume_msg()));
@@ -361,7 +361,7 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().recovery_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshbook.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().end_of_event()));
             } else if (const auto* message_2 = dynamic_cast<const protocol::MdIncrementalRefreshOrderBook*>(message->mktdata_payload())) {
-                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook";
+                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook";
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.transacttime"] = canonical::number((*message_2).transact_time());
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_trade_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_volume_msg()));
@@ -371,7 +371,7 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().recovery_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshorderbook.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().end_of_event()));
             } else if (const auto* message_2 = dynamic_cast<const protocol::MdIncrementalRefreshTradeSummary*>(message->mktdata_payload())) {
-                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary";
+                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary";
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary.transacttime"] = canonical::number((*message_2).transact_time());
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_trade_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_volume_msg()));
@@ -381,7 +381,7 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().recovery_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshtradesummary.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().end_of_event()));
             } else if (const auto* message_2 = dynamic_cast<const protocol::MdIncrementalRefreshDailyStatistics*>(message->mktdata_payload())) {
-                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshdailystatistics";
+                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshdailystatistics";
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshdailystatistics.transacttime"] = canonical::number((*message_2).transact_time());
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshdailystatistics.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_trade_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshdailystatistics.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_volume_msg()));
@@ -391,7 +391,7 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshdailystatistics.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().recovery_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshdailystatistics.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().end_of_event()));
             } else if (const auto* message_2 = dynamic_cast<const protocol::MdIncrementalRefreshLimitsBanding*>(message->mktdata_payload())) {
-                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshlimitsbanding";
+                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshlimitsbanding";
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshlimitsbanding.transacttime"] = canonical::number((*message_2).transact_time());
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshlimitsbanding.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_trade_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshlimitsbanding.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_volume_msg()));
@@ -401,7 +401,7 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshlimitsbanding.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().recovery_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshlimitsbanding.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().end_of_event()));
             } else if (const auto* message_2 = dynamic_cast<const protocol::MdIncrementalRefreshSessionStatistics*>(message->mktdata_payload())) {
-                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshsessionstatistics";
+                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdincrementalrefreshsessionstatistics";
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshsessionstatistics.transacttime"] = canonical::number((*message_2).transact_time());
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshsessionstatistics.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_trade_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshsessionstatistics.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_volume_msg()));
@@ -411,7 +411,7 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshsessionstatistics.matcheventindicator.recoverymsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().recovery_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdincrementalrefreshsessionstatistics.matcheventindicator.endofevent"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().end_of_event()));
             } else if (const auto* message_2 = dynamic_cast<const protocol::SnapshotFullRefresh*>(message->mktdata_payload())) {
-                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.snapshotfullrefresh";
+                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.snapshotfullrefresh";
                 values[entry + ".payload.mktdatamessage.mktdatapayload.snapshotfullrefresh.lastmsgseqnumprocessed"] = canonical::number((*message_2).last_msg_seq_num_processed());
                 values[entry + ".payload.mktdatamessage.mktdatapayload.snapshotfullrefresh.totnumreports"] = canonical::number((*message_2).tot_num_reports());
                 values[entry + ".payload.mktdatamessage.mktdatapayload.snapshotfullrefresh.securityid"] = canonical::number((*message_2).security_id());
@@ -424,7 +424,7 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".payload.mktdatamessage.mktdatapayload.snapshotfullrefresh.lowlimitpriceex"] = ((*message_2).low_limit_price_ex().has_value() ? canonical::scaled((*(*message_2).low_limit_price_ex()).mantissa(), (*(*message_2).low_limit_price_ex()).exponent()) : canonical::absent());
                 values[entry + ".payload.mktdatamessage.mktdatapayload.snapshotfullrefresh.maxpricevariationex"] = ((*message_2).max_price_variation_ex().has_value() ? canonical::scaled((*(*message_2).max_price_variation_ex()).mantissa(), (*(*message_2).max_price_variation_ex()).exponent()) : canonical::absent());
             } else if (const auto* message_2 = dynamic_cast<const protocol::SnapshotFullRefreshOrderBook*>(message->mktdata_payload())) {
-                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.snapshotfullrefreshorderbook";
+                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.snapshotfullrefreshorderbook";
                 values[entry + ".payload.mktdatamessage.mktdatapayload.snapshotfullrefreshorderbook.lastmsgseqnumprocessed"] = canonical::number((*message_2).last_msg_seq_num_processed());
                 values[entry + ".payload.mktdatamessage.mktdatapayload.snapshotfullrefreshorderbook.totnumreports"] = canonical::number((*message_2).tot_num_reports());
                 values[entry + ".payload.mktdatamessage.mktdatapayload.snapshotfullrefreshorderbook.securityid"] = canonical::number((*message_2).security_id());
@@ -432,7 +432,7 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".payload.mktdatamessage.mktdatapayload.snapshotfullrefreshorderbook.currentchunk"] = canonical::number((*message_2).current_chunk());
                 values[entry + ".payload.mktdatamessage.mktdatapayload.snapshotfullrefreshorderbook.transacttime"] = canonical::number((*message_2).transact_time());
             } else if (const auto* message_2 = dynamic_cast<const protocol::MdInstrumentDefinitionFuture*>(message->mktdata_payload())) {
-                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuture";
+                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuture";
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuture.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_trade_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuture.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_volume_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuture.matcheventindicator.lastquotemsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_quote_msg()));
@@ -491,7 +491,7 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuture.userdefinedinstrument"] = canonical::text(canonical::character((*message_2).user_defined_instrument()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionfuture.tradingreferencedate"] = ((*message_2).trading_reference_date().has_value() ? canonical::number((*(*message_2).trading_reference_date())) : canonical::absent());
             } else if (const auto* message_2 = dynamic_cast<const protocol::MdInstrumentDefinitionOption*>(message->mktdata_payload())) {
-                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoption";
+                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoption";
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoption.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_trade_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoption.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_volume_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoption.matcheventindicator.lastquotemsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_quote_msg()));
@@ -548,7 +548,7 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoption.userdefinedinstrument"] = canonical::text(canonical::character((*message_2).user_defined_instrument()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionoption.tradingreferencedate"] = ((*message_2).trading_reference_date().has_value() ? canonical::number((*(*message_2).trading_reference_date())) : canonical::absent());
             } else if (const auto* message_2 = dynamic_cast<const protocol::MdInstrumentDefinitionSpread*>(message->mktdata_payload())) {
-                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.message.payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspread";
+                values[entry + ".payload.mktdatamessage.mktdatapayload"] = "udppacket.mdp3message.payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspread";
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspread.matcheventindicator.lasttrademsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_trade_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspread.matcheventindicator.lastvolumemsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_volume_msg()));
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspread.matcheventindicator.lastquotemsg"] = canonical::number(static_cast<std::uint64_t>((*message_2).match_event_indicator().last_quote_msg()));
@@ -602,9 +602,9 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".payload.mktdatamessage.mktdatapayload.mdinstrumentdefinitionspread.tradingreferencedate"] = ((*message_2).trading_reference_date().has_value() ? canonical::number((*(*message_2).trading_reference_date())) : canonical::absent());
             }
         } else if (const auto* message = dynamic_cast<const protocol::MdpsessionmgmtMessage*>(each.message())) {
-            values[entry + ".payload"] = "udppacket.message.payload.mdpsessionmgmtmessage";
+            values[entry + ".payload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage";
             if (const auto* message_2 = dynamic_cast<const protocol::Negotiate*>(message->mdpsessionmgmt_payload())) {
-                values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiate";
+                values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiate";
                 values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiate.hmacsignature"] = canonical::text(std::string((*message_2).hmac_signature()), '\0', false);
                 values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiate.accesskeyid"] = canonical::text(std::string((*message_2).access_key_id()), '\0', false);
                 values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiate.uuid"] = canonical::number((*message_2).uuid());
@@ -612,42 +612,42 @@ canonical::Listing read(const packet::Frame& frame) {
                 values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiate.session"] = canonical::text(std::string((*message_2).session()), '\0', false);
                 values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiate.firm"] = canonical::text(std::string((*message_2).firm()), '\0', false);
             } else if (const auto* message_2 = dynamic_cast<const protocol::NegotiationReject*>(message->mdpsessionmgmt_payload())) {
-                values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiationreject";
+                values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiationreject";
                 values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiationreject.reason"] = canonical::text(std::string((*message_2).reason()), '\0', false);
                 values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiationreject.uuid"] = canonical::number((*message_2).uuid());
                 values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiationreject.requesttimestamp"] = canonical::number((*message_2).request_timestamp());
                 values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiationreject.errorcodes"] = canonical::number((*message_2).error_codes());
             } else if (const auto* message_2 = dynamic_cast<const protocol::NegotiationResponse*>(message->mdpsessionmgmt_payload())) {
-                values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiationresponse";
+                values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiationresponse";
                 values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiationresponse.uuid"] = canonical::number((*message_2).uuid());
                 values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiationresponse.requesttimestamp"] = canonical::number((*message_2).request_timestamp());
                 values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.negotiationresponse.secretkeysecureidexpiration"] = ((*message_2).secret_key_secure_id_expiration().has_value() ? canonical::number((*(*message_2).secret_key_secure_id_expiration())) : canonical::absent());
             } else if (const auto* message_2 = dynamic_cast<const protocol::Terminate*>(message->mdpsessionmgmt_payload())) {
-                values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.terminate";
+                values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.terminate";
                 values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.terminate.reason"] = canonical::text(std::string((*message_2).reason()), '\0', false);
                 values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.terminate.uuid"] = canonical::number((*message_2).uuid());
                 values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.terminate.requesttimestamp"] = canonical::number((*message_2).request_timestamp());
                 values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.terminate.errorcodes"] = canonical::number((*message_2).error_codes());
             } else if (const auto* message_2 = dynamic_cast<const protocol::MarketDataRequest*>(message->mdpsessionmgmt_payload())) {
-                values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.marketdatarequest";
+                values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.marketdatarequest";
                 values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.marketdatarequest.mdreqid"] = canonical::number((*message_2).md_req_id());
                 values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.marketdatarequest.subscriptionreqtype"] = canonical::number((*message_2).subscription_req_type());
             } else if (const auto* message_2 = dynamic_cast<const protocol::RequestAck*>(message->mdpsessionmgmt_payload())) {
-                values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestack";
+                values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestack";
                 values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestack.mdreqid"] = canonical::number((*message_2).md_req_id());
                 values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestack.subscriptionreqtype"] = canonical::number((*message_2).subscription_req_type());
                 values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestack.mdreqidstatus"] = canonical::number((*message_2).md_req_id_status());
             } else if (const auto* message_2 = dynamic_cast<const protocol::RequestReject*>(message->mdpsessionmgmt_payload())) {
-                values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestreject";
+                values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestreject";
                 values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestreject.mdreqidoptional"] = ((*message_2).md_req_id_optional().has_value() ? canonical::number((*(*message_2).md_req_id_optional())) : canonical::absent());
                 values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestreject.mdreqrejreason"] = canonical::number((*message_2).md_req_rej_reason());
                 values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.requestreject.sessiontext"] = canonical::text(std::string((*message_2).session_text()), '\0', false);
             } else if (const auto* message_2 = dynamic_cast<const protocol::SecurityListRequest*>(message->mdpsessionmgmt_payload())) {
-                values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.securitylistrequest";
+                values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.securitylistrequest";
                 values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.securitylistrequest.mdreqid"] = canonical::number((*message_2).md_req_id());
                 values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.securitylistrequest.subscriptionreqtype"] = canonical::number((*message_2).subscription_req_type());
             } else if (const auto* message_2 = dynamic_cast<const protocol::SecurityStatusRequest*>(message->mdpsessionmgmt_payload())) {
-                values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.securitystatusrequest";
+                values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload"] = "udppacket.mdp3message.payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.securitystatusrequest";
                 values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.securitystatusrequest.mdreqid"] = canonical::number((*message_2).md_req_id());
                 values[entry + ".payload.mdpsessionmgmtmessage.mdpsessionmgmtpayload.securitystatusrequest.subscriptionreqtype"] = canonical::number((*message_2).subscription_req_type());
             }

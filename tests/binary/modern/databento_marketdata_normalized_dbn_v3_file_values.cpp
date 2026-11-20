@@ -217,7 +217,7 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".recordbody.instrumentdefmsg.strikepricecurrency"] = canonical::text(std::string(message->strike_price_currency.get()), '\0', false);
             values[entry + ".recordbody.instrumentdefmsg.legrawsymbol"] = canonical::text(std::string(message->leg_raw_symbol.get()), '\0', false);
             values[entry + ".recordbody.instrumentdefmsg.instrumentclass"] = canonical::text(canonical::character(message->instrument_class.get()));
-            values[entry + ".recordbody.instrumentdefmsg.matchalgorithm"] = canonical::text(canonical::character(message->match_algorithm.get()));
+            values[entry + ".recordbody.instrumentdefmsg.matchalgorithm"] = canonical::text(canonical::character(message->match_algorithm.get()), {std::string_view(" ", 1)});
             values[entry + ".recordbody.instrumentdefmsg.mainfraction"] = canonical::number(message->main_fraction.get());
             values[entry + ".recordbody.instrumentdefmsg.pricedisplayformat"] = canonical::number(message->price_display_format.get());
             values[entry + ".recordbody.instrumentdefmsg.subfraction"] = canonical::number(message->sub_fraction.get());

@@ -70,7 +70,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".messagedata.tradingstatusmessage.reason"] = canonical::text(std::string((*message).reason()), ' ', false);
         } else if (const auto* message = dynamic_cast<const protocol::RetailLiquidityIndicatorMessage*>(each.message())) {
             values[entry + ".messagedata"] = "packet.messages.message.messagedata.retailliquidityindicatormessage";
-            values[entry + ".messagedata.retailliquidityindicatormessage.retailliquidityindicator"] = canonical::text(canonical::character((*message).retail_liquidity_indicator()));
+            values[entry + ".messagedata.retailliquidityindicatormessage.retailliquidityindicator"] = canonical::text(canonical::character((*message).retail_liquidity_indicator()), {std::string_view(" ", 1)});
             values[entry + ".messagedata.retailliquidityindicatormessage.timestamp"] = canonical::number((*message).timestamp());
             values[entry + ".messagedata.retailliquidityindicatormessage.symbol"] = canonical::text(std::string((*message).symbol()), ' ', false);
         } else if (const auto* message = dynamic_cast<const protocol::OperationalHaltStatusMessage*>(each.message())) {
@@ -83,7 +83,7 @@ canonical::Listing read(const packet::Frame& frame) {
             values[entry + ".messagedata.shortsalepriceteststatusmessage.shortsalepriceteststatus"] = canonical::number((*message).short_sale_price_test_status());
             values[entry + ".messagedata.shortsalepriceteststatusmessage.timestamp"] = canonical::number((*message).timestamp());
             values[entry + ".messagedata.shortsalepriceteststatusmessage.symbol"] = canonical::text(std::string((*message).symbol()), ' ', false);
-            values[entry + ".messagedata.shortsalepriceteststatusmessage.detail"] = canonical::text(canonical::character((*message).detail()));
+            values[entry + ".messagedata.shortsalepriceteststatusmessage.detail"] = canonical::text(canonical::character((*message).detail()), {std::string_view(" ", 1)});
         } else if (const auto* message = dynamic_cast<const protocol::SecurityEventMessage*>(each.message())) {
             values[entry + ".messagedata"] = "packet.messages.message.messagedata.securityeventmessage";
             values[entry + ".messagedata.securityeventmessage.securityevent"] = canonical::text(canonical::character((*message).security_event()));

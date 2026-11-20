@@ -9,11 +9,10 @@ namespace nyse::amexoptions::complexfeed::xdp::v1_3_a {
 
 // QuoteCondition value
 enum class QuoteCondition : char {
-    RegularTrading = '1',                 // Regular Trading
-    Rotation = '2',                       // Rotation
-    TradingHalted = '3',                  // Trading Halted
-    PreOpen = '4',                        // Pre Open
-    RotationLegalWidthQuotePending = '5', // Rotation Legal Width Quote Pending
+    RegularTrading = '1', // Regular Trading
+    Rotation = '2',       // Rotation
+    TradingHalted = '3',  // Trading Halted
+    PreOpen = '4',        // Pre Open
 };
 
 // The documented name of a code, or empty for one the specification does not list

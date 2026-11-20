@@ -16,7 +16,7 @@ void TradingSessionStatusMessage::set_timestamp(std::chrono::nanoseconds value) 
 TradingSession TradingSessionStatusMessage::trading_session() const { return trading_session_; }
 void TradingSessionStatusMessage::set_trading_session(TradingSession value) { trading_session_ = value; }
 
-PayloadCode TradingSessionStatusMessage::type() const { return message_type; }
+MessageCode TradingSessionStatusMessage::type() const { return message_type; }
 
 std::string_view TradingSessionStatusMessage::name() const { return "Trading Session Status Message"; }
 
@@ -50,11 +50,11 @@ std::size_t TradingSessionStatusMessage::encoded_size() const {
     return wire_size;
 }
 
-void TradingSessionStatusMessage::accept(PayloadVisitor& visitor) const {
+void TradingSessionStatusMessage::accept(Visitor& visitor) const {
     visitor.visit(*this);
 }
 
-std::unique_ptr<Payload> TradingSessionStatusMessage::clone() const {
+std::unique_ptr<Message> TradingSessionStatusMessage::clone() const {
     return std::make_unique<TradingSessionStatusMessage>(*this);
 }
 
@@ -67,7 +67,7 @@ void TradingSessionStatusMessage::print(std::ostream& out) const {
     out << '}';
 }
 
-bool TradingSessionStatusMessage::equals(const Payload& other) const {
+bool TradingSessionStatusMessage::equals(const Message& other) const {
     const auto* that = dynamic_cast<const TradingSessionStatusMessage*>(&other);
     return that != nullptr && *this == *that;
 }

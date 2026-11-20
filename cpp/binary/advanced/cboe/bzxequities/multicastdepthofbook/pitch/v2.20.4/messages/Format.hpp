@@ -63,9 +63,9 @@ inline std::ostream& operator<<(std::ostream& os, const add_order_long_message& 
     os << "time_offset=" << msg.fields.time_offset.get().value()
        << ",order_id=" << msg.fields.order_id.get().value()
        << ",side_indicator=\"" << pitch_multicastdepthofbook::side_indicator::to_string(msg.fields.side_indicator.get().value()) << '"'
-       << ",quantity_binary_4=" << msg.fields.quantity_binary_4.get().value()
+       << ",quantity_long=" << msg.fields.quantity_long.get().value()
        << ",symbol_short=\"" << msg.fields.symbol_short.get_trimmed().value() << '"'
-       << ",price_binary_long_price_8=" << msg.fields.price_binary_long_price_8.get().value()
+       << ",price_long=" << msg.fields.price_long.get().value()
        << ",add_flags=" << static_cast<unsigned>(msg.fields.add_flags.get().value())
        ;
     return os;
@@ -75,9 +75,9 @@ inline std::ostream& operator<<(std::ostream& os, const add_order_short_message&
     os << "time_offset=" << msg.fields.time_offset.get().value()
        << ",order_id=" << msg.fields.order_id.get().value()
        << ",side_indicator=\"" << pitch_multicastdepthofbook::side_indicator::to_string(msg.fields.side_indicator.get().value()) << '"'
-       << ",quantity_binary_2=" << msg.fields.quantity_binary_2.get().value()
+       << ",quantity_short=" << msg.fields.quantity_short.get().value()
        << ",symbol_short=\"" << msg.fields.symbol_short.get_trimmed().value() << '"'
-       << ",price_binary_short_price_2=" << msg.fields.price_binary_short_price_2.get().value()
+       << ",price_short=" << msg.fields.price_short.get().value()
        << ",add_flags=" << static_cast<unsigned>(msg.fields.add_flags.get().value())
        ;
     return os;
@@ -87,9 +87,9 @@ inline std::ostream& operator<<(std::ostream& os, const add_order_expanded_messa
     os << "time_offset=" << msg.fields.time_offset.get().value()
        << ",order_id=" << msg.fields.order_id.get().value()
        << ",side_indicator=\"" << pitch_multicastdepthofbook::side_indicator::to_string(msg.fields.side_indicator.get().value()) << '"'
-       << ",quantity_binary_4=" << msg.fields.quantity_binary_4.get().value()
+       << ",quantity_long=" << msg.fields.quantity_long.get().value()
        << ",symbol_long=\"" << msg.fields.symbol_long.get_trimmed().value() << '"'
-       << ",price_binary_long_price_8=" << msg.fields.price_binary_long_price_8.get().value()
+       << ",price_long=" << msg.fields.price_long.get().value()
        << ",add_flags=" << static_cast<unsigned>(msg.fields.add_flags.get().value())
        << ",participant_id=\"" << msg.fields.participant_id.get_trimmed().value() << '"'
        ;
@@ -111,7 +111,7 @@ inline std::ostream& operator<<(std::ostream& os, const order_executed_at_price_
        << ",executed_quantity=" << msg.fields.executed_quantity.get().value()
        << ",remaining_quantity=" << msg.fields.remaining_quantity.get().value()
        << ",execution_id=" << msg.fields.execution_id.get().value()
-       << ",price_binary_long_price_8=" << msg.fields.price_binary_long_price_8.get().value()
+       << ",price_long=" << msg.fields.price_long.get().value()
        ;
     return os;
 }
@@ -119,7 +119,7 @@ inline std::ostream& operator<<(std::ostream& os, const order_executed_at_price_
 inline std::ostream& operator<<(std::ostream& os, const reduce_size_long_message& msg) {
     os << "time_offset=" << msg.fields.time_offset.get().value()
        << ",order_id=" << msg.fields.order_id.get().value()
-       << ",canceled_quantity_binary_4=" << msg.fields.canceled_quantity_binary_4.get().value()
+       << ",canceled_quantity_long=" << msg.fields.canceled_quantity_long.get().value()
        ;
     return os;
 }
@@ -127,7 +127,7 @@ inline std::ostream& operator<<(std::ostream& os, const reduce_size_long_message
 inline std::ostream& operator<<(std::ostream& os, const reduce_size_short_message& msg) {
     os << "time_offset=" << msg.fields.time_offset.get().value()
        << ",order_id=" << msg.fields.order_id.get().value()
-       << ",canceled_quantity_binary_2=" << msg.fields.canceled_quantity_binary_2.get().value()
+       << ",canceled_quantity_short=" << msg.fields.canceled_quantity_short.get().value()
        ;
     return os;
 }
@@ -135,8 +135,8 @@ inline std::ostream& operator<<(std::ostream& os, const reduce_size_short_messag
 inline std::ostream& operator<<(std::ostream& os, const modify_order_long_message& msg) {
     os << "time_offset=" << msg.fields.time_offset.get().value()
        << ",order_id=" << msg.fields.order_id.get().value()
-       << ",quantity_binary_4=" << msg.fields.quantity_binary_4.get().value()
-       << ",price_binary_long_price_8=" << msg.fields.price_binary_long_price_8.get().value()
+       << ",quantity_long=" << msg.fields.quantity_long.get().value()
+       << ",price_long=" << msg.fields.price_long.get().value()
        << ",modify_flags=" << static_cast<unsigned>(msg.fields.modify_flags.get().value())
        ;
     return os;
@@ -145,8 +145,8 @@ inline std::ostream& operator<<(std::ostream& os, const modify_order_long_messag
 inline std::ostream& operator<<(std::ostream& os, const modify_order_short_message& msg) {
     os << "time_offset=" << msg.fields.time_offset.get().value()
        << ",order_id=" << msg.fields.order_id.get().value()
-       << ",quantity_binary_2=" << msg.fields.quantity_binary_2.get().value()
-       << ",price_binary_short_price_2=" << msg.fields.price_binary_short_price_2.get().value()
+       << ",quantity_short=" << msg.fields.quantity_short.get().value()
+       << ",price_short=" << msg.fields.price_short.get().value()
        << ",modify_flags=" << static_cast<unsigned>(msg.fields.modify_flags.get().value())
        ;
     return os;
@@ -163,9 +163,9 @@ inline std::ostream& operator<<(std::ostream& os, const trade_long_message& msg)
     os << "time_offset=" << msg.fields.time_offset.get().value()
        << ",order_id=" << msg.fields.order_id.get().value()
        << ",side_indicator=\"" << pitch_multicastdepthofbook::side_indicator::to_string(msg.fields.side_indicator.get().value()) << '"'
-       << ",quantity_binary_4=" << msg.fields.quantity_binary_4.get().value()
+       << ",quantity_long=" << msg.fields.quantity_long.get().value()
        << ",symbol_short=\"" << msg.fields.symbol_short.get_trimmed().value() << '"'
-       << ",price_binary_long_price_8=" << msg.fields.price_binary_long_price_8.get().value()
+       << ",price_long=" << msg.fields.price_long.get().value()
        << ",execution_id=" << msg.fields.execution_id.get().value()
        ;
     return os;
@@ -175,9 +175,9 @@ inline std::ostream& operator<<(std::ostream& os, const trade_short_message& msg
     os << "time_offset=" << msg.fields.time_offset.get().value()
        << ",order_id=" << msg.fields.order_id.get().value()
        << ",side_indicator=\"" << pitch_multicastdepthofbook::side_indicator::to_string(msg.fields.side_indicator.get().value()) << '"'
-       << ",quantity_binary_2=" << msg.fields.quantity_binary_2.get().value()
+       << ",quantity_short=" << msg.fields.quantity_short.get().value()
        << ",symbol_short=\"" << msg.fields.symbol_short.get_trimmed().value() << '"'
-       << ",price_binary_short_price_2=" << msg.fields.price_binary_short_price_2.get().value()
+       << ",price_short=" << msg.fields.price_short.get().value()
        << ",execution_id=" << msg.fields.execution_id.get().value()
        ;
     return os;
@@ -187,9 +187,9 @@ inline std::ostream& operator<<(std::ostream& os, const trade_expanded_message& 
     os << "time_offset=" << msg.fields.time_offset.get().value()
        << ",order_id=" << msg.fields.order_id.get().value()
        << ",side_indicator=\"" << pitch_multicastdepthofbook::side_indicator::to_string(msg.fields.side_indicator.get().value()) << '"'
-       << ",quantity_binary_4=" << msg.fields.quantity_binary_4.get().value()
+       << ",quantity_long=" << msg.fields.quantity_long.get().value()
        << ",symbol_long=\"" << msg.fields.symbol_long.get_trimmed().value() << '"'
-       << ",price_binary_long_price_8=" << msg.fields.price_binary_long_price_8.get().value()
+       << ",price_long=" << msg.fields.price_long.get().value()
        << ",execution_id=" << msg.fields.execution_id.get().value()
        ;
     return os;
@@ -242,7 +242,7 @@ inline std::ostream& operator<<(std::ostream& os, const auction_summary_message&
     os << "time_offset=" << msg.fields.time_offset.get().value()
        << ",stock_symbol=\"" << msg.fields.stock_symbol.get_trimmed().value() << '"'
        << ",auction_type=\"" << pitch_multicastdepthofbook::auction_type::to_string(msg.fields.auction_type.get().value()) << '"'
-       << ",price_binary_8=" << msg.fields.price_binary_8.get().value()
+       << ",price_long=" << msg.fields.price_long.get().value()
        << ",shares=" << msg.fields.shares.get().value()
        ;
     return os;

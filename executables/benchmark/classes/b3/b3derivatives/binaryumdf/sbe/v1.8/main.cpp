@@ -59,7 +59,6 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest((*message).match_event_indicator().last_stats_msg());
             checksum += bench::digest((*message).match_event_indicator().last_implied_msg());
             checksum += bench::digest((*message).match_event_indicator().recovery_msg());
-            checksum += bench::digest((*message).match_event_indicator().reserved());
             checksum += bench::digest((*message).match_event_indicator().end_of_event());
             checksum += ((*message).md_entry_timestamp().has_value() ? bench::digest((*(*message).md_entry_timestamp())) : std::uint64_t{0});
         } else if (const auto* message = dynamic_cast<const protocol::ChannelReset11Message*>(each.message())) {
@@ -69,7 +68,6 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest((*message).match_event_indicator().last_stats_msg());
             checksum += bench::digest((*message).match_event_indicator().last_implied_msg());
             checksum += bench::digest((*message).match_event_indicator().recovery_msg());
-            checksum += bench::digest((*message).match_event_indicator().reserved());
             checksum += bench::digest((*message).match_event_indicator().end_of_event());
             checksum += ((*message).md_entry_timestamp().has_value() ? bench::digest((*(*message).md_entry_timestamp())) : std::uint64_t{0});
         } else if (const auto* message = dynamic_cast<const protocol::SecurityStatus3Message*>(each.message())) {
@@ -80,7 +78,6 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest((*message).match_event_indicator().last_stats_msg());
             checksum += bench::digest((*message).match_event_indicator().last_implied_msg());
             checksum += bench::digest((*message).match_event_indicator().recovery_msg());
-            checksum += bench::digest((*message).match_event_indicator().reserved());
             checksum += bench::digest((*message).match_event_indicator().end_of_event());
             checksum += bench::digest((*message).trading_session_id());
             checksum += bench::digest((*message).security_trading_status());
@@ -97,7 +94,6 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest((*message).match_event_indicator().last_stats_msg());
             checksum += bench::digest((*message).match_event_indicator().last_implied_msg());
             checksum += bench::digest((*message).match_event_indicator().recovery_msg());
-            checksum += bench::digest((*message).match_event_indicator().reserved());
             checksum += bench::digest((*message).match_event_indicator().end_of_event());
             checksum += bench::digest((*message).trading_session_id());
             checksum += bench::digest((*message).trading_session_sub_id());
@@ -219,7 +215,6 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest((*message).match_event_indicator().last_stats_msg());
             checksum += bench::digest((*message).match_event_indicator().last_implied_msg());
             checksum += bench::digest((*message).match_event_indicator().recovery_msg());
-            checksum += bench::digest((*message).match_event_indicator().reserved());
             checksum += bench::digest((*message).match_event_indicator().end_of_event());
             checksum += bench::digest((*message).news_source());
             checksum += bench::digest((*message).part_count());
@@ -235,7 +230,6 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest((*message).match_event_indicator().last_stats_msg());
             checksum += bench::digest((*message).match_event_indicator().last_implied_msg());
             checksum += bench::digest((*message).match_event_indicator().recovery_msg());
-            checksum += bench::digest((*message).match_event_indicator().reserved());
             checksum += bench::digest((*message).match_event_indicator().end_of_event());
             checksum += bench::digest((*message).md_update_action());
             checksum += bench::digest((*message).open_close_settl_flag());
@@ -252,7 +246,6 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest((*message).match_event_indicator().last_stats_msg());
             checksum += bench::digest((*message).match_event_indicator().last_implied_msg());
             checksum += bench::digest((*message).match_event_indicator().recovery_msg());
-            checksum += bench::digest((*message).match_event_indicator().reserved());
             checksum += bench::digest((*message).match_event_indicator().end_of_event());
             checksum += bench::digest((*message).md_update_action());
             checksum += bench::digest((*message).trade_date());
@@ -268,7 +261,6 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest((*message).match_event_indicator().last_stats_msg());
             checksum += bench::digest((*message).match_event_indicator().last_implied_msg());
             checksum += bench::digest((*message).match_event_indicator().recovery_msg());
-            checksum += bench::digest((*message).match_event_indicator().reserved());
             checksum += bench::digest((*message).match_event_indicator().end_of_event());
             checksum += bench::digest((*message).open_close_settl_flag());
             checksum += bench::digest((*message).md_corporate_price().mantissa());
@@ -284,7 +276,6 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest((*message).match_event_indicator().last_stats_msg());
             checksum += bench::digest((*message).match_event_indicator().last_implied_msg());
             checksum += bench::digest((*message).match_event_indicator().recovery_msg());
-            checksum += bench::digest((*message).match_event_indicator().reserved());
             checksum += bench::digest((*message).match_event_indicator().end_of_event());
             checksum += bench::digest((*message).md_update_action());
             checksum += bench::digest((*message).imbalance_condition().imbalance_more_buyers());
@@ -300,7 +291,6 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest((*message).match_event_indicator().last_stats_msg());
             checksum += bench::digest((*message).match_event_indicator().last_implied_msg());
             checksum += bench::digest((*message).match_event_indicator().recovery_msg());
-            checksum += bench::digest((*message).match_event_indicator().reserved());
             checksum += bench::digest((*message).match_event_indicator().end_of_event());
             checksum += ((*message).price_band_type().has_value() ? bench::digest((*(*message).price_band_type())) : std::uint64_t{0});
             checksum += ((*message).price_limit_type().has_value() ? bench::digest((*(*message).price_limit_type())) : std::uint64_t{0});
@@ -318,7 +308,6 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest((*message).match_event_indicator().last_stats_msg());
             checksum += bench::digest((*message).match_event_indicator().last_implied_msg());
             checksum += bench::digest((*message).match_event_indicator().recovery_msg());
-            checksum += bench::digest((*message).match_event_indicator().reserved());
             checksum += bench::digest((*message).match_event_indicator().end_of_event());
             checksum += ((*message).avg_daily_traded_qty().has_value() ? bench::digest((*(*message).avg_daily_traded_qty())) : std::uint64_t{0});
             checksum += ((*message).max_trade_vol().has_value() ? bench::digest((*(*message).max_trade_vol())) : std::uint64_t{0});
@@ -332,7 +321,6 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest((*message).match_event_indicator().last_stats_msg());
             checksum += bench::digest((*message).match_event_indicator().last_implied_msg());
             checksum += bench::digest((*message).match_event_indicator().recovery_msg());
-            checksum += bench::digest((*message).match_event_indicator().reserved());
             checksum += bench::digest((*message).match_event_indicator().end_of_event());
             checksum += ((*message).price_band_type().has_value() ? bench::digest((*(*message).price_band_type())) : std::uint64_t{0});
             checksum += ((*message).price_limit_type().has_value() ? bench::digest((*(*message).price_limit_type())) : std::uint64_t{0});
@@ -350,7 +338,6 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest((*message).match_event_indicator().last_stats_msg());
             checksum += bench::digest((*message).match_event_indicator().last_implied_msg());
             checksum += bench::digest((*message).match_event_indicator().recovery_msg());
-            checksum += bench::digest((*message).match_event_indicator().reserved());
             checksum += bench::digest((*message).match_event_indicator().end_of_event());
             checksum += bench::digest((*message).md_update_action());
             checksum += bench::digest((*message).trade_date());
@@ -365,7 +352,6 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest((*message).match_event_indicator().last_stats_msg());
             checksum += bench::digest((*message).match_event_indicator().last_implied_msg());
             checksum += bench::digest((*message).match_event_indicator().recovery_msg());
-            checksum += bench::digest((*message).match_event_indicator().reserved());
             checksum += bench::digest((*message).match_event_indicator().end_of_event());
             checksum += bench::digest((*message).md_update_action());
             checksum += bench::digest((*message).trade_date());
@@ -380,7 +366,6 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest((*message).match_event_indicator().last_stats_msg());
             checksum += bench::digest((*message).match_event_indicator().last_implied_msg());
             checksum += bench::digest((*message).match_event_indicator().recovery_msg());
-            checksum += bench::digest((*message).match_event_indicator().reserved());
             checksum += bench::digest((*message).match_event_indicator().end_of_event());
             checksum += bench::digest((*message).trading_session_id());
             checksum += bench::digest((*message).trade_condition().opening_price());
@@ -409,7 +394,6 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest((*message).match_event_indicator().last_stats_msg());
             checksum += bench::digest((*message).match_event_indicator().last_implied_msg());
             checksum += bench::digest((*message).match_event_indicator().recovery_msg());
-            checksum += bench::digest((*message).match_event_indicator().reserved());
             checksum += bench::digest((*message).match_event_indicator().end_of_event());
             checksum += bench::digest((*message).trade_date());
             checksum += bench::digest((*message).md_future_price().mantissa());
@@ -426,7 +410,6 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest((*message).match_event_indicator().last_stats_msg());
             checksum += bench::digest((*message).match_event_indicator().last_implied_msg());
             checksum += bench::digest((*message).match_event_indicator().recovery_msg());
-            checksum += bench::digest((*message).match_event_indicator().reserved());
             checksum += bench::digest((*message).match_event_indicator().end_of_event());
             checksum += bench::digest((*message).trade_date());
             checksum += bench::digest((*message).md_entry_size());
@@ -448,7 +431,6 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest((*message).match_event_indicator().last_stats_msg());
             checksum += bench::digest((*message).match_event_indicator().last_implied_msg());
             checksum += bench::digest((*message).match_event_indicator().recovery_msg());
-            checksum += bench::digest((*message).match_event_indicator().reserved());
             checksum += bench::digest((*message).match_event_indicator().end_of_event());
             checksum += bench::digest((*message).md_update_action());
             checksum += bench::digest((*message).md_entry_type());
@@ -468,7 +450,6 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest((*message).match_event_indicator().last_stats_msg());
             checksum += bench::digest((*message).match_event_indicator().last_implied_msg());
             checksum += bench::digest((*message).match_event_indicator().recovery_msg());
-            checksum += bench::digest((*message).match_event_indicator().reserved());
             checksum += bench::digest((*message).match_event_indicator().end_of_event());
             checksum += bench::digest((*message).md_entry_type());
             checksum += bench::digest((*message).md_entry_position_no());
@@ -484,7 +465,6 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest((*message).match_event_indicator().last_stats_msg());
             checksum += bench::digest((*message).match_event_indicator().last_implied_msg());
             checksum += bench::digest((*message).match_event_indicator().recovery_msg());
-            checksum += bench::digest((*message).match_event_indicator().reserved());
             checksum += bench::digest((*message).match_event_indicator().end_of_event());
             checksum += bench::digest((*message).md_update_action());
             checksum += bench::digest((*message).md_entry_type());
@@ -499,7 +479,6 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest((*message).match_event_indicator().last_stats_msg());
             checksum += bench::digest((*message).match_event_indicator().last_implied_msg());
             checksum += bench::digest((*message).match_event_indicator().recovery_msg());
-            checksum += bench::digest((*message).match_event_indicator().reserved());
             checksum += bench::digest((*message).match_event_indicator().end_of_event());
             checksum += bench::digest((*message).trading_session_id());
             checksum += bench::digest((*message).trade_condition().opening_price());
@@ -526,7 +505,6 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest((*message).match_event_indicator().last_stats_msg());
             checksum += bench::digest((*message).match_event_indicator().last_implied_msg());
             checksum += bench::digest((*message).match_event_indicator().recovery_msg());
-            checksum += bench::digest((*message).match_event_indicator().reserved());
             checksum += bench::digest((*message).match_event_indicator().end_of_event());
             checksum += bench::digest((*message).trading_session_id());
             checksum += bench::digest((*message).trade_condition().opening_price());
@@ -565,7 +543,6 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest((*message).match_event_indicator().last_stats_msg());
             checksum += bench::digest((*message).match_event_indicator().last_implied_msg());
             checksum += bench::digest((*message).match_event_indicator().recovery_msg());
-            checksum += bench::digest((*message).match_event_indicator().reserved());
             checksum += bench::digest((*message).match_event_indicator().end_of_event());
             checksum += bench::digest((*message).trading_session_id());
             checksum += bench::digest((*message).trade_date());
@@ -583,7 +560,6 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest((*message).match_event_indicator().last_stats_msg());
             checksum += bench::digest((*message).match_event_indicator().last_implied_msg());
             checksum += bench::digest((*message).match_event_indicator().recovery_msg());
-            checksum += bench::digest((*message).match_event_indicator().reserved());
             checksum += bench::digest((*message).match_event_indicator().end_of_event());
             checksum += bench::digest((*message).trading_session_id());
             checksum += bench::digest((*message).md_future_price().mantissa());

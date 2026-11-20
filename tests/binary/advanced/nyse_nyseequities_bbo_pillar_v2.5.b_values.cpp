@@ -170,10 +170,10 @@ struct Reader {
         values[entry + ".payload.securitystatusmessage.symbolindex"] = canonical::number(message.fields.symbol_index.get().value());
         values[entry + ".payload.securitystatusmessage.symbolseqnum"] = canonical::number(message.fields.symbol_seq_num.get().value());
         values[entry + ".payload.securitystatusmessage.securitystatus"] = canonical::text(canonical::character(message.fields.security_status.get().value()), '\0', false);
-        values[entry + ".payload.securitystatusmessage.haltcondition"] = canonical::text(canonical::character(message.fields.halt_condition.get().value()), '\0', false);
+        values[entry + ".payload.securitystatusmessage.haltcondition"] = canonical::text(canonical::character(message.fields.halt_condition.get().value()), '\0', false, {std::string_view(" ", 1)});
         values[entry + ".payload.securitystatusmessage.price1"] = canonical::number(message.fields.price_1.get().value());
         values[entry + ".payload.securitystatusmessage.price2"] = canonical::number(message.fields.price_2.get().value());
-        values[entry + ".payload.securitystatusmessage.ssrtriggeringexchangeid"] = canonical::text(canonical::character(message.fields.ssr_triggering_exchange_id.get().value()), '\0', false);
+        values[entry + ".payload.securitystatusmessage.ssrtriggeringexchangeid"] = canonical::text(canonical::character(message.fields.ssr_triggering_exchange_id.get().value()), '\0', false, {std::string_view(" ", 1)});
         values[entry + ".payload.securitystatusmessage.ssrtriggeringvolume"] = canonical::number(message.fields.ssr_triggering_volume.get().value());
         values[entry + ".payload.securitystatusmessage.time"] = (message.fields.time.get().has_value() ? canonical::number(message.fields.time.get().value()) : canonical::absent());
         values[entry + ".payload.securitystatusmessage.ssrstate"] = canonical::text(canonical::character(message.fields.ssr_state.get().value()), '\0', false);
@@ -203,7 +203,7 @@ struct Reader {
         values[entry + ".payload.quotemessage.bidprice"] = canonical::number(message.fields.bid_price.get().value());
         values[entry + ".payload.quotemessage.bidvolume"] = canonical::number(message.fields.bid_volume.get().value());
         values[entry + ".payload.quotemessage.quotecondition"] = canonical::text(canonical::character(message.fields.quote_condition.get().value()), '\0', false);
-        values[entry + ".payload.quotemessage.rpiindicator"] = canonical::text(canonical::character(message.fields.rpi_indicator.get().value()), '\0', false);
+        values[entry + ".payload.quotemessage.rpiindicator"] = canonical::text(canonical::character(message.fields.rpi_indicator.get().value()), '\0', false, {std::string_view(" ", 1)});
     }
 };
 

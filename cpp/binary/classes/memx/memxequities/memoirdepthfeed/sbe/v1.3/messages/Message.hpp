@@ -7,14 +7,14 @@
 #include <ostream>
 #include <string_view>
 
-#include "../enums/MessageType.hpp"
+#include "../enums/TemplateId.hpp"
 
 namespace memx::memxequities::memoirdepthfeed::sbe::v1_3 {
 
 class Visitor;
 
-// The code that selects a message here: the Message Type
-using MessageCode = MessageType;
+// The code that selects a message here: the Template Id
+using MessageCode = TemplateId;
 
 // One decoded message. A message owns its fields: it is decoded once from the wire, and
 // from then on it is an ordinary object that can be copied, stored, compared, printed and

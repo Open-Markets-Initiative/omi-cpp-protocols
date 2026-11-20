@@ -61,19 +61,19 @@ std::size_t NextSharesEndOfDayTradeSummaryMessage::decode(const std::byte* data,
     consolidated_high_price_ = Decimal(static_cast<std::int64_t>(wire::read_u32_be(data + offset)), -4);
     offset += 4;
 
-    nav_offset_amount_high_ = Decimal(static_cast<std::int64_t>(wire::read_u32_be(data + offset)), -4);
+    nav_offset_amount_high_ = Decimal(static_cast<std::int64_t>(wire::read_i32_be(data + offset)), -4);
     offset += 4;
 
     consolidated_low_price_ = Decimal(static_cast<std::int64_t>(wire::read_u32_be(data + offset)), -4);
     offset += 4;
 
-    nav_offset_amount_low_ = Decimal(static_cast<std::int64_t>(wire::read_u32_be(data + offset)), -4);
+    nav_offset_amount_low_ = Decimal(static_cast<std::int64_t>(wire::read_i32_be(data + offset)), -4);
     offset += 4;
 
     consolidated_closing_price_ = Decimal(static_cast<std::int64_t>(wire::read_u32_be(data + offset)), -4);
     offset += 4;
 
-    nav_offset_amount_closing_ = Decimal(static_cast<std::int64_t>(wire::read_u32_be(data + offset)), -4);
+    nav_offset_amount_closing_ = Decimal(static_cast<std::int64_t>(wire::read_i32_be(data + offset)), -4);
     offset += 4;
 
     consolidated_volume_ = wire::read_u64_be(data + offset);
@@ -82,7 +82,7 @@ std::size_t NextSharesEndOfDayTradeSummaryMessage::decode(const std::byte* data,
     consolidated_open_price_ = Decimal(static_cast<std::int64_t>(wire::read_u32_be(data + offset)), -4);
     offset += 4;
 
-    nav_offset_amount_open_ = Decimal(static_cast<std::int64_t>(wire::read_u32_be(data + offset)), -4);
+    nav_offset_amount_open_ = Decimal(static_cast<std::int64_t>(wire::read_i32_be(data + offset)), -4);
     offset += 4;
 
     return offset;
@@ -101,19 +101,19 @@ std::size_t NextSharesEndOfDayTradeSummaryMessage::encode(std::byte* data, std::
     wire::write_u32_be(data + offset, static_cast<std::uint32_t>(consolidated_high_price_.mantissa()));
     offset += 4;
 
-    wire::write_u32_be(data + offset, static_cast<std::uint32_t>(nav_offset_amount_high_.mantissa()));
+    wire::write_i32_be(data + offset, static_cast<std::int32_t>(nav_offset_amount_high_.mantissa()));
     offset += 4;
 
     wire::write_u32_be(data + offset, static_cast<std::uint32_t>(consolidated_low_price_.mantissa()));
     offset += 4;
 
-    wire::write_u32_be(data + offset, static_cast<std::uint32_t>(nav_offset_amount_low_.mantissa()));
+    wire::write_i32_be(data + offset, static_cast<std::int32_t>(nav_offset_amount_low_.mantissa()));
     offset += 4;
 
     wire::write_u32_be(data + offset, static_cast<std::uint32_t>(consolidated_closing_price_.mantissa()));
     offset += 4;
 
-    wire::write_u32_be(data + offset, static_cast<std::uint32_t>(nav_offset_amount_closing_.mantissa()));
+    wire::write_i32_be(data + offset, static_cast<std::int32_t>(nav_offset_amount_closing_.mantissa()));
     offset += 4;
 
     wire::write_u64_be(data + offset, static_cast<std::uint64_t>(consolidated_volume_));
@@ -122,7 +122,7 @@ std::size_t NextSharesEndOfDayTradeSummaryMessage::encode(std::byte* data, std::
     wire::write_u32_be(data + offset, static_cast<std::uint32_t>(consolidated_open_price_.mantissa()));
     offset += 4;
 
-    wire::write_u32_be(data + offset, static_cast<std::uint32_t>(nav_offset_amount_open_.mantissa()));
+    wire::write_i32_be(data + offset, static_cast<std::int32_t>(nav_offset_amount_open_.mantissa()));
     offset += 4;
 
     return offset;

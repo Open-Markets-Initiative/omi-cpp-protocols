@@ -6,11 +6,13 @@
 namespace siac::cts::output::cta::v1_91 {
 
 
-// Q for Consolidated Quotation System
+// T for Consolidated Tape System (CTS)
 struct DataFeedIndicator {
 
     static constexpr auto name = "Data Feed Indicator";
     static constexpr std::size_t size = 1;
+    using type = char;
+static const type static_value = 'T';
 
     // default constructor
     constexpr DataFeedIndicator()

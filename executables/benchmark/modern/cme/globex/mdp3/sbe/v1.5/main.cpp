@@ -22,7 +22,7 @@ namespace {
 // The values the Modern iterator reads from one datagram, folded into a checksum
 std::uint64_t read(const packet::Frame& frame) {
     std::uint64_t checksum = 0;
-    protocol::MessageIterator iterator;
+    protocol::Mdp3MessageIterator iterator;
     iterator.initialize(frame.payload, frame.payload_len);
 
     checksum += bench::digest(iterator.binary_packet_header->packet_sequence_number.get());

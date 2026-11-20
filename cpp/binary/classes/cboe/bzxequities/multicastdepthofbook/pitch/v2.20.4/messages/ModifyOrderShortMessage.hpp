@@ -25,7 +25,7 @@ class ModifyOrderShortMessage : public Message {
     static constexpr std::size_t wire_size = 17;
 
     ModifyOrderShortMessage() = default;
-    ModifyOrderShortMessage(std::chrono::nanoseconds time_offset, std::uint64_t order_id, std::uint16_t quantity_binary_2, Decimal price_binary_short_price_2, const ModifyFlags& modify_flags);
+    ModifyOrderShortMessage(std::chrono::nanoseconds time_offset, std::uint64_t order_id, std::uint16_t quantity_short, Decimal price_short, const ModifyFlags& modify_flags);
 
     // Time Offset: Nanosecond offset from last
     std::chrono::nanoseconds time_offset() const;
@@ -35,14 +35,14 @@ class ModifyOrderShortMessage : public Message {
     std::uint64_t order_id() const;
     void set_order_id(std::uint64_t value);
 
-    // Quantity Binary 2: Number of shares/contracts being added to the book (may be less than
-    // the number entered)
-    std::uint16_t quantity_binary_2() const;
-    void set_quantity_binary_2(std::uint16_t value);
+    // Quantity Short: Number of shares/contracts being added to the book (may be less than the
+    // number entered)
+    std::uint16_t quantity_short() const;
+    void set_quantity_short(std::uint16_t value);
 
-    // Price Binary Short Price 2: The limit order price
-    Decimal price_binary_short_price_2() const;
-    void set_price_binary_short_price_2(Decimal value);
+    // Price Short: The limit order price
+    Decimal price_short() const;
+    void set_price_short(Decimal value);
 
     // Modify Flags: Modify Flags
     const ModifyFlags& modify_flags() const;
@@ -66,8 +66,8 @@ class ModifyOrderShortMessage : public Message {
   private:
     std::chrono::nanoseconds time_offset_{};
     std::uint64_t order_id_{};
-    std::uint16_t quantity_binary_2_{};
-    Decimal price_binary_short_price_2_{ 0, -2 };
+    std::uint16_t quantity_short_{};
+    Decimal price_short_{ 0, -2 };
     ModifyFlags modify_flags_{};
 };
 

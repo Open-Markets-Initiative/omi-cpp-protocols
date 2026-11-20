@@ -3,8 +3,8 @@
 
 #include "../types/TimeOffset.hpp"
 #include "../types/OrderId.hpp"
-#include "../types/QuantityBinary2.hpp"
-#include "../types/PriceBinaryShortPrice2.hpp"
+#include "../types/QuantityShort.hpp"
+#include "../types/PriceShort.hpp"
 #include "../bitfields/ModifyFlags.hpp"
 #include "../structs/MessageHeader.hpp"
 
@@ -17,8 +17,8 @@ struct ModifyOrderShortMessage {
 
     TimeOffset time_offset;
     OrderId order_id;
-    QuantityBinary2 quantity_binary_2;
-    PriceBinaryShortPrice2 price_binary_short_price_2;
+    QuantityShort quantity_short;
+    PriceShort price_short;
     ModifyFlags modify_flags;
 
     // the type code that selects this message in the dispatch switch

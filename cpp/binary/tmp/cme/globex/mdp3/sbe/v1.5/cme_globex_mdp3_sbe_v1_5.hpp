@@ -1553,25 +1553,25 @@ struct request_timestamp {
     type value_;
 };
 
-// Reserved
-struct reserved {
-    using type = bool;
-    static constexpr std::uint64_t mask = 0x40ULL;
-    static constexpr int shift = 6;
-};
-
-// Reserved 12: 12 reserved bits
-struct reserved_12 {
+// Reserved 21 To 32: 12 reserved bits
+struct reserved_21_to_32 {
     using type = std::uint32_t;
     static constexpr std::uint64_t mask = 0xFFF00000ULL;
     static constexpr int shift = 20;
 };
 
-// Reserved Bits: ReservedBits
-struct reserved_bits {
-    using type = bool;
-    static constexpr std::uint64_t mask = 0x10ULL;
+// Reserved 5 To 7: 3 reserved bits
+struct reserved_5_to_7 {
+    using type = std::uint8_t;
+    static constexpr std::uint64_t mask = 0x70ULL;
     static constexpr int shift = 4;
+};
+
+// Reserved 7: 1 reserved bit
+struct reserved_7 {
+    using type = bool;
+    static constexpr std::uint64_t mask = 0x40ULL;
+    static constexpr int shift = 6;
 };
 
 // Rfq Cross Eligible: RFQCrossEligible
@@ -2169,13 +2169,6 @@ struct unit_of_measure_qty {
 
   protected:
     type value_;
-};
-
-// Unused 2: 2 unused bits
-struct unused_2 {
-    using type = std::uint8_t;
-    static constexpr std::uint64_t mask = 0x60ULL;
-    static constexpr int shift = 5;
 };
 
 // User Defined Instrument: User-defined instruments flag
@@ -4435,9 +4428,9 @@ struct payload {
     static constexpr bool is_message = false;
 };
 
-// Message: Cme Market Data Message
-struct message {
-    static constexpr std::string_view name = "Message";
+// Mdp3 Message: Cme Market Data Message
+struct mdp3_message {
+    static constexpr std::string_view name = "Mdp3 Message";
     static constexpr bool is_message = false;
 };
 

@@ -24,6 +24,34 @@ matching the C++ namespace the code declares.
 Each protocol is one header, `<namespace>.hpp`; its benchmark under `executables/benchmark/tmp/`
 reads through it.
 
+## Generated
+
+| Parser | Protocol Count | Generated Lines |
+| --- | --- | --- |
+| Tmp | 101 | 250,544 |
+
+| Organization | Protocol Count | Generated Lines |
+| --- | --- | --- |
+| Asx | 1 | 2,540 |
+| B3 | 10 | 50,012 |
+| Bse | 1 | 1,875 |
+| Cboe | 10 | 18,539 |
+| CixAts | 1 | 949 |
+| Cme | 4 | 22,645 |
+| Databento | 3 | 10,965 |
+| Eurex | 4 | 11,393 |
+| Iex | 10 | 12,856 |
+| Jnx | 3 | 4,719 |
+| Jpx | 2 | 2,776 |
+| Lseg | 2 | 3,511 |
+| Memx | 1 | 1,073 |
+| Miax | 4 | 6,857 |
+| Nasdaq | 13 | 29,831 |
+| Nyse | 23 | 43,061 |
+| OtcMarkets | 1 | 2,539 |
+| Siac | 7 | 22,591 |
+| Tmx | 1 | 1,812 |
+
 ## Protocols (101)
 
 - `Asx.AsxDerivatives.Ntp.Itch.v1.05`

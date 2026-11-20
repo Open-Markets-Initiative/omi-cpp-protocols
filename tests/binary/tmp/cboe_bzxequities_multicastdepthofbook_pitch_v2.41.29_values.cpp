@@ -392,6 +392,7 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::quantity>(); }) { values[entry + ".payload.addorderlongmessage.quantity"] = canonical::number(message.template get<protocol::quantity>().value()); }
         if constexpr (requires { message.template get<protocol::symbol_short>(); }) { values[entry + ".payload.addorderlongmessage.symbolshort"] = canonical::text(std::string(message.template get<protocol::symbol_short>().value()), ' ', false); }
         if constexpr (requires { message.template get<protocol::price>(); }) { values[entry + ".payload.addorderlongmessage.price"] = canonical::scaled(message.template get<protocol::price>().value(), -4); }
+        if constexpr (requires { message.template get<protocol::add_order_flags>(); }) { values[entry + ".payload.addorderlongmessage.addorderflags.display"] = canonical::number(static_cast<std::uint64_t>(message.template get<protocol::add_order_flags>().template get<protocol::display>())); }
     }
 
     void operator()(const protocol::add_order_short_message& message) {
@@ -402,6 +403,7 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::quantity_short>(); }) { values[entry + ".payload.addordershortmessage.quantityshort"] = canonical::number(message.template get<protocol::quantity_short>().value()); }
         if constexpr (requires { message.template get<protocol::symbol_short>(); }) { values[entry + ".payload.addordershortmessage.symbolshort"] = canonical::text(std::string(message.template get<protocol::symbol_short>().value()), ' ', false); }
         if constexpr (requires { message.template get<protocol::price_short>(); }) { values[entry + ".payload.addordershortmessage.priceshort"] = canonical::scaled(message.template get<protocol::price_short>().value(), -2); }
+        if constexpr (requires { message.template get<protocol::add_order_flags>(); }) { values[entry + ".payload.addordershortmessage.addorderflags.display"] = canonical::number(static_cast<std::uint64_t>(message.template get<protocol::add_order_flags>().template get<protocol::display>())); }
     }
 
     void operator()(const protocol::add_order_expanded_message& message) {
@@ -412,6 +414,7 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::quantity>(); }) { values[entry + ".payload.addorderexpandedmessage.quantity"] = canonical::number(message.template get<protocol::quantity>().value()); }
         if constexpr (requires { message.template get<protocol::symbol_long>(); }) { values[entry + ".payload.addorderexpandedmessage.symbollong"] = canonical::text(std::string(message.template get<protocol::symbol_long>().value()), ' ', false); }
         if constexpr (requires { message.template get<protocol::price>(); }) { values[entry + ".payload.addorderexpandedmessage.price"] = canonical::scaled(message.template get<protocol::price>().value(), -4); }
+        if constexpr (requires { message.template get<protocol::add_order_flags>(); }) { values[entry + ".payload.addorderexpandedmessage.addorderflags.display"] = canonical::number(static_cast<std::uint64_t>(message.template get<protocol::add_order_flags>().template get<protocol::display>())); }
         if constexpr (requires { message.template get<protocol::participant_id>(); }) { values[entry + ".payload.addorderexpandedmessage.participantid"] = canonical::text(std::string(message.template get<protocol::participant_id>().value()), ' ', false); }
         if constexpr (requires { message.template get<protocol::customer_indicator>(); }) { values[entry + ".payload.addorderexpandedmessage.customerindicator"] = canonical::text(canonical::character(message.template get<protocol::customer_indicator>().value()), ' ', false); }
     }
@@ -454,6 +457,8 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::order_id>(); }) { values[entry + ".payload.modifyorderlongmessage.orderid"] = canonical::number(message.template get<protocol::order_id>().value()); }
         if constexpr (requires { message.template get<protocol::quantity>(); }) { values[entry + ".payload.modifyorderlongmessage.quantity"] = canonical::number(message.template get<protocol::quantity>().value()); }
         if constexpr (requires { message.template get<protocol::price>(); }) { values[entry + ".payload.modifyorderlongmessage.price"] = canonical::scaled(message.template get<protocol::price>().value(), -4); }
+        if constexpr (requires { message.template get<protocol::modify_order_flags>(); }) { values[entry + ".payload.modifyorderlongmessage.modifyorderflags.display"] = canonical::number(static_cast<std::uint64_t>(message.template get<protocol::modify_order_flags>().template get<protocol::display>())); }
+        if constexpr (requires { message.template get<protocol::modify_order_flags>(); }) { values[entry + ".payload.modifyorderlongmessage.modifyorderflags.priority"] = canonical::number(static_cast<std::uint64_t>(message.template get<protocol::modify_order_flags>().template get<protocol::priority>())); }
     }
 
     void operator()(const protocol::modify_order_short_message& message) {
@@ -462,6 +467,8 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::order_id>(); }) { values[entry + ".payload.modifyordershortmessage.orderid"] = canonical::number(message.template get<protocol::order_id>().value()); }
         if constexpr (requires { message.template get<protocol::quantity_short>(); }) { values[entry + ".payload.modifyordershortmessage.quantityshort"] = canonical::number(message.template get<protocol::quantity_short>().value()); }
         if constexpr (requires { message.template get<protocol::price_short>(); }) { values[entry + ".payload.modifyordershortmessage.priceshort"] = canonical::scaled(message.template get<protocol::price_short>().value(), -2); }
+        if constexpr (requires { message.template get<protocol::modify_order_flags>(); }) { values[entry + ".payload.modifyordershortmessage.modifyorderflags.display"] = canonical::number(static_cast<std::uint64_t>(message.template get<protocol::modify_order_flags>().template get<protocol::display>())); }
+        if constexpr (requires { message.template get<protocol::modify_order_flags>(); }) { values[entry + ".payload.modifyordershortmessage.modifyorderflags.priority"] = canonical::number(static_cast<std::uint64_t>(message.template get<protocol::modify_order_flags>().template get<protocol::priority>())); }
     }
 
     void operator()(const protocol::delete_order_message& message) {

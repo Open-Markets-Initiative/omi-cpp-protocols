@@ -5,6 +5,7 @@
 #include "../types/SourceTimeNs.hpp"
 #include "../types/ProductId.hpp"
 #include "../types/ChannelId.hpp"
+#include "../types/Reserved2.hpp"
 #include "../structs/MessageHeader.hpp"
 
 namespace nyse::amexoptions::deepfeed::xdp::v1_3_a {
@@ -18,6 +19,7 @@ struct SequenceNumberResetMessage {
     SourceTimeNs source_time_ns;
     ProductId product_id;
     ChannelId channel_id;
+    Reserved2 reserved_2;
 
     // the type code that selects this message in the dispatch switch
     static constexpr std::uint16_t message_type = 1;

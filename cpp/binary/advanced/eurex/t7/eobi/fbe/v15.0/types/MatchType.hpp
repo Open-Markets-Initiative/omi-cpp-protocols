@@ -59,9 +59,10 @@ struct match_type {
 
     static constexpr const char* name = "match_type";
     static constexpr std::size_t size = 1;
-    static constexpr bool is_optional = false;
+    static constexpr bool is_optional = true;
+    static constexpr enum_type null_value = static_cast<enum_type>(0xFF);
 
-    using result_type = required<match_type::enum_type>;
+    using result_type = std::optional<match_type::enum_type>;
     using storage_type = result_type;
 
     constexpr match_type()
@@ -71,7 +72,8 @@ struct match_type {
      : value{ v } {}
 
     [[nodiscard]] constexpr result_type get() const {
-        return result_type{value};
+        const enum_type held = value;
+        return held == null_value ? std::nullopt : result_type{held};
     }
 
     constexpr void set(enum_type v) {
@@ -82,7 +84,11 @@ struct match_type {
         if (value.has_value())
             set(value.value());
         else
-            set(static_cast<enum_type>(0xFF));
+            set(null_value);
+    }
+
+    constexpr void set_null() {
+        set(null_value);
     }
 
   protected:

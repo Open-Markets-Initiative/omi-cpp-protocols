@@ -528,6 +528,8 @@ struct Reader {
         if constexpr (requires { header.template get<protocol::session_indicator>(); }) { checksum += bench::digest(header.template get<protocol::session_indicator>().value()); }
         if constexpr (requires { header.template get<protocol::block_sequence_number>(); }) { checksum += bench::digest(header.template get<protocol::block_sequence_number>().value()); }
         if constexpr (requires { header.template get<protocol::messages_in_block>(); }) { checksum += bench::digest(header.template get<protocol::messages_in_block>().value()); }
+        if constexpr (requires { header.template get<protocol::block_timestamp>().template get<protocol::seconds>(); }) { checksum += bench::digest(header.template get<protocol::block_timestamp>().template get<protocol::seconds>().value()); }
+        if constexpr (requires { header.template get<protocol::block_timestamp>().template get<protocol::nanoseconds>(); }) { checksum += bench::digest(header.template get<protocol::block_timestamp>().template get<protocol::nanoseconds>().value()); }
         if constexpr (requires { header.template get<protocol::block_checksum>(); }) { checksum += bench::digest(header.template get<protocol::block_checksum>().value()); }
     }
 

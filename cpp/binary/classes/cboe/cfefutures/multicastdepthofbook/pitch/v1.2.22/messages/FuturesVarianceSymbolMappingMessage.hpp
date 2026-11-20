@@ -26,7 +26,7 @@ class FuturesVarianceSymbolMappingMessage : public Message {
     static constexpr std::size_t wire_size = 38;
 
     FuturesVarianceSymbolMappingMessage() = default;
-    FuturesVarianceSymbolMappingMessage(std::chrono::nanoseconds time_offset, std::uint32_t unit_timestamp, const std::string& feed_symbol, const std::string& futures_symbol, Decimal accrued_day_variance, std::uint16_t num_final_returns, std::uint16_t num_elapsed_returns);
+    FuturesVarianceSymbolMappingMessage(std::chrono::nanoseconds time_offset, std::chrono::seconds unit_timestamp, const std::string& feed_symbol, const std::string& futures_symbol, Decimal accrued_day_variance, std::uint16_t num_final_returns, std::uint16_t num_elapsed_returns);
 
     // Time Offset: Nanosecond offset from last unit timestamp.
     std::chrono::nanoseconds time_offset() const;
@@ -34,8 +34,8 @@ class FuturesVarianceSymbolMappingMessage : public Message {
 
     // Unit Timestamp: Unit timestamp expressed as number of whole seconds since the Epoch
     // (Midnight, January 1, 1970 UTC).
-    std::uint32_t unit_timestamp() const;
-    void set_unit_timestamp(std::uint32_t value);
+    std::chrono::seconds unit_timestamp() const;
+    void set_unit_timestamp(std::chrono::seconds value);
 
     // Feed Symbol: Six character, base 62 symbol.
     const std::string& feed_symbol() const;
@@ -79,7 +79,7 @@ class FuturesVarianceSymbolMappingMessage : public Message {
 
   private:
     std::chrono::nanoseconds time_offset_{};
-    std::uint32_t unit_timestamp_{};
+    std::chrono::seconds unit_timestamp_{};
     std::string feed_symbol_{};
     std::string futures_symbol_{};
     Decimal accrued_day_variance_{ 0, -12 };

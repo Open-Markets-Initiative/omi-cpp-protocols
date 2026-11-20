@@ -1738,11 +1738,18 @@ struct regular_trade {
     static constexpr int shift = 13;
 };
 
-// Reserved 6: 6 reserved bits
-struct reserved_6 {
+// Reserved 11 To 16: 6 reserved bits
+struct reserved_11_to_16 {
     using type = std::uint16_t;
     static constexpr std::uint64_t mask = 0xFC00ULL;
     static constexpr int shift = 10;
+};
+
+// Reserved 16: 1 reserved bit
+struct reserved_16 {
+    using type = bool;
+    static constexpr std::uint64_t mask = 0x8000ULL;
+    static constexpr int shift = 15;
 };
 
 // Rpt Seq: rptSeq
@@ -2544,32 +2551,25 @@ struct unused {
     static constexpr int shift = 6;
 };
 
-// Unused 1: 1 unused bit
-struct unused_1 {
-    using type = bool;
-    static constexpr std::uint64_t mask = 0x8000ULL;
-    static constexpr int shift = 15;
+// Unused Bits 1 To 8: 8 unused bits
+struct unused_bits_1_to_8 {
+    using type = std::uint16_t;
+    static constexpr std::uint64_t mask = 0xFFULL;
+    static constexpr int shift = 0;
 };
 
-// Unused 2: 2 unused bits
-struct unused_2 {
+// Unused Bits 5 To 6: 2 unused bits
+struct unused_bits_5_to_6 {
     using type = std::uint16_t;
     static constexpr std::uint64_t mask = 0x30ULL;
     static constexpr int shift = 4;
 };
 
-// Unused 6: 6 unused bits
-struct unused_6 {
+// Unused Bits 8 To 13: 6 unused bits
+struct unused_bits_8_to_13 {
     using type = std::uint16_t;
     static constexpr std::uint64_t mask = 0x1F80ULL;
     static constexpr int shift = 7;
-};
-
-// Unused 8: 8 unused bits
-struct unused_8 {
-    using type = std::uint16_t;
-    static constexpr std::uint64_t mask = 0xFFULL;
-    static constexpr int shift = 0;
 };
 
 // Url Link Data: Bytes of the string, encoded in UTF-8.

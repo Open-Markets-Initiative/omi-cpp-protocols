@@ -3,19 +3,6 @@
 
 namespace memx::memxequities::memoirdepthfeed::sbe::v1_3 {
 
-class SequencedMessage;
-class UnknownMessage;
-
-// What a packet's messages are dispatched to. Derive from it, override the visits you
-// care about, and hand it to the packet's accept or a message's; the others do nothing.
-class Visitor {
-  public:
-    virtual ~Visitor() = default;
-
-    virtual void visit(const SequencedMessage&) {}
-    virtual void visit(const UnknownMessage&) {}
-};
-
 class InstrumentDirectoryMessage;
 class RegShoRestrictionMessage;
 class SecurityTradingStatusMessage;
@@ -29,13 +16,13 @@ class BrokenTradeMessage;
 class CorrectedTradeMessage;
 class ClearBookMessage;
 class SnapshotCompleteMessage;
-class UnknownPayload;
+class UnknownMessage;
 
-// What the messages of the Payload dispatch are handed to,
-// reached through the payload a SbeMessage holds.
-class PayloadVisitor {
+// What a packet's messages are dispatched to. Derive from it, override the visits you
+// care about, and hand it to the packet's accept or a message's; the others do nothing.
+class Visitor {
   public:
-    virtual ~PayloadVisitor() = default;
+    virtual ~Visitor() = default;
 
     virtual void visit(const InstrumentDirectoryMessage&) {}
     virtual void visit(const RegShoRestrictionMessage&) {}
@@ -50,7 +37,7 @@ class PayloadVisitor {
     virtual void visit(const CorrectedTradeMessage&) {}
     virtual void visit(const ClearBookMessage&) {}
     virtual void visit(const SnapshotCompleteMessage&) {}
-    virtual void visit(const UnknownPayload&) {}
+    virtual void visit(const UnknownMessage&) {}
 };
 
 } // namespace memx::memxequities::memoirdepthfeed::sbe::v1_3

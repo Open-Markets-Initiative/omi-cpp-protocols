@@ -18,6 +18,34 @@ Within a protocol:
 
 The extractor and the tests under `tests/binary/modern/` are written against these.
 
+## Generated
+
+| Parser | Protocol Count | Generated Lines |
+| --- | --- | --- |
+| Modern | 101 | 454,390 |
+
+| Organization | Protocol Count | Generated Lines |
+| --- | --- | --- |
+| Asx | 1 | 5,204 |
+| B3 | 10 | 88,524 |
+| Bse | 1 | 3,585 |
+| Cboe | 10 | 31,386 |
+| CixAts | 1 | 1,776 |
+| Cme | 4 | 49,179 |
+| Databento | 3 | 21,762 |
+| Eurex | 4 | 20,291 |
+| Iex | 10 | 22,483 |
+| Jnx | 3 | 8,056 |
+| Jpx | 2 | 5,541 |
+| Lseg | 2 | 6,179 |
+| Memx | 1 | 1,820 |
+| Miax | 4 | 12,890 |
+| Nasdaq | 13 | 53,142 |
+| Nyse | 23 | 77,959 |
+| OtcMarkets | 1 | 4,381 |
+| Siac | 7 | 37,029 |
+| Tmx | 1 | 3,203 |
+
 ## Protocols (101)
 
 - `Asx.AsxDerivatives.Ntp.Itch.v1.05`
