@@ -28,8 +28,8 @@ struct AddOrderFlags {
      : value{ 0 } {}
 
     // Unused
-    [[nodiscard]] constexpr bool Unused4() const {
-        return value & mask::Unused4;
+    [[nodiscard]] constexpr type Unused4() const {
+        return static_cast<type>((value & mask::Unused4) >> 0);
     }
 
     // Market Order

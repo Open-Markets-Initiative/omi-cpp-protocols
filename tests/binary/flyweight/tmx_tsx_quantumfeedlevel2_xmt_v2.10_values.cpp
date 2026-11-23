@@ -90,6 +90,11 @@ struct Reader {
         values[entry + ".bodymessage.businessmessage.assigncopordersmessage.symbol"] = canonical::text(std::string(message.symbol()), ' ', false);
         values[entry + ".bodymessage.businessmessage.assigncopordersmessage.calculatedopeningprice"] = (message.calculated_opening_price().has_value() ? canonical::scaled((*message.calculated_opening_price()).mantissa(), (*message.calculated_opening_price()).exponent()) : canonical::absent());
         values[entry + ".bodymessage.businessmessage.assigncopordersmessage.orderside"] = canonical::text(canonical::character(message.order_side()), ' ', false);
+        for (std::size_t cop_order_index = 0; const auto& cop_order_entry : message.cop_order()) {
+            const std::string cop_order_at = std::string{entry + ".bodymessage.businessmessage.assigncopordersmessage.coporder"} + "[" + std::to_string(cop_order_index++) + "]";
+            values[cop_order_at + ".brokernumber"] = (cop_order_entry.broker_number().has_value() ? canonical::number((*cop_order_entry.broker_number())) : canonical::absent());
+            values[cop_order_at + ".orderid"] = (cop_order_entry.order_id().has_value() ? canonical::number((*cop_order_entry.order_id())) : canonical::absent());
+        }
         values[entry + ".bodymessage.businessmessage.assigncopordersmessage.tradingsystemtimestamp"] = (message.trading_system_time_stamp().has_value() ? canonical::number((*message.trading_system_time_stamp())) : canonical::absent());
     }
 
@@ -107,6 +112,12 @@ struct Reader {
         values[entry + ".bodymessage.businessmessage.assignlimitmessage.symbol"] = canonical::text(std::string(message.symbol()), ' ', false);
         values[entry + ".bodymessage.businessmessage.assignlimitmessage.calculatedopeningprice"] = (message.calculated_opening_price().has_value() ? canonical::scaled((*message.calculated_opening_price()).mantissa(), (*message.calculated_opening_price()).exponent()) : canonical::absent());
         values[entry + ".bodymessage.businessmessage.assignlimitmessage.orderside"] = canonical::text(canonical::character(message.order_side()), ' ', false);
+        for (std::size_t cop_limit_index = 0; const auto& cop_limit_entry : message.cop_limit()) {
+            const std::string cop_limit_at = std::string{entry + ".bodymessage.businessmessage.assignlimitmessage.coplimit"} + "[" + std::to_string(cop_limit_index++) + "]";
+            values[cop_limit_at + ".brokernumber"] = (cop_limit_entry.broker_number().has_value() ? canonical::number((*cop_limit_entry.broker_number())) : canonical::absent());
+            values[cop_limit_at + ".orderid"] = (cop_limit_entry.order_id().has_value() ? canonical::number((*cop_limit_entry.order_id())) : canonical::absent());
+            values[cop_limit_at + ".price"] = (cop_limit_entry.price().has_value() ? canonical::scaled((*cop_limit_entry.price()).mantissa(), (*cop_limit_entry.price()).exponent()) : canonical::absent());
+        }
         values[entry + ".bodymessage.businessmessage.assignlimitmessage.tradingsystemtimestamp"] = (message.trading_system_time_stamp().has_value() ? canonical::number((*message.trading_system_time_stamp())) : canonical::absent());
     }
 

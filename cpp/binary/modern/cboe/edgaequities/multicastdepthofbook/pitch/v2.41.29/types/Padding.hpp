@@ -3,6 +3,7 @@
 
 #include <array>
 #include <cstddef>
+#include <cstdint>
 
 namespace cboe::edgaequities::multicastdepthofbook::pitch::v2_41_29 {
 

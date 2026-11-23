@@ -3,6 +3,7 @@
 
 #include <array>
 #include <cstddef>
+#include <cstdint>
 
 namespace nyse::arcaoptions::deepfeed::pillar::v1_2_m {
 

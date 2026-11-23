@@ -3398,7 +3398,7 @@ static_assert(sizeof(ohlcv_msg) == ohlcv_msg::size, "ohlcv_msg lies over its byt
 // Mbp 10 Msg: Market by price implementation with a known book depth of 10
 struct mbp_10_msg {
     static constexpr std::string_view name = "Mbp 10 Msg";
-    static constexpr std::size_t size = 64;
+    static constexpr std::size_t size = 352;
     static constexpr bool is_message = true;
 
     // the types of its members, in wire order
@@ -3412,7 +3412,7 @@ struct mbp_10_msg {
         ts_recv,
         ts_in_delta,
         sequence,
-        bid_ask_pair>;
+        std::array<bid_ask_pair, 10>>;
 
     // the member of the type asked for
     template <typename Field>
@@ -3428,7 +3428,7 @@ struct mbp_10_msg {
     DBNFIELD(ts_recv);
     DBNFIELD(ts_in_delta);
     DBNFIELD(sequence);
-    DBNFIELD(bid_ask_pair);
+    constexpr const std::array<bid_ask_pair, 10>& ref(const std::array<bid_ask_pair, 10>*) const noexcept { return bid_ask_pair_; } std::array<bid_ask_pair, 10> bid_ask_pair_;
 };
 
 static_assert(sizeof(mbp_10_msg) == mbp_10_msg::size, "mbp_10_msg lies over its bytes exactly");

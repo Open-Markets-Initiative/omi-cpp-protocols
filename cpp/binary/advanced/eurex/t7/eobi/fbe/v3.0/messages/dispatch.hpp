@@ -19,7 +19,7 @@ void dispatch(Handler& handler, const std::byte* buffer, std::size_t length, std
     (void)length;
     const auto* header = eobi_header::parse(buffer);
 
-    switch (header->template_id.get().value()) {
+    switch (header->template_id.get().value_or(decltype(header->template_id)::null_value)) {
         case template_id::enum_type::add_complex_instrument:
             handler.on_message(*add_complex_instrument::parse(buffer), packet_receive_time, transport);
             break;

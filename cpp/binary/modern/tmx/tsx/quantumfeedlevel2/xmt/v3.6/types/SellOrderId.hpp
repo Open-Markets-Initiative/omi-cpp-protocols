@@ -1,0 +1,33 @@
+// Tmx.Tsx.QuantumFeedLevel2.Xmt.v3.6: types/SellOrderId.hpp
+#pragma once
+
+#include <cstddef>
+#include <cstdint>
+
+namespace tmx::tsx::quantumfeedlevel2::xmt::v3_6 {
+
+// Public Numeric Identifier Assigned To A Sell Order By The Trading System
+struct SellOrderId {
+
+    static constexpr const char* name = "Sell Order Id";
+    static constexpr std::size_t size =  8;
+    using type = std::uint64_t;
+static const type no_value = 0;
+
+    // default constructor: the null the model states, where it states one
+    constexpr SellOrderId()
+     : value{ no_value } {}
+
+    // standard constructor
+    constexpr explicit SellOrderId(const std::uint64_t value)
+     : value{ value } {}
+
+    // get value of SellOrderId field
+    [[nodiscard]] std::uint64_t get() const {
+        return value;
+    }
+
+  protected:
+    std::uint64_t value;
+};
+}

@@ -207,6 +207,7 @@ std::size_t parse_short_equity_and_index_quote_message([[maybe_unused]] const st
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& short_equity_and_index_quote_message_section_1_ = tmp::read<short_equity_and_index_quote_message_section_1>(data + offset, bound - offset, handler); offset += short_equity_and_index_quote_message_section_1::size;
+    tmp::call(handler, short_equity_and_index_quote_message_section_1_.template get<expiration_block>());
     if (static_cast<bool>(tmp::rule(short_equity_and_index_quote_message_section_1_.template get<bbo_indicator>()) == 'M' || tmp::rule(short_equity_and_index_quote_message_section_1_.template get<bbo_indicator>()) == 'N' || tmp::rule(short_equity_and_index_quote_message_section_1_.template get<bbo_indicator>()) == 'P')) {
         offset += tmp::take<best_bid_appendage>(data + offset, bound - offset, handler);
     }
@@ -249,6 +250,7 @@ std::size_t parse_long_equity_and_index_quote_message([[maybe_unused]] const std
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& long_equity_and_index_quote_message_section_1_ = tmp::read<long_equity_and_index_quote_message_section_1>(data + offset, bound - offset, handler); offset += long_equity_and_index_quote_message_section_1::size;
+    tmp::call(handler, long_equity_and_index_quote_message_section_1_.template get<expiration_block>());
     if (static_cast<bool>(tmp::rule(long_equity_and_index_quote_message_section_1_.template get<bbo_indicator>()) == 'M' || tmp::rule(long_equity_and_index_quote_message_section_1_.template get<bbo_indicator>()) == 'N' || tmp::rule(long_equity_and_index_quote_message_section_1_.template get<bbo_indicator>()) == 'P')) {
         offset += tmp::take<best_bid_appendage>(data + offset, bound - offset, handler);
     }

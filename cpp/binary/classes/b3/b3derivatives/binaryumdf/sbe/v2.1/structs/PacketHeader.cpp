@@ -6,14 +6,15 @@
 
 namespace b3::b3derivatives::binaryumdf::sbe::v2_1 {
 
-PacketHeader::PacketHeader(std::uint8_t channel_id, std::uint8_t packet_reserved, std::uint16_t sequence_version, std::uint32_t sequence_number, std::chrono::nanoseconds sending_time)
+PacketHeader::PacketHeader(std::uint8_t channel_id, const std::array<std::byte, 1>& packet_reserved, std::uint16_t sequence_version, std::uint32_t sequence_number, std::chrono::nanoseconds sending_time)
   : channel_id_(channel_id), packet_reserved_(packet_reserved), sequence_version_(sequence_version), sequence_number_(sequence_number), sending_time_(sending_time) {}
 
 std::uint8_t PacketHeader::channel_id() const { return channel_id_; }
 void PacketHeader::set_channel_id(std::uint8_t value) { channel_id_ = value; }
 
-std::uint8_t PacketHeader::packet_reserved() const { return packet_reserved_; }
-void PacketHeader::set_packet_reserved(std::uint8_t value) { packet_reserved_ = value; }
+const std::array<std::byte, 1>& PacketHeader::packet_reserved() const { return packet_reserved_; }
+std::array<std::byte, 1>& PacketHeader::packet_reserved() { return packet_reserved_; }
+void PacketHeader::set_packet_reserved(const std::array<std::byte, 1>& value) { packet_reserved_ = value; }
 
 std::uint16_t PacketHeader::sequence_version() const { return sequence_version_; }
 void PacketHeader::set_sequence_version(std::uint16_t value) { sequence_version_ = value; }
@@ -31,7 +32,7 @@ std::size_t PacketHeader::decode(const std::byte* data, std::size_t length) {
     channel_id_ = wire::read_u8(data + offset);
     offset += 1;
 
-    packet_reserved_ = wire::read_u8(data + offset);
+    wire::read_bytes(data + offset, packet_reserved_.data(), 1);
     offset += 1;
 
     sequence_version_ = wire::read_u16_le(data + offset);
@@ -53,7 +54,7 @@ std::size_t PacketHeader::encode(std::byte* data, std::size_t capacity) const {
     wire::write_u8(data + offset, static_cast<std::uint8_t>(channel_id_));
     offset += 1;
 
-    wire::write_u8(data + offset, static_cast<std::uint8_t>(packet_reserved_));
+    wire::write_bytes(data + offset, packet_reserved_.data(), 1);
     offset += 1;
 
     wire::write_u16_le(data + offset, static_cast<std::uint16_t>(sequence_version_));
@@ -77,7 +78,7 @@ void PacketHeader::print(std::ostream& out) const {
     out << "channel_id=";
     out << static_cast<int>(channel_id_);
     out << ", packet_reserved=";
-    out << static_cast<int>(packet_reserved_);
+    print::hex(out, packet_reserved_.data(), packet_reserved_.size());
     out << ", sequence_version=";
     out << sequence_version_;
     out << ", sequence_number=";

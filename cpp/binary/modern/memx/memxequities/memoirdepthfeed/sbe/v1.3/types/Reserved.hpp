@@ -3,6 +3,7 @@
 
 #include <array>
 #include <cstddef>
+#include <cstdint>
 
 namespace memx::memxequities::memoirdepthfeed::sbe::v1_3 {
 

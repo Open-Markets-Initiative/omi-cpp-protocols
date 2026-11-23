@@ -3,6 +3,7 @@
 
 #include <array>
 #include <cstddef>
+#include <cstdint>
 
 namespace lseg::lse::level2mbo::gtp::v26_2 {
 

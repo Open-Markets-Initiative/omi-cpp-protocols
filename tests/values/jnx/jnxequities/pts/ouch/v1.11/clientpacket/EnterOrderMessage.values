@@ -1,0 +1,21 @@
+# Jnx.JnxEquities.Pts.Ouch.v1.11 EnterOrderMessage: canonical values of 'clientpacket', read by the model
+stream 0
+clientpacket.clientsoupbintcppacket[0].clientpacketheader.packetlength = 49
+clientpacket.clientsoupbintcppacket[0].clientpacketheader.clientpackettype = U
+clientpacket.clientsoupbintcppacket[0].clientpayload = clientpacket.clientsoupbintcppacket.clientpayload.unsequenceddatapacket
+clientpacket.clientsoupbintcppacket[0].clientpayload.unsequenceddatapacket.unsequencedmessagetype = O
+clientpacket.clientsoupbintcppacket[0].clientpayload.unsequenceddatapacket.unsequencedmessage = clientpacket.clientsoupbintcppacket.clientpayload.unsequenceddatapacket.unsequencedmessage.enterordermessage
+clientpacket.clientsoupbintcppacket[0].clientpayload.unsequenceddatapacket.unsequencedmessage.enterordermessage.ordertoken = 74
+clientpacket.clientsoupbintcppacket[0].clientpayload.unsequenceddatapacket.unsequencedmessage.enterordermessage.clientreference = ref1
+clientpacket.clientsoupbintcppacket[0].clientpayload.unsequenceddatapacket.unsequencedmessage.enterordermessage.buysellindicator = B
+clientpacket.clientsoupbintcppacket[0].clientpayload.unsequenceddatapacket.unsequencedmessage.enterordermessage.quantity = 100
+clientpacket.clientsoupbintcppacket[0].clientpayload.unsequenceddatapacket.unsequencedmessage.enterordermessage.orderbookid = 4422
+clientpacket.clientsoupbintcppacket[0].clientpayload.unsequenceddatapacket.unsequencedmessage.enterordermessage.group = DAYX
+clientpacket.clientsoupbintcppacket[0].clientpayload.unsequenceddatapacket.unsequencedmessage.enterordermessage.price = 1101
+clientpacket.clientsoupbintcppacket[0].clientpayload.unsequenceddatapacket.unsequencedmessage.enterordermessage.timeinforce = 99999
+clientpacket.clientsoupbintcppacket[0].clientpayload.unsequenceddatapacket.unsequencedmessage.enterordermessage.firmid = 0
+clientpacket.clientsoupbintcppacket[0].clientpayload.unsequenceddatapacket.unsequencedmessage.enterordermessage.display = 
+clientpacket.clientsoupbintcppacket[0].clientpayload.unsequenceddatapacket.unsequencedmessage.enterordermessage.capacity = A
+clientpacket.clientsoupbintcppacket[0].clientpayload.unsequenceddatapacket.unsequencedmessage.enterordermessage.minimumquantity = 0
+clientpacket.clientsoupbintcppacket[0].clientpayload.unsequenceddatapacket.unsequencedmessage.enterordermessage.orderclassification = 1
+clientpacket.clientsoupbintcppacket[0].clientpayload.unsequenceddatapacket.unsequencedmessage.enterordermessage.cashmargintype = 1

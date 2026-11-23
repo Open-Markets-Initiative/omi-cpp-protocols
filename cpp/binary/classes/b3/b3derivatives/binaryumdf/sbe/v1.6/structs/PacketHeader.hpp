@@ -1,6 +1,7 @@
 // B3.B3Derivatives.BinaryUmdf.Sbe.v1.6: structs/PacketHeader.hpp
 #pragma once
 
+#include <array>
 #include <chrono>
 #include <cstddef>
 #include <cstdint>
@@ -15,15 +16,17 @@ class PacketHeader {
     static constexpr std::size_t wire_size = 16;
 
     PacketHeader() = default;
-    PacketHeader(std::uint8_t channel_id, std::uint8_t packet_reserved, std::uint16_t sequence_version, std::uint32_t sequence_number, std::chrono::nanoseconds sending_time);
+    PacketHeader(std::uint8_t channel_id, const std::array<std::byte, 1>& packet_reserved, std::uint16_t sequence_version, std::uint32_t sequence_number, std::chrono::nanoseconds sending_time);
 
     // Channel Id: B3 Channel Id
     std::uint8_t channel_id() const;
     void set_channel_id(std::uint8_t value);
 
-    // Packet Reserved: Packet Reserved Field
-    std::uint8_t packet_reserved() const;
-    void set_packet_reserved(std::uint8_t value);
+    // Packet Reserved: Reserved byte, carrying no meaning, between the channel id and the
+    // sequence version
+    const std::array<std::byte, 1>& packet_reserved() const;
+    std::array<std::byte, 1>& packet_reserved();
+    void set_packet_reserved(const std::array<std::byte, 1>& value);
 
     // Sequence Version: Packet Sequence Version
     std::uint16_t sequence_version() const;
@@ -50,7 +53,7 @@ class PacketHeader {
 
   private:
     std::uint8_t channel_id_{};
-    std::uint8_t packet_reserved_{};
+    std::array<std::byte, 1> packet_reserved_{};
     std::uint16_t sequence_version_{};
     std::uint32_t sequence_number_{};
     std::chrono::nanoseconds sending_time_{};

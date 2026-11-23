@@ -1,0 +1,14 @@
+# Jnx.JnxEquities.Pts.Ouch.v1.11 ReplaceOrderMessage: canonical values of 'clientpacket', read by the model
+stream 0
+clientpacket.clientsoupbintcppacket[0].clientpacketheader.packetlength = 27
+clientpacket.clientsoupbintcppacket[0].clientpacketheader.clientpackettype = U
+clientpacket.clientsoupbintcppacket[0].clientpayload = clientpacket.clientsoupbintcppacket.clientpayload.unsequenceddatapacket
+clientpacket.clientsoupbintcppacket[0].clientpayload.unsequenceddatapacket.unsequencedmessagetype = U
+clientpacket.clientsoupbintcppacket[0].clientpayload.unsequenceddatapacket.unsequencedmessage = clientpacket.clientsoupbintcppacket.clientpayload.unsequenceddatapacket.unsequencedmessage.replaceordermessage
+clientpacket.clientsoupbintcppacket[0].clientpayload.unsequenceddatapacket.unsequencedmessage.replaceordermessage.existingordertoken = 95
+clientpacket.clientsoupbintcppacket[0].clientpayload.unsequenceddatapacket.unsequencedmessage.replaceordermessage.replacementordertoken = 96
+clientpacket.clientsoupbintcppacket[0].clientpayload.unsequenceddatapacket.unsequencedmessage.replaceordermessage.quantity = 700
+clientpacket.clientsoupbintcppacket[0].clientpayload.unsequenceddatapacket.unsequencedmessage.replaceordermessage.price = 1101
+clientpacket.clientsoupbintcppacket[0].clientpayload.unsequenceddatapacket.unsequencedmessage.replaceordermessage.timeinforce = 99999
+clientpacket.clientsoupbintcppacket[0].clientpayload.unsequenceddatapacket.unsequencedmessage.replaceordermessage.display = 
+clientpacket.clientsoupbintcppacket[0].clientpayload.unsequenceddatapacket.unsequencedmessage.replaceordermessage.minimumquantity = 0

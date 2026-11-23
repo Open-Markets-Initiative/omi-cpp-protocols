@@ -351,6 +351,7 @@ std::size_t parse_heartbeat_body([[maybe_unused]] const std::byte* data, [[maybe
     std::size_t offset = 0;
     std::size_t bound = length;
     [[maybe_unused]] const auto& heartbeat_body_section_1_ = tmp::read<heartbeat_body_section_1>(data + offset, bound - offset, handler); offset += heartbeat_body_section_1::size;
+    tmp::call(handler, heartbeat_body_section_1_.template get<body_header>());
     bound = static_cast<std::size_t>(tmp::rule(heartbeat_body_section_1_.template get<body_header>().template get<msg_length>()));
     tmp::require(bound, length);
     {
@@ -469,6 +470,11 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::symbol>(); }) { values[entry + ".bodymessage.businessmessage.assigncopordersmessage.symbol"] = canonical::text(std::string(message.template get<protocol::symbol>().value()), ' ', false); }
         if constexpr (requires { message.template get<protocol::calculated_opening_price>(); }) { values[entry + ".bodymessage.businessmessage.assigncopordersmessage.calculatedopeningprice"] = (static_cast<std::uint64_t>(message.template get<protocol::calculated_opening_price>().value()) != 0x0ULL ? canonical::scaled(message.template get<protocol::calculated_opening_price>().value(), -6) : canonical::absent()); }
         if constexpr (requires { message.template get<protocol::order_side>(); }) { values[entry + ".bodymessage.businessmessage.assigncopordersmessage.orderside"] = canonical::text(canonical::character(message.template get<protocol::order_side>().value()), ' ', false); }
+        for (std::size_t cop_order_index = 0; const auto& cop_order_entry : message.template get<std::array<protocol::cop_order, 15>>()) {
+            const std::string cop_order_at = std::string{entry + ".bodymessage.businessmessage.assigncopordersmessage.coporder"} + "[" + std::to_string(cop_order_index++) + "]";
+            if constexpr (requires { cop_order_entry.template get<protocol::broker_number>(); }) { values[cop_order_at + ".brokernumber"] = (static_cast<std::uint16_t>(cop_order_entry.template get<protocol::broker_number>().value()) != 0x0U ? canonical::number(cop_order_entry.template get<protocol::broker_number>().value()) : canonical::absent()); }
+            if constexpr (requires { cop_order_entry.template get<protocol::order_id>(); }) { values[cop_order_at + ".orderid"] = (static_cast<std::uint64_t>(cop_order_entry.template get<protocol::order_id>().value()) != 0x0ULL ? canonical::number(cop_order_entry.template get<protocol::order_id>().value()) : canonical::absent()); }
+        }
         if constexpr (requires { message.template get<protocol::trading_system_time_stamp>(); }) { values[entry + ".bodymessage.businessmessage.assigncopordersmessage.tradingsystemtimestamp"] = (static_cast<std::uint64_t>(message.template get<protocol::trading_system_time_stamp>().value()) != 0x0ULL ? canonical::number(message.template get<protocol::trading_system_time_stamp>().value()) : canonical::absent()); }
     }
 
@@ -484,6 +490,12 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::symbol>(); }) { values[entry + ".bodymessage.businessmessage.assignlimitmessage.symbol"] = canonical::text(std::string(message.template get<protocol::symbol>().value()), ' ', false); }
         if constexpr (requires { message.template get<protocol::calculated_opening_price>(); }) { values[entry + ".bodymessage.businessmessage.assignlimitmessage.calculatedopeningprice"] = (static_cast<std::uint64_t>(message.template get<protocol::calculated_opening_price>().value()) != 0x0ULL ? canonical::scaled(message.template get<protocol::calculated_opening_price>().value(), -6) : canonical::absent()); }
         if constexpr (requires { message.template get<protocol::order_side>(); }) { values[entry + ".bodymessage.businessmessage.assignlimitmessage.orderside"] = canonical::text(canonical::character(message.template get<protocol::order_side>().value()), ' ', false); }
+        for (std::size_t cop_limit_index = 0; const auto& cop_limit_entry : message.template get<std::array<protocol::cop_limit, 15>>()) {
+            const std::string cop_limit_at = std::string{entry + ".bodymessage.businessmessage.assignlimitmessage.coplimit"} + "[" + std::to_string(cop_limit_index++) + "]";
+            if constexpr (requires { cop_limit_entry.template get<protocol::broker_number>(); }) { values[cop_limit_at + ".brokernumber"] = (static_cast<std::uint16_t>(cop_limit_entry.template get<protocol::broker_number>().value()) != 0x0U ? canonical::number(cop_limit_entry.template get<protocol::broker_number>().value()) : canonical::absent()); }
+            if constexpr (requires { cop_limit_entry.template get<protocol::order_id>(); }) { values[cop_limit_at + ".orderid"] = (static_cast<std::uint64_t>(cop_limit_entry.template get<protocol::order_id>().value()) != 0x0ULL ? canonical::number(cop_limit_entry.template get<protocol::order_id>().value()) : canonical::absent()); }
+            if constexpr (requires { cop_limit_entry.template get<protocol::price>(); }) { values[cop_limit_at + ".price"] = (static_cast<std::uint64_t>(cop_limit_entry.template get<protocol::price>().value()) != 0x0ULL ? canonical::scaled(cop_limit_entry.template get<protocol::price>().value(), -6) : canonical::absent()); }
+        }
         if constexpr (requires { message.template get<protocol::trading_system_time_stamp>(); }) { values[entry + ".bodymessage.businessmessage.assignlimitmessage.tradingsystemtimestamp"] = (static_cast<std::uint64_t>(message.template get<protocol::trading_system_time_stamp>().value()) != 0x0ULL ? canonical::number(message.template get<protocol::trading_system_time_stamp>().value()) : canonical::absent()); }
     }
 

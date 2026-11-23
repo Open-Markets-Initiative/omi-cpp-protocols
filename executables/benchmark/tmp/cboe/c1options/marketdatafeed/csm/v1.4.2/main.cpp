@@ -178,6 +178,8 @@ std::size_t parse_summary_message([[maybe_unused]] const std::byte* data, [[mayb
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& summary_message_section_1_ = tmp::read<summary_message_section_1>(data + offset, bound - offset, handler); offset += summary_message_section_1::size;
+    tmp::call(handler, summary_message_section_1_.template get<net_chg_prev_day>());
+    tmp::call(handler, summary_message_section_1_.template get<underlying_px>());
     {
         std::size_t count = static_cast<std::size_t>(tmp::rule(summary_message_section_1_.template get<no_entries>()));
         while (count-- > 0) {
@@ -254,6 +256,7 @@ std::size_t parse_ticker_md_entry([[maybe_unused]] const std::byte* data, [[mayb
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& ticker_md_entry_section_1_ = tmp::read<ticker_md_entry_section_1>(data + offset, bound - offset, handler); offset += ticker_md_entry_section_1::size;
+    tmp::call(handler, ticker_md_entry_section_1_.template get<md_entry_px>());
     offset += parse_trade_condition(data + offset, bound - offset, handler);
     return offset;
 }
@@ -279,6 +282,7 @@ std::size_t parse_recap_update_message([[maybe_unused]] const std::byte* data, [
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& recap_update_message_section_1_ = tmp::read<recap_update_message_section_1>(data + offset, bound - offset, handler); offset += recap_update_message_section_1::size;
+    tmp::call(handler, recap_update_message_section_1_.template get<prev_close_px>());
     {
         std::size_t count = static_cast<std::size_t>(tmp::rule(recap_update_message_section_1_.template get<no_entries>()));
         while (count-- > 0) {
@@ -309,6 +313,7 @@ std::size_t parse_market_data_refresh_message([[maybe_unused]] const std::byte* 
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& market_data_refresh_message_section_1_ = tmp::read<market_data_refresh_message_section_1>(data + offset, bound - offset, handler); offset += market_data_refresh_message_section_1::size;
+    tmp::call(handler, market_data_refresh_message_section_1_.template get<prev_close_px>());
     {
         std::size_t count = static_cast<std::size_t>(tmp::rule(market_data_refresh_message_section_1_.template get<no_entries>()));
         while (count-- > 0) {
@@ -418,6 +423,12 @@ std::size_t parse_security_definition_message([[maybe_unused]] const std::byte* 
     offset += parse_symbol(data + offset, bound - offset, handler);
     offset += parse_target_location_id(data + offset, bound - offset, handler);
     [[maybe_unused]] const auto& security_definition_message_section_2_ = tmp::read<security_definition_message_section_2>(data + offset, bound - offset, handler); offset += security_definition_message_section_2::size;
+    tmp::call(handler, security_definition_message_section_2_.template get<strike_price>());
+    tmp::call(handler, security_definition_message_section_2_.template get<minimum_strike_price_fraction>());
+    tmp::call(handler, security_definition_message_section_2_.template get<max_strike_price>());
+    tmp::call(handler, security_definition_message_section_2_.template get<premium_break_point>());
+    tmp::call(handler, security_definition_message_section_2_.template get<minimum_above_premium_fraction>());
+    tmp::call(handler, security_definition_message_section_2_.template get<minimum_below_premium_fraction>());
     offset += parse_currency_code(data + offset, bound - offset, handler);
     offset += parse_underlying_symbol(data + offset, bound - offset, handler);
     offset += parse_underlying_type(data + offset, bound - offset, handler);

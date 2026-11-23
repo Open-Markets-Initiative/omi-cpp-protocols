@@ -142,6 +142,15 @@ canonical::Listing read(const std::byte* data, std::size_t length) {
             values[entry + ".recordbody.mbp10msg.tsrecv"] = (static_cast<std::uint64_t>(message->ts_recv.get()) != 0x0FFFFFFFFFFFFFFFFULL ? canonical::number(message->ts_recv.get()) : canonical::absent());
             values[entry + ".recordbody.mbp10msg.tsindelta"] = canonical::number(message->ts_in_delta.get());
             values[entry + ".recordbody.mbp10msg.sequence"] = canonical::number(message->sequence.get());
+            for (std::size_t bid_ask_pair_index = 0; const auto& bid_ask_pair_entry : message->bid_ask_pair) {
+                const std::string bid_ask_pair_at = std::string{entry + ".recordbody.mbp10msg.bidaskpair"} + "[" + std::to_string(bid_ask_pair_index++) + "]";
+                values[bid_ask_pair_at + ".bidpx"] = (static_cast<std::uint64_t>(bid_ask_pair_entry.bid_px.integer()) != 0x7FFFFFFFFFFFFFFFULL ? canonical::scaled(bid_ask_pair_entry.bid_px.integer(), -9) : canonical::absent());
+                values[bid_ask_pair_at + ".askpx"] = (static_cast<std::uint64_t>(bid_ask_pair_entry.ask_px.integer()) != 0x7FFFFFFFFFFFFFFFULL ? canonical::scaled(bid_ask_pair_entry.ask_px.integer(), -9) : canonical::absent());
+                values[bid_ask_pair_at + ".bidsz"] = canonical::number(bid_ask_pair_entry.bid_sz.get());
+                values[bid_ask_pair_at + ".asksz"] = canonical::number(bid_ask_pair_entry.ask_sz.get());
+                values[bid_ask_pair_at + ".bidct"] = canonical::number(bid_ask_pair_entry.bid_ct.get());
+                values[bid_ask_pair_at + ".askct"] = canonical::number(bid_ask_pair_entry.ask_ct.get());
+            }
         } else if (iterator.rtype == 17 || iterator.rtype == 32 || iterator.rtype == 33 || iterator.rtype == 34 || iterator.rtype == 35 || iterator.rtype == 36) {
             values[entry + ".recordbody"] = "file.record.recordbody.ohlcvmsg";
             [[maybe_unused]] const auto* message = protocol::OhlcvMsg::parse(iterator.message);

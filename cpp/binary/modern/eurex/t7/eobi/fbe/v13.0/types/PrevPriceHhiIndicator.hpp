@@ -13,7 +13,7 @@ struct PrevPriceHhiIndicator {
     static constexpr auto name = "Prev Price Hhi Indicator";
     static constexpr std::size_t size = 1;
     using type = std::int8_t;
-static const type no_value = 0x80;
+static const type no_value = -128;
 static const type maximum_value = 100;
 static const type minimum_value = -1;
 

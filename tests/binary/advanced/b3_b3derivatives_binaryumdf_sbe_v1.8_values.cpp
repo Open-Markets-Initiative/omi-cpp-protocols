@@ -25,7 +25,6 @@ struct Reader {
 
     protocol::seq_action on_transport_header(const protocol::packet_header& header, const packet::Frame&) {
         values["packet.packetheader.channelid"] = canonical::number(header.channel_id.get().value());
-        values["packet.packetheader.packetreserved"] = canonical::number(header.packet_reserved.get().value());
         values["packet.packetheader.sequenceversion"] = canonical::number(header.sequence_version.get().value());
         values["packet.packetheader.sequencenumber"] = canonical::number(header.sequence_number.get().value());
         values["packet.packetheader.sendingtime"] = canonical::number(header.sending_time.get().value());

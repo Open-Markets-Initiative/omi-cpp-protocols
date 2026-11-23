@@ -44,9 +44,9 @@ public:
         return entry->md_price_level_unsigned_optional.get();
     }
 
-    sbe_mdp3::open_close_settl_flag::enum_type open_close_settl_flag() const {
+    std::optional<sbe_mdp3::open_close_settl_flag::enum_type> open_close_settl_flag() const {
         auto* entry = reinterpret_cast<const snapshot_full_refresh_tcp_long_qty_snapshotfull_refresh_tcp_long_groups_entry*>(pos_);
-        return entry->open_close_settl_flag.get().value();
+        return entry->open_close_settl_flag.get();
     }
 
     sbe_mdp3::md_entry_type::enum_type md_entry_type() const {

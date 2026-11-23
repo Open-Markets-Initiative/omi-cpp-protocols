@@ -3,6 +3,7 @@
 
 #include <array>
 #include <cstddef>
+#include <cstdint>
 
 namespace jpx::osederivatives::geniuminet::itch::v5_0_6 {
 

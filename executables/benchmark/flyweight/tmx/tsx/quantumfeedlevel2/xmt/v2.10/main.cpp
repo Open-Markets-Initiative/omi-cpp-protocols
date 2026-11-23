@@ -87,6 +87,11 @@ struct Reader {
         checksum += bench::digest(message.symbol());
         checksum += (message.calculated_opening_price().has_value() ? bench::digest((*message.calculated_opening_price()).mantissa()) : std::uint64_t{0});
         checksum += bench::digest(message.order_side());
+        for (std::size_t cop_order_index = 0; const auto& cop_order_entry : message.cop_order()) {
+            checksum += cop_order_index++;
+            checksum += (cop_order_entry.broker_number().has_value() ? bench::digest((*cop_order_entry.broker_number())) : std::uint64_t{0});
+            checksum += (cop_order_entry.order_id().has_value() ? bench::digest((*cop_order_entry.order_id())) : std::uint64_t{0});
+        }
         checksum += (message.trading_system_time_stamp().has_value() ? bench::digest((*message.trading_system_time_stamp())) : std::uint64_t{0});
     }
 
@@ -102,6 +107,12 @@ struct Reader {
         checksum += bench::digest(message.symbol());
         checksum += (message.calculated_opening_price().has_value() ? bench::digest((*message.calculated_opening_price()).mantissa()) : std::uint64_t{0});
         checksum += bench::digest(message.order_side());
+        for (std::size_t cop_limit_index = 0; const auto& cop_limit_entry : message.cop_limit()) {
+            checksum += cop_limit_index++;
+            checksum += (cop_limit_entry.broker_number().has_value() ? bench::digest((*cop_limit_entry.broker_number())) : std::uint64_t{0});
+            checksum += (cop_limit_entry.order_id().has_value() ? bench::digest((*cop_limit_entry.order_id())) : std::uint64_t{0});
+            checksum += (cop_limit_entry.price().has_value() ? bench::digest((*cop_limit_entry.price()).mantissa()) : std::uint64_t{0});
+        }
         checksum += (message.trading_system_time_stamp().has_value() ? bench::digest((*message.trading_system_time_stamp())) : std::uint64_t{0});
     }
 

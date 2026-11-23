@@ -30,7 +30,7 @@ class PacketHeader {
 
     std::uint8_t channel_id() const { return wire::read_u8(at(0)); }
 
-    std::uint8_t packet_reserved() const { return wire::read_u8(at(1)); }
+    std::span<const std::byte, 1> packet_reserved() const { return bytes_.subspan(1).template first<1>(); }
 
     std::uint16_t sequence_version() const { return wire::read_u16_le(at(2)); }
 
@@ -43,7 +43,7 @@ class PacketHeader {
         out << "channel_id=";
         out << static_cast<int>(channel_id());
         out << ", packet_reserved=";
-        out << static_cast<int>(packet_reserved());
+        print::hex(out, packet_reserved().data(), packet_reserved().size());
         out << ", sequence_version=";
         out << sequence_version();
         out << ", sequence_number=";

@@ -15,6 +15,12 @@
 #include "../enums/SecurityUpdateAction.hpp"
 #include "../enums/SecurityType.hpp"
 #include "../common/Decimal.hpp"
+#include "../enums/IssueDate.hpp"
+#include "../enums/MaturityDate.hpp"
+#include "../enums/StartDate.hpp"
+#include "../enums/EndDate.hpp"
+#include "../enums/SettlDate.hpp"
+#include "../enums/DatedDate.hpp"
 #include "../structs/MaturityMonthYear.hpp"
 #include "../structs/ContractSettlMonth.hpp"
 #include "../enums/LotType.hpp"
@@ -90,21 +96,21 @@ class SecurityDefinitionMessage {
 
     std::optional<std::uint32_t> corporate_action_event_id() const { return wire::nullable(wire::read_u32_le(at(132)), static_cast<std::uint32_t>(0ULL)); }
 
-    std::int32_t issue_date() const { return wire::read_i32_le(at(136)); }
+    IssueDate issue_date() const { return static_cast<IssueDate>(wire::read_i32_le(at(136))); }
 
-    std::optional<std::int32_t> maturity_date() const { return wire::nullable(wire::read_i32_le(at(140)), static_cast<std::int32_t>(0LL)); }
+    std::optional<MaturityDate> maturity_date() const { return wire::nullable_enum<MaturityDate>(wire::read_i32_le(at(140)), static_cast<std::int32_t>(0LL)); }
 
     std::string_view country_of_issue() const { return view::text(at(144), 2, '\0'); }
 
-    std::optional<std::int32_t> start_date() const { return wire::nullable(wire::read_i32_le(at(146)), static_cast<std::int32_t>(0LL)); }
+    std::optional<StartDate> start_date() const { return wire::nullable_enum<StartDate>(wire::read_i32_le(at(146)), static_cast<std::int32_t>(0LL)); }
 
-    std::optional<std::int32_t> end_date() const { return wire::nullable(wire::read_i32_le(at(150)), static_cast<std::int32_t>(0LL)); }
+    std::optional<EndDate> end_date() const { return wire::nullable_enum<EndDate>(wire::read_i32_le(at(150)), static_cast<std::int32_t>(0LL)); }
 
     std::optional<std::uint16_t> settl_type() const { return wire::nullable(wire::read_u16_le(at(154)), static_cast<std::uint16_t>(65535ULL)); }
 
-    std::optional<std::int32_t> settl_date() const { return wire::nullable(wire::read_i32_le(at(156)), static_cast<std::int32_t>(0LL)); }
+    std::optional<SettlDate> settl_date() const { return wire::nullable_enum<SettlDate>(wire::read_i32_le(at(156)), static_cast<std::int32_t>(0LL)); }
 
-    std::optional<std::int32_t> dated_date() const { return wire::nullable(wire::read_i32_le(at(160)), static_cast<std::int32_t>(0LL)); }
+    std::optional<DatedDate> dated_date() const { return wire::nullable_enum<DatedDate>(wire::read_i32_le(at(160)), static_cast<std::int32_t>(0LL)); }
 
     std::string_view isin_number() const { return view::text(at(164), 12, '\0'); }
 

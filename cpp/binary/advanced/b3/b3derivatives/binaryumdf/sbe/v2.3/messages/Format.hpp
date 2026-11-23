@@ -43,7 +43,6 @@ namespace sbe_binaryumdf = ::b3::b3derivatives::binaryumdf::sbe::v2_3;
 
 inline std::ostream& operator<<(std::ostream& os, const packet_header& value) {
     os << "channel_id=" << static_cast<unsigned>(value.channel_id.get().value())
-       << ",packet_reserved=" << static_cast<unsigned>(value.packet_reserved.get().value())
        << ",sequence_version=" << value.sequence_version.get().value()
        << ",sequence_number=" << value.sequence_number.get().value()
        << ",sending_time=" << value.sending_time.get().value()
@@ -118,7 +117,7 @@ inline std::ostream& operator<<(std::ostream& os, const security_status_3_messag
        << ",match_event_indicator=" << static_cast<unsigned>(msg.fields.match_event_indicator.get().value())
        << ",trading_session_id=\"" << sbe_binaryumdf::trading_session_id::to_string(msg.fields.trading_session_id.get().value()) << '"'
        << ",security_trading_status=\"" << sbe_binaryumdf::security_trading_status::to_string(msg.fields.security_trading_status.get().value()) << '"'
-       << ",security_trading_event=\"" << sbe_binaryumdf::security_trading_event::to_string(msg.fields.security_trading_event.get().value()) << '"'
+       << ",security_trading_event=\"" << (msg.fields.security_trading_event.get().has_value() ? sbe_binaryumdf::security_trading_event::to_string(msg.fields.security_trading_event.get().value()) : std::string_view("null")) << '"'
        << ",trade_date=" << msg.fields.trade_date.get().value()
        << ",trad_ses_open_time=" << (msg.fields.trad_ses_open_time.get().has_value() ? std::to_string(msg.fields.trad_ses_open_time.get().value()) : std::string_view("null"))
        << ",transact_time=" << (msg.fields.transact_time.get().has_value() ? std::to_string(msg.fields.transact_time.get().value()) : std::string_view("null"))
@@ -132,7 +131,7 @@ inline std::ostream& operator<<(std::ostream& os, const security_group_phase_10_
        << ",match_event_indicator=" << static_cast<unsigned>(msg.fields.match_event_indicator.get().value())
        << ",trading_session_id=\"" << sbe_binaryumdf::trading_session_id::to_string(msg.fields.trading_session_id.get().value()) << '"'
        << ",trading_session_sub_id=\"" << sbe_binaryumdf::trading_session_sub_id::to_string(msg.fields.trading_session_sub_id.get().value()) << '"'
-       << ",security_trading_event=\"" << sbe_binaryumdf::security_trading_event::to_string(msg.fields.security_trading_event.get().value()) << '"'
+       << ",security_trading_event=\"" << (msg.fields.security_trading_event.get().has_value() ? sbe_binaryumdf::security_trading_event::to_string(msg.fields.security_trading_event.get().value()) : std::string_view("null")) << '"'
        << ",trade_date=" << msg.fields.trade_date.get().value()
        << ",trad_ses_open_time=" << (msg.fields.trad_ses_open_time.get().has_value() ? std::to_string(msg.fields.trad_ses_open_time.get().value()) : std::string_view("null"))
        << ",transact_time=" << (msg.fields.transact_time.get().has_value() ? std::to_string(msg.fields.transact_time.get().value()) : std::string_view("null"))
@@ -162,14 +161,14 @@ inline std::ostream& operator<<(std::ostream& os, const security_definition_mess
        << ",min_lot_size=" << (msg.fields.min_lot_size.get().has_value() ? std::to_string(msg.fields.min_lot_size.get().value()) : std::string_view("null"))
        << ",min_trade_vol=" << (msg.fields.min_trade_vol.get().has_value() ? std::to_string(msg.fields.min_trade_vol.get().value()) : std::string_view("null"))
        << ",corporate_action_event_id=" << (msg.fields.corporate_action_event_id.get().has_value() ? std::to_string(msg.fields.corporate_action_event_id.get().value()) : std::string_view("null"))
-       << ",issue_date=" << msg.fields.issue_date.get().value()
-       << ",maturity_date=" << (msg.fields.maturity_date.get().has_value() ? std::to_string(msg.fields.maturity_date.get().value()) : std::string_view("null"))
+       << ",issue_date=\"" << sbe_binaryumdf::issue_date::to_string(msg.fields.issue_date.get().value()) << '"'
+       << ",maturity_date=\"" << (msg.fields.maturity_date.get().has_value() ? sbe_binaryumdf::maturity_date::to_string(msg.fields.maturity_date.get().value()) : std::string_view("null")) << '"'
        << ",country_of_issue=\"" << (msg.fields.country_of_issue.get_trimmed().has_value() ? msg.fields.country_of_issue.get_trimmed().value() : std::string_view("null")) << '"'
-       << ",start_date=" << (msg.fields.start_date.get().has_value() ? std::to_string(msg.fields.start_date.get().value()) : std::string_view("null"))
-       << ",end_date=" << (msg.fields.end_date.get().has_value() ? std::to_string(msg.fields.end_date.get().value()) : std::string_view("null"))
+       << ",start_date=\"" << (msg.fields.start_date.get().has_value() ? sbe_binaryumdf::start_date::to_string(msg.fields.start_date.get().value()) : std::string_view("null")) << '"'
+       << ",end_date=\"" << (msg.fields.end_date.get().has_value() ? sbe_binaryumdf::end_date::to_string(msg.fields.end_date.get().value()) : std::string_view("null")) << '"'
        << ",settl_type=" << (msg.fields.settl_type.get().has_value() ? std::to_string(msg.fields.settl_type.get().value()) : std::string_view("null"))
-       << ",settl_date_local_mkt_date_32_optional=" << (msg.fields.settl_date_local_mkt_date_32_optional.get().has_value() ? std::to_string(msg.fields.settl_date_local_mkt_date_32_optional.get().value()) : std::string_view("null"))
-       << ",dated_date=" << (msg.fields.dated_date.get().has_value() ? std::to_string(msg.fields.dated_date.get().value()) : std::string_view("null"))
+       << ",settl_date_local_mkt_date_32_optional=\"" << (msg.fields.settl_date_local_mkt_date_32_optional.get().has_value() ? sbe_binaryumdf::settl_date_local_mkt_date_32_optional::to_string(msg.fields.settl_date_local_mkt_date_32_optional.get().value()) : std::string_view("null")) << '"'
+       << ",dated_date=\"" << (msg.fields.dated_date.get().has_value() ? sbe_binaryumdf::dated_date::to_string(msg.fields.dated_date.get().value()) : std::string_view("null")) << '"'
        << ",isin_number=\"" << (msg.fields.isin_number.get_trimmed().has_value() ? msg.fields.isin_number.get_trimmed().value() : std::string_view("null")) << '"'
        << ",asset=\"" << msg.fields.asset.get_trimmed().value() << '"'
        << ",cfi_code=\"" << msg.fields.cfi_code.get_trimmed().value() << '"'
@@ -185,21 +184,21 @@ inline std::ostream& operator<<(std::ostream& os, const security_definition_mess
        << ",strike_currency=\"" << (msg.fields.strike_currency.get_trimmed().has_value() ? msg.fields.strike_currency.get_trimmed().value() : std::string_view("null")) << '"'
        << ",settl_currency=\"" << (msg.fields.settl_currency.get_trimmed().has_value() ? msg.fields.settl_currency.get_trimmed().value() : std::string_view("null")) << '"'
        << ",security_strategy_type=\"" << (msg.fields.security_strategy_type.get_trimmed().has_value() ? msg.fields.security_strategy_type.get_trimmed().value() : std::string_view("null")) << '"'
-       << ",lot_type=\"" << sbe_binaryumdf::lot_type::to_string(msg.fields.lot_type.get().value()) << '"'
+       << ",lot_type=\"" << (msg.fields.lot_type.get().has_value() ? sbe_binaryumdf::lot_type::to_string(msg.fields.lot_type.get().value()) : std::string_view("null")) << '"'
        << ",tick_size_denominator=" << (msg.fields.tick_size_denominator.get().has_value() ? std::to_string(msg.fields.tick_size_denominator.get().value()) : std::string_view("null"))
        << ",product=\"" << sbe_binaryumdf::product::to_string(msg.fields.product.get().value()) << '"'
-       << ",exercise_style=\"" << sbe_binaryumdf::exercise_style::to_string(msg.fields.exercise_style.get().value()) << '"'
-       << ",put_or_call=\"" << sbe_binaryumdf::put_or_call::to_string(msg.fields.put_or_call.get().value()) << '"'
-       << ",price_type_optional=\"" << sbe_binaryumdf::price_type_optional::to_string(msg.fields.price_type_optional.get().value()) << '"'
+       << ",exercise_style=\"" << (msg.fields.exercise_style.get().has_value() ? sbe_binaryumdf::exercise_style::to_string(msg.fields.exercise_style.get().value()) : std::string_view("null")) << '"'
+       << ",put_or_call=\"" << (msg.fields.put_or_call.get().has_value() ? sbe_binaryumdf::put_or_call::to_string(msg.fields.put_or_call.get().value()) : std::string_view("null")) << '"'
+       << ",price_type_optional=\"" << (msg.fields.price_type_optional.get().has_value() ? sbe_binaryumdf::price_type_optional::to_string(msg.fields.price_type_optional.get().value()) : std::string_view("null")) << '"'
        << ",market_segment_id=" << (msg.fields.market_segment_id.get().has_value() ? std::to_string(msg.fields.market_segment_id.get().value()) : std::string_view("null"))
-       << ",governance_indicator=\"" << sbe_binaryumdf::governance_indicator::to_string(msg.fields.governance_indicator.get().value()) << '"'
-       << ",security_match_type=\"" << sbe_binaryumdf::security_match_type::to_string(msg.fields.security_match_type.get().value()) << '"'
-       << ",last_fragment=\"" << sbe_binaryumdf::last_fragment::to_string(msg.fields.last_fragment.get().value()) << '"'
-       << ",multi_leg_model=\"" << sbe_binaryumdf::multi_leg_model::to_string(msg.fields.multi_leg_model.get().value()) << '"'
-       << ",multi_leg_price_method=\"" << sbe_binaryumdf::multi_leg_price_method::to_string(msg.fields.multi_leg_price_method.get().value()) << '"'
+       << ",governance_indicator=\"" << (msg.fields.governance_indicator.get().has_value() ? sbe_binaryumdf::governance_indicator::to_string(msg.fields.governance_indicator.get().value()) : std::string_view("null")) << '"'
+       << ",security_match_type=\"" << (msg.fields.security_match_type.get().has_value() ? sbe_binaryumdf::security_match_type::to_string(msg.fields.security_match_type.get().value()) : std::string_view("null")) << '"'
+       << ",last_fragment=\"" << (msg.fields.last_fragment.get().has_value() ? sbe_binaryumdf::last_fragment::to_string(msg.fields.last_fragment.get().value()) : std::string_view("null")) << '"'
+       << ",multi_leg_model=\"" << (msg.fields.multi_leg_model.get().has_value() ? sbe_binaryumdf::multi_leg_model::to_string(msg.fields.multi_leg_model.get().value()) : std::string_view("null")) << '"'
+       << ",multi_leg_price_method=\"" << (msg.fields.multi_leg_price_method.get().has_value() ? sbe_binaryumdf::multi_leg_price_method::to_string(msg.fields.multi_leg_price_method.get().value()) : std::string_view("null")) << '"'
        << ",min_cross_qty=" << (msg.fields.min_cross_qty.get().has_value() ? std::to_string(msg.fields.min_cross_qty.get().value()) : std::string_view("null"))
-       << ",implied_market_indicator=\"" << sbe_binaryumdf::implied_market_indicator::to_string(msg.fields.implied_market_indicator.get().value()) << '"'
-       << ",opt_payout_type=\"" << sbe_binaryumdf::opt_payout_type::to_string(msg.fields.opt_payout_type.get().value()) << '"'
+       << ",implied_market_indicator=\"" << (msg.fields.implied_market_indicator.get().has_value() ? sbe_binaryumdf::implied_market_indicator::to_string(msg.fields.implied_market_indicator.get().value()) : std::string_view("null")) << '"'
+       << ",opt_payout_type=\"" << (msg.fields.opt_payout_type.get().has_value() ? sbe_binaryumdf::opt_payout_type::to_string(msg.fields.opt_payout_type.get().value()) : std::string_view("null")) << '"'
        << ",tail=" << json::tail_to_json_string(msg)
        ;
     return os;
@@ -286,9 +285,9 @@ inline std::ostream& operator<<(std::ostream& os, const quantity_band_21_message
 inline std::ostream& operator<<(std::ostream& os, const price_band_22_message& msg) {
     os << "security_id=" << msg.fields.security_id.get().value()
        << ",match_event_indicator=" << static_cast<unsigned>(msg.fields.match_event_indicator.get().value())
-       << ",price_band_type=\"" << sbe_binaryumdf::price_band_type::to_string(msg.fields.price_band_type.get().value()) << '"'
-       << ",price_limit_type=\"" << sbe_binaryumdf::price_limit_type::to_string(msg.fields.price_limit_type.get().value()) << '"'
-       << ",price_band_midpoint_price_type=\"" << sbe_binaryumdf::price_band_midpoint_price_type::to_string(msg.fields.price_band_midpoint_price_type.get().value()) << '"'
+       << ",price_band_type=\"" << (msg.fields.price_band_type.get().has_value() ? sbe_binaryumdf::price_band_type::to_string(msg.fields.price_band_type.get().value()) : std::string_view("null")) << '"'
+       << ",price_limit_type=\"" << (msg.fields.price_limit_type.get().has_value() ? sbe_binaryumdf::price_limit_type::to_string(msg.fields.price_limit_type.get().value()) : std::string_view("null")) << '"'
+       << ",price_band_midpoint_price_type=\"" << (msg.fields.price_band_midpoint_price_type.get().has_value() ? sbe_binaryumdf::price_band_midpoint_price_type::to_string(msg.fields.price_band_midpoint_price_type.get().value()) : std::string_view("null")) << '"'
        << ",low_limit_price=" << (msg.fields.low_limit_price.get().has_value() ? std::to_string(msg.fields.low_limit_price.get().value()) : std::string_view("null"))
        << ",high_limit_price=" << (msg.fields.high_limit_price.get().has_value() ? std::to_string(msg.fields.high_limit_price.get().value()) : std::string_view("null"))
        << ",trading_reference_price=" << (msg.fields.trading_reference_price.get().has_value() ? std::to_string(msg.fields.trading_reference_price.get().value()) : std::string_view("null"))
@@ -337,7 +336,7 @@ inline std::ostream& operator<<(std::ostream& os, const last_trade_price_27_mess
        << ",rpt_seq=" << (msg.fields.rpt_seq.get().has_value() ? std::to_string(msg.fields.rpt_seq.get().value()) : std::string_view("null"))
        << ",seller_days=" << (msg.fields.seller_days.get().has_value() ? std::to_string(msg.fields.seller_days.get().value()) : std::string_view("null"))
        << ",md_entry_interest_rate=" << (msg.fields.md_entry_interest_rate.get().has_value() ? std::to_string(msg.fields.md_entry_interest_rate.get().value()) : std::string_view("null"))
-       << ",trd_sub_type=\"" << sbe_binaryumdf::trd_sub_type::to_string(msg.fields.trd_sub_type.get().value()) << '"'
+       << ",trd_sub_type=\"" << (msg.fields.trd_sub_type.get().has_value() ? sbe_binaryumdf::trd_sub_type::to_string(msg.fields.trd_sub_type.get().value()) : std::string_view("null")) << '"'
        ;
     return os;
 }
@@ -348,7 +347,7 @@ inline std::ostream& operator<<(std::ostream& os, const settlement_price_28_mess
        << ",trade_date=" << msg.fields.trade_date.get().value()
        << ",md_future_price=" << msg.fields.md_future_price.get().value()
        << ",md_entry_timestamp=" << (msg.fields.md_entry_timestamp.get().has_value() ? std::to_string(msg.fields.md_entry_timestamp.get().value()) : std::string_view("null"))
-       << ",open_close_settl_flag_optional=\"" << sbe_binaryumdf::open_close_settl_flag_optional::to_string(msg.fields.open_close_settl_flag_optional.get().value()) << '"'
+       << ",open_close_settl_flag_optional=\"" << (msg.fields.open_close_settl_flag_optional.get().has_value() ? sbe_binaryumdf::open_close_settl_flag_optional::to_string(msg.fields.open_close_settl_flag_optional.get().value()) : std::string_view("null")) << '"'
        << ",price_type=\"" << sbe_binaryumdf::price_type::to_string(msg.fields.price_type.get().value()) << '"'
        << ",settl_price_type=\"" << sbe_binaryumdf::settl_price_type::to_string(msg.fields.settl_price_type.get().value()) << '"'
        << ",rpt_seq=" << (msg.fields.rpt_seq.get().has_value() ? std::to_string(msg.fields.rpt_seq.get().value()) : std::string_view("null"))
@@ -433,7 +432,7 @@ inline std::ostream& operator<<(std::ostream& os, const trade_53_message& msg) {
        << ",md_entry_buyer=" << (msg.fields.md_entry_buyer.get().has_value() ? std::to_string(msg.fields.md_entry_buyer.get().value()) : std::string_view("null"))
        << ",md_entry_seller=" << (msg.fields.md_entry_seller.get().has_value() ? std::to_string(msg.fields.md_entry_seller.get().value()) : std::string_view("null"))
        << ",trade_date=" << msg.fields.trade_date.get().value()
-       << ",trd_sub_type=\"" << sbe_binaryumdf::trd_sub_type::to_string(msg.fields.trd_sub_type.get().value()) << '"'
+       << ",trd_sub_type=\"" << (msg.fields.trd_sub_type.get().has_value() ? sbe_binaryumdf::trd_sub_type::to_string(msg.fields.trd_sub_type.get().value()) : std::string_view("null")) << '"'
        << ",transact_time=" << (msg.fields.transact_time.get().has_value() ? std::to_string(msg.fields.transact_time.get().value()) : std::string_view("null"))
        << ",rpt_seq=" << (msg.fields.rpt_seq.get().has_value() ? std::to_string(msg.fields.rpt_seq.get().value()) : std::string_view("null"))
        ;
@@ -455,7 +454,7 @@ inline std::ostream& operator<<(std::ostream& os, const forward_trade_54_message
        << ",rpt_seq=" << (msg.fields.rpt_seq.get().has_value() ? std::to_string(msg.fields.rpt_seq.get().value()) : std::string_view("null"))
        << ",seller_days=" << (msg.fields.seller_days.get().has_value() ? std::to_string(msg.fields.seller_days.get().value()) : std::string_view("null"))
        << ",md_entry_interest_rate=" << (msg.fields.md_entry_interest_rate.get().has_value() ? std::to_string(msg.fields.md_entry_interest_rate.get().value()) : std::string_view("null"))
-       << ",trd_sub_type=\"" << sbe_binaryumdf::trd_sub_type::to_string(msg.fields.trd_sub_type.get().value()) << '"'
+       << ",trd_sub_type=\"" << (msg.fields.trd_sub_type.get().has_value() ? sbe_binaryumdf::trd_sub_type::to_string(msg.fields.trd_sub_type.get().value()) : std::string_view("null")) << '"'
        ;
     return os;
 }

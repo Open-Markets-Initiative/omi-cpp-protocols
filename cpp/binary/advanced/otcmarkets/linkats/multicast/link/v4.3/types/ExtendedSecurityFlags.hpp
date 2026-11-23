@@ -50,8 +50,8 @@ struct extended_security_flags {
             set(type{0});
     }
 
-    [[nodiscard]] constexpr bool has(type bit) const { return (value & bit) != 0; }
-    constexpr void set(type bit, bool enabled) { if (enabled) value |= bit; else value &= static_cast<type>(~bit); }
+    [[nodiscard]] constexpr bool has(type bit) const { return (static_cast<type>(__builtin_bswap16(value)) & bit) != 0; }
+    constexpr void set(type bit, bool enabled) { type held = static_cast<type>(__builtin_bswap16(value)); if (enabled) held |= bit; else held &= static_cast<type>(~bit); value = static_cast<type>(__builtin_bswap16(held)); }
 
     [[nodiscard]] constexpr bool has_piggyback() const { return has(piggyback); }
     [[nodiscard]] constexpr bool has_caveat_emptor_warning() const { return has(caveat_emptor_warning); }

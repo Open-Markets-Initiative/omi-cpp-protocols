@@ -178,6 +178,8 @@ std::size_t parse_special_long_quote_message([[maybe_unused]] const std::byte* d
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& special_long_quote_message_section_1_ = tmp::read<special_long_quote_message_section_1>(data + offset, bound - offset, handler); offset += special_long_quote_message_section_1::size;
+    tmp::call(handler, special_long_quote_message_section_1_.template get<participant_timestamp>());
+    tmp::call(handler, special_long_quote_message_section_1_.template get<adf_timestamp>());
     if (static_cast<bool>(tmp::rule(special_long_quote_message_section_1_.template get<national_bbo_indicator>()) == 'U')) {
         offset += tmp::take<national_best_bid_long_appendage>(data + offset, bound - offset, handler);
     }
@@ -199,6 +201,7 @@ std::size_t parse_short_quote_message([[maybe_unused]] const std::byte* data, [[
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& short_quote_message_section_1_ = tmp::read<short_quote_message_section_1>(data + offset, bound - offset, handler); offset += short_quote_message_section_1::size;
+    tmp::call(handler, short_quote_message_section_1_.template get<participant_timestamp>());
     if (static_cast<bool>(tmp::rule(short_quote_message_section_1_.template get<national_bbo_indicator>()) == 'U')) {
         offset += tmp::take<national_best_bid_long_appendage>(data + offset, bound - offset, handler);
     }
@@ -220,6 +223,8 @@ std::size_t parse_long_quote_message([[maybe_unused]] const std::byte* data, [[m
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& long_quote_message_section_1_ = tmp::read<long_quote_message_section_1>(data + offset, bound - offset, handler); offset += long_quote_message_section_1::size;
+    tmp::call(handler, long_quote_message_section_1_.template get<participant_timestamp>());
+    tmp::call(handler, long_quote_message_section_1_.template get<adf_timestamp>());
     if (static_cast<bool>(tmp::rule(long_quote_message_section_1_.template get<national_bbo_indicator>()) == 'U')) {
         offset += tmp::take<national_best_bid_long_appendage>(data + offset, bound - offset, handler);
     }

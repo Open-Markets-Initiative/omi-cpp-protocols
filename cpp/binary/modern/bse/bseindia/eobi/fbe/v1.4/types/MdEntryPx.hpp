@@ -29,6 +29,11 @@ static const type no_value = 0x8000000000000000;
         return value;
     }
 
+    // does MdEntryPx hold a value, rather than the one reserved for none
+    [[nodiscard]] bool has_value() const {
+        return integer() != no_value;
+    }
+
     // decimal value of MdEntryPx field
     [[nodiscard]] double get() const {
         return integer() / denominator;

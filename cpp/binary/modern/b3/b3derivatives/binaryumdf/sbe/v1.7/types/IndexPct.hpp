@@ -29,6 +29,11 @@ static const type no_value = 0;
         return value;
     }
 
+    // does IndexPct hold a value, rather than the one reserved for none
+    [[nodiscard]] bool has_value() const {
+        return integer() != no_value;
+    }
+
     // decimal value of IndexPct field
     [[nodiscard]] double get() const {
         return integer() / denominator;

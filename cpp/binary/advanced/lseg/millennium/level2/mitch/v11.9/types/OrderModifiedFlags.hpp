@@ -14,7 +14,9 @@ struct order_modified_flags {
     using type = uint8_t;
 
     static constexpr type priority_flag = type{1} << 0;
+    static constexpr type unused_4 = type{0xF} << 1;
     static constexpr type firm_quote = type{1} << 5;
+    static constexpr type unused_2 = type{0x3} << 6;
 
     static constexpr const char* name = "order_modified_flags";
     static constexpr std::size_t size = 1;
@@ -45,10 +47,14 @@ struct order_modified_flags {
     constexpr void set(type bit, bool enabled) { if (enabled) value |= bit; else value &= static_cast<type>(~bit); }
 
     [[nodiscard]] constexpr bool has_priority_flag() const { return has(priority_flag); }
+    [[nodiscard]] constexpr type get_unused_4() const { return static_cast<type>((value & unused_4) >> 1); }
     [[nodiscard]] constexpr bool has_firm_quote() const { return has(firm_quote); }
+    [[nodiscard]] constexpr type get_unused_2() const { return static_cast<type>((value & unused_2) >> 6); }
 
     constexpr void set_priority_flag(bool v) { set(priority_flag, v); }
+    constexpr void set_unused_4(type v) { const type held = static_cast<type>((value & static_cast<type>(~unused_4)) | ((v << 1) & unused_4)); value = held; }
     constexpr void set_firm_quote(bool v) { set(firm_quote, v); }
+    constexpr void set_unused_2(type v) { const type held = static_cast<type>((value & static_cast<type>(~unused_2)) | ((v << 6) & unused_2)); value = held; }
 
   protected:
     type value;

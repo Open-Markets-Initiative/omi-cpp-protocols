@@ -151,14 +151,14 @@ std::unique_ptr<protocol::Message> build_DeprecatedSecurityDefinitionMessage() {
     message->set_min_lot_size(static_cast<std::int64_t>(19));
     message->set_min_trade_vol(static_cast<std::int64_t>(20));
     message->set_corporate_action_event_id(static_cast<std::uint32_t>(21));
-    message->set_issue_date(static_cast<std::int32_t>(22));
-    message->set_maturity_date(static_cast<std::int32_t>(23));
+    message->set_issue_date(protocol::IssueDate::NoEndDate);
+    message->set_maturity_date(protocol::MaturityDate::NoEndDate);
     message->set_country_of_issue(std::string("YZ"));
-    message->set_start_date(static_cast<std::int32_t>(25));
-    message->set_end_date(static_cast<std::int32_t>(26));
+    message->set_start_date(protocol::StartDate::NoEndDate);
+    message->set_end_date(protocol::EndDate::NoEndDate);
     message->set_settl_type(static_cast<std::uint16_t>(27));
-    message->set_settl_date(static_cast<std::int32_t>(28));
-    message->set_dated_date(static_cast<std::int32_t>(29));
+    message->set_settl_date(protocol::SettlDate::NoEndDate);
+    message->set_dated_date(protocol::DatedDate::NoEndDate);
     message->set_isin_number(std::string("EFG"));
     message->set_asset(std::string("FGH"));
     message->set_cfi_code(std::string("GHI"));
@@ -212,14 +212,14 @@ std::unique_ptr<protocol::Message> build_SecurityDefinitionMessage() {
     message->set_min_lot_size(static_cast<std::int64_t>(19));
     message->set_min_trade_vol(static_cast<std::int64_t>(20));
     message->set_corporate_action_event_id(static_cast<std::uint32_t>(21));
-    message->set_issue_date(static_cast<std::int32_t>(22));
-    message->set_maturity_date(static_cast<std::int32_t>(23));
+    message->set_issue_date(protocol::IssueDate::NoEndDate);
+    message->set_maturity_date(protocol::MaturityDate::NoEndDate);
     message->set_country_of_issue(std::string("YZ"));
-    message->set_start_date(static_cast<std::int32_t>(25));
-    message->set_end_date(static_cast<std::int32_t>(26));
+    message->set_start_date(protocol::StartDate::NoEndDate);
+    message->set_end_date(protocol::EndDate::NoEndDate);
     message->set_settl_type(static_cast<std::uint16_t>(27));
-    message->set_settl_date(static_cast<std::int32_t>(28));
-    message->set_dated_date(static_cast<std::int32_t>(29));
+    message->set_settl_date(protocol::SettlDate::NoEndDate);
+    message->set_dated_date(protocol::DatedDate::NoEndDate);
     message->set_isin_number(std::string("EFG"));
     message->set_asset(std::string("FGH"));
     message->set_cfi_code(std::string("GHI"));
@@ -940,11 +940,11 @@ int check_DeprecatedSecurityDefinitionMessage(const protocol::Message* read) {
         std::printf("FAIL DeprecatedSecurityDefinitionMessage: corporate_action_event_id does not read as it was written\n");
         ++failures;
     }
-    if (!(message->issue_date() == static_cast<std::int32_t>(22))) {
+    if (!(message->issue_date() == protocol::IssueDate::NoEndDate)) {
         std::printf("FAIL DeprecatedSecurityDefinitionMessage: issue_date does not read as it was written\n");
         ++failures;
     }
-    if (!(message->maturity_date() == static_cast<std::int32_t>(23))) {
+    if (!(message->maturity_date() == protocol::MaturityDate::NoEndDate)) {
         std::printf("FAIL DeprecatedSecurityDefinitionMessage: maturity_date does not read as it was written\n");
         ++failures;
     }
@@ -952,11 +952,11 @@ int check_DeprecatedSecurityDefinitionMessage(const protocol::Message* read) {
         std::printf("FAIL DeprecatedSecurityDefinitionMessage: country_of_issue does not read as it was written\n");
         ++failures;
     }
-    if (!(message->start_date() == static_cast<std::int32_t>(25))) {
+    if (!(message->start_date() == protocol::StartDate::NoEndDate)) {
         std::printf("FAIL DeprecatedSecurityDefinitionMessage: start_date does not read as it was written\n");
         ++failures;
     }
-    if (!(message->end_date() == static_cast<std::int32_t>(26))) {
+    if (!(message->end_date() == protocol::EndDate::NoEndDate)) {
         std::printf("FAIL DeprecatedSecurityDefinitionMessage: end_date does not read as it was written\n");
         ++failures;
     }
@@ -964,11 +964,11 @@ int check_DeprecatedSecurityDefinitionMessage(const protocol::Message* read) {
         std::printf("FAIL DeprecatedSecurityDefinitionMessage: settl_type does not read as it was written\n");
         ++failures;
     }
-    if (!(message->settl_date() == static_cast<std::int32_t>(28))) {
+    if (!(message->settl_date() == protocol::SettlDate::NoEndDate)) {
         std::printf("FAIL DeprecatedSecurityDefinitionMessage: settl_date does not read as it was written\n");
         ++failures;
     }
-    if (!(message->dated_date() == static_cast<std::int32_t>(29))) {
+    if (!(message->dated_date() == protocol::DatedDate::NoEndDate)) {
         std::printf("FAIL DeprecatedSecurityDefinitionMessage: dated_date does not read as it was written\n");
         ++failures;
     }
@@ -1185,11 +1185,11 @@ int check_SecurityDefinitionMessage(const protocol::Message* read) {
         std::printf("FAIL SecurityDefinitionMessage: corporate_action_event_id does not read as it was written\n");
         ++failures;
     }
-    if (!(message->issue_date() == static_cast<std::int32_t>(22))) {
+    if (!(message->issue_date() == protocol::IssueDate::NoEndDate)) {
         std::printf("FAIL SecurityDefinitionMessage: issue_date does not read as it was written\n");
         ++failures;
     }
-    if (!(message->maturity_date() == static_cast<std::int32_t>(23))) {
+    if (!(message->maturity_date() == protocol::MaturityDate::NoEndDate)) {
         std::printf("FAIL SecurityDefinitionMessage: maturity_date does not read as it was written\n");
         ++failures;
     }
@@ -1197,11 +1197,11 @@ int check_SecurityDefinitionMessage(const protocol::Message* read) {
         std::printf("FAIL SecurityDefinitionMessage: country_of_issue does not read as it was written\n");
         ++failures;
     }
-    if (!(message->start_date() == static_cast<std::int32_t>(25))) {
+    if (!(message->start_date() == protocol::StartDate::NoEndDate)) {
         std::printf("FAIL SecurityDefinitionMessage: start_date does not read as it was written\n");
         ++failures;
     }
-    if (!(message->end_date() == static_cast<std::int32_t>(26))) {
+    if (!(message->end_date() == protocol::EndDate::NoEndDate)) {
         std::printf("FAIL SecurityDefinitionMessage: end_date does not read as it was written\n");
         ++failures;
     }
@@ -1209,11 +1209,11 @@ int check_SecurityDefinitionMessage(const protocol::Message* read) {
         std::printf("FAIL SecurityDefinitionMessage: settl_type does not read as it was written\n");
         ++failures;
     }
-    if (!(message->settl_date() == static_cast<std::int32_t>(28))) {
+    if (!(message->settl_date() == protocol::SettlDate::NoEndDate)) {
         std::printf("FAIL SecurityDefinitionMessage: settl_date does not read as it was written\n");
         ++failures;
     }
-    if (!(message->dated_date() == static_cast<std::int32_t>(29))) {
+    if (!(message->dated_date() == protocol::DatedDate::NoEndDate)) {
         std::printf("FAIL SecurityDefinitionMessage: dated_date does not read as it was written\n");
         ++failures;
     }

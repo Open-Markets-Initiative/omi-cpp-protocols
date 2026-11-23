@@ -3,6 +3,7 @@
 
 #include <array>
 #include <cstddef>
+#include <cstdint>
 
 namespace nyse::arcaequities::bbo::xdp::v2_4_c {
 

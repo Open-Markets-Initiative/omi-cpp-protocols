@@ -31,6 +31,11 @@ static const type minimum_value = -922337203685477.5807;
         return value;
     }
 
+    // does MdEntrySize hold a value, rather than the one reserved for none
+    [[nodiscard]] bool has_value() const {
+        return integer() != no_value;
+    }
+
     // decimal value of MdEntrySize field
     [[nodiscard]] double get() const {
         return integer() / denominator;

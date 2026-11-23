@@ -3,6 +3,7 @@
 
 #include <array>
 #include <cstddef>
+#include <cstdint>
 
 namespace miax::onyxfutures::topofmarket::mach::v1_0_b {
 

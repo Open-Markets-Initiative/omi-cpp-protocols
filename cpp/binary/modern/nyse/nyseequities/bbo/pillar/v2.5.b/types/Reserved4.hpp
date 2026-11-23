@@ -3,6 +3,7 @@
 
 #include <array>
 #include <cstddef>
+#include <cstdint>
 
 namespace nyse::nyseequities::bbo::pillar::v2_5_b {
 

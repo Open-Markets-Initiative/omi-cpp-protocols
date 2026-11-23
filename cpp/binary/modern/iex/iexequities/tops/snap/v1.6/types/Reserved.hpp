@@ -3,6 +3,7 @@
 
 #include <array>
 #include <cstddef>
+#include <cstdint>
 
 namespace iex::iexequities::tops::snap::v1_6 {
 

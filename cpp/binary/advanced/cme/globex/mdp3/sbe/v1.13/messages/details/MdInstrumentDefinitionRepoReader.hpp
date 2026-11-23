@@ -294,9 +294,9 @@ public:
         return entry->underlying_security_alt_id.get().value();
     }
 
-    sbe_mdp3::underlying_security_alt_id_source::enum_type underlying_security_alt_id_source() const {
+    std::optional<sbe_mdp3::underlying_security_alt_id_source::enum_type> underlying_security_alt_id_source() const {
         auto* entry = reinterpret_cast<const md_instrument_definition_repo_repo_underlyings_groups_entry*>(pos_);
-        return entry->underlying_security_alt_id_source.get().value();
+        return entry->underlying_security_alt_id_source.get();
     }
 
     std::string_view underlying_financial_instrument_full_name() const {

@@ -45,7 +45,7 @@ struct trade_53_message {
         sbe_binaryumdf::rpt_seq rpt_seq;
     };
 
-    sbe_binaryumdf::framing_header header = {std::uint16_t(sizeof(sbe_binaryumdf::framing_header) + sizeof(fields_type) + sizeof(sbe_binaryumdf::message_header)), {}};
+    sbe_binaryumdf::framing_header header = {std::uint16_t(sizeof(sbe_binaryumdf::framing_header) + sizeof(fields_type) + sizeof(sbe_binaryumdf::message_header)), encoding_type(60240)};
     sbe_binaryumdf::message_header message_header = {block_length(sizeof(fields_type)), template_id::enum_type::trade_53_message, schema_id(2), version(8)};
 
     fields_type fields;

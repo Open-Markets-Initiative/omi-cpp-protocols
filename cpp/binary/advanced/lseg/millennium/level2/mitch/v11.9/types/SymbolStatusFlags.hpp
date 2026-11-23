@@ -13,7 +13,9 @@ struct symbol_status_flags {
 
     using type = uint8_t;
 
+    static constexpr type unused_5 = type{0x1F} << 0;
     static constexpr type firm_quote = type{1} << 5;
+    static constexpr type unused_2 = type{0x3} << 6;
 
     static constexpr const char* name = "symbol_status_flags";
     static constexpr std::size_t size = 1;
@@ -43,9 +45,13 @@ struct symbol_status_flags {
     [[nodiscard]] constexpr bool has(type bit) const { return (value & bit) != 0; }
     constexpr void set(type bit, bool enabled) { if (enabled) value |= bit; else value &= static_cast<type>(~bit); }
 
+    [[nodiscard]] constexpr type get_unused_5() const { return static_cast<type>((value & unused_5) >> 0); }
     [[nodiscard]] constexpr bool has_firm_quote() const { return has(firm_quote); }
+    [[nodiscard]] constexpr type get_unused_2() const { return static_cast<type>((value & unused_2) >> 6); }
 
+    constexpr void set_unused_5(type v) { const type held = static_cast<type>((value & static_cast<type>(~unused_5)) | ((v << 0) & unused_5)); value = held; }
     constexpr void set_firm_quote(bool v) { set(firm_quote, v); }
+    constexpr void set_unused_2(type v) { const type held = static_cast<type>((value & static_cast<type>(~unused_2)) | ((v << 6) & unused_2)); value = held; }
 
   protected:
     type value;

@@ -54,9 +54,9 @@ public:
         return entry->trade_id.get().value();
     }
 
-    sbe_mdp3::aggressor_side::enum_type aggressor_side() const {
+    std::optional<sbe_mdp3::aggressor_side::enum_type> aggressor_side() const {
         auto* entry = reinterpret_cast<const md_incremental_refresh_trade_incremental_refresh_trade_groups_entry*>(pos_);
-        return entry->aggressor_side.get().value();
+        return entry->aggressor_side.get();
     }
 
     sbe_mdp3::md_update_action::enum_type md_update_action() const {

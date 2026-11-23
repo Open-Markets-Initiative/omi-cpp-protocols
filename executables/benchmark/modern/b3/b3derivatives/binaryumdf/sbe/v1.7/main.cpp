@@ -26,7 +26,6 @@ std::uint64_t read(const packet::Frame& frame) {
     iterator.initialize(frame.payload, frame.payload_len);
 
     checksum += bench::digest(iterator.packet_header->channel_id.get());
-    checksum += bench::digest(iterator.packet_header->packet_reserved.get());
     checksum += bench::digest(iterator.packet_header->sequence_version.get());
     checksum += bench::digest(iterator.packet_header->sequence_number.get());
     checksum += bench::digest(iterator.packet_header->sending_time.get());

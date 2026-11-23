@@ -3,6 +3,7 @@
 
 #include <array>
 #include <cstddef>
+#include <cstdint>
 
 namespace nasdaq::nsmequities::totalview::itch::v5_0_2017 {
 

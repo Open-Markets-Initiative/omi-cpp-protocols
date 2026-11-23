@@ -229,7 +229,7 @@ inline std::ostream& operator<<(std::ostream& os, const error_msg& msg) {
 }
 
 inline std::ostream& operator<<(std::ostream& os, const symbol_mapping_msg& msg) {
-    os << "stype_in=\"" << dbn_normalized::stype_in::to_string(msg.fields.stype_in.get().value()) << '"'
+    os << "stype_in=\"" << (msg.fields.stype_in.get().has_value() ? dbn_normalized::stype_in::to_string(msg.fields.stype_in.get().value()) : std::string_view("null")) << '"'
        << ",stype_in_symbol=\"" << msg.fields.stype_in_symbol.get_trimmed().value() << '"'
        << ",stype_out=\"" << dbn_normalized::stype_out::to_string(msg.fields.stype_out.get().value()) << '"'
        << ",stype_out_symbol=\"" << msg.fields.stype_out_symbol.get_trimmed().value() << '"'

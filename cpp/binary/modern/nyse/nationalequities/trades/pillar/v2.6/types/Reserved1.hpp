@@ -3,6 +3,7 @@
 
 #include <array>
 #include <cstddef>
+#include <cstdint>
 
 namespace nyse::nationalequities::trades::pillar::v2_6 {
 

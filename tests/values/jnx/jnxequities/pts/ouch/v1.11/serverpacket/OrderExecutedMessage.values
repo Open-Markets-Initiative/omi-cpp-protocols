@@ -1,0 +1,24 @@
+# Jnx.JnxEquities.Pts.Ouch.v1.11 OrderExecutedMessage: canonical values of 'serverpacket', read by the model
+stream 0
+serverpacket.serversoupbintcppacket[0].serverpacketheader.packetlength = 31
+serverpacket.serversoupbintcppacket[0].serverpacketheader.serverpackettype = S
+serverpacket.serversoupbintcppacket[0].serverpayload = serverpacket.serversoupbintcppacket.serverpayload.sequenceddatapacket
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessagetype = E
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessage = serverpacket.serversoupbintcppacket.serverpayload.sequenceddatapacket.sequencedmessage.orderexecutedmessage
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessage.orderexecutedmessage.timestamp = 32122262495000
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessage.orderexecutedmessage.ordertoken = 3000442
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessage.orderexecutedmessage.executedquantity = 100
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessage.orderexecutedmessage.executionprice = 5000
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessage.orderexecutedmessage.liquidityindicator = A
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessage.orderexecutedmessage.matchnumber = 202310190000023453
+serverpacket.serversoupbintcppacket[1].serverpacketheader.packetlength = 31
+serverpacket.serversoupbintcppacket[1].serverpacketheader.serverpackettype = S
+serverpacket.serversoupbintcppacket[1].serverpayload = serverpacket.serversoupbintcppacket.serverpayload.sequenceddatapacket
+serverpacket.serversoupbintcppacket[1].serverpayload.sequenceddatapacket.sequencedmessagetype = E
+serverpacket.serversoupbintcppacket[1].serverpayload.sequenceddatapacket.sequencedmessage = serverpacket.serversoupbintcppacket.serverpayload.sequenceddatapacket.sequencedmessage.orderexecutedmessage
+serverpacket.serversoupbintcppacket[1].serverpayload.sequenceddatapacket.sequencedmessage.orderexecutedmessage.timestamp = 32122262495000
+serverpacket.serversoupbintcppacket[1].serverpayload.sequenceddatapacket.sequencedmessage.orderexecutedmessage.ordertoken = 3000443
+serverpacket.serversoupbintcppacket[1].serverpayload.sequenceddatapacket.sequencedmessage.orderexecutedmessage.executedquantity = 100
+serverpacket.serversoupbintcppacket[1].serverpayload.sequenceddatapacket.sequencedmessage.orderexecutedmessage.executionprice = 5000
+serverpacket.serversoupbintcppacket[1].serverpayload.sequenceddatapacket.sequencedmessage.orderexecutedmessage.liquidityindicator = R
+serverpacket.serversoupbintcppacket[1].serverpayload.sequenceddatapacket.sequencedmessage.orderexecutedmessage.matchnumber = 202310190000023453

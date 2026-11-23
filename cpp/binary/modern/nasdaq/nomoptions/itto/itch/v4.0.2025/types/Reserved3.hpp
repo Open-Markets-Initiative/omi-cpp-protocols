@@ -3,6 +3,7 @@
 
 #include <array>
 #include <cstddef>
+#include <cstdint>
 
 namespace nasdaq::nomoptions::itto::itch::v4_0_2025 {
 

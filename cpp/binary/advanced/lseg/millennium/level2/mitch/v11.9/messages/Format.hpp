@@ -160,7 +160,7 @@ inline std::ostream& operator<<(std::ostream& os, const trade_message& msg) {
        << ",instrument_id=" << msg.fields.instrument_id.get().value()
        << ",price=" << msg.fields.price.get().value()
        << ",trade_match_id=" << msg.fields.trade_match_id.get().value()
-       << ",cross_type=\"" << mitch_level2::cross_type::to_string(msg.fields.cross_type.get().value()) << '"'
+       << ",cross_type=\"" << (msg.fields.cross_type.get().has_value() ? mitch_level2::cross_type::to_string(msg.fields.cross_type.get().value()) : std::string_view("null")) << '"'
        << ",sub_book=\"" << mitch_level2::sub_book::to_string(msg.fields.sub_book.get().value()) << '"'
        << ",pt_mod_flags=" << static_cast<unsigned>(msg.fields.pt_mod_flags.get().value())
        ;

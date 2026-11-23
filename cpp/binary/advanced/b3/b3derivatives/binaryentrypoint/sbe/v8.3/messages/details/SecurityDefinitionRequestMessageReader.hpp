@@ -34,9 +34,9 @@ public:
         return entry->leg_ratio_qty.get().value();
     }
 
-    sbe_binaryentrypoint::leg_side::enum_type leg_side() const {
+    std::optional<sbe_binaryentrypoint::leg_side::enum_type> leg_side() const {
         auto* entry = reinterpret_cast<const security_definition_request_message_legs_groups_entry*>(pos_);
-        return entry->leg_side.get().value();
+        return entry->leg_side.get();
     }
 
     std::array<std::uint8_t, 1> padding_1() const {

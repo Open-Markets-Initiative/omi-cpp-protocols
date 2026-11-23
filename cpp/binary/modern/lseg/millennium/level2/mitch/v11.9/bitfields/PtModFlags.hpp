@@ -36,8 +36,8 @@ struct PtModFlags {
     }
 
     // Unused
-    [[nodiscard]] constexpr bool Unused6() const {
-        return value & mask::Unused6;
+    [[nodiscard]] constexpr type Unused6() const {
+        return static_cast<type>((value & mask::Unused6) >> 2);
     }
 
     // all bits

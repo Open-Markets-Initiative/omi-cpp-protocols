@@ -3,6 +3,7 @@
 
 #include <array>
 #include <cstddef>
+#include <cstdint>
 
 namespace nyse::amexequities::integratedfeed::xdp::v2_1_g {
 

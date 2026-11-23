@@ -25,7 +25,6 @@ canonical::Listing read(const packet::Frame& frame) {
     iterator.initialize(frame.payload, frame.payload_len);
 
     values["packet.packetheader.channelid"] = canonical::number(iterator.packet_header->channel_id.get());
-    values["packet.packetheader.packetreserved"] = canonical::number(iterator.packet_header->packet_reserved.get());
     values["packet.packetheader.sequenceversion"] = canonical::number(iterator.packet_header->sequence_version.get());
     values["packet.packetheader.sequencenumber"] = canonical::number(iterator.packet_header->sequence_number.get());
     values["packet.packetheader.sendingtime"] = canonical::number(iterator.packet_header->sending_time.get());

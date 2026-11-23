@@ -3,6 +3,7 @@
 
 #include <array>
 #include <cstddef>
+#include <cstdint>
 
 namespace miax::miaxoptions::complextopofmarket::mach::v1_1 {
 

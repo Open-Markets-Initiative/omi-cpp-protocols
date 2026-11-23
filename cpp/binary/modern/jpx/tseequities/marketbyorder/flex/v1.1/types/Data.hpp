@@ -3,6 +3,7 @@
 
 #include <array>
 #include <cstddef>
+#include <cstdint>
 
 namespace jpx::tseequities::marketbyorder::flex::v1_1 {
 

@@ -3,7 +3,10 @@
 
 #include <cstddef>
 #include <cstdint>
+#include <algorithm>
+#include <array>
 #include <optional>
+#include <string_view>
 #include "../cache/Required.hpp"
 
 namespace b3::b3derivatives::binaryumdf::sbe::v1_8 {
@@ -11,25 +14,57 @@ namespace b3::b3derivatives::binaryumdf::sbe::v1_8 {
 // start_date
 struct start_date {
 
+    enum class enum_type : std::int32_t {
+        no_value = 0,
+        no_end_date = 2932896
+    };
+
+    static constexpr std::array<std::pair<std::string_view, enum_type>, 2> from_string_map = {{
+        {"No End Date", enum_type::no_end_date},
+        {"No Value", enum_type::no_value}
+    }};
+
+    static constexpr std::string_view to_string(enum_type value) {
+        switch (value) {
+            case enum_type::no_value: return "No Value";
+            case enum_type::no_end_date: return "No End Date";
+            default: return "unknown";
+        }
+    }
+
+    static constexpr std::optional<enum_type> from_string(std::string_view str) {
+        auto it = std::lower_bound(
+            from_string_map.begin(),
+            from_string_map.end(),
+            str,
+            [](const auto& pair, std::string_view s) { return pair.first < s; }
+        );
+        if (it != from_string_map.end() && it->first == str) {
+            return it->second;
+        }
+        return std::nullopt;
+    }
+
     static constexpr const char* name = "start_date";
     static constexpr std::size_t size = 4;
     static constexpr bool is_optional = true;
-    static constexpr std::int32_t null_value = 0;
+    static constexpr enum_type null_value = static_cast<enum_type>(0);
 
-    using result_type = std::optional<std::int32_t>;
+    using result_type = std::optional<start_date::enum_type>;
     using storage_type = result_type;
 
     constexpr start_date()
-     : value{ null_value } {}
+     : value{ static_cast<enum_type>(0) } {}
 
-    constexpr start_date(std::int32_t v)
+    constexpr start_date(enum_type v)
      : value{ v } {}
 
     [[nodiscard]] constexpr result_type get() const {
-        return value == null_value ? std::nullopt : result_type{value};
+        const enum_type held = value;
+        return held == null_value ? std::nullopt : result_type{held};
     }
 
-    constexpr void set(std::int32_t v) {
+    constexpr void set(enum_type v) {
         value = v;
     }
 
@@ -41,10 +76,10 @@ struct start_date {
     }
 
     constexpr void set_null() {
-        value = null_value;
+        set(null_value);
     }
 
   protected:
-    std::int32_t value;
+    enum_type value;
 };
 }

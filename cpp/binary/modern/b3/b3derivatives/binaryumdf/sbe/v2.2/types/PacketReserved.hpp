@@ -1,33 +1,27 @@
 // B3.B3Derivatives.BinaryUmdf.Sbe.v2.2: types/PacketReserved.hpp
 #pragma once
 
+#include <array>
 #include <cstddef>
 #include <cstdint>
 
 namespace b3::b3derivatives::binaryumdf::sbe::v2_2 {
 
 
-// Packet Reserved Field
+// Reserved byte, carrying no meaning, between the channel id and the sequence version
 struct PacketReserved {
 
     static constexpr auto name = "Packet Reserved";
     static constexpr std::size_t size = 1;
-    using type = std::uint8_t;
+
+    // underlying type
+    using type = std::array<std::uint8_t, size>;
 
     // default constructor
     constexpr PacketReserved()
-     : value{ 0 } {}
-
-    // standard constructor
-    constexpr explicit PacketReserved(const std::uint8_t &value)
-     : value{ value } {}
-
-    // get value of PacketReserved field
-    [[nodiscard]] std::uint8_t get() const {
-        return value;
-    }
+     : value{} {}
 
   protected:
-    std::uint8_t value;
+    type value;
 };
 }

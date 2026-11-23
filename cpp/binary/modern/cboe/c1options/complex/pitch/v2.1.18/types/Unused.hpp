@@ -3,6 +3,7 @@
 
 #include <array>
 #include <cstddef>
+#include <cstdint>
 
 namespace cboe::c1options::complex::pitch::v2_1_18 {
 

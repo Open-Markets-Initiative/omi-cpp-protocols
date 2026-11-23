@@ -3,6 +3,7 @@
 
 #include <array>
 #include <cstddef>
+#include <cstdint>
 
 namespace nyse::amexoptions::deepfeed::xdp::v1_3_a {
 

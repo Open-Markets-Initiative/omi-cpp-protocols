@@ -1,0 +1,9 @@
+# Jnx.JnxEquities.Pts.Ouch.v1.11 CancelOrderMessage: canonical values of 'clientpacket', read by the model
+stream 0
+clientpacket.clientsoupbintcppacket[0].clientpacketheader.packetlength = 10
+clientpacket.clientsoupbintcppacket[0].clientpacketheader.clientpackettype = U
+clientpacket.clientsoupbintcppacket[0].clientpayload = clientpacket.clientsoupbintcppacket.clientpayload.unsequenceddatapacket
+clientpacket.clientsoupbintcppacket[0].clientpayload.unsequenceddatapacket.unsequencedmessagetype = X
+clientpacket.clientsoupbintcppacket[0].clientpayload.unsequenceddatapacket.unsequencedmessage = clientpacket.clientsoupbintcppacket.clientpayload.unsequenceddatapacket.unsequencedmessage.cancelordermessage
+clientpacket.clientsoupbintcppacket[0].clientpayload.unsequenceddatapacket.unsequencedmessage.cancelordermessage.ordertoken = 3000448
+clientpacket.clientsoupbintcppacket[0].clientpayload.unsequenceddatapacket.unsequencedmessage.cancelordermessage.quantity = 100

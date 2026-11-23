@@ -140,7 +140,7 @@ inline std::ostream& operator<<(std::ostream& os, const message_header& value) {
 
 inline std::ostream& operator<<(std::ostream& os, const system_event_message& msg) {
     os << "timestamp=" << msg.fields.timestamp.get().value()
-       << ",event_code=\"" << gtp_level2mbo::event_code::to_string(msg.fields.event_code.get().value()) << '"'
+       << ",event_code=\"" << (msg.fields.event_code.get().has_value() ? gtp_level2mbo::event_code::to_string(msg.fields.event_code.get().value()) : std::string_view("null")) << '"'
        << ",source_venue=\"" << gtp_level2mbo::source_venue::to_string(msg.fields.source_venue.get().value()) << '"'
        ;
     return os;
@@ -168,7 +168,7 @@ inline std::ostream& operator<<(std::ostream& os, const instrument_status_messag
     os << "timestamp=" << msg.fields.timestamp.get().value()
        << ",instrument=" << msg.fields.instrument.get().value()
        << ",source_venue=\"" << gtp_level2mbo::source_venue::to_string(msg.fields.source_venue.get().value()) << '"'
-       << ",trading_status=\"" << gtp_level2mbo::trading_status::to_string(msg.fields.trading_status.get().value()) << '"'
+       << ",trading_status=\"" << (msg.fields.trading_status.get().has_value() ? gtp_level2mbo::trading_status::to_string(msg.fields.trading_status.get().value()) : std::string_view("null")) << '"'
        << ",session_change_reason=\"" << gtp_level2mbo::session_change_reason::to_string(msg.fields.session_change_reason.get().value()) << '"'
        << ",new_end_time=\"" << (msg.fields.new_end_time.get_trimmed().has_value() ? msg.fields.new_end_time.get_trimmed().value() : std::string_view("null")) << '"'
        << ",order_book_type=\"" << gtp_level2mbo::order_book_type::to_string(msg.fields.order_book_type.get().value()) << '"'
@@ -179,7 +179,7 @@ inline std::ostream& operator<<(std::ostream& os, const instrument_status_messag
 inline std::ostream& operator<<(std::ostream& os, const add_order_mbo_message& msg) {
     os << "timestamp=" << msg.fields.timestamp.get().value()
        << ",order_id=" << msg.fields.order_id.get().value()
-       << ",side=\"" << gtp_level2mbo::side::to_string(msg.fields.side.get().value()) << '"'
+       << ",side=\"" << (msg.fields.side.get().has_value() ? gtp_level2mbo::side::to_string(msg.fields.side.get().value()) : std::string_view("null")) << '"'
        << ",size=" << msg.fields.size.get().value()
        << ",instrument=" << msg.fields.instrument.get().value()
        << ",price=" << msg.fields.price.get().value()
@@ -218,10 +218,10 @@ inline std::ostream& operator<<(std::ostream& os, const trade_message& msg) {
        << ",price=" << msg.fields.price.get().value()
        << ",trade_id=" << msg.fields.trade_id.get().value()
        << ",trade_type=\"" << gtp_level2mbo::trade_type::to_string(msg.fields.trade_type.get().value()) << '"'
-       << ",auction_type=\"" << gtp_level2mbo::auction_type::to_string(msg.fields.auction_type.get().value()) << '"'
+       << ",auction_type=\"" << (msg.fields.auction_type.get().has_value() ? gtp_level2mbo::auction_type::to_string(msg.fields.auction_type.get().value()) : std::string_view("null")) << '"'
        << ",trade_flags=" << static_cast<unsigned>(msg.fields.trade_flags.get().value())
        << ",hidden_execution_indicator=\"" << gtp_level2mbo::hidden_execution_indicator::to_string(msg.fields.hidden_execution_indicator.get().value()) << '"'
-       << ",trade_qualifier=\"" << gtp_level2mbo::trade_qualifier::to_string(msg.fields.trade_qualifier.get().value()) << '"'
+       << ",trade_qualifier=\"" << (msg.fields.trade_qualifier.get().has_value() ? gtp_level2mbo::trade_qualifier::to_string(msg.fields.trade_qualifier.get().value()) : std::string_view("null")) << '"'
        ;
     return os;
 }
@@ -249,10 +249,10 @@ inline std::ostream& operator<<(std::ostream& os, const statistics_update_messag
        << ",statistic_type=\"" << gtp_level2mbo::statistic_type::to_string(msg.fields.statistic_type.get().value()) << '"'
        << ",statistic_price=" << msg.fields.statistic_price.get().value()
        << ",statistic_size=" << msg.fields.statistic_size.get().value()
-       << ",auction_type=\"" << gtp_level2mbo::auction_type::to_string(msg.fields.auction_type.get().value()) << '"'
+       << ",auction_type=\"" << (msg.fields.auction_type.get().has_value() ? gtp_level2mbo::auction_type::to_string(msg.fields.auction_type.get().value()) : std::string_view("null")) << '"'
        << ",imbalance_quantity=" << msg.fields.imbalance_quantity.get().value()
-       << ",auction_info=\"" << gtp_level2mbo::auction_info::to_string(msg.fields.auction_info.get().value()) << '"'
-       << ",opening_closing_price_indicator=\"" << gtp_level2mbo::opening_closing_price_indicator::to_string(msg.fields.opening_closing_price_indicator.get().value()) << '"'
+       << ",auction_info=\"" << (msg.fields.auction_info.get().has_value() ? gtp_level2mbo::auction_info::to_string(msg.fields.auction_info.get().value()) : std::string_view("null")) << '"'
+       << ",opening_closing_price_indicator=\"" << (msg.fields.opening_closing_price_indicator.get().has_value() ? gtp_level2mbo::opening_closing_price_indicator::to_string(msg.fields.opening_closing_price_indicator.get().value()) : std::string_view("null")) << '"'
        ;
     return os;
 }

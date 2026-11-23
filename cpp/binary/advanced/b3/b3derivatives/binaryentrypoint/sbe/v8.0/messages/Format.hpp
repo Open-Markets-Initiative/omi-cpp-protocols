@@ -246,7 +246,7 @@ inline std::ostream& operator<<(std::ostream& os, const simple_new_order_message
        << ",side=\"" << sbe_binaryentrypoint::side::to_string(msg.fields.side.get().value()) << '"'
        << ",simple_ordtype=\"" << sbe_binaryentrypoint::simple_ordtype::to_string(msg.fields.simple_ordtype.get().value()) << '"'
        << ",time_in_force_simple=\"" << sbe_binaryentrypoint::time_in_force_simple::to_string(msg.fields.time_in_force_simple.get().value()) << '"'
-       << ",routing_instruction=\"" << sbe_binaryentrypoint::routing_instruction::to_string(msg.fields.routing_instruction.get().value()) << '"'
+       << ",routing_instruction=\"" << (msg.fields.routing_instruction.get().has_value() ? sbe_binaryentrypoint::routing_instruction::to_string(msg.fields.routing_instruction.get().value()) : std::string_view("null")) << '"'
        << ",order_qty=" << msg.fields.order_qty.get().value()
        << ",price_optional=" << (msg.fields.price_optional.get().has_value() ? std::to_string(msg.fields.price_optional.get().value()) : std::string_view("null"))
        << ",investor_id.prefix=" << (msg.fields.investor_id.prefix.get().has_value() ? std::to_string(msg.fields.investor_id.prefix.get().value()) : std::string_view("null"))
@@ -273,7 +273,7 @@ inline std::ostream& operator<<(std::ostream& os, const simple_modify_order_mess
        << ",side=\"" << sbe_binaryentrypoint::side::to_string(msg.fields.side.get().value()) << '"'
        << ",simple_ordtype=\"" << sbe_binaryentrypoint::simple_ordtype::to_string(msg.fields.simple_ordtype.get().value()) << '"'
        << ",time_in_force_simple=\"" << sbe_binaryentrypoint::time_in_force_simple::to_string(msg.fields.time_in_force_simple.get().value()) << '"'
-       << ",routing_instruction=\"" << sbe_binaryentrypoint::routing_instruction::to_string(msg.fields.routing_instruction.get().value()) << '"'
+       << ",routing_instruction=\"" << (msg.fields.routing_instruction.get().has_value() ? sbe_binaryentrypoint::routing_instruction::to_string(msg.fields.routing_instruction.get().value()) : std::string_view("null")) << '"'
        << ",order_qty=" << msg.fields.order_qty.get().value()
        << ",price_optional=" << (msg.fields.price_optional.get().has_value() ? std::to_string(msg.fields.price_optional.get().value()) : std::string_view("null"))
        << ",order_id_optional=" << (msg.fields.order_id_optional.get().has_value() ? std::to_string(msg.fields.order_id_optional.get().value()) : std::string_view("null"))
@@ -302,7 +302,7 @@ inline std::ostream& operator<<(std::ostream& os, const new_order_single_message
        << ",side=\"" << sbe_binaryentrypoint::side::to_string(msg.fields.side.get().value()) << '"'
        << ",ordtype=\"" << sbe_binaryentrypoint::ordtype::to_string(msg.fields.ordtype.get().value()) << '"'
        << ",time_in_force=\"" << sbe_binaryentrypoint::time_in_force::to_string(msg.fields.time_in_force.get().value()) << '"'
-       << ",routing_instruction=\"" << sbe_binaryentrypoint::routing_instruction::to_string(msg.fields.routing_instruction.get().value()) << '"'
+       << ",routing_instruction=\"" << (msg.fields.routing_instruction.get().has_value() ? sbe_binaryentrypoint::routing_instruction::to_string(msg.fields.routing_instruction.get().value()) : std::string_view("null")) << '"'
        << ",order_qty=" << msg.fields.order_qty.get().value()
        << ",price_optional=" << (msg.fields.price_optional.get().has_value() ? std::to_string(msg.fields.price_optional.get().value()) : std::string_view("null"))
        << ",stop_px=" << (msg.fields.stop_px.get().has_value() ? std::to_string(msg.fields.stop_px.get().value()) : std::string_view("null"))
@@ -336,8 +336,8 @@ inline std::ostream& operator<<(std::ostream& os, const order_cancel_replace_req
        << ",security_id=" << msg.fields.security_id.get().value()
        << ",side=\"" << sbe_binaryentrypoint::side::to_string(msg.fields.side.get().value()) << '"'
        << ",ordtype=\"" << sbe_binaryentrypoint::ordtype::to_string(msg.fields.ordtype.get().value()) << '"'
-       << ",time_in_force_optional=\"" << sbe_binaryentrypoint::time_in_force_optional::to_string(msg.fields.time_in_force_optional.get().value()) << '"'
-       << ",routing_instruction=\"" << sbe_binaryentrypoint::routing_instruction::to_string(msg.fields.routing_instruction.get().value()) << '"'
+       << ",time_in_force_optional=\"" << (msg.fields.time_in_force_optional.get().has_value() ? sbe_binaryentrypoint::time_in_force_optional::to_string(msg.fields.time_in_force_optional.get().value()) : std::string_view("null")) << '"'
+       << ",routing_instruction=\"" << (msg.fields.routing_instruction.get().has_value() ? sbe_binaryentrypoint::routing_instruction::to_string(msg.fields.routing_instruction.get().value()) : std::string_view("null")) << '"'
        << ",order_qty=" << msg.fields.order_qty.get().value()
        << ",price_optional=" << (msg.fields.price_optional.get().has_value() ? std::to_string(msg.fields.price_optional.get().value()) : std::string_view("null"))
        << ",order_id_optional=" << (msg.fields.order_id_optional.get().has_value() ? std::to_string(msg.fields.order_id_optional.get().value()) : std::string_view("null"))
@@ -346,7 +346,7 @@ inline std::ostream& operator<<(std::ostream& os, const order_cancel_replace_req
        << ",min_qty=" << (msg.fields.min_qty.get().has_value() ? std::to_string(msg.fields.min_qty.get().value()) : std::string_view("null"))
        << ",max_floor=" << (msg.fields.max_floor.get().has_value() ? std::to_string(msg.fields.max_floor.get().value()) : std::string_view("null"))
        << ",executing_trader_optional=\"" << (msg.fields.executing_trader_optional.get_trimmed().has_value() ? msg.fields.executing_trader_optional.get_trimmed().value() : std::string_view("null")) << '"'
-       << ",account_type=\"" << sbe_binaryentrypoint::account_type::to_string(msg.fields.account_type.get().value()) << '"'
+       << ",account_type=\"" << (msg.fields.account_type.get().has_value() ? sbe_binaryentrypoint::account_type::to_string(msg.fields.account_type.get().value()) : std::string_view("null")) << '"'
        << ",expire_date=" << (msg.fields.expire_date.get().has_value() ? std::to_string(msg.fields.expire_date.get().value()) : std::string_view("null"))
        << ",custodian_info.custodian=" << (msg.fields.custodian_info.custodian.get().has_value() ? std::to_string(msg.fields.custodian_info.custodian.get().value()) : std::string_view("null"))
        << ",custodian_info.custody_account=" << (msg.fields.custodian_info.custody_account.get().has_value() ? std::to_string(msg.fields.custodian_info.custody_account.get().value()) : std::string_view("null"))
@@ -369,7 +369,7 @@ inline std::ostream& operator<<(std::ostream& os, const order_cancel_request_mes
        << ",order_id_optional=" << (msg.fields.order_id_optional.get().has_value() ? std::to_string(msg.fields.order_id_optional.get().value()) : std::string_view("null"))
        << ",origclordid=" << (msg.fields.origclordid.get().has_value() ? std::to_string(msg.fields.origclordid.get().value()) : std::string_view("null"))
        << ",side=\"" << sbe_binaryentrypoint::side::to_string(msg.fields.side.get().value()) << '"'
-       << ",single_cancel_restatement_reason=\"" << sbe_binaryentrypoint::single_cancel_restatement_reason::to_string(msg.fields.single_cancel_restatement_reason.get().value()) << '"'
+       << ",single_cancel_restatement_reason=\"" << (msg.fields.single_cancel_restatement_reason.get().has_value() ? sbe_binaryentrypoint::single_cancel_restatement_reason::to_string(msg.fields.single_cancel_restatement_reason.get().value()) : std::string_view("null")) << '"'
        << ",sender_location=\"" << msg.fields.sender_location.get_trimmed().value() << '"'
        << ",entering_trader=\"" << msg.fields.entering_trader.get_trimmed().value() << '"'
        << ",executing_trader_optional=\"" << (msg.fields.executing_trader_optional.get_trimmed().has_value() ? msg.fields.executing_trader_optional.get_trimmed().value() : std::string_view("null")) << '"'
@@ -391,7 +391,7 @@ inline std::ostream& operator<<(std::ostream& os, const new_order_cross_message&
        << ",security_id=" << msg.fields.security_id.get().value()
        << ",order_qty=" << msg.fields.order_qty.get().value()
        << ",price=" << msg.fields.price.get().value()
-       << ",crossed_indicator=\"" << sbe_binaryentrypoint::crossed_indicator::to_string(msg.fields.crossed_indicator.get().value()) << '"'
+       << ",crossed_indicator=\"" << (msg.fields.crossed_indicator.get().has_value() ? sbe_binaryentrypoint::crossed_indicator::to_string(msg.fields.crossed_indicator.get().value()) : std::string_view("null")) << '"'
        << ",tail=" << json::tail_to_json_string(msg)
        ;
     return os;
@@ -416,7 +416,7 @@ inline std::ostream& operator<<(std::ostream& os, const execution_report_new_mes
        << ",protection_price=" << (msg.fields.protection_price.get().has_value() ? std::to_string(msg.fields.protection_price.get().value()) : std::string_view("null"))
        << ",trade_date=" << msg.fields.trade_date.get().value()
        << ",working_indicator=\"" << sbe_binaryentrypoint::working_indicator::to_string(msg.fields.working_indicator.get().value()) << '"'
-       << ",multi_leg_reporting_type=\"" << sbe_binaryentrypoint::multi_leg_reporting_type::to_string(msg.fields.multi_leg_reporting_type.get().value()) << '"'
+       << ",multi_leg_reporting_type=\"" << (msg.fields.multi_leg_reporting_type.get().has_value() ? sbe_binaryentrypoint::multi_leg_reporting_type::to_string(msg.fields.multi_leg_reporting_type.get().value()) : std::string_view("null")) << '"'
        << ",ordtype=\"" << sbe_binaryentrypoint::ordtype::to_string(msg.fields.ordtype.get().value()) << '"'
        << ",time_in_force=\"" << sbe_binaryentrypoint::time_in_force::to_string(msg.fields.time_in_force.get().value()) << '"'
        << ",expire_date=" << (msg.fields.expire_date.get().has_value() ? std::to_string(msg.fields.expire_date.get().value()) : std::string_view("null"))
@@ -453,7 +453,7 @@ inline std::ostream& operator<<(std::ostream& os, const execution_report_modify_
        << ",protection_price=" << (msg.fields.protection_price.get().has_value() ? std::to_string(msg.fields.protection_price.get().value()) : std::string_view("null"))
        << ",trade_date=" << msg.fields.trade_date.get().value()
        << ",working_indicator=\"" << sbe_binaryentrypoint::working_indicator::to_string(msg.fields.working_indicator.get().value()) << '"'
-       << ",multi_leg_reporting_type=\"" << sbe_binaryentrypoint::multi_leg_reporting_type::to_string(msg.fields.multi_leg_reporting_type.get().value()) << '"'
+       << ",multi_leg_reporting_type=\"" << (msg.fields.multi_leg_reporting_type.get().has_value() ? sbe_binaryentrypoint::multi_leg_reporting_type::to_string(msg.fields.multi_leg_reporting_type.get().value()) : std::string_view("null")) << '"'
        << ",ordtype=\"" << sbe_binaryentrypoint::ordtype::to_string(msg.fields.ordtype.get().value()) << '"'
        << ",time_in_force=\"" << sbe_binaryentrypoint::time_in_force::to_string(msg.fields.time_in_force.get().value()) << '"'
        << ",expire_date=" << (msg.fields.expire_date.get().has_value() ? std::to_string(msg.fields.expire_date.get().value()) : std::string_view("null"))
@@ -487,7 +487,7 @@ inline std::ostream& operator<<(std::ostream& os, const execution_report_cancel_
        << ",origclordid=" << (msg.fields.origclordid.get().has_value() ? std::to_string(msg.fields.origclordid.get().value()) : std::string_view("null"))
        << ",trade_date=" << msg.fields.trade_date.get().value()
        << ",working_indicator=\"" << sbe_binaryentrypoint::working_indicator::to_string(msg.fields.working_indicator.get().value()) << '"'
-       << ",exec_restatement_reason=\"" << sbe_binaryentrypoint::exec_restatement_reason::to_string(msg.fields.exec_restatement_reason.get().value()) << '"'
+       << ",exec_restatement_reason=\"" << (msg.fields.exec_restatement_reason.get().has_value() ? sbe_binaryentrypoint::exec_restatement_reason::to_string(msg.fields.exec_restatement_reason.get().value()) : std::string_view("null")) << '"'
        << ",mass_action_report_id_optional=" << (msg.fields.mass_action_report_id_optional.get().has_value() ? std::to_string(msg.fields.mass_action_report_id_optional.get().value()) : std::string_view("null"))
        << ",ordtype=\"" << sbe_binaryentrypoint::ordtype::to_string(msg.fields.ordtype.get().value()) << '"'
        << ",time_in_force=\"" << sbe_binaryentrypoint::time_in_force::to_string(msg.fields.time_in_force.get().value()) << '"'
@@ -522,8 +522,8 @@ inline std::ostream& operator<<(std::ostream& os, const execution_report_trade_m
        << ",cum_qty=" << msg.fields.cum_qty.get().value()
        << ",aggressor_indicator=\"" << sbe_binaryentrypoint::aggressor_indicator::to_string(msg.fields.aggressor_indicator.get().value()) << '"'
        << ",exec_type=\"" << sbe_binaryentrypoint::exec_type::to_string(msg.fields.exec_type.get().value()) << '"'
-       << ",order_category=\"" << sbe_binaryentrypoint::order_category::to_string(msg.fields.order_category.get().value()) << '"'
-       << ",multi_leg_reporting_type=\"" << sbe_binaryentrypoint::multi_leg_reporting_type::to_string(msg.fields.multi_leg_reporting_type.get().value()) << '"'
+       << ",order_category=\"" << (msg.fields.order_category.get().has_value() ? sbe_binaryentrypoint::order_category::to_string(msg.fields.order_category.get().value()) : std::string_view("null")) << '"'
+       << ",multi_leg_reporting_type=\"" << (msg.fields.multi_leg_reporting_type.get().has_value() ? sbe_binaryentrypoint::multi_leg_reporting_type::to_string(msg.fields.multi_leg_reporting_type.get().value()) : std::string_view("null")) << '"'
        << ",trade_id=" << msg.fields.trade_id.get().value()
        << ",contra_broker=" << msg.fields.contra_broker.get().value()
        << ",order_id=" << msg.fields.order_id.get().value()
@@ -532,7 +532,7 @@ inline std::ostream& operator<<(std::ostream& os, const execution_report_trade_m
        << ",secondary_exec_id=" << (msg.fields.secondary_exec_id.get().has_value() ? std::to_string(msg.fields.secondary_exec_id.get().value()) : std::string_view("null"))
        << ",exec_ref_id=" << (msg.fields.exec_ref_id.get().has_value() ? std::to_string(msg.fields.exec_ref_id.get().value()) : std::string_view("null"))
        << ",cross_id_optional=" << (msg.fields.cross_id_optional.get().has_value() ? std::to_string(msg.fields.cross_id_optional.get().value()) : std::string_view("null"))
-       << ",crossed_indicator=\"" << sbe_binaryentrypoint::crossed_indicator::to_string(msg.fields.crossed_indicator.get().value()) << '"'
+       << ",crossed_indicator=\"" << (msg.fields.crossed_indicator.get().has_value() ? sbe_binaryentrypoint::crossed_indicator::to_string(msg.fields.crossed_indicator.get().value()) : std::string_view("null")) << '"'
        << ",order_qty=" << msg.fields.order_qty.get().value()
        << ",tail=" << json::tail_to_json_string(msg)
        ;
@@ -565,7 +565,7 @@ inline std::ostream& operator<<(std::ostream& os, const execution_report_reject_
        << ",min_qty=" << (msg.fields.min_qty.get().has_value() ? std::to_string(msg.fields.min_qty.get().value()) : std::string_view("null"))
        << ",max_floor=" << (msg.fields.max_floor.get().has_value() ? std::to_string(msg.fields.max_floor.get().value()) : std::string_view("null"))
        << ",cross_id_optional=" << (msg.fields.cross_id_optional.get().has_value() ? std::to_string(msg.fields.cross_id_optional.get().value()) : std::string_view("null"))
-       << ",crossed_indicator=\"" << sbe_binaryentrypoint::crossed_indicator::to_string(msg.fields.crossed_indicator.get().value()) << '"'
+       << ",crossed_indicator=\"" << (msg.fields.crossed_indicator.get().has_value() ? sbe_binaryentrypoint::crossed_indicator::to_string(msg.fields.crossed_indicator.get().value()) : std::string_view("null")) << '"'
        << ",tail=" << json::tail_to_json_string(msg)
        ;
     return os;
@@ -593,7 +593,7 @@ inline std::ostream& operator<<(std::ostream& os, const execution_report_forward
        << ",contra_broker=" << msg.fields.contra_broker.get().value()
        << ",order_id=" << msg.fields.order_id.get().value()
        << ",aggressor_indicator=\"" << sbe_binaryentrypoint::aggressor_indicator::to_string(msg.fields.aggressor_indicator.get().value()) << '"'
-       << ",settl_type_optional=\"" << sbe_binaryentrypoint::settl_type_optional::to_string(msg.fields.settl_type_optional.get().value()) << '"'
+       << ",settl_type_optional=\"" << (msg.fields.settl_type_optional.get().has_value() ? sbe_binaryentrypoint::settl_type_optional::to_string(msg.fields.settl_type_optional.get().value()) : std::string_view("null")) << '"'
        << ",trade_date=" << msg.fields.trade_date.get().value()
        << ",days_to_settlement_optional=" << (msg.fields.days_to_settlement_optional.get().has_value() ? std::to_string(msg.fields.days_to_settlement_optional.get().value()) : std::string_view("null"))
        << ",secondary_exec_id=" << (msg.fields.secondary_exec_id.get().has_value() ? std::to_string(msg.fields.secondary_exec_id.get().value()) : std::string_view("null"))
@@ -666,7 +666,7 @@ inline std::ostream& operator<<(std::ostream& os, const quote_request_message& m
        << ",transact_time=" << msg.fields.transact_time.get().value()
        << ",price=" << msg.fields.price.get().value()
        << ",settl_type=\"" << sbe_binaryentrypoint::settl_type::to_string(msg.fields.settl_type.get().value()) << '"'
-       << ",execute_underlying_trade=\"" << sbe_binaryentrypoint::execute_underlying_trade::to_string(msg.fields.execute_underlying_trade.get().value()) << '"'
+       << ",execute_underlying_trade=\"" << (msg.fields.execute_underlying_trade.get().has_value() ? sbe_binaryentrypoint::execute_underlying_trade::to_string(msg.fields.execute_underlying_trade.get().value()) : std::string_view("null")) << '"'
        << ",order_qty=" << msg.fields.order_qty.get().value()
        << ",sender_location=\"" << msg.fields.sender_location.get_trimmed().value() << '"'
        << ",entering_trader=\"" << msg.fields.entering_trader.get_trimmed().value() << '"'
@@ -685,24 +685,24 @@ inline std::ostream& operator<<(std::ostream& os, const quote_status_report_mess
        << ",bidirectional_business_header.poss_resend=" << static_cast<unsigned>(msg.fields.bidirectional_business_header.poss_resend.get().value())
        << ",bidirectional_business_header.market_segment_id_optional=" << (msg.fields.bidirectional_business_header.market_segment_id_optional.get().has_value() ? std::to_string(msg.fields.bidirectional_business_header.market_segment_id_optional.get().value()) : std::string_view("null"))
        << ",bidirectional_business_header.padding_char_2=\"" << msg.fields.bidirectional_business_header.padding_char_2.get_trimmed().value() << '"'
-       << ",quote_reject_reason=\"" << sbe_binaryentrypoint::quote_reject_reason::to_string(msg.fields.quote_reject_reason.get().value()) << '"'
+       << ",quote_reject_reason=\"" << (msg.fields.quote_reject_reason.get().has_value() ? sbe_binaryentrypoint::quote_reject_reason::to_string(msg.fields.quote_reject_reason.get().value()) : std::string_view("null")) << '"'
        << ",security_id=" << msg.fields.security_id.get().value()
        << ",quote_id=" << msg.fields.quote_id.get().value()
        << ",trade_id_optional=" << (msg.fields.trade_id_optional.get().has_value() ? std::to_string(msg.fields.trade_id_optional.get().value()) : std::string_view("null"))
        << ",contra_broker=" << msg.fields.contra_broker.get().value()
        << ",transact_time=" << msg.fields.transact_time.get().value()
        << ",quote_status=\"" << sbe_binaryentrypoint::quote_status::to_string(msg.fields.quote_status.get().value()) << '"'
-       << ",quote_status_response_to=\"" << sbe_binaryentrypoint::quote_status_response_to::to_string(msg.fields.quote_status_response_to.get().value()) << '"'
+       << ",quote_status_response_to=\"" << (msg.fields.quote_status_response_to.get().has_value() ? sbe_binaryentrypoint::quote_status_response_to::to_string(msg.fields.quote_status_response_to.get().value()) : std::string_view("null")) << '"'
        << ",account=" << (msg.fields.account.get().has_value() ? std::to_string(msg.fields.account.get().value()) : std::string_view("null"))
-       << ",side_optional=\"" << sbe_binaryentrypoint::side_optional::to_string(msg.fields.side_optional.get().value()) << '"'
-       << ",settl_type_optional=\"" << sbe_binaryentrypoint::settl_type_optional::to_string(msg.fields.settl_type_optional.get().value()) << '"'
+       << ",side_optional=\"" << (msg.fields.side_optional.get().has_value() ? sbe_binaryentrypoint::side_optional::to_string(msg.fields.side_optional.get().value()) : std::string_view("null")) << '"'
+       << ",settl_type_optional=\"" << (msg.fields.settl_type_optional.get().has_value() ? sbe_binaryentrypoint::settl_type_optional::to_string(msg.fields.settl_type_optional.get().value()) : std::string_view("null")) << '"'
        << ",price_optional=" << (msg.fields.price_optional.get().has_value() ? std::to_string(msg.fields.price_optional.get().value()) : std::string_view("null"))
        << ",order_qty=" << msg.fields.order_qty.get().value()
        << ",sender_location=\"" << msg.fields.sender_location.get_trimmed().value() << '"'
        << ",entering_trader=\"" << msg.fields.entering_trader.get_trimmed().value() << '"'
        << ",executing_trader=\"" << msg.fields.executing_trader.get_trimmed().value() << '"'
        << ",fixed_rate_optional=" << (msg.fields.fixed_rate_optional.get().has_value() ? std::to_string(msg.fields.fixed_rate_optional.get().value()) : std::string_view("null"))
-       << ",execute_underlying_trade=\"" << sbe_binaryentrypoint::execute_underlying_trade::to_string(msg.fields.execute_underlying_trade.get().value()) << '"'
+       << ",execute_underlying_trade=\"" << (msg.fields.execute_underlying_trade.get().has_value() ? sbe_binaryentrypoint::execute_underlying_trade::to_string(msg.fields.execute_underlying_trade.get().value()) : std::string_view("null")) << '"'
        << ",days_to_settlement_optional=" << (msg.fields.days_to_settlement_optional.get().has_value() ? std::to_string(msg.fields.days_to_settlement_optional.get().value()) : std::string_view("null"))
        << ",tail=" << json::tail_to_json_string(msg)
        ;
@@ -728,7 +728,7 @@ inline std::ostream& operator<<(std::ostream& os, const quote_message& msg) {
        << ",entering_trader=\"" << msg.fields.entering_trader.get_trimmed().value() << '"'
        << ",executing_trader=\"" << msg.fields.executing_trader.get_trimmed().value() << '"'
        << ",fixed_rate=" << msg.fields.fixed_rate.get().value()
-       << ",execute_underlying_trade=\"" << sbe_binaryentrypoint::execute_underlying_trade::to_string(msg.fields.execute_underlying_trade.get().value()) << '"'
+       << ",execute_underlying_trade=\"" << (msg.fields.execute_underlying_trade.get().has_value() ? sbe_binaryentrypoint::execute_underlying_trade::to_string(msg.fields.execute_underlying_trade.get().value()) : std::string_view("null")) << '"'
        << ",days_to_settlement=" << msg.fields.days_to_settlement.get().value()
        << ",tail=" << json::tail_to_json_string(msg)
        ;
@@ -767,7 +767,7 @@ inline std::ostream& operator<<(std::ostream& os, const quote_request_reject_mes
        << ",contra_broker=" << msg.fields.contra_broker.get().value()
        << ",transact_time=" << msg.fields.transact_time.get().value()
        << ",entering_trader=\"" << msg.fields.entering_trader.get_trimmed().value() << '"'
-       << ",settl_type_optional=\"" << sbe_binaryentrypoint::settl_type_optional::to_string(msg.fields.settl_type_optional.get().value()) << '"'
+       << ",settl_type_optional=\"" << (msg.fields.settl_type_optional.get().has_value() ? sbe_binaryentrypoint::settl_type_optional::to_string(msg.fields.settl_type_optional.get().value()) : std::string_view("null")) << '"'
        << ",price_optional=" << (msg.fields.price_optional.get().has_value() ? std::to_string(msg.fields.price_optional.get().value()) : std::string_view("null"))
        << ",order_qty_optional=" << (msg.fields.order_qty_optional.get().has_value() ? std::to_string(msg.fields.order_qty_optional.get().value()) : std::string_view("null"))
        << ",sender_location=\"" << msg.fields.sender_location.get_trimmed().value() << '"'
@@ -830,7 +830,7 @@ inline std::ostream& operator<<(std::ostream& os, const position_maintenance_rep
        << ",pos_maint_status=\"" << sbe_binaryentrypoint::pos_maint_status::to_string(msg.fields.pos_maint_status.get().value()) << '"'
        << ",trade_id_optional=" << (msg.fields.trade_id_optional.get().has_value() ? std::to_string(msg.fields.trade_id_optional.get().value()) : std::string_view("null"))
        << ",orig_pos_req_ref_id=" << (msg.fields.orig_pos_req_ref_id.get().has_value() ? std::to_string(msg.fields.orig_pos_req_ref_id.get().value()) : std::string_view("null"))
-       << ",account_type=\"" << sbe_binaryentrypoint::account_type::to_string(msg.fields.account_type.get().value()) << '"'
+       << ",account_type=\"" << (msg.fields.account_type.get().has_value() ? sbe_binaryentrypoint::account_type::to_string(msg.fields.account_type.get().value()) : std::string_view("null")) << '"'
        << ",clearing_business_date=" << msg.fields.clearing_business_date.get().value()
        << ",threshold_amount=" << (msg.fields.threshold_amount.get().has_value() ? std::to_string(msg.fields.threshold_amount.get().value()) : std::string_view("null"))
        << ",transact_time=" << msg.fields.transact_time.get().value()
@@ -898,11 +898,11 @@ inline std::ostream& operator<<(std::ostream& os, const order_mass_action_reques
        << ",inbound_business_header.market_segment_id=" << static_cast<unsigned>(msg.fields.inbound_business_header.market_segment_id.get().value())
        << ",inbound_business_header.padding=\"" << msg.fields.inbound_business_header.padding.get().value() << '"'
        << ",mass_action_type=\"" << sbe_binaryentrypoint::mass_action_type::to_string(msg.fields.mass_action_type.get().value()) << '"'
-       << ",mass_action_scope=\"" << sbe_binaryentrypoint::mass_action_scope::to_string(msg.fields.mass_action_scope.get().value()) << '"'
+       << ",mass_action_scope=\"" << (msg.fields.mass_action_scope.get().has_value() ? sbe_binaryentrypoint::mass_action_scope::to_string(msg.fields.mass_action_scope.get().value()) : std::string_view("null")) << '"'
        << ",cl_ord_id=" << msg.fields.cl_ord_id.get().value()
-       << ",mass_cancel_restatement_reason=\"" << sbe_binaryentrypoint::mass_cancel_restatement_reason::to_string(msg.fields.mass_cancel_restatement_reason.get().value()) << '"'
+       << ",mass_cancel_restatement_reason=\"" << (msg.fields.mass_cancel_restatement_reason.get().has_value() ? sbe_binaryentrypoint::mass_cancel_restatement_reason::to_string(msg.fields.mass_cancel_restatement_reason.get().value()) : std::string_view("null")) << '"'
        << ",ordtagid=" << (msg.fields.ordtagid.get().has_value() ? std::to_string(msg.fields.ordtagid.get().value()) : std::string_view("null"))
-       << ",side_optional=\"" << sbe_binaryentrypoint::side_optional::to_string(msg.fields.side_optional.get().value()) << '"'
+       << ",side_optional=\"" << (msg.fields.side_optional.get().has_value() ? sbe_binaryentrypoint::side_optional::to_string(msg.fields.side_optional.get().value()) : std::string_view("null")) << '"'
        << ",asset=\"" << (msg.fields.asset.get_trimmed().has_value() ? msg.fields.asset.get_trimmed().value() : std::string_view("null")) << '"'
        << ",security_id_optional=" << (msg.fields.security_id_optional.get().has_value() ? std::to_string(msg.fields.security_id_optional.get().value()) : std::string_view("null"))
        << ",investor_id.prefix=" << (msg.fields.investor_id.prefix.get().has_value() ? std::to_string(msg.fields.investor_id.prefix.get().value()) : std::string_view("null"))
@@ -918,15 +918,15 @@ inline std::ostream& operator<<(std::ostream& os, const order_mass_action_report
        << ",outbound_business_header.poss_resend=" << static_cast<unsigned>(msg.fields.outbound_business_header.poss_resend.get().value())
        << ",outbound_business_header.padding=\"" << msg.fields.outbound_business_header.padding.get().value() << '"'
        << ",mass_action_type=\"" << sbe_binaryentrypoint::mass_action_type::to_string(msg.fields.mass_action_type.get().value()) << '"'
-       << ",mass_action_scope=\"" << sbe_binaryentrypoint::mass_action_scope::to_string(msg.fields.mass_action_scope.get().value()) << '"'
+       << ",mass_action_scope=\"" << (msg.fields.mass_action_scope.get().has_value() ? sbe_binaryentrypoint::mass_action_scope::to_string(msg.fields.mass_action_scope.get().value()) : std::string_view("null")) << '"'
        << ",cl_ord_id=" << msg.fields.cl_ord_id.get().value()
        << ",mass_action_report_id=" << msg.fields.mass_action_report_id.get().value()
        << ",transact_time=" << msg.fields.transact_time.get().value()
        << ",mass_action_response=\"" << sbe_binaryentrypoint::mass_action_response::to_string(msg.fields.mass_action_response.get().value()) << '"'
-       << ",mass_action_reject_reason=\"" << sbe_binaryentrypoint::mass_action_reject_reason::to_string(msg.fields.mass_action_reject_reason.get().value()) << '"'
-       << ",mass_cancel_restatement_reason=\"" << sbe_binaryentrypoint::mass_cancel_restatement_reason::to_string(msg.fields.mass_cancel_restatement_reason.get().value()) << '"'
+       << ",mass_action_reject_reason=\"" << (msg.fields.mass_action_reject_reason.get().has_value() ? sbe_binaryentrypoint::mass_action_reject_reason::to_string(msg.fields.mass_action_reject_reason.get().value()) : std::string_view("null")) << '"'
+       << ",mass_cancel_restatement_reason=\"" << (msg.fields.mass_cancel_restatement_reason.get().has_value() ? sbe_binaryentrypoint::mass_cancel_restatement_reason::to_string(msg.fields.mass_cancel_restatement_reason.get().value()) : std::string_view("null")) << '"'
        << ",ordtagid=" << (msg.fields.ordtagid.get().has_value() ? std::to_string(msg.fields.ordtagid.get().value()) : std::string_view("null"))
-       << ",side_optional=\"" << sbe_binaryentrypoint::side_optional::to_string(msg.fields.side_optional.get().value()) << '"'
+       << ",side_optional=\"" << (msg.fields.side_optional.get().has_value() ? sbe_binaryentrypoint::side_optional::to_string(msg.fields.side_optional.get().value()) : std::string_view("null")) << '"'
        << ",asset=\"" << (msg.fields.asset.get_trimmed().has_value() ? msg.fields.asset.get_trimmed().value() : std::string_view("null")) << '"'
        << ",security_id_optional=" << (msg.fields.security_id_optional.get().has_value() ? std::to_string(msg.fields.security_id_optional.get().value()) : std::string_view("null"))
        << ",investor_id.prefix=" << (msg.fields.investor_id.prefix.get().has_value() ? std::to_string(msg.fields.investor_id.prefix.get().value()) : std::string_view("null"))

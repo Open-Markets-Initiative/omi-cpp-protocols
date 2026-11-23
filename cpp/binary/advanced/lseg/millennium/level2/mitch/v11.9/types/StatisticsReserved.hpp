@@ -13,6 +13,7 @@ struct statistics_reserved {
 
     using type = uint8_t;
 
+    static constexpr type unused_8 = type{0xFF} << 0;
 
     static constexpr const char* name = "statistics_reserved";
     static constexpr std::size_t size = 1;
@@ -42,7 +43,9 @@ struct statistics_reserved {
     [[nodiscard]] constexpr bool has(type bit) const { return (value & bit) != 0; }
     constexpr void set(type bit, bool enabled) { if (enabled) value |= bit; else value &= static_cast<type>(~bit); }
 
+    [[nodiscard]] constexpr type get_unused_8() const { return static_cast<type>((value & unused_8) >> 0); }
 
+    constexpr void set_unused_8(type v) { const type held = static_cast<type>((value & static_cast<type>(~unused_8)) | ((v << 0) & unused_8)); value = held; }
 
   protected:
     type value;

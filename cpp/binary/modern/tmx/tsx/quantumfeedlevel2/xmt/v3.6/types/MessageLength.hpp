@@ -1,0 +1,32 @@
+// Tmx.Tsx.QuantumFeedLevel2.Xmt.v3.6: types/MessageLength.hpp
+#pragma once
+
+#include <cstddef>
+#include <cstdint>
+
+namespace tmx::tsx::quantumfeedlevel2::xmt::v3_6 {
+
+// Length of message from Header to Body inclusive
+struct MessageLength {
+
+    static constexpr const char* name = "Message Length";
+    static constexpr std::size_t size =  2;
+    using type = std::uint16_t;
+
+    // default constructor
+    constexpr MessageLength()
+     : value{ 0 } {}
+
+    // standard constructor
+    constexpr explicit MessageLength(const std::uint16_t value)
+     : value{ value } {}
+
+    // get value of MessageLength field
+    [[nodiscard]] std::uint16_t get() const {
+        return value;
+    }
+
+  protected:
+    std::uint16_t value;
+};
+}

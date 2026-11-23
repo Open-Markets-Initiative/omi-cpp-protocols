@@ -3,6 +3,7 @@
 
 #include <array>
 #include <cstddef>
+#include <cstdint>
 
 namespace bse::bseindia::eobi::fbe::v1_4 {
 

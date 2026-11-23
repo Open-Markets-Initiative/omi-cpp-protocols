@@ -26,7 +26,7 @@ Updates are greatly appreciated; however, this entire repository is source gener
 
 | Repository | Protocol Count | Generated Lines |
 | --- | --- | --- |
-| Omi C++ Protocols | 112 | 3,019,532 |
+| Omi C++ Protocols | 113 | 3,047,873 |
 
 ## Programs
 
@@ -81,7 +81,7 @@ makes it where zlib is found.
 
 ## Tests
 
-`tests/` holds a test per protocol and format (553 of them), each written against the
+`tests/` holds a test per protocol and format (558 of them), each written against the
 surface that format's program uses, plus one run of each program on its protocol's first
 declared capture (304 of them):
 
@@ -94,7 +94,7 @@ declared capture (304 of them):
   dump reads through
 - the program runs require dump to print the message's class, statistics to count it,
   extractor to write a sample, and verify to pass the whole capture
-- roundtrip runs without a capture (503 of them): each must read back every
+- roundtrip runs without a capture (508 of them): each must read back every
   message it wrote as it was written
 
 Every build compiles them, so a test that does not build fails the build like anything under

@@ -3,6 +3,7 @@
 
 #include <array>
 #include <cstddef>
+#include <cstdint>
 
 namespace miax::pearlequities::depthofmarket::mach::v1_3_d {
 

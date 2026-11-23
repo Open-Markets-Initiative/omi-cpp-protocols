@@ -294,16 +294,20 @@ struct cxl_qty {
 
 // Dated Date: datedDate
 struct dated_date {
-    using type = std::int32_t;
+    enum class type : std::int32_t {
+        no_end_date = 2932896,
+    };
+
     static constexpr std::size_t size = 4;
     static constexpr std::endian order = std::endian::little;
-    static constexpr type no_value = static_cast<type>(0LL);
+    static constexpr type no_value = static_cast<type>(0);
 
-    constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
+    constexpr type value() const noexcept { return static_cast<type>(raw()); }
     constexpr operator type() const noexcept { return value(); }
+    constexpr std::underlying_type_t<type> raw() const noexcept { return tmp::ordered<order>(value_); }
 
   protected:
-    type value_;
+    std::underlying_type_t<type> value_;
 };
 
 // Day
@@ -334,16 +338,20 @@ struct encoding_type {
 
 // End Date: endDate
 struct end_date {
-    using type = std::int32_t;
+    enum class type : std::int32_t {
+        no_end_date = 2932896,
+    };
+
     static constexpr std::size_t size = 4;
     static constexpr std::endian order = std::endian::little;
-    static constexpr type no_value = static_cast<type>(0LL);
+    static constexpr type no_value = static_cast<type>(0);
 
-    constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
+    constexpr type value() const noexcept { return static_cast<type>(raw()); }
     constexpr operator type() const noexcept { return value(); }
+    constexpr std::underlying_type_t<type> raw() const noexcept { return tmp::ordered<order>(value_); }
 
   protected:
-    type value_;
+    std::underlying_type_t<type> value_;
 };
 
 // End Of Event: EndOfEvent
@@ -558,15 +566,19 @@ struct isin_number {
 
 // Issue Date: issueDate
 struct issue_date {
-    using type = std::int32_t;
+    enum class type : std::int32_t {
+        no_end_date = 2932896,
+    };
+
     static constexpr std::size_t size = 4;
     static constexpr std::endian order = std::endian::little;
 
-    constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
+    constexpr type value() const noexcept { return static_cast<type>(raw()); }
     constexpr operator type() const noexcept { return value(); }
+    constexpr std::underlying_type_t<type> raw() const noexcept { return tmp::ordered<order>(value_); }
 
   protected:
-    type value_;
+    std::underlying_type_t<type> value_;
 };
 
 // Language Code: languageCode
@@ -815,16 +827,20 @@ struct market_segment_id {
 
 // Maturity Date: maturityDate
 struct maturity_date {
-    using type = std::int32_t;
+    enum class type : std::int32_t {
+        no_end_date = 2932896,
+    };
+
     static constexpr std::size_t size = 4;
     static constexpr std::endian order = std::endian::little;
-    static constexpr type no_value = static_cast<type>(0LL);
+    static constexpr type no_value = static_cast<type>(0);
 
-    constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
+    constexpr type value() const noexcept { return static_cast<type>(raw()); }
     constexpr operator type() const noexcept { return value(); }
+    constexpr std::underlying_type_t<type> raw() const noexcept { return tmp::ordered<order>(value_); }
 
   protected:
-    type value_;
+    std::underlying_type_t<type> value_;
 };
 
 // Max Order Qty: maxOrderQty
@@ -1582,7 +1598,7 @@ struct out_of_sequence {
     static constexpr int shift = 3;
 };
 
-// Packet Reserved: Packet Reserved Field
+// Packet Reserved: Reserved byte, carrying no meaning, between the channel id and the sequence version
 struct packet_reserved {
     using type = std::uint8_t;
     static constexpr std::size_t size = 1;
@@ -2180,16 +2196,20 @@ struct settl_currency {
 
 // Settl Date Local Mkt Date 32 Optional: settlDate
 struct settl_date_local_mkt_date_32_optional {
-    using type = std::int32_t;
+    enum class type : std::int32_t {
+        no_end_date = 2932896,
+    };
+
     static constexpr std::size_t size = 4;
     static constexpr std::endian order = std::endian::little;
-    static constexpr type no_value = static_cast<type>(0LL);
+    static constexpr type no_value = static_cast<type>(0);
 
-    constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
+    constexpr type value() const noexcept { return static_cast<type>(raw()); }
     constexpr operator type() const noexcept { return value(); }
+    constexpr std::underlying_type_t<type> raw() const noexcept { return tmp::ordered<order>(value_); }
 
   protected:
-    type value_;
+    std::underlying_type_t<type> value_;
 };
 
 // Settl Date Local Mkt Date Optional: settlDate
@@ -2240,16 +2260,20 @@ struct settl_type {
 
 // Start Date: startDate
 struct start_date {
-    using type = std::int32_t;
+    enum class type : std::int32_t {
+        no_end_date = 2932896,
+    };
+
     static constexpr std::size_t size = 4;
     static constexpr std::endian order = std::endian::little;
-    static constexpr type no_value = static_cast<type>(0LL);
+    static constexpr type no_value = static_cast<type>(0);
 
-    constexpr type value() const noexcept { return tmp::ordered<order>(value_); }
+    constexpr type value() const noexcept { return static_cast<type>(raw()); }
     constexpr operator type() const noexcept { return value(); }
+    constexpr std::underlying_type_t<type> raw() const noexcept { return tmp::ordered<order>(value_); }
 
   protected:
-    type value_;
+    std::underlying_type_t<type> value_;
 };
 
 // Strike Currency: strikeCurrency

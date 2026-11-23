@@ -273,6 +273,7 @@ std::size_t parse_md_incremental_refresh_trade_summary([[maybe_unused]] const st
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& md_incremental_refresh_trade_summary_section_1_ = tmp::read<md_incremental_refresh_trade_summary_section_1>(data + offset, bound - offset, handler); offset += md_incremental_refresh_trade_summary_section_1::size;
+    tmp::call(handler, md_incremental_refresh_trade_summary_section_1_.template get<match_event_indicator>());
     offset += parse_incremental_refresh_trade_summary_groups(data + offset, bound - offset, handler);
     offset += parse_incremental_refresh_trade_summary_order_id_groups(data + offset, bound - offset, handler);
     return offset;
@@ -389,6 +390,9 @@ std::size_t parse_md_instrument_definition_option([[maybe_unused]] const std::by
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& md_instrument_definition_option_section_1_ = tmp::read<md_instrument_definition_option_section_1>(data + offset, bound - offset, handler); offset += md_instrument_definition_option_section_1::size;
+    tmp::call(handler, md_instrument_definition_option_section_1_.template get<match_event_indicator>());
+    tmp::call(handler, md_instrument_definition_option_section_1_.template get<maturity_month_year>());
+    tmp::call(handler, md_instrument_definition_option_section_1_.template get<settl_price_type>());
     offset += parse_events_groups(data + offset, bound - offset, handler);
     offset += parse_feed_types_groups(data + offset, bound - offset, handler);
     offset += parse_inst_attrib_groups(data + offset, bound - offset, handler);
@@ -424,6 +428,7 @@ std::size_t parse_quote_request([[maybe_unused]] const std::byte* data, [[maybe_
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& quote_request_section_1_ = tmp::read<quote_request_section_1>(data + offset, bound - offset, handler); offset += quote_request_section_1::size;
+    tmp::call(handler, quote_request_section_1_.template get<match_event_indicator>());
     offset += parse_related_sym_groups(data + offset, bound - offset, handler);
     return offset;
 }
@@ -486,6 +491,7 @@ std::size_t parse_md_incremental_refresh_volume([[maybe_unused]] const std::byte
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& md_incremental_refresh_volume_section_1_ = tmp::read<md_incremental_refresh_volume_section_1>(data + offset, bound - offset, handler); offset += md_incremental_refresh_volume_section_1::size;
+    tmp::call(handler, md_incremental_refresh_volume_section_1_.template get<match_event_indicator>());
     offset += parse_incremental_refresh_volume_groups(data + offset, bound - offset, handler);
     return offset;
 }
@@ -517,6 +523,7 @@ std::size_t parse_md_incremental_refresh_trade([[maybe_unused]] const std::byte*
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& md_incremental_refresh_trade_section_1_ = tmp::read<md_incremental_refresh_trade_section_1>(data + offset, bound - offset, handler); offset += md_incremental_refresh_trade_section_1::size;
+    tmp::call(handler, md_incremental_refresh_trade_section_1_.template get<match_event_indicator>());
     offset += parse_incremental_refresh_trade_groups(data + offset, bound - offset, handler);
     return offset;
 }
@@ -548,6 +555,7 @@ std::size_t parse_md_incremental_refresh_session_statistics([[maybe_unused]] con
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& md_incremental_refresh_session_statistics_section_1_ = tmp::read<md_incremental_refresh_session_statistics_section_1>(data + offset, bound - offset, handler); offset += md_incremental_refresh_session_statistics_section_1::size;
+    tmp::call(handler, md_incremental_refresh_session_statistics_section_1_.template get<match_event_indicator>());
     offset += parse_incremental_refresh_session_statistics_groups(data + offset, bound - offset, handler);
     return offset;
 }
@@ -579,6 +587,7 @@ std::size_t parse_md_incremental_refresh_limits_banding([[maybe_unused]] const s
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& md_incremental_refresh_limits_banding_section_1_ = tmp::read<md_incremental_refresh_limits_banding_section_1>(data + offset, bound - offset, handler); offset += md_incremental_refresh_limits_banding_section_1::size;
+    tmp::call(handler, md_incremental_refresh_limits_banding_section_1_.template get<match_event_indicator>());
     offset += parse_incremental_refresh_limits_banding_groups(data + offset, bound - offset, handler);
     return offset;
 }
@@ -610,6 +619,7 @@ std::size_t parse_md_incremental_refresh_daily_statistics([[maybe_unused]] const
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& md_incremental_refresh_daily_statistics_section_1_ = tmp::read<md_incremental_refresh_daily_statistics_section_1>(data + offset, bound - offset, handler); offset += md_incremental_refresh_daily_statistics_section_1::size;
+    tmp::call(handler, md_incremental_refresh_daily_statistics_section_1_.template get<match_event_indicator>());
     offset += parse_incremental_refresh_daily_statistics_groups(data + offset, bound - offset, handler);
     return offset;
 }
@@ -641,6 +651,7 @@ std::size_t parse_md_incremental_refresh_book([[maybe_unused]] const std::byte* 
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& md_incremental_refresh_book_section_1_ = tmp::read<md_incremental_refresh_book_section_1>(data + offset, bound - offset, handler); offset += md_incremental_refresh_book_section_1::size;
+    tmp::call(handler, md_incremental_refresh_book_section_1_.template get<match_event_indicator>());
     offset += parse_incremental_refresh_book_groups(data + offset, bound - offset, handler);
     return offset;
 }
@@ -672,6 +683,9 @@ std::size_t parse_md_instrument_definition_spread([[maybe_unused]] const std::by
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& md_instrument_definition_spread_section_1_ = tmp::read<md_instrument_definition_spread_section_1>(data + offset, bound - offset, handler); offset += md_instrument_definition_spread_section_1::size;
+    tmp::call(handler, md_instrument_definition_spread_section_1_.template get<match_event_indicator>());
+    tmp::call(handler, md_instrument_definition_spread_section_1_.template get<maturity_month_year>());
+    tmp::call(handler, md_instrument_definition_spread_section_1_.template get<settl_price_type>());
     offset += parse_events_groups(data + offset, bound - offset, handler);
     offset += parse_feed_types_groups(data + offset, bound - offset, handler);
     offset += parse_inst_attrib_groups(data + offset, bound - offset, handler);
@@ -686,6 +700,9 @@ std::size_t parse_md_instrument_definition_future([[maybe_unused]] const std::by
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& md_instrument_definition_future_section_1_ = tmp::read<md_instrument_definition_future_section_1>(data + offset, bound - offset, handler); offset += md_instrument_definition_future_section_1::size;
+    tmp::call(handler, md_instrument_definition_future_section_1_.template get<match_event_indicator>());
+    tmp::call(handler, md_instrument_definition_future_section_1_.template get<maturity_month_year>());
+    tmp::call(handler, md_instrument_definition_future_section_1_.template get<settl_price_type>());
     offset += parse_events_groups(data + offset, bound - offset, handler);
     offset += parse_feed_types_groups(data + offset, bound - offset, handler);
     offset += parse_inst_attrib_groups(data + offset, bound - offset, handler);
@@ -720,6 +737,7 @@ std::size_t parse_channel_reset([[maybe_unused]] const std::byte* data, [[maybe_
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& channel_reset_section_1_ = tmp::read<channel_reset_section_1>(data + offset, bound - offset, handler); offset += channel_reset_section_1::size;
+    tmp::call(handler, channel_reset_section_1_.template get<match_event_indicator>());
     offset += parse_channel_reset_groups(data + offset, bound - offset, handler);
     return offset;
 }

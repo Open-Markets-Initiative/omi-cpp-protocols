@@ -232,7 +232,7 @@ inline std::ostream& operator<<(std::ostream& os, const execution_summary_messag
        << ",exec_id=" << msg.fields.exec_id.get().value()
        << ",last_qty=" << msg.fields.last_qty.get().value()
        << ",aggressor_side=\"" << fbe_eobi::aggressor_side::to_string(msg.fields.aggressor_side.get().value()) << '"'
-       << ",trade_condition=\"" << fbe_eobi::trade_condition::to_string(msg.fields.trade_condition.get().value()) << '"'
+       << ",trade_condition=\"" << (msg.fields.trade_condition.get().has_value() ? fbe_eobi::trade_condition::to_string(msg.fields.trade_condition.get().value()) : std::string_view("null")) << '"'
        << ",last_px=" << msg.fields.last_px.get().value()
        << ",resting_hidden_qty=" << (msg.fields.resting_hidden_qty.get().has_value() ? std::to_string(msg.fields.resting_hidden_qty.get().value()) : std::string_view("null"))
        ;

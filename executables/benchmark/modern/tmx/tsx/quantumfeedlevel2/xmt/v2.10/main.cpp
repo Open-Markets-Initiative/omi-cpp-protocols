@@ -75,6 +75,11 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest(message->symbol.get());
             checksum += (static_cast<std::uint64_t>(message->calculated_opening_price.integer()) != 0x0ULL ? bench::digest(message->calculated_opening_price.integer()) : std::uint64_t{0});
             checksum += bench::digest(message->order_side.get());
+            for (std::size_t cop_order_index = 0; const auto& cop_order_entry : message->cop_order) {
+                checksum += cop_order_index++;
+                checksum += (static_cast<std::uint16_t>(cop_order_entry.broker_number.get()) != 0x0U ? bench::digest(cop_order_entry.broker_number.get()) : std::uint64_t{0});
+                checksum += (static_cast<std::uint64_t>(cop_order_entry.order_id.get()) != 0x0ULL ? bench::digest(cop_order_entry.order_id.get()) : std::uint64_t{0});
+            }
             checksum += (static_cast<std::uint64_t>(message->trading_system_time_stamp.get()) != 0x0ULL ? bench::digest(message->trading_system_time_stamp.get()) : std::uint64_t{0});
         } else if (iterator.msg_type == 'B') {
             [[maybe_unused]] const auto* message = protocol::AssignCopNoOrdersMessage::parse(iterator.message);
@@ -86,6 +91,12 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest(message->symbol.get());
             checksum += (static_cast<std::uint64_t>(message->calculated_opening_price.integer()) != 0x0ULL ? bench::digest(message->calculated_opening_price.integer()) : std::uint64_t{0});
             checksum += bench::digest(message->order_side.get());
+            for (std::size_t cop_limit_index = 0; const auto& cop_limit_entry : message->cop_limit) {
+                checksum += cop_limit_index++;
+                checksum += (static_cast<std::uint16_t>(cop_limit_entry.broker_number.get()) != 0x0U ? bench::digest(cop_limit_entry.broker_number.get()) : std::uint64_t{0});
+                checksum += (static_cast<std::uint64_t>(cop_limit_entry.order_id.get()) != 0x0ULL ? bench::digest(cop_limit_entry.order_id.get()) : std::uint64_t{0});
+                checksum += (static_cast<std::uint64_t>(cop_limit_entry.price.integer()) != 0x0ULL ? bench::digest(cop_limit_entry.price.integer()) : std::uint64_t{0});
+            }
             checksum += (static_cast<std::uint64_t>(message->trading_system_time_stamp.get()) != 0x0ULL ? bench::digest(message->trading_system_time_stamp.get()) : std::uint64_t{0});
         } else if (iterator.msg_type == 'E') {
             [[maybe_unused]] const auto* message = protocol::MarketStateUpdateMessage::parse(iterator.message);

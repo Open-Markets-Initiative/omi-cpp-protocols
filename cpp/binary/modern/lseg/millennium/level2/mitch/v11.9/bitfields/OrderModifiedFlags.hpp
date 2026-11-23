@@ -32,8 +32,8 @@ struct OrderModifiedFlags {
     }
 
     // Unused
-    [[nodiscard]] constexpr bool Unused4() const {
-        return value & mask::Unused4;
+    [[nodiscard]] constexpr type Unused4() const {
+        return static_cast<type>((value & mask::Unused4) >> 1);
     }
 
     // Firm Quote
@@ -42,8 +42,8 @@ struct OrderModifiedFlags {
     }
 
     // Unused
-    [[nodiscard]] constexpr bool Unused2() const {
-        return value & mask::Unused2;
+    [[nodiscard]] constexpr type Unused2() const {
+        return static_cast<type>((value & mask::Unused2) >> 6);
     }
 
     // all bits

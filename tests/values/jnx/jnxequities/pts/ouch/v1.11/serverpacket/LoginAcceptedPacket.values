@@ -1,0 +1,7 @@
+# Jnx.JnxEquities.Pts.Ouch.v1.11 LoginAcceptedPacket: canonical values of 'serverpacket', read by the model
+stream 0
+serverpacket.serversoupbintcppacket[0].serverpacketheader.packetlength = 31
+serverpacket.serversoupbintcppacket[0].serverpacketheader.serverpackettype = A
+serverpacket.serversoupbintcppacket[0].serverpayload = serverpacket.serversoupbintcppacket.serverpayload.loginacceptedpacket
+serverpacket.serversoupbintcppacket[0].serverpayload.loginacceptedpacket.acceptedsession = 1689192121
+serverpacket.serversoupbintcppacket[0].serverpayload.loginacceptedpacket.acceptedsequencenumber = 135

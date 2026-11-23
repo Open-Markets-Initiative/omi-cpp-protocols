@@ -1,0 +1,11 @@
+# Jnx.JnxEquities.Pts.Ouch.v1.11 OrderCanceledMessage: canonical values of 'serverpacket', read by the model
+stream 0
+serverpacket.serversoupbintcppacket[0].serverpacketheader.packetlength = 19
+serverpacket.serversoupbintcppacket[0].serverpacketheader.serverpackettype = S
+serverpacket.serversoupbintcppacket[0].serverpayload = serverpacket.serversoupbintcppacket.serverpayload.sequenceddatapacket
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessagetype = C
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessage = serverpacket.serversoupbintcppacket.serverpayload.sequenceddatapacket.sequencedmessage.ordercanceledmessage
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessage.ordercanceledmessage.timestamp = 32122265380000
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessage.ordercanceledmessage.ordertoken = 3000448
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessage.ordercanceledmessage.decrementquantity = 100
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessage.ordercanceledmessage.ordercanceledreason = U

@@ -49,9 +49,9 @@ public:
         return entry->trading_reference_date.get();
     }
 
-    sbe_mdp3::open_close_settl_flag::enum_type open_close_settl_flag() const {
+    std::optional<sbe_mdp3::open_close_settl_flag::enum_type> open_close_settl_flag() const {
         auto* entry = reinterpret_cast<const snapshot_full_refresh_legacy_groups_entry*>(pos_);
-        return entry->open_close_settl_flag.get().value();
+        return entry->open_close_settl_flag.get();
     }
 
     std::uint8_t settl_price_type() const {

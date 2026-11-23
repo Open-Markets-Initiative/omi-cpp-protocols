@@ -1,0 +1,10 @@
+# Jnx.JnxEquities.Pts.Ouch.v1.11 OrderRejectedMessage: canonical values of 'serverpacket', read by the model
+stream 0
+serverpacket.serversoupbintcppacket[0].serverpacketheader.packetlength = 15
+serverpacket.serversoupbintcppacket[0].serverpacketheader.serverpackettype = S
+serverpacket.serversoupbintcppacket[0].serverpayload = serverpacket.serversoupbintcppacket.serverpayload.sequenceddatapacket
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessagetype = J
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessage = serverpacket.serversoupbintcppacket.serverpayload.sequenceddatapacket.sequencedmessage.orderrejectedmessage
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessage.orderrejectedmessage.timestamp = 32122264922000
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessage.orderrejectedmessage.ordertoken = 3000447
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessage.orderrejectedmessage.orderrejectedreason = X

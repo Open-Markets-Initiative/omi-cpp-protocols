@@ -3,6 +3,7 @@
 
 #include <array>
 #include <cstddef>
+#include <cstdint>
 
 namespace nyse::texasequities::integratedfeed::pillar::v2_5_g {
 

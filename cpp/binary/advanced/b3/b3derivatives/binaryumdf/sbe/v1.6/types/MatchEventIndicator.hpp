@@ -19,6 +19,7 @@ struct match_event_indicator {
     static constexpr type last_stats_msg = type{1} << 3;
     static constexpr type last_implied_msg = type{1} << 4;
     static constexpr type recovery_msg = type{1} << 5;
+    static constexpr type unused = type{1} << 6;
     static constexpr type end_of_event = type{1} << 7;
 
     static constexpr const char* name = "match_event_indicator";
@@ -55,6 +56,7 @@ struct match_event_indicator {
     [[nodiscard]] constexpr bool has_last_stats_msg() const { return has(last_stats_msg); }
     [[nodiscard]] constexpr bool has_last_implied_msg() const { return has(last_implied_msg); }
     [[nodiscard]] constexpr bool has_recovery_msg() const { return has(recovery_msg); }
+    [[nodiscard]] constexpr bool has_unused() const { return has(unused); }
     [[nodiscard]] constexpr bool has_end_of_event() const { return has(end_of_event); }
 
     constexpr void set_last_trade_msg(bool v) { set(last_trade_msg, v); }
@@ -63,6 +65,7 @@ struct match_event_indicator {
     constexpr void set_last_stats_msg(bool v) { set(last_stats_msg, v); }
     constexpr void set_last_implied_msg(bool v) { set(last_implied_msg, v); }
     constexpr void set_recovery_msg(bool v) { set(recovery_msg, v); }
+    constexpr void set_unused(bool v) { set(unused, v); }
     constexpr void set_end_of_event(bool v) { set(end_of_event, v); }
 
   protected:

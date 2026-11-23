@@ -34,9 +34,9 @@ public:
         return entry->side.get().value();
     }
 
-    sbe_mdp3::aggressor_indicator::enum_type aggressor_indicator() const {
+    std::optional<sbe_mdp3::aggressor_indicator::enum_type> aggressor_indicator() const {
         auto* entry = reinterpret_cast<const security_status_workup_groups_entry*>(pos_);
-        return entry->aggressor_indicator.get().value();
+        return entry->aggressor_indicator.get();
     }
 
     const std::byte* end_position() const { return pos_ + block_length_; }

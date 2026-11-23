@@ -39,9 +39,9 @@ public:
         return entry->rpt_seq.get().value();
     }
 
-    sbe_mdp3::open_close_settl_flag::enum_type open_close_settl_flag() const {
+    std::optional<sbe_mdp3::open_close_settl_flag::enum_type> open_close_settl_flag() const {
         auto* entry = reinterpret_cast<const md_incremental_refresh_session_statistics_incremental_refresh_session_statistics_groups_entry*>(pos_);
-        return entry->open_close_settl_flag.get().value();
+        return entry->open_close_settl_flag.get();
     }
 
     sbe_mdp3::md_update_action::enum_type md_update_action() const {

@@ -51,14 +51,14 @@ struct BodyIterator {
             return false;
         }
 
-        if (current + sizeof(BodyHeader) > end) {
+        if (current + sizeof(BodyHeader) + sizeof(BusinessHeader) > end) {
             return false;
         }
 
         message_index++;
 
         body_header = BodyHeader::parse(current);
-        message = current + sizeof(BodyHeader);
+        message = current + sizeof(BodyHeader) + sizeof(BusinessHeader);
 
         msg_type = body_header->msg_type.get();
         msg_length = body_header->msg_length.get();

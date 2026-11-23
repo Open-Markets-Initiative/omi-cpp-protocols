@@ -3,6 +3,7 @@
 
 #include <array>
 #include <cstddef>
+#include <cstdint>
 
 namespace lseg::millennium::level2::mitch::v11_9 {
 

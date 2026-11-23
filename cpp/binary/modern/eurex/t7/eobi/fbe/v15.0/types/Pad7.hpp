@@ -3,6 +3,7 @@
 
 #include <array>
 #include <cstddef>
+#include <cstdint>
 
 namespace eurex::t7::eobi::fbe::v15_0 {
 

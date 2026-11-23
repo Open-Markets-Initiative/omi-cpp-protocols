@@ -29,6 +29,11 @@ static const type no_value = -999999999999999999;
         return value;
     }
 
+    // does MbbPrice hold a value, rather than the one reserved for none
+    [[nodiscard]] bool has_value() const {
+        return integer() != no_value;
+    }
+
     // decimal value of MbbPrice field
     [[nodiscard]] double get() const {
         return integer() / denominator;

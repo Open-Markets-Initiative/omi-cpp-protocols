@@ -360,6 +360,7 @@ std::size_t parse_fractional_approximate_adjusted_volume_market_center_message([
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& fractional_approximate_adjusted_volume_market_center_message_section_1_ = tmp::read<fractional_approximate_adjusted_volume_market_center_message_section_1>(data + offset, bound - offset, handler); offset += fractional_approximate_adjusted_volume_market_center_message_section_1::size;
+    tmp::call(handler, fractional_approximate_adjusted_volume_market_center_message_section_1_.template get<timestamp_1>());
     {
         std::size_t count = static_cast<std::size_t>(tmp::rule(fractional_approximate_adjusted_volume_market_center_message_section_1_.template get<number_of_participants>()));
         while (count-- > 0) {
@@ -375,6 +376,7 @@ std::size_t parse_approximate_adjusted_volume_market_center_message([[maybe_unus
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& approximate_adjusted_volume_market_center_message_section_1_ = tmp::read<approximate_adjusted_volume_market_center_message_section_1>(data + offset, bound - offset, handler); offset += approximate_adjusted_volume_market_center_message_section_1::size;
+    tmp::call(handler, approximate_adjusted_volume_market_center_message_section_1_.template get<timestamp_1>());
     {
         std::size_t count = static_cast<std::size_t>(tmp::rule(approximate_adjusted_volume_market_center_message_section_1_.template get<number_of_participants>()));
         while (count-- > 0) {

@@ -303,7 +303,7 @@ inline std::ostream& operator<<(std::ostream& os, const md_instrument_definition
        << ",tot_num_reports_optional=" << (msg.fields.tot_num_reports_optional.get().has_value() ? std::to_string(msg.fields.tot_num_reports_optional.get().value()) : std::string_view("null"))
        << ",security_update_action=\"" << sbe_mdp3::security_update_action::to_string(msg.fields.security_update_action.get().value()) << '"'
        << ",last_update_time=" << msg.fields.last_update_time.get().value()
-       << ",md_security_trading_status=\"" << sbe_mdp3::md_security_trading_status::to_string(msg.fields.md_security_trading_status.get().value()) << '"'
+       << ",md_security_trading_status=\"" << (msg.fields.md_security_trading_status.get().has_value() ? sbe_mdp3::md_security_trading_status::to_string(msg.fields.md_security_trading_status.get().value()) : std::string_view("null")) << '"'
        << ",appl_id=" << msg.fields.appl_id.get().value()
        << ",market_segment_id=" << static_cast<unsigned>(msg.fields.market_segment_id.get().value())
        << ",underlying_product=" << static_cast<unsigned>(msg.fields.underlying_product.get().value())
@@ -355,7 +355,7 @@ inline std::ostream& operator<<(std::ostream& os, const md_instrument_definition
        << ",tot_num_reports_optional=" << (msg.fields.tot_num_reports_optional.get().has_value() ? std::to_string(msg.fields.tot_num_reports_optional.get().value()) : std::string_view("null"))
        << ",security_update_action=\"" << sbe_mdp3::security_update_action::to_string(msg.fields.security_update_action.get().value()) << '"'
        << ",last_update_time=" << msg.fields.last_update_time.get().value()
-       << ",md_security_trading_status=\"" << sbe_mdp3::md_security_trading_status::to_string(msg.fields.md_security_trading_status.get().value()) << '"'
+       << ",md_security_trading_status=\"" << (msg.fields.md_security_trading_status.get().has_value() ? sbe_mdp3::md_security_trading_status::to_string(msg.fields.md_security_trading_status.get().value()) : std::string_view("null")) << '"'
        << ",appl_id=" << msg.fields.appl_id.get().value()
        << ",market_segment_id=" << static_cast<unsigned>(msg.fields.market_segment_id.get().value())
        << ",underlying_product_optional=" << (msg.fields.underlying_product_optional.get().has_value() ? std::to_string(msg.fields.underlying_product_optional.get().value()) : std::string_view("null"))
@@ -403,7 +403,7 @@ inline std::ostream& operator<<(std::ostream& os, const security_status& msg) {
        << ",security_id_optional=" << (msg.fields.security_id_optional.get().has_value() ? std::to_string(msg.fields.security_id_optional.get().value()) : std::string_view("null"))
        << ",trade_date=" << (msg.fields.trade_date.get().has_value() ? std::to_string(msg.fields.trade_date.get().value()) : std::string_view("null"))
        << ",match_event_indicator=" << static_cast<unsigned>(msg.fields.match_event_indicator.get().value())
-       << ",security_trading_status=\"" << sbe_mdp3::security_trading_status::to_string(msg.fields.security_trading_status.get().value()) << '"'
+       << ",security_trading_status=\"" << (msg.fields.security_trading_status.get().has_value() ? sbe_mdp3::security_trading_status::to_string(msg.fields.security_trading_status.get().value()) : std::string_view("null")) << '"'
        << ",halt_reason=\"" << sbe_mdp3::halt_reason::to_string(msg.fields.halt_reason.get().value()) << '"'
        << ",security_trading_event=\"" << sbe_mdp3::security_trading_event::to_string(msg.fields.security_trading_event.get().value()) << '"'
        ;
@@ -466,7 +466,7 @@ inline std::ostream& operator<<(std::ostream& os, const snapshot_full_refresh& m
        << ",transact_time=" << msg.fields.transact_time.get().value()
        << ",last_update_time=" << msg.fields.last_update_time.get().value()
        << ",trade_date=" << (msg.fields.trade_date.get().has_value() ? std::to_string(msg.fields.trade_date.get().value()) : std::string_view("null"))
-       << ",md_security_trading_status=\"" << sbe_mdp3::md_security_trading_status::to_string(msg.fields.md_security_trading_status.get().value()) << '"'
+       << ",md_security_trading_status=\"" << (msg.fields.md_security_trading_status.get().has_value() ? sbe_mdp3::md_security_trading_status::to_string(msg.fields.md_security_trading_status.get().value()) : std::string_view("null")) << '"'
        << ",high_limit_price=" << (msg.fields.high_limit_price.get().has_value() ? std::to_string(msg.fields.high_limit_price.get().value()) : std::string_view("null"))
        << ",low_limit_price=" << (msg.fields.low_limit_price.get().has_value() ? std::to_string(msg.fields.low_limit_price.get().value()) : std::string_view("null"))
        << ",max_price_variation=" << (msg.fields.max_price_variation.get().has_value() ? std::to_string(msg.fields.max_price_variation.get().value()) : std::string_view("null"))
@@ -489,7 +489,7 @@ inline std::ostream& operator<<(std::ostream& os, const md_instrument_definition
        << ",tot_num_reports_optional=" << (msg.fields.tot_num_reports_optional.get().has_value() ? std::to_string(msg.fields.tot_num_reports_optional.get().value()) : std::string_view("null"))
        << ",security_update_action=\"" << sbe_mdp3::security_update_action::to_string(msg.fields.security_update_action.get().value()) << '"'
        << ",last_update_time=" << msg.fields.last_update_time.get().value()
-       << ",md_security_trading_status=\"" << sbe_mdp3::md_security_trading_status::to_string(msg.fields.md_security_trading_status.get().value()) << '"'
+       << ",md_security_trading_status=\"" << (msg.fields.md_security_trading_status.get().has_value() ? sbe_mdp3::md_security_trading_status::to_string(msg.fields.md_security_trading_status.get().value()) : std::string_view("null")) << '"'
        << ",appl_id=" << msg.fields.appl_id.get().value()
        << ",market_segment_id=" << static_cast<unsigned>(msg.fields.market_segment_id.get().value())
        << ",underlying_product=" << static_cast<unsigned>(msg.fields.underlying_product.get().value())

@@ -29,6 +29,11 @@ static const type no_value = 2147483647;
         return value;
     }
 
+    // does MinLotSize hold a value, rather than the one reserved for none
+    [[nodiscard]] bool has_value() const {
+        return integer() != no_value;
+    }
+
     // decimal value of MinLotSize field
     [[nodiscard]] double get() const {
         return integer() / denominator;

@@ -211,6 +211,7 @@ std::size_t parse_extended_security_no_cusip_message([[maybe_unused]] const std:
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& extended_security_no_cusip_message_section_1_ = tmp::read<extended_security_no_cusip_message_section_1>(data + offset, bound - offset, handler); offset += extended_security_no_cusip_message_section_1::size;
+    tmp::call(handler, extended_security_no_cusip_message_section_1_.template get<security_flags>());
     offset += parse_security_detail(data + offset, bound - offset, handler);
     offset += parse_issuer(data + offset, bound - offset, handler);
     return offset;
@@ -222,6 +223,7 @@ std::size_t parse_extended_security_message([[maybe_unused]] const std::byte* da
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& extended_security_message_section_1_ = tmp::read<extended_security_message_section_1>(data + offset, bound - offset, handler); offset += extended_security_message_section_1::size;
+    tmp::call(handler, extended_security_message_section_1_.template get<extended_security_flags>());
     offset += parse_security_detail(data + offset, bound - offset, handler);
     offset += parse_issuer(data + offset, tmp::leaving(bound - offset, 9), handler);
     [[maybe_unused]] const auto& extended_security_message_section_2_ = tmp::read<extended_security_message_section_2>(data + offset, bound - offset, handler); offset += extended_security_message_section_2::size;

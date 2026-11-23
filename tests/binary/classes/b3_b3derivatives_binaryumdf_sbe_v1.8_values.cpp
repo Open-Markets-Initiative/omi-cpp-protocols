@@ -32,7 +32,6 @@ canonical::Listing read(const packet::Frame& frame) {
     }
 
     values["packet.packetheader.channelid"] = canonical::number(packet.packet_header().channel_id());
-    values["packet.packetheader.packetreserved"] = canonical::number(packet.packet_header().packet_reserved());
     values["packet.packetheader.sequenceversion"] = canonical::number(packet.packet_header().sequence_version());
     values["packet.packetheader.sequencenumber"] = canonical::number(packet.packet_header().sequence_number());
     values["packet.packetheader.sendingtime"] = canonical::number(packet.packet_header().sending_time());

@@ -60,7 +60,9 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest(message->nanosecond.get());
             checksum += bench::digest(message->instrument_id.get());
             checksum += bench::digest(message->trading_status.get());
+            checksum += bench::digest(message->symbol_status_flags.Unused5());
             checksum += bench::digest(message->symbol_status_flags.FirmQuote());
+            checksum += bench::digest(message->symbol_status_flags.Unused2());
             checksum += bench::digest(message->reason.get());
             checksum += bench::digest(message->session_change_reason.get());
             checksum += bench::digest(message->new_end_time.get());
@@ -73,6 +75,7 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest(message->quantity.get());
             checksum += bench::digest(message->instrument_id.get());
             checksum += bench::digest(message->price.integer());
+            checksum += bench::digest(message->add_order_flags.Unused4());
             checksum += bench::digest(message->add_order_flags.MarketOrder());
             checksum += bench::digest(message->add_order_flags.Unused1());
             checksum += bench::digest(message->add_order_flags.PrivateRfq());
@@ -86,13 +89,17 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest(message->instrument_id.get());
             checksum += bench::digest(message->price.integer());
             checksum += bench::digest(message->attribution.get());
+            checksum += bench::digest(message->add_attributed_order_flags.Unused4());
             checksum += bench::digest(message->add_attributed_order_flags.NamedMarketOrder());
             checksum += bench::digest(message->add_attributed_order_flags.FirmQuote());
+            checksum += bench::digest(message->add_attributed_order_flags.Unused2());
         } else if (iterator.message_type == protocol::OrderDeletedMessage::message_type) {
             [[maybe_unused]] const auto* message = protocol::OrderDeletedMessage::parse(iterator.message);
             checksum += bench::digest(message->nanosecond.get());
             checksum += bench::digest(message->order_id.get());
+            checksum += bench::digest(message->order_deleted_flags.Unused5());
             checksum += bench::digest(message->order_deleted_flags.FirmQuote());
+            checksum += bench::digest(message->order_deleted_flags.Unused2());
             checksum += bench::digest(message->instrument_id.get());
         } else if (iterator.message_type == protocol::OrderModifiedMessage::message_type) {
             [[maybe_unused]] const auto* message = protocol::OrderModifiedMessage::parse(iterator.message);
@@ -101,11 +108,14 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest(message->new_quantity.get());
             checksum += bench::digest(message->new_price.integer());
             checksum += bench::digest(message->order_modified_flags.PriorityFlag());
+            checksum += bench::digest(message->order_modified_flags.Unused4());
             checksum += bench::digest(message->order_modified_flags.FirmQuote());
+            checksum += bench::digest(message->order_modified_flags.Unused2());
         } else if (iterator.message_type == protocol::OrderBookClearMessage::message_type) {
             [[maybe_unused]] const auto* message = protocol::OrderBookClearMessage::parse(iterator.message);
             checksum += bench::digest(message->nanosecond.get());
             checksum += bench::digest(message->instrument_id.get());
+            checksum += bench::digest(message->order_book_clear_flags.Unused5());
             checksum += bench::digest(message->order_book_clear_flags.FirmQuote());
             checksum += bench::digest(message->order_book_clear_flags.PrivateRfq());
             checksum += bench::digest(message->order_book_clear_flags.Unused1());
@@ -135,6 +145,7 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest(message->sub_book.get());
             checksum += bench::digest(message->pt_mod_flags.Canc());
             checksum += bench::digest(message->pt_mod_flags.Amnd());
+            checksum += bench::digest(message->pt_mod_flags.Unused6());
         } else if (iterator.message_type == protocol::AuctionTradeMessage::message_type) {
             [[maybe_unused]] const auto* message = protocol::AuctionTradeMessage::parse(iterator.message);
             checksum += bench::digest(message->nanosecond.get());
@@ -145,6 +156,7 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest(message->auction_type.get());
             checksum += bench::digest(message->pt_mod_flags.Canc());
             checksum += bench::digest(message->pt_mod_flags.Amnd());
+            checksum += bench::digest(message->pt_mod_flags.Unused6());
         } else if (iterator.message_type == protocol::AuctionInfoMessage::message_type) {
             [[maybe_unused]] const auto* message = protocol::AuctionInfoMessage::parse(iterator.message);
             checksum += bench::digest(message->nanosecond.get());
@@ -159,6 +171,7 @@ std::uint64_t read(const packet::Frame& frame) {
             checksum += bench::digest(message->statistic_type.get());
             checksum += bench::digest(message->price.integer());
             checksum += bench::digest(message->open_close_price_indicator.get());
+            checksum += bench::digest(message->statistics_reserved.Unused8());
         } else if (iterator.message_type == protocol::TopOfBookMessage::message_type) {
             [[maybe_unused]] const auto* message = protocol::TopOfBookMessage::parse(iterator.message);
             checksum += bench::digest(message->nanosecond.get());

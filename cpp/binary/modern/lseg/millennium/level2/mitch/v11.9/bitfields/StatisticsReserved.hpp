@@ -24,8 +24,8 @@ struct StatisticsReserved {
      : value{ 0 } {}
 
     // Unused
-    [[nodiscard]] constexpr bool Unused8() const {
-        return value & mask::Unused8;
+    [[nodiscard]] constexpr type Unused8() const {
+        return static_cast<type>((value & mask::Unused8) >> 0);
     }
 
     // all bits

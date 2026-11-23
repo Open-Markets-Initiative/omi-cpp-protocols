@@ -3,6 +3,7 @@
 
 #include <array>
 #include <cstddef>
+#include <cstdint>
 
 namespace iex::iexequities::deepplus::iextp::v1_05 {
 

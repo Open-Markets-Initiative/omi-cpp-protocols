@@ -3,6 +3,7 @@
 
 #include <array>
 #include <cstddef>
+#include <cstdint>
 
 namespace b3::b3derivatives::binaryumdf::sbe::v1_8 {
 

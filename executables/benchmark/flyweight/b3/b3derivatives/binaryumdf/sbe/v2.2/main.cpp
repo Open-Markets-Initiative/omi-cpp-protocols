@@ -27,7 +27,6 @@ struct Reader {
 
     void on(const protocol::Packet& packet) {
         checksum += bench::digest(packet.packet_header().channel_id());
-        checksum += bench::digest(packet.packet_header().packet_reserved());
         checksum += bench::digest(packet.packet_header().sequence_version());
         checksum += bench::digest(packet.packet_header().sequence_number());
         checksum += bench::digest(packet.packet_header().sending_time());

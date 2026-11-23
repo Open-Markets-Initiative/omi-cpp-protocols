@@ -27,8 +27,8 @@ struct OrderBookClearFlags {
      : value{ 0 } {}
 
     // Unused
-    [[nodiscard]] constexpr bool Unused5() const {
-        return value & mask::Unused5;
+    [[nodiscard]] constexpr type Unused5() const {
+        return static_cast<type>((value & mask::Unused5) >> 0);
     }
 
     // Firm Quote

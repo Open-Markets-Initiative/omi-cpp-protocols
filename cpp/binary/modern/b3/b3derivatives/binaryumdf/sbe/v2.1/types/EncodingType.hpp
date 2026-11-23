@@ -12,6 +12,7 @@ struct EncodingType {
     static constexpr const char* name = "Encoding Type";
     static constexpr std::size_t size =  2;
     using type = std::uint16_t;
+static const type static_value = 60240;
 
     // default constructor
     constexpr EncodingType()

@@ -1,0 +1,9 @@
+# Jnx.JnxEquities.Pts.Ouch.v1.11 LoginRequestPacket: canonical values of 'clientpacket', read by the model
+stream 0
+clientpacket.clientsoupbintcppacket[0].clientpacketheader.packetlength = 47
+clientpacket.clientsoupbintcppacket[0].clientpacketheader.clientpackettype = L
+clientpacket.clientsoupbintcppacket[0].clientpayload = clientpacket.clientsoupbintcppacket.clientpayload.loginrequestpacket
+clientpacket.clientsoupbintcppacket[0].clientpayload.loginrequestpacket.username = user
+clientpacket.clientsoupbintcppacket[0].clientpayload.loginrequestpacket.password = password
+clientpacket.clientsoupbintcppacket[0].clientpayload.loginrequestpacket.requestedsession = (null)
+clientpacket.clientsoupbintcppacket[0].clientpayload.loginrequestpacket.requestedsequencenumber = 0

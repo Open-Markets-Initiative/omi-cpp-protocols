@@ -3,6 +3,7 @@
 
 #include <array>
 #include <cstddef>
+#include <cstdint>
 
 namespace databento::marketdata::normalized::dbn::v3 {
 

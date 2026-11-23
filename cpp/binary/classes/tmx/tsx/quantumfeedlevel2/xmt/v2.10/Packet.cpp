@@ -163,6 +163,7 @@ std::size_t Packet::encode(std::byte* data, std::size_t capacity) const {
     auto frame_header = frame_header_;
     if (kind_ == Kind::Messages) { frame_header.set_num_body(static_cast<std::uint8_t>(frames_.size())); }
     if (kind_ == Kind::HeartbeatBody && heartbeat_body_) { frame_header.set_num_body(static_cast<std::uint8_t>(heartbeat_body_->admin_body().size())); }
+    frame_header.set_message_length(static_cast<std::uint16_t>(encoded_size() - 5));
 
     offset += frame_header.encode(data + offset, capacity - offset);
 

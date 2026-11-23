@@ -514,6 +514,11 @@ add_library(protocols_check OBJECT
   checks/tmx_tsx_quantumfeedlevel2_xmt_v2.10_classes.cpp
   checks/tmx_tsx_quantumfeedlevel2_xmt_v2.10_flyweight.cpp
   checks/tmx_tsx_quantumfeedlevel2_xmt_v2.10_tmp.cpp
+  checks/tmx_tsx_quantumfeedlevel2_xmt_v3.6_advanced.cpp
+  checks/tmx_tsx_quantumfeedlevel2_xmt_v3.6_modern.cpp
+  checks/tmx_tsx_quantumfeedlevel2_xmt_v3.6_classes.cpp
+  checks/tmx_tsx_quantumfeedlevel2_xmt_v3.6_flyweight.cpp
+  checks/tmx_tsx_quantumfeedlevel2_xmt_v3.6_tmp.cpp
 )
 # The libraries of the formats with sources of their own (cpp/binary/classes/, cpp/binary/flyweight/) — one
 # static library per protocol and format, linked by the programs and tests that read through it.
@@ -594,6 +599,12 @@ add_library(classes_b3_b3derivatives_binaryumdf_sbe_v1.6 STATIC
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/SecurityIdSource.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/SecurityUpdateAction.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/SecurityType.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/IssueDate.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/MaturityDate.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/StartDate.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/EndDate.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/SettlDate.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/DatedDate.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/LotType.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/Product.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/ExerciseStyle.cpp
@@ -679,6 +690,12 @@ add_library(flyweight_b3_b3derivatives_binaryumdf_sbe_v1.6 STATIC
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/SecurityIdSource.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/SecurityUpdateAction.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/SecurityType.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/IssueDate.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/MaturityDate.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/StartDate.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/EndDate.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/SettlDate.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/DatedDate.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/LotType.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/Product.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.6/enums/ExerciseStyle.cpp
@@ -714,6 +731,12 @@ add_library(classes_b3_b3derivatives_binaryumdf_sbe_v1.7 STATIC
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/SecurityIdSource.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/SecurityUpdateAction.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/SecurityType.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/IssueDate.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/MaturityDate.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/StartDate.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/EndDate.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/SettlDate.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/DatedDate.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/LotType.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/Product.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/ExerciseStyle.cpp
@@ -807,6 +830,12 @@ add_library(flyweight_b3_b3derivatives_binaryumdf_sbe_v1.7 STATIC
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/SecurityIdSource.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/SecurityUpdateAction.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/SecurityType.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/IssueDate.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/MaturityDate.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/StartDate.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/EndDate.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/SettlDate.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/DatedDate.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/LotType.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/Product.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.7/enums/ExerciseStyle.cpp
@@ -842,6 +871,12 @@ add_library(classes_b3_b3derivatives_binaryumdf_sbe_v1.8 STATIC
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/SecurityIdSource.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/SecurityUpdateAction.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/SecurityType.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/IssueDate.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/MaturityDate.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/StartDate.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/EndDate.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/SettlDate.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/DatedDate.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/LotType.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/Product.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/ExerciseStyle.cpp
@@ -939,6 +974,12 @@ add_library(flyweight_b3_b3derivatives_binaryumdf_sbe_v1.8 STATIC
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/SecurityIdSource.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/SecurityUpdateAction.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/SecurityType.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/IssueDate.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/MaturityDate.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/StartDate.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/EndDate.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/SettlDate.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/DatedDate.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/LotType.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/Product.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.8/enums/ExerciseStyle.cpp
@@ -976,6 +1017,12 @@ add_library(classes_b3_b3derivatives_binaryumdf_sbe_v1.9 STATIC
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/SecurityIdSource.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/SecurityUpdateAction.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/SecurityType.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/IssueDate.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/MaturityDate.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/StartDate.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/EndDate.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/SettlDate.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/DatedDate.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/LotType.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/Product.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/ExerciseStyle.cpp
@@ -1067,6 +1114,12 @@ add_library(flyweight_b3_b3derivatives_binaryumdf_sbe_v1.9 STATIC
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/SecurityIdSource.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/SecurityUpdateAction.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/SecurityType.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/IssueDate.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/MaturityDate.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/StartDate.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/EndDate.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/SettlDate.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/DatedDate.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/LotType.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/Product.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v1.9/enums/ExerciseStyle.cpp
@@ -1105,6 +1158,12 @@ add_library(classes_b3_b3derivatives_binaryumdf_sbe_v2.1 STATIC
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/SecurityIdSource.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/SecurityUpdateAction.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/SecurityType.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/IssueDate.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/MaturityDate.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/StartDate.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/EndDate.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/SettlDate.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/DatedDate.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/LotType.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/Product.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/ExerciseStyle.cpp
@@ -1195,6 +1254,12 @@ add_library(flyweight_b3_b3derivatives_binaryumdf_sbe_v2.1 STATIC
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/SecurityIdSource.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/SecurityUpdateAction.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/SecurityType.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/IssueDate.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/MaturityDate.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/StartDate.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/EndDate.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/SettlDate.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/DatedDate.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/LotType.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/Product.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.1/enums/ExerciseStyle.cpp
@@ -1233,6 +1298,12 @@ add_library(classes_b3_b3derivatives_binaryumdf_sbe_v2.2 STATIC
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/SecurityIdSource.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/SecurityUpdateAction.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/SecurityType.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/IssueDate.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/MaturityDate.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/StartDate.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/EndDate.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/SettlDate.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/DatedDate.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/LotType.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/Product.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/ExerciseStyle.cpp
@@ -1324,6 +1395,12 @@ add_library(flyweight_b3_b3derivatives_binaryumdf_sbe_v2.2 STATIC
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/SecurityIdSource.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/SecurityUpdateAction.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/SecurityType.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/IssueDate.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/MaturityDate.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/StartDate.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/EndDate.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/SettlDate.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/DatedDate.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/LotType.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/Product.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.2/enums/ExerciseStyle.cpp
@@ -1363,6 +1440,12 @@ add_library(classes_b3_b3derivatives_binaryumdf_sbe_v2.3 STATIC
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/SecurityIdSource.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/SecurityUpdateAction.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/SecurityType.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/IssueDate.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/MaturityDate.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/StartDate.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/EndDate.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/SettlDateLocalMktDate32Optional.cpp
+  cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/DatedDate.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/LotType.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/Product.cpp
   cpp/binary/classes/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/ExerciseStyle.cpp
@@ -1455,6 +1538,12 @@ add_library(flyweight_b3_b3derivatives_binaryumdf_sbe_v2.3 STATIC
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/SecurityIdSource.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/SecurityUpdateAction.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/SecurityType.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/IssueDate.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/MaturityDate.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/StartDate.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/EndDate.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/SettlDateLocalMktDate32Optional.cpp
+  cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/DatedDate.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/LotType.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/Product.cpp
   cpp/binary/flyweight/b3/b3derivatives/binaryumdf/sbe/v2.3/enums/ExerciseStyle.cpp
@@ -9249,6 +9338,85 @@ add_library(flyweight_tmx_tsx_quantumfeedlevel2_xmt_v2.10 STATIC
 )
 target_include_directories(flyweight_tmx_tsx_quantumfeedlevel2_xmt_v2.10 PUBLIC ${CMAKE_SOURCE_DIR})
 target_precompile_headers(flyweight_tmx_tsx_quantumfeedlevel2_xmt_v2.10 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(classes_tmx_tsx_quantumfeedlevel2_xmt_v3.6 STATIC
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/AckRequiredPossDup.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/MsgType.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/SourceId.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/Currency.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/ListingMarket.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/ProductType.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/TestSymbol.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/MocEligible.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/OrderSide.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/NonResident.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/SettlementTerms.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/MarketState.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/ImbalanceSide.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/MarketOrderImbalanceSide.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/Bypass.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/CrossType.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/IsMidOnly.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/IsDark.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/IsConditional.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/InitiatedBy.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/structs/FrameHeader.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/structs/BodyHeader.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/structs/BusinessHeader.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/groups/AdminBody.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/structs/HeartbeatBody.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/messages/SymbolStatusMessage.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/messages/OrderBookMessage.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/messages/OrderBookTermsMessage.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/groups/CopOrder.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/messages/AssignCopOrdersMessage.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/messages/AssignCopNoOrdersMessage.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/groups/CopLimit.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/messages/AssignLimitMessage.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/messages/MarketStateUpdateMessage.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/messages/MocImbalanceMessage.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/messages/OrderBookedMessage.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/messages/OrderBookedTermsMessage.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/messages/OrderCancelledMessage.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/messages/OrderCancelledTermsMessage.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/messages/OrderPriceTimeAssignedMessage.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/messages/OrderPriceTimeAssignedTermsMessage.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/messages/StockStatusMessage.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/messages/TradeReportMessage.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/messages/TradeReportTermsMessage.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/messages/TradeCancelledMessage.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/messages/TradeCancelledTermsMessage.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/messages/TradeCorrectionMessage.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/messages/TradeCorrectionTermsMessage.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/messages/UnknownMessage.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/Factory.cpp
+  cpp/binary/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/Packet.cpp
+)
+target_include_directories(classes_tmx_tsx_quantumfeedlevel2_xmt_v3.6 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(classes_tmx_tsx_quantumfeedlevel2_xmt_v3.6 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
+add_library(flyweight_tmx_tsx_quantumfeedlevel2_xmt_v3.6 STATIC
+  cpp/binary/flyweight/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/AckRequiredPossDup.cpp
+  cpp/binary/flyweight/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/MsgType.cpp
+  cpp/binary/flyweight/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/SourceId.cpp
+  cpp/binary/flyweight/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/Currency.cpp
+  cpp/binary/flyweight/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/ListingMarket.cpp
+  cpp/binary/flyweight/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/ProductType.cpp
+  cpp/binary/flyweight/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/TestSymbol.cpp
+  cpp/binary/flyweight/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/MocEligible.cpp
+  cpp/binary/flyweight/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/OrderSide.cpp
+  cpp/binary/flyweight/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/NonResident.cpp
+  cpp/binary/flyweight/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/SettlementTerms.cpp
+  cpp/binary/flyweight/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/MarketState.cpp
+  cpp/binary/flyweight/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/ImbalanceSide.cpp
+  cpp/binary/flyweight/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/MarketOrderImbalanceSide.cpp
+  cpp/binary/flyweight/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/Bypass.cpp
+  cpp/binary/flyweight/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/CrossType.cpp
+  cpp/binary/flyweight/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/IsMidOnly.cpp
+  cpp/binary/flyweight/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/IsDark.cpp
+  cpp/binary/flyweight/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/IsConditional.cpp
+  cpp/binary/flyweight/tmx/tsx/quantumfeedlevel2/xmt/v3.6/enums/InitiatedBy.cpp
+)
+target_include_directories(flyweight_tmx_tsx_quantumfeedlevel2_xmt_v3.6 PUBLIC ${CMAKE_SOURCE_DIR})
+target_precompile_headers(flyweight_tmx_tsx_quantumfeedlevel2_xmt_v3.6 PRIVATE <cstddef> <cstdint> <memory> <ostream> <string> <string_view> <vector>)
 # Programs under executables/ — one per protocol. Each reads the parser published under
 # cpp/, included by a repository-root-relative path, so there is only ever one copy of a
 # protocol's parser in the tree.
@@ -11526,6 +11694,29 @@ target_include_directories(benchmark_flyweight_tmx_tsx_quantumfeedlevel2_xmt_v2.
 target_link_libraries(benchmark_flyweight_tmx_tsx_quantumfeedlevel2_xmt_v2.10 PRIVATE flyweight_tmx_tsx_quantumfeedlevel2_xmt_v2.10)
 add_executable(benchmark_tmp_tmx_tsx_quantumfeedlevel2_xmt_v2.10 executables/benchmark/tmp/tmx/tsx/quantumfeedlevel2/xmt/v2.10/main.cpp)
 target_include_directories(benchmark_tmp_tmx_tsx_quantumfeedlevel2_xmt_v2.10 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/tmx/tsx/quantumfeedlevel2/xmt/v2.10)
+add_executable(statistics_tmx_tsx_quantumfeedlevel2_xmt_v3.6 executables/statistics/tmx/tsx/quantumfeedlevel2/xmt/v3.6/main.cpp)
+target_include_directories(statistics_tmx_tsx_quantumfeedlevel2_xmt_v3.6 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/statistics/tmx/tsx/quantumfeedlevel2/xmt/v3.6)
+add_executable(extractor_tmx_tsx_quantumfeedlevel2_xmt_v3.6 executables/extractor/tmx/tsx/quantumfeedlevel2/xmt/v3.6/main.cpp)
+target_include_directories(extractor_tmx_tsx_quantumfeedlevel2_xmt_v3.6 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/extractor/tmx/tsx/quantumfeedlevel2/xmt/v3.6)
+add_executable(dump_tmx_tsx_quantumfeedlevel2_xmt_v3.6 executables/dump/tmx/tsx/quantumfeedlevel2/xmt/v3.6/main.cpp)
+target_include_directories(dump_tmx_tsx_quantumfeedlevel2_xmt_v3.6 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/dump/tmx/tsx/quantumfeedlevel2/xmt/v3.6)
+target_link_libraries(dump_tmx_tsx_quantumfeedlevel2_xmt_v3.6 PRIVATE classes_tmx_tsx_quantumfeedlevel2_xmt_v3.6)
+add_executable(verify_tmx_tsx_quantumfeedlevel2_xmt_v3.6 executables/verify/tmx/tsx/quantumfeedlevel2/xmt/v3.6/main.cpp)
+target_include_directories(verify_tmx_tsx_quantumfeedlevel2_xmt_v3.6 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/verify/tmx/tsx/quantumfeedlevel2/xmt/v3.6)
+target_link_libraries(verify_tmx_tsx_quantumfeedlevel2_xmt_v3.6 PRIVATE classes_tmx_tsx_quantumfeedlevel2_xmt_v3.6)
+add_executable(roundtrip_tmx_tsx_quantumfeedlevel2_xmt_v3.6 executables/roundtrip/tmx/tsx/quantumfeedlevel2/xmt/v3.6/main.cpp)
+target_include_directories(roundtrip_tmx_tsx_quantumfeedlevel2_xmt_v3.6 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/roundtrip/tmx/tsx/quantumfeedlevel2/xmt/v3.6)
+target_link_libraries(roundtrip_tmx_tsx_quantumfeedlevel2_xmt_v3.6 PRIVATE classes_tmx_tsx_quantumfeedlevel2_xmt_v3.6)
+add_executable(benchmark_modern_tmx_tsx_quantumfeedlevel2_xmt_v3.6 executables/benchmark/modern/tmx/tsx/quantumfeedlevel2/xmt/v3.6/main.cpp)
+target_include_directories(benchmark_modern_tmx_tsx_quantumfeedlevel2_xmt_v3.6 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/modern/tmx/tsx/quantumfeedlevel2/xmt/v3.6)
+add_executable(benchmark_classes_tmx_tsx_quantumfeedlevel2_xmt_v3.6 executables/benchmark/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6/main.cpp)
+target_include_directories(benchmark_classes_tmx_tsx_quantumfeedlevel2_xmt_v3.6 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/classes/tmx/tsx/quantumfeedlevel2/xmt/v3.6)
+target_link_libraries(benchmark_classes_tmx_tsx_quantumfeedlevel2_xmt_v3.6 PRIVATE classes_tmx_tsx_quantumfeedlevel2_xmt_v3.6)
+add_executable(benchmark_flyweight_tmx_tsx_quantumfeedlevel2_xmt_v3.6 executables/benchmark/flyweight/tmx/tsx/quantumfeedlevel2/xmt/v3.6/main.cpp)
+target_include_directories(benchmark_flyweight_tmx_tsx_quantumfeedlevel2_xmt_v3.6 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/flyweight/tmx/tsx/quantumfeedlevel2/xmt/v3.6)
+target_link_libraries(benchmark_flyweight_tmx_tsx_quantumfeedlevel2_xmt_v3.6 PRIVATE flyweight_tmx_tsx_quantumfeedlevel2_xmt_v3.6)
+add_executable(benchmark_tmp_tmx_tsx_quantumfeedlevel2_xmt_v3.6 executables/benchmark/tmp/tmx/tsx/quantumfeedlevel2/xmt/v3.6/main.cpp)
+target_include_directories(benchmark_tmp_tmx_tsx_quantumfeedlevel2_xmt_v3.6 PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap executables/benchmark/tmp/tmx/tsx/quantumfeedlevel2/xmt/v3.6)
 # The delimited readers under cpp/delimited/: one translation unit under checks/ per protocol,
 # including its reader (Rows.hpp) and its row (Row.hpp). They include the headers every reader
 # shares as ../delimited/; those are emitted once, at cpp/delimited/delimited/, and resolve with it
@@ -11798,6 +11989,8 @@ target_include_directories(tmp_cboe_edgxequities_multicastdepthofbook_pitch_v2.4
 add_executable(flyweight_cboe_edgxequities_multicastdepthofbook_pitch_v2.41.29_values_test tests/binary/flyweight/cboe_edgxequities_multicastdepthofbook_pitch_v2.41.29_values.cpp)
 target_include_directories(flyweight_cboe_edgxequities_multicastdepthofbook_pitch_v2.41.29_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(flyweight_cboe_edgxequities_multicastdepthofbook_pitch_v2.41.29_values_test PRIVATE flyweight_cboe_edgxequities_multicastdepthofbook_pitch_v2.41.29)
+add_executable(modern_cme_globex_mdp3_sbe_v1.8_test tests/binary/modern/cme_globex_mdp3_sbe_v1.8.cpp)
+target_include_directories(modern_cme_globex_mdp3_sbe_v1.8_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(modern_cme_globex_mdp3_sbe_v1.8_values_test tests/binary/modern/cme_globex_mdp3_sbe_v1.8_values.cpp)
 target_include_directories(modern_cme_globex_mdp3_sbe_v1.8_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(advanced_cme_globex_mdp3_sbe_v1.8_test tests/binary/advanced/cme_globex_mdp3_sbe_v1.8.cpp)
@@ -11815,6 +12008,8 @@ target_include_directories(tmp_cme_globex_mdp3_sbe_v1.8_values_test PRIVATE ${CM
 add_executable(flyweight_cme_globex_mdp3_sbe_v1.8_values_test tests/binary/flyweight/cme_globex_mdp3_sbe_v1.8_values.cpp)
 target_include_directories(flyweight_cme_globex_mdp3_sbe_v1.8_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(flyweight_cme_globex_mdp3_sbe_v1.8_values_test PRIVATE flyweight_cme_globex_mdp3_sbe_v1.8)
+add_executable(modern_cme_globex_mdp3_sbe_v1.9_test tests/binary/modern/cme_globex_mdp3_sbe_v1.9.cpp)
+target_include_directories(modern_cme_globex_mdp3_sbe_v1.9_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(modern_cme_globex_mdp3_sbe_v1.9_values_test tests/binary/modern/cme_globex_mdp3_sbe_v1.9_values.cpp)
 target_include_directories(modern_cme_globex_mdp3_sbe_v1.9_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(advanced_cme_globex_mdp3_sbe_v1.9_test tests/binary/advanced/cme_globex_mdp3_sbe_v1.9.cpp)
@@ -11832,6 +12027,8 @@ target_include_directories(tmp_cme_globex_mdp3_sbe_v1.9_values_test PRIVATE ${CM
 add_executable(flyweight_cme_globex_mdp3_sbe_v1.9_values_test tests/binary/flyweight/cme_globex_mdp3_sbe_v1.9_values.cpp)
 target_include_directories(flyweight_cme_globex_mdp3_sbe_v1.9_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(flyweight_cme_globex_mdp3_sbe_v1.9_values_test PRIVATE flyweight_cme_globex_mdp3_sbe_v1.9)
+add_executable(modern_cme_globex_mdp3_sbe_v1.5_test tests/binary/modern/cme_globex_mdp3_sbe_v1.5.cpp)
+target_include_directories(modern_cme_globex_mdp3_sbe_v1.5_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(modern_cme_globex_mdp3_sbe_v1.5_values_test tests/binary/modern/cme_globex_mdp3_sbe_v1.5_values.cpp)
 target_include_directories(modern_cme_globex_mdp3_sbe_v1.5_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(advanced_cme_globex_mdp3_sbe_v1.5_test tests/binary/advanced/cme_globex_mdp3_sbe_v1.5.cpp)
@@ -12065,6 +12262,10 @@ target_include_directories(tmp_jnx_jnxequities_pts_itch_v1.7_values_test PRIVATE
 add_executable(flyweight_jnx_jnxequities_pts_itch_v1.7_values_test tests/binary/flyweight/jnx_jnxequities_pts_itch_v1.7_values.cpp)
 target_include_directories(flyweight_jnx_jnxequities_pts_itch_v1.7_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 target_link_libraries(flyweight_jnx_jnxequities_pts_itch_v1.7_values_test PRIVATE flyweight_jnx_jnxequities_pts_itch_v1.7)
+add_executable(modern_jnx_jnxequities_pts_ouch_v1.11_clientpacket_values_test tests/binary/modern/jnx_jnxequities_pts_ouch_v1.11_clientpacket_values.cpp)
+target_include_directories(modern_jnx_jnxequities_pts_ouch_v1.11_clientpacket_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
+add_executable(modern_jnx_jnxequities_pts_ouch_v1.11_serverpacket_values_test tests/binary/modern/jnx_jnxequities_pts_ouch_v1.11_serverpacket_values.cpp)
+target_include_directories(modern_jnx_jnxequities_pts_ouch_v1.11_serverpacket_values_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(modern_jnx_jnxequities_pts_ouch_v1.11_test tests/binary/modern/jnx_jnxequities_pts_ouch_v1.11.cpp)
 target_include_directories(modern_jnx_jnxequities_pts_ouch_v1.11_test PRIVATE ${CMAKE_SOURCE_DIR} executables/pcap)
 add_executable(classes_jnx_jnxequities_pts_ouch_v1.11_test tests/binary/classes/jnx_jnxequities_pts_ouch_v1.11.cpp)
@@ -13186,6 +13387,9 @@ if(OMI_PACKETS_DIR)
   add_test(NAME flyweight_cboe_edgxequities_multicastdepthofbook_pitch_v2.41.29_values COMMAND flyweight_cboe_edgxequities_multicastdepthofbook_pitch_v2.41.29_values_test)
   set_tests_properties(flyweight_cboe_edgxequities_multicastdepthofbook_pitch_v2.41.29_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
+  add_test(NAME modern_cme_globex_mdp3_sbe_v1.8 COMMAND modern_cme_globex_mdp3_sbe_v1.8_test)
+  set_tests_properties(modern_cme_globex_mdp3_sbe_v1.8 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
   add_test(NAME modern_cme_globex_mdp3_sbe_v1.8_values COMMAND modern_cme_globex_mdp3_sbe_v1.8_values_test)
   set_tests_properties(modern_cme_globex_mdp3_sbe_v1.8_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
@@ -13207,6 +13411,9 @@ if(OMI_PACKETS_DIR)
   add_test(NAME flyweight_cme_globex_mdp3_sbe_v1.8_values COMMAND flyweight_cme_globex_mdp3_sbe_v1.8_values_test)
   set_tests_properties(flyweight_cme_globex_mdp3_sbe_v1.8_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
+  add_test(NAME modern_cme_globex_mdp3_sbe_v1.9 COMMAND modern_cme_globex_mdp3_sbe_v1.9_test)
+  set_tests_properties(modern_cme_globex_mdp3_sbe_v1.9 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
   add_test(NAME modern_cme_globex_mdp3_sbe_v1.9_values COMMAND modern_cme_globex_mdp3_sbe_v1.9_values_test)
   set_tests_properties(modern_cme_globex_mdp3_sbe_v1.9_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
@@ -13227,6 +13434,9 @@ if(OMI_PACKETS_DIR)
 
   add_test(NAME flyweight_cme_globex_mdp3_sbe_v1.9_values COMMAND flyweight_cme_globex_mdp3_sbe_v1.9_values_test)
   set_tests_properties(flyweight_cme_globex_mdp3_sbe_v1.9_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME modern_cme_globex_mdp3_sbe_v1.5 COMMAND modern_cme_globex_mdp3_sbe_v1.5_test)
+  set_tests_properties(modern_cme_globex_mdp3_sbe_v1.5 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
   add_test(NAME modern_cme_globex_mdp3_sbe_v1.5_values COMMAND modern_cme_globex_mdp3_sbe_v1.5_values_test)
   set_tests_properties(modern_cme_globex_mdp3_sbe_v1.5_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
@@ -13533,6 +13743,12 @@ if(OMI_PACKETS_DIR)
 
   add_test(NAME flyweight_jnx_jnxequities_pts_itch_v1.7_values COMMAND flyweight_jnx_jnxequities_pts_itch_v1.7_values_test)
   set_tests_properties(flyweight_jnx_jnxequities_pts_itch_v1.7_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME modern_jnx_jnxequities_pts_ouch_v1.11_clientpacket_values COMMAND modern_jnx_jnxequities_pts_ouch_v1.11_clientpacket_values_test)
+  set_tests_properties(modern_jnx_jnxequities_pts_ouch_v1.11_clientpacket_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
+
+  add_test(NAME modern_jnx_jnxequities_pts_ouch_v1.11_serverpacket_values COMMAND modern_jnx_jnxequities_pts_ouch_v1.11_serverpacket_values_test)
+  set_tests_properties(modern_jnx_jnxequities_pts_ouch_v1.11_serverpacket_values PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
 
   add_test(NAME modern_jnx_jnxequities_pts_ouch_v1.11 COMMAND modern_jnx_jnxequities_pts_ouch_v1.11_test)
   set_tests_properties(modern_jnx_jnxequities_pts_ouch_v1.11 PROPERTIES ENVIRONMENT "OMI_PACKETS_DIR=${OMI_PACKETS_DIR};OMI_VALUES_DIR=${CMAKE_SOURCE_DIR}/tests/values")
@@ -17142,6 +17358,21 @@ set_tests_properties(benchmark_flyweight_tmx_tsx_quantumfeedlevel2_xmt_v2.10 PRO
 
 add_test(NAME benchmark_tmp_tmx_tsx_quantumfeedlevel2_xmt_v2.10 COMMAND benchmark_tmp_tmx_tsx_quantumfeedlevel2_xmt_v2.10 ${CMAKE_SOURCE_DIR}/tests/simulated/tmx/tsx/quantumfeedlevel2/xmt/v2.10.pcap 0.05)
 set_tests_properties(benchmark_tmp_tmx_tsx_quantumfeedlevel2_xmt_v2.10 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME roundtrip_tmx_tsx_quantumfeedlevel2_xmt_v3.6 COMMAND roundtrip_tmx_tsx_quantumfeedlevel2_xmt_v3.6 ${CMAKE_BINARY_DIR}/roundtrip_tmx_tsx_quantumfeedlevel2_xmt_v3.6.pcap)
+set_tests_properties(roundtrip_tmx_tsx_quantumfeedlevel2_xmt_v3.6 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_modern_tmx_tsx_quantumfeedlevel2_xmt_v3.6 COMMAND benchmark_modern_tmx_tsx_quantumfeedlevel2_xmt_v3.6 ${CMAKE_SOURCE_DIR}/tests/simulated/tmx/tsx/quantumfeedlevel2/xmt/v3.6.pcap 0.05)
+set_tests_properties(benchmark_modern_tmx_tsx_quantumfeedlevel2_xmt_v3.6 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_classes_tmx_tsx_quantumfeedlevel2_xmt_v3.6 COMMAND benchmark_classes_tmx_tsx_quantumfeedlevel2_xmt_v3.6 ${CMAKE_SOURCE_DIR}/tests/simulated/tmx/tsx/quantumfeedlevel2/xmt/v3.6.pcap 0.05)
+set_tests_properties(benchmark_classes_tmx_tsx_quantumfeedlevel2_xmt_v3.6 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_flyweight_tmx_tsx_quantumfeedlevel2_xmt_v3.6 COMMAND benchmark_flyweight_tmx_tsx_quantumfeedlevel2_xmt_v3.6 ${CMAKE_SOURCE_DIR}/tests/simulated/tmx/tsx/quantumfeedlevel2/xmt/v3.6.pcap 0.05)
+set_tests_properties(benchmark_flyweight_tmx_tsx_quantumfeedlevel2_xmt_v3.6 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
+
+add_test(NAME benchmark_tmp_tmx_tsx_quantumfeedlevel2_xmt_v3.6 COMMAND benchmark_tmp_tmx_tsx_quantumfeedlevel2_xmt_v3.6 ${CMAKE_SOURCE_DIR}/tests/simulated/tmx/tsx/quantumfeedlevel2/xmt/v3.6.pcap 0.05)
+set_tests_properties(benchmark_tmp_tmx_tsx_quantumfeedlevel2_xmt_v3.6 PROPERTIES PASS_REGULAR_EXPRESSION "\nPASS")
 # Tests reading the simulated sequences under tests/simulated/ - written from each model and read
 # back through it - rather than the corpus, so they run without it: each holds what a format reads
 # to what the model reads (tests/values/).

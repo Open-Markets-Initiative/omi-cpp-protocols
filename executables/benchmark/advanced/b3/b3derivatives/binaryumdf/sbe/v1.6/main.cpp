@@ -26,7 +26,6 @@ struct Reader {
 
     protocol::seq_action on_transport_header(const protocol::packet_header& header, const packet::Frame&) {
         checksum += bench::digest(header.channel_id.get().value());
-        checksum += bench::digest(header.packet_reserved.get().value());
         checksum += bench::digest(header.sequence_version.get().value());
         checksum += bench::digest(header.sequence_number.get().value());
         checksum += bench::digest(header.sending_time.get().value());
@@ -57,6 +56,7 @@ struct Reader {
         checksum += bench::digest(message.fields.match_event_indicator.has_last_stats_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_last_implied_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_recovery_msg());
+        checksum += bench::digest(message.fields.match_event_indicator.has_unused());
         checksum += bench::digest(message.fields.match_event_indicator.has_end_of_event());
         checksum += bench::digest(message.fields.trading_session_id.get().value());
         checksum += bench::digest(message.fields.security_trading_status.get().value());
@@ -78,6 +78,7 @@ struct Reader {
         checksum += bench::digest(message.fields.match_event_indicator.has_last_stats_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_last_implied_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_recovery_msg());
+        checksum += bench::digest(message.fields.match_event_indicator.has_unused());
         checksum += bench::digest(message.fields.match_event_indicator.has_end_of_event());
         checksum += bench::digest(message.fields.trading_session_id.get().value());
         checksum += bench::digest(message.fields.trading_session_sub_id.get().value());
@@ -156,6 +157,7 @@ struct Reader {
         checksum += bench::digest(message.fields.match_event_indicator.has_last_stats_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_last_implied_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_recovery_msg());
+        checksum += bench::digest(message.fields.match_event_indicator.has_unused());
         checksum += bench::digest(message.fields.match_event_indicator.has_end_of_event());
         checksum += bench::digest(message.fields.news_source.get().value());
         checksum += bench::digest(message.fields.part_count.get().value());
@@ -176,6 +178,7 @@ struct Reader {
         checksum += bench::digest(message.fields.match_event_indicator.has_last_stats_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_last_implied_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_recovery_msg());
+        checksum += bench::digest(message.fields.match_event_indicator.has_unused());
         checksum += bench::digest(message.fields.match_event_indicator.has_end_of_event());
         checksum += (message.fields.md_entry_timestamp.get().has_value() ? bench::digest(message.fields.md_entry_timestamp.get().value()) : std::uint64_t{0});
     }
@@ -190,6 +193,7 @@ struct Reader {
         checksum += bench::digest(message.fields.match_event_indicator.has_last_stats_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_last_implied_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_recovery_msg());
+        checksum += bench::digest(message.fields.match_event_indicator.has_unused());
         checksum += bench::digest(message.fields.match_event_indicator.has_end_of_event());
         checksum += (message.fields.md_entry_timestamp.get().has_value() ? bench::digest(message.fields.md_entry_timestamp.get().value()) : std::uint64_t{0});
     }
@@ -205,6 +209,7 @@ struct Reader {
         checksum += bench::digest(message.fields.match_event_indicator.has_last_stats_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_last_implied_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_recovery_msg());
+        checksum += bench::digest(message.fields.match_event_indicator.has_unused());
         checksum += bench::digest(message.fields.match_event_indicator.has_end_of_event());
         checksum += bench::digest(message.fields.md_update_action.get().value());
         checksum += bench::digest(message.fields.open_close_settl_flag.get().value());
@@ -226,6 +231,7 @@ struct Reader {
         checksum += bench::digest(message.fields.match_event_indicator.has_last_stats_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_last_implied_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_recovery_msg());
+        checksum += bench::digest(message.fields.match_event_indicator.has_unused());
         checksum += bench::digest(message.fields.match_event_indicator.has_end_of_event());
         checksum += bench::digest(message.fields.md_update_action.get().value());
         checksum += bench::digest(message.fields.trade_date.get().value());
@@ -246,6 +252,7 @@ struct Reader {
         checksum += bench::digest(message.fields.match_event_indicator.has_last_stats_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_last_implied_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_recovery_msg());
+        checksum += bench::digest(message.fields.match_event_indicator.has_unused());
         checksum += bench::digest(message.fields.match_event_indicator.has_end_of_event());
         checksum += bench::digest(message.fields.open_close_settl_flag.get().value());
         checksum += bench::digest(message.fields.md_corporate_price.get().value());
@@ -266,6 +273,7 @@ struct Reader {
         checksum += bench::digest(message.fields.match_event_indicator.has_last_stats_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_last_implied_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_recovery_msg());
+        checksum += bench::digest(message.fields.match_event_indicator.has_unused());
         checksum += bench::digest(message.fields.match_event_indicator.has_end_of_event());
         checksum += bench::digest(message.fields.md_update_action.get().value());
         checksum += bench::digest(message.fields.imbalance_condition.has_imbalance_more_buyers());
@@ -286,6 +294,7 @@ struct Reader {
         checksum += bench::digest(message.fields.match_event_indicator.has_last_stats_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_last_implied_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_recovery_msg());
+        checksum += bench::digest(message.fields.match_event_indicator.has_unused());
         checksum += bench::digest(message.fields.match_event_indicator.has_end_of_event());
         checksum += (message.fields.price_band_type.get().has_value() ? bench::digest(message.fields.price_band_type.get().value()) : std::uint64_t{0});
         checksum += (message.fields.price_limit_type.get().has_value() ? bench::digest(message.fields.price_limit_type.get().value()) : std::uint64_t{0});
@@ -308,6 +317,7 @@ struct Reader {
         checksum += bench::digest(message.fields.match_event_indicator.has_last_stats_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_last_implied_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_recovery_msg());
+        checksum += bench::digest(message.fields.match_event_indicator.has_unused());
         checksum += bench::digest(message.fields.match_event_indicator.has_end_of_event());
         checksum += (message.fields.avg_daily_traded_qty.get().has_value() ? bench::digest(message.fields.avg_daily_traded_qty.get().value()) : std::uint64_t{0});
         checksum += (message.fields.max_trade_vol.get().has_value() ? bench::digest(message.fields.max_trade_vol.get().value()) : std::uint64_t{0});
@@ -326,6 +336,7 @@ struct Reader {
         checksum += bench::digest(message.fields.match_event_indicator.has_last_stats_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_last_implied_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_recovery_msg());
+        checksum += bench::digest(message.fields.match_event_indicator.has_unused());
         checksum += bench::digest(message.fields.match_event_indicator.has_end_of_event());
         checksum += bench::digest(message.fields.md_update_action.get().value());
         checksum += bench::digest(message.fields.trade_date.get().value());
@@ -345,6 +356,7 @@ struct Reader {
         checksum += bench::digest(message.fields.match_event_indicator.has_last_stats_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_last_implied_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_recovery_msg());
+        checksum += bench::digest(message.fields.match_event_indicator.has_unused());
         checksum += bench::digest(message.fields.match_event_indicator.has_end_of_event());
         checksum += bench::digest(message.fields.md_update_action.get().value());
         checksum += bench::digest(message.fields.trade_date.get().value());
@@ -364,6 +376,7 @@ struct Reader {
         checksum += bench::digest(message.fields.match_event_indicator.has_last_stats_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_last_implied_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_recovery_msg());
+        checksum += bench::digest(message.fields.match_event_indicator.has_unused());
         checksum += bench::digest(message.fields.match_event_indicator.has_end_of_event());
         checksum += bench::digest(message.fields.trading_session_id.get().value());
         checksum += bench::digest(message.fields.trade_condition.has_opening_price());
@@ -410,6 +423,7 @@ struct Reader {
         checksum += bench::digest(message.fields.match_event_indicator.has_last_stats_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_last_implied_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_recovery_msg());
+        checksum += bench::digest(message.fields.match_event_indicator.has_unused());
         checksum += bench::digest(message.fields.match_event_indicator.has_end_of_event());
         checksum += bench::digest(message.fields.md_update_action.get().value());
         checksum += bench::digest(message.fields.md_entry_type.get().value());
@@ -434,6 +448,7 @@ struct Reader {
         checksum += bench::digest(message.fields.match_event_indicator.has_last_stats_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_last_implied_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_recovery_msg());
+        checksum += bench::digest(message.fields.match_event_indicator.has_unused());
         checksum += bench::digest(message.fields.match_event_indicator.has_end_of_event());
         checksum += bench::digest(message.fields.md_entry_type.get().value());
         checksum += bench::digest(message.fields.md_entry_position_no.get().value());
@@ -454,6 +469,7 @@ struct Reader {
         checksum += bench::digest(message.fields.match_event_indicator.has_last_stats_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_last_implied_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_recovery_msg());
+        checksum += bench::digest(message.fields.match_event_indicator.has_unused());
         checksum += bench::digest(message.fields.match_event_indicator.has_end_of_event());
         checksum += bench::digest(message.fields.md_update_action.get().value());
         checksum += bench::digest(message.fields.md_entry_type.get().value());
@@ -473,6 +489,7 @@ struct Reader {
         checksum += bench::digest(message.fields.match_event_indicator.has_last_stats_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_last_implied_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_recovery_msg());
+        checksum += bench::digest(message.fields.match_event_indicator.has_unused());
         checksum += bench::digest(message.fields.match_event_indicator.has_end_of_event());
         checksum += bench::digest(message.fields.trading_session_id.get().value());
         checksum += bench::digest(message.fields.trade_condition.has_opening_price());
@@ -504,6 +521,7 @@ struct Reader {
         checksum += bench::digest(message.fields.match_event_indicator.has_last_stats_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_last_implied_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_recovery_msg());
+        checksum += bench::digest(message.fields.match_event_indicator.has_unused());
         checksum += bench::digest(message.fields.match_event_indicator.has_end_of_event());
         checksum += bench::digest(message.fields.trading_session_id.get().value());
         checksum += bench::digest(message.fields.trade_condition.has_opening_price());
@@ -552,6 +570,7 @@ struct Reader {
         checksum += bench::digest(message.fields.match_event_indicator.has_last_stats_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_last_implied_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_recovery_msg());
+        checksum += bench::digest(message.fields.match_event_indicator.has_unused());
         checksum += bench::digest(message.fields.match_event_indicator.has_end_of_event());
         checksum += bench::digest(message.fields.trading_session_id.get().value());
         checksum += bench::digest(message.fields.trade_date.get().value());
@@ -574,6 +593,7 @@ struct Reader {
         checksum += bench::digest(message.fields.match_event_indicator.has_last_stats_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_last_implied_msg());
         checksum += bench::digest(message.fields.match_event_indicator.has_recovery_msg());
+        checksum += bench::digest(message.fields.match_event_indicator.has_unused());
         checksum += bench::digest(message.fields.match_event_indicator.has_end_of_event());
         checksum += bench::digest(message.fields.trading_session_id.get().value());
         checksum += bench::digest(message.fields.md_future_price.get().value());

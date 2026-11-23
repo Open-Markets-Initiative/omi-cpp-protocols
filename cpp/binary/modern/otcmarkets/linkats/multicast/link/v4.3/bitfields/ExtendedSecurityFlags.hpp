@@ -1,6 +1,7 @@
 // OtcMarkets.LinkAts.Multicast.Link.v4.3: bitfields/ExtendedSecurityFlags.hpp
 #pragma once
 
+#include <bit>
 #include <cstddef>
 #include <cstdint>
 
@@ -35,57 +36,57 @@ struct ExtendedSecurityFlags {
 
     // Rule 15c2-11 “Piggyback” exempt security status flag.
     [[nodiscard]] constexpr bool Piggyback() const {
-        return value & mask::Piggyback;
+        return std::byteswap(value) & mask::Piggyback;
     }
 
     // Indicates whether a Caveat Emptor warning has been applied to the security.
     [[nodiscard]] constexpr bool CaveatEmptorWarning() const {
-        return value & mask::CaveatEmptorWarning;
+        return std::byteswap(value) & mask::CaveatEmptorWarning;
     }
 
     // Indicates if the security may only be quoted unsolicited for Qualified Institutional Buyers.
     [[nodiscard]] constexpr bool QualifiedInstitutionalBuyersOnly() const {
-        return value & mask::QualifiedInstitutionalBuyersOnly;
+        return std::byteswap(value) & mask::QualifiedInstitutionalBuyersOnly;
     }
 
     // Indicates if the security may only be quoted unsolicited.
     [[nodiscard]] constexpr bool UnsolicitedOnly() const {
-        return value & mask::UnsolicitedOnly;
+        return std::byteswap(value) & mask::UnsolicitedOnly;
     }
 
     // Security is sponsored
     [[nodiscard]] constexpr bool SponsoredStatus() const {
-        return value & mask::SponsoredStatus;
+        return std::byteswap(value) & mask::SponsoredStatus;
     }
 
     // Indicates if the security is eligible for OTC Link ECN.
     [[nodiscard]] constexpr bool OtcLinkEcnEligible() const {
-        return value & mask::OtcLinkEcnEligible;
+        return std::byteswap(value) & mask::OtcLinkEcnEligible;
     }
 
     // Indicates whether OTC Link messaging is disabled for the security.
     [[nodiscard]] constexpr bool OtcLinkMessagingDisabled() const {
-        return value & mask::OtcLinkMessagingDisabled;
+        return std::byteswap(value) & mask::OtcLinkMessagingDisabled;
     }
 
     // Indicates if a security is eligible to have their quotes saturated.
     [[nodiscard]] constexpr bool SaturationEligible() const {
-        return value & mask::SaturationEligible;
+        return std::byteswap(value) & mask::SaturationEligible;
     }
 
     // Security is investment grade
     [[nodiscard]] constexpr bool InvestmentGrade() const {
-        return value & mask::InvestmentGrade;
+        return std::byteswap(value) & mask::InvestmentGrade;
     }
 
     // Security is trading flat
     [[nodiscard]] constexpr bool TradingFlat() const {
-        return value & mask::TradingFlat;
+        return std::byteswap(value) & mask::TradingFlat;
     }
 
     // Security is callable
     [[nodiscard]] constexpr bool Callable() const {
-        return value & mask::Callable;
+        return std::byteswap(value) & mask::Callable;
     }
 
     // all bits

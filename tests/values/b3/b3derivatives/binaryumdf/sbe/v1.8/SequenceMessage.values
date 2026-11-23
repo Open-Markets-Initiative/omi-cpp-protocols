@@ -1,7 +1,6 @@
 # B3.B3Derivatives.BinaryUmdf.Sbe.v1.8 SequenceMessage: canonical values, read by the model
 datagram 0
 packet.packetheader.channelid = 50
-packet.packetheader.packetreserved = 1
 packet.packetheader.sequenceversion = 5599
 packet.packetheader.sequencenumber = 0
 packet.packetheader.sendingtime = 1725895256204031757

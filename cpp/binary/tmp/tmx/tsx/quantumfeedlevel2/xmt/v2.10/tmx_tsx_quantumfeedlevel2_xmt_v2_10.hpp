@@ -1424,7 +1424,7 @@ static_assert(sizeof(cop_limit) == cop_limit::size, "cop_limit lies over its byt
 // Assign Limit Message
 struct assign_limit_message {
     static constexpr std::string_view name = "Assign Limit Message";
-    static constexpr std::size_t size = 44;
+    static constexpr std::size_t size = 296;
     static constexpr bool is_message = true;
 
     // the types of its members, in wire order
@@ -1432,7 +1432,7 @@ struct assign_limit_message {
         symbol,
         calculated_opening_price,
         order_side,
-        cop_limit,
+        std::array<cop_limit, 15>,
         trading_system_time_stamp>;
 
     // the member of the type asked for
@@ -1443,7 +1443,7 @@ struct assign_limit_message {
     XMTFIELD(symbol);
     XMTFIELD(calculated_opening_price);
     XMTFIELD(order_side);
-    XMTFIELD(cop_limit);
+    constexpr const std::array<cop_limit, 15>& ref(const std::array<cop_limit, 15>*) const noexcept { return cop_limit_; } std::array<cop_limit, 15> cop_limit_;
     XMTFIELD(trading_system_time_stamp);
 };
 
@@ -1498,7 +1498,7 @@ static_assert(sizeof(cop_order) == cop_order::size, "cop_order lies over its byt
 // Assign Cop Orders Message
 struct assign_cop_orders_message {
     static constexpr std::string_view name = "Assign Cop Orders Message";
-    static constexpr std::size_t size = 36;
+    static constexpr std::size_t size = 176;
     static constexpr bool is_message = true;
 
     // the types of its members, in wire order
@@ -1506,7 +1506,7 @@ struct assign_cop_orders_message {
         symbol,
         calculated_opening_price,
         order_side,
-        cop_order,
+        std::array<cop_order, 15>,
         trading_system_time_stamp>;
 
     // the member of the type asked for
@@ -1517,7 +1517,7 @@ struct assign_cop_orders_message {
     XMTFIELD(symbol);
     XMTFIELD(calculated_opening_price);
     XMTFIELD(order_side);
-    XMTFIELD(cop_order);
+    constexpr const std::array<cop_order, 15>& ref(const std::array<cop_order, 15>*) const noexcept { return cop_order_; } std::array<cop_order, 15> cop_order_;
     XMTFIELD(trading_system_time_stamp);
 };
 

@@ -29,6 +29,11 @@ static const type no_value = 9223372036854775807;
         return value;
     }
 
+    // does MdEntryPxOptionalEx hold a value, rather than the one reserved for none
+    [[nodiscard]] bool has_value() const {
+        return integer() != no_value;
+    }
+
     // decimal value of MdEntryPxOptionalEx field
     [[nodiscard]] double get() const {
         return integer() / denominator;

@@ -31,6 +31,11 @@ static const type minimum_value = -92233720368.54775807;
         return value;
     }
 
+    // does Price hold a value, rather than the one reserved for none
+    [[nodiscard]] bool has_value() const {
+        return integer() != no_value;
+    }
+
     // decimal value of Price field
     [[nodiscard]] double get() const {
         return integer() / denominator;

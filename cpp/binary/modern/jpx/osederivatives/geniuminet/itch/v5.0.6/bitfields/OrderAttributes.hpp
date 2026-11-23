@@ -1,6 +1,7 @@
 // Jpx.OseDerivatives.GeniumInet.Itch.v5.0.6: bitfields/OrderAttributes.hpp
 #pragma once
 
+#include <bit>
 #include <cstddef>
 #include <cstdint>
 
@@ -30,32 +31,32 @@ struct OrderAttributes {
 
     // Force
     [[nodiscard]] constexpr bool Force() const {
-        return value & mask::Force;
+        return std::byteswap(value) & mask::Force;
     }
 
     // Short Sell
     [[nodiscard]] constexpr bool ShortSell() const {
-        return value & mask::ShortSell;
+        return std::byteswap(value) & mask::ShortSell;
     }
 
     // Market Bid
     [[nodiscard]] constexpr bool MarketBid() const {
-        return value & mask::MarketBid;
+        return std::byteswap(value) & mask::MarketBid;
     }
 
     // Price Stabilization
     [[nodiscard]] constexpr bool PriceStabilization() const {
-        return value & mask::PriceStabilization;
+        return std::byteswap(value) & mask::PriceStabilization;
     }
 
     // Override Crossing
     [[nodiscard]] constexpr bool OverrideCrossing() const {
-        return value & mask::OverrideCrossing;
+        return std::byteswap(value) & mask::OverrideCrossing;
     }
 
     // Undisclosed
     [[nodiscard]] constexpr bool Undisclosed() const {
-        return value & mask::Undisclosed;
+        return std::byteswap(value) & mask::Undisclosed;
     }
 
     // all bits

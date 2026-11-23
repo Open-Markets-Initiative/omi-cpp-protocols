@@ -15,6 +15,7 @@ struct pt_mod_flags {
 
     static constexpr type canc = type{1} << 0;
     static constexpr type amnd = type{1} << 1;
+    static constexpr type unused_6 = type{0x3F} << 2;
 
     static constexpr const char* name = "pt_mod_flags";
     static constexpr std::size_t size = 1;
@@ -46,9 +47,11 @@ struct pt_mod_flags {
 
     [[nodiscard]] constexpr bool has_canc() const { return has(canc); }
     [[nodiscard]] constexpr bool has_amnd() const { return has(amnd); }
+    [[nodiscard]] constexpr type get_unused_6() const { return static_cast<type>((value & unused_6) >> 2); }
 
     constexpr void set_canc(bool v) { set(canc, v); }
     constexpr void set_amnd(bool v) { set(amnd, v); }
+    constexpr void set_unused_6(type v) { const type held = static_cast<type>((value & static_cast<type>(~unused_6)) | ((v << 2) & unused_6)); value = held; }
 
   protected:
     type value;

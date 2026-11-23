@@ -10,11 +10,15 @@
 #include <string_view>
 
 #include "../common/Decimal.hpp"
+#include "../enums/DatedDate.hpp"
+#include "../enums/EndDate.hpp"
 #include "../enums/ExerciseStyle.hpp"
 #include "../enums/GovernanceIndicator.hpp"
 #include "../enums/ImpliedMarketIndicator.hpp"
+#include "../enums/IssueDate.hpp"
 #include "../enums/LastFragment.hpp"
 #include "../enums/LotType.hpp"
+#include "../enums/MaturityDate.hpp"
 #include "../enums/MultiLegModel.hpp"
 #include "../enums/MultiLegPriceMethod.hpp"
 #include "../enums/PriceTypeOptional.hpp"
@@ -24,6 +28,8 @@
 #include "../enums/SecurityMatchType.hpp"
 #include "../enums/SecurityType.hpp"
 #include "../enums/SecurityUpdateAction.hpp"
+#include "../enums/SettlDate.hpp"
+#include "../enums/StartDate.hpp"
 #include "../messages/Message.hpp"
 #include "../structs/ContractSettlMonth.hpp"
 #include "../structs/InstrAttribsGroups.hpp"
@@ -43,7 +49,7 @@ class SecurityDefinitionMessage : public Message {
     static constexpr MessageCode message_type = TemplateId::SecurityDefinitionMessage;
 
     SecurityDefinitionMessage() = default;
-    SecurityDefinitionMessage(std::uint64_t security_id, const std::string& security_exchange, SecurityIdSource security_id_source, const std::string& security_group, const std::string& symbol, SecurityUpdateAction security_update_action, SecurityType security_type, std::uint16_t security_sub_type, std::uint32_t tot_no_related_sym, std::optional<Decimal> min_price_increment, std::optional<Decimal> strike_price, std::optional<Decimal> contract_multiplier, std::optional<Decimal> price_divisor, std::optional<std::int64_t> security_validity_timestamp, std::optional<std::uint64_t> no_shares_issued, std::optional<std::uint64_t> clearing_house_id, std::optional<std::int64_t> min_order_qty, std::optional<std::int64_t> max_order_qty, std::optional<std::int64_t> min_lot_size, std::optional<std::int64_t> min_trade_vol, std::optional<std::uint32_t> corporate_action_event_id, std::int32_t issue_date, std::optional<std::int32_t> maturity_date, const std::string& country_of_issue, std::optional<std::int32_t> start_date, std::optional<std::int32_t> end_date, std::optional<std::uint16_t> settl_type, std::optional<std::int32_t> settl_date, std::optional<std::int32_t> dated_date, const std::string& isin_number, const std::string& asset, const std::string& cfi_code, const MaturityMonthYear& maturity_month_year, const ContractSettlMonth& contract_settl_month, const std::string& currency, const std::string& strike_currency, const std::string& settl_currency, const std::string& security_strategy_type, std::optional<LotType> lot_type, std::optional<std::uint8_t> tick_size_denominator, Product product, std::optional<ExerciseStyle> exercise_style, std::optional<PutOrCall> put_or_call, std::optional<PriceTypeOptional> price_type_optional, std::optional<std::uint8_t> market_segment_id, std::optional<GovernanceIndicator> governance_indicator, std::optional<SecurityMatchType> security_match_type, std::optional<LastFragment> last_fragment, std::optional<MultiLegModel> multi_leg_model, std::optional<MultiLegPriceMethod> multi_leg_price_method, std::optional<std::int64_t> min_cross_qty, std::optional<ImpliedMarketIndicator> implied_market_indicator, const UnderlyingsGroups& underlyings_groups, const LegsGroups& legs_groups, const InstrAttribsGroups& instr_attribs_groups, const SecurityDesc& security_desc);
+    SecurityDefinitionMessage(std::uint64_t security_id, const std::string& security_exchange, SecurityIdSource security_id_source, const std::string& security_group, const std::string& symbol, SecurityUpdateAction security_update_action, SecurityType security_type, std::uint16_t security_sub_type, std::uint32_t tot_no_related_sym, std::optional<Decimal> min_price_increment, std::optional<Decimal> strike_price, std::optional<Decimal> contract_multiplier, std::optional<Decimal> price_divisor, std::optional<std::int64_t> security_validity_timestamp, std::optional<std::uint64_t> no_shares_issued, std::optional<std::uint64_t> clearing_house_id, std::optional<std::int64_t> min_order_qty, std::optional<std::int64_t> max_order_qty, std::optional<std::int64_t> min_lot_size, std::optional<std::int64_t> min_trade_vol, std::optional<std::uint32_t> corporate_action_event_id, IssueDate issue_date, std::optional<MaturityDate> maturity_date, const std::string& country_of_issue, std::optional<StartDate> start_date, std::optional<EndDate> end_date, std::optional<std::uint16_t> settl_type, std::optional<SettlDate> settl_date, std::optional<DatedDate> dated_date, const std::string& isin_number, const std::string& asset, const std::string& cfi_code, const MaturityMonthYear& maturity_month_year, const ContractSettlMonth& contract_settl_month, const std::string& currency, const std::string& strike_currency, const std::string& settl_currency, const std::string& security_strategy_type, std::optional<LotType> lot_type, std::optional<std::uint8_t> tick_size_denominator, Product product, std::optional<ExerciseStyle> exercise_style, std::optional<PutOrCall> put_or_call, std::optional<PriceTypeOptional> price_type_optional, std::optional<std::uint8_t> market_segment_id, std::optional<GovernanceIndicator> governance_indicator, std::optional<SecurityMatchType> security_match_type, std::optional<LastFragment> last_fragment, std::optional<MultiLegModel> multi_leg_model, std::optional<MultiLegPriceMethod> multi_leg_price_method, std::optional<std::int64_t> min_cross_qty, std::optional<ImpliedMarketIndicator> implied_market_indicator, const UnderlyingsGroups& underlyings_groups, const LegsGroups& legs_groups, const InstrAttribsGroups& instr_attribs_groups, const SecurityDesc& security_desc);
 
     // Security Id: securityID
     std::uint64_t security_id() const;
@@ -133,12 +139,12 @@ class SecurityDefinitionMessage : public Message {
     void set_corporate_action_event_id(std::optional<std::uint32_t> value);
 
     // Issue Date: issueDate
-    std::int32_t issue_date() const;
-    void set_issue_date(std::int32_t value);
+    IssueDate issue_date() const;
+    void set_issue_date(IssueDate value);
 
     // Maturity Date: maturityDate
-    std::optional<std::int32_t> maturity_date() const;
-    void set_maturity_date(std::optional<std::int32_t> value);
+    std::optional<MaturityDate> maturity_date() const;
+    void set_maturity_date(std::optional<MaturityDate> value);
 
     // Country Of Issue: countryOfIssue
     const std::string& country_of_issue() const;
@@ -146,24 +152,24 @@ class SecurityDefinitionMessage : public Message {
     void set_country_of_issue(const std::string& value);
 
     // Start Date: startDate
-    std::optional<std::int32_t> start_date() const;
-    void set_start_date(std::optional<std::int32_t> value);
+    std::optional<StartDate> start_date() const;
+    void set_start_date(std::optional<StartDate> value);
 
     // End Date: endDate
-    std::optional<std::int32_t> end_date() const;
-    void set_end_date(std::optional<std::int32_t> value);
+    std::optional<EndDate> end_date() const;
+    void set_end_date(std::optional<EndDate> value);
 
     // Settl Type: settlType
     std::optional<std::uint16_t> settl_type() const;
     void set_settl_type(std::optional<std::uint16_t> value);
 
     // Settl Date: settlDate
-    std::optional<std::int32_t> settl_date() const;
-    void set_settl_date(std::optional<std::int32_t> value);
+    std::optional<SettlDate> settl_date() const;
+    void set_settl_date(std::optional<SettlDate> value);
 
     // Dated Date: datedDate
-    std::optional<std::int32_t> dated_date() const;
-    void set_dated_date(std::optional<std::int32_t> value);
+    std::optional<DatedDate> dated_date() const;
+    void set_dated_date(std::optional<DatedDate> value);
 
     // Isin Number: isinNumber
     const std::string& isin_number() const;
@@ -322,14 +328,14 @@ class SecurityDefinitionMessage : public Message {
     std::optional<std::int64_t> min_lot_size_{};
     std::optional<std::int64_t> min_trade_vol_{};
     std::optional<std::uint32_t> corporate_action_event_id_{};
-    std::int32_t issue_date_{};
-    std::optional<std::int32_t> maturity_date_{};
+    IssueDate issue_date_{};
+    std::optional<MaturityDate> maturity_date_{};
     std::string country_of_issue_{};
-    std::optional<std::int32_t> start_date_{};
-    std::optional<std::int32_t> end_date_{};
+    std::optional<StartDate> start_date_{};
+    std::optional<EndDate> end_date_{};
     std::optional<std::uint16_t> settl_type_{};
-    std::optional<std::int32_t> settl_date_{};
-    std::optional<std::int32_t> dated_date_{};
+    std::optional<SettlDate> settl_date_{};
+    std::optional<DatedDate> dated_date_{};
     std::string isin_number_{};
     std::string asset_{};
     std::string cfi_code_{};

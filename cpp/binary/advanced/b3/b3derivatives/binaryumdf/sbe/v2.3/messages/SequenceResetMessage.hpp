@@ -14,7 +14,7 @@ namespace sbe_binaryumdf = ::b3::b3derivatives::binaryumdf::sbe::v2_3;
 // Sequence Reset Message
 struct sequence_reset_message {
 
-    sbe_binaryumdf::framing_header header = {std::uint16_t(sizeof(sbe_binaryumdf::framing_header) + sizeof(sbe_binaryumdf::message_header)), {}};
+    sbe_binaryumdf::framing_header header = {std::uint16_t(sizeof(sbe_binaryumdf::framing_header) + sizeof(sbe_binaryumdf::message_header)), encoding_type(60240)};
     sbe_binaryumdf::message_header message_header = {{}, template_id::enum_type::sequence_reset_1_message, schema_id(2), version(17)};
 
     // parse method

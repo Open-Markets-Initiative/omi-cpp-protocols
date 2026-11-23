@@ -352,6 +352,7 @@ std::size_t parse_heartbeat_body([[maybe_unused]] const std::byte* data, [[maybe
     std::size_t offset = 0;
     std::size_t bound = length;
     [[maybe_unused]] const auto& heartbeat_body_section_1_ = tmp::read<heartbeat_body_section_1>(data + offset, bound - offset, handler); offset += heartbeat_body_section_1::size;
+    tmp::call(handler, heartbeat_body_section_1_.template get<body_header>());
     bound = static_cast<std::size_t>(tmp::rule(heartbeat_body_section_1_.template get<body_header>().template get<msg_length>()));
     tmp::require(bound, length);
     {
@@ -465,6 +466,11 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::symbol>(); }) { checksum += bench::digest(message.template get<protocol::symbol>().value()); }
         if constexpr (requires { message.template get<protocol::calculated_opening_price>(); }) { checksum += (static_cast<std::uint64_t>(message.template get<protocol::calculated_opening_price>().value()) != 0x0ULL ? bench::digest(message.template get<protocol::calculated_opening_price>().value()) : std::uint64_t{0}); }
         if constexpr (requires { message.template get<protocol::order_side>(); }) { checksum += bench::digest(message.template get<protocol::order_side>().value()); }
+        for (std::size_t cop_order_index = 0; const auto& cop_order_entry : message.template get<std::array<protocol::cop_order, 15>>()) {
+            checksum += cop_order_index++;
+            if constexpr (requires { cop_order_entry.template get<protocol::broker_number>(); }) { checksum += (static_cast<std::uint16_t>(cop_order_entry.template get<protocol::broker_number>().value()) != 0x0U ? bench::digest(cop_order_entry.template get<protocol::broker_number>().value()) : std::uint64_t{0}); }
+            if constexpr (requires { cop_order_entry.template get<protocol::order_id>(); }) { checksum += (static_cast<std::uint64_t>(cop_order_entry.template get<protocol::order_id>().value()) != 0x0ULL ? bench::digest(cop_order_entry.template get<protocol::order_id>().value()) : std::uint64_t{0}); }
+        }
         if constexpr (requires { message.template get<protocol::trading_system_time_stamp>(); }) { checksum += (static_cast<std::uint64_t>(message.template get<protocol::trading_system_time_stamp>().value()) != 0x0ULL ? bench::digest(message.template get<protocol::trading_system_time_stamp>().value()) : std::uint64_t{0}); }
     }
 
@@ -478,6 +484,12 @@ struct Reader {
         if constexpr (requires { message.template get<protocol::symbol>(); }) { checksum += bench::digest(message.template get<protocol::symbol>().value()); }
         if constexpr (requires { message.template get<protocol::calculated_opening_price>(); }) { checksum += (static_cast<std::uint64_t>(message.template get<protocol::calculated_opening_price>().value()) != 0x0ULL ? bench::digest(message.template get<protocol::calculated_opening_price>().value()) : std::uint64_t{0}); }
         if constexpr (requires { message.template get<protocol::order_side>(); }) { checksum += bench::digest(message.template get<protocol::order_side>().value()); }
+        for (std::size_t cop_limit_index = 0; const auto& cop_limit_entry : message.template get<std::array<protocol::cop_limit, 15>>()) {
+            checksum += cop_limit_index++;
+            if constexpr (requires { cop_limit_entry.template get<protocol::broker_number>(); }) { checksum += (static_cast<std::uint16_t>(cop_limit_entry.template get<protocol::broker_number>().value()) != 0x0U ? bench::digest(cop_limit_entry.template get<protocol::broker_number>().value()) : std::uint64_t{0}); }
+            if constexpr (requires { cop_limit_entry.template get<protocol::order_id>(); }) { checksum += (static_cast<std::uint64_t>(cop_limit_entry.template get<protocol::order_id>().value()) != 0x0ULL ? bench::digest(cop_limit_entry.template get<protocol::order_id>().value()) : std::uint64_t{0}); }
+            if constexpr (requires { cop_limit_entry.template get<protocol::price>(); }) { checksum += (static_cast<std::uint64_t>(cop_limit_entry.template get<protocol::price>().value()) != 0x0ULL ? bench::digest(cop_limit_entry.template get<protocol::price>().value()) : std::uint64_t{0}); }
+        }
         if constexpr (requires { message.template get<protocol::trading_system_time_stamp>(); }) { checksum += (static_cast<std::uint64_t>(message.template get<protocol::trading_system_time_stamp>().value()) != 0x0ULL ? bench::digest(message.template get<protocol::trading_system_time_stamp>().value()) : std::uint64_t{0}); }
     }
 

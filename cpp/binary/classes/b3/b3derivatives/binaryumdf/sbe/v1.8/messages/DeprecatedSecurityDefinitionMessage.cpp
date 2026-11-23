@@ -7,7 +7,7 @@
 
 namespace b3::b3derivatives::binaryumdf::sbe::v1_8 {
 
-DeprecatedSecurityDefinitionMessage::DeprecatedSecurityDefinitionMessage(std::uint64_t security_id, const std::string& security_exchange, SecurityIdSource security_id_source, const std::string& security_group, const std::string& symbol, SecurityUpdateAction security_update_action, SecurityType security_type, std::uint16_t security_sub_type, std::uint32_t tot_no_related_sym, std::optional<Decimal> min_price_increment_legacy, std::optional<Decimal> strike_price, std::optional<Decimal> contract_multiplier, std::optional<Decimal> price_divisor, std::optional<std::int64_t> security_validity_timestamp, std::optional<std::uint64_t> no_shares_issued, std::optional<std::uint64_t> clearing_house_id, std::optional<std::int64_t> min_order_qty, std::optional<std::int64_t> max_order_qty, std::optional<std::int64_t> min_lot_size, std::optional<std::int64_t> min_trade_vol, std::optional<std::uint32_t> corporate_action_event_id, std::int32_t issue_date, std::optional<std::int32_t> maturity_date, const std::string& country_of_issue, std::optional<std::int32_t> start_date, std::optional<std::int32_t> end_date, std::optional<std::uint16_t> settl_type, std::optional<std::int32_t> settl_date, std::optional<std::int32_t> dated_date, const std::string& isin_number, const std::string& asset, const std::string& cfi_code, const MaturityMonthYear& maturity_month_year, const ContractSettlMonth& contract_settl_month, const std::string& currency, const std::string& strike_currency, const std::string& settl_currency, const std::string& security_strategy_type, std::optional<LotType> lot_type, std::optional<std::uint8_t> tick_size_denominator, Product product, std::optional<ExerciseStyle> exercise_style, std::optional<PutOrCall> put_or_call, std::optional<PriceTypeOptional> price_type_optional, std::optional<std::uint8_t> market_segment_id, std::optional<GovernanceIndicator> governance_indicator, std::optional<SecurityMatchType> security_match_type, std::optional<LastFragment> last_fragment, std::optional<MultiLegModel> multi_leg_model, std::optional<MultiLegPriceMethod> multi_leg_price_method, std::optional<std::int64_t> min_cross_qty, const DeprecatedUnderlyingsGroups& deprecated_underlyings_groups, const DeprecatedLegsGroups& deprecated_legs_groups, const DeprecatedInstrAttribsGroups& deprecated_instr_attribs_groups, const SecurityDesc& security_desc)
+DeprecatedSecurityDefinitionMessage::DeprecatedSecurityDefinitionMessage(std::uint64_t security_id, const std::string& security_exchange, SecurityIdSource security_id_source, const std::string& security_group, const std::string& symbol, SecurityUpdateAction security_update_action, SecurityType security_type, std::uint16_t security_sub_type, std::uint32_t tot_no_related_sym, std::optional<Decimal> min_price_increment_legacy, std::optional<Decimal> strike_price, std::optional<Decimal> contract_multiplier, std::optional<Decimal> price_divisor, std::optional<std::int64_t> security_validity_timestamp, std::optional<std::uint64_t> no_shares_issued, std::optional<std::uint64_t> clearing_house_id, std::optional<std::int64_t> min_order_qty, std::optional<std::int64_t> max_order_qty, std::optional<std::int64_t> min_lot_size, std::optional<std::int64_t> min_trade_vol, std::optional<std::uint32_t> corporate_action_event_id, IssueDate issue_date, std::optional<MaturityDate> maturity_date, const std::string& country_of_issue, std::optional<StartDate> start_date, std::optional<EndDate> end_date, std::optional<std::uint16_t> settl_type, std::optional<SettlDate> settl_date, std::optional<DatedDate> dated_date, const std::string& isin_number, const std::string& asset, const std::string& cfi_code, const MaturityMonthYear& maturity_month_year, const ContractSettlMonth& contract_settl_month, const std::string& currency, const std::string& strike_currency, const std::string& settl_currency, const std::string& security_strategy_type, std::optional<LotType> lot_type, std::optional<std::uint8_t> tick_size_denominator, Product product, std::optional<ExerciseStyle> exercise_style, std::optional<PutOrCall> put_or_call, std::optional<PriceTypeOptional> price_type_optional, std::optional<std::uint8_t> market_segment_id, std::optional<GovernanceIndicator> governance_indicator, std::optional<SecurityMatchType> security_match_type, std::optional<LastFragment> last_fragment, std::optional<MultiLegModel> multi_leg_model, std::optional<MultiLegPriceMethod> multi_leg_price_method, std::optional<std::int64_t> min_cross_qty, const DeprecatedUnderlyingsGroups& deprecated_underlyings_groups, const DeprecatedLegsGroups& deprecated_legs_groups, const DeprecatedInstrAttribsGroups& deprecated_instr_attribs_groups, const SecurityDesc& security_desc)
   : security_id_(security_id), security_exchange_(security_exchange), security_id_source_(security_id_source), security_group_(security_group), symbol_(symbol), security_update_action_(security_update_action), security_type_(security_type), security_sub_type_(security_sub_type), tot_no_related_sym_(tot_no_related_sym), min_price_increment_legacy_(min_price_increment_legacy), strike_price_(strike_price), contract_multiplier_(contract_multiplier), price_divisor_(price_divisor), security_validity_timestamp_(security_validity_timestamp), no_shares_issued_(no_shares_issued), clearing_house_id_(clearing_house_id), min_order_qty_(min_order_qty), max_order_qty_(max_order_qty), min_lot_size_(min_lot_size), min_trade_vol_(min_trade_vol), corporate_action_event_id_(corporate_action_event_id), issue_date_(issue_date), maturity_date_(maturity_date), country_of_issue_(country_of_issue), start_date_(start_date), end_date_(end_date), settl_type_(settl_type), settl_date_(settl_date), dated_date_(dated_date), isin_number_(isin_number), asset_(asset), cfi_code_(cfi_code), maturity_month_year_(maturity_month_year), contract_settl_month_(contract_settl_month), currency_(currency), strike_currency_(strike_currency), settl_currency_(settl_currency), security_strategy_type_(security_strategy_type), lot_type_(lot_type), tick_size_denominator_(tick_size_denominator), product_(product), exercise_style_(exercise_style), put_or_call_(put_or_call), price_type_optional_(price_type_optional), market_segment_id_(market_segment_id), governance_indicator_(governance_indicator), security_match_type_(security_match_type), last_fragment_(last_fragment), multi_leg_model_(multi_leg_model), multi_leg_price_method_(multi_leg_price_method), min_cross_qty_(min_cross_qty), deprecated_underlyings_groups_(deprecated_underlyings_groups), deprecated_legs_groups_(deprecated_legs_groups), deprecated_instr_attribs_groups_(deprecated_instr_attribs_groups), security_desc_(security_desc) {}
 
 std::uint64_t DeprecatedSecurityDefinitionMessage::security_id() const { return security_id_; }
@@ -76,30 +76,30 @@ void DeprecatedSecurityDefinitionMessage::set_min_trade_vol(std::optional<std::i
 std::optional<std::uint32_t> DeprecatedSecurityDefinitionMessage::corporate_action_event_id() const { return corporate_action_event_id_; }
 void DeprecatedSecurityDefinitionMessage::set_corporate_action_event_id(std::optional<std::uint32_t> value) { corporate_action_event_id_ = value; }
 
-std::int32_t DeprecatedSecurityDefinitionMessage::issue_date() const { return issue_date_; }
-void DeprecatedSecurityDefinitionMessage::set_issue_date(std::int32_t value) { issue_date_ = value; }
+IssueDate DeprecatedSecurityDefinitionMessage::issue_date() const { return issue_date_; }
+void DeprecatedSecurityDefinitionMessage::set_issue_date(IssueDate value) { issue_date_ = value; }
 
-std::optional<std::int32_t> DeprecatedSecurityDefinitionMessage::maturity_date() const { return maturity_date_; }
-void DeprecatedSecurityDefinitionMessage::set_maturity_date(std::optional<std::int32_t> value) { maturity_date_ = value; }
+std::optional<MaturityDate> DeprecatedSecurityDefinitionMessage::maturity_date() const { return maturity_date_; }
+void DeprecatedSecurityDefinitionMessage::set_maturity_date(std::optional<MaturityDate> value) { maturity_date_ = value; }
 
 const std::string& DeprecatedSecurityDefinitionMessage::country_of_issue() const { return country_of_issue_; }
 std::string& DeprecatedSecurityDefinitionMessage::country_of_issue() { return country_of_issue_; }
 void DeprecatedSecurityDefinitionMessage::set_country_of_issue(const std::string& value) { country_of_issue_ = value; }
 
-std::optional<std::int32_t> DeprecatedSecurityDefinitionMessage::start_date() const { return start_date_; }
-void DeprecatedSecurityDefinitionMessage::set_start_date(std::optional<std::int32_t> value) { start_date_ = value; }
+std::optional<StartDate> DeprecatedSecurityDefinitionMessage::start_date() const { return start_date_; }
+void DeprecatedSecurityDefinitionMessage::set_start_date(std::optional<StartDate> value) { start_date_ = value; }
 
-std::optional<std::int32_t> DeprecatedSecurityDefinitionMessage::end_date() const { return end_date_; }
-void DeprecatedSecurityDefinitionMessage::set_end_date(std::optional<std::int32_t> value) { end_date_ = value; }
+std::optional<EndDate> DeprecatedSecurityDefinitionMessage::end_date() const { return end_date_; }
+void DeprecatedSecurityDefinitionMessage::set_end_date(std::optional<EndDate> value) { end_date_ = value; }
 
 std::optional<std::uint16_t> DeprecatedSecurityDefinitionMessage::settl_type() const { return settl_type_; }
 void DeprecatedSecurityDefinitionMessage::set_settl_type(std::optional<std::uint16_t> value) { settl_type_ = value; }
 
-std::optional<std::int32_t> DeprecatedSecurityDefinitionMessage::settl_date() const { return settl_date_; }
-void DeprecatedSecurityDefinitionMessage::set_settl_date(std::optional<std::int32_t> value) { settl_date_ = value; }
+std::optional<SettlDate> DeprecatedSecurityDefinitionMessage::settl_date() const { return settl_date_; }
+void DeprecatedSecurityDefinitionMessage::set_settl_date(std::optional<SettlDate> value) { settl_date_ = value; }
 
-std::optional<std::int32_t> DeprecatedSecurityDefinitionMessage::dated_date() const { return dated_date_; }
-void DeprecatedSecurityDefinitionMessage::set_dated_date(std::optional<std::int32_t> value) { dated_date_ = value; }
+std::optional<DatedDate> DeprecatedSecurityDefinitionMessage::dated_date() const { return dated_date_; }
+void DeprecatedSecurityDefinitionMessage::set_dated_date(std::optional<DatedDate> value) { dated_date_ = value; }
 
 const std::string& DeprecatedSecurityDefinitionMessage::isin_number() const { return isin_number_; }
 std::string& DeprecatedSecurityDefinitionMessage::isin_number() { return isin_number_; }
@@ -284,11 +284,11 @@ std::size_t DeprecatedSecurityDefinitionMessage::decode(const std::byte* data, s
     offset += 4;
 
     wire::require("DeprecatedSecurityDefinitionMessage", offset + 4, length);
-    issue_date_ = wire::read_i32_le(data + offset);
+    issue_date_ = static_cast<IssueDate>(wire::read_i32_le(data + offset));
     offset += 4;
 
     wire::require("DeprecatedSecurityDefinitionMessage", offset + 4, length);
-    maturity_date_ = wire::nullable(wire::read_i32_le(data + offset), static_cast<std::int32_t>(0LL));
+    maturity_date_ = wire::nullable_enum<MaturityDate>(wire::read_i32_le(data + offset), static_cast<std::int32_t>(0LL));
     offset += 4;
 
     wire::require("DeprecatedSecurityDefinitionMessage", offset + 2, length);
@@ -296,11 +296,11 @@ std::size_t DeprecatedSecurityDefinitionMessage::decode(const std::byte* data, s
     offset += 2;
 
     wire::require("DeprecatedSecurityDefinitionMessage", offset + 4, length);
-    start_date_ = wire::nullable(wire::read_i32_le(data + offset), static_cast<std::int32_t>(0LL));
+    start_date_ = wire::nullable_enum<StartDate>(wire::read_i32_le(data + offset), static_cast<std::int32_t>(0LL));
     offset += 4;
 
     wire::require("DeprecatedSecurityDefinitionMessage", offset + 4, length);
-    end_date_ = wire::nullable(wire::read_i32_le(data + offset), static_cast<std::int32_t>(0LL));
+    end_date_ = wire::nullable_enum<EndDate>(wire::read_i32_le(data + offset), static_cast<std::int32_t>(0LL));
     offset += 4;
 
     wire::require("DeprecatedSecurityDefinitionMessage", offset + 2, length);
@@ -308,11 +308,11 @@ std::size_t DeprecatedSecurityDefinitionMessage::decode(const std::byte* data, s
     offset += 2;
 
     wire::require("DeprecatedSecurityDefinitionMessage", offset + 4, length);
-    settl_date_ = wire::nullable(wire::read_i32_le(data + offset), static_cast<std::int32_t>(0LL));
+    settl_date_ = wire::nullable_enum<SettlDate>(wire::read_i32_le(data + offset), static_cast<std::int32_t>(0LL));
     offset += 4;
 
     wire::require("DeprecatedSecurityDefinitionMessage", offset + 4, length);
-    dated_date_ = wire::nullable(wire::read_i32_le(data + offset), static_cast<std::int32_t>(0LL));
+    dated_date_ = wire::nullable_enum<DatedDate>(wire::read_i32_le(data + offset), static_cast<std::int32_t>(0LL));
     offset += 4;
 
     wire::require("DeprecatedSecurityDefinitionMessage", offset + 12, length);
@@ -480,25 +480,25 @@ std::size_t DeprecatedSecurityDefinitionMessage::encode(std::byte* data, std::si
     wire::write_i32_le(data + offset, static_cast<std::int32_t>(issue_date_));
     offset += 4;
 
-    wire::write_i32_le(data + offset, maturity_date_.value_or(static_cast<std::int32_t>(0LL)));
+    wire::write_i32_le(data + offset, maturity_date_ ? static_cast<std::int32_t>(*maturity_date_) : static_cast<std::int32_t>(0LL));
     offset += 4;
 
     wire::write_text(data + offset, 2, '\0', country_of_issue_);
     offset += 2;
 
-    wire::write_i32_le(data + offset, start_date_.value_or(static_cast<std::int32_t>(0LL)));
+    wire::write_i32_le(data + offset, start_date_ ? static_cast<std::int32_t>(*start_date_) : static_cast<std::int32_t>(0LL));
     offset += 4;
 
-    wire::write_i32_le(data + offset, end_date_.value_or(static_cast<std::int32_t>(0LL)));
+    wire::write_i32_le(data + offset, end_date_ ? static_cast<std::int32_t>(*end_date_) : static_cast<std::int32_t>(0LL));
     offset += 4;
 
     wire::write_u16_le(data + offset, settl_type_.value_or(static_cast<std::uint16_t>(65535ULL)));
     offset += 2;
 
-    wire::write_i32_le(data + offset, settl_date_.value_or(static_cast<std::int32_t>(0LL)));
+    wire::write_i32_le(data + offset, settl_date_ ? static_cast<std::int32_t>(*settl_date_) : static_cast<std::int32_t>(0LL));
     offset += 4;
 
-    wire::write_i32_le(data + offset, dated_date_.value_or(static_cast<std::int32_t>(0LL)));
+    wire::write_i32_le(data + offset, dated_date_ ? static_cast<std::int32_t>(*dated_date_) : static_cast<std::int32_t>(0LL));
     offset += 4;
 
     wire::write_text(data + offset, 12, '\0', isin_number_);

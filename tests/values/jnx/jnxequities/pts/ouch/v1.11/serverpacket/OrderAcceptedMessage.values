@@ -1,0 +1,24 @@
+# Jnx.JnxEquities.Pts.Ouch.v1.11 OrderAcceptedMessage: canonical values of 'serverpacket', read by the model
+stream 0
+serverpacket.serversoupbintcppacket[0].serverpacketheader.packetlength = 66
+serverpacket.serversoupbintcppacket[0].serverpacketheader.serverpackettype = S
+serverpacket.serversoupbintcppacket[0].serverpayload = serverpacket.serversoupbintcppacket.serverpayload.sequenceddatapacket
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessagetype = A
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessage = serverpacket.serversoupbintcppacket.serverpayload.sequenceddatapacket.sequencedmessage.orderacceptedmessage
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessage.orderacceptedmessage.timestamp = 44659315808000
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessage.orderacceptedmessage.ordertoken = 74
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessage.orderacceptedmessage.clientreference = ref1
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessage.orderacceptedmessage.buysellindicator = B
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessage.orderacceptedmessage.quantity = 100
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessage.orderacceptedmessage.orderbookid = 4422
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessage.orderacceptedmessage.group = DAYX
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessage.orderacceptedmessage.price = 1101
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessage.orderacceptedmessage.timeinforce = 99999
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessage.orderacceptedmessage.firmid = 0
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessage.orderacceptedmessage.display = 
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessage.orderacceptedmessage.capacity = A
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessage.orderacceptedmessage.ordernumber = 202307130000000093
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessage.orderacceptedmessage.minimumquantity = 0
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessage.orderacceptedmessage.orderstate = L
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessage.orderacceptedmessage.orderclassification = 1
+serverpacket.serversoupbintcppacket[0].serverpayload.sequenceddatapacket.sequencedmessage.orderacceptedmessage.cashmargintype = 1

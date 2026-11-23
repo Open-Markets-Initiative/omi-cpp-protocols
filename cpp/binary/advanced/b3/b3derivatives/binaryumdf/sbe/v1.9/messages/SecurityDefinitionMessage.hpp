@@ -157,7 +157,7 @@ struct security_definition_message {
         sbe_binaryumdf::implied_market_indicator implied_market_indicator;
     };
 
-    sbe_binaryumdf::framing_header header = {std::uint16_t(sizeof(sbe_binaryumdf::framing_header) + sizeof(fields_type) + sizeof(sbe_binaryumdf::message_header)), {}};
+    sbe_binaryumdf::framing_header header = {std::uint16_t(sizeof(sbe_binaryumdf::framing_header) + sizeof(fields_type) + sizeof(sbe_binaryumdf::message_header)), encoding_type(60240)};
     sbe_binaryumdf::message_header message_header = {block_length(sizeof(fields_type)), template_id::enum_type::security_definition_message, schema_id(2), version(10)};
 
     static constexpr std::size_t max_message_size = 1280;

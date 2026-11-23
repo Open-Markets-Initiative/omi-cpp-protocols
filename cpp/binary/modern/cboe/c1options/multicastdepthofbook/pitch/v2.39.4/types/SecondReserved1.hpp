@@ -3,6 +3,7 @@
 
 #include <array>
 #include <cstddef>
+#include <cstdint>
 
 namespace cboe::c1options::multicastdepthofbook::pitch::v2_39_4 {
 

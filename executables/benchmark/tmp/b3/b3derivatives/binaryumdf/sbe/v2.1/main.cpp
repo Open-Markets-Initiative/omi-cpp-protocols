@@ -260,6 +260,7 @@ std::size_t parse_news_5_message([[maybe_unused]] const std::byte* data, [[maybe
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& news_5_message_section_1_ = tmp::read<news_5_message_section_1>(data + offset, bound - offset, handler); offset += news_5_message_section_1::size;
+    tmp::call(handler, news_5_message_section_1_.template get<match_event_indicator>());
     offset += parse_headline(data + offset, bound - offset, handler);
     offset += parse_text(data + offset, bound - offset, handler);
     offset += parse_url_link(data + offset, bound - offset, handler);
@@ -352,6 +353,8 @@ std::size_t parse_security_definition_message([[maybe_unused]] const std::byte* 
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& security_definition_message_section_1_ = tmp::read<security_definition_message_section_1>(data + offset, bound - offset, handler); offset += security_definition_message_section_1::size;
+    tmp::call(handler, security_definition_message_section_1_.template get<maturity_month_year>());
+    tmp::call(handler, security_definition_message_section_1_.template get<contract_settl_month>());
     offset += parse_underlyings_groups(data + offset, bound - offset, handler);
     offset += parse_legs_groups(data + offset, bound - offset, handler);
     offset += parse_instr_attribs_groups(data + offset, bound - offset, handler);
@@ -717,6 +720,8 @@ std::size_t parse_message([[maybe_unused]] const std::byte* data, [[maybe_unused
     std::size_t offset = 0;
     std::size_t bound = length;
     [[maybe_unused]] const auto& message_section_1_ = tmp::read<message_section_1>(data + offset, bound - offset, handler); offset += message_section_1::size;
+    tmp::call(handler, message_section_1_.template get<framing_header>());
+    tmp::call(handler, message_section_1_.template get<message_header>());
     bound = static_cast<std::size_t>(tmp::rule(message_section_1_.template get<framing_header>().template get<message_length>()));
     tmp::require(bound, length);
     {
@@ -763,7 +768,6 @@ struct Reader {
 
     void operator()(const protocol::packet_header& header) {
         if constexpr (requires { header.template get<protocol::channel_id>(); }) { checksum += bench::digest(header.template get<protocol::channel_id>().value()); }
-        if constexpr (requires { header.template get<protocol::packet_reserved>(); }) { checksum += bench::digest(header.template get<protocol::packet_reserved>().value()); }
         if constexpr (requires { header.template get<protocol::sequence_version>(); }) { checksum += bench::digest(header.template get<protocol::sequence_version>().value()); }
         if constexpr (requires { header.template get<protocol::sequence_number>(); }) { checksum += bench::digest(header.template get<protocol::sequence_number>().value()); }
         if constexpr (requires { header.template get<protocol::sending_time>(); }) { checksum += bench::digest(header.template get<protocol::sending_time>().value()); }

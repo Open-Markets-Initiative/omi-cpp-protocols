@@ -1,0 +1,37 @@
+// Tmx.Tsx.QuantumFeedLevel2.Xmt.v3.6: definitions.hpp
+#pragma once
+
+// Every flyweight view and reader of Tmx.Tsx.QuantumFeedLevel2.Xmt.v3.6.
+
+#include "structs/FrameHeader.hpp"
+#include "structs/BodyHeader.hpp"
+#include "structs/BusinessHeader.hpp"
+#include "groups/AdminBody.hpp"
+#include "structs/HeartbeatBody.hpp"
+#include "messages/SymbolStatusMessage.hpp"
+#include "messages/OrderBookMessage.hpp"
+#include "messages/OrderBookTermsMessage.hpp"
+#include "groups/CopOrder.hpp"
+#include "messages/AssignCopOrdersMessage.hpp"
+#include "messages/AssignCopNoOrdersMessage.hpp"
+#include "groups/CopLimit.hpp"
+#include "messages/AssignLimitMessage.hpp"
+#include "messages/MarketStateUpdateMessage.hpp"
+#include "messages/MocImbalanceMessage.hpp"
+#include "messages/OrderBookedMessage.hpp"
+#include "messages/OrderBookedTermsMessage.hpp"
+#include "messages/OrderCancelledMessage.hpp"
+#include "messages/OrderCancelledTermsMessage.hpp"
+#include "messages/OrderPriceTimeAssignedMessage.hpp"
+#include "messages/OrderPriceTimeAssignedTermsMessage.hpp"
+#include "messages/StockStatusMessage.hpp"
+#include "messages/TradeReportMessage.hpp"
+#include "messages/TradeReportTermsMessage.hpp"
+#include "messages/TradeCancelledMessage.hpp"
+#include "messages/TradeCancelledTermsMessage.hpp"
+#include "messages/TradeCorrectionMessage.hpp"
+#include "messages/TradeCorrectionTermsMessage.hpp"
+#include "structs/Packet.hpp"
+#include "structs/Frame.hpp"
+
+#include "PacketReader.hpp"

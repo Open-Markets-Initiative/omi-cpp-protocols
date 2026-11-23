@@ -13,6 +13,7 @@ struct flags {
 
     using type = uint8_t;
 
+    static constexpr type reserved_flag = type{1} << 0;
     static constexpr type publisher_specific = type{1} << 1;
     static constexpr type maybe_bad_book = type{1} << 2;
     static constexpr type bad_ts_recv = type{1} << 3;
@@ -49,6 +50,7 @@ struct flags {
     [[nodiscard]] constexpr bool has(type bit) const { return (value & bit) != 0; }
     constexpr void set(type bit, bool enabled) { if (enabled) value |= bit; else value &= static_cast<type>(~bit); }
 
+    [[nodiscard]] constexpr bool has_reserved_flag() const { return has(reserved_flag); }
     [[nodiscard]] constexpr bool has_publisher_specific() const { return has(publisher_specific); }
     [[nodiscard]] constexpr bool has_maybe_bad_book() const { return has(maybe_bad_book); }
     [[nodiscard]] constexpr bool has_bad_ts_recv() const { return has(bad_ts_recv); }
@@ -57,6 +59,7 @@ struct flags {
     [[nodiscard]] constexpr bool has_tob() const { return has(tob); }
     [[nodiscard]] constexpr bool has_last() const { return has(last); }
 
+    constexpr void set_reserved_flag(bool v) { set(reserved_flag, v); }
     constexpr void set_publisher_specific(bool v) { set(publisher_specific, v); }
     constexpr void set_maybe_bad_book(bool v) { set(maybe_bad_book, v); }
     constexpr void set_bad_ts_recv(bool v) { set(bad_ts_recv, v); }

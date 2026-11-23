@@ -178,6 +178,7 @@ std::size_t parse_futures_instrument_definition_message([[maybe_unused]] const s
     std::size_t offset = 0;
     const std::size_t bound = length;
     [[maybe_unused]] const auto& futures_instrument_definition_message_section_1_ = tmp::read<futures_instrument_definition_message_section_1>(data + offset, bound - offset, handler); offset += futures_instrument_definition_message_section_1::size;
+    tmp::call(handler, futures_instrument_definition_message_section_1_.template get<futures_flags>());
     {
         std::size_t count = static_cast<std::size_t>(tmp::rule(futures_instrument_definition_message_section_1_.template get<leg_count>()));
         while (count-- > 0) {

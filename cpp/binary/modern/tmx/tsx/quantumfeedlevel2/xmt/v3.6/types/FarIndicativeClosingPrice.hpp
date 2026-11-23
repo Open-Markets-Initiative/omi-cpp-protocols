@@ -1,0 +1,45 @@
+// Tmx.Tsx.QuantumFeedLevel2.Xmt.v3.6: types/FarIndicativeClosingPrice.hpp
+#pragma once
+
+#include <cstddef>
+#include <cstdint>
+
+namespace tmx::tsx::quantumfeedlevel2::xmt::v3_6 {
+
+// The Calculated Closing Price That Will Maximize The Number Of Shares Matched Based On Closing Interest Only Moc Loc This Calculation Excludes Continuous Market Orders
+struct FarIndicativeClosingPrice {
+
+    static constexpr const char* name = "Far Indicative Closing Price";
+    static constexpr std::size_t size =  8;
+    static constexpr std::size_t precision = 6;
+    static constexpr double denominator = 1000000;
+    using type = std::uint64_t;
+static const type no_value = 0;
+
+    // default constructor: the null the model states, where it states one
+    constexpr FarIndicativeClosingPrice()
+     : value{ no_value } {}
+
+    // constructor for FarIndicativeClosingPrice field
+    constexpr explicit FarIndicativeClosingPrice(const std::uint64_t value)
+     : value{ value } {}
+
+    // get underlying integer of FarIndicativeClosingPrice field
+    [[nodiscard]] std::uint64_t integer() const {
+        return value;
+    }
+
+    // does FarIndicativeClosingPrice hold a value, rather than the one reserved for none
+    [[nodiscard]] bool has_value() const {
+        return integer() != no_value;
+    }
+
+    // decimal value of FarIndicativeClosingPrice field
+    [[nodiscard]] double get() const {
+        return integer() / denominator;
+    }
+
+  protected:
+    std::uint64_t value;
+};
+}
